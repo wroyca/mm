@@ -18,14 +18,14 @@ using GUnixOutputStreamClass = struct _GUnixOutputStreamClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gio
 {
-  class GIOMM_API UnixOutputStream_Class;
+  class LIBMM_GIO_SYMEXPORT UnixOutputStream_Class;
 }
 #endif
 
 namespace Gio
 {
 
-  class GIOMM_API UnixOutputStream : public Gio::OutputStream,
+  class LIBMM_GIO_SYMEXPORT UnixOutputStream : public Gio::OutputStream,
                                      public PollableOutputStream,
                                      public FileDescriptorBased
   {
@@ -118,7 +118,7 @@ namespace Gio
 namespace Glib
 {
 
-  GIOMM_API
+  LIBMM_GIO_SYMEXPORT
   auto
   wrap (GUnixOutputStream* object, bool take_copy = false) -> Glib::RefPtr<Gio::UnixOutputStream>;
 } // namespace Glib

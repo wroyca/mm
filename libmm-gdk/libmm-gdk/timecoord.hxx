@@ -13,7 +13,7 @@
 namespace Gdk
 {
 
-  class GDKMM_API TimeCoord
+  class LIBMM_GDK_SYMEXPORT TimeCoord
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

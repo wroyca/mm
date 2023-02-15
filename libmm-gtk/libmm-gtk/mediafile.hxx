@@ -16,20 +16,20 @@ using GtkMediaFileClass = struct _GtkMediaFileClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API MediaFile_Class;
+  class LIBMM_GTK_SYMEXPORT MediaFile_Class;
 }
 #endif
 
 namespace Gio
 {
-  class GTKMM_API File;
-  class GTKMM_API InputStream;
+  class LIBMM_GTK_SYMEXPORT File;
+  class LIBMM_GTK_SYMEXPORT InputStream;
 } // namespace Gio
 
 namespace Gtk
 {
 
-  class GTKMM_API MediaFile : public Gtk::MediaStream
+  class LIBMM_GTK_SYMEXPORT MediaFile : public Gtk::MediaStream
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -165,7 +165,7 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkMediaFile* object, bool take_copy = false) -> Glib::RefPtr<Gtk::MediaFile>;
 } // namespace Glib
 

@@ -31,14 +31,14 @@ using GtkTreeSortableClass = struct _GtkTreeSortableClass;
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API TreeSortable_Class;
+  class LIBMM_GTK_SYMEXPORT TreeSortable_Class;
 }
   #endif
 
 namespace Gtk
 {
 
-  class GTKMM_API TreeSortable : public Glib::Interface
+  class LIBMM_GTK_SYMEXPORT TreeSortable : public Glib::Interface
   {
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -180,7 +180,7 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkTreeSortable* object, bool take_copy = false) -> Glib::RefPtr<Gtk::TreeSortable>;
 
 } // namespace Glib

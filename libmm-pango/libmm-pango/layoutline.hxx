@@ -14,9 +14,9 @@
 namespace Pango
 {
 
-  class PANGOMM_API Layout;
+  class LIBMM_PANGO_SYMEXPORT Layout;
 
-  class PANGOMM_API LayoutLine final
+  class LIBMM_PANGO_SYMEXPORT LayoutLine final
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -103,7 +103,7 @@ namespace Pango
 namespace Glib
 {
 
-  PANGOMM_API
+  LIBMM_PANGO_SYMEXPORT
   auto
   wrap (PangoLayoutLine* object, bool take_copy = false) -> Glib::RefPtr<Pango::LayoutLine>;
 

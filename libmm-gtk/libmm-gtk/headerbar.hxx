@@ -16,14 +16,14 @@ using GtkHeaderBarClass = struct _GtkHeaderBarClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API HeaderBar_Class;
+  class LIBMM_GTK_SYMEXPORT HeaderBar_Class;
 }
 #endif
 
 namespace Gtk
 {
 
-  class GTKMM_API HeaderBar : public Widget
+  class LIBMM_GTK_SYMEXPORT HeaderBar : public Widget
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -46,7 +46,7 @@ namespace Gtk
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   private:
-    friend GTKMM_API class HeaderBar_Class;
+    friend LIBMM_GTK_SYMEXPORT class HeaderBar_Class;
     static CppClassType headerbar_class_;
 
   protected:
@@ -143,7 +143,7 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkHeaderBar* object, bool take_copy = false) -> Gtk::HeaderBar*;
 } // namespace Glib
 

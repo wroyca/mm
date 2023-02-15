@@ -19,14 +19,14 @@
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gio
 {
-  class GIOMM_API ListStoreBase_Class;
+  class LIBMM_GIO_SYMEXPORT ListStoreBase_Class;
 }
 #endif
 
 namespace Gio
 {
 
-  class GIOMM_API ListStoreBase : public Glib::Object,
+  class LIBMM_GIO_SYMEXPORT ListStoreBase : public Glib::Object,
                                   public ListModel
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -364,7 +364,7 @@ namespace Gio
 namespace Glib
 {
 
-  GIOMM_API
+  LIBMM_GIO_SYMEXPORT
   auto
   wrap (GListStore* object, bool take_copy = false) -> Glib::RefPtr<Gio::ListStoreBase>;
 } // namespace Glib

@@ -11,7 +11,7 @@
 namespace Gdk
 {
 
-  class GDKMM_API ContentFormatsBuilder final
+  class LIBMM_GDK_SYMEXPORT ContentFormatsBuilder final
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -66,7 +66,7 @@ namespace Gdk
 
 namespace Glib
 {
-  GDKMM_API auto
+  LIBMM_GDK_SYMEXPORT auto
   wrap (GdkContentFormatsBuilder* object, bool take_copy = false) -> Glib::RefPtr<Gdk::ContentFormatsBuilder>;
 
 } // namespace Glib

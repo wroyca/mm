@@ -17,7 +17,7 @@ typedef struct _GByteArray GByteArray;
 namespace Glib
 {
 
-  class GLIBMM_API ByteArray final
+  class LIBMM_GLIB_SYMEXPORT ByteArray final
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -96,13 +96,13 @@ namespace Glib
 namespace Glib
 {
 
-  GLIBMM_API
+  LIBMM_GLIB_SYMEXPORT
   auto
   wrap (GByteArray* object, bool take_copy = false) -> Glib::RefPtr<Glib::ByteArray>;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
   template <>
-  class GLIBMM_API Value<Glib::RefPtr<Glib::ByteArray>>
+  class LIBMM_GLIB_SYMEXPORT Value<Glib::RefPtr<Glib::ByteArray>>
     : public Glib::Value_RefPtrBoxed<Glib::ByteArray>
   {
   public:

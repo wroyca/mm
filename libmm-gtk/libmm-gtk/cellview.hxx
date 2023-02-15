@@ -28,14 +28,14 @@ using GtkCellViewClass = struct _GtkCellViewClass;
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API CellView_Class;
+  class LIBMM_GTK_SYMEXPORT CellView_Class;
 }
   #endif
 
 namespace Gtk
 {
 
-  class GTKMM_API CellView : public Widget,
+  class LIBMM_GTK_SYMEXPORT CellView : public Widget,
                              public CellLayout,
                              public Orientable
   {
@@ -60,7 +60,7 @@ namespace Gtk
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   private:
-    friend GTKMM_API class CellView_Class;
+    friend LIBMM_GTK_SYMEXPORT class CellView_Class;
     static CppClassType cellview_class_;
 
   protected:
@@ -165,7 +165,7 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkCellView* object, bool take_copy = false) -> Gtk::CellView*;
 } // namespace Glib
 

@@ -3,7 +3,7 @@
 #ifndef _GIOMM_APPLICATION_H
 #define _GIOMM_APPLICATION_H
 
-#include <libmm-gio/gioconfig.hxx>
+#include <libmm-gio/mm-gioconfig.hxx>
 
 #include <libmm-glib/ustring.hxx>
 #include <sigc++/sigc++.h>
@@ -28,14 +28,14 @@ using GApplicationClass = struct _GApplicationClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gio
 {
-  class GIOMM_API Application_Class;
+  class LIBMM_GIO_SYMEXPORT Application_Class;
 }
 #endif
 
 namespace Gio
 {
 
-  class GIOMM_API Application : public Glib::Object,
+  class LIBMM_GIO_SYMEXPORT Application : public Glib::Object,
                                 public ActionGroup,
                                 public ActionMap
   {
@@ -456,7 +456,7 @@ namespace Glib
 {
 
   template <>
-  class GIOMM_API Value<Gio::Application::Flags>
+  class LIBMM_GIO_SYMEXPORT Value<Gio::Application::Flags>
     : public Glib::Value_Flags<Gio::Application::Flags>
   {
   public:
@@ -470,7 +470,7 @@ namespace Glib
 namespace Glib
 {
 
-  GIOMM_API
+  LIBMM_GIO_SYMEXPORT
   auto
   wrap (GApplication* object, bool take_copy = false) -> Glib::RefPtr<Gio::Application>;
 } // namespace Glib

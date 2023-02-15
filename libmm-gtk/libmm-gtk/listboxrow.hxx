@@ -17,14 +17,14 @@ using GtkListBoxRowClass = struct _GtkListBoxRowClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API ListBoxRow_Class;
+  class LIBMM_GTK_SYMEXPORT ListBoxRow_Class;
 }
 #endif
 
 namespace Gtk
 {
 
-  class GTKMM_API ListBoxRow : public Widget,
+  class LIBMM_GTK_SYMEXPORT ListBoxRow : public Widget,
                                public Actionable
   {
   public:
@@ -48,7 +48,7 @@ namespace Gtk
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   private:
-    friend GTKMM_API class ListBoxRow_Class;
+    friend LIBMM_GTK_SYMEXPORT class ListBoxRow_Class;
     static CppClassType listboxrow_class_;
 
   protected:
@@ -154,7 +154,7 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkListBoxRow* object, bool take_copy = false) -> Gtk::ListBoxRow*;
 } // namespace Glib
 

@@ -30,7 +30,7 @@ namespace Glib
 {
 
   template <>
-  class GTKMM_API Value<Gtk::Align> : public Glib::Value_Enum<Gtk::Align>
+  class LIBMM_GTK_SYMEXPORT Value<Gtk::Align> : public Glib::Value_Enum<Gtk::Align>
   {
   public:
     static auto
@@ -59,7 +59,7 @@ namespace Glib
 {
 
   template <>
-  class GTKMM_API Value<Gtk::ArrowType>
+  class LIBMM_GTK_SYMEXPORT Value<Gtk::ArrowType>
     : public Glib::Value_Enum<Gtk::ArrowType>
   {
   public:
@@ -92,7 +92,7 @@ namespace Glib
 {
 
   template <>
-  class GTKMM_API Value<Gtk::DeleteType>
+  class LIBMM_GTK_SYMEXPORT Value<Gtk::DeleteType>
     : public Glib::Value_Enum<Gtk::DeleteType>
   {
   public:
@@ -123,7 +123,7 @@ namespace Glib
 {
 
   template <>
-  class GTKMM_API Value<Gtk::DirectionType>
+  class LIBMM_GTK_SYMEXPORT Value<Gtk::DirectionType>
     : public Glib::Value_Enum<Gtk::DirectionType>
   {
   public:
@@ -151,7 +151,7 @@ namespace Glib
 {
 
   template <>
-  class GTKMM_API Value<Gtk::IconSize> : public Glib::Value_Enum<Gtk::IconSize>
+  class LIBMM_GTK_SYMEXPORT Value<Gtk::IconSize> : public Glib::Value_Enum<Gtk::IconSize>
   {
   public:
     static auto
@@ -178,7 +178,7 @@ namespace Glib
 {
 
   template <>
-  class GTKMM_API Value<Gtk::TextDirection>
+  class LIBMM_GTK_SYMEXPORT Value<Gtk::TextDirection>
     : public Glib::Value_Enum<Gtk::TextDirection>
   {
   public:
@@ -207,7 +207,7 @@ namespace Glib
 {
 
   template <>
-  class GTKMM_API Value<Gtk::Justification>
+  class LIBMM_GTK_SYMEXPORT Value<Gtk::Justification>
     : public Glib::Value_Enum<Gtk::Justification>
   {
   public:
@@ -237,7 +237,7 @@ namespace Glib
 {
 
   template <>
-  class GTKMM_API Value<Gtk::MessageType>
+  class LIBMM_GTK_SYMEXPORT Value<Gtk::MessageType>
     : public Glib::Value_Enum<Gtk::MessageType>
   {
   public:
@@ -272,7 +272,7 @@ namespace Glib
 {
 
   template <>
-  class GTKMM_API Value<Gtk::MovementStep>
+  class LIBMM_GTK_SYMEXPORT Value<Gtk::MovementStep>
     : public Glib::Value_Enum<Gtk::MovementStep>
   {
   public:
@@ -299,7 +299,7 @@ namespace Glib
 {
 
   template <>
-  class GTKMM_API Value<Gtk::Orientation>
+  class LIBMM_GTK_SYMEXPORT Value<Gtk::Orientation>
     : public Glib::Value_Enum<Gtk::Orientation>
   {
   public:
@@ -326,7 +326,7 @@ namespace Glib
 {
 
   template <>
-  class GTKMM_API Value<Gtk::Overflow> : public Glib::Value_Enum<Gtk::Overflow>
+  class LIBMM_GTK_SYMEXPORT Value<Gtk::Overflow> : public Glib::Value_Enum<Gtk::Overflow>
   {
   public:
     static auto
@@ -354,7 +354,7 @@ namespace Glib
 {
 
   template <>
-  class GTKMM_API Value<Gtk::CornerType>
+  class LIBMM_GTK_SYMEXPORT Value<Gtk::CornerType>
     : public Glib::Value_Enum<Gtk::CornerType>
   {
   public:
@@ -381,7 +381,7 @@ namespace Glib
 {
 
   template <>
-  class GTKMM_API Value<Gtk::PackType> : public Glib::Value_Enum<Gtk::PackType>
+  class LIBMM_GTK_SYMEXPORT Value<Gtk::PackType> : public Glib::Value_Enum<Gtk::PackType>
   {
   public:
     static auto
@@ -456,7 +456,7 @@ namespace Glib
 {
 
   template <>
-  class GTKMM_API Value<Gtk::PickFlags>
+  class LIBMM_GTK_SYMEXPORT Value<Gtk::PickFlags>
     : public Glib::Value_Flags<Gtk::PickFlags>
   {
   public:
@@ -485,7 +485,7 @@ namespace Glib
 {
 
   template <>
-  class GTKMM_API Value<Gtk::PolicyType>
+  class LIBMM_GTK_SYMEXPORT Value<Gtk::PolicyType>
     : public Glib::Value_Enum<Gtk::PolicyType>
   {
   public:
@@ -514,7 +514,7 @@ namespace Glib
 {
 
   template <>
-  class GTKMM_API Value<Gtk::PositionType>
+  class LIBMM_GTK_SYMEXPORT Value<Gtk::PositionType>
     : public Glib::Value_Enum<Gtk::PositionType>
   {
   public:
@@ -549,7 +549,7 @@ namespace Glib
 {
 
   template <>
-  class GTKMM_API Value<Gtk::RevealerTransitionType>
+  class LIBMM_GTK_SYMEXPORT Value<Gtk::RevealerTransitionType>
     : public Glib::Value_Enum<Gtk::RevealerTransitionType>
   {
   public:
@@ -590,7 +590,7 @@ namespace Glib
 {
 
   template <>
-  class GTKMM_API Value<Gtk::ScrollType>
+  class LIBMM_GTK_SYMEXPORT Value<Gtk::ScrollType>
     : public Glib::Value_Enum<Gtk::ScrollType>
   {
   public:
@@ -619,7 +619,7 @@ namespace Glib
 {
 
   template <>
-  class GTKMM_API Value<Gtk::SelectionMode>
+  class LIBMM_GTK_SYMEXPORT Value<Gtk::SelectionMode>
     : public Glib::Value_Enum<Gtk::SelectionMode>
   {
   public:
@@ -667,7 +667,7 @@ namespace Glib
 {
 
   template <>
-  class GTKMM_API Value<Gtk::StackTransitionType>
+  class LIBMM_GTK_SYMEXPORT Value<Gtk::StackTransitionType>
     : public Glib::Value_Enum<Gtk::StackTransitionType>
   {
   public:
@@ -696,7 +696,7 @@ namespace Glib
 {
 
   template <>
-  class GTKMM_API Value<Gtk::WrapMode> : public Glib::Value_Enum<Gtk::WrapMode>
+  class LIBMM_GTK_SYMEXPORT Value<Gtk::WrapMode> : public Glib::Value_Enum<Gtk::WrapMode>
   {
   public:
     static auto
@@ -723,7 +723,7 @@ namespace Glib
 {
 
   template <>
-  class GTKMM_API Value<Gtk::NaturalWrapMode>
+  class LIBMM_GTK_SYMEXPORT Value<Gtk::NaturalWrapMode>
     : public Glib::Value_Enum<Gtk::NaturalWrapMode>
   {
   public:
@@ -750,7 +750,7 @@ namespace Glib
 {
 
   template <>
-  class GTKMM_API Value<Gtk::SortType> : public Glib::Value_Enum<Gtk::SortType>
+  class LIBMM_GTK_SYMEXPORT Value<Gtk::SortType> : public Glib::Value_Enum<Gtk::SortType>
   {
   public:
     static auto
@@ -777,7 +777,7 @@ namespace Glib
 {
 
   template <>
-  class GTKMM_API Value<Gtk::Ordering> : public Glib::Value_Enum<Gtk::Ordering>
+  class LIBMM_GTK_SYMEXPORT Value<Gtk::Ordering> : public Glib::Value_Enum<Gtk::Ordering>
   {
   public:
     static auto
@@ -805,7 +805,7 @@ namespace Glib
 {
 
   template <>
-  class GTKMM_API Value<Gtk::PageOrientation>
+  class LIBMM_GTK_SYMEXPORT Value<Gtk::PageOrientation>
     : public Glib::Value_Enum<Gtk::PageOrientation>
   {
   public:
@@ -833,7 +833,7 @@ namespace Glib
 {
 
   template <>
-  class GTKMM_API Value<Gtk::SensitivityType>
+  class LIBMM_GTK_SYMEXPORT Value<Gtk::SensitivityType>
     : public Glib::Value_Enum<Gtk::SensitivityType>
   {
   public:
@@ -861,7 +861,7 @@ namespace Glib
 {
 
   template <>
-  class GTKMM_API Value<Gtk::SizeRequestMode>
+  class LIBMM_GTK_SYMEXPORT Value<Gtk::SizeRequestMode>
     : public Glib::Value_Enum<Gtk::SizeRequestMode>
   {
   public:
@@ -950,7 +950,7 @@ namespace Glib
 {
 
   template <>
-  class GTKMM_API Value<Gtk::StateFlags>
+  class LIBMM_GTK_SYMEXPORT Value<Gtk::StateFlags>
     : public Glib::Value_Flags<Gtk::StateFlags>
   {
   public:
@@ -986,7 +986,7 @@ namespace Glib
 {
 
   template <>
-  class GTKMM_API Value<Gtk::InputPurpose>
+  class LIBMM_GTK_SYMEXPORT Value<Gtk::InputPurpose>
     : public Glib::Value_Enum<Gtk::InputPurpose>
   {
   public:
@@ -1072,7 +1072,7 @@ namespace Glib
 {
 
   template <>
-  class GTKMM_API Value<Gtk::InputHints>
+  class LIBMM_GTK_SYMEXPORT Value<Gtk::InputHints>
     : public Glib::Value_Flags<Gtk::InputHints>
   {
   public:
@@ -1100,7 +1100,7 @@ namespace Glib
 {
 
   template <>
-  class GTKMM_API Value<Gtk::BaselinePosition>
+  class LIBMM_GTK_SYMEXPORT Value<Gtk::BaselinePosition>
     : public Glib::Value_Enum<Gtk::BaselinePosition>
   {
   public:
@@ -1128,7 +1128,7 @@ namespace Glib
 {
 
   template <>
-  class GTKMM_API Value<Gtk::ShortcutScope>
+  class LIBMM_GTK_SYMEXPORT Value<Gtk::ShortcutScope>
     : public Glib::Value_Enum<Gtk::ShortcutScope>
   {
   public:
@@ -1157,7 +1157,7 @@ namespace Glib
 {
 
   template <>
-  class GTKMM_API Value<Gtk::ContentFit>
+  class LIBMM_GTK_SYMEXPORT Value<Gtk::ContentFit>
     : public Glib::Value_Enum<Gtk::ContentFit>
   {
   public:

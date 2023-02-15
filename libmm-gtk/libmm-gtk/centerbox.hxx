@@ -18,14 +18,14 @@ using GtkCenterBoxClass = struct _GtkCenterBoxClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API CenterBox_Class;
+  class LIBMM_GTK_SYMEXPORT CenterBox_Class;
 }
 #endif
 
 namespace Gtk
 {
 
-  class GTKMM_API CenterBox : public Widget,
+  class LIBMM_GTK_SYMEXPORT CenterBox : public Widget,
                               public Orientable
   {
   public:
@@ -49,7 +49,7 @@ namespace Gtk
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   private:
-    friend GTKMM_API class CenterBox_Class;
+    friend LIBMM_GTK_SYMEXPORT class CenterBox_Class;
     static CppClassType centerbox_class_;
 
   protected:
@@ -160,7 +160,7 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkCenterBox* object, bool take_copy = false) -> Gtk::CenterBox*;
 } // namespace Glib
 

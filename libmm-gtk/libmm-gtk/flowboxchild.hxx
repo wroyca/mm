@@ -16,14 +16,14 @@ using GtkFlowBoxChildClass = struct _GtkFlowBoxChildClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API FlowBoxChild_Class;
+  class LIBMM_GTK_SYMEXPORT FlowBoxChild_Class;
 }
 #endif
 
 namespace Gtk
 {
 
-  class GTKMM_API FlowBoxChild : public Widget
+  class LIBMM_GTK_SYMEXPORT FlowBoxChild : public Widget
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -46,7 +46,7 @@ namespace Gtk
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   private:
-    friend GTKMM_API class FlowBoxChild_Class;
+    friend LIBMM_GTK_SYMEXPORT class FlowBoxChild_Class;
     static CppClassType flowboxchild_class_;
 
   protected:
@@ -121,7 +121,7 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkFlowBoxChild* object, bool take_copy = false) -> Gtk::FlowBoxChild*;
 } // namespace Glib
 

@@ -26,14 +26,14 @@ using GtkSelectionModelClass = struct _GtkSelectionModelClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API SelectionModel_Class;
+  class LIBMM_GTK_SYMEXPORT SelectionModel_Class;
 }
 #endif
 
 namespace Gtk
 {
 
-  class GTKMM_API SelectionModel : public Glib::Interface
+  class LIBMM_GTK_SYMEXPORT SelectionModel : public Glib::Interface
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -175,7 +175,7 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkSelectionModel* object, bool take_copy = false) -> Glib::RefPtr<Gtk::SelectionModel>;
 
 } // namespace Glib

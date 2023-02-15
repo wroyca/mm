@@ -15,7 +15,7 @@
 namespace Glib
 {
 
-  class GLIBMM_API PollFD
+  class LIBMM_GLIB_SYMEXPORT PollFD
   {
   public:
     using fd_t = decltype (GPollFD::fd);
@@ -76,7 +76,7 @@ namespace Glib
     GPollFD gobject_;
   };
 
-  class GLIBMM_API SignalTimeout
+  class LIBMM_GLIB_SYMEXPORT SignalTimeout
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -110,7 +110,7 @@ namespace Glib
     operator= (const SignalTimeout&) -> SignalTimeout& = delete;
   };
 
-  class GLIBMM_API SignalIdle
+  class LIBMM_GLIB_SYMEXPORT SignalIdle
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -132,7 +132,7 @@ namespace Glib
     operator= (const SignalIdle&) -> SignalIdle& = delete;
   };
 
-  class GLIBMM_API SignalIO
+  class LIBMM_GLIB_SYMEXPORT SignalIO
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -158,7 +158,7 @@ namespace Glib
     operator= (const SignalIO&) -> SignalIO& = delete;
   };
 
-  class GLIBMM_API SignalChildWatch
+  class LIBMM_GLIB_SYMEXPORT SignalChildWatch
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -177,23 +177,23 @@ namespace Glib
     operator= (const SignalChildWatch&) -> SignalChildWatch& = delete;
   };
 
-  GLIBMM_API
+  LIBMM_GLIB_SYMEXPORT
   auto
   signal_timeout () -> SignalTimeout;
 
-  GLIBMM_API
+  LIBMM_GLIB_SYMEXPORT
   auto
   signal_idle () -> SignalIdle;
 
-  GLIBMM_API
+  LIBMM_GLIB_SYMEXPORT
   auto
   signal_io () -> SignalIO;
 
-  GLIBMM_API
+  LIBMM_GLIB_SYMEXPORT
   auto
   signal_child_watch () -> SignalChildWatch;
 
-  class GLIBMM_API MainContext
+  class LIBMM_GLIB_SYMEXPORT MainContext
   {
   public:
     using CppObjectType = Glib::MainContext;
@@ -297,11 +297,11 @@ namespace Glib
     operator delete (void*, std::size_t) -> void;
   };
 
-  GLIBMM_API
+  LIBMM_GLIB_SYMEXPORT
   auto
   wrap (GMainContext* gobject, bool take_copy = false) -> Glib::RefPtr<MainContext>;
 
-  class GLIBMM_API MainLoop
+  class LIBMM_GLIB_SYMEXPORT MainLoop
   {
   public:
     using CppObjectType = Glib::MainLoop;
@@ -351,7 +351,7 @@ namespace Glib
     operator= (const MainLoop&) -> MainLoop& = delete;
   };
 
-  GLIBMM_API
+  LIBMM_GLIB_SYMEXPORT
   auto
   wrap (GMainLoop* gobject, bool take_copy = false) -> Glib::RefPtr<MainLoop>;
 
@@ -365,82 +365,82 @@ namespace Glib
     auto
     operator= (const Source&) -> Source& = delete;
 
-    GLIBMM_API static auto
+    LIBMM_GLIB_SYMEXPORT static auto
     create () -> Glib::RefPtr<Source>;
 
-    GLIBMM_API auto
+    LIBMM_GLIB_SYMEXPORT auto
     attach (const Glib::RefPtr<MainContext>& context) -> unsigned int;
 
-    GLIBMM_API auto
+    LIBMM_GLIB_SYMEXPORT auto
     attach () -> unsigned int;
 
-    GLIBMM_API auto
+    LIBMM_GLIB_SYMEXPORT auto
     destroy () -> void;
 
-    GLIBMM_API auto
+    LIBMM_GLIB_SYMEXPORT auto
     set_priority (int priority) -> void;
 
-    GLIBMM_API auto
+    LIBMM_GLIB_SYMEXPORT auto
     get_priority () const -> int;
 
-    GLIBMM_API auto
+    LIBMM_GLIB_SYMEXPORT auto
     set_can_recurse (bool can_recurse) -> void;
 
-    GLIBMM_API auto
+    LIBMM_GLIB_SYMEXPORT auto
     get_can_recurse () const -> bool;
 
-    GLIBMM_API auto
+    LIBMM_GLIB_SYMEXPORT auto
     get_id () const -> unsigned int;
 
-    GLIBMM_API auto
+    LIBMM_GLIB_SYMEXPORT auto
     get_context () -> Glib::RefPtr<MainContext>;
 
-    GLIBMM_API auto
+    LIBMM_GLIB_SYMEXPORT auto
     gobj () -> GSource*
     {
       return gobject_;
     }
 
-    GLIBMM_API auto
+    LIBMM_GLIB_SYMEXPORT auto
     gobj () const -> const GSource*
     {
       return gobject_;
     }
 
-    GLIBMM_API auto
+    LIBMM_GLIB_SYMEXPORT auto
     gobj_copy () const -> GSource*;
 
-    GLIBMM_API auto
+    LIBMM_GLIB_SYMEXPORT auto
     reference () const -> void;
-    GLIBMM_API auto
+    LIBMM_GLIB_SYMEXPORT auto
     unreference () const -> void;
 
   protected:
-    GLIBMM_API
+    LIBMM_GLIB_SYMEXPORT
     Source ();
 
-    GLIBMM_API
+    LIBMM_GLIB_SYMEXPORT
     Source (GSource* cast_item, GSourceFunc callback_func);
 
-    GLIBMM_API virtual ~Source () noexcept;
+    LIBMM_GLIB_SYMEXPORT virtual ~Source () noexcept;
 
-    GLIBMM_API auto
+    LIBMM_GLIB_SYMEXPORT auto
     connect_generic (const sigc::slot_base& slot) -> sigc::connection;
 
-    GLIBMM_API auto
+    LIBMM_GLIB_SYMEXPORT auto
     add_poll (PollFD& poll_fd) -> void;
 
-    GLIBMM_API auto
+    LIBMM_GLIB_SYMEXPORT auto
     remove_poll (PollFD& poll_fd) -> void;
 
-    GLIBMM_API auto
+    LIBMM_GLIB_SYMEXPORT auto
     get_time () const -> gint64;
 
-    GLIBMM_API virtual auto
+    LIBMM_GLIB_SYMEXPORT virtual auto
     prepare (int& timeout) -> bool = 0;
-    GLIBMM_API virtual auto
+    LIBMM_GLIB_SYMEXPORT virtual auto
     check () -> bool = 0;
-    GLIBMM_API virtual auto
+    LIBMM_GLIB_SYMEXPORT virtual auto
     dispatch (sigc::slot_base* slot) -> bool = 0;
 
   private:
@@ -451,34 +451,34 @@ namespace Glib
     std::atomic_int keep_wrapper_{2};
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-    GLIBMM_API static inline auto
+    LIBMM_GLIB_SYMEXPORT static inline auto
     get_wrapper (GSource* source) -> Source*;
 
     static const GSourceFuncs vfunc_table_;
 
-    GLIBMM_API static auto
+    LIBMM_GLIB_SYMEXPORT static auto
     prepare_vfunc (GSource* source, int* timeout) -> gboolean;
-    GLIBMM_API static auto
+    LIBMM_GLIB_SYMEXPORT static auto
     check_vfunc (GSource* source) -> gboolean;
-    GLIBMM_API static auto
+    LIBMM_GLIB_SYMEXPORT static auto
     dispatch_vfunc (GSource* source, GSourceFunc callback, void* user_data)
         -> gboolean;
 
   public:
-    GLIBMM_API static auto
+    LIBMM_GLIB_SYMEXPORT static auto
     destroy_notify_callback2 (void* data) -> void;
 
-    GLIBMM_API static auto
+    LIBMM_GLIB_SYMEXPORT static auto
     attach_signal_source (const sigc::slot_base& slot,
                           int priority,
                           GSource* source,
                           GMainContext* context,
                           GSourceFunc callback_func) -> sigc::connection;
 
-    GLIBMM_API static auto
+    LIBMM_GLIB_SYMEXPORT static auto
     get_slot_from_connection_node (void* data) -> sigc::slot_base*;
 
-    GLIBMM_API static auto
+    LIBMM_GLIB_SYMEXPORT static auto
     get_slot_from_callback_data (void* data) -> sigc::slot_base*;
 #endif
   };
@@ -488,20 +488,20 @@ namespace Glib
   public:
     using CppObjectType = Glib::TimeoutSource;
 
-    GLIBMM_API static auto
+    LIBMM_GLIB_SYMEXPORT static auto
     create (unsigned int interval) -> Glib::RefPtr<TimeoutSource>;
-    GLIBMM_API auto
+    LIBMM_GLIB_SYMEXPORT auto
     connect (const sigc::slot<bool ()>& slot) -> sigc::connection;
 
   protected:
-    GLIBMM_API explicit TimeoutSource (unsigned int interval);
-    GLIBMM_API ~TimeoutSource () noexcept override;
+    LIBMM_GLIB_SYMEXPORT explicit TimeoutSource (unsigned int interval);
+    LIBMM_GLIB_SYMEXPORT ~TimeoutSource () noexcept override;
 
-    GLIBMM_API auto
+    LIBMM_GLIB_SYMEXPORT auto
     prepare (int& timeout) -> bool override;
-    GLIBMM_API auto
+    LIBMM_GLIB_SYMEXPORT auto
     check () -> bool override;
-    GLIBMM_API auto
+    LIBMM_GLIB_SYMEXPORT auto
     dispatch (sigc::slot_base* slot) -> bool override;
 
   private:
@@ -514,21 +514,21 @@ namespace Glib
   public:
     using CppObjectType = Glib::IdleSource;
 
-    GLIBMM_API static auto
+    LIBMM_GLIB_SYMEXPORT static auto
     create () -> Glib::RefPtr<IdleSource>;
-    GLIBMM_API auto
+    LIBMM_GLIB_SYMEXPORT auto
     connect (const sigc::slot<bool ()>& slot) -> sigc::connection;
 
   protected:
-    GLIBMM_API
+    LIBMM_GLIB_SYMEXPORT
     IdleSource ();
-    GLIBMM_API ~IdleSource () noexcept override;
+    LIBMM_GLIB_SYMEXPORT ~IdleSource () noexcept override;
 
-    GLIBMM_API auto
+    LIBMM_GLIB_SYMEXPORT auto
     prepare (int& timeout) -> bool override;
-    GLIBMM_API auto
+    LIBMM_GLIB_SYMEXPORT auto
     check () -> bool override;
-    GLIBMM_API auto
+    LIBMM_GLIB_SYMEXPORT auto
     dispatch (sigc::slot_base* slot_data) -> bool override;
   };
 
@@ -537,40 +537,40 @@ namespace Glib
   public:
     using CppObjectType = Glib::IOSource;
 
-    GLIBMM_API static auto
+    LIBMM_GLIB_SYMEXPORT static auto
     create (PollFD::fd_t fd, IOCondition condition) -> Glib::RefPtr<IOSource>;
-    GLIBMM_API static auto
+    LIBMM_GLIB_SYMEXPORT static auto
     create (const Glib::RefPtr<IOChannel>& channel, IOCondition condition)
         -> Glib::RefPtr<IOSource>;
-    GLIBMM_API auto
+    LIBMM_GLIB_SYMEXPORT auto
     connect (const sigc::slot<bool (IOCondition)>& slot) -> sigc::connection;
 
   protected:
-    GLIBMM_API
+    LIBMM_GLIB_SYMEXPORT
     IOSource (PollFD::fd_t fd, IOCondition condition);
-    GLIBMM_API
+    LIBMM_GLIB_SYMEXPORT
     IOSource (const Glib::RefPtr<IOChannel>& channel, IOCondition condition);
 
-    GLIBMM_API
+    LIBMM_GLIB_SYMEXPORT
     IOSource (GSource* cast_item, GSourceFunc callback_func);
 
-    GLIBMM_API ~IOSource () noexcept override;
+    LIBMM_GLIB_SYMEXPORT ~IOSource () noexcept override;
 
-    GLIBMM_API auto
+    LIBMM_GLIB_SYMEXPORT auto
     prepare (int& timeout) -> bool override;
-    GLIBMM_API auto
+    LIBMM_GLIB_SYMEXPORT auto
     check () -> bool override;
-    GLIBMM_API auto
+    LIBMM_GLIB_SYMEXPORT auto
     dispatch (sigc::slot_base* slot) -> bool override;
 
   private:
-    friend GLIBMM_API IOChannel;
+    friend LIBMM_GLIB_SYMEXPORT IOChannel;
 
-    GLIBMM_API static auto
+    LIBMM_GLIB_SYMEXPORT static auto
     create (GIOChannel* channel, IOCondition condition)
         -> Glib::RefPtr<IOSource>;
 
-    GLIBMM_API
+    LIBMM_GLIB_SYMEXPORT
     IOSource (GIOChannel* channel, IOCondition condition);
 
     PollFD poll_fd_;

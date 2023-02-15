@@ -17,14 +17,14 @@ using GtkLevelBarClass = struct _GtkLevelBarClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API LevelBar_Class;
+  class LIBMM_GTK_SYMEXPORT LevelBar_Class;
 }
 #endif
 
 namespace Gtk
 {
 
-  class GTKMM_API LevelBar : public Widget,
+  class LIBMM_GTK_SYMEXPORT LevelBar : public Widget,
                              public Orientable
   {
   public:
@@ -48,7 +48,7 @@ namespace Gtk
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   private:
-    friend GTKMM_API class LevelBar_Class;
+    friend LIBMM_GTK_SYMEXPORT class LevelBar_Class;
     static CppClassType levelbar_class_;
 
   protected:
@@ -174,7 +174,7 @@ namespace Glib
 {
 
   template <>
-  class GTKMM_API Value<Gtk::LevelBar::Mode>
+  class LIBMM_GTK_SYMEXPORT Value<Gtk::LevelBar::Mode>
     : public Glib::Value_Enum<Gtk::LevelBar::Mode>
   {
   public:
@@ -187,7 +187,7 @@ namespace Glib
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkLevelBar* object, bool take_copy = false) -> Gtk::LevelBar*;
 } // namespace Glib
 

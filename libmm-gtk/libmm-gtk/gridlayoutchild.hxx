@@ -15,14 +15,14 @@
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API GridLayoutChild_Class;
+  class LIBMM_GTK_SYMEXPORT GridLayoutChild_Class;
 }
 #endif
 
 namespace Gtk
 {
 
-  class GTKMM_API GridLayoutChild : public LayoutChild
+  class LIBMM_GTK_SYMEXPORT GridLayoutChild : public LayoutChild
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -139,7 +139,7 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkGridLayoutChild* object, bool take_copy = false) -> Glib::RefPtr<Gtk::GridLayoutChild>;
 } // namespace Glib
 

@@ -11,7 +11,7 @@
 namespace Gtk
 {
 
-  class GTKMM_API SelectionListModelImpl : public Gio::ListModel,
+  class LIBMM_GTK_SYMEXPORT SelectionListModelImpl : public Gio::ListModel,
                                            public SelectionModel,
                                            public Glib::Object
   {

@@ -10,7 +10,7 @@
 namespace Gtk
 {
 
-  class GTKMM_API EventControllerFocus_Class : public Glib::Class
+  class LIBMM_GTK_SYMEXPORT EventControllerFocus_Class : public Glib::Class
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

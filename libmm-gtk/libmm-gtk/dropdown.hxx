@@ -17,14 +17,14 @@
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API DropDown_Class;
+  class LIBMM_GTK_SYMEXPORT DropDown_Class;
 }
 #endif
 
 namespace Gtk
 {
 
-  class GTKMM_API DropDown : public Widget
+  class LIBMM_GTK_SYMEXPORT DropDown : public Widget
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -47,7 +47,7 @@ namespace Gtk
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   private:
-    friend GTKMM_API class DropDown_Class;
+    friend LIBMM_GTK_SYMEXPORT class DropDown_Class;
     static CppClassType dropdown_class_;
 
   protected:
@@ -208,7 +208,7 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkDropDown* object, bool take_copy = false) -> Gtk::DropDown*;
 } // namespace Glib
 

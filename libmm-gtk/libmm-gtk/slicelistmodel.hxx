@@ -17,14 +17,14 @@
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API SliceListModel_Class;
+  class LIBMM_GTK_SYMEXPORT SliceListModel_Class;
 }
 #endif
 
 namespace Gtk
 {
 
-  class GTKMM_API SliceListModel : public Glib::Object,
+  class LIBMM_GTK_SYMEXPORT SliceListModel : public Glib::Object,
                                    public Gio::ListModel
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -146,7 +146,7 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkSliceListModel* object, bool take_copy = false) -> Glib::RefPtr<Gtk::SliceListModel>;
 } // namespace Glib
 

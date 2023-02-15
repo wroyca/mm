@@ -35,7 +35,7 @@ namespace Glib
 {
 
   template <>
-  class GTKMM_API Value<Gtk::PadActionType>
+  class LIBMM_GTK_SYMEXPORT Value<Gtk::PadActionType>
     : public Glib::Value_Enum<Gtk::PadActionType>
   {
   public:
@@ -49,7 +49,7 @@ namespace Glib
 namespace Gtk
 {
 
-  class GTKMM_API PadActionEntry
+  class LIBMM_GTK_SYMEXPORT PadActionEntry
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

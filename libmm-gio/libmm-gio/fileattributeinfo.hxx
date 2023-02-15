@@ -3,7 +3,7 @@
 #ifndef _GIOMM_FILEATTRIBUTEINFO_H
 #define _GIOMM_FILEATTRIBUTEINFO_H
 
-#include <libmm-gio/gioconfig.hxx>
+#include <libmm-gio/mm-gioconfig.hxx>
 
 #include <libmm-glib/ustring.hxx>
 #include <sigc++/sigc++.h>
@@ -36,7 +36,7 @@ namespace Glib
 {
 
   template <>
-  class GIOMM_API Value<Gio::FileAttributeType>
+  class LIBMM_GIO_SYMEXPORT Value<Gio::FileAttributeType>
     : public Glib::Value_Enum<Gio::FileAttributeType>
   {
   public:
@@ -64,7 +64,7 @@ namespace Glib
 {
 
   template <>
-  class GIOMM_API Value<Gio::FileAttributeStatus>
+  class LIBMM_GIO_SYMEXPORT Value<Gio::FileAttributeStatus>
     : public Glib::Value_Enum<Gio::FileAttributeStatus>
   {
   public:
@@ -95,25 +95,25 @@ namespace Gio
       COPY_WHEN_MOVED = (1 << 1)
     };
 
-    GIOMM_API explicit FileAttributeInfo (const GFileAttributeInfo* ginfo);
+    LIBMM_GIO_SYMEXPORT explicit FileAttributeInfo (const GFileAttributeInfo* ginfo);
 
-    GIOMM_API
+    LIBMM_GIO_SYMEXPORT
     FileAttributeInfo (const FileAttributeInfo& other);
-    GIOMM_API auto
+    LIBMM_GIO_SYMEXPORT auto
     operator= (const FileAttributeInfo& other) -> FileAttributeInfo&;
 
-    GIOMM_API
+    LIBMM_GIO_SYMEXPORT
     FileAttributeInfo (FileAttributeInfo&& other) noexcept;
-    GIOMM_API auto
+    LIBMM_GIO_SYMEXPORT auto
     operator= (FileAttributeInfo&& other) noexcept -> FileAttributeInfo&;
 
-    GIOMM_API ~FileAttributeInfo ();
+    LIBMM_GIO_SYMEXPORT ~FileAttributeInfo ();
 
-    GIOMM_API auto
+    LIBMM_GIO_SYMEXPORT auto
     get_name () const -> std::string;
-    GIOMM_API auto
+    LIBMM_GIO_SYMEXPORT auto
     get_type () const -> FileAttributeType;
-    GIOMM_API auto
+    LIBMM_GIO_SYMEXPORT auto
     get_flags () const -> Flags;
 
   protected:

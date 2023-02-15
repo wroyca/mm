@@ -21,14 +21,14 @@ using GLoadableIconClass = struct _GLoadableIconClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gio
 {
-  class GIOMM_API LoadableIcon_Class;
+  class LIBMM_GIO_SYMEXPORT LoadableIcon_Class;
 }
 #endif
 
 namespace Gio
 {
 
-  class GIOMM_API LoadableIcon : public Glib::Interface
+  class LIBMM_GIO_SYMEXPORT LoadableIcon : public Glib::Interface
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -120,7 +120,7 @@ namespace Gio
 namespace Glib
 {
 
-  GIOMM_API
+  LIBMM_GIO_SYMEXPORT
   auto
   wrap (GLoadableIcon* object, bool take_copy = false) -> Glib::RefPtr<Gio::LoadableIcon>;
 

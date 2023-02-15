@@ -23,14 +23,14 @@ using GDBusObjectManagerClientClass = struct _GDBusObjectManagerClientClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gio::DBus
 {
-  class GIOMM_API ObjectManagerClient_Class;
+  class LIBMM_GIO_SYMEXPORT ObjectManagerClient_Class;
 }
 #endif
 
 namespace Gio::DBus
 {
 
-  class GIOMM_API ObjectManagerClient : public Glib::Object,
+  class LIBMM_GIO_SYMEXPORT ObjectManagerClient : public Glib::Object,
                                         public Initable,
                                         public AsyncInitable,
                                         public ObjectManager
@@ -292,7 +292,7 @@ namespace Glib
 {
 
   template <>
-  class GIOMM_API Value<Gio::DBus::ObjectManagerClient::Flags>
+  class LIBMM_GIO_SYMEXPORT Value<Gio::DBus::ObjectManagerClient::Flags>
     : public Glib::Value_Flags<Gio::DBus::ObjectManagerClient::Flags>
   {
   public:
@@ -306,7 +306,7 @@ namespace Glib
 namespace Glib
 {
 
-  GIOMM_API
+  LIBMM_GIO_SYMEXPORT
   auto
   wrap (GDBusObjectManagerClient* object, bool take_copy = false) -> Glib::RefPtr<Gio::DBus::ObjectManagerClient>;
 } // namespace Glib

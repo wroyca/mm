@@ -17,23 +17,23 @@ using GdkTextureClass = struct _GdkTextureClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gdk
 {
-  class GDKMM_API Texture_Class;
+  class LIBMM_GDK_SYMEXPORT Texture_Class;
 }
 #endif
 
 namespace Glib
 {
-  class GDKMM_API Bytes;
+  class LIBMM_GDK_SYMEXPORT Bytes;
 }
 
 namespace Gio
 {
-  class GDKMM_API File;
+  class LIBMM_GDK_SYMEXPORT File;
 }
 
 namespace Gdk
 {
-  class GDKMM_API Pixbuf;
+  class LIBMM_GDK_SYMEXPORT Pixbuf;
 
   class TextureError : public Glib::Error
   {
@@ -46,18 +46,18 @@ namespace Gdk
       UNSUPPORTED_FORMAT
     };
 
-    GDKMM_API
+    LIBMM_GDK_SYMEXPORT
     TextureError (Code error_code, const Glib::ustring& error_message);
-    GDKMM_API explicit TextureError (GError* gobject);
-    GDKMM_API auto
+    LIBMM_GDK_SYMEXPORT explicit TextureError (GError* gobject);
+    LIBMM_GDK_SYMEXPORT auto
     code () const -> Code;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
   private:
-    GDKMM_API static auto
+    LIBMM_GDK_SYMEXPORT static auto
     throw_func (GError* gobject) -> void;
 
-    friend GDKMM_API auto
+    friend LIBMM_GDK_SYMEXPORT auto
     wrap_init () -> void;
 
 #endif
@@ -70,7 +70,7 @@ namespace Glib
 {
 
   template <>
-  class GDKMM_API Value<Gdk::TextureError::Code>
+  class LIBMM_GDK_SYMEXPORT Value<Gdk::TextureError::Code>
     : public Glib::Value_Enum<Gdk::TextureError::Code>
   {
   public:
@@ -84,7 +84,7 @@ namespace Glib
 namespace Gdk
 {
 
-  class GDKMM_API Texture : public Glib::Object,
+  class LIBMM_GDK_SYMEXPORT Texture : public Glib::Object,
                             public Paintable
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -200,7 +200,7 @@ namespace Gdk
 
 namespace Glib
 {
-  GDKMM_API auto
+  LIBMM_GDK_SYMEXPORT auto
   wrap (GdkTexture* object, bool take_copy = false) -> Glib::RefPtr<Gdk::Texture>;
 } // namespace Glib
 

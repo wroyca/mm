@@ -3,11 +3,11 @@
 #ifndef _GIOMM_WRAP_INIT_H
 #define _GIOMM_WRAP_INIT_H
 
-#include <libmm-gio/gioconfig.hxx>
+#include <libmm-gio/mm-gioconfig.hxx>
 
 namespace Gio
 {
-  GIOMM_API auto
+  LIBMM_GIO_SYMEXPORT auto
   wrap_init () -> void;
 }
 

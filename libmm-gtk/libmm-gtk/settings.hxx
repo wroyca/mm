@@ -18,14 +18,14 @@ using GtkSettingsClass = struct _GtkSettingsClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API Settings_Class;
+  class LIBMM_GTK_SYMEXPORT Settings_Class;
 }
 #endif
 
 namespace Gtk
 {
 
-  class GTKMM_API Settings : public Glib::Object,
+  class LIBMM_GTK_SYMEXPORT Settings : public Glib::Object,
                              public StyleProvider
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -445,7 +445,7 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkSettings* object, bool take_copy = false) -> Glib::RefPtr<Gtk::Settings>;
 } // namespace Glib
 

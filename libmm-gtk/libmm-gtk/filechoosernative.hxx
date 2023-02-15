@@ -17,15 +17,15 @@
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API FileChooserNative_Class;
+  class LIBMM_GTK_SYMEXPORT FileChooserNative_Class;
 }
   #endif
 
 namespace Gtk
 {
-  class GTKMM_API Window;
+  class LIBMM_GTK_SYMEXPORT Window;
 
-  class GTKMM_API FileChooserNative : public NativeDialog,
+  class LIBMM_GTK_SYMEXPORT FileChooserNative : public NativeDialog,
                                       public FileChooser
   {
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -147,7 +147,7 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkFileChooserNative* object, bool take_copy = false) -> Glib::RefPtr<Gtk::FileChooserNative>;
 } // namespace Glib
 

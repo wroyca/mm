@@ -12,25 +12,25 @@ namespace Glib
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
-  class GLIBMM_API ObjectBase;
-  class GLIBMM_API Object;
+  class LIBMM_GLIB_SYMEXPORT ObjectBase;
+  class LIBMM_GLIB_SYMEXPORT Object;
 
   using WrapNewFunction = Glib::ObjectBase* (*) (GObject*);
 
-  GLIBMM_API auto
+  LIBMM_GLIB_SYMEXPORT auto
   wrap_register_init () -> void;
 
-  GLIBMM_API auto
+  LIBMM_GLIB_SYMEXPORT auto
   wrap_register_cleanup () -> void;
 
-  GLIBMM_API auto
+  LIBMM_GLIB_SYMEXPORT auto
   wrap_register (GType type, WrapNewFunction func) -> void;
 
-  GLIBMM_API
+  LIBMM_GLIB_SYMEXPORT
   auto
   wrap_auto (GObject* object, bool take_copy = false) -> Glib::ObjectBase*;
 
-  GLIBMM_API
+  LIBMM_GLIB_SYMEXPORT
   auto
   wrap_create_new_wrapper_for_interface (GObject* object, GType interface_gtype) -> Glib::ObjectBase*;
 
@@ -73,7 +73,7 @@ namespace Glib
 
 #endif
 
-  GLIBMM_API
+  LIBMM_GLIB_SYMEXPORT
   auto
   wrap (GObject* object, bool take_copy = false) -> Glib::RefPtr<Glib::Object>;
 

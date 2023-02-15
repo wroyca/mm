@@ -25,7 +25,7 @@ using GtkTreeViewColumnClass = struct _GtkTreeViewColumnClass;
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API TreeViewColumn_Class;
+  class LIBMM_GTK_SYMEXPORT TreeViewColumn_Class;
 }
   #endif
 
@@ -35,7 +35,7 @@ namespace Gtk
   class CellArea;
   class TreeView;
 
-  class GTKMM_API TreeViewColumn : public Object,
+  class LIBMM_GTK_SYMEXPORT TreeViewColumn : public Object,
                                    public CellLayout,
                                    public Buildable
   {
@@ -60,7 +60,7 @@ namespace Gtk
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   private:
-    friend GTKMM_API class TreeViewColumn_Class;
+    friend LIBMM_GTK_SYMEXPORT class TreeViewColumn_Class;
     static CppClassType treeviewcolumn_class_;
 
   protected:
@@ -480,7 +480,7 @@ namespace Glib
 {
 
   template <>
-  class GTKMM_API Value<Gtk::TreeViewColumn::Sizing>
+  class LIBMM_GTK_SYMEXPORT Value<Gtk::TreeViewColumn::Sizing>
     : public Glib::Value_Enum<Gtk::TreeViewColumn::Sizing>
   {
   public:
@@ -493,7 +493,7 @@ namespace Glib
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkTreeViewColumn* object, bool take_copy = false) -> Gtk::TreeViewColumn*;
 } // namespace Glib
 

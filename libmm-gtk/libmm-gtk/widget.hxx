@@ -36,37 +36,37 @@ using GtkWidgetClass = struct _GtkWidgetClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API Widget_Class;
+  class LIBMM_GTK_SYMEXPORT Widget_Class;
 }
 #endif
 
 namespace Gio
 {
-  class GTKMM_API ListModel;
+  class LIBMM_GTK_SYMEXPORT ListModel;
 }
 
 namespace Gdk
 {
-  class GTKMM_API FrameClock;
-  class GTKMM_API Paintable;
+  class LIBMM_GTK_SYMEXPORT FrameClock;
+  class LIBMM_GTK_SYMEXPORT Paintable;
 } // namespace Gdk
 
 namespace Gtk
 {
 
-  class GTKMM_API Adjustment;
-  class GTKMM_API Window;
-  class GTKMM_API Root;
-  class GTKMM_API Native;
-  class GTKMM_API EventController;
-  class GTKMM_API LayoutManager;
-  class GTKMM_API Settings;
-  class GTKMM_API Snapshot;
-  class GTKMM_API Tooltip;
+  class LIBMM_GTK_SYMEXPORT Adjustment;
+  class LIBMM_GTK_SYMEXPORT Window;
+  class LIBMM_GTK_SYMEXPORT Root;
+  class LIBMM_GTK_SYMEXPORT Native;
+  class LIBMM_GTK_SYMEXPORT EventController;
+  class LIBMM_GTK_SYMEXPORT LayoutManager;
+  class LIBMM_GTK_SYMEXPORT Settings;
+  class LIBMM_GTK_SYMEXPORT Snapshot;
+  class LIBMM_GTK_SYMEXPORT Tooltip;
 
   typedef Gdk::Rectangle Allocation;
 
-  class GTKMM_API Widget : public Object,
+  class LIBMM_GTK_SYMEXPORT Widget : public Object,
                            public Accessible,
                            public Buildable,
                            public ConstraintTarget
@@ -92,7 +92,7 @@ namespace Gtk
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   private:
-    friend GTKMM_API class Widget_Class;
+    friend LIBMM_GTK_SYMEXPORT class Widget_Class;
     static CppClassType widget_class_;
 
   protected:
@@ -1025,7 +1025,7 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkWidget* object, bool take_copy = false) -> Gtk::Widget*;
 } // namespace Glib
 

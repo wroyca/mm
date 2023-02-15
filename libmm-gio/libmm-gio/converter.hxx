@@ -3,7 +3,7 @@
 #ifndef _GIOMM_CONVERTER_H
 #define _GIOMM_CONVERTER_H
 
-#include <libmm-gio/gioconfig.hxx>
+#include <libmm-gio/mm-gioconfig.hxx>
 
 #include <libmm-glib/ustring.hxx>
 #include <sigc++/sigc++.h>
@@ -22,14 +22,14 @@ using GConverterClass = struct _GConverterClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gio
 {
-  class GIOMM_API Converter_Class;
+  class LIBMM_GIO_SYMEXPORT Converter_Class;
 }
 #endif
 
 namespace Gio
 {
 
-  class GIOMM_API Converter : public Glib::Interface
+  class LIBMM_GIO_SYMEXPORT Converter : public Glib::Interface
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -145,7 +145,7 @@ namespace Glib
 {
 
   template <>
-  class GIOMM_API Value<Gio::Converter::Result>
+  class LIBMM_GIO_SYMEXPORT Value<Gio::Converter::Result>
     : public Glib::Value_Enum<Gio::Converter::Result>
   {
   public:
@@ -213,7 +213,7 @@ namespace Glib
 {
 
   template <>
-  class GIOMM_API Value<Gio::Converter::Flags>
+  class LIBMM_GIO_SYMEXPORT Value<Gio::Converter::Flags>
     : public Glib::Value_Flags<Gio::Converter::Flags>
   {
   public:
@@ -227,7 +227,7 @@ namespace Glib
 namespace Glib
 {
 
-  GIOMM_API
+  LIBMM_GIO_SYMEXPORT
   auto
   wrap (GConverter* object, bool take_copy = false) -> Glib::RefPtr<Gio::Converter>;
 

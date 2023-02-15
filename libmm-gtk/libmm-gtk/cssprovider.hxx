@@ -19,7 +19,7 @@ using GtkCssProviderClass = struct _GtkCssProviderClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API CssProvider_Class;
+  class LIBMM_GTK_SYMEXPORT CssProvider_Class;
 }
 #endif
 
@@ -38,18 +38,18 @@ namespace Gtk
       UNKNOWN_VALUE
     };
 
-    GTKMM_API
+    LIBMM_GTK_SYMEXPORT
     CssParserError (Code error_code, const Glib::ustring& error_message);
-    GTKMM_API explicit CssParserError (GError* gobject);
-    GTKMM_API auto
+    LIBMM_GTK_SYMEXPORT explicit CssParserError (GError* gobject);
+    LIBMM_GTK_SYMEXPORT auto
     code () const -> Code;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
   private:
-    GTKMM_API static auto
+    LIBMM_GTK_SYMEXPORT static auto
     throw_func (GError* gobject) -> void;
 
-    friend GTKMM_API auto
+    friend LIBMM_GTK_SYMEXPORT auto
     wrap_init () -> void;
 
 #endif
@@ -62,7 +62,7 @@ namespace Glib
 {
 
   template <>
-  class GTKMM_API Value<Gtk::CssParserError::Code>
+  class LIBMM_GTK_SYMEXPORT Value<Gtk::CssParserError::Code>
     : public Glib::Value_Enum<Gtk::CssParserError::Code>
   {
   public:
@@ -86,18 +86,18 @@ namespace Gtk
       UNIMPLEMENTED
     };
 
-    GTKMM_API
+    LIBMM_GTK_SYMEXPORT
     CssParserWarning (Code error_code, const Glib::ustring& error_message);
-    GTKMM_API explicit CssParserWarning (GError* gobject);
-    GTKMM_API auto
+    LIBMM_GTK_SYMEXPORT explicit CssParserWarning (GError* gobject);
+    LIBMM_GTK_SYMEXPORT auto
     code () const -> Code;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
   private:
-    GTKMM_API static auto
+    LIBMM_GTK_SYMEXPORT static auto
     throw_func (GError* gobject) -> void;
 
-    friend GTKMM_API auto
+    friend LIBMM_GTK_SYMEXPORT auto
     wrap_init () -> void;
 
 #endif
@@ -110,7 +110,7 @@ namespace Glib
 {
 
   template <>
-  class GTKMM_API Value<Gtk::CssParserWarning::Code>
+  class LIBMM_GTK_SYMEXPORT Value<Gtk::CssParserWarning::Code>
     : public Glib::Value_Enum<Gtk::CssParserWarning::Code>
   {
   public:
@@ -124,7 +124,7 @@ namespace Glib
 namespace Gtk
 {
 
-  class GTKMM_API CssProvider : public Glib::Object,
+  class LIBMM_GTK_SYMEXPORT CssProvider : public Glib::Object,
                                 public StyleProvider
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -221,7 +221,7 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkCssProvider* object, bool take_copy = false) -> Glib::RefPtr<Gtk::CssProvider>;
 } // namespace Glib
 

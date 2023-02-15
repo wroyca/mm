@@ -3,7 +3,7 @@
 #ifndef _GIOMM_CANCELLABLE_H
 #define _GIOMM_CANCELLABLE_H
 
-#include <libmm-gio/gioconfig.hxx>
+#include <libmm-gio/mm-gioconfig.hxx>
 
 #include <libmm-glib/ustring.hxx>
 #include <sigc++/sigc++.h>
@@ -18,14 +18,14 @@ using GCancellableClass = struct _GCancellableClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gio
 {
-  class GIOMM_API Cancellable_Class;
+  class LIBMM_GIO_SYMEXPORT Cancellable_Class;
 }
 #endif
 
 namespace Gio
 {
 
-  class GIOMM_API Cancellable : public Glib::Object
+  class LIBMM_GIO_SYMEXPORT Cancellable : public Glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -138,7 +138,7 @@ namespace Gio
 namespace Glib
 {
 
-  GIOMM_API
+  LIBMM_GIO_SYMEXPORT
   auto
   wrap (GCancellable* object, bool take_copy = false) -> Glib::RefPtr<Gio::Cancellable>;
 } // namespace Glib

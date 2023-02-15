@@ -20,7 +20,7 @@ using GtkEventControllerClass = struct _GtkEventControllerClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API EventController_Class;
+  class LIBMM_GTK_SYMEXPORT EventController_Class;
 }
 #endif
 
@@ -42,7 +42,7 @@ namespace Glib
 {
 
   template <>
-  class GTKMM_API Value<Gtk::PropagationPhase>
+  class LIBMM_GTK_SYMEXPORT Value<Gtk::PropagationPhase>
     : public Glib::Value_Enum<Gtk::PropagationPhase>
   {
   public:
@@ -69,7 +69,7 @@ namespace Glib
 {
 
   template <>
-  class GTKMM_API Value<Gtk::PropagationLimit>
+  class LIBMM_GTK_SYMEXPORT Value<Gtk::PropagationLimit>
     : public Glib::Value_Enum<Gtk::PropagationLimit>
   {
   public:
@@ -83,7 +83,7 @@ namespace Glib
 namespace Gtk
 {
 
-  class GTKMM_API EventController : public Glib::Object
+  class LIBMM_GTK_SYMEXPORT EventController : public Glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -217,7 +217,7 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkEventController* object, bool take_copy = false) -> Glib::RefPtr<Gtk::EventController>;
 } // namespace Glib
 

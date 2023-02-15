@@ -17,14 +17,14 @@ using GEmblemClass = struct _GEmblemClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gio
 {
-  class GIOMM_API Emblem_Class;
+  class LIBMM_GIO_SYMEXPORT Emblem_Class;
 }
 #endif
 
 namespace Gio
 {
 
-  class GIOMM_API Emblem : public Glib::Object,
+  class LIBMM_GIO_SYMEXPORT Emblem : public Glib::Object,
                            public Icon
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -122,7 +122,7 @@ namespace Gio
 namespace Glib
 {
 
-  GIOMM_API
+  LIBMM_GIO_SYMEXPORT
   auto
   wrap (GEmblem* object, bool take_copy = false) -> Glib::RefPtr<Gio::Emblem>;
 } // namespace Glib

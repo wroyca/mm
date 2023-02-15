@@ -15,7 +15,7 @@
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API StringSorter_Class;
+  class LIBMM_GTK_SYMEXPORT StringSorter_Class;
 }
 #endif
 
@@ -36,7 +36,7 @@ namespace Glib
 {
 
   template <>
-  class GTKMM_API Value<Gtk::Collation>
+  class LIBMM_GTK_SYMEXPORT Value<Gtk::Collation>
     : public Glib::Value_Enum<Gtk::Collation>
   {
   public:
@@ -50,7 +50,7 @@ namespace Glib
 namespace Gtk
 {
 
-  class GTKMM_API StringSorter : public Sorter
+  class LIBMM_GTK_SYMEXPORT StringSorter : public Sorter
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -166,7 +166,7 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkStringSorter* object, bool take_copy = false) -> Glib::RefPtr<Gtk::StringSorter>;
 } // namespace Glib
 

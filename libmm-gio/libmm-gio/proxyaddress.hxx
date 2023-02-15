@@ -16,14 +16,14 @@ using GProxyAddressClass = struct _GProxyAddressClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gio
 {
-  class GIOMM_API ProxyAddress_Class;
+  class LIBMM_GIO_SYMEXPORT ProxyAddress_Class;
 }
 #endif
 
 namespace Gio
 {
 
-  class GIOMM_API ProxyAddress : public InetSocketAddress
+  class LIBMM_GIO_SYMEXPORT ProxyAddress : public InetSocketAddress
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -152,7 +152,7 @@ namespace Gio
 namespace Glib
 {
 
-  GIOMM_API
+  LIBMM_GIO_SYMEXPORT
   auto
   wrap (GProxyAddress* object, bool take_copy = false) -> Glib::RefPtr<Gio::ProxyAddress>;
 } // namespace Glib

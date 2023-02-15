@@ -18,7 +18,7 @@ using GtkShortcutsShortcutClass = struct _GtkShortcutsShortcutClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API ShortcutsShortcut_Class;
+  class LIBMM_GTK_SYMEXPORT ShortcutsShortcut_Class;
 }
 #endif
 
@@ -46,7 +46,7 @@ namespace Glib
 {
 
   template <>
-  class GTKMM_API Value<Gtk::ShortcutType>
+  class LIBMM_GTK_SYMEXPORT Value<Gtk::ShortcutType>
     : public Glib::Value_Enum<Gtk::ShortcutType>
   {
   public:
@@ -60,7 +60,7 @@ namespace Glib
 namespace Gtk
 {
 
-  class GTKMM_API ShortcutsShortcut : public Widget
+  class LIBMM_GTK_SYMEXPORT ShortcutsShortcut : public Widget
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -83,7 +83,7 @@ namespace Gtk
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   private:
-    friend GTKMM_API class ShortcutsShortcut_Class;
+    friend LIBMM_GTK_SYMEXPORT class ShortcutsShortcut_Class;
     static CppClassType shortcutsshortcut_class_;
 
   protected:
@@ -185,7 +185,7 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkShortcutsShortcut* object, bool take_copy = false) -> Gtk::ShortcutsShortcut*;
 } // namespace Glib
 

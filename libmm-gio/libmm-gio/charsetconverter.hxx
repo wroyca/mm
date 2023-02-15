@@ -18,14 +18,14 @@ using GCharsetConverterClass = struct _GCharsetConverterClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gio
 {
-  class GIOMM_API CharsetConverter_Class;
+  class LIBMM_GIO_SYMEXPORT CharsetConverter_Class;
 }
 #endif
 
 namespace Gio
 {
 
-  class GIOMM_API CharsetConverter : public Glib::Object,
+  class LIBMM_GIO_SYMEXPORT CharsetConverter : public Glib::Object,
                                      public Converter,
                                      public Initable
   {
@@ -124,7 +124,7 @@ namespace Gio
 namespace Glib
 {
 
-  GIOMM_API
+  LIBMM_GIO_SYMEXPORT
   auto
   wrap (GCharsetConverter* object, bool take_copy = false) -> Glib::RefPtr<Gio::CharsetConverter>;
 } // namespace Glib

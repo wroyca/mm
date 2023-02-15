@@ -3,7 +3,7 @@
 #ifndef _GIOMM_DBUSOBJECT_H
 #define _GIOMM_DBUSOBJECT_H
 
-#include <libmm-gio/gioconfig.hxx>
+#include <libmm-gio/mm-gioconfig.hxx>
 
 #include <libmm-glib/ustring.hxx>
 #include <sigc++/sigc++.h>
@@ -22,16 +22,16 @@ using GDBusObjectClass = struct _GDBusObjectClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gio::DBus
 {
-  class GIOMM_API Object_Class;
+  class LIBMM_GIO_SYMEXPORT Object_Class;
 }
 #endif
 
 namespace Gio::DBus
 {
 
-  class GIOMM_API Interface;
+  class LIBMM_GIO_SYMEXPORT Interface;
 
-  class GIOMM_API Object : public Glib::Interface
+  class LIBMM_GIO_SYMEXPORT Object : public Glib::Interface
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -150,7 +150,7 @@ namespace Gio::DBus
 namespace Glib
 {
 
-  GIOMM_API
+  LIBMM_GIO_SYMEXPORT
   auto
   wrap (GDBusObject* object, bool take_copy = false) -> Glib::RefPtr<Gio::DBus::Object>;
 

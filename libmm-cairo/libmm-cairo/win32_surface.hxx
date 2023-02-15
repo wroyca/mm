@@ -13,7 +13,7 @@
 namespace Cairo
 {
 
-  class CAIROMM_API Win32Surface : public Surface
+  class LIBMM_CAIRO_SYMEXPORT Win32Surface : public Surface
   {
   public:
     explicit Win32Surface (cairo_surface_t* cobject,
@@ -38,7 +38,7 @@ namespace Cairo
         -> RefPtr<Win32Surface>;
   };
 
-  class CAIROMM_API Win32PrintingSurface : public Surface
+  class LIBMM_CAIRO_SYMEXPORT Win32PrintingSurface : public Surface
   {
   public:
     explicit Win32PrintingSurface (cairo_surface_t* cobject,

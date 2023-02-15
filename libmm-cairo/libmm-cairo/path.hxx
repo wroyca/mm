@@ -12,7 +12,7 @@
 namespace Cairo
 {
 
-  class CAIROMM_API Path
+  class LIBMM_CAIRO_SYMEXPORT Path
   {
   public:
     explicit Path (cairo_path_t* cobject, bool take_ownership = false);

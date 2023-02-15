@@ -20,15 +20,15 @@ using GtkStackPageClass = struct _GtkStackPageClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API StackPage_Class;
+  class LIBMM_GTK_SYMEXPORT StackPage_Class;
 }
 #endif
 
 namespace Gtk
 {
-  class GTKMM_API Widget;
+  class LIBMM_GTK_SYMEXPORT Widget;
 
-  class GTKMM_API StackPage : public Glib::Object,
+  class LIBMM_GTK_SYMEXPORT StackPage : public Glib::Object,
                               public Accessible
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -176,7 +176,7 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkStackPage* object, bool take_copy = false) -> Glib::RefPtr<Gtk::StackPage>;
 } // namespace Glib
 

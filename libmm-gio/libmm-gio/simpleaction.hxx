@@ -20,14 +20,14 @@ using GSimpleActionClass = GObjectClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gio
 {
-  class GIOMM_API SimpleAction_Class;
+  class LIBMM_GIO_SYMEXPORT SimpleAction_Class;
 }
 #endif
 
 namespace Gio
 {
 
-  class GIOMM_API SimpleAction : public Glib::Object,
+  class LIBMM_GIO_SYMEXPORT SimpleAction : public Glib::Object,
                                  public Action
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -175,7 +175,7 @@ namespace Gio
 namespace Glib
 {
 
-  GIOMM_API
+  LIBMM_GIO_SYMEXPORT
   auto
   wrap (GSimpleAction* object, bool take_copy = false) -> Glib::RefPtr<Gio::SimpleAction>;
 } // namespace Glib

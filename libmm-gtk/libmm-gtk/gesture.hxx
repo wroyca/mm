@@ -18,13 +18,13 @@ using GtkGestureClass = struct _GtkGestureClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API Gesture_Class;
+  class LIBMM_GTK_SYMEXPORT Gesture_Class;
 }
 #endif
 
 namespace Gdk
 {
-  class GTKMM_API Device;
+  class LIBMM_GTK_SYMEXPORT Device;
 }
 
 namespace Gtk
@@ -44,7 +44,7 @@ namespace Glib
 {
 
   template <>
-  class GTKMM_API Value<Gtk::EventSequenceState>
+  class LIBMM_GTK_SYMEXPORT Value<Gtk::EventSequenceState>
     : public Glib::Value_Enum<Gtk::EventSequenceState>
   {
   public:
@@ -58,7 +58,7 @@ namespace Glib
 namespace Gtk
 {
 
-  class GTKMM_API Gesture : public EventController
+  class LIBMM_GTK_SYMEXPORT Gesture : public EventController
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -216,7 +216,7 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkGesture* object, bool take_copy = false) -> Glib::RefPtr<Gtk::Gesture>;
 } // namespace Glib
 

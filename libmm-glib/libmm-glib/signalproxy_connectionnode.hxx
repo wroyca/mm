@@ -18,7 +18,7 @@ namespace Glib
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
-  class GLIBMM_API SignalProxyConnectionNode : public sigc::notifiable
+  class LIBMM_GLIB_SYMEXPORT SignalProxyConnectionNode : public sigc::notifiable
   {
   public:
     SignalProxyConnectionNode (const sigc::slot_base& slot, GObject* gobject);

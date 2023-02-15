@@ -20,7 +20,7 @@ extern "C"
 namespace Gdk
 {
 
-  class GDKMM_API PixbufFormat
+  class LIBMM_GDK_SYMEXPORT PixbufFormat
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -146,12 +146,12 @@ namespace Gdk
 
 namespace Glib
 {
-  GDKMM_API auto
+  LIBMM_GDK_SYMEXPORT auto
   wrap (GdkPixbufFormat* object, bool take_copy = false) -> Gdk::PixbufFormat;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
   template <>
-  class GDKMM_API Value<Gdk::PixbufFormat>
+  class LIBMM_GDK_SYMEXPORT Value<Gdk::PixbufFormat>
     : public Glib::Value_Boxed<Gdk::PixbufFormat>
   {
   };

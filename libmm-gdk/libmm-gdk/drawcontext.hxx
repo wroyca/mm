@@ -19,16 +19,16 @@ using GdkDrawContextClass = struct _GdkDrawContextClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gdk
 {
-  class GDKMM_API DrawContext_Class;
+  class LIBMM_GDK_SYMEXPORT DrawContext_Class;
 }
 #endif
 
 namespace Gdk
 {
-  class GDKMM_API Display;
-  class GDKMM_API Surface;
+  class LIBMM_GDK_SYMEXPORT Display;
+  class LIBMM_GDK_SYMEXPORT Surface;
 
-  class GDKMM_API DrawContext : public Glib::Object
+  class LIBMM_GDK_SYMEXPORT DrawContext : public Glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -129,7 +129,7 @@ namespace Gdk
 
 namespace Glib
 {
-  GDKMM_API auto
+  LIBMM_GDK_SYMEXPORT auto
   wrap (GdkDrawContext* object, bool take_copy = false) -> Glib::RefPtr<Gdk::DrawContext>;
 } // namespace Glib
 

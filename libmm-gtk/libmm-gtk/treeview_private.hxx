@@ -14,20 +14,20 @@ namespace Gtk
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
   namespace TreeView_Private
   {
-    GTKMM_API auto
+    LIBMM_GTK_SYMEXPORT auto
     SignalProxy_CellData_gtk_callback (GtkTreeViewColumn*,
                                        GtkCellRenderer* cell,
                                        GtkTreeModel* model,
                                        GtkTreeIter* iter,
                                        void* data) -> void;
-    GTKMM_API auto
+    LIBMM_GTK_SYMEXPORT auto
     SignalProxy_CellData_gtk_callback_destroy (void* data) -> void;
 
-    GTKMM_API auto
+    LIBMM_GTK_SYMEXPORT auto
     SignalProxy_RowSeparator_gtk_callback (GtkTreeModel* model,
                                            GtkTreeIter* iter,
                                            void* data) -> gboolean;
-    GTKMM_API auto
+    LIBMM_GTK_SYMEXPORT auto
     SignalProxy_RowSeparator_gtk_callback_destroy (void* data) -> void;
 
   } // namespace TreeView_Private

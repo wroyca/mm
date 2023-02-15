@@ -9,7 +9,7 @@
 namespace Glib
 {
 
-  class GLIBMM_API Dispatcher
+  class LIBMM_GLIB_SYMEXPORT Dispatcher
   {
   public:
     Dispatcher ();

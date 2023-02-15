@@ -17,14 +17,14 @@ using GdkCairoContextClass = struct _GdkCairoContextClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gdk
 {
-  class GDKMM_API CairoContext_Class;
+  class LIBMM_GDK_SYMEXPORT CairoContext_Class;
 }
 #endif
 
 namespace Gdk
 {
 
-  class GDKMM_API CairoContext : public Gdk::DrawContext
+  class LIBMM_GDK_SYMEXPORT CairoContext : public Gdk::DrawContext
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -96,7 +96,7 @@ namespace Gdk
 
 namespace Glib
 {
-  GDKMM_API auto
+  LIBMM_GDK_SYMEXPORT auto
   wrap (GdkCairoContext* object, bool take_copy = false) -> Glib::RefPtr<Gdk::CairoContext>;
 } // namespace Glib
 

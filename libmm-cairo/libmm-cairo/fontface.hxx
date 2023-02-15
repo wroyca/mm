@@ -17,10 +17,10 @@
 namespace Cairo
 {
 
-  class CAIROMM_API ScaledFont;
-  class CAIROMM_API Context;
+  class LIBMM_CAIRO_SYMEXPORT ScaledFont;
+  class LIBMM_CAIRO_SYMEXPORT Context;
 
-  class CAIROMM_API FontFace
+  class LIBMM_CAIRO_SYMEXPORT FontFace
   {
   protected:
   public:
@@ -67,7 +67,7 @@ namespace Cairo
     cobject* m_cobject;
   };
 
-  class CAIROMM_API ToyFontFace : public FontFace
+  class LIBMM_CAIRO_SYMEXPORT ToyFontFace : public FontFace
   {
   public:
     enum class Slant
@@ -103,7 +103,7 @@ namespace Cairo
     ToyFontFace (const std::string& family, Slant slant, Weight weight);
   };
 
-  class CAIROMM_API UserFontFace : public FontFace
+  class LIBMM_CAIRO_SYMEXPORT UserFontFace : public FontFace
   {
   public:
     ~UserFontFace () override;
@@ -165,7 +165,7 @@ namespace Cairo
 
 #ifdef CAIRO_HAS_FT_FONT
 
-  class CAIROMM_API FtFontFace : public FontFace
+  class LIBMM_CAIRO_SYMEXPORT FtFontFace : public FontFace
   {
   public:
     static auto

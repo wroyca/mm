@@ -17,14 +17,14 @@
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API SelectionFilterModel_Class;
+  class LIBMM_GTK_SYMEXPORT SelectionFilterModel_Class;
 }
 #endif
 
 namespace Gtk
 {
 
-  class GTKMM_API SelectionFilterModel : public Glib::Object,
+  class LIBMM_GTK_SYMEXPORT SelectionFilterModel : public Glib::Object,
                                          public Gio::ListModel
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -121,7 +121,7 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkSelectionFilterModel* object, bool take_copy = false) -> Glib::RefPtr<Gtk::SelectionFilterModel>;
 } // namespace Glib
 

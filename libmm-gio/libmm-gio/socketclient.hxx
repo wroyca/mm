@@ -23,7 +23,7 @@ using GSocketClientClass = struct _GSocketClientClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gio
 {
-  class GIOMM_API SocketClient_Class;
+  class LIBMM_GIO_SYMEXPORT SocketClient_Class;
 }
 #endif
 
@@ -50,7 +50,7 @@ namespace Glib
 {
 
   template <>
-  class GIOMM_API Value<Gio::SocketClientEvent>
+  class LIBMM_GIO_SYMEXPORT Value<Gio::SocketClientEvent>
     : public Glib::Value_Enum<Gio::SocketClientEvent>
   {
   public:
@@ -64,7 +64,7 @@ namespace Glib
 namespace Gio
 {
 
-  class GIOMM_API SocketClient : public Glib::Object
+  class LIBMM_GIO_SYMEXPORT SocketClient : public Glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -380,7 +380,7 @@ namespace Gio
 namespace Glib
 {
 
-  GIOMM_API
+  LIBMM_GIO_SYMEXPORT
   auto
   wrap (GSocketClient* object, bool take_copy = false) -> Glib::RefPtr<Gio::SocketClient>;
 } // namespace Glib

@@ -18,18 +18,18 @@ using GtkTextMarkClass = struct _GtkTextMarkClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API TextMark_Class;
+  class LIBMM_GTK_SYMEXPORT TextMark_Class;
 }
 #endif
 
 namespace Gtk
 {
 
-  class GTKMM_API TextBuffer;
-  class GTKMM_API TextIter;
-  class GTKMM_API TextConstIter;
+  class LIBMM_GTK_SYMEXPORT TextBuffer;
+  class LIBMM_GTK_SYMEXPORT TextIter;
+  class LIBMM_GTK_SYMEXPORT TextConstIter;
 
-  class GTKMM_API TextMark : public Glib::Object
+  class LIBMM_GTK_SYMEXPORT TextMark : public Glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -139,7 +139,7 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkTextMark* object, bool take_copy = false) -> Glib::RefPtr<Gtk::TextMark>;
 } // namespace Glib
 

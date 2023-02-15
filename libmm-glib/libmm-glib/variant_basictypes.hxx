@@ -10,7 +10,7 @@ namespace Glib
 {
 
   template <>
-  class GLIBMM_API Variant<bool> : public VariantBase
+  class LIBMM_GLIB_SYMEXPORT Variant<bool> : public VariantBase
   {
   public:
     using CType = gboolean;
@@ -36,7 +36,7 @@ namespace Glib
   };
 
   template <>
-  class GLIBMM_API Variant<unsigned char> : public VariantBase
+  class LIBMM_GLIB_SYMEXPORT Variant<unsigned char> : public VariantBase
   {
   public:
     using CType = guchar;
@@ -62,7 +62,7 @@ namespace Glib
   };
 
   template <>
-  class GLIBMM_API Variant<gint16> : public VariantBase
+  class LIBMM_GLIB_SYMEXPORT Variant<gint16> : public VariantBase
   {
   public:
     using CType = gint16;
@@ -88,7 +88,7 @@ namespace Glib
   };
 
   template <>
-  class GLIBMM_API Variant<guint16> : public VariantBase
+  class LIBMM_GLIB_SYMEXPORT Variant<guint16> : public VariantBase
   {
   public:
     using CType = guint16;
@@ -114,7 +114,7 @@ namespace Glib
   };
 
   template <>
-  class GLIBMM_API Variant<gint32> : public VariantBase
+  class LIBMM_GLIB_SYMEXPORT Variant<gint32> : public VariantBase
   {
   public:
     using CType = gint32;
@@ -143,7 +143,7 @@ namespace Glib
   };
 
   template <>
-  class GLIBMM_API Variant<guint32> : public VariantBase
+  class LIBMM_GLIB_SYMEXPORT Variant<guint32> : public VariantBase
   {
   public:
     using CType = guint32;
@@ -169,7 +169,7 @@ namespace Glib
   };
 
   template <>
-  class GLIBMM_API Variant<gint64> : public VariantBase
+  class LIBMM_GLIB_SYMEXPORT Variant<gint64> : public VariantBase
   {
   public:
     using CType = gint64;
@@ -195,7 +195,7 @@ namespace Glib
   };
 
   template <>
-  class GLIBMM_API Variant<guint64> : public VariantBase
+  class LIBMM_GLIB_SYMEXPORT Variant<guint64> : public VariantBase
   {
   public:
     using CType = guint64;
@@ -221,7 +221,7 @@ namespace Glib
   };
 
   template <>
-  class GLIBMM_API Variant<double> : public VariantBase
+  class LIBMM_GLIB_SYMEXPORT Variant<double> : public VariantBase
   {
   public:
     using CType = gdouble;

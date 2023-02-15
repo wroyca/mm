@@ -25,21 +25,21 @@ using GtkRootClass = struct _GtkRootClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API Root_Class;
+  class LIBMM_GTK_SYMEXPORT Root_Class;
 }
 #endif
 
 namespace Gdk
 {
-  class GTKMM_API Display;
-  class GTKMM_API Surface;
+  class LIBMM_GTK_SYMEXPORT Display;
+  class LIBMM_GTK_SYMEXPORT Surface;
 } // namespace Gdk
 
 namespace Gtk
 {
-  class GTKMM_API Widget;
+  class LIBMM_GTK_SYMEXPORT Widget;
 
-  class GTKMM_API Root : public Glib::Interface
+  class LIBMM_GTK_SYMEXPORT Root : public Glib::Interface
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -130,7 +130,7 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkRoot* object, bool take_copy = false) -> Glib::RefPtr<Gtk::Root>;
 
 } // namespace Glib

@@ -23,16 +23,16 @@ using GtkTreeSelectionClass = struct _GtkTreeSelectionClass;
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API TreeSelection_Class;
+  class LIBMM_GTK_SYMEXPORT TreeSelection_Class;
 }
   #endif
 
 namespace Gtk
 {
 
-  class GTKMM_API TreeView;
+  class LIBMM_GTK_SYMEXPORT TreeView;
 
-  class GTKMM_API TreeSelection : public Glib::Object
+  class LIBMM_GTK_SYMEXPORT TreeSelection : public Glib::Object
   {
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -202,7 +202,7 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkTreeSelection* object, bool take_copy = false) -> Glib::RefPtr<Gtk::TreeSelection>;
 } // namespace Glib
 

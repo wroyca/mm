@@ -17,14 +17,14 @@
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API TreeExpander_Class;
+  class LIBMM_GTK_SYMEXPORT TreeExpander_Class;
 }
 #endif
 
 namespace Gtk
 {
 
-  class GTKMM_API TreeExpander : public Widget
+  class LIBMM_GTK_SYMEXPORT TreeExpander : public Widget
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -47,7 +47,7 @@ namespace Gtk
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   private:
-    friend GTKMM_API class TreeExpander_Class;
+    friend LIBMM_GTK_SYMEXPORT class TreeExpander_Class;
     static CppClassType treeexpander_class_;
 
   protected:
@@ -174,7 +174,7 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkTreeExpander* object, bool take_copy = false) -> Gtk::TreeExpander*;
 } // namespace Glib
 

@@ -25,7 +25,7 @@ using GtkBuilderScopeClass = struct _GtkBuilderScopeClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API BuilderScope_Class;
+  class LIBMM_GTK_SYMEXPORT BuilderScope_Class;
 }
 #endif
 
@@ -33,7 +33,7 @@ namespace Gtk
 {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
-  class GTKMM_API BuilderScope : public Glib::Interface
+  class LIBMM_GTK_SYMEXPORT BuilderScope : public Glib::Interface
   {
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -107,7 +107,7 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkBuilderScope* object, bool take_copy = false) -> Glib::RefPtr<Gtk::BuilderScope>;
 
 } // namespace Glib

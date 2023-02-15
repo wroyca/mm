@@ -10,7 +10,7 @@
 namespace Gtk
 {
 
-  class GTKMM_API MultiFilter_Class : public Glib::Class
+  class LIBMM_GTK_SYMEXPORT MultiFilter_Class : public Glib::Class
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -42,7 +42,7 @@ namespace Gtk
 namespace Gtk
 {
 
-  class GTKMM_API AnyFilter_Class : public Glib::Class
+  class LIBMM_GTK_SYMEXPORT AnyFilter_Class : public Glib::Class
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -74,7 +74,7 @@ namespace Gtk
 namespace Gtk
 {
 
-  class GTKMM_API EveryFilter_Class : public Glib::Class
+  class LIBMM_GTK_SYMEXPORT EveryFilter_Class : public Glib::Class
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

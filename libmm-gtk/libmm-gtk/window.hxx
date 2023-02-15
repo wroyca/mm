@@ -25,22 +25,22 @@ using GtkWindowClass = struct _GtkWindowClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API Window_Class;
+  class LIBMM_GTK_SYMEXPORT Window_Class;
 }
 #endif
 
 namespace Gio
 {
-  class GTKMM_API ListModel;
+  class LIBMM_GTK_SYMEXPORT ListModel;
 }
 
 namespace Gtk
 {
 
-  class GTKMM_API Application;
-  class GTKMM_API WindowGroup;
+  class LIBMM_GTK_SYMEXPORT Application;
+  class LIBMM_GTK_SYMEXPORT WindowGroup;
 
-  class GTKMM_API Window : public Widget,
+  class LIBMM_GTK_SYMEXPORT Window : public Widget,
                            public Native,
                            public ShortcutManager,
                            public Root
@@ -62,7 +62,7 @@ namespace Gtk
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   private:
-    friend GTKMM_API class Window_Class;
+    friend LIBMM_GTK_SYMEXPORT class Window_Class;
     static CppClassType window_class_;
 
   protected:
@@ -492,7 +492,7 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkWindow* object, bool take_copy = false) -> Gtk::Window*;
 } // namespace Glib
 

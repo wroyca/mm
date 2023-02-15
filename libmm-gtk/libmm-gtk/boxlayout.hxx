@@ -15,14 +15,14 @@
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API BoxLayout_Class;
+  class LIBMM_GTK_SYMEXPORT BoxLayout_Class;
 }
 #endif
 
 namespace Gtk
 {
 
-  class GTKMM_API BoxLayout : public LayoutManager,
+  class LIBMM_GTK_SYMEXPORT BoxLayout : public LayoutManager,
                               public Orientable
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -133,7 +133,7 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkBoxLayout* object, bool take_copy = false) -> Glib::RefPtr<Gtk::BoxLayout>;
 } // namespace Glib
 

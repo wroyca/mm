@@ -18,14 +18,14 @@ using GdkSnapshotClass = struct _GdkSnapshotClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gdk
 {
-  class GDKMM_API Snapshot_Class;
+  class LIBMM_GDK_SYMEXPORT Snapshot_Class;
 }
 #endif
 
 namespace Gdk
 {
 
-  class GDKMM_API Snapshot : public Glib::Object
+  class LIBMM_GDK_SYMEXPORT Snapshot : public Glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -91,7 +91,7 @@ namespace Gdk
 
 namespace Glib
 {
-  GDKMM_API auto
+  LIBMM_GDK_SYMEXPORT auto
   wrap (GdkSnapshot* object, bool take_copy = false) -> Glib::RefPtr<Gdk::Snapshot>;
 } // namespace Glib
 

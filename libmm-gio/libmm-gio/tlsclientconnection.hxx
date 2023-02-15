@@ -22,22 +22,22 @@ using GTlsClientConnectionClass = struct _GTlsClientConnectionClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gio
 {
-  class GIOMM_API TlsClientConnection_Class;
+  class LIBMM_GIO_SYMEXPORT TlsClientConnection_Class;
 }
 #endif
 
 namespace Glib
 {
-  class GLIBMM_API ByteArray;
+  class LIBMM_GLIB_SYMEXPORT ByteArray;
 }
 
 namespace Gio
 {
 
-  class GIOMM_API SocketConnectable;
-  class GIOMM_API TlsClientConnectionImpl;
+  class LIBMM_GIO_SYMEXPORT SocketConnectable;
+  class LIBMM_GIO_SYMEXPORT TlsClientConnectionImpl;
 
-  class GIOMM_API TlsClientConnection : public Glib::Interface
+  class LIBMM_GIO_SYMEXPORT TlsClientConnection : public Glib::Interface
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -172,7 +172,7 @@ namespace Gio
 namespace Glib
 {
 
-  GIOMM_API
+  LIBMM_GIO_SYMEXPORT
   auto
   wrap (GTlsClientConnection* object, bool take_copy = false) -> Glib::RefPtr<Gio::TlsClientConnection>;
 

@@ -56,7 +56,7 @@ namespace Glib
       return array;
     }
 
-    GLIBMM_API
+    LIBMM_GLIB_SYMEXPORT
     auto
     create_bool_array (std::vector<bool>::const_iterator pbegin,
                        std::size_t size) -> gboolean*;
@@ -301,7 +301,7 @@ namespace Glib
   };
 
   template <>
-  class GLIBMM_API ArrayHandler<bool>
+  class LIBMM_GLIB_SYMEXPORT ArrayHandler<bool>
   {
   public:
     using CType = gboolean;

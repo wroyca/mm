@@ -34,24 +34,24 @@ namespace Glib
       INVALID_VALUE
     };
 
-    GLIBMM_API
+    LIBMM_GLIB_SYMEXPORT
     KeyFileError (Code error_code, const Glib::ustring& error_message);
-    GLIBMM_API explicit KeyFileError (GError* gobject);
-    GLIBMM_API auto
+    LIBMM_GLIB_SYMEXPORT explicit KeyFileError (GError* gobject);
+    LIBMM_GLIB_SYMEXPORT auto
     code () const -> Code;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
   private:
-    GLIBMM_API static auto
+    LIBMM_GLIB_SYMEXPORT static auto
     throw_func (GError* gobject) -> void;
 
-    friend GLIBMM_API auto
+    friend LIBMM_GLIB_SYMEXPORT auto
     wrap_init () -> void;
 
 #endif
   };
 
-  class GLIBMM_API KeyFile final
+  class LIBMM_GLIB_SYMEXPORT KeyFile final
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -387,7 +387,7 @@ namespace Glib
 namespace Glib
 {
 
-  GLIBMM_API
+  LIBMM_GLIB_SYMEXPORT
   auto
   wrap (GKeyFile* object, bool take_copy = false) -> Glib::RefPtr<Glib::KeyFile>;
 

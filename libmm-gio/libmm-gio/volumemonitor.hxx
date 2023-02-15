@@ -3,7 +3,7 @@
 #ifndef _GIOMM_VOLUMEMONITOR_H
 #define _GIOMM_VOLUMEMONITOR_H
 
-#include <libmm-gio/gioconfig.hxx>
+#include <libmm-gio/mm-gioconfig.hxx>
 
 #include <libmm-glib/ustring.hxx>
 #include <sigc++/sigc++.h>
@@ -20,14 +20,14 @@ using GVolumeMonitorClass = struct _GVolumeMonitorClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gio
 {
-  class GIOMM_API VolumeMonitor_Class;
+  class LIBMM_GIO_SYMEXPORT VolumeMonitor_Class;
 }
 #endif
 
 namespace Gio
 {
 
-  class GIOMM_API VolumeMonitor : public Glib::Object
+  class LIBMM_GIO_SYMEXPORT VolumeMonitor : public Glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -197,7 +197,7 @@ namespace Gio
 namespace Glib
 {
 
-  GIOMM_API
+  LIBMM_GIO_SYMEXPORT
   auto
   wrap (GVolumeMonitor* object, bool take_copy = false) -> Glib::RefPtr<Gio::VolumeMonitor>;
 } // namespace Glib

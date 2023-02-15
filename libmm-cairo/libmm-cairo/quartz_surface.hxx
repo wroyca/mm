@@ -14,7 +14,7 @@ namespace Cairo
 
 #ifdef CAIRO_HAS_QUARTZ_SURFACE
 
-  class CAIROMM_API QuartzSurface : public Surface
+  class LIBMM_CAIRO_SYMEXPORT QuartzSurface : public Surface
   {
   public:
     explicit QuartzSurface (cairo_surface_t* cobject,

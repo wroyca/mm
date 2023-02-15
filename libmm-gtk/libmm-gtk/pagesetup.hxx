@@ -18,14 +18,14 @@ using GtkPageSetupClass = struct _GtkPageSetupClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API PageSetup_Class;
+  class LIBMM_GTK_SYMEXPORT PageSetup_Class;
 }
 #endif
 
 namespace Gtk
 {
 
-  class GTKMM_API PageSetup : public Glib::Object
+  class LIBMM_GTK_SYMEXPORT PageSetup : public Glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -188,7 +188,7 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkPageSetup* object, bool take_copy = false) -> Glib::RefPtr<Gtk::PageSetup>;
 } // namespace Glib
 

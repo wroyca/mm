@@ -18,14 +18,14 @@
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API NoSelection_Class;
+  class LIBMM_GTK_SYMEXPORT NoSelection_Class;
 }
 #endif
 
 namespace Gtk
 {
 
-  class GTKMM_API NoSelection : public Glib::Object,
+  class LIBMM_GTK_SYMEXPORT NoSelection : public Glib::Object,
                                 public Gio::ListModel,
                                 public SelectionModel
   {
@@ -126,7 +126,7 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkNoSelection* object, bool take_copy = false) -> Glib::RefPtr<Gtk::NoSelection>;
 } // namespace Glib
 

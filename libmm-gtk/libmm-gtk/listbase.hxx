@@ -18,14 +18,14 @@ using GtkListBaseClass = struct _GtkListBaseClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API ListBase_Class;
+  class LIBMM_GTK_SYMEXPORT ListBase_Class;
 }
 #endif
 
 namespace Gtk
 {
 
-  class GTKMM_API ListBase : public Widget,
+  class LIBMM_GTK_SYMEXPORT ListBase : public Widget,
                              public Orientable,
                              public Scrollable
   {
@@ -50,7 +50,7 @@ namespace Gtk
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   private:
-    friend GTKMM_API class ListBase_Class;
+    friend LIBMM_GTK_SYMEXPORT class ListBase_Class;
     static CppClassType listbase_class_;
 
   protected:
@@ -91,7 +91,7 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkListBase* object, bool take_copy = false) -> Gtk::ListBase*;
 } // namespace Glib
 

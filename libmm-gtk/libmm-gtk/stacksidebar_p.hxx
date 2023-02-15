@@ -10,7 +10,7 @@
 namespace Gtk
 {
 
-  class GTKMM_API StackSidebar_Class : public Glib::Class
+  class LIBMM_GTK_SYMEXPORT StackSidebar_Class : public Glib::Class
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

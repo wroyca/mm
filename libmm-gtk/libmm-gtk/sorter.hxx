@@ -17,14 +17,14 @@ using GtkSorterClass = struct _GtkSorterClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API Sorter_Class;
+  class LIBMM_GTK_SYMEXPORT Sorter_Class;
 }
 #endif
 
 namespace Gtk
 {
 
-  class GTKMM_API Sorter : public Glib::Object
+  class LIBMM_GTK_SYMEXPORT Sorter : public Glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -130,7 +130,7 @@ namespace Glib
 {
 
   template <>
-  class GTKMM_API Value<Gtk::Sorter::Order>
+  class LIBMM_GTK_SYMEXPORT Value<Gtk::Sorter::Order>
     : public Glib::Value_Enum<Gtk::Sorter::Order>
   {
   public:
@@ -146,7 +146,7 @@ namespace Glib
 {
 
   template <>
-  class GTKMM_API Value<Gtk::Sorter::Change>
+  class LIBMM_GTK_SYMEXPORT Value<Gtk::Sorter::Change>
     : public Glib::Value_Enum<Gtk::Sorter::Change>
   {
   public:
@@ -159,7 +159,7 @@ namespace Glib
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkSorter* object, bool take_copy = false) -> Glib::RefPtr<Gtk::Sorter>;
 } // namespace Glib
 

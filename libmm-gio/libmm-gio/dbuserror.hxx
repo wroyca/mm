@@ -3,7 +3,7 @@
 #ifndef _GIOMM_DBUSERROR_H
 #define _GIOMM_DBUSERROR_H
 
-#include <libmm-gio/gioconfig.hxx>
+#include <libmm-gio/mm-gioconfig.hxx>
 
 #include <libmm-glib/ustring.hxx>
 #include <sigc++/sigc++.h>
@@ -65,18 +65,18 @@ namespace Gio::DBus
       PROPERTY_READ_ONLY
     };
 
-    GIOMM_API
+    LIBMM_GIO_SYMEXPORT
     Error (Code error_code, const Glib::ustring& error_message);
-    GIOMM_API explicit Error (GError* gobject);
-    GIOMM_API auto
+    LIBMM_GIO_SYMEXPORT explicit Error (GError* gobject);
+    LIBMM_GIO_SYMEXPORT auto
     code () const -> Code;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
   private:
-    GIOMM_API static auto
+    LIBMM_GIO_SYMEXPORT static auto
     throw_func (GError* gobject) -> void;
 
-    friend GIOMM_API auto
+    friend LIBMM_GIO_SYMEXPORT auto
     wrap_init () -> void;
 
 #endif

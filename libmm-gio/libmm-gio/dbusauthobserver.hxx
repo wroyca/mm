@@ -18,14 +18,14 @@ using GDBusAuthObserverClass = struct _GDBusAuthObserverClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gio::DBus
 {
-  class GIOMM_API AuthObserver_Class;
+  class LIBMM_GIO_SYMEXPORT AuthObserver_Class;
 }
 #endif
 
 namespace Gio::DBus
 {
 
-  class GIOMM_API AuthObserver : public Glib::Object
+  class LIBMM_GIO_SYMEXPORT AuthObserver : public Glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -114,7 +114,7 @@ namespace Gio::DBus
 namespace Glib
 {
 
-  GIOMM_API
+  LIBMM_GIO_SYMEXPORT
   auto
   wrap (GDBusAuthObserver* object, bool take_copy = false) -> Glib::RefPtr<Gio::DBus::AuthObserver>;
 } // namespace Glib

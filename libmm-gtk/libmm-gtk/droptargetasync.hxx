@@ -19,14 +19,14 @@ using GtkDropTargetAsyncClass = struct _GtkDropTargetAsyncClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API DropTargetAsync_Class;
+  class LIBMM_GTK_SYMEXPORT DropTargetAsync_Class;
 }
 #endif
 
 namespace Gtk
 {
 
-  class GTKMM_API DropTargetAsync : public EventController
+  class LIBMM_GTK_SYMEXPORT DropTargetAsync : public EventController
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -153,7 +153,7 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkDropTargetAsync* object, bool take_copy = false) -> Glib::RefPtr<Gtk::DropTargetAsync>;
 } // namespace Glib
 

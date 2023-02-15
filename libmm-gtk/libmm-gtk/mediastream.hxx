@@ -20,19 +20,19 @@ using GtkMediaStreamClass = struct _GtkMediaStreamClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API MediaStream_Class;
+  class LIBMM_GTK_SYMEXPORT MediaStream_Class;
 }
 #endif
 
 namespace Glib
 {
-  class GTKMM_API Error;
+  class LIBMM_GTK_SYMEXPORT Error;
 }
 
 namespace Gtk
 {
 
-  class GTKMM_API MediaStream : public Glib::Object,
+  class LIBMM_GTK_SYMEXPORT MediaStream : public Glib::Object,
                                 public Gdk::Paintable
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -281,7 +281,7 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkMediaStream* object, bool take_copy = false) -> Glib::RefPtr<Gtk::MediaStream>;
 } // namespace Glib
 

@@ -22,7 +22,7 @@ using GtkTextViewClass = struct _GtkTextViewClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API TextView_Class;
+  class LIBMM_GTK_SYMEXPORT TextView_Class;
 }
 #endif
 
@@ -46,7 +46,7 @@ namespace Glib
 {
 
   template <>
-  class GTKMM_API Value<Gtk::TextWindowType>
+  class LIBMM_GTK_SYMEXPORT Value<Gtk::TextWindowType>
     : public Glib::Value_Enum<Gtk::TextWindowType>
   {
   public:
@@ -60,7 +60,7 @@ namespace Glib
 namespace Gtk
 {
 
-  class GTKMM_API TextView : public Widget,
+  class LIBMM_GTK_SYMEXPORT TextView : public Widget,
                              public Scrollable
   {
   public:
@@ -84,7 +84,7 @@ namespace Gtk
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   private:
-    friend GTKMM_API class TextView_Class;
+    friend LIBMM_GTK_SYMEXPORT class TextView_Class;
     static CppClassType textview_class_;
 
   protected:
@@ -550,7 +550,7 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkTextView* object, bool take_copy = false) -> Gtk::TextView*;
 } // namespace Glib
 

@@ -19,14 +19,14 @@ using GtkSizeGroupClass = struct _GtkSizeGroupClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API SizeGroup_Class;
+  class LIBMM_GTK_SYMEXPORT SizeGroup_Class;
 }
 #endif
 
 namespace Gtk
 {
 
-  class GTKMM_API SizeGroup : public Glib::Object,
+  class LIBMM_GTK_SYMEXPORT SizeGroup : public Glib::Object,
                               public Buildable
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -135,7 +135,7 @@ namespace Glib
 {
 
   template <>
-  class GTKMM_API Value<Gtk::SizeGroup::Mode>
+  class LIBMM_GTK_SYMEXPORT Value<Gtk::SizeGroup::Mode>
     : public Glib::Value_Enum<Gtk::SizeGroup::Mode>
   {
   public:
@@ -148,7 +148,7 @@ namespace Glib
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkSizeGroup* object, bool take_copy = false) -> Glib::RefPtr<Gtk::SizeGroup>;
 } // namespace Glib
 

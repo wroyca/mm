@@ -14,7 +14,7 @@ namespace Glib
 {
 
   template <>
-  class GLIBMM_API Value<bool> : public ValueBase
+  class LIBMM_GLIB_SYMEXPORT Value<bool> : public ValueBase
   {
   public:
     using CppType = bool;
@@ -37,7 +37,7 @@ namespace Glib
   };
 
   template <>
-  class GLIBMM_API Value<signed char> : public ValueBase
+  class LIBMM_GLIB_SYMEXPORT Value<signed char> : public ValueBase
   {
   public:
     using CppType = signed char;
@@ -60,7 +60,7 @@ namespace Glib
   };
 
   template <>
-  class GLIBMM_API Value<unsigned char> : public ValueBase
+  class LIBMM_GLIB_SYMEXPORT Value<unsigned char> : public ValueBase
   {
   public:
     using CppType = unsigned char;
@@ -83,7 +83,7 @@ namespace Glib
   };
 
   template <>
-  class GLIBMM_API Value<int> : public ValueBase
+  class LIBMM_GLIB_SYMEXPORT Value<int> : public ValueBase
   {
   public:
     using CppType = int;
@@ -106,7 +106,7 @@ namespace Glib
   };
 
   template <>
-  class GLIBMM_API Value<unsigned int> : public ValueBase
+  class LIBMM_GLIB_SYMEXPORT Value<unsigned int> : public ValueBase
   {
   public:
     using CppType = unsigned int;
@@ -129,7 +129,7 @@ namespace Glib
   };
 
   template <>
-  class GLIBMM_API Value<long> : public ValueBase
+  class LIBMM_GLIB_SYMEXPORT Value<long> : public ValueBase
   {
   public:
     using CppType = long;
@@ -152,7 +152,7 @@ namespace Glib
   };
 
   template <>
-  class GLIBMM_API Value<unsigned long> : public ValueBase
+  class LIBMM_GLIB_SYMEXPORT Value<unsigned long> : public ValueBase
   {
   public:
     using CppType = unsigned long;
@@ -175,7 +175,7 @@ namespace Glib
   };
 
   template <>
-  class GLIBMM_API Value<long long> : public ValueBase
+  class LIBMM_GLIB_SYMEXPORT Value<long long> : public ValueBase
   {
   public:
     using CppType = long long;
@@ -198,7 +198,7 @@ namespace Glib
   };
 
   template <>
-  class GLIBMM_API Value<unsigned long long> : public ValueBase
+  class LIBMM_GLIB_SYMEXPORT Value<unsigned long long> : public ValueBase
   {
   public:
     using CppType = unsigned long long;
@@ -221,7 +221,7 @@ namespace Glib
   };
 
   template <>
-  class GLIBMM_API Value<float> : public ValueBase
+  class LIBMM_GLIB_SYMEXPORT Value<float> : public ValueBase
   {
   public:
     using CppType = float;
@@ -244,7 +244,7 @@ namespace Glib
   };
 
   template <>
-  class GLIBMM_API Value<double> : public ValueBase
+  class LIBMM_GLIB_SYMEXPORT Value<double> : public ValueBase
   {
   public:
     using CppType = double;
@@ -267,7 +267,7 @@ namespace Glib
   };
 
   template <>
-  class GLIBMM_API Value<void*> : public ValueBase
+  class LIBMM_GLIB_SYMEXPORT Value<void*> : public ValueBase
   {
   public:
     using CppType = void*;

@@ -18,16 +18,16 @@ using GDBusActionGroupClass = struct _GDBusActionGroupClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gio::DBus
 {
-  class GIOMM_API ActionGroup_Class;
+  class LIBMM_GIO_SYMEXPORT ActionGroup_Class;
 }
 #endif
 
 namespace Gio::DBus
 {
 
-  class GIOMM_API Connection;
+  class LIBMM_GIO_SYMEXPORT Connection;
 
-  class GIOMM_API ActionGroup : public Glib::Object,
+  class LIBMM_GIO_SYMEXPORT ActionGroup : public Glib::Object,
                                 public Gio::ActionGroup,
                                 public Gio::RemoteActionGroup
   {
@@ -104,7 +104,7 @@ namespace Gio::DBus
 namespace Glib
 {
 
-  GIOMM_API
+  LIBMM_GIO_SYMEXPORT
   auto
   wrap (GDBusActionGroup* object, bool take_copy = false) -> Glib::RefPtr<Gio::DBus::ActionGroup>;
 } // namespace Glib

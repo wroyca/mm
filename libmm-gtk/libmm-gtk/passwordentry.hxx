@@ -18,14 +18,14 @@ using GtkPasswordEntryClass = struct _GtkPasswordEntryClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API PasswordEntry_Class;
+  class LIBMM_GTK_SYMEXPORT PasswordEntry_Class;
 }
 #endif
 
 namespace Gtk
 {
 
-  class GTKMM_API PasswordEntry : public Widget,
+  class LIBMM_GTK_SYMEXPORT PasswordEntry : public Widget,
                                   public Editable
   {
   public:
@@ -49,7 +49,7 @@ namespace Gtk
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   private:
-    friend GTKMM_API class PasswordEntry_Class;
+    friend LIBMM_GTK_SYMEXPORT class PasswordEntry_Class;
     static CppClassType passwordentry_class_;
 
   protected:
@@ -134,7 +134,7 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkPasswordEntry* object, bool take_copy = false) -> Gtk::PasswordEntry*;
 } // namespace Glib
 

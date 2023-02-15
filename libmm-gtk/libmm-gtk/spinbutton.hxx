@@ -19,7 +19,7 @@ using GtkSpinButtonClass = struct _GtkSpinButtonClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API SpinButton_Class;
+  class LIBMM_GTK_SYMEXPORT SpinButton_Class;
 }
 #endif
 
@@ -44,7 +44,7 @@ namespace Glib
 {
 
   template <>
-  class GTKMM_API Value<Gtk::SpinType> : public Glib::Value_Enum<Gtk::SpinType>
+  class LIBMM_GTK_SYMEXPORT Value<Gtk::SpinType> : public Glib::Value_Enum<Gtk::SpinType>
   {
   public:
     static auto
@@ -57,9 +57,9 @@ namespace Glib
 namespace Gtk
 {
 
-  class GTKMM_API Adjustment;
+  class LIBMM_GTK_SYMEXPORT Adjustment;
 
-  class GTKMM_API SpinButton : public Widget,
+  class LIBMM_GTK_SYMEXPORT SpinButton : public Widget,
                                public Orientable,
                                public Editable,
                                public CellEditable
@@ -85,7 +85,7 @@ namespace Gtk
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   private:
-    friend GTKMM_API class SpinButton_Class;
+    friend LIBMM_GTK_SYMEXPORT class SpinButton_Class;
     static CppClassType spinbutton_class_;
 
   protected:
@@ -288,7 +288,7 @@ namespace Glib
 {
 
   template <>
-  class GTKMM_API Value<Gtk::SpinButton::UpdatePolicy>
+  class LIBMM_GTK_SYMEXPORT Value<Gtk::SpinButton::UpdatePolicy>
     : public Glib::Value_Enum<Gtk::SpinButton::UpdatePolicy>
   {
   public:
@@ -301,7 +301,7 @@ namespace Glib
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkSpinButton* object, bool take_copy = false) -> Gtk::SpinButton*;
 } // namespace Glib
 

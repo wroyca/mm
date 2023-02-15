@@ -18,15 +18,15 @@ using GdkAppLaunchContextClass = struct _GdkAppLaunchContextClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gdk
 {
-  class GDKMM_API AppLaunchContext_Class;
+  class LIBMM_GDK_SYMEXPORT AppLaunchContext_Class;
 }
 #endif
 
 namespace Gdk
 {
-  class GDKMM_API Display;
+  class LIBMM_GDK_SYMEXPORT Display;
 
-  class GDKMM_API AppLaunchContext : public Gio::AppLaunchContext
+  class LIBMM_GDK_SYMEXPORT AppLaunchContext : public Gio::AppLaunchContext
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -120,7 +120,7 @@ namespace Gdk
 
 namespace Glib
 {
-  GDKMM_API auto
+  LIBMM_GDK_SYMEXPORT auto
   wrap (GdkAppLaunchContext* object, bool take_copy = false) -> Glib::RefPtr<Gdk::AppLaunchContext>;
 } // namespace Glib
 

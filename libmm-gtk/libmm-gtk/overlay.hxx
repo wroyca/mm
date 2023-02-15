@@ -16,14 +16,14 @@ using GtkOverlayClass = struct _GtkOverlayClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API Overlay_Class;
+  class LIBMM_GTK_SYMEXPORT Overlay_Class;
 }
 #endif
 
 namespace Gtk
 {
 
-  class GTKMM_API Overlay : public Widget
+  class LIBMM_GTK_SYMEXPORT Overlay : public Widget
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -46,7 +46,7 @@ namespace Gtk
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   private:
-    friend GTKMM_API class Overlay_Class;
+    friend LIBMM_GTK_SYMEXPORT class Overlay_Class;
     static CppClassType overlay_class_;
 
   protected:
@@ -129,7 +129,7 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkOverlay* object, bool take_copy = false) -> Gtk::Overlay*;
 } // namespace Glib
 

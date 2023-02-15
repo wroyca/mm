@@ -18,14 +18,14 @@ using GtkCellRendererToggleClass = struct _GtkCellRendererToggleClass;
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API CellRendererToggle_Class;
+  class LIBMM_GTK_SYMEXPORT CellRendererToggle_Class;
 }
   #endif
 
 namespace Gtk
 {
 
-  class GTKMM_API CellRendererToggle : public CellRenderer
+  class LIBMM_GTK_SYMEXPORT CellRendererToggle : public CellRenderer
   {
   public:
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -48,7 +48,7 @@ namespace Gtk
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   private:
-    friend GTKMM_API class CellRendererToggle_Class;
+    friend LIBMM_GTK_SYMEXPORT class CellRendererToggle_Class;
     static CppClassType cellrenderertoggle_class_;
 
   protected:
@@ -140,7 +140,7 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkCellRendererToggle* object, bool take_copy = false) -> Gtk::CellRendererToggle*;
 } // namespace Glib
 

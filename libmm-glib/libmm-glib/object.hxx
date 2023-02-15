@@ -31,11 +31,11 @@ namespace Glib
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
-  class GLIBMM_API Class;
-  class GLIBMM_API Object_Class;
-  class GLIBMM_API GSigConnectionNode;
+  class LIBMM_GLIB_SYMEXPORT Class;
+  class LIBMM_GLIB_SYMEXPORT Object_Class;
+  class LIBMM_GLIB_SYMEXPORT GSigConnectionNode;
 
-  class GLIBMM_API ConstructParams
+  class LIBMM_GLIB_SYMEXPORT ConstructParams
   {
   public:
     const Glib::Class& glibmm_class;
@@ -56,7 +56,7 @@ namespace Glib
 
 #endif
 
-  class GLIBMM_API Object : virtual public ObjectBase
+  class LIBMM_GLIB_SYMEXPORT Object : virtual public ObjectBase
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

@@ -19,14 +19,14 @@ using GtkFontChooserWidgetClass = struct _GtkFontChooserWidgetClass;
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API FontChooserWidget_Class;
+  class LIBMM_GTK_SYMEXPORT FontChooserWidget_Class;
 }
   #endif
 
 namespace Gtk
 {
 
-  class GTKMM_API FontChooserWidget : public Widget,
+  class LIBMM_GTK_SYMEXPORT FontChooserWidget : public Widget,
                                       public FontChooser
   {
   public:
@@ -50,7 +50,7 @@ namespace Gtk
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   private:
-    friend GTKMM_API class FontChooserWidget_Class;
+    friend LIBMM_GTK_SYMEXPORT class FontChooserWidget_Class;
     static CppClassType fontchooserwidget_class_;
 
   protected:
@@ -94,7 +94,7 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkFontChooserWidget* object, bool take_copy = false) -> Gtk::FontChooserWidget*;
 } // namespace Glib
 

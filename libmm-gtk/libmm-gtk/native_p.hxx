@@ -11,7 +11,7 @@
 namespace Gtk
 {
 
-  class GTKMM_API Native_Class : public Glib::Interface_Class
+  class LIBMM_GTK_SYMEXPORT Native_Class : public Glib::Interface_Class
   {
   public:
     using CppObjectType = Native;

@@ -14,7 +14,7 @@
 namespace Gdk
 {
 
-  class GDKMM_API Rectangle
+  class LIBMM_GDK_SYMEXPORT Rectangle
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -95,13 +95,13 @@ namespace Gdk
     set_height (const int& value) -> void;
   };
 
-  GDKMM_API auto
+  LIBMM_GDK_SYMEXPORT auto
   join (const Rectangle& src1, const Rectangle& src2) -> Rectangle;
 
-  GDKMM_API auto
+  LIBMM_GDK_SYMEXPORT auto
   intersect (const Rectangle& src1, const Rectangle& src2) -> Rectangle;
 
-  GDKMM_API auto
+  LIBMM_GDK_SYMEXPORT auto
   intersect (const Rectangle& src1,
              const Rectangle& src2,
              bool& rectangles_intersect) -> Rectangle;
@@ -110,15 +110,15 @@ namespace Gdk
 
 namespace Glib
 {
-  GDKMM_API auto
+  LIBMM_GDK_SYMEXPORT auto
   wrap (GdkRectangle* object) -> Gdk::Rectangle&;
 
-  GDKMM_API auto
+  LIBMM_GDK_SYMEXPORT auto
   wrap (const GdkRectangle* object) -> const Gdk::Rectangle&;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
   template <>
-  class GDKMM_API Value<Gdk::Rectangle>
+  class LIBMM_GDK_SYMEXPORT Value<Gdk::Rectangle>
     : public Glib::Value_Boxed<Gdk::Rectangle>
   {
   };

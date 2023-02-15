@@ -17,14 +17,14 @@ using GtkBoxClass = struct _GtkBoxClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API Box_Class;
+  class LIBMM_GTK_SYMEXPORT Box_Class;
 }
 #endif
 
 namespace Gtk
 {
 
-  class GTKMM_API Box : public Widget,
+  class LIBMM_GTK_SYMEXPORT Box : public Widget,
                         public Orientable
   {
   public:
@@ -48,7 +48,7 @@ namespace Gtk
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   private:
-    friend GTKMM_API class Box_Class;
+    friend LIBMM_GTK_SYMEXPORT class Box_Class;
     static CppClassType box_class_;
 
   protected:
@@ -151,7 +151,7 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkBox* object, bool take_copy = false) -> Gtk::Box*;
 } // namespace Glib
 

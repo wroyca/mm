@@ -9,13 +9,13 @@
 namespace Glib
 {
 
-  GLIBMM_API
+  LIBMM_GLIB_SYMEXPORT
   auto
   add_exception_handler (const sigc::slot<void ()>& slot) -> sigc::connection;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
-  GLIBMM_API auto
+  LIBMM_GLIB_SYMEXPORT auto
   exception_handlers_invoke () noexcept -> void;
 #endif
 

@@ -18,14 +18,14 @@
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API SingleSelection_Class;
+  class LIBMM_GTK_SYMEXPORT SingleSelection_Class;
 }
 #endif
 
 namespace Gtk
 {
 
-  class GTKMM_API SingleSelection : public Glib::Object,
+  class LIBMM_GTK_SYMEXPORT SingleSelection : public Glib::Object,
                                     public Gio::ListModel,
                                     public SelectionModel
   {
@@ -172,7 +172,7 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkSingleSelection* object, bool take_copy = false) -> Glib::RefPtr<Gtk::SingleSelection>;
 } // namespace Glib
 

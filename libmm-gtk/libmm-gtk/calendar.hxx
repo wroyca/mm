@@ -19,14 +19,14 @@ using GtkCalendarClass = struct _GtkCalendarClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API Calendar_Class;
+  class LIBMM_GTK_SYMEXPORT Calendar_Class;
 }
 #endif
 
 namespace Gtk
 {
 
-  class GTKMM_API Calendar : public Widget
+  class LIBMM_GTK_SYMEXPORT Calendar : public Widget
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -49,7 +49,7 @@ namespace Gtk
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   private:
-    friend GTKMM_API class Calendar_Class;
+    friend LIBMM_GTK_SYMEXPORT class Calendar_Class;
     static CppClassType calendar_class_;
 
   protected:
@@ -180,7 +180,7 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkCalendar* object, bool take_copy = false) -> Gtk::Calendar*;
 } // namespace Glib
 

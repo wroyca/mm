@@ -11,7 +11,7 @@
 namespace Cairo
 {
 
-  class CAIROMM_API Device
+  class LIBMM_CAIRO_SYMEXPORT Device
   {
   public:
     class Lock

@@ -13,7 +13,7 @@ extern "C"
 namespace Glib
 {
 
-  class GLIBMM_API Timer
+  class LIBMM_GLIB_SYMEXPORT Timer
   {
   public:
     Timer ();
@@ -60,7 +60,7 @@ namespace Glib
     GTimer* gobject_;
   };
 
-  GLIBMM_API auto
+  LIBMM_GLIB_SYMEXPORT auto
   usleep (unsigned long microseconds) -> void;
 
 } // namespace Glib

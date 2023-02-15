@@ -26,13 +26,13 @@ namespace Gtk
   struct PaperSizeTraits;
 #endif
 
-  extern GTKMM_API const Glib::ustring PAPER_NAME_A3;
-  extern GTKMM_API const Glib::ustring PAPER_NAME_A4;
-  extern GTKMM_API const Glib::ustring PAPER_NAME_A5;
-  extern GTKMM_API const Glib::ustring PAPER_NAME_B5;
-  extern GTKMM_API const Glib::ustring PAPER_NAME_LETTER;
-  extern GTKMM_API const Glib::ustring PAPER_NAME_EXECUTIVE;
-  extern GTKMM_API const Glib::ustring PAPER_NAME_LEGAL;
+  extern LIBMM_GTK_SYMEXPORT const Glib::ustring PAPER_NAME_A3;
+  extern LIBMM_GTK_SYMEXPORT const Glib::ustring PAPER_NAME_A4;
+  extern LIBMM_GTK_SYMEXPORT const Glib::ustring PAPER_NAME_A5;
+  extern LIBMM_GTK_SYMEXPORT const Glib::ustring PAPER_NAME_B5;
+  extern LIBMM_GTK_SYMEXPORT const Glib::ustring PAPER_NAME_LETTER;
+  extern LIBMM_GTK_SYMEXPORT const Glib::ustring PAPER_NAME_EXECUTIVE;
+  extern LIBMM_GTK_SYMEXPORT const Glib::ustring PAPER_NAME_LEGAL;
 
   enum class Unit
   {
@@ -49,7 +49,7 @@ namespace Glib
 {
 
   template <>
-  class GTKMM_API Value<Gtk::Unit> : public Glib::Value_Enum<Gtk::Unit>
+  class LIBMM_GTK_SYMEXPORT Value<Gtk::Unit> : public Glib::Value_Enum<Gtk::Unit>
   {
   public:
     static auto
@@ -62,7 +62,7 @@ namespace Glib
 namespace Gtk
 {
 
-  class GTKMM_API PaperSize
+  class LIBMM_GTK_SYMEXPORT PaperSize
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -236,12 +236,12 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkPaperSize* object, bool take_copy = false) -> Gtk::PaperSize;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
   template <>
-  class GTKMM_API Value<Gtk::PaperSize>
+  class LIBMM_GTK_SYMEXPORT Value<Gtk::PaperSize>
     : public Glib::Value_Boxed<Gtk::PaperSize>
   {
   };

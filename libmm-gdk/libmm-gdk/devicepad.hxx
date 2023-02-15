@@ -25,14 +25,14 @@ using GdkDevicePadClass = struct _GdkDevicePadClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gdk
 {
-  class GDKMM_API DevicePad_Class;
+  class LIBMM_GDK_SYMEXPORT DevicePad_Class;
 }
 #endif
 
 namespace Gdk
 {
 
-  class GDKMM_API DevicePad : public Glib::Interface
+  class LIBMM_GDK_SYMEXPORT DevicePad : public Glib::Interface
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -127,7 +127,7 @@ namespace Glib
 {
 
   template <>
-  class GDKMM_API Value<Gdk::DevicePad::Feature>
+  class LIBMM_GDK_SYMEXPORT Value<Gdk::DevicePad::Feature>
     : public Glib::Value_Enum<Gdk::DevicePad::Feature>
   {
   public:
@@ -140,7 +140,7 @@ namespace Glib
 
 namespace Glib
 {
-  GDKMM_API auto
+  LIBMM_GDK_SYMEXPORT auto
   wrap (GdkDevicePad* object, bool take_copy = false) -> Glib::RefPtr<Gdk::DevicePad>;
 
 } // namespace Glib

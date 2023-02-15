@@ -20,14 +20,14 @@ using GFileInputStreamClass = struct _GFileInputStreamClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gio
 {
-  class GIOMM_API FileInputStream_Class;
+  class LIBMM_GIO_SYMEXPORT FileInputStream_Class;
 }
 #endif
 
 namespace Gio
 {
 
-  class GIOMM_API FileInputStream : public Gio::InputStream,
+  class LIBMM_GIO_SYMEXPORT FileInputStream : public Gio::InputStream,
                                     public Seekable
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -117,7 +117,7 @@ namespace Gio
 namespace Glib
 {
 
-  GIOMM_API
+  LIBMM_GIO_SYMEXPORT
   auto
   wrap (GFileInputStream* object, bool take_copy = false) -> Glib::RefPtr<Gio::FileInputStream>;
 } // namespace Glib

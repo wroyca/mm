@@ -19,14 +19,14 @@ using GtkCellRendererProgressClass = struct _GtkCellRendererProgressClass;
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API CellRendererProgress_Class;
+  class LIBMM_GTK_SYMEXPORT CellRendererProgress_Class;
 }
   #endif
 
 namespace Gtk
 {
 
-  class GTKMM_API CellRendererProgress : public CellRenderer,
+  class LIBMM_GTK_SYMEXPORT CellRendererProgress : public CellRenderer,
                                          public Orientable
   {
   public:
@@ -50,7 +50,7 @@ namespace Gtk
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   private:
-    friend GTKMM_API class CellRendererProgress_Class;
+    friend LIBMM_GTK_SYMEXPORT class CellRendererProgress_Class;
     static CppClassType cellrendererprogress_class_;
 
   protected:
@@ -134,7 +134,7 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkCellRendererProgress* object, bool take_copy = false) -> Gtk::CellRendererProgress*;
 } // namespace Glib
 

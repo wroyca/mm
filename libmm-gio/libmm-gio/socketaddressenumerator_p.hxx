@@ -10,7 +10,7 @@
 namespace Gio
 {
 
-  class GIOMM_API SocketAddressEnumerator_Class : public Glib::Class
+  class LIBMM_GIO_SYMEXPORT SocketAddressEnumerator_Class : public Glib::Class
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

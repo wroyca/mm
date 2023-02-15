@@ -31,16 +31,16 @@ using GtkCellLayoutClass = struct _GtkCellLayoutClass;
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API CellLayout_Class;
+  class LIBMM_GTK_SYMEXPORT CellLayout_Class;
 }
   #endif
 
 namespace Gtk
 {
 
-  class GTKMM_API CellArea;
+  class LIBMM_GTK_SYMEXPORT CellArea;
 
-  class GTKMM_API CellLayout : public Glib::Interface
+  class LIBMM_GTK_SYMEXPORT CellLayout : public Glib::Interface
   {
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -204,7 +204,7 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkCellLayout* object, bool take_copy = false) -> Glib::RefPtr<Gtk::CellLayout>;
 
 } // namespace Glib

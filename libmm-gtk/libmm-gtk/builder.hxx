@@ -20,13 +20,13 @@ using GtkBuilderClass = struct _GtkBuilderClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API Builder_Class;
+  class LIBMM_GTK_SYMEXPORT Builder_Class;
 }
 #endif
 
 namespace Gtk
 {
-  class GTKMM_API Application;
+  class LIBMM_GTK_SYMEXPORT Application;
 
   class BuilderError : public Glib::Error
   {
@@ -50,18 +50,18 @@ namespace Gtk
       INVALID_FUNCTION
     };
 
-    GTKMM_API
+    LIBMM_GTK_SYMEXPORT
     BuilderError (Code error_code, const Glib::ustring& error_message);
-    GTKMM_API explicit BuilderError (GError* gobject);
-    GTKMM_API auto
+    LIBMM_GTK_SYMEXPORT explicit BuilderError (GError* gobject);
+    LIBMM_GTK_SYMEXPORT auto
     code () const -> Code;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
   private:
-    GTKMM_API static auto
+    LIBMM_GTK_SYMEXPORT static auto
     throw_func (GError* gobject) -> void;
 
-    friend GTKMM_API auto
+    friend LIBMM_GTK_SYMEXPORT auto
     wrap_init () -> void;
 
 #endif
@@ -74,7 +74,7 @@ namespace Glib
 {
 
   template <>
-  class GTKMM_API Value<Gtk::BuilderError::Code>
+  class LIBMM_GTK_SYMEXPORT Value<Gtk::BuilderError::Code>
     : public Glib::Value_Enum<Gtk::BuilderError::Code>
   {
   public:
@@ -88,7 +88,7 @@ namespace Glib
 namespace Gtk
 {
 
-  class GTKMM_API Builder : public Glib::Object
+  class LIBMM_GTK_SYMEXPORT Builder : public Glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -376,8 +376,8 @@ namespace Gtk
     set_no_gtkmm_derived_types (bool status) -> void;
     auto
     get_no_gtkmm_derived_types () const -> bool;
-    friend class GTKMM_API Buildable_Class;
-    friend class GTKMM_API BuilderScope_Class;
+    friend class LIBMM_GTK_SYMEXPORT Buildable_Class;
+    friend class LIBMM_GTK_SYMEXPORT BuilderScope_Class;
 
   public:
   public:
@@ -388,7 +388,7 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkBuilder* object, bool take_copy = false) -> Glib::RefPtr<Gtk::Builder>;
 } // namespace Glib
 

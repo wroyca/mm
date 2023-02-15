@@ -18,7 +18,7 @@
 namespace Cairo
 {
 
-  class CAIROMM_API Context
+  class LIBMM_CAIRO_SYMEXPORT Context
   {
   protected:
     explicit Context (const RefPtr<Surface>& target);
@@ -471,7 +471,7 @@ namespace Cairo
   class SaveGuard final
   {
   public:
-    CAIROMM_API explicit SaveGuard (const RefPtr<Context>& context);
+    LIBMM_CAIRO_SYMEXPORT explicit SaveGuard (const RefPtr<Context>& context);
 
 #ifndef DOXYGEN_IGNORE_THIS
 
@@ -484,7 +484,7 @@ namespace Cairo
     operator= (SaveGuard&&) -> SaveGuard& = delete;
 #endif
 
-    CAIROMM_API ~SaveGuard ();
+    LIBMM_CAIRO_SYMEXPORT ~SaveGuard ();
 
   private:
     RefPtr<Context> ctx_;

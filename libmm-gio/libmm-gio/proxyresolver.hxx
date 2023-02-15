@@ -23,14 +23,14 @@ using GProxyResolverClass = struct _GProxyResolverClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gio
 {
-  class GIOMM_API ProxyResolver_Class;
+  class LIBMM_GIO_SYMEXPORT ProxyResolver_Class;
 }
 #endif
 
 namespace Gio
 {
 
-  class GIOMM_API ProxyResolver : public Glib::Interface
+  class LIBMM_GIO_SYMEXPORT ProxyResolver : public Glib::Interface
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -130,7 +130,7 @@ namespace Gio
 namespace Glib
 {
 
-  GIOMM_API
+  LIBMM_GIO_SYMEXPORT
   auto
   wrap (GProxyResolver* object, bool take_copy = false) -> Glib::RefPtr<Gio::ProxyResolver>;
 

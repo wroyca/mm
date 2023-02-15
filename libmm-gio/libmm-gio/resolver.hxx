@@ -20,21 +20,21 @@ using GResolverClass = struct _GResolverClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gio
 {
-  class GIOMM_API Resolver_Class;
+  class LIBMM_GIO_SYMEXPORT Resolver_Class;
 }
 #endif
 
 namespace Glib
 {
 
-  class GLIBMM_API VariantContainerBase;
+  class LIBMM_GLIB_SYMEXPORT VariantContainerBase;
 
 }
 
 namespace Gio
 {
 
-  class GIOMM_API Resolver : public Glib::Object
+  class LIBMM_GIO_SYMEXPORT Resolver : public Glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -241,23 +241,23 @@ namespace Gio
     on_reload () -> void;
   };
 
-  GIOMM_API
+  LIBMM_GIO_SYMEXPORT
   auto
   hostname_to_ascii (const Glib::ustring& hostname) -> std::string;
 
-  GIOMM_API
+  LIBMM_GIO_SYMEXPORT
   auto
   hostname_to_unicode (const Glib::ustring& hostname) -> Glib::ustring;
 
-  GIOMM_API
+  LIBMM_GIO_SYMEXPORT
   auto
   hostname_is_non_ascii (const Glib::ustring& hostname) -> bool;
 
-  GIOMM_API
+  LIBMM_GIO_SYMEXPORT
   auto
   hostname_is_ascii_encoded (const Glib::ustring& hostname) -> bool;
 
-  GIOMM_API
+  LIBMM_GIO_SYMEXPORT
   auto
   hostname_is_ip_address (const Glib::ustring& hostname) -> bool;
 
@@ -268,7 +268,7 @@ namespace Glib
 {
 
   template <>
-  class GIOMM_API Value<Gio::Resolver::RecordType>
+  class LIBMM_GIO_SYMEXPORT Value<Gio::Resolver::RecordType>
     : public Glib::Value_Enum<Gio::Resolver::RecordType>
   {
   public:
@@ -337,7 +337,7 @@ namespace Glib
 {
 
   template <>
-  class GIOMM_API Value<Gio::Resolver::NameLookupFlags>
+  class LIBMM_GIO_SYMEXPORT Value<Gio::Resolver::NameLookupFlags>
     : public Glib::Value_Flags<Gio::Resolver::NameLookupFlags>
   {
   public:
@@ -351,7 +351,7 @@ namespace Glib
 namespace Glib
 {
 
-  GIOMM_API
+  LIBMM_GIO_SYMEXPORT
   auto
   wrap (GResolver* object, bool take_copy = false) -> Glib::RefPtr<Gio::Resolver>;
 } // namespace Glib

@@ -8,7 +8,7 @@
 namespace Glib
 {
 
-  class GLIBMM_API VariantDict final
+  class LIBMM_GLIB_SYMEXPORT VariantDict final
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -120,7 +120,7 @@ namespace Glib
 namespace Glib
 {
 
-  GLIBMM_API
+  LIBMM_GLIB_SYMEXPORT
   auto
   wrap (GVariantDict* object, bool take_copy = false) -> Glib::RefPtr<Glib::VariantDict>;
 

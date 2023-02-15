@@ -11,7 +11,7 @@
 namespace Gio
 {
 
-  class GIOMM_API Converter_Class : public Glib::Interface_Class
+  class LIBMM_GIO_SYMEXPORT Converter_Class : public Glib::Interface_Class
   {
   public:
     using CppObjectType = Converter;

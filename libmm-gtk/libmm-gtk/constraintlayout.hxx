@@ -20,7 +20,7 @@
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API ConstraintLayout_Class;
+  class LIBMM_GTK_SYMEXPORT ConstraintLayout_Class;
 }
 #endif
 
@@ -39,19 +39,19 @@ namespace Gtk
       INVALID_RELATION
     };
 
-    GTKMM_API
+    LIBMM_GTK_SYMEXPORT
     ConstraintVflParserError (Code error_code,
                               const Glib::ustring& error_message);
-    GTKMM_API explicit ConstraintVflParserError (GError* gobject);
-    GTKMM_API auto
+    LIBMM_GTK_SYMEXPORT explicit ConstraintVflParserError (GError* gobject);
+    LIBMM_GTK_SYMEXPORT auto
     code () const -> Code;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
   private:
-    GTKMM_API static auto
+    LIBMM_GTK_SYMEXPORT static auto
     throw_func (GError* gobject) -> void;
 
-    friend GTKMM_API auto
+    friend LIBMM_GTK_SYMEXPORT auto
     wrap_init () -> void;
 
 #endif
@@ -64,7 +64,7 @@ namespace Glib
 {
 
   template <>
-  class GTKMM_API Value<Gtk::ConstraintVflParserError::Code>
+  class LIBMM_GTK_SYMEXPORT Value<Gtk::ConstraintVflParserError::Code>
     : public Glib::Value_Enum<Gtk::ConstraintVflParserError::Code>
   {
   public:
@@ -78,7 +78,7 @@ namespace Glib
 namespace Gtk
 {
 
-  class GTKMM_API ConstraintLayout : public LayoutManager,
+  class LIBMM_GTK_SYMEXPORT ConstraintLayout : public LayoutManager,
                                      public Buildable
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -187,7 +187,7 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkConstraintLayout* object, bool take_copy = false) -> Glib::RefPtr<Gtk::ConstraintLayout>;
 } // namespace Glib
 

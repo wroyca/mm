@@ -21,15 +21,15 @@ using GtkColumnViewColumnClass = struct _GtkColumnViewColumnClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API ColumnViewColumn_Class;
+  class LIBMM_GTK_SYMEXPORT ColumnViewColumn_Class;
 }
 #endif
 
 namespace Gtk
 {
-  class GTKMM_API ColumnView;
+  class LIBMM_GTK_SYMEXPORT ColumnView;
 
-  class GTKMM_API ColumnViewColumn : public Glib::Object
+  class LIBMM_GTK_SYMEXPORT ColumnViewColumn : public Glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -235,7 +235,7 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkColumnViewColumn* object, bool take_copy = false) -> Glib::RefPtr<Gtk::ColumnViewColumn>;
 } // namespace Glib
 

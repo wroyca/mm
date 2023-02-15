@@ -19,14 +19,14 @@
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API Shortcut_Class;
+  class LIBMM_GTK_SYMEXPORT Shortcut_Class;
 }
 #endif
 
 namespace Gtk
 {
 
-  class GTKMM_API Shortcut : public Glib::Object
+  class LIBMM_GTK_SYMEXPORT Shortcut : public Glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -140,7 +140,7 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkShortcut* object, bool take_copy = false) -> Glib::RefPtr<Gtk::Shortcut>;
 } // namespace Glib
 

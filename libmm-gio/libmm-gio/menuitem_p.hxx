@@ -10,7 +10,7 @@
 namespace Gio
 {
 
-  class GIOMM_API MenuItem_Class : public Glib::Class
+  class LIBMM_GIO_SYMEXPORT MenuItem_Class : public Glib::Class
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

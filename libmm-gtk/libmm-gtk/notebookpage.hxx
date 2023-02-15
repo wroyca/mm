@@ -19,15 +19,15 @@ using GtkNotebookPageClass = struct _GtkNotebookPageClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API NotebookPage_Class;
+  class LIBMM_GTK_SYMEXPORT NotebookPage_Class;
 }
 #endif
 
 namespace Gtk
 {
-  class GTKMM_API Widget;
+  class LIBMM_GTK_SYMEXPORT Widget;
 
-  class GTKMM_API NotebookPage : public Glib::Object
+  class LIBMM_GTK_SYMEXPORT NotebookPage : public Glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -150,7 +150,7 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkNotebookPage* object, bool take_copy = false) -> Glib::RefPtr<Gtk::NotebookPage>;
 } // namespace Glib
 

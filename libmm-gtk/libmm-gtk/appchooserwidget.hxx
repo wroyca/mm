@@ -19,14 +19,14 @@ using GtkAppChooserWidgetClass = struct _GtkAppChooserWidgetClass;
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API AppChooserWidget_Class;
+  class LIBMM_GTK_SYMEXPORT AppChooserWidget_Class;
 }
   #endif
 
 namespace Gtk
 {
 
-  class GTKMM_API AppChooserWidget : public Widget,
+  class LIBMM_GTK_SYMEXPORT AppChooserWidget : public Widget,
                                      public AppChooser
   {
   public:
@@ -50,7 +50,7 @@ namespace Gtk
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   private:
-    friend GTKMM_API class AppChooserWidget_Class;
+    friend LIBMM_GTK_SYMEXPORT class AppChooserWidget_Class;
     static CppClassType appchooserwidget_class_;
 
   protected:
@@ -175,7 +175,7 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkAppChooserWidget* object, bool take_copy = false) -> Gtk::AppChooserWidget*;
 } // namespace Glib
 

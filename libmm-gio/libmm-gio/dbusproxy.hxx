@@ -22,7 +22,7 @@ using GDBusProxyClass = struct _GDBusProxyClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gio::DBus
 {
-  class GIOMM_API Proxy_Class;
+  class LIBMM_GIO_SYMEXPORT Proxy_Class;
 }
 #endif
 
@@ -95,7 +95,7 @@ namespace Glib
 {
 
   template <>
-  class GIOMM_API Value<Gio::DBus::ProxyFlags>
+  class LIBMM_GIO_SYMEXPORT Value<Gio::DBus::ProxyFlags>
     : public Glib::Value_Flags<Gio::DBus::ProxyFlags>
   {
   public:
@@ -109,7 +109,7 @@ namespace Glib
 namespace Gio::DBus
 {
 
-  class GIOMM_API Proxy : public Glib::Object,
+  class LIBMM_GIO_SYMEXPORT Proxy : public Glib::Object,
                           public Initable,
                           public AsyncInitable,
                           public Interface
@@ -561,7 +561,7 @@ namespace Gio::DBus
 namespace Glib
 {
 
-  GIOMM_API
+  LIBMM_GIO_SYMEXPORT
   auto
   wrap (GDBusProxy* object, bool take_copy = false) -> Glib::RefPtr<Gio::DBus::Proxy>;
 } // namespace Glib

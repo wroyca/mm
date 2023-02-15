@@ -25,14 +25,14 @@ using GtkStyleProviderClass = struct _GtkStyleProviderClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API StyleProvider_Class;
+  class LIBMM_GTK_SYMEXPORT StyleProvider_Class;
 }
 #endif
 
 namespace Gtk
 {
 
-  class GTKMM_API StyleProvider : public Glib::Interface
+  class LIBMM_GTK_SYMEXPORT StyleProvider : public Glib::Interface
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -115,7 +115,7 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkStyleProvider* object, bool take_copy = false) -> Glib::RefPtr<Gtk::StyleProvider>;
 
 } // namespace Glib

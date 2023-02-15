@@ -7,13 +7,13 @@
 
 namespace Glib
 {
-  GLIBMM_API auto
+  LIBMM_GLIB_SYMEXPORT auto
   init () -> void;
 
-  GLIBMM_API auto
+  LIBMM_GLIB_SYMEXPORT auto
   set_init_to_users_preferred_locale (bool state = true) -> void;
 
-  GLIBMM_API
+  LIBMM_GLIB_SYMEXPORT
   auto
   get_init_to_users_preferred_locale () -> bool;
 

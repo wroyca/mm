@@ -18,14 +18,14 @@ using GtkGLAreaClass = struct _GtkGLAreaClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API GLArea_Class;
+  class LIBMM_GTK_SYMEXPORT GLArea_Class;
 }
 #endif
 
 namespace Gtk
 {
 
-  class GTKMM_API GLArea : public Widget
+  class LIBMM_GTK_SYMEXPORT GLArea : public Widget
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -48,7 +48,7 @@ namespace Gtk
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   private:
-    friend GTKMM_API class GLArea_Class;
+    friend LIBMM_GTK_SYMEXPORT class GLArea_Class;
     static CppClassType glarea_class_;
 
   protected:
@@ -196,7 +196,7 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkGLArea* object, bool take_copy = false) -> Gtk::GLArea*;
 } // namespace Glib
 

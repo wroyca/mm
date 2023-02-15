@@ -20,7 +20,7 @@
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API ColorDialog_Class;
+  class LIBMM_GTK_SYMEXPORT ColorDialog_Class;
 }
 #endif
 
@@ -28,7 +28,7 @@ namespace Gtk
 {
   class Window;
 
-  class GTKMM_API ColorDialog : public Glib::Object
+  class LIBMM_GTK_SYMEXPORT ColorDialog : public Glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -164,7 +164,7 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkColorDialog* object, bool take_copy = false) -> Glib::RefPtr<Gtk::ColorDialog>;
 } // namespace Glib
 

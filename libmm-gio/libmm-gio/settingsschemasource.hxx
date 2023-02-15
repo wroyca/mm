@@ -3,7 +3,7 @@
 #ifndef _GIOMM_SETTINGSSCHEMASOURCE_H
 #define _GIOMM_SETTINGSSCHEMASOURCE_H
 
-#include <libmm-gio/gioconfig.hxx>
+#include <libmm-gio/mm-gioconfig.hxx>
 
 #include <libmm-glib/ustring.hxx>
 #include <sigc++/sigc++.h>
@@ -20,7 +20,7 @@ typedef struct _GSettingsSchemaSource GSettingsSchemaSource;
 namespace Gio
 {
 
-  class GIOMM_API SettingsSchemaSource final
+  class LIBMM_GIO_SYMEXPORT SettingsSchemaSource final
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -83,7 +83,7 @@ namespace Gio
 namespace Glib
 {
 
-  GIOMM_API
+  LIBMM_GIO_SYMEXPORT
   auto
   wrap (GSettingsSchemaSource* object, bool take_copy = false) -> Glib::RefPtr<Gio::SettingsSchemaSource>;
 

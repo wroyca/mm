@@ -81,18 +81,18 @@ namespace Glib
       CHARACTER_VALUE_TOO_LARGE = 176
     };
 
-    GLIBMM_API
+    LIBMM_GLIB_SYMEXPORT
     RegexError (Code error_code, const Glib::ustring& error_message);
-    GLIBMM_API explicit RegexError (GError* gobject);
-    GLIBMM_API auto
+    LIBMM_GLIB_SYMEXPORT explicit RegexError (GError* gobject);
+    LIBMM_GLIB_SYMEXPORT auto
     code () const -> Code;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
   private:
-    GLIBMM_API static auto
+    LIBMM_GLIB_SYMEXPORT static auto
     throw_func (GError* gobject) -> void;
 
-    friend GLIBMM_API auto
+    friend LIBMM_GLIB_SYMEXPORT auto
     wrap_init () -> void;
 
 #endif
@@ -100,7 +100,7 @@ namespace Glib
 
   class MatchInfo;
 
-  class GLIBMM_API Regex final
+  class LIBMM_GLIB_SYMEXPORT Regex final
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -350,7 +350,7 @@ namespace Glib
         -> bool;
   };
 
-  class GLIBMM_API MatchInfo
+  class LIBMM_GLIB_SYMEXPORT MatchInfo
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -548,7 +548,7 @@ namespace Glib
 namespace Glib
 {
 
-  GLIBMM_API
+  LIBMM_GLIB_SYMEXPORT
   auto
   wrap (GRegex* object, bool take_copy = false) -> Glib::RefPtr<Glib::Regex>;
 

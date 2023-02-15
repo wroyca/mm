@@ -10,7 +10,7 @@
 namespace Gtk
 {
 
-  class GTKMM_API Buildable_Class : public Glib::Interface_Class
+  class LIBMM_GTK_SYMEXPORT Buildable_Class : public Glib::Interface_Class
   {
   public:
     using CppObjectType = Buildable;

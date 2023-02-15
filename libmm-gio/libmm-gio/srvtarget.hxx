@@ -3,7 +3,7 @@
 #ifndef _GIOMM_SRVTARGET_H
 #define _GIOMM_SRVTARGET_H
 
-#include <libmm-gio/gioconfig.hxx>
+#include <libmm-gio/mm-gioconfig.hxx>
 
 #include <libmm-glib/ustring.hxx>
 #include <sigc++/sigc++.h>
@@ -20,7 +20,7 @@ extern "C"
 namespace Gio
 {
 
-  class GIOMM_API SrvTarget
+  class LIBMM_GIO_SYMEXPORT SrvTarget
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -102,13 +102,13 @@ namespace Gio
 namespace Glib
 {
 
-  GIOMM_API
+  LIBMM_GIO_SYMEXPORT
   auto
   wrap (GSrvTarget* object, bool take_copy = false) -> Gio::SrvTarget;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
   template <>
-  class GIOMM_API Value<Gio::SrvTarget>
+  class LIBMM_GIO_SYMEXPORT Value<Gio::SrvTarget>
     : public Glib::Value_Boxed<Gio::SrvTarget>
   {
   };

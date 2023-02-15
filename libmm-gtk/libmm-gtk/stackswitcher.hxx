@@ -17,14 +17,14 @@ using GtkStackSwitcherClass = struct _GtkStackSwitcherClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API StackSwitcher_Class;
+  class LIBMM_GTK_SYMEXPORT StackSwitcher_Class;
 }
 #endif
 
 namespace Gtk
 {
 
-  class GTKMM_API StackSwitcher : public Widget
+  class LIBMM_GTK_SYMEXPORT StackSwitcher : public Widget
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -47,7 +47,7 @@ namespace Gtk
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   private:
-    friend GTKMM_API class StackSwitcher_Class;
+    friend LIBMM_GTK_SYMEXPORT class StackSwitcher_Class;
     static CppClassType stackswitcher_class_;
 
   protected:
@@ -109,7 +109,7 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkStackSwitcher* object, bool take_copy = false) -> Gtk::StackSwitcher*;
 } // namespace Glib
 

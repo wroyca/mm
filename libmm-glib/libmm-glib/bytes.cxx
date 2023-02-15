@@ -15,6 +15,24 @@ namespace Glib
     return wrap (bytes);
   }
 
+  GType
+  Value<RefPtr<Glib::Bytes>>::value_type()
+  {
+    return g_bytes_get_type();
+  }
+
+  void
+  Value<RefPtr<Glib::Bytes>>::set(const CppType& data)
+  {
+    set_boxed(Glib::unwrap(data));
+  }
+
+  Value<RefPtr<Glib::Bytes>>::CppType
+  Value<RefPtr<Glib::Bytes>>::get() const
+  {
+    return Glib::wrap(static_cast<CType>(get_boxed()), true);
+  }
+
 } // namespace Glib
 
 namespace

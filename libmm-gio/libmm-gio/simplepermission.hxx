@@ -16,14 +16,14 @@ using GSimplePermissionClass = struct _GSimplePermissionClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gio
 {
-  class GIOMM_API SimplePermission_Class;
+  class LIBMM_GIO_SYMEXPORT SimplePermission_Class;
 }
 #endif
 
 namespace Gio
 {
 
-  class GIOMM_API SimplePermission : public Permission
+  class LIBMM_GIO_SYMEXPORT SimplePermission : public Permission
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -96,7 +96,7 @@ namespace Gio
 namespace Glib
 {
 
-  GIOMM_API
+  LIBMM_GIO_SYMEXPORT
   auto
   wrap (GSimplePermission* object, bool take_copy = false) -> Glib::RefPtr<Gio::SimplePermission>;
 } // namespace Glib

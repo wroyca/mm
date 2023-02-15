@@ -21,15 +21,15 @@ using GtkAssistantPageClass = struct _GtkAssistantPageClass;
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API AssistantPage_Class;
+  class LIBMM_GTK_SYMEXPORT AssistantPage_Class;
 }
   #endif
 
 namespace Gtk
 {
-  class GTKMM_API Widget;
+  class LIBMM_GTK_SYMEXPORT Widget;
 
-  class GTKMM_API AssistantPage : public Glib::Object
+  class LIBMM_GTK_SYMEXPORT AssistantPage : public Glib::Object
   {
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -135,7 +135,7 @@ namespace Glib
 {
 
   template <>
-  class GTKMM_API Value<Gtk::AssistantPage::Type>
+  class LIBMM_GTK_SYMEXPORT Value<Gtk::AssistantPage::Type>
     : public Glib::Value_Enum<Gtk::AssistantPage::Type>
   {
   public:
@@ -148,7 +148,7 @@ namespace Glib
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkAssistantPage* object, bool take_copy = false) -> Glib::RefPtr<Gtk::AssistantPage>;
 } // namespace Glib
 

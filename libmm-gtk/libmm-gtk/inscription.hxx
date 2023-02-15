@@ -16,14 +16,14 @@
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API Inscription_Class;
+  class LIBMM_GTK_SYMEXPORT Inscription_Class;
 }
 #endif
 
 namespace Gtk
 {
 
-  class GTKMM_API Inscription : public Widget
+  class LIBMM_GTK_SYMEXPORT Inscription : public Widget
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -46,7 +46,7 @@ namespace Gtk
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   private:
-    friend GTKMM_API class Inscription_Class;
+    friend LIBMM_GTK_SYMEXPORT class Inscription_Class;
     static CppClassType inscription_class_;
 
   protected:
@@ -232,7 +232,7 @@ namespace Glib
 {
 
   template <>
-  class GTKMM_API Value<Gtk::Inscription::Overflow>
+  class LIBMM_GTK_SYMEXPORT Value<Gtk::Inscription::Overflow>
     : public Glib::Value_Enum<Gtk::Inscription::Overflow>
   {
   public:
@@ -245,7 +245,7 @@ namespace Glib
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkInscription* object, bool take_copy = false) -> Gtk::Inscription*;
 } // namespace Glib
 

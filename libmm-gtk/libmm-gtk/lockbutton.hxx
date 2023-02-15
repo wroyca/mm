@@ -19,14 +19,14 @@ using GtkLockButtonClass = struct _GtkLockButtonClass;
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API LockButton_Class;
+  class LIBMM_GTK_SYMEXPORT LockButton_Class;
 }
   #endif
 
 namespace Gtk
 {
 
-  class GTKMM_API LockButton : public Button
+  class LIBMM_GTK_SYMEXPORT LockButton : public Button
   {
   public:
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -49,7 +49,7 @@ namespace Gtk
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   private:
-    friend GTKMM_API class LockButton_Class;
+    friend LIBMM_GTK_SYMEXPORT class LockButton_Class;
     static CppClassType lockbutton_class_;
 
   protected:
@@ -150,7 +150,7 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkLockButton* object, bool take_copy = false) -> Gtk::LockButton*;
 } // namespace Glib
 

@@ -3,7 +3,7 @@
 #ifndef _GIOMM_FILEDESCRIPTORBASED_H
 #define _GIOMM_FILEDESCRIPTORBASED_H
 
-#include <libmm-gio/gioconfig.hxx>
+#include <libmm-gio/mm-gioconfig.hxx>
 
 #include <libmm-glib/ustring.hxx>
 #include <sigc++/sigc++.h>
@@ -22,7 +22,7 @@ using GFileDescriptorBasedClass = struct _GFileDescriptorBasedClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gio
 {
-  class GIOMM_API FileDescriptorBased_Class;
+  class LIBMM_GIO_SYMEXPORT FileDescriptorBased_Class;
 }
 #endif
 
@@ -110,7 +110,7 @@ namespace Gio
 namespace Glib
 {
 
-  GIOMM_API
+  LIBMM_GIO_SYMEXPORT
   auto
   wrap (GFileDescriptorBased* object, bool take_copy = false) -> Glib::RefPtr<Gio::FileDescriptorBased>;
 

@@ -14,7 +14,7 @@
 namespace Gtk
 {
 
-  class GTKMM_API Requisition
+  class LIBMM_GTK_SYMEXPORT Requisition
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -70,15 +70,15 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkRequisition* object) -> Gtk::Requisition&;
 
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (const GtkRequisition* object) -> const Gtk::Requisition&;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
   template <>
-  class GTKMM_API Value<Gtk::Requisition>
+  class LIBMM_GTK_SYMEXPORT Value<Gtk::Requisition>
     : public Glib::Value_Boxed<Gtk::Requisition>
   {
   };

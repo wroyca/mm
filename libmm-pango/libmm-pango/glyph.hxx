@@ -13,8 +13,8 @@
 namespace Pango
 {
 
-  class PANGOMM_API GlyphInfo;
-  class PANGOMM_API GlyphGeometry;
+  class LIBMM_PANGO_SYMEXPORT GlyphInfo;
+  class LIBMM_PANGO_SYMEXPORT GlyphGeometry;
 
   typedef PangoGlyph Glyph;
 
@@ -22,7 +22,7 @@ namespace Pango
 
   typedef PangoGlyphVisAttr GlyphVisAttr;
 
-  class PANGOMM_API GlyphInfo
+  class LIBMM_PANGO_SYMEXPORT GlyphInfo
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -59,7 +59,7 @@ namespace Pango
     PangoGlyphInfo gobject_;
   };
 
-  class PANGOMM_API GlyphGeometry
+  class LIBMM_PANGO_SYMEXPORT GlyphGeometry
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -102,19 +102,19 @@ namespace Pango
 namespace Glib
 {
 
-  PANGOMM_API
+  LIBMM_PANGO_SYMEXPORT
   auto
   wrap (PangoGlyphInfo* object) -> Pango::GlyphInfo&;
 
-  PANGOMM_API
+  LIBMM_PANGO_SYMEXPORT
   auto
   wrap (const PangoGlyphInfo* object) -> const Pango::GlyphInfo&;
 
-  PANGOMM_API
+  LIBMM_PANGO_SYMEXPORT
   auto
   wrap (PangoGlyphGeometry* object) -> Pango::GlyphGeometry&;
 
-  PANGOMM_API
+  LIBMM_PANGO_SYMEXPORT
   auto
   wrap (const PangoGlyphGeometry* object) -> const Pango::GlyphGeometry&;
 

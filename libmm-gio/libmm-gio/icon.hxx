@@ -3,7 +3,7 @@
 #ifndef _GIOMM_ICON_H
 #define _GIOMM_ICON_H
 
-#include <libmm-gio/gioconfig.hxx>
+#include <libmm-gio/mm-gioconfig.hxx>
 
 #include <libmm-glib/ustring.hxx>
 #include <sigc++/sigc++.h>
@@ -23,14 +23,14 @@ using GIconClass = struct _GIconClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gio
 {
-  class GIOMM_API Icon_Class;
+  class LIBMM_GIO_SYMEXPORT Icon_Class;
 }
 #endif
 
 namespace Gio
 {
 
-  class GIOMM_API Icon : public Glib::Interface
+  class LIBMM_GIO_SYMEXPORT Icon : public Glib::Interface
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -123,7 +123,7 @@ namespace Gio
 namespace Glib
 {
 
-  GIOMM_API
+  LIBMM_GIO_SYMEXPORT
   auto
   wrap (GIcon* object, bool take_copy = false) -> Glib::RefPtr<Gio::Icon>;
 

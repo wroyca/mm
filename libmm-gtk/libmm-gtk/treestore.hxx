@@ -27,14 +27,14 @@ using GtkTreeStoreClass = struct _GtkTreeStoreClass;
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API TreeStore_Class;
+  class LIBMM_GTK_SYMEXPORT TreeStore_Class;
 }
   #endif
 
 namespace Gtk
 {
 
-  class GTKMM_API TreeStore : public Glib::Object,
+  class LIBMM_GTK_SYMEXPORT TreeStore : public Glib::Object,
                               public Gtk::TreeModel,
                               public TreeSortable,
                               public TreeDragSource,
@@ -166,7 +166,7 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkTreeStore* object, bool take_copy = false) -> Glib::RefPtr<Gtk::TreeStore>;
 } // namespace Glib
 

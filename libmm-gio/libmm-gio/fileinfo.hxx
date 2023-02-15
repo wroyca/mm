@@ -19,7 +19,7 @@ using GFileInfoClass = struct _GFileInfoClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gio
 {
-  class GIOMM_API FileInfo_Class;
+  class LIBMM_GIO_SYMEXPORT FileInfo_Class;
 }
 #endif
 
@@ -37,7 +37,7 @@ namespace Gio
     MOUNTABLE
   };
 
-  class GIOMM_API FileAttributeMatcher final
+  class LIBMM_GIO_SYMEXPORT FileAttributeMatcher final
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -96,7 +96,7 @@ namespace Gio
     to_string () const -> std::string;
   };
 
-  class GIOMM_API FileInfo : public Glib::Object
+  class LIBMM_GIO_SYMEXPORT FileInfo : public Glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -384,7 +384,7 @@ namespace Gio
 namespace Glib
 {
 
-  GIOMM_API
+  LIBMM_GIO_SYMEXPORT
   auto
   wrap (GFileAttributeMatcher* object, bool take_copy = false) -> Glib::RefPtr<Gio::FileAttributeMatcher>;
 
@@ -393,7 +393,7 @@ namespace Glib
 namespace Glib
 {
 
-  GIOMM_API
+  LIBMM_GIO_SYMEXPORT
   auto
   wrap (GFileInfo* object, bool take_copy = false) -> Glib::RefPtr<Gio::FileInfo>;
 } // namespace Glib

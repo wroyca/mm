@@ -17,14 +17,14 @@ using GtkSearchBarClass = struct _GtkSearchBarClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API SearchBar_Class;
+  class LIBMM_GTK_SYMEXPORT SearchBar_Class;
 }
 #endif
 
 namespace Gtk
 {
 
-  class GTKMM_API SearchBar : public Widget
+  class LIBMM_GTK_SYMEXPORT SearchBar : public Widget
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -47,7 +47,7 @@ namespace Gtk
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   private:
-    friend GTKMM_API class SearchBar_Class;
+    friend LIBMM_GTK_SYMEXPORT class SearchBar_Class;
     static CppClassType searchbar_class_;
 
   protected:
@@ -153,7 +153,7 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkSearchBar* object, bool take_copy = false) -> Gtk::SearchBar*;
 } // namespace Glib
 

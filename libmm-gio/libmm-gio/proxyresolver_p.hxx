@@ -10,7 +10,7 @@
 namespace Gio
 {
 
-  class GIOMM_API ProxyResolver_Class : public Glib::Interface_Class
+  class LIBMM_GIO_SYMEXPORT ProxyResolver_Class : public Glib::Interface_Class
   {
   public:
     using CppObjectType = ProxyResolver;

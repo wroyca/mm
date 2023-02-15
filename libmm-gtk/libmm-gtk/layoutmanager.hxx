@@ -18,16 +18,16 @@ using GtkLayoutManagerClass = struct _GtkLayoutManagerClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API LayoutManager_Class;
+  class LIBMM_GTK_SYMEXPORT LayoutManager_Class;
 }
 #endif
 
 namespace Gtk
 {
-  class GTKMM_API LayoutChild;
-  class GTKMM_API Widget;
+  class LIBMM_GTK_SYMEXPORT LayoutChild;
+  class LIBMM_GTK_SYMEXPORT Widget;
 
-  class GTKMM_API LayoutManager : public Glib::Object
+  class LIBMM_GTK_SYMEXPORT LayoutManager : public Glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -153,7 +153,7 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkLayoutManager* object, bool take_copy = false) -> Glib::RefPtr<Gtk::LayoutManager>;
 } // namespace Glib
 

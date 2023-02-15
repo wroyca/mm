@@ -15,15 +15,15 @@
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API CenterLayout_Class;
+  class LIBMM_GTK_SYMEXPORT CenterLayout_Class;
 }
 #endif
 
 namespace Gtk
 {
-  class GTKMM_API Widget;
+  class LIBMM_GTK_SYMEXPORT Widget;
 
-  class GTKMM_API CenterLayout : public LayoutManager
+  class LIBMM_GTK_SYMEXPORT CenterLayout : public LayoutManager
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -134,7 +134,7 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkCenterLayout* object, bool take_copy = false) -> Glib::RefPtr<Gtk::CenterLayout>;
 } // namespace Glib
 

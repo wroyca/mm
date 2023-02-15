@@ -17,14 +17,14 @@
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API FlattenListModel_Class;
+  class LIBMM_GTK_SYMEXPORT FlattenListModel_Class;
 }
 #endif
 
 namespace Gtk
 {
 
-  class GTKMM_API FlattenListModel : public Glib::Object,
+  class LIBMM_GTK_SYMEXPORT FlattenListModel : public Glib::Object,
                                      public Gio::ListModel
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -123,7 +123,7 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkFlattenListModel* object, bool take_copy = false) -> Glib::RefPtr<Gtk::FlattenListModel>;
 } // namespace Glib
 

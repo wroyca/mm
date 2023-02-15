@@ -17,14 +17,14 @@ using GtkCheckButtonClass = struct _GtkCheckButtonClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API CheckButton_Class;
+  class LIBMM_GTK_SYMEXPORT CheckButton_Class;
 }
 #endif
 
 namespace Gtk
 {
 
-  class GTKMM_API CheckButton : public Widget,
+  class LIBMM_GTK_SYMEXPORT CheckButton : public Widget,
                                 public Actionable
   {
   public:
@@ -48,7 +48,7 @@ namespace Gtk
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   private:
-    friend GTKMM_API class CheckButton_Class;
+    friend LIBMM_GTK_SYMEXPORT class CheckButton_Class;
     static CppClassType checkbutton_class_;
 
   protected:
@@ -172,7 +172,7 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkCheckButton* object, bool take_copy = false) -> Gtk::CheckButton*;
 } // namespace Glib
 

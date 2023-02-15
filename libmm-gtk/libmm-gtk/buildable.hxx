@@ -25,14 +25,14 @@ using GtkBuildableClass = struct _GtkBuildableClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API Buildable_Class;
+  class LIBMM_GTK_SYMEXPORT Buildable_Class;
 }
 #endif
 
 namespace Gtk
 {
 
-  class GTKMM_API Buildable : public Glib::Interface
+  class LIBMM_GTK_SYMEXPORT Buildable : public Glib::Interface
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -108,7 +108,7 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkBuildable* object, bool take_copy = false) -> Glib::RefPtr<Gtk::Buildable>;
 
 } // namespace Glib

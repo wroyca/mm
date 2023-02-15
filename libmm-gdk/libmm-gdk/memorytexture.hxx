@@ -18,14 +18,14 @@ using GdkMemoryTextureClass = struct _GdkMemoryTextureClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gdk
 {
-  class GDKMM_API MemoryTexture_Class;
+  class LIBMM_GDK_SYMEXPORT MemoryTexture_Class;
 }
 #endif
 
 namespace Gdk
 {
 
-  class GDKMM_API MemoryTexture : public Gdk::Texture
+  class LIBMM_GDK_SYMEXPORT MemoryTexture : public Gdk::Texture
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -130,7 +130,7 @@ namespace Glib
 {
 
   template <>
-  class GDKMM_API Value<Gdk::MemoryTexture::Format>
+  class LIBMM_GDK_SYMEXPORT Value<Gdk::MemoryTexture::Format>
     : public Glib::Value_Enum<Gdk::MemoryTexture::Format>
   {
   public:
@@ -143,7 +143,7 @@ namespace Glib
 
 namespace Glib
 {
-  GDKMM_API auto
+  LIBMM_GDK_SYMEXPORT auto
   wrap (GdkMemoryTexture* object, bool take_copy = false) -> Glib::RefPtr<Gdk::MemoryTexture>;
 } // namespace Glib
 

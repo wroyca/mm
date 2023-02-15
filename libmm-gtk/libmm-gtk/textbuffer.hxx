@@ -28,14 +28,14 @@ using GtkTextBufferClass = struct _GtkTextBufferClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API TextBuffer_Class;
+  class LIBMM_GTK_SYMEXPORT TextBuffer_Class;
 }
 #endif
 
 namespace Gtk
 {
 
-  class GTKMM_API TextBuffer : public Glib::Object
+  class LIBMM_GTK_SYMEXPORT TextBuffer : public Glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -632,7 +632,7 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkTextBuffer* object, bool take_copy = false) -> Glib::RefPtr<Gtk::TextBuffer>;
 } // namespace Glib
 

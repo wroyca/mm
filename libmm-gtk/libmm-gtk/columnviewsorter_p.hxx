@@ -10,7 +10,7 @@
 namespace Gtk
 {
 
-  class GTKMM_API ColumnViewSorter_Class : public Glib::Class
+  class LIBMM_GTK_SYMEXPORT ColumnViewSorter_Class : public Glib::Class
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

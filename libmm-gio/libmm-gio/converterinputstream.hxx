@@ -17,17 +17,17 @@ using GConverterInputStreamClass = struct _GConverterInputStreamClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gio
 {
-  class GIOMM_API ConverterInputStream_Class;
+  class LIBMM_GIO_SYMEXPORT ConverterInputStream_Class;
 }
 #endif
 
 namespace Gio
 {
 
-  class GIOMM_API Converter;
-  class GIOMM_API InputStream;
+  class LIBMM_GIO_SYMEXPORT Converter;
+  class LIBMM_GIO_SYMEXPORT InputStream;
 
-  class GIOMM_API ConverterInputStream : public FilterInputStream,
+  class LIBMM_GIO_SYMEXPORT ConverterInputStream : public FilterInputStream,
                                          public PollableInputStream
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -115,7 +115,7 @@ namespace Gio
 namespace Glib
 {
 
-  GIOMM_API
+  LIBMM_GIO_SYMEXPORT
   auto
   wrap (GConverterInputStream* object, bool take_copy = false) -> Glib::RefPtr<Gio::ConverterInputStream>;
 } // namespace Glib

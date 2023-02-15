@@ -18,14 +18,14 @@ using GPropertyActionClass = struct _GPropertyActionClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gio
 {
-  class GIOMM_API PropertyAction_Class;
+  class LIBMM_GIO_SYMEXPORT PropertyAction_Class;
 }
 #endif
 
 namespace Gio
 {
 
-  class GIOMM_API PropertyAction : public Glib::Object,
+  class LIBMM_GIO_SYMEXPORT PropertyAction : public Glib::Object,
                                    public Action
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -123,7 +123,7 @@ namespace Gio
 namespace Glib
 {
 
-  GIOMM_API
+  LIBMM_GIO_SYMEXPORT
   auto
   wrap (GPropertyAction* object, bool take_copy = false) -> Glib::RefPtr<Gio::PropertyAction>;
 } // namespace Glib

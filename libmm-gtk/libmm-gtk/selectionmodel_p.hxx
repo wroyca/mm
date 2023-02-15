@@ -11,7 +11,7 @@
 namespace Gtk
 {
 
-  class GTKMM_API SelectionModel_Class : public Glib::Interface_Class
+  class LIBMM_GTK_SYMEXPORT SelectionModel_Class : public Glib::Interface_Class
   {
   public:
     using CppObjectType = SelectionModel;

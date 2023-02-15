@@ -16,14 +16,14 @@ using GtkExpanderClass = struct _GtkExpanderClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API Expander_Class;
+  class LIBMM_GTK_SYMEXPORT Expander_Class;
 }
 #endif
 
 namespace Gtk
 {
 
-  class GTKMM_API Expander : public Widget
+  class LIBMM_GTK_SYMEXPORT Expander : public Widget
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -46,7 +46,7 @@ namespace Gtk
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   private:
-    friend GTKMM_API class Expander_Class;
+    friend LIBMM_GTK_SYMEXPORT class Expander_Class;
     static CppClassType expander_class_;
 
   protected:
@@ -184,7 +184,7 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkExpander* object, bool take_copy = false) -> Gtk::Expander*;
 } // namespace Glib
 

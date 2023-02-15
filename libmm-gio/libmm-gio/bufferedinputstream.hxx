@@ -18,14 +18,14 @@ using GBufferedInputStreamClass = struct _GBufferedInputStreamClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gio
 {
-  class GIOMM_API BufferedInputStream_Class;
+  class LIBMM_GIO_SYMEXPORT BufferedInputStream_Class;
 }
 #endif
 
 namespace Gio
 {
 
-  class GIOMM_API BufferedInputStream : public Gio::FilterInputStream,
+  class LIBMM_GIO_SYMEXPORT BufferedInputStream : public Gio::FilterInputStream,
                                         public Gio::Seekable
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -160,7 +160,7 @@ namespace Gio
 namespace Glib
 {
 
-  GIOMM_API
+  LIBMM_GIO_SYMEXPORT
   auto
   wrap (GBufferedInputStream* object, bool take_copy = false) -> Glib::RefPtr<Gio::BufferedInputStream>;
 } // namespace Glib

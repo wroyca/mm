@@ -48,24 +48,24 @@ namespace Glib
       RECURSION
     };
 
-    GLIBMM_API
+    LIBMM_GLIB_SYMEXPORT
     VariantParseError (Code error_code, const Glib::ustring& error_message);
-    GLIBMM_API explicit VariantParseError (GError* gobject);
-    GLIBMM_API auto
+    LIBMM_GLIB_SYMEXPORT explicit VariantParseError (GError* gobject);
+    LIBMM_GLIB_SYMEXPORT auto
     code () const -> Code;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
   private:
-    GLIBMM_API static auto
+    LIBMM_GLIB_SYMEXPORT static auto
     throw_func (GError* gobject) -> void;
 
-    friend GLIBMM_API auto
+    friend LIBMM_GLIB_SYMEXPORT auto
     wrap_init () -> void;
 
 #endif
   };
 
-  class GLIBMM_API VariantBase
+  class LIBMM_GLIB_SYMEXPORT VariantBase
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -215,7 +215,7 @@ namespace Glib
     }
   }
 
-  class GLIBMM_API VariantStringBase : public VariantBase
+  class LIBMM_GLIB_SYMEXPORT VariantStringBase : public VariantBase
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -248,7 +248,7 @@ namespace Glib
     is_signature (const std::string& string) -> bool;
   };
 
-  class GLIBMM_API VariantContainerBase : public VariantBase
+  class LIBMM_GLIB_SYMEXPORT VariantContainerBase : public VariantBase
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -298,7 +298,7 @@ namespace Glib
   };
 
   template <>
-  GLIBMM_API auto
+  LIBMM_GLIB_SYMEXPORT auto
   VariantBase::cast_dynamic<VariantContainerBase> (const VariantBase& v) -> VariantContainerBase;
 
   template <class T>
@@ -309,7 +309,7 @@ namespace Glib
   };
 
   template <>
-  class GLIBMM_API Variant<VariantBase> : public VariantContainerBase
+  class LIBMM_GLIB_SYMEXPORT Variant<VariantBase> : public VariantContainerBase
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -363,7 +363,7 @@ namespace Glib
   };
 
   template <>
-  class GLIBMM_API Variant<Glib::ustring> : public VariantStringBase
+  class LIBMM_GLIB_SYMEXPORT Variant<Glib::ustring> : public VariantStringBase
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -391,7 +391,7 @@ namespace Glib
   };
 
   template <>
-  class GLIBMM_API Variant<Glib::DBusObjectPathString>
+  class LIBMM_GLIB_SYMEXPORT Variant<Glib::DBusObjectPathString>
     : public VariantStringBase
   {
   public:
@@ -420,7 +420,7 @@ namespace Glib
   };
 
   template <>
-  class GLIBMM_API Variant<Glib::DBusSignatureString> : public VariantStringBase
+  class LIBMM_GLIB_SYMEXPORT Variant<Glib::DBusSignatureString> : public VariantStringBase
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -448,7 +448,7 @@ namespace Glib
   };
 
   template <>
-  class GLIBMM_API Variant<std::string> : public VariantStringBase
+  class LIBMM_GLIB_SYMEXPORT Variant<std::string> : public VariantStringBase
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -536,7 +536,7 @@ namespace Glib
   };
 
   template <>
-  class GLIBMM_API Variant<std::vector<Glib::ustring>>
+  class LIBMM_GLIB_SYMEXPORT Variant<std::vector<Glib::ustring>>
     : public VariantContainerBase
   {
   public:
@@ -565,7 +565,7 @@ namespace Glib
   };
 
   template <>
-  class GLIBMM_API Variant<std::vector<Glib::DBusObjectPathString>>
+  class LIBMM_GLIB_SYMEXPORT Variant<std::vector<Glib::DBusObjectPathString>>
     : public VariantContainerBase
   {
   public:
@@ -593,7 +593,7 @@ namespace Glib
   };
 
   template <>
-  class GLIBMM_API Variant<std::vector<std::string>>
+  class LIBMM_GLIB_SYMEXPORT Variant<std::vector<std::string>>
     : public VariantContainerBase
   {
   public:
@@ -1092,7 +1092,7 @@ namespace Glib
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   template <>
-  class GLIBMM_API Value<Glib::VariantBase> : public ValueBase_Variant
+  class LIBMM_GLIB_SYMEXPORT Value<Glib::VariantBase> : public ValueBase_Variant
   {
   public:
     using CppType = Glib::VariantBase;
@@ -1120,7 +1120,7 @@ namespace Glib
 namespace Glib
 {
 
-  GLIBMM_API
+  LIBMM_GLIB_SYMEXPORT
   auto
   wrap (GVariant* object, bool take_copy = false) -> Glib::VariantBase;
 

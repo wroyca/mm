@@ -10,9 +10,9 @@
 namespace Glib
 {
 
-  class GLIBMM_API ObjectBase;
+  class LIBMM_GLIB_SYMEXPORT ObjectBase;
 
-  class GLIBMM_API SignalProxyProperty : public SignalProxyBase
+  class LIBMM_GLIB_SYMEXPORT SignalProxyProperty : public SignalProxyBase
   {
   public:
     friend class PropertyProxy_Base;
@@ -35,7 +35,7 @@ namespace Glib
     operator= (const SignalProxyProperty&) -> SignalProxyProperty&;
   };
 
-  class GLIBMM_API PropertyProxy_Base
+  class LIBMM_GLIB_SYMEXPORT PropertyProxy_Base
   {
   public:
     PropertyProxy_Base (ObjectBase* obj, const char* property_name);
@@ -75,9 +75,9 @@ namespace Glib
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
-  class GLIBMM_API SignalProxyProperty;
+  class LIBMM_GLIB_SYMEXPORT SignalProxyProperty;
 
-  class GLIBMM_API PropertyProxyConnectionNode
+  class LIBMM_GLIB_SYMEXPORT PropertyProxyConnectionNode
     : public SignalProxyConnectionNode
   {
   public:

@@ -1,14 +1,22 @@
 intf_libs = # Interface dependencies.
 impl_libs = # Implementation dependencies.
+
 import impl_libs += libmm-glib%lib{mm-glib}
-import impl_libs += libmm-cairo%lib{mm-cairo}
 import impl_libs += libmm-gio%lib{mm-gio}
+import impl_libs += libmm-cairo%lib{mm-cairo}
 import impl_libs += libmm-pango%lib{mm-pango}
+
+# import impl_libs += libmm-glib%lib{mm-glib}
+# import impl_libs += libmm-cairo%lib{mm-cairo}
+# import impl_libs += libmm-gio%lib{mm-gio}
+# import impl_libs += libmm-pango%lib{mm-pango}
 
 import impl_libs += glib-2.0%lib{glib-2.0}
 import impl_libs += gtk4%lib{gtk4}
+import impl_libs += gdk-pixbuf-2.0%lib{gdk-pixbuf-2.0}
+import impl_libs += sigc++%lib{sigc++-3.0}
 
-liba{mm-gdk}: {hxx ixx txx cxx}{** -version} hxx{version} $impl_libs $intf_libs
+lib{mm-gdk}: {hxx ixx txx cxx}{** -version} hxx{version} $impl_libs $intf_libs
 
 hxx{version}: in{version} $src_root/manifest
 
@@ -20,28 +28,28 @@ cxx.poptions =+ "-I$out_root" "-I$src_root"
 cxx.loptions =+ "/LIBPATH:C:/gnome/lib"
 cxx.poptions =+ "-DGDK_DISABLE_DEPRECATED" "-DGDKMM_BUILD" "-DGDKMM_STATIC_LIB"
 
-#{hbmia obja}{*}: cxx.poptions += -DLIBMM_GDK_STATIC_BUILD
-#{hbmis objs}{*}: cxx.poptions += -DLIBMM_GDK_SHARED_BUILD
+{hbmia obja}{*}: cxx.poptions += -DLIBMM_GDK_STATIC_BUILD
+{hbmis objs}{*}: cxx.poptions += -DLIBMM_GDK_SHARED_BUILD
 
 # Export options.
 #
-liba{mm-gdk}:
+lib{mm-gdk}:
 {
   cxx.export.poptions = "-I$out_root" "-I$src_root"
   cxx.export.libs = $intf_libs
 }
 
-#liba{mm-gdk}: cxx.export.poptions += -DLIBMM_GDK_STATIC
-#libs{mm-gdk}: cxx.export.poptions += -DLIBMM_GDK_SHARED
+liba{mm-gdk}: cxx.export.poptions += -DLIBMM_GDK_STATIC
+libs{mm-gdk}: cxx.export.poptions += -DLIBMM_GDK_SHARED
 
 # For pre-releases use the complete version to make sure they cannot be used
 # in place of another pre-release or the final version. See the version module
 # for details on the version.* variable values.
 #
 if $version.pre_release
-  liba{mm-gdk}: bin.lib.version = "-$version.project_id"
+  lib{mm-gdk}: bin.lib.version = "-$version.project_id"
 else
-  liba{mm-gdk}: bin.lib.version = "-$version.major.$version.minor"
+  lib{mm-gdk}: bin.lib.version = "-$version.major.$version.minor"
 
 # Install into the libmm-gdk/ subdirectory of, say, /usr/include/
 # recreating subdirectories.

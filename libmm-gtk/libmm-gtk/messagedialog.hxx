@@ -19,7 +19,7 @@ using GtkMessageDialogClass = struct _GtkMessageDialogClass;
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API MessageDialog_Class;
+  class LIBMM_GTK_SYMEXPORT MessageDialog_Class;
 }
   #endif
 
@@ -43,7 +43,7 @@ namespace Glib
 {
 
   template <>
-  class GTKMM_API Value<Gtk::ButtonsType>
+  class LIBMM_GTK_SYMEXPORT Value<Gtk::ButtonsType>
     : public Glib::Value_Enum<Gtk::ButtonsType>
   {
   public:
@@ -57,7 +57,7 @@ namespace Glib
 namespace Gtk
 {
 
-  class GTKMM_API MessageDialog : public Dialog
+  class LIBMM_GTK_SYMEXPORT MessageDialog : public Dialog
   {
   public:
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -80,7 +80,7 @@ namespace Gtk
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   private:
-    friend GTKMM_API class MessageDialog_Class;
+    friend LIBMM_GTK_SYMEXPORT class MessageDialog_Class;
     static CppClassType messagedialog_class_;
 
   protected:
@@ -182,7 +182,7 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkMessageDialog* object, bool take_copy = false) -> Gtk::MessageDialog*;
 } // namespace Glib
 

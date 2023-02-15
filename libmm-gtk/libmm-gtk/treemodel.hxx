@@ -23,19 +23,19 @@ using GtkTreeModelClass = struct _GtkTreeModelClass;
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API TreeModel_Class;
+  class LIBMM_GTK_SYMEXPORT TreeModel_Class;
 }
   #endif
 
 namespace Gtk
 {
 
-  class GTKMM_API TreeModelFilter;
-  class GTKMM_API TreeModelSort;
-  class GTKMM_API TreePath;
-  class GTKMM_API TreeRowReference;
+  class LIBMM_GTK_SYMEXPORT TreeModelFilter;
+  class LIBMM_GTK_SYMEXPORT TreeModelSort;
+  class LIBMM_GTK_SYMEXPORT TreePath;
+  class LIBMM_GTK_SYMEXPORT TreeRowReference;
 
-  class GTKMM_API TreeModel : public Glib::Interface
+  class LIBMM_GTK_SYMEXPORT TreeModel : public Glib::Interface
   {
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -277,10 +277,10 @@ namespace Gtk
                     int column,
                     Glib::ValueBase& value) const -> void;
 
-    friend GTKMM_API class Gtk::TreeModelFilter;
-    friend GTKMM_API class Gtk::TreeModelSort;
-    friend GTKMM_API class Gtk::TreeConstRow;
-    friend GTKMM_API class Gtk::TreeRow;
+    friend LIBMM_GTK_SYMEXPORT class Gtk::TreeModelFilter;
+    friend LIBMM_GTK_SYMEXPORT class Gtk::TreeModelSort;
+    friend LIBMM_GTK_SYMEXPORT class Gtk::TreeConstRow;
+    friend LIBMM_GTK_SYMEXPORT class Gtk::TreeRow;
 
   public:
   public:
@@ -365,7 +365,7 @@ namespace Glib
 {
 
   template <>
-  class GTKMM_API Value<Gtk::TreeModel::Flags>
+  class LIBMM_GTK_SYMEXPORT Value<Gtk::TreeModel::Flags>
     : public Glib::Value_Flags<Gtk::TreeModel::Flags>
   {
   public:
@@ -378,7 +378,7 @@ namespace Glib
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkTreeModel* object, bool take_copy = false) -> Glib::RefPtr<Gtk::TreeModel>;
 
 } // namespace Glib

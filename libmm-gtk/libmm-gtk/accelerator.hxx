@@ -13,23 +13,23 @@ namespace Gtk
 
   namespace Accelerator
   {
-    GTKMM_API auto
+    LIBMM_GTK_SYMEXPORT auto
     valid (guint keyval, Gdk::ModifierType modifiers) -> bool;
 
-    GTKMM_API auto
+    LIBMM_GTK_SYMEXPORT auto
     parse (const Glib::ustring& accelerator,
            guint& accelerator_key,
            Gdk::ModifierType& accelerator_mods) -> bool;
 
-    GTKMM_API auto
+    LIBMM_GTK_SYMEXPORT auto
     name (guint accelerator_key, Gdk::ModifierType accelerator_mods)
         -> Glib::ustring;
 
-    GTKMM_API auto
+    LIBMM_GTK_SYMEXPORT auto
     get_label (guint accelerator_key, Gdk::ModifierType accelerator_mods)
         -> Glib::ustring;
 
-    GTKMM_API auto
+    LIBMM_GTK_SYMEXPORT auto
     get_default_mod_mask () -> Gdk::ModifierType;
 
   } // namespace Accelerator

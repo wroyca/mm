@@ -18,14 +18,14 @@ using GUnixInputStreamClass = struct _GUnixInputStreamClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gio
 {
-  class GIOMM_API UnixInputStream_Class;
+  class LIBMM_GIO_SYMEXPORT UnixInputStream_Class;
 }
 #endif
 
 namespace Gio
 {
 
-  class GIOMM_API UnixInputStream : public Gio::InputStream,
+  class LIBMM_GIO_SYMEXPORT UnixInputStream : public Gio::InputStream,
                                     public PollableInputStream,
                                     public FileDescriptorBased
   {
@@ -118,7 +118,7 @@ namespace Gio
 namespace Glib
 {
 
-  GIOMM_API
+  LIBMM_GIO_SYMEXPORT
   auto
   wrap (GUnixInputStream* object, bool take_copy = false) -> Glib::RefPtr<Gio::UnixInputStream>;
 } // namespace Glib

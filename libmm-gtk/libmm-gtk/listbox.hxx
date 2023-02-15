@@ -22,7 +22,7 @@ using GtkListBoxClass = struct _GtkListBoxClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API ListBox_Class;
+  class LIBMM_GTK_SYMEXPORT ListBox_Class;
 }
 #endif
 
@@ -30,7 +30,7 @@ namespace Gtk
 {
   class Adjustment;
 
-  class GTKMM_API ListBox : public Widget
+  class LIBMM_GTK_SYMEXPORT ListBox : public Widget
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -53,7 +53,7 @@ namespace Gtk
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   private:
-    friend GTKMM_API class ListBox_Class;
+    friend LIBMM_GTK_SYMEXPORT class ListBox_Class;
     static CppClassType listbox_class_;
 
   protected:
@@ -322,7 +322,7 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkListBox* object, bool take_copy = false) -> Gtk::ListBox*;
 } // namespace Glib
 

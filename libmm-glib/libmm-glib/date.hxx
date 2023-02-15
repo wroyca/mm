@@ -18,7 +18,7 @@ extern "C"
 namespace Glib
 {
 
-  class GLIBMM_API Date
+  class LIBMM_GLIB_SYMEXPORT Date
   {
   public:
     using Day = guint8;

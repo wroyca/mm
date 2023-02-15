@@ -21,7 +21,7 @@ using GtkRecentManagerClass = struct _GtkRecentManagerClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API RecentManager_Class;
+  class LIBMM_GTK_SYMEXPORT RecentManager_Class;
 }
 #endif
 
@@ -42,18 +42,18 @@ namespace Gtk
       UNKNOWN
     };
 
-    GTKMM_API
+    LIBMM_GTK_SYMEXPORT
     RecentManagerError (Code error_code, const Glib::ustring& error_message);
-    GTKMM_API explicit RecentManagerError (GError* gobject);
-    GTKMM_API auto
+    LIBMM_GTK_SYMEXPORT explicit RecentManagerError (GError* gobject);
+    LIBMM_GTK_SYMEXPORT auto
     code () const -> Code;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
   private:
-    GTKMM_API static auto
+    LIBMM_GTK_SYMEXPORT static auto
     throw_func (GError* gobject) -> void;
 
-    friend GTKMM_API auto
+    friend LIBMM_GTK_SYMEXPORT auto
     wrap_init () -> void;
 
 #endif
@@ -66,7 +66,7 @@ namespace Glib
 {
 
   template <>
-  class GTKMM_API Value<Gtk::RecentManagerError::Code>
+  class LIBMM_GTK_SYMEXPORT Value<Gtk::RecentManagerError::Code>
     : public Glib::Value_Enum<Gtk::RecentManagerError::Code>
   {
   public:
@@ -80,7 +80,7 @@ namespace Glib
 namespace Gtk
 {
 
-  class GTKMM_API RecentManager : public Glib::Object
+  class LIBMM_GTK_SYMEXPORT RecentManager : public Glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -210,7 +210,7 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkRecentManager* object, bool take_copy = false) -> Glib::RefPtr<Gtk::RecentManager>;
 } // namespace Glib
 

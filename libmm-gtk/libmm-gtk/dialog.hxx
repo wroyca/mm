@@ -21,7 +21,7 @@ using GtkDialogClass = struct _GtkDialogClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API Dialog_Class;
+  class LIBMM_GTK_SYMEXPORT Dialog_Class;
 }
 #endif
 
@@ -59,7 +59,7 @@ namespace Glib
 {
 
   template <>
-  class GTKMM_API Value<Gtk::ResponseType>
+  class LIBMM_GTK_SYMEXPORT Value<Gtk::ResponseType>
     : public Glib::Value_Enum<Gtk::ResponseType>
   {
   public:
@@ -73,7 +73,7 @@ namespace Glib
 namespace Gtk
 {
 
-  class GTKMM_API Dialog : public Window
+  class LIBMM_GTK_SYMEXPORT Dialog : public Window
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -96,7 +96,7 @@ namespace Gtk
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   private:
-    friend GTKMM_API class Dialog_Class;
+    friend LIBMM_GTK_SYMEXPORT class Dialog_Class;
     static CppClassType dialog_class_;
 
   protected:
@@ -191,7 +191,7 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkDialog* object, bool take_copy = false) -> Gtk::Dialog*;
 } // namespace Glib
 

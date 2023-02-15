@@ -31,7 +31,7 @@
 namespace Cairo
 {
 
-  class CAIROMM_API Surface
+  class LIBMM_CAIRO_SYMEXPORT Surface
   {
   public:
     enum class Type
@@ -246,7 +246,7 @@ namespace Cairo
     cobject* m_cobject;
   };
 
-  class CAIROMM_API ImageSurface : public Surface
+  class LIBMM_CAIRO_SYMEXPORT ImageSurface : public Surface
   {
   protected:
   public:
@@ -297,7 +297,7 @@ namespace Cairo
 #endif
   };
 
-  class CAIROMM_API RecordingSurface : public Surface
+  class LIBMM_CAIRO_SYMEXPORT RecordingSurface : public Surface
   {
   public:
     explicit RecordingSurface (cairo_surface_t* cobject,
@@ -329,7 +329,7 @@ namespace Cairo
     PDF_VERSION_1_5 = CAIRO_PDF_VERSION_1_5
   } PdfVersion;
 
-  class CAIROMM_API PdfSurface : public Surface
+  class LIBMM_CAIRO_SYMEXPORT PdfSurface : public Surface
   {
   public:
     explicit PdfSurface (cairo_surface_t* cobject, bool has_reference = false);
@@ -368,7 +368,7 @@ namespace Cairo
     PS_LEVEL_3 = CAIRO_PS_LEVEL_3
   } PsLevel;
 
-  class CAIROMM_API PsSurface : public Surface
+  class LIBMM_CAIRO_SYMEXPORT PsSurface : public Surface
   {
   public:
     explicit PsSurface (cairo_surface_t* cobject, bool has_reference = false);
@@ -422,7 +422,7 @@ namespace Cairo
     SVG_VERSION_1_2 = CAIRO_SVG_VERSION_1_2
   } SvgVersion;
 
-  class CAIROMM_API SvgSurface : public Surface
+  class LIBMM_CAIRO_SYMEXPORT SvgSurface : public Surface
   {
   public:
     explicit SvgSurface (cairo_surface_t* cobject, bool has_reference = false);
@@ -452,7 +452,7 @@ namespace Cairo
 
 #ifdef CAIRO_HAS_GLITZ_SURFACE
 
-  class CAIROMM_API GlitzSurface : public Surface
+  class LIBMM_CAIRO_SYMEXPORT GlitzSurface : public Surface
   {
   public:
     explicit GlitzSurface (cairo_surface_t* cobject,

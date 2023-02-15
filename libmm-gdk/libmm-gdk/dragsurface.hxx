@@ -25,14 +25,14 @@ using GdkDragSurfaceClass = struct _GdkDragSurfaceClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gdk
 {
-  class GDKMM_API DragSurface_Class;
+  class LIBMM_GDK_SYMEXPORT DragSurface_Class;
 }
 #endif
 
 namespace Gdk
 {
 
-  class GDKMM_API DragSurface : public Glib::Interface
+  class LIBMM_GDK_SYMEXPORT DragSurface : public Glib::Interface
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -108,7 +108,7 @@ namespace Gdk
 
 namespace Glib
 {
-  GDKMM_API auto
+  LIBMM_GDK_SYMEXPORT auto
   wrap (GdkDragSurface* object, bool take_copy = false) -> Glib::RefPtr<Gdk::DragSurface>;
 
 } // namespace Glib

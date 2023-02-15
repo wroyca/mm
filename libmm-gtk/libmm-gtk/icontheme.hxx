@@ -22,7 +22,7 @@ using GtkIconThemeClass = struct _GtkIconThemeClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API IconTheme_Class;
+  class LIBMM_GTK_SYMEXPORT IconTheme_Class;
 }
 #endif
 
@@ -93,18 +93,18 @@ namespace Gtk
       ICON_THEME_FAILED
     };
 
-    GTKMM_API
+    LIBMM_GTK_SYMEXPORT
     IconThemeError (Code error_code, const Glib::ustring& error_message);
-    GTKMM_API explicit IconThemeError (GError* gobject);
-    GTKMM_API auto
+    LIBMM_GTK_SYMEXPORT explicit IconThemeError (GError* gobject);
+    LIBMM_GTK_SYMEXPORT auto
     code () const -> Code;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
   private:
-    GTKMM_API static auto
+    LIBMM_GTK_SYMEXPORT static auto
     throw_func (GError* gobject) -> void;
 
-    friend GTKMM_API auto
+    friend LIBMM_GTK_SYMEXPORT auto
     wrap_init () -> void;
 
 #endif
@@ -117,7 +117,7 @@ namespace Glib
 {
 
   template <>
-  class GTKMM_API Value<Gtk::IconThemeError::Code>
+  class LIBMM_GTK_SYMEXPORT Value<Gtk::IconThemeError::Code>
     : public Glib::Value_Enum<Gtk::IconThemeError::Code>
   {
   public:
@@ -131,7 +131,7 @@ namespace Glib
 namespace Gtk
 {
 
-  class GTKMM_API IconTheme : public Glib::Object
+  class LIBMM_GTK_SYMEXPORT IconTheme : public Glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -333,7 +333,7 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkIconTheme* object, bool take_copy = false) -> Glib::RefPtr<Gtk::IconTheme>;
 } // namespace Glib
 

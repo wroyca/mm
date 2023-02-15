@@ -21,36 +21,36 @@ namespace Gtk
     using pointer = void;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-    GTKMM_API
+    LIBMM_GTK_SYMEXPORT
     BitsetConstIter () {}
 
-    GTKMM_API
+    LIBMM_GTK_SYMEXPORT
     BitsetConstIter (const GtkBitset* bitset, bool is_end);
 #endif
 
-    GTKMM_API
+    LIBMM_GTK_SYMEXPORT
     BitsetConstIter (const BitsetConstIter& other);
-    GTKMM_API auto
+    LIBMM_GTK_SYMEXPORT auto
     operator= (const BitsetConstIter& other) -> BitsetConstIter&;
-    GTKMM_API
+    LIBMM_GTK_SYMEXPORT
     BitsetConstIter (BitsetConstIter&& other) noexcept;
-    GTKMM_API auto
+    LIBMM_GTK_SYMEXPORT auto
     operator= (BitsetConstIter&& other) noexcept -> BitsetConstIter&;
 
-    GTKMM_API auto
+    LIBMM_GTK_SYMEXPORT auto
     operator++ () -> BitsetConstIter&;
-    GTKMM_API auto
+    LIBMM_GTK_SYMEXPORT auto
     operator++ (int) -> BitsetConstIter;
-    GTKMM_API auto
+    LIBMM_GTK_SYMEXPORT auto
     operator-- () -> BitsetConstIter&;
-    GTKMM_API auto
+    LIBMM_GTK_SYMEXPORT auto
     operator-- (int) -> BitsetConstIter;
-    GTKMM_API auto
+    LIBMM_GTK_SYMEXPORT auto
     operator* () const -> reference;
 
-    GTKMM_API explicit operator bool () const noexcept;
+    LIBMM_GTK_SYMEXPORT explicit operator bool () const noexcept;
 
-    GTKMM_API auto
+    LIBMM_GTK_SYMEXPORT auto
     equal (const BitsetConstIter& other) const noexcept -> bool;
 
   private:

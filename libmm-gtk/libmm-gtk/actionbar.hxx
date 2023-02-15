@@ -16,14 +16,14 @@ using GtkActionBarClass = struct _GtkActionBarClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API ActionBar_Class;
+  class LIBMM_GTK_SYMEXPORT ActionBar_Class;
 }
 #endif
 
 namespace Gtk
 {
 
-  class GTKMM_API ActionBar : public Widget
+  class LIBMM_GTK_SYMEXPORT ActionBar : public Widget
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -46,7 +46,7 @@ namespace Gtk
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   private:
-    friend GTKMM_API class ActionBar_Class;
+    friend LIBMM_GTK_SYMEXPORT class ActionBar_Class;
     static CppClassType actionbar_class_;
 
   protected:
@@ -123,7 +123,7 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkActionBar* object, bool take_copy = false) -> Gtk::ActionBar*;
 } // namespace Glib
 

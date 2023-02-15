@@ -25,7 +25,7 @@ namespace Glib
 
   using TimeSpan = GTimeSpan;
 
-  class GLIBMM_API DateTime
+  class LIBMM_GLIB_SYMEXPORT DateTime
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -252,13 +252,13 @@ namespace Glib
 namespace Glib
 {
 
-  GLIBMM_API
+  LIBMM_GLIB_SYMEXPORT
   auto
   wrap (GDateTime* object, bool take_copy = false) -> Glib::DateTime;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
   template <>
-  class GLIBMM_API Value<Glib::DateTime>
+  class LIBMM_GLIB_SYMEXPORT Value<Glib::DateTime>
     : public Glib::Value_Boxed<Glib::DateTime>
   {
   };

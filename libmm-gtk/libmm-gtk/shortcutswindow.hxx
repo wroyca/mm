@@ -16,14 +16,14 @@ using GtkShortcutsWindowClass = struct _GtkShortcutsWindowClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API ShortcutsWindow_Class;
+  class LIBMM_GTK_SYMEXPORT ShortcutsWindow_Class;
 }
 #endif
 
 namespace Gtk
 {
 
-  class GTKMM_API ShortcutsWindow : public Window
+  class LIBMM_GTK_SYMEXPORT ShortcutsWindow : public Window
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -46,7 +46,7 @@ namespace Gtk
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   private:
-    friend GTKMM_API class ShortcutsWindow_Class;
+    friend LIBMM_GTK_SYMEXPORT class ShortcutsWindow_Class;
     static CppClassType shortcutswindow_class_;
 
   protected:
@@ -106,7 +106,7 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkShortcutsWindow* object, bool take_copy = false) -> Gtk::ShortcutsWindow*;
 } // namespace Glib
 

@@ -16,7 +16,7 @@ typedef struct _GBytes GBytes;
 namespace Glib
 {
 
-  class GLIBMM_API Bytes final
+  class LIBMM_GLIB_SYMEXPORT Bytes final
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -70,12 +70,28 @@ namespace Glib
     compare (gconstpointer bytes1, gconstpointer bytes2) -> gint;
   };
 
+  template <>
+  class LIBMM_GLIB_SYMEXPORT Value<Glib::RefPtr<Glib::Bytes>> : public ValueBase_Boxed
+  {
+  public:
+    using CppType = Glib::RefPtr<Glib::Bytes>;
+    using CType = GBytes*;
+
+    static GType
+    value_type ();
+
+    void
+    set (const CppType& data);
+    CppType
+    get () const;
+  };
+
 } // namespace Glib
 
 namespace Glib
 {
 
-  GLIBMM_API
+  LIBMM_GLIB_SYMEXPORT
   auto
   wrap (GBytes* object, bool take_copy = false) -> Glib::RefPtr<Glib::Bytes>;
 

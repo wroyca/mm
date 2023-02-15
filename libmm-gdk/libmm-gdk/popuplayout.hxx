@@ -82,7 +82,7 @@ namespace Glib
 {
 
   template <>
-  class GDKMM_API Value<Gdk::AnchorHints>
+  class LIBMM_GDK_SYMEXPORT Value<Gdk::AnchorHints>
     : public Glib::Value_Flags<Gdk::AnchorHints>
   {
   public:
@@ -96,7 +96,7 @@ namespace Glib
 namespace Gdk
 {
 
-  class GDKMM_API PopupLayout final
+  class LIBMM_GDK_SYMEXPORT PopupLayout final
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -187,7 +187,7 @@ namespace Gdk
 
 namespace Glib
 {
-  GDKMM_API auto
+  LIBMM_GDK_SYMEXPORT auto
   wrap (GdkPopupLayout* object, bool take_copy = false) -> Glib::RefPtr<Gdk::PopupLayout>;
 
 } // namespace Glib

@@ -21,14 +21,14 @@ using GtkPrintJobClass = struct _GtkPrintJobClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API PrintJob_Class;
+  class LIBMM_GTK_SYMEXPORT PrintJob_Class;
 }
 #endif
 
 namespace Gtk
 {
 
-  class GTKMM_API PrintJob : public Glib::Object
+  class LIBMM_GTK_SYMEXPORT PrintJob : public Glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -230,7 +230,7 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkPrintJob* object, bool take_copy = false) -> Glib::RefPtr<Gtk::PrintJob>;
 } // namespace Glib
 

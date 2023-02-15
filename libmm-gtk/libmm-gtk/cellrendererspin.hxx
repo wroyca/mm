@@ -18,15 +18,15 @@ using GtkCellRendererSpinClass = struct _GtkCellRendererSpinClass;
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API CellRendererSpin_Class;
+  class LIBMM_GTK_SYMEXPORT CellRendererSpin_Class;
 }
   #endif
 
 namespace Gtk
 {
-  class GTKMM_API Adjustment;
+  class LIBMM_GTK_SYMEXPORT Adjustment;
 
-  class GTKMM_API CellRendererSpin : public CellRendererText
+  class LIBMM_GTK_SYMEXPORT CellRendererSpin : public CellRendererText
   {
   public:
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -49,7 +49,7 @@ namespace Gtk
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   private:
-    friend GTKMM_API class CellRendererSpin_Class;
+    friend LIBMM_GTK_SYMEXPORT class CellRendererSpin_Class;
     static CppClassType cellrendererspin_class_;
 
   protected:
@@ -115,7 +115,7 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkCellRendererSpin* object, bool take_copy = false) -> Gtk::CellRendererSpin*;
 } // namespace Glib
 

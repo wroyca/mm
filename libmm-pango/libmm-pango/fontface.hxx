@@ -18,15 +18,15 @@ using PangoFontFaceClass = struct _PangoFontFaceClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Pango
 {
-  class PANGOMM_API FontFace_Class;
+  class LIBMM_PANGO_SYMEXPORT FontFace_Class;
 }
 #endif
 
 namespace Pango
 {
-  class PANGOMM_API FontFamily;
+  class LIBMM_PANGO_SYMEXPORT FontFamily;
 
-  class PANGOMM_API FontFace : public Glib::Object
+  class LIBMM_PANGO_SYMEXPORT FontFace : public Glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -111,7 +111,7 @@ namespace Pango
 namespace Glib
 {
 
-  PANGOMM_API
+  LIBMM_PANGO_SYMEXPORT
   auto
   wrap (PangoFontFace* object, bool take_copy = false) -> Glib::RefPtr<Pango::FontFace>;
 } // namespace Glib

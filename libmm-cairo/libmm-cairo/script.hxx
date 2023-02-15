@@ -26,7 +26,7 @@ namespace Cairo
     SCRIPT_MODE_BINARY = CAIRO_SCRIPT_MODE_BINARY
   };
 
-  class CAIROMM_API Script : public Device
+  class LIBMM_CAIRO_SYMEXPORT Script : public Device
   {
   public:
     explicit Script (cairo_device_t* cobject, bool has_reference = false);

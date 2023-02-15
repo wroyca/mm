@@ -81,113 +81,113 @@ namespace Glib
                                                 static_cast<unsigned> (rhs)));
   }
 
-  GLIBMM_API
+  LIBMM_GLIB_SYMEXPORT
   auto
   get_application_name () -> Glib::ustring;
 
-  GLIBMM_API auto
+  LIBMM_GLIB_SYMEXPORT auto
   set_application_name (UStringView application_name) -> void;
 
-  GLIBMM_API
+  LIBMM_GLIB_SYMEXPORT
   auto
   get_prgname () -> std::string;
 
-  GLIBMM_API auto
+  LIBMM_GLIB_SYMEXPORT auto
   set_prgname (StdStringView prgname) -> void;
 
-  GLIBMM_API
+  LIBMM_GLIB_SYMEXPORT
   auto
   getenv (StdStringView variable, bool& found) -> std::string;
 
-  GLIBMM_API
+  LIBMM_GLIB_SYMEXPORT
   auto
   getenv (StdStringView variable) -> std::string;
 
-  GLIBMM_API
+  LIBMM_GLIB_SYMEXPORT
   auto
   setenv (StdStringView variable, StdStringView value, bool overwrite = true) -> bool;
 
-  GLIBMM_API auto
+  LIBMM_GLIB_SYMEXPORT auto
   unsetenv (StdStringView variable) -> void;
 
-  GLIBMM_API
+  LIBMM_GLIB_SYMEXPORT
   auto
   listenv () -> std::vector<std::string>;
 
-  GLIBMM_API
+  LIBMM_GLIB_SYMEXPORT
   auto
   get_user_name () -> std::string;
 
-  GLIBMM_API
+  LIBMM_GLIB_SYMEXPORT
   auto
   get_real_name () -> std::string;
 
-  GLIBMM_API
+  LIBMM_GLIB_SYMEXPORT
   auto
   get_host_name () -> Glib::ustring;
 
-  GLIBMM_API
+  LIBMM_GLIB_SYMEXPORT
   auto
   get_home_dir () -> std::string;
 
-  GLIBMM_API
+  LIBMM_GLIB_SYMEXPORT
   auto
   get_tmp_dir () -> std::string;
 
-  GLIBMM_API
+  LIBMM_GLIB_SYMEXPORT
   auto
   get_current_dir () -> std::string;
 
-  GLIBMM_API
+  LIBMM_GLIB_SYMEXPORT
   auto
   get_user_special_dir (UserDirectory directory) -> std::string;
 
-  GLIBMM_API
+  LIBMM_GLIB_SYMEXPORT
   auto
   get_user_data_dir () -> std::string;
 
-  GLIBMM_API
+  LIBMM_GLIB_SYMEXPORT
   auto
   get_user_config_dir () -> std::string;
 
-  GLIBMM_API
+  LIBMM_GLIB_SYMEXPORT
   auto
   get_system_data_dirs () -> std::vector<std::string>;
 
-  GLIBMM_API
+  LIBMM_GLIB_SYMEXPORT
   auto
   get_system_config_dirs () -> std::vector<std::string>;
 
-  GLIBMM_API
+  LIBMM_GLIB_SYMEXPORT
   auto
   get_user_cache_dir () -> std::string;
 
-  GLIBMM_API
+  LIBMM_GLIB_SYMEXPORT
   auto
   get_user_runtime_dir () -> std::string;
 
-  GLIBMM_API
+  LIBMM_GLIB_SYMEXPORT
   auto
   path_is_absolute (StdStringView filename) -> bool;
 
-  GLIBMM_API
+  LIBMM_GLIB_SYMEXPORT
   auto
   path_skip_root (StdStringView filename) -> std::string;
 
-  GLIBMM_API
+  LIBMM_GLIB_SYMEXPORT
   auto
   path_get_basename (StdStringView filename) -> std::string;
 
-  GLIBMM_API
+  LIBMM_GLIB_SYMEXPORT
   auto
   path_get_dirname (StdStringView filename) -> std::string;
 
-  GLIBMM_API
+  LIBMM_GLIB_SYMEXPORT
   auto
   canonicalize_filename (StdStringView filename,
                          StdStringView relative_to = nullptr) -> std::string;
 
-  GLIBMM_API
+  LIBMM_GLIB_SYMEXPORT
   auto
   build_filename (const std::vector<std::string>& elements) -> std::string;
 
@@ -199,16 +199,16 @@ namespace Glib
         g_build_filename (StdStringView (strings).c_str ()..., nullptr));
   }
 
-  GLIBMM_API
+  LIBMM_GLIB_SYMEXPORT
   auto
   build_path (const std::string& separator,
               const std::vector<std::string>& elements) -> std::string;
 
-  GLIBMM_API
+  LIBMM_GLIB_SYMEXPORT
   auto
   find_program_in_path (StdStringView program) -> std::string;
 
-  GLIBMM_API
+  LIBMM_GLIB_SYMEXPORT
   auto
   format_size (guint64 size, FormatSizeFlags flags = FormatSizeFlags::DEFAULT) -> Glib::ustring;
 

@@ -106,18 +106,18 @@ namespace Glib
       FAILED
     };
 
-    GLIBMM_API
+    LIBMM_GLIB_SYMEXPORT
     FileError (Code error_code, const Glib::ustring& error_message);
-    GLIBMM_API explicit FileError (GError* gobject);
-    GLIBMM_API auto
+    LIBMM_GLIB_SYMEXPORT explicit FileError (GError* gobject);
+    LIBMM_GLIB_SYMEXPORT auto
     code () const -> Code;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
   private:
-    GLIBMM_API static auto
+    LIBMM_GLIB_SYMEXPORT static auto
     throw_func (GError* gobject) -> void;
 
-    friend GLIBMM_API auto
+    friend LIBMM_GLIB_SYMEXPORT auto
     wrap_init () -> void;
 
 #endif
@@ -125,7 +125,7 @@ namespace Glib
 
   class Dir;
 
-  class GLIBMM_API DirIterator
+  class LIBMM_GLIB_SYMEXPORT DirIterator
   {
   public:
     typedef std::input_iterator_tag iterator_category;
@@ -158,7 +158,7 @@ namespace Glib
     const char* current_;
   };
 
-  class GLIBMM_API Dir
+  class LIBMM_GLIB_SYMEXPORT Dir
   {
   public:
     using iterator = DirIterator;
@@ -195,32 +195,32 @@ namespace Glib
     GDir* gobject_;
   };
 
-  GLIBMM_API
+  LIBMM_GLIB_SYMEXPORT
   auto
   file_test (const std::string& filename, FileTest test) -> bool;
 
-  GLIBMM_API
+  LIBMM_GLIB_SYMEXPORT
   auto
   mkstemp (std::string& filename_template) -> int;
 
-  GLIBMM_API
+  LIBMM_GLIB_SYMEXPORT
   auto
   file_open_tmp (std::string& name_used, const std::string& prefix) -> int;
 
-  GLIBMM_API
+  LIBMM_GLIB_SYMEXPORT
   auto
   file_open_tmp (std::string& name_used) -> int;
 
-  GLIBMM_API
+  LIBMM_GLIB_SYMEXPORT
   auto
   file_get_contents (const std::string& filename) -> std::string;
 
-  GLIBMM_API auto
+  LIBMM_GLIB_SYMEXPORT auto
   file_set_contents (const std::string& filename,
                      const gchar* contents,
                      gssize length) -> void;
 
-  GLIBMM_API auto
+  LIBMM_GLIB_SYMEXPORT auto
   file_set_contents (const std::string& filename, const std::string& contents) -> void;
 
 } // namespace Glib

@@ -29,24 +29,24 @@ namespace Gio
       INTERNAL
     };
 
-    GIOMM_API
+    LIBMM_GIO_SYMEXPORT
     ResourceError (Code error_code, const Glib::ustring& error_message);
-    GIOMM_API explicit ResourceError (GError* gobject);
-    GIOMM_API auto
+    LIBMM_GIO_SYMEXPORT explicit ResourceError (GError* gobject);
+    LIBMM_GIO_SYMEXPORT auto
     code () const -> Code;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
   private:
-    GIOMM_API static auto
+    LIBMM_GIO_SYMEXPORT static auto
     throw_func (GError* gobject) -> void;
 
-    friend GIOMM_API auto
+    friend LIBMM_GIO_SYMEXPORT auto
     wrap_init () -> void;
 
 #endif
   };
 
-  class GIOMM_API Resource final
+  class LIBMM_GIO_SYMEXPORT Resource final
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -227,7 +227,7 @@ namespace Glib
 {
 
   template <>
-  class GIOMM_API Value<Gio::Resource::Flags>
+  class LIBMM_GIO_SYMEXPORT Value<Gio::Resource::Flags>
     : public Glib::Value_Flags<Gio::Resource::Flags>
   {
   public:
@@ -295,7 +295,7 @@ namespace Glib
 {
 
   template <>
-  class GIOMM_API Value<Gio::Resource::LookupFlags>
+  class LIBMM_GIO_SYMEXPORT Value<Gio::Resource::LookupFlags>
     : public Glib::Value_Flags<Gio::Resource::LookupFlags>
   {
   public:
@@ -309,7 +309,7 @@ namespace Glib
 namespace Glib
 {
 
-  GIOMM_API
+  LIBMM_GIO_SYMEXPORT
   auto
   wrap (GResource* object, bool take_copy = false) -> Glib::RefPtr<Gio::Resource>;
 

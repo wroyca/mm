@@ -9,16 +9,16 @@
 namespace Glib
 {
 
-  GLIBMM_API
+  LIBMM_GLIB_SYMEXPORT
   auto
   uri_unescape_string (const std::string& escaped_string,
                        const std::string& illegal_characters = {}) -> std::string;
 
-  GLIBMM_API
+  LIBMM_GLIB_SYMEXPORT
   auto
   uri_parse_scheme (const std::string& uri) -> std::string;
 
-  GLIBMM_API
+  LIBMM_GLIB_SYMEXPORT
   auto
   uri_escape_string (const std::string& unescaped,
                      const std::string& reserved_chars_allowed = {},

@@ -11,7 +11,7 @@
 namespace Gio
 {
 
-  class GIOMM_API FileAttributeInfoList final
+  class LIBMM_GIO_SYMEXPORT FileAttributeInfoList final
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -72,7 +72,7 @@ namespace Gio
 namespace Glib
 {
 
-  GIOMM_API
+  LIBMM_GIO_SYMEXPORT
   auto
   wrap (GFileAttributeInfoList* object, bool take_copy = false) -> Glib::RefPtr<Gio::FileAttributeInfoList>;
 

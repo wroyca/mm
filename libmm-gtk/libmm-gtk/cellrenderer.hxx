@@ -21,13 +21,13 @@ using GtkCellRendererClass = struct _GtkCellRendererClass;
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API CellRenderer_Class;
+  class LIBMM_GTK_SYMEXPORT CellRenderer_Class;
 }
   #endif
 
 namespace Gtk
 {
-  class GTKMM_API Snapshot;
+  class LIBMM_GTK_SYMEXPORT Snapshot;
 
   enum class CellRendererState
   {
@@ -95,7 +95,7 @@ namespace Glib
 {
 
   template <>
-  class GTKMM_API Value<Gtk::CellRendererState>
+  class LIBMM_GTK_SYMEXPORT Value<Gtk::CellRendererState>
     : public Glib::Value_Flags<Gtk::CellRendererState>
   {
   public:
@@ -123,7 +123,7 @@ namespace Glib
 {
 
   template <>
-  class GTKMM_API Value<Gtk::CellRendererMode>
+  class LIBMM_GTK_SYMEXPORT Value<Gtk::CellRendererMode>
     : public Glib::Value_Enum<Gtk::CellRendererMode>
   {
   public:
@@ -137,7 +137,7 @@ namespace Glib
 namespace Gtk
 {
 
-  class GTKMM_API CellRenderer : public Object
+  class LIBMM_GTK_SYMEXPORT CellRenderer : public Object
   {
   public:
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -160,7 +160,7 @@ namespace Gtk
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   private:
-    friend GTKMM_API class CellRenderer_Class;
+    friend LIBMM_GTK_SYMEXPORT class CellRenderer_Class;
     static CppClassType cellrenderer_class_;
 
   protected:
@@ -468,7 +468,7 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkCellRenderer* object, bool take_copy = false) -> Gtk::CellRenderer*;
 } // namespace Glib
 

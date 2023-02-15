@@ -20,16 +20,16 @@ using GtkCellAreaContextClass = struct _GtkCellAreaContextClass;
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API CellAreaContext_Class;
+  class LIBMM_GTK_SYMEXPORT CellAreaContext_Class;
 }
   #endif
 
 namespace Gtk
 {
 
-  class GTKMM_API CellArea;
+  class LIBMM_GTK_SYMEXPORT CellArea;
 
-  class GTKMM_API CellAreaContext : public Glib::Object
+  class LIBMM_GTK_SYMEXPORT CellAreaContext : public Glib::Object
   {
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -150,7 +150,7 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkCellAreaContext* object, bool take_copy = false) -> Glib::RefPtr<Gtk::CellAreaContext>;
 } // namespace Glib
 

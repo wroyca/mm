@@ -19,14 +19,14 @@ using GFileIconClass = struct _GFileIconClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gio
 {
-  class GIOMM_API FileIcon_Class;
+  class LIBMM_GIO_SYMEXPORT FileIcon_Class;
 }
 #endif
 
 namespace Gio
 {
 
-  class GIOMM_API FileIcon : public Glib::Object,
+  class LIBMM_GIO_SYMEXPORT FileIcon : public Glib::Object,
                              public Icon,
                              public LoadableIcon
   {
@@ -110,7 +110,7 @@ namespace Gio
 namespace Glib
 {
 
-  GIOMM_API
+  LIBMM_GIO_SYMEXPORT
   auto
   wrap (GFileIcon* object, bool take_copy = false) -> Glib::RefPtr<Gio::FileIcon>;
 } // namespace Glib

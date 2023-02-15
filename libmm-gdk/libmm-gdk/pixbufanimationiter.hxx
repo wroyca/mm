@@ -19,14 +19,14 @@ using GdkPixbufAnimationIterClass = struct _GdkPixbufAnimationIterClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gdk
 {
-  class GDKMM_API PixbufAnimationIter_Class;
+  class LIBMM_GDK_SYMEXPORT PixbufAnimationIter_Class;
 }
 #endif
 
 namespace Gdk
 {
 
-  class GDKMM_API PixbufAnimationIter : public Glib::Object
+  class LIBMM_GDK_SYMEXPORT PixbufAnimationIter : public Glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -109,7 +109,7 @@ namespace Gdk
 
 namespace Glib
 {
-  GDKMM_API auto
+  LIBMM_GDK_SYMEXPORT auto
   wrap (GdkPixbufAnimationIter* object, bool take_copy = false) -> Glib::RefPtr<Gdk::PixbufAnimationIter>;
 } // namespace Glib
 

@@ -24,7 +24,7 @@ using GNetworkMonitorClass = struct _GNetworkMonitorClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gio
 {
-  class GIOMM_API NetworkMonitor_Class;
+  class LIBMM_GIO_SYMEXPORT NetworkMonitor_Class;
 }
 #endif
 
@@ -46,7 +46,7 @@ namespace Glib
 {
 
   template <>
-  class GIOMM_API Value<Gio::NetworkConnectivity>
+  class LIBMM_GIO_SYMEXPORT Value<Gio::NetworkConnectivity>
     : public Glib::Value_Enum<Gio::NetworkConnectivity>
   {
   public:
@@ -60,7 +60,7 @@ namespace Glib
 namespace Gio
 {
 
-  class GIOMM_API NetworkMonitor : public Glib::Interface
+  class LIBMM_GIO_SYMEXPORT NetworkMonitor : public Glib::Interface
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -176,7 +176,7 @@ namespace Gio
 namespace Glib
 {
 
-  GIOMM_API
+  LIBMM_GIO_SYMEXPORT
   auto
   wrap (GNetworkMonitor* object, bool take_copy = false) -> Glib::RefPtr<Gio::NetworkMonitor>;
 

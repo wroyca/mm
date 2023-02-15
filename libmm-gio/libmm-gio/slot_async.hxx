@@ -4,13 +4,13 @@
 #define _GIOMM_SLOT_ASYNC_H
 
 #include <gio/gio.h>
-#include <libmm-gio/gioconfig.hxx>
+#include <libmm-gio/mm-gioconfig.hxx>
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 namespace Gio
 {
-  GIOMM_API auto
+  LIBMM_GIO_SYMEXPORT auto
   SignalProxy_async_callback (GObject*, GAsyncResult* res, void* data) -> void;
 
 }

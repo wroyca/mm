@@ -16,14 +16,14 @@
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API MultiSorter_Class;
+  class LIBMM_GTK_SYMEXPORT MultiSorter_Class;
 }
 #endif
 
 namespace Gtk
 {
 
-  class GTKMM_API MultiSorter : public Sorter,
+  class LIBMM_GTK_SYMEXPORT MultiSorter : public Sorter,
                                 public Gio::ListModel,
                                 public Buildable
   {
@@ -109,7 +109,7 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkMultiSorter* object, bool take_copy = false) -> Glib::RefPtr<Gtk::MultiSorter>;
 } // namespace Glib
 

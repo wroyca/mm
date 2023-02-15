@@ -18,7 +18,7 @@ using GTlsInteractionClass = struct _GTlsInteractionClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gio
 {
-  class GIOMM_API TlsInteraction_Class;
+  class LIBMM_GIO_SYMEXPORT TlsInteraction_Class;
 }
 #endif
 
@@ -39,7 +39,7 @@ namespace Glib
 {
 
   template <>
-  class GIOMM_API Value<Gio::TlsInteractionResult>
+  class LIBMM_GIO_SYMEXPORT Value<Gio::TlsInteractionResult>
     : public Glib::Value_Enum<Gio::TlsInteractionResult>
   {
   public:
@@ -114,7 +114,7 @@ namespace Glib
 {
 
   template <>
-  class GIOMM_API Value<Gio::TlsCertificateRequestFlags>
+  class LIBMM_GIO_SYMEXPORT Value<Gio::TlsCertificateRequestFlags>
     : public Glib::Value_Flags<Gio::TlsCertificateRequestFlags>
   {
   public:
@@ -128,10 +128,10 @@ namespace Glib
 namespace Gio
 {
 
-  class GIOMM_API Cancellable;
-  class GIOMM_API TlsPassword;
+  class LIBMM_GIO_SYMEXPORT Cancellable;
+  class LIBMM_GIO_SYMEXPORT TlsPassword;
 
-  class GIOMM_API TlsInteraction : public Glib::Object
+  class LIBMM_GIO_SYMEXPORT TlsInteraction : public Glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -303,7 +303,7 @@ namespace Gio
 namespace Glib
 {
 
-  GIOMM_API
+  LIBMM_GIO_SYMEXPORT
   auto
   wrap (GTlsInteraction* object, bool take_copy = false) -> Glib::RefPtr<Gio::TlsInteraction>;
 } // namespace Glib

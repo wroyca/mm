@@ -16,16 +16,16 @@ using GUnixFDMessageClass = struct _GUnixFDMessageClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gio
 {
-  class GIOMM_API UnixFDMessage_Class;
+  class LIBMM_GIO_SYMEXPORT UnixFDMessage_Class;
 }
 #endif
 
 namespace Gio
 {
 
-  class GIOMM_API UnixFDList;
+  class LIBMM_GIO_SYMEXPORT UnixFDList;
 
-  class GIOMM_API UnixFDMessage : public SocketControlMessage
+  class LIBMM_GIO_SYMEXPORT UnixFDMessage : public SocketControlMessage
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -119,7 +119,7 @@ namespace Gio
 namespace Glib
 {
 
-  GIOMM_API
+  LIBMM_GIO_SYMEXPORT
   auto
   wrap (GUnixFDMessage* object, bool take_copy = false) -> Glib::RefPtr<Gio::UnixFDMessage>;
 } // namespace Glib

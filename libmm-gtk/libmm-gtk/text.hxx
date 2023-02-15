@@ -21,14 +21,14 @@ using GtkTextClass = struct _GtkTextClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API Text_Class;
+  class LIBMM_GTK_SYMEXPORT Text_Class;
 }
 #endif
 
 namespace Gtk
 {
 
-  class GTKMM_API Text : public Widget,
+  class LIBMM_GTK_SYMEXPORT Text : public Widget,
                          public Editable
   {
   public:
@@ -52,7 +52,7 @@ namespace Gtk
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   private:
-    friend GTKMM_API class Text_Class;
+    friend LIBMM_GTK_SYMEXPORT class Text_Class;
     static CppClassType text_class_;
 
   protected:
@@ -314,7 +314,7 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkText* object, bool take_copy = false) -> Gtk::Text*;
 } // namespace Glib
 

@@ -18,14 +18,14 @@ using GtkPageSetupUnixDialogClass = struct _GtkPageSetupUnixDialogClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API PageSetupUnixDialog_Class;
+  class LIBMM_GTK_SYMEXPORT PageSetupUnixDialog_Class;
 }
 #endif
 
 namespace Gtk
 {
 
-  class GTKMM_API PageSetupUnixDialog : public Dialog
+  class LIBMM_GTK_SYMEXPORT PageSetupUnixDialog : public Dialog
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -48,7 +48,7 @@ namespace Gtk
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   private:
-    friend GTKMM_API class PageSetupUnixDialog_Class;
+    friend LIBMM_GTK_SYMEXPORT class PageSetupUnixDialog_Class;
     static CppClassType pagesetupunixdialog_class_;
 
   protected:
@@ -114,7 +114,7 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkPageSetupUnixDialog* object, bool take_copy = false) -> Gtk::PageSetupUnixDialog*;
 } // namespace Glib
 

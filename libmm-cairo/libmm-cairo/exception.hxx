@@ -14,10 +14,10 @@ namespace Cairo
   class logic_error : public std::logic_error
   {
   public:
-    CAIROMM_API explicit logic_error (ErrorStatus status);
-    CAIROMM_API ~logic_error () noexcept override;
+    LIBMM_CAIRO_SYMEXPORT explicit logic_error (ErrorStatus status);
+    LIBMM_CAIRO_SYMEXPORT ~logic_error () noexcept override;
 
-    CAIROMM_API auto
+    LIBMM_CAIRO_SYMEXPORT auto
     get_status_code () const -> ErrorStatus;
 
   private:

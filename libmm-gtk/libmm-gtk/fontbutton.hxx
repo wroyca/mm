@@ -19,14 +19,14 @@ using GtkFontButtonClass = struct _GtkFontButtonClass;
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API FontButton_Class;
+  class LIBMM_GTK_SYMEXPORT FontButton_Class;
 }
   #endif
 
 namespace Gtk
 {
 
-  class GTKMM_API FontButton : public Widget,
+  class LIBMM_GTK_SYMEXPORT FontButton : public Widget,
                                public FontChooser
   {
   public:
@@ -50,7 +50,7 @@ namespace Gtk
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   private:
-    friend GTKMM_API class FontButton_Class;
+    friend LIBMM_GTK_SYMEXPORT class FontButton_Class;
     static CppClassType fontbutton_class_;
 
   protected:
@@ -146,7 +146,7 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkFontButton* object, bool take_copy = false) -> Gtk::FontButton*;
 } // namespace Glib
 

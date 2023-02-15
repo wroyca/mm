@@ -17,14 +17,14 @@ using GtkSwitchClass = struct _GtkSwitchClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API Switch_Class;
+  class LIBMM_GTK_SYMEXPORT Switch_Class;
 }
 #endif
 
 namespace Gtk
 {
 
-  class GTKMM_API Switch : public Widget,
+  class LIBMM_GTK_SYMEXPORT Switch : public Widget,
                            public Actionable
   {
   public:
@@ -48,7 +48,7 @@ namespace Gtk
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   private:
-    friend GTKMM_API class Switch_Class;
+    friend LIBMM_GTK_SYMEXPORT class Switch_Class;
     static CppClassType switch_class_;
 
   protected:
@@ -119,7 +119,7 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkSwitch* object, bool take_copy = false) -> Gtk::Switch*;
 } // namespace Glib
 

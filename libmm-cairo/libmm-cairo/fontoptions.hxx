@@ -15,7 +15,7 @@
 namespace Cairo
 {
 
-  class CAIROMM_API FontOptions
+  class LIBMM_CAIRO_SYMEXPORT FontOptions
   {
   public:
     enum class HintStyle

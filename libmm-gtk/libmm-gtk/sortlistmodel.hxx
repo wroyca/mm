@@ -18,14 +18,14 @@
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API SortListModel_Class;
+  class LIBMM_GTK_SYMEXPORT SortListModel_Class;
 }
 #endif
 
 namespace Gtk
 {
 
-  class GTKMM_API SortListModel : public Glib::Object,
+  class LIBMM_GTK_SYMEXPORT SortListModel : public Glib::Object,
                                   public Gio::ListModel
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -156,7 +156,7 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkSortListModel* object, bool take_copy = false) -> Glib::RefPtr<Gtk::SortListModel>;
 } // namespace Glib
 

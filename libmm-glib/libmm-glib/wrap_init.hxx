@@ -7,7 +7,7 @@
 
 namespace Glib
 {
-  GLIBMM_API auto
+  LIBMM_GLIB_SYMEXPORT auto
   wrap_init () -> void;
 
 }

@@ -24,7 +24,7 @@ extern "C"
 namespace Glib
 {
 
-  class GLIBMM_API Checksum
+  class LIBMM_GLIB_SYMEXPORT Checksum
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -128,13 +128,13 @@ namespace Glib
 namespace Glib
 {
 
-  GLIBMM_API
+  LIBMM_GLIB_SYMEXPORT
   auto
   wrap (GChecksum* object, bool take_copy = false) -> Glib::Checksum;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
   template <>
-  class GLIBMM_API Value<Glib::Checksum>
+  class LIBMM_GLIB_SYMEXPORT Value<Glib::Checksum>
     : public Glib::Value_Boxed<Glib::Checksum>
   {
   };

@@ -26,7 +26,7 @@ extern "C"
 namespace Gtk
 {
 
-  class GTKMM_API RecentInfo final
+  class LIBMM_GTK_SYMEXPORT RecentInfo final
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -186,7 +186,7 @@ namespace Glib
 {
 
   template <>
-  class GTKMM_API Value<Glib::RefPtr<Gtk::RecentInfo>> : public ValueBase_Boxed
+  class LIBMM_GTK_SYMEXPORT Value<Glib::RefPtr<Gtk::RecentInfo>> : public ValueBase_Boxed
   {
   public:
     typedef Glib::RefPtr<Gtk::RecentInfo> CppType;
@@ -205,7 +205,7 @@ namespace Glib
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkRecentInfo* object, bool take_copy = false) -> Glib::RefPtr<Gtk::RecentInfo>;
 
 } // namespace Glib

@@ -11,7 +11,7 @@
 namespace Gdk
 {
 
-  class GDKMM_API DragSurface_Class : public Glib::Interface_Class
+  class LIBMM_GDK_SYMEXPORT DragSurface_Class : public Glib::Interface_Class
   {
   public:
     using CppObjectType = DragSurface;

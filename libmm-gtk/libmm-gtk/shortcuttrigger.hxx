@@ -21,7 +21,7 @@ using GtkShortcutTriggerClass = struct _GtkShortcutTriggerClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API ShortcutTrigger_Class;
+  class LIBMM_GTK_SYMEXPORT ShortcutTrigger_Class;
 }
 #endif
 
@@ -33,7 +33,7 @@ using GtkNeverTriggerClass = struct _GtkNeverTriggerClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API NeverTrigger_Class;
+  class LIBMM_GTK_SYMEXPORT NeverTrigger_Class;
 }
 #endif
 
@@ -45,7 +45,7 @@ using GtkKeyvalTriggerClass = struct _GtkKeyvalTriggerClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API KeyvalTrigger_Class;
+  class LIBMM_GTK_SYMEXPORT KeyvalTrigger_Class;
 }
 #endif
 
@@ -57,7 +57,7 @@ using GtkMnemonicTriggerClass = struct _GtkMnemonicTriggerClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API MnemonicTrigger_Class;
+  class LIBMM_GTK_SYMEXPORT MnemonicTrigger_Class;
 }
 #endif
 
@@ -69,14 +69,14 @@ using GtkAlternativeTriggerClass = struct _GtkAlternativeTriggerClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API AlternativeTrigger_Class;
+  class LIBMM_GTK_SYMEXPORT AlternativeTrigger_Class;
 }
 #endif
 
 namespace Gtk
 {
 
-  class GTKMM_API ShortcutTrigger : public Glib::Object
+  class LIBMM_GTK_SYMEXPORT ShortcutTrigger : public Glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -161,7 +161,7 @@ namespace Gtk
   protected:
   };
 
-  class GTKMM_API NeverTrigger : public ShortcutTrigger
+  class LIBMM_GTK_SYMEXPORT NeverTrigger : public ShortcutTrigger
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -229,7 +229,7 @@ namespace Gtk
   protected:
   };
 
-  class GTKMM_API KeyvalTrigger : public ShortcutTrigger
+  class LIBMM_GTK_SYMEXPORT KeyvalTrigger : public ShortcutTrigger
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -312,7 +312,7 @@ namespace Gtk
   protected:
   };
 
-  class GTKMM_API MnemonicTrigger : public ShortcutTrigger
+  class LIBMM_GTK_SYMEXPORT MnemonicTrigger : public ShortcutTrigger
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -386,7 +386,7 @@ namespace Gtk
   protected:
   };
 
-  class GTKMM_API AlternativeTrigger : public ShortcutTrigger
+  class LIBMM_GTK_SYMEXPORT AlternativeTrigger : public ShortcutTrigger
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -476,31 +476,31 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkShortcutTrigger* object, bool take_copy = false) -> Glib::RefPtr<Gtk::ShortcutTrigger>;
 } // namespace Glib
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkNeverTrigger* object, bool take_copy = false) -> Glib::RefPtr<Gtk::NeverTrigger>;
 } // namespace Glib
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkKeyvalTrigger* object, bool take_copy = false) -> Glib::RefPtr<Gtk::KeyvalTrigger>;
 } // namespace Glib
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkMnemonicTrigger* object, bool take_copy = false) -> Glib::RefPtr<Gtk::MnemonicTrigger>;
 } // namespace Glib
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkAlternativeTrigger* object, bool take_copy = false) -> Glib::RefPtr<Gtk::AlternativeTrigger>;
 } // namespace Glib
 

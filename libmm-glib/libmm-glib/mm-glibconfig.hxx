@@ -1,4 +1,3 @@
-// SPDX-License-Identifier: LGPL-2.1-or-later
 
 #ifndef _GLIBMM_CONFIG_H
 #define _GLIBMM_CONFIG_H
@@ -11,8 +10,9 @@
 
 #define GLIBMM_SIZEOF_WCHAR_T 4
 
-#ifdef _WIN32
+#include <libmm-glib/export.hxx>
 
+#ifdef _WIN32
   #if defined(_MSC_VER)
     #define GLIBMM_MSC   1
     #define GLIBMM_WIN32 1
@@ -23,7 +23,6 @@
     #define GLIBMM_WIN32     1
     #define GLIBMM_CONFIGURE 1
   #else
-
     #error "Unknown architecture (send me gcc --dumpspecs or equiv)"
   #endif
 #else
@@ -63,21 +62,5 @@
 
 #endif
 
-#if !defined(__CYGWIN__) && defined(__MINGW32__) && !defined(GLIBMM_STATIC_LIB)
-  #define GLIBMM_DLL 1
-#endif
-
-#ifdef GLIBMM_DLL
-  #if defined(GLIBMM_BUILD)
-    #define GLIBMM_API __declspec (dllexport)
-  #elif !defined(__GNUC__)
-    #define GLIBMM_API __declspec (dllimport)
-  #else
-    #define GLIBMM_API
-  #endif
-
-#else
-  #define GLIBMM_API
-#endif
 
 #endif

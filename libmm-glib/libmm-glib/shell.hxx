@@ -21,32 +21,32 @@ namespace Glib
       FAILED
     };
 
-    GLIBMM_API
+    LIBMM_GLIB_SYMEXPORT
     ShellError (Code error_code, const Glib::ustring& error_message);
-    GLIBMM_API explicit ShellError (GError* gobject);
-    GLIBMM_API auto
+    LIBMM_GLIB_SYMEXPORT explicit ShellError (GError* gobject);
+    LIBMM_GLIB_SYMEXPORT auto
     code () const -> Code;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
   private:
-    GLIBMM_API static auto
+    LIBMM_GLIB_SYMEXPORT static auto
     throw_func (GError* gobject) -> void;
 
-    friend GLIBMM_API auto
+    friend LIBMM_GLIB_SYMEXPORT auto
     wrap_init () -> void;
 
 #endif
   };
 
-  GLIBMM_API
+  LIBMM_GLIB_SYMEXPORT
   auto
   shell_parse_argv (const std::string& command_line) -> std::vector<std::string>;
 
-  GLIBMM_API
+  LIBMM_GLIB_SYMEXPORT
   auto
   shell_quote (const std::string& unquoted_string) -> std::string;
 
-  GLIBMM_API
+  LIBMM_GLIB_SYMEXPORT
   auto
   shell_unquote (const std::string& quoted_string) -> std::string;
 

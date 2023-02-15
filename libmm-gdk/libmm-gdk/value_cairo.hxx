@@ -11,8 +11,8 @@
 
 namespace Cairo
 {
-  class GDKMM_API Region;
-  class GDKMM_API Surface;
+  class LIBMM_GDK_SYMEXPORT Region;
+  class LIBMM_GDK_SYMEXPORT Surface;
 } // namespace Cairo
 
 namespace Gdk
@@ -31,11 +31,11 @@ namespace Gdk
     }
 
     template <>
-    GDKMM_API auto
+    LIBMM_GDK_SYMEXPORT auto
     get_base_type<::Cairo::Region> () -> GType;
 
     template <>
-    GDKMM_API auto
+    LIBMM_GDK_SYMEXPORT auto
     get_base_type<::Cairo::Surface> () -> GType;
 #endif
 

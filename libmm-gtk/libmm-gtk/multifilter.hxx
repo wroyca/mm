@@ -18,7 +18,7 @@ using GtkMultiFilterClass = struct _GtkMultiFilterClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API MultiFilter_Class;
+  class LIBMM_GTK_SYMEXPORT MultiFilter_Class;
 }
 #endif
 
@@ -30,7 +30,7 @@ using GtkAnyFilterClass = struct _GtkAnyFilterClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API AnyFilter_Class;
+  class LIBMM_GTK_SYMEXPORT AnyFilter_Class;
 }
 #endif
 
@@ -42,14 +42,14 @@ using GtkEveryFilterClass = struct _GtkEveryFilterClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API EveryFilter_Class;
+  class LIBMM_GTK_SYMEXPORT EveryFilter_Class;
 }
 #endif
 
 namespace Gtk
 {
 
-  class GTKMM_API MultiFilter : public Filter,
+  class LIBMM_GTK_SYMEXPORT MultiFilter : public Filter,
                                 public Gio::ListModel,
                                 public Buildable
   {
@@ -128,7 +128,7 @@ namespace Gtk
   protected:
   };
 
-  class GTKMM_API AnyFilter : public MultiFilter
+  class LIBMM_GTK_SYMEXPORT AnyFilter : public MultiFilter
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -196,7 +196,7 @@ namespace Gtk
   protected:
   };
 
-  class GTKMM_API EveryFilter : public MultiFilter
+  class LIBMM_GTK_SYMEXPORT EveryFilter : public MultiFilter
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -268,19 +268,19 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkMultiFilter* object, bool take_copy = false) -> Glib::RefPtr<Gtk::MultiFilter>;
 } // namespace Glib
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkAnyFilter* object, bool take_copy = false) -> Glib::RefPtr<Gtk::AnyFilter>;
 } // namespace Glib
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkEveryFilter* object, bool take_copy = false) -> Glib::RefPtr<Gtk::EveryFilter>;
 } // namespace Glib
 

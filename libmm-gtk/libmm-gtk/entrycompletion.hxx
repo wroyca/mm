@@ -20,16 +20,16 @@ using GtkEntryCompletionClass = struct _GtkEntryCompletionClass;
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API EntryCompletion_Class;
+  class LIBMM_GTK_SYMEXPORT EntryCompletion_Class;
 }
   #endif
 
 namespace Gtk
 {
-  class GTKMM_API CellArea;
-  class GTKMM_API Entry;
+  class LIBMM_GTK_SYMEXPORT CellArea;
+  class LIBMM_GTK_SYMEXPORT Entry;
 
-  class GTKMM_API EntryCompletion : public Glib::Object,
+  class LIBMM_GTK_SYMEXPORT EntryCompletion : public Glib::Object,
                                     public Gtk::CellLayout,
                                     public Gtk::Buildable
   {
@@ -252,7 +252,7 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkEntryCompletion* object, bool take_copy = false) -> Glib::RefPtr<Gtk::EntryCompletion>;
 } // namespace Glib
 

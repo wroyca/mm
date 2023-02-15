@@ -3,7 +3,7 @@
 #ifndef _GIOMM_SETTINGS_H
 #define _GIOMM_SETTINGS_H
 
-#include <libmm-gio/gioconfig.hxx>
+#include <libmm-gio/mm-gioconfig.hxx>
 
 #include <libmm-glib/ustring.hxx>
 #include <sigc++/sigc++.h>
@@ -20,15 +20,15 @@ using GSettingsClass = struct _GSettingsClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gio
 {
-  class GIOMM_API Settings_Class;
+  class LIBMM_GIO_SYMEXPORT Settings_Class;
 }
 #endif
 
 namespace Gio
 {
-  class GIOMM_API SettingsSchema;
+  class LIBMM_GIO_SYMEXPORT SettingsSchema;
 
-  class GIOMM_API Settings : public Glib::Object
+  class LIBMM_GIO_SYMEXPORT Settings : public Glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -336,7 +336,7 @@ namespace Glib
 {
 
   template <>
-  class GIOMM_API Value<Gio::Settings::BindFlags>
+  class LIBMM_GIO_SYMEXPORT Value<Gio::Settings::BindFlags>
     : public Glib::Value_Flags<Gio::Settings::BindFlags>
   {
   public:
@@ -350,7 +350,7 @@ namespace Glib
 namespace Glib
 {
 
-  GIOMM_API
+  LIBMM_GIO_SYMEXPORT
   auto
   wrap (GSettings* object, bool take_copy = false) -> Glib::RefPtr<Gio::Settings>;
 } // namespace Glib

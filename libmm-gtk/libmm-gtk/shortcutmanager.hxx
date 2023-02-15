@@ -25,15 +25,15 @@ using GtkShortcutManagerClass = struct _GtkShortcutManagerClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API ShortcutManager_Class;
+  class LIBMM_GTK_SYMEXPORT ShortcutManager_Class;
 }
 #endif
 
 namespace Gtk
 {
-  class GTKMM_API ShortcutController;
+  class LIBMM_GTK_SYMEXPORT ShortcutController;
 
-  class GTKMM_API ShortcutManager : public Glib::Interface
+  class LIBMM_GTK_SYMEXPORT ShortcutManager : public Glib::Interface
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -115,7 +115,7 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkShortcutManager* object, bool take_copy = false) -> Glib::RefPtr<Gtk::ShortcutManager>;
 
 } // namespace Glib

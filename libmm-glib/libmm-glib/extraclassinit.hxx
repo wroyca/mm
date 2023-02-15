@@ -8,7 +8,7 @@
 namespace Glib
 {
 
-  class GLIBMM_API ExtraClassInit : virtual public ObjectBase
+  class LIBMM_GLIB_SYMEXPORT ExtraClassInit : virtual public ObjectBase
   {
   protected:
     explicit ExtraClassInit (GClassInitFunc class_init_func,

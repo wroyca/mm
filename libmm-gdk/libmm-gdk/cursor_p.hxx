@@ -10,7 +10,7 @@
 namespace Gdk
 {
 
-  class GDKMM_API Cursor_Class : public Glib::Class
+  class LIBMM_GDK_SYMEXPORT Cursor_Class : public Glib::Class
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

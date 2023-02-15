@@ -18,13 +18,13 @@ namespace Glib
   {
   #endif
 
-    GLIBMM_API auto
+    LIBMM_GLIB_SYMEXPORT auto
     custom_get_property_callback (GObject* object,
                                   unsigned int property_id,
                                   GValue* value,
                                   GParamSpec* param_spec) -> void;
 
-    GLIBMM_API auto
+    LIBMM_GLIB_SYMEXPORT auto
     custom_set_property_callback (GObject* object,
                                   unsigned int property_id,
                                   const GValue* value,
@@ -36,7 +36,7 @@ namespace Glib
 
 #endif
 
-  class GLIBMM_API PropertyBase
+  class LIBMM_GLIB_SYMEXPORT PropertyBase
   {
   public:
     PropertyBase (const PropertyBase&) = delete;

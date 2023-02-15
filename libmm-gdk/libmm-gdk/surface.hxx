@@ -24,21 +24,21 @@
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gdk
 {
-  class GDKMM_API Surface_Class;
+  class LIBMM_GDK_SYMEXPORT Surface_Class;
 }
 #endif
 
 namespace Gdk
 {
 
-  class GDKMM_API ContentProvider;
-  class GDKMM_API Cursor;
-  class GDKMM_API CairoContext;
-  class GDKMM_API GLContext;
-  class GDKMM_API FrameClock;
-  class GDKMM_API Monitor;
+  class LIBMM_GDK_SYMEXPORT ContentProvider;
+  class LIBMM_GDK_SYMEXPORT Cursor;
+  class LIBMM_GDK_SYMEXPORT CairoContext;
+  class LIBMM_GDK_SYMEXPORT GLContext;
+  class LIBMM_GDK_SYMEXPORT FrameClock;
+  class LIBMM_GDK_SYMEXPORT Monitor;
 
-  class GDKMM_API Surface : public Glib::Object
+  class LIBMM_GDK_SYMEXPORT Surface : public Glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -248,7 +248,7 @@ namespace Gdk
 
 namespace Glib
 {
-  GDKMM_API auto
+  LIBMM_GDK_SYMEXPORT auto
   wrap (GdkSurface* object, bool take_copy = false) -> Glib::RefPtr<Gdk::Surface>;
 } // namespace Glib
 

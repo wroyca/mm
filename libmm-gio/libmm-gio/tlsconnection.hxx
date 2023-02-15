@@ -3,7 +3,7 @@
 #ifndef _GIOMM_TLSCONNECTION_H
 #define _GIOMM_TLSCONNECTION_H
 
-#include <libmm-gio/gioconfig.hxx>
+#include <libmm-gio/mm-gioconfig.hxx>
 
 #include <libmm-glib/ustring.hxx>
 #include <sigc++/sigc++.h>
@@ -20,7 +20,7 @@ using GTlsConnectionClass = struct _GTlsConnectionClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gio
 {
-  class GIOMM_API TlsConnection_Class;
+  class LIBMM_GIO_SYMEXPORT TlsConnection_Class;
 }
 #endif
 
@@ -46,7 +46,7 @@ namespace Glib
 {
 
   template <>
-  class GIOMM_API Value<Gio::TlsProtocolVersion>
+  class LIBMM_GIO_SYMEXPORT Value<Gio::TlsProtocolVersion>
     : public Glib::Value_Enum<Gio::TlsProtocolVersion>
   {
   public:
@@ -60,11 +60,11 @@ namespace Glib
 namespace Gio
 {
 
-  class GIOMM_API Cancellable;
-  class GIOMM_API TlsDatabase;
-  class GIOMM_API TlsInteraction;
+  class LIBMM_GIO_SYMEXPORT Cancellable;
+  class LIBMM_GIO_SYMEXPORT TlsDatabase;
+  class LIBMM_GIO_SYMEXPORT TlsInteraction;
 
-  class GIOMM_API TlsConnection : public IOStream
+  class LIBMM_GIO_SYMEXPORT TlsConnection : public IOStream
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -275,7 +275,7 @@ namespace Gio
 namespace Glib
 {
 
-  GIOMM_API
+  LIBMM_GIO_SYMEXPORT
   auto
   wrap (GTlsConnection* object, bool take_copy = false) -> Glib::RefPtr<Gio::TlsConnection>;
 } // namespace Glib

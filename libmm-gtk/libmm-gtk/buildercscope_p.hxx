@@ -10,7 +10,7 @@
 namespace Gtk
 {
 
-  class GTKMM_API BuilderCScope_Class : public Glib::Class
+  class LIBMM_GTK_SYMEXPORT BuilderCScope_Class : public Glib::Class
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

@@ -17,7 +17,7 @@
 namespace Gdk
 {
 
-  class GDKMM_API ContentFormats final
+  class LIBMM_GDK_SYMEXPORT ContentFormats final
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -102,7 +102,7 @@ namespace Glib
 {
 
   template <>
-  class GDKMM_API Value<Glib::RefPtr<Gdk::ContentFormats>>
+  class LIBMM_GDK_SYMEXPORT Value<Glib::RefPtr<Gdk::ContentFormats>>
     : public ValueBase_Boxed
   {
   public:
@@ -122,7 +122,7 @@ namespace Glib
 
 namespace Glib
 {
-  GDKMM_API auto
+  LIBMM_GDK_SYMEXPORT auto
   wrap (GdkContentFormats* object, bool take_copy = false) -> Glib::RefPtr<Gdk::ContentFormats>;
 
 } // namespace Glib

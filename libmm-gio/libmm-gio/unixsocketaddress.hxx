@@ -3,7 +3,7 @@
 #ifndef _GIOMM_UNIXSOCKETADDRESS_H
 #define _GIOMM_UNIXSOCKETADDRESS_H
 
-#include <libmm-gio/gioconfig.hxx>
+#include <libmm-gio/mm-gioconfig.hxx>
 
 #include <libmm-glib/ustring.hxx>
 #include <sigc++/sigc++.h>
@@ -18,19 +18,19 @@ using GUnixSocketAddressClass = struct _GUnixSocketAddressClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gio
 {
-  class GIOMM_API UnixSocketAddress_Class;
+  class LIBMM_GIO_SYMEXPORT UnixSocketAddress_Class;
 }
 #endif
 
 namespace Glib
 {
-  class GLIBMM_API ByteArray;
+  class LIBMM_GLIB_SYMEXPORT ByteArray;
 }
 
 namespace Gio
 {
 
-  class GIOMM_API UnixSocketAddress : public SocketAddress
+  class LIBMM_GIO_SYMEXPORT UnixSocketAddress : public SocketAddress
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -138,7 +138,7 @@ namespace Glib
 {
 
   template <>
-  class GIOMM_API Value<Gio::UnixSocketAddress::Type>
+  class LIBMM_GIO_SYMEXPORT Value<Gio::UnixSocketAddress::Type>
     : public Glib::Value_Enum<Gio::UnixSocketAddress::Type>
   {
   public:
@@ -152,7 +152,7 @@ namespace Glib
 namespace Glib
 {
 
-  GIOMM_API
+  LIBMM_GIO_SYMEXPORT
   auto
   wrap (GUnixSocketAddress* object, bool take_copy = false) -> Glib::RefPtr<Gio::UnixSocketAddress>;
 } // namespace Glib

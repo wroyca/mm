@@ -18,15 +18,15 @@ using GtkNativeDialogClass = struct _GtkNativeDialogClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API NativeDialog_Class;
+  class LIBMM_GTK_SYMEXPORT NativeDialog_Class;
 }
 #endif
 
 namespace Gtk
 {
-  class GTKMM_API Window;
+  class LIBMM_GTK_SYMEXPORT Window;
 
-  class GTKMM_API NativeDialog : public Glib::Object
+  class LIBMM_GTK_SYMEXPORT NativeDialog : public Glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -157,7 +157,7 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkNativeDialog* object, bool take_copy = false) -> Glib::RefPtr<Gtk::NativeDialog>;
 } // namespace Glib
 

@@ -26,11 +26,11 @@ namespace Glib
 {
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-  class GLIBMM_API GSigConnectionNode;
-  class GLIBMM_API Interface_Class;
+  class LIBMM_GLIB_SYMEXPORT GSigConnectionNode;
+  class LIBMM_GLIB_SYMEXPORT Interface_Class;
 #endif
 
-  class GLIBMM_API ObjectBase : virtual public sigc::trackable
+  class LIBMM_GLIB_SYMEXPORT ObjectBase : virtual public sigc::trackable
   {
   public:
     ObjectBase (const ObjectBase&) = delete;
@@ -229,7 +229,7 @@ namespace Glib
 
 #endif
 
-  GLIBMM_API
+  LIBMM_GLIB_SYMEXPORT
   auto
   _gobject_cppinstance_already_deleted (GObject* gobject) -> bool;
 

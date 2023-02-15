@@ -17,18 +17,18 @@ using GDBusInterfaceSkeletonClass = struct _GDBusInterfaceSkeletonClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gio::DBus
 {
-  class GIOMM_API InterfaceSkeleton_Class;
+  class LIBMM_GIO_SYMEXPORT InterfaceSkeleton_Class;
 }
 #endif
 
 namespace Gio::DBus
 {
 
-  class GIOMM_API InterfaceInfo;
-  class GIOMM_API Connection;
-  class GIOMM_API MethodInvocation;
+  class LIBMM_GIO_SYMEXPORT InterfaceInfo;
+  class LIBMM_GIO_SYMEXPORT Connection;
+  class LIBMM_GIO_SYMEXPORT MethodInvocation;
 
-  class GIOMM_API InterfaceSkeleton : public Glib::Object,
+  class LIBMM_GIO_SYMEXPORT InterfaceSkeleton : public Glib::Object,
                                       public Interface
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -218,7 +218,7 @@ namespace Glib
 {
 
   template <>
-  class GIOMM_API Value<Gio::DBus::InterfaceSkeleton::Flags>
+  class LIBMM_GIO_SYMEXPORT Value<Gio::DBus::InterfaceSkeleton::Flags>
     : public Glib::Value_Flags<Gio::DBus::InterfaceSkeleton::Flags>
   {
   public:
@@ -232,7 +232,7 @@ namespace Glib
 namespace Glib
 {
 
-  GIOMM_API
+  LIBMM_GIO_SYMEXPORT
   auto
   wrap (GDBusInterfaceSkeleton* object, bool take_copy = false) -> Glib::RefPtr<Gio::DBus::InterfaceSkeleton>;
 } // namespace Glib

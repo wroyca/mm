@@ -22,7 +22,7 @@ using GtkPrintOperationClass = struct _GtkPrintOperationClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API PrintOperation_Class;
+  class LIBMM_GTK_SYMEXPORT PrintOperation_Class;
 }
 #endif
 
@@ -49,7 +49,7 @@ namespace Glib
 {
 
   template <>
-  class GTKMM_API Value<Gtk::PrintStatus>
+  class LIBMM_GTK_SYMEXPORT Value<Gtk::PrintStatus>
     : public Glib::Value_Enum<Gtk::PrintStatus>
   {
   public:
@@ -74,18 +74,18 @@ namespace Gtk
       INVALID_FILE
     };
 
-    GTKMM_API
+    LIBMM_GTK_SYMEXPORT
     PrintError (Code error_code, const Glib::ustring& error_message);
-    GTKMM_API explicit PrintError (GError* gobject);
-    GTKMM_API auto
+    LIBMM_GTK_SYMEXPORT explicit PrintError (GError* gobject);
+    LIBMM_GTK_SYMEXPORT auto
     code () const -> Code;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
   private:
-    GTKMM_API static auto
+    LIBMM_GTK_SYMEXPORT static auto
     throw_func (GError* gobject) -> void;
 
-    friend GTKMM_API auto
+    friend LIBMM_GTK_SYMEXPORT auto
     wrap_init () -> void;
 
 #endif
@@ -98,7 +98,7 @@ namespace Glib
 {
 
   template <>
-  class GTKMM_API Value<Gtk::PrintError::Code>
+  class LIBMM_GTK_SYMEXPORT Value<Gtk::PrintError::Code>
     : public Glib::Value_Enum<Gtk::PrintError::Code>
   {
   public:
@@ -112,7 +112,7 @@ namespace Glib
 namespace Gtk
 {
 
-  class GTKMM_API PrintOperation : public Glib::Object,
+  class LIBMM_GTK_SYMEXPORT PrintOperation : public Glib::Object,
                                    public PrintOperationPreview
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -484,27 +484,27 @@ namespace Gtk
         -> void;
   };
 
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   run_page_setup_dialog (
       Window& parent,
       const Glib::RefPtr<const PageSetup>& page_setup,
       const Glib::RefPtr<const PrintSettings>& print_settings) -> Glib::RefPtr<PageSetup>;
 
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   run_page_setup_dialog (
       Window& parent,
       const Glib::RefPtr<const PrintSettings>& print_settings) -> Glib::RefPtr<PageSetup>;
 
   typedef sigc::slot<void (const Glib::RefPtr<PageSetup>&)> SlotPrintSetupDone;
 
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   run_page_setup_dialog_async (
       Window& parent,
       const Glib::RefPtr<const PageSetup>& page_setup,
       const Glib::RefPtr<const PrintSettings>& print_settings,
       const SlotPrintSetupDone& slot) -> void;
 
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   run_page_setup_dialog_async (
       Window& parent,
       const Glib::RefPtr<const PrintSettings>& print_settings,
@@ -517,7 +517,7 @@ namespace Glib
 {
 
   template <>
-  class GTKMM_API Value<Gtk::PrintOperation::Result>
+  class LIBMM_GTK_SYMEXPORT Value<Gtk::PrintOperation::Result>
     : public Glib::Value_Enum<Gtk::PrintOperation::Result>
   {
   public:
@@ -533,7 +533,7 @@ namespace Glib
 {
 
   template <>
-  class GTKMM_API Value<Gtk::PrintOperation::Action>
+  class LIBMM_GTK_SYMEXPORT Value<Gtk::PrintOperation::Action>
     : public Glib::Value_Enum<Gtk::PrintOperation::Action>
   {
   public:
@@ -546,7 +546,7 @@ namespace Glib
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkPrintOperation* object, bool take_copy = false) -> Glib::RefPtr<Gtk::PrintOperation>;
 } // namespace Glib
 

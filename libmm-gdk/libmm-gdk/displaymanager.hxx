@@ -19,14 +19,14 @@ using GdkDisplayManagerClass = struct _GdkDisplayManagerClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gdk
 {
-  class GDKMM_API DisplayManager_Class;
+  class LIBMM_GDK_SYMEXPORT DisplayManager_Class;
 }
 #endif
 
 namespace Gdk
 {
 
-  class GDKMM_API DisplayManager : public Glib::Object
+  class LIBMM_GDK_SYMEXPORT DisplayManager : public Glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -122,7 +122,7 @@ namespace Gdk
 
 namespace Glib
 {
-  GDKMM_API auto
+  LIBMM_GDK_SYMEXPORT auto
   wrap (GdkDisplayManager* object, bool take_copy = false) -> Glib::RefPtr<Gdk::DisplayManager>;
 } // namespace Glib
 

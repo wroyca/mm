@@ -10,7 +10,7 @@
 namespace Pango
 {
 
-  class PANGOMM_API CairoFontMapImpl : public CairoFontMap,
+  class LIBMM_PANGO_SYMEXPORT CairoFontMapImpl : public CairoFontMap,
                                        public FontMap
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

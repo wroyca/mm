@@ -24,7 +24,7 @@ namespace Gtk
 namespace Gtk
 {
 
-  class GTKMM_API ProgressBar : public Widget,
+  class LIBMM_GTK_SYMEXPORT ProgressBar : public Widget,
                                 public Orientable
   {
   public:

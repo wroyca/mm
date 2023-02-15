@@ -19,14 +19,14 @@ using GtkCellRendererComboClass = struct _GtkCellRendererComboClass;
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API CellRendererCombo_Class;
+  class LIBMM_GTK_SYMEXPORT CellRendererCombo_Class;
 }
   #endif
 
 namespace Gtk
 {
 
-  class GTKMM_API CellRendererCombo : public CellRendererText
+  class LIBMM_GTK_SYMEXPORT CellRendererCombo : public CellRendererText
   {
   public:
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -49,7 +49,7 @@ namespace Gtk
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   private:
-    friend GTKMM_API class CellRendererCombo_Class;
+    friend LIBMM_GTK_SYMEXPORT class CellRendererCombo_Class;
     static CppClassType cellrenderercombo_class_;
 
   protected:
@@ -119,7 +119,7 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkCellRendererCombo* object, bool take_copy = false) -> Gtk::CellRendererCombo*;
 } // namespace Glib
 

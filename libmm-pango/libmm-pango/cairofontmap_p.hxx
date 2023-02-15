@@ -10,7 +10,7 @@
 namespace Pango
 {
 
-  class PANGOMM_API CairoFontMap_Class : public Glib::Interface_Class
+  class LIBMM_PANGO_SYMEXPORT CairoFontMap_Class : public Glib::Interface_Class
   {
   public:
     using CppObjectType = CairoFontMap;

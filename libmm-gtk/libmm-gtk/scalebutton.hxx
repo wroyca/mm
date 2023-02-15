@@ -23,14 +23,14 @@ using GtkScaleButtonClass = struct _GtkScaleButtonClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API ScaleButton_Class;
+  class LIBMM_GTK_SYMEXPORT ScaleButton_Class;
 }
 #endif
 
 namespace Gtk
 {
 
-  class GTKMM_API ScaleButton : public Widget,
+  class LIBMM_GTK_SYMEXPORT ScaleButton : public Widget,
                                 public Orientable
   {
   public:
@@ -54,7 +54,7 @@ namespace Gtk
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   private:
-    friend GTKMM_API class ScaleButton_Class;
+    friend LIBMM_GTK_SYMEXPORT class ScaleButton_Class;
     static CppClassType scalebutton_class_;
 
   protected:
@@ -164,7 +164,7 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkScaleButton* object, bool take_copy = false) -> Gtk::ScaleButton*;
 } // namespace Glib
 

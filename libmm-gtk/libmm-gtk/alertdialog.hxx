@@ -20,7 +20,7 @@
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API AlertDialog_Class;
+  class LIBMM_GTK_SYMEXPORT AlertDialog_Class;
 }
 #endif
 
@@ -28,7 +28,7 @@ namespace Gtk
 {
   class Window;
 
-  class GTKMM_API AlertDialog : public Glib::Object
+  class LIBMM_GTK_SYMEXPORT AlertDialog : public Glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -198,7 +198,7 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkAlertDialog* object, bool take_copy = false) -> Glib::RefPtr<Gtk::AlertDialog>;
 } // namespace Glib
 

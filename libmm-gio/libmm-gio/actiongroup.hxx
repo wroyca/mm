@@ -3,7 +3,7 @@
 #ifndef _GIOMM_ACTIONGROUP_H
 #define _GIOMM_ACTIONGROUP_H
 
-#include <libmm-gio/gioconfig.hxx>
+#include <libmm-gio/mm-gioconfig.hxx>
 
 #include <libmm-glib/ustring.hxx>
 #include <sigc++/sigc++.h>
@@ -24,23 +24,23 @@ using GActionGroupClass = struct _GActionGroupClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gio
 {
-  class GIOMM_API ActionGroup_Class;
+  class LIBMM_GIO_SYMEXPORT ActionGroup_Class;
 }
 #endif
 
 namespace Glib
 {
 
-  class GIOMM_API VariantBase;
-  class GIOMM_API VariantContainerBase;
-  class GIOMM_API VariantType;
+  class LIBMM_GIO_SYMEXPORT VariantBase;
+  class LIBMM_GIO_SYMEXPORT VariantContainerBase;
+  class LIBMM_GIO_SYMEXPORT VariantType;
 
 } // namespace Glib
 
 namespace Gio
 {
 
-  class GIOMM_API ActionGroup : public Glib::Interface
+  class LIBMM_GIO_SYMEXPORT ActionGroup : public Glib::Interface
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -331,7 +331,7 @@ namespace Gio
 namespace Glib
 {
 
-  GIOMM_API
+  LIBMM_GIO_SYMEXPORT
   auto
   wrap (GActionGroup* object, bool take_copy = false) -> Glib::RefPtr<Gio::ActionGroup>;
 

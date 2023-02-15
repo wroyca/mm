@@ -18,14 +18,14 @@ using GtkAdjustmentClass = struct _GtkAdjustmentClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API Adjustment_Class;
+  class LIBMM_GTK_SYMEXPORT Adjustment_Class;
 }
 #endif
 
 namespace Gtk
 {
 
-  class GTKMM_API Adjustment : public Glib::Object
+  class LIBMM_GTK_SYMEXPORT Adjustment : public Glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -82,9 +82,9 @@ namespace Gtk
 
   private:
   public:
-    friend GTKMM_API class Range;
-    friend GTKMM_API class HScrollbar;
-    friend GTKMM_API class VScrollbar;
+    friend LIBMM_GTK_SYMEXPORT class Range;
+    friend LIBMM_GTK_SYMEXPORT class HScrollbar;
+    friend LIBMM_GTK_SYMEXPORT class VScrollbar;
 
   protected:
     Adjustment (double value,
@@ -209,7 +209,7 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkAdjustment* object, bool take_copy = false) -> Glib::RefPtr<Gtk::Adjustment>;
 } // namespace Glib
 

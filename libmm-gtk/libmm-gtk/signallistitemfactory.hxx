@@ -17,14 +17,14 @@ using GtkSignalListItemFactoryClass = struct _GtkSignalListItemFactoryClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API SignalListItemFactory_Class;
+  class LIBMM_GTK_SYMEXPORT SignalListItemFactory_Class;
 }
 #endif
 
 namespace Gtk
 {
 
-  class GTKMM_API SignalListItemFactory : public ListItemFactory
+  class LIBMM_GTK_SYMEXPORT SignalListItemFactory : public ListItemFactory
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -110,7 +110,7 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkSignalListItemFactory* object, bool take_copy = false) -> Glib::RefPtr<Gtk::SignalListItemFactory>;
 } // namespace Glib
 

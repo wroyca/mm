@@ -14,7 +14,7 @@ namespace Gio
   namespace DBus
   {
 
-    class GIOMM_API ObjectManager_Class : public Glib::Interface_Class
+    class LIBMM_GIO_SYMEXPORT ObjectManager_Class : public Glib::Interface_Class
     {
     public:
       using CppObjectType = ObjectManager;

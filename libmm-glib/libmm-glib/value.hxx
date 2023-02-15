@@ -16,7 +16,7 @@ namespace Glib
   class ObjectBase;
   class Object;
 
-  class GLIBMM_API ValueBase
+  class LIBMM_GLIB_SYMEXPORT ValueBase
   {
   public:
     ValueBase ();
@@ -52,7 +52,7 @@ namespace Glib
     GValue gobject_;
   };
 
-  class GLIBMM_API ValueBase_Boxed : public ValueBase
+  class LIBMM_GLIB_SYMEXPORT ValueBase_Boxed : public ValueBase
   {
   public:
     static auto
@@ -73,7 +73,7 @@ namespace Glib
     get_boxed () const -> void*;
   };
 
-  class GLIBMM_API ValueBase_Object : public ValueBase
+  class LIBMM_GLIB_SYMEXPORT ValueBase_Object : public ValueBase
   {
   public:
     static auto
@@ -96,7 +96,7 @@ namespace Glib
     get_object_copy () const -> Glib::RefPtr<Glib::ObjectBase>;
   };
 
-  class GLIBMM_API ValueBase_Enum : public ValueBase
+  class LIBMM_GLIB_SYMEXPORT ValueBase_Enum : public ValueBase
   {
   public:
     static auto
@@ -117,7 +117,7 @@ namespace Glib
     get_enum () const -> int;
   };
 
-  class GLIBMM_API ValueBase_Flags : public ValueBase
+  class LIBMM_GLIB_SYMEXPORT ValueBase_Flags : public ValueBase
   {
   public:
     static auto
@@ -138,7 +138,7 @@ namespace Glib
     get_flags () const -> unsigned int;
   };
 
-  class GLIBMM_API ValueBase_String : public ValueBase
+  class LIBMM_GLIB_SYMEXPORT ValueBase_String : public ValueBase
   {
   public:
     static auto
@@ -159,7 +159,7 @@ namespace Glib
     get_cstring () const -> const char*;
   };
 
-  class GLIBMM_API ValueBase_Variant : public ValueBase
+  class LIBMM_GLIB_SYMEXPORT ValueBase_Variant : public ValueBase
   {
   public:
     static auto
@@ -304,7 +304,7 @@ namespace Glib
 {
 
   template <>
-  class GLIBMM_API Value<std::string> : public ValueBase_String
+  class LIBMM_GLIB_SYMEXPORT Value<std::string> : public ValueBase_String
   {
   public:
     using CppType = std::string;
@@ -320,7 +320,7 @@ namespace Glib
   };
 
   template <>
-  class GLIBMM_API Value<Glib::ustring> : public ValueBase_String
+  class LIBMM_GLIB_SYMEXPORT Value<Glib::ustring> : public ValueBase_String
   {
   public:
     using CppType = Glib::ustring;
@@ -336,7 +336,7 @@ namespace Glib
   };
 
   template <>
-  class GLIBMM_API Value<std::vector<std::string>> : public ValueBase_Boxed
+  class LIBMM_GLIB_SYMEXPORT Value<std::vector<std::string>> : public ValueBase_Boxed
   {
   public:
     using CppType = std::vector<std::string>;
@@ -351,7 +351,7 @@ namespace Glib
   };
 
   template <>
-  class GLIBMM_API Value<std::vector<Glib::ustring>> : public ValueBase_Boxed
+  class LIBMM_GLIB_SYMEXPORT Value<std::vector<Glib::ustring>> : public ValueBase_Boxed
   {
   public:
     using CppType = std::vector<Glib::ustring>;

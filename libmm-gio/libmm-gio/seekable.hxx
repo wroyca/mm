@@ -22,14 +22,14 @@ using GSeekableClass = struct _GSeekableClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gio
 {
-  class GIOMM_API Seekable_Class;
+  class LIBMM_GIO_SYMEXPORT Seekable_Class;
 }
 #endif
 
 namespace Gio
 {
 
-  class GIOMM_API Seekable : public Glib::Interface
+  class LIBMM_GIO_SYMEXPORT Seekable : public Glib::Interface
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -128,7 +128,7 @@ namespace Gio
 namespace Glib
 {
 
-  GIOMM_API
+  LIBMM_GIO_SYMEXPORT
   auto
   wrap (GSeekable* object, bool take_copy = false) -> Glib::RefPtr<Gio::Seekable>;
 

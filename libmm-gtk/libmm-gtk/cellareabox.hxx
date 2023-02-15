@@ -19,14 +19,14 @@ using GtkCellAreaBoxClass = struct _GtkCellAreaBoxClass;
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API CellAreaBox_Class;
+  class LIBMM_GTK_SYMEXPORT CellAreaBox_Class;
 }
   #endif
 
 namespace Gtk
 {
 
-  class GTKMM_API CellAreaBox : public Gtk::CellArea,
+  class LIBMM_GTK_SYMEXPORT CellAreaBox : public Gtk::CellArea,
                                 public Orientable
   {
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -123,7 +123,7 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkCellAreaBox* object, bool take_copy = false) -> Glib::RefPtr<Gtk::CellAreaBox>;
 } // namespace Glib
 

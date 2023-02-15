@@ -26,13 +26,13 @@ namespace Glib
     typedef void (*ValueCopyFunc) (const GValue*, GValue*);
   }
 
-  GLIBMM_API auto
+  LIBMM_GLIB_SYMEXPORT auto
   custom_boxed_type_register (const char* type_name,
                               ValueInitFunc init_func,
                               ValueFreeFunc free_func,
                               ValueCopyFunc copy_func) -> GType;
 
-  GLIBMM_API auto
+  LIBMM_GLIB_SYMEXPORT auto
   custom_pointer_type_register (const char* type_name) -> GType;
 
 #endif
@@ -113,12 +113,12 @@ namespace Glib
   };
 
   template <class T, typename Enable>
-  class GLIBMM_API Value<T*, Enable> : public Value_Pointer<T*>
+  class LIBMM_GLIB_SYMEXPORT Value<T*, Enable> : public Value_Pointer<T*>
   {
   };
 
   template <class T, typename Enable>
-  class GLIBMM_API Value<const T*, Enable> : public Value_Pointer<const T*>
+  class LIBMM_GLIB_SYMEXPORT Value<const T*, Enable> : public Value_Pointer<const T*>
   {
   };
 

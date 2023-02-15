@@ -21,16 +21,16 @@ using PangoFontMapClass = struct _PangoFontMapClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Pango
 {
-  class PANGOMM_API FontMap_Class;
+  class LIBMM_PANGO_SYMEXPORT FontMap_Class;
 }
 #endif
 
 namespace Pango
 {
 
-  class PANGOMM_API Context;
+  class LIBMM_PANGO_SYMEXPORT Context;
 
-  class PANGOMM_API FontMap : public Glib::Object,
+  class LIBMM_PANGO_SYMEXPORT FontMap : public Glib::Object,
                               public Gio::ListModel
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -123,7 +123,7 @@ namespace Pango
 namespace Glib
 {
 
-  PANGOMM_API
+  LIBMM_PANGO_SYMEXPORT
   auto
   wrap (PangoFontMap* object, bool take_copy = false) -> Glib::RefPtr<Pango::FontMap>;
 } // namespace Glib

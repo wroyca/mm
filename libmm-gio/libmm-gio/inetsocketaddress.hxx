@@ -18,14 +18,14 @@ using GInetSocketAddressClass = struct _GInetSocketAddressClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gio
 {
-  class GIOMM_API InetSocketAddress_Class;
+  class LIBMM_GIO_SYMEXPORT InetSocketAddress_Class;
 }
 #endif
 
 namespace Gio
 {
 
-  class GIOMM_API InetSocketAddress : public SocketAddress
+  class LIBMM_GIO_SYMEXPORT InetSocketAddress : public SocketAddress
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -128,7 +128,7 @@ namespace Gio
 namespace Glib
 {
 
-  GIOMM_API
+  LIBMM_GIO_SYMEXPORT
   auto
   wrap (GInetSocketAddress* object, bool take_copy = false) -> Glib::RefPtr<Gio::InetSocketAddress>;
 } // namespace Glib

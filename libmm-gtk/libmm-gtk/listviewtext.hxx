@@ -13,7 +13,7 @@
 namespace Gtk
 {
 
-  class GTKMM_API ListViewText : public Gtk::TreeView
+  class LIBMM_GTK_SYMEXPORT ListViewText : public Gtk::TreeView
   {
   public:
     ListViewText (guint columns_count,

@@ -25,14 +25,14 @@ using GtkConstraintTargetClass = struct _GtkConstraintTargetClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API ConstraintTarget_Class;
+  class LIBMM_GTK_SYMEXPORT ConstraintTarget_Class;
 }
 #endif
 
 namespace Gtk
 {
 
-  class GTKMM_API ConstraintTarget : public Glib::Interface
+  class LIBMM_GTK_SYMEXPORT ConstraintTarget : public Glib::Interface
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -105,7 +105,7 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkConstraintTarget* object, bool take_copy = false) -> Glib::RefPtr<Gtk::ConstraintTarget>;
 
 } // namespace Glib

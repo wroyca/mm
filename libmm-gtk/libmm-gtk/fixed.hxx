@@ -16,14 +16,14 @@ using GtkFixedClass = struct _GtkFixedClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API Fixed_Class;
+  class LIBMM_GTK_SYMEXPORT Fixed_Class;
 }
 #endif
 
 namespace Gtk
 {
 
-  class GTKMM_API Fixed : public Widget
+  class LIBMM_GTK_SYMEXPORT Fixed : public Widget
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -46,7 +46,7 @@ namespace Gtk
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   private:
-    friend GTKMM_API class Fixed_Class;
+    friend LIBMM_GTK_SYMEXPORT class Fixed_Class;
     static CppClassType fixed_class_;
 
   protected:
@@ -102,7 +102,7 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkFixed* object, bool take_copy = false) -> Gtk::Fixed*;
 } // namespace Glib
 

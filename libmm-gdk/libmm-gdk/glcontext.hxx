@@ -19,7 +19,7 @@ using GdkGLContextClass = struct _GdkGLContextClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gdk
 {
-  class GDKMM_API GLContext_Class;
+  class LIBMM_GDK_SYMEXPORT GLContext_Class;
 }
 #endif
 
@@ -92,7 +92,7 @@ namespace Glib
 {
 
   template <>
-  class GDKMM_API Value<Gdk::GLApi> : public Glib::Value_Flags<Gdk::GLApi>
+  class LIBMM_GDK_SYMEXPORT Value<Gdk::GLApi> : public Glib::Value_Flags<Gdk::GLApi>
   {
   public:
     static auto
@@ -171,7 +171,7 @@ namespace Glib
 
     #ifndef GDKMM_DISABLE_DEPRECATED
   template <>
-  class GDKMM_API Value<Gdk::GLAPI> : public Glib::Value_Flags<Gdk::GLAPI>
+  class LIBMM_GDK_SYMEXPORT Value<Gdk::GLAPI> : public Glib::Value_Flags<Gdk::GLAPI>
   {
   public:
     static auto
@@ -199,18 +199,18 @@ namespace Gdk
       LINK_FAILED
     };
 
-    GDKMM_API
+    LIBMM_GDK_SYMEXPORT
     GLError (Code error_code, const Glib::ustring& error_message);
-    GDKMM_API explicit GLError (GError* gobject);
-    GDKMM_API auto
+    LIBMM_GDK_SYMEXPORT explicit GLError (GError* gobject);
+    LIBMM_GDK_SYMEXPORT auto
     code () const -> Code;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
   private:
-    GDKMM_API static auto
+    LIBMM_GDK_SYMEXPORT static auto
     throw_func (GError* gobject) -> void;
 
-    friend GDKMM_API auto
+    friend LIBMM_GDK_SYMEXPORT auto
     wrap_init () -> void;
 
 #endif
@@ -222,7 +222,7 @@ namespace Glib
 {
 
   template <>
-  class GDKMM_API Value<Gdk::GLError::Code>
+  class LIBMM_GDK_SYMEXPORT Value<Gdk::GLError::Code>
     : public Glib::Value_Enum<Gdk::GLError::Code>
   {
   public:
@@ -236,7 +236,7 @@ namespace Glib
 namespace Gdk
 {
 
-  class GDKMM_API GLContext : public DrawContext
+  class LIBMM_GDK_SYMEXPORT GLContext : public DrawContext
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -442,7 +442,7 @@ namespace Gdk
 
 namespace Glib
 {
-  GDKMM_API auto
+  LIBMM_GDK_SYMEXPORT auto
   wrap (GdkGLContext* object, bool take_copy = false) -> Glib::RefPtr<Gdk::GLContext>;
 } // namespace Glib
 

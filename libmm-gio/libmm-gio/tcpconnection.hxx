@@ -17,14 +17,14 @@ using GTcpConnectionClass = struct _GTcpConnectionClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gio
 {
-  class GIOMM_API TcpConnection_Class;
+  class LIBMM_GIO_SYMEXPORT TcpConnection_Class;
 }
 #endif
 
 namespace Gio
 {
 
-  class GIOMM_API TcpConnection : public Gio::SocketConnection
+  class LIBMM_GIO_SYMEXPORT TcpConnection : public Gio::SocketConnection
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -103,7 +103,7 @@ namespace Gio
 namespace Glib
 {
 
-  GIOMM_API
+  LIBMM_GIO_SYMEXPORT
   auto
   wrap (GTcpConnection* object, bool take_copy = false) -> Glib::RefPtr<Gio::TcpConnection>;
 } // namespace Glib

@@ -7,7 +7,7 @@
 
 namespace Pango
 {
-  PANGOMM_API auto
+  LIBMM_PANGO_SYMEXPORT auto
   wrap_init () -> void;
 
 }

@@ -24,14 +24,14 @@ using GtkApplicationClass = struct _GtkApplicationClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API Application_Class;
+  class LIBMM_GTK_SYMEXPORT Application_Class;
 }
 #endif
 
 namespace Gtk
 {
 
-  class GTKMM_API Application : public Gio::Application
+  class LIBMM_GTK_SYMEXPORT Application : public Gio::Application
   {
   protected:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -339,7 +339,7 @@ namespace Glib
 {
 
   template <>
-  class GTKMM_API Value<Gtk::Application::InhibitFlags>
+  class LIBMM_GTK_SYMEXPORT Value<Gtk::Application::InhibitFlags>
     : public Glib::Value_Flags<Gtk::Application::InhibitFlags>
   {
   public:
@@ -352,7 +352,7 @@ namespace Glib
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkApplication* object, bool take_copy = false) -> Glib::RefPtr<Gtk::Application>;
 } // namespace Glib
 

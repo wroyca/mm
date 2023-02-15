@@ -11,7 +11,7 @@
 namespace Gdk
 {
 
-  class GDKMM_API DevicePad_Class : public Glib::Interface_Class
+  class LIBMM_GDK_SYMEXPORT DevicePad_Class : public Glib::Interface_Class
   {
   public:
     using CppObjectType = DevicePad;

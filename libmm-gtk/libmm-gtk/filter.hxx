@@ -17,14 +17,14 @@
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API Filter_Class;
+  class LIBMM_GTK_SYMEXPORT Filter_Class;
 }
 #endif
 
 namespace Gtk
 {
 
-  class GTKMM_API Filter : public Glib::Object
+  class LIBMM_GTK_SYMEXPORT Filter : public Glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -129,7 +129,7 @@ namespace Glib
 {
 
   template <>
-  class GTKMM_API Value<Gtk::Filter::Match>
+  class LIBMM_GTK_SYMEXPORT Value<Gtk::Filter::Match>
     : public Glib::Value_Enum<Gtk::Filter::Match>
   {
   public:
@@ -145,7 +145,7 @@ namespace Glib
 {
 
   template <>
-  class GTKMM_API Value<Gtk::Filter::Change>
+  class LIBMM_GTK_SYMEXPORT Value<Gtk::Filter::Change>
     : public Glib::Value_Enum<Gtk::Filter::Change>
   {
   public:
@@ -158,7 +158,7 @@ namespace Glib
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkFilter* object, bool take_copy = false) -> Glib::RefPtr<Gtk::Filter>;
 } // namespace Glib
 

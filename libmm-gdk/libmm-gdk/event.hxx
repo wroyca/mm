@@ -30,12 +30,12 @@ enum
 
 namespace Gdk
 {
-  class GDKMM_API Device;
-  class GDKMM_API DeviceTool;
-  class GDKMM_API Display;
-  class GDKMM_API Drop;
-  class GDKMM_API Seat;
-  class GDKMM_API Surface;
+  class LIBMM_GDK_SYMEXPORT Device;
+  class LIBMM_GDK_SYMEXPORT DeviceTool;
+  class LIBMM_GDK_SYMEXPORT Display;
+  class LIBMM_GDK_SYMEXPORT Drop;
+  class LIBMM_GDK_SYMEXPORT Seat;
+  class LIBMM_GDK_SYMEXPORT Surface;
 
   enum class KeyMatch
   {
@@ -51,7 +51,7 @@ namespace Glib
 {
 
   template <>
-  class GDKMM_API Value<Gdk::KeyMatch> : public Glib::Value_Enum<Gdk::KeyMatch>
+  class LIBMM_GDK_SYMEXPORT Value<Gdk::KeyMatch> : public Glib::Value_Enum<Gdk::KeyMatch>
   {
   public:
     static auto
@@ -66,7 +66,7 @@ namespace Gdk
 
   struct EventSequence;
 
-  class GDKMM_API Event final
+  class LIBMM_GDK_SYMEXPORT Event final
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -309,7 +309,7 @@ namespace Glib
 {
 
   template <>
-  class GDKMM_API Value<Gdk::Event::Type>
+  class LIBMM_GDK_SYMEXPORT Value<Gdk::Event::Type>
     : public Glib::Value_Enum<Gdk::Event::Type>
   {
   public:
@@ -322,7 +322,7 @@ namespace Glib
 
 namespace Glib
 {
-  GDKMM_API auto
+  LIBMM_GDK_SYMEXPORT auto
   wrap (GdkEvent* object, bool take_copy = false) -> Glib::RefPtr<Gdk::Event>;
 
 } // namespace Glib

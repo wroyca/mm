@@ -28,24 +28,24 @@ namespace Glib
       FAILED
     };
 
-    GLIBMM_API
+    LIBMM_GLIB_SYMEXPORT
     OptionError (Code error_code, const Glib::ustring& error_message);
-    GLIBMM_API explicit OptionError (GError* gobject);
-    GLIBMM_API auto
+    LIBMM_GLIB_SYMEXPORT explicit OptionError (GError* gobject);
+    LIBMM_GLIB_SYMEXPORT auto
     code () const -> Code;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
   private:
-    GLIBMM_API static auto
+    LIBMM_GLIB_SYMEXPORT static auto
     throw_func (GError* gobject) -> void;
 
-    friend GLIBMM_API auto
+    friend LIBMM_GLIB_SYMEXPORT auto
     wrap_init () -> void;
 
 #endif
   };
 
-  class GLIBMM_API OptionContext
+  class LIBMM_GLIB_SYMEXPORT OptionContext
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

@@ -74,7 +74,7 @@ namespace Glib
 {
 
   template <>
-  class PANGOMM_API Value<Pango::ShapeFlags>
+  class LIBMM_PANGO_SYMEXPORT Value<Pango::ShapeFlags>
     : public Glib::Value_Flags<Pango::ShapeFlags>
   {
   public:
@@ -91,7 +91,7 @@ namespace Pango
   class Font;
   class GlyphString;
 
-  class PANGOMM_API Analysis
+  class LIBMM_PANGO_SYMEXPORT Analysis
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -137,7 +137,7 @@ namespace Pango
     PangoAnalysis gobject_;
   };
 
-  class PANGOMM_API Item
+  class LIBMM_PANGO_SYMEXPORT Item
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -206,15 +206,15 @@ namespace Pango
 namespace Glib
 {
 
-  PANGOMM_API
+  LIBMM_PANGO_SYMEXPORT
   auto
   wrap (PangoAnalysis* object) -> Pango::Analysis&;
 
-  PANGOMM_API
+  LIBMM_PANGO_SYMEXPORT
   auto
   wrap (const PangoAnalysis* object) -> const Pango::Analysis&;
 
-  PANGOMM_API
+  LIBMM_PANGO_SYMEXPORT
   auto
   wrap (PangoItem* object, bool take_copy = true) -> Pango::Item;
 

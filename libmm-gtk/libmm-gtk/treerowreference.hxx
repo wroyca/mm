@@ -21,7 +21,7 @@ extern "C"
 namespace Gtk
 {
 
-  class GTKMM_API TreeRowReference
+  class LIBMM_GTK_SYMEXPORT TreeRowReference
   {
   public:
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -103,12 +103,12 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkTreeRowReference* object, bool take_copy = false) -> Gtk::TreeRowReference;
 
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
   template <>
-  class GTKMM_API Value<Gtk::TreeRowReference>
+  class LIBMM_GTK_SYMEXPORT Value<Gtk::TreeRowReference>
     : public Glib::Value_Boxed<Gtk::TreeRowReference>
   {
   };

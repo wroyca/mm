@@ -14,7 +14,7 @@
 namespace Pango
 {
 
-  class PANGOMM_API Coverage final
+  class LIBMM_PANGO_SYMEXPORT Coverage final
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -74,7 +74,7 @@ namespace Glib
 {
 
   template <>
-  class PANGOMM_API Value<Pango::Coverage::Level>
+  class LIBMM_PANGO_SYMEXPORT Value<Pango::Coverage::Level>
     : public Glib::Value_Enum<Pango::Coverage::Level>
   {
   public:
@@ -88,7 +88,7 @@ namespace Glib
 namespace Glib
 {
 
-  PANGOMM_API
+  LIBMM_PANGO_SYMEXPORT
   auto
   wrap (PangoCoverage* object, bool take_copy = false) -> Glib::RefPtr<Pango::Coverage>;
 

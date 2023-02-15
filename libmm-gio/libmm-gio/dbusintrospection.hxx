@@ -3,7 +3,7 @@
 #ifndef _GIOMM_DBUSINTROSPECTION_H
 #define _GIOMM_DBUSINTROSPECTION_H
 
-#include <libmm-gio/gioconfig.hxx>
+#include <libmm-gio/mm-gioconfig.hxx>
 
 #include <libmm-glib/ustring.hxx>
 #include <sigc++/sigc++.h>
@@ -71,7 +71,7 @@ namespace Gio::DBus
                                                   static_cast<unsigned> (rhs)));
   }
 
-  class GIOMM_API AnnotationInfo final
+  class LIBMM_GIO_SYMEXPORT AnnotationInfo final
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -111,7 +111,7 @@ namespace Gio::DBus
                  const Glib::ustring& name) -> Glib::ustring;
   };
 
-  class GIOMM_API ArgInfo final
+  class LIBMM_GIO_SYMEXPORT ArgInfo final
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -148,7 +148,7 @@ namespace Gio::DBus
   public:
   };
 
-  class GIOMM_API MethodInfo final
+  class LIBMM_GIO_SYMEXPORT MethodInfo final
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -185,7 +185,7 @@ namespace Gio::DBus
   public:
   };
 
-  class GIOMM_API SignalInfo final
+  class LIBMM_GIO_SYMEXPORT SignalInfo final
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -222,7 +222,7 @@ namespace Gio::DBus
   public:
   };
 
-  class GIOMM_API PropertyInfo final
+  class LIBMM_GIO_SYMEXPORT PropertyInfo final
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -259,7 +259,7 @@ namespace Gio::DBus
   public:
   };
 
-  class GIOMM_API InterfaceInfo final
+  class LIBMM_GIO_SYMEXPORT InterfaceInfo final
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -325,7 +325,7 @@ namespace Gio::DBus
     cache_release () -> void;
   };
 
-  class GIOMM_API NodeInfo final
+  class LIBMM_GIO_SYMEXPORT NodeInfo final
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -382,7 +382,7 @@ namespace Gio::DBus
 namespace Glib
 {
 
-  GIOMM_API
+  LIBMM_GIO_SYMEXPORT
   auto
   wrap (GDBusAnnotationInfo* object, bool take_copy = false) -> Glib::RefPtr<Gio::DBus::AnnotationInfo>;
 
@@ -391,7 +391,7 @@ namespace Glib
 namespace Glib
 {
 
-  GIOMM_API
+  LIBMM_GIO_SYMEXPORT
   auto
   wrap (GDBusArgInfo* object, bool take_copy = false) -> Glib::RefPtr<Gio::DBus::ArgInfo>;
 
@@ -400,7 +400,7 @@ namespace Glib
 namespace Glib
 {
 
-  GIOMM_API
+  LIBMM_GIO_SYMEXPORT
   auto
   wrap (GDBusMethodInfo* object, bool take_copy = false) -> Glib::RefPtr<Gio::DBus::MethodInfo>;
 
@@ -409,7 +409,7 @@ namespace Glib
 namespace Glib
 {
 
-  GIOMM_API
+  LIBMM_GIO_SYMEXPORT
   auto
   wrap (GDBusSignalInfo* object, bool take_copy = false) -> Glib::RefPtr<Gio::DBus::SignalInfo>;
 
@@ -418,7 +418,7 @@ namespace Glib
 namespace Glib
 {
 
-  GIOMM_API
+  LIBMM_GIO_SYMEXPORT
   auto
   wrap (GDBusPropertyInfo* object, bool take_copy = false) -> Glib::RefPtr<Gio::DBus::PropertyInfo>;
 
@@ -427,13 +427,13 @@ namespace Glib
 namespace Glib
 {
 
-  GIOMM_API
+  LIBMM_GIO_SYMEXPORT
   auto
   wrap (GDBusInterfaceInfo* object, bool take_copy = false) -> Glib::RefPtr<Gio::DBus::InterfaceInfo>;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
   template <>
-  class GIOMM_API Value<Glib::RefPtr<Gio::DBus::InterfaceInfo>>
+  class LIBMM_GIO_SYMEXPORT Value<Glib::RefPtr<Gio::DBus::InterfaceInfo>>
     : public Glib::Value_RefPtrBoxed<Gio::DBus::InterfaceInfo>
   {
   public:
@@ -450,7 +450,7 @@ namespace Glib
 namespace Glib
 {
 
-  GIOMM_API
+  LIBMM_GIO_SYMEXPORT
   auto
   wrap (GDBusNodeInfo* object, bool take_copy = false) -> Glib::RefPtr<Gio::DBus::NodeInfo>;
 

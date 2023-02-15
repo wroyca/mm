@@ -11,7 +11,7 @@ namespace Cairo
 
 #ifdef CAIRO_HAS_SCRIPT_SURFACE
 
-  class CAIROMM_API ScriptSurface : public Surface
+  class LIBMM_CAIRO_SYMEXPORT ScriptSurface : public Surface
   {
   public:
     explicit ScriptSurface (cairo_surface_t* cobject,

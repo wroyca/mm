@@ -3,7 +3,7 @@
 #ifndef _GIOMM_TLSPASSWORD_H
 #define _GIOMM_TLSPASSWORD_H
 
-#include <libmm-gio/gioconfig.hxx>
+#include <libmm-gio/mm-gioconfig.hxx>
 
 #include <libmm-glib/ustring.hxx>
 #include <sigc++/sigc++.h>
@@ -18,14 +18,14 @@ using GTlsPasswordClass = struct _GTlsPasswordClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gio
 {
-  class GIOMM_API TlsPassword_Class;
+  class LIBMM_GIO_SYMEXPORT TlsPassword_Class;
 }
 #endif
 
 namespace Gio
 {
 
-  class GIOMM_API TlsPassword : public Glib::Object
+  class LIBMM_GIO_SYMEXPORT TlsPassword : public Glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -219,7 +219,7 @@ namespace Glib
 {
 
   template <>
-  class GIOMM_API Value<Gio::TlsPassword::Flags>
+  class LIBMM_GIO_SYMEXPORT Value<Gio::TlsPassword::Flags>
     : public Glib::Value_Flags<Gio::TlsPassword::Flags>
   {
   public:
@@ -233,7 +233,7 @@ namespace Glib
 namespace Glib
 {
 
-  GIOMM_API
+  LIBMM_GIO_SYMEXPORT
   auto
   wrap (GTlsPassword* object, bool take_copy = false) -> Glib::RefPtr<Gio::TlsPassword>;
 } // namespace Glib

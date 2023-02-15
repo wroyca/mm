@@ -11,7 +11,7 @@
 namespace Pango
 {
 
-  class PANGOMM_API AttrIter
+  class LIBMM_PANGO_SYMEXPORT AttrIter
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -86,7 +86,7 @@ namespace Pango
 namespace Glib
 {
 
-  PANGOMM_API
+  LIBMM_PANGO_SYMEXPORT
   auto
   wrap (PangoAttrIterator* object, bool take_copy = false) -> Pango::AttrIter;
 

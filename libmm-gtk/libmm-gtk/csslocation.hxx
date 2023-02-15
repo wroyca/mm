@@ -14,7 +14,7 @@
 namespace Gtk
 {
 
-  class GTKMM_API CssLocation
+  class LIBMM_GTK_SYMEXPORT CssLocation
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -77,7 +77,7 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (const GtkCssLocation* object) -> Gtk::CssLocation;
 
 } // namespace Glib

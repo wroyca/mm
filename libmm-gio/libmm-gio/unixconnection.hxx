@@ -17,14 +17,14 @@ using GUnixConnectionClass = struct _GUnixConnectionClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gio
 {
-  class GIOMM_API UnixConnection_Class;
+  class LIBMM_GIO_SYMEXPORT UnixConnection_Class;
 }
 #endif
 
 namespace Gio
 {
 
-  class GIOMM_API UnixConnection : public Gio::SocketConnection
+  class LIBMM_GIO_SYMEXPORT UnixConnection : public Gio::SocketConnection
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -146,7 +146,7 @@ namespace Gio
 namespace Glib
 {
 
-  GIOMM_API
+  LIBMM_GIO_SYMEXPORT
   auto
   wrap (GUnixConnection* object, bool take_copy = false) -> Glib::RefPtr<Gio::UnixConnection>;
 } // namespace Glib

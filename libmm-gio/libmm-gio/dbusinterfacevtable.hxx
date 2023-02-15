@@ -12,7 +12,7 @@
 namespace Gio::DBus
 {
 
-  class GIOMM_API InterfaceVTable
+  class LIBMM_GIO_SYMEXPORT InterfaceVTable
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

@@ -19,14 +19,14 @@ using GtkColorChooserDialogClass = struct _GtkColorChooserDialogClass;
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API ColorChooserDialog_Class;
+  class LIBMM_GTK_SYMEXPORT ColorChooserDialog_Class;
 }
   #endif
 
 namespace Gtk
 {
 
-  class GTKMM_API ColorChooserDialog : public Dialog,
+  class LIBMM_GTK_SYMEXPORT ColorChooserDialog : public Dialog,
                                        public ColorChooser
   {
   public:
@@ -50,7 +50,7 @@ namespace Gtk
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   private:
-    friend GTKMM_API class ColorChooserDialog_Class;
+    friend LIBMM_GTK_SYMEXPORT class ColorChooserDialog_Class;
     static CppClassType colorchooserdialog_class_;
 
   protected:
@@ -105,7 +105,7 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkColorChooserDialog* object, bool take_copy = false) -> Gtk::ColorChooserDialog*;
 } // namespace Glib
 

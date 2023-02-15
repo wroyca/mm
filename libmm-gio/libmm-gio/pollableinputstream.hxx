@@ -3,7 +3,7 @@
 #ifndef _GIOMM_POLLABLEINPUTSTREAM_H
 #define _GIOMM_POLLABLEINPUTSTREAM_H
 
-#include <libmm-gio/gioconfig.hxx>
+#include <libmm-gio/mm-gioconfig.hxx>
 
 #include <libmm-glib/ustring.hxx>
 #include <sigc++/sigc++.h>
@@ -22,16 +22,16 @@ using GPollableInputStreamClass = struct _GPollableInputStreamClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gio
 {
-  class GIOMM_API PollableInputStream_Class;
+  class LIBMM_GIO_SYMEXPORT PollableInputStream_Class;
 }
 #endif
 
 namespace Gio
 {
 
-  class GIOMM_API Cancellable;
+  class LIBMM_GIO_SYMEXPORT Cancellable;
 
-  class GIOMM_API PollableInputStream : public Glib::Interface
+  class LIBMM_GIO_SYMEXPORT PollableInputStream : public Glib::Interface
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -129,7 +129,7 @@ namespace Gio
 namespace Glib
 {
 
-  GIOMM_API
+  LIBMM_GIO_SYMEXPORT
   auto
   wrap (GPollableInputStream* object, bool take_copy = false) -> Glib::RefPtr<Gio::PollableInputStream>;
 

@@ -11,7 +11,7 @@
 namespace Gtk
 {
 
-  class GTKMM_API Object;
+  class LIBMM_GTK_SYMEXPORT Object;
 
   template <class T>
   auto
@@ -28,7 +28,7 @@ namespace Gtk
     return manage (new T (std::forward<T_Args> (args)...));
   }
 
-  class GTKMM_API Object : public Glib::Object
+  class LIBMM_GTK_SYMEXPORT Object : public Glib::Object
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

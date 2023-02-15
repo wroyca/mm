@@ -18,14 +18,14 @@
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API ColorDialogButton_Class;
+  class LIBMM_GTK_SYMEXPORT ColorDialogButton_Class;
 }
 #endif
 
 namespace Gtk
 {
 
-  class GTKMM_API ColorDialogButton : public Widget
+  class LIBMM_GTK_SYMEXPORT ColorDialogButton : public Widget
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -48,7 +48,7 @@ namespace Gtk
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   private:
-    friend GTKMM_API class ColorDialogButton_Class;
+    friend LIBMM_GTK_SYMEXPORT class ColorDialogButton_Class;
     static CppClassType colordialogbutton_class_;
 
   protected:
@@ -120,7 +120,7 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkColorDialogButton* object, bool take_copy = false) -> Gtk::ColorDialogButton*;
 } // namespace Glib
 

@@ -22,17 +22,17 @@ using GVolumeClass = struct _GVolumeClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gio
 {
-  class GIOMM_API Volume_Class;
+  class LIBMM_GIO_SYMEXPORT Volume_Class;
 }
 #endif
 
 namespace Gio
 {
 
-  class GIOMM_API File;
-  class GIOMM_API Drive;
+  class LIBMM_GIO_SYMEXPORT File;
+  class LIBMM_GIO_SYMEXPORT Drive;
 
-  class GIOMM_API Volume : public Glib::Interface
+  class LIBMM_GIO_SYMEXPORT Volume : public Glib::Interface
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -218,7 +218,7 @@ namespace Gio
 namespace Glib
 {
 
-  GIOMM_API
+  LIBMM_GIO_SYMEXPORT
   auto
   wrap (GVolume* object, bool take_copy) -> Glib::RefPtr<Gio::Volume>;
 
@@ -258,7 +258,7 @@ namespace Glib
 namespace Glib
 {
 
-  GIOMM_API
+  LIBMM_GIO_SYMEXPORT
   auto
   wrap (GVolume* object, bool take_copy = false) -> Glib::RefPtr<Gio::Volume>;
 

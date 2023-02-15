@@ -22,16 +22,16 @@ using GAsyncInitableClass = struct _GAsyncInitableClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gio
 {
-  class GIOMM_API AsyncInitable_Class;
+  class LIBMM_GIO_SYMEXPORT AsyncInitable_Class;
 }
 #endif
 
 namespace Gio
 {
 
-  class GIOMM_API Cancellable;
+  class LIBMM_GIO_SYMEXPORT Cancellable;
 
-  class GIOMM_API AsyncInitable : public Glib::Interface
+  class LIBMM_GIO_SYMEXPORT AsyncInitable : public Glib::Interface
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -130,7 +130,7 @@ namespace Gio
 namespace Glib
 {
 
-  GIOMM_API
+  LIBMM_GIO_SYMEXPORT
   auto
   wrap (GAsyncInitable* object, bool take_copy = false) -> Glib::RefPtr<Gio::AsyncInitable>;
 

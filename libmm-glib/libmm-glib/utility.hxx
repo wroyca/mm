@@ -53,7 +53,7 @@ namespace Glib
     return str.empty () ? nullptr : str.c_str ();
   }
 
-  GLIBMM_API auto
+  LIBMM_GLIB_SYMEXPORT auto
   append_canonical_typename (std::string& dest, const char* type_name) -> void;
 
   template <typename T>

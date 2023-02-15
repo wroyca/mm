@@ -13,7 +13,7 @@ namespace Gio
   namespace DBus
   {
 
-    class GIOMM_API Server_Class : public Glib::Class
+    class LIBMM_GIO_SYMEXPORT Server_Class : public Glib::Class
     {
     public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

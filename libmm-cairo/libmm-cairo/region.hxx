@@ -12,7 +12,7 @@
 namespace Cairo
 {
 
-  class CAIROMM_API Region
+  class LIBMM_CAIRO_SYMEXPORT Region
   {
   private:
     Region ();

@@ -19,14 +19,14 @@ using GtkCellRendererAccelClass = struct _GtkCellRendererAccelClass;
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API CellRendererAccel_Class;
+  class LIBMM_GTK_SYMEXPORT CellRendererAccel_Class;
 }
   #endif
 
 namespace Gtk
 {
 
-  class GTKMM_API CellRendererAccel : public CellRendererText
+  class LIBMM_GTK_SYMEXPORT CellRendererAccel : public CellRendererText
   {
   public:
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -49,7 +49,7 @@ namespace Gtk
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   private:
-    friend GTKMM_API class CellRendererAccel_Class;
+    friend LIBMM_GTK_SYMEXPORT class CellRendererAccel_Class;
     static CppClassType cellrendereraccel_class_;
 
   protected:
@@ -137,7 +137,7 @@ namespace Glib
 {
 
   template <>
-  class GTKMM_API Value<Gtk::CellRendererAccel::Mode>
+  class LIBMM_GTK_SYMEXPORT Value<Gtk::CellRendererAccel::Mode>
     : public Glib::Value_Enum<Gtk::CellRendererAccel::Mode>
   {
   public:
@@ -150,7 +150,7 @@ namespace Glib
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkCellRendererAccel* object, bool take_copy = false) -> Gtk::CellRendererAccel*;
 } // namespace Glib
 

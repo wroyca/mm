@@ -27,16 +27,16 @@ using GDBusConnectionClass = struct _GDBusConnectionClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gio::DBus
 {
-  class GIOMM_API Connection_Class;
+  class LIBMM_GIO_SYMEXPORT Connection_Class;
 }
 #endif
 
 namespace Gio
 {
 
-  class GIOMM_API ActionGroup;
-  class GIOMM_API MenuModel;
-  class GIOMM_API UnixFDList;
+  class LIBMM_GIO_SYMEXPORT ActionGroup;
+  class LIBMM_GIO_SYMEXPORT MenuModel;
+  class LIBMM_GIO_SYMEXPORT UnixFDList;
 
   namespace DBus
   {
@@ -58,7 +58,7 @@ namespace Glib
 {
 
   template <>
-  class GIOMM_API Value<Gio::DBus::BusType>
+  class LIBMM_GIO_SYMEXPORT Value<Gio::DBus::BusType>
     : public Glib::Value_Enum<Gio::DBus::BusType>
   {
   public:
@@ -194,7 +194,7 @@ namespace Glib
 {
 
   template <>
-  class GIOMM_API Value<Gio::DBus::ConnectionFlags>
+  class LIBMM_GIO_SYMEXPORT Value<Gio::DBus::ConnectionFlags>
     : public Glib::Value_Flags<Gio::DBus::ConnectionFlags>
   {
   public:
@@ -372,7 +372,7 @@ namespace Gio::DBus
                                              static_cast<unsigned> (rhs)));
   }
 
-  class GIOMM_API Connection : public Glib::Object,
+  class LIBMM_GIO_SYMEXPORT Connection : public Glib::Object,
                                public Initable,
                                public AsyncInitable
   {
@@ -997,7 +997,7 @@ namespace Gio::DBus
 namespace Glib
 {
 
-  GIOMM_API
+  LIBMM_GIO_SYMEXPORT
   auto
   wrap (GDBusConnection* object, bool take_copy = false) -> Glib::RefPtr<Gio::DBus::Connection>;
 } // namespace Glib

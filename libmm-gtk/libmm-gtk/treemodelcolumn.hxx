@@ -13,33 +13,33 @@
 namespace Gtk
 {
 
-  class GTKMM_API TreeModelColumnBase;
+  class LIBMM_GTK_SYMEXPORT TreeModelColumnBase;
 
   class TreeModelColumnRecord
   {
   public:
-    GTKMM_API
+    LIBMM_GTK_SYMEXPORT
     TreeModelColumnRecord ();
-    GTKMM_API virtual ~TreeModelColumnRecord () noexcept;
+    LIBMM_GTK_SYMEXPORT virtual ~TreeModelColumnRecord () noexcept;
 
-    GTKMM_API auto
+    LIBMM_GTK_SYMEXPORT auto
     add (TreeModelColumnBase& column) -> void;
 
-    GTKMM_API auto
+    LIBMM_GTK_SYMEXPORT auto
     size () const -> unsigned int;
-    GTKMM_API auto
+    LIBMM_GTK_SYMEXPORT auto
     types () const -> const GType*;
 
   private:
     std::vector<GType> column_types_;
 
-    GTKMM_API
+    LIBMM_GTK_SYMEXPORT
     TreeModelColumnRecord (const TreeModelColumnRecord&);
-    GTKMM_API auto
+    LIBMM_GTK_SYMEXPORT auto
     operator= (const TreeModelColumnRecord&) -> TreeModelColumnRecord&;
   };
 
-  class GTKMM_API TreeModelColumnBase
+  class LIBMM_GTK_SYMEXPORT TreeModelColumnBase
   {
   public:
     auto

@@ -23,7 +23,7 @@ using GtkFileChooserClass = struct _GtkFileChooserClass;
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API FileChooser_Class;
+  class LIBMM_GTK_SYMEXPORT FileChooser_Class;
 }
   #endif
 
@@ -41,18 +41,18 @@ namespace Gtk
       INCOMPLETE_HOSTNAME
     };
 
-    GTKMM_API
+    LIBMM_GTK_SYMEXPORT
     FileChooserError (Code error_code, const Glib::ustring& error_message);
-    GTKMM_API explicit FileChooserError (GError* gobject);
-    GTKMM_API auto
+    LIBMM_GTK_SYMEXPORT explicit FileChooserError (GError* gobject);
+    LIBMM_GTK_SYMEXPORT auto
     code () const -> Code;
 
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
   private:
-    GTKMM_API static auto
+    LIBMM_GTK_SYMEXPORT static auto
     throw_func (GError* gobject) -> void;
 
-    friend GTKMM_API auto
+    friend LIBMM_GTK_SYMEXPORT auto
     wrap_init () -> void;
 
   #endif
@@ -65,7 +65,7 @@ namespace Glib
 {
 
   template <>
-  class GTKMM_API Value<Gtk::FileChooserError::Code>
+  class LIBMM_GTK_SYMEXPORT Value<Gtk::FileChooserError::Code>
     : public Glib::Value_Enum<Gtk::FileChooserError::Code>
   {
   public:
@@ -79,7 +79,7 @@ namespace Glib
 namespace Gtk
 {
 
-  class GTKMM_API FileChooser : public Glib::Interface
+  class LIBMM_GTK_SYMEXPORT FileChooser : public Glib::Interface
   {
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -288,7 +288,7 @@ namespace Glib
 {
 
   template <>
-  class GTKMM_API Value<Gtk::FileChooser::Action>
+  class LIBMM_GTK_SYMEXPORT Value<Gtk::FileChooser::Action>
     : public Glib::Value_Enum<Gtk::FileChooser::Action>
   {
   public:
@@ -301,7 +301,7 @@ namespace Glib
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkFileChooser* object, bool take_copy = false) -> Glib::RefPtr<Gtk::FileChooser>;
 
 } // namespace Glib

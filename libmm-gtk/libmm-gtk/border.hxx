@@ -20,7 +20,7 @@ extern "C"
 namespace Gtk
 {
 
-  class GTKMM_API Border
+  class LIBMM_GTK_SYMEXPORT Border
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -108,12 +108,12 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkBorder* object, bool take_copy = false) -> Gtk::Border;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
   template <>
-  class GTKMM_API Value<Gtk::Border> : public Glib::Value_Boxed<Gtk::Border>
+  class LIBMM_GTK_SYMEXPORT Value<Gtk::Border> : public Glib::Value_Boxed<Gtk::Border>
   {
   };
 #endif

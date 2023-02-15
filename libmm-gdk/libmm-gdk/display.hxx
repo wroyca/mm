@@ -19,26 +19,26 @@ using GdkDisplayClass = struct _GdkDisplayClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gdk
 {
-  class GDKMM_API Display_Class;
+  class LIBMM_GDK_SYMEXPORT Display_Class;
 }
 #endif
 
 namespace Gio
 {
-  class GDKMM_API ListModel;
+  class LIBMM_GDK_SYMEXPORT ListModel;
 }
 
 namespace Gdk
 {
 
-  class GDKMM_API Clipboard;
-  class GDKMM_API Device;
-  class GDKMM_API GLContext;
-  class GDKMM_API Seat;
-  class GDKMM_API Monitor;
-  class GDKMM_API Surface;
+  class LIBMM_GDK_SYMEXPORT Clipboard;
+  class LIBMM_GDK_SYMEXPORT Device;
+  class LIBMM_GDK_SYMEXPORT GLContext;
+  class LIBMM_GDK_SYMEXPORT Seat;
+  class LIBMM_GDK_SYMEXPORT Monitor;
+  class LIBMM_GDK_SYMEXPORT Surface;
 
-  class GDKMM_API Display : public Glib::Object
+  class LIBMM_GDK_SYMEXPORT Display : public Glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -257,7 +257,7 @@ namespace Gdk
 
 namespace Glib
 {
-  GDKMM_API auto
+  LIBMM_GDK_SYMEXPORT auto
   wrap (GdkDisplay* object, bool take_copy = false) -> Glib::RefPtr<Gdk::Display>;
 } // namespace Glib
 

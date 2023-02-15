@@ -9,7 +9,7 @@
 namespace Gdk
 {
 
-  class GDKMM_API DeviceWithPad : public Device,
+  class LIBMM_GDK_SYMEXPORT DeviceWithPad : public Device,
                                   public DevicePad
   {
   private:

@@ -19,14 +19,14 @@ using GtkPadControllerClass = struct _GtkPadControllerClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API PadController_Class;
+  class LIBMM_GTK_SYMEXPORT PadController_Class;
 }
 #endif
 
 namespace Gtk
 {
 
-  class GTKMM_API PadController : public EventController
+  class LIBMM_GTK_SYMEXPORT PadController : public EventController
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -119,7 +119,7 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkPadController* object, bool take_copy = false) -> Glib::RefPtr<Gtk::PadController>;
 } // namespace Glib
 

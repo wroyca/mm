@@ -15,7 +15,7 @@
 namespace Pango
 {
 
-  class PANGOMM_API Color
+  class LIBMM_PANGO_SYMEXPORT Color
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -87,17 +87,17 @@ namespace Pango
 namespace Glib
 {
 
-  PANGOMM_API
+  LIBMM_PANGO_SYMEXPORT
   auto
   wrap (PangoColor* object) -> Pango::Color&;
 
-  PANGOMM_API
+  LIBMM_PANGO_SYMEXPORT
   auto
   wrap (const PangoColor* object) -> const Pango::Color&;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
   template <>
-  class PANGOMM_API Value<Pango::Color> : public Glib::Value_Boxed<Pango::Color>
+  class LIBMM_PANGO_SYMEXPORT Value<Pango::Color> : public Glib::Value_Boxed<Pango::Color>
   {
   };
 #endif

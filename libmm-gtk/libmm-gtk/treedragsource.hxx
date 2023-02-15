@@ -27,14 +27,14 @@ using GtkTreeDragSourceClass = struct _GtkTreeDragSourceClass;
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API TreeDragSource_Class;
+  class LIBMM_GTK_SYMEXPORT TreeDragSource_Class;
 }
   #endif
 
 namespace Gtk
 {
 
-  class GTKMM_API TreeDragSource : public Glib::Interface
+  class LIBMM_GTK_SYMEXPORT TreeDragSource : public Glib::Interface
   {
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -128,7 +128,7 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkTreeDragSource* object, bool take_copy = false) -> Glib::RefPtr<Gtk::TreeDragSource>;
 
 } // namespace Glib

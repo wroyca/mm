@@ -28,7 +28,7 @@ using GdkToplevelClass = struct _GdkToplevelClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gdk
 {
-  class GDKMM_API Toplevel_Class;
+  class LIBMM_GDK_SYMEXPORT Toplevel_Class;
 }
 #endif
 
@@ -54,7 +54,7 @@ namespace Glib
 {
 
   template <>
-  class GDKMM_API Value<Gdk::SurfaceEdge>
+  class LIBMM_GDK_SYMEXPORT Value<Gdk::SurfaceEdge>
     : public Glib::Value_Enum<Gdk::SurfaceEdge>
   {
   public:
@@ -81,7 +81,7 @@ namespace Glib
 {
 
   template <>
-  class GDKMM_API Value<Gdk::FullscreenMode>
+  class LIBMM_GDK_SYMEXPORT Value<Gdk::FullscreenMode>
     : public Glib::Value_Enum<Gdk::FullscreenMode>
   {
   public:
@@ -95,7 +95,7 @@ namespace Glib
 namespace Gdk
 {
 
-  class GDKMM_API Toplevel : public Glib::Interface
+  class LIBMM_GDK_SYMEXPORT Toplevel : public Glib::Interface
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -359,7 +359,7 @@ namespace Glib
 {
 
   template <>
-  class GDKMM_API Value<Gdk::Toplevel::State>
+  class LIBMM_GDK_SYMEXPORT Value<Gdk::Toplevel::State>
     : public Glib::Value_Flags<Gdk::Toplevel::State>
   {
   public:
@@ -372,7 +372,7 @@ namespace Glib
 
 namespace Glib
 {
-  GDKMM_API auto
+  LIBMM_GDK_SYMEXPORT auto
   wrap (GdkToplevel* object, bool take_copy = false) -> Glib::RefPtr<Gdk::Toplevel>;
 
 } // namespace Glib

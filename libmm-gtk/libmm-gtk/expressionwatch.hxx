@@ -14,7 +14,7 @@
 
 namespace Gtk
 {
-  class GTKMM_API ExpressionWatchBase
+  class LIBMM_GTK_SYMEXPORT ExpressionWatchBase
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -102,7 +102,7 @@ namespace Glib
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkExpressionWatch* object, bool take_copy = false) -> Glib::RefPtr<Gtk::ExpressionWatchBase>;
 
 } // namespace Glib

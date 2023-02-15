@@ -21,7 +21,7 @@ extern "C"
 namespace Gdk
 {
 
-  class GDKMM_API RGBA
+  class LIBMM_GDK_SYMEXPORT RGBA
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -193,10 +193,10 @@ namespace Gdk
 
 namespace Gdk
 {
-  GDKMM_API auto
+  LIBMM_GDK_SYMEXPORT auto
   operator== (const RGBA& lhs, const RGBA& rhs) -> bool;
 
-  GDKMM_API auto
+  LIBMM_GDK_SYMEXPORT auto
   operator!= (const RGBA& lhs, const RGBA& rhs) -> bool;
 
 } // namespace Gdk
@@ -214,12 +214,12 @@ namespace Gdk
 
 namespace Glib
 {
-  GDKMM_API auto
+  LIBMM_GDK_SYMEXPORT auto
   wrap (GdkRGBA* object, bool take_copy = false) -> Gdk::RGBA;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
   template <>
-  class GDKMM_API Value<Gdk::RGBA> : public Glib::Value_Boxed<Gdk::RGBA>
+  class LIBMM_GDK_SYMEXPORT Value<Gdk::RGBA> : public Glib::Value_Boxed<Gdk::RGBA>
   {
   };
 #endif

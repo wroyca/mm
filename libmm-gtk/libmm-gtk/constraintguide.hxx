@@ -17,14 +17,14 @@
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API ConstraintGuide_Class;
+  class LIBMM_GTK_SYMEXPORT ConstraintGuide_Class;
 }
 #endif
 
 namespace Gtk
 {
 
-  class GTKMM_API ConstraintGuide : public Glib::Object,
+  class LIBMM_GTK_SYMEXPORT ConstraintGuide : public Glib::Object,
                                     public ConstraintTarget
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -176,7 +176,7 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkConstraintGuide* object, bool take_copy = false) -> Glib::RefPtr<Gtk::ConstraintGuide>;
 } // namespace Glib
 

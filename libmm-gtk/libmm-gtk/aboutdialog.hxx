@@ -21,7 +21,7 @@ using GtkAboutDialogClass = struct _GtkAboutDialogClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API AboutDialog_Class;
+  class LIBMM_GTK_SYMEXPORT AboutDialog_Class;
 }
 #endif
 
@@ -57,7 +57,7 @@ namespace Glib
 {
 
   template <>
-  class GTKMM_API Value<Gtk::License> : public Glib::Value_Enum<Gtk::License>
+  class LIBMM_GTK_SYMEXPORT Value<Gtk::License> : public Glib::Value_Enum<Gtk::License>
   {
   public:
     static auto
@@ -70,7 +70,7 @@ namespace Glib
 namespace Gtk
 {
 
-  class GTKMM_API AboutDialog : public Window
+  class LIBMM_GTK_SYMEXPORT AboutDialog : public Window
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -93,7 +93,7 @@ namespace Gtk
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   private:
-    friend GTKMM_API class AboutDialog_Class;
+    friend LIBMM_GTK_SYMEXPORT class AboutDialog_Class;
     static CppClassType aboutdialog_class_;
 
   protected:
@@ -354,7 +354,7 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkAboutDialog* object, bool take_copy = false) -> Gtk::AboutDialog*;
 } // namespace Glib
 

@@ -10,7 +10,7 @@
 namespace Cairo
 {
 
-  class CAIROMM_API Matrix : public cairo_matrix_t
+  class LIBMM_CAIRO_SYMEXPORT Matrix : public cairo_matrix_t
   {
   public:
     Matrix ();
@@ -39,23 +39,23 @@ namespace Cairo
     transform_point (double& x, double& y) const -> void;
   };
 
-  CAIROMM_API
+  LIBMM_CAIRO_SYMEXPORT
   auto
   identity_matrix () -> Matrix;
 
-  CAIROMM_API
+  LIBMM_CAIRO_SYMEXPORT
   auto
   translation_matrix (double tx, double ty) -> Matrix;
 
-  CAIROMM_API
+  LIBMM_CAIRO_SYMEXPORT
   auto
   scaling_matrix (double sx, double sy) -> Matrix;
 
-  CAIROMM_API
+  LIBMM_CAIRO_SYMEXPORT
   auto
   rotation_matrix (double radians) -> Matrix;
 
-  CAIROMM_API
+  LIBMM_CAIRO_SYMEXPORT
   auto
   operator* (const Matrix& a, const Matrix& b) -> Matrix;
 

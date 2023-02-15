@@ -10,7 +10,7 @@
 namespace Gtk
 {
 
-  class GTKMM_API StyleProvider_Class : public Glib::Interface_Class
+  class LIBMM_GTK_SYMEXPORT StyleProvider_Class : public Glib::Interface_Class
   {
   public:
     using CppObjectType = StyleProvider;

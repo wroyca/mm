@@ -16,7 +16,7 @@ typedef struct _GVariantType GVariantType;
 namespace Glib
 {
 
-  class GLIBMM_API VariantType
+  class LIBMM_GLIB_SYMEXPORT VariantType
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -136,62 +136,62 @@ namespace Glib
     get_item_types () const -> std::vector<VariantType>;
   };
 
-  extern GLIBMM_API const VariantType VARIANT_TYPE_BOOL;
+  extern LIBMM_GLIB_SYMEXPORT const VariantType VARIANT_TYPE_BOOL;
 
-  extern GLIBMM_API const VariantType VARIANT_TYPE_BYTE;
+  extern LIBMM_GLIB_SYMEXPORT const VariantType VARIANT_TYPE_BYTE;
 
-  extern GLIBMM_API const VariantType VARIANT_TYPE_INT16;
+  extern LIBMM_GLIB_SYMEXPORT const VariantType VARIANT_TYPE_INT16;
 
-  extern GLIBMM_API const VariantType VARIANT_TYPE_UINT16;
+  extern LIBMM_GLIB_SYMEXPORT const VariantType VARIANT_TYPE_UINT16;
 
-  extern GLIBMM_API const VariantType VARIANT_TYPE_INT32;
+  extern LIBMM_GLIB_SYMEXPORT const VariantType VARIANT_TYPE_INT32;
 
-  extern GLIBMM_API const VariantType VARIANT_TYPE_UINT32;
+  extern LIBMM_GLIB_SYMEXPORT const VariantType VARIANT_TYPE_UINT32;
 
-  extern GLIBMM_API const VariantType VARIANT_TYPE_INT64;
+  extern LIBMM_GLIB_SYMEXPORT const VariantType VARIANT_TYPE_INT64;
 
-  extern GLIBMM_API const VariantType VARIANT_TYPE_UINT64;
+  extern LIBMM_GLIB_SYMEXPORT const VariantType VARIANT_TYPE_UINT64;
 
-  extern GLIBMM_API const VariantType VARIANT_TYPE_DOUBLE;
+  extern LIBMM_GLIB_SYMEXPORT const VariantType VARIANT_TYPE_DOUBLE;
 
-  extern GLIBMM_API const VariantType VARIANT_TYPE_STRING;
+  extern LIBMM_GLIB_SYMEXPORT const VariantType VARIANT_TYPE_STRING;
 
-  extern GLIBMM_API const VariantType VARIANT_TYPE_OBJECT_PATH;
+  extern LIBMM_GLIB_SYMEXPORT const VariantType VARIANT_TYPE_OBJECT_PATH;
 
-  extern GLIBMM_API const VariantType VARIANT_TYPE_SIGNATURE;
+  extern LIBMM_GLIB_SYMEXPORT const VariantType VARIANT_TYPE_SIGNATURE;
 
-  extern GLIBMM_API const VariantType VARIANT_TYPE_VARIANT;
+  extern LIBMM_GLIB_SYMEXPORT const VariantType VARIANT_TYPE_VARIANT;
 
-  extern GLIBMM_API const VariantType VARIANT_TYPE_HANDLE;
+  extern LIBMM_GLIB_SYMEXPORT const VariantType VARIANT_TYPE_HANDLE;
 
-  extern GLIBMM_API const VariantType VARIANT_TYPE_UNIT;
+  extern LIBMM_GLIB_SYMEXPORT const VariantType VARIANT_TYPE_UNIT;
 
-  extern GLIBMM_API const VariantType VARIANT_TYPE_ANY;
+  extern LIBMM_GLIB_SYMEXPORT const VariantType VARIANT_TYPE_ANY;
 
-  extern GLIBMM_API const VariantType VARIANT_TYPE_BASIC;
+  extern LIBMM_GLIB_SYMEXPORT const VariantType VARIANT_TYPE_BASIC;
 
-  extern GLIBMM_API const VariantType VARIANT_TYPE_MAYBE;
+  extern LIBMM_GLIB_SYMEXPORT const VariantType VARIANT_TYPE_MAYBE;
 
-  extern GLIBMM_API const VariantType VARIANT_TYPE_ARRAY;
+  extern LIBMM_GLIB_SYMEXPORT const VariantType VARIANT_TYPE_ARRAY;
 
-  extern GLIBMM_API const VariantType VARIANT_TYPE_TUPLE;
+  extern LIBMM_GLIB_SYMEXPORT const VariantType VARIANT_TYPE_TUPLE;
 
-  extern GLIBMM_API const VariantType VARIANT_TYPE_DICT_ENTRY;
+  extern LIBMM_GLIB_SYMEXPORT const VariantType VARIANT_TYPE_DICT_ENTRY;
 
-  extern GLIBMM_API const VariantType VARIANT_TYPE_DICTIONARY;
+  extern LIBMM_GLIB_SYMEXPORT const VariantType VARIANT_TYPE_DICTIONARY;
 
-  extern GLIBMM_API const VariantType VARIANT_TYPE_STRING_ARRAY;
+  extern LIBMM_GLIB_SYMEXPORT const VariantType VARIANT_TYPE_STRING_ARRAY;
 
-  extern GLIBMM_API const VariantType VARIANT_TYPE_OBJECT_PATH_ARRAY;
+  extern LIBMM_GLIB_SYMEXPORT const VariantType VARIANT_TYPE_OBJECT_PATH_ARRAY;
 
-  extern GLIBMM_API const VariantType VARIANT_TYPE_BYTESTRING;
+  extern LIBMM_GLIB_SYMEXPORT const VariantType VARIANT_TYPE_BYTESTRING;
 
-  extern GLIBMM_API const VariantType VARIANT_TYPE_BYTESTRING_ARRAY;
+  extern LIBMM_GLIB_SYMEXPORT const VariantType VARIANT_TYPE_BYTESTRING_ARRAY;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   template <>
-  class GLIBMM_API Value<Glib::VariantType> : public ValueBase_Boxed
+  class LIBMM_GLIB_SYMEXPORT Value<Glib::VariantType> : public ValueBase_Boxed
   {
   public:
     using CppType = Glib::VariantType;
@@ -223,7 +223,7 @@ namespace Glib
 namespace Glib
 {
 
-  GLIBMM_API
+  LIBMM_GLIB_SYMEXPORT
   auto
   wrap (GVariantType* object, bool take_copy = false) -> Glib::VariantType;
 

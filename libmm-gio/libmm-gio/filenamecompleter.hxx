@@ -3,7 +3,7 @@
 #ifndef _GIOMM_FILENAMECOMPLETER_H
 #define _GIOMM_FILENAMECOMPLETER_H
 
-#include <libmm-gio/gioconfig.hxx>
+#include <libmm-gio/mm-gioconfig.hxx>
 
 #include <libmm-glib/ustring.hxx>
 #include <sigc++/sigc++.h>
@@ -18,16 +18,16 @@ using GFilenameCompleterClass = struct _GFilenameCompleterClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gio
 {
-  class GIOMM_API FilenameCompleter_Class;
+  class LIBMM_GIO_SYMEXPORT FilenameCompleter_Class;
 }
 #endif
 
 namespace Gio
 {
 
-  class GIOMM_API File;
+  class LIBMM_GIO_SYMEXPORT File;
 
-  class GIOMM_API FilenameCompleter : public Glib::Object
+  class LIBMM_GIO_SYMEXPORT FilenameCompleter : public Glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -116,7 +116,7 @@ namespace Gio
 namespace Glib
 {
 
-  GIOMM_API
+  LIBMM_GIO_SYMEXPORT
   auto
   wrap (GFilenameCompleter* object, bool take_copy = false) -> Glib::RefPtr<Gio::FilenameCompleter>;
 } // namespace Glib

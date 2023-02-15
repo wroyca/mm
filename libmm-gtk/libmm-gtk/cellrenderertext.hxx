@@ -22,14 +22,14 @@ using GtkCellRendererTextClass = struct _GtkCellRendererTextClass;
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API CellRendererText_Class;
+  class LIBMM_GTK_SYMEXPORT CellRendererText_Class;
 }
   #endif
 
 namespace Gtk
 {
 
-  class GTKMM_API CellRendererText : public CellRenderer
+  class LIBMM_GTK_SYMEXPORT CellRendererText : public CellRenderer
   {
   public:
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -52,7 +52,7 @@ namespace Gtk
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   private:
-    friend GTKMM_API class CellRendererText_Class;
+    friend LIBMM_GTK_SYMEXPORT class CellRendererText_Class;
     static CppClassType cellrenderertext_class_;
 
   protected:
@@ -390,7 +390,7 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkCellRendererText* object, bool take_copy = false) -> Gtk::CellRendererText*;
 } // namespace Glib
 

@@ -16,16 +16,16 @@ using GUnixCredentialsMessageClass = struct _GUnixCredentialsMessageClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gio
 {
-  class GIOMM_API UnixCredentialsMessage_Class;
+  class LIBMM_GIO_SYMEXPORT UnixCredentialsMessage_Class;
 }
 #endif
 
 namespace Gio
 {
 
-  class GIOMM_API Credentials;
+  class LIBMM_GIO_SYMEXPORT Credentials;
 
-  class GIOMM_API UnixCredentialsMessage : public SocketControlMessage
+  class LIBMM_GIO_SYMEXPORT UnixCredentialsMessage : public SocketControlMessage
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -120,7 +120,7 @@ namespace Gio
 namespace Glib
 {
 
-  GIOMM_API
+  LIBMM_GIO_SYMEXPORT
   auto
   wrap (GUnixCredentialsMessage* object, bool take_copy = false) -> Glib::RefPtr<Gio::UnixCredentialsMessage>;
 } // namespace Glib

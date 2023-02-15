@@ -28,14 +28,14 @@ using GtkAppChooserClass = struct _GtkAppChooserClass;
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API AppChooser_Class;
+  class LIBMM_GTK_SYMEXPORT AppChooser_Class;
 }
   #endif
 
 namespace Gtk
 {
 
-  class GTKMM_API AppChooser : public Glib::Interface
+  class LIBMM_GTK_SYMEXPORT AppChooser : public Glib::Interface
   {
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -124,7 +124,7 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkAppChooser* object, bool take_copy = false) -> Glib::RefPtr<Gtk::AppChooser>;
 
 } // namespace Glib

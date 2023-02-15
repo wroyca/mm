@@ -13,7 +13,7 @@
 namespace Cairo
 {
 
-  class CAIROMM_API QuartzFontFace : public FontFace
+  class LIBMM_CAIRO_SYMEXPORT QuartzFontFace : public FontFace
   {
   public:
     static RefPtr<QuartzFontFace>

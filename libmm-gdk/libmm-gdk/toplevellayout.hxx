@@ -12,7 +12,7 @@
 namespace Gdk
 {
 
-  class GDKMM_API ToplevelLayout final
+  class LIBMM_GDK_SYMEXPORT ToplevelLayout final
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -86,7 +86,7 @@ namespace Gdk
 
 namespace Glib
 {
-  GDKMM_API auto
+  LIBMM_GDK_SYMEXPORT auto
   wrap (GdkToplevelLayout* object, bool take_copy = false) -> Glib::RefPtr<Gdk::ToplevelLayout>;
 
 } // namespace Glib

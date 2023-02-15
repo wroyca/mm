@@ -9,10 +9,10 @@ namespace Glib
 {
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-  class GLIBMM_API Interface_Class;
+  class LIBMM_GLIB_SYMEXPORT Interface_Class;
 #endif
 
-  class GLIBMM_API Interface : virtual public Glib::ObjectBase
+  class LIBMM_GLIB_SYMEXPORT Interface : virtual public Glib::ObjectBase
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

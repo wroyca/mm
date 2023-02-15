@@ -3,7 +3,7 @@
 #ifndef _GIOMM_LISTMODEL_H
 #define _GIOMM_LISTMODEL_H
 
-#include <libmm-gio/gioconfig.hxx>
+#include <libmm-gio/mm-gioconfig.hxx>
 
 #include <libmm-glib/ustring.hxx>
 #include <sigc++/sigc++.h>
@@ -23,14 +23,14 @@ using GListModelClass = struct _GListModelClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gio
 {
-  class GIOMM_API ListModel_Class;
+  class LIBMM_GIO_SYMEXPORT ListModel_Class;
 }
 #endif
 
 namespace Gio
 {
 
-  class GIOMM_API ListModel : public Glib::Interface
+  class LIBMM_GIO_SYMEXPORT ListModel : public Glib::Interface
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -133,7 +133,7 @@ namespace Gio
 namespace Glib
 {
 
-  GIOMM_API
+  LIBMM_GIO_SYMEXPORT
   auto
   wrap (GListModel* object, bool take_copy = false) -> Glib::RefPtr<Gio::ListModel>;
 

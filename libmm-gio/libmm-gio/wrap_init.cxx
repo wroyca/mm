@@ -51,9 +51,9 @@
 #include <libmm-gio/dbussubtreevtable.hxx>
 #include <libmm-gio/dbusutils.hxx>
 #include <libmm-gio/dbuswatchname.hxx>
-#if !defined(G_OS_WIN32) && !defined(GLIBMM_OS_COCOA)
-  #include <libmm-gio/desktopappinfo.hxx>
-#endif
+// #if !defined(G_OS_WIN32) && !defined(GLIBMM_OS_COCOA)
+//   #include <libmm-gio/desktopappinfo.hxx>
+// #endif
 #include <libmm-gio/drive.hxx>
 #include <libmm-gio/emblem.hxx>
 #include <libmm-gio/emblemedicon.hxx>
@@ -606,14 +606,14 @@ namespace Gio
       wrap_new (GObject*) -> Glib::ObjectBase*;
     };
   } // namespace DBus
-#if !defined(G_OS_WIN32) && !defined(GLIBMM_OS_COCOA)
-  class DesktopAppInfo_Class
-  {
-  public:
-    static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
-  };
-#endif
+// #if !defined(G_OS_WIN32) && !defined(GLIBMM_OS_COCOA)
+//   class DesktopAppInfo_Class
+//   {
+//   public:
+//     static auto
+//     wrap_new (GObject*) -> Glib::ObjectBase*;
+//   };
+// #endif
   class Emblem_Class
   {
   public:
@@ -1144,10 +1144,10 @@ namespace Gio
                    &DBus::ObjectSkeleton_Class::wrap_new);
     wrap_register (g_dbus_proxy_get_type (), &DBus::Proxy_Class::wrap_new);
     wrap_register (g_dbus_server_get_type (), &DBus::Server_Class::wrap_new);
-#if !defined(G_OS_WIN32) && !defined(GLIBMM_OS_COCOA)
-    Glib::wrap_register (g_desktop_app_info_get_type (),
-                         &DesktopAppInfo_Class::wrap_new);
-#endif
+// #if !defined(G_OS_WIN32) && !defined(GLIBMM_OS_COCOA)
+//     Glib::wrap_register (g_desktop_app_info_get_type (),
+//                          &DesktopAppInfo_Class::wrap_new);
+// #endif
     wrap_register (g_emblem_get_type (), &Emblem_Class::wrap_new);
     wrap_register (g_emblemed_icon_get_type (), &EmblemedIcon_Class::wrap_new);
     wrap_register (g_file_enumerator_get_type (),
@@ -1293,9 +1293,9 @@ namespace Gio
     g_type_ensure (DBus::ObjectSkeleton::get_type ());
     g_type_ensure (DBus::Proxy::get_type ());
     g_type_ensure (DBus::Server::get_type ());
-#if !defined(G_OS_WIN32) && !defined(GLIBMM_OS_COCOA)
-    g_type_ensure (DesktopAppInfo::get_type ());
-#endif
+// #if !defined(G_OS_WIN32) && !defined(GLIBMM_OS_COCOA)
+//     g_type_ensure (DesktopAppInfo::get_type ());
+// #endif
     g_type_ensure (Emblem::get_type ());
     g_type_ensure (EmblemedIcon::get_type ());
     g_type_ensure (FileEnumerator::get_type ());

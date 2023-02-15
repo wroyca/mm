@@ -26,7 +26,7 @@ using PangoContextClass = struct _PangoContextClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Pango
 {
-  class PANGOMM_API Context_Class;
+  class LIBMM_PANGO_SYMEXPORT Context_Class;
 }
 #endif
 
@@ -51,7 +51,7 @@ namespace Glib
 {
 
   template <>
-  class PANGOMM_API Value<Pango::Direction>
+  class LIBMM_PANGO_SYMEXPORT Value<Pango::Direction>
     : public Glib::Value_Enum<Pango::Direction>
   {
   public:
@@ -79,7 +79,7 @@ namespace Glib
 {
 
   template <>
-  class PANGOMM_API Value<Pango::GravityHint>
+  class LIBMM_PANGO_SYMEXPORT Value<Pango::GravityHint>
     : public Glib::Value_Enum<Pango::GravityHint>
   {
   public:
@@ -93,7 +93,7 @@ namespace Glib
 namespace Pango
 {
 
-  class PANGOMM_API Context : public Glib::Object
+  class LIBMM_PANGO_SYMEXPORT Context : public Glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -258,7 +258,7 @@ namespace Pango
 namespace Glib
 {
 
-  PANGOMM_API
+  LIBMM_PANGO_SYMEXPORT
   auto
   wrap (PangoContext* object, bool take_copy = false) -> Glib::RefPtr<Pango::Context>;
 } // namespace Glib

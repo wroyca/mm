@@ -20,14 +20,14 @@ using PangoFontsetClass = struct _PangoFontsetClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Pango
 {
-  class PANGOMM_API Fontset_Class;
+  class LIBMM_PANGO_SYMEXPORT Fontset_Class;
 }
 #endif
 
 namespace Pango
 {
 
-  class PANGOMM_API Fontset : public Glib::Object
+  class LIBMM_PANGO_SYMEXPORT Fontset : public Glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -104,7 +104,7 @@ namespace Pango
 namespace Glib
 {
 
-  PANGOMM_API
+  LIBMM_PANGO_SYMEXPORT
   auto
   wrap (PangoFontset* object, bool take_copy = false) -> Glib::RefPtr<Pango::Fontset>;
 } // namespace Glib

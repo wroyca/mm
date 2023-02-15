@@ -3,7 +3,7 @@
 #ifndef _GIOMM_ASYNCRESULT_H
 #define _GIOMM_ASYNCRESULT_H
 
-#include <libmm-gio/gioconfig.hxx>
+#include <libmm-gio/mm-gioconfig.hxx>
 
 #include <libmm-glib/ustring.hxx>
 #include <sigc++/sigc++.h>
@@ -23,18 +23,18 @@ using GAsyncResultClass = struct _GAsyncResultClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gio
 {
-  class GIOMM_API AsyncResult_Class;
+  class LIBMM_GIO_SYMEXPORT AsyncResult_Class;
 }
 #endif
 
 namespace Gio
 {
 
-  class GIOMM_API AsyncResult;
+  class LIBMM_GIO_SYMEXPORT AsyncResult;
 
   using SlotAsyncReady = sigc::slot<void (Glib::RefPtr<AsyncResult>&)>;
 
-  class GIOMM_API AsyncResult : public Glib::Interface
+  class LIBMM_GIO_SYMEXPORT AsyncResult : public Glib::Interface
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -123,7 +123,7 @@ namespace Gio
 namespace Glib
 {
 
-  GIOMM_API
+  LIBMM_GIO_SYMEXPORT
   auto
   wrap (GAsyncResult* object, bool take_copy = false) -> Glib::RefPtr<Gio::AsyncResult>;
 

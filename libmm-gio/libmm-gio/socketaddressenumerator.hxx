@@ -18,16 +18,16 @@ using GSocketAddressEnumeratorClass = struct _GSocketAddressEnumeratorClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gio
 {
-  class GIOMM_API SocketAddressEnumerator_Class;
+  class LIBMM_GIO_SYMEXPORT SocketAddressEnumerator_Class;
 }
 #endif
 
 namespace Gio
 {
 
-  class GIOMM_API SocketAddress;
+  class LIBMM_GIO_SYMEXPORT SocketAddress;
 
-  class GIOMM_API SocketAddressEnumerator : public Glib::Object
+  class LIBMM_GIO_SYMEXPORT SocketAddressEnumerator : public Glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -115,7 +115,7 @@ namespace Gio
 namespace Glib
 {
 
-  GIOMM_API
+  LIBMM_GIO_SYMEXPORT
   auto
   wrap (GSocketAddressEnumerator* object, bool take_copy = false) -> Glib::RefPtr<Gio::SocketAddressEnumerator>;
 } // namespace Glib

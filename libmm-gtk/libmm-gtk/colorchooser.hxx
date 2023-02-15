@@ -27,14 +27,14 @@ using GtkColorChooserClass = struct _GtkColorChooserClass;
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API ColorChooser_Class;
+  class LIBMM_GTK_SYMEXPORT ColorChooser_Class;
 }
   #endif
 
 namespace Gtk
 {
 
-  class GTKMM_API ColorChooser : public Glib::Interface
+  class LIBMM_GTK_SYMEXPORT ColorChooser : public Glib::Interface
   {
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -141,7 +141,7 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkColorChooser* object, bool take_copy = false) -> Glib::RefPtr<Gtk::ColorChooser>;
 
 } // namespace Glib

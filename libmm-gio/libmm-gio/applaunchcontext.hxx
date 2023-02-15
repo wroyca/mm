@@ -23,17 +23,17 @@ using GAppLaunchContextClass = struct _GAppLaunchContextClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gio
 {
-  class GIOMM_API AppLaunchContext_Class;
+  class LIBMM_GIO_SYMEXPORT AppLaunchContext_Class;
 }
 #endif
 
 namespace Gio
 {
 
-  class GIOMM_API AppInfo;
-  class GIOMM_API File;
+  class LIBMM_GIO_SYMEXPORT AppInfo;
+  class LIBMM_GIO_SYMEXPORT File;
 
-  class GIOMM_API AppLaunchContext : public Glib::Object
+  class LIBMM_GIO_SYMEXPORT AppLaunchContext : public Glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -128,7 +128,7 @@ namespace Gio
 namespace Glib
 {
 
-  GIOMM_API
+  LIBMM_GIO_SYMEXPORT
   auto
   wrap (GAppLaunchContext* object, bool take_copy = false) -> Glib::RefPtr<Gio::AppLaunchContext>;
 } // namespace Glib

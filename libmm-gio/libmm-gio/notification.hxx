@@ -3,7 +3,7 @@
 #ifndef _GIOMM_NOTIFICATION_H
 #define _GIOMM_NOTIFICATION_H
 
-#include <libmm-gio/gioconfig.hxx>
+#include <libmm-gio/mm-gioconfig.hxx>
 
 #include <libmm-glib/ustring.hxx>
 #include <sigc++/sigc++.h>
@@ -20,15 +20,15 @@ using GNotificationClass = struct _GNotificationClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gio
 {
-  class GIOMM_API Notification_Class;
+  class LIBMM_GIO_SYMEXPORT Notification_Class;
 }
 #endif
 
 namespace Gio
 {
-  class GIOMM_API Icon;
+  class LIBMM_GIO_SYMEXPORT Icon;
 
-  class GIOMM_API Notification : public Glib::Object
+  class LIBMM_GIO_SYMEXPORT Notification : public Glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -174,7 +174,7 @@ namespace Glib
 {
 
   template <>
-  class GIOMM_API Value<Gio::Notification::Priority>
+  class LIBMM_GIO_SYMEXPORT Value<Gio::Notification::Priority>
     : public Glib::Value_Enum<Gio::Notification::Priority>
   {
   public:
@@ -188,7 +188,7 @@ namespace Glib
 namespace Glib
 {
 
-  GIOMM_API
+  LIBMM_GIO_SYMEXPORT
   auto
   wrap (GNotification* object, bool take_copy = false) -> Glib::RefPtr<Gio::Notification>;
 } // namespace Glib

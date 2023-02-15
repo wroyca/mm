@@ -3,7 +3,7 @@
 #ifndef _GIOMM_DBUSMESSAGE_H
 #define _GIOMM_DBUSMESSAGE_H
 
-#include <libmm-gio/gioconfig.hxx>
+#include <libmm-gio/mm-gioconfig.hxx>
 
 #include <libmm-glib/ustring.hxx>
 #include <sigc++/sigc++.h>
@@ -24,7 +24,7 @@ using GDBusMessageClass = struct _GDBusMessageClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gio::DBus
 {
-  class GIOMM_API Message_Class;
+  class LIBMM_GIO_SYMEXPORT Message_Class;
 }
 #endif
 
@@ -171,7 +171,7 @@ namespace Glib
 {
 
   template <>
-  class GIOMM_API Value<Gio::DBus::CapabilityFlags>
+  class LIBMM_GIO_SYMEXPORT Value<Gio::DBus::CapabilityFlags>
     : public Glib::Value_Flags<Gio::DBus::CapabilityFlags>
   {
   public:
@@ -185,7 +185,7 @@ namespace Glib
 namespace Gio::DBus
 {
 
-  class GIOMM_API Message : public Glib::Object
+  class LIBMM_GIO_SYMEXPORT Message : public Glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -438,7 +438,7 @@ namespace Gio::DBus
 namespace Glib
 {
 
-  GIOMM_API
+  LIBMM_GIO_SYMEXPORT
   auto
   wrap (GDBusMessage* object, bool take_copy = false) -> Glib::RefPtr<Gio::DBus::Message>;
 } // namespace Glib

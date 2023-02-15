@@ -22,18 +22,18 @@ namespace Gtk
       DISMISSED
     };
 
-    GTKMM_API
+    LIBMM_GTK_SYMEXPORT
     DialogError (Code error_code, const Glib::ustring& error_message);
-    GTKMM_API explicit DialogError (GError* gobject);
-    GTKMM_API auto
+    LIBMM_GTK_SYMEXPORT explicit DialogError (GError* gobject);
+    LIBMM_GTK_SYMEXPORT auto
     code () const -> Code;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
   private:
-    GTKMM_API static auto
+    LIBMM_GTK_SYMEXPORT static auto
     throw_func (GError* gobject) -> void;
 
-    friend GTKMM_API auto
+    friend LIBMM_GTK_SYMEXPORT auto
     wrap_init () -> void;
 
 #endif
@@ -46,7 +46,7 @@ namespace Glib
 {
 
   template <>
-  class GTKMM_API Value<Gtk::DialogError::Code>
+  class LIBMM_GTK_SYMEXPORT Value<Gtk::DialogError::Code>
     : public Glib::Value_Enum<Gtk::DialogError::Code>
   {
   public:

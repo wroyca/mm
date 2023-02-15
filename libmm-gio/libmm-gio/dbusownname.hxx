@@ -74,7 +74,7 @@ namespace Glib
 {
 
   template <>
-  class GIOMM_API Value<Gio::DBus::BusNameOwnerFlags>
+  class LIBMM_GIO_SYMEXPORT Value<Gio::DBus::BusNameOwnerFlags>
     : public Glib::Value_Flags<Gio::DBus::BusNameOwnerFlags>
   {
   public:
@@ -100,7 +100,7 @@ namespace Gio::DBus
       sigc::slot<void (const Glib::RefPtr<Gio::DBus::Connection>&,
                        Glib::ustring)>;
 
-  GIOMM_API
+  LIBMM_GIO_SYMEXPORT
   auto
   own_name (BusType bus_type,
             const Glib::ustring& name,
@@ -109,7 +109,7 @@ namespace Gio::DBus
             const SlotNameLost& name_lost_slot = {},
             BusNameOwnerFlags flags = Gio::DBus::BusNameOwnerFlags::NONE) -> guint;
 
-  GIOMM_API auto
+  LIBMM_GIO_SYMEXPORT auto
   unown_name (guint owner_id) -> void;
 
 } // namespace Gio::DBus

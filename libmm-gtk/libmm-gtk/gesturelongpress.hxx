@@ -16,14 +16,14 @@ using GtkGestureLongPressClass = struct _GtkGestureLongPressClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API GestureLongPress_Class;
+  class LIBMM_GTK_SYMEXPORT GestureLongPress_Class;
 }
 #endif
 
 namespace Gtk
 {
 
-  class GTKMM_API GestureLongPress : public GestureSingle
+  class LIBMM_GTK_SYMEXPORT GestureLongPress : public GestureSingle
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -113,7 +113,7 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkGestureLongPress* object, bool take_copy = false) -> Glib::RefPtr<Gtk::GestureLongPress>;
 } // namespace Glib
 

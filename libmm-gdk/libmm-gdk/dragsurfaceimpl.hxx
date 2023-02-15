@@ -10,7 +10,7 @@
 namespace Gdk
 {
 
-  class GDKMM_API DragSurfaceImpl : public DragSurface,
+  class LIBMM_GDK_SYMEXPORT DragSurfaceImpl : public DragSurface,
                                     public Surface
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

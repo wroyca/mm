@@ -16,14 +16,14 @@ using GtkRevealerClass = struct _GtkRevealerClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API Revealer_Class;
+  class LIBMM_GTK_SYMEXPORT Revealer_Class;
 }
 #endif
 
 namespace Gtk
 {
 
-  class GTKMM_API Revealer : public Widget
+  class LIBMM_GTK_SYMEXPORT Revealer : public Widget
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -46,7 +46,7 @@ namespace Gtk
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   private:
-    friend GTKMM_API class Revealer_Class;
+    friend LIBMM_GTK_SYMEXPORT class Revealer_Class;
     static CppClassType revealer_class_;
 
   protected:
@@ -151,7 +151,7 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkRevealer* object, bool take_copy = false) -> Gtk::Revealer*;
 } // namespace Glib
 

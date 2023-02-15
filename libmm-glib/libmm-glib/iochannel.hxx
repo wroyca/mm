@@ -175,18 +175,18 @@ namespace Glib
       FAILED
     };
 
-    GLIBMM_API
+    LIBMM_GLIB_SYMEXPORT
     IOChannelError (Code error_code, const Glib::ustring& error_message);
-    GLIBMM_API explicit IOChannelError (GError* gobject);
-    GLIBMM_API auto
+    LIBMM_GLIB_SYMEXPORT explicit IOChannelError (GError* gobject);
+    LIBMM_GLIB_SYMEXPORT auto
     code () const -> Code;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
   private:
-    GLIBMM_API static auto
+    LIBMM_GLIB_SYMEXPORT static auto
     throw_func (GError* gobject) -> void;
 
-    friend GLIBMM_API auto
+    friend LIBMM_GLIB_SYMEXPORT auto
     wrap_init () -> void;
 
 #endif
@@ -196,7 +196,7 @@ namespace Glib
   class GlibmmIOChannel;
 #endif
 
-  class GLIBMM_API IOChannel : public sigc::trackable
+  class LIBMM_GLIB_SYMEXPORT IOChannel : public sigc::trackable
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -333,7 +333,7 @@ namespace Glib
     release_gobject () -> void;
   };
 
-  GLIBMM_API auto
+  LIBMM_GLIB_SYMEXPORT auto
   wrap (GIOChannel* gobject, bool take_copy = false) -> Glib::RefPtr<IOChannel>;
 
 } // namespace Glib

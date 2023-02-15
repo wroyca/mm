@@ -84,7 +84,7 @@ namespace Glib
 {
 
   template <>
-  class GDKMM_API Value<Gdk::AxisFlags>
+  class LIBMM_GDK_SYMEXPORT Value<Gdk::AxisFlags>
     : public Glib::Value_Flags<Gdk::AxisFlags>
   {
   public:
@@ -122,7 +122,7 @@ namespace Glib
 {
 
   template <>
-  class GDKMM_API Value<Gdk::AxisUse> : public Glib::Value_Enum<Gdk::AxisUse>
+  class LIBMM_GDK_SYMEXPORT Value<Gdk::AxisUse> : public Glib::Value_Enum<Gdk::AxisUse>
   {
   public:
     static auto
@@ -155,7 +155,7 @@ namespace Glib
 {
 
   template <>
-  class GDKMM_API Value<Gdk::CrossingMode>
+  class LIBMM_GDK_SYMEXPORT Value<Gdk::CrossingMode>
     : public Glib::Value_Enum<Gdk::CrossingMode>
   {
   public:
@@ -232,7 +232,7 @@ namespace Glib
 {
 
   template <>
-  class GDKMM_API Value<Gdk::DragAction>
+  class LIBMM_GDK_SYMEXPORT Value<Gdk::DragAction>
     : public Glib::Value_Flags<Gdk::DragAction>
   {
   public:
@@ -267,7 +267,7 @@ namespace Glib
 {
 
   template <>
-  class GDKMM_API Value<Gdk::Gravity> : public Glib::Value_Enum<Gdk::Gravity>
+  class LIBMM_GDK_SYMEXPORT Value<Gdk::Gravity> : public Glib::Value_Enum<Gdk::Gravity>
   {
   public:
     static auto
@@ -351,7 +351,7 @@ namespace Glib
 {
 
   template <>
-  class GDKMM_API Value<Gdk::ModifierType>
+  class LIBMM_GDK_SYMEXPORT Value<Gdk::ModifierType>
     : public Glib::Value_Flags<Gdk::ModifierType>
   {
   public:
@@ -382,7 +382,7 @@ namespace Glib
 {
 
   template <>
-  class GDKMM_API Value<Gdk::NotifyType>
+  class LIBMM_GDK_SYMEXPORT Value<Gdk::NotifyType>
     : public Glib::Value_Enum<Gdk::NotifyType>
   {
   public:
@@ -412,7 +412,7 @@ namespace Glib
 {
 
   template <>
-  class GDKMM_API Value<Gdk::ScrollDirection>
+  class LIBMM_GDK_SYMEXPORT Value<Gdk::ScrollDirection>
     : public Glib::Value_Enum<Gdk::ScrollDirection>
   {
   public:
@@ -441,7 +441,7 @@ namespace Glib
 {
 
   template <>
-  class GDKMM_API Value<Gdk::TouchpadGesturePhase>
+  class LIBMM_GDK_SYMEXPORT Value<Gdk::TouchpadGesturePhase>
     : public Glib::Value_Enum<Gdk::TouchpadGesturePhase>
   {
   public:
@@ -468,7 +468,7 @@ namespace Glib
 {
 
   template <>
-  class GDKMM_API Value<Gdk::ScrollUnit>
+  class LIBMM_GDK_SYMEXPORT Value<Gdk::ScrollUnit>
     : public Glib::Value_Enum<Gdk::ScrollUnit>
   {
   public:

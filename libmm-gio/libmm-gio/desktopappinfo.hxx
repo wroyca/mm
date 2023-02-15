@@ -3,7 +3,7 @@
 #ifndef _GIOMM_DESKTOPAPPINFO_H
 #define _GIOMM_DESKTOPAPPINFO_H
 
-#include <libmm-gio/gioconfig.hxx>
+#include <libmm-gio/mm-gioconfig.hxx>
 
 #include <libmm-glib/ustring.hxx>
 #include <sigc++/sigc++.h>
@@ -19,21 +19,21 @@ using GDesktopAppInfoClass = struct _GDesktopAppInfoClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gio
 {
-  class GIOMM_API DesktopAppInfo_Class;
+  class LIBMM_GIO_SYMEXPORT DesktopAppInfo_Class;
 }
 #endif
 
 namespace Glib
 {
 
-  class GLIBMM_API KeyFile;
+  class LIBMM_GLIB_SYMEXPORT KeyFile;
 
 }
 
 namespace Gio
 {
 
-  class GIOMM_API DesktopAppInfo : public Glib::Object,
+  class LIBMM_GIO_SYMEXPORT DesktopAppInfo : public Glib::Object,
                                    public AppInfo
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -162,7 +162,7 @@ namespace Gio
 namespace Glib
 {
 
-  GIOMM_API
+  LIBMM_GIO_SYMEXPORT
   auto
   wrap (GDesktopAppInfo* object, bool take_copy = false) -> Glib::RefPtr<Gio::DesktopAppInfo>;
 } // namespace Glib

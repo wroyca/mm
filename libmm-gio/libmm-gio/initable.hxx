@@ -21,14 +21,14 @@ using GInitableClass = struct _GInitableClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gio
 {
-  class GIOMM_API Initable_Class;
+  class LIBMM_GIO_SYMEXPORT Initable_Class;
 }
 #endif
 
 namespace Gio
 {
 
-  class GIOMM_API Initable : public Glib::Interface
+  class LIBMM_GIO_SYMEXPORT Initable : public Glib::Interface
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -113,7 +113,7 @@ namespace Gio
 namespace Glib
 {
 
-  GIOMM_API
+  LIBMM_GIO_SYMEXPORT
   auto
   wrap (GInitable* object, bool take_copy = false) -> Glib::RefPtr<Gio::Initable>;
 

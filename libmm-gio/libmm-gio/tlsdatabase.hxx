@@ -18,26 +18,26 @@ using GTlsDatabaseClass = struct _GTlsDatabaseClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gio
 {
-  class GIOMM_API TlsDatabase_Class;
+  class LIBMM_GIO_SYMEXPORT TlsDatabase_Class;
 }
 #endif
 
 namespace Glib
 {
 
-  class GLIBMM_API ByteArray;
+  class LIBMM_GLIB_SYMEXPORT ByteArray;
 
 }
 
 namespace Gio
 {
 
-  class GIOMM_API Cancellable;
-  class GIOMM_API SocketConnectable;
-  class GIOMM_API TlsCertificate;
-  class GIOMM_API TlsInteraction;
+  class LIBMM_GIO_SYMEXPORT Cancellable;
+  class LIBMM_GIO_SYMEXPORT SocketConnectable;
+  class LIBMM_GIO_SYMEXPORT TlsCertificate;
+  class LIBMM_GIO_SYMEXPORT TlsInteraction;
 
-  class GIOMM_API TlsDatabase : public Glib::Object
+  class LIBMM_GIO_SYMEXPORT TlsDatabase : public Glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -646,7 +646,7 @@ namespace Glib
 {
 
   template <>
-  class GIOMM_API Value<Gio::TlsDatabase::VerifyFlags>
+  class LIBMM_GIO_SYMEXPORT Value<Gio::TlsDatabase::VerifyFlags>
     : public Glib::Value_Flags<Gio::TlsDatabase::VerifyFlags>
   {
   public:
@@ -715,7 +715,7 @@ namespace Glib
 {
 
   template <>
-  class GIOMM_API Value<Gio::TlsDatabase::LookupFlags>
+  class LIBMM_GIO_SYMEXPORT Value<Gio::TlsDatabase::LookupFlags>
     : public Glib::Value_Flags<Gio::TlsDatabase::LookupFlags>
   {
   public:
@@ -729,7 +729,7 @@ namespace Glib
 namespace Glib
 {
 
-  GIOMM_API
+  LIBMM_GIO_SYMEXPORT
   auto
   wrap (GTlsDatabase* object, bool take_copy = false) -> Glib::RefPtr<Gio::TlsDatabase>;
 } // namespace Glib

@@ -3,7 +3,7 @@
 #ifndef _GIOMM_ACTION_H
 #define _GIOMM_ACTION_H
 
-#include <libmm-gio/gioconfig.hxx>
+#include <libmm-gio/mm-gioconfig.hxx>
 
 #include <libmm-glib/ustring.hxx>
 #include <sigc++/sigc++.h>
@@ -25,14 +25,14 @@ using GActionClass = struct _GActionClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gio
 {
-  class GIOMM_API Action_Class;
+  class LIBMM_GIO_SYMEXPORT Action_Class;
 }
 #endif
 
 namespace Gio
 {
 
-  class GIOMM_API Action : public Glib::Interface
+  class LIBMM_GIO_SYMEXPORT Action : public Glib::Interface
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -355,7 +355,7 @@ namespace Gio
 namespace Glib
 {
 
-  GIOMM_API
+  LIBMM_GIO_SYMEXPORT
   auto
   wrap (GAction* object, bool take_copy = false) -> Glib::RefPtr<Gio::Action>;
 

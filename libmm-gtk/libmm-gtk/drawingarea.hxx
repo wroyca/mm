@@ -16,14 +16,14 @@ using GtkDrawingAreaClass = struct _GtkDrawingAreaClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API DrawingArea_Class;
+  class LIBMM_GTK_SYMEXPORT DrawingArea_Class;
 }
 #endif
 
 namespace Gtk
 {
 
-  class GTKMM_API DrawingArea : public Widget
+  class LIBMM_GTK_SYMEXPORT DrawingArea : public Widget
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -46,7 +46,7 @@ namespace Gtk
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   private:
-    friend GTKMM_API class DrawingArea_Class;
+    friend LIBMM_GTK_SYMEXPORT class DrawingArea_Class;
     static CppClassType drawingarea_class_;
 
   protected:
@@ -125,7 +125,7 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkDrawingArea* object, bool take_copy = false) -> Gtk::DrawingArea*;
 } // namespace Glib
 

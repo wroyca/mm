@@ -19,16 +19,16 @@ using GtkRangeClass = struct _GtkRangeClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API Range_Class;
+  class LIBMM_GTK_SYMEXPORT Range_Class;
 }
 #endif
 
 namespace Gtk
 {
 
-  class GTKMM_API Adjustment;
+  class LIBMM_GTK_SYMEXPORT Adjustment;
 
-  class GTKMM_API Range : public Widget,
+  class LIBMM_GTK_SYMEXPORT Range : public Widget,
                           public Orientable
   {
   public:
@@ -52,7 +52,7 @@ namespace Gtk
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   private:
-    friend GTKMM_API class Range_Class;
+    friend LIBMM_GTK_SYMEXPORT class Range_Class;
     static CppClassType range_class_;
 
   protected:
@@ -233,7 +233,7 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkRange* object, bool take_copy = false) -> Gtk::Range*;
 } // namespace Glib
 

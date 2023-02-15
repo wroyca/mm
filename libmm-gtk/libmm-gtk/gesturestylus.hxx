@@ -20,19 +20,19 @@ using GtkGestureStylusClass = struct _GtkGestureStylusClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API GestureStylus_Class;
+  class LIBMM_GTK_SYMEXPORT GestureStylus_Class;
 }
 #endif
 
 namespace Gdk
 {
-  class GTKMM_API DeviceTool;
+  class LIBMM_GTK_SYMEXPORT DeviceTool;
 }
 
 namespace Gtk
 {
 
-  class GTKMM_API GestureStylus : public GestureSingle
+  class LIBMM_GTK_SYMEXPORT GestureStylus : public GestureSingle
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -144,7 +144,7 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkGestureStylus* object, bool take_copy = false) -> Glib::RefPtr<Gtk::GestureStylus>;
 } // namespace Glib
 

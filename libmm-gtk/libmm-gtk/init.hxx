@@ -7,7 +7,7 @@
 
 namespace Gtk
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   init_gtkmm_internals () -> void;
 
 } // namespace Gtk

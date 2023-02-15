@@ -18,15 +18,15 @@
 namespace Gtk
 {
 
-  class GTKMM_API TreeModel;
+  class LIBMM_GTK_SYMEXPORT TreeModel;
   template <typename T>
   class TreeIter;
-  class GTKMM_API TreeConstRow;
-  class GTKMM_API TreeRow;
-  class GTKMM_API TreeNodeConstChildren;
-  class GTKMM_API TreeNodeChildren;
+  class LIBMM_GTK_SYMEXPORT TreeConstRow;
+  class LIBMM_GTK_SYMEXPORT TreeRow;
+  class LIBMM_GTK_SYMEXPORT TreeNodeConstChildren;
+  class LIBMM_GTK_SYMEXPORT TreeNodeChildren;
 
-  class GTKMM_API TreeIterBase
+  class LIBMM_GTK_SYMEXPORT TreeIterBase
   {
   public:
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -67,7 +67,7 @@ namespace Gtk
   private:
   };
 
-  class GTKMM_API TreeIterBase2 : public TreeIterBase
+  class LIBMM_GTK_SYMEXPORT TreeIterBase2 : public TreeIterBase
   {
   protected:
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -87,7 +87,7 @@ namespace Gtk
   #endif
   };
 
-  class GTKMM_API TreeIterBase3 : public TreeIterBase2
+  class LIBMM_GTK_SYMEXPORT TreeIterBase3 : public TreeIterBase2
   {
   public:
     auto
@@ -226,7 +226,7 @@ namespace Gtk
     operator= (const TreeValueProxy&) -> TreeValueProxy& = delete;
   };
 
-  class GTKMM_API TreeConstRow : public TreeIterBase2
+  class LIBMM_GTK_SYMEXPORT TreeConstRow : public TreeIterBase2
   {
   public:
     template <typename ColumnType>
@@ -258,7 +258,7 @@ namespace Gtk
     get_value_impl (int column, Glib::ValueBase& value) const -> void;
   };
 
-  class GTKMM_API TreeRow : public TreeConstRow
+  class LIBMM_GTK_SYMEXPORT TreeRow : public TreeConstRow
   {
   public:
     using TreeConstRow::operator[];
@@ -296,7 +296,7 @@ namespace Gtk
     get_value_impl (int column, Glib::ValueBase& value) const -> void;
   };
 
-  class GTKMM_API TreeNodeConstChildren : public TreeIterBase2
+  class LIBMM_GTK_SYMEXPORT TreeNodeConstChildren : public TreeIterBase2
   {
   public:
     using value_type = Gtk::TreeConstRow;
@@ -338,7 +338,7 @@ namespace Gtk
   #endif
   };
 
-  class GTKMM_API TreeNodeChildren : public TreeNodeConstChildren
+  class LIBMM_GTK_SYMEXPORT TreeNodeChildren : public TreeNodeConstChildren
   {
   public:
     using value_type = Gtk::TreeRow;
@@ -559,7 +559,7 @@ namespace Glib
 
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
   template <>
-  class GTKMM_API Value<Gtk::TreeIterBase>
+  class LIBMM_GTK_SYMEXPORT Value<Gtk::TreeIterBase>
     : public Glib::Value_Boxed<Gtk::TreeIterBase>
   {
   };

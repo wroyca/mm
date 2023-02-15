@@ -10,7 +10,7 @@
 namespace Gdk
 {
 
-  class GDKMM_API PixbufLoader_Class : public Glib::Class
+  class LIBMM_GDK_SYMEXPORT PixbufLoader_Class : public Glib::Class
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

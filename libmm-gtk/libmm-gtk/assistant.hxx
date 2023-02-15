@@ -21,14 +21,14 @@ using GtkAssistantClass = struct _GtkAssistantClass;
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API Assistant_Class;
+  class LIBMM_GTK_SYMEXPORT Assistant_Class;
 }
   #endif
 
 namespace Gtk
 {
 
-  class GTKMM_API Assistant : public Window
+  class LIBMM_GTK_SYMEXPORT Assistant : public Window
   {
   public:
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -51,7 +51,7 @@ namespace Gtk
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   private:
-    friend GTKMM_API class Assistant_Class;
+    friend LIBMM_GTK_SYMEXPORT class Assistant_Class;
     static CppClassType assistant_class_;
 
   protected:
@@ -196,7 +196,7 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkAssistant* object, bool take_copy = false) -> Gtk::Assistant*;
 } // namespace Glib
 

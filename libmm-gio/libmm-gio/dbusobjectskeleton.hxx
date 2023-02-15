@@ -19,14 +19,14 @@ using GDBusObjectSkeletonClass = struct _GDBusObjectSkeletonClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gio::DBus
 {
-  class GIOMM_API ObjectSkeleton_Class;
+  class LIBMM_GIO_SYMEXPORT ObjectSkeleton_Class;
 }
 #endif
 
 namespace Gio::DBus
 {
 
-  class GIOMM_API ObjectSkeleton : public Glib::Object,
+  class LIBMM_GIO_SYMEXPORT ObjectSkeleton : public Glib::Object,
                                    public Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -133,7 +133,7 @@ namespace Gio::DBus
 namespace Glib
 {
 
-  GIOMM_API
+  LIBMM_GIO_SYMEXPORT
   auto
   wrap (GDBusObjectSkeleton* object, bool take_copy = false) -> Glib::RefPtr<Gio::DBus::ObjectSkeleton>;
 } // namespace Glib

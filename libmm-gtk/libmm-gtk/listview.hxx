@@ -18,14 +18,14 @@ using GtkListViewClass = struct _GtkListViewClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API ListView_Class;
+  class LIBMM_GTK_SYMEXPORT ListView_Class;
 }
 #endif
 
 namespace Gtk
 {
 
-  class GTKMM_API ListView : public ListBase
+  class LIBMM_GTK_SYMEXPORT ListView : public ListBase
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -48,7 +48,7 @@ namespace Gtk
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   private:
-    friend GTKMM_API class ListView_Class;
+    friend LIBMM_GTK_SYMEXPORT class ListView_Class;
     static CppClassType listview_class_;
 
   protected:
@@ -165,7 +165,7 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkListView* object, bool take_copy = false) -> Gtk::ListView*;
 } // namespace Glib
 

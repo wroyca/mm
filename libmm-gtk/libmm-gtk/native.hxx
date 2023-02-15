@@ -25,20 +25,20 @@ using GtkNativeClass = struct _GtkNativeClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API Native_Class;
+  class LIBMM_GTK_SYMEXPORT Native_Class;
 }
 #endif
 
 namespace Gdk
 {
-  class GTKMM_API Surface;
+  class LIBMM_GTK_SYMEXPORT Surface;
 }
 
 namespace Gtk
 {
-  class GTKMM_API Widget;
+  class LIBMM_GTK_SYMEXPORT Widget;
 
-  class GTKMM_API Native : public Glib::Interface
+  class LIBMM_GTK_SYMEXPORT Native : public Glib::Interface
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -130,7 +130,7 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkNative* object, bool take_copy = false) -> Glib::RefPtr<Gtk::Native>;
 
 } // namespace Glib

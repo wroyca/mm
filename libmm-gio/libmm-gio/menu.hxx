@@ -17,14 +17,14 @@ using GMenuClass = struct _GMenuClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gio
 {
-  class GIOMM_API Menu_Class;
+  class LIBMM_GIO_SYMEXPORT Menu_Class;
 }
 #endif
 
 namespace Gio
 {
 
-  class GIOMM_API Menu : public Gio::MenuModel
+  class LIBMM_GIO_SYMEXPORT Menu : public Gio::MenuModel
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -174,7 +174,7 @@ namespace Gio
 namespace Glib
 {
 
-  GIOMM_API
+  LIBMM_GIO_SYMEXPORT
   auto
   wrap (GMenu* object, bool take_copy = false) -> Glib::RefPtr<Gio::Menu>;
 } // namespace Glib

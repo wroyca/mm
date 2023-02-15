@@ -10,7 +10,7 @@
 namespace Gdk
 {
 
-  class GDKMM_API ToplevelSurfaceImpl : public Toplevel,
+  class LIBMM_GDK_SYMEXPORT ToplevelSurfaceImpl : public Toplevel,
                                         public Surface
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

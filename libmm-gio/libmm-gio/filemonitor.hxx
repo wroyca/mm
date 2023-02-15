@@ -3,7 +3,7 @@
 #ifndef _GIOMM_FILEMONITOR_H
 #define _GIOMM_FILEMONITOR_H
 
-#include <libmm-gio/gioconfig.hxx>
+#include <libmm-gio/mm-gioconfig.hxx>
 
 #include <libmm-glib/ustring.hxx>
 #include <sigc++/sigc++.h>
@@ -18,16 +18,16 @@ using GFileMonitorClass = struct _GFileMonitorClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gio
 {
-  class GIOMM_API FileMonitor_Class;
+  class LIBMM_GIO_SYMEXPORT FileMonitor_Class;
 }
 #endif
 
 namespace Gio
 {
 
-  class GIOMM_API File;
+  class LIBMM_GIO_SYMEXPORT File;
 
-  class GIOMM_API FileMonitor : public Glib::Object
+  class LIBMM_GIO_SYMEXPORT FileMonitor : public Glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -137,7 +137,7 @@ namespace Gio
 namespace Glib
 {
 
-  GIOMM_API
+  LIBMM_GIO_SYMEXPORT
   auto
   wrap (GFileMonitor* object, bool take_copy = false) -> Glib::RefPtr<Gio::FileMonitor>;
 } // namespace Glib

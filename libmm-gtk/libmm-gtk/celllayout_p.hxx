@@ -11,7 +11,7 @@
 namespace Gtk
 {
 
-  class GTKMM_API CellLayout_Class : public Glib::Interface_Class
+  class LIBMM_GTK_SYMEXPORT CellLayout_Class : public Glib::Interface_Class
   {
   public:
     using CppObjectType = CellLayout;

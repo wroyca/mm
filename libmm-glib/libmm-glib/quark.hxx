@@ -10,7 +10,7 @@
 namespace Glib
 {
 
-  class GLIBMM_API QueryQuark
+  class LIBMM_GLIB_SYMEXPORT QueryQuark
   {
   public:
     QueryQuark (const GQuark& q);
@@ -38,7 +38,7 @@ namespace Glib
     GQuark quark_;
   };
 
-  class GLIBMM_API Quark : public QueryQuark
+  class LIBMM_GLIB_SYMEXPORT Quark : public QueryQuark
   {
   public:
     Quark (const ustring& s);
@@ -60,8 +60,8 @@ namespace Glib
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
-  extern GLIBMM_API GQuark quark_;
-  extern GLIBMM_API GQuark quark_cpp_wrapper_deleted_;
+  extern LIBMM_GLIB_SYMEXPORT GQuark quark_;
+  extern LIBMM_GLIB_SYMEXPORT GQuark quark_cpp_wrapper_deleted_;
 #endif
 
 } // namespace Glib

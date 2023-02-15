@@ -10,7 +10,7 @@
 namespace Gio
 {
 
-  class GIOMM_API Cancellable_Class : public Glib::Class
+  class LIBMM_GIO_SYMEXPORT Cancellable_Class : public Glib::Class
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

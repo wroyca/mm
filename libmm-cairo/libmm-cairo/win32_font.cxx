@@ -2,6 +2,7 @@
 
 #include <libmm-cairo/win32_font.hxx>
 
+#undef CAIRO_HAS_WIN32_FONT
 #ifdef CAIRO_HAS_WIN32_FONT
   #include <libmm-cairo/private.hxx>
 

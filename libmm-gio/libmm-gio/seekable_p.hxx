@@ -10,7 +10,7 @@
 namespace Gio
 {
 
-  class GIOMM_API Seekable_Class : public Glib::Interface_Class
+  class LIBMM_GIO_SYMEXPORT Seekable_Class : public Glib::Interface_Class
   {
   public:
     using CppObjectType = Seekable;

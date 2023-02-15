@@ -35,7 +35,7 @@ namespace Glib
 {
 
   template <>
-  class PANGOMM_API Value<Pango::TabAlign>
+  class LIBMM_PANGO_SYMEXPORT Value<Pango::TabAlign>
     : public Glib::Value_Enum<Pango::TabAlign>
   {
   public:
@@ -49,7 +49,7 @@ namespace Glib
 namespace Pango
 {
 
-  class PANGOMM_API TabArray
+  class LIBMM_PANGO_SYMEXPORT TabArray
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -134,13 +134,13 @@ namespace Pango
 namespace Glib
 {
 
-  PANGOMM_API
+  LIBMM_PANGO_SYMEXPORT
   auto
   wrap (PangoTabArray* object, bool take_copy = false) -> Pango::TabArray;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
   template <>
-  class PANGOMM_API Value<Pango::TabArray>
+  class LIBMM_PANGO_SYMEXPORT Value<Pango::TabArray>
     : public Glib::Value_Boxed<Pango::TabArray>
   {
   };

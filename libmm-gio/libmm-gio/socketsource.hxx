@@ -15,9 +15,9 @@ using GSocket = struct _GSocket;
 
 namespace Gio
 {
-  class GIOMM_API Socket;
+  class LIBMM_GIO_SYMEXPORT Socket;
 
-  class GIOMM_API SignalSocket
+  class LIBMM_GIO_SYMEXPORT SignalSocket
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -38,7 +38,7 @@ namespace Gio
     operator= (const SignalSocket&) -> SignalSocket& = delete;
   };
 
-  GIOMM_API
+  LIBMM_GIO_SYMEXPORT
   auto
   signal_socket (const Glib::RefPtr<Glib::MainContext>& context = {}) -> SignalSocket;
 
@@ -47,29 +47,29 @@ namespace Gio
   public:
     using CppObjectType = Gio::SocketSource;
 
-    GIOMM_API static auto
+    LIBMM_GIO_SYMEXPORT static auto
     create (const Glib::RefPtr<Socket>& socket,
             Glib::IOCondition condition,
             const Glib::RefPtr<Cancellable>& cancellable = {})
         -> Glib::RefPtr<SocketSource>;
 
   protected:
-    GIOMM_API
+    LIBMM_GIO_SYMEXPORT
     SocketSource (const Glib::RefPtr<Socket>& socket,
                   Glib::IOCondition condition,
                   const Glib::RefPtr<Cancellable>& cancellable);
-    GIOMM_API ~SocketSource () noexcept override;
+    LIBMM_GIO_SYMEXPORT ~SocketSource () noexcept override;
 
   private:
-    friend GIOMM_API Socket;
+    friend LIBMM_GIO_SYMEXPORT Socket;
 
-    GIOMM_API static auto
+    LIBMM_GIO_SYMEXPORT static auto
     create (GSocket* socket,
             Glib::IOCondition condition,
             const Glib::RefPtr<Cancellable>& cancellable = {})
         -> Glib::RefPtr<SocketSource>;
 
-    GIOMM_API
+    LIBMM_GIO_SYMEXPORT
     SocketSource (GSocket* socket,
                   Glib::IOCondition condition,
                   const Glib::RefPtr<Cancellable>& cancellable);

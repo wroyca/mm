@@ -22,19 +22,19 @@ using GdkContentProviderClass = struct _GdkContentProviderClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gdk
 {
-  class GDKMM_API ContentProvider_Class;
+  class LIBMM_GDK_SYMEXPORT ContentProvider_Class;
 }
 #endif
 
 namespace Gio
 {
-  class GDKMM_API OutputStream;
+  class LIBMM_GDK_SYMEXPORT OutputStream;
 }
 
 namespace Gdk
 {
 
-  class GDKMM_API ContentProvider : public Glib::Object
+  class LIBMM_GDK_SYMEXPORT ContentProvider : public Glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -158,7 +158,7 @@ namespace Gdk
 
 namespace Glib
 {
-  GDKMM_API auto
+  LIBMM_GDK_SYMEXPORT auto
   wrap (GdkContentProvider* object, bool take_copy = false) -> Glib::RefPtr<Gdk::ContentProvider>;
 } // namespace Glib
 

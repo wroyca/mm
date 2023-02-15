@@ -31,16 +31,16 @@ namespace Gtk
     #if !defined(__GNUC__) || __GNUC__ > 2
 
     template <>
-    GTKMM_API auto
+    LIBMM_GTK_SYMEXPORT auto
     generate_cellrenderer<bool> (bool editable) -> CellRenderer*;
 
     template <>
-    GTKMM_API auto
+    LIBMM_GTK_SYMEXPORT auto
     generate_cellrenderer<Glib::RefPtr<Gdk::Pixbuf>> (bool editable)
         -> CellRenderer*;
 
     template <>
-    GTKMM_API auto
+    LIBMM_GTK_SYMEXPORT auto
     generate_cellrenderer<AccelKey> (bool editable) -> CellRenderer*;
 
     #endif

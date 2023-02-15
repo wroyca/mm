@@ -21,14 +21,14 @@ using GDriveClass = struct _GDriveClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gio
 {
-  class GIOMM_API Drive_Class;
+  class LIBMM_GIO_SYMEXPORT Drive_Class;
 }
 #endif
 
 namespace Gio
 {
 
-  class GIOMM_API Drive : public Glib::Interface
+  class LIBMM_GIO_SYMEXPORT Drive : public Glib::Interface
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -268,7 +268,7 @@ namespace Gio
 namespace Glib
 {
 
-  GIOMM_API
+  LIBMM_GIO_SYMEXPORT
   auto
   wrap (GDrive* object, bool take_copy) -> Glib::RefPtr<Gio::Drive>;
 
@@ -362,7 +362,7 @@ namespace Glib
 {
 
   template <>
-  class GIOMM_API Value<Gio::Drive::StartFlags>
+  class LIBMM_GIO_SYMEXPORT Value<Gio::Drive::StartFlags>
     : public Glib::Value_Flags<Gio::Drive::StartFlags>
   {
   public:
@@ -378,7 +378,7 @@ namespace Glib
 {
 
   template <>
-  class GIOMM_API Value<Gio::Drive::StartStopType>
+  class LIBMM_GIO_SYMEXPORT Value<Gio::Drive::StartStopType>
     : public Glib::Value_Enum<Gio::Drive::StartStopType>
   {
   public:
@@ -392,7 +392,7 @@ namespace Glib
 namespace Glib
 {
 
-  GIOMM_API
+  LIBMM_GIO_SYMEXPORT
   auto
   wrap (GDrive* object, bool take_copy = false) -> Glib::RefPtr<Gio::Drive>;
 

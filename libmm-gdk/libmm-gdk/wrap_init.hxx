@@ -7,7 +7,7 @@
 
 namespace Gdk
 {
-  GDKMM_API auto
+  LIBMM_GDK_SYMEXPORT auto
   wrap_init () -> void;
 
 }

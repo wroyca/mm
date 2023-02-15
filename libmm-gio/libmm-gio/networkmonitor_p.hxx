@@ -11,7 +11,7 @@
 namespace Gio
 {
 
-  class GIOMM_API NetworkMonitor_Class : public Glib::Interface_Class
+  class LIBMM_GIO_SYMEXPORT NetworkMonitor_Class : public Glib::Interface_Class
   {
   public:
     using CppObjectType = NetworkMonitor;

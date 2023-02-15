@@ -16,14 +16,14 @@
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API Constraint_Class;
+  class LIBMM_GTK_SYMEXPORT Constraint_Class;
 }
 #endif
 
 namespace Gtk
 {
 
-  class GTKMM_API Constraint : public Glib::Object
+  class LIBMM_GTK_SYMEXPORT Constraint : public Glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -233,7 +233,7 @@ namespace Glib
 {
 
   template <>
-  class GTKMM_API Value<Gtk::Constraint::Attribute>
+  class LIBMM_GTK_SYMEXPORT Value<Gtk::Constraint::Attribute>
     : public Glib::Value_Enum<Gtk::Constraint::Attribute>
   {
   public:
@@ -249,7 +249,7 @@ namespace Glib
 {
 
   template <>
-  class GTKMM_API Value<Gtk::Constraint::Relation>
+  class LIBMM_GTK_SYMEXPORT Value<Gtk::Constraint::Relation>
     : public Glib::Value_Enum<Gtk::Constraint::Relation>
   {
   public:
@@ -265,7 +265,7 @@ namespace Glib
 {
 
   template <>
-  class GTKMM_API Value<Gtk::Constraint::Strength>
+  class LIBMM_GTK_SYMEXPORT Value<Gtk::Constraint::Strength>
     : public Glib::Value_Enum<Gtk::Constraint::Strength>
   {
   public:
@@ -278,7 +278,7 @@ namespace Glib
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkConstraint* object, bool take_copy = false) -> Glib::RefPtr<Gtk::Constraint>;
 } // namespace Glib
 

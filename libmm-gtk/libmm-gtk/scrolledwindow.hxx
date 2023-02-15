@@ -16,7 +16,7 @@ using GtkScrolledWindowClass = struct _GtkScrolledWindowClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API ScrolledWindow_Class;
+  class LIBMM_GTK_SYMEXPORT ScrolledWindow_Class;
 }
 #endif
 
@@ -26,7 +26,7 @@ namespace Gtk
   class Adjustment;
   class Scrollbar;
 
-  class GTKMM_API ScrolledWindow : public Widget
+  class LIBMM_GTK_SYMEXPORT ScrolledWindow : public Widget
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -49,7 +49,7 @@ namespace Gtk
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   private:
-    friend GTKMM_API class ScrolledWindow_Class;
+    friend LIBMM_GTK_SYMEXPORT class ScrolledWindow_Class;
     static CppClassType scrolledwindow_class_;
 
   protected:
@@ -308,7 +308,7 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkScrolledWindow* object, bool take_copy = false) -> Gtk::ScrolledWindow*;
 } // namespace Glib
 

@@ -20,14 +20,14 @@ using GtkDragSourceClass = struct _GtkDragSourceClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API DragSource_Class;
+  class LIBMM_GTK_SYMEXPORT DragSource_Class;
 }
 #endif
 
 namespace Gtk
 {
 
-  class GTKMM_API DragSource : public GestureSingle
+  class LIBMM_GTK_SYMEXPORT DragSource : public GestureSingle
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -160,7 +160,7 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkDragSource* object, bool take_copy = false) -> Glib::RefPtr<Gtk::DragSource>;
 } // namespace Glib
 

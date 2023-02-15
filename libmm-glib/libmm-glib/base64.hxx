@@ -11,11 +11,11 @@
 namespace Glib::Base64
 {
 
-  GLIBMM_API
+  LIBMM_GLIB_SYMEXPORT
   auto
   encode (const std::string& source, bool break_lines = false) -> std::string;
 
-  GLIBMM_API
+  LIBMM_GLIB_SYMEXPORT
   auto
   decode (const std::string& source) -> std::string;
 } // namespace Glib::Base64

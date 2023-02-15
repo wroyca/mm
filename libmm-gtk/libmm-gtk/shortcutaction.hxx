@@ -18,7 +18,7 @@ using GtkShortcutActionClass = struct _GtkShortcutActionClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API ShortcutAction_Class;
+  class LIBMM_GTK_SYMEXPORT ShortcutAction_Class;
 }
 #endif
 
@@ -30,7 +30,7 @@ using GtkNothingActionClass = struct _GtkNothingActionClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API NothingAction_Class;
+  class LIBMM_GTK_SYMEXPORT NothingAction_Class;
 }
 #endif
 
@@ -42,7 +42,7 @@ using GtkCallbackActionClass = struct _GtkCallbackActionClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API CallbackAction_Class;
+  class LIBMM_GTK_SYMEXPORT CallbackAction_Class;
 }
 #endif
 
@@ -54,7 +54,7 @@ using GtkMnemonicActionClass = struct _GtkMnemonicActionClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API MnemonicAction_Class;
+  class LIBMM_GTK_SYMEXPORT MnemonicAction_Class;
 }
 #endif
 
@@ -66,7 +66,7 @@ using GtkActivateActionClass = struct _GtkActivateActionClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API ActivateAction_Class;
+  class LIBMM_GTK_SYMEXPORT ActivateAction_Class;
 }
 #endif
 
@@ -78,7 +78,7 @@ using GtkSignalActionClass = struct _GtkSignalActionClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API SignalAction_Class;
+  class LIBMM_GTK_SYMEXPORT SignalAction_Class;
 }
 #endif
 
@@ -90,15 +90,15 @@ using GtkNamedActionClass = struct _GtkNamedActionClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API NamedAction_Class;
+  class LIBMM_GTK_SYMEXPORT NamedAction_Class;
 }
 #endif
 
 namespace Gtk
 {
-  class GTKMM_API Widget;
+  class LIBMM_GTK_SYMEXPORT Widget;
 
-  class GTKMM_API ShortcutAction : public Glib::Object
+  class LIBMM_GTK_SYMEXPORT ShortcutAction : public Glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -179,7 +179,7 @@ namespace Gtk
   protected:
   };
 
-  class GTKMM_API NothingAction : public ShortcutAction
+  class LIBMM_GTK_SYMEXPORT NothingAction : public ShortcutAction
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -247,7 +247,7 @@ namespace Gtk
   protected:
   };
 
-  class GTKMM_API CallbackAction : public ShortcutAction
+  class LIBMM_GTK_SYMEXPORT CallbackAction : public ShortcutAction
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -317,7 +317,7 @@ namespace Gtk
   protected:
   };
 
-  class GTKMM_API MnemonicAction : public ShortcutAction
+  class LIBMM_GTK_SYMEXPORT MnemonicAction : public ShortcutAction
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -385,7 +385,7 @@ namespace Gtk
   protected:
   };
 
-  class GTKMM_API ActivateAction : public ShortcutAction
+  class LIBMM_GTK_SYMEXPORT ActivateAction : public ShortcutAction
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -453,7 +453,7 @@ namespace Gtk
   protected:
   };
 
-  class GTKMM_API SignalAction : public ShortcutAction
+  class LIBMM_GTK_SYMEXPORT SignalAction : public ShortcutAction
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -528,7 +528,7 @@ namespace Gtk
   protected:
   };
 
-  class GTKMM_API NamedAction : public ShortcutAction
+  class LIBMM_GTK_SYMEXPORT NamedAction : public ShortcutAction
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -662,7 +662,7 @@ namespace Glib
 {
 
   template <>
-  class GTKMM_API Value<Gtk::ShortcutAction::Flags>
+  class LIBMM_GTK_SYMEXPORT Value<Gtk::ShortcutAction::Flags>
     : public Glib::Value_Flags<Gtk::ShortcutAction::Flags>
   {
   public:
@@ -675,43 +675,43 @@ namespace Glib
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkShortcutAction* object, bool take_copy = false) -> Glib::RefPtr<Gtk::ShortcutAction>;
 } // namespace Glib
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkNothingAction* object, bool take_copy = false) -> Glib::RefPtr<Gtk::NothingAction>;
 } // namespace Glib
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkCallbackAction* object, bool take_copy = false) -> Glib::RefPtr<Gtk::CallbackAction>;
 } // namespace Glib
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkMnemonicAction* object, bool take_copy = false) -> Glib::RefPtr<Gtk::MnemonicAction>;
 } // namespace Glib
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkActivateAction* object, bool take_copy = false) -> Glib::RefPtr<Gtk::ActivateAction>;
 } // namespace Glib
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkSignalAction* object, bool take_copy = false) -> Glib::RefPtr<Gtk::SignalAction>;
 } // namespace Glib
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkNamedAction* object, bool take_copy = false) -> Glib::RefPtr<Gtk::NamedAction>;
 } // namespace Glib
 

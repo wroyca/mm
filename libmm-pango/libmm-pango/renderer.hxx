@@ -21,14 +21,14 @@ using PangoRendererClass = struct _PangoRendererClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Pango
 {
-  class PANGOMM_API Renderer_Class;
+  class LIBMM_PANGO_SYMEXPORT Renderer_Class;
 }
 #endif
 
 namespace Pango
 {
 
-  class PANGOMM_API Renderer : public Glib::Object
+  class LIBMM_PANGO_SYMEXPORT Renderer : public Glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -233,7 +233,7 @@ namespace Glib
 {
 
   template <>
-  class PANGOMM_API Value<Pango::Renderer::Part>
+  class LIBMM_PANGO_SYMEXPORT Value<Pango::Renderer::Part>
     : public Glib::Value_Enum<Pango::Renderer::Part>
   {
   public:
@@ -247,7 +247,7 @@ namespace Glib
 namespace Glib
 {
 
-  PANGOMM_API
+  LIBMM_PANGO_SYMEXPORT
   auto
   wrap (PangoRenderer* object, bool take_copy = false) -> Glib::RefPtr<Pango::Renderer>;
 } // namespace Glib

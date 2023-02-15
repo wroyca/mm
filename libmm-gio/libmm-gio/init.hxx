@@ -7,7 +7,7 @@
 
 namespace Gio
 {
-  GIOMM_API auto
+  LIBMM_GIO_SYMEXPORT auto
   init () -> void;
 
 }

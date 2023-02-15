@@ -17,15 +17,15 @@ using GtkEventControllerKeyClass = struct _GtkEventControllerKeyClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API EventControllerKey_Class;
+  class LIBMM_GTK_SYMEXPORT EventControllerKey_Class;
 }
 #endif
 
 namespace Gtk
 {
-  class GTKMM_API Widget;
+  class LIBMM_GTK_SYMEXPORT Widget;
 
-  class GTKMM_API EventControllerKey : public EventController
+  class LIBMM_GTK_SYMEXPORT EventControllerKey : public EventController
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -117,7 +117,7 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkEventControllerKey* object, bool take_copy = false) -> Glib::RefPtr<Gtk::EventControllerKey>;
 } // namespace Glib
 

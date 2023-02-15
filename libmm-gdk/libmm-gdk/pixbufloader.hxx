@@ -19,14 +19,14 @@ using GdkPixbufLoaderClass = struct _GdkPixbufLoaderClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gdk
 {
-  class GDKMM_API PixbufLoader_Class;
+  class LIBMM_GDK_SYMEXPORT PixbufLoader_Class;
 }
 #endif
 
 namespace Gdk
 {
 
-  class GDKMM_API PixbufLoader : public Glib::Object
+  class LIBMM_GDK_SYMEXPORT PixbufLoader : public Glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -146,7 +146,7 @@ namespace Gdk
 
 namespace Glib
 {
-  GDKMM_API auto
+  LIBMM_GDK_SYMEXPORT auto
   wrap (GdkPixbufLoader* object, bool take_copy = false) -> Glib::RefPtr<Gdk::PixbufLoader>;
 } // namespace Glib
 

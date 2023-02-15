@@ -21,14 +21,14 @@ using GtkCellRendererPixbufClass = struct _GtkCellRendererPixbufClass;
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API CellRendererPixbuf_Class;
+  class LIBMM_GTK_SYMEXPORT CellRendererPixbuf_Class;
 }
   #endif
 
 namespace Gtk
 {
 
-  class GTKMM_API CellRendererPixbuf : public CellRenderer
+  class LIBMM_GTK_SYMEXPORT CellRendererPixbuf : public CellRenderer
   {
   public:
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -51,7 +51,7 @@ namespace Gtk
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   private:
-    friend GTKMM_API class CellRendererPixbuf_Class;
+    friend LIBMM_GTK_SYMEXPORT class CellRendererPixbuf_Class;
     static CppClassType cellrendererpixbuf_class_;
 
   protected:
@@ -144,7 +144,7 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkCellRendererPixbuf* object, bool take_copy = false) -> Gtk::CellRendererPixbuf*;
 } // namespace Glib
 

@@ -27,7 +27,7 @@ namespace Glib
 
   class ustring;
 
-  class GLIBMM_API StdStringView
+  class LIBMM_GLIB_SYMEXPORT StdStringView
   {
   public:
     StdStringView (const std::string& s)
@@ -50,7 +50,7 @@ namespace Glib
     const char* pstring_;
   };
 
-  class GLIBMM_API UStringView
+  class LIBMM_GLIB_SYMEXPORT UStringView
   {
   public:
     inline UStringView (const Glib::ustring& s);
@@ -142,7 +142,7 @@ namespace Glib
     T pos_;
   };
 
-  GLIBMM_API
+  LIBMM_GLIB_SYMEXPORT
   auto
   get_unichar_from_std_iterator (std::string::const_iterator pos) -> gunichar G_GNUC_PURE;
 
@@ -184,377 +184,377 @@ namespace Glib
 #endif
 
 #ifdef GLIBMM_HAVE_ALLOWS_STATIC_INLINE_NPOS
-    GLIBMM_API static const size_type npos = std::string::npos;
+    LIBMM_GLIB_SYMEXPORT static const size_type npos = std::string::npos;
 #else
 
-    GLIBMM_API static const size_type npos;
+    LIBMM_GLIB_SYMEXPORT static const size_type npos;
 #endif
 
-    GLIBMM_API
+    LIBMM_GLIB_SYMEXPORT
     ustring ();
 
-    GLIBMM_API ~ustring () noexcept;
+    LIBMM_GLIB_SYMEXPORT ~ustring () noexcept;
 
-    GLIBMM_API
+    LIBMM_GLIB_SYMEXPORT
     ustring (const ustring& other);
 
-    GLIBMM_API
+    LIBMM_GLIB_SYMEXPORT
     ustring (ustring&& other);
 
-    GLIBMM_API auto
+    LIBMM_GLIB_SYMEXPORT auto
     operator= (const ustring& other) -> ustring&;
 
-    GLIBMM_API auto
+    LIBMM_GLIB_SYMEXPORT auto
     operator= (ustring&& other) -> ustring&;
 
-    GLIBMM_API auto
+    LIBMM_GLIB_SYMEXPORT auto
     swap (ustring& other) -> void;
 
-    GLIBMM_API
+    LIBMM_GLIB_SYMEXPORT
     ustring (const std::string& src);
 
-    GLIBMM_API
+    LIBMM_GLIB_SYMEXPORT
     ustring (std::string&& src);
 
-    GLIBMM_API
+    LIBMM_GLIB_SYMEXPORT
     ustring (const ustring& src, size_type i, size_type n = npos);
 
-    GLIBMM_API
+    LIBMM_GLIB_SYMEXPORT
     ustring (const char* src, size_type n);
 
-    GLIBMM_API
+    LIBMM_GLIB_SYMEXPORT
     ustring (const char* src);
 
-    GLIBMM_API
+    LIBMM_GLIB_SYMEXPORT
     ustring (size_type n, gunichar uc);
 
-    GLIBMM_API
+    LIBMM_GLIB_SYMEXPORT
     ustring (size_type n, char c);
 
     template <class In>
     ustring (In pbegin, In pend);
 
-    GLIBMM_API auto
+    LIBMM_GLIB_SYMEXPORT auto
     operator= (const std::string& src) -> ustring&;
-    GLIBMM_API auto
+    LIBMM_GLIB_SYMEXPORT auto
     operator= (std::string&& src) -> ustring&;
-    GLIBMM_API auto
+    LIBMM_GLIB_SYMEXPORT auto
     operator= (const char* src) -> ustring&;
-    GLIBMM_API auto
+    LIBMM_GLIB_SYMEXPORT auto
     operator= (gunichar uc) -> ustring&;
-    GLIBMM_API auto
+    LIBMM_GLIB_SYMEXPORT auto
     operator= (char c) -> ustring&;
 
-    GLIBMM_API auto
+    LIBMM_GLIB_SYMEXPORT auto
     assign (const ustring& src) -> ustring&;
-    GLIBMM_API auto
+    LIBMM_GLIB_SYMEXPORT auto
     assign (ustring&& src) -> ustring&;
-    GLIBMM_API auto
+    LIBMM_GLIB_SYMEXPORT auto
     assign (const ustring& src, size_type i, size_type n) -> ustring&;
-    GLIBMM_API auto
+    LIBMM_GLIB_SYMEXPORT auto
     assign (const char* src, size_type n) -> ustring&;
-    GLIBMM_API auto
+    LIBMM_GLIB_SYMEXPORT auto
     assign (const char* src) -> ustring&;
-    GLIBMM_API auto
+    LIBMM_GLIB_SYMEXPORT auto
     assign (size_type n, gunichar uc) -> ustring&;
-    GLIBMM_API auto
+    LIBMM_GLIB_SYMEXPORT auto
     assign (size_type n, char c) -> ustring&;
     template <class In>
     auto
     assign (In pbegin, In pend) -> ustring&;
 
-    GLIBMM_API auto
+    LIBMM_GLIB_SYMEXPORT auto
     operator+= (const ustring& src) -> ustring&;
-    GLIBMM_API auto
+    LIBMM_GLIB_SYMEXPORT auto
     operator+= (const char* src) -> ustring&;
-    GLIBMM_API auto
+    LIBMM_GLIB_SYMEXPORT auto
     operator+= (gunichar uc) -> ustring&;
-    GLIBMM_API auto
+    LIBMM_GLIB_SYMEXPORT auto
     operator+= (char c) -> ustring&;
-    GLIBMM_API auto
+    LIBMM_GLIB_SYMEXPORT auto
     push_back (gunichar uc) -> void;
-    GLIBMM_API auto
+    LIBMM_GLIB_SYMEXPORT auto
     push_back (char c) -> void;
 
-    GLIBMM_API auto
+    LIBMM_GLIB_SYMEXPORT auto
     append (const ustring& src) -> ustring&;
-    GLIBMM_API auto
+    LIBMM_GLIB_SYMEXPORT auto
     append (const ustring& src, size_type i, size_type n) -> ustring&;
-    GLIBMM_API auto
+    LIBMM_GLIB_SYMEXPORT auto
     append (const char* src, size_type n) -> ustring&;
-    GLIBMM_API auto
+    LIBMM_GLIB_SYMEXPORT auto
     append (const char* src) -> ustring&;
-    GLIBMM_API auto
+    LIBMM_GLIB_SYMEXPORT auto
     append (size_type n, gunichar uc) -> ustring&;
-    GLIBMM_API auto
+    LIBMM_GLIB_SYMEXPORT auto
     append (size_type n, char c) -> ustring&;
     template <class In>
     auto
     append (In pbegin, In pend) -> ustring&;
 
-    GLIBMM_API auto
+    LIBMM_GLIB_SYMEXPORT auto
     insert (size_type i, const ustring& src) -> ustring&;
-    GLIBMM_API auto
+    LIBMM_GLIB_SYMEXPORT auto
     insert (size_type i, const ustring& src, size_type i2, size_type n)
         -> ustring&;
-    GLIBMM_API auto
+    LIBMM_GLIB_SYMEXPORT auto
     insert (size_type i, const char* src, size_type n) -> ustring&;
-    GLIBMM_API auto
+    LIBMM_GLIB_SYMEXPORT auto
     insert (size_type i, const char* src) -> ustring&;
-    GLIBMM_API auto
+    LIBMM_GLIB_SYMEXPORT auto
     insert (size_type i, size_type n, gunichar uc) -> ustring&;
-    GLIBMM_API auto
+    LIBMM_GLIB_SYMEXPORT auto
     insert (size_type i, size_type n, char c) -> ustring&;
 
-    GLIBMM_API auto
+    LIBMM_GLIB_SYMEXPORT auto
     insert (iterator p, gunichar uc) -> iterator;
-    GLIBMM_API auto
+    LIBMM_GLIB_SYMEXPORT auto
     insert (iterator p, char c) -> iterator;
-    GLIBMM_API auto
+    LIBMM_GLIB_SYMEXPORT auto
     insert (iterator p, size_type n, gunichar uc) -> void;
-    GLIBMM_API auto
+    LIBMM_GLIB_SYMEXPORT auto
     insert (iterator p, size_type n, char c) -> void;
     template <class In>
     auto
     insert (iterator p, In pbegin, In pend) -> void;
 
-    GLIBMM_API auto
+    LIBMM_GLIB_SYMEXPORT auto
     replace (size_type i, size_type n, const ustring& src) -> ustring&;
-    GLIBMM_API auto
+    LIBMM_GLIB_SYMEXPORT auto
     replace (size_type i,
              size_type n,
              const ustring& src,
              size_type i2,
              size_type n2) -> ustring&;
-    GLIBMM_API auto
+    LIBMM_GLIB_SYMEXPORT auto
     replace (size_type i, size_type n, const char* src, size_type n2)
         -> ustring&;
-    GLIBMM_API auto
+    LIBMM_GLIB_SYMEXPORT auto
     replace (size_type i, size_type n, const char* src) -> ustring&;
-    GLIBMM_API auto
+    LIBMM_GLIB_SYMEXPORT auto
     replace (size_type i, size_type n, size_type n2, gunichar uc) -> ustring&;
-    GLIBMM_API auto
+    LIBMM_GLIB_SYMEXPORT auto
     replace (size_type i, size_type n, size_type n2, char c) -> ustring&;
 
-    GLIBMM_API auto
+    LIBMM_GLIB_SYMEXPORT auto
     replace (iterator pbegin, iterator pend, const ustring& src) -> ustring&;
-    GLIBMM_API auto
+    LIBMM_GLIB_SYMEXPORT auto
     replace (iterator pbegin, iterator pend, const char* src, size_type n)
         -> ustring&;
-    GLIBMM_API auto
+    LIBMM_GLIB_SYMEXPORT auto
     replace (iterator pbegin, iterator pend, const char* src) -> ustring&;
-    GLIBMM_API auto
+    LIBMM_GLIB_SYMEXPORT auto
     replace (iterator pbegin, iterator pend, size_type n, gunichar uc)
         -> ustring&;
-    GLIBMM_API auto
+    LIBMM_GLIB_SYMEXPORT auto
     replace (iterator pbegin, iterator pend, size_type n, char c) -> ustring&;
     template <class In>
     auto
     replace (iterator pbegin, iterator pend, In pbegin2, In pend2) -> ustring&;
 
-    GLIBMM_API auto
+    LIBMM_GLIB_SYMEXPORT auto
     clear () -> void;
-    GLIBMM_API auto
+    LIBMM_GLIB_SYMEXPORT auto
     erase (size_type i, size_type n = npos) -> ustring&;
-    GLIBMM_API auto
+    LIBMM_GLIB_SYMEXPORT auto
     erase () -> ustring&;
-    GLIBMM_API auto
+    LIBMM_GLIB_SYMEXPORT auto
     erase (iterator p) -> iterator;
-    GLIBMM_API auto
+    LIBMM_GLIB_SYMEXPORT auto
     erase (iterator pbegin, iterator pend) -> iterator;
 
-    GLIBMM_API auto
+    LIBMM_GLIB_SYMEXPORT auto
     compare (UStringView rhs) const -> int;
-    GLIBMM_API auto
+    LIBMM_GLIB_SYMEXPORT auto
     compare (size_type i, size_type n, UStringView rhs) const -> int;
-    GLIBMM_API auto
+    LIBMM_GLIB_SYMEXPORT auto
     compare (size_type i,
              size_type n,
              const ustring& rhs,
              size_type i2,
              size_type n2) const -> int;
-    GLIBMM_API auto
+    LIBMM_GLIB_SYMEXPORT auto
     compare (size_type i, size_type n, const char* rhs, size_type n2) const
         -> int;
 
-    GLIBMM_API auto
+    LIBMM_GLIB_SYMEXPORT auto
     collate_key () const -> std::string;
 
-    GLIBMM_API auto
+    LIBMM_GLIB_SYMEXPORT auto
     casefold_collate_key () const -> std::string;
 
-    GLIBMM_API auto
+    LIBMM_GLIB_SYMEXPORT auto
     operator[] (size_type i) const -> value_type;
 
-    GLIBMM_API auto
+    LIBMM_GLIB_SYMEXPORT auto
     at (size_type i) const -> value_type;
 
-    GLIBMM_API inline auto
+    LIBMM_GLIB_SYMEXPORT inline auto
     substr (size_type i = 0, size_type n = npos) const -> ustring;
 
-    GLIBMM_API auto
+    LIBMM_GLIB_SYMEXPORT auto
     begin () -> iterator;
-    GLIBMM_API auto
+    LIBMM_GLIB_SYMEXPORT auto
     end () -> iterator;
-    GLIBMM_API auto
+    LIBMM_GLIB_SYMEXPORT auto
     begin () const -> const_iterator;
-    GLIBMM_API auto
+    LIBMM_GLIB_SYMEXPORT auto
     end () const -> const_iterator;
-    GLIBMM_API auto
+    LIBMM_GLIB_SYMEXPORT auto
     rbegin () -> reverse_iterator;
-    GLIBMM_API auto
+    LIBMM_GLIB_SYMEXPORT auto
     rend () -> reverse_iterator;
-    GLIBMM_API auto
+    LIBMM_GLIB_SYMEXPORT auto
     rbegin () const -> const_reverse_iterator;
-    GLIBMM_API auto
+    LIBMM_GLIB_SYMEXPORT auto
     rend () const -> const_reverse_iterator;
 
-    GLIBMM_API auto
+    LIBMM_GLIB_SYMEXPORT auto
     cbegin () const -> const_iterator;
 
-    GLIBMM_API auto
+    LIBMM_GLIB_SYMEXPORT auto
     cend () const -> const_iterator;
 
-    GLIBMM_API auto
+    LIBMM_GLIB_SYMEXPORT auto
     find (const ustring& str, size_type i = 0) const -> size_type;
-    GLIBMM_API auto
+    LIBMM_GLIB_SYMEXPORT auto
     find (const char* str, size_type i, size_type n) const -> size_type;
-    GLIBMM_API auto
+    LIBMM_GLIB_SYMEXPORT auto
     find (const char* str, size_type i = 0) const -> size_type;
-    GLIBMM_API auto
+    LIBMM_GLIB_SYMEXPORT auto
     find (gunichar uc, size_type i = 0) const -> size_type;
-    GLIBMM_API auto
+    LIBMM_GLIB_SYMEXPORT auto
     find (char c, size_type i = 0) const -> size_type;
 
-    GLIBMM_API auto
+    LIBMM_GLIB_SYMEXPORT auto
     rfind (const ustring& str, size_type i = npos) const -> size_type;
-    GLIBMM_API auto
+    LIBMM_GLIB_SYMEXPORT auto
     rfind (const char* str, size_type i, size_type n) const -> size_type;
-    GLIBMM_API auto
+    LIBMM_GLIB_SYMEXPORT auto
     rfind (const char* str, size_type i = npos) const -> size_type;
-    GLIBMM_API auto
+    LIBMM_GLIB_SYMEXPORT auto
     rfind (gunichar uc, size_type i = npos) const -> size_type;
-    GLIBMM_API auto
+    LIBMM_GLIB_SYMEXPORT auto
     rfind (char c, size_type i = npos) const -> size_type;
 
-    GLIBMM_API auto
+    LIBMM_GLIB_SYMEXPORT auto
     find_first_of (const ustring& match, size_type i = 0) const -> size_type;
-    GLIBMM_API auto
+    LIBMM_GLIB_SYMEXPORT auto
     find_first_of (const char* match, size_type i, size_type n) const
         -> size_type;
-    GLIBMM_API auto
+    LIBMM_GLIB_SYMEXPORT auto
     find_first_of (const char* match, size_type i = 0) const -> size_type;
-    GLIBMM_API auto
+    LIBMM_GLIB_SYMEXPORT auto
     find_first_of (gunichar uc, size_type i = 0) const -> size_type;
-    GLIBMM_API auto
+    LIBMM_GLIB_SYMEXPORT auto
     find_first_of (char c, size_type i = 0) const -> size_type;
 
-    GLIBMM_API auto
+    LIBMM_GLIB_SYMEXPORT auto
     find_last_of (const ustring& match, size_type i = npos) const -> size_type;
-    GLIBMM_API auto
+    LIBMM_GLIB_SYMEXPORT auto
     find_last_of (const char* match, size_type i, size_type n) const
         -> size_type;
-    GLIBMM_API auto
+    LIBMM_GLIB_SYMEXPORT auto
     find_last_of (const char* match, size_type i = npos) const -> size_type;
-    GLIBMM_API auto
+    LIBMM_GLIB_SYMEXPORT auto
     find_last_of (gunichar uc, size_type i = npos) const -> size_type;
-    GLIBMM_API auto
+    LIBMM_GLIB_SYMEXPORT auto
     find_last_of (char c, size_type i = npos) const -> size_type;
 
-    GLIBMM_API auto
+    LIBMM_GLIB_SYMEXPORT auto
     find_first_not_of (const ustring& match, size_type i = 0) const
         -> size_type;
-    GLIBMM_API auto
+    LIBMM_GLIB_SYMEXPORT auto
     find_first_not_of (const char* match, size_type i, size_type n) const
         -> size_type;
-    GLIBMM_API auto
+    LIBMM_GLIB_SYMEXPORT auto
     find_first_not_of (const char* match, size_type i = 0) const -> size_type;
-    GLIBMM_API auto
+    LIBMM_GLIB_SYMEXPORT auto
     find_first_not_of (gunichar uc, size_type i = 0) const -> size_type;
-    GLIBMM_API auto
+    LIBMM_GLIB_SYMEXPORT auto
     find_first_not_of (char c, size_type i = 0) const -> size_type;
 
-    GLIBMM_API auto
+    LIBMM_GLIB_SYMEXPORT auto
     find_last_not_of (const ustring& match, size_type i = npos) const
         -> size_type;
-    GLIBMM_API auto
+    LIBMM_GLIB_SYMEXPORT auto
     find_last_not_of (const char* match, size_type i, size_type n) const
         -> size_type;
-    GLIBMM_API auto
+    LIBMM_GLIB_SYMEXPORT auto
     find_last_not_of (const char* match, size_type i = npos) const -> size_type;
-    GLIBMM_API auto
+    LIBMM_GLIB_SYMEXPORT auto
     find_last_not_of (gunichar uc, size_type i = npos) const -> size_type;
-    GLIBMM_API auto
+    LIBMM_GLIB_SYMEXPORT auto
     find_last_not_of (char c, size_type i = npos) const -> size_type;
 
-    GLIBMM_API auto
+    LIBMM_GLIB_SYMEXPORT auto
     empty () const -> bool;
 
-    GLIBMM_API auto
+    LIBMM_GLIB_SYMEXPORT auto
     size () const -> size_type;
 
-    GLIBMM_API auto
+    LIBMM_GLIB_SYMEXPORT auto
     length () const -> size_type;
 
-    GLIBMM_API auto
+    LIBMM_GLIB_SYMEXPORT auto
     bytes () const -> size_type;
 
-    GLIBMM_API auto
+    LIBMM_GLIB_SYMEXPORT auto
     resize (size_type n, gunichar uc) -> void;
-    GLIBMM_API auto
+    LIBMM_GLIB_SYMEXPORT auto
     resize (size_type n, char c = '\0') -> void;
 
-    GLIBMM_API auto
+    LIBMM_GLIB_SYMEXPORT auto
     capacity () const -> size_type;
-    GLIBMM_API auto
+    LIBMM_GLIB_SYMEXPORT auto
     max_size () const -> size_type;
-    GLIBMM_API auto
+    LIBMM_GLIB_SYMEXPORT auto
     reserve (size_type n = 0) -> void;
 
-    GLIBMM_API inline operator std::string () const;
-    GLIBMM_API inline auto
+    LIBMM_GLIB_SYMEXPORT inline operator std::string () const;
+    LIBMM_GLIB_SYMEXPORT inline auto
     raw () const -> const std::string&;
 
-    GLIBMM_API inline auto
+    LIBMM_GLIB_SYMEXPORT inline auto
     release () -> std::string;
 
-    GLIBMM_API auto
+    LIBMM_GLIB_SYMEXPORT auto
     data () const -> const char*;
-    GLIBMM_API auto
+    LIBMM_GLIB_SYMEXPORT auto
     c_str () const -> const char*;
 
-    GLIBMM_API auto
+    LIBMM_GLIB_SYMEXPORT auto
     copy (char* dest, size_type n, size_type i = 0) const -> size_type;
 
-    GLIBMM_API auto
+    LIBMM_GLIB_SYMEXPORT auto
     validate () const -> bool;
 
-    GLIBMM_API auto
+    LIBMM_GLIB_SYMEXPORT auto
     validate (iterator& first_invalid) -> bool;
 
-    GLIBMM_API auto
+    LIBMM_GLIB_SYMEXPORT auto
     validate (const_iterator& first_invalid) const -> bool;
 
-    GLIBMM_API auto
+    LIBMM_GLIB_SYMEXPORT auto
     make_valid () const -> ustring;
 
-    GLIBMM_API auto
+    LIBMM_GLIB_SYMEXPORT auto
     is_ascii () const -> bool;
 
-    GLIBMM_API auto
+    LIBMM_GLIB_SYMEXPORT auto
     normalize (NormalizeMode mode = NormalizeMode::DEFAULT_COMPOSE) const
         -> ustring;
 
-    GLIBMM_API auto
+    LIBMM_GLIB_SYMEXPORT auto
     uppercase () const -> ustring;
 
-    GLIBMM_API auto
+    LIBMM_GLIB_SYMEXPORT auto
     lowercase () const -> ustring;
 
-    GLIBMM_API auto
+    LIBMM_GLIB_SYMEXPORT auto
     casefold () const -> ustring;
 
-    GLIBMM_API static inline auto
+    LIBMM_GLIB_SYMEXPORT static inline auto
     compose (const ustring& fmt) -> ustring;
 
     template <class... Ts>
@@ -573,10 +573,10 @@ namespace Glib
     static inline auto
     sprintf (const char* fmt, const Ts&... args) -> ustring;
 
-    GLIBMM_API static inline auto
+    LIBMM_GLIB_SYMEXPORT static inline auto
     sprintf (const ustring& fmt) -> ustring;
 
-    GLIBMM_API static inline auto
+    LIBMM_GLIB_SYMEXPORT static inline auto
     sprintf (const char* fmt) -> ustring;
 
   private:
@@ -599,7 +599,7 @@ namespace Glib
     template <class T>
     class Stringify;
 
-    GLIBMM_API static auto
+    LIBMM_GLIB_SYMEXPORT static auto
     compose_private (const ustring& fmt,
                      std::initializer_list<const ustring*> ilist) -> ustring;
 
@@ -608,9 +608,9 @@ namespace Glib
     template <class T>
     static inline auto
     sprintify (const T& arg) -> const T&;
-    GLIBMM_API static inline auto
+    LIBMM_GLIB_SYMEXPORT static inline auto
     sprintify (const ustring& arg) -> const char*;
-    GLIBMM_API static inline auto
+    LIBMM_GLIB_SYMEXPORT static inline auto
     sprintify (const std::string& arg) -> const char*;
 
 #endif
@@ -641,7 +641,7 @@ namespace Glib
   struct ustring::SequenceToString<Glib::ustring::iterator, gunichar>
     : public std::string
   {
-    GLIBMM_API
+    LIBMM_GLIB_SYMEXPORT
     SequenceToString (Glib::ustring::iterator pbegin,
                       Glib::ustring::iterator pend);
   };
@@ -650,7 +650,7 @@ namespace Glib
   struct ustring::SequenceToString<Glib::ustring::const_iterator, gunichar>
     : public std::string
   {
-    GLIBMM_API
+    LIBMM_GLIB_SYMEXPORT
     SequenceToString (Glib::ustring::const_iterator pbegin,
                       Glib::ustring::const_iterator pend);
   };
@@ -671,31 +671,31 @@ namespace Glib
     StreamType stream_;
 
   public:
-    GLIBMM_API
+    LIBMM_GLIB_SYMEXPORT
     FormatStream ();
-    GLIBMM_API ~FormatStream () noexcept;
+    LIBMM_GLIB_SYMEXPORT ~FormatStream () noexcept;
 
     template <class T>
     inline auto
     stream (const T& value) -> void;
 
-    GLIBMM_API inline auto
+    LIBMM_GLIB_SYMEXPORT inline auto
     stream (const char* value) -> void;
 
-    GLIBMM_API inline auto
+    LIBMM_GLIB_SYMEXPORT inline auto
     stream (char* value) -> void;
 
-    GLIBMM_API auto
+    LIBMM_GLIB_SYMEXPORT auto
     to_string () const -> ustring;
   };
 
 #endif
 
-  GLIBMM_API
+  LIBMM_GLIB_SYMEXPORT
   auto
   operator>> (std::istream& is, Glib::ustring& utf8_string) -> std::istream&;
 
-  GLIBMM_API
+  LIBMM_GLIB_SYMEXPORT
   auto
   operator<< (std::ostream& os, const Glib::ustring& utf8_string) -> std::ostream&;
 
@@ -704,7 +704,7 @@ namespace Glib
   auto
   operator>> (std::wistream& is, ustring& utf8_string) -> std::wistream&;
 
-  GLIBMM_API
+  LIBMM_GLIB_SYMEXPORT
   auto
   operator<< (std::wostream& os, const ustring& utf8_string) -> std::wostream&;
 

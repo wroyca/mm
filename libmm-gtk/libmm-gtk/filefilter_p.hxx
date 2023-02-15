@@ -10,7 +10,7 @@
 namespace Gtk
 {
 
-  class GTKMM_API FileFilter_Class : public Glib::Class
+  class LIBMM_GTK_SYMEXPORT FileFilter_Class : public Glib::Class
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

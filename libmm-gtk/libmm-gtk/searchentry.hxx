@@ -16,14 +16,14 @@ using GtkSearchEntryClass = struct _GtkSearchEntryClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API SearchEntry_Class;
+  class LIBMM_GTK_SYMEXPORT SearchEntry_Class;
 }
 #endif
 
 namespace Gtk
 {
 
-  class GTKMM_API SearchEntry : public Entry
+  class LIBMM_GTK_SYMEXPORT SearchEntry : public Entry
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -46,7 +46,7 @@ namespace Gtk
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   private:
-    friend GTKMM_API class SearchEntry_Class;
+    friend LIBMM_GTK_SYMEXPORT class SearchEntry_Class;
     static CppClassType searchentry_class_;
 
   protected:
@@ -142,7 +142,7 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkSearchEntry* object, bool take_copy = false) -> Gtk::SearchEntry*;
 } // namespace Glib
 

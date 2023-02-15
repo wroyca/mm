@@ -81,7 +81,7 @@ namespace Glib
 {
 
   template <>
-  class GTKMM_API Value<Gtk::TextSearchFlags>
+  class LIBMM_GTK_SYMEXPORT Value<Gtk::TextSearchFlags>
     : public Glib::Value_Flags<Gtk::TextSearchFlags>
   {
   public:
@@ -95,11 +95,11 @@ namespace Glib
 namespace Gtk
 {
 
-  class GTKMM_API TextBuffer;
-  class GTKMM_API TextMark;
-  class GTKMM_API TextChildAnchor;
+  class LIBMM_GTK_SYMEXPORT TextBuffer;
+  class LIBMM_GTK_SYMEXPORT TextMark;
+  class LIBMM_GTK_SYMEXPORT TextChildAnchor;
 
-  class GTKMM_API TextIterBase
+  class LIBMM_GTK_SYMEXPORT TextIterBase
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -393,7 +393,7 @@ namespace Gtk
     in_range (const TextIterBase& start, const TextIterBase& end) const -> bool;
   };
 
-  class GTKMM_API TextIter : public TextIterBase
+  class LIBMM_GTK_SYMEXPORT TextIter : public TextIterBase
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -462,7 +462,7 @@ namespace Gtk
     order (TextIter& second) -> void;
   };
 
-  class GTKMM_API TextConstIter : public TextIterBase
+  class LIBMM_GTK_SYMEXPORT TextConstIter : public TextIterBase
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -631,53 +631,53 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap_iter (GtkTextIter* object) -> Gtk::TextIter&;
 
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap_iter (const GtkTextIter* object) -> const Gtk::TextIter&;
 
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap_const_iter (GtkTextIter* object) -> Gtk::TextConstIter&;
 
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap_const_iter (const GtkTextIter* object) -> const Gtk::TextConstIter&;
 
 } // namespace Glib
 
 namespace Gtk
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   operator== (const TextIterBase& lhs, const TextIterBase& rhs) -> bool;
 
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   operator!= (const TextIterBase& lhs, const TextIterBase& rhs) -> bool;
 
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   operator<(const TextIterBase& lhs, const TextIterBase& rhs) -> bool;
 
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   operator> (const TextIterBase& lhs, const TextIterBase& rhs) -> bool;
 
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   operator<= (const TextIterBase& lhs, const TextIterBase& rhs) -> bool;
 
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   operator>= (const TextIterBase& lhs, const TextIterBase& rhs) -> bool;
 
 } // namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkTextIter* object) -> Gtk::TextIterBase&;
 
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (const GtkTextIter* object) -> const Gtk::TextIterBase&;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
   template <>
-  class GTKMM_API Value<Gtk::TextIterBase>
+  class LIBMM_GTK_SYMEXPORT Value<Gtk::TextIterBase>
     : public Glib::Value_Boxed<Gtk::TextIterBase>
   {
   };

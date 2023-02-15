@@ -27,14 +27,14 @@ using GtkIconViewClass = struct _GtkIconViewClass;
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API IconView_Class;
+  class LIBMM_GTK_SYMEXPORT IconView_Class;
 }
   #endif
 
 namespace Gtk
 {
 
-  class GTKMM_API IconView : public Widget,
+  class LIBMM_GTK_SYMEXPORT IconView : public Widget,
                              public CellLayout,
                              public Scrollable
   {
@@ -59,7 +59,7 @@ namespace Gtk
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   private:
-    friend GTKMM_API class IconView_Class;
+    friend LIBMM_GTK_SYMEXPORT class IconView_Class;
     static CppClassType iconview_class_;
 
   protected:
@@ -499,7 +499,7 @@ namespace Glib
 {
 
   template <>
-  class GTKMM_API Value<Gtk::IconView::DropPosition>
+  class LIBMM_GTK_SYMEXPORT Value<Gtk::IconView::DropPosition>
     : public Glib::Value_Enum<Gtk::IconView::DropPosition>
   {
   public:
@@ -512,7 +512,7 @@ namespace Glib
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkIconView* object, bool take_copy = false) -> Gtk::IconView*;
 } // namespace Glib
 

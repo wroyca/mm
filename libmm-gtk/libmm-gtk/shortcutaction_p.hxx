@@ -10,7 +10,7 @@
 namespace Gtk
 {
 
-  class GTKMM_API ShortcutAction_Class : public Glib::Class
+  class LIBMM_GTK_SYMEXPORT ShortcutAction_Class : public Glib::Class
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -42,7 +42,7 @@ namespace Gtk
 namespace Gtk
 {
 
-  class GTKMM_API NothingAction_Class : public Glib::Class
+  class LIBMM_GTK_SYMEXPORT NothingAction_Class : public Glib::Class
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -74,7 +74,7 @@ namespace Gtk
 namespace Gtk
 {
 
-  class GTKMM_API CallbackAction_Class : public Glib::Class
+  class LIBMM_GTK_SYMEXPORT CallbackAction_Class : public Glib::Class
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -106,7 +106,7 @@ namespace Gtk
 namespace Gtk
 {
 
-  class GTKMM_API MnemonicAction_Class : public Glib::Class
+  class LIBMM_GTK_SYMEXPORT MnemonicAction_Class : public Glib::Class
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -138,7 +138,7 @@ namespace Gtk
 namespace Gtk
 {
 
-  class GTKMM_API ActivateAction_Class : public Glib::Class
+  class LIBMM_GTK_SYMEXPORT ActivateAction_Class : public Glib::Class
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -170,7 +170,7 @@ namespace Gtk
 namespace Gtk
 {
 
-  class GTKMM_API SignalAction_Class : public Glib::Class
+  class LIBMM_GTK_SYMEXPORT SignalAction_Class : public Glib::Class
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -202,7 +202,7 @@ namespace Gtk
 namespace Gtk
 {
 
-  class GTKMM_API NamedAction_Class : public Glib::Class
+  class LIBMM_GTK_SYMEXPORT NamedAction_Class : public Glib::Class
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

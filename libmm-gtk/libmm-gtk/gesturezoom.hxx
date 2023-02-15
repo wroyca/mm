@@ -16,14 +16,14 @@ using GtkGestureZoomClass = struct _GtkGestureZoomClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API GestureZoom_Class;
+  class LIBMM_GTK_SYMEXPORT GestureZoom_Class;
 }
 #endif
 
 namespace Gtk
 {
 
-  class GTKMM_API GestureZoom : public Gesture
+  class LIBMM_GTK_SYMEXPORT GestureZoom : public Gesture
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -101,7 +101,7 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkGestureZoom* object, bool take_copy = false) -> Glib::RefPtr<Gtk::GestureZoom>;
 } // namespace Glib
 

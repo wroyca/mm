@@ -3,7 +3,7 @@
 #ifndef _GIOMM_ENUMS_H
 #define _GIOMM_ENUMS_H
 
-#include <libmm-gio/gioconfig.hxx>
+#include <libmm-gio/mm-gioconfig.hxx>
 
 #include <libmm-glib/ustring.hxx>
 #include <sigc++/sigc++.h>
@@ -28,7 +28,7 @@ namespace Glib
 {
 
   template <>
-  class GIOMM_API Value<Gio::DataStreamByteOrder>
+  class LIBMM_GIO_SYMEXPORT Value<Gio::DataStreamByteOrder>
     : public Glib::Value_Enum<Gio::DataStreamByteOrder>
   {
   public:
@@ -57,7 +57,7 @@ namespace Glib
 {
 
   template <>
-  class GIOMM_API Value<Gio::DataStreamNewlineType>
+  class LIBMM_GIO_SYMEXPORT Value<Gio::DataStreamNewlineType>
     : public Glib::Value_Enum<Gio::DataStreamNewlineType>
   {
   public:
@@ -86,7 +86,7 @@ namespace Glib
 {
 
   template <>
-  class GIOMM_API Value<Gio::SocketFamily>
+  class LIBMM_GIO_SYMEXPORT Value<Gio::SocketFamily>
     : public Glib::Value_Enum<Gio::SocketFamily>
   {
   public:
@@ -114,7 +114,7 @@ namespace Glib
 {
 
   template <>
-  class GIOMM_API Value<Gio::TlsAuthenticationMode>
+  class LIBMM_GIO_SYMEXPORT Value<Gio::TlsAuthenticationMode>
     : public Glib::Value_Enum<Gio::TlsAuthenticationMode>
   {
   public:
@@ -196,7 +196,7 @@ namespace Glib
 {
 
   template <>
-  class GIOMM_API Value<Gio::TlsCertificateFlags>
+  class LIBMM_GIO_SYMEXPORT Value<Gio::TlsCertificateFlags>
     : public Glib::Value_Flags<Gio::TlsCertificateFlags>
   {
   public:

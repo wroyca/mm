@@ -3,7 +3,7 @@
 #ifndef _GIOMM_APPINFO_H
 #define _GIOMM_APPINFO_H
 
-#include <libmm-gio/gioconfig.hxx>
+#include <libmm-gio/mm-gioconfig.hxx>
 
 #include <libmm-glib/ustring.hxx>
 #include <sigc++/sigc++.h>
@@ -33,16 +33,16 @@ using GAppInfoClass = struct _GAppInfoClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gio
 {
-  class GIOMM_API AppInfo_Class;
+  class LIBMM_GIO_SYMEXPORT AppInfo_Class;
 }
 #endif
 
 namespace Gio
 {
 
-  class GIOMM_API File;
+  class LIBMM_GIO_SYMEXPORT File;
 
-  class GIOMM_API AppInfo : public Glib::Interface
+  class LIBMM_GIO_SYMEXPORT AppInfo : public Glib::Interface
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -396,7 +396,7 @@ namespace Gio
 namespace Glib
 {
 
-  GIOMM_API
+  LIBMM_GIO_SYMEXPORT
   auto
   wrap (GAppInfo* object, bool take_copy = false) -> Glib::RefPtr<Gio::AppInfo>;
 

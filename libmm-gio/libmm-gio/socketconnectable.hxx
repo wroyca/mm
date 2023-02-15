@@ -21,14 +21,14 @@ using GSocketConnectableClass = struct _GSocketConnectableClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gio
 {
-  class GIOMM_API SocketConnectable_Class;
+  class LIBMM_GIO_SYMEXPORT SocketConnectable_Class;
 }
 #endif
 
 namespace Gio
 {
 
-  class GIOMM_API SocketConnectable : public Glib::Interface
+  class LIBMM_GIO_SYMEXPORT SocketConnectable : public Glib::Interface
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -117,7 +117,7 @@ namespace Gio
 namespace Glib
 {
 
-  GIOMM_API
+  LIBMM_GIO_SYMEXPORT
   auto
   wrap (GSocketConnectable* object, bool take_copy = false) -> Glib::RefPtr<Gio::SocketConnectable>;
 

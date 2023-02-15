@@ -10,7 +10,7 @@
 namespace Gtk
 {
 
-  class GTKMM_API ShortcutsGroup_Class : public Glib::Class
+  class LIBMM_GTK_SYMEXPORT ShortcutsGroup_Class : public Glib::Class
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

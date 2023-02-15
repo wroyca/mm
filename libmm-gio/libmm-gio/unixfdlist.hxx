@@ -3,7 +3,7 @@
 #ifndef _GIOMM_UNIXFDLIST_H
 #define _GIOMM_UNIXFDLIST_H
 
-#include <libmm-gio/gioconfig.hxx>
+#include <libmm-gio/mm-gioconfig.hxx>
 
 #include <libmm-glib/ustring.hxx>
 #include <sigc++/sigc++.h>
@@ -18,14 +18,14 @@ using GUnixFDListClass = struct _GUnixFDListClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gio
 {
-  class GIOMM_API UnixFDList_Class;
+  class LIBMM_GIO_SYMEXPORT UnixFDList_Class;
 }
 #endif
 
 namespace Gio
 {
 
-  class GIOMM_API UnixFDList : public Glib::Object
+  class LIBMM_GIO_SYMEXPORT UnixFDList : public Glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -123,7 +123,7 @@ namespace Gio
 namespace Glib
 {
 
-  GIOMM_API
+  LIBMM_GIO_SYMEXPORT
   auto
   wrap (GUnixFDList* object, bool take_copy = false) -> Glib::RefPtr<Gio::UnixFDList>;
 } // namespace Glib

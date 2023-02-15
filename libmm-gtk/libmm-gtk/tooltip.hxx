@@ -20,14 +20,14 @@ using GtkTooltipClass = struct _GtkTooltipClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API Tooltip_Class;
+  class LIBMM_GTK_SYMEXPORT Tooltip_Class;
 }
 #endif
 
 namespace Gtk
 {
 
-  class GTKMM_API Tooltip : public Glib::Object
+  class LIBMM_GTK_SYMEXPORT Tooltip : public Glib::Object
   {
   protected:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -127,7 +127,7 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkTooltip* object, bool take_copy = false) -> Glib::RefPtr<Gtk::Tooltip>;
 } // namespace Glib
 

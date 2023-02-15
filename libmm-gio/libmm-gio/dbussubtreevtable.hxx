@@ -13,7 +13,7 @@
 namespace Gio::DBus
 {
 
-  class GIOMM_API SubtreeVTable
+  class LIBMM_GIO_SYMEXPORT SubtreeVTable
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

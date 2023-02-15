@@ -17,15 +17,15 @@ using GtkEventControllerFocusClass = struct _GtkEventControllerFocusClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API EventControllerFocus_Class;
+  class LIBMM_GTK_SYMEXPORT EventControllerFocus_Class;
 }
 #endif
 
 namespace Gtk
 {
-  class GTKMM_API Widget;
+  class LIBMM_GTK_SYMEXPORT Widget;
 
-  class GTKMM_API EventControllerFocus : public EventController
+  class LIBMM_GTK_SYMEXPORT EventControllerFocus : public EventController
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -116,7 +116,7 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkEventControllerFocus* object, bool take_copy = false) -> Glib::RefPtr<Gtk::EventControllerFocus>;
 } // namespace Glib
 

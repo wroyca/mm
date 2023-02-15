@@ -17,7 +17,7 @@ typedef struct _GtkCssSection GtkCssSection;
 namespace Gtk
 {
 
-  class GTKMM_API CssSection final
+  class LIBMM_GTK_SYMEXPORT CssSection final
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -83,7 +83,7 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkCssSection* object, bool take_copy = false) -> Glib::RefPtr<Gtk::CssSection>;
 
 } // namespace Glib

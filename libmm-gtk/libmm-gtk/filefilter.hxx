@@ -18,14 +18,14 @@ using GtkFileFilterClass = struct _GtkFileFilterClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API FileFilter_Class;
+  class LIBMM_GTK_SYMEXPORT FileFilter_Class;
 }
 #endif
 
 namespace Gtk
 {
 
-  class GTKMM_API FileFilter : public Gtk::Filter,
+  class LIBMM_GTK_SYMEXPORT FileFilter : public Gtk::Filter,
                                public Buildable
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -122,7 +122,7 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkFileFilter* object, bool take_copy = false) -> Glib::RefPtr<Gtk::FileFilter>;
 } // namespace Glib
 

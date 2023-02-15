@@ -16,15 +16,15 @@ using GdkGLTextureClass = struct _GdkGLTextureClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gdk
 {
-  class GDKMM_API GLTexture_Class;
+  class LIBMM_GDK_SYMEXPORT GLTexture_Class;
 }
 #endif
 
 namespace Gdk
 {
-  class GDKMM_API GLContext;
+  class LIBMM_GDK_SYMEXPORT GLContext;
 
-  class GDKMM_API GLTexture : public Gdk::Texture
+  class LIBMM_GDK_SYMEXPORT GLTexture : public Gdk::Texture
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -105,7 +105,7 @@ namespace Gdk
 
 namespace Glib
 {
-  GDKMM_API auto
+  LIBMM_GDK_SYMEXPORT auto
   wrap (GdkGLTexture* object, bool take_copy = false) -> Glib::RefPtr<Gdk::GLTexture>;
 } // namespace Glib
 

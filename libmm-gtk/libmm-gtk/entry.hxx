@@ -25,7 +25,7 @@ using GtkEntryClass = struct _GtkEntryClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API Entry_Class;
+  class LIBMM_GTK_SYMEXPORT Entry_Class;
 }
 #endif
 
@@ -57,7 +57,7 @@ namespace Gtk
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   private:
-    friend GTKMM_API class Entry_Class;
+    friend LIBMM_GTK_SYMEXPORT class Entry_Class;
     static CppClassType entry_class_;
 
   protected:
@@ -604,7 +604,7 @@ namespace Glib
 {
 
   template <>
-  class GTKMM_API Value<Gtk::Entry::IconPosition>
+  class LIBMM_GTK_SYMEXPORT Value<Gtk::Entry::IconPosition>
     : public Glib::Value_Enum<Gtk::Entry::IconPosition>
   {
   public:
@@ -617,7 +617,7 @@ namespace Glib
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkEntry* object, bool take_copy = false) -> Gtk::Entry*;
 } // namespace Glib
 

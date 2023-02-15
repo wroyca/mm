@@ -18,17 +18,17 @@ using GdkDragClass = struct _GdkDragClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gdk
 {
-  class GDKMM_API Drag_Class;
+  class LIBMM_GDK_SYMEXPORT Drag_Class;
 }
 #endif
 
 namespace Gdk
 {
-  class GDKMM_API ContentFormats;
-  class GDKMM_API ContentProvider;
-  class GDKMM_API Device;
-  class GDKMM_API Display;
-  class GDKMM_API Surface;
+  class LIBMM_GDK_SYMEXPORT ContentFormats;
+  class LIBMM_GDK_SYMEXPORT ContentProvider;
+  class LIBMM_GDK_SYMEXPORT Device;
+  class LIBMM_GDK_SYMEXPORT Display;
+  class LIBMM_GDK_SYMEXPORT Surface;
 
   enum class DragCancelReason
   {
@@ -44,7 +44,7 @@ namespace Glib
 {
 
   template <>
-  class GDKMM_API Value<Gdk::DragCancelReason>
+  class LIBMM_GDK_SYMEXPORT Value<Gdk::DragCancelReason>
     : public Glib::Value_Enum<Gdk::DragCancelReason>
   {
   public:
@@ -58,7 +58,7 @@ namespace Glib
 namespace Gdk
 {
 
-  class GDKMM_API Drag : public Glib::Object
+  class LIBMM_GDK_SYMEXPORT Drag : public Glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -217,7 +217,7 @@ namespace Gdk
 
 namespace Glib
 {
-  GDKMM_API auto
+  LIBMM_GDK_SYMEXPORT auto
   wrap (GdkDrag* object, bool take_copy = false) -> Glib::RefPtr<Gdk::Drag>;
 } // namespace Glib
 

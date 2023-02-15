@@ -17,14 +17,14 @@ using GDataInputStreamClass = struct _GDataInputStreamClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gio
 {
-  class GIOMM_API DataInputStream_Class;
+  class LIBMM_GIO_SYMEXPORT DataInputStream_Class;
 }
 #endif
 
 namespace Gio
 {
 
-  class GIOMM_API DataInputStream : public Gio::BufferedInputStream
+  class LIBMM_GIO_SYMEXPORT DataInputStream : public Gio::BufferedInputStream
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -224,7 +224,7 @@ namespace Gio
 namespace Glib
 {
 
-  GIOMM_API
+  LIBMM_GIO_SYMEXPORT
   auto
   wrap (GDataInputStream* object, bool take_copy = false) -> Glib::RefPtr<Gio::DataInputStream>;
 } // namespace Glib

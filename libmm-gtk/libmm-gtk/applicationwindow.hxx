@@ -21,15 +21,15 @@ using GtkApplicationWindowClass = struct _GtkApplicationWindowClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API ApplicationWindow_Class;
+  class LIBMM_GTK_SYMEXPORT ApplicationWindow_Class;
 }
 #endif
 
 namespace Gtk
 {
-  class GTKMM_API ShortcutsWindow;
+  class LIBMM_GTK_SYMEXPORT ShortcutsWindow;
 
-  class GTKMM_API ApplicationWindow : public Gtk::Window,
+  class LIBMM_GTK_SYMEXPORT ApplicationWindow : public Gtk::Window,
                                       public Gio::ActionGroup,
                                       public Gio::ActionMap
   {
@@ -54,7 +54,7 @@ namespace Gtk
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   private:
-    friend GTKMM_API class ApplicationWindow_Class;
+    friend LIBMM_GTK_SYMEXPORT class ApplicationWindow_Class;
     static CppClassType applicationwindow_class_;
 
   protected:
@@ -128,7 +128,7 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkApplicationWindow* object, bool take_copy = false) -> Gtk::ApplicationWindow*;
 } // namespace Glib
 

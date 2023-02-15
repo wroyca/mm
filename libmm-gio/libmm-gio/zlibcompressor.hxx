@@ -3,7 +3,7 @@
 #ifndef _GIOMM_ZLIBCOMPRESSOR_H
 #define _GIOMM_ZLIBCOMPRESSOR_H
 
-#include <libmm-gio/gioconfig.hxx>
+#include <libmm-gio/mm-gioconfig.hxx>
 
 #include <libmm-glib/ustring.hxx>
 #include <sigc++/sigc++.h>
@@ -19,7 +19,7 @@ using GZlibCompressorClass = struct _GZlibCompressorClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gio
 {
-  class GIOMM_API ZlibCompressor_Class;
+  class LIBMM_GIO_SYMEXPORT ZlibCompressor_Class;
 }
 #endif
 
@@ -40,7 +40,7 @@ namespace Glib
 {
 
   template <>
-  class GIOMM_API Value<Gio::ZlibCompressorFormat>
+  class LIBMM_GIO_SYMEXPORT Value<Gio::ZlibCompressorFormat>
     : public Glib::Value_Enum<Gio::ZlibCompressorFormat>
   {
   public:
@@ -54,9 +54,9 @@ namespace Glib
 namespace Gio
 {
 
-  class GIOMM_API FileInfo;
+  class LIBMM_GIO_SYMEXPORT FileInfo;
 
-  class GIOMM_API ZlibCompressor : public Glib::Object,
+  class LIBMM_GIO_SYMEXPORT ZlibCompressor : public Glib::Object,
                                    public Converter
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -154,7 +154,7 @@ namespace Gio
 namespace Glib
 {
 
-  GIOMM_API
+  LIBMM_GIO_SYMEXPORT
   auto
   wrap (GZlibCompressor* object, bool take_copy = false) -> Glib::RefPtr<Gio::ZlibCompressor>;
 } // namespace Glib

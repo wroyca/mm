@@ -23,7 +23,7 @@ using GSocketClass = struct _GSocketClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gio
 {
-  class GIOMM_API Socket_Class;
+  class LIBMM_GIO_SYMEXPORT Socket_Class;
 }
 #endif
 
@@ -31,7 +31,7 @@ namespace Gio
 {
   class SocketSource;
 
-  class GIOMM_API Socket : public Glib::Object,
+  class LIBMM_GIO_SYMEXPORT Socket : public Glib::Object,
                            public Initable
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -425,7 +425,7 @@ namespace Glib
 {
 
   template <>
-  class GIOMM_API Value<Gio::Socket::Type>
+  class LIBMM_GIO_SYMEXPORT Value<Gio::Socket::Type>
     : public Glib::Value_Enum<Gio::Socket::Type>
   {
   public:
@@ -441,7 +441,7 @@ namespace Glib
 {
 
   template <>
-  class GIOMM_API Value<Gio::Socket::Protocol>
+  class LIBMM_GIO_SYMEXPORT Value<Gio::Socket::Protocol>
     : public Glib::Value_Enum<Gio::Socket::Protocol>
   {
   public:
@@ -509,7 +509,7 @@ namespace Glib
 {
 
   template <>
-  class GIOMM_API Value<Gio::Socket::MsgFlags>
+  class LIBMM_GIO_SYMEXPORT Value<Gio::Socket::MsgFlags>
     : public Glib::Value_Flags<Gio::Socket::MsgFlags>
   {
   public:
@@ -523,7 +523,7 @@ namespace Glib
 namespace Glib
 {
 
-  GIOMM_API
+  LIBMM_GIO_SYMEXPORT
   auto
   wrap (GSocket* object, bool take_copy = false) -> Glib::RefPtr<Gio::Socket>;
 } // namespace Glib

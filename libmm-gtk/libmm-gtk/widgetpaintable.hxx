@@ -16,14 +16,14 @@
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API WidgetPaintable_Class;
+  class LIBMM_GTK_SYMEXPORT WidgetPaintable_Class;
 }
 #endif
 
 namespace Gtk
 {
 
-  class GTKMM_API WidgetPaintable : public Glib::Object,
+  class LIBMM_GTK_SYMEXPORT WidgetPaintable : public Glib::Object,
                                     public Gdk::Paintable
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -117,7 +117,7 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkWidgetPaintable* object, bool take_copy = false) -> Glib::RefPtr<Gtk::WidgetPaintable>;
 } // namespace Glib
 

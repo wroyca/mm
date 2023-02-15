@@ -8,7 +8,7 @@
 namespace Pango
 {
 
-  PANGOMM_API
+  LIBMM_PANGO_SYMEXPORT
   void
   init ();
 

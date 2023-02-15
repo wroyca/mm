@@ -20,7 +20,7 @@ extern "C"
 namespace Pango
 {
 
-  class PANGOMM_API LayoutIter
+  class LIBMM_PANGO_SYMEXPORT LayoutIter
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -170,13 +170,13 @@ namespace Pango
 namespace Glib
 {
 
-  PANGOMM_API
+  LIBMM_PANGO_SYMEXPORT
   auto
   wrap (PangoLayoutIter* object, bool take_copy = false) -> Pango::LayoutIter;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
   template <>
-  class PANGOMM_API Value<Pango::LayoutIter>
+  class LIBMM_PANGO_SYMEXPORT Value<Pango::LayoutIter>
     : public Glib::Value_Boxed<Pango::LayoutIter>
   {
   };

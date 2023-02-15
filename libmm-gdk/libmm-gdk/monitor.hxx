@@ -17,7 +17,7 @@ using GdkMonitorClass = struct _GdkMonitorClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gdk
 {
-  class GDKMM_API Monitor_Class;
+  class LIBMM_GDK_SYMEXPORT Monitor_Class;
 }
 #endif
 
@@ -41,7 +41,7 @@ namespace Glib
 {
 
   template <>
-  class GDKMM_API Value<Gdk::SubpixelLayout>
+  class LIBMM_GDK_SYMEXPORT Value<Gdk::SubpixelLayout>
     : public Glib::Value_Enum<Gdk::SubpixelLayout>
   {
   public:
@@ -55,9 +55,9 @@ namespace Glib
 namespace Gdk
 {
 
-  class GDKMM_API Display;
+  class LIBMM_GDK_SYMEXPORT Display;
 
-  class GDKMM_API Monitor : public Glib::Object
+  class LIBMM_GDK_SYMEXPORT Monitor : public Glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -208,7 +208,7 @@ namespace Gdk
 
 namespace Glib
 {
-  GDKMM_API auto
+  LIBMM_GDK_SYMEXPORT auto
   wrap (GdkMonitor* object, bool take_copy = false) -> Glib::RefPtr<Gdk::Monitor>;
 } // namespace Glib
 

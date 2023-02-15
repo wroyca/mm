@@ -15,7 +15,7 @@ extern "C"
 namespace Glib
 {
 
-  class GLIBMM_API OptionEntry
+  class LIBMM_GLIB_SYMEXPORT OptionEntry
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

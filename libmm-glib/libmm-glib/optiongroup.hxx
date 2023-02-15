@@ -25,7 +25,7 @@ namespace Glib
   class OptionContext;
 #endif
 
-  class GLIBMM_API OptionGroup
+  class LIBMM_GLIB_SYMEXPORT OptionGroup
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

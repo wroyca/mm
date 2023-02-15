@@ -19,10 +19,10 @@ extern "C"
 namespace Pango
 {
 
-  class PANGOMM_API Item;
-  class PANGOMM_API GlyphString;
+  class LIBMM_PANGO_SYMEXPORT Item;
+  class LIBMM_PANGO_SYMEXPORT GlyphString;
 
-  class PANGOMM_API GlyphItem
+  class LIBMM_PANGO_SYMEXPORT GlyphItem
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -101,13 +101,13 @@ namespace Pango
 namespace Glib
 {
 
-  PANGOMM_API
+  LIBMM_PANGO_SYMEXPORT
   auto
   wrap (PangoGlyphItem* object, bool take_copy = false) -> Pango::GlyphItem;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
   template <>
-  class PANGOMM_API Value<Pango::GlyphItem>
+  class LIBMM_PANGO_SYMEXPORT Value<Pango::GlyphItem>
     : public Glib::Value_Boxed<Pango::GlyphItem>
   {
   };

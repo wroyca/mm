@@ -11,7 +11,7 @@
 namespace Gtk
 {
 
-  class GTKMM_API TreeSortable_Class : public Glib::Interface_Class
+  class LIBMM_GTK_SYMEXPORT TreeSortable_Class : public Glib::Interface_Class
   {
   public:
     using CppObjectType = TreeSortable;

@@ -20,18 +20,18 @@ using GdkSeatClass = struct _GdkSeatClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gdk
 {
-  class GDKMM_API Seat_Class;
+  class LIBMM_GDK_SYMEXPORT Seat_Class;
 }
 #endif
 
 namespace Gdk
 {
 
-  class GDKMM_API DeviceTool;
-  class GDKMM_API Display;
-  class GDKMM_API Surface;
+  class LIBMM_GDK_SYMEXPORT DeviceTool;
+  class LIBMM_GDK_SYMEXPORT Display;
+  class LIBMM_GDK_SYMEXPORT Surface;
 
-  class GDKMM_API Seat : public Glib::Object
+  class LIBMM_GDK_SYMEXPORT Seat : public Glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -222,7 +222,7 @@ namespace Glib
 {
 
   template <>
-  class GDKMM_API Value<Gdk::Seat::Capabilities>
+  class LIBMM_GDK_SYMEXPORT Value<Gdk::Seat::Capabilities>
     : public Glib::Value_Flags<Gdk::Seat::Capabilities>
   {
   public:
@@ -235,7 +235,7 @@ namespace Glib
 
 namespace Glib
 {
-  GDKMM_API auto
+  LIBMM_GDK_SYMEXPORT auto
   wrap (GdkSeat* object, bool take_copy = false) -> Glib::RefPtr<Gdk::Seat>;
 } // namespace Glib
 

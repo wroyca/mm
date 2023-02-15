@@ -3,7 +3,7 @@
 #ifndef _GIOMM_MOUNTOPERATION_H
 #define _GIOMM_MOUNTOPERATION_H
 
-#include <libmm-gio/gioconfig.hxx>
+#include <libmm-gio/mm-gioconfig.hxx>
 
 #include <libmm-glib/ustring.hxx>
 #include <sigc++/sigc++.h>
@@ -18,7 +18,7 @@ using GMountOperationClass = struct _GMountOperationClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gio
 {
-  class GIOMM_API MountOperation_Class;
+  class LIBMM_GIO_SYMEXPORT MountOperation_Class;
 }
 #endif
 
@@ -97,7 +97,7 @@ namespace Glib
 {
 
   template <>
-  class GIOMM_API Value<Gio::PasswordSave>
+  class LIBMM_GIO_SYMEXPORT Value<Gio::PasswordSave>
     : public Glib::Value_Enum<Gio::PasswordSave>
   {
   public:
@@ -118,7 +118,7 @@ namespace Gio
     UNHANDLED
   };
 
-  class GIOMM_API MountOperation : public Glib::Object
+  class LIBMM_GIO_SYMEXPORT MountOperation : public Glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -308,7 +308,7 @@ namespace Gio
 namespace Glib
 {
 
-  GIOMM_API
+  LIBMM_GIO_SYMEXPORT
   auto
   wrap (GMountOperation* object, bool take_copy = false) -> Glib::RefPtr<Gio::MountOperation>;
 } // namespace Glib

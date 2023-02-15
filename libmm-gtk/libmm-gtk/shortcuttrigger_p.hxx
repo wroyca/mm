@@ -10,7 +10,7 @@
 namespace Gtk
 {
 
-  class GTKMM_API ShortcutTrigger_Class : public Glib::Class
+  class LIBMM_GTK_SYMEXPORT ShortcutTrigger_Class : public Glib::Class
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -42,7 +42,7 @@ namespace Gtk
 namespace Gtk
 {
 
-  class GTKMM_API NeverTrigger_Class : public Glib::Class
+  class LIBMM_GTK_SYMEXPORT NeverTrigger_Class : public Glib::Class
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -74,7 +74,7 @@ namespace Gtk
 namespace Gtk
 {
 
-  class GTKMM_API KeyvalTrigger_Class : public Glib::Class
+  class LIBMM_GTK_SYMEXPORT KeyvalTrigger_Class : public Glib::Class
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -106,7 +106,7 @@ namespace Gtk
 namespace Gtk
 {
 
-  class GTKMM_API MnemonicTrigger_Class : public Glib::Class
+  class LIBMM_GTK_SYMEXPORT MnemonicTrigger_Class : public Glib::Class
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -138,7 +138,7 @@ namespace Gtk
 namespace Gtk
 {
 
-  class GTKMM_API AlternativeTrigger_Class : public Glib::Class
+  class LIBMM_GTK_SYMEXPORT AlternativeTrigger_Class : public Glib::Class
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

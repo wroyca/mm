@@ -16,14 +16,14 @@ using GtkScaleClass = struct _GtkScaleClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API Scale_Class;
+  class LIBMM_GTK_SYMEXPORT Scale_Class;
 }
 #endif
 
 namespace Gtk
 {
 
-  class GTKMM_API Scale : public Range
+  class LIBMM_GTK_SYMEXPORT Scale : public Range
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -46,7 +46,7 @@ namespace Gtk
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   private:
-    friend GTKMM_API class Scale_Class;
+    friend LIBMM_GTK_SYMEXPORT class Scale_Class;
     static CppClassType scale_class_;
 
   protected:
@@ -167,7 +167,7 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkScale* object, bool take_copy = false) -> Gtk::Scale*;
 } // namespace Glib
 

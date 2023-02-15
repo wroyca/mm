@@ -22,7 +22,7 @@ extern "C"
 namespace Pango
 {
 
-  class PANGOMM_API GlyphString
+  class LIBMM_PANGO_SYMEXPORT GlyphString
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -150,13 +150,13 @@ namespace Pango
 namespace Glib
 {
 
-  PANGOMM_API
+  LIBMM_PANGO_SYMEXPORT
   auto
   wrap (PangoGlyphString* object, bool take_copy = false) -> Pango::GlyphString;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
   template <>
-  class PANGOMM_API Value<Pango::GlyphString>
+  class LIBMM_PANGO_SYMEXPORT Value<Pango::GlyphString>
     : public Glib::Value_Boxed<Pango::GlyphString>
   {
   };

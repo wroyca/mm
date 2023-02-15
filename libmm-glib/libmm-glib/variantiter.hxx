@@ -9,10 +9,10 @@
 namespace Glib
 {
 
-  class GLIBMM_API VariantBase;
-  class GLIBMM_API VariantContainerBase;
+  class LIBMM_GLIB_SYMEXPORT VariantBase;
+  class LIBMM_GLIB_SYMEXPORT VariantContainerBase;
 
-  class GLIBMM_API VariantIter
+  class LIBMM_GLIB_SYMEXPORT VariantIter
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -85,7 +85,7 @@ namespace Glib
 namespace Glib
 {
 
-  GLIBMM_API
+  LIBMM_GLIB_SYMEXPORT
   auto
   wrap (GVariantIter* object, bool take_copy = false) -> Glib::VariantIter;
 

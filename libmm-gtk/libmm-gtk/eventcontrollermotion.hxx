@@ -16,15 +16,15 @@ using GtkEventControllerMotionClass = struct _GtkEventControllerMotionClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API EventControllerMotion_Class;
+  class LIBMM_GTK_SYMEXPORT EventControllerMotion_Class;
 }
 #endif
 
 namespace Gtk
 {
-  class GTKMM_API Widget;
+  class LIBMM_GTK_SYMEXPORT Widget;
 
-  class GTKMM_API EventControllerMotion : public EventController
+  class LIBMM_GTK_SYMEXPORT EventControllerMotion : public EventController
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -118,7 +118,7 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkEventControllerMotion* object, bool take_copy = false) -> Glib::RefPtr<Gtk::EventControllerMotion>;
 } // namespace Glib
 

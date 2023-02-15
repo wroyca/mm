@@ -20,14 +20,14 @@ using GtkAppChooserDialogClass = struct _GtkAppChooserDialogClass;
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API AppChooserDialog_Class;
+  class LIBMM_GTK_SYMEXPORT AppChooserDialog_Class;
 }
   #endif
 
 namespace Gtk
 {
 
-  class GTKMM_API AppChooserDialog : public Dialog,
+  class LIBMM_GTK_SYMEXPORT AppChooserDialog : public Dialog,
                                      public AppChooser
   {
   public:
@@ -51,7 +51,7 @@ namespace Gtk
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   private:
-    friend GTKMM_API class AppChooserDialog_Class;
+    friend LIBMM_GTK_SYMEXPORT class AppChooserDialog_Class;
     static CppClassType appchooserdialog_class_;
 
   protected:
@@ -123,7 +123,7 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkAppChooserDialog* object, bool take_copy = false) -> Gtk::AppChooserDialog*;
 } // namespace Glib
 

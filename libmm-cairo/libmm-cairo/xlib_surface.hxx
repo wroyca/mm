@@ -17,7 +17,7 @@ namespace Cairo
 
 #ifdef CAIRO_HAS_XLIB_SURFACE
 
-  class CAIROMM_API XlibSurface : public Surface
+  class LIBMM_CAIRO_SYMEXPORT XlibSurface : public Surface
   {
   public:
     explicit XlibSurface (cairo_surface_t* cobject, bool has_reference = false);

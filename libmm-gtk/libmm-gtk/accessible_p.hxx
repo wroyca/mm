@@ -10,7 +10,7 @@
 namespace Gtk
 {
 
-  class GTKMM_API Accessible_Class : public Glib::Interface_Class
+  class LIBMM_GTK_SYMEXPORT Accessible_Class : public Glib::Interface_Class
   {
   public:
     using CppObjectType = Accessible;

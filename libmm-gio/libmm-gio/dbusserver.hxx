@@ -19,14 +19,14 @@ using GDBusServerClass = struct _GDBusServerClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gio::DBus
 {
-  class GIOMM_API Server_Class;
+  class LIBMM_GIO_SYMEXPORT Server_Class;
 }
 #endif
 
 namespace Gio::DBus
 {
 
-  class GIOMM_API Server : public Glib::Object,
+  class LIBMM_GIO_SYMEXPORT Server : public Glib::Object,
                            public Initable
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -246,7 +246,7 @@ namespace Glib
 {
 
   template <>
-  class GIOMM_API Value<Gio::DBus::Server::Flags>
+  class LIBMM_GIO_SYMEXPORT Value<Gio::DBus::Server::Flags>
     : public Glib::Value_Flags<Gio::DBus::Server::Flags>
   {
   public:
@@ -260,7 +260,7 @@ namespace Glib
 namespace Glib
 {
 
-  GIOMM_API
+  LIBMM_GIO_SYMEXPORT
   auto
   wrap (GDBusServer* object, bool take_copy = false) -> Glib::RefPtr<Gio::DBus::Server>;
 } // namespace Glib

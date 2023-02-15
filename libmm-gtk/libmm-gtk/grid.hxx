@@ -18,14 +18,14 @@ using GtkGridClass = struct _GtkGridClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API Grid_Class;
+  class LIBMM_GTK_SYMEXPORT Grid_Class;
 }
 #endif
 
 namespace Gtk
 {
 
-  class GTKMM_API Grid : public Widget,
+  class LIBMM_GTK_SYMEXPORT Grid : public Widget,
                          public Orientable
   {
   public:
@@ -49,7 +49,7 @@ namespace Gtk
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   private:
-    friend GTKMM_API class Grid_Class;
+    friend LIBMM_GTK_SYMEXPORT class Grid_Class;
     static CppClassType grid_class_;
 
   protected:
@@ -207,7 +207,7 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkGrid* object, bool take_copy = false) -> Gtk::Grid*;
 } // namespace Glib
 

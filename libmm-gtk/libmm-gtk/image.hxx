@@ -18,14 +18,14 @@ using GtkImageClass = struct _GtkImageClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API Image_Class;
+  class LIBMM_GTK_SYMEXPORT Image_Class;
 }
 #endif
 
 namespace Gtk
 {
 
-  class GTKMM_API Image : public Widget
+  class LIBMM_GTK_SYMEXPORT Image : public Widget
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -48,7 +48,7 @@ namespace Gtk
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   private:
-    friend GTKMM_API class Image_Class;
+    friend LIBMM_GTK_SYMEXPORT class Image_Class;
     static CppClassType image_class_;
 
   protected:
@@ -215,7 +215,7 @@ namespace Glib
 {
 
   template <>
-  class GTKMM_API Value<Gtk::Image::Type>
+  class LIBMM_GTK_SYMEXPORT Value<Gtk::Image::Type>
     : public Glib::Value_Enum<Gtk::Image::Type>
   {
   public:
@@ -228,7 +228,7 @@ namespace Glib
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkImage* object, bool take_copy = false) -> Gtk::Image*;
 } // namespace Glib
 

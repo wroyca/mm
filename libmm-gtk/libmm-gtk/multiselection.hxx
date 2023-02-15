@@ -18,14 +18,14 @@
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API MultiSelection_Class;
+  class LIBMM_GTK_SYMEXPORT MultiSelection_Class;
 }
 #endif
 
 namespace Gtk
 {
 
-  class GTKMM_API MultiSelection : public Glib::Object,
+  class LIBMM_GTK_SYMEXPORT MultiSelection : public Glib::Object,
                                    public Gio::ListModel,
                                    public SelectionModel
   {
@@ -126,7 +126,7 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkMultiSelection* object, bool take_copy = false) -> Glib::RefPtr<Gtk::MultiSelection>;
 } // namespace Glib
 

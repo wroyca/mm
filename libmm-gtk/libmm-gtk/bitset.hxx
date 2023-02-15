@@ -16,7 +16,7 @@ extern "C" typedef struct _GtkBitset GtkBitset;
 namespace Gtk
 {
 
-  class GTKMM_API Bitset final
+  class LIBMM_GTK_SYMEXPORT Bitset final
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -155,7 +155,7 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkBitset* object, bool take_copy = false) -> Glib::RefPtr<Gtk::Bitset>;
 
 } // namespace Glib

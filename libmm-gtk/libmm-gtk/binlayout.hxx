@@ -14,14 +14,14 @@
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API BinLayout_Class;
+  class LIBMM_GTK_SYMEXPORT BinLayout_Class;
 }
 #endif
 
 namespace Gtk
 {
 
-  class GTKMM_API BinLayout : public LayoutManager
+  class LIBMM_GTK_SYMEXPORT BinLayout : public LayoutManager
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -93,7 +93,7 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkBinLayout* object, bool take_copy = false) -> Glib::RefPtr<Gtk::BinLayout>;
 } // namespace Glib
 

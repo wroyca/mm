@@ -8,50 +8,50 @@
 namespace Glib
 {
 
-  GLIBMM_API
+  LIBMM_GLIB_SYMEXPORT
   auto
   str_has_prefix (const std::string& str, const std::string& prefix) -> bool;
 
-  GLIBMM_API
+  LIBMM_GLIB_SYMEXPORT
   auto
   str_has_suffix (const std::string& str, const std::string& suffix) -> bool;
 
   namespace Ascii
   {
 
-    GLIBMM_API
+    LIBMM_GLIB_SYMEXPORT
     auto
     strtod (const std::string& str) -> double;
 
-    GLIBMM_API
+    LIBMM_GLIB_SYMEXPORT
     auto
     strtod (const std::string& str,
             std::string::size_type& end_index,
             std::string::size_type start_index = 0) -> double;
 
-    GLIBMM_API
+    LIBMM_GLIB_SYMEXPORT
     auto
     dtostr (double d) -> std::string;
 
   } // namespace Ascii
 
-  GLIBMM_API
+  LIBMM_GLIB_SYMEXPORT
   auto
   strescape (const std::string& source) -> std::string;
 
-  GLIBMM_API
+  LIBMM_GLIB_SYMEXPORT
   auto
   strescape (const std::string& source, const std::string& exceptions) -> std::string;
 
-  GLIBMM_API
+  LIBMM_GLIB_SYMEXPORT
   auto
   strcompress (const std::string& source) -> std::string;
 
-  GLIBMM_API
+  LIBMM_GLIB_SYMEXPORT
   auto
   strerror (int errnum) -> Glib::ustring;
 
-  GLIBMM_API
+  LIBMM_GLIB_SYMEXPORT
   auto
   strsignal (int signum) -> Glib::ustring;
 

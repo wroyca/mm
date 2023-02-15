@@ -8,7 +8,7 @@
 namespace Glib
 {
 
-  class GLIBMM_API Interface_Class : public Class
+  class LIBMM_GLIB_SYMEXPORT Interface_Class : public Class
   {
   public:
     using CppObjectType = Interface;

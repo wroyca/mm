@@ -64,7 +64,7 @@ namespace Glib
 {
 
   template <>
-  class PANGOMM_API Value<Pango::AttrType>
+  class LIBMM_PANGO_SYMEXPORT Value<Pango::AttrType>
     : public Glib::Value_Enum<Pango::AttrType>
   {
   public:
@@ -97,7 +97,7 @@ namespace Glib
 {
 
   template <>
-  class PANGOMM_API Value<Pango::Underline>
+  class LIBMM_PANGO_SYMEXPORT Value<Pango::Underline>
     : public Glib::Value_Enum<Pango::Underline>
   {
   public:
@@ -124,7 +124,7 @@ namespace Glib
 {
 
   template <>
-  class PANGOMM_API Value<Pango::Overline>
+  class LIBMM_PANGO_SYMEXPORT Value<Pango::Overline>
     : public Glib::Value_Enum<Pango::Overline>
   {
   public:
@@ -201,7 +201,7 @@ namespace Glib
 {
 
   template <>
-  class PANGOMM_API Value<Pango::ShowFlags>
+  class LIBMM_PANGO_SYMEXPORT Value<Pango::ShowFlags>
     : public Glib::Value_Flags<Pango::ShowFlags>
   {
   public:
@@ -230,7 +230,7 @@ namespace Glib
 {
 
   template <>
-  class PANGOMM_API Value<Pango::TextTransform>
+  class LIBMM_PANGO_SYMEXPORT Value<Pango::TextTransform>
     : public Glib::Value_Enum<Pango::TextTransform>
   {
   public:
@@ -267,7 +267,7 @@ namespace Glib
 {
 
   template <>
-  class PANGOMM_API Value<Pango::BaselineShift>
+  class LIBMM_PANGO_SYMEXPORT Value<Pango::BaselineShift>
     : public Glib::Value_Enum<Pango::BaselineShift>
   {
   public:
@@ -296,7 +296,7 @@ namespace Glib
 {
 
   template <>
-  class PANGOMM_API Value<Pango::FontScale>
+  class LIBMM_PANGO_SYMEXPORT Value<Pango::FontScale>
     : public Glib::Value_Enum<Pango::FontScale>
   {
   public:
@@ -312,17 +312,17 @@ namespace Pango
 
   typedef PangoLogAttr LogAttr;
 
-  class PANGOMM_API AttrString;
-  class PANGOMM_API AttrLanguage;
-  class PANGOMM_API AttrColor;
-  class PANGOMM_API AttrInt;
-  class PANGOMM_API AttrFloat;
-  class PANGOMM_API AttrFontDesc;
-  class PANGOMM_API AttrShape;
+  class LIBMM_PANGO_SYMEXPORT AttrString;
+  class LIBMM_PANGO_SYMEXPORT AttrLanguage;
+  class LIBMM_PANGO_SYMEXPORT AttrColor;
+  class LIBMM_PANGO_SYMEXPORT AttrInt;
+  class LIBMM_PANGO_SYMEXPORT AttrFloat;
+  class LIBMM_PANGO_SYMEXPORT AttrFontDesc;
+  class LIBMM_PANGO_SYMEXPORT AttrShape;
 
-  enum class PANGOMM_API GravityHint;
+  enum class LIBMM_PANGO_SYMEXPORT GravityHint;
 
-  class PANGOMM_API Attribute
+  class LIBMM_PANGO_SYMEXPORT Attribute
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -510,7 +510,7 @@ namespace Pango
     return !lhs.equal (rhs);
   }
 
-  class PANGOMM_API AttrString : public Attribute
+  class LIBMM_PANGO_SYMEXPORT AttrString : public Attribute
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -548,7 +548,7 @@ namespace Pango
     }
   };
 
-  class PANGOMM_API AttrLanguage : public Attribute
+  class LIBMM_PANGO_SYMEXPORT AttrLanguage : public Attribute
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -586,7 +586,7 @@ namespace Pango
     }
   };
 
-  class PANGOMM_API AttrColor : public Attribute
+  class LIBMM_PANGO_SYMEXPORT AttrColor : public Attribute
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -624,7 +624,7 @@ namespace Pango
     }
   };
 
-  class PANGOMM_API AttrInt : public Attribute
+  class LIBMM_PANGO_SYMEXPORT AttrInt : public Attribute
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -662,7 +662,7 @@ namespace Pango
     }
   };
 
-  class PANGOMM_API AttrFloat : public Attribute
+  class LIBMM_PANGO_SYMEXPORT AttrFloat : public Attribute
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -700,7 +700,7 @@ namespace Pango
     }
   };
 
-  class PANGOMM_API AttrFontDesc : public Attribute
+  class LIBMM_PANGO_SYMEXPORT AttrFontDesc : public Attribute
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -738,7 +738,7 @@ namespace Pango
     }
   };
 
-  class PANGOMM_API AttrShape : public Attribute
+  class LIBMM_PANGO_SYMEXPORT AttrShape : public Attribute
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -818,35 +818,35 @@ namespace Pango
 namespace Glib
 {
 
-  PANGOMM_API
+  LIBMM_PANGO_SYMEXPORT
   auto
   wrap (PangoAttribute* object, bool take_copy = false) -> Pango::Attribute;
 
-  PANGOMM_API
+  LIBMM_PANGO_SYMEXPORT
   auto
   wrap (PangoAttrString* object, bool take_copy = false) -> Pango::AttrString;
 
-  PANGOMM_API
+  LIBMM_PANGO_SYMEXPORT
   auto
   wrap (PangoAttrLanguage* object, bool take_copy = false) -> Pango::AttrLanguage;
 
-  PANGOMM_API
+  LIBMM_PANGO_SYMEXPORT
   auto
   wrap (PangoAttrColor* object, bool take_copy = false) -> Pango::AttrColor;
 
-  PANGOMM_API
+  LIBMM_PANGO_SYMEXPORT
   auto
   wrap (PangoAttrInt* object, bool take_copy = false) -> Pango::AttrInt;
 
-  PANGOMM_API
+  LIBMM_PANGO_SYMEXPORT
   auto
   wrap (PangoAttrFloat* object, bool take_copy = false) -> Pango::AttrFloat;
 
-  PANGOMM_API
+  LIBMM_PANGO_SYMEXPORT
   auto
   wrap (PangoAttrFontDesc* object, bool take_copy = false) -> Pango::AttrFontDesc;
 
-  PANGOMM_API
+  LIBMM_PANGO_SYMEXPORT
   auto
   wrap (PangoAttrShape* object, bool take_copy = false) -> Pango::AttrShape;
 

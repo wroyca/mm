@@ -16,14 +16,14 @@ using GThreadedSocketServiceClass = struct _GThreadedSocketServiceClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gio
 {
-  class GIOMM_API ThreadedSocketService_Class;
+  class LIBMM_GIO_SYMEXPORT ThreadedSocketService_Class;
 }
 #endif
 
 namespace Gio
 {
 
-  class GIOMM_API ThreadedSocketService : public Gio::SocketService
+  class LIBMM_GIO_SYMEXPORT ThreadedSocketService : public Gio::SocketService
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -108,7 +108,7 @@ namespace Gio
 namespace Glib
 {
 
-  GIOMM_API
+  LIBMM_GIO_SYMEXPORT
   auto
   wrap (GThreadedSocketService* object, bool take_copy = false) -> Glib::RefPtr<Gio::ThreadedSocketService>;
 } // namespace Glib

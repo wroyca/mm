@@ -26,14 +26,14 @@ using GtkCellEditableClass = struct _GtkCellEditableClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API CellEditable_Class;
+  class LIBMM_GTK_SYMEXPORT CellEditable_Class;
 }
 #endif
 
 namespace Gtk
 {
 
-  class GTKMM_API CellEditable : public Glib::Interface
+  class LIBMM_GTK_SYMEXPORT CellEditable : public Glib::Interface
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -155,7 +155,7 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkCellEditable* object, bool take_copy = false) -> Glib::RefPtr<Gtk::CellEditable>;
 
 } // namespace Glib

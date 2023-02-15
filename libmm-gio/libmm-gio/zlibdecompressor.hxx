@@ -18,16 +18,16 @@ using GZlibDecompressorClass = struct _GZlibDecompressorClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gio
 {
-  class GIOMM_API ZlibDecompressor_Class;
+  class LIBMM_GIO_SYMEXPORT ZlibDecompressor_Class;
 }
 #endif
 
 namespace Gio
 {
 
-  class GIOMM_API FileInfo;
+  class LIBMM_GIO_SYMEXPORT FileInfo;
 
-  class GIOMM_API ZlibDecompressor : public Glib::Object,
+  class LIBMM_GIO_SYMEXPORT ZlibDecompressor : public Glib::Object,
                                      public Converter
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -115,7 +115,7 @@ namespace Gio
 namespace Glib
 {
 
-  GIOMM_API
+  LIBMM_GIO_SYMEXPORT
   auto
   wrap (GZlibDecompressor* object, bool take_copy = false) -> Glib::RefPtr<Gio::ZlibDecompressor>;
 } // namespace Glib

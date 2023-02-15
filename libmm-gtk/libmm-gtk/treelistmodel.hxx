@@ -18,14 +18,14 @@
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API TreeListModel_Class;
+  class LIBMM_GTK_SYMEXPORT TreeListModel_Class;
 }
 #endif
 
 namespace Gtk
 {
 
-  class GTKMM_API TreeListModel : public Glib::Object,
+  class LIBMM_GTK_SYMEXPORT TreeListModel : public Glib::Object,
                                   public Gio::ListModel
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -154,7 +154,7 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkTreeListModel* object, bool take_copy = false) -> Glib::RefPtr<Gtk::TreeListModel>;
 } // namespace Glib
 

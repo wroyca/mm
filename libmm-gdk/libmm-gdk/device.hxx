@@ -20,7 +20,7 @@ using GdkDeviceClass = struct _GdkDeviceClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gdk
 {
-  class GDKMM_API Device_Class;
+  class LIBMM_GDK_SYMEXPORT Device_Class;
 }
 #endif
 
@@ -45,7 +45,7 @@ namespace Glib
 {
 
   template <>
-  class GDKMM_API Value<Gdk::InputSource>
+  class LIBMM_GDK_SYMEXPORT Value<Gdk::InputSource>
     : public Glib::Value_Enum<Gdk::InputSource>
   {
   public:
@@ -59,13 +59,13 @@ namespace Glib
 namespace Gdk
 {
 
-  class GDKMM_API DeviceTool;
-  class GDKMM_API DeviceWithPad;
-  class GDKMM_API Display;
-  class GDKMM_API Seat;
-  class GDKMM_API Surface;
+  class LIBMM_GDK_SYMEXPORT DeviceTool;
+  class LIBMM_GDK_SYMEXPORT DeviceWithPad;
+  class LIBMM_GDK_SYMEXPORT Display;
+  class LIBMM_GDK_SYMEXPORT Seat;
+  class LIBMM_GDK_SYMEXPORT Surface;
 
-  class GDKMM_API Device : public Glib::Object
+  class LIBMM_GDK_SYMEXPORT Device : public Glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -276,7 +276,7 @@ namespace Gdk
 
 namespace Glib
 {
-  GDKMM_API auto
+  LIBMM_GDK_SYMEXPORT auto
   wrap (GdkDevice* object, bool take_copy = false) -> Glib::RefPtr<Gdk::Device>;
 } // namespace Glib
 

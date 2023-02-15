@@ -20,16 +20,16 @@ using GFileEnumeratorClass = struct _GFileEnumeratorClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gio
 {
-  class GIOMM_API FileEnumerator_Class;
+  class LIBMM_GIO_SYMEXPORT FileEnumerator_Class;
 }
 #endif
 
 namespace Gio
 {
 
-  class GIOMM_API File;
+  class LIBMM_GIO_SYMEXPORT File;
 
-  class GIOMM_API FileEnumerator : public Glib::Object
+  class LIBMM_GIO_SYMEXPORT FileEnumerator : public Glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -157,7 +157,7 @@ namespace Gio
 namespace Glib
 {
 
-  GIOMM_API
+  LIBMM_GIO_SYMEXPORT
   auto
   wrap (GFileEnumerator* object, bool take_copy = false) -> Glib::RefPtr<Gio::FileEnumerator>;
 } // namespace Glib

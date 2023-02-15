@@ -22,14 +22,14 @@ using GtkTreeModelFilterClass = struct _GtkTreeModelFilterClass;
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API TreeModelFilter_Class;
+  class LIBMM_GTK_SYMEXPORT TreeModelFilter_Class;
 }
   #endif
 
 namespace Gtk
 {
 
-  class GTKMM_API TreeModelFilter : public Glib::Object,
+  class LIBMM_GTK_SYMEXPORT TreeModelFilter : public Glib::Object,
                                     public TreeModel,
                                     public TreeDragSource
   {
@@ -176,7 +176,7 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkTreeModelFilter* object, bool take_copy = false) -> Glib::RefPtr<Gtk::TreeModelFilter>;
 } // namespace Glib
 

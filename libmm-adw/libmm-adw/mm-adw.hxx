@@ -64,4 +64,6 @@
 #include <libmm-adw/window.hxx>
 #include <libmm-adw/windowtitle.hxx>
 
+inline LIBMM_ADW_SYMEXPORT void libmm_adw_symexport() {};
+
 #endif

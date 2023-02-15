@@ -20,14 +20,14 @@ using GtkPrintUnixDialogClass = struct _GtkPrintUnixDialogClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API PrintUnixDialog_Class;
+  class LIBMM_GTK_SYMEXPORT PrintUnixDialog_Class;
 }
 #endif
 
 namespace Gtk
 {
 
-  class GTKMM_API PrintUnixDialog : public Dialog
+  class LIBMM_GTK_SYMEXPORT PrintUnixDialog : public Dialog
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -50,7 +50,7 @@ namespace Gtk
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   private:
-    friend GTKMM_API class PrintUnixDialog_Class;
+    friend LIBMM_GTK_SYMEXPORT class PrintUnixDialog_Class;
     static CppClassType printunixdialog_class_;
 
   protected:
@@ -208,7 +208,7 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkPrintUnixDialog* object, bool take_copy = false) -> Gtk::PrintUnixDialog*;
 } // namespace Glib
 

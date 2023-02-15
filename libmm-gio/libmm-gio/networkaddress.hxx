@@ -17,14 +17,14 @@ using GNetworkAddressClass = struct _GNetworkAddressClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gio
 {
-  class GIOMM_API NetworkAddress_Class;
+  class LIBMM_GIO_SYMEXPORT NetworkAddress_Class;
 }
 #endif
 
 namespace Gio
 {
 
-  class GIOMM_API NetworkAddress : public Glib::Object,
+  class LIBMM_GIO_SYMEXPORT NetworkAddress : public Glib::Object,
                                    public SocketConnectable
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -120,7 +120,7 @@ namespace Gio
 namespace Glib
 {
 
-  GIOMM_API
+  LIBMM_GIO_SYMEXPORT
   auto
   wrap (GNetworkAddress* object, bool take_copy = false) -> Glib::RefPtr<Gio::NetworkAddress>;
 } // namespace Glib

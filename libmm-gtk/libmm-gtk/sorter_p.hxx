@@ -10,7 +10,7 @@
 namespace Gtk
 {
 
-  class GTKMM_API Sorter_Class : public Glib::Class
+  class LIBMM_GTK_SYMEXPORT Sorter_Class : public Glib::Class
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

@@ -17,7 +17,7 @@
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API FontDialogButton_Class;
+  class LIBMM_GTK_SYMEXPORT FontDialogButton_Class;
 }
 #endif
 
@@ -39,7 +39,7 @@ namespace Glib
 {
 
   template <>
-  class GTKMM_API Value<Gtk::FontLevel>
+  class LIBMM_GTK_SYMEXPORT Value<Gtk::FontLevel>
     : public Glib::Value_Enum<Gtk::FontLevel>
   {
   public:
@@ -53,7 +53,7 @@ namespace Glib
 namespace Gtk
 {
 
-  class GTKMM_API FontDialogButton : public Widget
+  class LIBMM_GTK_SYMEXPORT FontDialogButton : public Widget
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -76,7 +76,7 @@ namespace Gtk
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   private:
-    friend GTKMM_API class FontDialogButton_Class;
+    friend LIBMM_GTK_SYMEXPORT class FontDialogButton_Class;
     static CppClassType fontdialogbutton_class_;
 
   protected:
@@ -210,7 +210,7 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkFontDialogButton* object, bool take_copy = false) -> Gtk::FontDialogButton*;
 } // namespace Glib
 

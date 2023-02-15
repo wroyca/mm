@@ -3,7 +3,7 @@
 #ifndef _GIOMM_TLSCERTIFICATE_H
 #define _GIOMM_TLSCERTIFICATE_H
 
-#include <libmm-gio/gioconfig.hxx>
+#include <libmm-gio/mm-gioconfig.hxx>
 
 #include <libmm-glib/ustring.hxx>
 #include <sigc++/sigc++.h>
@@ -20,23 +20,23 @@ using GTlsCertificateClass = struct _GTlsCertificateClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gio
 {
-  class GIOMM_API TlsCertificate_Class;
+  class LIBMM_GIO_SYMEXPORT TlsCertificate_Class;
 }
 #endif
 
 namespace Glib
 {
 
-  class GLIBMM_API ByteArray;
+  class LIBMM_GLIB_SYMEXPORT ByteArray;
 
 }
 
 namespace Gio
 {
 
-  class GIOMM_API SocketConnectable;
+  class LIBMM_GIO_SYMEXPORT SocketConnectable;
 
-  class GIOMM_API TlsCertificate : public Glib::Object
+  class LIBMM_GIO_SYMEXPORT TlsCertificate : public Glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -212,7 +212,7 @@ namespace Gio
 namespace Glib
 {
 
-  GIOMM_API
+  LIBMM_GIO_SYMEXPORT
   auto
   wrap (GTlsCertificate* object, bool take_copy = false) -> Glib::RefPtr<Gio::TlsCertificate>;
 } // namespace Glib

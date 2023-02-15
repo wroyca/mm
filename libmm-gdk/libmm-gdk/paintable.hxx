@@ -25,15 +25,15 @@ using GdkPaintableClass = struct _GdkPaintableClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gdk
 {
-  class GDKMM_API Paintable_Class;
+  class LIBMM_GDK_SYMEXPORT Paintable_Class;
 }
 #endif
 
 namespace Gdk
 {
-  class GDKMM_API Snapshot;
+  class LIBMM_GDK_SYMEXPORT Snapshot;
 
-  class GDKMM_API Paintable : public Glib::Interface
+  class LIBMM_GDK_SYMEXPORT Paintable : public Glib::Interface
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -228,7 +228,7 @@ namespace Glib
 {
 
   template <>
-  class GDKMM_API Value<Gdk::Paintable::Flags>
+  class LIBMM_GDK_SYMEXPORT Value<Gdk::Paintable::Flags>
     : public Glib::Value_Flags<Gdk::Paintable::Flags>
   {
   public:
@@ -241,7 +241,7 @@ namespace Glib
 
 namespace Glib
 {
-  GDKMM_API auto
+  LIBMM_GDK_SYMEXPORT auto
   wrap (GdkPaintable* object, bool take_copy = false) -> Glib::RefPtr<Gdk::Paintable>;
 
 } // namespace Glib

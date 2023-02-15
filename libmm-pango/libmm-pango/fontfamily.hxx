@@ -19,14 +19,14 @@ using PangoFontFamilyClass = struct _PangoFontFamilyClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Pango
 {
-  class PANGOMM_API FontFamily_Class;
+  class LIBMM_PANGO_SYMEXPORT FontFamily_Class;
 }
 #endif
 
 namespace Pango
 {
 
-  class PANGOMM_API FontFamily : public Glib::Object,
+  class LIBMM_PANGO_SYMEXPORT FontFamily : public Glib::Object,
                                  public Gio::ListModel
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -113,7 +113,7 @@ namespace Pango
 namespace Glib
 {
 
-  PANGOMM_API
+  LIBMM_PANGO_SYMEXPORT
   auto
   wrap (PangoFontFamily* object, bool take_copy = false) -> Glib::RefPtr<Pango::FontFamily>;
 } // namespace Glib

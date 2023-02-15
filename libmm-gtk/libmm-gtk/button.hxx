@@ -17,14 +17,14 @@ using GtkButtonClass = struct _GtkButtonClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API Button_Class;
+  class LIBMM_GTK_SYMEXPORT Button_Class;
 }
 #endif
 
 namespace Gtk
 {
 
-  class GTKMM_API Button : public Widget,
+  class LIBMM_GTK_SYMEXPORT Button : public Widget,
                            public Actionable
   {
   public:
@@ -48,7 +48,7 @@ namespace Gtk
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   private:
-    friend GTKMM_API class Button_Class;
+    friend LIBMM_GTK_SYMEXPORT class Button_Class;
     static CppClassType button_class_;
 
   protected:
@@ -169,7 +169,7 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkButton* object, bool take_copy = false) -> Gtk::Button*;
 } // namespace Glib
 

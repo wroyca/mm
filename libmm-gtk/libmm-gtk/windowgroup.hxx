@@ -18,16 +18,16 @@ using GtkWindowGroupClass = struct _GtkWindowGroupClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API WindowGroup_Class;
+  class LIBMM_GTK_SYMEXPORT WindowGroup_Class;
 }
 #endif
 
 namespace Gtk
 {
 
-  class GTKMM_API Window;
+  class LIBMM_GTK_SYMEXPORT Window;
 
-  class GTKMM_API WindowGroup : public Glib::Object
+  class LIBMM_GTK_SYMEXPORT WindowGroup : public Glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -111,7 +111,7 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkWindowGroup* object, bool take_copy = false) -> Glib::RefPtr<Gtk::WindowGroup>;
 } // namespace Glib
 

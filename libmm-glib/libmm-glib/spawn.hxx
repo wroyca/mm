@@ -107,18 +107,18 @@ namespace Glib
       FAILED
     };
 
-    GLIBMM_API
+    LIBMM_GLIB_SYMEXPORT
     SpawnError (Code error_code, const Glib::ustring& error_message);
-    GLIBMM_API explicit SpawnError (GError* gobject);
-    GLIBMM_API auto
+    LIBMM_GLIB_SYMEXPORT explicit SpawnError (GError* gobject);
+    LIBMM_GLIB_SYMEXPORT auto
     code () const -> Code;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
   private:
-    GLIBMM_API static auto
+    LIBMM_GLIB_SYMEXPORT static auto
     throw_func (GError* gobject) -> void;
 
-    friend GLIBMM_API auto
+    friend LIBMM_GLIB_SYMEXPORT auto
     wrap_init () -> void;
 
 #endif
@@ -126,7 +126,7 @@ namespace Glib
 
   using SlotSpawnChildSetup = sigc::slot<void ()>;
 
-  GLIBMM_API auto
+  LIBMM_GLIB_SYMEXPORT auto
   spawn_async_with_pipes (const std::string& working_directory,
                           const std::vector<std::string>& argv,
                           const std::vector<std::string>& envp,
@@ -137,7 +137,7 @@ namespace Glib
                           int* standard_output = nullptr,
                           int* standard_error = nullptr) -> void;
 
-  GLIBMM_API auto
+  LIBMM_GLIB_SYMEXPORT auto
   spawn_async_with_pipes (const std::string& working_directory,
                           const std::vector<std::string>& argv,
                           SpawnFlags flags = SpawnFlags::DEFAULT,
@@ -147,7 +147,7 @@ namespace Glib
                           int* standard_output = nullptr,
                           int* standard_error = nullptr) -> void;
 
-  GLIBMM_API auto
+  LIBMM_GLIB_SYMEXPORT auto
   spawn_async (const std::string& working_directory,
                const std::vector<std::string>& argv,
                const std::vector<std::string>& envp,
@@ -155,14 +155,14 @@ namespace Glib
                const SlotSpawnChildSetup& child_setup = {},
                Pid* child_pid = nullptr) -> void;
 
-  GLIBMM_API auto
+  LIBMM_GLIB_SYMEXPORT auto
   spawn_async (const std::string& working_directory,
                const std::vector<std::string>& argv,
                SpawnFlags flags = SpawnFlags::DEFAULT,
                const SlotSpawnChildSetup& child_setup = {},
                Pid* child_pid = nullptr) -> void;
 
-  GLIBMM_API auto
+  LIBMM_GLIB_SYMEXPORT auto
   spawn_sync (const std::string& working_directory,
               const std::vector<std::string>& argv,
               const std::vector<std::string>& envp,
@@ -172,7 +172,7 @@ namespace Glib
               std::string* standard_error = nullptr,
               int* wait_status = nullptr) -> void;
 
-  GLIBMM_API auto
+  LIBMM_GLIB_SYMEXPORT auto
   spawn_sync (const std::string& working_directory,
               const std::vector<std::string>& argv,
               SpawnFlags flags = SpawnFlags::DEFAULT,
@@ -181,16 +181,16 @@ namespace Glib
               std::string* standard_error = nullptr,
               int* wait_status = nullptr) -> void;
 
-  GLIBMM_API auto
+  LIBMM_GLIB_SYMEXPORT auto
   spawn_command_line_async (const std::string& command_line) -> void;
 
-  GLIBMM_API auto
+  LIBMM_GLIB_SYMEXPORT auto
   spawn_command_line_sync (const std::string& command_line,
                            std::string* standard_output = nullptr,
                            std::string* standard_error = nullptr,
                            int* wait_status = nullptr) -> void;
 
-  GLIBMM_API auto
+  LIBMM_GLIB_SYMEXPORT auto
   spawn_close_pid (Pid pid) -> void;
 
 } // namespace Glib

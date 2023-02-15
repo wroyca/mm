@@ -17,14 +17,14 @@ using GtkPopoverMenuBarClass = struct _GtkPopoverMenuBarClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API PopoverMenuBar_Class;
+  class LIBMM_GTK_SYMEXPORT PopoverMenuBar_Class;
 }
 #endif
 
 namespace Gtk
 {
 
-  class GTKMM_API PopoverMenuBar : public Widget
+  class LIBMM_GTK_SYMEXPORT PopoverMenuBar : public Widget
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -47,7 +47,7 @@ namespace Gtk
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   private:
-    friend GTKMM_API class PopoverMenuBar_Class;
+    friend LIBMM_GTK_SYMEXPORT class PopoverMenuBar_Class;
     static CppClassType popovermenubar_class_;
 
   protected:
@@ -114,7 +114,7 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkPopoverMenuBar* object, bool take_copy = false) -> Gtk::PopoverMenuBar*;
 } // namespace Glib
 

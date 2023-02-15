@@ -28,19 +28,19 @@ using GtkStyleContextClass = struct _GtkStyleContextClass;
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API StyleContext_Class;
+  class LIBMM_GTK_SYMEXPORT StyleContext_Class;
 }
   #endif
 
 namespace Gdk
 {
-  class GTKMM_API Texture;
+  class LIBMM_GTK_SYMEXPORT Texture;
 }
 
 namespace Gtk
 {
 
-  class GTKMM_API StyleContext : public Glib::Object
+  class LIBMM_GTK_SYMEXPORT StyleContext : public Glib::Object
   {
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -369,7 +369,7 @@ namespace Glib
 {
 
   template <>
-  class GTKMM_API Value<Gtk::StyleContext::PrintFlags>
+  class LIBMM_GTK_SYMEXPORT Value<Gtk::StyleContext::PrintFlags>
     : public Glib::Value_Flags<Gtk::StyleContext::PrintFlags>
   {
   public:
@@ -382,7 +382,7 @@ namespace Glib
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkStyleContext* object, bool take_copy = false) -> Glib::RefPtr<Gtk::StyleContext>;
 } // namespace Glib
 

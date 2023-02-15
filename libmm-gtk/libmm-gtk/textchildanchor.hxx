@@ -18,14 +18,14 @@ using GtkTextChildAnchorClass = struct _GtkTextChildAnchorClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API TextChildAnchor_Class;
+  class LIBMM_GTK_SYMEXPORT TextChildAnchor_Class;
 }
 #endif
 
 namespace Gtk
 {
 
-  class GTKMM_API TextChildAnchor : public Glib::Object
+  class LIBMM_GTK_SYMEXPORT TextChildAnchor : public Glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -110,7 +110,7 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkTextChildAnchor* object, bool take_copy = false) -> Glib::RefPtr<Gtk::TextChildAnchor>;
 } // namespace Glib
 

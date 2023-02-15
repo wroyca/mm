@@ -17,15 +17,15 @@ using GtkStackSidebarClass = struct _GtkStackSidebarClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API StackSidebar_Class;
+  class LIBMM_GTK_SYMEXPORT StackSidebar_Class;
 }
 #endif
 
 namespace Gtk
 {
-  class GTKMM_API Stack;
+  class LIBMM_GTK_SYMEXPORT Stack;
 
-  class GTKMM_API StackSidebar : public Widget
+  class LIBMM_GTK_SYMEXPORT StackSidebar : public Widget
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -48,7 +48,7 @@ namespace Gtk
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   private:
-    friend GTKMM_API class StackSidebar_Class;
+    friend LIBMM_GTK_SYMEXPORT class StackSidebar_Class;
     static CppClassType stacksidebar_class_;
 
   protected:
@@ -110,7 +110,7 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkStackSidebar* object, bool take_copy = false) -> Gtk::StackSidebar*;
 } // namespace Glib
 

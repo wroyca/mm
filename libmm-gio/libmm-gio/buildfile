@@ -1,10 +1,13 @@
 intf_libs = # Interface dependencies.
 impl_libs = # Implementation dependencies.
+
 import impl_libs += libmm-glib%lib{mm-glib}
 import impl_libs += glib-2.0%lib{glib-2.0}
-import impl_libs += pango%lib{pango}
+import impl_libs =+ gio-2.0%lib{gio-2.0}
+import impl_libs =+ sigc++%lib{sigc++-3.0}
 
-liba{mm-gio}: {hxx ixx txx cxx}{** -version -unixfdlist -unixcredentialsmessage} hxx{version} $impl_libs $intf_libs
+
+lib{mm-gio}: {hxx ixx txx cxx}{** -version -unixfdlist -unixcredentialsmessage -unixfdmessage_p -unixfdmessage -desktopappinfo -desktopappinfo_p} hxx{version} $impl_libs $intf_libs
 
 hxx{version}: in{version} $src_root/manifest
 
@@ -17,27 +20,27 @@ cxx.loptions =+ "/LIBPATH:C:/gnome/lib"
 cxx.poptions =+ "-DGIOMM_DISABLE_DEPRECATED" "-DGIOMM_BUILD" "-DGIOMM_STATIC_LIB"
 
 {hbmia obja}{*}: cxx.poptions += -DLIBMM_GIO_STATIC_BUILD
-#{hbmis objs}{*}: cxx.poptions += -DLIBMM_GIO_SHARED_BUILD
+{hbmis objs}{*}: cxx.poptions += -DLIBMM_GIO_SHARED_BUILD
 
 # Export options.
 #
-liba{mm-gio}:
+lib{mm-gio}:
 {
   cxx.export.poptions = "-I$out_root" "-I$src_root"
   cxx.export.libs = $intf_libs
 }
 
-#liba{mm-gio}: cxx.export.poptions += -DLIBMM_GIO_STATIC
-#libs{mm-gio}: cxx.export.poptions += -DLIBMM_GIO_SHARED
+liba{mm-gio}: cxx.export.poptions += -DLIBMM_GIO_STATIC
+libs{mm-gio}: cxx.export.poptions += -DLIBMM_GIO_SHARED
 
 # For pre-releases use the complete version to make sure they cannot be used
 # in place of another pre-release or the final version. See the version module
 # for details on the version.* variable values.
 #
 if $version.pre_release
-  liba{mm-gio}: bin.lib.version = "-$version.project_id"
+  lib{mm-gio}: bin.lib.version = "-$version.project_id"
 else
-  liba{mm-gio}: bin.lib.version = "-$version.major.$version.minor"
+  lib{mm-gio}: bin.lib.version = "-$version.major.$version.minor"
 
 # Install into the libmm-gio/ subdirectory of, say, /usr/include/
 # recreating subdirectories.

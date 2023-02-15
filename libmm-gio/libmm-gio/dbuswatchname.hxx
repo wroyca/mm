@@ -74,7 +74,7 @@ namespace Gio::DBus
       sigc::slot<void (const Glib::RefPtr<Gio::DBus::Connection>&,
                        Glib::ustring)>;
 
-  GIOMM_API
+  LIBMM_GIO_SYMEXPORT
   auto
   watch_name (BusType bus_type,
               const Glib::ustring& name,
@@ -82,7 +82,7 @@ namespace Gio::DBus
               const SlotNameVanished& name_vanished_slot = {},
               BusNameWatcherFlags flags = Gio::DBus::BusNameWatcherFlags::NONE) -> guint;
 
-  GIOMM_API
+  LIBMM_GIO_SYMEXPORT
   auto
   watch_name (const Glib::RefPtr<Connection>& connection,
               const Glib::ustring& name,
@@ -90,7 +90,7 @@ namespace Gio::DBus
               const SlotNameVanished& name_vanished_slot = {},
               BusNameWatcherFlags flags = Gio::DBus::BusNameWatcherFlags::NONE) -> guint;
 
-  GIOMM_API auto
+  LIBMM_GIO_SYMEXPORT auto
   unwatch_name (guint watcher_id) -> void;
 
 } // namespace Gio::DBus

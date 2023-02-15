@@ -11,7 +11,7 @@
 namespace Gtk
 {
 
-  class GTKMM_API ExpressionBase
+  class LIBMM_GTK_SYMEXPORT ExpressionBase
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -160,7 +160,7 @@ namespace Gtk
 
   namespace Expression_Private
   {
-    GTKMM_API auto
+    LIBMM_GTK_SYMEXPORT auto
     watch_callback (gpointer data) -> void;
 
     template <class T, class... ATs>
@@ -194,7 +194,7 @@ namespace Gtk
                      gpointer invocation_hint,
                      gpointer marshal_data) -> void;
 
-    GTKMM_API auto
+    LIBMM_GTK_SYMEXPORT auto
     closure_callback_func () -> void;
 
     template <class TI>
@@ -533,7 +533,7 @@ namespace Glib
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkExpression* object, bool take_copy = false) -> Glib::RefPtr<Gtk::ExpressionBase>;
 
 } // namespace Glib

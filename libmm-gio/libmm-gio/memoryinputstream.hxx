@@ -3,7 +3,7 @@
 #ifndef _GIOMM_MEMORYINPUTSTREAM_H
 #define _GIOMM_MEMORYINPUTSTREAM_H
 
-#include <libmm-gio/gioconfig.hxx>
+#include <libmm-gio/mm-gioconfig.hxx>
 
 #include <libmm-glib/ustring.hxx>
 #include <sigc++/sigc++.h>
@@ -20,14 +20,14 @@ using GMemoryInputStreamClass = struct _GMemoryInputStreamClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gio
 {
-  class GIOMM_API MemoryInputStream_Class;
+  class LIBMM_GIO_SYMEXPORT MemoryInputStream_Class;
 }
 #endif
 
 namespace Gio
 {
 
-  class GIOMM_API MemoryInputStream : public Gio::InputStream,
+  class LIBMM_GIO_SYMEXPORT MemoryInputStream : public Gio::InputStream,
                                       public Seekable,
                                       public PollableInputStream
   {
@@ -114,7 +114,7 @@ namespace Gio
 namespace Glib
 {
 
-  GIOMM_API
+  LIBMM_GIO_SYMEXPORT
   auto
   wrap (GMemoryInputStream* object, bool take_copy = false) -> Glib::RefPtr<Gio::MemoryInputStream>;
 } // namespace Glib

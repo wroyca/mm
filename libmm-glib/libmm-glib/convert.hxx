@@ -33,24 +33,24 @@ namespace Glib
       EMBEDDED_NUL
     };
 
-    GLIBMM_API
+    LIBMM_GLIB_SYMEXPORT
     ConvertError (Code error_code, const Glib::ustring& error_message);
-    GLIBMM_API explicit ConvertError (GError* gobject);
-    GLIBMM_API auto
+    LIBMM_GLIB_SYMEXPORT explicit ConvertError (GError* gobject);
+    LIBMM_GLIB_SYMEXPORT auto
     code () const -> Code;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
   private:
-    GLIBMM_API static auto
+    LIBMM_GLIB_SYMEXPORT static auto
     throw_func (GError* gobject) -> void;
 
-    friend GLIBMM_API auto
+    friend LIBMM_GLIB_SYMEXPORT auto
     wrap_init () -> void;
 
 #endif
   };
 
-  class GLIBMM_API IConv
+  class LIBMM_GLIB_SYMEXPORT IConv
   {
   public:
     IConv (const std::string& to_codeset, const std::string& from_codeset);
@@ -85,70 +85,70 @@ namespace Glib
     GIConv gobject_;
   };
 
-  GLIBMM_API
+  LIBMM_GLIB_SYMEXPORT
   auto
   get_charset () -> bool;
 
-  GLIBMM_API
+  LIBMM_GLIB_SYMEXPORT
   auto
   get_charset (std::string& charset) -> bool;
 
-  GLIBMM_API
+  LIBMM_GLIB_SYMEXPORT
   auto
   convert (const std::string& str,
            const std::string& to_codeset,
            const std::string& from_codeset) -> std::string;
 
-  GLIBMM_API
+  LIBMM_GLIB_SYMEXPORT
   auto
   convert_with_fallback (const std::string& str,
                          const std::string& to_codeset,
                          const std::string& from_codeset) -> std::string;
 
-  GLIBMM_API
+  LIBMM_GLIB_SYMEXPORT
   auto
   convert_with_fallback (const std::string& str,
                          const std::string& to_codeset,
                          const std::string& from_codeset,
                          const Glib::ustring& fallback) -> std::string;
 
-  GLIBMM_API
+  LIBMM_GLIB_SYMEXPORT
   auto
   locale_to_utf8 (const std::string& opsys_string) -> Glib::ustring;
 
-  GLIBMM_API
+  LIBMM_GLIB_SYMEXPORT
   auto
   locale_from_utf8 (const Glib::ustring& utf8_string) -> std::string;
 
-  GLIBMM_API
+  LIBMM_GLIB_SYMEXPORT
   auto
   filename_to_utf8 (const std::string& opsys_string) -> Glib::ustring;
 
-  GLIBMM_API
+  LIBMM_GLIB_SYMEXPORT
   auto
   filename_from_utf8 (const Glib::ustring& utf8_string) -> std::string;
 
-  GLIBMM_API
+  LIBMM_GLIB_SYMEXPORT
   auto
   filename_from_uri (const Glib::ustring& uri, Glib::ustring& hostname) -> std::string;
 
-  GLIBMM_API
+  LIBMM_GLIB_SYMEXPORT
   auto
   filename_from_uri (const Glib::ustring& uri) -> std::string;
 
-  GLIBMM_API
+  LIBMM_GLIB_SYMEXPORT
   auto
   filename_to_uri (const std::string& filename, const Glib::ustring& hostname) -> Glib::ustring;
 
-  GLIBMM_API
+  LIBMM_GLIB_SYMEXPORT
   auto
   filename_to_uri (const std::string& filename) -> Glib::ustring;
 
-  GLIBMM_API
+  LIBMM_GLIB_SYMEXPORT
   auto
   filename_display_basename (const std::string& filename) -> Glib::ustring;
 
-  GLIBMM_API
+  LIBMM_GLIB_SYMEXPORT
   auto
   filename_display_name (const std::string& filename) -> Glib::ustring;
 

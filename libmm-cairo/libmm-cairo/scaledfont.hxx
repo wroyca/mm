@@ -17,7 +17,7 @@
 namespace Cairo
 {
 
-  class CAIROMM_API ScaledFont
+  class LIBMM_CAIRO_SYMEXPORT ScaledFont
   {
   public:
     typedef cairo_scaled_font_t cobject;
@@ -118,7 +118,7 @@ namespace Cairo
 
 #ifdef CAIRO_HAS_FT_FONT
 
-  class CAIROMM_API FtScaledFont : public ScaledFont
+  class LIBMM_CAIRO_SYMEXPORT FtScaledFont : public ScaledFont
   {
   public:
     static auto

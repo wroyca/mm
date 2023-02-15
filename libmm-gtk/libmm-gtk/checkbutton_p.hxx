@@ -10,7 +10,7 @@
 namespace Gtk
 {
 
-  class GTKMM_API CheckButton_Class : public Glib::Class
+  class LIBMM_GTK_SYMEXPORT CheckButton_Class : public Glib::Class
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

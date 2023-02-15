@@ -16,14 +16,14 @@ using GtkGestureSwipeClass = struct _GtkGestureSwipeClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API GestureSwipe_Class;
+  class LIBMM_GTK_SYMEXPORT GestureSwipe_Class;
 }
 #endif
 
 namespace Gtk
 {
 
-  class GTKMM_API GestureSwipe : public GestureSingle
+  class LIBMM_GTK_SYMEXPORT GestureSwipe : public GestureSingle
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -101,7 +101,7 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkGestureSwipe* object, bool take_copy = false) -> Glib::RefPtr<Gtk::GestureSwipe>;
 } // namespace Glib
 

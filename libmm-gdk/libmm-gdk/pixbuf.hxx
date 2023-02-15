@@ -25,7 +25,7 @@ using GdkPixbufClass = struct _GdkPixbufClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gdk
 {
-  class GDKMM_API Pixbuf_Class;
+  class LIBMM_GDK_SYMEXPORT Pixbuf_Class;
 }
 #endif
 
@@ -44,7 +44,7 @@ namespace Glib
 {
 
   template <>
-  class GDKMM_API Value<Gdk::Colorspace>
+  class LIBMM_GDK_SYMEXPORT Value<Gdk::Colorspace>
     : public Glib::Value_Enum<Gdk::Colorspace>
   {
   public:
@@ -73,7 +73,7 @@ namespace Glib
 {
 
   template <>
-  class GDKMM_API Value<Gdk::InterpType>
+  class LIBMM_GDK_SYMEXPORT Value<Gdk::InterpType>
     : public Glib::Value_Enum<Gdk::InterpType>
   {
   public:
@@ -101,18 +101,18 @@ namespace Gdk
       INCOMPLETE_ANIMATION
     };
 
-    GDKMM_API
+    LIBMM_GDK_SYMEXPORT
     PixbufError (Code error_code, const Glib::ustring& error_message);
-    GDKMM_API explicit PixbufError (GError* gobject);
-    GDKMM_API auto
+    LIBMM_GDK_SYMEXPORT explicit PixbufError (GError* gobject);
+    LIBMM_GDK_SYMEXPORT auto
     code () const -> Code;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
   private:
-    GDKMM_API static auto
+    LIBMM_GDK_SYMEXPORT static auto
     throw_func (GError* gobject) -> void;
 
-    friend GDKMM_API auto
+    friend LIBMM_GDK_SYMEXPORT auto
     wrap_init () -> void;
 
 #endif
@@ -125,7 +125,7 @@ namespace Glib
 {
 
   template <>
-  class GDKMM_API Value<Gdk::PixbufError::Code>
+  class LIBMM_GDK_SYMEXPORT Value<Gdk::PixbufError::Code>
     : public Glib::Value_Enum<Gdk::PixbufError::Code>
   {
   public:
@@ -139,7 +139,7 @@ namespace Glib
 namespace Gdk
 {
 
-  class GDKMM_API Pixbuf : public Glib::Object,
+  class LIBMM_GDK_SYMEXPORT Pixbuf : public Glib::Object,
                            public Gio::Icon,
                            public Gio::LoadableIcon
   {
@@ -514,7 +514,7 @@ namespace Glib
 {
 
   template <>
-  class GDKMM_API Value<Gdk::Pixbuf::Rotation>
+  class LIBMM_GDK_SYMEXPORT Value<Gdk::Pixbuf::Rotation>
     : public Glib::Value_Enum<Gdk::Pixbuf::Rotation>
   {
   public:
@@ -527,7 +527,7 @@ namespace Glib
 
 namespace Glib
 {
-  GDKMM_API auto
+  LIBMM_GDK_SYMEXPORT auto
   wrap (GdkPixbuf* object, bool take_copy = false) -> Glib::RefPtr<Gdk::Pixbuf>;
 } // namespace Glib
 

@@ -17,7 +17,7 @@ extern "C"
 namespace Glib
 {
 
-  class GLIBMM_API ObjectBase;
+  class LIBMM_GLIB_SYMEXPORT ObjectBase;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -30,7 +30,7 @@ namespace Glib
 
 #endif
 
-  class GLIBMM_API SignalProxyBase
+  class LIBMM_GLIB_SYMEXPORT SignalProxyBase
   {
   public:
     SignalProxyBase (Glib::ObjectBase* obj);
@@ -55,7 +55,7 @@ namespace Glib
     operator= (const SignalProxyBase&) -> SignalProxyBase& = delete;
   };
 
-  class GLIBMM_API SignalProxyNormal : public SignalProxyBase
+  class LIBMM_GLIB_SYMEXPORT SignalProxyNormal : public SignalProxyBase
   {
   public:
     ~SignalProxyNormal () noexcept;
@@ -154,7 +154,7 @@ namespace Glib
     }
   };
 
-  class GLIBMM_API SignalProxyDetailedBase : public SignalProxyBase
+  class LIBMM_GLIB_SYMEXPORT SignalProxyDetailedBase : public SignalProxyBase
   {
   public:
     ~SignalProxyDetailedBase () noexcept;

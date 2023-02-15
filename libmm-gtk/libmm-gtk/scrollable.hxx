@@ -26,14 +26,14 @@ using GtkScrollableClass = struct _GtkScrollableClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API Scrollable_Class;
+  class LIBMM_GTK_SYMEXPORT Scrollable_Class;
 }
 #endif
 
 namespace Gtk
 {
 
-  class GTKMM_API Scrollable : public Glib::Interface
+  class LIBMM_GTK_SYMEXPORT Scrollable : public Glib::Interface
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -184,7 +184,7 @@ namespace Glib
 {
 
   template <>
-  class GTKMM_API Value<Gtk::Scrollable::Policy>
+  class LIBMM_GTK_SYMEXPORT Value<Gtk::Scrollable::Policy>
     : public Glib::Value_Enum<Gtk::Scrollable::Policy>
   {
   public:
@@ -197,7 +197,7 @@ namespace Glib
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkScrollable* object, bool take_copy = false) -> Glib::RefPtr<Gtk::Scrollable>;
 
 } // namespace Glib

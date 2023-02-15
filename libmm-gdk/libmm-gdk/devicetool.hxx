@@ -17,14 +17,14 @@ using GdkDeviceToolClass = struct _GdkDeviceToolClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gdk
 {
-  class GDKMM_API DeviceTool_Class;
+  class LIBMM_GDK_SYMEXPORT DeviceTool_Class;
 }
 #endif
 
 namespace Gdk
 {
 
-  class GDKMM_API DeviceTool : public Glib::Object
+  class LIBMM_GDK_SYMEXPORT DeviceTool : public Glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -129,7 +129,7 @@ namespace Glib
 {
 
   template <>
-  class GDKMM_API Value<Gdk::DeviceTool::Type>
+  class LIBMM_GDK_SYMEXPORT Value<Gdk::DeviceTool::Type>
     : public Glib::Value_Enum<Gdk::DeviceTool::Type>
   {
   public:
@@ -142,7 +142,7 @@ namespace Glib
 
 namespace Glib
 {
-  GDKMM_API auto
+  LIBMM_GDK_SYMEXPORT auto
   wrap (GdkDeviceTool* object, bool take_copy = false) -> Glib::RefPtr<Gdk::DeviceTool>;
 } // namespace Glib
 

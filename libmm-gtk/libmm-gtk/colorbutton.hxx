@@ -20,14 +20,14 @@ using GtkColorButtonClass = struct _GtkColorButtonClass;
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API ColorButton_Class;
+  class LIBMM_GTK_SYMEXPORT ColorButton_Class;
 }
   #endif
 
 namespace Gtk
 {
 
-  class GTKMM_API ColorButton : public Widget,
+  class LIBMM_GTK_SYMEXPORT ColorButton : public Widget,
                                 public ColorChooser
   {
   public:
@@ -51,7 +51,7 @@ namespace Gtk
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   private:
-    friend GTKMM_API class ColorButton_Class;
+    friend LIBMM_GTK_SYMEXPORT class ColorButton_Class;
     static CppClassType colorbutton_class_;
 
   protected:
@@ -130,7 +130,7 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkColorButton* object, bool take_copy = false) -> Gtk::ColorButton*;
 } // namespace Glib
 

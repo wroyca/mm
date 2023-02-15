@@ -18,14 +18,14 @@ using GDBusObjectProxyClass = struct _GDBusObjectProxyClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gio::DBus
 {
-  class GIOMM_API ObjectProxy_Class;
+  class LIBMM_GIO_SYMEXPORT ObjectProxy_Class;
 }
 #endif
 
 namespace Gio::DBus
 {
 
-  class GIOMM_API ObjectProxy : public Glib::Object,
+  class LIBMM_GIO_SYMEXPORT ObjectProxy : public Glib::Object,
                                 public Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -115,7 +115,7 @@ namespace Gio::DBus
 namespace Glib
 {
 
-  GIOMM_API
+  LIBMM_GIO_SYMEXPORT
   auto
   wrap (GDBusObjectProxy* object, bool take_copy = false) -> Glib::RefPtr<Gio::DBus::ObjectProxy>;
 } // namespace Glib

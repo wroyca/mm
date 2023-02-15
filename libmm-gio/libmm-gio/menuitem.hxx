@@ -3,7 +3,7 @@
 #ifndef _GIOMM_MENUITEM_H
 #define _GIOMM_MENUITEM_H
 
-#include <libmm-gio/gioconfig.hxx>
+#include <libmm-gio/mm-gioconfig.hxx>
 
 #include <libmm-glib/ustring.hxx>
 #include <sigc++/sigc++.h>
@@ -20,14 +20,14 @@ using GMenuItemClass = struct _GMenuItemClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gio
 {
-  class GIOMM_API MenuItem_Class;
+  class LIBMM_GIO_SYMEXPORT MenuItem_Class;
 }
 #endif
 
 namespace Gio
 {
 
-  class GIOMM_API MenuItem : public Glib::Object
+  class LIBMM_GIO_SYMEXPORT MenuItem : public Glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -168,7 +168,7 @@ namespace Gio
 namespace Glib
 {
 
-  GIOMM_API
+  LIBMM_GIO_SYMEXPORT
   auto
   wrap (GMenuItem* object, bool take_copy = false) -> Glib::RefPtr<Gio::MenuItem>;
 } // namespace Glib

@@ -11,7 +11,7 @@
 namespace Pango
 {
 
-  class PANGOMM_API Renderer_Class : public Glib::Class
+  class LIBMM_PANGO_SYMEXPORT Renderer_Class : public Glib::Class
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

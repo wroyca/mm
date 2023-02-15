@@ -15,9 +15,9 @@ namespace Cairo
     double red, green, blue, alpha;
   };
 
-  class CAIROMM_API Matrix;
+  class LIBMM_CAIRO_SYMEXPORT Matrix;
 
-  class CAIROMM_API Pattern
+  class LIBMM_CAIRO_SYMEXPORT Pattern
   {
   protected:
   public:
@@ -103,7 +103,7 @@ namespace Cairo
     cobject* m_cobject;
   };
 
-  class CAIROMM_API SolidPattern : public Pattern
+  class LIBMM_CAIRO_SYMEXPORT SolidPattern : public Pattern
   {
   protected:
   public:
@@ -124,7 +124,7 @@ namespace Cairo
     ~SolidPattern () override;
   };
 
-  class CAIROMM_API SurfacePattern : public Pattern
+  class LIBMM_CAIRO_SYMEXPORT SurfacePattern : public Pattern
   {
   protected:
     explicit SurfacePattern (const RefPtr<Surface>& surface);
@@ -165,7 +165,7 @@ namespace Cairo
     get_filter () const -> Filter;
   };
 
-  class CAIROMM_API Gradient : public Pattern
+  class LIBMM_CAIRO_SYMEXPORT Gradient : public Pattern
   {
   protected:
   public:
@@ -191,7 +191,7 @@ namespace Cairo
     Gradient ();
   };
 
-  class CAIROMM_API LinearGradient : public Gradient
+  class LIBMM_CAIRO_SYMEXPORT LinearGradient : public Gradient
   {
   protected:
     LinearGradient (double x0, double y0, double x1, double y1);
@@ -211,7 +211,7 @@ namespace Cairo
         -> RefPtr<LinearGradient>;
   };
 
-  class CAIROMM_API RadialGradient : public Gradient
+  class LIBMM_CAIRO_SYMEXPORT RadialGradient : public Gradient
   {
   protected:
     RadialGradient (double cx0,

@@ -17,14 +17,14 @@ using GtkGestureClickClass = struct _GtkGestureClickClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API GestureClick_Class;
+  class LIBMM_GTK_SYMEXPORT GestureClick_Class;
 }
 #endif
 
 namespace Gtk
 {
 
-  class GTKMM_API GestureClick : public GestureSingle
+  class LIBMM_GTK_SYMEXPORT GestureClick : public GestureSingle
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -109,7 +109,7 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkGestureClick* object, bool take_copy = false) -> Glib::RefPtr<Gtk::GestureClick>;
 } // namespace Glib
 

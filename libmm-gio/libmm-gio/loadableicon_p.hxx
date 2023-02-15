@@ -10,7 +10,7 @@
 namespace Gio
 {
 
-  class GIOMM_API LoadableIcon_Class : public Glib::Interface_Class
+  class LIBMM_GIO_SYMEXPORT LoadableIcon_Class : public Glib::Interface_Class
   {
   public:
     using CppObjectType = LoadableIcon;

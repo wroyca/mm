@@ -13,7 +13,7 @@
 namespace Pango
 {
 
-  class PANGOMM_API Rectangle
+  class LIBMM_PANGO_SYMEXPORT Rectangle
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -135,11 +135,11 @@ namespace Pango
 namespace Glib
 {
 
-  PANGOMM_API
+  LIBMM_PANGO_SYMEXPORT
   auto
   wrap (PangoRectangle* object) -> Pango::Rectangle&;
 
-  PANGOMM_API
+  LIBMM_PANGO_SYMEXPORT
   auto
   wrap (const PangoRectangle* object) -> const Pango::Rectangle&;
 

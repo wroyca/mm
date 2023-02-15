@@ -26,7 +26,7 @@ using GtkAccessibleClass = struct _GtkAccessibleClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API Accessible_Class;
+  class LIBMM_GTK_SYMEXPORT Accessible_Class;
 }
 #endif
 
@@ -34,7 +34,7 @@ namespace Gtk
 {
   class ATContext;
 
-  class GTKMM_API Accessible : public Glib::Interface
+  class LIBMM_GTK_SYMEXPORT Accessible : public Glib::Interface
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -313,7 +313,7 @@ namespace Glib
 {
 
   template <>
-  class GTKMM_API Value<Gtk::Accessible::Role>
+  class LIBMM_GTK_SYMEXPORT Value<Gtk::Accessible::Role>
     : public Glib::Value_Enum<Gtk::Accessible::Role>
   {
   public:
@@ -329,7 +329,7 @@ namespace Glib
 {
 
   template <>
-  class GTKMM_API Value<Gtk::Accessible::State>
+  class LIBMM_GTK_SYMEXPORT Value<Gtk::Accessible::State>
     : public Glib::Value_Enum<Gtk::Accessible::State>
   {
   public:
@@ -345,7 +345,7 @@ namespace Glib
 {
 
   template <>
-  class GTKMM_API Value<Gtk::Accessible::Property>
+  class LIBMM_GTK_SYMEXPORT Value<Gtk::Accessible::Property>
     : public Glib::Value_Enum<Gtk::Accessible::Property>
   {
   public:
@@ -361,7 +361,7 @@ namespace Glib
 {
 
   template <>
-  class GTKMM_API Value<Gtk::Accessible::Relation>
+  class LIBMM_GTK_SYMEXPORT Value<Gtk::Accessible::Relation>
     : public Glib::Value_Enum<Gtk::Accessible::Relation>
   {
   public:
@@ -377,7 +377,7 @@ namespace Glib
 {
 
   template <>
-  class GTKMM_API Value<Gtk::Accessible::PlatformState>
+  class LIBMM_GTK_SYMEXPORT Value<Gtk::Accessible::PlatformState>
     : public Glib::Value_Enum<Gtk::Accessible::PlatformState>
   {
   public:
@@ -390,7 +390,7 @@ namespace Glib
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkAccessible* object, bool take_copy = false) -> Glib::RefPtr<Gtk::Accessible>;
 
 } // namespace Glib

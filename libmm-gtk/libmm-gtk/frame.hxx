@@ -16,14 +16,14 @@ using GtkFrameClass = struct _GtkFrameClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API Frame_Class;
+  class LIBMM_GTK_SYMEXPORT Frame_Class;
 }
 #endif
 
 namespace Gtk
 {
 
-  class GTKMM_API Frame : public Widget
+  class LIBMM_GTK_SYMEXPORT Frame : public Widget
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -46,7 +46,7 @@ namespace Gtk
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   private:
-    friend GTKMM_API class Frame_Class;
+    friend LIBMM_GTK_SYMEXPORT class Frame_Class;
     static CppClassType frame_class_;
 
   protected:
@@ -156,7 +156,7 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkFrame* object, bool take_copy = false) -> Gtk::Frame*;
 } // namespace Glib
 

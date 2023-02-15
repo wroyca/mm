@@ -13,7 +13,7 @@
 namespace Gdk
 {
 
-  class GDKMM_API ToplevelSize
+  class LIBMM_GDK_SYMEXPORT ToplevelSize
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

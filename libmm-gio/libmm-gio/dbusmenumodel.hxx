@@ -16,16 +16,16 @@ using GDBusMenuModelClass = struct _GDBusMenuModelClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gio::DBus
 {
-  class GIOMM_API MenuModel_Class;
+  class LIBMM_GIO_SYMEXPORT MenuModel_Class;
 }
 #endif
 
 namespace Gio::DBus
 {
 
-  class GIOMM_API Connection;
+  class LIBMM_GIO_SYMEXPORT Connection;
 
-  class GIOMM_API MenuModel : public ::Gio::MenuModel
+  class LIBMM_GIO_SYMEXPORT MenuModel : public ::Gio::MenuModel
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -100,7 +100,7 @@ namespace Gio::DBus
 namespace Glib
 {
 
-  GIOMM_API
+  LIBMM_GIO_SYMEXPORT
   auto
   wrap (GDBusMenuModel* object, bool take_copy = false) -> Glib::RefPtr<Gio::DBus::MenuModel>;
 } // namespace Glib

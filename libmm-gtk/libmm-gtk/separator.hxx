@@ -17,14 +17,14 @@ using GtkSeparatorClass = struct _GtkSeparatorClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API Separator_Class;
+  class LIBMM_GTK_SYMEXPORT Separator_Class;
 }
 #endif
 
 namespace Gtk
 {
 
-  class GTKMM_API Separator : public Widget,
+  class LIBMM_GTK_SYMEXPORT Separator : public Widget,
                               public Orientable
   {
   public:
@@ -48,7 +48,7 @@ namespace Gtk
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   private:
-    friend GTKMM_API class Separator_Class;
+    friend LIBMM_GTK_SYMEXPORT class Separator_Class;
     static CppClassType separator_class_;
 
   protected:
@@ -92,7 +92,7 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkSeparator* object, bool take_copy = false) -> Gtk::Separator*;
 } // namespace Glib
 

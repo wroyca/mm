@@ -16,14 +16,14 @@ using GtkToggleButtonClass = struct _GtkToggleButtonClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API ToggleButton_Class;
+  class LIBMM_GTK_SYMEXPORT ToggleButton_Class;
 }
 #endif
 
 namespace Gtk
 {
 
-  class GTKMM_API ToggleButton : public Button
+  class LIBMM_GTK_SYMEXPORT ToggleButton : public Button
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -46,7 +46,7 @@ namespace Gtk
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   private:
-    friend GTKMM_API class ToggleButton_Class;
+    friend LIBMM_GTK_SYMEXPORT class ToggleButton_Class;
     static CppClassType togglebutton_class_;
 
   protected:
@@ -123,7 +123,7 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkToggleButton* object, bool take_copy = false) -> Gtk::ToggleButton*;
 } // namespace Glib
 

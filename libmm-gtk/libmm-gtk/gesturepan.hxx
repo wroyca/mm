@@ -17,7 +17,7 @@ using GtkGesturePanClass = struct _GtkGesturePanClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API GesturePan_Class;
+  class LIBMM_GTK_SYMEXPORT GesturePan_Class;
 }
 #endif
 
@@ -39,7 +39,7 @@ namespace Glib
 {
 
   template <>
-  class GTKMM_API Value<Gtk::PanDirection>
+  class LIBMM_GTK_SYMEXPORT Value<Gtk::PanDirection>
     : public Glib::Value_Enum<Gtk::PanDirection>
   {
   public:
@@ -53,7 +53,7 @@ namespace Glib
 namespace Gtk
 {
 
-  class GTKMM_API GesturePan : public GestureDrag
+  class LIBMM_GTK_SYMEXPORT GesturePan : public GestureDrag
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -142,7 +142,7 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkGesturePan* object, bool take_copy = false) -> Glib::RefPtr<Gtk::GesturePan>;
 } // namespace Glib
 

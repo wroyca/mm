@@ -25,14 +25,14 @@ using GtkEditableClass = struct _GtkEditableClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API Editable_Class;
+  class LIBMM_GTK_SYMEXPORT Editable_Class;
 }
 #endif
 
 namespace Gtk
 {
 
-  class GTKMM_API Editable : public Glib::Interface
+  class LIBMM_GTK_SYMEXPORT Editable : public Glib::Interface
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -243,7 +243,7 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkEditable* object, bool take_copy = false) -> Glib::RefPtr<Gtk::Editable>;
 
 } // namespace Glib

@@ -10,7 +10,7 @@
 namespace Gdk
 {
 
-  class GDKMM_API MemoryTexture_Class : public Glib::Class
+  class LIBMM_GDK_SYMEXPORT MemoryTexture_Class : public Glib::Class
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

@@ -19,14 +19,14 @@
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API DragIcon_Class;
+  class LIBMM_GTK_SYMEXPORT DragIcon_Class;
 }
 #endif
 
 namespace Gtk
 {
 
-  class GTKMM_API DragIcon : public Widget,
+  class LIBMM_GTK_SYMEXPORT DragIcon : public Widget,
                              public Native,
                              public Root
   {
@@ -51,7 +51,7 @@ namespace Gtk
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   private:
-    friend GTKMM_API class DragIcon_Class;
+    friend LIBMM_GTK_SYMEXPORT class DragIcon_Class;
     static CppClassType dragicon_class_;
 
   protected:
@@ -122,7 +122,7 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkDragIcon* object, bool take_copy = false) -> Gtk::DragIcon*;
 } // namespace Glib
 

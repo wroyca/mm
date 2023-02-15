@@ -18,14 +18,14 @@ using GtkStatusbarClass = struct _GtkStatusbarClass;
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API Statusbar_Class;
+  class LIBMM_GTK_SYMEXPORT Statusbar_Class;
 }
   #endif
 
 namespace Gtk
 {
 
-  class GTKMM_API Statusbar : public Widget
+  class LIBMM_GTK_SYMEXPORT Statusbar : public Widget
   {
   public:
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -48,7 +48,7 @@ namespace Gtk
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   private:
-    friend GTKMM_API class Statusbar_Class;
+    friend LIBMM_GTK_SYMEXPORT class Statusbar_Class;
     static CppClassType statusbar_class_;
 
   protected:
@@ -115,7 +115,7 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkStatusbar* object, bool take_copy = false) -> Gtk::Statusbar*;
 } // namespace Glib
 

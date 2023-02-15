@@ -14,7 +14,7 @@ extern "C"
 namespace Glib
 {
 
-  class GLIBMM_API Rand
+  class LIBMM_GLIB_SYMEXPORT Rand
   {
   public:
     Rand ();

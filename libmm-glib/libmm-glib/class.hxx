@@ -13,9 +13,9 @@
 
 namespace Glib
 {
-  class GLIBMM_API Interface_Class;
+  class LIBMM_GLIB_SYMEXPORT Interface_Class;
 
-  class GLIBMM_API Class
+  class LIBMM_GLIB_SYMEXPORT Class
   {
   public:
     inline auto

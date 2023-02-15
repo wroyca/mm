@@ -19,14 +19,14 @@ using GtkFileChooserDialogClass = struct _GtkFileChooserDialogClass;
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API FileChooserDialog_Class;
+  class LIBMM_GTK_SYMEXPORT FileChooserDialog_Class;
 }
   #endif
 
 namespace Gtk
 {
 
-  class GTKMM_API FileChooserDialog : public Dialog,
+  class LIBMM_GTK_SYMEXPORT FileChooserDialog : public Dialog,
                                       public FileChooser
   {
   public:
@@ -50,7 +50,7 @@ namespace Gtk
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   private:
-    friend GTKMM_API class FileChooserDialog_Class;
+    friend LIBMM_GTK_SYMEXPORT class FileChooserDialog_Class;
     static CppClassType filechooserdialog_class_;
 
   protected:
@@ -100,7 +100,7 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkFileChooserDialog* object, bool take_copy = false) -> Gtk::FileChooserDialog*;
 } // namespace Glib
 

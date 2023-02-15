@@ -22,14 +22,14 @@ using GtkFlowBoxClass = struct _GtkFlowBoxClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API FlowBox_Class;
+  class LIBMM_GTK_SYMEXPORT FlowBox_Class;
 }
 #endif
 
 namespace Gtk
 {
 
-  class GTKMM_API FlowBox : public Widget,
+  class LIBMM_GTK_SYMEXPORT FlowBox : public Widget,
                             public Orientable
   {
   public:
@@ -53,7 +53,7 @@ namespace Gtk
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   private:
-    friend GTKMM_API class FlowBox_Class;
+    friend LIBMM_GTK_SYMEXPORT class FlowBox_Class;
     static CppClassType flowbox_class_;
 
   protected:
@@ -334,7 +334,7 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkFlowBox* object, bool take_copy = false) -> Gtk::FlowBox*;
 } // namespace Glib
 

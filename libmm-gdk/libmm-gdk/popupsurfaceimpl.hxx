@@ -10,7 +10,7 @@
 namespace Gdk
 {
 
-  class GDKMM_API PopupSurfaceImpl : public Popup,
+  class LIBMM_GDK_SYMEXPORT PopupSurfaceImpl : public Popup,
                                      public Surface
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

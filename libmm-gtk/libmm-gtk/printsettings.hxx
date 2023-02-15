@@ -20,7 +20,7 @@ using GtkPrintSettingsClass = struct _GtkPrintSettingsClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API PrintSettings_Class;
+  class LIBMM_GTK_SYMEXPORT PrintSettings_Class;
 }
 #endif
 
@@ -41,7 +41,7 @@ namespace Glib
 {
 
   template <>
-  class GTKMM_API Value<Gtk::PrintDuplex>
+  class LIBMM_GTK_SYMEXPORT Value<Gtk::PrintDuplex>
     : public Glib::Value_Enum<Gtk::PrintDuplex>
   {
   public:
@@ -70,7 +70,7 @@ namespace Glib
 {
 
   template <>
-  class GTKMM_API Value<Gtk::PrintQuality>
+  class LIBMM_GTK_SYMEXPORT Value<Gtk::PrintQuality>
     : public Glib::Value_Enum<Gtk::PrintQuality>
   {
   public:
@@ -99,7 +99,7 @@ namespace Glib
 {
 
   template <>
-  class GTKMM_API Value<Gtk::PrintPages>
+  class LIBMM_GTK_SYMEXPORT Value<Gtk::PrintPages>
     : public Glib::Value_Enum<Gtk::PrintPages>
   {
   public:
@@ -127,7 +127,7 @@ namespace Glib
 {
 
   template <>
-  class GTKMM_API Value<Gtk::PageSet> : public Glib::Value_Enum<Gtk::PageSet>
+  class LIBMM_GTK_SYMEXPORT Value<Gtk::PageSet> : public Glib::Value_Enum<Gtk::PageSet>
   {
   public:
     static auto
@@ -159,7 +159,7 @@ namespace Glib
 {
 
   template <>
-  class GTKMM_API Value<Gtk::NumberUpLayout>
+  class LIBMM_GTK_SYMEXPORT Value<Gtk::NumberUpLayout>
     : public Glib::Value_Enum<Gtk::NumberUpLayout>
   {
   public:
@@ -173,7 +173,7 @@ namespace Glib
 namespace Gtk
 {
 
-  class GTKMM_API PageRange
+  class LIBMM_GTK_SYMEXPORT PageRange
   {
   public:
     PageRange ();
@@ -216,7 +216,7 @@ namespace Gtk
   };
 #endif
 
-  class GTKMM_API PrintSettings : public Glib::Object
+  class LIBMM_GTK_SYMEXPORT PrintSettings : public Glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -564,7 +564,7 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkPrintSettings* object, bool take_copy = false) -> Glib::RefPtr<Gtk::PrintSettings>;
 } // namespace Glib
 

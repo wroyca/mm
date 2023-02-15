@@ -16,14 +16,14 @@ using GtkEventControllerLegacyClass = struct _GtkEventControllerLegacyClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API EventControllerLegacy_Class;
+  class LIBMM_GTK_SYMEXPORT EventControllerLegacy_Class;
 }
 #endif
 
 namespace Gtk
 {
 
-  class GTKMM_API EventControllerLegacy : public EventController
+  class LIBMM_GTK_SYMEXPORT EventControllerLegacy : public EventController
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -100,7 +100,7 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkEventControllerLegacy* object, bool take_copy = false) -> Glib::RefPtr<Gtk::EventControllerLegacy>;
 } // namespace Glib
 

@@ -20,21 +20,21 @@ using GMemoryOutputStreamClass = struct _GMemoryOutputStreamClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gio
 {
-  class GIOMM_API MemoryOutputStream_Class;
+  class LIBMM_GIO_SYMEXPORT MemoryOutputStream_Class;
 }
 #endif
 
 namespace Glib
 {
 
-  class GLIBMM_API Bytes;
+  class LIBMM_GLIB_SYMEXPORT Bytes;
 
 }
 
 namespace Gio
 {
 
-  class GIOMM_API MemoryOutputStream : public OutputStream,
+  class LIBMM_GIO_SYMEXPORT MemoryOutputStream : public OutputStream,
                                        public Seekable,
                                        public PollableOutputStream
   {
@@ -148,7 +148,7 @@ namespace Gio
 namespace Glib
 {
 
-  GIOMM_API
+  LIBMM_GIO_SYMEXPORT
   auto
   wrap (GMemoryOutputStream* object, bool take_copy = false) -> Glib::RefPtr<Gio::MemoryOutputStream>;
 } // namespace Glib

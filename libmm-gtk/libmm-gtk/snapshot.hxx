@@ -15,20 +15,20 @@ typedef struct _graphene_rect_t graphene_rect_t;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API Snapshot_Class;
+  class LIBMM_GTK_SYMEXPORT Snapshot_Class;
 }
 #endif
 
 namespace Gdk
 {
-  class GTKMM_API RGBA;
-  class GTKMM_API Texture;
+  class LIBMM_GTK_SYMEXPORT RGBA;
+  class LIBMM_GTK_SYMEXPORT Texture;
 } // namespace Gdk
 
 namespace Gtk
 {
 
-  class GTKMM_API Snapshot : public Gdk::Snapshot
+  class LIBMM_GTK_SYMEXPORT Snapshot : public Gdk::Snapshot
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -227,7 +227,7 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap_gtk_snapshot (GtkSnapshot* object, bool take_copy = false) -> Glib::RefPtr<Gtk::Snapshot>;
 } // namespace Glib
 

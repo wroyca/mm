@@ -10,7 +10,7 @@
 namespace Gio
 {
 
-  class GIOMM_API UnixOutputStream_Class : public Glib::Class
+  class LIBMM_GIO_SYMEXPORT UnixOutputStream_Class : public Glib::Class
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

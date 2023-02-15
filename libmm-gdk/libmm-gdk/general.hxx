@@ -17,32 +17,32 @@ namespace Gdk
 
   namespace Cairo
   {
-    GDKMM_API auto
+    LIBMM_GDK_SYMEXPORT auto
     set_source_rgba (const ::Cairo::RefPtr<::Cairo::Context>& context,
                      const Gdk::RGBA& color) -> void;
 
-    GDKMM_API auto
+    LIBMM_GDK_SYMEXPORT auto
     set_source_pixbuf (const ::Cairo::RefPtr<::Cairo::Context>& context,
                        const Glib::RefPtr<const Gdk::Pixbuf>& pixbuf,
                        double pixbuf_x = 0,
                        double pixbuf_y = 0) -> void;
 
-    GDKMM_API auto
+    LIBMM_GDK_SYMEXPORT auto
     add_rectangle_to_path (const ::Cairo::RefPtr<::Cairo::Context>& context,
                            const Gdk::Rectangle& rectangle) -> void;
 
-    GDKMM_API auto
+    LIBMM_GDK_SYMEXPORT auto
     add_region_to_path (const ::Cairo::RefPtr<::Cairo::Context>& context,
                         const ::Cairo::RefPtr<::Cairo::Region>& region) -> void;
 
-    GDKMM_API auto
+    LIBMM_GDK_SYMEXPORT auto
     create_region_from_surface (
         const ::Cairo::RefPtr<::Cairo::Surface>& surface)
         -> ::Cairo::RefPtr<::Cairo::Region>;
 
 #ifndef GDKMM_DISABLE_DEPRECATED
 
-    GDKMM_API auto
+    LIBMM_GDK_SYMEXPORT auto
     draw_from_gl (const ::Cairo::RefPtr<::Cairo::Context>& context,
                   const Glib::RefPtr<Gdk::Surface>& surface,
                   int source,

@@ -10,7 +10,7 @@
 namespace Gtk
 {
 
-  class GTKMM_API GestureStylus_Class : public Glib::Class
+  class LIBMM_GTK_SYMEXPORT GestureStylus_Class : public Glib::Class
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

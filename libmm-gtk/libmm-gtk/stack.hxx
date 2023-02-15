@@ -19,14 +19,14 @@ using GtkStackClass = struct _GtkStackClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API Stack_Class;
+  class LIBMM_GTK_SYMEXPORT Stack_Class;
 }
 #endif
 
 namespace Gtk
 {
 
-  class GTKMM_API Stack : public Widget
+  class LIBMM_GTK_SYMEXPORT Stack : public Widget
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -49,7 +49,7 @@ namespace Gtk
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   private:
-    friend GTKMM_API class Stack_Class;
+    friend LIBMM_GTK_SYMEXPORT class Stack_Class;
     static CppClassType stack_class_;
 
   protected:
@@ -228,7 +228,7 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkStack* object, bool take_copy = false) -> Gtk::Stack*;
 } // namespace Glib
 

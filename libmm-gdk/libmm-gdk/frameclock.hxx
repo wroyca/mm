@@ -19,14 +19,14 @@ using GdkFrameClockClass = struct _GdkFrameClockClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gdk
 {
-  class GDKMM_API FrameClock_Class;
+  class LIBMM_GDK_SYMEXPORT FrameClock_Class;
 }
 #endif
 
 namespace Gdk
 {
 
-  class GDKMM_API FrameClock : public Glib::Object
+  class LIBMM_GDK_SYMEXPORT FrameClock : public Glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -207,7 +207,7 @@ namespace Glib
 {
 
   template <>
-  class GDKMM_API Value<Gdk::FrameClock::Phase>
+  class LIBMM_GDK_SYMEXPORT Value<Gdk::FrameClock::Phase>
     : public Glib::Value_Flags<Gdk::FrameClock::Phase>
   {
   public:
@@ -220,7 +220,7 @@ namespace Glib
 
 namespace Glib
 {
-  GDKMM_API auto
+  LIBMM_GDK_SYMEXPORT auto
   wrap (GdkFrameClock* object, bool take_copy = false) -> Glib::RefPtr<Gdk::FrameClock>;
 } // namespace Glib
 

@@ -150,7 +150,7 @@ namespace Glib
 {
 
   template <>
-  class PANGOMM_API Value<Pango::Script>
+  class LIBMM_PANGO_SYMEXPORT Value<Pango::Script>
     : public Glib::Value_Enum<Pango::Script>
   {
   public:
@@ -164,7 +164,7 @@ namespace Glib
 namespace Pango
 {
 
-  class PANGOMM_API Language
+  class LIBMM_PANGO_SYMEXPORT Language
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -243,13 +243,13 @@ namespace Pango
 namespace Glib
 {
 
-  PANGOMM_API
+  LIBMM_PANGO_SYMEXPORT
   auto
   wrap (PangoLanguage* object, bool take_copy = false) -> Pango::Language;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
   template <>
-  class PANGOMM_API Value<Pango::Language>
+  class LIBMM_PANGO_SYMEXPORT Value<Pango::Language>
     : public Glib::Value_Boxed<Pango::Language>
   {
   };

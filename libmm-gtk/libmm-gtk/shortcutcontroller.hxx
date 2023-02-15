@@ -21,14 +21,14 @@ using GtkShortcutControllerClass = struct _GtkShortcutControllerClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API ShortcutController_Class;
+  class LIBMM_GTK_SYMEXPORT ShortcutController_Class;
 }
 #endif
 
 namespace Gtk
 {
 
-  class GTKMM_API ShortcutController : public EventController,
+  class LIBMM_GTK_SYMEXPORT ShortcutController : public EventController,
                                        public Gio::ListModel,
                                        public Buildable
   {
@@ -150,7 +150,7 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkShortcutController* object, bool take_copy = false) -> Glib::RefPtr<Gtk::ShortcutController>;
 } // namespace Glib
 

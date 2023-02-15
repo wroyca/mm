@@ -15,14 +15,14 @@
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API NumericSorterBase_Class;
+  class LIBMM_GTK_SYMEXPORT NumericSorterBase_Class;
 }
 #endif
 
 namespace Gtk
 {
 
-  class GTKMM_API NumericSorterBase : public Sorter
+  class LIBMM_GTK_SYMEXPORT NumericSorterBase : public Sorter
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -195,7 +195,7 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkNumericSorter* object, bool take_copy = false) -> Glib::RefPtr<Gtk::NumericSorterBase>;
 } // namespace Glib
 

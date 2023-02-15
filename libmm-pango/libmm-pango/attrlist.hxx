@@ -20,7 +20,7 @@ extern "C"
 namespace Pango
 {
 
-  class PANGOMM_API AttrList
+  class LIBMM_PANGO_SYMEXPORT AttrList
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -125,13 +125,13 @@ namespace Pango
 namespace Glib
 {
 
-  PANGOMM_API
+  LIBMM_PANGO_SYMEXPORT
   auto
   wrap (PangoAttrList* object, bool take_copy = false) -> Pango::AttrList;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
   template <>
-  class PANGOMM_API Value<Pango::AttrList>
+  class LIBMM_PANGO_SYMEXPORT Value<Pango::AttrList>
     : public Glib::Value_Boxed<Pango::AttrList>
   {
   };

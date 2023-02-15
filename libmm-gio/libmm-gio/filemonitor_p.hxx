@@ -11,7 +11,7 @@
 namespace Gio
 {
 
-  class GIOMM_API FileMonitor_Class : public Glib::Class
+  class LIBMM_GIO_SYMEXPORT FileMonitor_Class : public Glib::Class
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

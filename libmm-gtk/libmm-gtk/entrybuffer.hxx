@@ -20,14 +20,14 @@ using GtkEntryBufferClass = struct _GtkEntryBufferClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API EntryBuffer_Class;
+  class LIBMM_GTK_SYMEXPORT EntryBuffer_Class;
 }
 #endif
 
 namespace Gtk
 {
 
-  class GTKMM_API EntryBuffer : public Glib::Object
+  class LIBMM_GTK_SYMEXPORT EntryBuffer : public Glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -161,7 +161,7 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkEntryBuffer* object, bool take_copy = false) -> Glib::RefPtr<Gtk::EntryBuffer>;
 } // namespace Glib
 

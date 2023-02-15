@@ -31,18 +31,18 @@ namespace Glib
       MISSING_ATTRIBUTE
     };
 
-    GLIBMM_API
+    LIBMM_GLIB_SYMEXPORT
     MarkupError (Code error_code, const Glib::ustring& error_message);
-    GLIBMM_API explicit MarkupError (GError* gobject);
-    GLIBMM_API auto
+    LIBMM_GLIB_SYMEXPORT explicit MarkupError (GError* gobject);
+    LIBMM_GLIB_SYMEXPORT auto
     code () const -> Code;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
   private:
-    GLIBMM_API static auto
+    LIBMM_GLIB_SYMEXPORT static auto
     throw_func (GError* gobject) -> void;
 
-    friend GLIBMM_API auto
+    friend LIBMM_GLIB_SYMEXPORT auto
     wrap_init () -> void;
 
 #endif
@@ -55,7 +55,7 @@ namespace Glib
 
     using Error = Glib::MarkupError;
 
-    GLIBMM_API
+    LIBMM_GLIB_SYMEXPORT
     auto
     escape_text (const Glib::ustring& text) -> Glib::ustring;
 
@@ -116,7 +116,7 @@ namespace Glib
                                              static_cast<unsigned> (rhs)));
     }
 
-    class GLIBMM_API AttributeKeyLess
+    class LIBMM_GLIB_SYMEXPORT AttributeKeyLess
     {
     public:
       using first_argument_type = Glib::ustring;
@@ -132,7 +132,7 @@ namespace Glib
     class ParserCallbacks;
 #endif
 
-    class GLIBMM_API Parser : public sigc::trackable
+    class LIBMM_GLIB_SYMEXPORT Parser : public sigc::trackable
     {
     public:
       typedef std::
@@ -177,7 +177,7 @@ namespace Glib
 #endif
     };
 
-    class GLIBMM_API ParseContext : public sigc::trackable
+    class LIBMM_GLIB_SYMEXPORT ParseContext : public sigc::trackable
     {
     public:
       explicit ParseContext (Parser& parser, ParseFlags flags = ParseFlags (0));

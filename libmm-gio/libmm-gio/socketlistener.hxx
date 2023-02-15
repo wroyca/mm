@@ -20,14 +20,14 @@ using GSocketListenerClass = struct _GSocketListenerClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gio
 {
-  class GIOMM_API SocketListener_Class;
+  class LIBMM_GIO_SYMEXPORT SocketListener_Class;
 }
 #endif
 
 namespace Gio
 {
 
-  class GIOMM_API SocketListener : public Glib::Object
+  class LIBMM_GIO_SYMEXPORT SocketListener : public Glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -210,7 +210,7 @@ namespace Gio
 namespace Glib
 {
 
-  GIOMM_API
+  LIBMM_GIO_SYMEXPORT
   auto
   wrap (GSocketListener* object, bool take_copy = false) -> Glib::RefPtr<Gio::SocketListener>;
 } // namespace Glib

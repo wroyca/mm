@@ -15,28 +15,28 @@ namespace Glib
   class Environ
   {
   public:
-    GLIBMM_API
+    LIBMM_GLIB_SYMEXPORT
     Environ ();
 
-    GLIBMM_API explicit Environ (const std::vector<std::string>& env_vec);
+    LIBMM_GLIB_SYMEXPORT explicit Environ (const std::vector<std::string>& env_vec);
 
-    GLIBMM_API auto
+    LIBMM_GLIB_SYMEXPORT auto
     get (StdStringView variable) const -> std::optional<std::string>;
 
-    GLIBMM_API auto
+    LIBMM_GLIB_SYMEXPORT auto
     operator[] (StdStringView variable) const -> std::optional<std::string>
     {
       return get (variable);
     }
 
-    GLIBMM_API auto
+    LIBMM_GLIB_SYMEXPORT auto
     set (StdStringView variable, StdStringView value, bool overwrite = true)
         -> void;
 
-    GLIBMM_API auto
+    LIBMM_GLIB_SYMEXPORT auto
     unset (StdStringView variable) -> void;
 
-    GLIBMM_API auto
+    LIBMM_GLIB_SYMEXPORT auto
     to_vector () const -> std::vector<std::string>;
 
   private:

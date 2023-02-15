@@ -20,7 +20,7 @@
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API FileLauncher_Class;
+  class LIBMM_GTK_SYMEXPORT FileLauncher_Class;
 }
 #endif
 
@@ -28,7 +28,7 @@ namespace Gtk
 {
   class Window;
 
-  class GTKMM_API FileLauncher : public Glib::Object
+  class LIBMM_GTK_SYMEXPORT FileLauncher : public Glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -146,7 +146,7 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkFileLauncher* object, bool take_copy = false) -> Glib::RefPtr<Gtk::FileLauncher>;
 } // namespace Glib
 

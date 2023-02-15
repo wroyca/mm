@@ -16,14 +16,14 @@ using GtkAspectFrameClass = struct _GtkAspectFrameClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API AspectFrame_Class;
+  class LIBMM_GTK_SYMEXPORT AspectFrame_Class;
 }
 #endif
 
 namespace Gtk
 {
 
-  class GTKMM_API AspectFrame : public Widget
+  class LIBMM_GTK_SYMEXPORT AspectFrame : public Widget
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -46,7 +46,7 @@ namespace Gtk
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   private:
-    friend GTKMM_API class AspectFrame_Class;
+    friend LIBMM_GTK_SYMEXPORT class AspectFrame_Class;
     static CppClassType aspectframe_class_;
 
   protected:
@@ -169,7 +169,7 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkAspectFrame* object, bool take_copy = false) -> Gtk::AspectFrame*;
 } // namespace Glib
 

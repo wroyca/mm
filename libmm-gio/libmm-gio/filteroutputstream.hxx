@@ -17,14 +17,14 @@ using GFilterOutputStreamClass = struct _GFilterOutputStreamClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gio
 {
-  class GIOMM_API FilterOutputStream_Class;
+  class LIBMM_GIO_SYMEXPORT FilterOutputStream_Class;
 }
 #endif
 
 namespace Gio
 {
 
-  class GIOMM_API FilterOutputStream : public Gio::OutputStream
+  class LIBMM_GIO_SYMEXPORT FilterOutputStream : public Gio::OutputStream
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -113,7 +113,7 @@ namespace Gio
 namespace Glib
 {
 
-  GIOMM_API
+  LIBMM_GIO_SYMEXPORT
   auto
   wrap (GFilterOutputStream* object, bool take_copy = false) -> Glib::RefPtr<Gio::FilterOutputStream>;
 } // namespace Glib

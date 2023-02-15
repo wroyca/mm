@@ -16,14 +16,14 @@ using GtkEventControllerScrollClass = struct _GtkEventControllerScrollClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API EventControllerScroll_Class;
+  class LIBMM_GTK_SYMEXPORT EventControllerScroll_Class;
 }
 #endif
 
 namespace Gtk
 {
 
-  class GTKMM_API EventControllerScroll : public EventController
+  class LIBMM_GTK_SYMEXPORT EventControllerScroll : public EventController
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -192,7 +192,7 @@ namespace Glib
 {
 
   template <>
-  class GTKMM_API Value<Gtk::EventControllerScroll::Flags>
+  class LIBMM_GTK_SYMEXPORT Value<Gtk::EventControllerScroll::Flags>
     : public Glib::Value_Flags<Gtk::EventControllerScroll::Flags>
   {
   public:
@@ -205,7 +205,7 @@ namespace Glib
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkEventControllerScroll* object, bool take_copy = false) -> Glib::RefPtr<Gtk::EventControllerScroll>;
 } // namespace Glib
 

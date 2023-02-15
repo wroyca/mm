@@ -21,7 +21,7 @@ extern "C"
 namespace Pango
 {
 
-  class PANGOMM_API FontMetrics
+  class LIBMM_PANGO_SYMEXPORT FontMetrics
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -113,13 +113,13 @@ namespace Pango
 namespace Glib
 {
 
-  PANGOMM_API
+  LIBMM_PANGO_SYMEXPORT
   auto
   wrap (PangoFontMetrics* object, bool take_copy = false) -> Pango::FontMetrics;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
   template <>
-  class PANGOMM_API Value<Pango::FontMetrics>
+  class LIBMM_PANGO_SYMEXPORT Value<Pango::FontMetrics>
     : public Glib::Value_Boxed<Pango::FontMetrics>
   {
   };

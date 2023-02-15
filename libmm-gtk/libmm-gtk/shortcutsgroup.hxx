@@ -16,14 +16,14 @@ using GtkShortcutsGroupClass = struct _GtkShortcutsGroupClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API ShortcutsGroup_Class;
+  class LIBMM_GTK_SYMEXPORT ShortcutsGroup_Class;
 }
 #endif
 
 namespace Gtk
 {
 
-  class GTKMM_API ShortcutsGroup : public Box
+  class LIBMM_GTK_SYMEXPORT ShortcutsGroup : public Box
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -46,7 +46,7 @@ namespace Gtk
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   private:
-    friend GTKMM_API class ShortcutsGroup_Class;
+    friend LIBMM_GTK_SYMEXPORT class ShortcutsGroup_Class;
     static CppClassType shortcutsgroup_class_;
 
   protected:
@@ -105,7 +105,7 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkShortcutsGroup* object, bool take_copy = false) -> Gtk::ShortcutsGroup*;
 } // namespace Glib
 

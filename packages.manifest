@@ -1,6 +1,4 @@
 : 1
-location: libmm-glib/
-:
 location: libmm-adw/
 :
 location: libmm-cairo/
@@ -9,6 +7,9 @@ location: libmm-gdk/
 :
 location: libmm-gio/
 :
-location: libmm-pango/
+location: libmm-glib/
 :
 location: libmm-gtk/
+:
+location: libmm-pango/
+

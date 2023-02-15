@@ -10,7 +10,7 @@
 namespace Pango
 {
 
-  class PANGOMM_API Fontset_Class : public Glib::Class
+  class LIBMM_PANGO_SYMEXPORT Fontset_Class : public Glib::Class
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

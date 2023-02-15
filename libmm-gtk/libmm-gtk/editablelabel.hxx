@@ -15,14 +15,14 @@
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API EditableLabel_Class;
+  class LIBMM_GTK_SYMEXPORT EditableLabel_Class;
 }
 #endif
 
 namespace Gtk
 {
 
-  class GTKMM_API EditableLabel : public Widget,
+  class LIBMM_GTK_SYMEXPORT EditableLabel : public Widget,
                                   public Editable
   {
   public:
@@ -46,7 +46,7 @@ namespace Gtk
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   private:
-    friend GTKMM_API class EditableLabel_Class;
+    friend LIBMM_GTK_SYMEXPORT class EditableLabel_Class;
     static CppClassType editablelabel_class_;
 
   protected:
@@ -107,7 +107,7 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkEditableLabel* object, bool take_copy = false) -> Gtk::EditableLabel*;
 } // namespace Glib
 

@@ -17,14 +17,14 @@ using GtkDropControllerMotionClass = struct _GtkDropControllerMotionClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API DropControllerMotion_Class;
+  class LIBMM_GTK_SYMEXPORT DropControllerMotion_Class;
 }
 #endif
 
 namespace Gtk
 {
 
-  class GTKMM_API DropControllerMotion : public EventController
+  class LIBMM_GTK_SYMEXPORT DropControllerMotion : public EventController
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -128,7 +128,7 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkDropControllerMotion* object, bool take_copy = false) -> Glib::RefPtr<Gtk::DropControllerMotion>;
 } // namespace Glib
 

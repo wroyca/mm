@@ -23,7 +23,7 @@ using PangoFontClass = struct _PangoFontClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Pango
 {
-  class PANGOMM_API Font_Class;
+  class LIBMM_PANGO_SYMEXPORT Font_Class;
 }
 #endif
 
@@ -40,11 +40,11 @@ namespace Pango
   const double SCALE_XX_LARGE = 1.728;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-  class PANGOMM_API FontFace;
-  class PANGOMM_API FontMap;
+  class LIBMM_PANGO_SYMEXPORT FontFace;
+  class LIBMM_PANGO_SYMEXPORT FontMap;
 #endif
 
-  class PANGOMM_API Font : public Glib::Object
+  class LIBMM_PANGO_SYMEXPORT Font : public Glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -152,7 +152,7 @@ namespace Pango
 namespace Glib
 {
 
-  PANGOMM_API
+  LIBMM_PANGO_SYMEXPORT
   auto
   wrap (PangoFont* object, bool take_copy = false) -> Glib::RefPtr<Pango::Font>;
 } // namespace Glib

@@ -25,14 +25,14 @@ using PangoCairoFontMapClass = struct _PangoCairoFontMapClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Pango
 {
-  class PANGOMM_API CairoFontMap_Class;
+  class LIBMM_PANGO_SYMEXPORT CairoFontMap_Class;
 }
 #endif
 
 namespace Pango
 {
 
-  class PANGOMM_API CairoFontMap : public Glib::Interface
+  class LIBMM_PANGO_SYMEXPORT CairoFontMap : public Glib::Interface
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -121,7 +121,7 @@ namespace Pango
 namespace Glib
 {
 
-  PANGOMM_API
+  LIBMM_PANGO_SYMEXPORT
   auto
   wrap (PangoCairoFontMap* object, bool take_copy = false) -> Glib::RefPtr<Pango::CairoFontMap>;
 

@@ -18,14 +18,14 @@ using GtkPopoverClass = struct _GtkPopoverClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API Popover_Class;
+  class LIBMM_GTK_SYMEXPORT Popover_Class;
 }
 #endif
 
 namespace Gtk
 {
 
-  class GTKMM_API Popover : public Widget,
+  class LIBMM_GTK_SYMEXPORT Popover : public Widget,
                             public ShortcutManager,
                             public Native
   {
@@ -50,7 +50,7 @@ namespace Gtk
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   private:
-    friend GTKMM_API class Popover_Class;
+    friend LIBMM_GTK_SYMEXPORT class Popover_Class;
     static CppClassType popover_class_;
 
   protected:
@@ -213,7 +213,7 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkPopover* object, bool take_copy = false) -> Gtk::Popover*;
 } // namespace Glib
 

@@ -13,7 +13,7 @@
 namespace Cairo
 {
 
-  class CAIROMM_API Win32FontFace : public FontFace
+  class LIBMM_CAIRO_SYMEXPORT Win32FontFace : public FontFace
   {
   public:
     static auto
@@ -31,7 +31,7 @@ namespace Cairo
     Win32FontFace (LOGFONTW* logfont, HFONT font);
   };
 
-  class CAIROMM_API Win32ScaledFont : public ScaledFont
+  class LIBMM_CAIRO_SYMEXPORT Win32ScaledFont : public ScaledFont
   {
   public:
     static auto

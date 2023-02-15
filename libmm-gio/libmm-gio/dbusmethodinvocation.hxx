@@ -19,14 +19,14 @@ using GDBusMethodInvocationClass = struct _GDBusMethodInvocationClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gio::DBus
 {
-  class GIOMM_API MethodInvocation_Class;
+  class LIBMM_GIO_SYMEXPORT MethodInvocation_Class;
 }
 #endif
 
 namespace Glib
 {
 
-  class GIOMM_API Error;
+  class LIBMM_GIO_SYMEXPORT Error;
 
 }
 
@@ -35,7 +35,7 @@ namespace Gio::DBus
 
   class Connection;
 
-  class GIOMM_API MethodInvocation : public Glib::Object
+  class LIBMM_GIO_SYMEXPORT MethodInvocation : public Glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -154,7 +154,7 @@ namespace Gio::DBus
 namespace Glib
 {
 
-  GIOMM_API
+  LIBMM_GIO_SYMEXPORT
   auto
   wrap (GDBusMethodInvocation* object, bool take_copy = false) -> Glib::RefPtr<Gio::DBus::MethodInvocation>;
 } // namespace Glib

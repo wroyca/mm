@@ -10,7 +10,7 @@
 namespace Gtk
 {
 
-  class GTKMM_API EventControllerMotion_Class : public Glib::Class
+  class LIBMM_GTK_SYMEXPORT EventControllerMotion_Class : public Glib::Class
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

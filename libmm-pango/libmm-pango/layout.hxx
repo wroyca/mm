@@ -24,7 +24,7 @@ using PangoLayoutClass = struct _PangoLayoutClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Pango
 {
-  class PANGOMM_API Layout_Class;
+  class LIBMM_PANGO_SYMEXPORT Layout_Class;
 }
 #endif
 
@@ -45,7 +45,7 @@ namespace Glib
 {
 
   template <>
-  class PANGOMM_API Value<Pango::Alignment>
+  class LIBMM_PANGO_SYMEXPORT Value<Pango::Alignment>
     : public Glib::Value_Enum<Pango::Alignment>
   {
   public:
@@ -73,7 +73,7 @@ namespace Glib
 {
 
   template <>
-  class PANGOMM_API Value<Pango::WrapMode>
+  class LIBMM_PANGO_SYMEXPORT Value<Pango::WrapMode>
     : public Glib::Value_Enum<Pango::WrapMode>
   {
   public:
@@ -102,7 +102,7 @@ namespace Glib
 {
 
   template <>
-  class PANGOMM_API Value<Pango::EllipsizeMode>
+  class LIBMM_PANGO_SYMEXPORT Value<Pango::EllipsizeMode>
     : public Glib::Value_Enum<Pango::EllipsizeMode>
   {
   public:
@@ -116,7 +116,7 @@ namespace Glib
 namespace Pango
 {
 
-  class PANGOMM_API Layout : public Glib::Object
+  class LIBMM_PANGO_SYMEXPORT Layout : public Glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -411,7 +411,7 @@ namespace Pango
 namespace Glib
 {
 
-  PANGOMM_API
+  LIBMM_PANGO_SYMEXPORT
   auto
   wrap (PangoLayout* object, bool take_copy = false) -> Glib::RefPtr<Pango::Layout>;
 } // namespace Glib

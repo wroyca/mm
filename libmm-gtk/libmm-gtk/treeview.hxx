@@ -29,7 +29,7 @@ using GtkTreeViewClass = struct _GtkTreeViewClass;
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API TreeView_Class;
+  class LIBMM_GTK_SYMEXPORT TreeView_Class;
 }
   #endif
 
@@ -94,7 +94,7 @@ namespace Gtk
 
   class TreeModel;
 
-  class GTKMM_API TreeView : public Widget,
+  class LIBMM_GTK_SYMEXPORT TreeView : public Widget,
                              public Scrollable
   {
   public:
@@ -118,7 +118,7 @@ namespace Gtk
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   private:
-    friend GTKMM_API class TreeView_Class;
+    friend LIBMM_GTK_SYMEXPORT class TreeView_Class;
     static CppClassType treeview_class_;
 
   protected:
@@ -921,49 +921,49 @@ namespace Gtk
   {
 
     template <>
-    GTKMM_API auto
+    LIBMM_GTK_SYMEXPORT auto
     _connect_auto_store_editable_signal_handler<bool> (
         Gtk::TreeView* this_p,
         Gtk::CellRenderer* pCellRenderer,
         const Gtk::TreeModelColumn<bool>& model_column) -> void;
 
     template <>
-    GTKMM_API auto
+    LIBMM_GTK_SYMEXPORT auto
     _connect_auto_store_editable_signal_handler<int> (
         Gtk::TreeView* this_p,
         Gtk::CellRenderer* pCellRenderer,
         const Gtk::TreeModelColumn<int>& model_column) -> void;
 
     template <>
-    GTKMM_API auto
+    LIBMM_GTK_SYMEXPORT auto
     _connect_auto_store_editable_signal_handler<unsigned int> (
         Gtk::TreeView* this_p,
         Gtk::CellRenderer* pCellRenderer,
         const Gtk::TreeModelColumn<unsigned int>& model_column) -> void;
 
     template <>
-    GTKMM_API auto
+    LIBMM_GTK_SYMEXPORT auto
     _connect_auto_store_editable_signal_handler<long> (
         Gtk::TreeView* this_p,
         Gtk::CellRenderer* pCellRenderer,
         const Gtk::TreeModelColumn<long>& model_column) -> void;
 
     template <>
-    GTKMM_API auto
+    LIBMM_GTK_SYMEXPORT auto
     _connect_auto_store_editable_signal_handler<unsigned long> (
         Gtk::TreeView* this_p,
         Gtk::CellRenderer* pCellRenderer,
         const Gtk::TreeModelColumn<unsigned long>& model_column) -> void;
 
     template <>
-    GTKMM_API auto
+    LIBMM_GTK_SYMEXPORT auto
     _connect_auto_store_editable_signal_handler<float> (
         Gtk::TreeView* this_p,
         Gtk::CellRenderer* pCellRenderer,
         const Gtk::TreeModelColumn<float>& model_column) -> void;
 
     template <>
-    GTKMM_API auto
+    LIBMM_GTK_SYMEXPORT auto
     _connect_auto_store_editable_signal_handler<double> (
         Gtk::TreeView* this_p,
         Gtk::CellRenderer* pCellRenderer,
@@ -984,52 +984,52 @@ namespace Gtk
     }
 
     template <>
-    GTKMM_API auto
+    LIBMM_GTK_SYMEXPORT auto
     _convert_from_ustring_to_numeric_type<float> (const Glib::ustring& text)
         -> float;
 
     template <>
-    GTKMM_API auto
+    LIBMM_GTK_SYMEXPORT auto
     _convert_from_ustring_to_numeric_type<long double> (
         const Glib::ustring& text) -> long double;
 
     template <>
-    GTKMM_API auto
+    LIBMM_GTK_SYMEXPORT auto
     _convert_from_ustring_to_numeric_type<short> (const Glib::ustring& text)
         -> short;
 
     template <>
-    GTKMM_API auto
+    LIBMM_GTK_SYMEXPORT auto
     _convert_from_ustring_to_numeric_type<unsigned short> (
         const Glib::ustring& text) -> unsigned short;
 
     template <>
-    GTKMM_API auto
+    LIBMM_GTK_SYMEXPORT auto
     _convert_from_ustring_to_numeric_type<int> (const Glib::ustring& text)
         -> int;
 
     template <>
-    GTKMM_API auto
+    LIBMM_GTK_SYMEXPORT auto
     _convert_from_ustring_to_numeric_type<unsigned int> (
         const Glib::ustring& text) -> unsigned int;
 
     template <>
-    GTKMM_API auto
+    LIBMM_GTK_SYMEXPORT auto
     _convert_from_ustring_to_numeric_type<long> (const Glib::ustring& text)
         -> long;
 
     template <>
-    GTKMM_API auto
+    LIBMM_GTK_SYMEXPORT auto
     _convert_from_ustring_to_numeric_type<unsigned long> (
         const Glib::ustring& text) -> unsigned long;
 
     template <>
-    GTKMM_API auto
+    LIBMM_GTK_SYMEXPORT auto
     _convert_from_ustring_to_numeric_type<long long> (const Glib::ustring& text)
         -> long long;
 
     template <>
-    GTKMM_API auto
+    LIBMM_GTK_SYMEXPORT auto
     _convert_from_ustring_to_numeric_type<unsigned long long> (
         const Glib::ustring& text) -> unsigned long long;
 
@@ -1178,7 +1178,7 @@ namespace Glib
 {
 
   template <>
-  class GTKMM_API Value<Gtk::TreeView::DropPosition>
+  class LIBMM_GTK_SYMEXPORT Value<Gtk::TreeView::DropPosition>
     : public Glib::Value_Enum<Gtk::TreeView::DropPosition>
   {
   public:
@@ -1194,7 +1194,7 @@ namespace Glib
 {
 
   template <>
-  class GTKMM_API Value<Gtk::TreeView::GridLines>
+  class LIBMM_GTK_SYMEXPORT Value<Gtk::TreeView::GridLines>
     : public Glib::Value_Enum<Gtk::TreeView::GridLines>
   {
   public:
@@ -1207,7 +1207,7 @@ namespace Glib
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkTreeView* object, bool take_copy = false) -> Gtk::TreeView*;
 } // namespace Glib
 

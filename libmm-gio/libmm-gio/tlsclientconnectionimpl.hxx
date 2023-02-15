@@ -3,14 +3,14 @@
 #ifndef _GIOMM_TLSCLIENTCONNECTIONIMPL_H
 #define _GIOMM_TLSCLIENTCONNECTIONIMPL_H
 
-#include <libmm-gio/gioconfig.hxx>
+#include <libmm-gio/mm-gioconfig.hxx>
 #include <libmm-gio/tlsclientconnection.hxx>
 #include <libmm-gio/tlsconnection.hxx>
 
 namespace Gio
 {
 
-  class GIOMM_API TlsClientConnectionImpl : public TlsClientConnection,
+  class LIBMM_GIO_SYMEXPORT TlsClientConnectionImpl : public TlsClientConnection,
                                             public TlsConnection
   {
   private:

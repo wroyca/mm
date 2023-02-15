@@ -15,14 +15,14 @@
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API MediaControls_Class;
+  class LIBMM_GTK_SYMEXPORT MediaControls_Class;
 }
 #endif
 
 namespace Gtk
 {
 
-  class GTKMM_API MediaControls : public Widget
+  class LIBMM_GTK_SYMEXPORT MediaControls : public Widget
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -45,7 +45,7 @@ namespace Gtk
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   private:
-    friend GTKMM_API class MediaControls_Class;
+    friend LIBMM_GTK_SYMEXPORT class MediaControls_Class;
     static CppClassType mediacontrols_class_;
 
   protected:
@@ -106,7 +106,7 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkMediaControls* object, bool take_copy = false) -> Gtk::MediaControls*;
 } // namespace Glib
 

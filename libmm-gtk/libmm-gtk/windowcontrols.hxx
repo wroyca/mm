@@ -15,14 +15,14 @@
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API WindowControls_Class;
+  class LIBMM_GTK_SYMEXPORT WindowControls_Class;
 }
 #endif
 
 namespace Gtk
 {
 
-  class GTKMM_API WindowControls : public Widget
+  class LIBMM_GTK_SYMEXPORT WindowControls : public Widget
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -45,7 +45,7 @@ namespace Gtk
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   private:
-    friend GTKMM_API class WindowControls_Class;
+    friend LIBMM_GTK_SYMEXPORT class WindowControls_Class;
     static CppClassType windowcontrols_class_;
 
   protected:
@@ -123,7 +123,7 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkWindowControls* object, bool take_copy = false) -> Gtk::WindowControls*;
 } // namespace Glib
 

@@ -15,7 +15,7 @@ extern "C" typedef struct _GdkFrameTimings GdkFrameTimings;
 namespace Gdk
 {
 
-  class GDKMM_API FrameTimings final
+  class LIBMM_GDK_SYMEXPORT FrameTimings final
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -73,7 +73,7 @@ namespace Gdk
 
 namespace Glib
 {
-  GDKMM_API auto
+  LIBMM_GDK_SYMEXPORT auto
   wrap (GdkFrameTimings* object, bool take_copy = false) -> Glib::RefPtr<Gdk::FrameTimings>;
 
 } // namespace Glib

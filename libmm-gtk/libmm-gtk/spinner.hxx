@@ -16,14 +16,14 @@ using GtkSpinnerClass = struct _GtkSpinnerClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API Spinner_Class;
+  class LIBMM_GTK_SYMEXPORT Spinner_Class;
 }
 #endif
 
 namespace Gtk
 {
 
-  class GTKMM_API Spinner : public Widget
+  class LIBMM_GTK_SYMEXPORT Spinner : public Widget
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -46,7 +46,7 @@ namespace Gtk
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   private:
-    friend GTKMM_API class Spinner_Class;
+    friend LIBMM_GTK_SYMEXPORT class Spinner_Class;
     static CppClassType spinner_class_;
 
   protected:
@@ -108,7 +108,7 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkSpinner* object, bool take_copy = false) -> Gtk::Spinner*;
 } // namespace Glib
 

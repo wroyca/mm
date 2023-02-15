@@ -13,7 +13,7 @@ extern "C"
 namespace Glib
 {
 
-  class GLIBMM_API PatternSpec
+  class LIBMM_GLIB_SYMEXPORT PatternSpec
   {
   public:
     explicit PatternSpec (const Glib::ustring& pattern);

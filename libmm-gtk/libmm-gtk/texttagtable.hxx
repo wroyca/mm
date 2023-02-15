@@ -18,16 +18,16 @@ using GtkTextTagTableClass = struct _GtkTextTagTableClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API TextTagTable_Class;
+  class LIBMM_GTK_SYMEXPORT TextTagTable_Class;
 }
 #endif
 
 namespace Gtk
 {
 
-  class GTKMM_API TextTag;
+  class LIBMM_GTK_SYMEXPORT TextTag;
 
-  class GTKMM_API TextTagTable : public Glib::Object,
+  class LIBMM_GTK_SYMEXPORT TextTagTable : public Glib::Object,
                                  public Buildable
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -130,7 +130,7 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkTextTagTable* object, bool take_copy = false) -> Glib::RefPtr<Gtk::TextTagTable>;
 } // namespace Glib
 

@@ -16,14 +16,14 @@ using GTcpWrapperConnectionClass = struct _GTcpWrapperConnectionClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gio
 {
-  class GIOMM_API TcpWrapperConnection_Class;
+  class LIBMM_GIO_SYMEXPORT TcpWrapperConnection_Class;
 }
 #endif
 
 namespace Gio
 {
 
-  class GIOMM_API TcpWrapperConnection : public Gio::TcpConnection
+  class LIBMM_GIO_SYMEXPORT TcpWrapperConnection : public Gio::TcpConnection
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -104,7 +104,7 @@ namespace Gio
 namespace Glib
 {
 
-  GIOMM_API
+  LIBMM_GIO_SYMEXPORT
   auto
   wrap (GTcpWrapperConnection* object, bool take_copy = false) -> Glib::RefPtr<Gio::TcpWrapperConnection>;
 } // namespace Glib

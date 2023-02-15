@@ -29,7 +29,7 @@ namespace Glib
     UNIVERSAL
   };
 
-  class GLIBMM_API TimeZone
+  class LIBMM_GLIB_SYMEXPORT TimeZone
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -129,13 +129,13 @@ namespace Glib
 namespace Glib
 {
 
-  GLIBMM_API
+  LIBMM_GLIB_SYMEXPORT
   auto
   wrap (GTimeZone* object, bool take_copy = false) -> Glib::TimeZone;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
   template <>
-  class GLIBMM_API Value<Glib::TimeZone>
+  class LIBMM_GLIB_SYMEXPORT Value<Glib::TimeZone>
     : public Glib::Value_Boxed<Glib::TimeZone>
   {
   };

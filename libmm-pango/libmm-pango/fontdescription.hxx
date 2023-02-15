@@ -35,7 +35,7 @@ namespace Glib
 {
 
   template <>
-  class PANGOMM_API Value<Pango::Style> : public Glib::Value_Enum<Pango::Style>
+  class LIBMM_PANGO_SYMEXPORT Value<Pango::Style> : public Glib::Value_Enum<Pango::Style>
   {
   public:
     static auto
@@ -66,7 +66,7 @@ namespace Glib
 {
 
   template <>
-  class PANGOMM_API Value<Pango::Variant>
+  class LIBMM_PANGO_SYMEXPORT Value<Pango::Variant>
     : public Glib::Value_Enum<Pango::Variant>
   {
   public:
@@ -100,7 +100,7 @@ namespace Glib
 {
 
   template <>
-  class PANGOMM_API Value<Pango::Stretch>
+  class LIBMM_PANGO_SYMEXPORT Value<Pango::Stretch>
     : public Glib::Value_Enum<Pango::Stretch>
   {
   public:
@@ -146,7 +146,7 @@ namespace Glib
 {
 
   template <>
-  class PANGOMM_API Value<Pango::Weight>
+  class LIBMM_PANGO_SYMEXPORT Value<Pango::Weight>
     : public Glib::Value_Enum<Pango::Weight>
   {
   public:
@@ -227,7 +227,7 @@ namespace Glib
 {
 
   template <>
-  class PANGOMM_API Value<Pango::FontMask>
+  class LIBMM_PANGO_SYMEXPORT Value<Pango::FontMask>
     : public Glib::Value_Flags<Pango::FontMask>
   {
   public:
@@ -257,7 +257,7 @@ namespace Glib
 {
 
   template <>
-  class PANGOMM_API Value<Pango::Gravity>
+  class LIBMM_PANGO_SYMEXPORT Value<Pango::Gravity>
     : public Glib::Value_Enum<Pango::Gravity>
   {
   public:
@@ -271,7 +271,7 @@ namespace Glib
 namespace Pango
 {
 
-  class PANGOMM_API FontDescription
+  class LIBMM_PANGO_SYMEXPORT FontDescription
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -404,11 +404,11 @@ namespace Pango
 namespace Pango
 {
 
-  PANGOMM_API
+  LIBMM_PANGO_SYMEXPORT
   auto
   operator== (const FontDescription& lhs, const FontDescription& rhs) -> bool;
 
-  PANGOMM_API
+  LIBMM_PANGO_SYMEXPORT
   auto
   operator!= (const FontDescription& lhs, const FontDescription& rhs) -> bool;
 
@@ -428,13 +428,13 @@ namespace Pango
 namespace Glib
 {
 
-  PANGOMM_API
+  LIBMM_PANGO_SYMEXPORT
   auto
   wrap (PangoFontDescription* object, bool take_copy = false) -> Pango::FontDescription;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
   template <>
-  class PANGOMM_API Value<Pango::FontDescription>
+  class LIBMM_PANGO_SYMEXPORT Value<Pango::FontDescription>
     : public Glib::Value_Boxed<Pango::FontDescription>
   {
   };

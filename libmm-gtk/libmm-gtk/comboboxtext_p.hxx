@@ -11,7 +11,7 @@
 namespace Gtk
 {
 
-  class GTKMM_API ComboBoxText_Class : public Glib::Class
+  class LIBMM_GTK_SYMEXPORT ComboBoxText_Class : public Glib::Class
   {
   public:
   #ifndef DOXYGEN_SHOULD_SKIP_THIS

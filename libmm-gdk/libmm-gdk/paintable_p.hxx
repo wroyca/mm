@@ -11,7 +11,7 @@
 namespace Gdk
 {
 
-  class GDKMM_API Paintable_Class : public Glib::Interface_Class
+  class LIBMM_GDK_SYMEXPORT Paintable_Class : public Glib::Interface_Class
   {
   public:
     using CppObjectType = Paintable;

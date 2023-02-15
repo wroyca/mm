@@ -18,14 +18,14 @@ using GBindingClass = struct _GBindingClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Glib
 {
-  class GLIBMM_API Binding_Class;
+  class LIBMM_GLIB_SYMEXPORT Binding_Class;
 }
 #endif
 
 namespace Glib
 {
 
-  class GLIBMM_API Binding : public Glib::Object
+  class LIBMM_GLIB_SYMEXPORT Binding : public Glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -376,7 +376,7 @@ namespace Glib
 {
 
   template <>
-  class GLIBMM_API Value<Glib::Binding::Flags>
+  class LIBMM_GLIB_SYMEXPORT Value<Glib::Binding::Flags>
     : public Glib::Value_Flags<Glib::Binding::Flags>
   {
   public:
@@ -390,7 +390,7 @@ namespace Glib
 namespace Glib
 {
 
-  GLIBMM_API
+  LIBMM_GLIB_SYMEXPORT
   auto
   wrap (GBinding* object, bool take_copy = false) -> Glib::RefPtr<Glib::Binding>;
 } // namespace Glib

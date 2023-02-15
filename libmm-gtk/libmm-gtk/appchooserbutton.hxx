@@ -19,14 +19,14 @@ using GtkAppChooserButtonClass = struct _GtkAppChooserButtonClass;
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API AppChooserButton_Class;
+  class LIBMM_GTK_SYMEXPORT AppChooserButton_Class;
 }
   #endif
 
 namespace Gtk
 {
 
-  class GTKMM_API AppChooserButton : public Widget,
+  class LIBMM_GTK_SYMEXPORT AppChooserButton : public Widget,
                                      public AppChooser
   {
   public:
@@ -50,7 +50,7 @@ namespace Gtk
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   private:
-    friend GTKMM_API class AppChooserButton_Class;
+    friend LIBMM_GTK_SYMEXPORT class AppChooserButton_Class;
     static CppClassType appchooserbutton_class_;
 
   protected:
@@ -160,7 +160,7 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkAppChooserButton* object, bool take_copy = false) -> Gtk::AppChooserButton*;
 } // namespace Glib
 

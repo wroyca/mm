@@ -24,19 +24,19 @@ using GtkComboBoxClass = struct _GtkComboBoxClass;
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API ComboBox_Class;
+  class LIBMM_GTK_SYMEXPORT ComboBox_Class;
 }
   #endif
 
 namespace Gdk
 {
-  class GTKMM_API Device;
+  class LIBMM_GTK_SYMEXPORT Device;
 }
 
 namespace Gtk
 {
 
-  class GTKMM_API ComboBox : public Widget,
+  class LIBMM_GTK_SYMEXPORT ComboBox : public Widget,
                              public CellLayout,
                              public CellEditable
   {
@@ -61,7 +61,7 @@ namespace Gtk
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   private:
-    friend GTKMM_API class ComboBox_Class;
+    friend LIBMM_GTK_SYMEXPORT class ComboBox_Class;
     static CppClassType combobox_class_;
 
   protected:
@@ -286,7 +286,7 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkComboBox* object, bool take_copy = false) -> Gtk::ComboBox*;
 } // namespace Glib
 

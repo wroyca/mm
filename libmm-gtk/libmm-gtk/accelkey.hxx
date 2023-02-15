@@ -11,7 +11,7 @@
 namespace Gtk
 {
 
-  class GTKMM_API AccelKey
+  class LIBMM_GTK_SYMEXPORT AccelKey
   {
   public:
     AccelKey ();

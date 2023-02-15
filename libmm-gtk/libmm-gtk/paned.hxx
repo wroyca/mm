@@ -18,14 +18,14 @@ using GtkPanedClass = struct _GtkPanedClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API Paned_Class;
+  class LIBMM_GTK_SYMEXPORT Paned_Class;
 }
 #endif
 
 namespace Gtk
 {
 
-  class GTKMM_API Paned : public Widget,
+  class LIBMM_GTK_SYMEXPORT Paned : public Widget,
                           public Orientable
   {
   public:
@@ -49,7 +49,7 @@ namespace Gtk
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   private:
-    friend GTKMM_API class Paned_Class;
+    friend LIBMM_GTK_SYMEXPORT class Paned_Class;
     static CppClassType paned_class_;
 
   protected:
@@ -207,7 +207,7 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkPaned* object, bool take_copy = false) -> Gtk::Paned*;
 } // namespace Glib
 

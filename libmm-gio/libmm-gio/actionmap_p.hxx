@@ -11,7 +11,7 @@
 namespace Gio
 {
 
-  class GIOMM_API ActionMap_Class : public Glib::Interface_Class
+  class LIBMM_GIO_SYMEXPORT ActionMap_Class : public Glib::Interface_Class
   {
   public:
     using CppObjectType = ActionMap;

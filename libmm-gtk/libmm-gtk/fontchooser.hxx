@@ -31,14 +31,14 @@ using GtkFontChooserClass = struct _GtkFontChooserClass;
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API FontChooser_Class;
+  class LIBMM_GTK_SYMEXPORT FontChooser_Class;
 }
   #endif
 
 namespace Gtk
 {
 
-  class GTKMM_API FontChooser : public Glib::Interface
+  class LIBMM_GTK_SYMEXPORT FontChooser : public Glib::Interface
   {
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -292,7 +292,7 @@ namespace Glib
 {
 
   template <>
-  class GTKMM_API Value<Gtk::FontChooser::Level>
+  class LIBMM_GTK_SYMEXPORT Value<Gtk::FontChooser::Level>
     : public Glib::Value_Flags<Gtk::FontChooser::Level>
   {
   public:
@@ -305,7 +305,7 @@ namespace Glib
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkFontChooser* object, bool take_copy = false) -> Glib::RefPtr<Gtk::FontChooser>;
 
 } // namespace Glib

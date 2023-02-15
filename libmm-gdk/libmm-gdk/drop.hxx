@@ -18,25 +18,25 @@ using GdkDropClass = struct _GdkDropClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gdk
 {
-  class GDKMM_API Drop_Class;
+  class LIBMM_GDK_SYMEXPORT Drop_Class;
 }
 #endif
 
 namespace Gio
 {
-  class GDKMM_API Cancellable;
-  class GDKMM_API InputStream;
+  class LIBMM_GDK_SYMEXPORT Cancellable;
+  class LIBMM_GDK_SYMEXPORT InputStream;
 } // namespace Gio
 
 namespace Gdk
 {
-  class GDKMM_API ContentFormats;
-  class GDKMM_API Device;
-  class GDKMM_API Drag;
-  class GDKMM_API Display;
-  class GDKMM_API Surface;
+  class LIBMM_GDK_SYMEXPORT ContentFormats;
+  class LIBMM_GDK_SYMEXPORT Device;
+  class LIBMM_GDK_SYMEXPORT Drag;
+  class LIBMM_GDK_SYMEXPORT Display;
+  class LIBMM_GDK_SYMEXPORT Surface;
 
-  class GDKMM_API Drop : public Glib::Object
+  class LIBMM_GDK_SYMEXPORT Drop : public Glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -201,7 +201,7 @@ namespace Gdk
 
 namespace Glib
 {
-  GDKMM_API auto
+  LIBMM_GDK_SYMEXPORT auto
   wrap (GdkDrop* object, bool take_copy = false) -> Glib::RefPtr<Gdk::Drop>;
 } // namespace Glib
 

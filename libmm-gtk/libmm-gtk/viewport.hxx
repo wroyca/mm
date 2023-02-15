@@ -17,14 +17,14 @@ using GtkViewportClass = struct _GtkViewportClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API Viewport_Class;
+  class LIBMM_GTK_SYMEXPORT Viewport_Class;
 }
 #endif
 
 namespace Gtk
 {
 
-  class GTKMM_API Viewport : public Widget,
+  class LIBMM_GTK_SYMEXPORT Viewport : public Widget,
                              public Scrollable
   {
   public:
@@ -48,7 +48,7 @@ namespace Gtk
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   private:
-    friend GTKMM_API class Viewport_Class;
+    friend LIBMM_GTK_SYMEXPORT class Viewport_Class;
     static CppClassType viewport_class_;
 
   protected:
@@ -122,7 +122,7 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkViewport* object, bool take_copy = false) -> Gtk::Viewport*;
 } // namespace Glib
 

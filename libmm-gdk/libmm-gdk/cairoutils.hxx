@@ -15,11 +15,11 @@ namespace Gdk
 {
   namespace Cairo
   {
-    GDKMM_API auto
+    LIBMM_GDK_SYMEXPORT auto
     wrap (cairo_t* cobject, bool has_reference = true)
         -> ::Cairo::RefPtr<::Cairo::Context>;
 
-    GDKMM_API auto
+    LIBMM_GDK_SYMEXPORT auto
     wrap (cairo_region_t* cobject, bool has_reference = true)
         -> ::Cairo::RefPtr<::Cairo::Region>;
 

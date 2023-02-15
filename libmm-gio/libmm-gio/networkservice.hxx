@@ -17,14 +17,14 @@ using GNetworkServiceClass = struct _GNetworkServiceClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gio
 {
-  class GIOMM_API NetworkService_Class;
+  class LIBMM_GIO_SYMEXPORT NetworkService_Class;
 }
 #endif
 
 namespace Gio
 {
 
-  class GIOMM_API NetworkService : public Glib::Object,
+  class LIBMM_GIO_SYMEXPORT NetworkService : public Glib::Object,
                                    public SocketConnectable
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -131,7 +131,7 @@ namespace Gio
 namespace Glib
 {
 
-  GIOMM_API
+  LIBMM_GIO_SYMEXPORT
   auto
   wrap (GNetworkService* object, bool take_copy = false) -> Glib::RefPtr<Gio::NetworkService>;
 } // namespace Glib

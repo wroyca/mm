@@ -19,16 +19,16 @@ using GtkLabelClass = struct _GtkLabelClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API Label_Class;
+  class LIBMM_GTK_SYMEXPORT Label_Class;
 }
 #endif
 
 namespace Gtk
 {
 
-  class GTKMM_API Menu;
+  class LIBMM_GTK_SYMEXPORT Menu;
 
-  class GTKMM_API Label : public Widget
+  class LIBMM_GTK_SYMEXPORT Label : public Widget
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -51,7 +51,7 @@ namespace Gtk
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   private:
-    friend GTKMM_API class Label_Class;
+    friend LIBMM_GTK_SYMEXPORT class Label_Class;
     static CppClassType label_class_;
 
   protected:
@@ -385,7 +385,7 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkLabel* object, bool take_copy = false) -> Gtk::Label*;
 } // namespace Glib
 

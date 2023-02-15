@@ -19,14 +19,14 @@ using GThemedIconClass = struct _GThemedIconClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gio
 {
-  class GIOMM_API ThemedIcon_Class;
+  class LIBMM_GIO_SYMEXPORT ThemedIcon_Class;
 }
 #endif
 
 namespace Gio
 {
 
-  class GIOMM_API ThemedIcon : public Glib::Object,
+  class LIBMM_GIO_SYMEXPORT ThemedIcon : public Glib::Object,
                                public Icon
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -125,7 +125,7 @@ namespace Gio
 namespace Glib
 {
 
-  GIOMM_API
+  LIBMM_GIO_SYMEXPORT
   auto
   wrap (GThemedIcon* object, bool take_copy = false) -> Glib::RefPtr<Gio::ThemedIcon>;
 } // namespace Glib

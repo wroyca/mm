@@ -17,14 +17,14 @@ using GtkPopoverMenuClass = struct _GtkPopoverMenuClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API PopoverMenu_Class;
+  class LIBMM_GTK_SYMEXPORT PopoverMenu_Class;
 }
 #endif
 
 namespace Gtk
 {
 
-  class GTKMM_API PopoverMenu : public Popover
+  class LIBMM_GTK_SYMEXPORT PopoverMenu : public Popover
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -47,7 +47,7 @@ namespace Gtk
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   private:
-    friend GTKMM_API class PopoverMenu_Class;
+    friend LIBMM_GTK_SYMEXPORT class PopoverMenu_Class;
     static CppClassType popovermenu_class_;
 
   protected:
@@ -181,7 +181,7 @@ namespace Glib
 {
 
   template <>
-  class GTKMM_API Value<Gtk::PopoverMenu::Flags>
+  class LIBMM_GTK_SYMEXPORT Value<Gtk::PopoverMenu::Flags>
     : public Glib::Value_Flags<Gtk::PopoverMenu::Flags>
   {
   public:
@@ -194,7 +194,7 @@ namespace Glib
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkPopoverMenu* object, bool take_copy = false) -> Gtk::PopoverMenu*;
 } // namespace Glib
 

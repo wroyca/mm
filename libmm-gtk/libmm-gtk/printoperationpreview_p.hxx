@@ -10,7 +10,7 @@
 namespace Gtk
 {
 
-  class GTKMM_API PrintOperationPreview_Class : public Glib::Interface_Class
+  class LIBMM_GTK_SYMEXPORT PrintOperationPreview_Class : public Glib::Interface_Class
   {
   public:
     using CppObjectType = PrintOperationPreview;

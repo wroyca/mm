@@ -34,15 +34,15 @@ using GFileClass = struct _GFileClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gio
 {
-  class GIOMM_API File_Class;
+  class LIBMM_GIO_SYMEXPORT File_Class;
 }
 #endif
 
 namespace Gio
 {
 
-  class GIOMM_API Mount;
-  class GIOMM_API Volume;
+  class LIBMM_GIO_SYMEXPORT Mount;
+  class LIBMM_GIO_SYMEXPORT Volume;
 
   enum class FileQueryInfoFlags
   {
@@ -1310,7 +1310,7 @@ namespace Gio
 namespace Glib
 {
 
-  GIOMM_API
+  LIBMM_GIO_SYMEXPORT
   auto
   wrap (GFile* object, bool take_copy) -> Glib::RefPtr<Gio::File>;
 
@@ -1506,7 +1506,7 @@ namespace Gio
 namespace Glib
 {
 
-  GIOMM_API
+  LIBMM_GIO_SYMEXPORT
   auto
   wrap (GFile* object, bool take_copy = false) -> Glib::RefPtr<Gio::File>;
 

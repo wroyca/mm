@@ -15,14 +15,14 @@
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API BoolFilter_Class;
+  class LIBMM_GTK_SYMEXPORT BoolFilter_Class;
 }
 #endif
 
 namespace Gtk
 {
 
-  class GTKMM_API BoolFilter : public Filter
+  class LIBMM_GTK_SYMEXPORT BoolFilter : public Filter
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -124,7 +124,7 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkBoolFilter* object, bool take_copy = false) -> Glib::RefPtr<Gtk::BoolFilter>;
 } // namespace Glib
 

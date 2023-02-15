@@ -10,7 +10,7 @@
 namespace Glib
 {
 
-  class GLIBMM_API Binding_Class : public Class
+  class LIBMM_GLIB_SYMEXPORT Binding_Class : public Class
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

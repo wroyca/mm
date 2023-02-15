@@ -27,7 +27,7 @@ extern "C"
 namespace Gtk
 {
 
-  class GTKMM_API TreePath
+  class LIBMM_GTK_SYMEXPORT TreePath
   {
   public:
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -302,22 +302,22 @@ namespace Gtk
 
 namespace Gtk
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   operator== (const TreePath& lhs, const TreePath& rhs) -> bool;
 
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   operator!= (const TreePath& lhs, const TreePath& rhs) -> bool;
 
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   operator<(const TreePath& lhs, const TreePath& rhs) -> bool;
 
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   operator> (const TreePath& lhs, const TreePath& rhs) -> bool;
 
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   operator<= (const TreePath& lhs, const TreePath& rhs) -> bool;
 
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   operator>= (const TreePath& lhs, const TreePath& rhs) -> bool;
 
 } // namespace Gtk
@@ -335,12 +335,12 @@ namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkTreePath* object, bool take_copy = false) -> Gtk::TreePath;
 
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
   template <>
-  class GTKMM_API Value<Gtk::TreePath> : public Glib::Value_Boxed<Gtk::TreePath>
+  class LIBMM_GTK_SYMEXPORT Value<Gtk::TreePath> : public Glib::Value_Boxed<Gtk::TreePath>
   {
   };
   #endif

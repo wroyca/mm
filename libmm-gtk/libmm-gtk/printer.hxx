@@ -18,13 +18,13 @@ using GtkPrinterClass = struct _GtkPrinterClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
-  class GTKMM_API Printer_Class;
+  class LIBMM_GTK_SYMEXPORT Printer_Class;
 }
 #endif
 
 namespace Gtk
 {
-  class GTKMM_API PaperSize;
+  class LIBMM_GTK_SYMEXPORT PaperSize;
 
   enum class PrintCapabilities
   {
@@ -95,7 +95,7 @@ namespace Glib
 {
 
   template <>
-  class GTKMM_API Value<Gtk::PrintCapabilities>
+  class LIBMM_GTK_SYMEXPORT Value<Gtk::PrintCapabilities>
     : public Glib::Value_Flags<Gtk::PrintCapabilities>
   {
   public:
@@ -109,7 +109,7 @@ namespace Glib
 namespace Gtk
 {
 
-  class GTKMM_API Printer : public Glib::Object
+  class LIBMM_GTK_SYMEXPORT Printer : public Glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -294,14 +294,14 @@ namespace Gtk
 
   typedef sigc::slot<bool (const Glib::RefPtr<Printer>&)> SlotPrinterEnumerator;
 
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   enumerate_printers (const SlotPrinterEnumerator& slot, bool wait = true) -> void;
 
 } // namespace Gtk
 
 namespace Glib
 {
-  GTKMM_API auto
+  LIBMM_GTK_SYMEXPORT auto
   wrap (GtkPrinter* object, bool take_copy = false) -> Glib::RefPtr<Gtk::Printer>;
 } // namespace Glib
 
