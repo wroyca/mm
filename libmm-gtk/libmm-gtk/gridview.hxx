@@ -90,11 +90,11 @@ namespace Gtk
     auto
     get_model () const -> Glib::RefPtr<const SelectionModel>;
 
-    void
-    set_model (const Glib::RefPtr<SelectionModel>& model);
+    auto
+    set_model (const Glib::RefPtr<SelectionModel>& model) -> void;
 
-    void
-    set_factory (const Glib::RefPtr<ListItemFactory>& factory);
+    auto
+    set_factory (const Glib::RefPtr<ListItemFactory>& factory) -> void;
 
     auto
     get_factory () -> Glib::RefPtr<ListItemFactory>;
@@ -105,23 +105,23 @@ namespace Gtk
     auto
     get_min_columns () const -> guint;
 
-    void
-    set_min_columns (guint min_columns);
+    auto
+    set_min_columns (guint min_columns) -> void;
 
     auto
     get_max_columns () const -> guint;
 
-    void
-    set_max_columns (guint max_columns);
+    auto
+    set_max_columns (guint max_columns) -> void;
 
-    void
-    set_enable_rubberband (bool enable_rubberband = true);
+    auto
+    set_enable_rubberband (bool enable_rubberband = true) -> void;
 
     auto
     get_enable_rubberband () const -> bool;
 
-    void
-    set_single_click_activate (bool single_click_activate = true);
+    auto
+    set_single_click_activate (bool single_click_activate = true) -> void;
 
     auto
     get_single_click_activate () const -> bool;
@@ -177,9 +177,7 @@ namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkGridView* object, bool take_copy = false) -> Gtk::GridView*;
 } // namespace Glib
 

@@ -51,29 +51,29 @@ namespace Glib
 
     auto
     get_long_name () const -> Glib::ustring;
-    void
-    set_long_name (const Glib::ustring& value);
+    auto
+    set_long_name (const Glib::ustring& value) -> void;
 
     auto
     get_short_name () const -> gchar;
-    void
-    set_short_name (const gchar& value);
+    auto
+    set_short_name (const gchar& value) -> void;
 
     auto
     get_flags () const -> Flags;
 
-    void
-    set_flags (const Flags& value);
+    auto
+    set_flags (const Flags& value) -> void;
 
     auto
     get_description () const -> Glib::ustring;
-    void
-    set_description (const Glib::ustring& value);
+    auto
+    set_description (const Glib::ustring& value) -> void;
 
     auto
     get_arg_description () const -> Glib::ustring;
-    void
-    set_arg_description (const Glib::ustring& value);
+    auto
+    set_arg_description (const Glib::ustring& value) -> void;
 
     auto
     gobj () -> GOptionEntry*
@@ -88,8 +88,8 @@ namespace Glib
     }
 
   private:
-    void
-    release_gobject () noexcept;
+    auto
+    release_gobject () noexcept -> void;
 
   protected:
     GOptionEntry* gobject_;

@@ -15,7 +15,7 @@ namespace Glib
 {
 
   auto
-  wrap (GtkExpressionWatch* object, const bool take_copy) -> RefPtr<Gtk::ExpressionWatchBase>
+  wrap (GtkExpressionWatch* object, bool take_copy) -> Glib::RefPtr<Gtk::ExpressionWatchBase>
   {
     if (take_copy && object)
       gtk_expression_watch_ref (object);

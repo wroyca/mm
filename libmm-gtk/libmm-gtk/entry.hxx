@@ -105,38 +105,38 @@ namespace Gtk
     auto
     get_buffer () const -> Glib::RefPtr<const EntryBuffer>;
 
-    void
-    set_buffer (const Glib::RefPtr<EntryBuffer>& buffer);
+    auto
+    set_buffer (const Glib::RefPtr<EntryBuffer>& buffer) -> void;
 
-    void
-    set_visibility (bool visible = true);
+    auto
+    set_visibility (bool visible = true) -> void;
 
     auto
     get_visibility () const -> bool;
 
-    void
-    set_invisible_char (gunichar ch);
+    auto
+    set_invisible_char (gunichar ch) -> void;
 
-    void
-    unset_invisible_char ();
+    auto
+    unset_invisible_char () -> void;
 
     auto
     get_invisible_char () const -> gunichar;
 
-    void
-    set_has_frame (bool setting = true);
+    auto
+    set_has_frame (bool setting = true) -> void;
 
     auto
     get_has_frame () const -> bool;
 
-    void
-    set_overwrite_mode (bool overwrite = true);
+    auto
+    set_overwrite_mode (bool overwrite = true) -> void;
 
     auto
     get_overwrite_mode () const -> bool;
 
-    void
-    set_max_length (int max);
+    auto
+    set_max_length (int max) -> void;
 
     auto
     get_max_length () const -> int;
@@ -144,65 +144,76 @@ namespace Gtk
     auto
     get_text_length () const -> guint16;
 
-    void
-    set_activates_default (bool setting = true);
+    auto
+    set_activates_default (bool setting = true) -> void;
 
     auto
     get_activates_default () const -> gboolean;
 
-    void
-    set_alignment (float xalign);
+    auto
+    set_alignment (float xalign) -> void;
 
-    void
-    set_alignment (Align xalign);
+    auto
+    set_alignment (Align xalign) -> void;
 
     auto
     get_alignment () const -> float;
 
-    void
-    set_completion (const Glib::RefPtr<EntryCompletion>& completion);
+#ifndef GTKMM_DISABLE_DEPRECATED
+
+    auto
+    set_completion (const Glib::RefPtr<EntryCompletion>& completion) -> void;
+#endif
+
+#ifndef GTKMM_DISABLE_DEPRECATED
 
     auto
     get_completion () -> Glib::RefPtr<EntryCompletion>;
+#endif
+
+#ifndef GTKMM_DISABLE_DEPRECATED
 
     auto
     get_completion () const -> Glib::RefPtr<const EntryCompletion>;
+#endif
 
-    void
-    set_progress_fraction (double fraction);
+    auto
+    set_progress_fraction (double fraction) -> void;
 
     auto
     get_progress_fraction () const -> double;
 
-    void
-    set_progress_pulse_step (double fraction);
+    auto
+    set_progress_pulse_step (double fraction) -> void;
 
     auto
     get_progress_pulse_step () -> double;
 
-    void
-    progress_pulse ();
+    auto
+    progress_pulse () -> void;
 
     auto
     get_placeholder_text () const -> Glib::ustring;
 
-    void
-    set_placeholder_text (const Glib::ustring& text);
+    auto
+    set_placeholder_text (const Glib::ustring& text) -> void;
 
-    void
+    auto
     set_icon_from_paintable (const Glib::RefPtr<Gdk::Paintable>& paintable,
-                             IconPosition icon_pos = IconPosition::PRIMARY);
+                             IconPosition icon_pos = IconPosition::PRIMARY)
+        -> void;
 
-    void
+    auto
     set_icon_from_icon_name (const Glib::ustring& icon_name,
-                             IconPosition icon_pos = IconPosition::PRIMARY);
+                             IconPosition icon_pos = IconPosition::PRIMARY)
+        -> void;
 
-    void
+    auto
     set_icon_from_gicon (const Glib::RefPtr<Gio::Icon>& icon,
-                         IconPosition icon_pos = IconPosition::PRIMARY);
+                         IconPosition icon_pos = IconPosition::PRIMARY) -> void;
 
-    void
-    unset_icon (IconPosition icon_pos = IconPosition::PRIMARY);
+    auto
+    unset_icon (IconPosition icon_pos = IconPosition::PRIMARY) -> void;
 
     auto
     get_icon_storage_type (IconPosition icon_pos = IconPosition::PRIMARY) const
@@ -228,17 +239,18 @@ namespace Gtk
     get_icon_gicon (IconPosition icon_pos = IconPosition::PRIMARY) const
         -> Glib::RefPtr<const Gio::Icon>;
 
-    void
+    auto
     set_icon_activatable (bool activatable = true,
-                          IconPosition icon_pos = IconPosition::PRIMARY);
+                          IconPosition icon_pos = IconPosition::PRIMARY)
+        -> void;
 
     auto
     get_icon_activatable (IconPosition icon_pos = IconPosition::PRIMARY) const
         -> bool;
 
-    void
+    auto
     set_icon_sensitive (IconPosition icon_pos = IconPosition::PRIMARY,
-                        bool sensitive = true);
+                        bool sensitive = true) -> void;
 
     auto
     get_icon_sensitive (IconPosition icon_pos = IconPosition::PRIMARY) -> bool;
@@ -246,26 +258,29 @@ namespace Gtk
     auto
     get_icon_at_pos (int x, int y) const -> int;
 
-    void
+    auto
     set_icon_tooltip_text (const Glib::ustring& tooltip,
-                           IconPosition icon_pos = IconPosition::PRIMARY);
+                           IconPosition icon_pos = IconPosition::PRIMARY)
+        -> void;
 
     auto
     get_icon_tooltip_text (IconPosition icon_pos = IconPosition::PRIMARY) const
         -> Glib::ustring;
 
-    void
+    auto
     set_icon_tooltip_markup (const Glib::ustring& tooltip,
-                             IconPosition icon_pos = IconPosition::PRIMARY);
+                             IconPosition icon_pos = IconPosition::PRIMARY)
+        -> void;
 
     auto
     get_icon_tooltip_markup (
         IconPosition icon_pos = IconPosition::PRIMARY) const -> Glib::ustring;
 
-    void
+    auto
     set_icon_drag_source (const Glib::RefPtr<Gdk::ContentProvider>& provider,
                           Gdk::DragAction actions = Gdk::DragAction::COPY,
-                          IconPosition icon_pos = IconPosition::PRIMARY);
+                          IconPosition icon_pos = IconPosition::PRIMARY)
+        -> void;
 
     auto
     get_icon_area (IconPosition icon_pos = IconPosition::PRIMARY) const
@@ -274,38 +289,38 @@ namespace Gtk
     auto
     get_current_icon_drag_source () -> int;
 
-    void
-    reset_im_context ();
+    auto
+    reset_im_context () -> void;
 
-    void
-    set_input_purpose (InputPurpose purpose);
+    auto
+    set_input_purpose (InputPurpose purpose) -> void;
 
     auto
     get_input_purpose () const -> InputPurpose;
 
-    void
-    set_input_hints (InputHints hints);
+    auto
+    set_input_hints (InputHints hints) -> void;
 
     auto
     get_input_hints () const -> InputHints;
 
-    void
-    set_attributes (Pango::AttrList& attrs);
+    auto
+    set_attributes (Pango::AttrList& attrs) -> void;
 
     auto
     get_attributes () const -> Pango::AttrList;
 
-    void
-    set_tabs (const Pango::TabArray& tabs);
+    auto
+    set_tabs (const Pango::TabArray& tabs) -> void;
 
     auto
     get_tabs () const -> Pango::TabArray;
 
-    void
-    grab_focus_without_selecting ();
+    auto
+    grab_focus_without_selecting () -> void;
 
-    void
-    set_extra_menu (const Glib::RefPtr<Gio::MenuModel>& model);
+    auto
+    set_extra_menu (const Glib::RefPtr<Gio::MenuModel>& model) -> void;
 
     auto
     get_extra_menu () -> Glib::RefPtr<Gio::MenuModel>;
@@ -519,6 +534,8 @@ namespace Gtk
     property_placeholder_text () const
         -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
 
+#ifndef GTKMM_DISABLE_DEPRECATED
+
     auto
     property_completion ()
         -> Glib::PropertyProxy<Glib::RefPtr<EntryCompletion>>;
@@ -526,6 +543,8 @@ namespace Gtk
     auto
     property_completion () const
         -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<EntryCompletion>>;
+
+#endif
 
     auto
     property_input_purpose () -> Glib::PropertyProxy<InputPurpose>;
@@ -598,9 +617,7 @@ namespace Glib
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkEntry* object, bool take_copy = false) -> Gtk::Entry*;
 } // namespace Glib
 

@@ -36,17 +36,17 @@ namespace Glib
     GType gtype_;
     GClassInitFunc class_init_func_;
 
-    void
-    register_derived_type (GType base_type);
+    auto
+    register_derived_type (GType base_type) -> void;
 
-    void
-    register_derived_type (GType base_type, GTypeModule* module);
+    auto
+    register_derived_type (GType base_type, GTypeModule* module) -> void;
 
   private:
-    static void
-    custom_class_base_finalize_function (void* g_class);
-    static void
-    custom_class_init_function (void* g_class, void* class_data);
+    static auto
+    custom_class_base_finalize_function (void* g_class) -> void;
+    static auto
+    custom_class_init_function (void* g_class, void* class_data) -> void;
 
   public:
   #ifndef DOXYGEN_SHOULD_SKIP_THIS

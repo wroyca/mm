@@ -15,11 +15,11 @@ namespace Glib
 {
 
   auto
-  wrap (GtkGridLayoutChild* object, const bool take_copy) -> RefPtr<Gtk::GridLayoutChild>
+  wrap (GtkGridLayoutChild* object, bool take_copy) -> Glib::RefPtr<Gtk::GridLayoutChild>
   {
     return Glib::make_refptr_for_instance<Gtk::GridLayoutChild> (
         dynamic_cast<Gtk::GridLayoutChild*> (
-            wrap_auto ((GObject*) object, take_copy)));
+            Glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
 } // namespace Glib
@@ -28,7 +28,7 @@ namespace Gtk
 {
 
   auto
-  GridLayoutChild_Class::init () -> const Class&
+  GridLayoutChild_Class::init () -> const Glib::Class&
   {
     if (!gtype_)
     {
@@ -67,7 +67,7 @@ namespace Gtk
   }
 
   GridLayoutChild::GridLayoutChild (GtkGridLayoutChild* castitem)
-    : LayoutChild ((GtkLayoutChild*) castitem)
+    : LayoutChild ((GtkLayoutChild*) (castitem))
   {
   }
 
@@ -83,7 +83,7 @@ namespace Gtk
     return *this;
   }
 
-  GridLayoutChild::~GridLayoutChild () noexcept = default;
+  GridLayoutChild::~GridLayoutChild () noexcept {}
 
   GridLayoutChild::CppClassType GridLayoutChild::gridlayoutchild_class_;
 
@@ -100,13 +100,13 @@ namespace Gtk
   }
 
   GridLayoutChild::GridLayoutChild ()
-    : ObjectBase (nullptr),
+    : Glib::ObjectBase (nullptr),
       LayoutChild (Glib::ConstructParams (gridlayoutchild_class_.init ()))
   {
   }
 
   auto
-  GridLayoutChild::set_row (const int row) -> void
+  GridLayoutChild::set_row (int row) -> void
   {
     gtk_grid_layout_child_set_row (gobj (), row);
   }
@@ -119,7 +119,7 @@ namespace Gtk
   }
 
   auto
-  GridLayoutChild::set_column (const int column) -> void
+  GridLayoutChild::set_column (int column) -> void
   {
     gtk_grid_layout_child_set_column (gobj (), column);
   }
@@ -132,7 +132,7 @@ namespace Gtk
   }
 
   auto
-  GridLayoutChild::set_column_span (const int span) -> void
+  GridLayoutChild::set_column_span (int span) -> void
   {
     gtk_grid_layout_child_set_column_span (gobj (), span);
   }
@@ -145,7 +145,7 @@ namespace Gtk
   }
 
   auto
-  GridLayoutChild::set_row_span (const int span) -> void
+  GridLayoutChild::set_row_span (int span) -> void
   {
     gtk_grid_layout_child_set_row_span (gobj (), span);
   }
@@ -160,49 +160,49 @@ namespace Gtk
   auto
   GridLayoutChild::property_column () -> Glib::PropertyProxy<int>
   {
-    return {this, "column"};
+    return Glib::PropertyProxy<int> (this, "column");
   }
 
   auto
   GridLayoutChild::property_column () const -> Glib::PropertyProxy_ReadOnly<int>
   {
-    return {this, "column"};
+    return Glib::PropertyProxy_ReadOnly<int> (this, "column");
   }
 
   auto
   GridLayoutChild::property_row () -> Glib::PropertyProxy<int>
   {
-    return {this, "row"};
+    return Glib::PropertyProxy<int> (this, "row");
   }
 
   auto
   GridLayoutChild::property_row () const -> Glib::PropertyProxy_ReadOnly<int>
   {
-    return {this, "row"};
+    return Glib::PropertyProxy_ReadOnly<int> (this, "row");
   }
 
   auto
   GridLayoutChild::property_column_span () -> Glib::PropertyProxy<int>
   {
-    return {this, "column-span"};
+    return Glib::PropertyProxy<int> (this, "column-span");
   }
 
   auto
   GridLayoutChild::property_column_span () const -> Glib::PropertyProxy_ReadOnly<int>
   {
-    return {this, "column-span"};
+    return Glib::PropertyProxy_ReadOnly<int> (this, "column-span");
   }
 
   auto
   GridLayoutChild::property_row_span () -> Glib::PropertyProxy<int>
   {
-    return {this, "row-span"};
+    return Glib::PropertyProxy<int> (this, "row-span");
   }
 
   auto
   GridLayoutChild::property_row_span () const -> Glib::PropertyProxy_ReadOnly<int>
   {
-    return {this, "row-span"};
+    return Glib::PropertyProxy_ReadOnly<int> (this, "row-span");
   }
 
 } // namespace Gtk

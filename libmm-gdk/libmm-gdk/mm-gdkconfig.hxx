@@ -3,11 +3,15 @@
 #ifndef _GDKMM_CONFIG_H
 #define _GDKMM_CONFIG_H
 
-#define GDKMM_MAJOR_VERSION 4
+#include <libmm-pango/mm-pangoconfig.hxx>
 
-#define GDKMM_MINOR_VERSION 8
+#undef GDKMM_DISABLE_DEPRECATED
 
-#define GDKMM_MICRO_VERSION 0
+#undef GDKMM_MAJOR_VERSION
+
+#undef GDKMM_MICRO_VERSION
+
+#undef GDKMM_MINOR_VERSION
 
 #if !defined(__CYGWIN__) && defined(_WIN32) && !defined(GDKMM_STATIC_LIB)
   #define GDKMM_DLL 1

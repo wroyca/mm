@@ -142,9 +142,7 @@ namespace Glib
 
 namespace Glib
 {
-
-  GDKMM_API
-  auto
+  GDKMM_API auto
   wrap (GdkDeviceTool* object, bool take_copy = false) -> Glib::RefPtr<Gdk::DeviceTool>;
 } // namespace Glib
 

@@ -91,8 +91,9 @@ namespace Gtk
     create (Gdk::DragAction actions = static_cast<Gdk::DragAction> (0))
         -> Glib::RefPtr<DropTargetAsync>;
 
-    void
-    set_formats (const Glib::RefPtr<const Gdk::ContentFormats>& formats);
+    auto
+    set_formats (const Glib::RefPtr<const Gdk::ContentFormats>& formats)
+        -> void;
 
     auto
     get_formats () -> Glib::RefPtr<Gdk::ContentFormats>;
@@ -100,14 +101,14 @@ namespace Gtk
     auto
     get_formats () const -> Glib::RefPtr<const Gdk::ContentFormats>;
 
-    void
-    set_actions (Gdk::DragAction actions);
+    auto
+    set_actions (Gdk::DragAction actions) -> void;
 
     auto
     get_actions () const -> Gdk::DragAction;
 
-    void
-    reject_drop (const Glib::RefPtr<Gdk::Drop>& drop);
+    auto
+    reject_drop (const Glib::RefPtr<Gdk::Drop>& drop) -> void;
 
     auto
     property_actions () -> Glib::PropertyProxy<Gdk::DragAction>;
@@ -152,9 +153,7 @@ namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkDropTargetAsync* object, bool take_copy = false) -> Glib::RefPtr<Gtk::DropTargetAsync>;
 } // namespace Glib
 

@@ -81,19 +81,19 @@ namespace Gtk
   public:
     SearchEntry ();
 
-    void
-    set_key_capture_widget (Widget& widget);
+    auto
+    set_key_capture_widget (Widget& widget) -> void;
 
     auto
     get_key_capture_widget () -> Widget*;
 
     auto
     get_key_capture_widget () const -> const Widget*;
-    void
-    unset_key_capture_widget ();
+    auto
+    unset_key_capture_widget () -> void;
 
-    void
-    set_search_delay (unsigned int delay);
+    auto
+    set_search_delay (unsigned int delay) -> void;
 
     auto
     get_search_delay () const -> unsigned int;
@@ -142,9 +142,7 @@ namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkSearchEntry* object, bool take_copy = false) -> Gtk::SearchEntry*;
 } // namespace Glib
 

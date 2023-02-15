@@ -15,11 +15,11 @@ namespace Glib
 {
 
   auto
-  wrap (GtkIconPaintable* object, const bool take_copy) -> RefPtr<Gtk::IconPaintable>
+  wrap (GtkIconPaintable* object, bool take_copy) -> Glib::RefPtr<Gtk::IconPaintable>
   {
     return Glib::make_refptr_for_instance<Gtk::IconPaintable> (
         dynamic_cast<Gtk::IconPaintable*> (
-            wrap_auto ((GObject*) object, take_copy)));
+            Glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
 } // namespace Glib
@@ -28,7 +28,7 @@ namespace Gtk
 {
 
   auto
-  IconPaintable_Class::init () -> const Class&
+  IconPaintable_Class::init () -> const Glib::Class&
   {
     if (!gtype_)
     {
@@ -63,30 +63,30 @@ namespace Gtk
   }
 
   IconPaintable::IconPaintable (const Glib::ConstructParams& construct_params)
-    : Object (construct_params)
+    : Glib::Object (construct_params)
   {
   }
 
   IconPaintable::IconPaintable (GtkIconPaintable* castitem)
-    : Object ((GObject*) castitem)
+    : Glib::Object ((GObject*) (castitem))
   {
   }
 
   IconPaintable::IconPaintable (IconPaintable&& src) noexcept
-    : Object (std::move (src)),
-      Paintable (std::move (src))
+    : Glib::Object (std::move (src)),
+      Gdk::Paintable (std::move (src))
   {
   }
 
   auto
   IconPaintable::operator= (IconPaintable&& src) noexcept -> IconPaintable&
   {
-    Object::operator= (std::move (src));
-    Paintable::operator= (std::move (src));
+    Glib::Object::operator= (std::move (src));
+    Gdk::Paintable::operator= (std::move (src));
     return *this;
   }
 
-  IconPaintable::~IconPaintable () noexcept = default;
+  IconPaintable::~IconPaintable () noexcept {}
 
   IconPaintable::CppClassType IconPaintable::iconpaintable_class_;
 
@@ -104,13 +104,13 @@ namespace Gtk
 
   auto
   IconPaintable::create (const Glib::RefPtr<Gio::File>& file,
-                         const int size,
-                         const int scale) -> Glib::RefPtr<IconPaintable>
+                         int size,
+                         int scale) -> Glib::RefPtr<IconPaintable>
   {
-    return Glib::wrap (
-        gtk_icon_paintable_new_for_file (Glib::unwrap<Gio::File> (file),
-                                         size,
-                                         scale));
+    return Glib::wrap (gtk_icon_paintable_new_for_file (
+        const_cast<GFile*> (Glib::unwrap<Gio::File> (file)),
+        size,
+        scale));
   }
 
   auto
@@ -144,19 +144,19 @@ namespace Gtk
   auto
   IconPaintable::property_file () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gio::File>>
   {
-    return {this, "file"};
+    return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gio::File>> (this, "file");
   }
 
   auto
   IconPaintable::property_icon_name () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>
   {
-    return {this, "icon-name"};
+    return Glib::PropertyProxy_ReadOnly<Glib::ustring> (this, "icon-name");
   }
 
   auto
   IconPaintable::property_is_symbolic () const -> Glib::PropertyProxy_ReadOnly<bool>
   {
-    return {this, "is-symbolic"};
+    return Glib::PropertyProxy_ReadOnly<bool> (this, "is-symbolic");
   }
 
 } // namespace Gtk

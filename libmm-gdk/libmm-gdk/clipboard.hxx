@@ -111,39 +111,40 @@ namespace Gdk
     auto
     get_content () const -> Glib::RefPtr<const ContentProvider>;
 
-    void
+    auto
     read_async (const std::vector<Glib::ustring>& mime_types,
                 int io_priority,
                 const Gio::SlotAsyncReady& slot,
-                const Glib::RefPtr<Gio::Cancellable>& cancellable);
+                const Glib::RefPtr<Gio::Cancellable>& cancellable) -> void;
 
-    void
+    auto
     read_async (const std::vector<Glib::ustring>& mime_types,
                 int io_priority,
-                const Gio::SlotAsyncReady& slot);
+                const Gio::SlotAsyncReady& slot) -> void;
 
     auto
     read_finish (const Glib::RefPtr<Gio::AsyncResult>& result,
                  Glib::ustring& out_mime_type)
         -> Glib::RefPtr<Gio::InputStream>;
 
-    void
+    auto
     read_texture_async (const Gio::SlotAsyncReady& slot,
-                        const Glib::RefPtr<Gio::Cancellable>& cancellable);
+                        const Glib::RefPtr<Gio::Cancellable>& cancellable)
+        -> void;
 
-    void
-    read_texture_async (const Gio::SlotAsyncReady& slot);
+    auto
+    read_texture_async (const Gio::SlotAsyncReady& slot) -> void;
 
     auto
     read_texture_finish (const Glib::RefPtr<Gio::AsyncResult>& result)
         -> Glib::RefPtr<Texture>;
 
-    void
+    auto
     read_text_async (const Gio::SlotAsyncReady& slot,
-                     const Glib::RefPtr<Gio::Cancellable>& cancellable);
+                     const Glib::RefPtr<Gio::Cancellable>& cancellable) -> void;
 
-    void
-    read_text_async (const Gio::SlotAsyncReady& slot);
+    auto
+    read_text_async (const Gio::SlotAsyncReady& slot) -> void;
 
     auto
     read_text_finish (const Glib::RefPtr<Gio::AsyncResult>& result)
@@ -155,11 +156,11 @@ namespace Gdk
     auto
     unset_content () -> bool;
 
-    void
-    set_text (const Glib::ustring& text);
+    auto
+    set_text (const Glib::ustring& text) -> void;
 
-    void
-    set_texture (const Glib::RefPtr<const Texture>& texture);
+    auto
+    set_texture (const Glib::RefPtr<const Texture>& texture) -> void;
 
     auto
     property_display () const
@@ -188,9 +189,7 @@ namespace Gdk
 
 namespace Glib
 {
-
-  GDKMM_API
-  auto
+  GDKMM_API auto
   wrap (GdkClipboard* object, bool take_copy = false) -> Glib::RefPtr<Gdk::Clipboard>;
 } // namespace Glib
 

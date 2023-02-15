@@ -3,23 +3,25 @@
 #ifndef _GTKMM_APPCHOOSERWIDGET_H
 #define _GTKMM_APPCHOOSERWIDGET_H
 
-#include <libmm-glib/ustring.hxx>
-#include <sigc++/sigc++.h>
+#ifndef GTKMM_DISABLE_DEPRECATED
 
-#include <libmm-gtk/appchooser.hxx>
-#include <libmm-gtk/widget.hxx>
+  #include <libmm-glib/ustring.hxx>
+  #include <sigc++/sigc++.h>
 
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #include <libmm-gtk/appchooser.hxx>
+  #include <libmm-gtk/widget.hxx>
+
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
 using GtkAppChooserWidget = struct _GtkAppChooserWidget;
 using GtkAppChooserWidgetClass = struct _GtkAppChooserWidgetClass;
-#endif
+  #endif
 
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
   class GTKMM_API AppChooserWidget_Class;
 }
-#endif
+  #endif
 
 namespace Gtk
 {
@@ -28,12 +30,12 @@ namespace Gtk
                                      public AppChooser
   {
   public:
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
     typedef AppChooserWidget CppObjectType;
     typedef AppChooserWidget_Class CppClassType;
     typedef GtkAppChooserWidget BaseObjectType;
     typedef GtkAppChooserWidgetClass BaseClassType;
-#endif
+  #endif
 
     AppChooserWidget (AppChooserWidget&& src) noexcept;
     auto
@@ -45,7 +47,7 @@ namespace Gtk
 
     ~AppChooserWidget () noexcept override;
 
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   private:
     friend GTKMM_API class AppChooserWidget_Class;
@@ -55,17 +57,17 @@ namespace Gtk
     explicit AppChooserWidget (const Glib::ConstructParams& construct_params);
     explicit AppChooserWidget (GtkAppChooserWidget* castitem);
 
-#endif
+  #endif
 
   public:
     static auto
     get_type () -> GType G_GNUC_CONST;
 
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
     static auto
     get_base_type () -> GType G_GNUC_CONST;
-#endif
+  #endif
 
     auto
     gobj () -> GtkAppChooserWidget*
@@ -83,38 +85,38 @@ namespace Gtk
   public:
     explicit AppChooserWidget (const Glib::ustring& content_type);
 
-    void
-    set_show_default (bool setting = true);
+    auto
+    set_show_default (bool setting = true) -> void;
 
     auto
     get_show_default () -> bool;
 
-    void
-    set_show_recommended (bool setting = true);
+    auto
+    set_show_recommended (bool setting = true) -> void;
 
     auto
     get_show_recommended () const -> bool;
 
-    void
-    set_show_fallback (bool setting = true);
+    auto
+    set_show_fallback (bool setting = true) -> void;
 
     auto
     get_show_fallback () const -> bool;
 
-    void
-    set_show_other (bool setting = true);
+    auto
+    set_show_other (bool setting = true) -> void;
 
     auto
     get_show_other () const -> bool;
 
-    void
-    set_show_all (bool setting = true);
+    auto
+    set_show_all (bool setting = true) -> void;
 
     auto
     get_show_all () const -> bool;
 
-    void
-    set_default_text (const Glib::ustring& text);
+    auto
+    set_default_text (const Glib::ustring& text) -> void;
 
     auto
     get_default_text () -> Glib::ustring;
@@ -173,10 +175,10 @@ namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkAppChooserWidget* object, bool take_copy = false) -> Gtk::AppChooserWidget*;
 } // namespace Glib
+
+#endif
 
 #endif

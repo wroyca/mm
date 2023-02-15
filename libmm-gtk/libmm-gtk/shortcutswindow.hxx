@@ -81,8 +81,8 @@ namespace Gtk
   public:
     ShortcutsWindow ();
 
-    void
-    unset_view_name ();
+    auto
+    unset_view_name () -> void;
 
     auto
     property_section_name () -> Glib::PropertyProxy<Glib::ustring>;
@@ -106,9 +106,7 @@ namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkShortcutsWindow* object, bool take_copy = false) -> Gtk::ShortcutsWindow*;
 } // namespace Glib
 

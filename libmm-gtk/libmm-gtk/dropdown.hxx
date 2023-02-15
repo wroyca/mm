@@ -86,8 +86,8 @@ namespace Gtk
 
     explicit DropDown (const std::vector<Glib::ustring>& strings);
 
-    void
-    set_model (const Glib::RefPtr<Gio::ListModel>& model);
+    auto
+    set_model (const Glib::RefPtr<Gio::ListModel>& model) -> void;
 
     auto
     get_model () -> Glib::RefPtr<Gio::ListModel>;
@@ -95,8 +95,8 @@ namespace Gtk
     auto
     get_model () const -> Glib::RefPtr<const Gio::ListModel>;
 
-    void
-    set_selected (guint position);
+    auto
+    set_selected (guint position) -> void;
 
     auto
     get_selected () const -> guint;
@@ -107,8 +107,8 @@ namespace Gtk
     auto
     get_selected_item () const -> Glib::RefPtr<const Glib::ObjectBase>;
 
-    void
-    set_factory (const Glib::RefPtr<ListItemFactory>& factory);
+    auto
+    set_factory (const Glib::RefPtr<ListItemFactory>& factory) -> void;
 
     auto
     get_factory () -> Glib::RefPtr<ListItemFactory>;
@@ -116,8 +116,8 @@ namespace Gtk
     auto
     get_factory () const -> Glib::RefPtr<const ListItemFactory>;
 
-    void
-    set_list_factory (const Glib::RefPtr<ListItemFactory>& factory);
+    auto
+    set_list_factory (const Glib::RefPtr<ListItemFactory>& factory) -> void;
 
     auto
     get_list_factory () -> Glib::RefPtr<ListItemFactory>;
@@ -125,8 +125,9 @@ namespace Gtk
     auto
     get_list_factory () const -> Glib::RefPtr<const ListItemFactory>;
 
-    void
-    set_expression (const Glib::RefPtr<Expression<Glib::ustring>>& expression);
+    auto
+    set_expression (const Glib::RefPtr<Expression<Glib::ustring>>& expression)
+        -> void;
 
     auto
     get_expression () -> Glib::RefPtr<Expression<Glib::ustring>>;
@@ -134,14 +135,14 @@ namespace Gtk
     auto
     get_expression () const -> Glib::RefPtr<const Expression<Glib::ustring>>;
 
-    void
-    set_enable_search (bool enable_search = true);
+    auto
+    set_enable_search (bool enable_search = true) -> void;
 
     auto
     get_enable_search () const -> bool;
 
-    void
-    set_show_arrow (bool show_arrow = true);
+    auto
+    set_show_arrow (bool show_arrow = true) -> void;
 
     auto
     set_show_arrow () const -> bool;
@@ -207,9 +208,7 @@ namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkDropDown* object, bool take_copy = false) -> Gtk::DropDown*;
 } // namespace Glib
 

@@ -43,27 +43,27 @@ Glib::Value<Gdk::GLAPI>::value_type () -> GType
 }
 #endif
 
-Gdk::GLError::GLError (const Code error_code,
+Gdk::GLError::GLError (Gdk::GLError::Code error_code,
                        const Glib::ustring& error_message)
-  : Error (GDK_GL_ERROR, error_code, error_message)
+  : Glib::Error (GDK_GL_ERROR, error_code, error_message)
 {
 }
 
 Gdk::GLError::GLError (GError* gobject)
-  : Error (gobject)
+  : Glib::Error (gobject)
 {
 }
 
 auto
-Gdk::GLError::code () const -> Code
+Gdk::GLError::code () const -> Gdk::GLError::Code
 {
-  return static_cast<Code> (Error::code ());
+  return static_cast<Code> (Glib::Error::code ());
 }
 
 auto
 Gdk::GLError::throw_func (GError* gobject) -> void
 {
-  throw GLError (gobject);
+  throw Gdk::GLError (gobject);
 }
 
 auto
@@ -76,11 +76,11 @@ namespace Glib
 {
 
   auto
-  wrap (GdkGLContext* object, const bool take_copy) -> RefPtr<Gdk::GLContext>
+  wrap (GdkGLContext* object, bool take_copy) -> Glib::RefPtr<Gdk::GLContext>
   {
     return Glib::make_refptr_for_instance<Gdk::GLContext> (
         dynamic_cast<Gdk::GLContext*> (
-            wrap_auto ((GObject*) object, take_copy)));
+            Glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
 } // namespace Glib
@@ -89,7 +89,7 @@ namespace Gdk
 {
 
   auto
-  GLContext_Class::init () -> const Class&
+  GLContext_Class::init () -> const Glib::Class&
   {
     if (!gtype_)
     {
@@ -122,28 +122,28 @@ namespace Gdk
   }
 
   GLContext::GLContext (const Glib::ConstructParams& construct_params)
-    : DrawContext (construct_params)
+    : Gdk::DrawContext (construct_params)
   {
   }
 
   GLContext::GLContext (GdkGLContext* castitem)
-    : DrawContext ((GdkDrawContext*) castitem)
+    : Gdk::DrawContext ((GdkDrawContext*) (castitem))
   {
   }
 
   GLContext::GLContext (GLContext&& src) noexcept
-    : DrawContext (std::move (src))
+    : Gdk::DrawContext (std::move (src))
   {
   }
 
   auto
   GLContext::operator= (GLContext&& src) noexcept -> GLContext&
   {
-    DrawContext::operator= (std::move (src));
+    Gdk::DrawContext::operator= (std::move (src));
     return *this;
   }
 
-  GLContext::~GLContext () noexcept = default;
+  GLContext::~GLContext () noexcept {}
 
   GLContext::CppClassType GLContext::glcontext_class_;
 
@@ -160,8 +160,8 @@ namespace Gdk
   }
 
   GLContext::GLContext ()
-    : ObjectBase (nullptr),
-      DrawContext (Glib::ConstructParams (glcontext_class_.init ()))
+    : Glib::ObjectBase (nullptr),
+      Gdk::DrawContext (Glib::ConstructParams (glcontext_class_.init ()))
   {
   }
 
@@ -224,8 +224,8 @@ namespace Gdk
   GLContext::get_version (int& major, int& minor) const -> void
   {
     gdk_gl_context_get_version (const_cast<GdkGLContext*> (gobj ()),
-                                &major,
-                                &minor);
+                                &(major),
+                                &(minor));
   }
 
   auto
@@ -239,19 +239,19 @@ namespace Gdk
   {
     return gdk_gl_context_is_shared (
         const_cast<GdkGLContext*> (gobj ()),
-        const_cast<GdkGLContext*> (Glib::unwrap<GLContext> (other)));
+        const_cast<GdkGLContext*> (Glib::unwrap<Gdk::GLContext> (other)));
   }
 
   auto
   GLContext::get_required_version (int& major, int& minor) const -> void
   {
     gdk_gl_context_get_required_version (const_cast<GdkGLContext*> (gobj ()),
-                                         &major,
-                                         &minor);
+                                         &(major),
+                                         &(minor));
   }
 
   auto
-  GLContext::set_required_version (const int major, const int minor) -> void
+  GLContext::set_required_version (int major, int minor) -> void
   {
     gdk_gl_context_set_required_version (gobj (), major, minor);
   }
@@ -264,9 +264,9 @@ namespace Gdk
   }
 
   auto
-  GLContext::set_debug_enabled (const bool enabled) -> void
+  GLContext::set_debug_enabled (bool enabled) -> void
   {
-    gdk_gl_context_set_debug_enabled (gobj (), enabled);
+    gdk_gl_context_set_debug_enabled (gobj (), static_cast<int> (enabled));
   }
 
   auto
@@ -277,9 +277,10 @@ namespace Gdk
   }
 
   auto
-  GLContext::set_forward_compatible (const bool compatible) -> void
+  GLContext::set_forward_compatible (bool compatible) -> void
   {
-    gdk_gl_context_set_forward_compatible (gobj (), compatible);
+    gdk_gl_context_set_forward_compatible (gobj (),
+                                           static_cast<int> (compatible));
   }
 
 #ifndef GDKMM_DISABLE_DEPRECATED
@@ -295,6 +296,7 @@ namespace Gdk
 
 #ifndef GDKMM_DISABLE_DEPRECATED
   G_GNUC_BEGIN_IGNORE_DEPRECATIONS
+
   auto
   GLContext::get_allowed_apis () const -> GLAPI
   {
@@ -307,6 +309,7 @@ namespace Gdk
 
 #ifndef GDKMM_DISABLE_DEPRECATED
   G_GNUC_BEGIN_IGNORE_DEPRECATIONS
+
   auto
   GLContext::get_api () const -> GLAPI
   {
@@ -340,9 +343,9 @@ namespace Gdk
 #ifndef GDKMM_DISABLE_DEPRECATED
   G_GNUC_BEGIN_IGNORE_DEPRECATIONS
   auto
-  GLContext::set_use_es (const bool use_es) -> void
+  GLContext::set_use_es (bool use_es) -> void
   {
-    gdk_gl_context_set_use_es (gobj (), use_es);
+    gdk_gl_context_set_use_es (gobj (), static_cast<int> (use_es));
   }
 
   G_GNUC_END_IGNORE_DEPRECATIONS
@@ -358,9 +361,9 @@ namespace Gdk
   GLContext::realize () -> bool
   {
     GError* gerror = nullptr;
-    const auto retvalue = gdk_gl_context_realize (gobj (), &gerror);
+    auto retvalue = gdk_gl_context_realize (gobj (), &(gerror));
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      ::Glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
@@ -396,7 +399,9 @@ namespace Gdk
   auto
   GLContext::property_shared_context () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<GLContext>>
   {
-    return {this, "shared-context"};
+    return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<GLContext>> (
+        this,
+        "shared-context");
   }
 #endif
 
@@ -410,7 +415,7 @@ namespace Gdk
   auto
   GLContext::property_allowed_apis () -> Glib::PropertyProxy<GLAPI>
   {
-    return {this, "allowed-apis"};
+    return Glib::PropertyProxy<GLAPI> (this, "allowed-apis");
   }
 #endif
 
@@ -419,7 +424,7 @@ namespace Gdk
   auto
   GLContext::property_allowed_apis () const -> Glib::PropertyProxy_ReadOnly<GLAPI>
   {
-    return {this, "allowed-apis"};
+    return Glib::PropertyProxy_ReadOnly<GLAPI> (this, "allowed-apis");
   }
 #endif
 
@@ -433,7 +438,7 @@ namespace Gdk
   auto
   GLContext::property_api () const -> Glib::PropertyProxy_ReadOnly<GLAPI>
   {
-    return {this, "api"};
+    return Glib::PropertyProxy_ReadOnly<GLAPI> (this, "api");
   }
 #endif
 

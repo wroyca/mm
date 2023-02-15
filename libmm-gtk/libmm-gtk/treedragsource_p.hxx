@@ -2,10 +2,11 @@
 
 #ifndef _GTKMM_TREEDRAGSOURCE_P_H
 #define _GTKMM_TREEDRAGSOURCE_P_H
+#ifndef GTKMM_DISABLE_DEPRECATED
 
-#include <libmm-glib/interface_p.hxx>
+  #include <libmm-glib/interface_p.hxx>
 
-#include <libmm-glib/interface_p.hxx>
+  #include <libmm-glib/interface_p.hxx>
 
 namespace Gtk
 {
@@ -16,12 +17,12 @@ namespace Gtk
     using CppObjectType = TreeDragSource;
     using BaseObjectType = GtkTreeDragSource;
     using BaseClassType = GtkTreeDragSourceIface;
-    using CppClassParent = Interface_Class;
+    using CppClassParent = Glib::Interface_Class;
 
     friend class TreeDragSource;
 
     auto
-    init () -> const Interface_Class&;
+    init () -> const Glib::Interface_Class&;
 
     static auto
     iface_init_function (void* g_iface, void* iface_data) -> void;
@@ -42,5 +43,7 @@ namespace Gtk
   };
 
 } // namespace Gtk
+
+#endif
 
 #endif

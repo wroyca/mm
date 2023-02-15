@@ -20,20 +20,22 @@ namespace Cairo
                            bool has_reference = false);
     ~Win32Surface () override;
 
-    HDC
-    get_dc () const;
+    auto
+    get_dc () const -> HDC;
 
-    RefPtr<ImageSurface>
-    get_image ();
+    auto
+    get_image () -> RefPtr<ImageSurface>;
 
-    static RefPtr<Win32Surface>
-    create (HDC hdc);
+    static auto
+    create (HDC hdc) -> RefPtr<Win32Surface>;
 
-    static RefPtr<Win32Surface>
-    create_with_dib (Format format, int width, int height);
+    static auto
+    create_with_dib (Format format, int width, int height)
+        -> RefPtr<Win32Surface>;
 
-    static RefPtr<Win32Surface>
-    create_with_ddb (HDC hdc, Format format, int width, int height);
+    static auto
+    create_with_ddb (HDC hdc, Format format, int width, int height)
+        -> RefPtr<Win32Surface>;
   };
 
   class CAIROMM_API Win32PrintingSurface : public Surface
@@ -43,8 +45,8 @@ namespace Cairo
                                    bool has_reference = false);
     ~Win32PrintingSurface () override;
 
-    static RefPtr<Win32PrintingSurface>
-    create (HDC hdc);
+    static auto
+    create (HDC hdc) -> RefPtr<Win32PrintingSurface>;
   };
 
 } // namespace Cairo

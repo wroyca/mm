@@ -17,12 +17,12 @@ namespace Gtk
     using CppObjectType = SelectionModel;
     using BaseObjectType = GtkSelectionModel;
     using BaseClassType = GtkSelectionModelInterface;
-    using CppClassParent = Interface_Class;
+    using CppClassParent = Glib::Interface_Class;
 
     friend class SelectionModel;
 
     auto
-    init () -> const Interface_Class&;
+    init () -> const Glib::Interface_Class&;
 
     static auto
     iface_init_function (void* g_iface, void* iface_data) -> void;

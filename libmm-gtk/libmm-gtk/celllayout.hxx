@@ -3,35 +3,37 @@
 #ifndef _GTKMM_CELLLAYOUT_H
 #define _GTKMM_CELLLAYOUT_H
 
-#include <libmm-glib/ustring.hxx>
-#include <sigc++/sigc++.h>
+#ifndef GTKMM_DISABLE_DEPRECATED
 
-#include <vector>
+  #include <libmm-glib/ustring.hxx>
+  #include <sigc++/sigc++.h>
 
-#include <libmm-glib/interface.hxx>
+  #include <vector>
 
-#include <libmm-gtk/cellrenderer.hxx>
-#include <libmm-gtk/cellrenderer_generation.hxx>
-#include <libmm-gtk/treemodel.hxx>
+  #include <libmm-glib/interface.hxx>
 
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #include <libmm-gtk/cellrenderer.hxx>
+  #include <libmm-gtk/cellrenderer_generation.hxx>
+  #include <libmm-gtk/treemodel.hxx>
+
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
 extern "C"
 {
   typedef struct _GtkCellLayoutIface GtkCellLayoutIface;
 }
-#endif
+  #endif
 
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
 using GtkCellLayout = struct _GtkCellLayout;
 using GtkCellLayoutClass = struct _GtkCellLayoutClass;
-#endif
+  #endif
 
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
   class GTKMM_API CellLayout_Class;
 }
-#endif
+  #endif
 
 namespace Gtk
 {
@@ -40,7 +42,7 @@ namespace Gtk
 
   class GTKMM_API CellLayout : public Glib::Interface
   {
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   public:
     using CppObjectType = CellLayout;
@@ -56,11 +58,11 @@ namespace Gtk
     friend class CellLayout_Class;
     static CppClassType celllayout_class_;
 
-#endif
+  #endif
   protected:
     CellLayout ();
 
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
     explicit CellLayout (const Glib::Interface_Class& interface_class);
 
@@ -68,7 +70,7 @@ namespace Gtk
     explicit CellLayout (GtkCellLayout* castitem);
 
   protected:
-#endif
+  #endif
 
   public:
     CellLayout (CellLayout&& src) noexcept;
@@ -77,16 +79,16 @@ namespace Gtk
 
     ~CellLayout () noexcept override;
 
-    static void
-    add_interface (GType gtype_implementer);
+    static auto
+    add_interface (GType gtype_implementer) -> void;
 
     static auto
     get_type () -> GType G_GNUC_CONST;
 
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
     static auto
     get_base_type () -> GType G_GNUC_CONST;
-#endif
+  #endif
 
     auto
     gobj () -> GtkCellLayout*
@@ -103,15 +105,15 @@ namespace Gtk
   private:
   public:
     template <class ColumnType>
-    inline void
+    inline auto
     pack_start (const TreeModelColumn<ColumnType>& model_column,
-                bool expand = true);
+                bool expand = true) -> void;
 
-    void
-    pack_start (CellRenderer& cell, bool expand = true);
+    auto
+    pack_start (CellRenderer& cell, bool expand = true) -> void;
 
-    void
-    pack_end (CellRenderer& cell, bool expand = true);
+    auto
+    pack_end (CellRenderer& cell, bool expand = true) -> void;
 
     auto
     get_cells () -> std::vector<CellRenderer*>;
@@ -125,33 +127,33 @@ namespace Gtk
     auto
     get_first_cell () const -> const CellRenderer*;
 
-    void
-    clear ();
+    auto
+    clear () -> void;
 
-    void
+    auto
     add_attribute (CellRenderer& cell,
                    const Glib::ustring& attribute,
-                   int column);
+                   int column) -> void;
 
-    void
+    auto
     add_attribute (const Glib::PropertyProxy_Base& property,
-                   const TreeModelColumnBase& column);
+                   const TreeModelColumnBase& column) -> void;
 
-    void
+    auto
     add_attribute (CellRenderer& cell,
                    const Glib::ustring& attribute,
-                   const TreeModelColumnBase& column);
+                   const TreeModelColumnBase& column) -> void;
 
     typedef sigc::slot<void (const TreeModel::const_iterator&)> SlotCellData;
 
-    void
-    set_cell_data_func (CellRenderer& cell, const SlotCellData& slot);
+    auto
+    set_cell_data_func (CellRenderer& cell, const SlotCellData& slot) -> void;
 
-    void
-    clear_attributes (CellRenderer& cell);
+    auto
+    clear_attributes (CellRenderer& cell) -> void;
 
-    void
-    reorder (CellRenderer& cell, int position);
+    auto
+    reorder (CellRenderer& cell, int position) -> void;
 
     auto
     get_area () -> Glib::RefPtr<CellArea>;
@@ -160,25 +162,25 @@ namespace Gtk
     get_area () const -> Glib::RefPtr<const CellArea>;
 
   protected:
-    virtual void
-    pack_start_vfunc (CellRenderer* cell, bool expand);
+    virtual auto
+    pack_start_vfunc (CellRenderer* cell, bool expand) -> void;
 
-    virtual void
-    pack_end_vfunc (CellRenderer* cell, bool expand);
+    virtual auto
+    pack_end_vfunc (CellRenderer* cell, bool expand) -> void;
 
-    virtual void
-    clear_vfunc ();
+    virtual auto
+    clear_vfunc () -> void;
 
-    virtual void
+    virtual auto
     add_attribute_vfunc (CellRenderer* cell,
                          const Glib::ustring& attribute,
-                         int column);
+                         int column) -> void;
 
-    virtual void
-    clear_attributes_vfunc (CellRenderer* cell);
+    virtual auto
+    clear_attributes_vfunc (CellRenderer* cell) -> void;
 
-    virtual void
-    reorder_vfunc (CellRenderer* cell, int position);
+    virtual auto
+    reorder_vfunc (CellRenderer* cell, int position) -> void;
 
   public:
   public:
@@ -186,9 +188,9 @@ namespace Gtk
   };
 
   template <class T_ModelColumnType>
-  void
+  auto
   CellLayout::pack_start (const TreeModelColumn<T_ModelColumnType>& column,
-                          bool expand)
+                          bool expand) -> void
   {
     CellRenderer* pCellRenderer = manage (
         CellRenderer_Generation::generate_cellrenderer<T_ModelColumnType> ());
@@ -202,11 +204,11 @@ namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkCellLayout* object, bool take_copy = false) -> Glib::RefPtr<Gtk::CellLayout>;
 
 } // namespace Glib
+
+#endif
 
 #endif

@@ -91,9 +91,7 @@ namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkListBase* object, bool take_copy = false) -> Gtk::ListBase*;
 } // namespace Glib
 

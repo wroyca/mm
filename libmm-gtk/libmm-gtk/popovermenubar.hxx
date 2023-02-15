@@ -83,8 +83,8 @@ namespace Gtk
     explicit PopoverMenuBar (
         const Glib::RefPtr<Gio::MenuModel>& menu_model = {});
 
-    void
-    set_menu_model (const Glib::RefPtr<Gio::MenuModel>& model);
+    auto
+    set_menu_model (const Glib::RefPtr<Gio::MenuModel>& model) -> void;
 
     auto
     get_menu_model () -> Glib::RefPtr<Gio::MenuModel>;
@@ -114,9 +114,7 @@ namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkPopoverMenuBar* object, bool take_copy = false) -> Gtk::PopoverMenuBar*;
 } // namespace Glib
 

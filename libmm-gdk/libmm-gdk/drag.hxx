@@ -142,8 +142,8 @@ namespace Gdk
     static auto
     action_is_unique (DragAction action) -> bool;
 
-    void
-    drag_drop_done (bool success);
+    auto
+    drag_drop_done (bool success) -> void;
 
     auto
     get_drag_surface () -> Glib::RefPtr<Surface>;
@@ -151,8 +151,8 @@ namespace Gdk
     auto
     get_drag_surface () const -> Glib::RefPtr<const Surface>;
 
-    void
-    set_hotspot (int hot_x, int hot_y);
+    auto
+    set_hotspot (int hot_x, int hot_y) -> void;
 
     auto
     get_content () -> Glib::RefPtr<ContentProvider>;
@@ -217,9 +217,7 @@ namespace Gdk
 
 namespace Glib
 {
-
-  GDKMM_API
-  auto
+  GDKMM_API auto
   wrap (GdkDrag* object, bool take_copy = false) -> Glib::RefPtr<Gdk::Drag>;
 } // namespace Glib
 

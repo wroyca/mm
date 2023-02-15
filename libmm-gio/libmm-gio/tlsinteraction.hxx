@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: LGPL-2.1-or-later
 
 #ifndef _GIOMM_TLSINTERACTION_H
 #define _GIOMM_TLSINTERACTION_H
@@ -199,21 +200,21 @@ namespace Gio
     ask_password (const Glib::RefPtr<TlsPassword>& password)
         -> TlsInteractionResult;
 
-    void
+    auto
     ask_password_async (const Glib::RefPtr<TlsPassword>& password,
                         const SlotAsyncReady& slot,
-                        const Glib::RefPtr<Cancellable>& cancellable);
+                        const Glib::RefPtr<Cancellable>& cancellable) -> void;
 
-    void
+    auto
     ask_password_async (const Glib::RefPtr<TlsPassword>& password,
-                        const SlotAsyncReady& slot);
+                        const SlotAsyncReady& slot) -> void;
 
-    void
+    auto
     ask_password_async (const Glib::RefPtr<TlsPassword>& password,
-                        const Glib::RefPtr<Cancellable>& cancellable);
+                        const Glib::RefPtr<Cancellable>& cancellable) -> void;
 
-    void
-    ask_password_async (const Glib::RefPtr<TlsPassword>& password);
+    auto
+    ask_password_async (const Glib::RefPtr<TlsPassword>& password) -> void;
 
     auto
     ask_password_finish (const Glib::RefPtr<AsyncResult>& result)
@@ -250,25 +251,27 @@ namespace Gio
                          TlsCertificateRequestFlags flags)
         -> TlsInteractionResult;
 
-    void
+    auto
     request_certificate_async (const Glib::RefPtr<TlsConnection>& connection,
                                TlsCertificateRequestFlags flags,
                                const SlotAsyncReady& slot,
-                               const Glib::RefPtr<Cancellable>& cancellable);
+                               const Glib::RefPtr<Cancellable>& cancellable)
+        -> void;
 
-    void
+    auto
     request_certificate_async (const Glib::RefPtr<TlsConnection>& connection,
                                TlsCertificateRequestFlags flags,
-                               const SlotAsyncReady& slot);
+                               const SlotAsyncReady& slot) -> void;
 
-    void
+    auto
     request_certificate_async (const Glib::RefPtr<TlsConnection>& connection,
                                TlsCertificateRequestFlags flags,
-                               const Glib::RefPtr<Cancellable>& cancellable);
+                               const Glib::RefPtr<Cancellable>& cancellable)
+        -> void;
 
-    void
+    auto
     request_certificate_async (const Glib::RefPtr<TlsConnection>& connection,
-                               TlsCertificateRequestFlags flags);
+                               TlsCertificateRequestFlags flags) -> void;
 
     auto
     request_certificate_finish (const Glib::RefPtr<AsyncResult>& result)
@@ -280,10 +283,11 @@ namespace Gio
                         const Glib::RefPtr<Cancellable>& cancellable)
         -> TlsInteractionResult;
 
-    virtual void
+    virtual auto
     ask_password_async_vfunc (const Glib::RefPtr<TlsPassword>& password,
                               const SlotAsyncReady& slot,
-                              const Glib::RefPtr<Cancellable>& cancellable);
+                              const Glib::RefPtr<Cancellable>& cancellable)
+        -> void;
 
     virtual auto
     ask_password_finish_vfunc (const Glib::RefPtr<AsyncResult>& result)

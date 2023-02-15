@@ -6,7 +6,7 @@
 namespace Gdk
 {
   PopupSurfaceImpl::PopupSurfaceImpl (GdkSurface* castitem)
-    : ObjectBase (nullptr),
+    : Glib::ObjectBase (nullptr),
       Surface (castitem)
   {
   }
@@ -25,5 +25,6 @@ namespace Gdk
     return *this;
   }
 
-  PopupSurfaceImpl::~PopupSurfaceImpl () noexcept = default;
+  PopupSurfaceImpl::~PopupSurfaceImpl () noexcept {}
+
 } // namespace Gdk

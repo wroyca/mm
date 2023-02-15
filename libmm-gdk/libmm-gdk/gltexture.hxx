@@ -93,8 +93,8 @@ namespace Gdk
             int height,
             const SlotGLReleased& slot = {}) -> Glib::RefPtr<Texture>;
 
-    void
-    release ();
+    auto
+    release () -> void;
 
   public:
   public:
@@ -105,9 +105,7 @@ namespace Gdk
 
 namespace Glib
 {
-
-  GDKMM_API
-  auto
+  GDKMM_API auto
   wrap (GdkGLTexture* object, bool take_copy = false) -> Glib::RefPtr<Gdk::GLTexture>;
 } // namespace Glib
 

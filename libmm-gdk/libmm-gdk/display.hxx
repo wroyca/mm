@@ -108,14 +108,14 @@ namespace Gdk
     device_is_grabbed (const Glib::RefPtr<const Gdk::Device>& device) const
         -> bool;
 
-    void
-    beep ();
+    auto
+    beep () -> void;
 
-    void
-    sync ();
+    auto
+    sync () -> void;
 
-    void
-    close ();
+    auto
+    close () -> void;
 
     auto
     is_closed () const -> bool;
@@ -126,14 +126,17 @@ namespace Gdk
     auto
     is_rgba () const -> bool;
 
-    void
-    put_event (const Glib::RefPtr<const Event>& event);
+#ifndef GDKMM_DISABLE_DEPRECATED
+
+    auto
+    put_event (const Glib::RefPtr<const Event>& event) -> void;
+#endif
 
     static auto
     get_default () -> Glib::RefPtr<Display>;
 
-    void
-    flush ();
+    auto
+    flush () -> void;
 
     auto
     get_clipboard () -> Glib::RefPtr<Clipboard>;
@@ -150,17 +153,23 @@ namespace Gdk
     auto
     supports_input_shapes () const -> bool;
 
-    void
-    prepare_gl ();
+    auto
+    prepare_gl () -> void;
 
     auto
     create_gl_context () -> Glib::RefPtr<GLContext>;
 
-    void
-    notify_startup_complete (const Glib::ustring& startup_id);
+#ifndef GDKMM_DISABLE_DEPRECATED
+
+    auto
+    notify_startup_complete (const Glib::ustring& startup_id) -> void;
+#endif
+
+#ifndef GDKMM_DISABLE_DEPRECATED
 
     auto
     get_startup_notification_id () const -> Glib::ustring;
+#endif
 
     auto
     get_app_launch_context () -> Glib::RefPtr<AppLaunchContext>;
@@ -248,9 +257,7 @@ namespace Gdk
 
 namespace Glib
 {
-
-  GDKMM_API
-  auto
+  GDKMM_API auto
   wrap (GdkDisplay* object, bool take_copy = false) -> Glib::RefPtr<Gdk::Display>;
 } // namespace Glib
 

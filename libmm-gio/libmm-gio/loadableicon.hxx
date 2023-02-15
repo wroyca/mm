@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: LGPL-2.1-or-later
 
 #ifndef _GIOMM_LOADABLEICON_H
 #define _GIOMM_LOADABLEICON_H
@@ -66,8 +67,8 @@ namespace Gio
 
     ~LoadableIcon () noexcept override;
 
-    static void
-    add_interface (GType gtype_implementer);
+    static auto
+    add_interface (GType gtype_implementer) -> void;
 
     static auto
     get_type () -> GType G_GNUC_CONST;
@@ -100,13 +101,13 @@ namespace Gio
     auto
     load (int size, Glib::ustring& type) -> Glib::RefPtr<InputStream>;
 
-    void
+    auto
     load_async (int size,
                 const SlotAsyncReady& slot,
-                const Glib::RefPtr<Cancellable>& cancellable);
+                const Glib::RefPtr<Cancellable>& cancellable) -> void;
 
-    void
-    load_async (int size, const SlotAsyncReady& slot);
+    auto
+    load_async (int size, const SlotAsyncReady& slot) -> void;
 
   protected:
   public:

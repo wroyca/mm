@@ -58,10 +58,10 @@ namespace Cairo
     }
 #endif
 
-    void
-    reference () const;
-    void
-    unreference () const;
+    auto
+    reference () const -> void;
+    auto
+    unreference () const -> void;
 
   protected:
     cobject* m_cobject;
@@ -177,11 +177,11 @@ namespace Cairo
     create (FcPattern* pattern) -> RefPtr<FtFontFace>;
   #endif
 
-    void
-    set_synthesize (FtSynthesize synth_flags);
+    auto
+    set_synthesize (FtSynthesize synth_flags) -> void;
 
-    void
-    unset_synthesize (FtSynthesize synth_flags);
+    auto
+    unset_synthesize (FtSynthesize synth_flags) -> void;
 
     auto
     get_synthesize () const -> FtSynthesize;

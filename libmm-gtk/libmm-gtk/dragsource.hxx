@@ -90,8 +90,8 @@ namespace Gtk
     static auto
     create () -> Glib::RefPtr<DragSource>;
 
-    void
-    set_content (const Glib::RefPtr<Gdk::ContentProvider>& content);
+    auto
+    set_content (const Glib::RefPtr<Gdk::ContentProvider>& content) -> void;
 
     auto
     get_content () -> Glib::RefPtr<Gdk::ContentProvider>;
@@ -99,19 +99,19 @@ namespace Gtk
     auto
     get_content () const -> Glib::RefPtr<const Gdk::ContentProvider>;
 
-    void
-    set_actions (Gdk::DragAction actions);
+    auto
+    set_actions (Gdk::DragAction actions) -> void;
 
     auto
     get_actions () const -> Gdk::DragAction;
 
-    void
+    auto
     set_icon (const Glib::RefPtr<const Gdk::Paintable>& paintable,
               int hot_x,
-              int hot_y);
+              int hot_y) -> void;
 
-    void
-    drag_cancel ();
+    auto
+    drag_cancel () -> void;
 
     auto
     get_drag () -> Glib::RefPtr<Gdk::Drag>;
@@ -160,9 +160,7 @@ namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkDragSource* object, bool take_copy = false) -> Glib::RefPtr<Gtk::DragSource>;
 } // namespace Glib
 

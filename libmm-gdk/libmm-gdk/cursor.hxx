@@ -138,9 +138,7 @@ namespace Gdk
 
 namespace Glib
 {
-
-  GDKMM_API
-  auto
+  GDKMM_API auto
   wrap (GdkCursor* object, bool take_copy = false) -> Glib::RefPtr<Gdk::Cursor>;
 } // namespace Glib
 

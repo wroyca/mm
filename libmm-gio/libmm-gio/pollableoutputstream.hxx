@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: LGPL-2.1-or-later
 
 #ifndef _GIOMM_POLLABLEOUTPUTSTREAM_H
 #define _GIOMM_POLLABLEOUTPUTSTREAM_H
@@ -70,8 +71,8 @@ namespace Gio
 
     ~PollableOutputStream () noexcept override;
 
-    static void
-    add_interface (GType gtype_implementer);
+    static auto
+    add_interface (GType gtype_implementer) -> void;
 
     static auto
     get_type () -> GType G_GNUC_CONST;

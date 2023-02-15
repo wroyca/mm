@@ -3,24 +3,26 @@
 #ifndef _GTKMM_INFOBAR_H
 #define _GTKMM_INFOBAR_H
 
-#include <libmm-glib/ustring.hxx>
-#include <sigc++/sigc++.h>
+#ifndef GTKMM_DISABLE_DEPRECATED
 
-#include <libmm-gtk/button.hxx>
-#include <libmm-gtk/enums.hxx>
-#include <libmm-gtk/widget.hxx>
+  #include <libmm-glib/ustring.hxx>
+  #include <sigc++/sigc++.h>
 
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #include <libmm-gtk/button.hxx>
+  #include <libmm-gtk/enums.hxx>
+  #include <libmm-gtk/widget.hxx>
+
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
 using GtkInfoBar = struct _GtkInfoBar;
 using GtkInfoBarClass = struct _GtkInfoBarClass;
-#endif
+  #endif
 
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
   class GTKMM_API InfoBar_Class;
 }
-#endif
+  #endif
 
 namespace Gtk
 {
@@ -28,12 +30,12 @@ namespace Gtk
   class GTKMM_API InfoBar : public Widget
   {
   public:
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
     typedef InfoBar CppObjectType;
     typedef InfoBar_Class CppClassType;
     typedef GtkInfoBar BaseObjectType;
     typedef GtkInfoBarClass BaseClassType;
-#endif
+  #endif
 
     InfoBar (InfoBar&& src) noexcept;
     auto
@@ -45,7 +47,7 @@ namespace Gtk
 
     ~InfoBar () noexcept override;
 
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   private:
     friend GTKMM_API class InfoBar_Class;
@@ -55,17 +57,17 @@ namespace Gtk
     explicit InfoBar (const Glib::ConstructParams& construct_params);
     explicit InfoBar (GtkInfoBar* castitem);
 
-#endif
+  #endif
 
   public:
     static auto
     get_type () -> GType G_GNUC_CONST;
 
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
     static auto
     get_base_type () -> GType G_GNUC_CONST;
-#endif
+  #endif
 
     auto
     gobj () -> GtkInfoBar*
@@ -83,44 +85,44 @@ namespace Gtk
   public:
     InfoBar ();
 
-    void
-    add_action_widget (Widget& child, int response_id);
+    auto
+    add_action_widget (Widget& child, int response_id) -> void;
 
-    void
-    remove_action_widget (Widget& widget);
+    auto
+    remove_action_widget (Widget& widget) -> void;
 
     auto
     add_button (const Glib::ustring& button_text, int response_id) -> Button*;
 
-    void
-    add_child (Widget& widget);
+    auto
+    add_child (Widget& widget) -> void;
 
-    void
-    remove_child (Widget& widget);
+    auto
+    remove_child (Widget& widget) -> void;
 
-    void
-    set_response_sensitive (int response_id, bool setting = true);
+    auto
+    set_response_sensitive (int response_id, bool setting = true) -> void;
 
-    void
-    set_default_response (int response_id);
+    auto
+    set_default_response (int response_id) -> void;
 
-    void
-    response (int response_id);
+    auto
+    response (int response_id) -> void;
 
-    void
-    set_message_type (MessageType message_type);
+    auto
+    set_message_type (MessageType message_type) -> void;
 
     auto
     get_message_type () const -> MessageType;
 
-    void
-    set_show_close_button (bool setting = true);
+    auto
+    set_show_close_button (bool setting = true) -> void;
 
     auto
     get_show_close_button () const -> bool;
 
-    void
-    set_revealed (bool revealed = true);
+    auto
+    set_revealed (bool revealed = true) -> void;
 
     auto
     get_revealed () const -> bool;
@@ -155,10 +157,10 @@ namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkInfoBar* object, bool take_copy = false) -> Gtk::InfoBar*;
 } // namespace Glib
+
+#endif
 
 #endif

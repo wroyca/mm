@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: LGPL-2.1-or-later
 
 #ifndef _GIOMM_FILEATTRIBUTEINFOLIST_H
 #define _GIOMM_FILEATTRIBUTEINFOLIST_H
@@ -21,11 +22,11 @@ namespace Gio
     static auto
     create () -> Glib::RefPtr<FileAttributeInfoList>;
 
-    void
-    reference () const;
+    auto
+    reference () const -> void;
 
-    void
-    unreference () const;
+    auto
+    unreference () const -> void;
 
     auto
     gobj () -> GFileAttributeInfoList*;
@@ -43,8 +44,8 @@ namespace Gio
     operator= (const FileAttributeInfoList&) -> FileAttributeInfoList& = delete;
 
   protected:
-    void
-    operator delete (void*, std::size_t);
+    auto
+    operator delete (void*, std::size_t) -> void;
 
   private:
   public:
@@ -59,10 +60,11 @@ namespace Gio
     auto
     dup () const -> Glib::RefPtr<FileAttributeInfoList>;
 
-    void
+    auto
     add (const std::string& name,
          FileAttributeType type,
-         FileAttributeInfo::Flags flags = FileAttributeInfo::Flags::NONE);
+         FileAttributeInfo::Flags flags = FileAttributeInfo::Flags::NONE)
+        -> void;
   };
 
 } // namespace Gio

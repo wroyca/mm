@@ -25,7 +25,7 @@ namespace Gtk
 #endif
 
     auto
-    init () -> const Class&;
+    init () -> const Glib::Class&;
 
     static auto
     class_init_function (void* g_class, void* class_data) -> void;

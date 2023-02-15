@@ -1,14 +1,20 @@
 // SPDX-License-Identifier: LGPL-2.1-or-later
 
-#include <libmm-glib/mm-glib.hxx>
+#undef GTK_DISABLE_DEPRECATED
+#define GDK_DISABLE_DEPRECATION_WARNINGS 1
 
-#include <libmm-gtk/treeiter.hxx>
-#include <libmm-gtk/treeiter_p.hxx>
+#include <libmm-gtk/mm-gtkconfig.hxx>
+#ifndef GTKMM_DISABLE_DEPRECATED
 
-#include <cstring>
+  #include <libmm-glib/mm-glib.hxx>
 
-#include <gtk/gtk.h>
-#include <libmm-gtk/treemodel.hxx>
+  #include <libmm-gtk/treeiter.hxx>
+  #include <libmm-gtk/treeiter_p.hxx>
+
+  #include <cstring>
+
+  #include <gtk/gtk.h>
+  #include <libmm-gtk/treemodel.hxx>
 
 namespace Gtk
 {
@@ -73,7 +79,7 @@ namespace Gtk
     else
     {
       auto next = gobject_;
-      const auto parent = next.stamp != 0 ? &next : nullptr;
+      const auto parent = (next.stamp != 0) ? &next : nullptr;
 
       const int index =
           gtk_tree_model_iter_n_children (Glib::unwrap (model_), parent) - 1;
@@ -94,10 +100,10 @@ namespace Gtk
     g_assert (gobject_.stamp == other.gobject_.stamp || is_end_ ||
               other.is_end_);
 
-    return is_end_ == other.is_end_ &&
-           gobject_.user_data == other.gobject_.user_data &&
-           gobject_.user_data2 == other.gobject_.user_data2 &&
-           gobject_.user_data3 == other.gobject_.user_data3;
+    return (is_end_ == other.is_end_) &&
+           (gobject_.user_data == other.gobject_.user_data) &&
+           (gobject_.user_data2 == other.gobject_.user_data2) &&
+           (gobject_.user_data3 == other.gobject_.user_data3);
   }
 
   auto
@@ -131,13 +137,13 @@ namespace Gtk
   auto
   TreeIterBase3::get_model_gobject () -> GtkTreeModel*
   {
-    return model_ ? model_->gobj () : nullptr;
+    return (model_) ? model_->gobj () : nullptr;
   }
 
   auto
   TreeIterBase3::get_model_gobject () const -> const GtkTreeModel*
   {
-    return model_ ? model_->gobj () : nullptr;
+    return (model_) ? model_->gobj () : nullptr;
   }
 
   auto
@@ -147,7 +153,7 @@ namespace Gtk
   }
 
   auto
-  TreeIterBase3::set_stamp (const int stamp) -> void
+  TreeIterBase3::set_stamp (int stamp) -> void
   {
     gobj ()->stamp = stamp;
   }
@@ -212,7 +218,7 @@ namespace Gtk
   }
 
   auto
-  TreeRow::set_value_impl (const int column, const Glib::ValueBase& value) -> void
+  TreeRow::set_value_impl (int column, const Glib::ValueBase& value) -> void
   {
     model_->set_value_impl (
         static_cast<TreeIter<TreeRow>&> (static_cast<TreeIterBase2&> (*this)),
@@ -221,7 +227,7 @@ namespace Gtk
   }
 
   auto
-  TreeRow::get_value_impl (const int column, Glib::ValueBase& value) const -> void
+  TreeRow::get_value_impl (int column, Glib::ValueBase& value) const -> void
   {
     model_->get_value_impl (static_cast<const TreeIter<TreeConstRow>&> (
                                 static_cast<const TreeIterBase2&> (*this)),
@@ -230,7 +236,7 @@ namespace Gtk
   }
 
   auto
-  TreeConstRow::get_value_impl (const int column, Glib::ValueBase& value) const -> void
+  TreeConstRow::get_value_impl (int column, Glib::ValueBase& value) const -> void
   {
     model_->get_value_impl (static_cast<const TreeIter<TreeConstRow>&> (
                                 static_cast<const TreeIterBase2&> (*this)),
@@ -244,7 +250,7 @@ namespace Gtk
   }
 
   auto
-  TreeNodeChildren::begin () -> iterator
+  TreeNodeChildren::begin () -> TreeNodeChildren::iterator
   {
     iterator iter (model_);
 
@@ -270,7 +276,7 @@ namespace Gtk
   }
 
   auto
-  TreeNodeConstChildren::begin () const -> const_iterator
+  TreeNodeConstChildren::begin () const -> TreeNodeConstChildren::const_iterator
   {
     return const_cast<TreeNodeChildren*> (
                static_cast<const TreeNodeChildren*> (this))
@@ -278,7 +284,7 @@ namespace Gtk
   }
 
   auto
-  TreeNodeChildren::end () -> iterator
+  TreeNodeChildren::end () -> TreeNodeChildren::iterator
   {
     iterator iter (model_);
     iter.gobject_ = gobject_;
@@ -287,7 +293,7 @@ namespace Gtk
   }
 
   auto
-  TreeNodeConstChildren::end () const -> const_iterator
+  TreeNodeConstChildren::end () const -> TreeNodeConstChildren::const_iterator
   {
     return const_cast<TreeNodeChildren*> (
                static_cast<const TreeNodeChildren*> (this))
@@ -295,7 +301,7 @@ namespace Gtk
   }
 
   auto
-  TreeNodeChildren::operator[] (const size_type index) -> value_type
+  TreeNodeChildren::operator[] (TreeNodeChildren::size_type index) -> TreeNodeChildren::value_type
   {
     iterator iter (model_);
 
@@ -314,7 +320,7 @@ namespace Gtk
   }
 
   auto
-  TreeNodeConstChildren::operator[] (const size_type index) const -> const value_type
+  TreeNodeConstChildren::operator[] (TreeNodeChildren::size_type index) const -> const TreeNodeConstChildren::value_type
   {
     const_iterator iter (model_);
 
@@ -333,7 +339,7 @@ namespace Gtk
   }
 
   auto
-  TreeNodeConstChildren::size () const -> size_type
+  TreeNodeConstChildren::size () const -> TreeNodeConstChildren::size_type
   {
     const auto parent = const_cast<GtkTreeIter*> (get_parent_gobject ());
 
@@ -363,10 +369,17 @@ namespace
 namespace Gtk
 {
 
-  TreeIterBase::TreeIterBase (const TreeIterBase& other) noexcept = default;
+  TreeIterBase::TreeIterBase (const TreeIterBase& other) noexcept
+    : gobject_ (other.gobject_)
+  {
+  }
 
   auto
-  TreeIterBase::operator= (const TreeIterBase& other) noexcept -> TreeIterBase& = default;
+  TreeIterBase::operator= (const TreeIterBase& other) noexcept -> TreeIterBase&
+  {
+    gobject_ = other.gobject_;
+    return *this;
+  }
 
   TreeIterBase::TreeIterBase (TreeIterBase&& other) noexcept
     : gobject_ (std::move (other.gobject_))
@@ -400,3 +413,5 @@ namespace Gtk
   }
 
 } // namespace Gtk
+
+#endif

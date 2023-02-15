@@ -20,9 +20,10 @@ namespace Glib
 {
 
   auto
-  wrap (GtkGrid* object, const bool take_copy) -> Gtk::Grid*
+  wrap (GtkGrid* object, bool take_copy) -> Gtk::Grid*
   {
-    return dynamic_cast<Gtk::Grid*> (wrap_auto ((GObject*) object, take_copy));
+    return dynamic_cast<Gtk::Grid*> (
+        Glib::wrap_auto ((GObject*) (object), take_copy));
   }
 
 } // namespace Glib
@@ -31,7 +32,7 @@ namespace Gtk
 {
 
   auto
-  Grid_Class::init () -> const Class&
+  Grid_Class::init () -> const Glib::Class&
   {
     if (!gtype_)
     {
@@ -55,21 +56,21 @@ namespace Gtk
   auto
   Grid_Class::wrap_new (GObject* o) -> Glib::ObjectBase*
   {
-    return manage (new Grid ((GtkGrid*) o));
+    return manage (new Grid ((GtkGrid*) (o)));
   }
 
   Grid::Grid (const Glib::ConstructParams& construct_params)
-    : Widget (construct_params)
+    : Gtk::Widget (construct_params)
   {
   }
 
   Grid::Grid (GtkGrid* castitem)
-    : Widget ((GtkWidget*) castitem)
+    : Gtk::Widget ((GtkWidget*) (castitem))
   {
   }
 
   Grid::Grid (Grid&& src) noexcept
-    : Widget (std::move (src)),
+    : Gtk::Widget (std::move (src)),
       Orientable (std::move (src))
   {
   }
@@ -77,7 +78,7 @@ namespace Gtk
   auto
   Grid::operator= (Grid&& src) noexcept -> Grid&
   {
-    Widget::operator= (std::move (src));
+    Gtk::Widget::operator= (std::move (src));
     Orientable::operator= (std::move (src));
     return *this;
   }
@@ -102,44 +103,37 @@ namespace Gtk
   }
 
   Grid::Grid ()
-    : ObjectBase (nullptr),
-      Widget (Glib::ConstructParams (grid_class_.init ()))
+    : Glib::ObjectBase (nullptr),
+      Gtk::Widget (Glib::ConstructParams (grid_class_.init ()))
   {
   }
 
   auto
-  Grid::attach (Widget& child,
-                const int column,
-                const int row,
-                const int width,
-                const int height) -> void
+  Grid::attach (Widget& child, int column, int row, int width, int height) -> void
   {
-    gtk_grid_attach (gobj (), child.gobj (), column, row, width, height);
+    gtk_grid_attach (gobj (), (child).gobj (), column, row, width, height);
   }
 
   auto
   Grid::attach_next_to (Widget& child,
                         Widget& sibling,
                         PositionType side,
-                        const int width,
-                        const int height) -> void
+                        int width,
+                        int height) -> void
   {
     gtk_grid_attach_next_to (gobj (),
-                             child.gobj (),
-                             sibling.gobj (),
+                             (child).gobj (),
+                             (sibling).gobj (),
                              static_cast<GtkPositionType> (side),
                              width,
                              height);
   }
 
   auto
-  Grid::attach_next_to (Widget& child,
-                        PositionType side,
-                        const int width,
-                        const int height) -> void
+  Grid::attach_next_to (Widget& child, PositionType side, int width, int height) -> void
   {
     gtk_grid_attach_next_to (gobj (),
-                             child.gobj (),
+                             (child).gobj (),
                              nullptr,
                              static_cast<GtkPositionType> (side),
                              width,
@@ -147,13 +141,13 @@ namespace Gtk
   }
 
   auto
-  Grid::get_child_at (const int column, const int row) -> Widget*
+  Grid::get_child_at (int column, int row) -> Widget*
   {
     return Glib::wrap (gtk_grid_get_child_at (gobj (), column, row));
   }
 
   auto
-  Grid::get_child_at (const int column, const int row) const -> const Widget*
+  Grid::get_child_at (int column, int row) const -> const Widget*
   {
     return Glib::wrap (
         gtk_grid_get_child_at (const_cast<GtkGrid*> (gobj ()), column, row));
@@ -162,29 +156,29 @@ namespace Gtk
   auto
   Grid::remove (Widget& child) -> void
   {
-    gtk_grid_remove (gobj (), child.gobj ());
+    gtk_grid_remove (gobj (), (child).gobj ());
   }
 
   auto
-  Grid::insert_row (const int position) -> void
+  Grid::insert_row (int position) -> void
   {
     gtk_grid_insert_row (gobj (), position);
   }
 
   auto
-  Grid::insert_column (const int position) -> void
+  Grid::insert_column (int position) -> void
   {
     gtk_grid_insert_column (gobj (), position);
   }
 
   auto
-  Grid::remove_row (const int position) -> void
+  Grid::remove_row (int position) -> void
   {
     gtk_grid_remove_row (gobj (), position);
   }
 
   auto
-  Grid::remove_column (const int position) -> void
+  Grid::remove_column (int position) -> void
   {
     gtk_grid_remove_column (gobj (), position);
   }
@@ -193,14 +187,14 @@ namespace Gtk
   Grid::insert_next_to (Widget& sibling, PositionType side) -> void
   {
     gtk_grid_insert_next_to (gobj (),
-                             sibling.gobj (),
+                             (sibling).gobj (),
                              static_cast<GtkPositionType> (side));
   }
 
   auto
-  Grid::set_row_homogeneous (const bool homogeneous) -> void
+  Grid::set_row_homogeneous (bool homogeneous) -> void
   {
-    gtk_grid_set_row_homogeneous (gobj (), homogeneous);
+    gtk_grid_set_row_homogeneous (gobj (), static_cast<int> (homogeneous));
   }
 
   auto
@@ -210,7 +204,7 @@ namespace Gtk
   }
 
   auto
-  Grid::set_row_spacing (const guint spacing) -> void
+  Grid::set_row_spacing (guint spacing) -> void
   {
     gtk_grid_set_row_spacing (gobj (), spacing);
   }
@@ -222,9 +216,9 @@ namespace Gtk
   }
 
   auto
-  Grid::set_column_homogeneous (const bool homogeneous) -> void
+  Grid::set_column_homogeneous (bool homogeneous) -> void
   {
-    gtk_grid_set_column_homogeneous (gobj (), homogeneous);
+    gtk_grid_set_column_homogeneous (gobj (), static_cast<int> (homogeneous));
   }
 
   auto
@@ -234,7 +228,7 @@ namespace Gtk
   }
 
   auto
-  Grid::set_column_spacing (const guint spacing) -> void
+  Grid::set_column_spacing (guint spacing) -> void
   {
     gtk_grid_set_column_spacing (gobj (), spacing);
   }
@@ -246,7 +240,7 @@ namespace Gtk
   }
 
   auto
-  Grid::set_row_baseline_position (const int row, BaselinePosition pos) -> void
+  Grid::set_row_baseline_position (int row, BaselinePosition pos) -> void
   {
     gtk_grid_set_row_baseline_position (gobj (),
                                         row,
@@ -254,7 +248,7 @@ namespace Gtk
   }
 
   auto
-  Grid::get_row_baseline_position (const int row) const -> BaselinePosition
+  Grid::get_row_baseline_position (int row) const -> BaselinePosition
   {
     return static_cast<BaselinePosition> (
         gtk_grid_get_row_baseline_position (const_cast<GtkGrid*> (gobj ()),
@@ -262,7 +256,7 @@ namespace Gtk
   }
 
   auto
-  Grid::set_baseline_row (const int row) -> void
+  Grid::set_baseline_row (int row) -> void
   {
     gtk_grid_set_baseline_row (gobj (), row);
   }
@@ -281,71 +275,71 @@ namespace Gtk
                      int& height) const -> void
   {
     gtk_grid_query_child (const_cast<GtkGrid*> (gobj ()),
-                          const_cast<GtkWidget*> (child.gobj ()),
-                          &column,
-                          &row,
-                          &width,
-                          &height);
+                          const_cast<GtkWidget*> ((child).gobj ()),
+                          &(column),
+                          &(row),
+                          &(width),
+                          &(height));
   }
 
   auto
   Grid::property_row_spacing () -> Glib::PropertyProxy<guint>
   {
-    return {this, "row-spacing"};
+    return Glib::PropertyProxy<guint> (this, "row-spacing");
   }
 
   auto
   Grid::property_row_spacing () const -> Glib::PropertyProxy_ReadOnly<guint>
   {
-    return {this, "row-spacing"};
+    return Glib::PropertyProxy_ReadOnly<guint> (this, "row-spacing");
   }
 
   auto
   Grid::property_column_spacing () -> Glib::PropertyProxy<guint>
   {
-    return {this, "column-spacing"};
+    return Glib::PropertyProxy<guint> (this, "column-spacing");
   }
 
   auto
   Grid::property_column_spacing () const -> Glib::PropertyProxy_ReadOnly<guint>
   {
-    return {this, "column-spacing"};
+    return Glib::PropertyProxy_ReadOnly<guint> (this, "column-spacing");
   }
 
   auto
   Grid::property_row_homogeneous () -> Glib::PropertyProxy<bool>
   {
-    return {this, "row-homogeneous"};
+    return Glib::PropertyProxy<bool> (this, "row-homogeneous");
   }
 
   auto
   Grid::property_row_homogeneous () const -> Glib::PropertyProxy_ReadOnly<bool>
   {
-    return {this, "row-homogeneous"};
+    return Glib::PropertyProxy_ReadOnly<bool> (this, "row-homogeneous");
   }
 
   auto
   Grid::property_column_homogeneous () -> Glib::PropertyProxy<bool>
   {
-    return {this, "column-homogeneous"};
+    return Glib::PropertyProxy<bool> (this, "column-homogeneous");
   }
 
   auto
   Grid::property_column_homogeneous () const -> Glib::PropertyProxy_ReadOnly<bool>
   {
-    return {this, "column-homogeneous"};
+    return Glib::PropertyProxy_ReadOnly<bool> (this, "column-homogeneous");
   }
 
   auto
   Grid::property_baseline_row () -> Glib::PropertyProxy<int>
   {
-    return {this, "baseline-row"};
+    return Glib::PropertyProxy<int> (this, "baseline-row");
   }
 
   auto
   Grid::property_baseline_row () const -> Glib::PropertyProxy_ReadOnly<int>
   {
-    return {this, "baseline-row"};
+    return Glib::PropertyProxy_ReadOnly<int> (this, "baseline-row");
   }
 
 } // namespace Gtk

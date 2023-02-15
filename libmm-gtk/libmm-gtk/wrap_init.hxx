@@ -10,8 +10,8 @@ namespace Gtk
 
 #define GDK_DISABLE_DEPRECATION_WARNINGS 1
 
-  GTKMM_API void
-  wrap_init ();
+  GTKMM_API auto
+  wrap_init () -> void;
 
 } // namespace Gtk
 

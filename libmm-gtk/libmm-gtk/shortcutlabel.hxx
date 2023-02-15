@@ -86,14 +86,14 @@ namespace Gtk
     auto
     get_accelerator () const -> Glib::ustring;
 
-    void
-    set_accelerator (const Glib::ustring& accelerator);
+    auto
+    set_accelerator (const Glib::ustring& accelerator) -> void;
 
     auto
     get_disabled_text () const -> Glib::ustring;
 
-    void
-    set_disabled_text (const Glib::ustring& disabled_text);
+    auto
+    set_disabled_text (const Glib::ustring& disabled_text) -> void;
 
     auto
     property_accelerator () -> Glib::PropertyProxy<Glib::ustring>;
@@ -118,9 +118,7 @@ namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkShortcutLabel* object, bool take_copy = false) -> Gtk::ShortcutLabel*;
 } // namespace Glib
 

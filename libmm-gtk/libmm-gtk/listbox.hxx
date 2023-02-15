@@ -94,17 +94,17 @@ namespace Gtk
 
     typedef sigc::slot<void (ListBoxRow*, ListBoxRow*)> SlotUpdateHeader;
 
-    void
-    prepend (Widget& child);
+    auto
+    prepend (Widget& child) -> void;
 
-    void
-    append (Widget& child);
+    auto
+    append (Widget& child) -> void;
 
-    void
-    insert (Widget& child, int position);
+    auto
+    insert (Widget& child, int position) -> void;
 
-    void
-    remove (Widget& child);
+    auto
+    remove (Widget& child) -> void;
 
     auto
     get_selected_row () -> ListBoxRow*;
@@ -124,20 +124,20 @@ namespace Gtk
     auto
     get_row_at_y (int y) const -> const ListBoxRow*;
 
-    void
-    select_row (ListBoxRow& row);
+    auto
+    select_row (ListBoxRow& row) -> void;
 
-    void
-    unselect_row ();
+    auto
+    unselect_row () -> void;
 
-    void
-    set_placeholder (Widget& placeholder);
+    auto
+    set_placeholder (Widget& placeholder) -> void;
 
-    void
-    unset_placeholder ();
+    auto
+    unset_placeholder () -> void;
 
-    void
-    set_adjustment (const Glib::RefPtr<Adjustment>& adjustment);
+    auto
+    set_adjustment (const Glib::RefPtr<Adjustment>& adjustment) -> void;
 
     auto
     get_adjustment () -> Glib::RefPtr<Adjustment>;
@@ -147,8 +147,8 @@ namespace Gtk
 
     typedef sigc::slot<void (ListBoxRow*)> SlotForeach;
 
-    void
-    selected_foreach (const SlotForeach& slot);
+    auto
+    selected_foreach (const SlotForeach& slot) -> void;
 
     auto
     get_selected_rows () -> std::vector<ListBoxRow*>;
@@ -156,75 +156,76 @@ namespace Gtk
     auto
     get_selected_rows () const -> std::vector<ListBoxRow*>;
 
-    void
-    unselect_row (ListBoxRow* row);
+    auto
+    unselect_row (ListBoxRow* row) -> void;
 
-    void
-    select_all ();
+    auto
+    select_all () -> void;
 
-    void
-    unselect_all ();
+    auto
+    unselect_all () -> void;
 
-    void
-    set_selection_mode (SelectionMode mode);
+    auto
+    set_selection_mode (SelectionMode mode) -> void;
 
     auto
     get_selection_mode () const -> SelectionMode;
 
-    void
-    set_filter_func (const SlotFilter& slot);
+    auto
+    set_filter_func (const SlotFilter& slot) -> void;
 
-    void
-    unset_filter_func ();
+    auto
+    unset_filter_func () -> void;
 
-    void
-    set_sort_func (const SlotSort& slot);
+    auto
+    set_sort_func (const SlotSort& slot) -> void;
 
-    void
-    unset_sort_func ();
+    auto
+    unset_sort_func () -> void;
 
-    void
-    set_header_func (const SlotUpdateHeader& slot);
+    auto
+    set_header_func (const SlotUpdateHeader& slot) -> void;
 
-    void
-    unset_header_func ();
+    auto
+    unset_header_func () -> void;
 
-    void
-    invalidate_filter ();
+    auto
+    invalidate_filter () -> void;
 
-    void
-    invalidate_sort ();
+    auto
+    invalidate_sort () -> void;
 
-    void
-    invalidate_headers ();
+    auto
+    invalidate_headers () -> void;
 
-    void
-    set_activate_on_single_click (bool single = true);
+    auto
+    set_activate_on_single_click (bool single = true) -> void;
 
     auto
     get_activate_on_single_click () const -> bool;
 
-    void
-    drag_unhighlight_row ();
+    auto
+    drag_unhighlight_row () -> void;
 
-    void
-    drag_highlight_row (ListBoxRow& row);
+    auto
+    drag_highlight_row (ListBoxRow& row) -> void;
 
     template <typename T_item>
     using SlotCreateWidget =
         sigc::slot<Gtk::Widget*(const Glib::RefPtr<T_item>&)>;
 
-    void
+    auto
     bind_model (const Glib::RefPtr<Gio::ListModel>& model,
-                const SlotCreateWidget<Glib::Object>& slot_create_widget);
+                const SlotCreateWidget<Glib::Object>& slot_create_widget)
+        -> void;
 
     template <typename T_item, typename T_slot>
-    void
+    auto
     bind_list_store (const Glib::RefPtr<Gio::ListStore<T_item>>& store,
-                     T_slot&& slot_create_widget);
+                     T_slot&& slot_create_widget) -> void;
 
-    void
-    set_show_separators (bool show_separators = true);
+    auto
+    set_show_separators (bool show_separators = true) -> void;
 
     auto
     get_show_separators () const -> bool;
@@ -279,9 +280,9 @@ namespace Gtk
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   template <typename T_item, typename T_slot>
-  void
+  auto
   ListBox::bind_list_store (const Glib::RefPtr<Gio::ListStore<T_item>>& store,
-                            T_slot&& slot_create_widget)
+                            T_slot&& slot_create_widget) -> void
   {
     auto slot_copy = new SlotCreateWidget<T_item> (
         std::forward<T_slot> (slot_create_widget));
@@ -321,9 +322,7 @@ namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkListBox* object, bool take_copy = false) -> Gtk::ListBox*;
 } // namespace Glib
 

@@ -87,8 +87,8 @@ namespace Gtk
 
     ~PaperSize () noexcept;
 
-    void
-    swap (PaperSize& other) noexcept;
+    auto
+    swap (PaperSize& other) noexcept -> void;
 
     auto
     gobj () -> GtkPaperSize*
@@ -153,8 +153,8 @@ namespace Gtk
     auto
     is_ipp () const -> bool;
 
-    void
-    set_size (double width, double height, Unit unit);
+    auto
+    set_size (double width, double height, Unit unit) -> void;
 
     auto
     get_default_top_margin (Unit unit) const -> double;
@@ -171,12 +171,12 @@ namespace Gtk
     static auto
     get_default () -> Glib::ustring;
 
-    void
+    auto
     save_to_key_file (const Glib::RefPtr<Glib::KeyFile>& key_file,
-                      const Glib::ustring& group_name);
+                      const Glib::ustring& group_name) -> void;
 
-    void
-    save_to_key_file (const Glib::RefPtr<Glib::KeyFile>& key_file);
+    auto
+    save_to_key_file (const Glib::RefPtr<Glib::KeyFile>& key_file) -> void;
   };
 
   inline auto
@@ -216,8 +216,8 @@ namespace Gtk
       return PaperSize (const_cast<GtkPaperSize*> (ptr), true);
     }
 
-    static void
-    release_c_type (CType ptr);
+    static auto
+    release_c_type (CType ptr) -> void;
   };
 #endif
 
@@ -226,8 +226,8 @@ namespace Gtk
 namespace Gtk
 {
 
-  inline void
-  swap (PaperSize& lhs, PaperSize& rhs) noexcept
+  inline auto
+  swap (PaperSize& lhs, PaperSize& rhs) noexcept -> void
   {
     lhs.swap (rhs);
   }
@@ -236,9 +236,7 @@ namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkPaperSize* object, bool take_copy = false) -> Gtk::PaperSize;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

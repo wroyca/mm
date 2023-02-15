@@ -7,10 +7,8 @@
 
 namespace Gtk
 {
-
-  GTKMM_API
-  void
-  init_gtkmm_internals ();
+  GTKMM_API auto
+  init_gtkmm_internals () -> void;
 
 } // namespace Gtk
 

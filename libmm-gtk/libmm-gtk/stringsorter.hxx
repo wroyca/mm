@@ -22,6 +22,34 @@ namespace Gtk
 namespace Gtk
 {
 
+  enum class Collation
+  {
+    NONE,
+    UNICODE,
+    FILENAME
+  };
+
+} // namespace Gtk
+
+#ifndef DOXYGEN_SHOULD_SKIP_THIS
+namespace Glib
+{
+
+  template <>
+  class GTKMM_API Value<Gtk::Collation>
+    : public Glib::Value_Enum<Gtk::Collation>
+  {
+  public:
+    static auto
+    value_type () -> GType G_GNUC_CONST;
+  };
+
+} // namespace Glib
+#endif
+
+namespace Gtk
+{
+
   class GTKMM_API StringSorter : public Sorter
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -93,14 +121,21 @@ namespace Gtk
     auto
     get_expression () const -> Glib::RefPtr<const Expression<Glib::ustring>>;
 
-    void
-    set_expression (const Glib::RefPtr<Expression<Glib::ustring>>& expression);
+    auto
+    set_expression (const Glib::RefPtr<Expression<Glib::ustring>>& expression)
+        -> void;
 
     auto
     get_ignore_case () const -> bool;
 
-    void
-    set_ignore_case (bool ignore_case = true);
+    auto
+    set_ignore_case (bool ignore_case = true) -> void;
+
+    auto
+    set_collation (Collation collation) -> void;
+
+    auto
+    get_collation () const -> Collation;
 
     auto
     property_expression ()
@@ -116,6 +151,12 @@ namespace Gtk
     auto
     property_ignore_case () const -> Glib::PropertyProxy_ReadOnly<bool>;
 
+    auto
+    property_collation () -> Glib::PropertyProxy<Collation>;
+
+    auto
+    property_collation () const -> Glib::PropertyProxy_ReadOnly<Collation>;
+
   public:
   public:
   protected:
@@ -125,9 +166,7 @@ namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkStringSorter* object, bool take_copy = false) -> Glib::RefPtr<Gtk::StringSorter>;
 } // namespace Glib
 

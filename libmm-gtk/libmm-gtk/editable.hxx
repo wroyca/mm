@@ -71,8 +71,8 @@ namespace Gtk
 
     ~Editable () noexcept override;
 
-    static void
-    add_interface (GType gtype_implementer);
+    static auto
+    add_interface (GType gtype_implementer) -> void;
 
     static auto
     get_type () -> GType G_GNUC_CONST;
@@ -99,37 +99,37 @@ namespace Gtk
     auto
     get_text () const -> Glib::ustring;
 
-    void
-    set_text (const Glib::ustring& text);
+    auto
+    set_text (const Glib::ustring& text) -> void;
 
-    void
-    delete_selection ();
+    auto
+    delete_selection () -> void;
 
-    void
-    set_editable (bool is_editable = true);
+    auto
+    set_editable (bool is_editable = true) -> void;
 
     auto
     get_editable () const -> bool;
 
-    void
+    auto
     insert_text (const Glib::ustring& new_text,
                  int new_text_length,
-                 int& position);
+                 int& position) -> void;
 
-    void
-    delete_text (int start_pos, int end_pos);
+    auto
+    delete_text (int start_pos, int end_pos) -> void;
 
     auto
     get_chars (int start_pos, int end_pos) const -> Glib::ustring;
 
-    void
-    select_region (int start_pos, int end_pos);
+    auto
+    select_region (int start_pos, int end_pos) -> void;
 
     auto
     get_selection_bounds (int& start_pos, int& end_pos) const -> bool;
 
-    void
-    set_position (int position);
+    auto
+    set_position (int position) -> void;
 
     auto
     get_position () const -> int;
@@ -137,26 +137,26 @@ namespace Gtk
     auto
     get_alignment () const -> float;
 
-    void
-    set_alignment (float xalign);
+    auto
+    set_alignment (float xalign) -> void;
 
     auto
     get_width_chars () const -> int;
 
-    void
-    set_width_chars (int n_chars);
+    auto
+    set_width_chars (int n_chars) -> void;
 
     auto
     get_max_width_chars () const -> int;
 
-    void
-    set_max_width_chars (int n_chars);
+    auto
+    set_max_width_chars (int n_chars) -> void;
 
     auto
     get_enable_undo () const -> bool;
 
-    void
-    set_enable_undo (bool enable_undo = true);
+    auto
+    set_enable_undo (bool enable_undo = true) -> void;
 
     auto
     signal_insert_text ()
@@ -211,14 +211,14 @@ namespace Gtk
     property_xalign () const -> Glib::PropertyProxy_ReadOnly<float>;
 
   protected:
-    virtual void
-    delete_text_vfunc (int start_pos, int end_pos);
+    virtual auto
+    delete_text_vfunc (int start_pos, int end_pos) -> void;
 
     virtual auto
     get_text_vfunc () const -> Glib::ustring;
 
-    virtual void
-    select_region_vfunc (int start_pos, int end_pos);
+    virtual auto
+    select_region_vfunc (int start_pos, int end_pos) -> void;
 
     virtual auto
     get_selection_bounds_vfunc (int& start_pos, int& end_pos) const -> bool;
@@ -226,26 +226,24 @@ namespace Gtk
   public:
   public:
   protected:
-    virtual void
-    insert_text_vfunc (const Glib::ustring& text, int& position);
+    virtual auto
+    insert_text_vfunc (const Glib::ustring& text, int& position) -> void;
 
-    virtual void
-    on_insert_text (const Glib::ustring& text, int* position);
+    virtual auto
+    on_insert_text (const Glib::ustring& text, int* position) -> void;
 
-    virtual void
-    on_delete_text (int start_pos, int end_pos);
+    virtual auto
+    on_delete_text (int start_pos, int end_pos) -> void;
 
-    virtual void
-    on_changed ();
+    virtual auto
+    on_changed () -> void;
   };
 
 } // namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkEditable* object, bool take_copy = false) -> Glib::RefPtr<Gtk::Editable>;
 
 } // namespace Glib

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: LGPL-2.1-or-later
 
 #ifndef _GIOMM_SOCKETSERVICE_H
 #define _GIOMM_SOCKETSERVICE_H
@@ -85,11 +86,11 @@ namespace Gio
     static auto
     create () -> Glib::RefPtr<SocketService>;
 
-    void
-    start ();
+    auto
+    start () -> void;
 
-    void
-    stop ();
+    auto
+    stop () -> void;
 
     auto
     is_active () -> bool;

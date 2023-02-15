@@ -16,11 +16,11 @@ namespace Glib
 {
 
   auto
-  wrap (GdkCairoContext* object, const bool take_copy) -> RefPtr<Gdk::CairoContext>
+  wrap (GdkCairoContext* object, bool take_copy) -> Glib::RefPtr<Gdk::CairoContext>
   {
     return Glib::make_refptr_for_instance<Gdk::CairoContext> (
         dynamic_cast<Gdk::CairoContext*> (
-            wrap_auto ((GObject*) object, take_copy)));
+            Glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
 } // namespace Glib
@@ -29,7 +29,7 @@ namespace Gdk
 {
 
   auto
-  CairoContext_Class::init () -> const Class&
+  CairoContext_Class::init () -> const Glib::Class&
   {
     if (!gtype_)
     {
@@ -62,28 +62,28 @@ namespace Gdk
   }
 
   CairoContext::CairoContext (const Glib::ConstructParams& construct_params)
-    : DrawContext (construct_params)
+    : Gdk::DrawContext (construct_params)
   {
   }
 
   CairoContext::CairoContext (GdkCairoContext* castitem)
-    : DrawContext ((GdkDrawContext*) castitem)
+    : Gdk::DrawContext ((GdkDrawContext*) (castitem))
   {
   }
 
   CairoContext::CairoContext (CairoContext&& src) noexcept
-    : DrawContext (std::move (src))
+    : Gdk::DrawContext (std::move (src))
   {
   }
 
   auto
   CairoContext::operator= (CairoContext&& src) noexcept -> CairoContext&
   {
-    DrawContext::operator= (std::move (src));
+    Gdk::DrawContext::operator= (std::move (src));
     return *this;
   }
 
-  CairoContext::~CairoContext () noexcept = default;
+  CairoContext::~CairoContext () noexcept {}
 
   CairoContext::CppClassType CairoContext::cairocontext_class_;
 
@@ -100,15 +100,15 @@ namespace Gdk
   }
 
   CairoContext::CairoContext ()
-    : ObjectBase (nullptr),
-      DrawContext (Glib::ConstructParams (cairocontext_class_.init ()))
+    : Glib::ObjectBase (nullptr),
+      Gdk::DrawContext (Glib::ConstructParams (cairocontext_class_.init ()))
   {
   }
 
   auto
   CairoContext::cairo_create () -> ::Cairo::RefPtr<::Cairo::Context>
   {
-    return Cairo::wrap (gdk_cairo_context_cairo_create (gobj ()));
+    return Gdk::Cairo::wrap (gdk_cairo_context_cairo_create (gobj ()));
   }
 
 } // namespace Gdk

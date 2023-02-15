@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: LGPL-2.1-or-later
 
 #ifndef _GIOMM_DBUSWATCHNAME_H
 #define _GIOMM_DBUSWATCHNAME_H
@@ -89,9 +90,8 @@ namespace Gio::DBus
               const SlotNameVanished& name_vanished_slot = {},
               BusNameWatcherFlags flags = Gio::DBus::BusNameWatcherFlags::NONE) -> guint;
 
-  GIOMM_API
-  void
-  unwatch_name (guint watcher_id);
+  GIOMM_API auto
+  unwatch_name (guint watcher_id) -> void;
 
 } // namespace Gio::DBus
 

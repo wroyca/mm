@@ -36,11 +36,11 @@ namespace Glib
 {
 
   auto
-  wrap (GtkConstraint* object, const bool take_copy) -> RefPtr<Gtk::Constraint>
+  wrap (GtkConstraint* object, bool take_copy) -> Glib::RefPtr<Gtk::Constraint>
   {
     return Glib::make_refptr_for_instance<Gtk::Constraint> (
         dynamic_cast<Gtk::Constraint*> (
-            wrap_auto ((GObject*) object, take_copy)));
+            Glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
 } // namespace Glib
@@ -49,7 +49,7 @@ namespace Gtk
 {
 
   auto
-  Constraint_Class::init () -> const Class&
+  Constraint_Class::init () -> const Glib::Class&
   {
     if (!gtype_)
     {
@@ -82,28 +82,28 @@ namespace Gtk
   }
 
   Constraint::Constraint (const Glib::ConstructParams& construct_params)
-    : Object (construct_params)
+    : Glib::Object (construct_params)
   {
   }
 
   Constraint::Constraint (GtkConstraint* castitem)
-    : Object ((GObject*) castitem)
+    : Glib::Object ((GObject*) (castitem))
   {
   }
 
   Constraint::Constraint (Constraint&& src) noexcept
-    : Object (std::move (src))
+    : Glib::Object (std::move (src))
   {
   }
 
   auto
   Constraint::operator= (Constraint&& src) noexcept -> Constraint&
   {
-    Object::operator= (std::move (src));
+    Glib::Object::operator= (std::move (src));
     return *this;
   }
 
-  Constraint::~Constraint () noexcept = default;
+  Constraint::~Constraint () noexcept {}
 
   Constraint::CppClassType Constraint::constraint_class_;
 
@@ -120,65 +120,67 @@ namespace Gtk
   }
 
   Constraint::Constraint (const Glib::RefPtr<ConstraintTarget>& target,
-                          const Attribute target_attribute,
-                          const Relation relation,
+                          Attribute target_attribute,
+                          Relation relation,
                           const Glib::RefPtr<ConstraintTarget>& source,
-                          const Attribute source_attribute,
-                          const double multiplier,
-                          const double constant,
-                          const int strength)
-    : ObjectBase (nullptr),
-      Object (Glib::ConstructParams (constraint_class_.init (),
-                                     "target",
-                                     Glib::unwrap (target),
-                                     "target_attribute",
-                                     target_attribute,
-                                     "relation",
-                                     relation,
-                                     "source",
-                                     Glib::unwrap (source),
-                                     "source_attribute",
-                                     source_attribute,
-                                     "multiplier",
-                                     multiplier,
-                                     "constant",
-                                     constant,
-                                     "strength",
-                                     strength,
-                                     nullptr))
+                          Attribute source_attribute,
+                          double multiplier,
+                          double constant,
+                          int strength)
+    : Glib::ObjectBase (nullptr),
+      Glib::Object (Glib::ConstructParams (
+          constraint_class_.init (),
+          "target",
+          Glib::unwrap (target),
+          "target_attribute",
+          static_cast<GtkConstraintAttribute> (target_attribute),
+          "relation",
+          static_cast<GtkConstraintRelation> (relation),
+          "source",
+          Glib::unwrap (source),
+          "source_attribute",
+          static_cast<GtkConstraintAttribute> (source_attribute),
+          "multiplier",
+          multiplier,
+          "constant",
+          constant,
+          "strength",
+          strength,
+          nullptr))
   {
   }
 
   Constraint::Constraint (const Glib::RefPtr<ConstraintTarget>& target,
-                          const Attribute target_attribute,
-                          const Relation relation,
-                          const double constant,
-                          const int strength)
-    : ObjectBase (nullptr),
-      Object (Glib::ConstructParams (constraint_class_.init (),
-                                     "target",
-                                     Glib::unwrap (target),
-                                     "target_attribute",
-                                     target_attribute,
-                                     "relation",
-                                     relation,
-                                     "constant",
-                                     constant,
-                                     "strength",
-                                     strength,
-                                     nullptr))
+                          Attribute target_attribute,
+                          Relation relation,
+                          double constant,
+                          int strength)
+    : Glib::ObjectBase (nullptr),
+      Glib::Object (Glib::ConstructParams (
+          constraint_class_.init (),
+          "target",
+          Glib::unwrap (target),
+          "target_attribute",
+          static_cast<GtkConstraintAttribute> (target_attribute),
+          "relation",
+          static_cast<GtkConstraintRelation> (relation),
+          "constant",
+          constant,
+          "strength",
+          strength,
+          nullptr))
   {
   }
 
   auto
   Constraint::create (const Glib::RefPtr<ConstraintTarget>& target,
-                      const Attribute target_attribute,
-                      const Relation relation,
+                      Attribute target_attribute,
+                      Relation relation,
                       const Glib::RefPtr<ConstraintTarget>& source,
-                      const Attribute source_attribute,
-                      const double multiplier,
-                      const double constant,
-                      const int strength) -> Glib::RefPtr<Constraint>
+                      Attribute source_attribute,
+                      double multiplier,
+                      double constant,
+                      int strength) -> Glib::RefPtr<Constraint>
   {
     return Glib::make_refptr_for_instance<Constraint> (
         new Constraint (target,
@@ -193,10 +195,10 @@ namespace Gtk
 
   auto
   Constraint::create (const Glib::RefPtr<ConstraintTarget>& target,
-                      const Attribute target_attribute,
-                      const Relation relation,
-                      const double constant,
-                      const int strength) -> Glib::RefPtr<Constraint>
+                      Attribute target_attribute,
+                      Relation relation,
+                      double constant,
+                      int strength) -> Glib::RefPtr<Constraint>
   {
     return Glib::make_refptr_for_instance<Constraint> (
         new Constraint (target,
@@ -302,7 +304,9 @@ namespace Gtk
   auto
   Constraint::property_target () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<ConstraintTarget>>
   {
-    return {this, "target"};
+    return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<ConstraintTarget>> (
+        this,
+        "target");
   }
 
   static_assert (
@@ -313,7 +317,7 @@ namespace Gtk
   auto
   Constraint::property_target_attribute () const -> Glib::PropertyProxy_ReadOnly<Attribute>
   {
-    return {this, "target-attribute"};
+    return Glib::PropertyProxy_ReadOnly<Attribute> (this, "target-attribute");
   }
 
   static_assert (
@@ -324,7 +328,7 @@ namespace Gtk
   auto
   Constraint::property_relation () const -> Glib::PropertyProxy_ReadOnly<Relation>
   {
-    return {this, "relation"};
+    return Glib::PropertyProxy_ReadOnly<Relation> (this, "relation");
   }
 
   static_assert (
@@ -336,7 +340,9 @@ namespace Gtk
   auto
   Constraint::property_source () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<ConstraintTarget>>
   {
-    return {this, "source"};
+    return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<ConstraintTarget>> (
+        this,
+        "source");
   }
 
   static_assert (
@@ -347,25 +353,25 @@ namespace Gtk
   auto
   Constraint::property_source_attribute () const -> Glib::PropertyProxy_ReadOnly<Attribute>
   {
-    return {this, "source-attribute"};
+    return Glib::PropertyProxy_ReadOnly<Attribute> (this, "source-attribute");
   }
 
   auto
   Constraint::property_multiplier () const -> Glib::PropertyProxy_ReadOnly<double>
   {
-    return {this, "multiplier"};
+    return Glib::PropertyProxy_ReadOnly<double> (this, "multiplier");
   }
 
   auto
   Constraint::property_constant () const -> Glib::PropertyProxy_ReadOnly<double>
   {
-    return {this, "constant"};
+    return Glib::PropertyProxy_ReadOnly<double> (this, "constant");
   }
 
   auto
   Constraint::property_strength () const -> Glib::PropertyProxy_ReadOnly<int>
   {
-    return {this, "strength"};
+    return Glib::PropertyProxy_ReadOnly<int> (this, "strength");
   }
 
 } // namespace Gtk

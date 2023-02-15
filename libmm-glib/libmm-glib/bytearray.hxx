@@ -28,11 +28,11 @@ namespace Glib
     static auto
     get_type () -> GType G_GNUC_CONST;
 
-    void
-    reference () const;
+    auto
+    reference () const -> void;
 
-    void
-    unreference () const;
+    auto
+    unreference () const -> void;
 
     auto
     gobj () -> GByteArray*;
@@ -50,8 +50,8 @@ namespace Glib
     operator= (const ByteArray&) -> ByteArray& = delete;
 
   protected:
-    void
-    operator delete (void*, std::size_t);
+    auto
+    operator delete (void*, std::size_t) -> void;
 
   private:
   public:
@@ -84,8 +84,8 @@ namespace Glib
     auto
     remove_range (guint index, guint length) -> Glib::RefPtr<ByteArray>;
 
-    void
-    sort (const SlotCompare& slot);
+    auto
+    sort (const SlotCompare& slot) -> void;
 
     auto
     set_size (guint length) -> Glib::RefPtr<ByteArray>;

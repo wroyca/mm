@@ -85,39 +85,39 @@ namespace Gtk
 
     explicit Button (const Glib::ustring& label, bool mnemonic = false);
 
-    void
-    set_has_frame (bool has_frame = true);
+    auto
+    set_has_frame (bool has_frame = true) -> void;
 
     auto
     get_has_frame () const -> bool;
 
-    void
-    set_label (const Glib::ustring& label);
+    auto
+    set_label (const Glib::ustring& label) -> void;
 
     auto
     get_label () const -> Glib::ustring;
 
-    void
-    set_use_underline (bool use_underline = true);
+    auto
+    set_use_underline (bool use_underline = true) -> void;
 
     auto
     get_use_underline () const -> bool;
 
-    void
-    set_icon_name (const Glib::ustring& icon_name);
+    auto
+    set_icon_name (const Glib::ustring& icon_name) -> void;
 
     auto
     get_icon_name () const -> Glib::ustring;
 
-    void
+    auto
     set_image_from_icon_name (const Glib::ustring& icon_name,
                               IconSize size = IconSize::INHERIT,
-                              bool use_fallback = false);
+                              bool use_fallback = false) -> void;
 
-    void
-    set_child (Widget& child);
-    void
-    unset_child ();
+    auto
+    set_child (Widget& child) -> void;
+    auto
+    unset_child () -> void;
 
     auto
     get_child () -> Widget*;
@@ -161,17 +161,15 @@ namespace Gtk
   public:
   public:
   protected:
-    virtual void
-    on_clicked ();
+    virtual auto
+    on_clicked () -> void;
   };
 
 } // namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkButton* object, bool take_copy = false) -> Gtk::Button*;
 } // namespace Glib
 

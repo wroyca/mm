@@ -15,29 +15,33 @@ namespace Cairo
   class GDKMM_API Surface;
 } // namespace Cairo
 
-namespace Gdk::Cairo
+namespace Gdk
 {
+  namespace Cairo
+  {
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-  template <typename T>
-  auto
-  get_base_type () -> GType
-  {
-    static_assert (!std::is_same<T, T>::value,
-                   "No specialization available for type T.");
-    return 0;
-  }
+    template <typename T>
+    auto
+    get_base_type () -> GType
+    {
+      static_assert (!std::is_same<T, T>::value,
+                     "No specialization available for type T.");
+      return 0;
+    }
 
-  template <>
-  GDKMM_API auto
-  get_base_type<::Cairo::Region> () -> GType;
+    template <>
+    GDKMM_API auto
+    get_base_type<::Cairo::Region> () -> GType;
 
-  template <>
-  GDKMM_API auto
-  get_base_type<::Cairo::Surface> () -> GType;
+    template <>
+    GDKMM_API auto
+    get_base_type<::Cairo::Surface> () -> GType;
 #endif
 
-} // namespace Gdk::Cairo
+  } // namespace Cairo
+
+} // namespace Gdk
 
 namespace Glib
 {
@@ -59,8 +63,8 @@ namespace Glib
       return Gdk::Cairo::get_base_type<std::remove_const_t<T>> ();
     }
 
-    void
-    set (const CppType& data)
+    auto
+    set (const CppType& data) -> void
     {
       set_boxed (data->cobj ());
     }

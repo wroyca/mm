@@ -49,8 +49,8 @@ namespace Glib
 
     ~Checksum () noexcept;
 
-    void
-    swap (Checksum& other) noexcept;
+    auto
+    swap (Checksum& other) noexcept -> void;
 
     auto
     gobj () -> GChecksum*
@@ -85,17 +85,17 @@ namespace Glib
 
     explicit operator bool () const;
 
-    void
-    reset ();
+    auto
+    reset () -> void;
 
-    void
-    update (const guchar* data, gssize length);
+    auto
+    update (const guchar* data, gssize length) -> void;
 
-    void
-    update (const std::string& data);
+    auto
+    update (const std::string& data) -> void;
 
-    void
-    get_digest (guint8* buffer, gsize* digest_len) const;
+    auto
+    get_digest (guint8* buffer, gsize* digest_len) const -> void;
 
     auto
     get_string () const -> std::string;
@@ -117,8 +117,8 @@ namespace Glib
 namespace Glib
 {
 
-  inline void
-  swap (Checksum& lhs, Checksum& rhs) noexcept
+  inline auto
+  swap (Checksum& lhs, Checksum& rhs) noexcept -> void
   {
     lhs.swap (rhs);
   }

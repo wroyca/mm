@@ -50,8 +50,8 @@ namespace Glib
     static auto
     get_supported () -> bool;
 
-    void
-    make_resident ();
+    auto
+    make_resident () -> void;
 
     static auto
     get_last_error () -> std::string;

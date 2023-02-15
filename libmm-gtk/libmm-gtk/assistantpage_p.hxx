@@ -2,10 +2,11 @@
 
 #ifndef _GTKMM_ASSISTANTPAGE_P_H
 #define _GTKMM_ASSISTANTPAGE_P_H
+#ifndef GTKMM_DISABLE_DEPRECATED
 
-#include <libmm-glib/object_p.hxx>
+  #include <libmm-glib/object_p.hxx>
 
-#include <libmm-glib/class.hxx>
+  #include <libmm-glib/class.hxx>
 
 namespace Gtk
 {
@@ -13,7 +14,7 @@ namespace Gtk
   class GTKMM_API AssistantPage_Class : public Glib::Class
   {
   public:
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
     using CppObjectType = AssistantPage;
     using BaseObjectType = GtkAssistantPage;
     using BaseClassType = GtkAssistantPageClass;
@@ -21,10 +22,10 @@ namespace Gtk
     using BaseClassParent = GObjectClass;
 
     friend class AssistantPage;
-#endif
+  #endif
 
     auto
-    init () -> const Class&;
+    init () -> const Glib::Class&;
 
     static auto
     class_init_function (void* g_class, void* class_data) -> void;
@@ -36,5 +37,7 @@ namespace Gtk
   };
 
 } // namespace Gtk
+
+#endif
 
 #endif

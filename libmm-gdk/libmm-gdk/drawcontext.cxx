@@ -17,11 +17,11 @@ namespace Glib
 {
 
   auto
-  wrap (GdkDrawContext* object, const bool take_copy) -> RefPtr<Gdk::DrawContext>
+  wrap (GdkDrawContext* object, bool take_copy) -> Glib::RefPtr<Gdk::DrawContext>
   {
     return Glib::make_refptr_for_instance<Gdk::DrawContext> (
         dynamic_cast<Gdk::DrawContext*> (
-            wrap_auto ((GObject*) object, take_copy)));
+            Glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
 } // namespace Glib
@@ -30,7 +30,7 @@ namespace Gdk
 {
 
   auto
-  DrawContext_Class::init () -> const Class&
+  DrawContext_Class::init () -> const Glib::Class&
   {
     if (!gtype_)
     {
@@ -63,28 +63,28 @@ namespace Gdk
   }
 
   DrawContext::DrawContext (const Glib::ConstructParams& construct_params)
-    : Object (construct_params)
+    : Glib::Object (construct_params)
   {
   }
 
   DrawContext::DrawContext (GdkDrawContext* castitem)
-    : Object ((GObject*) castitem)
+    : Glib::Object ((GObject*) (castitem))
   {
   }
 
   DrawContext::DrawContext (DrawContext&& src) noexcept
-    : Object (std::move (src))
+    : Glib::Object (std::move (src))
   {
   }
 
   auto
   DrawContext::operator= (DrawContext&& src) noexcept -> DrawContext&
   {
-    Object::operator= (std::move (src));
+    Glib::Object::operator= (std::move (src));
     return *this;
   }
 
-  DrawContext::~DrawContext () noexcept = default;
+  DrawContext::~DrawContext () noexcept {}
 
   DrawContext::CppClassType DrawContext::drawcontext_class_;
 
@@ -101,8 +101,8 @@ namespace Gdk
   }
 
   DrawContext::DrawContext ()
-    : ObjectBase (nullptr),
-      Object (Glib::ConstructParams (drawcontext_class_.init ()))
+    : Glib::ObjectBase (nullptr),
+      Glib::Object (Glib::ConstructParams (drawcontext_class_.init ()))
   {
   }
 
@@ -140,7 +140,8 @@ namespace Gdk
   DrawContext::begin_frame (
       const ::Cairo::RefPtr<const ::Cairo::Region>& region) -> void
   {
-    gdk_draw_context_begin_frame (gobj (), region ? region->cobj () : nullptr);
+    gdk_draw_context_begin_frame (gobj (),
+                                  ((region) ? (region)->cobj () : nullptr));
   }
 
   auto
@@ -158,7 +159,7 @@ namespace Gdk
   auto
   DrawContext::get_frame_region () const -> ::Cairo::RefPtr<const ::Cairo::Region>
   {
-    auto retvalue = Cairo::wrap (
+    auto retvalue = Gdk::Cairo::wrap (
         const_cast<cairo_region_t*> (gdk_draw_context_get_frame_region (
             const_cast<GdkDrawContext*> (gobj ()))));
     if (retvalue)
@@ -175,7 +176,8 @@ namespace Gdk
   auto
   DrawContext::property_display () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Display>>
   {
-    return {this, "display"};
+    return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Display>> (this,
+                                                                "display");
   }
 
   static_assert (
@@ -187,7 +189,8 @@ namespace Gdk
   auto
   DrawContext::property_surface () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Surface>>
   {
-    return {this, "surface"};
+    return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Surface>> (this,
+                                                                "surface");
   }
 
 } // namespace Gdk

@@ -93,9 +93,7 @@ namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkBinLayout* object, bool take_copy = false) -> Glib::RefPtr<Gtk::BinLayout>;
 } // namespace Glib
 

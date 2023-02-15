@@ -60,13 +60,13 @@ namespace Glib
   public:
     ~SignalProxyNormal () noexcept;
 
-    void
-    emission_stop ();
+    auto
+    emission_stop () -> void;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
-    static void
-    slot0_void_callback (GObject*, void* data);
+    static auto
+    slot0_void_callback (GObject*, void* data) -> void;
 #endif
 
   protected:
@@ -159,8 +159,8 @@ namespace Glib
   public:
     ~SignalProxyDetailedBase () noexcept;
 
-    void
-    emission_stop ();
+    auto
+    emission_stop () -> void;
 
   protected:
     SignalProxyDetailedBase (Glib::ObjectBase* obj,

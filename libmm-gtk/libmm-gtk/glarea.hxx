@@ -89,56 +89,56 @@ namespace Gtk
     auto
     get_context () const -> Glib::RefPtr<const Gdk::GLContext>;
 
-    void
-    make_current ();
+    auto
+    make_current () -> void;
 
-    void
-    queue_render ();
+    auto
+    queue_render () -> void;
 
-    void
-    attach_buffers ();
+    auto
+    attach_buffers () -> void;
 
     auto
     has_error () const -> bool;
 
-    void
-    throw_if_error () const;
+    auto
+    throw_if_error () const -> void;
 
-    void
-    set_error (const Glib::Error& error);
+    auto
+    set_error (const Glib::Error& error) -> void;
 
-    void
-    unset_error ();
+    auto
+    unset_error () -> void;
 
     auto
     get_has_depth_buffer () const -> bool;
 
-    void
-    set_has_depth_buffer (bool has_depth_buffer = true);
+    auto
+    set_has_depth_buffer (bool has_depth_buffer = true) -> void;
 
     auto
     get_has_stencil_buffer () const -> bool;
 
-    void
-    set_has_stencil_buffer (bool has_stencil_buffer = true);
+    auto
+    set_has_stencil_buffer (bool has_stencil_buffer = true) -> void;
 
     auto
     get_auto_render () const -> bool;
 
-    void
-    set_auto_render (bool auto_render = true);
+    auto
+    set_auto_render (bool auto_render = true) -> void;
 
-    void
-    get_required_version (int& major, int& minor) const;
+    auto
+    get_required_version (int& major, int& minor) const -> void;
 
-    void
-    set_required_version (int major, int minor);
+    auto
+    set_required_version (int major, int minor) -> void;
 
     auto
     get_use_es () const -> bool;
 
-    void
-    set_use_es (bool use_es = true);
+    auto
+    set_use_es (bool use_es = true) -> void;
 
     auto
     property_auto_render () -> Glib::PropertyProxy<bool>;
@@ -188,17 +188,15 @@ namespace Gtk
     virtual auto
     on_render (const Glib::RefPtr<Gdk::GLContext>& context) -> bool;
 
-    virtual void
-    on_resize (int width, int height);
+    virtual auto
+    on_resize (int width, int height) -> void;
   };
 
 } // namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkGLArea* object, bool take_copy = false) -> Gtk::GLArea*;
 } // namespace Glib
 

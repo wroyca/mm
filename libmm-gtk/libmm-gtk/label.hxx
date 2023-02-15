@@ -92,47 +92,47 @@ namespace Gtk
            Align valign = Align::CENTER,
            bool mnemonic = false);
 
-    void
-    set_text (const Glib::ustring& str);
+    auto
+    set_text (const Glib::ustring& str) -> void;
 
     auto
     get_text () const -> Glib::ustring;
 
-    void
-    set_attributes (Pango::AttrList& attrs);
+    auto
+    set_attributes (Pango::AttrList& attrs) -> void;
 
     auto
     get_attributes () const -> Pango::AttrList;
 
-    void
-    set_label (const Glib::ustring& str);
+    auto
+    set_label (const Glib::ustring& str) -> void;
 
     auto
     get_label () const -> Glib::ustring;
 
-    void
-    set_markup (const Glib::ustring& str);
+    auto
+    set_markup (const Glib::ustring& str) -> void;
 
-    void
-    set_use_markup (bool setting = true);
+    auto
+    set_use_markup (bool setting = true) -> void;
 
     auto
     get_use_markup () const -> bool;
 
-    void
-    set_use_underline (bool setting = true);
+    auto
+    set_use_underline (bool setting = true) -> void;
 
     auto
     get_use_underline () const -> bool;
 
-    void
-    set_markup_with_mnemonic (const Glib::ustring& str);
+    auto
+    set_markup_with_mnemonic (const Glib::ustring& str) -> void;
 
     auto
     get_mnemonic_keyval () const -> guint;
 
-    void
-    set_mnemonic_widget (Widget& widget);
+    auto
+    set_mnemonic_widget (Widget& widget) -> void;
 
     auto
     get_mnemonic_widget () -> Widget*;
@@ -140,68 +140,68 @@ namespace Gtk
     auto
     get_mnemonic_widget () const -> const Widget*;
 
-    void
-    set_text_with_mnemonic (const Glib::ustring& str);
+    auto
+    set_text_with_mnemonic (const Glib::ustring& str) -> void;
 
-    void
-    set_justify (Justification jtype);
+    auto
+    set_justify (Justification jtype) -> void;
 
     auto
     get_justify () const -> Justification;
 
-    void
-    set_ellipsize (Pango::EllipsizeMode mode);
+    auto
+    set_ellipsize (Pango::EllipsizeMode mode) -> void;
 
     auto
     get_ellipsize () const -> Pango::EllipsizeMode;
 
-    void
-    set_width_chars (int n_chars);
+    auto
+    set_width_chars (int n_chars) -> void;
 
     auto
     get_width_chars () const -> int;
 
-    void
-    set_max_width_chars (int n_chars);
+    auto
+    set_max_width_chars (int n_chars) -> void;
 
     auto
     get_max_width_chars () const -> int;
 
-    void
-    set_lines (int lines);
+    auto
+    set_lines (int lines) -> void;
 
     auto
     get_lines () const -> int;
 
-    void
-    set_wrap (bool wrap = true);
+    auto
+    set_wrap (bool wrap = true) -> void;
 
     auto
     get_wrap () const -> bool;
 
-    void
-    set_wrap_mode (Pango::WrapMode wrap_mode);
+    auto
+    set_wrap_mode (Pango::WrapMode wrap_mode) -> void;
 
     auto
     get_wrap_mode () const -> Pango::WrapMode;
 
-    void
-    set_natural_wrap_mode (NaturalWrapMode wrap_mode);
+    auto
+    set_natural_wrap_mode (NaturalWrapMode wrap_mode) -> void;
 
     auto
     get_natural_wrap_mode () const -> NaturalWrapMode;
 
-    void
-    set_selectable (bool setting = true);
+    auto
+    set_selectable (bool setting = true) -> void;
 
     auto
     get_selectable () const -> bool;
 
-    void
-    select_region (int start_offset, int end_offset);
+    auto
+    select_region (int start_offset, int end_offset) -> void;
 
-    void
-    select_region (int start_offset);
+    auto
+    select_region (int start_offset) -> void;
 
     auto
     get_selection_bounds (int& start, int& end) const -> bool;
@@ -212,11 +212,11 @@ namespace Gtk
     auto
     get_layout () const -> Glib::RefPtr<const Pango::Layout>;
 
-    void
-    get_layout_offsets (int& x, int& y) const;
+    auto
+    get_layout_offsets (int& x, int& y) const -> void;
 
-    void
-    set_single_line_mode (bool single_line_mode = true);
+    auto
+    set_single_line_mode (bool single_line_mode = true) -> void;
 
     auto
     get_single_line_mode () const -> bool;
@@ -224,20 +224,20 @@ namespace Gtk
     auto
     get_current_uri () const -> Glib::ustring;
 
-    void
-    set_xalign (float xalign);
+    auto
+    set_xalign (float xalign) -> void;
 
     auto
     get_xalign () const -> float;
 
-    void
-    set_yalign (float yalign);
+    auto
+    set_yalign (float yalign) -> void;
 
     auto
     get_yalign () const -> float;
 
-    void
-    set_extra_menu (const Glib::RefPtr<Gio::MenuModel>& model);
+    auto
+    set_extra_menu (const Glib::RefPtr<Gio::MenuModel>& model) -> void;
 
     auto
     get_extra_menu () -> Glib::RefPtr<Gio::MenuModel>;
@@ -245,8 +245,8 @@ namespace Gtk
     auto
     get_extra_menu () const -> Glib::RefPtr<const Gio::MenuModel>;
 
-    void
-    set_tabs (const Pango::TabArray& tabs);
+    auto
+    set_tabs (const Pango::TabArray& tabs) -> void;
 
     auto
     get_tabs () const -> Pango::TabArray;
@@ -385,9 +385,7 @@ namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkLabel* object, bool take_copy = false) -> Gtk::Label*;
 } // namespace Glib
 

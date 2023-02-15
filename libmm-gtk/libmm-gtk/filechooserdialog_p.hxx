@@ -2,10 +2,11 @@
 
 #ifndef _GTKMM_FILECHOOSERDIALOG_P_H
 #define _GTKMM_FILECHOOSERDIALOG_P_H
+#ifndef GTKMM_DISABLE_DEPRECATED
 
-#include <libmm-gtk/dialog_p.hxx>
+  #include <libmm-gtk/dialog_p.hxx>
 
-#include <libmm-glib/class.hxx>
+  #include <libmm-glib/class.hxx>
 
 namespace Gtk
 {
@@ -13,18 +14,18 @@ namespace Gtk
   class GTKMM_API FileChooserDialog_Class : public Glib::Class
   {
   public:
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
     using CppObjectType = FileChooserDialog;
     using BaseObjectType = GtkFileChooserDialog;
     using BaseClassType = GtkFileChooserDialogClass;
-    using CppClassParent = Dialog_Class;
+    using CppClassParent = Gtk::Dialog_Class;
     using BaseClassParent = GtkDialogClass;
 
     friend class FileChooserDialog;
-#endif
+  #endif
 
     auto
-    init () -> const Class&;
+    init () -> const Glib::Class&;
 
     static auto
     class_init_function (void* g_class, void* class_data) -> void;
@@ -36,5 +37,7 @@ namespace Gtk
   };
 
 } // namespace Gtk
+
+#endif
 
 #endif

@@ -82,11 +82,11 @@ namespace Gtk
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
   private:
-    GTKMM_API static void
-    throw_func (GError* gobject);
+    GTKMM_API static auto
+    throw_func (GError* gobject) -> void;
 
-    friend GTKMM_API void
-    wrap_init ();
+    friend GTKMM_API auto
+    wrap_init () -> void;
 
 #endif
   };
@@ -192,8 +192,9 @@ namespace Gtk
     static auto
     create () -> Glib::RefPtr<PrintOperation>;
 
-    void
-    set_default_page_setup (const Glib::RefPtr<PageSetup>& default_page_setup);
+    auto
+    set_default_page_setup (const Glib::RefPtr<PageSetup>& default_page_setup)
+        -> void;
 
     auto
     get_default_page_setup () -> Glib::RefPtr<PageSetup>;
@@ -201,8 +202,9 @@ namespace Gtk
     auto
     get_default_page_setup () const -> Glib::RefPtr<const PageSetup>;
 
-    void
-    set_print_settings (const Glib::RefPtr<PrintSettings>& print_settings);
+    auto
+    set_print_settings (const Glib::RefPtr<PrintSettings>& print_settings)
+        -> void;
 
     auto
     get_print_settings () -> Glib::RefPtr<PrintSettings>;
@@ -210,35 +212,35 @@ namespace Gtk
     auto
     get_print_settings () const -> Glib::RefPtr<const PrintSettings>;
 
-    void
-    set_job_name (const Glib::ustring& job_name);
+    auto
+    set_job_name (const Glib::ustring& job_name) -> void;
 
-    void
-    set_n_pages (int n_pages);
+    auto
+    set_n_pages (int n_pages) -> void;
 
-    void
-    set_current_page (int current_page);
+    auto
+    set_current_page (int current_page) -> void;
 
-    void
-    set_use_full_page (bool use_full_page = true);
+    auto
+    set_use_full_page (bool use_full_page = true) -> void;
 
-    void
-    set_unit (Unit unit);
+    auto
+    set_unit (Unit unit) -> void;
 
-    void
-    set_export_filename (const std::string& filename);
+    auto
+    set_export_filename (const std::string& filename) -> void;
 
-    void
-    set_track_print_status (bool track_status = true);
+    auto
+    set_track_print_status (bool track_status = true) -> void;
 
-    void
-    set_show_progress (bool show_progress = true);
+    auto
+    set_show_progress (bool show_progress = true) -> void;
 
-    void
-    set_allow_async (bool allow_async = true);
+    auto
+    set_allow_async (bool allow_async = true) -> void;
 
-    void
-    set_custom_tab_label (const Glib::ustring& label);
+    auto
+    set_custom_tab_label (const Glib::ustring& label) -> void;
 
     auto
     run (Action action = Action::PRINT_DIALOG) -> Result;
@@ -252,32 +254,32 @@ namespace Gtk
     auto
     get_status_string () const -> Glib::ustring;
 
-    void
-    cancel ();
+    auto
+    cancel () -> void;
 
     auto
     is_finished () const -> bool;
 
-    void
-    draw_page_finish ();
+    auto
+    draw_page_finish () -> void;
 
-    void
-    set_defer_drawing ();
+    auto
+    set_defer_drawing () -> void;
 
-    void
-    set_support_selection (bool support_selection = true);
+    auto
+    set_support_selection (bool support_selection = true) -> void;
 
     auto
     get_support_selection () const -> bool;
 
-    void
-    set_has_selection (bool has_selection = true);
+    auto
+    set_has_selection (bool has_selection = true) -> void;
 
     auto
     get_has_selection () const -> bool;
 
-    void
-    set_embed_page_setup (bool embed = true);
+    auto
+    set_embed_page_setup (bool embed = true) -> void;
 
     auto
     get_embed_page_setup () const -> bool;
@@ -440,75 +442,73 @@ namespace Gtk
   public:
   public:
   protected:
-    virtual void
-    on_done (Result result);
+    virtual auto
+    on_done (Result result) -> void;
 
-    virtual void
-    on_begin_print (const Glib::RefPtr<PrintContext>& context);
+    virtual auto
+    on_begin_print (const Glib::RefPtr<PrintContext>& context) -> void;
 
     virtual auto
     on_paginate (const Glib::RefPtr<PrintContext>& context) -> bool;
 
-    virtual void
+    virtual auto
     on_request_page_setup (const Glib::RefPtr<PrintContext>& context,
                            int page_no,
-                           const Glib::RefPtr<PageSetup>& setup);
+                           const Glib::RefPtr<PageSetup>& setup) -> void;
 
-    virtual void
-    on_draw_page (const Glib::RefPtr<PrintContext>& context, int page_nr);
+    virtual auto
+    on_draw_page (const Glib::RefPtr<PrintContext>& context, int page_nr)
+        -> void;
 
-    virtual void
-    on_end_print (const Glib::RefPtr<PrintContext>& context);
+    virtual auto
+    on_end_print (const Glib::RefPtr<PrintContext>& context) -> void;
 
-    virtual void
-    on_status_changed ();
+    virtual auto
+    on_status_changed () -> void;
 
     virtual auto
     on_create_custom_widget () -> Widget*;
 
-    virtual void
-    on_custom_widget_apply (Widget* widget);
+    virtual auto
+    on_custom_widget_apply (Widget* widget) -> void;
 
     virtual auto
     on_preview (const Glib::RefPtr<PrintOperationPreview>& preview,
                 const Glib::RefPtr<PrintContext>& context,
                 Window* parent) -> bool;
 
-    virtual void
+    virtual auto
     on_update_custom_widget (Widget* widget,
                              const Glib::RefPtr<PageSetup>& setup,
-                             const Glib::RefPtr<PrintSettings>& settings);
+                             const Glib::RefPtr<PrintSettings>& settings)
+        -> void;
   };
 
-  GTKMM_API
-  auto
+  GTKMM_API auto
   run_page_setup_dialog (
       Window& parent,
       const Glib::RefPtr<const PageSetup>& page_setup,
       const Glib::RefPtr<const PrintSettings>& print_settings) -> Glib::RefPtr<PageSetup>;
 
-  GTKMM_API
-  auto
+  GTKMM_API auto
   run_page_setup_dialog (
       Window& parent,
       const Glib::RefPtr<const PrintSettings>& print_settings) -> Glib::RefPtr<PageSetup>;
 
   typedef sigc::slot<void (const Glib::RefPtr<PageSetup>&)> SlotPrintSetupDone;
 
-  GTKMM_API
-  void
+  GTKMM_API auto
   run_page_setup_dialog_async (
       Window& parent,
       const Glib::RefPtr<const PageSetup>& page_setup,
       const Glib::RefPtr<const PrintSettings>& print_settings,
-      const SlotPrintSetupDone& slot);
+      const SlotPrintSetupDone& slot) -> void;
 
-  GTKMM_API
-  void
+  GTKMM_API auto
   run_page_setup_dialog_async (
       Window& parent,
       const Glib::RefPtr<const PrintSettings>& print_settings,
-      const SlotPrintSetupDone& slot);
+      const SlotPrintSetupDone& slot) -> void;
 
 } // namespace Gtk
 
@@ -546,9 +546,7 @@ namespace Glib
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkPrintOperation* object, bool take_copy = false) -> Glib::RefPtr<Gtk::PrintOperation>;
 } // namespace Glib
 

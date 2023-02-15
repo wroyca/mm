@@ -1,11 +1,17 @@
 // SPDX-License-Identifier: LGPL-2.1-or-later
 
-#include <libmm-glib/mm-glib.hxx>
+#undef GTK_DISABLE_DEPRECATED
+#define GDK_DISABLE_DEPRECATION_WARNINGS 1
 
-#include <libmm-gtk/appchooser.hxx>
-#include <libmm-gtk/appchooser_p.hxx>
+#include <libmm-gtk/mm-gtkconfig.hxx>
+#ifndef GTKMM_DISABLE_DEPRECATED
 
-#include <gtk/gtk.h>
+  #include <libmm-glib/mm-glib.hxx>
+
+  #include <libmm-gtk/appchooser.hxx>
+  #include <libmm-gtk/appchooser_p.hxx>
+
+  #include <gtk/gtk.h>
 
 namespace
 {
@@ -15,11 +21,12 @@ namespace Glib
 {
 
   auto
-  wrap (GtkAppChooser* object, const bool take_copy) -> RefPtr<Gtk::AppChooser>
+  wrap (GtkAppChooser* object, bool take_copy) -> Glib::RefPtr<Gtk::AppChooser>
   {
     return Glib::make_refptr_for_instance<Gtk::AppChooser> (
-        Glib::wrap_auto_interface<Gtk::AppChooser> ((GObject*) object,
-                                                    take_copy));
+        dynamic_cast<Gtk::AppChooser*> (
+            Glib::wrap_auto_interface<Gtk::AppChooser> ((GObject*) (object),
+                                                        take_copy)));
   }
 
 } // namespace Glib
@@ -28,7 +35,7 @@ namespace Gtk
 {
 
   auto
-  AppChooser_Class::init () -> const Interface_Class&
+  AppChooser_Class::init () -> const Glib::Interface_Class&
   {
     if (!gtype_)
     {
@@ -51,40 +58,40 @@ namespace Gtk
   auto
   AppChooser_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
   {
-    return new AppChooser ((GtkAppChooser*) object);
+    return new AppChooser ((GtkAppChooser*) (object));
   }
 
   AppChooser::AppChooser ()
-    : Interface (appchooser_class_.init ())
+    : Glib::Interface (appchooser_class_.init ())
   {
   }
 
   AppChooser::AppChooser (GtkAppChooser* castitem)
-    : Interface ((GObject*) castitem)
+    : Glib::Interface ((GObject*) (castitem))
   {
   }
 
   AppChooser::AppChooser (const Glib::Interface_Class& interface_class)
-    : Interface (interface_class)
+    : Glib::Interface (interface_class)
   {
   }
 
   AppChooser::AppChooser (AppChooser&& src) noexcept
-    : Interface (std::move (src))
+    : Glib::Interface (std::move (src))
   {
   }
 
   auto
   AppChooser::operator= (AppChooser&& src) noexcept -> AppChooser&
   {
-    Interface::operator= (std::move (src));
+    Glib::Interface::operator= (std::move (src));
     return *this;
   }
 
-  AppChooser::~AppChooser () noexcept = default;
+  AppChooser::~AppChooser () noexcept {}
 
   auto
-  AppChooser::add_interface (const GType gtype_implementer) -> void
+  AppChooser::add_interface (GType gtype_implementer) -> void
   {
     appchooser_class_.init ().add_interface (gtype_implementer);
   }
@@ -135,7 +142,9 @@ namespace Gtk
   auto
   AppChooser::property_content_type () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>
   {
-    return {this, "content-type"};
+    return Glib::PropertyProxy_ReadOnly<Glib::ustring> (this, "content-type");
   }
 
 } // namespace Gtk
+
+#endif

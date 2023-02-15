@@ -1,19 +1,17 @@
 // SPDX-License-Identifier: LGPL-2.1-or-later
 
-#ifndef _WIN32
+#include <libmm-glib/mm-glib.hxx>
 
-  #include <libmm-glib/mm-glib.hxx>
+#include <libmm-gtk/printjob.hxx>
+#include <libmm-gtk/printjob_p.hxx>
 
-  #include <libmm-gdk/cairoutils.hxx>
-  #include <libmm-gtk/printjob.hxx>
-  #include <libmm-gtk/printjob_p.hxx>
+#include <gtk/gtkunixprint.hxx>
+#include <libmm-gdk/cairoutils.hxx>
 
-  #include <gtk/gtkunixprint.h>
-
-static void
+static auto
 SignalProxy_Custom_gtk_callback (GtkPrintJob* print_job,
                                  gpointer data,
-                                 const GError* gerror)
+                                 const GError* gerror) -> void
 {
   const auto the_slot =
       static_cast<Gtk::PrintJob::SlotPrintJobComplete*> (data);
@@ -35,8 +33,8 @@ SignalProxy_Custom_gtk_callback (GtkPrintJob* print_job,
 namespace Gtk
 {
 
-  void
-  PrintJob::send (const SlotPrintJobComplete& slot)
+  auto
+  PrintJob::send (const SlotPrintJobComplete& slot) -> void
   {
     auto slot_copy = new SlotPrintJobComplete (slot);
 
@@ -60,8 +58,8 @@ namespace Gtk
         Glib::OWNERSHIP_NONE);
   }
 
-  void
-  PrintJob::set_page_ranges (const std::vector<PageRange>& page_ranges)
+  auto
+  PrintJob::set_page_ranges (const std::vector<PageRange>& page_ranges) -> void
   {
     GtkPageRange* c_ranges = g_new0 (GtkPageRange, page_ranges.size ());
     for (std::size_t i = 0; i < page_ranges.size (); ++i)
@@ -77,7 +75,7 @@ namespace Gtk
 namespace
 {
 
-  const Glib::SignalProxyInfo PrintJob_signal_status_changed_info = {
+  static const Glib::SignalProxyInfo PrintJob_signal_status_changed_info = {
       "status_changed",
       (GCallback) &Glib::SignalProxyNormal::slot0_void_callback,
       (GCallback) &Glib::SignalProxyNormal::slot0_void_callback};
@@ -113,8 +111,8 @@ namespace Gtk
     return *this;
   }
 
-  void
-  PrintJob_Class::class_init_function (void* g_class, void* class_data)
+  auto
+  PrintJob_Class::class_init_function (void* g_class, void* class_data) -> void
   {
     const auto klass = static_cast<BaseClassType*> (g_class);
     CppClassParent::class_init_function (klass, class_data);
@@ -243,8 +241,8 @@ namespace Gtk
         gtk_print_job_get_status (const_cast<GtkPrintJob*> (gobj ())));
   }
 
-  void
-  PrintJob::set_source_file (const std::string& filename)
+  auto
+  PrintJob::set_source_file (const std::string& filename) -> void
   {
     GError* gerror = nullptr;
     gtk_print_job_set_source_file (gobj (), filename.c_str (), &(gerror));
@@ -271,8 +269,8 @@ namespace Gtk
     return const_cast<PrintJob*> (this)->get_surface ();
   }
 
-  void
-  PrintJob::set_track_print_status (bool track_status)
+  auto
+  PrintJob::set_track_print_status (bool track_status) -> void
   {
     gtk_print_job_set_track_print_status (gobj (),
                                           static_cast<int> (track_status));
@@ -292,8 +290,8 @@ namespace Gtk
         gtk_print_job_get_pages (const_cast<GtkPrintJob*> (gobj ())));
   }
 
-  void
-  PrintJob::set_pages (PrintPages pages)
+  auto
+  PrintJob::set_pages (PrintPages pages) -> void
   {
     gtk_print_job_set_pages (gobj (), static_cast<GtkPrintPages> (pages));
   }
@@ -305,8 +303,8 @@ namespace Gtk
         gtk_print_job_get_page_set (const_cast<GtkPrintJob*> (gobj ())));
   }
 
-  void
-  PrintJob::set_page_set (PageSet page_set)
+  auto
+  PrintJob::set_page_set (PageSet page_set) -> void
   {
     gtk_print_job_set_page_set (gobj (), static_cast<GtkPageSet> (page_set));
   }
@@ -317,8 +315,8 @@ namespace Gtk
     return gtk_print_job_get_num_copies (const_cast<GtkPrintJob*> (gobj ()));
   }
 
-  void
-  PrintJob::set_num_copies (int num_copies)
+  auto
+  PrintJob::set_num_copies (int num_copies) -> void
   {
     gtk_print_job_set_num_copies (gobj (), num_copies);
   }
@@ -329,8 +327,8 @@ namespace Gtk
     return gtk_print_job_get_scale (const_cast<GtkPrintJob*> (gobj ()));
   }
 
-  void
-  PrintJob::set_scale (double scale)
+  auto
+  PrintJob::set_scale (double scale) -> void
   {
     gtk_print_job_set_scale (gobj (), scale);
   }
@@ -341,8 +339,8 @@ namespace Gtk
     return gtk_print_job_get_n_up (const_cast<GtkPrintJob*> (gobj ()));
   }
 
-  void
-  PrintJob::set_n_up (guint n_up)
+  auto
+  PrintJob::set_n_up (guint n_up) -> void
   {
     gtk_print_job_set_n_up (gobj (), n_up);
   }
@@ -354,8 +352,8 @@ namespace Gtk
         gtk_print_job_get_n_up_layout (const_cast<GtkPrintJob*> (gobj ())));
   }
 
-  void
-  PrintJob::set_n_up_layout (NumberUpLayout layout)
+  auto
+  PrintJob::set_n_up_layout (NumberUpLayout layout) -> void
   {
     gtk_print_job_set_n_up_layout (gobj (),
                                    static_cast<GtkNumberUpLayout> (layout));
@@ -367,8 +365,8 @@ namespace Gtk
     return gtk_print_job_get_rotate (const_cast<GtkPrintJob*> (gobj ()));
   }
 
-  void
-  PrintJob::set_rotate (bool rotate)
+  auto
+  PrintJob::set_rotate (bool rotate) -> void
   {
     gtk_print_job_set_rotate (gobj (), static_cast<int> (rotate));
   }
@@ -379,8 +377,8 @@ namespace Gtk
     return gtk_print_job_get_collate (const_cast<GtkPrintJob*> (gobj ()));
   }
 
-  void
-  PrintJob::set_collate (bool collate)
+  auto
+  PrintJob::set_collate (bool collate) -> void
   {
     gtk_print_job_set_collate (gobj (), static_cast<int> (collate));
   }
@@ -391,8 +389,8 @@ namespace Gtk
     return gtk_print_job_get_reverse (const_cast<GtkPrintJob*> (gobj ()));
   }
 
-  void
-  PrintJob::set_reverse (bool reverse)
+  auto
+  PrintJob::set_reverse (bool reverse) -> void
   {
     gtk_print_job_set_reverse (gobj (), static_cast<int> (reverse));
   }
@@ -463,5 +461,3 @@ namespace Gtk
   }
 
 } // namespace Gtk
-
-#endif

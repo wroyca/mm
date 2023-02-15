@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: LGPL-2.1-or-later
 
 #ifndef _GIOMM_SOCKETADDRESSENUMERATOR_H
 #define _GIOMM_SOCKETADDRESSENUMERATOR_H
@@ -93,12 +94,12 @@ namespace Gio
     auto
     next () -> Glib::RefPtr<SocketAddress>;
 
-    void
+    auto
     next_async (const Glib::RefPtr<Cancellable>& cancellable,
-                const SlotAsyncReady& slot);
+                const SlotAsyncReady& slot) -> void;
 
-    void
-    next_async (const SlotAsyncReady& slot);
+    auto
+    next_async (const SlotAsyncReady& slot) -> void;
 
     auto
     next_finish (const Glib::RefPtr<AsyncResult>& result)

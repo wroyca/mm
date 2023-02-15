@@ -93,32 +93,32 @@ namespace Glib
     GDate gobject_;
 
   public:
-    void
-    clear ();
+    auto
+    clear () -> void;
 
-    void
-    set_parse (const Glib::ustring& str);
+    auto
+    set_parse (const Glib::ustring& str) -> void;
 
-    void
-    set_time (std::time_t timet);
+    auto
+    set_time (std::time_t timet) -> void;
 
-    void
-    set_time_current ();
+    auto
+    set_time_current () -> void;
 
-    void
-    set_month (Month month);
+    auto
+    set_month (Month month) -> void;
 
-    void
-    set_day (Day day);
+    auto
+    set_day (Day day) -> void;
 
-    void
-    set_year (Year year);
+    auto
+    set_year (Year year) -> void;
 
-    void
-    set_dmy (Day day, Month month, Year year);
+    auto
+    set_dmy (Day day, Month month, Year year) -> void;
 
-    void
-    set_julian (guint32 julian_day);
+    auto
+    set_julian (guint32 julian_day) -> void;
 
     auto
     add_days (int n_days) -> Date&;
@@ -153,8 +153,8 @@ namespace Glib
     auto
     clamp_max (const Date& max_date) -> Date&;
 
-    void
-    order (Date& other);
+    auto
+    order (Date& other) -> void;
 
     auto
     get_weekday () const -> Weekday;
@@ -210,8 +210,8 @@ namespace Glib
     auto
     format_string (const Glib::ustring& format) const -> Glib::ustring;
 
-    void
-    to_struct_tm (struct tm& dest) const;
+    auto
+    to_struct_tm (struct tm& dest) const -> void;
 
     auto
     valid () const -> bool;

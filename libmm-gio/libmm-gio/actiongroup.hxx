@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: LGPL-2.1-or-later
 
 #ifndef _GIOMM_ACTIONGROUP_H
 #define _GIOMM_ACTIONGROUP_H
@@ -78,8 +79,8 @@ namespace Gio
 
     ~ActionGroup () noexcept override;
 
-    static void
-    add_interface (GType gtype_implementer);
+    static auto
+    add_interface (GType gtype_implementer) -> void;
 
     static auto
     get_type () -> GType G_GNUC_CONST;
@@ -173,45 +174,47 @@ namespace Gio
         -> Glib::VariantType;
 
     template <typename T_Value>
-    void
+    auto
     get_action_state_hint (const Glib::ustring& action_name,
-                           T_Value& value) const;
+                           T_Value& value) const -> void;
 
     auto
     get_action_state_hint_variant (const Glib::ustring& action_name) const
         -> Glib::VariantContainerBase;
 
     template <typename T_Value>
-    void
-    get_action_state (const Glib::ustring& action_name, T_Value& value) const;
+    auto
+    get_action_state (const Glib::ustring& action_name, T_Value& value) const
+        -> void;
 
     auto
     get_action_state_variant (const Glib::ustring& action_name) const
         -> Glib::VariantBase;
 
-    void
+    auto
     change_action_state (const Glib::ustring& action_name,
-                         const Glib::VariantBase& value);
+                         const Glib::VariantBase& value) -> void;
 
-    void
+    auto
     activate_action (const Glib::ustring& action_name,
-                     const Glib::VariantBase& parameter);
+                     const Glib::VariantBase& parameter) -> void;
 
-    void
-    activate_action (const Glib::ustring& action_name);
+    auto
+    activate_action (const Glib::ustring& action_name) -> void;
 
-    void
-    action_added (const Glib::ustring& action_name);
+    auto
+    action_added (const Glib::ustring& action_name) -> void;
 
-    void
-    action_removed (const Glib::ustring& action_name);
+    auto
+    action_removed (const Glib::ustring& action_name) -> void;
 
-    void
-    action_enabled_changed (const Glib::ustring& action_name, bool enabled);
+    auto
+    action_enabled_changed (const Glib::ustring& action_name, bool enabled)
+        -> void;
 
-    void
+    auto
     action_state_changed (const Glib::ustring& action_name,
-                          const Glib::VariantBase& state);
+                          const Glib::VariantBase& state) -> void;
 
     auto
     signal_action_added (const Glib::ustring& action_name = {})
@@ -256,35 +259,36 @@ namespace Gio
     get_action_state_vfunc (const Glib::ustring& name) const
         -> Glib::VariantBase;
 
-    virtual void
+    virtual auto
     change_action_state_vfunc (const Glib::ustring& name,
-                               const Glib::VariantBase& value);
+                               const Glib::VariantBase& value) -> void;
 
-    virtual void
+    virtual auto
     activate_action_vfunc (const Glib::ustring& name,
-                           const Glib::VariantBase& parameter);
+                           const Glib::VariantBase& parameter) -> void;
 
   public:
   public:
   protected:
-    virtual void
-    on_action_added (const Glib::ustring& action_name);
+    virtual auto
+    on_action_added (const Glib::ustring& action_name) -> void;
 
-    virtual void
-    on_action_enabled_changed (const Glib::ustring& action_name, bool enabled);
+    virtual auto
+    on_action_enabled_changed (const Glib::ustring& action_name, bool enabled)
+        -> void;
 
-    virtual void
-    on_action_removed (const Glib::ustring& action_name);
+    virtual auto
+    on_action_removed (const Glib::ustring& action_name) -> void;
 
-    virtual void
+    virtual auto
     on_action_state_changed (const Glib::ustring& action_name,
-                             const Glib::VariantBase& value);
+                             const Glib::VariantBase& value) -> void;
   };
 
   template <typename T_Value>
-  void
+  auto
   ActionGroup::get_action_state (const Glib::ustring& action_name,
-                                 T_Value& value) const
+                                 T_Value& value) const -> void
   {
     value = T_Value ();
 
@@ -304,9 +308,9 @@ namespace Gio
   }
 
   template <typename T_Value>
-  void
+  auto
   ActionGroup::get_action_state_hint (const Glib::ustring& action_name,
-                                      T_Value& value) const
+                                      T_Value& value) const -> void
   {
     value = T_Value ();
 

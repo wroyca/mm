@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: LGPL-2.1-or-later
 
 #ifndef _GIOMM_DESKTOPAPPINFO_H
 #define _GIOMM_DESKTOPAPPINFO_H
@@ -140,12 +141,13 @@ namespace Gio
     auto
     list_actions () const -> std::vector<Glib::ustring>;
 
-    void
+    auto
     launch_action (const Glib::ustring& action_name,
-                   const Glib::RefPtr<AppLaunchContext>& launch_context);
+                   const Glib::RefPtr<AppLaunchContext>& launch_context)
+        -> void;
 
-    void
-    launch_action (const Glib::ustring& action_name);
+    auto
+    launch_action (const Glib::ustring& action_name) -> void;
 
     auto
     get_action_name (const Glib::ustring& action_name) const -> Glib::ustring;

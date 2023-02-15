@@ -74,8 +74,8 @@ namespace Pango
 
     ~TabArray () noexcept;
 
-    void
-    swap (TabArray& other) noexcept;
+    auto
+    swap (TabArray& other) noexcept -> void;
 
     auto
     gobj () -> PangoTabArray*
@@ -102,11 +102,11 @@ namespace Pango
     auto
     get_size () const -> int;
 
-    void
-    resize (int new_size);
+    auto
+    resize (int new_size) -> void;
 
-    void
-    set_tab (int tab_index, TabAlign alignment, int location);
+    auto
+    set_tab (int tab_index, TabAlign alignment, int location) -> void;
 
     auto
     get_tab (int tab_index) const -> std::pair<TabAlign, int>;
@@ -123,8 +123,8 @@ namespace Pango
 namespace Pango
 {
 
-  inline void
-  swap (TabArray& lhs, TabArray& rhs) noexcept
+  inline auto
+  swap (TabArray& lhs, TabArray& rhs) noexcept -> void
   {
     lhs.swap (rhs);
   }

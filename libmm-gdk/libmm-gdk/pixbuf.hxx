@@ -109,11 +109,11 @@ namespace Gdk
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
   private:
-    GDKMM_API static void
-    throw_func (GError* gobject);
+    GDKMM_API static auto
+    throw_func (GError* gobject) -> void;
 
-    friend GDKMM_API void
-    wrap_init ();
+    friend GDKMM_API auto
+    wrap_init () -> void;
 
 #endif
   };
@@ -342,62 +342,63 @@ namespace Gdk
     auto
     get_byte_length () const -> gsize;
 
-    void
-    fill (guint32 pixel);
+    auto
+    fill (guint32 pixel) -> void;
 
-    void
-    save (const std::string& filename, const Glib::ustring& type) const;
+    auto
+    save (const std::string& filename, const Glib::ustring& type) const -> void;
 
-    void
+    auto
     save (const std::string& filename,
           const Glib::ustring& type,
           const std::vector<Glib::ustring>& option_keys,
-          const std::vector<Glib::ustring>& option_values) const;
+          const std::vector<Glib::ustring>& option_values) const -> void;
 
-#if 0 
+#if 0
   typedef sigc::slot<const char*(gsize)> SlotSave;
 
-  
+
   void save(const SlotSave& slot, const std::string& type);
 
 
-  
+
   typepdef std::map<Glib::ustring, Glib::ustring> SaveValuesMap;
 
   void save(const SlotSave& slot, const std::string& type, const SaveValuesMap& options);
 #endif
 
-    void
+    auto
     save_to_buffer (gchar*& buffer,
                     gsize& buffer_size,
-                    const Glib::ustring& type = "png") const;
+                    const Glib::ustring& type = "png") const -> void;
 
-    void
+    auto
     save_to_buffer (gchar*& buffer,
                     gsize& buffer_size,
                     const Glib::ustring& type,
                     const std::vector<Glib::ustring>& option_keys,
-                    const std::vector<Glib::ustring>& option_values) const;
+                    const std::vector<Glib::ustring>& option_values) const
+        -> void;
 
     auto
     add_alpha (bool substitute_color, guint8 r, guint8 g, guint8 b) const
         -> Glib::RefPtr<Gdk::Pixbuf>;
 
-    void
+    auto
     copy_area (int src_x,
                int src_y,
                int width,
                int height,
                const Glib::RefPtr<Gdk::Pixbuf>& dest_pixbuf,
                int dest_x,
-               int dest_y) const;
+               int dest_y) const -> void;
 
-    void
+    auto
     saturate_and_pixelate (const Glib::RefPtr<Gdk::Pixbuf>& dest,
                            float saturation,
-                           bool pixelate) const;
+                           bool pixelate) const -> void;
 
-    void
+    auto
     scale (const Glib::RefPtr<Gdk::Pixbuf>& dest,
            int dest_x,
            int dest_y,
@@ -407,9 +408,9 @@ namespace Gdk
            double offset_y,
            double scale_x,
            double scale_y,
-           InterpType interp_type) const;
+           InterpType interp_type) const -> void;
 
-    void
+    auto
     composite (const Glib::RefPtr<Gdk::Pixbuf>& dest,
                int dest_x,
                int dest_y,
@@ -420,9 +421,9 @@ namespace Gdk
                double scale_x,
                double scale_y,
                InterpType interp_type,
-               int overall_alpha) const;
+               int overall_alpha) const -> void;
 
-    void
+    auto
     composite_color (const Glib::RefPtr<Gdk::Pixbuf>& dest,
                      int dest_x,
                      int dest_y,
@@ -438,7 +439,7 @@ namespace Gdk
                      int check_y,
                      int check_size,
                      guint32 color1,
-                     guint32 color2) const;
+                     guint32 color2) const -> void;
 
     auto
     scale_simple (int dest_width, int dest_height, InterpType interp_type) const
@@ -526,9 +527,7 @@ namespace Glib
 
 namespace Glib
 {
-
-  GDKMM_API
-  auto
+  GDKMM_API auto
   wrap (GdkPixbuf* object, bool take_copy = false) -> Glib::RefPtr<Gdk::Pixbuf>;
 } // namespace Glib
 

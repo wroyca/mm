@@ -17,17 +17,14 @@ namespace Glib
 
   using WrapNewFunction = Glib::ObjectBase* (*) (GObject*);
 
-  GLIBMM_API
-  void
-  wrap_register_init ();
+  GLIBMM_API auto
+  wrap_register_init () -> void;
 
-  GLIBMM_API
-  void
-  wrap_register_cleanup ();
+  GLIBMM_API auto
+  wrap_register_cleanup () -> void;
 
-  GLIBMM_API
-  void
-  wrap_register (GType type, WrapNewFunction func);
+  GLIBMM_API auto
+  wrap_register (GType type, WrapNewFunction func) -> void;
 
   GLIBMM_API
   auto

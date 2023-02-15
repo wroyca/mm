@@ -49,6 +49,11 @@
 #include <libmm-gdk/toplevellayout.hxx>
 #include <libmm-gdk/toplevelsize.hxx>
 
+#ifdef _MSC_VER
+  #pragma warning(push)
+  #pragma warning(disable : 4273)
+#endif
+
 extern "C"
 {
   auto
@@ -109,6 +114,10 @@ extern "C"
   auto
   gdk_texture_error_quark (void) -> GQuark;
 }
+
+#ifdef _MSC_VER
+  #pragma warning(pop)
+#endif
 
 namespace Gdk
 {
@@ -297,39 +306,44 @@ namespace Gdk
     Glib::Error::register_domain (gdk_texture_error_quark (),
                                   &TextureError::throw_func);
 
-    wrap_register (gdk_app_launch_context_get_type (),
-                   &AppLaunchContext_Class::wrap_new);
-    wrap_register (gdk_cairo_context_get_type (),
-                   &CairoContext_Class::wrap_new);
-    wrap_register (gdk_clipboard_get_type (), &Clipboard_Class::wrap_new);
-    wrap_register (gdk_content_provider_get_type (),
-                   &ContentProvider_Class::wrap_new);
-    wrap_register (gdk_cursor_get_type (), &Cursor_Class::wrap_new);
-    wrap_register (gdk_device_get_type (), &Device_Class::wrap_new);
-    wrap_register (gdk_device_tool_get_type (), &DeviceTool_Class::wrap_new);
-    wrap_register (gdk_display_get_type (), &Display_Class::wrap_new);
-    wrap_register (gdk_display_manager_get_type (),
-                   &DisplayManager_Class::wrap_new);
-    wrap_register (gdk_drag_get_type (), &Drag_Class::wrap_new);
-    wrap_register (gdk_draw_context_get_type (), &DrawContext_Class::wrap_new);
-    wrap_register (gdk_drop_get_type (), &Drop_Class::wrap_new);
-    wrap_register (gdk_frame_clock_get_type (), &FrameClock_Class::wrap_new);
-    wrap_register (gdk_gl_context_get_type (), &GLContext_Class::wrap_new);
-    wrap_register (gdk_gl_texture_get_type (), &GLTexture_Class::wrap_new);
-    wrap_register (gdk_memory_texture_get_type (),
-                   &MemoryTexture_Class::wrap_new);
-    wrap_register (gdk_monitor_get_type (), &Monitor_Class::wrap_new);
-    wrap_register (gdk_pixbuf_get_type (), &Pixbuf_Class::wrap_new);
-    wrap_register (gdk_pixbuf_animation_get_type (),
-                   &PixbufAnimation_Class::wrap_new);
-    wrap_register (gdk_pixbuf_animation_iter_get_type (),
-                   &PixbufAnimationIter_Class::wrap_new);
-    wrap_register (gdk_pixbuf_loader_get_type (),
-                   &PixbufLoader_Class::wrap_new);
-    wrap_register (gdk_seat_get_type (), &Seat_Class::wrap_new);
-    wrap_register (gdk_snapshot_get_type (), &Snapshot_Class::wrap_new);
-    wrap_register (gdk_surface_get_type (), &Surface_Class::wrap_new);
-    wrap_register (gdk_texture_get_type (), &Texture_Class::wrap_new);
+    Glib::wrap_register (gdk_app_launch_context_get_type (),
+                         &AppLaunchContext_Class::wrap_new);
+    Glib::wrap_register (gdk_cairo_context_get_type (),
+                         &CairoContext_Class::wrap_new);
+    Glib::wrap_register (gdk_clipboard_get_type (), &Clipboard_Class::wrap_new);
+    Glib::wrap_register (gdk_content_provider_get_type (),
+                         &ContentProvider_Class::wrap_new);
+    Glib::wrap_register (gdk_cursor_get_type (), &Cursor_Class::wrap_new);
+    Glib::wrap_register (gdk_device_get_type (), &Device_Class::wrap_new);
+    Glib::wrap_register (gdk_device_tool_get_type (),
+                         &DeviceTool_Class::wrap_new);
+    Glib::wrap_register (gdk_display_get_type (), &Display_Class::wrap_new);
+    Glib::wrap_register (gdk_display_manager_get_type (),
+                         &DisplayManager_Class::wrap_new);
+    Glib::wrap_register (gdk_drag_get_type (), &Drag_Class::wrap_new);
+    Glib::wrap_register (gdk_draw_context_get_type (),
+                         &DrawContext_Class::wrap_new);
+    Glib::wrap_register (gdk_drop_get_type (), &Drop_Class::wrap_new);
+    Glib::wrap_register (gdk_frame_clock_get_type (),
+                         &FrameClock_Class::wrap_new);
+    Glib::wrap_register (gdk_gl_context_get_type (),
+                         &GLContext_Class::wrap_new);
+    Glib::wrap_register (gdk_gl_texture_get_type (),
+                         &GLTexture_Class::wrap_new);
+    Glib::wrap_register (gdk_memory_texture_get_type (),
+                         &MemoryTexture_Class::wrap_new);
+    Glib::wrap_register (gdk_monitor_get_type (), &Monitor_Class::wrap_new);
+    Glib::wrap_register (gdk_pixbuf_get_type (), &Pixbuf_Class::wrap_new);
+    Glib::wrap_register (gdk_pixbuf_animation_get_type (),
+                         &PixbufAnimation_Class::wrap_new);
+    Glib::wrap_register (gdk_pixbuf_animation_iter_get_type (),
+                         &PixbufAnimationIter_Class::wrap_new);
+    Glib::wrap_register (gdk_pixbuf_loader_get_type (),
+                         &PixbufLoader_Class::wrap_new);
+    Glib::wrap_register (gdk_seat_get_type (), &Seat_Class::wrap_new);
+    Glib::wrap_register (gdk_snapshot_get_type (), &Snapshot_Class::wrap_new);
+    Glib::wrap_register (gdk_surface_get_type (), &Surface_Class::wrap_new);
+    Glib::wrap_register (gdk_texture_get_type (), &Texture_Class::wrap_new);
 
     g_type_ensure (AppLaunchContext::get_type ());
     g_type_ensure (CairoContext::get_type ());

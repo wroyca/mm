@@ -82,11 +82,11 @@ namespace Gtk
   public:
     StackSwitcher ();
 
-    void
-    set_stack (Stack& stack);
+    auto
+    set_stack (Stack& stack) -> void;
 
-    void
-    unset_stack ();
+    auto
+    unset_stack () -> void;
 
     auto
     get_stack () -> Stack*;
@@ -109,9 +109,7 @@ namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkStackSwitcher* object, bool take_copy = false) -> Gtk::StackSwitcher*;
 } // namespace Glib
 

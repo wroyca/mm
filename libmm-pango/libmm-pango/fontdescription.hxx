@@ -297,8 +297,8 @@ namespace Pango
 
     ~FontDescription () noexcept;
 
-    void
-    swap (FontDescription& other) noexcept;
+    auto
+    swap (FontDescription& other) noexcept -> void;
 
     auto
     gobj () -> PangoFontDescription*
@@ -325,56 +325,56 @@ namespace Pango
     auto
     hash () const -> guint;
 
-    void
-    set_family (const Glib::ustring& family);
+    auto
+    set_family (const Glib::ustring& family) -> void;
 
     auto
     get_family () const -> Glib::ustring;
 
-    void
-    set_style (Style style);
+    auto
+    set_style (Style style) -> void;
 
     auto
     get_style () const -> Style;
 
-    void
-    set_variant (Variant variant);
+    auto
+    set_variant (Variant variant) -> void;
 
     auto
     get_variant () const -> Variant;
 
-    void
-    set_weight (Weight weight);
+    auto
+    set_weight (Weight weight) -> void;
 
     auto
     get_weight () const -> Weight;
 
-    void
-    set_stretch (Stretch stretch);
+    auto
+    set_stretch (Stretch stretch) -> void;
 
     auto
     get_stretch () const -> Stretch;
 
-    void
-    set_size (int size);
+    auto
+    set_size (int size) -> void;
 
     auto
     get_size () const -> int;
 
-    void
-    set_absolute_size (double size);
+    auto
+    set_absolute_size (double size) -> void;
 
     auto
     get_size_is_absolute () const -> bool;
 
-    void
-    set_gravity (Gravity gravity);
+    auto
+    set_gravity (Gravity gravity) -> void;
 
     auto
     get_gravity () const -> Gravity;
 
-    void
-    set_variations (const Glib::ustring& settings);
+    auto
+    set_variations (const Glib::ustring& settings) -> void;
 
     auto
     get_variations () const -> Glib::ustring;
@@ -382,11 +382,11 @@ namespace Pango
     auto
     get_set_fields () const -> FontMask;
 
-    void
-    unset_fields (FontMask to_unset);
+    auto
+    unset_fields (FontMask to_unset) -> void;
 
-    void
-    merge (const FontDescription& desc_to_merge, bool replace_existing);
+    auto
+    merge (const FontDescription& desc_to_merge, bool replace_existing) -> void;
 
     auto
     better_match (const FontDescription& old_match,
@@ -417,8 +417,8 @@ namespace Pango
 namespace Pango
 {
 
-  inline void
-  swap (FontDescription& lhs, FontDescription& rhs) noexcept
+  inline auto
+  swap (FontDescription& lhs, FontDescription& rhs) noexcept -> void
   {
     lhs.swap (rhs);
   }

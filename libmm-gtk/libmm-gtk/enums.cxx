@@ -13,7 +13,7 @@ namespace Gtk
 {
 
   auto
-  _gtkmm_align_float_from_enum (const Align value) -> float
+  _gtkmm_align_float_from_enum (Align value) -> float
   {
     switch (value)
     {

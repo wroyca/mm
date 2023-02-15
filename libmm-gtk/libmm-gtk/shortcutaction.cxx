@@ -11,12 +11,9 @@
 namespace
 {
   auto
-  SlotShortcut_callback (GtkWidget* widget,
-                         GVariant* args,
-                         const gpointer user_data) -> gboolean
+  SlotShortcut_callback (GtkWidget* widget, GVariant* args, gpointer user_data) -> gboolean
   {
-    const auto the_slot =
-        static_cast<Gtk::CallbackAction::SlotShortcut*> (user_data);
+    auto the_slot = static_cast<Gtk::CallbackAction::SlotShortcut*> (user_data);
 
     try
     {
@@ -35,7 +32,7 @@ namespace Gtk
 {
 
   CallbackAction::CallbackAction (const SlotShortcut& slot)
-    : ObjectBase (nullptr),
+    : Glib::ObjectBase (nullptr),
 
       ShortcutAction (
           gtk_callback_action_new (&SlotShortcut_callback,
@@ -60,11 +57,11 @@ namespace Glib
 {
 
   auto
-  wrap (GtkShortcutAction* object, const bool take_copy) -> RefPtr<Gtk::ShortcutAction>
+  wrap (GtkShortcutAction* object, bool take_copy) -> Glib::RefPtr<Gtk::ShortcutAction>
   {
     return Glib::make_refptr_for_instance<Gtk::ShortcutAction> (
         dynamic_cast<Gtk::ShortcutAction*> (
-            wrap_auto ((GObject*) object, take_copy)));
+            Glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
 } // namespace Glib
@@ -73,7 +70,7 @@ namespace Gtk
 {
 
   auto
-  ShortcutAction_Class::init () -> const Class&
+  ShortcutAction_Class::init () -> const Glib::Class&
   {
     if (!gtype_)
     {
@@ -106,28 +103,28 @@ namespace Gtk
   }
 
   ShortcutAction::ShortcutAction (const Glib::ConstructParams& construct_params)
-    : Object (construct_params)
+    : Glib::Object (construct_params)
   {
   }
 
   ShortcutAction::ShortcutAction (GtkShortcutAction* castitem)
-    : Object ((GObject*) castitem)
+    : Glib::Object ((GObject*) (castitem))
   {
   }
 
   ShortcutAction::ShortcutAction (ShortcutAction&& src) noexcept
-    : Object (std::move (src))
+    : Glib::Object (std::move (src))
   {
   }
 
   auto
   ShortcutAction::operator= (ShortcutAction&& src) noexcept -> ShortcutAction&
   {
-    Object::operator= (std::move (src));
+    Glib::Object::operator= (std::move (src));
     return *this;
   }
 
-  ShortcutAction::~ShortcutAction () noexcept = default;
+  ShortcutAction::~ShortcutAction () noexcept {}
 
   ShortcutAction::CppClassType ShortcutAction::shortcutaction_class_;
 
@@ -144,8 +141,8 @@ namespace Gtk
   }
 
   ShortcutAction::ShortcutAction ()
-    : ObjectBase (nullptr),
-      Object (Glib::ConstructParams (shortcutaction_class_.init ()))
+    : Glib::ObjectBase (nullptr),
+      Glib::Object (Glib::ConstructParams (shortcutaction_class_.init ()))
   {
   }
 
@@ -171,8 +168,8 @@ namespace Gtk
     return gtk_shortcut_action_activate (
         gobj (),
         static_cast<GtkShortcutActionFlags> (flags),
-        widget.gobj (),
-        const_cast<GVariant*> (args.gobj ()));
+        (widget).gobj (),
+        const_cast<GVariant*> ((args).gobj ()));
   }
 
 } // namespace Gtk
@@ -181,11 +178,11 @@ namespace Glib
 {
 
   auto
-  wrap (GtkNothingAction* object, const bool take_copy) -> RefPtr<Gtk::NothingAction>
+  wrap (GtkNothingAction* object, bool take_copy) -> Glib::RefPtr<Gtk::NothingAction>
   {
     return Glib::make_refptr_for_instance<Gtk::NothingAction> (
         dynamic_cast<Gtk::NothingAction*> (
-            wrap_auto ((GObject*) object, take_copy)));
+            Glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
 } // namespace Glib
@@ -194,7 +191,7 @@ namespace Gtk
 {
 
   auto
-  NothingAction_Class::init () -> const Class&
+  NothingAction_Class::init () -> const Glib::Class&
   {
     if (!gtype_)
     {
@@ -232,7 +229,7 @@ namespace Gtk
   }
 
   NothingAction::NothingAction (GtkNothingAction* castitem)
-    : ShortcutAction ((GtkShortcutAction*) castitem)
+    : ShortcutAction ((GtkShortcutAction*) (castitem))
   {
   }
 
@@ -248,7 +245,7 @@ namespace Gtk
     return *this;
   }
 
-  NothingAction::~NothingAction () noexcept = default;
+  NothingAction::~NothingAction () noexcept {}
 
   NothingAction::CppClassType NothingAction::nothingaction_class_;
 
@@ -265,7 +262,7 @@ namespace Gtk
   }
 
   NothingAction::NothingAction ()
-    : ObjectBase (nullptr),
+    : Glib::ObjectBase (nullptr),
       ShortcutAction (Glib::ConstructParams (nothingaction_class_.init ()))
   {
   }
@@ -285,11 +282,11 @@ namespace Glib
 {
 
   auto
-  wrap (GtkCallbackAction* object, const bool take_copy) -> RefPtr<Gtk::CallbackAction>
+  wrap (GtkCallbackAction* object, bool take_copy) -> Glib::RefPtr<Gtk::CallbackAction>
   {
     return Glib::make_refptr_for_instance<Gtk::CallbackAction> (
         dynamic_cast<Gtk::CallbackAction*> (
-            wrap_auto ((GObject*) object, take_copy)));
+            Glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
 } // namespace Glib
@@ -298,7 +295,7 @@ namespace Gtk
 {
 
   auto
-  CallbackAction_Class::init () -> const Class&
+  CallbackAction_Class::init () -> const Glib::Class&
   {
     if (!gtype_)
     {
@@ -336,7 +333,7 @@ namespace Gtk
   }
 
   CallbackAction::CallbackAction (GtkCallbackAction* castitem)
-    : ShortcutAction ((GtkShortcutAction*) castitem)
+    : ShortcutAction ((GtkShortcutAction*) (castitem))
   {
   }
 
@@ -352,7 +349,7 @@ namespace Gtk
     return *this;
   }
 
-  CallbackAction::~CallbackAction () noexcept = default;
+  CallbackAction::~CallbackAction () noexcept {}
 
   CallbackAction::CppClassType CallbackAction::callbackaction_class_;
 
@@ -381,11 +378,11 @@ namespace Glib
 {
 
   auto
-  wrap (GtkMnemonicAction* object, const bool take_copy) -> RefPtr<Gtk::MnemonicAction>
+  wrap (GtkMnemonicAction* object, bool take_copy) -> Glib::RefPtr<Gtk::MnemonicAction>
   {
     return Glib::make_refptr_for_instance<Gtk::MnemonicAction> (
         dynamic_cast<Gtk::MnemonicAction*> (
-            wrap_auto ((GObject*) object, take_copy)));
+            Glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
 } // namespace Glib
@@ -394,7 +391,7 @@ namespace Gtk
 {
 
   auto
-  MnemonicAction_Class::init () -> const Class&
+  MnemonicAction_Class::init () -> const Glib::Class&
   {
     if (!gtype_)
     {
@@ -432,7 +429,7 @@ namespace Gtk
   }
 
   MnemonicAction::MnemonicAction (GtkMnemonicAction* castitem)
-    : ShortcutAction ((GtkShortcutAction*) castitem)
+    : ShortcutAction ((GtkShortcutAction*) (castitem))
   {
   }
 
@@ -448,7 +445,7 @@ namespace Gtk
     return *this;
   }
 
-  MnemonicAction::~MnemonicAction () noexcept = default;
+  MnemonicAction::~MnemonicAction () noexcept {}
 
   MnemonicAction::CppClassType MnemonicAction::mnemonicaction_class_;
 
@@ -465,7 +462,7 @@ namespace Gtk
   }
 
   MnemonicAction::MnemonicAction ()
-    : ObjectBase (nullptr),
+    : Glib::ObjectBase (nullptr),
       ShortcutAction (Glib::ConstructParams (mnemonicaction_class_.init ()))
   {
   }
@@ -486,11 +483,11 @@ namespace Glib
 {
 
   auto
-  wrap (GtkActivateAction* object, const bool take_copy) -> RefPtr<Gtk::ActivateAction>
+  wrap (GtkActivateAction* object, bool take_copy) -> Glib::RefPtr<Gtk::ActivateAction>
   {
     return Glib::make_refptr_for_instance<Gtk::ActivateAction> (
         dynamic_cast<Gtk::ActivateAction*> (
-            wrap_auto ((GObject*) object, take_copy)));
+            Glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
 } // namespace Glib
@@ -499,7 +496,7 @@ namespace Gtk
 {
 
   auto
-  ActivateAction_Class::init () -> const Class&
+  ActivateAction_Class::init () -> const Glib::Class&
   {
     if (!gtype_)
     {
@@ -537,7 +534,7 @@ namespace Gtk
   }
 
   ActivateAction::ActivateAction (GtkActivateAction* castitem)
-    : ShortcutAction ((GtkShortcutAction*) castitem)
+    : ShortcutAction ((GtkShortcutAction*) (castitem))
   {
   }
 
@@ -553,7 +550,7 @@ namespace Gtk
     return *this;
   }
 
-  ActivateAction::~ActivateAction () noexcept = default;
+  ActivateAction::~ActivateAction () noexcept {}
 
   ActivateAction::CppClassType ActivateAction::activateaction_class_;
 
@@ -570,7 +567,7 @@ namespace Gtk
   }
 
   ActivateAction::ActivateAction ()
-    : ObjectBase (nullptr),
+    : Glib::ObjectBase (nullptr),
       ShortcutAction (Glib::ConstructParams (activateaction_class_.init ()))
   {
   }
@@ -591,11 +588,11 @@ namespace Glib
 {
 
   auto
-  wrap (GtkSignalAction* object, const bool take_copy) -> RefPtr<Gtk::SignalAction>
+  wrap (GtkSignalAction* object, bool take_copy) -> Glib::RefPtr<Gtk::SignalAction>
   {
     return Glib::make_refptr_for_instance<Gtk::SignalAction> (
         dynamic_cast<Gtk::SignalAction*> (
-            wrap_auto ((GObject*) object, take_copy)));
+            Glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
 } // namespace Glib
@@ -604,7 +601,7 @@ namespace Gtk
 {
 
   auto
-  SignalAction_Class::init () -> const Class&
+  SignalAction_Class::init () -> const Glib::Class&
   {
     if (!gtype_)
     {
@@ -642,7 +639,7 @@ namespace Gtk
   }
 
   SignalAction::SignalAction (GtkSignalAction* castitem)
-    : ShortcutAction ((GtkShortcutAction*) castitem)
+    : ShortcutAction ((GtkShortcutAction*) (castitem))
   {
   }
 
@@ -658,7 +655,7 @@ namespace Gtk
     return *this;
   }
 
-  SignalAction::~SignalAction () noexcept = default;
+  SignalAction::~SignalAction () noexcept {}
 
   SignalAction::CppClassType SignalAction::signalaction_class_;
 
@@ -675,7 +672,7 @@ namespace Gtk
   }
 
   SignalAction::SignalAction (const Glib::ustring& signal_name)
-    : ObjectBase (nullptr),
+    : Glib::ObjectBase (nullptr),
       ShortcutAction (Glib::ConstructParams (signalaction_class_.init (),
                                              "signal_name",
                                              signal_name.c_str (),
@@ -701,7 +698,7 @@ namespace Gtk
   auto
   SignalAction::property_signal_name () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>
   {
-    return {this, "signal-name"};
+    return Glib::PropertyProxy_ReadOnly<Glib::ustring> (this, "signal-name");
   }
 
 } // namespace Gtk
@@ -710,11 +707,11 @@ namespace Glib
 {
 
   auto
-  wrap (GtkNamedAction* object, const bool take_copy) -> RefPtr<Gtk::NamedAction>
+  wrap (GtkNamedAction* object, bool take_copy) -> Glib::RefPtr<Gtk::NamedAction>
   {
     return Glib::make_refptr_for_instance<Gtk::NamedAction> (
         dynamic_cast<Gtk::NamedAction*> (
-            wrap_auto ((GObject*) object, take_copy)));
+            Glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
 } // namespace Glib
@@ -723,7 +720,7 @@ namespace Gtk
 {
 
   auto
-  NamedAction_Class::init () -> const Class&
+  NamedAction_Class::init () -> const Glib::Class&
   {
     if (!gtype_)
     {
@@ -761,7 +758,7 @@ namespace Gtk
   }
 
   NamedAction::NamedAction (GtkNamedAction* castitem)
-    : ShortcutAction ((GtkShortcutAction*) castitem)
+    : ShortcutAction ((GtkShortcutAction*) (castitem))
   {
   }
 
@@ -777,7 +774,7 @@ namespace Gtk
     return *this;
   }
 
-  NamedAction::~NamedAction () noexcept = default;
+  NamedAction::~NamedAction () noexcept {}
 
   NamedAction::CppClassType NamedAction::namedaction_class_;
 
@@ -794,7 +791,7 @@ namespace Gtk
   }
 
   NamedAction::NamedAction (const Glib::ustring& action_name)
-    : ObjectBase (nullptr),
+    : Glib::ObjectBase (nullptr),
       ShortcutAction (Glib::ConstructParams (namedaction_class_.init (),
                                              "action_name",
                                              action_name.c_str (),
@@ -820,7 +817,7 @@ namespace Gtk
   auto
   NamedAction::property_action_name () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>
   {
-    return {this, "action-name"};
+    return Glib::PropertyProxy_ReadOnly<Glib::ustring> (this, "action-name");
   }
 
 } // namespace Gtk

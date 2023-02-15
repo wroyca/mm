@@ -1,14 +1,12 @@
 // SPDX-License-Identifier: LGPL-2.1-or-later
 
-#ifndef _WIN32
+#include <libmm-glib/mm-glib.hxx>
 
-  #include <libmm-glib/mm-glib.hxx>
+#include <libmm-gtk/printunixdialog.hxx>
+#include <libmm-gtk/printunixdialog_p.hxx>
 
-  #include <libmm-gtk/printunixdialog.hxx>
-  #include <libmm-gtk/printunixdialog_p.hxx>
-
-  #include <gtk/gtkunixprint.h>
-  #include <libmm-gtk/label.hxx>
+#include <gtk/gtkunixprint.hxx>
+#include <libmm-gtk/label.hxx>
 
 namespace Gtk
 {
@@ -33,9 +31,9 @@ namespace Gtk
   {
   }
 
-  void
+  auto
   PrintUnixDialog::add_custom_tab (const Widget& child,
-                                   const Glib::ustring& tab_label)
+                                   const Glib::ustring& tab_label) -> void
   {
     auto label = Gtk::manage (new Gtk::Label (tab_label));
     add_custom_tab (child, *label);
@@ -75,8 +73,8 @@ namespace Gtk
     return *this;
   }
 
-  void
-  PrintUnixDialog_Class::class_init_function (void* g_class, void* class_data)
+  auto
+  PrintUnixDialog_Class::class_init_function (void* g_class, void* class_data) -> void
   {
     const auto klass = static_cast<BaseClassType*> (g_class);
     CppClassParent::class_init_function (klass, class_data);
@@ -130,8 +128,8 @@ namespace Gtk
     return gtk_print_unix_dialog_get_type ();
   }
 
-  void
-  PrintUnixDialog::set_page_setup (const Glib::RefPtr<PageSetup>& page_setup)
+  auto
+  PrintUnixDialog::set_page_setup (const Glib::RefPtr<PageSetup>& page_setup) -> void
   {
     gtk_print_unix_dialog_set_page_setup (gobj (), Glib::unwrap (page_setup));
   }
@@ -151,8 +149,8 @@ namespace Gtk
     return const_cast<PrintUnixDialog*> (this)->get_page_setup ();
   }
 
-  void
-  PrintUnixDialog::set_current_page (int current_page)
+  auto
+  PrintUnixDialog::set_current_page (int current_page) -> void
   {
     gtk_print_unix_dialog_set_current_page (gobj (), current_page);
   }
@@ -164,8 +162,8 @@ namespace Gtk
         const_cast<GtkPrintUnixDialog*> (gobj ()));
   }
 
-  void
-  PrintUnixDialog::set_settings (const Glib::RefPtr<PrintSettings>& settings)
+  auto
+  PrintUnixDialog::set_settings (const Glib::RefPtr<PrintSettings>& settings) -> void
   {
     gtk_print_unix_dialog_set_settings (gobj (), Glib::unwrap (settings));
   }
@@ -201,8 +199,8 @@ namespace Gtk
     return const_cast<PrintUnixDialog*> (this)->get_selected_printer ();
   }
 
-  void
-  PrintUnixDialog::add_custom_tab (const Widget& child, const Widget& tab_label)
+  auto
+  PrintUnixDialog::add_custom_tab (const Widget& child, const Widget& tab_label) -> void
   {
     gtk_print_unix_dialog_add_custom_tab (
         gobj (),
@@ -210,8 +208,8 @@ namespace Gtk
         const_cast<GtkWidget*> ((tab_label).gobj ()));
   }
 
-  void
-  PrintUnixDialog::set_manual_capabilities (PrintCapabilities capabilities)
+  auto
+  PrintUnixDialog::set_manual_capabilities (PrintCapabilities capabilities) -> void
   {
     gtk_print_unix_dialog_set_manual_capabilities (
         gobj (),
@@ -226,8 +224,8 @@ namespace Gtk
             const_cast<GtkPrintUnixDialog*> (gobj ())));
   }
 
-  void
-  PrintUnixDialog::get_support_selection (bool support_selection)
+  auto
+  PrintUnixDialog::get_support_selection (bool support_selection) -> void
   {
     gtk_print_unix_dialog_set_support_selection (
         gobj (),
@@ -241,8 +239,8 @@ namespace Gtk
         const_cast<GtkPrintUnixDialog*> (gobj ()));
   }
 
-  void
-  PrintUnixDialog::set_has_selection (bool has_selection)
+  auto
+  PrintUnixDialog::set_has_selection (bool has_selection) -> void
   {
     gtk_print_unix_dialog_set_has_selection (gobj (),
                                              static_cast<int> (has_selection));
@@ -255,8 +253,8 @@ namespace Gtk
         const_cast<GtkPrintUnixDialog*> (gobj ()));
   }
 
-  void
-  PrintUnixDialog::set_embed_page_setup (bool embed)
+  auto
+  PrintUnixDialog::set_embed_page_setup (bool embed) -> void
   {
     gtk_print_unix_dialog_set_embed_page_setup (gobj (),
                                                 static_cast<int> (embed));
@@ -391,5 +389,3 @@ namespace Gtk
   }
 
 } // namespace Gtk
-
-#endif

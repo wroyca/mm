@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: LGPL-2.1-or-later
 
 #ifndef _GIOMM_TCPCONNECTION_H
 #define _GIOMM_TCPCONNECTION_H
@@ -80,8 +81,8 @@ namespace Gio
 
   private:
   public:
-    void
-    set_graceful_disconnect (bool graceful_disconnect);
+    auto
+    set_graceful_disconnect (bool graceful_disconnect) -> void;
 
     auto
     get_graceful_disconnect () const -> bool;

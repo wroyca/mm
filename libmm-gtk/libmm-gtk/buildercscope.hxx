@@ -99,9 +99,7 @@ namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkBuilderCScope* object, bool take_copy = false) -> Glib::RefPtr<Gtk::BuilderCScope>;
 } // namespace Glib
 

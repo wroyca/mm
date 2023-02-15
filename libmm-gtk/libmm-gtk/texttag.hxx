@@ -100,11 +100,11 @@ namespace Gtk
     auto
     get_priority () const -> int;
 
-    void
-    set_priority (int priority);
+    auto
+    set_priority (int priority) -> void;
 
-    void
-    tag_changed (bool size_changed);
+    auto
+    tag_changed (bool size_changed) -> void;
 
     auto
     property_name () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
@@ -655,9 +655,7 @@ namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkTextTag* object, bool take_copy = false) -> Glib::RefPtr<Gtk::TextTag>;
 } // namespace Glib
 

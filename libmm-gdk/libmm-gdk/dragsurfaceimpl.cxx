@@ -6,7 +6,7 @@
 namespace Gdk
 {
   DragSurfaceImpl::DragSurfaceImpl (GdkSurface* castitem)
-    : ObjectBase (nullptr),
+    : Glib::ObjectBase (nullptr),
       Surface (castitem)
   {
   }
@@ -25,5 +25,6 @@ namespace Gdk
     return *this;
   }
 
-  DragSurfaceImpl::~DragSurfaceImpl () noexcept = default;
+  DragSurfaceImpl::~DragSurfaceImpl () noexcept {}
+
 } // namespace Gdk

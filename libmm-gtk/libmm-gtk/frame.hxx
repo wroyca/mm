@@ -82,16 +82,16 @@ namespace Gtk
     Frame ();
     explicit Frame (const Glib::ustring& label);
 
-    void
-    set_label (const Glib::ustring& label);
-    void
-    unset_label ();
+    auto
+    set_label (const Glib::ustring& label) -> void;
+    auto
+    unset_label () -> void;
 
     auto
     get_label () const -> Glib::ustring;
 
-    void
-    set_label_widget (Widget& label_widget);
+    auto
+    set_label_widget (Widget& label_widget) -> void;
 
     auto
     get_label_widget () -> Widget*;
@@ -99,19 +99,19 @@ namespace Gtk
     auto
     get_label_widget () const -> const Widget*;
 
-    void
-    set_label_align (float xalign = 0.0);
+    auto
+    set_label_align (float xalign = 0.0) -> void;
 
-    void
-    set_label_align (Align xalign);
+    auto
+    set_label_align (Align xalign) -> void;
 
     auto
     get_label_align () const -> float;
 
-    void
-    set_child (Widget& child);
-    void
-    unset_child ();
+    auto
+    set_child (Widget& child) -> void;
+    auto
+    unset_child () -> void;
 
     auto
     get_child () -> Widget*;
@@ -144,8 +144,8 @@ namespace Gtk
     property_child () const -> Glib::PropertyProxy_ReadOnly<Widget*>;
 
   protected:
-    virtual void
-    compute_child_allocation_vfunc (Allocation& allocation);
+    virtual auto
+    compute_child_allocation_vfunc (Allocation& allocation) -> void;
 
   public:
   public:
@@ -156,9 +156,7 @@ namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkFrame* object, bool take_copy = false) -> Gtk::Frame*;
 } // namespace Glib
 

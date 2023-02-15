@@ -12,8 +12,8 @@ namespace Gtk
   {
   }
 
-  AccelKey::AccelKey (const guint accel_key,
-                      const Gdk::ModifierType accel_mods,
+  AccelKey::AccelKey (guint accel_key,
+                      Gdk::ModifierType accel_mods,
                       const Glib::ustring& accel_path)
     : key_ (accel_key),
       mod_ (accel_mods),
@@ -36,7 +36,14 @@ namespace Gtk
   }
 
   auto
-  AccelKey::operator= (const AccelKey& src) -> AccelKey& = default;
+  AccelKey::operator= (const AccelKey& src) -> AccelKey&
+  {
+    key_ = src.key_;
+    mod_ = src.mod_;
+    path_ = src.path_;
+
+    return *this;
+  }
 
   auto
   AccelKey::get_key () const -> guint
@@ -59,7 +66,7 @@ namespace Gtk
   auto
   AccelKey::is_null () const -> bool
   {
-    return key_ == GDK_KEY_VoidSymbol || !(get_key () > 0);
+    return ((key_ == GDK_KEY_VoidSymbol) || !(get_key () > 0));
   }
 
   auto

@@ -98,14 +98,14 @@ namespace Gtk
     create (const Glib::RefPtr<Gio::ListModel>& model)
         -> Glib::RefPtr<ShortcutController>;
 
-    void
-    set_mnemonics_modifiers (Gdk::ModifierType modifiers);
+    auto
+    set_mnemonics_modifiers (Gdk::ModifierType modifiers) -> void;
 
     auto
     get_mnemonics_modifiers () const -> Gdk::ModifierType;
 
-    void
-    set_scope (ShortcutScope scope);
+    auto
+    set_scope (ShortcutScope scope) -> void;
 
 #ifndef GTKMM_DISABLE_DEPRECATED
 
@@ -116,11 +116,11 @@ namespace Gtk
     auto
     get_scope () const -> ShortcutScope;
 
-    void
-    add_shortcut (const Glib::RefPtr<Shortcut>& shortcut);
+    auto
+    add_shortcut (const Glib::RefPtr<Shortcut>& shortcut) -> void;
 
-    void
-    remove_shortcut (const Glib::RefPtr<const Shortcut>& shortcut);
+    auto
+    remove_shortcut (const Glib::RefPtr<const Shortcut>& shortcut) -> void;
 
     auto
     property_item_type () const -> Glib::PropertyProxy_ReadOnly<GType>;
@@ -150,9 +150,7 @@ namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkShortcutController* object, bool take_copy = false) -> Glib::RefPtr<Gtk::ShortcutController>;
 } // namespace Glib
 

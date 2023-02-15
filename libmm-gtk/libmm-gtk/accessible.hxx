@@ -32,6 +32,7 @@ namespace Gtk
 
 namespace Gtk
 {
+  class ATContext;
 
   class GTKMM_API Accessible : public Glib::Interface
   {
@@ -72,8 +73,8 @@ namespace Gtk
 
     ~Accessible () noexcept override;
 
-    static void
-    add_interface (GType gtype_implementer);
+    static auto
+    add_interface (GType gtype_implementer) -> void;
 
     static auto
     get_type () -> GType G_GNUC_CONST;
@@ -236,26 +237,63 @@ namespace Gtk
       SET_SIZE
     };
 
+    enum class PlatformState
+    {
+      FOCUSABLE,
+      FOCUSED,
+      ACTIVE
+    };
+
+    auto
+    get_at_context () -> Glib::RefPtr<ATContext>;
+
+    auto
+    get_at_context () const -> Glib::RefPtr<const ATContext>;
+
+    auto
+    get_platform_state (PlatformState state) const -> bool;
+
+    auto
+    get_accessible_parent () -> Glib::RefPtr<Accessible>;
+
+    auto
+    get_accessible_parent () const -> Glib::RefPtr<const Accessible>;
+
+    auto
+    get_first_accessible_child () -> Glib::RefPtr<Accessible>;
+
+    auto
+    get_first_accessible_child () const -> Glib::RefPtr<const Accessible>;
+
+    auto
+    get_next_accessible_sibling () -> Glib::RefPtr<Accessible>;
+
+    auto
+    get_next_accessible_sibling () const -> Glib::RefPtr<const Accessible>;
+
+    auto
+    get_bounds (int& x, int& y, int& width, int& height) const -> bool;
+
     auto
     get_accessible_role () const -> Role;
 
-    void
-    update_state (State state, const Glib::ValueBase& value);
+    auto
+    update_state (State state, const Glib::ValueBase& value) -> void;
 
-    void
-    update_property (Property property, const Glib::ValueBase& value);
+    auto
+    update_property (Property property, const Glib::ValueBase& value) -> void;
 
-    void
-    update_relation (Relation relation, const Glib::ValueBase& value);
+    auto
+    update_relation (Relation relation, const Glib::ValueBase& value) -> void;
 
-    void
-    reset_state (State state);
+    auto
+    reset_state (State state) -> void;
 
-    void
-    reset_property (Property property);
+    auto
+    reset_property (Property property) -> void;
 
-    void
-    reset_relation (Relation relation);
+    auto
+    reset_relation (Relation relation) -> void;
 
     auto
     property_accessible_role () -> Glib::PropertyProxy<Role>;
@@ -334,11 +372,25 @@ namespace Glib
 } // namespace Glib
 #endif
 
+#ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Glib
 {
 
-  GTKMM_API
-  auto
+  template <>
+  class GTKMM_API Value<Gtk::Accessible::PlatformState>
+    : public Glib::Value_Enum<Gtk::Accessible::PlatformState>
+  {
+  public:
+    static auto
+    value_type () -> GType G_GNUC_CONST;
+  };
+
+} // namespace Glib
+#endif
+
+namespace Glib
+{
+  GTKMM_API auto
   wrap (GtkAccessible* object, bool take_copy = false) -> Glib::RefPtr<Gtk::Accessible>;
 
 } // namespace Glib

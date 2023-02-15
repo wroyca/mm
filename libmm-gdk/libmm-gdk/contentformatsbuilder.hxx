@@ -19,11 +19,11 @@ namespace Gdk
     using BaseObjectType = GdkContentFormatsBuilder;
 #endif
 
-    void
-    reference () const;
+    auto
+    reference () const -> void;
 
-    void
-    unreference () const;
+    auto
+    unreference () const -> void;
 
     auto
     gobj () -> GdkContentFormatsBuilder*;
@@ -41,22 +41,22 @@ namespace Gdk
     operator= (const ContentFormatsBuilder&) -> ContentFormatsBuilder& = delete;
 
   protected:
-    void
-    operator delete (void*, std::size_t);
+    auto
+    operator delete (void*, std::size_t) -> void;
 
   private:
   public:
     static auto
     create () -> Glib::RefPtr<ContentFormatsBuilder>;
 
-    void
-    add_formats (const Glib::RefPtr<const ContentFormats>& formats);
+    auto
+    add_formats (const Glib::RefPtr<const ContentFormats>& formats) -> void;
 
-    void
-    add_mime_type (const Glib::ustring& mime_type);
+    auto
+    add_mime_type (const Glib::ustring& mime_type) -> void;
 
-    void
-    add_gtype (GType gtype);
+    auto
+    add_gtype (GType gtype) -> void;
 
     auto
     to_formats () -> Glib::RefPtr<ContentFormats>;
@@ -66,9 +66,7 @@ namespace Gdk
 
 namespace Glib
 {
-
-  GDKMM_API
-  auto
+  GDKMM_API auto
   wrap (GdkContentFormatsBuilder* object, bool take_copy = false) -> Glib::RefPtr<Gdk::ContentFormatsBuilder>;
 
 } // namespace Glib

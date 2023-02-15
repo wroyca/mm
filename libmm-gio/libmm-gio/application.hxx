@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: LGPL-2.1-or-later
 
 #ifndef _GIOMM_APPLICATION_H
 #define _GIOMM_APPLICATION_H
@@ -136,8 +137,8 @@ namespace Gio
     auto
     get_id () const -> Glib::ustring;
 
-    void
-    set_id (const Glib::ustring& application_id);
+    auto
+    set_id (const Glib::ustring& application_id) -> void;
 
     auto
     get_dbus_connection () -> Glib::RefPtr<DBus::Connection>;
@@ -151,62 +152,64 @@ namespace Gio
     auto
     get_inactivity_timeout () const -> guint;
 
-    void
-    set_inactivity_timeout (guint inactivity_timeout);
+    auto
+    set_inactivity_timeout (guint inactivity_timeout) -> void;
 
     auto
     get_flags () const -> Flags;
 
-    void
-    set_flags (Flags flags);
+    auto
+    set_flags (Flags flags) -> void;
 
     auto
     get_resource_base_path () const -> std::string;
 
-    void
-    set_resource_base_path (const std::string& resource_path);
+    auto
+    set_resource_base_path (const std::string& resource_path) -> void;
 
-    void
-    unset_resource_base_path ();
+    auto
+    unset_resource_base_path () -> void;
 
-    void
-    add_main_option_entry (
-        OptionType arg_type,
-        const Glib::ustring& long_name,
-        gchar short_name = '\0',
-        const Glib::ustring& description = {},
-        const Glib::ustring& arg_description = {},
-        Glib::OptionEntry::Flags flags = Glib::OptionEntry::Flags::NONE);
+    auto
+    add_main_option_entry (OptionType arg_type,
+                           const Glib::ustring& long_name,
+                           gchar short_name = '\0',
+                           const Glib::ustring& description = {},
+                           const Glib::ustring& arg_description = {},
+                           Glib::OptionEntry::Flags flags =
+                               Glib::OptionEntry::Flags::NONE) -> void;
 
-    void
-    add_main_option_entry (
-        const Glib::OptionGroup::SlotOptionArgString& slot,
-        const Glib::ustring& long_name,
-        gchar short_name = '\0',
-        const Glib::ustring& description = {},
-        const Glib::ustring& arg_description = {},
-        Glib::OptionEntry::Flags flags = Glib::OptionEntry::Flags::NONE);
+    auto
+    add_main_option_entry (const Glib::OptionGroup::SlotOptionArgString& slot,
+                           const Glib::ustring& long_name,
+                           gchar short_name = '\0',
+                           const Glib::ustring& description = {},
+                           const Glib::ustring& arg_description = {},
+                           Glib::OptionEntry::Flags flags =
+                               Glib::OptionEntry::Flags::NONE) -> void;
 
-    void
+    auto
     add_main_option_entry_filename (
         const Glib::OptionGroup::SlotOptionArgFilename& slot,
         const Glib::ustring& long_name,
         gchar short_name = '\0',
         const Glib::ustring& description = {},
         const Glib::ustring& arg_description = {},
-        Glib::OptionEntry::Flags flags = Glib::OptionEntry::Flags::NONE);
+        Glib::OptionEntry::Flags flags = Glib::OptionEntry::Flags::NONE)
+        -> void;
 
-    void
-    add_option_group (Glib::OptionGroup& group);
+    auto
+    add_option_group (Glib::OptionGroup& group) -> void;
 
-    void
-    set_option_context_parameter_string (const Glib::ustring& parameter_string);
+    auto
+    set_option_context_parameter_string (const Glib::ustring& parameter_string)
+        -> void;
 
-    void
-    set_option_context_summary (const Glib::ustring& summary);
+    auto
+    set_option_context_summary (const Glib::ustring& summary) -> void;
 
-    void
-    set_option_context_description (const Glib::ustring& description);
+    auto
+    set_option_context_description (const Glib::ustring& description) -> void;
 
     auto
     is_registered () const -> bool;
@@ -221,56 +224,57 @@ namespace Gio
     auto
     register_application () -> bool;
 
-    void
-    hold ();
+    auto
+    hold () -> void;
 
-    void
-    release ();
+    auto
+    release () -> void;
 
-    void
-    activate ();
+    auto
+    activate () -> void;
 
     using type_vec_files = std::vector<Glib::RefPtr<File>>;
 
-    void
-    open (const type_vec_files& files, const Glib::ustring& hint = {});
+    auto
+    open (const type_vec_files& files, const Glib::ustring& hint = {}) -> void;
 
-    void
-    open (const Glib::RefPtr<Gio::File>& file, const Glib::ustring& hint = {});
+    auto
+    open (const Glib::RefPtr<Gio::File>& file, const Glib::ustring& hint = {})
+        -> void;
 
     auto
     run (int argc, char** argv) -> int;
 
-    void
-    quit ();
+    auto
+    quit () -> void;
 
-    static void
-    set_default (const Glib::RefPtr<Application>& application);
+    static auto
+    set_default (const Glib::RefPtr<Application>& application) -> void;
 
-    static void
-    unset_default ();
+    static auto
+    unset_default () -> void;
 
     static auto
     get_default () -> Glib::RefPtr<Application>;
 
-    void
-    mark_busy ();
+    auto
+    mark_busy () -> void;
 
-    void
-    unmark_busy ();
+    auto
+    unmark_busy () -> void;
 
     auto
     get_is_busy () const -> bool;
 
-    void
+    auto
     send_notification (const Glib::ustring& id,
-                       const Glib::RefPtr<Notification>& notification);
+                       const Glib::RefPtr<Notification>& notification) -> void;
 
-    void
-    send_notification (const Glib::RefPtr<Notification>& notification);
+    auto
+    send_notification (const Glib::RefPtr<Notification>& notification) -> void;
 
-    void
-    withdraw_notification (const Glib::ustring& id);
+    auto
+    withdraw_notification (const Glib::ustring& id) -> void;
 
     auto
     property_application_id () -> Glib::PropertyProxy<Glib::ustring>;
@@ -332,54 +336,54 @@ namespace Gio
     signal_name_lost () -> Glib::SignalProxy<bool ()>;
 
   protected:
-    virtual void
-    on_open (const type_vec_files& files, const Glib::ustring& hint);
+    virtual auto
+    on_open (const type_vec_files& files, const Glib::ustring& hint) -> void;
 
     virtual auto
     local_command_line_vfunc (char**& arguments, int& exit_status) -> bool;
 
-    virtual void
-    before_emit_vfunc (const Glib::VariantBase& platform_data);
+    virtual auto
+    before_emit_vfunc (const Glib::VariantBase& platform_data) -> void;
 
-    virtual void
-    after_emit_vfunc (const Glib::VariantBase& platform_data);
+    virtual auto
+    after_emit_vfunc (const Glib::VariantBase& platform_data) -> void;
 
-    virtual void
-    quit_mainloop_vfunc ();
+    virtual auto
+    quit_mainloop_vfunc () -> void;
 
-    virtual void
-    run_mainloop_vfunc ();
+    virtual auto
+    run_mainloop_vfunc () -> void;
 
     virtual auto
     dbus_register_vfunc (const Glib::RefPtr<DBus::Connection>& connection,
                          const Glib::ustring& object_path) -> bool;
 
-    virtual void
+    virtual auto
     dbus_unregister_vfunc (const Glib::RefPtr<DBus::Connection>& connection,
-                           const Glib::ustring& object_path);
+                           const Glib::ustring& object_path) -> void;
 
   private:
     auto
     custom_class_init () -> const Glib::Class&;
 
-    void
+    auto
     add_main_option_entry_private (const gchar* long_name,
                                    gchar short_name,
                                    const gchar* description,
                                    const gchar* arg_description,
-                                   Glib::OptionEntry::Flags flags);
+                                   Glib::OptionEntry::Flags flags) -> void;
 
   public:
   public:
   protected:
-    virtual void
-    on_startup ();
+    virtual auto
+    on_startup () -> void;
 
-    virtual void
-    on_shutdown ();
+    virtual auto
+    on_shutdown () -> void;
 
-    virtual void
-    on_activate ();
+    virtual auto
+    on_activate () -> void;
 
     virtual auto
     on_command_line (const Glib::RefPtr<ApplicationCommandLine>& command_line)

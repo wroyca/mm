@@ -3,23 +3,25 @@
 #ifndef _GTKMM_APPCHOOSERBUTTON_H
 #define _GTKMM_APPCHOOSERBUTTON_H
 
-#include <libmm-glib/ustring.hxx>
-#include <sigc++/sigc++.h>
+#ifndef GTKMM_DISABLE_DEPRECATED
 
-#include <libmm-gtk/appchooser.hxx>
-#include <libmm-gtk/widget.hxx>
+  #include <libmm-glib/ustring.hxx>
+  #include <sigc++/sigc++.h>
 
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #include <libmm-gtk/appchooser.hxx>
+  #include <libmm-gtk/widget.hxx>
+
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
 using GtkAppChooserButton = struct _GtkAppChooserButton;
 using GtkAppChooserButtonClass = struct _GtkAppChooserButtonClass;
-#endif
+  #endif
 
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
   class GTKMM_API AppChooserButton_Class;
 }
-#endif
+  #endif
 
 namespace Gtk
 {
@@ -28,12 +30,12 @@ namespace Gtk
                                      public AppChooser
   {
   public:
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
     typedef AppChooserButton CppObjectType;
     typedef AppChooserButton_Class CppClassType;
     typedef GtkAppChooserButton BaseObjectType;
     typedef GtkAppChooserButtonClass BaseClassType;
-#endif
+  #endif
 
     AppChooserButton (AppChooserButton&& src) noexcept;
     auto
@@ -45,7 +47,7 @@ namespace Gtk
 
     ~AppChooserButton () noexcept override;
 
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   private:
     friend GTKMM_API class AppChooserButton_Class;
@@ -55,17 +57,17 @@ namespace Gtk
     explicit AppChooserButton (const Glib::ConstructParams& construct_params);
     explicit AppChooserButton (GtkAppChooserButton* castitem);
 
-#endif
+  #endif
 
   public:
     static auto
     get_type () -> GType G_GNUC_CONST;
 
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
     static auto
     get_base_type () -> GType G_GNUC_CONST;
-#endif
+  #endif
 
     auto
     gobj () -> GtkAppChooserButton*
@@ -83,37 +85,37 @@ namespace Gtk
   public:
     explicit AppChooserButton (const Glib::ustring& content_type);
 
-    void
-    append_separator ();
+    auto
+    append_separator () -> void;
 
-    void
+    auto
     append_custom_item (const Glib::ustring& name,
                         const Glib::ustring& label,
-                        const Glib::RefPtr<Gio::Icon>& icon);
+                        const Glib::RefPtr<Gio::Icon>& icon) -> void;
 
-    void
-    set_active_custom_item (const Glib::ustring& name);
+    auto
+    set_active_custom_item (const Glib::ustring& name) -> void;
 
-    void
-    set_show_dialog_item (bool setting = true);
+    auto
+    set_show_dialog_item (bool setting = true) -> void;
 
     auto
     get_show_dialog_item () const -> bool;
 
-    void
-    set_heading (const Glib::ustring& heading);
+    auto
+    set_heading (const Glib::ustring& heading) -> void;
 
     auto
     get_heading () const -> Glib::ustring;
 
-    void
-    set_show_default_item (bool setting = true);
+    auto
+    set_show_default_item (bool setting = true) -> void;
 
     auto
     get_show_default_item () const -> bool;
 
-    void
-    set_modal (bool modal = true);
+    auto
+    set_modal (bool modal = true) -> void;
 
     auto
     get_modal () const -> bool;
@@ -158,10 +160,10 @@ namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkAppChooserButton* object, bool take_copy = false) -> Gtk::AppChooserButton*;
 } // namespace Glib
+
+#endif
 
 #endif

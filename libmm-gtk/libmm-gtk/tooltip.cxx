@@ -44,10 +44,11 @@ namespace Glib
 {
 
   auto
-  wrap (GtkTooltip* object, const bool take_copy) -> RefPtr<Gtk::Tooltip>
+  wrap (GtkTooltip* object, bool take_copy) -> Glib::RefPtr<Gtk::Tooltip>
   {
     return Glib::make_refptr_for_instance<Gtk::Tooltip> (
-        dynamic_cast<Gtk::Tooltip*> (wrap_auto ((GObject*) object, take_copy)));
+        dynamic_cast<Gtk::Tooltip*> (
+            Glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
 } // namespace Glib
@@ -56,7 +57,7 @@ namespace Gtk
 {
 
   auto
-  Tooltip_Class::init () -> const Class&
+  Tooltip_Class::init () -> const Glib::Class&
   {
     if (!gtype_)
     {
@@ -89,28 +90,28 @@ namespace Gtk
   }
 
   Tooltip::Tooltip (const Glib::ConstructParams& construct_params)
-    : Object (construct_params)
+    : Glib::Object (construct_params)
   {
   }
 
   Tooltip::Tooltip (GtkTooltip* castitem)
-    : Object ((GObject*) castitem)
+    : Glib::Object ((GObject*) (castitem))
   {
   }
 
   Tooltip::Tooltip (Tooltip&& src) noexcept
-    : Object (std::move (src))
+    : Glib::Object (std::move (src))
   {
   }
 
   auto
   Tooltip::operator= (Tooltip&& src) noexcept -> Tooltip&
   {
-    Object::operator= (std::move (src));
+    Glib::Object::operator= (std::move (src));
     return *this;
   }
 
-  Tooltip::~Tooltip () noexcept = default;
+  Tooltip::~Tooltip () noexcept {}
 
   Tooltip::CppClassType Tooltip::tooltip_class_;
 
@@ -147,7 +148,9 @@ namespace Gtk
   auto
   Tooltip::set_icon (const Glib::RefPtr<Gio::Icon>& gicon) -> void
   {
-    gtk_tooltip_set_icon_from_gicon (gobj (), Glib::unwrap<Gio::Icon> (gicon));
+    gtk_tooltip_set_icon_from_gicon (
+        gobj (),
+        const_cast<GIcon*> (Glib::unwrap<Gio::Icon> (gicon)));
   }
 
   auto
@@ -161,13 +164,13 @@ namespace Gtk
   auto
   Tooltip::set_custom (Widget& custom_widget) -> void
   {
-    gtk_tooltip_set_custom (gobj (), custom_widget.gobj ());
+    gtk_tooltip_set_custom (gobj (), (custom_widget).gobj ());
   }
 
   auto
   Tooltip::set_tip_area (const Gdk::Rectangle& rect) -> void
   {
-    gtk_tooltip_set_tip_area (gobj (), rect.gobj ());
+    gtk_tooltip_set_tip_area (gobj (), (rect).gobj ());
   }
 
 } // namespace Gtk

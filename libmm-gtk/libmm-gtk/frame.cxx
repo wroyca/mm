@@ -32,9 +32,10 @@ namespace Glib
 {
 
   auto
-  wrap (GtkFrame* object, const bool take_copy) -> Gtk::Frame*
+  wrap (GtkFrame* object, bool take_copy) -> Gtk::Frame*
   {
-    return dynamic_cast<Gtk::Frame*> (wrap_auto ((GObject*) object, take_copy));
+    return dynamic_cast<Gtk::Frame*> (
+        Glib::wrap_auto ((GObject*) (object), take_copy));
   }
 
 } // namespace Glib
@@ -43,7 +44,7 @@ namespace Gtk
 {
 
   auto
-  Frame_Class::init () -> const Class&
+  Frame_Class::init () -> const Glib::Class&
   {
     if (!gtype_)
     {
@@ -69,8 +70,8 @@ namespace Gtk
       GtkFrame* self,
       GtkAllocation* allocation) -> void
   {
-    const auto obj_base =
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self);
+    const auto obj_base = static_cast<Glib::ObjectBase*> (
+        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -79,7 +80,8 @@ namespace Gtk
       {
         try
         {
-          obj->compute_child_allocation_vfunc (Glib::wrap (allocation));
+          obj->compute_child_allocation_vfunc (
+              (Allocation&) (Glib::wrap (allocation)));
           return;
         }
         catch (...)
@@ -89,7 +91,7 @@ namespace Gtk
       }
     }
 
-    const BaseClassType* const base = static_cast<BaseClassType*> (
+    BaseClassType* const base = static_cast<BaseClassType*> (
         g_type_class_peek_parent (G_OBJECT_GET_CLASS (self)));
 
     if (base && base->compute_child_allocation)
@@ -99,28 +101,28 @@ namespace Gtk
   auto
   Frame_Class::wrap_new (GObject* o) -> Glib::ObjectBase*
   {
-    return manage (new Frame ((GtkFrame*) o));
+    return manage (new Frame ((GtkFrame*) (o)));
   }
 
   Frame::Frame (const Glib::ConstructParams& construct_params)
-    : Widget (construct_params)
+    : Gtk::Widget (construct_params)
   {
   }
 
   Frame::Frame (GtkFrame* castitem)
-    : Widget ((GtkWidget*) castitem)
+    : Gtk::Widget ((GtkWidget*) (castitem))
   {
   }
 
   Frame::Frame (Frame&& src) noexcept
-    : Widget (std::move (src))
+    : Gtk::Widget (std::move (src))
   {
   }
 
   auto
   Frame::operator= (Frame&& src) noexcept -> Frame&
   {
-    Widget::operator= (std::move (src));
+    Gtk::Widget::operator= (std::move (src));
     return *this;
   }
 
@@ -144,17 +146,17 @@ namespace Gtk
   }
 
   Frame::Frame ()
-    : ObjectBase (nullptr),
-      Widget (Glib::ConstructParams (frame_class_.init ()))
+    : Glib::ObjectBase (nullptr),
+      Gtk::Widget (Glib::ConstructParams (frame_class_.init ()))
   {
   }
 
   Frame::Frame (const Glib::ustring& label)
-    : ObjectBase (nullptr),
-      Widget (Glib::ConstructParams (frame_class_.init (),
-                                     "label",
-                                     label.c_str (),
-                                     nullptr))
+    : Glib::ObjectBase (nullptr),
+      Gtk::Widget (Glib::ConstructParams (frame_class_.init (),
+                                          "label",
+                                          label.c_str (),
+                                          nullptr))
   {
   }
 
@@ -174,7 +176,7 @@ namespace Gtk
   auto
   Frame::set_label_widget (Widget& label_widget) -> void
   {
-    gtk_frame_set_label_widget (gobj (), label_widget.gobj ());
+    gtk_frame_set_label_widget (gobj (), (label_widget).gobj ());
   }
 
   auto
@@ -190,13 +192,13 @@ namespace Gtk
   }
 
   auto
-  Frame::set_label_align (const float xalign) -> void
+  Frame::set_label_align (float xalign) -> void
   {
     gtk_frame_set_label_align (gobj (), xalign);
   }
 
   auto
-  Frame::set_label_align (const Align xalign) -> void
+  Frame::set_label_align (Align xalign) -> void
   {
     gtk_frame_set_label_align (gobj (), _gtkmm_align_float_from_enum (xalign));
   }
@@ -210,7 +212,7 @@ namespace Gtk
   auto
   Frame::set_child (Widget& child) -> void
   {
-    gtk_frame_set_child (gobj (), child.gobj ());
+    gtk_frame_set_child (gobj (), (child).gobj ());
   }
 
   auto
@@ -228,60 +230,61 @@ namespace Gtk
   auto
   Frame::property_label () -> Glib::PropertyProxy<Glib::ustring>
   {
-    return {this, "label"};
+    return Glib::PropertyProxy<Glib::ustring> (this, "label");
   }
 
   auto
   Frame::property_label () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>
   {
-    return {this, "label"};
+    return Glib::PropertyProxy_ReadOnly<Glib::ustring> (this, "label");
   }
 
   auto
   Frame::property_label_xalign () -> Glib::PropertyProxy<double>
   {
-    return {this, "label-xalign"};
+    return Glib::PropertyProxy<double> (this, "label-xalign");
   }
 
   auto
   Frame::property_label_xalign () const -> Glib::PropertyProxy_ReadOnly<double>
   {
-    return {this, "label-xalign"};
+    return Glib::PropertyProxy_ReadOnly<double> (this, "label-xalign");
   }
 
   auto
   Frame::property_label_widget () -> Glib::PropertyProxy<Widget*>
   {
-    return {this, "label-widget"};
+    return Glib::PropertyProxy<Widget*> (this, "label-widget");
   }
 
   auto
   Frame::property_label_widget () const -> Glib::PropertyProxy_ReadOnly<Widget*>
   {
-    return {this, "label-widget"};
+    return Glib::PropertyProxy_ReadOnly<Widget*> (this, "label-widget");
   }
 
   auto
   Frame::property_child () -> Glib::PropertyProxy<Widget*>
   {
-    return {this, "child"};
+    return Glib::PropertyProxy<Widget*> (this, "child");
   }
 
   auto
   Frame::property_child () const -> Glib::PropertyProxy_ReadOnly<Widget*>
   {
-    return {this, "child"};
+    return Glib::PropertyProxy_ReadOnly<Widget*> (this, "child");
   }
 
   auto
-  Frame::compute_child_allocation_vfunc (Allocation& allocation) -> void
+  Gtk::Frame::compute_child_allocation_vfunc (Allocation& allocation) -> void
   {
     const auto base = static_cast<BaseClassType*> (
         g_type_class_peek_parent (G_OBJECT_GET_CLASS (gobject_)));
 
     if (base && base->compute_child_allocation)
     {
-      (*base->compute_child_allocation) (gobj (), allocation.gobj ());
+      (*base->compute_child_allocation) (gobj (),
+                                         (GtkAllocation*) (allocation.gobj ()));
     }
   }
 

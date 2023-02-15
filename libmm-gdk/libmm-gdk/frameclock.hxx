@@ -98,14 +98,14 @@ namespace Gdk
     auto
     get_frame_time () const -> gint64;
 
-    void
-    request_phase (Phase phase);
+    auto
+    request_phase (Phase phase) -> void;
 
-    void
-    begin_updating ();
+    auto
+    begin_updating () -> void;
 
-    void
-    end_updating ();
+    auto
+    end_updating () -> void;
 
     auto
     get_frame_counter () const -> gint64;
@@ -126,10 +126,10 @@ namespace Gdk
     auto
     get_current_timings () const -> Glib::RefPtr<const FrameTimings>;
 
-    void
+    auto
     get_refresh_info (gint64 base_time,
                       gint64& refresh_interval_return,
-                      gint64& presentation_time_return) const;
+                      gint64& presentation_time_return) const -> void;
 
     auto
     get_fps () const -> double;
@@ -220,9 +220,7 @@ namespace Glib
 
 namespace Glib
 {
-
-  GDKMM_API
-  auto
+  GDKMM_API auto
   wrap (GdkFrameClock* object, bool take_copy = false) -> Glib::RefPtr<Gdk::FrameClock>;
 } // namespace Glib
 

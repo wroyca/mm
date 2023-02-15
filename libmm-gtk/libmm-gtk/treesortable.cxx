@@ -1,9 +1,15 @@
 // SPDX-License-Identifier: LGPL-2.1-or-later
 
-#include <libmm-glib/mm-glib.hxx>
+#undef GTK_DISABLE_DEPRECATED
+#define GDK_DISABLE_DEPRECATION_WARNINGS 1
 
-#include <libmm-gtk/treesortable.hxx>
-#include <libmm-gtk/treesortable_p.hxx>
+#include <libmm-gtk/mm-gtkconfig.hxx>
+#ifndef GTKMM_DISABLE_DEPRECATED
+
+  #include <libmm-glib/mm-glib.hxx>
+
+  #include <libmm-gtk/treesortable.hxx>
+  #include <libmm-gtk/treesortable_p.hxx>
 
 static auto
 SignalProxy_Compare_gtk_callback (GtkTreeModel* model,
@@ -11,7 +17,7 @@ SignalProxy_Compare_gtk_callback (GtkTreeModel* model,
                                   GtkTreeIter* rhs,
                                   void* data) -> int
 {
-  const auto the_slot = static_cast<Gtk::TreeSortable::SlotCompare*> (data);
+  auto the_slot = static_cast<Gtk::TreeSortable::SlotCompare*> (data);
 
   try
   {
@@ -36,10 +42,9 @@ namespace Gtk
 {
 
   auto
-  TreeSortable::set_sort_func (const int sort_column_id,
-                               const SlotCompare& slot) -> void
+  TreeSortable::set_sort_func (int sort_column_id, const SlotCompare& slot) -> void
   {
-    const auto slot_copy = new SlotCompare (slot);
+    auto slot_copy = new SlotCompare (slot);
 
     gtk_tree_sortable_set_sort_func (gobj (),
                                      sort_column_id,
@@ -49,7 +54,7 @@ namespace Gtk
   }
 
   auto
-  TreeSortable::set_sort_func (const TreeModelColumnBase& sort_column,
+  TreeSortable::set_sort_func (const Gtk::TreeModelColumnBase& sort_column,
                                const SlotCompare& slot) -> void
   {
     set_sort_func (sort_column.index (), slot);
@@ -58,7 +63,7 @@ namespace Gtk
   auto
   TreeSortable::set_default_sort_func (const SlotCompare& slot) -> void
   {
-    const auto slot_copy = new SlotCompare (slot);
+    auto slot_copy = new SlotCompare (slot);
 
     gtk_tree_sortable_set_default_sort_func (
         gobj (),
@@ -81,10 +86,11 @@ namespace Gtk
 namespace
 {
 
-  const Glib::SignalProxyInfo TreeSortable_signal_sort_column_changed_info = {
-      "sort_column_changed",
-      (GCallback) &Glib::SignalProxyNormal::slot0_void_callback,
-      (GCallback) &Glib::SignalProxyNormal::slot0_void_callback};
+  static const Glib::SignalProxyInfo
+      TreeSortable_signal_sort_column_changed_info = {
+          "sort_column_changed",
+          (GCallback) &Glib::SignalProxyNormal::slot0_void_callback,
+          (GCallback) &Glib::SignalProxyNormal::slot0_void_callback};
 
 }
 
@@ -92,11 +98,12 @@ namespace Glib
 {
 
   auto
-  wrap (GtkTreeSortable* object, const bool take_copy) -> RefPtr<Gtk::TreeSortable>
+  wrap (GtkTreeSortable* object, bool take_copy) -> Glib::RefPtr<Gtk::TreeSortable>
   {
     return Glib::make_refptr_for_instance<Gtk::TreeSortable> (
-        Glib::wrap_auto_interface<Gtk::TreeSortable> ((GObject*) object,
-                                                      take_copy));
+        dynamic_cast<Gtk::TreeSortable*> (
+            Glib::wrap_auto_interface<Gtk::TreeSortable> ((GObject*) (object),
+                                                          take_copy)));
   }
 
 } // namespace Glib
@@ -105,7 +112,7 @@ namespace Gtk
 {
 
   auto
-  TreeSortable_Class::init () -> const Interface_Class&
+  TreeSortable_Class::init () -> const Glib::Interface_Class&
   {
     if (!gtype_)
     {
@@ -139,8 +146,8 @@ namespace Gtk
                                                          int* sort_column_id,
                                                          GtkSortType* order) -> gboolean
   {
-    const auto obj_base =
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self);
+    const auto obj_base = static_cast<Glib::ObjectBase*> (
+        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -149,8 +156,9 @@ namespace Gtk
       {
         try
         {
-          return obj->get_sort_column_id_vfunc (sort_column_id,
-                                                (SortType*) order);
+          return static_cast<int> (
+              obj->get_sort_column_id_vfunc (sort_column_id,
+                                             ((SortType*) (order))));
         }
         catch (...)
         {
@@ -159,7 +167,7 @@ namespace Gtk
       }
     }
 
-    const BaseClassType* const base =
+    BaseClassType* const base =
         static_cast<BaseClassType*> (g_type_interface_peek_parent (
             g_type_interface_peek (G_OBJECT_GET_CLASS (self),
                                    CppObjectType::get_type ())));
@@ -172,13 +180,12 @@ namespace Gtk
   }
 
   auto
-  TreeSortable_Class::set_sort_column_id_vfunc_callback (
-      GtkTreeSortable* self,
-      const int sort_column_id,
-      GtkSortType order) -> void
+  TreeSortable_Class::set_sort_column_id_vfunc_callback (GtkTreeSortable* self,
+                                                         int sort_column_id,
+                                                         GtkSortType order) -> void
   {
-    const auto obj_base =
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self);
+    const auto obj_base = static_cast<Glib::ObjectBase*> (
+        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -198,7 +205,7 @@ namespace Gtk
       }
     }
 
-    const BaseClassType* const base =
+    BaseClassType* const base =
         static_cast<BaseClassType*> (g_type_interface_peek_parent (
             g_type_interface_peek (G_OBJECT_GET_CLASS (self),
                                    CppObjectType::get_type ())));
@@ -208,15 +215,14 @@ namespace Gtk
   }
 
   auto
-  TreeSortable_Class::set_sort_func_vfunc_callback (
-      GtkTreeSortable* self,
-      const int sort_column_id,
-      const GtkTreeIterCompareFunc func,
-      const gpointer data,
-      const GDestroyNotify destroy) -> void
+  TreeSortable_Class::set_sort_func_vfunc_callback (GtkTreeSortable* self,
+                                                    int sort_column_id,
+                                                    GtkTreeIterCompareFunc func,
+                                                    gpointer data,
+                                                    GDestroyNotify destroy) -> void
   {
-    const auto obj_base =
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self);
+    const auto obj_base = static_cast<Glib::ObjectBase*> (
+        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -235,7 +241,7 @@ namespace Gtk
       }
     }
 
-    const BaseClassType* const base =
+    BaseClassType* const base =
         static_cast<BaseClassType*> (g_type_interface_peek_parent (
             g_type_interface_peek (G_OBJECT_GET_CLASS (self),
                                    CppObjectType::get_type ())));
@@ -247,12 +253,12 @@ namespace Gtk
   auto
   TreeSortable_Class::set_default_sort_func_vfunc_callback (
       GtkTreeSortable* self,
-      const GtkTreeIterCompareFunc func,
-      const gpointer data,
-      const GDestroyNotify destroy) -> void
+      GtkTreeIterCompareFunc func,
+      gpointer data,
+      GDestroyNotify destroy) -> void
   {
-    const auto obj_base =
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self);
+    const auto obj_base = static_cast<Glib::ObjectBase*> (
+        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -271,7 +277,7 @@ namespace Gtk
       }
     }
 
-    const BaseClassType* const base =
+    BaseClassType* const base =
         static_cast<BaseClassType*> (g_type_interface_peek_parent (
             g_type_interface_peek (G_OBJECT_GET_CLASS (self),
                                    CppObjectType::get_type ())));
@@ -284,8 +290,8 @@ namespace Gtk
   TreeSortable_Class::has_default_sort_func_vfunc_callback (
       GtkTreeSortable* self) -> gboolean
   {
-    const auto obj_base =
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self);
+    const auto obj_base = static_cast<Glib::ObjectBase*> (
+        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -294,7 +300,7 @@ namespace Gtk
       {
         try
         {
-          return obj->has_default_sort_func_vfunc ();
+          return static_cast<int> (obj->has_default_sort_func_vfunc ());
         }
         catch (...)
         {
@@ -303,7 +309,7 @@ namespace Gtk
       }
     }
 
-    const BaseClassType* const base =
+    BaseClassType* const base =
         static_cast<BaseClassType*> (g_type_interface_peek_parent (
             g_type_interface_peek (G_OBJECT_GET_CLASS (self),
                                    CppObjectType::get_type ())));
@@ -318,8 +324,8 @@ namespace Gtk
   auto
   TreeSortable_Class::sort_column_changed_vfunc_callback (GtkTreeSortable* self) -> void
   {
-    const auto obj_base =
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self);
+    const auto obj_base = static_cast<Glib::ObjectBase*> (
+        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -338,7 +344,7 @@ namespace Gtk
       }
     }
 
-    const BaseClassType* const base =
+    BaseClassType* const base =
         static_cast<BaseClassType*> (g_type_interface_peek_parent (
             g_type_interface_peek (G_OBJECT_GET_CLASS (self),
                                    CppObjectType::get_type ())));
@@ -350,8 +356,8 @@ namespace Gtk
   auto
   TreeSortable_Class::sort_column_changed_callback (GtkTreeSortable* self) -> void
   {
-    const auto obj_base =
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self);
+    const auto obj_base = static_cast<Glib::ObjectBase*> (
+        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -382,40 +388,40 @@ namespace Gtk
   auto
   TreeSortable_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
   {
-    return new TreeSortable ((GtkTreeSortable*) object);
+    return new TreeSortable ((GtkTreeSortable*) (object));
   }
 
   TreeSortable::TreeSortable ()
-    : Interface (treesortable_class_.init ())
+    : Glib::Interface (treesortable_class_.init ())
   {
   }
 
   TreeSortable::TreeSortable (GtkTreeSortable* castitem)
-    : Interface ((GObject*) castitem)
+    : Glib::Interface ((GObject*) (castitem))
   {
   }
 
   TreeSortable::TreeSortable (const Glib::Interface_Class& interface_class)
-    : Interface (interface_class)
+    : Glib::Interface (interface_class)
   {
   }
 
   TreeSortable::TreeSortable (TreeSortable&& src) noexcept
-    : Interface (std::move (src))
+    : Glib::Interface (std::move (src))
   {
   }
 
   auto
   TreeSortable::operator= (TreeSortable&& src) noexcept -> TreeSortable&
   {
-    Interface::operator= (std::move (src));
+    Glib::Interface::operator= (std::move (src));
     return *this;
   }
 
-  TreeSortable::~TreeSortable () noexcept = default;
+  TreeSortable::~TreeSortable () noexcept {}
 
   auto
-  TreeSortable::add_interface (const GType gtype_implementer) -> void
+  TreeSortable::add_interface (GType gtype_implementer) -> void
   {
     treesortable_class_.init ().add_interface (gtype_implementer);
   }
@@ -439,8 +445,8 @@ namespace Gtk
   {
     return gtk_tree_sortable_get_sort_column_id (
         const_cast<GtkTreeSortable*> (gobj ()),
-        &sort_column_id,
-        (GtkSortType*) &order);
+        &(sort_column_id),
+        ((GtkSortType*) &(order)));
   }
 
   auto
@@ -448,12 +454,12 @@ namespace Gtk
                                  SortType order) -> void
   {
     gtk_tree_sortable_set_sort_column_id (gobj (),
-                                          sort_column_id.index (),
+                                          (sort_column_id).index (),
                                           static_cast<GtkSortType> (order));
   }
 
   auto
-  TreeSortable::set_sort_column (const int sort_column_id, SortType order) -> void
+  TreeSortable::set_sort_column (int sort_column_id, SortType order) -> void
   {
     gtk_tree_sortable_set_sort_column_id (gobj (),
                                           sort_column_id,
@@ -476,36 +482,38 @@ namespace Gtk
   auto
   TreeSortable::signal_sort_column_changed () -> Glib::SignalProxy<void ()>
   {
-    return {this, &TreeSortable_signal_sort_column_changed_info};
+    return Glib::SignalProxy<void ()> (
+        this,
+        &TreeSortable_signal_sort_column_changed_info);
   }
 
   auto
-  TreeSortable::on_sort_column_changed () -> void
+  Gtk::TreeSortable::on_sort_column_changed () -> void
   {
     const auto base =
         static_cast<BaseClassType*> (g_type_interface_peek_parent (
             g_type_interface_peek (G_OBJECT_GET_CLASS (gobject_),
-                                   get_type ())));
+                                   CppObjectType::get_type ())));
 
     if (base && base->sort_column_changed)
       (*base->sort_column_changed) (gobj ());
   }
 
   auto
-  TreeSortable::get_sort_column_id_vfunc (int* sort_column_id,
-                                          SortType* order) const -> bool
+  Gtk::TreeSortable::get_sort_column_id_vfunc (int* sort_column_id,
+                                               SortType* order) const -> bool
   {
     const auto base =
         static_cast<BaseClassType*> (g_type_interface_peek_parent (
             g_type_interface_peek (G_OBJECT_GET_CLASS (gobject_),
-                                   get_type ())));
+                                   CppObjectType::get_type ())));
 
     if (base && base->get_sort_column_id)
     {
-      const bool retval (
+      bool retval (
           (*base->get_sort_column_id) (const_cast<GtkTreeSortable*> (gobj ()),
                                        sort_column_id,
-                                       (GtkSortType*) order));
+                                       ((GtkSortType*) (order))));
       return retval;
     }
 
@@ -514,13 +522,13 @@ namespace Gtk
   }
 
   auto
-  TreeSortable::set_sort_column_id_vfunc (const int sort_column_id,
-                                          SortType order) -> void
+  Gtk::TreeSortable::set_sort_column_id_vfunc (int sort_column_id,
+                                               SortType order) -> void
   {
     const auto base =
         static_cast<BaseClassType*> (g_type_interface_peek_parent (
             g_type_interface_peek (G_OBJECT_GET_CLASS (gobject_),
-                                   get_type ())));
+                                   CppObjectType::get_type ())));
 
     if (base && base->set_sort_column_id)
     {
@@ -531,15 +539,15 @@ namespace Gtk
   }
 
   auto
-  TreeSortable::set_sort_func_vfunc (const int sort_column_id,
-                                     const GtkTreeIterCompareFunc func,
-                                     void* data,
-                                     const GDestroyNotify destroy) -> void
+  Gtk::TreeSortable::set_sort_func_vfunc (int sort_column_id,
+                                          GtkTreeIterCompareFunc func,
+                                          void* data,
+                                          GDestroyNotify destroy) -> void
   {
     const auto base =
         static_cast<BaseClassType*> (g_type_interface_peek_parent (
             g_type_interface_peek (G_OBJECT_GET_CLASS (gobject_),
-                                   get_type ())));
+                                   CppObjectType::get_type ())));
 
     if (base && base->set_sort_func)
     {
@@ -548,14 +556,14 @@ namespace Gtk
   }
 
   auto
-  TreeSortable::set_default_sort_func_vfunc (const GtkTreeIterCompareFunc func,
-                                             void* data,
-                                             const GDestroyNotify destroy) -> void
+  Gtk::TreeSortable::set_default_sort_func_vfunc (GtkTreeIterCompareFunc func,
+                                                  void* data,
+                                                  GDestroyNotify destroy) -> void
   {
     const auto base =
         static_cast<BaseClassType*> (g_type_interface_peek_parent (
             g_type_interface_peek (G_OBJECT_GET_CLASS (gobject_),
-                                   get_type ())));
+                                   CppObjectType::get_type ())));
 
     if (base && base->set_default_sort_func)
     {
@@ -564,16 +572,16 @@ namespace Gtk
   }
 
   auto
-  TreeSortable::has_default_sort_func_vfunc () const -> bool
+  Gtk::TreeSortable::has_default_sort_func_vfunc () const -> bool
   {
     const auto base =
         static_cast<BaseClassType*> (g_type_interface_peek_parent (
             g_type_interface_peek (G_OBJECT_GET_CLASS (gobject_),
-                                   get_type ())));
+                                   CppObjectType::get_type ())));
 
     if (base && base->has_default_sort_func)
     {
-      const bool retval ((*base->has_default_sort_func) (
+      bool retval ((*base->has_default_sort_func) (
           const_cast<GtkTreeSortable*> (gobj ())));
       return retval;
     }
@@ -583,12 +591,12 @@ namespace Gtk
   }
 
   auto
-  TreeSortable::sort_column_changed_vfunc () const -> void
+  Gtk::TreeSortable::sort_column_changed_vfunc () const -> void
   {
     const auto base =
         static_cast<BaseClassType*> (g_type_interface_peek_parent (
             g_type_interface_peek (G_OBJECT_GET_CLASS (gobject_),
-                                   get_type ())));
+                                   CppObjectType::get_type ())));
 
     if (base && base->sort_column_changed)
     {
@@ -597,3 +605,5 @@ namespace Gtk
   }
 
 } // namespace Gtk
+
+#endif

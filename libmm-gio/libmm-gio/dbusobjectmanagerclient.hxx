@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: LGPL-2.1-or-later
 
 #ifndef _GIOMM_DBUSOBJECTMANAGERCLIENT_H
 #define _GIOMM_DBUSOBJECTMANAGERCLIENT_H
@@ -119,14 +120,14 @@ namespace Gio::DBus
                          Flags flags);
 
   public:
-    static void
+    static auto
     create (const Glib::RefPtr<Connection>& connection,
             const Glib::ustring& name,
             const Glib::ustring& object_path,
             const SlotAsyncReady& slot_async_ready,
             const Glib::RefPtr<Cancellable>& cancellable = {},
             const SlotProxyType& slot_proxy_type = {},
-            Flags flags = Flags::NONE);
+            Flags flags = Flags::NONE) -> void;
 
     static auto
     create_finish (const Glib::RefPtr<AsyncResult>& res)
@@ -141,14 +142,14 @@ namespace Gio::DBus
                  Flags flags = Flags::NONE)
         -> Glib::RefPtr<Gio::DBus::ObjectManagerClient>;
 
-    static void
+    static auto
     create_for_bus (BusType bus_type,
                     const Glib::ustring& name,
                     const Glib::ustring& object_path,
                     const SlotAsyncReady& slot_async_ready,
                     const Glib::RefPtr<Cancellable>& cancellable = {},
                     const SlotProxyType& slot_proxy_type = {},
-                    Flags flags = Flags::NONE);
+                    Flags flags = Flags::NONE) -> void;
 
     static auto
     create_for_bus_finish (const Glib::RefPtr<AsyncResult>& res)
@@ -215,20 +216,20 @@ namespace Gio::DBus
   public:
   public:
   protected:
-    virtual void
+    virtual auto
     on_interface_proxy_signal (
         const Glib::RefPtr<Gio::DBus::ObjectProxy>& object_proxy,
         const Glib::RefPtr<Gio::DBus::Proxy>& interface_proxy,
         const Glib::ustring& sender_name,
         const Glib::ustring& signal_name,
-        const Glib::VariantContainerBase& parameters);
+        const Glib::VariantContainerBase& parameters) -> void;
 
-    virtual void
+    virtual auto
     on_interface_proxy_properties_changed (
         const Glib::RefPtr<Gio::DBus::ObjectProxy>& object_proxy,
         const Glib::RefPtr<Gio::DBus::Proxy>& interface_proxy,
         const MapChangedProperties& changed_properties,
-        const std::vector<Glib::ustring>& invalidated_properties);
+        const std::vector<Glib::ustring>& invalidated_properties) -> void;
   };
 
 } // namespace Gio::DBus

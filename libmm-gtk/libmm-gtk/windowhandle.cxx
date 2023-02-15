@@ -26,10 +26,10 @@ namespace Glib
 {
 
   auto
-  wrap (GtkWindowHandle* object, const bool take_copy) -> Gtk::WindowHandle*
+  wrap (GtkWindowHandle* object, bool take_copy) -> Gtk::WindowHandle*
   {
     return dynamic_cast<Gtk::WindowHandle*> (
-        wrap_auto ((GObject*) object, take_copy));
+        Glib::wrap_auto ((GObject*) (object), take_copy));
   }
 
 } // namespace Glib
@@ -38,7 +38,7 @@ namespace Gtk
 {
 
   auto
-  WindowHandle_Class::init () -> const Class&
+  WindowHandle_Class::init () -> const Glib::Class&
   {
     if (!gtype_)
     {
@@ -60,28 +60,28 @@ namespace Gtk
   auto
   WindowHandle_Class::wrap_new (GObject* o) -> Glib::ObjectBase*
   {
-    return manage (new WindowHandle ((GtkWindowHandle*) o));
+    return manage (new WindowHandle ((GtkWindowHandle*) (o)));
   }
 
   WindowHandle::WindowHandle (const Glib::ConstructParams& construct_params)
-    : Widget (construct_params)
+    : Gtk::Widget (construct_params)
   {
   }
 
   WindowHandle::WindowHandle (GtkWindowHandle* castitem)
-    : Widget ((GtkWidget*) castitem)
+    : Gtk::Widget ((GtkWidget*) (castitem))
   {
   }
 
   WindowHandle::WindowHandle (WindowHandle&& src) noexcept
-    : Widget (std::move (src))
+    : Gtk::Widget (std::move (src))
   {
   }
 
   auto
   WindowHandle::operator= (WindowHandle&& src) noexcept -> WindowHandle&
   {
-    Widget::operator= (std::move (src));
+    Gtk::Widget::operator= (std::move (src));
     return *this;
   }
 
@@ -105,15 +105,15 @@ namespace Gtk
   }
 
   WindowHandle::WindowHandle ()
-    : ObjectBase (nullptr),
-      Widget (Glib::ConstructParams (windowhandle_class_.init ()))
+    : Glib::ObjectBase (nullptr),
+      Gtk::Widget (Glib::ConstructParams (windowhandle_class_.init ()))
   {
   }
 
   auto
   WindowHandle::set_child (Widget& child) -> void
   {
-    gtk_window_handle_set_child (gobj (), child.gobj ());
+    gtk_window_handle_set_child (gobj (), (child).gobj ());
   }
 
   auto
@@ -131,13 +131,13 @@ namespace Gtk
   auto
   WindowHandle::property_child () -> Glib::PropertyProxy<Widget*>
   {
-    return {this, "child"};
+    return Glib::PropertyProxy<Widget*> (this, "child");
   }
 
   auto
   WindowHandle::property_child () const -> Glib::PropertyProxy_ReadOnly<Widget*>
   {
-    return {this, "child"};
+    return Glib::PropertyProxy_ReadOnly<Widget*> (this, "child");
   }
 
 } // namespace Gtk

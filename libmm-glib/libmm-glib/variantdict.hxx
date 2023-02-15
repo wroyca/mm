@@ -16,11 +16,11 @@ namespace Glib
     using BaseObjectType = GVariantDict;
 #endif
 
-    void
-    reference () const;
+    auto
+    reference () const -> void;
 
-    void
-    unreference () const;
+    auto
+    unreference () const -> void;
 
     auto
     gobj () -> GVariantDict*;
@@ -38,8 +38,8 @@ namespace Glib
     operator= (const VariantDict&) -> VariantDict& = delete;
 
   protected:
-    void
-    operator delete (void*, std::size_t);
+    auto
+    operator delete (void*, std::size_t) -> void;
 
   private:
   public:
@@ -61,23 +61,24 @@ namespace Glib
     auto
     contains (const Glib::ustring& key) const -> bool;
 
-    void
-    insert_value_variant (const Glib::ustring& key, const VariantBase& value);
+    auto
+    insert_value_variant (const Glib::ustring& key, const VariantBase& value)
+        -> void;
 
     template <typename T_Value>
-    void
-    insert_value (const Glib::ustring& key, const T_Value& value);
+    auto
+    insert_value (const Glib::ustring& key, const T_Value& value) -> void;
 
     auto
     remove (const Glib::ustring& key) -> bool;
 
-    void
-    clear ();
+    auto
+    clear () -> void;
   };
 
   template <typename T_Value>
-  void
-  VariantDict::insert_value (const Glib::ustring& key, const T_Value& value)
+  auto
+  VariantDict::insert_value (const Glib::ustring& key, const T_Value& value) -> void
   {
     using type_glib_variant = Glib::Variant<T_Value>;
 

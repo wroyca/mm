@@ -21,11 +21,11 @@ namespace Glib
 {
 
   auto
-  wrap (GtkPrintContext* object, const bool take_copy) -> RefPtr<Gtk::PrintContext>
+  wrap (GtkPrintContext* object, bool take_copy) -> Glib::RefPtr<Gtk::PrintContext>
   {
     return Glib::make_refptr_for_instance<Gtk::PrintContext> (
         dynamic_cast<Gtk::PrintContext*> (
-            wrap_auto ((GObject*) object, take_copy)));
+            Glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
 } // namespace Glib
@@ -34,7 +34,7 @@ namespace Gtk
 {
 
   auto
-  PrintContext_Class::init () -> const Class&
+  PrintContext_Class::init () -> const Glib::Class&
   {
     if (!gtype_)
     {
@@ -67,28 +67,28 @@ namespace Gtk
   }
 
   PrintContext::PrintContext (const Glib::ConstructParams& construct_params)
-    : Object (construct_params)
+    : Glib::Object (construct_params)
   {
   }
 
   PrintContext::PrintContext (GtkPrintContext* castitem)
-    : Object ((GObject*) castitem)
+    : Glib::Object ((GObject*) (castitem))
   {
   }
 
   PrintContext::PrintContext (PrintContext&& src) noexcept
-    : Object (std::move (src))
+    : Glib::Object (std::move (src))
   {
   }
 
   auto
   PrintContext::operator= (PrintContext&& src) noexcept -> PrintContext&
   {
-    Object::operator= (std::move (src));
+    Glib::Object::operator= (std::move (src));
     return *this;
   }
 
-  PrintContext::~PrintContext () noexcept = default;
+  PrintContext::~PrintContext () noexcept {}
 
   PrintContext::CppClassType PrintContext::printcontext_class_;
 
@@ -168,10 +168,10 @@ namespace Gtk
   {
     return gtk_print_context_get_hard_margins (
         const_cast<GtkPrintContext*> (gobj ()),
-        &top,
-        &bottom,
-        &left,
-        &right);
+        &(top),
+        &(bottom),
+        &(left),
+        &(right));
   }
 
   auto
@@ -211,11 +211,11 @@ namespace Gtk
 
   auto
   PrintContext::set_cairo_context (const Cairo::RefPtr<Cairo::Context>& cr,
-                                   const double dpi_x,
-                                   const double dpi_y) -> void
+                                   double dpi_x,
+                                   double dpi_y) -> void
   {
     gtk_print_context_set_cairo_context (gobj (),
-                                         cr ? cr->cobj () : nullptr,
+                                         ((cr) ? (cr)->cobj () : nullptr),
                                          dpi_x,
                                          dpi_y);
   }

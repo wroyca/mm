@@ -17,26 +17,26 @@ namespace Cairo
 
     Matrix (double xx, double yx, double xy, double yy, double x0, double y0);
 
-    void
-    translate (double tx, double ty);
+    auto
+    translate (double tx, double ty) -> void;
 
-    void
-    scale (double sx, double sy);
+    auto
+    scale (double sx, double sy) -> void;
 
-    void
-    rotate (double radians);
+    auto
+    rotate (double radians) -> void;
 
-    void
-    invert ();
+    auto
+    invert () -> void;
 
-    void
-    multiply (Matrix& a, Matrix& b);
+    auto
+    multiply (Matrix& a, Matrix& b) -> void;
 
-    void
-    transform_distance (double& dx, double& dy) const;
+    auto
+    transform_distance (double& dx, double& dy) const -> void;
 
-    void
-    transform_point (double& x, double& y) const;
+    auto
+    transform_point (double& x, double& y) const -> void;
   };
 
   CAIROMM_API

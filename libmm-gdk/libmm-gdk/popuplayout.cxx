@@ -11,7 +11,7 @@ namespace Gdk
 {
 
   auto
-  PopupLayout::set_shadow_width (const int width) -> void
+  PopupLayout::set_shadow_width (int width) -> void
   {
     gdk_popup_layout_set_shadow_width (gobj (), width, width, width, width);
   }
@@ -32,7 +32,7 @@ namespace Glib
 {
 
   auto
-  wrap (GdkPopupLayout* object, const bool take_copy) -> RefPtr<Gdk::PopupLayout>
+  wrap (GdkPopupLayout* object, bool take_copy) -> Glib::RefPtr<Gdk::PopupLayout>
   {
     if (take_copy && object)
       gdk_popup_layout_ref (object);
@@ -87,7 +87,7 @@ namespace Gdk
                        Gravity surface_anchor) -> Glib::RefPtr<PopupLayout>
   {
     return Glib::wrap (
-        gdk_popup_layout_new (anchor_rect.gobj (),
+        gdk_popup_layout_new ((anchor_rect).gobj (),
                               static_cast<GdkGravity> (rect_anchor),
                               static_cast<GdkGravity> (surface_anchor)));
   }
@@ -110,7 +110,7 @@ namespace Gdk
   auto
   PopupLayout::set_anchor_rect (const Rectangle& anchor_rect) -> void
   {
-    gdk_popup_layout_set_anchor_rect (gobj (), anchor_rect.gobj ());
+    gdk_popup_layout_set_anchor_rect (gobj (), (anchor_rect).gobj ());
   }
 
   auto
@@ -164,7 +164,7 @@ namespace Gdk
   }
 
   auto
-  PopupLayout::set_offset (const int dx, const int dy) -> void
+  PopupLayout::set_offset (int dx, int dy) -> void
   {
     gdk_popup_layout_set_offset (gobj (), dx, dy);
   }
@@ -172,14 +172,11 @@ namespace Gdk
   auto
   PopupLayout::get_offset (int& dx, int& dy) -> void
   {
-    gdk_popup_layout_get_offset (gobj (), &dx, &dy);
+    gdk_popup_layout_get_offset (gobj (), &(dx), &(dy));
   }
 
   auto
-  PopupLayout::set_shadow_width (const int left,
-                                 const int right,
-                                 const int top,
-                                 const int bottom) -> void
+  PopupLayout::set_shadow_width (int left, int right, int top, int bottom) -> void
   {
     gdk_popup_layout_set_shadow_width (gobj (), left, right, top, bottom);
   }
@@ -191,10 +188,10 @@ namespace Gdk
                                  int& bottom) const -> void
   {
     gdk_popup_layout_get_shadow_width (const_cast<GdkPopupLayout*> (gobj ()),
-                                       &left,
-                                       &right,
-                                       &top,
-                                       &bottom);
+                                       &(left),
+                                       &(right),
+                                       &(top),
+                                       &(bottom));
   }
 
 } // namespace Gdk

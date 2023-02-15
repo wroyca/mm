@@ -13,7 +13,7 @@ namespace Glib
 {
 
   auto
-  wrap (GdkContentFormatsBuilder* object, const bool take_copy) -> RefPtr<Gdk::ContentFormatsBuilder>
+  wrap (GdkContentFormatsBuilder* object, bool take_copy) -> Glib::RefPtr<Gdk::ContentFormatsBuilder>
   {
     if (take_copy && object)
       gdk_content_formats_builder_ref (object);
@@ -84,7 +84,7 @@ namespace Gdk
   }
 
   auto
-  ContentFormatsBuilder::add_gtype (const GType gtype) -> void
+  ContentFormatsBuilder::add_gtype (GType gtype) -> void
   {
     gdk_content_formats_builder_add_gtype (gobj (), gtype);
   }

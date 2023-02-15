@@ -1,12 +1,17 @@
 // SPDX-License-Identifier: LGPL-2.1-or-later
 
-#include <libmm-glib/mm-glib.hxx>
+#undef GTK_DISABLE_DEPRECATED
+#define GDK_DISABLE_DEPRECATION_WARNINGS 1
 
-#include <libmm-gtk/filechooser.hxx>
-#include <libmm-gtk/filechooser_p.hxx>
+#ifndef GTKMM_DISABLE_DEPRECATED
 
-#include <gtk/gtk.h>
-#include <libmm-glib/vectorutils.hxx>
+  #include <libmm-glib/mm-glib.hxx>
+
+  #include <libmm-gtk/filechooser.hxx>
+  #include <libmm-gtk/filechooser_p.hxx>
+
+  #include <gtk/gtk.h>
+  #include <libmm-glib/vectorutils.hxx>
 
 using Action = Gtk::FileChooser::Action;
 
@@ -28,27 +33,27 @@ namespace
 {
 }
 
-Gtk::FileChooserError::FileChooserError (const Code error_code,
+Gtk::FileChooserError::FileChooserError (Gtk::FileChooserError::Code error_code,
                                          const Glib::ustring& error_message)
-  : Error (GTK_FILE_CHOOSER_ERROR, error_code, error_message)
+  : Glib::Error (GTK_FILE_CHOOSER_ERROR, error_code, error_message)
 {
 }
 
 Gtk::FileChooserError::FileChooserError (GError* gobject)
-  : Error (gobject)
+  : Glib::Error (gobject)
 {
 }
 
 auto
-Gtk::FileChooserError::code () const -> Code
+Gtk::FileChooserError::code () const -> Gtk::FileChooserError::Code
 {
-  return static_cast<Code> (Error::code ());
+  return static_cast<Code> (Glib::Error::code ());
 }
 
 auto
 Gtk::FileChooserError::throw_func (GError* gobject) -> void
 {
-  throw FileChooserError (gobject);
+  throw Gtk::FileChooserError (gobject);
 }
 
 auto
@@ -67,11 +72,12 @@ namespace Glib
 {
 
   auto
-  wrap (GtkFileChooser* object, const bool take_copy) -> RefPtr<Gtk::FileChooser>
+  wrap (GtkFileChooser* object, bool take_copy) -> Glib::RefPtr<Gtk::FileChooser>
   {
     return Glib::make_refptr_for_instance<Gtk::FileChooser> (
-        Glib::wrap_auto_interface<Gtk::FileChooser> ((GObject*) object,
-                                                     take_copy));
+        dynamic_cast<Gtk::FileChooser*> (
+            Glib::wrap_auto_interface<Gtk::FileChooser> ((GObject*) (object),
+                                                         take_copy)));
   }
 
 } // namespace Glib
@@ -80,7 +86,7 @@ namespace Gtk
 {
 
   auto
-  FileChooser_Class::init () -> const Interface_Class&
+  FileChooser_Class::init () -> const Glib::Interface_Class&
   {
     if (!gtype_)
     {
@@ -103,40 +109,40 @@ namespace Gtk
   auto
   FileChooser_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
   {
-    return new FileChooser ((GtkFileChooser*) object);
+    return new FileChooser ((GtkFileChooser*) (object));
   }
 
   FileChooser::FileChooser ()
-    : Interface (filechooser_class_.init ())
+    : Glib::Interface (filechooser_class_.init ())
   {
   }
 
   FileChooser::FileChooser (GtkFileChooser* castitem)
-    : Interface ((GObject*) castitem)
+    : Glib::Interface ((GObject*) (castitem))
   {
   }
 
   FileChooser::FileChooser (const Glib::Interface_Class& interface_class)
-    : Interface (interface_class)
+    : Glib::Interface (interface_class)
   {
   }
 
   FileChooser::FileChooser (FileChooser&& src) noexcept
-    : Interface (std::move (src))
+    : Glib::Interface (std::move (src))
   {
   }
 
   auto
   FileChooser::operator= (FileChooser&& src) noexcept -> FileChooser&
   {
-    Interface::operator= (std::move (src));
+    Glib::Interface::operator= (std::move (src));
     return *this;
   }
 
-  FileChooser::~FileChooser () noexcept = default;
+  FileChooser::~FileChooser () noexcept {}
 
   auto
-  FileChooser::add_interface (const GType gtype_implementer) -> void
+  FileChooser::add_interface (GType gtype_implementer) -> void
   {
     filechooser_class_.init ().add_interface (gtype_implementer);
   }
@@ -170,9 +176,10 @@ namespace Gtk
   }
 
   auto
-  FileChooser::set_select_multiple (const bool select_multiple) -> void
+  FileChooser::set_select_multiple (bool select_multiple) -> void
   {
-    gtk_file_chooser_set_select_multiple (gobj (), select_multiple);
+    gtk_file_chooser_set_select_multiple (gobj (),
+                                          static_cast<int> (select_multiple));
   }
 
   auto
@@ -183,9 +190,10 @@ namespace Gtk
   }
 
   auto
-  FileChooser::set_create_folders (const bool create_folders) -> void
+  FileChooser::set_create_folders (bool create_folders) -> void
   {
-    gtk_file_chooser_set_create_folders (gobj (), create_folders);
+    gtk_file_chooser_set_create_folders (gobj (),
+                                         static_cast<int> (create_folders));
   }
 
   auto
@@ -213,12 +221,12 @@ namespace Gtk
   FileChooser::set_file (const Glib::RefPtr<const Gio::File>& file) -> bool
   {
     GError* gerror = nullptr;
-    const auto retvalue = gtk_file_chooser_set_file (
+    auto retvalue = gtk_file_chooser_set_file (
         gobj (),
         const_cast<GFile*> (Glib::unwrap<Gio::File> (file)),
-        &gerror);
+        &(gerror));
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      ::Glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
@@ -239,12 +247,12 @@ namespace Gtk
   FileChooser::set_current_folder (const Glib::RefPtr<const Gio::File>& file) -> bool
   {
     GError* gerror = nullptr;
-    const auto retvalue = gtk_file_chooser_set_current_folder (
+    auto retvalue = gtk_file_chooser_set_current_folder (
         gobj (),
         const_cast<GFile*> (Glib::unwrap<Gio::File> (file)),
-        &gerror);
+        &(gerror));
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      ::Glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
@@ -275,13 +283,17 @@ namespace Gtk
   auto
   FileChooser::add_filter (const Glib::RefPtr<FileFilter>& filter) -> void
   {
-    gtk_file_chooser_add_filter (gobj (), Glib::unwrap (filter));
+    gtk_file_chooser_add_filter (
+        gobj (),
+        const_cast<GtkFileFilter*> (Glib::unwrap (filter)));
   }
 
   auto
   FileChooser::remove_filter (const Glib::RefPtr<FileFilter>& filter) -> void
   {
-    gtk_file_chooser_remove_filter (gobj (), Glib::unwrap (filter));
+    gtk_file_chooser_remove_filter (
+        gobj (),
+        const_cast<GtkFileFilter*> (Glib::unwrap (filter)));
   }
 
   auto
@@ -294,7 +306,9 @@ namespace Gtk
   auto
   FileChooser::set_filter (const Glib::RefPtr<FileFilter>& filter) -> void
   {
-    gtk_file_chooser_set_filter (gobj (), Glib::unwrap (filter));
+    gtk_file_chooser_set_filter (
+        gobj (),
+        const_cast<GtkFileFilter*> (Glib::unwrap (filter)));
   }
 
   auto
@@ -316,12 +330,12 @@ namespace Gtk
   FileChooser::add_shortcut_folder (const Glib::RefPtr<Gio::File>& folder) -> bool
   {
     GError* gerror = nullptr;
-    const auto retvalue = gtk_file_chooser_add_shortcut_folder (
+    auto retvalue = gtk_file_chooser_add_shortcut_folder (
         gobj (),
-        Glib::unwrap<Gio::File> (folder),
-        &gerror);
+        const_cast<GFile*> (Glib::unwrap<Gio::File> (folder)),
+        &(gerror));
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      ::Glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
@@ -329,12 +343,12 @@ namespace Gtk
   FileChooser::remove_shortcut_folder (const Glib::RefPtr<Gio::File>& folder) -> bool
   {
     GError* gerror = nullptr;
-    const auto retvalue = gtk_file_chooser_remove_shortcut_folder (
+    auto retvalue = gtk_file_chooser_remove_shortcut_folder (
         gobj (),
-        Glib::unwrap<Gio::File> (folder),
-        &gerror);
+        const_cast<GFile*> (Glib::unwrap<Gio::File> (folder)),
+        &(gerror));
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      ::Glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
@@ -388,13 +402,13 @@ namespace Gtk
   auto
   FileChooser::property_action () -> Glib::PropertyProxy<Action>
   {
-    return {this, "action"};
+    return Glib::PropertyProxy<Action> (this, "action");
   }
 
   auto
   FileChooser::property_action () const -> Glib::PropertyProxy_ReadOnly<Action>
   {
-    return {this, "action"};
+    return Glib::PropertyProxy_ReadOnly<Action> (this, "action");
   }
 
   static_assert (
@@ -406,25 +420,26 @@ namespace Gtk
   auto
   FileChooser::property_filter () -> Glib::PropertyProxy<Glib::RefPtr<FileFilter>>
   {
-    return {this, "filter"};
+    return Glib::PropertyProxy<Glib::RefPtr<FileFilter>> (this, "filter");
   }
 
   auto
   FileChooser::property_filter () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<FileFilter>>
   {
-    return {this, "filter"};
+    return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<FileFilter>> (this,
+                                                                   "filter");
   }
 
   auto
   FileChooser::property_select_multiple () -> Glib::PropertyProxy<bool>
   {
-    return {this, "select-multiple"};
+    return Glib::PropertyProxy<bool> (this, "select-multiple");
   }
 
   auto
   FileChooser::property_select_multiple () const -> Glib::PropertyProxy_ReadOnly<bool>
   {
-    return {this, "select-multiple"};
+    return Glib::PropertyProxy_ReadOnly<bool> (this, "select-multiple");
   }
 
   static_assert (
@@ -436,7 +451,9 @@ namespace Gtk
   auto
   FileChooser::property_filters () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gio::ListModel>>
   {
-    return {this, "filters"};
+    return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gio::ListModel>> (
+        this,
+        "filters");
   }
 
   static_assert (
@@ -448,19 +465,23 @@ namespace Gtk
   auto
   FileChooser::property_shortcut_folders () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gio::ListModel>>
   {
-    return {this, "shortcut-folders"};
+    return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gio::ListModel>> (
+        this,
+        "shortcut-folders");
   }
 
   auto
   FileChooser::property_create_folders () -> Glib::PropertyProxy<bool>
   {
-    return {this, "create-folders"};
+    return Glib::PropertyProxy<bool> (this, "create-folders");
   }
 
   auto
   FileChooser::property_create_folders () const -> Glib::PropertyProxy_ReadOnly<bool>
   {
-    return {this, "create-folders"};
+    return Glib::PropertyProxy_ReadOnly<bool> (this, "create-folders");
   }
 
 } // namespace Gtk
+
+#endif

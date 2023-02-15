@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: LGPL-2.1-or-later
 
 #ifndef _GIOMM_PROXYRESOLVER_H
 #define _GIOMM_PROXYRESOLVER_H
@@ -68,8 +69,8 @@ namespace Gio
 
     ~ProxyResolver () noexcept override;
 
-    static void
-    add_interface (GType gtype_implementer);
+    static auto
+    add_interface (GType gtype_implementer) -> void;
 
     static auto
     get_type () -> GType G_GNUC_CONST;
@@ -107,13 +108,13 @@ namespace Gio
     auto
     lookup (const Glib::ustring& uri) -> std::vector<Glib::ustring>;
 
-    void
+    auto
     lookup_async (const Glib::ustring& uri,
                   const SlotAsyncReady& slot,
-                  const Glib::RefPtr<Cancellable>& cancellable);
+                  const Glib::RefPtr<Cancellable>& cancellable) -> void;
 
-    void
-    lookup_async (const Glib::ustring& uri, const SlotAsyncReady& slot);
+    auto
+    lookup_async (const Glib::ustring& uri, const SlotAsyncReady& slot) -> void;
 
     auto
     lookup_finish (const Glib::RefPtr<AsyncResult>& result)

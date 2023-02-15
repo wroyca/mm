@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: LGPL-2.1-or-later
 
 #ifndef _GIOMM_CONVERTER_H
 #define _GIOMM_CONVERTER_H
@@ -67,8 +68,8 @@ namespace Gio
 
     ~Converter () noexcept override;
 
-    static void
-    add_interface (GType gtype_implementer);
+    static auto
+    add_interface (GType gtype_implementer) -> void;
 
     static auto
     get_type () -> GType G_GNUC_CONST;
@@ -116,8 +117,8 @@ namespace Gio
              gsize& bytes_read,
              gsize& bytes_written) -> Result;
 
-    void
-    reset ();
+    auto
+    reset () -> void;
 
   protected:
     virtual auto
@@ -129,8 +130,8 @@ namespace Gio
                    gsize& bytes_read,
                    gsize& bytes_written) -> Result;
 
-    virtual void
-    reset_vfunc ();
+    virtual auto
+    reset_vfunc () -> void;
 
   public:
   public:

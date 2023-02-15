@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: LGPL-2.1-or-later
 
 #ifndef _GIOMM_APPINFO_H
 #define _GIOMM_APPINFO_H
@@ -80,8 +81,8 @@ namespace Gio
 
     ~AppInfo () noexcept override;
 
-    static void
-    add_interface (GType gtype_implementer);
+    static auto
+    add_interface (GType gtype_implementer) -> void;
 
     static auto
     get_type () -> GType G_GNUC_CONST;
@@ -182,16 +183,18 @@ namespace Gio
     auto
     launch_uri (const std::string& uris) -> bool;
 
-    void
+    auto
     launch_uris_async (const std::vector<std::string>& uris,
                        const Glib::RefPtr<AppLaunchContext>& context,
                        const SlotAsyncReady& slot,
-                       const Glib::RefPtr<Cancellable>& cancellable = {});
+                       const Glib::RefPtr<Cancellable>& cancellable = {})
+        -> void;
 
-    void
+    auto
     launch_uris_async (const std::vector<std::string>& uris,
                        const Glib::RefPtr<AppLaunchContext>& context,
-                       const Glib::RefPtr<Cancellable>& cancellable = {});
+                       const Glib::RefPtr<Cancellable>& cancellable = {})
+        -> void;
 
     auto
     launch_uris_finish (const Glib::RefPtr<AsyncResult>& result) -> bool;
@@ -238,18 +241,18 @@ namespace Gio
                           bool must_support_uris = true)
         -> Glib::RefPtr<AppInfo>;
 
-    static void
+    static auto
     get_default_for_type_async (
         const std::string& content_type,
         bool must_support_uris,
         const SlotAsyncReady& slot,
-        const Glib::RefPtr<Cancellable>& cancellable = {});
+        const Glib::RefPtr<Cancellable>& cancellable = {}) -> void;
 
-    static void
+    static auto
     get_default_for_type_async (
         const std::string& content_type,
         bool must_support_uris,
-        const Glib::RefPtr<Cancellable>& cancellable = {});
+        const Glib::RefPtr<Cancellable>& cancellable = {}) -> void;
 
     static auto
     get_default_for_type_finish (const Glib::RefPtr<AsyncResult>& result)
@@ -259,23 +262,23 @@ namespace Gio
     get_default_for_uri_scheme (const std::string& uri_scheme)
         -> Glib::RefPtr<AppInfo>;
 
-    static void
+    static auto
     get_default_for_uri_scheme_async (
         const std::string& content_type,
         const SlotAsyncReady& slot,
-        const Glib::RefPtr<Cancellable>& cancellable = {});
+        const Glib::RefPtr<Cancellable>& cancellable = {}) -> void;
 
-    static void
+    static auto
     get_default_for_uri_scheme_async (
         const std::string& content_type,
-        const Glib::RefPtr<Cancellable>& cancellable = {});
+        const Glib::RefPtr<Cancellable>& cancellable = {}) -> void;
 
     static auto
     get_default_for_uri_scheme_finish (const Glib::RefPtr<AsyncResult>& result)
         -> Glib::RefPtr<AppInfo>;
 
-    static void
-    reset_type_associations (const std::string& content_type);
+    static auto
+    reset_type_associations (const std::string& content_type) -> void;
 
     static auto
     launch_default_for_uri (const std::string& uri,
@@ -285,42 +288,46 @@ namespace Gio
     static auto
     launch_default_for_uri (const std::string& uri) -> bool;
 
-    static void
+    static auto
     launch_default_for_uri_async (const std::string& uri,
                                   const Glib::RefPtr<AppLaunchContext>& context,
                                   const SlotAsyncReady& slot,
-                                  const Glib::RefPtr<Cancellable>& cancellable);
+                                  const Glib::RefPtr<Cancellable>& cancellable)
+        -> void;
 
-    static void
+    static auto
     launch_default_for_uri_async (const std::string& uri,
                                   const Glib::RefPtr<AppLaunchContext>& context,
-                                  const SlotAsyncReady& slot);
+                                  const SlotAsyncReady& slot) -> void;
 
-    static void
+    static auto
     launch_default_for_uri_async (const std::string& uri,
                                   const Glib::RefPtr<AppLaunchContext>& context,
-                                  const Glib::RefPtr<Cancellable>& cancellable);
+                                  const Glib::RefPtr<Cancellable>& cancellable)
+        -> void;
 
-    static void
-    launch_default_for_uri_async (
-        const std::string& uri,
-        const Glib::RefPtr<AppLaunchContext>& context);
+    static auto
+    launch_default_for_uri_async (const std::string& uri,
+                                  const Glib::RefPtr<AppLaunchContext>& context)
+        -> void;
 
-    static void
+    static auto
     launch_default_for_uri_async (const std::string& uri,
                                   const SlotAsyncReady& slot,
-                                  const Glib::RefPtr<Cancellable>& cancellable);
+                                  const Glib::RefPtr<Cancellable>& cancellable)
+        -> void;
 
-    static void
+    static auto
     launch_default_for_uri_async (const std::string& uri,
-                                  const SlotAsyncReady& slot);
+                                  const SlotAsyncReady& slot) -> void;
 
-    static void
+    static auto
     launch_default_for_uri_async (const std::string& uri,
-                                  const Glib::RefPtr<Cancellable>& cancellable);
+                                  const Glib::RefPtr<Cancellable>& cancellable)
+        -> void;
 
-    static void
-    launch_default_for_uri_async (const std::string& uri);
+    static auto
+    launch_default_for_uri_async (const std::string& uri) -> void;
 
     static auto
     launch_default_for_uri_finish (const Glib::RefPtr<AsyncResult>& result)

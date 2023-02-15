@@ -23,11 +23,11 @@ namespace Glib
 {
 
   auto
-  wrap (GtkStringFilter* object, const bool take_copy) -> RefPtr<Gtk::StringFilter>
+  wrap (GtkStringFilter* object, bool take_copy) -> Glib::RefPtr<Gtk::StringFilter>
   {
     return Glib::make_refptr_for_instance<Gtk::StringFilter> (
         dynamic_cast<Gtk::StringFilter*> (
-            wrap_auto ((GObject*) object, take_copy)));
+            Glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
 } // namespace Glib
@@ -36,7 +36,7 @@ namespace Gtk
 {
 
   auto
-  StringFilter_Class::init () -> const Class&
+  StringFilter_Class::init () -> const Glib::Class&
   {
     if (!gtype_)
     {
@@ -69,28 +69,28 @@ namespace Gtk
   }
 
   StringFilter::StringFilter (const Glib::ConstructParams& construct_params)
-    : Filter (construct_params)
+    : Gtk::Filter (construct_params)
   {
   }
 
   StringFilter::StringFilter (GtkStringFilter* castitem)
-    : Filter ((GtkFilter*) castitem)
+    : Gtk::Filter ((GtkFilter*) (castitem))
   {
   }
 
   StringFilter::StringFilter (StringFilter&& src) noexcept
-    : Filter (std::move (src))
+    : Gtk::Filter (std::move (src))
   {
   }
 
   auto
   StringFilter::operator= (StringFilter&& src) noexcept -> StringFilter&
   {
-    Filter::operator= (std::move (src));
+    Gtk::Filter::operator= (std::move (src));
     return *this;
   }
 
-  StringFilter::~StringFilter () noexcept = default;
+  StringFilter::~StringFilter () noexcept {}
 
   StringFilter::CppClassType StringFilter::stringfilter_class_;
 
@@ -108,11 +108,12 @@ namespace Gtk
 
   StringFilter::StringFilter (
       const Glib::RefPtr<Expression<Glib::ustring>>& expression)
-    : ObjectBase (nullptr),
-      Filter (Glib::ConstructParams (stringfilter_class_.init (),
-                                     "expression",
-                                     expression ? expression->gobj () : nullptr,
-                                     nullptr))
+    : Glib::ObjectBase (nullptr),
+      Gtk::Filter (Glib::ConstructParams (
+          stringfilter_class_.init (),
+          "expression",
+          ((expression) ? (expression)->gobj () : nullptr),
+          nullptr))
   {
   }
 
@@ -164,7 +165,7 @@ namespace Gtk
   {
     gtk_string_filter_set_expression (
         gobj (),
-        expression ? expression->gobj () : nullptr);
+        ((expression) ? (expression)->gobj () : nullptr));
   }
 
   auto
@@ -175,9 +176,9 @@ namespace Gtk
   }
 
   auto
-  StringFilter::set_ignore_case (const bool ignore_case) -> void
+  StringFilter::set_ignore_case (bool ignore_case) -> void
   {
-    gtk_string_filter_set_ignore_case (gobj (), ignore_case);
+    gtk_string_filter_set_ignore_case (gobj (), static_cast<int> (ignore_case));
   }
 
   auto
@@ -205,25 +206,28 @@ namespace Gtk
   auto
   StringFilter::property_expression () -> Glib::PropertyProxy<Glib::RefPtr<Expression<Glib::ustring>>>
   {
-    return {this, "expression"};
+    return Glib::PropertyProxy<Glib::RefPtr<Expression<Glib::ustring>>> (
+        this,
+        "expression");
   }
 
   auto
   StringFilter::property_expression () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Expression<Glib::ustring>>>
   {
-    return {this, "expression"};
+    return Glib::PropertyProxy_ReadOnly<
+        Glib::RefPtr<Expression<Glib::ustring>>> (this, "expression");
   }
 
   auto
   StringFilter::property_ignore_case () -> Glib::PropertyProxy<bool>
   {
-    return {this, "ignore-case"};
+    return Glib::PropertyProxy<bool> (this, "ignore-case");
   }
 
   auto
   StringFilter::property_ignore_case () const -> Glib::PropertyProxy_ReadOnly<bool>
   {
-    return {this, "ignore-case"};
+    return Glib::PropertyProxy_ReadOnly<bool> (this, "ignore-case");
   }
 
   static_assert (
@@ -234,25 +238,25 @@ namespace Gtk
   auto
   StringFilter::property_match_mode () -> Glib::PropertyProxy<MatchMode>
   {
-    return {this, "match-mode"};
+    return Glib::PropertyProxy<MatchMode> (this, "match-mode");
   }
 
   auto
   StringFilter::property_match_mode () const -> Glib::PropertyProxy_ReadOnly<MatchMode>
   {
-    return {this, "match-mode"};
+    return Glib::PropertyProxy_ReadOnly<MatchMode> (this, "match-mode");
   }
 
   auto
   StringFilter::property_search () -> Glib::PropertyProxy<Glib::ustring>
   {
-    return {this, "search"};
+    return Glib::PropertyProxy<Glib::ustring> (this, "search");
   }
 
   auto
   StringFilter::property_search () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>
   {
-    return {this, "search"};
+    return Glib::PropertyProxy_ReadOnly<Glib::ustring> (this, "search");
   }
 
 } // namespace Gtk

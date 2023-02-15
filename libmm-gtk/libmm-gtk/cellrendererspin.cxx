@@ -1,12 +1,17 @@
 // SPDX-License-Identifier: LGPL-2.1-or-later
 
-#include <libmm-glib/mm-glib.hxx>
+#undef GTK_DISABLE_DEPRECATED
+#define GDK_DISABLE_DEPRECATION_WARNINGS 1
 
-#include <libmm-gtk/cellrendererspin.hxx>
-#include <libmm-gtk/cellrendererspin_p.hxx>
+#ifndef GTKMM_DISABLE_DEPRECATED
 
-#include <gtk/gtk.h>
-#include <libmm-gtk/adjustment.hxx>
+  #include <libmm-glib/mm-glib.hxx>
+
+  #include <libmm-gtk/cellrendererspin.hxx>
+  #include <libmm-gtk/cellrendererspin_p.hxx>
+
+  #include <gtk/gtk.h>
+  #include <libmm-gtk/adjustment.hxx>
 
 namespace Gtk
 {
@@ -27,10 +32,10 @@ namespace Glib
 {
 
   auto
-  wrap (GtkCellRendererSpin* object, const bool take_copy) -> Gtk::CellRendererSpin*
+  wrap (GtkCellRendererSpin* object, bool take_copy) -> Gtk::CellRendererSpin*
   {
     return dynamic_cast<Gtk::CellRendererSpin*> (
-        wrap_auto ((GObject*) object, take_copy));
+        Glib::wrap_auto ((GObject*) (object), take_copy));
   }
 
 } // namespace Glib
@@ -39,7 +44,7 @@ namespace Gtk
 {
 
   auto
-  CellRendererSpin_Class::init () -> const Class&
+  CellRendererSpin_Class::init () -> const Glib::Class&
   {
     if (!gtype_)
     {
@@ -61,29 +66,29 @@ namespace Gtk
   auto
   CellRendererSpin_Class::wrap_new (GObject* o) -> Glib::ObjectBase*
   {
-    return manage (new CellRendererSpin ((GtkCellRendererSpin*) o));
+    return manage (new CellRendererSpin ((GtkCellRendererSpin*) (o)));
   }
 
   CellRendererSpin::CellRendererSpin (
       const Glib::ConstructParams& construct_params)
-    : CellRendererText (construct_params)
+    : Gtk::CellRendererText (construct_params)
   {
   }
 
   CellRendererSpin::CellRendererSpin (GtkCellRendererSpin* castitem)
-    : CellRendererText ((GtkCellRendererText*) castitem)
+    : Gtk::CellRendererText ((GtkCellRendererText*) (castitem))
   {
   }
 
   CellRendererSpin::CellRendererSpin (CellRendererSpin&& src) noexcept
-    : CellRendererText (std::move (src))
+    : Gtk::CellRendererText (std::move (src))
   {
   }
 
   auto
   CellRendererSpin::operator= (CellRendererSpin&& src) noexcept -> CellRendererSpin&
   {
-    CellRendererText::operator= (std::move (src));
+    Gtk::CellRendererText::operator= (std::move (src));
     return *this;
   }
 
@@ -107,8 +112,9 @@ namespace Gtk
   }
 
   CellRendererSpin::CellRendererSpin ()
-    : ObjectBase (nullptr),
-      CellRendererText (Glib::ConstructParams (cellrendererspin_class_.init ()))
+    : Glib::ObjectBase (nullptr),
+      Gtk::CellRendererText (
+          Glib::ConstructParams (cellrendererspin_class_.init ()))
   {
   }
 
@@ -121,37 +127,41 @@ namespace Gtk
   auto
   CellRendererSpin::property_adjustment () -> Glib::PropertyProxy<Glib::RefPtr<Adjustment>>
   {
-    return {this, "adjustment"};
+    return Glib::PropertyProxy<Glib::RefPtr<Adjustment>> (this, "adjustment");
   }
 
   auto
   CellRendererSpin::property_adjustment () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Adjustment>>
   {
-    return {this, "adjustment"};
+    return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Adjustment>> (
+        this,
+        "adjustment");
   }
 
   auto
   CellRendererSpin::property_climb_rate () -> Glib::PropertyProxy<double>
   {
-    return {this, "climb-rate"};
+    return Glib::PropertyProxy<double> (this, "climb-rate");
   }
 
   auto
   CellRendererSpin::property_climb_rate () const -> Glib::PropertyProxy_ReadOnly<double>
   {
-    return {this, "climb-rate"};
+    return Glib::PropertyProxy_ReadOnly<double> (this, "climb-rate");
   }
 
   auto
   CellRendererSpin::property_digits () -> Glib::PropertyProxy<guint>
   {
-    return {this, "digits"};
+    return Glib::PropertyProxy<guint> (this, "digits");
   }
 
   auto
   CellRendererSpin::property_digits () const -> Glib::PropertyProxy_ReadOnly<guint>
   {
-    return {this, "digits"};
+    return Glib::PropertyProxy_ReadOnly<guint> (this, "digits");
   }
 
 } // namespace Gtk
+
+#endif

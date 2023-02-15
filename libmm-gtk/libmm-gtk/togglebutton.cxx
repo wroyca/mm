@@ -10,14 +10,14 @@
 namespace Gtk
 {
 
-  ToggleButton::ToggleButton (const Glib::ustring& label, const bool mnemonic)
-    : ObjectBase (nullptr),
-      Button (Glib::ConstructParams (togglebutton_class_.init (),
-                                     "label",
-                                     label.c_str (),
-                                     "use_underline",
-                                     gboolean (mnemonic),
-                                     nullptr))
+  ToggleButton::ToggleButton (const Glib::ustring& label, bool mnemonic)
+    : Glib::ObjectBase (nullptr),
+      Gtk::Button (Glib::ConstructParams (togglebutton_class_.init (),
+                                          "label",
+                                          label.c_str (),
+                                          "use_underline",
+                                          gboolean (mnemonic),
+                                          nullptr))
   {
   }
 
@@ -32,7 +32,7 @@ namespace Gtk
 namespace
 {
 
-  const Glib::SignalProxyInfo ToggleButton_signal_toggled_info = {
+  static const Glib::SignalProxyInfo ToggleButton_signal_toggled_info = {
       "toggled",
       (GCallback) &Glib::SignalProxyNormal::slot0_void_callback,
       (GCallback) &Glib::SignalProxyNormal::slot0_void_callback};
@@ -43,10 +43,10 @@ namespace Glib
 {
 
   auto
-  wrap (GtkToggleButton* object, const bool take_copy) -> Gtk::ToggleButton*
+  wrap (GtkToggleButton* object, bool take_copy) -> Gtk::ToggleButton*
   {
     return dynamic_cast<Gtk::ToggleButton*> (
-        wrap_auto ((GObject*) object, take_copy));
+        Glib::wrap_auto ((GObject*) (object), take_copy));
   }
 
 } // namespace Glib
@@ -55,7 +55,7 @@ namespace Gtk
 {
 
   auto
-  ToggleButton_Class::init () -> const Class&
+  ToggleButton_Class::init () -> const Glib::Class&
   {
     if (!gtype_)
     {
@@ -79,8 +79,8 @@ namespace Gtk
   auto
   ToggleButton_Class::toggled_callback (GtkToggleButton* self) -> void
   {
-    const auto obj_base =
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self);
+    const auto obj_base = static_cast<Glib::ObjectBase*> (
+        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -109,28 +109,28 @@ namespace Gtk
   auto
   ToggleButton_Class::wrap_new (GObject* o) -> Glib::ObjectBase*
   {
-    return manage (new ToggleButton ((GtkToggleButton*) o));
+    return manage (new ToggleButton ((GtkToggleButton*) (o)));
   }
 
   ToggleButton::ToggleButton (const Glib::ConstructParams& construct_params)
-    : Button (construct_params)
+    : Gtk::Button (construct_params)
   {
   }
 
   ToggleButton::ToggleButton (GtkToggleButton* castitem)
-    : Button ((GtkButton*) castitem)
+    : Gtk::Button ((GtkButton*) (castitem))
   {
   }
 
   ToggleButton::ToggleButton (ToggleButton&& src) noexcept
-    : Button (std::move (src))
+    : Gtk::Button (std::move (src))
   {
   }
 
   auto
   ToggleButton::operator= (ToggleButton&& src) noexcept -> ToggleButton&
   {
-    Button::operator= (std::move (src));
+    Gtk::Button::operator= (std::move (src));
     return *this;
   }
 
@@ -154,15 +154,15 @@ namespace Gtk
   }
 
   ToggleButton::ToggleButton ()
-    : ObjectBase (nullptr),
-      Button (Glib::ConstructParams (togglebutton_class_.init ()))
+    : Glib::ObjectBase (nullptr),
+      Gtk::Button (Glib::ConstructParams (togglebutton_class_.init ()))
   {
   }
 
   auto
-  ToggleButton::set_active (const bool is_active) -> void
+  ToggleButton::set_active (bool is_active) -> void
   {
-    gtk_toggle_button_set_active (gobj (), is_active);
+    gtk_toggle_button_set_active (gobj (), static_cast<int> (is_active));
   }
 
   auto
@@ -172,34 +172,39 @@ namespace Gtk
         const_cast<GtkToggleButton*> (gobj ()));
   }
 
+#ifndef GTKMM_DISABLE_DEPRECATED
+  G_GNUC_BEGIN_IGNORE_DEPRECATIONS
   auto
   ToggleButton::toggled () -> void
   {
     gtk_toggle_button_toggled (gobj ());
   }
 
+  G_GNUC_END_IGNORE_DEPRECATIONS
+#endif
+
   auto
   ToggleButton::set_group (ToggleButton& group) -> void
   {
-    gtk_toggle_button_set_group (gobj (), group.gobj ());
+    gtk_toggle_button_set_group (gobj (), (group).gobj ());
   }
 
   auto
   ToggleButton::signal_toggled () -> Glib::SignalProxy<void ()>
   {
-    return {this, &ToggleButton_signal_toggled_info};
+    return Glib::SignalProxy<void ()> (this, &ToggleButton_signal_toggled_info);
   }
 
   auto
   ToggleButton::property_active () -> Glib::PropertyProxy<bool>
   {
-    return {this, "active"};
+    return Glib::PropertyProxy<bool> (this, "active");
   }
 
   auto
   ToggleButton::property_active () const -> Glib::PropertyProxy_ReadOnly<bool>
   {
-    return {this, "active"};
+    return Glib::PropertyProxy_ReadOnly<bool> (this, "active");
   }
 
   static_assert (
@@ -210,11 +215,11 @@ namespace Gtk
   auto
   ToggleButton::property_group () -> Glib::PropertyProxy_WriteOnly<ToggleButton*>
   {
-    return {this, "group"};
+    return Glib::PropertyProxy_WriteOnly<ToggleButton*> (this, "group");
   }
 
   auto
-  ToggleButton::on_toggled () -> void
+  Gtk::ToggleButton::on_toggled () -> void
   {
     const auto base = static_cast<BaseClassType*> (
         g_type_class_peek_parent (G_OBJECT_GET_CLASS (gobject_)));

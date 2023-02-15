@@ -79,10 +79,10 @@ namespace Gtk
   public:
     WindowHandle ();
 
-    void
-    set_child (Widget& child);
-    void
-    unset_child ();
+    auto
+    set_child (Widget& child) -> void;
+    auto
+    unset_child () -> void;
 
     auto
     get_child () -> Widget*;
@@ -105,9 +105,7 @@ namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkWindowHandle* object, bool take_copy = false) -> Gtk::WindowHandle*;
 } // namespace Glib
 

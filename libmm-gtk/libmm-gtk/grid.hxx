@@ -84,21 +84,22 @@ namespace Gtk
   public:
     Grid ();
 
-    void
-    attach (Widget& child, int column, int row, int width = 1, int height = 1);
+    auto
+    attach (Widget& child, int column, int row, int width = 1, int height = 1)
+        -> void;
 
-    void
+    auto
     attach_next_to (Widget& child,
                     Widget& sibling,
                     PositionType side,
                     int width = 1,
-                    int height = 1);
+                    int height = 1) -> void;
 
-    void
+    auto
     attach_next_to (Widget& child,
                     PositionType side,
                     int width = 1,
-                    int height = 1);
+                    int height = 1) -> void;
 
     auto
     get_child_at (int column, int row) -> Widget*;
@@ -106,66 +107,66 @@ namespace Gtk
     auto
     get_child_at (int column, int row) const -> const Widget*;
 
-    void
-    remove (Widget& child);
+    auto
+    remove (Widget& child) -> void;
 
-    void
-    insert_row (int position);
+    auto
+    insert_row (int position) -> void;
 
-    void
-    insert_column (int position);
+    auto
+    insert_column (int position) -> void;
 
-    void
-    remove_row (int position);
+    auto
+    remove_row (int position) -> void;
 
-    void
-    remove_column (int position);
+    auto
+    remove_column (int position) -> void;
 
-    void
-    insert_next_to (Widget& sibling, PositionType side);
+    auto
+    insert_next_to (Widget& sibling, PositionType side) -> void;
 
-    void
-    set_row_homogeneous (bool homogeneous = true);
+    auto
+    set_row_homogeneous (bool homogeneous = true) -> void;
 
     auto
     get_row_homogeneous () const -> bool;
 
-    void
-    set_row_spacing (guint spacing);
+    auto
+    set_row_spacing (guint spacing) -> void;
 
     auto
     get_row_spacing () const -> guint;
 
-    void
-    set_column_homogeneous (bool homogeneous = true);
+    auto
+    set_column_homogeneous (bool homogeneous = true) -> void;
 
     auto
     get_column_homogeneous () const -> bool;
 
-    void
-    set_column_spacing (guint spacing);
+    auto
+    set_column_spacing (guint spacing) -> void;
 
     auto
     get_column_spacing () const -> guint;
 
-    void
-    set_row_baseline_position (int row, BaselinePosition pos);
+    auto
+    set_row_baseline_position (int row, BaselinePosition pos) -> void;
 
     auto
     get_row_baseline_position (int row) const -> BaselinePosition;
 
-    void
-    set_baseline_row (int row);
+    auto
+    set_baseline_row (int row) -> void;
 
     auto
     get_baseline_row () const -> int;
 
-    void
+    auto
     query_child (const Widget& child,
                  int& column,
                  int& row,
                  int& width,
-                 int& height) const;
+                 int& height) const -> void;
 
     auto
     property_row_spacing () -> Glib::PropertyProxy<guint>;
@@ -206,9 +207,7 @@ namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkGrid* object, bool take_copy = false) -> Gtk::Grid*;
 } // namespace Glib
 

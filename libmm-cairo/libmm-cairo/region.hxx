@@ -69,32 +69,32 @@ namespace Cairo
     auto
     contains_point (int x, int y) const -> bool;
 
-    void
-    translate (int dx, int dy);
+    auto
+    translate (int dx, int dy) -> void;
 
-    void
-    subtract (const RefPtr<Region>& other);
+    auto
+    subtract (const RefPtr<Region>& other) -> void;
 
-    void
-    subtract (const RectangleInt& rectangle);
+    auto
+    subtract (const RectangleInt& rectangle) -> void;
 
-    void
-    intersect (const RefPtr<Region>& other);
+    auto
+    intersect (const RefPtr<Region>& other) -> void;
 
-    void
-    intersect (const RectangleInt& rectangle);
+    auto
+    intersect (const RectangleInt& rectangle) -> void;
 
-    void
-    do_union (const RefPtr<Region>& other);
+    auto
+    do_union (const RefPtr<Region>& other) -> void;
 
-    void
-    do_union (const RectangleInt& rectangle);
+    auto
+    do_union (const RectangleInt& rectangle) -> void;
 
-    void
-    do_xor (const RefPtr<Region>& other);
+    auto
+    do_xor (const RefPtr<Region>& other) -> void;
 
-    void
-    do_xor (const RectangleInt& rectangle);
+    auto
+    do_xor (const RectangleInt& rectangle) -> void;
 
     typedef cairo_region_t cobject;
 
@@ -119,10 +119,10 @@ namespace Cairo
     }
 #endif
 
-    void
-    reference () const;
-    void
-    unreference () const;
+    auto
+    reference () const -> void;
+    auto
+    unreference () const -> void;
 
   protected:
     cobject* m_cobject;

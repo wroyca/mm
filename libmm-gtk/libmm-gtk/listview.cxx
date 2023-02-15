@@ -10,15 +10,13 @@
 namespace
 {
 
-  auto
-  ListView_signal_activate_callback (GtkListView* self,
-                                     const guint p0,
-                                     void* data) -> void
+  static auto
+  ListView_signal_activate_callback (GtkListView* self, guint p0, void* data) -> void
   {
     using namespace Gtk;
     using SlotType = sigc::slot<void (guint)>;
 
-    const auto obj = dynamic_cast<ListView*> (
+    auto obj = dynamic_cast<ListView*> (
         Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
@@ -35,7 +33,7 @@ namespace
     }
   }
 
-  const Glib::SignalProxyInfo ListView_signal_activate_info = {
+  static const Glib::SignalProxyInfo ListView_signal_activate_info = {
       "activate",
       (GCallback) &ListView_signal_activate_callback,
       (GCallback) &ListView_signal_activate_callback};
@@ -46,10 +44,10 @@ namespace Glib
 {
 
   auto
-  wrap (GtkListView* object, const bool take_copy) -> Gtk::ListView*
+  wrap (GtkListView* object, bool take_copy) -> Gtk::ListView*
   {
     return dynamic_cast<Gtk::ListView*> (
-        wrap_auto ((GObject*) object, take_copy));
+        Glib::wrap_auto ((GObject*) (object), take_copy));
   }
 
 } // namespace Glib
@@ -58,7 +56,7 @@ namespace Gtk
 {
 
   auto
-  ListView_Class::init () -> const Class&
+  ListView_Class::init () -> const Glib::Class&
   {
     if (!gtype_)
     {
@@ -80,7 +78,7 @@ namespace Gtk
   auto
   ListView_Class::wrap_new (GObject* o) -> Glib::ObjectBase*
   {
-    return manage (new ListView ((GtkListView*) o));
+    return manage (new ListView ((GtkListView*) (o)));
   }
 
   ListView::ListView (const Glib::ConstructParams& construct_params)
@@ -89,7 +87,7 @@ namespace Gtk
   }
 
   ListView::ListView (GtkListView* castitem)
-    : ListBase ((GtkListBase*) castitem)
+    : ListBase ((GtkListBase*) (castitem))
   {
   }
 
@@ -126,7 +124,7 @@ namespace Gtk
 
   ListView::ListView (const Glib::RefPtr<SelectionModel>& model,
                       const Glib::RefPtr<ListItemFactory>& factory)
-    : ObjectBase (nullptr),
+    : Glib::ObjectBase (nullptr),
       ListBase (Glib::ConstructParams (listview_class_.init (),
                                        "model",
                                        Glib::unwrap (model),
@@ -179,9 +177,10 @@ namespace Gtk
   }
 
   auto
-  ListView::set_show_separators (const bool show_separators) -> void
+  ListView::set_show_separators (bool show_separators) -> void
   {
-    gtk_list_view_set_show_separators (gobj (), show_separators);
+    gtk_list_view_set_show_separators (gobj (),
+                                       static_cast<int> (show_separators));
   }
 
   auto
@@ -192,9 +191,11 @@ namespace Gtk
   }
 
   auto
-  ListView::set_single_click_activate (const bool single_click_activate) -> void
+  ListView::set_single_click_activate (bool single_click_activate) -> void
   {
-    gtk_list_view_set_single_click_activate (gobj (), single_click_activate);
+    gtk_list_view_set_single_click_activate (
+        gobj (),
+        static_cast<int> (single_click_activate));
   }
 
   auto
@@ -205,9 +206,10 @@ namespace Gtk
   }
 
   auto
-  ListView::set_enable_rubberband (const bool enable_rubberband) -> void
+  ListView::set_enable_rubberband (bool enable_rubberband) -> void
   {
-    gtk_list_view_set_enable_rubberband (gobj (), enable_rubberband);
+    gtk_list_view_set_enable_rubberband (gobj (),
+                                         static_cast<int> (enable_rubberband));
   }
 
   auto
@@ -220,7 +222,8 @@ namespace Gtk
   auto
   ListView::signal_activate () -> Glib::SignalProxy<void (guint)>
   {
-    return {this, &ListView_signal_activate_info};
+    return Glib::SignalProxy<void (guint)> (this,
+                                            &ListView_signal_activate_info);
   }
 
   static_assert (
@@ -232,13 +235,15 @@ namespace Gtk
   auto
   ListView::property_factory () -> Glib::PropertyProxy<Glib::RefPtr<ListItemFactory>>
   {
-    return {this, "factory"};
+    return Glib::PropertyProxy<Glib::RefPtr<ListItemFactory>> (this, "factory");
   }
 
   auto
   ListView::property_factory () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<ListItemFactory>>
   {
-    return {this, "factory"};
+    return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<ListItemFactory>> (
+        this,
+        "factory");
   }
 
   static_assert (
@@ -250,49 +255,50 @@ namespace Gtk
   auto
   ListView::property_model () -> Glib::PropertyProxy<Glib::RefPtr<SelectionModel>>
   {
-    return {this, "model"};
+    return Glib::PropertyProxy<Glib::RefPtr<SelectionModel>> (this, "model");
   }
 
   auto
   ListView::property_model () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<SelectionModel>>
   {
-    return {this, "model"};
+    return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<SelectionModel>> (this,
+                                                                       "model");
   }
 
   auto
   ListView::property_show_separators () -> Glib::PropertyProxy<bool>
   {
-    return {this, "show-separators"};
+    return Glib::PropertyProxy<bool> (this, "show-separators");
   }
 
   auto
   ListView::property_show_separators () const -> Glib::PropertyProxy_ReadOnly<bool>
   {
-    return {this, "show-separators"};
+    return Glib::PropertyProxy_ReadOnly<bool> (this, "show-separators");
   }
 
   auto
   ListView::property_single_click_activate () -> Glib::PropertyProxy<bool>
   {
-    return {this, "single-click-activate"};
+    return Glib::PropertyProxy<bool> (this, "single-click-activate");
   }
 
   auto
   ListView::property_single_click_activate () const -> Glib::PropertyProxy_ReadOnly<bool>
   {
-    return {this, "single-click-activate"};
+    return Glib::PropertyProxy_ReadOnly<bool> (this, "single-click-activate");
   }
 
   auto
   ListView::property_enable_rubberband () -> Glib::PropertyProxy<bool>
   {
-    return {this, "enable-rubberband"};
+    return Glib::PropertyProxy<bool> (this, "enable-rubberband");
   }
 
   auto
   ListView::property_enable_rubberband () const -> Glib::PropertyProxy_ReadOnly<bool>
   {
-    return {this, "enable-rubberband"};
+    return Glib::PropertyProxy_ReadOnly<bool> (this, "enable-rubberband");
   }
 
 } // namespace Gtk

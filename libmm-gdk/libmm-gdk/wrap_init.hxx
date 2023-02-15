@@ -7,9 +7,8 @@
 
 namespace Gdk
 {
-
-  GDKMM_API void
-  wrap_init ();
+  GDKMM_API auto
+  wrap_init () -> void;
 
 }
 

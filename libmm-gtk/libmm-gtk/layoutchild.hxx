@@ -116,9 +116,7 @@ namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkLayoutChild* object, bool take_copy = false) -> Glib::RefPtr<Gtk::LayoutChild>;
 } // namespace Glib
 

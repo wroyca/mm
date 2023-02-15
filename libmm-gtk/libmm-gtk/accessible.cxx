@@ -6,6 +6,7 @@
 #include <libmm-gtk/accessible_p.hxx>
 
 #include <gtk/gtk.h>
+#include <libmm-gtk/atcontext.hxx>
 
 using Role = Gtk::Accessible::Role;
 
@@ -63,15 +64,22 @@ Glib::Value<Gtk::Accessible::Relation>::value_type () -> GType
   return gtk_accessible_relation_get_type ();
 }
 
+auto
+Glib::Value<Gtk::Accessible::PlatformState>::value_type () -> GType
+{
+  return gtk_accessible_platform_state_get_type ();
+}
+
 namespace Glib
 {
 
   auto
-  wrap (GtkAccessible* object, const bool take_copy) -> RefPtr<Gtk::Accessible>
+  wrap (GtkAccessible* object, bool take_copy) -> Glib::RefPtr<Gtk::Accessible>
   {
     return Glib::make_refptr_for_instance<Gtk::Accessible> (
-        Glib::wrap_auto_interface<Gtk::Accessible> ((GObject*) object,
-                                                    take_copy));
+        dynamic_cast<Gtk::Accessible*> (
+            Glib::wrap_auto_interface<Gtk::Accessible> ((GObject*) (object),
+                                                        take_copy)));
   }
 
 } // namespace Glib
@@ -80,7 +88,7 @@ namespace Gtk
 {
 
   auto
-  Accessible_Class::init () -> const Interface_Class&
+  Accessible_Class::init () -> const Glib::Interface_Class&
   {
     if (!gtype_)
     {
@@ -103,40 +111,40 @@ namespace Gtk
   auto
   Accessible_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
   {
-    return new Accessible ((GtkAccessible*) object);
+    return new Accessible ((GtkAccessible*) (object));
   }
 
   Accessible::Accessible ()
-    : Interface (accessible_class_.init ())
+    : Glib::Interface (accessible_class_.init ())
   {
   }
 
   Accessible::Accessible (GtkAccessible* castitem)
-    : Interface ((GObject*) castitem)
+    : Glib::Interface ((GObject*) (castitem))
   {
   }
 
   Accessible::Accessible (const Glib::Interface_Class& interface_class)
-    : Interface (interface_class)
+    : Glib::Interface (interface_class)
   {
   }
 
   Accessible::Accessible (Accessible&& src) noexcept
-    : Interface (std::move (src))
+    : Glib::Interface (std::move (src))
   {
   }
 
   auto
   Accessible::operator= (Accessible&& src) noexcept -> Accessible&
   {
-    Interface::operator= (std::move (src));
+    Glib::Interface::operator= (std::move (src));
     return *this;
   }
 
-  Accessible::~Accessible () noexcept = default;
+  Accessible::~Accessible () noexcept {}
 
   auto
-  Accessible::add_interface (const GType gtype_implementer) -> void
+  Accessible::add_interface (GType gtype_implementer) -> void
   {
     accessible_class_.init ().add_interface (gtype_implementer);
   }
@@ -153,6 +161,86 @@ namespace Gtk
   Accessible::get_base_type () -> GType
   {
     return gtk_accessible_get_type ();
+  }
+
+  auto
+  Accessible::get_at_context () -> Glib::RefPtr<ATContext>
+  {
+    auto retvalue = Glib::wrap (gtk_accessible_get_at_context (gobj ()));
+    if (retvalue)
+      retvalue->reference ();
+    return retvalue;
+  }
+
+  auto
+  Accessible::get_at_context () const -> Glib::RefPtr<const ATContext>
+  {
+    return const_cast<Accessible*> (this)->get_at_context ();
+  }
+
+  auto
+  Accessible::get_platform_state (PlatformState state) const -> bool
+  {
+    return gtk_accessible_get_platform_state (
+        const_cast<GtkAccessible*> (gobj ()),
+        static_cast<GtkAccessiblePlatformState> (state));
+  }
+
+  auto
+  Accessible::get_accessible_parent () -> Glib::RefPtr<Accessible>
+  {
+    auto retvalue = Glib::wrap (gtk_accessible_get_accessible_parent (gobj ()));
+    if (retvalue)
+      retvalue->reference ();
+    return retvalue;
+  }
+
+  auto
+  Accessible::get_accessible_parent () const -> Glib::RefPtr<const Accessible>
+  {
+    return const_cast<Accessible*> (this)->get_accessible_parent ();
+  }
+
+  auto
+  Accessible::get_first_accessible_child () -> Glib::RefPtr<Accessible>
+  {
+    auto retvalue =
+        Glib::wrap (gtk_accessible_get_first_accessible_child (gobj ()));
+    if (retvalue)
+      retvalue->reference ();
+    return retvalue;
+  }
+
+  auto
+  Accessible::get_first_accessible_child () const -> Glib::RefPtr<const Accessible>
+  {
+    return const_cast<Accessible*> (this)->get_first_accessible_child ();
+  }
+
+  auto
+  Accessible::get_next_accessible_sibling () -> Glib::RefPtr<Accessible>
+  {
+    auto retvalue =
+        Glib::wrap (gtk_accessible_get_next_accessible_sibling (gobj ()));
+    if (retvalue)
+      retvalue->reference ();
+    return retvalue;
+  }
+
+  auto
+  Accessible::get_next_accessible_sibling () const -> Glib::RefPtr<const Accessible>
+  {
+    return const_cast<Accessible*> (this)->get_next_accessible_sibling ();
+  }
+
+  auto
+  Accessible::get_bounds (int& x, int& y, int& width, int& height) const -> bool
+  {
+    return gtk_accessible_get_bounds (const_cast<GtkAccessible*> (gobj ()),
+                                      &(x),
+                                      &(y),
+                                      &(width),
+                                      &(height));
   }
 
   auto
@@ -193,13 +281,13 @@ namespace Gtk
   auto
   Accessible::property_accessible_role () -> Glib::PropertyProxy<Role>
   {
-    return {this, "accessible-role"};
+    return Glib::PropertyProxy<Role> (this, "accessible-role");
   }
 
   auto
   Accessible::property_accessible_role () const -> Glib::PropertyProxy_ReadOnly<Role>
   {
-    return {this, "accessible-role"};
+    return Glib::PropertyProxy_ReadOnly<Role> (this, "accessible-role");
   }
 
 } // namespace Gtk

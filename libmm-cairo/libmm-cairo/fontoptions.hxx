@@ -53,32 +53,32 @@ namespace Cairo
     auto
     operator== (const FontOptions& src) const -> bool;
 
-    void
-    merge (const FontOptions& other);
+    auto
+    merge (const FontOptions& other) -> void;
 
     auto
     hash () const -> unsigned long;
 
-    void
-    set_antialias (Antialias antialias);
+    auto
+    set_antialias (Antialias antialias) -> void;
 
     auto
     get_antialias () const -> Antialias;
 
-    void
-    set_subpixel_order (SubpixelOrder subpixel_order);
+    auto
+    set_subpixel_order (SubpixelOrder subpixel_order) -> void;
 
     auto
     get_subpixel_order () const -> SubpixelOrder;
 
-    void
-    set_hint_style (HintStyle hint_style);
+    auto
+    set_hint_style (HintStyle hint_style) -> void;
 
     auto
     get_hint_style () const -> HintStyle;
 
-    void
-    set_hint_metrics (HintMetrics hint_metrics);
+    auto
+    set_hint_metrics (HintMetrics hint_metrics) -> void;
 
     auto
     get_hint_metrics () const -> HintMetrics;
@@ -86,8 +86,8 @@ namespace Cairo
 #ifdef CAIRO_HAS_FT_FONT
   #ifdef CAIRO_HAS_FC_FONT
 
-    void
-    substitute (FcPattern* pattern);
+    auto
+    substitute (FcPattern* pattern) -> void;
   #endif
 #endif
 

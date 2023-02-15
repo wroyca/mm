@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: LGPL-2.1-or-later
 
 #ifndef _GIOMM_FILEENUMERATOR_H
 #define _GIOMM_FILEENUMERATOR_H
@@ -98,28 +99,28 @@ namespace Gio
     auto
     close () -> bool;
 
-    void
+    auto
     next_files_async (const SlotAsyncReady& slot,
                       const Glib::RefPtr<Cancellable>& cancellable,
                       int num_files = 1,
-                      int io_priority = Glib::PRIORITY_DEFAULT);
+                      int io_priority = Glib::PRIORITY_DEFAULT) -> void;
 
-    void
+    auto
     next_files_async (const SlotAsyncReady& slot,
                       int num_files = 1,
-                      int io_priority = Glib::PRIORITY_DEFAULT);
+                      int io_priority = Glib::PRIORITY_DEFAULT) -> void;
 
     auto
     next_files_finish (const Glib::RefPtr<AsyncResult>& result)
         -> std::vector<Glib::RefPtr<FileInfo>>;
 
-    void
+    auto
     close_async (int io_priority,
                  const Glib::RefPtr<Cancellable>& cancellable,
-                 const SlotAsyncReady& slot);
+                 const SlotAsyncReady& slot) -> void;
 
-    void
-    close_async (int io_priority, const SlotAsyncReady& slot);
+    auto
+    close_async (int io_priority, const SlotAsyncReady& slot) -> void;
 
     auto
     close_finish (const Glib::RefPtr<AsyncResult>& result) -> bool;
@@ -130,8 +131,8 @@ namespace Gio
     auto
     has_pending () const -> bool;
 
-    void
-    set_pending (bool pending = true);
+    auto
+    set_pending (bool pending = true) -> void;
 
     auto
     get_container () -> Glib::RefPtr<File>;

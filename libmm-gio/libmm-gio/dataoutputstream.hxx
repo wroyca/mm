@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: LGPL-2.1-or-later
 
 #ifndef _GIOMM_DATAOUTPUTSTREAM_H
 #define _GIOMM_DATAOUTPUTSTREAM_H
@@ -89,8 +90,8 @@ namespace Gio
     create (const Glib::RefPtr<OutputStream>& base_stream)
         -> Glib::RefPtr<DataOutputStream>;
 
-    void
-    set_byte_order (DataStreamByteOrder order);
+    auto
+    set_byte_order (DataStreamByteOrder order) -> void;
 
     auto
     get_byte_order () const -> DataStreamByteOrder;

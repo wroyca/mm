@@ -45,8 +45,8 @@ namespace Pango
 
     ~LayoutIter () noexcept;
 
-    void
-    swap (LayoutIter& other) noexcept;
+    auto
+    swap (LayoutIter& other) noexcept -> void;
 
     auto
     gobj () -> PangoLayoutIter*
@@ -107,8 +107,9 @@ namespace Pango
     auto
     get_char_extents () const -> Rectangle;
 
-    void
-    get_cluster_extents (Rectangle& ink_rect, Rectangle& logical_rect) const;
+    auto
+    get_cluster_extents (Rectangle& ink_rect, Rectangle& logical_rect) const
+        -> void;
 
     auto
     get_cluster_ink_extents () const -> Rectangle;
@@ -116,8 +117,9 @@ namespace Pango
     auto
     get_cluster_logical_extents () const -> Rectangle;
 
-    void
-    get_run_extents (Rectangle& ink_rect, Rectangle& logical_rect) const;
+    auto
+    get_run_extents (Rectangle& ink_rect, Rectangle& logical_rect) const
+        -> void;
 
     auto
     get_run_ink_extents () const -> Rectangle;
@@ -125,8 +127,9 @@ namespace Pango
     auto
     get_run_logical_extents () const -> Rectangle;
 
-    void
-    get_line_extents (Rectangle& ink_rect, Rectangle& logical_rect) const;
+    auto
+    get_line_extents (Rectangle& ink_rect, Rectangle& logical_rect) const
+        -> void;
 
     auto
     get_line_ink_extents () const -> Rectangle;
@@ -134,11 +137,12 @@ namespace Pango
     auto
     get_line_logical_extents () const -> Rectangle;
 
-    void
-    get_line_yrange (int& y0, int& y1) const;
+    auto
+    get_line_yrange (int& y0, int& y1) const -> void;
 
-    void
-    get_layout_extents (Rectangle& ink_rect, Rectangle& logical_rect) const;
+    auto
+    get_layout_extents (Rectangle& ink_rect, Rectangle& logical_rect) const
+        -> void;
 
     auto
     get_layout_ink_extents () const -> Rectangle;
@@ -155,8 +159,8 @@ namespace Pango
 namespace Pango
 {
 
-  inline void
-  swap (LayoutIter& lhs, LayoutIter& rhs) noexcept
+  inline auto
+  swap (LayoutIter& lhs, LayoutIter& rhs) noexcept -> void
   {
     lhs.swap (rhs);
   }

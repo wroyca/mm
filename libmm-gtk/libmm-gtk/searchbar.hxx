@@ -82,36 +82,36 @@ namespace Gtk
   public:
     SearchBar ();
 
-    void
-    connect_entry (Editable& entry);
+    auto
+    connect_entry (Editable& entry) -> void;
 
     auto
     get_search_mode () const -> bool;
 
-    void
-    set_search_mode (bool search_mode = true);
+    auto
+    set_search_mode (bool search_mode = true) -> void;
 
     auto
     get_show_close_button () const -> bool;
 
-    void
-    set_show_close_button (bool visible = true);
+    auto
+    set_show_close_button (bool visible = true) -> void;
 
-    void
-    set_key_capture_widget (Widget& widget);
+    auto
+    set_key_capture_widget (Widget& widget) -> void;
 
     auto
     get_key_capture_widget () -> Widget*;
 
     auto
     get_key_capture_widget () const -> const Widget*;
-    void
-    unset_key_capture_widget ();
+    auto
+    unset_key_capture_widget () -> void;
 
-    void
-    set_child (Widget& child);
-    void
-    unset_child ();
+    auto
+    set_child (Widget& child) -> void;
+    auto
+    unset_child () -> void;
 
     auto
     get_child () -> Widget*;
@@ -153,9 +153,7 @@ namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkSearchBar* object, bool take_copy = false) -> Gtk::SearchBar*;
 } // namespace Glib
 

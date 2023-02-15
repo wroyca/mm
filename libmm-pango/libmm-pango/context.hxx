@@ -156,8 +156,8 @@ namespace Pango
     auto
     list_families () const -> std::vector<Glib::RefPtr<FontFamily>>;
 
-    void
-    set_font_map (const Glib::RefPtr<FontMap>& font_map);
+    auto
+    set_font_map (const Glib::RefPtr<FontMap>& font_map) -> void;
 
     auto
     get_font_map () -> Glib::RefPtr<FontMap>;
@@ -182,8 +182,8 @@ namespace Pango
     get_metrics (const FontDescription& desc, const Language& language) const
         -> FontMetrics;
 
-    void
-    set_font_description (const FontDescription& desc);
+    auto
+    set_font_description (const FontDescription& desc) -> void;
 
     auto
     get_font_description () const -> FontDescription;
@@ -191,17 +191,17 @@ namespace Pango
     auto
     get_language () const -> Language;
 
-    void
-    set_language (const Language& language);
+    auto
+    set_language (const Language& language) -> void;
 
-    void
-    set_base_dir (Direction direction);
+    auto
+    set_base_dir (Direction direction) -> void;
 
     auto
     get_base_dir () const -> Direction;
 
-    void
-    set_base_gravity (Gravity gravity);
+    auto
+    set_base_gravity (Gravity gravity) -> void;
 
     auto
     get_base_gravity () const -> Gravity;
@@ -209,14 +209,14 @@ namespace Pango
     auto
     get_gravity () const -> Gravity;
 
-    void
-    set_gravity_hint (GravityHint hint);
+    auto
+    set_gravity_hint (GravityHint hint) -> void;
 
     auto
     get_gravity_hint () const -> GravityHint;
 
-    void
-    set_matrix (const Matrix& matrix);
+    auto
+    set_matrix (const Matrix& matrix) -> void;
 
     auto
     get_matrix () const -> Matrix;
@@ -232,17 +232,18 @@ namespace Pango
              const AttrList& attrs,
              AttrIter& cached_iter) const -> std::vector<Item>;
 
-    void
-    update_from_cairo_context (const Cairo::RefPtr<Cairo::Context>& context);
+    auto
+    update_from_cairo_context (const Cairo::RefPtr<Cairo::Context>& context)
+        -> void;
 
-    void
-    set_cairo_font_options (const Cairo::FontOptions& options);
+    auto
+    set_cairo_font_options (const Cairo::FontOptions& options) -> void;
 
     auto
     get_font_options () const -> Cairo::FontOptions;
 
-    void
-    set_resolution (double dpi);
+    auto
+    set_resolution (double dpi) -> void;
 
     auto
     get_resolution () const -> double;

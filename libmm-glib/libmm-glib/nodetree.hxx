@@ -165,8 +165,8 @@ namespace Glib
       return node;
     }
 
-    void
-    reverse_children ()
+    auto
+    reverse_children () -> void
     {
       g_node_reverse_children (gobj ());
     }
@@ -191,11 +191,11 @@ namespace Glib
       MASK = G_TRAVERSE_MASK
     };
 
-    void
+    auto
     traverse (const TraverseFunc& func,
               TraverseType order = TraverseType::IN_ORDER,
               TraverseFlags flags = TraverseFlags::ALL,
-              int max_depth = -1)
+              int max_depth = -1) -> void
     {
       TraverseFunc func_copy = func;
       g_node_traverse (gobj (),
@@ -206,8 +206,8 @@ namespace Glib
                        reinterpret_cast<gpointer> (&func_copy));
     };
 
-    void foreach (const ForeachFunc& func,
-                  TraverseFlags flags = TraverseFlags::ALL)
+    auto foreach (const ForeachFunc& func,
+                  TraverseFlags flags = TraverseFlags::ALL) -> void
     {
       ForeachFunc func_copy = func;
       g_node_children_foreach (gobj (),
@@ -427,8 +427,8 @@ namespace Glib
       return g_node_max_height (const_cast<GNode*> (gobj ()));
     }
 
-    void
-    unlink ()
+    auto
+    unlink () -> void
     {
       g_node_unlink (gobj ());
     }
@@ -461,8 +461,8 @@ namespace Glib
     }
 
   private:
-    void
-    clear ()
+    auto
+    clear () -> void
     {
       while (NodeTree<T>* i = first_child ())
         delete i;
@@ -471,8 +471,8 @@ namespace Glib
       gobject_ = nullptr;
     }
 
-    void
-    clone (const NodeTree<T>* node = nullptr)
+    auto
+    clone (const NodeTree<T>* node = nullptr) -> void
     {
       gobject_ = g_node_new (reinterpret_cast<gpointer> (this));
 
@@ -491,15 +491,15 @@ namespace Glib
       return (*tf) (*wrap (node));
     }
 
-    static void
-    c_callback_foreach (GNode* node, gpointer slot)
+    static auto
+    c_callback_foreach (GNode* node, gpointer slot) -> void
     {
       const ForeachFunc* ff = reinterpret_cast<const ForeachFunc*> (slot);
       (*ff) (*wrap (node));
     }
 
-    static void
-    on_compare_child (GNode* node, const T& needle, GNode** result)
+    static auto
+    on_compare_child (GNode* node, const T& needle, GNode** result) -> void
     {
       if ((nullptr != result) && (wrap (node)->data () == needle))
       {
@@ -507,8 +507,8 @@ namespace Glib
       }
     }
 
-    static void
-    c_callback_foreach_compare_child (GNode* node, gpointer data)
+    static auto
+    c_callback_foreach_compare_child (GNode* node, gpointer data) -> void
     {
       const ForeachFunc* slot = reinterpret_cast<const ForeachFunc*> (data);
       (*slot) (*wrap (node));

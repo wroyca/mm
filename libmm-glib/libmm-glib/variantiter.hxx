@@ -34,8 +34,8 @@ namespace Glib
 
     ~VariantIter () noexcept;
 
-    void
-    swap (VariantIter& other) noexcept;
+    auto
+    swap (VariantIter& other) noexcept -> void;
 
     auto
     gobj () -> GVariantIter*
@@ -74,8 +74,8 @@ namespace Glib
 namespace Glib
 {
 
-  inline void
-  swap (VariantIter& lhs, VariantIter& rhs) noexcept
+  inline auto
+  swap (VariantIter& lhs, VariantIter& rhs) noexcept -> void
   {
     lhs.swap (rhs);
   }

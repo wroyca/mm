@@ -17,14 +17,14 @@ namespace Gtk
     using CppObjectType = MenuButton;
     using BaseObjectType = GtkMenuButton;
     using BaseClassType = GtkMenuButtonClass;
-    using CppClassParent = Widget_Class;
+    using CppClassParent = Gtk::Widget_Class;
     using BaseClassParent = GtkWidgetClass;
 
     friend class MenuButton;
 #endif
 
     auto
-    init () -> const Class&;
+    init () -> const Glib::Class&;
 
     static auto
     class_init_function (void* g_class, void* class_data) -> void;

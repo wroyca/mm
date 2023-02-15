@@ -5,21 +5,24 @@
 
 #include <libmm-gtk/mm-gtkconfig.hxx>
 
-#include <libmm-glib/ustring.hxx>
-#include <sigc++/sigc++.h>
+#ifndef GTKMM_DISABLE_DEPRECATED
 
-#include <libmm-gdk/contentprovider.hxx>
-#include <libmm-gtk/treemodel.hxx>
-#ifdef GLIBMM_HAVE_SUN_REVERSE_ITERATOR
-  #include <cstddef>
-#endif
+  #include <libmm-glib/ustring.hxx>
+  #include <sigc++/sigc++.h>
 
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #include <libmm-gdk/contentprovider.hxx>
+  #include <libmm-gtk/treemodel.hxx>
+
+  #ifdef GLIBMM_HAVE_SUN_REVERSE_ITERATOR
+    #include <cstddef>
+  #endif
+
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
 extern "C"
 {
   typedef struct _GtkTreePath GtkTreePath;
 }
-#endif
+  #endif
 
 namespace Gtk
 {
@@ -27,10 +30,10 @@ namespace Gtk
   class GTKMM_API TreePath
   {
   public:
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
     using CppObjectType = TreePath;
     using BaseObjectType = GtkTreePath;
-#endif
+  #endif
 
     static auto
     get_type () -> GType G_GNUC_CONST;
@@ -47,8 +50,8 @@ namespace Gtk
 
     ~TreePath () noexcept;
 
-    void
-    swap (TreePath& other) noexcept;
+    auto
+    swap (TreePath& other) noexcept -> void;
 
     auto
     gobj () -> GtkTreePath*
@@ -80,12 +83,12 @@ namespace Gtk
     typedef int* iterator;
     typedef const int* const_iterator;
 
-#ifndef GLIBMM_HAVE_SUN_REVERSE_ITERATOR
+  #ifndef GLIBMM_HAVE_SUN_REVERSE_ITERATOR
 
     typedef std::reverse_iterator<iterator> reverse_iterator;
     typedef std::reverse_iterator<const_iterator> const_reverse_iterator;
 
-#else
+  #else
 
     typedef std::reverse_iterator<iterator,
                                   std::random_access_iterator_tag,
@@ -103,7 +106,7 @@ namespace Gtk
                                   std::ptrdiff_t>
         const_reverse_iterator;
 
-#endif
+  #endif
 
     explicit TreePath (GtkTreePath* gobject, bool make_a_copy = true);
     explicit TreePath (size_type n, value_type value = 0);
@@ -113,8 +116,8 @@ namespace Gtk
     template <class In>
     inline TreePath (In pbegin, In pend);
 
-    void
-    clear ();
+    auto
+    clear () -> void;
 
     auto
     operator= (const TreeModel::iterator& iter) -> TreePath&;
@@ -122,17 +125,17 @@ namespace Gtk
     explicit operator bool () const;
 
     template <class In>
-    inline void
-    assign (In pbegin, In pend);
+    inline auto
+    assign (In pbegin, In pend) -> void;
     template <class In>
-    void
-    append (In pbegin, In pend);
+    auto
+    append (In pbegin, In pend) -> void;
 
-    void
-    push_back (int index);
+    auto
+    push_back (int index) -> void;
 
-    void
-    push_front (int index);
+    auto
+    push_front (int index) -> void;
 
     auto
     size () const -> size_type;
@@ -201,8 +204,8 @@ namespace Gtk
       return *rbegin ();
     }
 
-    void
-    next ();
+    auto
+    next () -> void;
 
     auto
     prev () -> bool;
@@ -210,8 +213,8 @@ namespace Gtk
     auto
     up () -> bool;
 
-    void
-    down ();
+    auto
+    down () -> void;
 
     auto
     is_ancestor (const TreePath& descendant) const -> bool;
@@ -235,11 +238,11 @@ namespace Gtk
         -> Glib::RefPtr<Gdk::ContentProvider>;
   };
 
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   template <class In>
-  void
-  TreePath::append (In pbegin, In pend)
+  auto
+  TreePath::append (In pbegin, In pend) -> void
   {
     for (; pbegin != pend; ++pbegin)
       this->push_back (*pbegin);
@@ -252,8 +255,8 @@ namespace Gtk
   }
 
   template <class In>
-  inline void
-  TreePath::assign (In pbegin, In pend)
+  inline auto
+  TreePath::assign (In pbegin, In pend) -> void
   {
     TreePath temp (pbegin, pend);
     this->swap (temp);
@@ -283,42 +286,38 @@ namespace Gtk
       return CppType (const_cast<CTypeNonConst> (item));
     }
 
-    static void
-    release_c_type (CType item)
+    G_GNUC_BEGIN_IGNORE_DEPRECATIONS
+    static auto
+    release_c_type (CType item) -> void
     {
       gtk_tree_path_free (const_cast<CTypeNonConst> (item));
     }
+
+    G_GNUC_END_IGNORE_DEPRECATIONS
   };
 
-#endif
+  #endif
 
 } // namespace Gtk
 
 namespace Gtk
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   operator== (const TreePath& lhs, const TreePath& rhs) -> bool;
 
-  GTKMM_API
-  auto
+  GTKMM_API auto
   operator!= (const TreePath& lhs, const TreePath& rhs) -> bool;
 
-  GTKMM_API
-  auto
+  GTKMM_API auto
   operator<(const TreePath& lhs, const TreePath& rhs) -> bool;
 
-  GTKMM_API
-  auto
+  GTKMM_API auto
   operator> (const TreePath& lhs, const TreePath& rhs) -> bool;
 
-  GTKMM_API
-  auto
+  GTKMM_API auto
   operator<= (const TreePath& lhs, const TreePath& rhs) -> bool;
 
-  GTKMM_API
-  auto
+  GTKMM_API auto
   operator>= (const TreePath& lhs, const TreePath& rhs) -> bool;
 
 } // namespace Gtk
@@ -326,8 +325,8 @@ namespace Gtk
 namespace Gtk
 {
 
-  inline void
-  swap (TreePath& lhs, TreePath& rhs) noexcept
+  inline auto
+  swap (TreePath& lhs, TreePath& rhs) noexcept -> void
   {
     lhs.swap (rhs);
   }
@@ -336,18 +335,18 @@ namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkTreePath* object, bool take_copy = false) -> Gtk::TreePath;
 
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
   template <>
   class GTKMM_API Value<Gtk::TreePath> : public Glib::Value_Boxed<Gtk::TreePath>
   {
   };
-#endif
+  #endif
 
 } // namespace Glib
+
+#endif
 
 #endif

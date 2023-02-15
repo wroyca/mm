@@ -15,11 +15,11 @@ namespace Glib
 {
 
   auto
-  wrap (GtkTreeListRow* object, const bool take_copy) -> RefPtr<Gtk::TreeListRow>
+  wrap (GtkTreeListRow* object, bool take_copy) -> Glib::RefPtr<Gtk::TreeListRow>
   {
     return Glib::make_refptr_for_instance<Gtk::TreeListRow> (
         dynamic_cast<Gtk::TreeListRow*> (
-            wrap_auto ((GObject*) object, take_copy)));
+            Glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
 } // namespace Glib
@@ -28,7 +28,7 @@ namespace Gtk
 {
 
   auto
-  TreeListRow_Class::init () -> const Class&
+  TreeListRow_Class::init () -> const Glib::Class&
   {
     if (!gtype_)
     {
@@ -61,28 +61,28 @@ namespace Gtk
   }
 
   TreeListRow::TreeListRow (const Glib::ConstructParams& construct_params)
-    : Object (construct_params)
+    : Glib::Object (construct_params)
   {
   }
 
   TreeListRow::TreeListRow (GtkTreeListRow* castitem)
-    : Object ((GObject*) castitem)
+    : Glib::Object ((GObject*) (castitem))
   {
   }
 
   TreeListRow::TreeListRow (TreeListRow&& src) noexcept
-    : Object (std::move (src))
+    : Glib::Object (std::move (src))
   {
   }
 
   auto
   TreeListRow::operator= (TreeListRow&& src) noexcept -> TreeListRow&
   {
-    Object::operator= (std::move (src));
+    Glib::Object::operator= (std::move (src));
     return *this;
   }
 
-  TreeListRow::~TreeListRow () noexcept = default;
+  TreeListRow::~TreeListRow () noexcept {}
 
   TreeListRow::CppClassType TreeListRow::treelistrow_class_;
 
@@ -99,22 +99,22 @@ namespace Gtk
   }
 
   auto
-  TreeListRow::get_item () -> Glib::RefPtr<ObjectBase>
+  TreeListRow::get_item () -> Glib::RefPtr<Glib::ObjectBase>
   {
-    return Glib::make_refptr_for_instance<ObjectBase> (
+    return Glib::make_refptr_for_instance<Glib::ObjectBase> (
         Glib::wrap_auto (G_OBJECT (gtk_tree_list_row_get_item (gobj ()))));
   }
 
   auto
-  TreeListRow::get_item () const -> Glib::RefPtr<const ObjectBase>
+  TreeListRow::get_item () const -> Glib::RefPtr<const Glib::ObjectBase>
   {
     return const_cast<TreeListRow*> (this)->get_item ();
   }
 
   auto
-  TreeListRow::set_expanded (const bool expanded) -> void
+  TreeListRow::set_expanded (bool expanded) -> void
   {
-    gtk_tree_list_row_set_expanded (gobj (), expanded);
+    gtk_tree_list_row_set_expanded (gobj (), static_cast<int> (expanded));
   }
 
   auto
@@ -172,13 +172,13 @@ namespace Gtk
   }
 
   auto
-  TreeListRow::get_child_row (const guint position) -> Glib::RefPtr<TreeListRow>
+  TreeListRow::get_child_row (guint position) -> Glib::RefPtr<TreeListRow>
   {
     return Glib::wrap (gtk_tree_list_row_get_child_row (gobj (), position));
   }
 
   auto
-  TreeListRow::get_child_row (const guint position) const -> Glib::RefPtr<const TreeListRow>
+  TreeListRow::get_child_row (guint position) const -> Glib::RefPtr<const TreeListRow>
   {
     return const_cast<TreeListRow*> (this)->get_child_row (position);
   }
@@ -192,31 +192,33 @@ namespace Gtk
   auto
   TreeListRow::property_children () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gio::ListModel>>
   {
-    return {this, "children"};
+    return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gio::ListModel>> (
+        this,
+        "children");
   }
 
   auto
   TreeListRow::property_depth () const -> Glib::PropertyProxy_ReadOnly<guint>
   {
-    return {this, "depth"};
+    return Glib::PropertyProxy_ReadOnly<guint> (this, "depth");
   }
 
   auto
   TreeListRow::property_expandable () const -> Glib::PropertyProxy_ReadOnly<bool>
   {
-    return {this, "expandable"};
+    return Glib::PropertyProxy_ReadOnly<bool> (this, "expandable");
   }
 
   auto
   TreeListRow::property_expanded () -> Glib::PropertyProxy<bool>
   {
-    return {this, "expanded"};
+    return Glib::PropertyProxy<bool> (this, "expanded");
   }
 
   auto
   TreeListRow::property_expanded () const -> Glib::PropertyProxy_ReadOnly<bool>
   {
-    return {this, "expanded"};
+    return Glib::PropertyProxy_ReadOnly<bool> (this, "expanded");
   }
 
   static_assert (
@@ -226,9 +228,11 @@ namespace Gtk
       "There is no suitable template specialization of Glib::Value<>.");
 
   auto
-  TreeListRow::property_item () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<ObjectBase>>
+  TreeListRow::property_item () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Glib::ObjectBase>>
   {
-    return {this, "item"};
+    return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Glib::ObjectBase>> (
+        this,
+        "item");
   }
 
 } // namespace Gtk

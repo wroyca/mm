@@ -1,11 +1,16 @@
 // SPDX-License-Identifier: LGPL-2.1-or-later
 
-#include <libmm-glib/mm-glib.hxx>
+#undef GTK_DISABLE_DEPRECATED
+#define GDK_DISABLE_DEPRECATION_WARNINGS 1
 
-#include <libmm-gtk/treerowreference.hxx>
-#include <libmm-gtk/treerowreference_p.hxx>
+#ifndef GTKMM_DISABLE_DEPRECATED
 
-#include <gtk/gtk.h>
+  #include <libmm-glib/mm-glib.hxx>
+
+  #include <libmm-gtk/treerowreference.hxx>
+  #include <libmm-gtk/treerowreference_p.hxx>
+
+  #include <gtk/gtk.h>
 
 namespace Gtk
 {
@@ -33,7 +38,7 @@ namespace Glib
 {
 
   auto
-  wrap (GtkTreeRowReference* object, const bool take_copy) -> Gtk::TreeRowReference
+  wrap (GtkTreeRowReference* object, bool take_copy) -> Gtk::TreeRowReference
   {
     return Gtk::TreeRowReference (object, take_copy);
   }
@@ -55,8 +60,9 @@ namespace Gtk
   }
 
   TreeRowReference::TreeRowReference (const TreeRowReference& other)
-    : gobject_ (other.gobject_ ? gtk_tree_row_reference_copy (other.gobject_) :
-                                 nullptr)
+    : gobject_ ((other.gobject_) ?
+                    gtk_tree_row_reference_copy (other.gobject_) :
+                    nullptr)
   {
   }
 
@@ -75,9 +81,10 @@ namespace Gtk
   }
 
   TreeRowReference::TreeRowReference (GtkTreeRowReference* gobject,
-                                      const bool make_a_copy)
-    : gobject_ (make_a_copy && gobject ? gtk_tree_row_reference_copy (gobject) :
-                                         gobject)
+                                      bool make_a_copy)
+    : gobject_ ((make_a_copy && gobject) ?
+                    gtk_tree_row_reference_copy (gobject) :
+                    gobject)
   {
   }
 
@@ -110,9 +117,9 @@ namespace Gtk
   auto
   TreeRowReference::get_path () const -> TreeModel::Path
   {
-    return TreePath (gtk_tree_row_reference_get_path (
-                         const_cast<GtkTreeRowReference*> (gobj ())),
-                     false);
+    return Gtk::TreePath (gtk_tree_row_reference_get_path (
+                              const_cast<GtkTreeRowReference*> (gobj ())),
+                          false);
   }
 
   auto
@@ -138,3 +145,5 @@ namespace Gtk
   }
 
 } // namespace Gtk
+
+#endif

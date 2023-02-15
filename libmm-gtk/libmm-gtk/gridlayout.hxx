@@ -85,38 +85,38 @@ namespace Gtk
     static auto
     create () -> Glib::RefPtr<GridLayout>;
 
-    void
-    set_row_homogeneous (bool homogeneous = true);
+    auto
+    set_row_homogeneous (bool homogeneous = true) -> void;
 
     auto
     get_row_homogeneous () const -> bool;
 
-    void
-    set_row_spacing (guint spacing);
+    auto
+    set_row_spacing (guint spacing) -> void;
 
     auto
     get_row_spacing () const -> guint;
 
-    void
-    set_column_homogeneous (bool homogeneous = true);
+    auto
+    set_column_homogeneous (bool homogeneous = true) -> void;
 
     auto
     get_column_homogeneous () const -> bool;
 
-    void
-    set_column_spacing (guint spacing);
+    auto
+    set_column_spacing (guint spacing) -> void;
 
     auto
     get_column_spacing () const -> guint;
 
-    void
-    set_row_baseline_position (int row, BaselinePosition pos);
+    auto
+    set_row_baseline_position (int row, BaselinePosition pos) -> void;
 
     auto
     get_row_baseline_position (int row) const -> BaselinePosition;
 
-    void
-    set_baseline_row (int row);
+    auto
+    set_baseline_row (int row) -> void;
 
     auto
     get_baseline_row () const -> int;
@@ -160,9 +160,7 @@ namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkGridLayout* object, bool take_copy = false) -> Glib::RefPtr<Gtk::GridLayout>;
 } // namespace Glib
 

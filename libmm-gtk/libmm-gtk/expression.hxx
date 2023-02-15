@@ -19,11 +19,11 @@ namespace Gtk
     using BaseObjectType = GtkExpression;
 #endif
 
-    void
-    reference () const;
+    auto
+    reference () const -> void;
 
-    void
-    unreference () const;
+    auto
+    unreference () const -> void;
 
     auto
     gobj () -> GtkExpression*;
@@ -41,8 +41,8 @@ namespace Gtk
     operator= (const ExpressionBase&) -> ExpressionBase& = delete;
 
   protected:
-    void
-    operator delete (void*, std::size_t);
+    auto
+    operator delete (void*, std::size_t) -> void;
 
   private:
   public:
@@ -147,31 +147,29 @@ namespace Gtk
 
   private:
     template <class A1, class... ATs>
-    static void
+    static auto
     fill_params (GtkExpression** gparams,
                  const Glib::RefPtr<A1>& a1,
-                 const Glib::RefPtr<ATs>&... eas);
+                 const Glib::RefPtr<ATs>&... eas) -> void;
 
-    static void
-    fill_params (GtkExpression** gparams);
+    static auto
+    fill_params (GtkExpression** gparams) -> void;
   };
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   namespace Expression_Private
   {
-
-    GTKMM_API
-    void
-    watch_callback (gpointer data);
+    GTKMM_API auto
+    watch_callback (gpointer data) -> void;
 
     template <class T, class... ATs>
     class Invoker
     {
     public:
       explicit Invoker (const sigc::slot<T (ATs...)>& slot);
-      void
-      invoke (const GValue* param_values, GValue* return_value);
+      auto
+      invoke (const GValue* param_values, GValue* return_value) -> void;
 
     private:
       sigc::slot<T (ATs...)> the_slot;
@@ -181,28 +179,27 @@ namespace Gtk
       eval_param (const GValue* gv) -> PT;
 
       template <std::size_t... I>
-      void
+      auto
       invoke (const GValue* param_values,
               GValue* return_value,
-              std::index_sequence<I...>);
+              std::index_sequence<I...>) -> void;
     };
 
     template <class TI>
-    void
+    auto
     closure_marshal (GClosure* closure,
                      GValue* return_value,
                      guint n_param_values,
                      const GValue* param_values,
                      gpointer invocation_hint,
-                     gpointer marshal_data);
+                     gpointer marshal_data) -> void;
 
-    GTKMM_API
-    void
-    closure_callback_func ();
+    GTKMM_API auto
+    closure_callback_func () -> void;
 
     template <class TI>
-    void
-    closure_destroy (gpointer data, GClosure* closure);
+    auto
+    closure_destroy (gpointer data, GClosure* closure) -> void;
 
   } // namespace Expression_Private
 
@@ -397,18 +394,18 @@ namespace Gtk
 
   template <class T>
   template <class A1, class... ATs>
-  void
+  auto
   ClosureExpression<T>::fill_params (GtkExpression** gparams,
                                      const Glib::RefPtr<A1>& a1,
-                                     const Glib::RefPtr<ATs>&... eas)
+                                     const Glib::RefPtr<ATs>&... eas) -> void
   {
     gparams[0] = a1->gobj_copy ();
     fill_params (gparams + 1, eas...);
   }
 
   template <class T>
-  void
-  ClosureExpression<T>::fill_params (GtkExpression**)
+  auto
+  ClosureExpression<T>::fill_params (GtkExpression**) -> void
   {
   }
 
@@ -433,10 +430,10 @@ namespace Gtk
 
     template <class T, class... ATs>
     template <std::size_t... I>
-    void
+    auto
     Invoker<T, ATs...>::invoke (const GValue* param_values,
                                 GValue* return_value,
-                                std::index_sequence<I...>)
+                                std::index_sequence<I...>) -> void
     {
       T res = the_slot (eval_param<ATs> (&param_values[I])...);
       Glib::Value<T> rv;
@@ -446,9 +443,9 @@ namespace Gtk
     }
 
     template <class T, class... ATs>
-    void
+    auto
     Invoker<T, ATs...>::invoke (const GValue* param_values,
-                                GValue* return_value)
+                                GValue* return_value) -> void
     {
       invoke (param_values,
               return_value,
@@ -456,20 +453,20 @@ namespace Gtk
     }
 
     template <class TI>
-    void
+    auto
     closure_marshal (GClosure* closure,
                      GValue* return_value,
                      guint,
                      const GValue* param_values,
                      gpointer,
-                     gpointer)
+                     gpointer) -> void
     {
       static_cast<TI*> (closure->data)->invoke (param_values, return_value);
     }
 
     template <class TI>
-    void
-    closure_destroy (gpointer, GClosure* closure)
+    auto
+    closure_destroy (gpointer, GClosure* closure) -> void
     {
       delete static_cast<TI*> (closure->data);
     }
@@ -503,8 +500,8 @@ namespace Glib
     static auto
     value_type () -> GType;
 
-    void
-    set (const CppType& data);
+    auto
+    set (const CppType& data) -> void;
     auto
     get () const -> CppType;
   };
@@ -517,8 +514,8 @@ namespace Glib
   }
 
   template <class T>
-  void
-  Value<RefPtr<Gtk::Expression<T>>>::set (const CppType& data)
+  auto
+  Value<RefPtr<Gtk::Expression<T>>>::set (const CppType& data) -> void
   {
     gtk_value_set_expression (&gobject_,
                               const_cast<GtkExpression*> (data->gobj ()));
@@ -536,9 +533,7 @@ namespace Glib
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkExpression* object, bool take_copy = false) -> Glib::RefPtr<Gtk::ExpressionBase>;
 
 } // namespace Glib

@@ -11,19 +11,19 @@
 namespace Cairo
 {
 
-  void
-  throw_exception (ErrorStatus status);
+  auto
+  throw_exception (ErrorStatus status) -> void;
 
-  inline void
-  check_status_and_throw_exception (ErrorStatus status)
+  inline auto
+  check_status_and_throw_exception (ErrorStatus status) -> void
   {
     if (status != CAIRO_STATUS_SUCCESS)
       throw_exception (status);
   }
 
   template <class T>
-  void
-  check_object_status_and_throw_exception (const T& object)
+  auto
+  check_object_status_and_throw_exception (const T& object) -> void
   {
     check_status_and_throw_exception (object.get_status ());
   }

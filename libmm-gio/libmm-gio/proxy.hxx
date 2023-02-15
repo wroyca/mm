@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: LGPL-2.1-or-later
 
 #ifndef _GIOMM_PROXY_H
 #define _GIOMM_PROXY_H
@@ -70,8 +71,8 @@ namespace Gio
 
     ~Proxy () noexcept override;
 
-    static void
-    add_interface (GType gtype_implementer);
+    static auto
+    add_interface (GType gtype_implementer) -> void;
 
     static auto
     get_type () -> GType G_GNUC_CONST;
@@ -105,16 +106,16 @@ namespace Gio
              const Glib::RefPtr<Cancellable>& cancellable)
         -> Glib::RefPtr<IOStream>;
 
-    void
+    auto
     connect_async (const Glib::RefPtr<IOStream>& connection,
                    const Glib::RefPtr<const ProxyAddress>& proxy_address,
                    const SlotAsyncReady& slot,
-                   const Glib::RefPtr<Cancellable>& cancellable);
+                   const Glib::RefPtr<Cancellable>& cancellable) -> void;
 
-    void
+    auto
     connect_async (const Glib::RefPtr<IOStream>& connection,
                    const Glib::RefPtr<const ProxyAddress>& proxy_address,
-                   const SlotAsyncReady& slot);
+                   const SlotAsyncReady& slot) -> void;
 
     auto
     connect_finish (const Glib::RefPtr<AsyncResult>& result)

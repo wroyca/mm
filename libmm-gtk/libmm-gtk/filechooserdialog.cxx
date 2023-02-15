@@ -1,44 +1,51 @@
 // SPDX-License-Identifier: LGPL-2.1-or-later
 
-#include <libmm-glib/mm-glib.hxx>
+#undef GTK_DISABLE_DEPRECATED
+#define GDK_DISABLE_DEPRECATION_WARNINGS 1
 
-#include <libmm-gtk/filechooserdialog.hxx>
-#include <libmm-gtk/filechooserdialog_p.hxx>
+#ifndef GTKMM_DISABLE_DEPRECATED
 
-#include <gtk/gtk.h>
+  #include <libmm-glib/mm-glib.hxx>
+
+  #include <libmm-gtk/filechooserdialog.hxx>
+  #include <libmm-gtk/filechooserdialog_p.hxx>
+
+  #include <gtk/gtk.h>
 
 namespace Gtk
 {
 
-  FileChooserDialog::FileChooserDialog (Window& parent,
+  FileChooserDialog::FileChooserDialog (Gtk::Window& parent,
                                         const Glib::ustring& title,
-                                        const Action action,
-                                        const bool use_header_bar)
-    : ObjectBase (nullptr),
-      Dialog (Glib::ConstructParams (filechooserdialog_class_.init (),
-                                     "title",
-                                     title.c_str (),
-                                     "action",
-                                     action,
-                                     "use-header-bar",
-                                     use_header_bar,
-                                     nullptr))
+                                        Action action,
+                                        bool use_header_bar)
+    : Glib::ObjectBase (nullptr),
+      Gtk::Dialog (
+          Glib::ConstructParams (filechooserdialog_class_.init (),
+                                 "title",
+                                 title.c_str (),
+                                 "action",
+                                 static_cast<GtkFileChooserAction> (action),
+                                 "use-header-bar",
+                                 static_cast<int> (use_header_bar),
+                                 nullptr))
   {
     set_transient_for (parent);
   }
 
   FileChooserDialog::FileChooserDialog (const Glib::ustring& title,
-                                        const Action action,
-                                        const bool use_header_bar)
-    : ObjectBase (nullptr),
-      Dialog (Glib::ConstructParams (filechooserdialog_class_.init (),
-                                     "title",
-                                     title.c_str (),
-                                     "action",
-                                     action,
-                                     "use-header-bar",
-                                     use_header_bar,
-                                     nullptr))
+                                        Action action,
+                                        bool use_header_bar)
+    : Glib::ObjectBase (nullptr),
+      Gtk::Dialog (
+          Glib::ConstructParams (filechooserdialog_class_.init (),
+                                 "title",
+                                 title.c_str (),
+                                 "action",
+                                 static_cast<GtkFileChooserAction> (action),
+                                 "use-header-bar",
+                                 static_cast<int> (use_header_bar),
+                                 nullptr))
   {
   }
 
@@ -52,10 +59,10 @@ namespace Glib
 {
 
   auto
-  wrap (GtkFileChooserDialog* object, const bool take_copy) -> Gtk::FileChooserDialog*
+  wrap (GtkFileChooserDialog* object, bool take_copy) -> Gtk::FileChooserDialog*
   {
     return dynamic_cast<Gtk::FileChooserDialog*> (
-        wrap_auto ((GObject*) object, take_copy));
+        Glib::wrap_auto ((GObject*) (object), take_copy));
   }
 
 } // namespace Glib
@@ -64,7 +71,7 @@ namespace Gtk
 {
 
   auto
-  FileChooserDialog_Class::init () -> const Class&
+  FileChooserDialog_Class::init () -> const Glib::Class&
   {
     if (!gtype_)
     {
@@ -88,22 +95,22 @@ namespace Gtk
   auto
   FileChooserDialog_Class::wrap_new (GObject* o) -> Glib::ObjectBase*
   {
-    return new FileChooserDialog ((GtkFileChooserDialog*) o);
+    return new FileChooserDialog ((GtkFileChooserDialog*) (o));
   }
 
   FileChooserDialog::FileChooserDialog (
       const Glib::ConstructParams& construct_params)
-    : Dialog (construct_params)
+    : Gtk::Dialog (construct_params)
   {
   }
 
   FileChooserDialog::FileChooserDialog (GtkFileChooserDialog* castitem)
-    : Dialog ((GtkDialog*) castitem)
+    : Gtk::Dialog ((GtkDialog*) (castitem))
   {
   }
 
   FileChooserDialog::FileChooserDialog (FileChooserDialog&& src) noexcept
-    : Dialog (std::move (src)),
+    : Gtk::Dialog (std::move (src)),
       FileChooser (std::move (src))
   {
   }
@@ -111,7 +118,7 @@ namespace Gtk
   auto
   FileChooserDialog::operator= (FileChooserDialog&& src) noexcept -> FileChooserDialog&
   {
-    Dialog::operator= (std::move (src));
+    Gtk::Dialog::operator= (std::move (src));
     FileChooser::operator= (std::move (src));
     return *this;
   }
@@ -136,3 +143,5 @@ namespace Gtk
   }
 
 } // namespace Gtk
+
+#endif

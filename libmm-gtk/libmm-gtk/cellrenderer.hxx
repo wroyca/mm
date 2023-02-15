@@ -5,23 +5,25 @@
 
 #include <libmm-gtk/mm-gtkconfig.hxx>
 
-#include <libmm-glib/ustring.hxx>
-#include <sigc++/sigc++.h>
+#ifndef GTKMM_DISABLE_DEPRECATED
 
-#include <libmm-gtk/celleditable.hxx>
-#include <libmm-gtk/widget.hxx>
+  #include <libmm-glib/ustring.hxx>
+  #include <sigc++/sigc++.h>
 
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #include <libmm-gtk/celleditable.hxx>
+  #include <libmm-gtk/widget.hxx>
+
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
 using GtkCellRenderer = struct _GtkCellRenderer;
 using GtkCellRendererClass = struct _GtkCellRendererClass;
-#endif
+  #endif
 
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
   class GTKMM_API CellRenderer_Class;
 }
-#endif
+  #endif
 
 namespace Gtk
 {
@@ -88,7 +90,7 @@ namespace Gtk
 
 } // namespace Gtk
 
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Glib
 {
 
@@ -102,7 +104,7 @@ namespace Glib
   };
 
 } // namespace Glib
-#endif
+  #endif
 
 namespace Gtk
 {
@@ -116,7 +118,7 @@ namespace Gtk
 
 } // namespace Gtk
 
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Glib
 {
 
@@ -130,7 +132,7 @@ namespace Glib
   };
 
 } // namespace Glib
-#endif
+  #endif
 
 namespace Gtk
 {
@@ -138,12 +140,12 @@ namespace Gtk
   class GTKMM_API CellRenderer : public Object
   {
   public:
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
     typedef CellRenderer CppObjectType;
     typedef CellRenderer_Class CppClassType;
     typedef GtkCellRenderer BaseObjectType;
     typedef GtkCellRendererClass BaseClassType;
-#endif
+  #endif
 
     CellRenderer (CellRenderer&& src) noexcept;
     auto
@@ -155,7 +157,7 @@ namespace Gtk
 
     ~CellRenderer () noexcept override;
 
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   private:
     friend GTKMM_API class CellRenderer_Class;
@@ -165,17 +167,17 @@ namespace Gtk
     explicit CellRenderer (const Glib::ConstructParams& construct_params);
     explicit CellRenderer (GtkCellRenderer* castitem);
 
-#endif
+  #endif
 
   public:
     static auto
     get_type () -> GType G_GNUC_CONST;
 
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
     static auto
     get_base_type () -> GType G_GNUC_CONST;
-#endif
+  #endif
 
     auto
     gobj () -> GtkCellRenderer*
@@ -194,44 +196,44 @@ namespace Gtk
     auto
     get_request_mode () const -> SizeRequestMode;
 
-    void
+    auto
     get_preferred_width (Widget& widget,
                          int& minimum_width,
-                         int& natural_width) const;
+                         int& natural_width) const -> void;
 
-    void
+    auto
     get_preferred_height_for_width (Widget& widget,
                                     int width,
                                     int& minimum_height,
-                                    int& natural_height) const;
+                                    int& natural_height) const -> void;
 
-    void
+    auto
     get_preferred_height (Widget& widget,
                           int& minimum_height,
-                          int& natural_height) const;
+                          int& natural_height) const -> void;
 
-    void
+    auto
     get_preferred_width_for_height (Widget& widget,
                                     int height,
                                     int& minimum_width,
-                                    int& natural_width) const;
+                                    int& natural_width) const -> void;
 
-    void
+    auto
     get_preferred_size (Widget& widget,
                         Requisition& minimum_size,
-                        Requisition& natural_size) const;
+                        Requisition& natural_size) const -> void;
 
     auto
     get_aligned_area (Widget& widget,
                       CellRendererState flags,
                       const Gdk::Rectangle& cell_area) const -> Gdk::Rectangle;
 
-    void
+    auto
     snapshot (const Glib::RefPtr<Gtk::Snapshot>& snapshot,
               Widget& widget,
               const Gdk::Rectangle& background_area,
               const Gdk::Rectangle& cell_area,
-              CellRendererState flags);
+              CellRendererState flags) -> void;
 
     auto
     activate (const Glib::RefPtr<const Gdk::Event>& event,
@@ -250,32 +252,32 @@ namespace Gtk
                    CellRendererState flags = CellRendererState (0))
         -> CellEditable*;
 
-    void
-    set_fixed_size (int width, int height);
+    auto
+    set_fixed_size (int width, int height) -> void;
 
-    void
-    get_fixed_size (int& width, int& height) const;
+    auto
+    get_fixed_size (int& width, int& height) const -> void;
 
-    void
-    set_alignment (float xalign, float yalign);
+    auto
+    set_alignment (float xalign, float yalign) -> void;
 
-    void
-    get_alignment (float& xalign, float& yalign) const;
+    auto
+    get_alignment (float& xalign, float& yalign) const -> void;
 
-    void
-    set_padding (int xpad, int ypad);
+    auto
+    set_padding (int xpad, int ypad) -> void;
 
-    void
-    get_padding (int& xpad, int& ypad) const;
+    auto
+    get_padding (int& xpad, int& ypad) const -> void;
 
-    void
-    set_visible (bool visible = true);
+    auto
+    set_visible (bool visible = true) -> void;
 
     auto
     get_visible () const -> bool;
 
-    void
-    set_sensitive (bool sensitive = true);
+    auto
+    set_sensitive (bool sensitive = true) -> void;
 
     auto
     get_sensitive () const -> bool;
@@ -283,20 +285,20 @@ namespace Gtk
     auto
     is_activatable () const -> bool;
 
-    void
-    set_is_expander (bool is_expander = true);
+    auto
+    set_is_expander (bool is_expander = true) -> void;
 
     auto
     get_is_expander () const -> bool;
 
-    void
-    set_is_expanded (bool is_expanded = true);
+    auto
+    set_is_expanded (bool is_expanded = true) -> void;
 
     auto
     get_is_expanded () const -> bool;
 
-    void
-    stop_editing (bool canceled = false);
+    auto
+    stop_editing (bool canceled = false) -> void;
 
     auto
     get_state (Widget& widget, CellRendererState cell_state) const
@@ -406,34 +408,34 @@ namespace Gtk
     virtual auto
     get_request_mode_vfunc () const -> SizeRequestMode;
 
-    virtual void
+    virtual auto
     get_preferred_width_vfunc (Widget& widget,
                                int& minimum_width,
-                               int& natural_width) const;
+                               int& natural_width) const -> void;
 
-    virtual void
+    virtual auto
     get_preferred_height_for_width_vfunc (Widget& widget,
                                           int width,
                                           int& minimum_height,
-                                          int& natural_height) const;
+                                          int& natural_height) const -> void;
 
-    virtual void
+    virtual auto
     get_preferred_height_vfunc (Widget& widget,
                                 int& minimum_height,
-                                int& natural_height) const;
+                                int& natural_height) const -> void;
 
-    virtual void
+    virtual auto
     get_preferred_width_for_height_vfunc (Widget& widget,
                                           int height,
                                           int& minimum_width,
-                                          int& natural_width) const;
+                                          int& natural_width) const -> void;
 
-    virtual void
+    virtual auto
     snapshot_vfunc (const Glib::RefPtr<Gtk::Snapshot>& snapshot,
                     Widget& widget,
                     const Gdk::Rectangle& background_area,
                     const Gdk::Rectangle& cell_area,
-                    CellRendererState flags);
+                    CellRendererState flags) -> void;
 
     virtual auto
     activate_vfunc (const Glib::RefPtr<const Gdk::Event>& event,
@@ -454,21 +456,22 @@ namespace Gtk
   public:
   public:
   protected:
-    virtual void
-    on_editing_canceled ();
+    virtual auto
+    on_editing_canceled () -> void;
 
-    virtual void
-    on_editing_started (CellEditable* editable, const Glib::ustring& path);
+    virtual auto
+    on_editing_started (CellEditable* editable, const Glib::ustring& path)
+        -> void;
   };
 
 } // namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkCellRenderer* object, bool take_copy = false) -> Gtk::CellRenderer*;
 } // namespace Glib
+
+#endif
 
 #endif

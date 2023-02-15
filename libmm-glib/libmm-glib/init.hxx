@@ -7,14 +7,11 @@
 
 namespace Glib
 {
+  GLIBMM_API auto
+  init () -> void;
 
-  GLIBMM_API
-  void
-  init ();
-
-  GLIBMM_API
-  void
-  set_init_to_users_preferred_locale (bool state = true);
+  GLIBMM_API auto
+  set_init_to_users_preferred_locale (bool state = true) -> void;
 
   GLIBMM_API
   auto

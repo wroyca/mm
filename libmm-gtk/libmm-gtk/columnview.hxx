@@ -90,15 +90,15 @@ namespace Gtk
     auto
     get_columns () const -> Glib::RefPtr<const Gio::ListModel>;
 
-    void
-    append_column (const Glib::RefPtr<ColumnViewColumn>& column);
+    auto
+    append_column (const Glib::RefPtr<ColumnViewColumn>& column) -> void;
 
-    void
-    remove_column (const Glib::RefPtr<ColumnViewColumn>& column);
+    auto
+    remove_column (const Glib::RefPtr<ColumnViewColumn>& column) -> void;
 
-    void
-    insert_column (guint position,
-                   const Glib::RefPtr<ColumnViewColumn>& column);
+    auto
+    insert_column (guint position, const Glib::RefPtr<ColumnViewColumn>& column)
+        -> void;
 
     auto
     get_model () -> Glib::RefPtr<SelectionModel>;
@@ -106,20 +106,20 @@ namespace Gtk
     auto
     get_model () const -> Glib::RefPtr<const SelectionModel>;
 
-    void
-    set_model (const Glib::RefPtr<SelectionModel>& model);
+    auto
+    set_model (const Glib::RefPtr<SelectionModel>& model) -> void;
 
     auto
     get_show_row_separators () const -> bool;
 
-    void
-    set_show_row_separators (bool show_separators = true);
+    auto
+    set_show_row_separators (bool show_separators = true) -> void;
 
     auto
     get_show_column_separators () const -> bool;
 
-    void
-    set_show_column_separators (bool show_separators = true);
+    auto
+    set_show_column_separators (bool show_separators = true) -> void;
 
     auto
     get_sorter () -> Glib::RefPtr<Sorter>;
@@ -127,24 +127,24 @@ namespace Gtk
     auto
     get_sorter () const -> Glib::RefPtr<const Sorter>;
 
-    void
+    auto
     sort_by_column (const Glib::RefPtr<ColumnViewColumn>& column,
-                    SortType direction);
+                    SortType direction) -> void;
 
-    void
-    set_single_click_activate (bool single_click_activate = true);
+    auto
+    set_single_click_activate (bool single_click_activate = true) -> void;
 
     auto
     get_single_click_activate () const -> bool;
 
-    void
-    set_reorderable (bool reorderable = true);
+    auto
+    set_reorderable (bool reorderable = true) -> void;
 
     auto
     get_reorderable () const -> bool;
 
-    void
-    set_enable_rubberband (bool enable_rubberband = true);
+    auto
+    set_enable_rubberband (bool enable_rubberband = true) -> void;
 
     auto
     get_enable_rubberband () const -> bool;
@@ -208,9 +208,7 @@ namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkColumnView* object, bool take_copy = false) -> Gtk::ColumnView*;
 } // namespace Glib
 

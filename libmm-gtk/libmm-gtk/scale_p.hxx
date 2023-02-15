@@ -17,14 +17,14 @@ namespace Gtk
     using CppObjectType = Scale;
     using BaseObjectType = GtkScale;
     using BaseClassType = GtkScaleClass;
-    using CppClassParent = Range_Class;
+    using CppClassParent = Gtk::Range_Class;
     using BaseClassParent = GtkRangeClass;
 
     friend class Scale;
 #endif
 
     auto
-    init () -> const Class&;
+    init () -> const Glib::Class&;
 
     static auto
     class_init_function (void* g_class, void* class_data) -> void;

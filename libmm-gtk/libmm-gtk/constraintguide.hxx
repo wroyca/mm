@@ -88,32 +88,32 @@ namespace Gtk
     static auto
     create () -> Glib::RefPtr<ConstraintGuide>;
 
-    void
-    set_min_size (int width, int height);
+    auto
+    set_min_size (int width, int height) -> void;
 
-    void
-    get_min_size (int& width, int& height) const;
+    auto
+    get_min_size (int& width, int& height) const -> void;
 
-    void
-    set_nat_size (int width, int height);
+    auto
+    set_nat_size (int width, int height) -> void;
 
-    void
-    get_nat_size (int& width, int& height) const;
+    auto
+    get_nat_size (int& width, int& height) const -> void;
 
-    void
-    set_max_size (int width, int height);
+    auto
+    set_max_size (int width, int height) -> void;
 
-    void
-    get_max_size (int& width, int& height) const;
+    auto
+    get_max_size (int& width, int& height) const -> void;
 
-    void
-    set_strength (Constraint::Strength strength);
+    auto
+    set_strength (Constraint::Strength strength) -> void;
 
     auto
     get_strength () const -> Constraint::Strength;
 
-    void
-    set_name (const Glib::ustring& name);
+    auto
+    set_name (const Glib::ustring& name) -> void;
 
     auto
     get_name () const -> Glib::ustring;
@@ -176,9 +176,7 @@ namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkConstraintGuide* object, bool take_copy = false) -> Glib::RefPtr<Gtk::ConstraintGuide>;
 } // namespace Glib
 

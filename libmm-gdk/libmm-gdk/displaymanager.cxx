@@ -15,7 +15,7 @@ namespace Gdk
 namespace
 {
 
-  auto
+  static auto
   DisplayManager_signal_display_opened_callback (GdkDisplayManager* self,
                                                  GdkDisplay* p0,
                                                  void* data) -> void
@@ -23,7 +23,7 @@ namespace
     using namespace Gdk;
     using SlotType = sigc::slot<void (const Glib::RefPtr<Display>&)>;
 
-    const auto obj = dynamic_cast<DisplayManager*> (
+    auto obj = dynamic_cast<DisplayManager*> (
         Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
@@ -40,10 +40,10 @@ namespace
     }
   }
 
-  const Glib::SignalProxyInfo DisplayManager_signal_display_opened_info = {
-      "display-opened",
-      (GCallback) &DisplayManager_signal_display_opened_callback,
-      (GCallback) &DisplayManager_signal_display_opened_callback};
+  static const Glib::SignalProxyInfo DisplayManager_signal_display_opened_info =
+      {"display-opened",
+       (GCallback) &DisplayManager_signal_display_opened_callback,
+       (GCallback) &DisplayManager_signal_display_opened_callback};
 
 } // namespace
 
@@ -51,11 +51,11 @@ namespace Glib
 {
 
   auto
-  wrap (GdkDisplayManager* object, const bool take_copy) -> RefPtr<Gdk::DisplayManager>
+  wrap (GdkDisplayManager* object, bool take_copy) -> Glib::RefPtr<Gdk::DisplayManager>
   {
     return Glib::make_refptr_for_instance<Gdk::DisplayManager> (
         dynamic_cast<Gdk::DisplayManager*> (
-            wrap_auto ((GObject*) object, take_copy)));
+            Glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
 } // namespace Glib
@@ -64,7 +64,7 @@ namespace Gdk
 {
 
   auto
-  DisplayManager_Class::init () -> const Class&
+  DisplayManager_Class::init () -> const Glib::Class&
   {
     if (!gtype_)
     {
@@ -97,28 +97,28 @@ namespace Gdk
   }
 
   DisplayManager::DisplayManager (const Glib::ConstructParams& construct_params)
-    : Object (construct_params)
+    : Glib::Object (construct_params)
   {
   }
 
   DisplayManager::DisplayManager (GdkDisplayManager* castitem)
-    : Object ((GObject*) castitem)
+    : Glib::Object ((GObject*) (castitem))
   {
   }
 
   DisplayManager::DisplayManager (DisplayManager&& src) noexcept
-    : Object (std::move (src))
+    : Glib::Object (std::move (src))
   {
   }
 
   auto
   DisplayManager::operator= (DisplayManager&& src) noexcept -> DisplayManager&
   {
-    Object::operator= (std::move (src));
+    Glib::Object::operator= (std::move (src));
     return *this;
   }
 
-  DisplayManager::~DisplayManager () noexcept = default;
+  DisplayManager::~DisplayManager () noexcept {}
 
   DisplayManager::CppClassType DisplayManager::displaymanager_class_;
 
@@ -186,7 +186,9 @@ namespace Gdk
   auto
   DisplayManager::signal_display_opened () -> Glib::SignalProxy<void (const Glib::RefPtr<Display>&)>
   {
-    return {this, &DisplayManager_signal_display_opened_info};
+    return Glib::SignalProxy<void (const Glib::RefPtr<Display>&)> (
+        this,
+        &DisplayManager_signal_display_opened_info);
   }
 
   static_assert (
@@ -198,13 +200,15 @@ namespace Gdk
   auto
   DisplayManager::property_default_display () -> Glib::PropertyProxy<Glib::RefPtr<Display>>
   {
-    return {this, "default-display"};
+    return Glib::PropertyProxy<Glib::RefPtr<Display>> (this, "default-display");
   }
 
   auto
   DisplayManager::property_default_display () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Display>>
   {
-    return {this, "default-display"};
+    return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Display>> (
+        this,
+        "default-display");
   }
 
 } // namespace Gdk

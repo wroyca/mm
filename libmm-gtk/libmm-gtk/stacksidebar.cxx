@@ -26,10 +26,10 @@ namespace Glib
 {
 
   auto
-  wrap (GtkStackSidebar* object, const bool take_copy) -> Gtk::StackSidebar*
+  wrap (GtkStackSidebar* object, bool take_copy) -> Gtk::StackSidebar*
   {
     return dynamic_cast<Gtk::StackSidebar*> (
-        wrap_auto ((GObject*) object, take_copy));
+        Glib::wrap_auto ((GObject*) (object), take_copy));
   }
 
 } // namespace Glib
@@ -38,7 +38,7 @@ namespace Gtk
 {
 
   auto
-  StackSidebar_Class::init () -> const Class&
+  StackSidebar_Class::init () -> const Glib::Class&
   {
     if (!gtype_)
     {
@@ -60,28 +60,28 @@ namespace Gtk
   auto
   StackSidebar_Class::wrap_new (GObject* o) -> Glib::ObjectBase*
   {
-    return manage (new StackSidebar ((GtkStackSidebar*) o));
+    return manage (new StackSidebar ((GtkStackSidebar*) (o)));
   }
 
   StackSidebar::StackSidebar (const Glib::ConstructParams& construct_params)
-    : Widget (construct_params)
+    : Gtk::Widget (construct_params)
   {
   }
 
   StackSidebar::StackSidebar (GtkStackSidebar* castitem)
-    : Widget ((GtkWidget*) castitem)
+    : Gtk::Widget ((GtkWidget*) (castitem))
   {
   }
 
   StackSidebar::StackSidebar (StackSidebar&& src) noexcept
-    : Widget (std::move (src))
+    : Gtk::Widget (std::move (src))
   {
   }
 
   auto
   StackSidebar::operator= (StackSidebar&& src) noexcept -> StackSidebar&
   {
-    Widget::operator= (std::move (src));
+    Gtk::Widget::operator= (std::move (src));
     return *this;
   }
 
@@ -105,15 +105,15 @@ namespace Gtk
   }
 
   StackSidebar::StackSidebar ()
-    : ObjectBase (nullptr),
-      Widget (Glib::ConstructParams (stacksidebar_class_.init ()))
+    : Glib::ObjectBase (nullptr),
+      Gtk::Widget (Glib::ConstructParams (stacksidebar_class_.init ()))
   {
   }
 
   auto
   StackSidebar::set_stack (Stack& stack) -> void
   {
-    gtk_stack_sidebar_set_stack (gobj (), stack.gobj ());
+    gtk_stack_sidebar_set_stack (gobj (), (stack).gobj ());
   }
 
   auto
@@ -136,13 +136,13 @@ namespace Gtk
   auto
   StackSidebar::property_stack () -> Glib::PropertyProxy<Stack*>
   {
-    return {this, "stack"};
+    return Glib::PropertyProxy<Stack*> (this, "stack");
   }
 
   auto
   StackSidebar::property_stack () const -> Glib::PropertyProxy_ReadOnly<Stack*>
   {
-    return {this, "stack"};
+    return Glib::PropertyProxy_ReadOnly<Stack*> (this, "stack");
   }
 
 } // namespace Gtk

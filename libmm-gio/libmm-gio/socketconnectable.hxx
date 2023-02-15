@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: LGPL-2.1-or-later
 
 #ifndef _GIOMM_SOCKETCONNECTABLE_H
 #define _GIOMM_SOCKETCONNECTABLE_H
@@ -66,8 +67,8 @@ namespace Gio
 
     ~SocketConnectable () noexcept override;
 
-    static void
-    add_interface (GType gtype_implementer);
+    static auto
+    add_interface (GType gtype_implementer) -> void;
 
     static auto
     get_type () -> GType G_GNUC_CONST;

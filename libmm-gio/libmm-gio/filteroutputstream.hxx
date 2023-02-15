@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: LGPL-2.1-or-later
 
 #ifndef _GIOMM_FILTEROUTPUTSTREAM_H
 #define _GIOMM_FILTEROUTPUTSTREAM_H
@@ -92,8 +93,8 @@ namespace Gio
     auto
     get_close_base_stream () const -> bool;
 
-    void
-    set_close_base_stream (bool close_base = true);
+    auto
+    set_close_base_stream (bool close_base = true) -> void;
 
     auto
     property_base_stream () const

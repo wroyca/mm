@@ -9,8 +9,8 @@
 #undef NDEBUG
 #include <cassert>
 
-int
-main ()
+auto
+main () -> int
 {
   using namespace std;
   using namespace mm_cairo;

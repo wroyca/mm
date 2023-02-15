@@ -29,11 +29,12 @@ namespace Glib
       return get (variable);
     }
 
-    GLIBMM_API void
-    set (StdStringView variable, StdStringView value, bool overwrite = true);
+    GLIBMM_API auto
+    set (StdStringView variable, StdStringView value, bool overwrite = true)
+        -> void;
 
-    GLIBMM_API void
-    unset (StdStringView variable);
+    GLIBMM_API auto
+    unset (StdStringView variable) -> void;
 
     GLIBMM_API auto
     to_vector () const -> std::vector<std::string>;

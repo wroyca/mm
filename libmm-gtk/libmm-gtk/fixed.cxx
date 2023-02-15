@@ -19,9 +19,10 @@ namespace Glib
 {
 
   auto
-  wrap (GtkFixed* object, const bool take_copy) -> Gtk::Fixed*
+  wrap (GtkFixed* object, bool take_copy) -> Gtk::Fixed*
   {
-    return dynamic_cast<Gtk::Fixed*> (wrap_auto ((GObject*) object, take_copy));
+    return dynamic_cast<Gtk::Fixed*> (
+        Glib::wrap_auto ((GObject*) (object), take_copy));
   }
 
 } // namespace Glib
@@ -30,7 +31,7 @@ namespace Gtk
 {
 
   auto
-  Fixed_Class::init () -> const Class&
+  Fixed_Class::init () -> const Glib::Class&
   {
     if (!gtype_)
     {
@@ -52,28 +53,28 @@ namespace Gtk
   auto
   Fixed_Class::wrap_new (GObject* o) -> Glib::ObjectBase*
   {
-    return manage (new Fixed ((GtkFixed*) o));
+    return manage (new Fixed ((GtkFixed*) (o)));
   }
 
   Fixed::Fixed (const Glib::ConstructParams& construct_params)
-    : Widget (construct_params)
+    : Gtk::Widget (construct_params)
   {
   }
 
   Fixed::Fixed (GtkFixed* castitem)
-    : Widget ((GtkWidget*) castitem)
+    : Gtk::Widget ((GtkWidget*) (castitem))
   {
   }
 
   Fixed::Fixed (Fixed&& src) noexcept
-    : Widget (std::move (src))
+    : Gtk::Widget (std::move (src))
   {
   }
 
   auto
   Fixed::operator= (Fixed&& src) noexcept -> Fixed&
   {
-    Widget::operator= (std::move (src));
+    Gtk::Widget::operator= (std::move (src));
     return *this;
   }
 
@@ -97,36 +98,36 @@ namespace Gtk
   }
 
   Fixed::Fixed ()
-    : ObjectBase (nullptr),
-      Widget (Glib::ConstructParams (fixed_class_.init ()))
+    : Glib::ObjectBase (nullptr),
+      Gtk::Widget (Glib::ConstructParams (fixed_class_.init ()))
   {
   }
 
   auto
-  Fixed::put (Widget& widget, const double x, const double y) -> void
+  Fixed::put (Widget& widget, double x, double y) -> void
   {
-    gtk_fixed_put (gobj (), widget.gobj (), x, y);
+    gtk_fixed_put (gobj (), (widget).gobj (), x, y);
   }
 
   auto
   Fixed::remove (Widget& widget) -> void
   {
-    gtk_fixed_remove (gobj (), widget.gobj ());
+    gtk_fixed_remove (gobj (), (widget).gobj ());
   }
 
   auto
-  Fixed::move (Widget& widget, const double x, const double y) -> void
+  Fixed::move (Widget& widget, double x, double y) -> void
   {
-    gtk_fixed_move (gobj (), widget.gobj (), x, y);
+    gtk_fixed_move (gobj (), (widget).gobj (), x, y);
   }
 
   auto
   Fixed::get_child_position (Widget& widget, double& x, double& y) const -> void
   {
     gtk_fixed_get_child_position (const_cast<GtkFixed*> (gobj ()),
-                                  widget.gobj (),
-                                  &x,
-                                  &y);
+                                  (widget).gobj (),
+                                  &(x),
+                                  &(y));
   }
 
 } // namespace Gtk

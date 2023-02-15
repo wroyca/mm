@@ -34,28 +34,28 @@ namespace Gtk
 
     auto
     get_bytes () const -> std::size_t;
-    void
-    set_bytes (const std::size_t& value);
+    auto
+    set_bytes (const std::size_t& value) -> void;
 
     auto
     get_chars () const -> std::size_t;
-    void
-    set_chars (const std::size_t& value);
+    auto
+    set_chars (const std::size_t& value) -> void;
 
     auto
     get_lines () const -> std::size_t;
-    void
-    set_lines (const std::size_t& value);
+    auto
+    set_lines (const std::size_t& value) -> void;
 
     auto
     get_line_bytes () const -> std::size_t;
-    void
-    set_line_bytes (const std::size_t& value);
+    auto
+    set_line_bytes (const std::size_t& value) -> void;
 
     auto
     get_line_chars () const -> std::size_t;
-    void
-    set_line_chars (const std::size_t& value);
+    auto
+    set_line_chars (const std::size_t& value) -> void;
 
     auto
     gobj () -> GtkCssLocation*
@@ -77,9 +77,7 @@ namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (const GtkCssLocation* object) -> Gtk::CssLocation;
 
 } // namespace Glib

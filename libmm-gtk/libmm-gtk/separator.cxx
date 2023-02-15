@@ -15,10 +15,10 @@ namespace Glib
 {
 
   auto
-  wrap (GtkSeparator* object, const bool take_copy) -> Gtk::Separator*
+  wrap (GtkSeparator* object, bool take_copy) -> Gtk::Separator*
   {
     return dynamic_cast<Gtk::Separator*> (
-        wrap_auto ((GObject*) object, take_copy));
+        Glib::wrap_auto ((GObject*) (object), take_copy));
   }
 
 } // namespace Glib
@@ -27,7 +27,7 @@ namespace Gtk
 {
 
   auto
-  Separator_Class::init () -> const Class&
+  Separator_Class::init () -> const Glib::Class&
   {
     if (!gtype_)
     {
@@ -51,21 +51,21 @@ namespace Gtk
   auto
   Separator_Class::wrap_new (GObject* o) -> Glib::ObjectBase*
   {
-    return manage (new Separator ((GtkSeparator*) o));
+    return manage (new Separator ((GtkSeparator*) (o)));
   }
 
   Separator::Separator (const Glib::ConstructParams& construct_params)
-    : Widget (construct_params)
+    : Gtk::Widget (construct_params)
   {
   }
 
   Separator::Separator (GtkSeparator* castitem)
-    : Widget ((GtkWidget*) castitem)
+    : Gtk::Widget ((GtkWidget*) (castitem))
   {
   }
 
   Separator::Separator (Separator&& src) noexcept
-    : Widget (std::move (src)),
+    : Gtk::Widget (std::move (src)),
       Orientable (std::move (src))
   {
   }
@@ -73,7 +73,7 @@ namespace Gtk
   auto
   Separator::operator= (Separator&& src) noexcept -> Separator&
   {
-    Widget::operator= (std::move (src));
+    Gtk::Widget::operator= (std::move (src));
     Orientable::operator= (std::move (src));
     return *this;
   }
@@ -97,12 +97,13 @@ namespace Gtk
     return gtk_separator_get_type ();
   }
 
-  Separator::Separator (const Orientation orientation)
-    : ObjectBase (nullptr),
-      Widget (Glib::ConstructParams (separator_class_.init (),
-                                     "orientation",
-                                     orientation,
-                                     nullptr))
+  Separator::Separator (Orientation orientation)
+    : Glib::ObjectBase (nullptr),
+      Gtk::Widget (
+          Glib::ConstructParams (separator_class_.init (),
+                                 "orientation",
+                                 static_cast<GtkOrientation> (orientation),
+                                 nullptr))
   {
   }
 

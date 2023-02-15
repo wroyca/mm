@@ -7,11 +7,9 @@
 
 namespace Pango
 {
+  PANGOMM_API auto
+  wrap_init () -> void;
 
-  PANGOMM_API
-  void
-  wrap_init ();
-
-} // namespace Pango
+}
 
 #endif

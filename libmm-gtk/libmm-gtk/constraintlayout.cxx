@@ -29,8 +29,8 @@ namespace Gtk
   auto
   ConstraintLayout::add_constraints_from_description (
       const std::vector<Glib::ustring>& lines,
-      const int hspacing,
-      const int vspacing,
+      int hspacing,
+      int vspacing,
       const VFLmap& views) -> std::vector<Glib::RefPtr<Constraint>>
   {
     GHashTable* hash_table_views = g_hash_table_new (g_str_hash, g_str_equal);
@@ -55,7 +55,7 @@ namespace Gtk
     if (gerror)
     {
       g_list_free (constraints);
-      Glib::Error::throw_exception (gerror);
+      ::Glib::Error::throw_exception (gerror);
     }
 
     return Glib::ListHandler<Glib::RefPtr<Constraint>>::list_to_vector (
@@ -70,27 +70,28 @@ namespace
 }
 
 Gtk::ConstraintVflParserError::ConstraintVflParserError (
-    const Code error_code,
+    Gtk::ConstraintVflParserError::Code error_code,
     const Glib::ustring& error_message)
-  : Error (GTK_CONSTRAINT_VFL_PARSER_ERROR, error_code, error_message)
+  : Glib::Error (GTK_CONSTRAINT_VFL_PARSER_ERROR, error_code, error_message)
 {
 }
 
 Gtk::ConstraintVflParserError::ConstraintVflParserError (GError* gobject)
-  : Error (gobject)
+  : Glib::Error (gobject)
 {
 }
 
 auto
-Gtk::ConstraintVflParserError::code () const -> Code
+Gtk::ConstraintVflParserError::code () const
+    -> Gtk::ConstraintVflParserError::Code
 {
-  return static_cast<Code> (Error::code ());
+  return static_cast<Code> (Glib::Error::code ());
 }
 
 auto
 Gtk::ConstraintVflParserError::throw_func (GError* gobject) -> void
 {
-  throw ConstraintVflParserError (gobject);
+  throw Gtk::ConstraintVflParserError (gobject);
 }
 
 auto
@@ -103,11 +104,11 @@ namespace Glib
 {
 
   auto
-  wrap (GtkConstraintLayout* object, const bool take_copy) -> RefPtr<Gtk::ConstraintLayout>
+  wrap (GtkConstraintLayout* object, bool take_copy) -> Glib::RefPtr<Gtk::ConstraintLayout>
   {
     return Glib::make_refptr_for_instance<Gtk::ConstraintLayout> (
         dynamic_cast<Gtk::ConstraintLayout*> (
-            wrap_auto ((GObject*) object, take_copy)));
+            Glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
 } // namespace Glib
@@ -116,7 +117,7 @@ namespace Gtk
 {
 
   auto
-  ConstraintLayout_Class::init () -> const Class&
+  ConstraintLayout_Class::init () -> const Glib::Class&
   {
     if (!gtype_)
     {
@@ -155,7 +156,7 @@ namespace Gtk
   }
 
   ConstraintLayout::ConstraintLayout (GtkConstraintLayout* castitem)
-    : LayoutManager ((GtkLayoutManager*) castitem)
+    : LayoutManager ((GtkLayoutManager*) (castitem))
   {
   }
 
@@ -173,7 +174,7 @@ namespace Gtk
     return *this;
   }
 
-  ConstraintLayout::~ConstraintLayout () noexcept = default;
+  ConstraintLayout::~ConstraintLayout () noexcept {}
 
   ConstraintLayout::CppClassType ConstraintLayout::constraintlayout_class_;
 
@@ -190,7 +191,7 @@ namespace Gtk
   }
 
   ConstraintLayout::ConstraintLayout ()
-    : ObjectBase (nullptr),
+    : Glib::ObjectBase (nullptr),
       LayoutManager (Glib::ConstructParams (constraintlayout_class_.init ()))
   {
   }

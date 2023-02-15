@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: LGPL-2.1-or-later
 
 #ifndef _GIOMM_INPUTSTREAM_H
 #define _GIOMM_INPUTSTREAM_H
@@ -108,16 +109,16 @@ namespace Gio
     read_bytes (gsize count, const Glib::RefPtr<Cancellable>& cancellable)
         -> Glib::RefPtr<Glib::Bytes>;
 
-    void
+    auto
     read_bytes_async (gsize count,
                       const SlotAsyncReady& slot,
                       const Glib::RefPtr<Cancellable>& cancellable,
-                      int io_priority = Glib::PRIORITY_DEFAULT);
+                      int io_priority = Glib::PRIORITY_DEFAULT) -> void;
 
-    void
+    auto
     read_bytes_async (gsize count,
                       const SlotAsyncReady& slot,
-                      int io_priority = Glib::PRIORITY_DEFAULT);
+                      int io_priority = Glib::PRIORITY_DEFAULT) -> void;
 
     auto
     read_bytes_finish (const Glib::RefPtr<AsyncResult>& result)
@@ -135,61 +136,61 @@ namespace Gio
     auto
     close () -> bool;
 
-    void
+    auto
     read_async (void* buffer,
                 gsize count,
                 const SlotAsyncReady& slot,
                 const Glib::RefPtr<Cancellable>& cancellable,
-                int io_priority = Glib::PRIORITY_DEFAULT);
+                int io_priority = Glib::PRIORITY_DEFAULT) -> void;
 
-    void
+    auto
     read_async (void* buffer,
                 gsize count,
                 const SlotAsyncReady& slot,
-                int io_priority = Glib::PRIORITY_DEFAULT);
+                int io_priority = Glib::PRIORITY_DEFAULT) -> void;
 
     auto
     read_finish (const Glib::RefPtr<AsyncResult>& result) -> gssize;
 
-    void
+    auto
     read_all_async (void* buffer,
                     gsize count,
                     const SlotAsyncReady& slot,
                     const Glib::RefPtr<Cancellable>& cancellable,
-                    int io_priority = Glib::PRIORITY_DEFAULT);
+                    int io_priority = Glib::PRIORITY_DEFAULT) -> void;
 
-    void
+    auto
     read_all_async (void* buffer,
                     gsize count,
                     const SlotAsyncReady& slot,
-                    int io_priority = Glib::PRIORITY_DEFAULT);
+                    int io_priority = Glib::PRIORITY_DEFAULT) -> void;
 
     auto
     read_all_finish (const Glib::RefPtr<AsyncResult>& result, gsize& bytes_read)
         -> bool;
 
-    void
+    auto
     skip_async (gsize count,
                 const SlotAsyncReady& slot,
                 const Glib::RefPtr<Cancellable>& cancellable,
-                int io_priority = Glib::PRIORITY_DEFAULT);
+                int io_priority = Glib::PRIORITY_DEFAULT) -> void;
 
-    void
+    auto
     skip_async (gsize count,
                 const SlotAsyncReady& slot,
-                int io_priority = Glib::PRIORITY_DEFAULT);
+                int io_priority = Glib::PRIORITY_DEFAULT) -> void;
 
     auto
     skip_finish (const Glib::RefPtr<AsyncResult>& result) -> gssize;
 
-    void
+    auto
     close_async (const SlotAsyncReady& slot,
                  const Glib::RefPtr<Cancellable>& cancellable,
-                 int io_priority = Glib::PRIORITY_DEFAULT);
+                 int io_priority = Glib::PRIORITY_DEFAULT) -> void;
 
-    void
+    auto
     close_async (const SlotAsyncReady& slot,
-                 int io_priority = Glib::PRIORITY_DEFAULT);
+                 int io_priority = Glib::PRIORITY_DEFAULT) -> void;
 
     auto
     close_finish (const Glib::RefPtr<AsyncResult>& result) -> gboolean;
@@ -204,8 +205,8 @@ namespace Gio
     auto
     set_pending () -> bool;
 
-    void
-    clear_pending ();
+    auto
+    clear_pending () -> void;
 
     virtual auto
     read_vfunc (void* buffer,

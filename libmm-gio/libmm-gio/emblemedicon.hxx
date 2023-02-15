@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: LGPL-2.1-or-later
 
 #ifndef _GIOMM_EMBLEMEDICON_H
 #define _GIOMM_EMBLEMEDICON_H
@@ -107,11 +108,11 @@ namespace Gio
     auto
     get_emblems () const -> std::vector<Glib::RefPtr<const Emblem>>;
 
-    void
-    add_emblem (const Glib::RefPtr<Emblem>& emblem);
+    auto
+    add_emblem (const Glib::RefPtr<Emblem>& emblem) -> void;
 
-    void
-    clear_emblems ();
+    auto
+    clear_emblems () -> void;
 
   public:
   public:

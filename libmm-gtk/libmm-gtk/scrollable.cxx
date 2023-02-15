@@ -16,8 +16,8 @@ namespace Gtk
   Scrollable_Class::get_border_vfunc_callback (GtkScrollable* self,
                                                GtkBorder* border) -> gboolean
   {
-    const auto obj_base =
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self);
+    const auto obj_base = static_cast<Glib::ObjectBase*> (
+        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -27,7 +27,7 @@ namespace Gtk
         try
         {
           Border border_copy (border, true);
-          const auto result = obj->get_border_vfunc (border_copy);
+          auto result = obj->get_border_vfunc (border_copy);
           if (border)
             *border = *border_copy.gobj ();
           return result;
@@ -39,7 +39,7 @@ namespace Gtk
       }
     }
 
-    const BaseClassType* const base =
+    BaseClassType* const base =
         static_cast<BaseClassType*> (g_type_interface_peek_parent (
             g_type_interface_peek (G_OBJECT_GET_CLASS (self),
                                    CppObjectType::get_type ())));
@@ -79,11 +79,12 @@ namespace Glib
 {
 
   auto
-  wrap (GtkScrollable* object, const bool take_copy) -> RefPtr<Gtk::Scrollable>
+  wrap (GtkScrollable* object, bool take_copy) -> Glib::RefPtr<Gtk::Scrollable>
   {
     return Glib::make_refptr_for_instance<Gtk::Scrollable> (
-        Glib::wrap_auto_interface<Gtk::Scrollable> ((GObject*) object,
-                                                    take_copy));
+        dynamic_cast<Gtk::Scrollable*> (
+            Glib::wrap_auto_interface<Gtk::Scrollable> ((GObject*) (object),
+                                                        take_copy)));
   }
 
 } // namespace Glib
@@ -92,7 +93,7 @@ namespace Gtk
 {
 
   auto
-  Scrollable_Class::init () -> const Interface_Class&
+  Scrollable_Class::init () -> const Glib::Interface_Class&
   {
     if (!gtype_)
     {
@@ -117,40 +118,40 @@ namespace Gtk
   auto
   Scrollable_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
   {
-    return new Scrollable ((GtkScrollable*) object);
+    return new Scrollable ((GtkScrollable*) (object));
   }
 
   Scrollable::Scrollable ()
-    : Interface (scrollable_class_.init ())
+    : Glib::Interface (scrollable_class_.init ())
   {
   }
 
   Scrollable::Scrollable (GtkScrollable* castitem)
-    : Interface ((GObject*) castitem)
+    : Glib::Interface ((GObject*) (castitem))
   {
   }
 
   Scrollable::Scrollable (const Glib::Interface_Class& interface_class)
-    : Interface (interface_class)
+    : Glib::Interface (interface_class)
   {
   }
 
   Scrollable::Scrollable (Scrollable&& src) noexcept
-    : Interface (std::move (src))
+    : Glib::Interface (std::move (src))
   {
   }
 
   auto
   Scrollable::operator= (Scrollable&& src) noexcept -> Scrollable&
   {
-    Interface::operator= (std::move (src));
+    Glib::Interface::operator= (std::move (src));
     return *this;
   }
 
-  Scrollable::~Scrollable () noexcept = default;
+  Scrollable::~Scrollable () noexcept {}
 
   auto
-  Scrollable::add_interface (const GType gtype_implementer) -> void
+  Scrollable::add_interface (GType gtype_implementer) -> void
   {
     scrollable_class_.init ().add_interface (gtype_implementer);
   }
@@ -249,7 +250,7 @@ namespace Gtk
   Scrollable::get_border (Border& border) const -> bool
   {
     return gtk_scrollable_get_border (const_cast<GtkScrollable*> (gobj ()),
-                                      border.gobj ());
+                                      (border).gobj ());
   }
 
   static_assert (
@@ -261,13 +262,15 @@ namespace Gtk
   auto
   Scrollable::property_hadjustment () -> Glib::PropertyProxy<Glib::RefPtr<Adjustment>>
   {
-    return {this, "hadjustment"};
+    return Glib::PropertyProxy<Glib::RefPtr<Adjustment>> (this, "hadjustment");
   }
 
   auto
   Scrollable::property_hadjustment () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Adjustment>>
   {
-    return {this, "hadjustment"};
+    return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Adjustment>> (
+        this,
+        "hadjustment");
   }
 
   static_assert (
@@ -279,13 +282,15 @@ namespace Gtk
   auto
   Scrollable::property_vadjustment () -> Glib::PropertyProxy<Glib::RefPtr<Adjustment>>
   {
-    return {this, "vadjustment"};
+    return Glib::PropertyProxy<Glib::RefPtr<Adjustment>> (this, "vadjustment");
   }
 
   auto
   Scrollable::property_vadjustment () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Adjustment>>
   {
-    return {this, "vadjustment"};
+    return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Adjustment>> (
+        this,
+        "vadjustment");
   }
 
   static_assert (
@@ -296,13 +301,13 @@ namespace Gtk
   auto
   Scrollable::property_hscroll_policy () -> Glib::PropertyProxy<Policy>
   {
-    return {this, "hscroll-policy"};
+    return Glib::PropertyProxy<Policy> (this, "hscroll-policy");
   }
 
   auto
   Scrollable::property_hscroll_policy () const -> Glib::PropertyProxy_ReadOnly<Policy>
   {
-    return {this, "hscroll-policy"};
+    return Glib::PropertyProxy_ReadOnly<Policy> (this, "hscroll-policy");
   }
 
   static_assert (
@@ -313,28 +318,27 @@ namespace Gtk
   auto
   Scrollable::property_vscroll_policy () -> Glib::PropertyProxy<Policy>
   {
-    return {this, "vscroll-policy"};
+    return Glib::PropertyProxy<Policy> (this, "vscroll-policy");
   }
 
   auto
   Scrollable::property_vscroll_policy () const -> Glib::PropertyProxy_ReadOnly<Policy>
   {
-    return {this, "vscroll-policy"};
+    return Glib::PropertyProxy_ReadOnly<Policy> (this, "vscroll-policy");
   }
 
   auto
-  Scrollable::get_border_vfunc (Border& border) const -> bool
+  Gtk::Scrollable::get_border_vfunc (Border& border) const -> bool
   {
     const auto base =
         static_cast<BaseClassType*> (g_type_interface_peek_parent (
             g_type_interface_peek (G_OBJECT_GET_CLASS (gobject_),
-                                   get_type ())));
+                                   CppObjectType::get_type ())));
 
     if (base && base->get_border)
     {
-      const bool retval (
-          (*base->get_border) (const_cast<GtkScrollable*> (gobj ()),
-                               border.gobj ()));
+      bool retval ((*base->get_border) (const_cast<GtkScrollable*> (gobj ()),
+                                        (border).gobj ()));
       return retval;
     }
 

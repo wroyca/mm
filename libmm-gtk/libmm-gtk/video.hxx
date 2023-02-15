@@ -93,8 +93,8 @@ namespace Gtk
     auto
     get_media_stream () const -> Glib::RefPtr<const MediaStream>;
 
-    void
-    set_media_stream (const Glib::RefPtr<MediaStream>& stream);
+    auto
+    set_media_stream (const Glib::RefPtr<MediaStream>& stream) -> void;
 
     auto
     get_file () -> Glib::RefPtr<Gio::File>;
@@ -102,26 +102,26 @@ namespace Gtk
     auto
     get_file () const -> Glib::RefPtr<const Gio::File>;
 
-    void
-    set_file (const Glib::RefPtr<const Gio::File>& file);
+    auto
+    set_file (const Glib::RefPtr<const Gio::File>& file) -> void;
 
-    void
-    set_filename (const std::string& filename);
+    auto
+    set_filename (const std::string& filename) -> void;
 
-    void
-    set_resource (const std::string& resource_path);
+    auto
+    set_resource (const std::string& resource_path) -> void;
 
     auto
     get_autoplay () const -> bool;
 
-    void
-    set_autoplay (bool autoplay = true);
+    auto
+    set_autoplay (bool autoplay = true) -> void;
 
     auto
     get_loop () const -> bool;
 
-    void
-    set_loop (bool loop = true);
+    auto
+    set_loop (bool loop = true) -> void;
 
     auto
     property_media_stream () -> Glib::PropertyProxy<Glib::RefPtr<MediaStream>>;
@@ -158,9 +158,7 @@ namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkVideo* object, bool take_copy = false) -> Gtk::Video*;
 } // namespace Glib
 

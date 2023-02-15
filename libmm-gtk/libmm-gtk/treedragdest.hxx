@@ -3,38 +3,40 @@
 #ifndef _GTKMM_TREEDRAGDEST_H
 #define _GTKMM_TREEDRAGDEST_H
 
-#include <libmm-glib/ustring.hxx>
-#include <sigc++/sigc++.h>
+#ifndef GTKMM_DISABLE_DEPRECATED
 
-#include <libmm-glib/interface.hxx>
-#include <libmm-glib/value.hxx>
-#include <libmm-gtk/treemodel.hxx>
+  #include <libmm-glib/ustring.hxx>
+  #include <sigc++/sigc++.h>
 
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #include <libmm-glib/interface.hxx>
+  #include <libmm-glib/value.hxx>
+  #include <libmm-gtk/treemodel.hxx>
+
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
 extern "C"
 {
   typedef struct _GtkTreeDragDestIface GtkTreeDragDestIface;
 }
-#endif
+  #endif
 
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
 using GtkTreeDragDest = struct _GtkTreeDragDest;
 using GtkTreeDragDestClass = struct _GtkTreeDragDestClass;
-#endif
+  #endif
 
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
   class GTKMM_API TreeDragDest_Class;
 }
-#endif
+  #endif
 
 namespace Gtk
 {
 
   class GTKMM_API TreeDragDest : public Glib::Interface
   {
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   public:
     using CppObjectType = TreeDragDest;
@@ -50,11 +52,11 @@ namespace Gtk
     friend class TreeDragDest_Class;
     static CppClassType treedragdest_class_;
 
-#endif
+  #endif
   protected:
     TreeDragDest ();
 
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
     explicit TreeDragDest (const Glib::Interface_Class& interface_class);
 
@@ -62,7 +64,7 @@ namespace Gtk
     explicit TreeDragDest (GtkTreeDragDest* castitem);
 
   protected:
-#endif
+  #endif
 
   public:
     TreeDragDest (TreeDragDest&& src) noexcept;
@@ -71,16 +73,16 @@ namespace Gtk
 
     ~TreeDragDest () noexcept override;
 
-    static void
-    add_interface (GType gtype_implementer);
+    static auto
+    add_interface (GType gtype_implementer) -> void;
 
     static auto
     get_type () -> GType G_GNUC_CONST;
 
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
     static auto
     get_base_type () -> GType G_GNUC_CONST;
-#endif
+  #endif
 
     auto
     gobj () -> GtkTreeDragDest*
@@ -122,11 +124,11 @@ namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkTreeDragDest* object, bool take_copy = false) -> Glib::RefPtr<Gtk::TreeDragDest>;
 
 } // namespace Glib
+
+#endif
 
 #endif

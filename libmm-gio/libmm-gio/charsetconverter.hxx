@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: LGPL-2.1-or-later
 
 #ifndef _GIOMM_CHARSETCONVERTER_H
 #define _GIOMM_CHARSETCONVERTER_H
@@ -91,8 +92,8 @@ namespace Gio
     create (const Glib::ustring& to_charset, const Glib::ustring& from_charset)
         -> Glib::RefPtr<CharsetConverter>;
 
-    void
-    set_use_fallback (bool use_fallback);
+    auto
+    set_use_fallback (bool use_fallback) -> void;
 
     auto
     get_use_fallback () const -> bool;

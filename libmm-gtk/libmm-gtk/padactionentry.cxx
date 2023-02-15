@@ -16,8 +16,8 @@ namespace Gtk
   }
 
   PadActionEntry::PadActionEntry (PadActionType type,
-                                  const int index,
-                                  const int mode,
+                                  int index,
+                                  int mode,
                                   const Glib::ustring& label,
                                   const Glib::ustring& action_name)
     : gobject_ (g_new (GtkPadActionEntry, 1))
@@ -158,7 +158,7 @@ namespace Gtk
   PadActionEntry::set_label (const Glib::ustring& value) -> void
   {
     g_free ((char*) gobj ()->label);
-    gobj ()->label = g_strdup (value.c_str ());
+    gobj ()->label = g_strdup ((value).c_str ());
   }
 
   auto
@@ -171,7 +171,7 @@ namespace Gtk
   PadActionEntry::set_action_name (const Glib::ustring& value) -> void
   {
     g_free ((char*) gobj ()->action_name);
-    gobj ()->action_name = g_strdup (value.c_str ());
+    gobj ()->action_name = g_strdup ((value).c_str ());
   }
 
 } // namespace Gtk

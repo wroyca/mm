@@ -86,11 +86,11 @@ namespace Gtk
     auto
     get_editing () const -> bool;
 
-    void
-    start_editing ();
+    auto
+    start_editing () -> void;
 
-    void
-    stop_editing (bool commit);
+    auto
+    stop_editing (bool commit) -> void;
 
     auto
     property_editing () -> Glib::PropertyProxy<bool>;
@@ -107,9 +107,7 @@ namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkEditableLabel* object, bool take_copy = false) -> Gtk::EditableLabel*;
 } // namespace Glib
 

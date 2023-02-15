@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: LGPL-2.1-or-later
 
 #ifndef _GIOMM_SOCKET_H
 #define _GIOMM_SOCKET_H
@@ -133,11 +134,11 @@ namespace Gio
     create_from_fd (int fd, const Glib::RefPtr<Cancellable>& cancellable = {})
         -> Glib::RefPtr<Socket>;
 
-    void
-    bind (const Glib::RefPtr<SocketAddress>& address, bool allow_reuse);
+    auto
+    bind (const Glib::RefPtr<SocketAddress>& address, bool allow_reuse) -> void;
 
-    void
-    listen ();
+    auto
+    listen () -> void;
 
     auto
     accept (const Glib::RefPtr<Cancellable>& cancellable)
@@ -146,15 +147,15 @@ namespace Gio
     auto
     accept () -> Glib::RefPtr<Socket>;
 
-    void
+    auto
     connect (const Glib::RefPtr<SocketAddress>& address,
-             const Glib::RefPtr<Cancellable>& cancellable);
+             const Glib::RefPtr<Cancellable>& cancellable) -> void;
 
-    void
-    connect (const Glib::RefPtr<SocketAddress>& address);
+    auto
+    connect (const Glib::RefPtr<SocketAddress>& address) -> void;
 
-    void
-    check_connect_result ();
+    auto
+    check_connect_result () -> void;
 
     auto
     receive (char* buffer,
@@ -193,8 +194,8 @@ namespace Gio
              const char* buffer,
              gsize size) -> gssize;
 
-    void
-    close ();
+    auto
+    close () -> void;
 
     auto
     is_closed () -> bool;
@@ -204,8 +205,8 @@ namespace Gio
                    const Glib::RefPtr<Cancellable>& cancellable = {})
         -> Glib::RefPtr<SocketSource>;
 
-    void
-    shutdown (bool shutdown_read, bool shutdown_write);
+    auto
+    shutdown (bool shutdown_read, bool shutdown_write) -> void;
 
     auto
     is_connected () -> bool;
@@ -216,35 +217,35 @@ namespace Gio
     auto
     condition_check (Glib::IOCondition condition) -> Glib::IOCondition;
 
-    void
+    auto
     condition_wait (Glib::IOCondition condition,
-                    const Glib::RefPtr<Cancellable>& cancellable);
+                    const Glib::RefPtr<Cancellable>& cancellable) -> void;
 
-    void
-    condition_wait (Glib::IOCondition condition);
+    auto
+    condition_wait (Glib::IOCondition condition) -> void;
 
-    void
+    auto
     condition_timed_wait (Glib::IOCondition condition,
                           gint64 timeout,
-                          const Glib::RefPtr<Cancellable>& cancellable);
+                          const Glib::RefPtr<Cancellable>& cancellable) -> void;
 
-    void
-    condition_timed_wait (Glib::IOCondition condition, gint64 timeout);
+    auto
+    condition_timed_wait (Glib::IOCondition condition, gint64 timeout) -> void;
 
-    void
-    set_listen_backlog (int backlog);
+    auto
+    set_listen_backlog (int backlog) -> void;
 
     auto
     get_listen_backlog () const -> int;
 
-    void
-    set_blocking (bool blocking);
+    auto
+    set_blocking (bool blocking) -> void;
 
     auto
     get_blocking () const -> bool;
 
-    void
-    set_keepalive (bool keepalive);
+    auto
+    set_keepalive (bool keepalive) -> void;
 
     auto
     get_keepalive () const -> bool;
@@ -279,8 +280,8 @@ namespace Gio
     auto
     get_timeout () const -> guint;
 
-    void
-    set_timeout (guint timeout);
+    auto
+    set_timeout (guint timeout) -> void;
 
     auto
     receive_with_blocking (gchar* buffer,
@@ -305,26 +306,26 @@ namespace Gio
     auto
     get_ttl () const -> guint;
 
-    void
-    set_ttl (guint ttl);
+    auto
+    set_ttl (guint ttl) -> void;
 
     auto
     get_broadcast () const -> bool;
 
-    void
-    set_broadcast (bool broadcast);
+    auto
+    set_broadcast (bool broadcast) -> void;
 
     auto
     get_multicast_loopback () const -> bool;
 
-    void
-    set_multicast_loopback (bool loopback);
+    auto
+    set_multicast_loopback (bool loopback) -> void;
 
     auto
     get_multicast_ttl () const -> guint;
 
-    void
-    set_multicast_ttl (guint ttl);
+    auto
+    set_multicast_ttl (guint ttl) -> void;
 
     auto
     join_multicast_group (const Glib::RefPtr<InetAddress>& group,

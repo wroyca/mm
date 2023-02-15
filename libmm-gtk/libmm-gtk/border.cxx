@@ -15,7 +15,7 @@ namespace Glib
 {
 
   auto
-  wrap (GtkBorder* object, const bool take_copy) -> Gtk::Border
+  wrap (GtkBorder* object, bool take_copy) -> Gtk::Border
   {
     return Gtk::Border (object, take_copy);
   }
@@ -37,7 +37,7 @@ namespace Gtk
   }
 
   Border::Border (const Border& other)
-    : gobject_ (other.gobject_ ? gtk_border_copy (other.gobject_) : nullptr)
+    : gobject_ ((other.gobject_) ? gtk_border_copy (other.gobject_) : nullptr)
   {
   }
 
@@ -55,8 +55,8 @@ namespace Gtk
     return *this;
   }
 
-  Border::Border (GtkBorder* gobject, const bool make_a_copy)
-    : gobject_ (make_a_copy && gobject ? gtk_border_copy (gobject) : gobject)
+  Border::Border (GtkBorder* gobject, bool make_a_copy)
+    : gobject_ ((make_a_copy && gobject) ? gtk_border_copy (gobject) : gobject)
   {
   }
 

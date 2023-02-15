@@ -84,32 +84,32 @@ namespace Gtk
   public:
     Calendar ();
 
-    void
-    select_day (const Glib::DateTime& day);
+    auto
+    select_day (const Glib::DateTime& day) -> void;
 
-    void
-    mark_day (guint day);
+    auto
+    mark_day (guint day) -> void;
 
-    void
-    unmark_day (guint day);
+    auto
+    unmark_day (guint day) -> void;
 
-    void
-    clear_marks ();
+    auto
+    clear_marks () -> void;
 
-    void
-    set_show_week_numbers (bool value = true);
+    auto
+    set_show_week_numbers (bool value = true) -> void;
 
     auto
     get_show_week_numbers () const -> bool;
 
-    void
-    set_show_heading (bool value = true);
+    auto
+    set_show_heading (bool value = true) -> void;
 
     auto
     get_show_heading () const -> bool;
 
-    void
-    set_show_day_names (bool value = true);
+    auto
+    set_show_day_names (bool value = true) -> void;
 
     auto
     get_show_day_names () const -> bool;
@@ -180,9 +180,7 @@ namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkCalendar* object, bool take_copy = false) -> Gtk::Calendar*;
 } // namespace Glib
 

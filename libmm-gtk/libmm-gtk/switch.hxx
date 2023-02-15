@@ -83,14 +83,14 @@ namespace Gtk
   public:
     Switch ();
 
-    void
-    set_active (bool is_active = true);
+    auto
+    set_active (bool is_active = true) -> void;
 
     auto
     get_active () const -> bool;
 
-    void
-    set_state (bool state = true);
+    auto
+    set_state (bool state = true) -> void;
 
     auto
     get_state () const -> bool;
@@ -119,9 +119,7 @@ namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkSwitch* object, bool take_copy = false) -> Gtk::Switch*;
 } // namespace Glib
 

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: LGPL-2.1-or-later
 
 #ifndef _GIOMM_MENUITEM_H
 #define _GIOMM_MENUITEM_H
@@ -103,9 +104,9 @@ namespace Gio
     static auto
     create (const Glib::RefPtr<MenuModel>& submenu) -> Glib::RefPtr<MenuItem>;
 
-    void
+    auto
     set_attribute_value (const Glib::ustring& attribute,
-                         const Glib::VariantBase& value);
+                         const Glib::VariantBase& value) -> void;
 
     auto
     get_link (const Glib::ustring& link) -> Glib::RefPtr<MenuModel>;
@@ -113,17 +114,18 @@ namespace Gio
     auto
     get_link (const Glib::ustring& link) const -> Glib::RefPtr<const MenuModel>;
 
-    void
-    set_link (const Glib::ustring& link, const Glib::RefPtr<MenuModel>& model);
+    auto
+    set_link (const Glib::ustring& link, const Glib::RefPtr<MenuModel>& model)
+        -> void;
 
-    void
-    set_label (const Glib::ustring& label);
+    auto
+    set_label (const Glib::ustring& label) -> void;
 
-    void
-    set_submenu (const Glib::RefPtr<MenuModel>& submenu);
+    auto
+    set_submenu (const Glib::RefPtr<MenuModel>& submenu) -> void;
 
-    void
-    set_section (const Glib::RefPtr<MenuModel>& section);
+    auto
+    set_section (const Glib::RefPtr<MenuModel>& section) -> void;
 
     auto
     get_attribute_value (const Glib::ustring& attribute,
@@ -134,27 +136,27 @@ namespace Gio
     get_attribute_value (const Glib::ustring& attribute) const
         -> Glib::VariantBase;
 
-    void
-    set_action (const Glib::ustring& action);
+    auto
+    set_action (const Glib::ustring& action) -> void;
 
-    void
-    unset_target ();
+    auto
+    unset_target () -> void;
 
-    void
-    unset_action_and_target ();
+    auto
+    unset_action_and_target () -> void;
 
-    void
+    auto
     set_action_and_target (const Glib::ustring& action,
-                           const Glib::VariantBase& target_value);
+                           const Glib::VariantBase& target_value) -> void;
 
-    void
-    set_detailed_action (const Glib::ustring& detailed_action);
+    auto
+    set_detailed_action (const Glib::ustring& detailed_action) -> void;
 
-    void
-    set_icon (const Glib::RefPtr<Icon>& icon);
+    auto
+    set_icon (const Glib::RefPtr<Icon>& icon) -> void;
 
-    void
-    unset_icon ();
+    auto
+    unset_icon () -> void;
 
   public:
   public:

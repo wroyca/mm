@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: LGPL-2.1-or-later
 
 #ifndef _GIOMM_SOCKETLISTENER_H
 #define _GIOMM_SOCKETLISTENER_H
@@ -89,8 +90,8 @@ namespace Gio
     static auto
     create () -> Glib::RefPtr<SocketListener>;
 
-    void
-    set_backlog (int listen_backlog);
+    auto
+    set_backlog (int listen_backlog) -> void;
 
     auto
     add_socket (const Glib::RefPtr<Socket>& socket,
@@ -142,12 +143,12 @@ namespace Gio
     auto
     accept_socket () -> Glib::RefPtr<Socket>;
 
-    void
+    auto
     accept_socket_async (const Glib::RefPtr<Cancellable>& cancellable,
-                         const SlotAsyncReady& slot);
+                         const SlotAsyncReady& slot) -> void;
 
-    void
-    accept_socket_async (const SlotAsyncReady& slot);
+    auto
+    accept_socket_async (const SlotAsyncReady& slot) -> void;
 
     auto
     accept_socket_finish (const Glib::RefPtr<AsyncResult>& result,
@@ -174,12 +175,12 @@ namespace Gio
     auto
     accept () -> Glib::RefPtr<SocketConnection>;
 
-    void
-    accept_async (const SlotAsyncReady& slot);
+    auto
+    accept_async (const SlotAsyncReady& slot) -> void;
 
-    void
+    auto
     accept_async (const Glib::RefPtr<Cancellable>& cancellable,
-                  const SlotAsyncReady& slot);
+                  const SlotAsyncReady& slot) -> void;
 
     auto
     accept_finish (const Glib::RefPtr<AsyncResult>& result,
@@ -190,8 +191,8 @@ namespace Gio
     accept_finish (const Glib::RefPtr<AsyncResult>& result)
         -> Glib::RefPtr<SocketConnection>;
 
-    void
-    close ();
+    auto
+    close () -> void;
 
     auto
     property_listen_backlog () -> Glib::PropertyProxy<int>;

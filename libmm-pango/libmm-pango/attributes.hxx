@@ -356,11 +356,11 @@ namespace Pango
     auto
     get_end_index () const -> unsigned int;
 
-    void
-    set_start_index (const unsigned int& value);
+    auto
+    set_start_index (const unsigned int& value) -> void;
 
-    void
-    set_end_index (const unsigned int& value);
+    auto
+    set_end_index (const unsigned int& value) -> void;
 
     auto
     equal (const Attribute& attr2) const -> bool;
@@ -532,8 +532,8 @@ namespace Pango
     auto
     get_string () const -> Glib::ustring;
 
-    void
-    set_string (const Glib::ustring& string);
+    auto
+    set_string (const Glib::ustring& string) -> void;
 
     auto
     gobj () -> PangoAttrString*
@@ -570,8 +570,8 @@ namespace Pango
     auto
     get_language () const -> Language;
 
-    void
-    set_language (const Language& value);
+    auto
+    set_language (const Language& value) -> void;
 
     auto
     gobj () -> PangoAttrLanguage*
@@ -608,8 +608,8 @@ namespace Pango
     auto
     get_color () const -> Color;
 
-    void
-    set_color (const Color& value);
+    auto
+    set_color (const Color& value) -> void;
 
     auto
     gobj () -> PangoAttrColor*
@@ -646,8 +646,8 @@ namespace Pango
     auto
     get_value () const -> int;
 
-    void
-    set_value (const int& value);
+    auto
+    set_value (const int& value) -> void;
 
     auto
     gobj () -> PangoAttrInt*
@@ -684,8 +684,8 @@ namespace Pango
     auto
     get_value () const -> double;
 
-    void
-    set_value (const double& value);
+    auto
+    set_value (const double& value) -> void;
 
     auto
     gobj () -> PangoAttrFloat*
@@ -722,8 +722,8 @@ namespace Pango
     auto
     get_desc () const -> FontDescription;
 
-    void
-    set_desc (const FontDescription& desc);
+    auto
+    set_desc (const FontDescription& desc) -> void;
 
     auto
     gobj () -> PangoAttrFontDesc*
@@ -763,11 +763,11 @@ namespace Pango
     auto
     get_logical_rect () const -> Rectangle;
 
-    void
-    set_ink_rect (const Rectangle& value);
+    auto
+    set_ink_rect (const Rectangle& value) -> void;
 
-    void
-    set_logical_rect (const Rectangle& value);
+    auto
+    set_logical_rect (const Rectangle& value) -> void;
 
     auto
     gobj () -> PangoAttrShape*
@@ -806,8 +806,8 @@ namespace Pango
       return CppType (const_cast<CTypeNonConst> (ptr), true);
     }
 
-    static void
-    release_c_type (CType ptr)
+    static auto
+    release_c_type (CType ptr) -> void
     {
       pango_attribute_destroy (const_cast<CTypeNonConst> (ptr));
     }

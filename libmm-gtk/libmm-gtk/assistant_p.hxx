@@ -2,10 +2,11 @@
 
 #ifndef _GTKMM_ASSISTANT_P_H
 #define _GTKMM_ASSISTANT_P_H
+#ifndef GTKMM_DISABLE_DEPRECATED
 
-#include <libmm-gtk/window_p.hxx>
+  #include <libmm-gtk/window_p.hxx>
 
-#include <libmm-glib/class.hxx>
+  #include <libmm-glib/class.hxx>
 
 namespace Gtk
 {
@@ -13,18 +14,18 @@ namespace Gtk
   class GTKMM_API Assistant_Class : public Glib::Class
   {
   public:
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
     using CppObjectType = Assistant;
     using BaseObjectType = GtkAssistant;
     using BaseClassType = GtkAssistantClass;
-    using CppClassParent = Window_Class;
+    using CppClassParent = Gtk::Window_Class;
     using BaseClassParent = GtkWindowClass;
 
     friend class Assistant;
-#endif
+  #endif
 
     auto
-    init () -> const Class&;
+    init () -> const Glib::Class&;
 
     static auto
     class_init_function (void* g_class, void* class_data) -> void;
@@ -36,5 +37,7 @@ namespace Gtk
   };
 
 } // namespace Gtk
+
+#endif
 
 #endif

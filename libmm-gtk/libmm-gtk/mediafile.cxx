@@ -17,11 +17,11 @@ namespace Glib
 {
 
   auto
-  wrap (GtkMediaFile* object, const bool take_copy) -> RefPtr<Gtk::MediaFile>
+  wrap (GtkMediaFile* object, bool take_copy) -> Glib::RefPtr<Gtk::MediaFile>
   {
     return Glib::make_refptr_for_instance<Gtk::MediaFile> (
         dynamic_cast<Gtk::MediaFile*> (
-            wrap_auto ((GObject*) object, take_copy)));
+            Glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
 } // namespace Glib
@@ -30,7 +30,7 @@ namespace Gtk
 {
 
   auto
-  MediaFile_Class::init () -> const Class&
+  MediaFile_Class::init () -> const Glib::Class&
   {
     if (!gtype_)
     {
@@ -55,8 +55,8 @@ namespace Gtk
   auto
   MediaFile_Class::open_vfunc_callback (GtkMediaFile* self) -> void
   {
-    const auto obj_base =
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self);
+    const auto obj_base = static_cast<Glib::ObjectBase*> (
+        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -75,7 +75,7 @@ namespace Gtk
       }
     }
 
-    const BaseClassType* const base = static_cast<BaseClassType*> (
+    BaseClassType* const base = static_cast<BaseClassType*> (
         g_type_class_peek_parent (G_OBJECT_GET_CLASS (self)));
 
     if (base && base->open)
@@ -85,8 +85,8 @@ namespace Gtk
   auto
   MediaFile_Class::close_vfunc_callback (GtkMediaFile* self) -> void
   {
-    const auto obj_base =
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self);
+    const auto obj_base = static_cast<Glib::ObjectBase*> (
+        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -105,7 +105,7 @@ namespace Gtk
       }
     }
 
-    const BaseClassType* const base = static_cast<BaseClassType*> (
+    BaseClassType* const base = static_cast<BaseClassType*> (
         g_type_class_peek_parent (G_OBJECT_GET_CLASS (self)));
 
     if (base && base->close)
@@ -126,28 +126,28 @@ namespace Gtk
   }
 
   MediaFile::MediaFile (const Glib::ConstructParams& construct_params)
-    : MediaStream (construct_params)
+    : Gtk::MediaStream (construct_params)
   {
   }
 
   MediaFile::MediaFile (GtkMediaFile* castitem)
-    : MediaStream ((GtkMediaStream*) castitem)
+    : Gtk::MediaStream ((GtkMediaStream*) (castitem))
   {
   }
 
   MediaFile::MediaFile (MediaFile&& src) noexcept
-    : MediaStream (std::move (src))
+    : Gtk::MediaStream (std::move (src))
   {
   }
 
   auto
   MediaFile::operator= (MediaFile&& src) noexcept -> MediaFile&
   {
-    MediaStream::operator= (std::move (src));
+    Gtk::MediaStream::operator= (std::move (src));
     return *this;
   }
 
-  MediaFile::~MediaFile () noexcept = default;
+  MediaFile::~MediaFile () noexcept {}
 
   MediaFile::CppClassType MediaFile::mediafile_class_;
 
@@ -164,8 +164,8 @@ namespace Gtk
   }
 
   MediaFile::MediaFile ()
-    : ObjectBase (nullptr),
-      MediaStream (Glib::ConstructParams (mediafile_class_.init ()))
+    : Glib::ObjectBase (nullptr),
+      Gtk::MediaStream (Glib::ConstructParams (mediafile_class_.init ()))
   {
   }
 
@@ -192,15 +192,15 @@ namespace Gtk
   auto
   MediaFile::create (const Glib::RefPtr<Gio::File>& file) -> Glib::RefPtr<MediaFile>
   {
-    return Glib::wrap (GTK_MEDIA_FILE (
-        gtk_media_file_new_for_file (Glib::unwrap<Gio::File> (file))));
+    return Glib::wrap (GTK_MEDIA_FILE (gtk_media_file_new_for_file (
+        const_cast<GFile*> (Glib::unwrap<Gio::File> (file)))));
   }
 
   auto
   MediaFile::create (const Glib::RefPtr<Gio::InputStream>& stream) -> Glib::RefPtr<MediaFile>
   {
-    return Glib::wrap (GTK_MEDIA_FILE (
-        gtk_media_file_new_for_input_stream (Glib::unwrap (stream))));
+    return Glib::wrap (GTK_MEDIA_FILE (gtk_media_file_new_for_input_stream (
+        const_cast<GInputStream*> (Glib::unwrap (stream)))));
   }
 
   auto
@@ -224,7 +224,9 @@ namespace Gtk
   auto
   MediaFile::set_file (const Glib::RefPtr<Gio::File>& file) -> void
   {
-    gtk_media_file_set_file (gobj (), Glib::unwrap<Gio::File> (file));
+    gtk_media_file_set_file (
+        gobj (),
+        const_cast<GFile*> (Glib::unwrap<Gio::File> (file)));
   }
 
   auto
@@ -245,7 +247,9 @@ namespace Gtk
   auto
   MediaFile::set_input_stream (const Glib::RefPtr<Gio::InputStream>& stream) -> void
   {
-    gtk_media_file_set_input_stream (gobj (), Glib::unwrap (stream));
+    gtk_media_file_set_input_stream (
+        gobj (),
+        const_cast<GInputStream*> (Glib::unwrap (stream)));
   }
 
   auto
@@ -272,13 +276,13 @@ namespace Gtk
   auto
   MediaFile::property_file () -> Glib::PropertyProxy<Glib::RefPtr<Gio::File>>
   {
-    return {this, "file"};
+    return Glib::PropertyProxy<Glib::RefPtr<Gio::File>> (this, "file");
   }
 
   auto
   MediaFile::property_file () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gio::File>>
   {
-    return {this, "file"};
+    return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gio::File>> (this, "file");
   }
 
   static_assert (
@@ -290,17 +294,20 @@ namespace Gtk
   auto
   MediaFile::property_input_stream () -> Glib::PropertyProxy<Glib::RefPtr<Gio::InputStream>>
   {
-    return {this, "input-stream"};
+    return Glib::PropertyProxy<Glib::RefPtr<Gio::InputStream>> (this,
+                                                                "input-stream");
   }
 
   auto
   MediaFile::property_input_stream () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gio::InputStream>>
   {
-    return {this, "input-stream"};
+    return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gio::InputStream>> (
+        this,
+        "input-stream");
   }
 
   auto
-  MediaFile::open_vfunc () -> void
+  Gtk::MediaFile::open_vfunc () -> void
   {
     const auto base = static_cast<BaseClassType*> (
         g_type_class_peek_parent (G_OBJECT_GET_CLASS (gobject_)));
@@ -312,7 +319,7 @@ namespace Gtk
   }
 
   auto
-  MediaFile::close_vfunc () -> void
+  Gtk::MediaFile::close_vfunc () -> void
   {
     const auto base = static_cast<BaseClassType*> (
         g_type_class_peek_parent (G_OBJECT_GET_CLASS (gobject_)));

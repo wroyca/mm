@@ -95,17 +95,17 @@ namespace Gdk
     auto
     get_display () const -> Glib::RefPtr<const Display>;
 
-    void
-    set_desktop (int desktop);
+    auto
+    set_desktop (int desktop) -> void;
 
-    void
-    set_timestamp (guint32 timestamp);
+    auto
+    set_timestamp (guint32 timestamp) -> void;
 
-    void
-    set_icon (const Glib::RefPtr<Gio::Icon>& icon);
+    auto
+    set_icon (const Glib::RefPtr<Gio::Icon>& icon) -> void;
 
-    void
-    set_icon_name (const Glib::ustring& icon_name);
+    auto
+    set_icon_name (const Glib::ustring& icon_name) -> void;
 
     auto
     property_display () const
@@ -120,9 +120,7 @@ namespace Gdk
 
 namespace Glib
 {
-
-  GDKMM_API
-  auto
+  GDKMM_API auto
   wrap (GdkAppLaunchContext* object, bool take_copy = false) -> Glib::RefPtr<Gdk::AppLaunchContext>;
 } // namespace Glib
 

@@ -15,11 +15,11 @@ namespace Glib
 {
 
   auto
-  wrap (GtkShortcutController* object, const bool take_copy) -> RefPtr<Gtk::ShortcutController>
+  wrap (GtkShortcutController* object, bool take_copy) -> Glib::RefPtr<Gtk::ShortcutController>
   {
     return Glib::make_refptr_for_instance<Gtk::ShortcutController> (
         dynamic_cast<Gtk::ShortcutController*> (
-            wrap_auto ((GObject*) object, take_copy)));
+            Glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
 } // namespace Glib
@@ -28,7 +28,7 @@ namespace Gtk
 {
 
   auto
-  ShortcutController_Class::init () -> const Class&
+  ShortcutController_Class::init () -> const Glib::Class&
   {
     if (!gtype_)
     {
@@ -71,13 +71,13 @@ namespace Gtk
   }
 
   ShortcutController::ShortcutController (GtkShortcutController* castitem)
-    : EventController ((GtkEventController*) castitem)
+    : EventController ((GtkEventController*) (castitem))
   {
   }
 
   ShortcutController::ShortcutController (ShortcutController&& src) noexcept
     : EventController (std::move (src)),
-      ListModel (std::move (src)),
+      Gio::ListModel (std::move (src)),
       Buildable (std::move (src))
   {
   }
@@ -86,12 +86,12 @@ namespace Gtk
   ShortcutController::operator= (ShortcutController&& src) noexcept -> ShortcutController&
   {
     EventController::operator= (std::move (src));
-    ListModel::operator= (std::move (src));
+    Gio::ListModel::operator= (std::move (src));
     Buildable::operator= (std::move (src));
     return *this;
   }
 
-  ShortcutController::~ShortcutController () noexcept = default;
+  ShortcutController::~ShortcutController () noexcept {}
 
   ShortcutController::CppClassType
       ShortcutController::shortcutcontroller_class_;
@@ -109,14 +109,15 @@ namespace Gtk
   }
 
   ShortcutController::ShortcutController ()
-    : ObjectBase (nullptr),
+    : Glib::ObjectBase (nullptr),
       EventController (
           Glib::ConstructParams (shortcutcontroller_class_.init ()))
   {
   }
 
-  ShortcutController::ShortcutController (const Glib::RefPtr<ListModel>& model)
-    : ObjectBase (nullptr),
+  ShortcutController::ShortcutController (
+      const Glib::RefPtr<Gio::ListModel>& model)
+    : Glib::ObjectBase (nullptr),
       EventController (Glib::ConstructParams (shortcutcontroller_class_.init (),
                                               "model",
                                               Glib::unwrap (model),
@@ -132,7 +133,7 @@ namespace Gtk
   }
 
   auto
-  ShortcutController::create (const Glib::RefPtr<ListModel>& model) -> Glib::RefPtr<ShortcutController>
+  ShortcutController::create (const Glib::RefPtr<Gio::ListModel>& model) -> Glib::RefPtr<ShortcutController>
   {
     return Glib::make_refptr_for_instance<ShortcutController> (
         new ShortcutController (model));
@@ -183,7 +184,8 @@ namespace Gtk
   auto
   ShortcutController::add_shortcut (const Glib::RefPtr<Shortcut>& shortcut) -> void
   {
-    gtk_shortcut_controller_add_shortcut (gobj (), unwrap_copy (shortcut));
+    gtk_shortcut_controller_add_shortcut (gobj (),
+                                          Glib::unwrap_copy (shortcut));
   }
 
   auto
@@ -203,7 +205,7 @@ namespace Gtk
   auto
   ShortcutController::property_item_type () const -> Glib::PropertyProxy_ReadOnly<GType>
   {
-    return {this, "item-type"};
+    return Glib::PropertyProxy_ReadOnly<GType> (this, "item-type");
   }
 
   static_assert (
@@ -214,19 +216,21 @@ namespace Gtk
   auto
   ShortcutController::property_mnemonic_modifiers () -> Glib::PropertyProxy<Gdk::ModifierType>
   {
-    return {this, "mnemonic-modifiers"};
+    return Glib::PropertyProxy<Gdk::ModifierType> (this, "mnemonic-modifiers");
   }
 
   auto
   ShortcutController::property_mnemonic_modifiers () const -> Glib::PropertyProxy_ReadOnly<Gdk::ModifierType>
   {
-    return {this, "mnemonic-modifiers"};
+    return Glib::PropertyProxy_ReadOnly<Gdk::ModifierType> (
+        this,
+        "mnemonic-modifiers");
   }
 
   auto
   ShortcutController::property_n_items () const -> Glib::PropertyProxy_ReadOnly<unsigned int>
   {
-    return {this, "n-items"};
+    return Glib::PropertyProxy_ReadOnly<unsigned int> (this, "n-items");
   }
 
   static_assert (
@@ -237,13 +241,13 @@ namespace Gtk
   auto
   ShortcutController::property_scope () -> Glib::PropertyProxy<ShortcutScope>
   {
-    return {this, "scope"};
+    return Glib::PropertyProxy<ShortcutScope> (this, "scope");
   }
 
   auto
   ShortcutController::property_scope () const -> Glib::PropertyProxy_ReadOnly<ShortcutScope>
   {
-    return {this, "scope"};
+    return Glib::PropertyProxy_ReadOnly<ShortcutScope> (this, "scope");
   }
 
 } // namespace Gtk

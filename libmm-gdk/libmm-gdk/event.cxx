@@ -32,7 +32,7 @@ namespace Gdk
   Event::get_history () const -> std::vector<TimeCoord>
   {
     guint n_coords = 0;
-    const GdkTimeCoord* coords =
+    GdkTimeCoord* coords =
         gdk_event_get_history (const_cast<GdkEvent*> (gobj ()), &n_coords);
     return Glib::ArrayHandler<TimeCoord, TimeCoordTraits>::array_to_vector (
         coords,
@@ -62,7 +62,7 @@ namespace Glib
 {
 
   auto
-  wrap (GdkEvent* object, const bool take_copy) -> RefPtr<Gdk::Event>
+  wrap (GdkEvent* object, bool take_copy) -> Glib::RefPtr<Gdk::Event>
   {
     if (take_copy && object)
       gdk_event_ref (object);
@@ -214,15 +214,15 @@ namespace Gdk
   auto
   Event::get_position (double& x, double& y) const -> bool
   {
-    return gdk_event_get_position (const_cast<GdkEvent*> (gobj ()), &x, &y);
+    return gdk_event_get_position (const_cast<GdkEvent*> (gobj ()), &(x), &(y));
   }
 
   auto
-  Event::get_axis (AxisUse axis_use, double& value) const -> bool
+  Event::get_axis (Gdk::AxisUse axis_use, double& value) const -> bool
   {
     return gdk_event_get_axis (const_cast<GdkEvent*> (gobj ()),
                                static_cast<GdkAxisUse> (axis_use),
-                               &value);
+                               &(value));
   }
 
   auto
@@ -248,8 +248,8 @@ namespace Gdk
   Event::get_deltas (double& delta_x, double& delta_y) const -> void
   {
     gdk_scroll_event_get_deltas (const_cast<GdkEvent*> (gobj ()),
-                                 &delta_x,
-                                 &delta_y);
+                                 &(delta_x),
+                                 &(delta_y));
   }
 
   auto
@@ -351,7 +351,9 @@ namespace Gdk
   auto
   Event::get_touchpad_deltas (double& dx, double& dy) const -> void
   {
-    gdk_touchpad_event_get_deltas (const_cast<GdkEvent*> (gobj ()), &dx, &dy);
+    gdk_touchpad_event_get_deltas (const_cast<GdkEvent*> (gobj ()),
+                                   &(dx),
+                                   &(dy));
   }
 
   auto
@@ -377,16 +379,16 @@ namespace Gdk
   Event::get_pad_axis_value (guint& index, double& value) const -> void
   {
     gdk_pad_event_get_axis_value (const_cast<GdkEvent*> (gobj ()),
-                                  &index,
-                                  &value);
+                                  &(index),
+                                  &(value));
   }
 
   auto
   Event::get_pad_group_mode (guint& group, guint& mode) const -> void
   {
     gdk_pad_event_get_group_mode (const_cast<GdkEvent*> (gobj ()),
-                                  &group,
-                                  &mode);
+                                  &(group),
+                                  &(mode));
   }
 
   auto
@@ -439,7 +441,7 @@ namespace Gdk
     return gdk_events_get_distance (
         const_cast<GdkEvent*> (gobj ()),
         const_cast<GdkEvent*> (Glib::unwrap (event2)),
-        &distance);
+        &(distance));
   }
 
   auto
@@ -448,7 +450,7 @@ namespace Gdk
   {
     return gdk_events_get_angle (const_cast<GdkEvent*> (gobj ()),
                                  const_cast<GdkEvent*> (Glib::unwrap (event2)),
-                                 &angle);
+                                 &(angle));
   }
 
   auto
@@ -458,12 +460,12 @@ namespace Gdk
   {
     return gdk_events_get_center (const_cast<GdkEvent*> (gobj ()),
                                   const_cast<GdkEvent*> (Glib::unwrap (event2)),
-                                  &x,
-                                  &y);
+                                  &(x),
+                                  &(y));
   }
 
   auto
-  Event::matches (const guint keyval, ModifierType modifiers) const -> KeyMatch
+  Event::matches (guint keyval, ModifierType modifiers) const -> KeyMatch
   {
     return static_cast<KeyMatch> (
         gdk_key_event_matches (const_cast<GdkEvent*> (gobj ()),
@@ -475,8 +477,8 @@ namespace Gdk
   Event::get_match (guint& keyval, ModifierType& modifiers) const -> bool
   {
     return gdk_key_event_get_match (const_cast<GdkEvent*> (gobj ()),
-                                    &keyval,
-                                    (GdkModifierType*) &modifiers);
+                                    &(keyval),
+                                    ((GdkModifierType*) &(modifiers)));
   }
 
 } // namespace Gdk

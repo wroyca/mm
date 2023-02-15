@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: LGPL-2.1-or-later
+
 #include <sstream>
 #include <stdexcept>
 
@@ -7,8 +9,8 @@
 #undef NDEBUG
 #include <cassert>
 
-int
-main ()
+auto
+main () -> int
 {
   using namespace std;
   using namespace mm_gio;

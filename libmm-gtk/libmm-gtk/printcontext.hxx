@@ -8,7 +8,7 @@
 
 #include <libmm-glib/object.hxx>
 
-#include <libmm-cairo/context.hxx>
+#include <libmm-pango/context.hxx>
 
 #include <libmm-pango/context.hxx>
 #include <libmm-pango/fontmap.hxx>
@@ -130,10 +130,10 @@ namespace Gtk
     auto
     create_pango_layout () -> Glib::RefPtr<Pango::Layout>;
 
-    void
+    auto
     set_cairo_context (const Cairo::RefPtr<Cairo::Context>& cr,
                        double dpi_x,
-                       double dpi_y);
+                       double dpi_y) -> void;
 
   public:
   public:
@@ -144,9 +144,7 @@ namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkPrintContext* object, bool take_copy = false) -> Glib::RefPtr<Gtk::PrintContext>;
 } // namespace Glib
 

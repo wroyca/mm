@@ -25,10 +25,10 @@ namespace Glib
 {
 
   auto
-  wrap (GtkShortcutsShortcut* object, const bool take_copy) -> Gtk::ShortcutsShortcut*
+  wrap (GtkShortcutsShortcut* object, bool take_copy) -> Gtk::ShortcutsShortcut*
   {
     return dynamic_cast<Gtk::ShortcutsShortcut*> (
-        wrap_auto ((GObject*) object, take_copy));
+        Glib::wrap_auto ((GObject*) (object), take_copy));
   }
 
 } // namespace Glib
@@ -37,7 +37,7 @@ namespace Gtk
 {
 
   auto
-  ShortcutsShortcut_Class::init () -> const Class&
+  ShortcutsShortcut_Class::init () -> const Glib::Class&
   {
     if (!gtype_)
     {
@@ -59,7 +59,7 @@ namespace Gtk
   auto
   ShortcutsShortcut_Class::wrap_new (GObject* o) -> Glib::ObjectBase*
   {
-    return manage (new ShortcutsShortcut ((GtkShortcutsShortcut*) o));
+    return manage (new ShortcutsShortcut ((GtkShortcutsShortcut*) (o)));
   }
 
   ShortcutsShortcut::ShortcutsShortcut (
@@ -69,7 +69,7 @@ namespace Gtk
   }
 
   ShortcutsShortcut::ShortcutsShortcut (GtkShortcutsShortcut* castitem)
-    : Widget ((GtkWidget*) castitem)
+    : Widget ((GtkWidget*) (castitem))
   {
   }
 
@@ -105,7 +105,7 @@ namespace Gtk
   }
 
   ShortcutsShortcut::ShortcutsShortcut ()
-    : ObjectBase (nullptr),
+    : Glib::ObjectBase (nullptr),
       Widget (Glib::ConstructParams (shortcutsshortcut_class_.init ()))
   {
   }
@@ -113,13 +113,13 @@ namespace Gtk
   auto
   ShortcutsShortcut::property_accelerator () -> Glib::PropertyProxy<Glib::ustring>
   {
-    return {this, "accelerator"};
+    return Glib::PropertyProxy<Glib::ustring> (this, "accelerator");
   }
 
   auto
   ShortcutsShortcut::property_accelerator () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>
   {
-    return {this, "accelerator"};
+    return Glib::PropertyProxy_ReadOnly<Glib::ustring> (this, "accelerator");
   }
 
   static_assert (
@@ -131,61 +131,61 @@ namespace Gtk
   auto
   ShortcutsShortcut::property_icon () -> Glib::PropertyProxy<Glib::RefPtr<Gio::Icon>>
   {
-    return {this, "icon"};
+    return Glib::PropertyProxy<Glib::RefPtr<Gio::Icon>> (this, "icon");
   }
 
   auto
   ShortcutsShortcut::property_icon () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gio::Icon>>
   {
-    return {this, "icon"};
+    return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gio::Icon>> (this, "icon");
   }
 
   auto
   ShortcutsShortcut::property_icon_set () -> Glib::PropertyProxy<bool>
   {
-    return {this, "icon-set"};
+    return Glib::PropertyProxy<bool> (this, "icon-set");
   }
 
   auto
   ShortcutsShortcut::property_icon_set () const -> Glib::PropertyProxy_ReadOnly<bool>
   {
-    return {this, "icon-set"};
+    return Glib::PropertyProxy_ReadOnly<bool> (this, "icon-set");
   }
 
   auto
   ShortcutsShortcut::property_title () -> Glib::PropertyProxy<Glib::ustring>
   {
-    return {this, "title"};
+    return Glib::PropertyProxy<Glib::ustring> (this, "title");
   }
 
   auto
   ShortcutsShortcut::property_title () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>
   {
-    return {this, "title"};
+    return Glib::PropertyProxy_ReadOnly<Glib::ustring> (this, "title");
   }
 
   auto
   ShortcutsShortcut::property_subtitle () -> Glib::PropertyProxy<Glib::ustring>
   {
-    return {this, "subtitle"};
+    return Glib::PropertyProxy<Glib::ustring> (this, "subtitle");
   }
 
   auto
   ShortcutsShortcut::property_subtitle () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>
   {
-    return {this, "subtitle"};
+    return Glib::PropertyProxy_ReadOnly<Glib::ustring> (this, "subtitle");
   }
 
   auto
   ShortcutsShortcut::property_subtitle_set () -> Glib::PropertyProxy<bool>
   {
-    return {this, "subtitle-set"};
+    return Glib::PropertyProxy<bool> (this, "subtitle-set");
   }
 
   auto
   ShortcutsShortcut::property_subtitle_set () const -> Glib::PropertyProxy_ReadOnly<bool>
   {
-    return {this, "subtitle-set"};
+    return Glib::PropertyProxy_ReadOnly<bool> (this, "subtitle-set");
   }
 
   static_assert (
@@ -196,13 +196,13 @@ namespace Gtk
   auto
   ShortcutsShortcut::property_direction () -> Glib::PropertyProxy<TextDirection>
   {
-    return {this, "direction"};
+    return Glib::PropertyProxy<TextDirection> (this, "direction");
   }
 
   auto
   ShortcutsShortcut::property_direction () const -> Glib::PropertyProxy_ReadOnly<TextDirection>
   {
-    return {this, "direction"};
+    return Glib::PropertyProxy_ReadOnly<TextDirection> (this, "direction");
   }
 
   static_assert (
@@ -213,25 +213,25 @@ namespace Gtk
   auto
   ShortcutsShortcut::property_shortcut_type () -> Glib::PropertyProxy<ShortcutType>
   {
-    return {this, "shortcut-type"};
+    return Glib::PropertyProxy<ShortcutType> (this, "shortcut-type");
   }
 
   auto
   ShortcutsShortcut::property_shortcut_type () const -> Glib::PropertyProxy_ReadOnly<ShortcutType>
   {
-    return {this, "shortcut-type"};
+    return Glib::PropertyProxy_ReadOnly<ShortcutType> (this, "shortcut-type");
   }
 
   auto
   ShortcutsShortcut::property_action_name () -> Glib::PropertyProxy<Glib::ustring>
   {
-    return {this, "action-name"};
+    return Glib::PropertyProxy<Glib::ustring> (this, "action-name");
   }
 
   auto
   ShortcutsShortcut::property_action_name () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>
   {
-    return {this, "action-name"};
+    return Glib::PropertyProxy_ReadOnly<Glib::ustring> (this, "action-name");
   }
 
 } // namespace Gtk

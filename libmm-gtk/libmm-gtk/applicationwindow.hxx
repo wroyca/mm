@@ -92,8 +92,8 @@ namespace Gtk
     ApplicationWindow ();
     explicit ApplicationWindow (const Glib::RefPtr<Application>& application);
 
-    void
-    set_show_menubar (bool show_menubar = true);
+    auto
+    set_show_menubar (bool show_menubar = true) -> void;
 
     auto
     get_show_menubar () const -> bool;
@@ -101,11 +101,11 @@ namespace Gtk
     auto
     get_id () const -> guint;
 
-    void
-    set_help_overlay (ShortcutsWindow& help_overlay);
+    auto
+    set_help_overlay (ShortcutsWindow& help_overlay) -> void;
 
-    void
-    unset_help_overlay ();
+    auto
+    unset_help_overlay () -> void;
 
     auto
     get_help_overlay () -> ShortcutsWindow*;
@@ -128,9 +128,7 @@ namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkApplicationWindow* object, bool take_copy = false) -> Gtk::ApplicationWindow*;
 } // namespace Glib
 

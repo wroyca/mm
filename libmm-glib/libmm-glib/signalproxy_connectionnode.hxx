@@ -25,11 +25,11 @@ namespace Glib
 
     SignalProxyConnectionNode (sigc::slot_base&& slot, GObject* gobject);
 
-    static void
-    notify (sigc::notifiable* data);
+    static auto
+    notify (sigc::notifiable* data) -> void;
 
-    static void
-    destroy_notify_handler (gpointer data, GClosure* closure);
+    static auto
+    destroy_notify_handler (gpointer data, GClosure* closure) -> void;
 
     gulong connection_id_;
     sigc::slot_base slot_;

@@ -16,12 +16,12 @@ namespace Gtk
     using CppObjectType = Orientable;
     using BaseObjectType = GtkOrientable;
     using BaseClassType = GtkOrientableIface;
-    using CppClassParent = Interface_Class;
+    using CppClassParent = Glib::Interface_Class;
 
     friend class Orientable;
 
     auto
-    init () -> const Interface_Class&;
+    init () -> const Glib::Interface_Class&;
 
     static auto
     iface_init_function (void* g_iface, void* iface_data) -> void;

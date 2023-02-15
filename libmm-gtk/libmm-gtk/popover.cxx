@@ -21,7 +21,7 @@ namespace Gtk
 namespace
 {
 
-  const Glib::SignalProxyInfo Popover_signal_closed_info = {
+  static const Glib::SignalProxyInfo Popover_signal_closed_info = {
       "closed",
       (GCallback) &Glib::SignalProxyNormal::slot0_void_callback,
       (GCallback) &Glib::SignalProxyNormal::slot0_void_callback};
@@ -32,10 +32,10 @@ namespace Glib
 {
 
   auto
-  wrap (GtkPopover* object, const bool take_copy) -> Gtk::Popover*
+  wrap (GtkPopover* object, bool take_copy) -> Gtk::Popover*
   {
     return dynamic_cast<Gtk::Popover*> (
-        wrap_auto ((GObject*) object, take_copy));
+        Glib::wrap_auto ((GObject*) (object), take_copy));
   }
 
 } // namespace Glib
@@ -44,7 +44,7 @@ namespace Gtk
 {
 
   auto
-  Popover_Class::init () -> const Class&
+  Popover_Class::init () -> const Glib::Class&
   {
     if (!gtype_)
     {
@@ -71,8 +71,8 @@ namespace Gtk
   auto
   Popover_Class::closed_callback (GtkPopover* self) -> void
   {
-    const auto obj_base =
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self);
+    const auto obj_base = static_cast<Glib::ObjectBase*> (
+        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -101,21 +101,21 @@ namespace Gtk
   auto
   Popover_Class::wrap_new (GObject* o) -> Glib::ObjectBase*
   {
-    return manage (new Popover ((GtkPopover*) o));
+    return manage (new Popover ((GtkPopover*) (o)));
   }
 
   Popover::Popover (const Glib::ConstructParams& construct_params)
-    : Widget (construct_params)
+    : Gtk::Widget (construct_params)
   {
   }
 
   Popover::Popover (GtkPopover* castitem)
-    : Widget ((GtkWidget*) castitem)
+    : Gtk::Widget ((GtkWidget*) (castitem))
   {
   }
 
   Popover::Popover (Popover&& src) noexcept
-    : Widget (std::move (src)),
+    : Gtk::Widget (std::move (src)),
       ShortcutManager (std::move (src)),
       Native (std::move (src))
   {
@@ -124,7 +124,7 @@ namespace Gtk
   auto
   Popover::operator= (Popover&& src) noexcept -> Popover&
   {
-    Widget::operator= (std::move (src));
+    Gtk::Widget::operator= (std::move (src));
     ShortcutManager::operator= (std::move (src));
     Native::operator= (std::move (src));
     return *this;
@@ -150,15 +150,15 @@ namespace Gtk
   }
 
   Popover::Popover ()
-    : ObjectBase (nullptr),
-      Widget (Glib::ConstructParams (popover_class_.init ()))
+    : Glib::ObjectBase (nullptr),
+      Gtk::Widget (Glib::ConstructParams (popover_class_.init ()))
   {
   }
 
   auto
   Popover::set_child (Widget& child) -> void
   {
-    gtk_popover_set_child (gobj (), child.gobj ());
+    gtk_popover_set_child (gobj (), (child).gobj ());
   }
 
   auto
@@ -176,14 +176,14 @@ namespace Gtk
   auto
   Popover::set_pointing_to (const Gdk::Rectangle& rect) -> void
   {
-    gtk_popover_set_pointing_to (gobj (), rect.gobj ());
+    gtk_popover_set_pointing_to (gobj (), (rect).gobj ());
   }
 
   auto
   Popover::get_pointing_to (Gdk::Rectangle& rect) const -> bool
   {
     return gtk_popover_get_pointing_to (const_cast<GtkPopover*> (gobj ()),
-                                        rect.gobj ());
+                                        (rect).gobj ());
   }
 
   auto
@@ -200,9 +200,9 @@ namespace Gtk
   }
 
   auto
-  Popover::set_autohide (const bool autohide) -> void
+  Popover::set_autohide (bool autohide) -> void
   {
-    gtk_popover_set_autohide (gobj (), autohide);
+    gtk_popover_set_autohide (gobj (), static_cast<int> (autohide));
   }
 
   auto
@@ -212,9 +212,9 @@ namespace Gtk
   }
 
   auto
-  Popover::set_has_arrow (const bool has_arrow) -> void
+  Popover::set_has_arrow (bool has_arrow) -> void
   {
-    gtk_popover_set_has_arrow (gobj (), has_arrow);
+    gtk_popover_set_has_arrow (gobj (), static_cast<int> (has_arrow));
   }
 
   auto
@@ -224,9 +224,10 @@ namespace Gtk
   }
 
   auto
-  Popover::set_mnemonics_visible (const bool mnemonics_visible) -> void
+  Popover::set_mnemonics_visible (bool mnemonics_visible) -> void
   {
-    gtk_popover_set_mnemonics_visible (gobj (), mnemonics_visible);
+    gtk_popover_set_mnemonics_visible (gobj (),
+                                       static_cast<int> (mnemonics_visible));
   }
 
   auto
@@ -249,7 +250,7 @@ namespace Gtk
   }
 
   auto
-  Popover::set_offset (const int x_offset, const int y_offset) -> void
+  Popover::set_offset (int x_offset, int y_offset) -> void
   {
     gtk_popover_set_offset (gobj (), x_offset, y_offset);
   }
@@ -258,14 +259,15 @@ namespace Gtk
   Popover::get_offset (int& x_offset, int& y_offset) const -> void
   {
     gtk_popover_get_offset (const_cast<GtkPopover*> (gobj ()),
-                            &x_offset,
-                            &y_offset);
+                            &(x_offset),
+                            &(y_offset));
   }
 
   auto
-  Popover::set_cascade_popdown (const bool cascade_popdown) -> void
+  Popover::set_cascade_popdown (bool cascade_popdown) -> void
   {
-    gtk_popover_set_cascade_popdown (gobj (), cascade_popdown);
+    gtk_popover_set_cascade_popdown (gobj (),
+                                     static_cast<int> (cascade_popdown));
   }
 
   auto
@@ -277,7 +279,7 @@ namespace Gtk
   auto
   Popover::set_default_widget (Widget& widget) -> void
   {
-    gtk_popover_set_default_widget (gobj (), widget.gobj ());
+    gtk_popover_set_default_widget (gobj (), (widget).gobj ());
   }
 
   auto
@@ -289,7 +291,7 @@ namespace Gtk
   auto
   Popover::signal_closed () -> Glib::SignalProxy<void ()>
   {
-    return {this, &Popover_signal_closed_info};
+    return Glib::SignalProxy<void ()> (this, &Popover_signal_closed_info);
   }
 
   static_assert (
@@ -300,13 +302,13 @@ namespace Gtk
   auto
   Popover::property_pointing_to () -> Glib::PropertyProxy<Gdk::Rectangle>
   {
-    return {this, "pointing-to"};
+    return Glib::PropertyProxy<Gdk::Rectangle> (this, "pointing-to");
   }
 
   auto
   Popover::property_pointing_to () const -> Glib::PropertyProxy_ReadOnly<Gdk::Rectangle>
   {
-    return {this, "pointing-to"};
+    return Glib::PropertyProxy_ReadOnly<Gdk::Rectangle> (this, "pointing-to");
   }
 
   static_assert (
@@ -317,89 +319,89 @@ namespace Gtk
   auto
   Popover::property_position () -> Glib::PropertyProxy<PositionType>
   {
-    return {this, "position"};
+    return Glib::PropertyProxy<PositionType> (this, "position");
   }
 
   auto
   Popover::property_position () const -> Glib::PropertyProxy_ReadOnly<PositionType>
   {
-    return {this, "position"};
+    return Glib::PropertyProxy_ReadOnly<PositionType> (this, "position");
   }
 
   auto
   Popover::property_autohide () -> Glib::PropertyProxy<bool>
   {
-    return {this, "autohide"};
+    return Glib::PropertyProxy<bool> (this, "autohide");
   }
 
   auto
   Popover::property_autohide () const -> Glib::PropertyProxy_ReadOnly<bool>
   {
-    return {this, "autohide"};
+    return Glib::PropertyProxy_ReadOnly<bool> (this, "autohide");
   }
 
   auto
   Popover::property_has_arrow () -> Glib::PropertyProxy<bool>
   {
-    return {this, "has-arrow"};
+    return Glib::PropertyProxy<bool> (this, "has-arrow");
   }
 
   auto
   Popover::property_has_arrow () const -> Glib::PropertyProxy_ReadOnly<bool>
   {
-    return {this, "has-arrow"};
+    return Glib::PropertyProxy_ReadOnly<bool> (this, "has-arrow");
   }
 
   auto
   Popover::property_default_widget () -> Glib::PropertyProxy<Widget*>
   {
-    return {this, "default-widget"};
+    return Glib::PropertyProxy<Widget*> (this, "default-widget");
   }
 
   auto
   Popover::property_default_widget () const -> Glib::PropertyProxy_ReadOnly<Widget*>
   {
-    return {this, "default-widget"};
+    return Glib::PropertyProxy_ReadOnly<Widget*> (this, "default-widget");
   }
 
   auto
   Popover::property_mnemonics_visible () -> Glib::PropertyProxy<bool>
   {
-    return {this, "mnemonics-visible"};
+    return Glib::PropertyProxy<bool> (this, "mnemonics-visible");
   }
 
   auto
   Popover::property_mnemonics_visible () const -> Glib::PropertyProxy_ReadOnly<bool>
   {
-    return {this, "mnemonics-visible"};
+    return Glib::PropertyProxy_ReadOnly<bool> (this, "mnemonics-visible");
   }
 
   auto
   Popover::property_child () -> Glib::PropertyProxy<Widget*>
   {
-    return {this, "child"};
+    return Glib::PropertyProxy<Widget*> (this, "child");
   }
 
   auto
   Popover::property_child () const -> Glib::PropertyProxy_ReadOnly<Widget*>
   {
-    return {this, "child"};
+    return Glib::PropertyProxy_ReadOnly<Widget*> (this, "child");
   }
 
   auto
   Popover::property_cascade_popdown () -> Glib::PropertyProxy<bool>
   {
-    return {this, "cascade-popdown"};
+    return Glib::PropertyProxy<bool> (this, "cascade-popdown");
   }
 
   auto
   Popover::property_cascade_popdown () const -> Glib::PropertyProxy_ReadOnly<bool>
   {
-    return {this, "cascade-popdown"};
+    return Glib::PropertyProxy_ReadOnly<bool> (this, "cascade-popdown");
   }
 
   auto
-  Popover::on_closed () -> void
+  Gtk::Popover::on_closed () -> void
   {
     const auto base = static_cast<BaseClassType*> (
         g_type_class_peek_parent (G_OBJECT_GET_CLASS (gobject_)));

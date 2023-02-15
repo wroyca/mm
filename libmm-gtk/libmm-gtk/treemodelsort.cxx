@@ -1,11 +1,16 @@
 // SPDX-License-Identifier: LGPL-2.1-or-later
 
-#include <libmm-glib/mm-glib.hxx>
+#undef GTK_DISABLE_DEPRECATED
+#define GDK_DISABLE_DEPRECATION_WARNINGS 1
 
-#include <libmm-gtk/treemodelsort.hxx>
-#include <libmm-gtk/treemodelsort_p.hxx>
+#ifndef GTKMM_DISABLE_DEPRECATED
 
-#include <gtk/gtk.h>
+  #include <libmm-glib/mm-glib.hxx>
+
+  #include <libmm-gtk/treemodelsort.hxx>
+  #include <libmm-gtk/treemodelsort_p.hxx>
+
+  #include <gtk/gtk.h>
 
 using Path = Gtk::TreeModel::Path;
 
@@ -13,7 +18,7 @@ namespace Gtk
 {
 
   auto
-  TreeModelSort::convert_child_iter_to_iter (const iterator& child_iter) -> iterator
+  TreeModelSort::convert_child_iter_to_iter (const iterator& child_iter) -> TreeModel::iterator
   {
     iterator sorted_iter (this);
 
@@ -27,7 +32,7 @@ namespace Gtk
 
   auto
   TreeModelSort::convert_child_iter_to_iter (
-      const const_iterator& child_iter) const -> const_iterator
+      const const_iterator& child_iter) const -> TreeModel::const_iterator
   {
     const_iterator sorted_iter (const_cast<TreeModelSort*> (this));
 
@@ -40,7 +45,7 @@ namespace Gtk
   }
 
   auto
-  TreeModelSort::convert_iter_to_child_iter (const iterator& sorted_iter) -> iterator
+  TreeModelSort::convert_iter_to_child_iter (const iterator& sorted_iter) -> TreeModel::iterator
   {
     const auto child_model = gtk_tree_model_sort_get_model (gobj ());
 
@@ -57,7 +62,7 @@ namespace Gtk
 
   auto
   TreeModelSort::convert_iter_to_child_iter (
-      const const_iterator& sorted_iter) const -> const_iterator
+      const const_iterator& sorted_iter) const -> TreeModel::const_iterator
   {
     const auto child_model =
         gtk_tree_model_sort_get_model (const_cast<GtkTreeModelSort*> (gobj ()));
@@ -75,7 +80,7 @@ namespace Gtk
 
   auto
   TreeModelSort::set_value_impl (const iterator& row,
-                                 const int column,
+                                 int column,
                                  const Glib::ValueBase& value) -> void
   {
     const auto child_model = dynamic_cast<TreeModel*> (
@@ -102,11 +107,11 @@ namespace Glib
 {
 
   auto
-  wrap (GtkTreeModelSort* object, const bool take_copy) -> RefPtr<Gtk::TreeModelSort>
+  wrap (GtkTreeModelSort* object, bool take_copy) -> Glib::RefPtr<Gtk::TreeModelSort>
   {
     return Glib::make_refptr_for_instance<Gtk::TreeModelSort> (
         dynamic_cast<Gtk::TreeModelSort*> (
-            wrap_auto ((GObject*) object, take_copy)));
+            Glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
 } // namespace Glib
@@ -115,7 +120,7 @@ namespace Gtk
 {
 
   auto
-  TreeModelSort_Class::init () -> const Class&
+  TreeModelSort_Class::init () -> const Glib::Class&
   {
     if (!gtype_)
     {
@@ -152,17 +157,17 @@ namespace Gtk
   }
 
   TreeModelSort::TreeModelSort (const Glib::ConstructParams& construct_params)
-    : Object (construct_params)
+    : Glib::Object (construct_params)
   {
   }
 
   TreeModelSort::TreeModelSort (GtkTreeModelSort* castitem)
-    : Object ((GObject*) castitem)
+    : Glib::Object ((GObject*) (castitem))
   {
   }
 
   TreeModelSort::TreeModelSort (TreeModelSort&& src) noexcept
-    : Object (std::move (src)),
+    : Glib::Object (std::move (src)),
       TreeModel (std::move (src)),
       TreeSortable (std::move (src)),
       TreeDragSource (std::move (src))
@@ -172,14 +177,14 @@ namespace Gtk
   auto
   TreeModelSort::operator= (TreeModelSort&& src) noexcept -> TreeModelSort&
   {
-    Object::operator= (std::move (src));
+    Glib::Object::operator= (std::move (src));
     TreeModel::operator= (std::move (src));
     TreeSortable::operator= (std::move (src));
     TreeDragSource::operator= (std::move (src));
     return *this;
   }
 
-  TreeModelSort::~TreeModelSort () noexcept = default;
+  TreeModelSort::~TreeModelSort () noexcept {}
 
   TreeModelSort::CppClassType TreeModelSort::treemodelsort_class_;
 
@@ -196,11 +201,11 @@ namespace Gtk
   }
 
   TreeModelSort::TreeModelSort (const Glib::RefPtr<TreeModel>& model)
-    : ObjectBase (nullptr),
-      Object (Glib::ConstructParams (treemodelsort_class_.init (),
-                                     "model",
-                                     Glib::unwrap (model),
-                                     nullptr))
+    : Glib::ObjectBase (nullptr),
+      Glib::Object (Glib::ConstructParams (treemodelsort_class_.init (),
+                                           "model",
+                                           Glib::unwrap (model),
+                                           nullptr))
   {
   }
 
@@ -229,19 +234,19 @@ namespace Gtk
   auto
   TreeModelSort::convert_child_path_to_path (const Path& child_path) const -> Path
   {
-    return TreePath (gtk_tree_model_sort_convert_child_path_to_path (
-                         const_cast<GtkTreeModelSort*> (gobj ()),
-                         const_cast<GtkTreePath*> (child_path.gobj ())),
-                     false);
+    return Gtk::TreePath (gtk_tree_model_sort_convert_child_path_to_path (
+                              const_cast<GtkTreeModelSort*> (gobj ()),
+                              const_cast<GtkTreePath*> ((child_path).gobj ())),
+                          false);
   }
 
   auto
   TreeModelSort::convert_path_to_child_path (const Path& sorted_path) const -> Path
   {
-    return TreePath (gtk_tree_model_sort_convert_path_to_child_path (
-                         const_cast<GtkTreeModelSort*> (gobj ()),
-                         const_cast<GtkTreePath*> (sorted_path.gobj ())),
-                     false);
+    return Gtk::TreePath (gtk_tree_model_sort_convert_path_to_child_path (
+                              const_cast<GtkTreeModelSort*> (gobj ()),
+                              const_cast<GtkTreePath*> ((sorted_path).gobj ())),
+                          false);
   }
 
   auto
@@ -261,7 +266,7 @@ namespace Gtk
   {
     return gtk_tree_model_sort_iter_is_valid (
         const_cast<GtkTreeModelSort*> (gobj ()),
-        const_cast<GtkTreeIter*> (iter.gobj ()));
+        const_cast<GtkTreeIter*> ((iter).gobj ()));
   }
 
   static_assert (
@@ -273,7 +278,10 @@ namespace Gtk
   auto
   TreeModelSort::property_model () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<TreeModel>>
   {
-    return {this, "model"};
+    return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<TreeModel>> (this,
+                                                                  "model");
   }
 
 } // namespace Gtk
+
+#endif

@@ -17,12 +17,12 @@ namespace Gtk
     using CppObjectType = Native;
     using BaseObjectType = GtkNative;
     using BaseClassType = GtkNativeInterface;
-    using CppClassParent = Interface_Class;
+    using CppClassParent = Glib::Interface_Class;
 
     friend class Native;
 
     auto
-    init () -> const Interface_Class&;
+    init () -> const Glib::Interface_Class&;
 
     static auto
     iface_init_function (void* g_iface, void* iface_data) -> void;

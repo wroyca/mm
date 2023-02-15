@@ -1,4 +1,4 @@
-
+// SPDX-License-Identifier: LGPL-2.1-or-later
 
 #include <libmm-gio/tlsclientconnectionimpl.hxx>
 #include <utility>

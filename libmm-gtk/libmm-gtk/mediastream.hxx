@@ -102,17 +102,17 @@ namespace Gtk
     auto
     has_video () const -> bool;
 
-    void
-    play ();
+    auto
+    play () -> void;
 
-    void
-    pause ();
+    auto
+    pause () -> void;
 
     auto
     get_playing () const -> bool;
 
-    void
-    set_playing (bool playing = true);
+    auto
+    set_playing (bool playing = true) -> void;
 
     auto
     get_ended () const -> bool;
@@ -129,74 +129,75 @@ namespace Gtk
     auto
     is_seeking () const -> bool;
 
-    void
-    seek (gint64 timestamp);
+    auto
+    seek (gint64 timestamp) -> void;
 
     auto
     get_loop () const -> bool;
 
-    void
-    set_loop (bool loop = true);
+    auto
+    set_loop (bool loop = true) -> void;
 
     auto
     get_muted () const -> bool;
 
-    void
-    set_muted (bool muted = true);
+    auto
+    set_muted (bool muted = true) -> void;
 
     auto
     get_volume () const -> double;
 
-    void
-    set_volume (double volume);
+    auto
+    set_volume (double volume) -> void;
 
-    void
-    realize (const Glib::RefPtr<Gdk::Surface>& surface);
+    auto
+    realize (const Glib::RefPtr<Gdk::Surface>& surface) -> void;
 
-    void
-    unrealize (const Glib::RefPtr<Gdk::Surface>& surface);
+    auto
+    unrealize (const Glib::RefPtr<Gdk::Surface>& surface) -> void;
 
 #ifndef GTKMM_DISABLE_DEPRECATED
 
-    void
-    prepared (bool has_audio, bool has_video, bool seekable, gint64 duration);
+    auto
+    prepared (bool has_audio, bool has_video, bool seekable, gint64 duration)
+        -> void;
 #endif
 
 #ifndef GTKMM_DISABLE_DEPRECATED
 
-    void
-    unprepared ();
+    auto
+    unprepared () -> void;
 #endif
 
-    void
+    auto
     stream_prepared (bool has_audio,
                      bool has_video,
                      bool seekable,
-                     gint64 duration);
+                     gint64 duration) -> void;
 
-    void
-    stream_unprepared ();
+    auto
+    stream_unprepared () -> void;
 
-    void
-    update (gint64 timestamp);
+    auto
+    update (gint64 timestamp) -> void;
 
 #ifndef GTKMM_DISABLE_DEPRECATED
 
-    void
-    ended ();
+    auto
+    ended () -> void;
 #endif
 
-    void
-    stream_ended ();
+    auto
+    stream_ended () -> void;
 
-    void
-    seek_success ();
+    auto
+    seek_success () -> void;
 
-    void
-    seek_failed ();
+    auto
+    seek_failed () -> void;
 
-    void
-    set_error (const Glib::Error& error);
+    auto
+    set_error (const Glib::Error& error) -> void;
 
     auto
     property_prepared () -> Glib::PropertyProxy<bool>;
@@ -256,20 +257,20 @@ namespace Gtk
     virtual auto
     play_vfunc () -> bool;
 
-    virtual void
-    pause_vfunc ();
+    virtual auto
+    pause_vfunc () -> void;
 
-    virtual void
-    seek_vfunc (gint64 timestamp);
+    virtual auto
+    seek_vfunc (gint64 timestamp) -> void;
 
-    virtual void
-    update_audio_vfunc (bool muted, double volume);
+    virtual auto
+    update_audio_vfunc (bool muted, double volume) -> void;
 
-    virtual void
-    realize_vfunc (const Glib::RefPtr<Gdk::Surface>& surface);
+    virtual auto
+    realize_vfunc (const Glib::RefPtr<Gdk::Surface>& surface) -> void;
 
-    virtual void
-    unrealize_vfunc (const Glib::RefPtr<Gdk::Surface>& surface);
+    virtual auto
+    unrealize_vfunc (const Glib::RefPtr<Gdk::Surface>& surface) -> void;
 
   public:
   public:
@@ -280,9 +281,7 @@ namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkMediaStream* object, bool take_copy = false) -> Glib::RefPtr<Gtk::MediaStream>;
 } // namespace Glib
 

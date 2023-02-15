@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: LGPL-2.1-or-later
 
 #ifndef _GIOMM_RESOURCE_H
 #define _GIOMM_RESOURCE_H
@@ -36,11 +37,11 @@ namespace Gio
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
   private:
-    GIOMM_API static void
-    throw_func (GError* gobject);
+    GIOMM_API static auto
+    throw_func (GError* gobject) -> void;
 
-    friend GIOMM_API void
-    wrap_init ();
+    friend GIOMM_API auto
+    wrap_init () -> void;
 
 #endif
   };
@@ -53,11 +54,11 @@ namespace Gio
     using BaseObjectType = GResource;
 #endif
 
-    void
-    reference () const;
+    auto
+    reference () const -> void;
 
-    void
-    unreference () const;
+    auto
+    unreference () const -> void;
 
     auto
     gobj () -> GResource*;
@@ -75,8 +76,8 @@ namespace Gio
     operator= (const Resource&) -> Resource& = delete;
 
   protected:
-    void
-    operator delete (void*, std::size_t);
+    auto
+    operator delete (void*, std::size_t) -> void;
 
   private:
   public:
@@ -113,26 +114,27 @@ namespace Gio
                         LookupFlags lookup_flags = LookupFlags::NONE) const
         -> std::vector<std::string>;
 
-    void
+    auto
     get_info (const std::string& path,
               gsize& size,
               Flags& flags,
-              LookupFlags lookup_flags = LookupFlags::NONE) const;
+              LookupFlags lookup_flags = LookupFlags::NONE) const -> void;
 
-    void
+    auto
     get_file_exists (const std::string& path,
-                     LookupFlags lookup_flags = LookupFlags::NONE) const;
+                     LookupFlags lookup_flags = LookupFlags::NONE) const
+        -> void;
 
     auto
     get_file_exists_nothrow (const std::string& path,
                              LookupFlags lookup_flags = LookupFlags::NONE) const
         -> bool;
 
-    void
-    register_global ();
+    auto
+    register_global () -> void;
 
-    void
-    unregister_global ();
+    auto
+    unregister_global () -> void;
 
     static auto
     open_stream_global (const std::string& path,
@@ -149,15 +151,16 @@ namespace Gio
                                LookupFlags lookup_flags = LookupFlags::NONE)
         -> std::vector<std::string>;
 
-    static void
+    static auto
     get_info_global (const std::string& path,
                      gsize& size,
                      Flags& flags,
-                     LookupFlags lookup_flags = LookupFlags::NONE);
+                     LookupFlags lookup_flags = LookupFlags::NONE) -> void;
 
-    static void
+    static auto
     get_file_exists_global (const std::string& path,
-                            LookupFlags lookup_flags = LookupFlags::NONE);
+                            LookupFlags lookup_flags = LookupFlags::NONE)
+        -> void;
 
     static auto
     get_file_exists_global_nothrow (

@@ -97,8 +97,8 @@ namespace Gtk
     static auto
     create () -> Glib::RefPtr<EventControllerScroll>;
 
-    void
-    set_flags (Flags flags);
+    auto
+    set_flags (Flags flags) -> void;
 
     auto
     get_flags () const -> Flags;
@@ -205,9 +205,7 @@ namespace Glib
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkEventControllerScroll* object, bool take_copy = false) -> Glib::RefPtr<Gtk::EventControllerScroll>;
 } // namespace Glib
 

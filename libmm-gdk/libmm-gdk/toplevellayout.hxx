@@ -20,11 +20,11 @@ namespace Gdk
     using BaseObjectType = GdkToplevelLayout;
 #endif
 
-    void
-    reference () const;
+    auto
+    reference () const -> void;
 
-    void
-    unreference () const;
+    auto
+    unreference () const -> void;
 
     auto
     gobj () -> GdkToplevelLayout*;
@@ -42,8 +42,8 @@ namespace Gdk
     operator= (const ToplevelLayout&) -> ToplevelLayout& = delete;
 
   protected:
-    void
-    operator delete (void*, std::size_t);
+    auto
+    operator delete (void*, std::size_t) -> void;
 
   private:
   public:
@@ -56,12 +56,12 @@ namespace Gdk
     auto
     equal (const Glib::RefPtr<const ToplevelLayout>& other) const -> bool;
 
-    void
-    set_maximized (bool maximized = true);
+    auto
+    set_maximized (bool maximized = true) -> void;
 
-    void
+    auto
     set_fullscreen (bool fullscreen = true,
-                    const Glib::RefPtr<Monitor>& monitor = {});
+                    const Glib::RefPtr<Monitor>& monitor = {}) -> void;
 
     auto
     get_maximized (bool& maximized) const -> bool;
@@ -75,8 +75,8 @@ namespace Gdk
     auto
     get_fullscreen_monitor () const -> Glib::RefPtr<const Monitor>;
 
-    void
-    set_resizable (bool resizable = true);
+    auto
+    set_resizable (bool resizable = true) -> void;
 
     auto
     get_resizable () const -> bool;
@@ -86,9 +86,7 @@ namespace Gdk
 
 namespace Glib
 {
-
-  GDKMM_API
-  auto
+  GDKMM_API auto
   wrap (GdkToplevelLayout* object, bool take_copy = false) -> Glib::RefPtr<Gdk::ToplevelLayout>;
 
 } // namespace Glib

@@ -1,11 +1,16 @@
 // SPDX-License-Identifier: LGPL-2.1-or-later
 
-#include <libmm-glib/mm-glib.hxx>
+#undef GTK_DISABLE_DEPRECATED
+#define GDK_DISABLE_DEPRECATION_WARNINGS 1
 
-#include <libmm-gtk/cellrendererspinner.hxx>
-#include <libmm-gtk/cellrendererspinner_p.hxx>
+#ifndef GTKMM_DISABLE_DEPRECATED
 
-#include <gtk/gtk.h>
+  #include <libmm-glib/mm-glib.hxx>
+
+  #include <libmm-gtk/cellrendererspinner.hxx>
+  #include <libmm-gtk/cellrendererspinner_p.hxx>
+
+  #include <gtk/gtk.h>
 
 namespace
 {
@@ -15,10 +20,10 @@ namespace Glib
 {
 
   auto
-  wrap (GtkCellRendererSpinner* object, const bool take_copy) -> Gtk::CellRendererSpinner*
+  wrap (GtkCellRendererSpinner* object, bool take_copy) -> Gtk::CellRendererSpinner*
   {
     return dynamic_cast<Gtk::CellRendererSpinner*> (
-        wrap_auto ((GObject*) object, take_copy));
+        Glib::wrap_auto ((GObject*) (object), take_copy));
   }
 
 } // namespace Glib
@@ -27,7 +32,7 @@ namespace Gtk
 {
 
   auto
-  CellRendererSpinner_Class::init () -> const Class&
+  CellRendererSpinner_Class::init () -> const Glib::Class&
   {
     if (!gtype_)
     {
@@ -50,29 +55,29 @@ namespace Gtk
   auto
   CellRendererSpinner_Class::wrap_new (GObject* o) -> Glib::ObjectBase*
   {
-    return manage (new CellRendererSpinner ((GtkCellRendererSpinner*) o));
+    return manage (new CellRendererSpinner ((GtkCellRendererSpinner*) (o)));
   }
 
   CellRendererSpinner::CellRendererSpinner (
       const Glib::ConstructParams& construct_params)
-    : CellRenderer (construct_params)
+    : Gtk::CellRenderer (construct_params)
   {
   }
 
   CellRendererSpinner::CellRendererSpinner (GtkCellRendererSpinner* castitem)
-    : CellRenderer ((GtkCellRenderer*) castitem)
+    : Gtk::CellRenderer ((GtkCellRenderer*) (castitem))
   {
   }
 
   CellRendererSpinner::CellRendererSpinner (CellRendererSpinner&& src) noexcept
-    : CellRenderer (std::move (src))
+    : Gtk::CellRenderer (std::move (src))
   {
   }
 
   auto
   CellRendererSpinner::operator= (CellRendererSpinner&& src) noexcept -> CellRendererSpinner&
   {
-    CellRenderer::operator= (std::move (src));
+    Gtk::CellRenderer::operator= (std::move (src));
     return *this;
   }
 
@@ -97,50 +102,53 @@ namespace Gtk
   }
 
   CellRendererSpinner::CellRendererSpinner ()
-    : ObjectBase (nullptr),
-      CellRenderer (Glib::ConstructParams (cellrendererspinner_class_.init ()))
+    : Glib::ObjectBase (nullptr),
+      Gtk::CellRenderer (
+          Glib::ConstructParams (cellrendererspinner_class_.init ()))
   {
   }
 
   auto
   CellRendererSpinner::property_active () -> Glib::PropertyProxy<bool>
   {
-    return {this, "active"};
+    return Glib::PropertyProxy<bool> (this, "active");
   }
 
   auto
   CellRendererSpinner::property_active () const -> Glib::PropertyProxy_ReadOnly<bool>
   {
-    return {this, "active"};
+    return Glib::PropertyProxy_ReadOnly<bool> (this, "active");
   }
 
   auto
   CellRendererSpinner::property_pulse () -> Glib::PropertyProxy<guint>
   {
-    return {this, "pulse"};
+    return Glib::PropertyProxy<guint> (this, "pulse");
   }
 
   auto
   CellRendererSpinner::property_pulse () const -> Glib::PropertyProxy_ReadOnly<guint>
   {
-    return {this, "pulse"};
+    return Glib::PropertyProxy_ReadOnly<guint> (this, "pulse");
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<IconSize>::value,
+      Glib::Traits::ValueCompatibleWithWrapProperty<Gtk::IconSize>::value,
       "Type Gtk::IconSize cannot be used in _WRAP_PROPERTY. "
       "There is no suitable template specialization of Glib::Value<>.");
 
   auto
-  CellRendererSpinner::property_size () -> Glib::PropertyProxy<IconSize>
+  CellRendererSpinner::property_size () -> Glib::PropertyProxy<Gtk::IconSize>
   {
-    return {this, "size"};
+    return Glib::PropertyProxy<Gtk::IconSize> (this, "size");
   }
 
   auto
-  CellRendererSpinner::property_size () const -> Glib::PropertyProxy_ReadOnly<IconSize>
+  CellRendererSpinner::property_size () const -> Glib::PropertyProxy_ReadOnly<Gtk::IconSize>
   {
-    return {this, "size"};
+    return Glib::PropertyProxy_ReadOnly<Gtk::IconSize> (this, "size");
   }
 
 } // namespace Gtk
+
+#endif

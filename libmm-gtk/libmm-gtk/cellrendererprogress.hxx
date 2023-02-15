@@ -3,23 +3,25 @@
 #ifndef _GTKMM_CELLRENDERERPROGRESS_H
 #define _GTKMM_CELLRENDERERPROGRESS_H
 
-#include <libmm-glib/ustring.hxx>
-#include <sigc++/sigc++.h>
+#ifndef GTKMM_DISABLE_DEPRECATED
 
-#include <libmm-gtk/cellrenderer.hxx>
-#include <libmm-gtk/orientable.hxx>
+  #include <libmm-glib/ustring.hxx>
+  #include <sigc++/sigc++.h>
 
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #include <libmm-gtk/cellrenderer.hxx>
+  #include <libmm-gtk/orientable.hxx>
+
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
 using GtkCellRendererProgress = struct _GtkCellRendererProgress;
 using GtkCellRendererProgressClass = struct _GtkCellRendererProgressClass;
-#endif
+  #endif
 
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
   class GTKMM_API CellRendererProgress_Class;
 }
-#endif
+  #endif
 
 namespace Gtk
 {
@@ -28,12 +30,12 @@ namespace Gtk
                                          public Orientable
   {
   public:
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
     typedef CellRendererProgress CppObjectType;
     typedef CellRendererProgress_Class CppClassType;
     typedef GtkCellRendererProgress BaseObjectType;
     typedef GtkCellRendererProgressClass BaseClassType;
-#endif
+  #endif
 
     CellRendererProgress (CellRendererProgress&& src) noexcept;
     auto
@@ -45,7 +47,7 @@ namespace Gtk
 
     ~CellRendererProgress () noexcept override;
 
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   private:
     friend GTKMM_API class CellRendererProgress_Class;
@@ -56,17 +58,17 @@ namespace Gtk
         const Glib::ConstructParams& construct_params);
     explicit CellRendererProgress (GtkCellRendererProgress* castitem);
 
-#endif
+  #endif
 
   public:
     static auto
     get_type () -> GType G_GNUC_CONST;
 
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
     static auto
     get_base_type () -> GType G_GNUC_CONST;
-#endif
+  #endif
 
     auto
     gobj () -> GtkCellRendererProgress*
@@ -132,10 +134,10 @@ namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkCellRendererProgress* object, bool take_copy = false) -> Gtk::CellRendererProgress*;
 } // namespace Glib
+
+#endif
 
 #endif

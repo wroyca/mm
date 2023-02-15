@@ -108,8 +108,8 @@ namespace Gtk
     signal_changed () -> Glib::SignalProxy<void (Change)>;
 
   protected:
-    void
-    changed (Change change = Change::DIFFERENT);
+    auto
+    changed (Change change = Change::DIFFERENT) -> void;
 
     virtual auto
     match_vfunc (const Glib::RefPtr<Glib::ObjectBase>& item) -> bool;
@@ -158,9 +158,7 @@ namespace Glib
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkFilter* object, bool take_copy = false) -> Glib::RefPtr<Gtk::Filter>;
 } // namespace Glib
 

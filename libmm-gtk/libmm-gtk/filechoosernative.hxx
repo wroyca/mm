@@ -3,21 +3,23 @@
 #ifndef _GTKMM_FILECHOOSERNATIVE_H
 #define _GTKMM_FILECHOOSERNATIVE_H
 
-#include <libmm-glib/ustring.hxx>
-#include <sigc++/sigc++.h>
+#ifndef GTKMM_DISABLE_DEPRECATED
 
-#include <libmm-gtk/filechooser.hxx>
-#include <libmm-gtk/nativedialog.hxx>
+  #include <libmm-glib/ustring.hxx>
+  #include <sigc++/sigc++.h>
 
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
-#endif
+  #include <libmm-gtk/filechooser.hxx>
+  #include <libmm-gtk/nativedialog.hxx>
 
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #endif
+
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
   class GTKMM_API FileChooserNative_Class;
 }
-#endif
+  #endif
 
 namespace Gtk
 {
@@ -26,7 +28,7 @@ namespace Gtk
   class GTKMM_API FileChooserNative : public NativeDialog,
                                       public FileChooser
   {
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   public:
     using CppObjectType = FileChooserNative;
@@ -46,7 +48,7 @@ namespace Gtk
     explicit FileChooserNative (const Glib::ConstructParams& construct_params);
     explicit FileChooserNative (GtkFileChooserNative* castitem);
 
-#endif
+  #endif
 
   public:
     FileChooserNative (FileChooserNative&& src) noexcept;
@@ -58,11 +60,11 @@ namespace Gtk
     static auto
     get_type () -> GType G_GNUC_CONST;
 
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
     static auto
     get_base_type () -> GType G_GNUC_CONST;
-#endif
+  #endif
 
     auto
     gobj () -> GtkFileChooserNative*
@@ -113,14 +115,14 @@ namespace Gtk
     auto
     get_accept_label () const -> Glib::ustring;
 
-    void
-    set_accept_label (const Glib::ustring& accept_label = {});
+    auto
+    set_accept_label (const Glib::ustring& accept_label = {}) -> void;
 
     auto
     get_cancel_label () const -> Glib::ustring;
 
-    void
-    set_cancel_label (const Glib::ustring& cancel_label = {});
+    auto
+    set_cancel_label (const Glib::ustring& cancel_label = {}) -> void;
 
     auto
     property_accept_label () -> Glib::PropertyProxy<Glib::ustring>;
@@ -145,10 +147,10 @@ namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkFileChooserNative* object, bool take_copy = false) -> Glib::RefPtr<Gtk::FileChooserNative>;
 } // namespace Glib
+
+#endif
 
 #endif

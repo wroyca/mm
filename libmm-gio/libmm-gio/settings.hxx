@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: LGPL-2.1-or-later
 
 #ifndef _GIOMM_SETTINGS_H
 #define _GIOMM_SETTINGS_H
@@ -112,16 +113,17 @@ namespace Gio
     set_value (const Glib::ustring& key, const Glib::VariantBase& value)
         -> bool;
 
-    void
-    get_value (const Glib::ustring& key, Glib::VariantBase& value) const;
+    auto
+    get_value (const Glib::ustring& key, Glib::VariantBase& value) const
+        -> void;
 
     auto
     get_user_value (const Glib::ustring& key, Glib::VariantBase& value) const
         -> bool;
 
-    void
-    get_default_value (const Glib::ustring& key,
-                       Glib::VariantBase& value) const;
+    auto
+    get_default_value (const Glib::ustring& key, Glib::VariantBase& value) const
+        -> void;
 
     auto
     get_int (const Glib::ustring& key) const -> int;
@@ -194,43 +196,43 @@ namespace Gio
     auto
     is_writable (const Glib::ustring& name) const -> bool;
 
-    void
-    delay ();
+    auto
+    delay () -> void;
 
-    void
-    apply ();
+    auto
+    apply () -> void;
 
-    void
-    revert ();
+    auto
+    revert () -> void;
 
     auto
     get_has_unapplied () const -> bool;
 
-    void
-    reset (const Glib::ustring& key);
+    auto
+    reset (const Glib::ustring& key) -> void;
 
     auto
     list_children () const -> std::vector<Glib::ustring>;
 
-    void
+    auto
     bind (const Glib::ustring& key,
           Glib::ObjectBase* object,
           const Glib::ustring& property,
-          BindFlags flags = BindFlags::DEFAULT);
-    void
+          BindFlags flags = BindFlags::DEFAULT) -> void;
+    auto
     bind (const Glib::ustring& key,
           const Glib::PropertyProxy_Base& property_proxy,
-          BindFlags flags = BindFlags::DEFAULT);
+          BindFlags flags = BindFlags::DEFAULT) -> void;
 
-    void
+    auto
     bind_writable (const Glib::ustring& key,
                    Glib::ObjectBase* object,
                    const Glib::ustring& property,
-                   bool inverted = false);
-    void
+                   bool inverted = false) -> void;
+    auto
     bind_writable (const Glib::ustring& key,
                    const Glib::PropertyProxy_Base& property_proxy,
-                   bool inverted = false);
+                   bool inverted = false) -> void;
 
     auto
     create_action (const Glib::ustring& key) -> Glib::RefPtr<Action>;
@@ -265,14 +267,14 @@ namespace Gio
   public:
   public:
   protected:
-    virtual void
-    on_changed (const Glib::ustring& key);
+    virtual auto
+    on_changed (const Glib::ustring& key) -> void;
 
     virtual auto
     on_writable_change_event (GQuark key) -> bool;
 
-    virtual void
-    on_writable_changed (const Glib::ustring& key);
+    virtual auto
+    on_writable_changed (const Glib::ustring& key) -> void;
   };
 
 } // namespace Gio

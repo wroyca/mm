@@ -17,14 +17,14 @@ namespace Gtk
     using CppObjectType = SearchEntry;
     using BaseObjectType = GtkSearchEntry;
     using BaseClassType = GtkSearchEntryClass;
-    using CppClassParent = Entry_Class;
+    using CppClassParent = Gtk::Entry_Class;
     using BaseClassParent = GtkEntryClass;
 
     friend class SearchEntry;
 #endif
 
     auto
-    init () -> const Class&;
+    init () -> const Glib::Class&;
 
     static auto
     class_init_function (void* g_class, void* class_data) -> void;

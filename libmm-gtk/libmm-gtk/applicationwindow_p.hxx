@@ -17,14 +17,14 @@ namespace Gtk
     using CppObjectType = ApplicationWindow;
     using BaseObjectType = GtkApplicationWindow;
     using BaseClassType = GtkApplicationWindowClass;
-    using CppClassParent = Window_Class;
+    using CppClassParent = Gtk::Window_Class;
     using BaseClassParent = GtkWindowClass;
 
     friend class ApplicationWindow;
 #endif
 
     auto
-    init () -> const Class&;
+    init () -> const Glib::Class&;
 
     static auto
     class_init_function (void* g_class, void* class_data) -> void;

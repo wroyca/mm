@@ -1,12 +1,18 @@
 // SPDX-License-Identifier: LGPL-2.1-or-later
 
-#include <libmm-glib/mm-glib.hxx>
+#undef GTK_DISABLE_DEPRECATED
+#define GDK_DISABLE_DEPRECATION_WARNINGS 1
 
-#include <libmm-gtk/cellareacontext.hxx>
-#include <libmm-gtk/cellareacontext_p.hxx>
+#include <libmm-gtk/mm-gtkconfig.hxx>
+#ifndef GTKMM_DISABLE_DEPRECATED
 
-#include <gtk/gtk.h>
-#include <libmm-gtk/cellarea.hxx>
+  #include <libmm-glib/mm-glib.hxx>
+
+  #include <libmm-gtk/cellareacontext.hxx>
+  #include <libmm-gtk/cellareacontext_p.hxx>
+
+  #include <gtk/gtk.h>
+  #include <libmm-gtk/cellarea.hxx>
 
 namespace Gtk
 {
@@ -21,11 +27,11 @@ namespace Glib
 {
 
   auto
-  wrap (GtkCellAreaContext* object, const bool take_copy) -> RefPtr<Gtk::CellAreaContext>
+  wrap (GtkCellAreaContext* object, bool take_copy) -> Glib::RefPtr<Gtk::CellAreaContext>
   {
     return Glib::make_refptr_for_instance<Gtk::CellAreaContext> (
         dynamic_cast<Gtk::CellAreaContext*> (
-            wrap_auto ((GObject*) object, take_copy)));
+            Glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
 } // namespace Glib
@@ -34,7 +40,7 @@ namespace Gtk
 {
 
   auto
-  CellAreaContext_Class::init () -> const Class&
+  CellAreaContext_Class::init () -> const Glib::Class&
   {
     if (!gtype_)
     {
@@ -68,28 +74,28 @@ namespace Gtk
 
   CellAreaContext::CellAreaContext (
       const Glib::ConstructParams& construct_params)
-    : Object (construct_params)
+    : Glib::Object (construct_params)
   {
   }
 
   CellAreaContext::CellAreaContext (GtkCellAreaContext* castitem)
-    : Object ((GObject*) castitem)
+    : Glib::Object ((GObject*) (castitem))
   {
   }
 
   CellAreaContext::CellAreaContext (CellAreaContext&& src) noexcept
-    : Object (std::move (src))
+    : Glib::Object (std::move (src))
   {
   }
 
   auto
   CellAreaContext::operator= (CellAreaContext&& src) noexcept -> CellAreaContext&
   {
-    Object::operator= (std::move (src));
+    Glib::Object::operator= (std::move (src));
     return *this;
   }
 
-  CellAreaContext::~CellAreaContext () noexcept = default;
+  CellAreaContext::~CellAreaContext () noexcept {}
 
   CellAreaContext::CppClassType CellAreaContext::cellareacontext_class_;
 
@@ -121,7 +127,7 @@ namespace Gtk
   }
 
   auto
-  CellAreaContext::allocate (const int width, const int height) -> void
+  CellAreaContext::allocate (int width, int height) -> void
   {
     gtk_cell_area_context_allocate (gobj (), width, height);
   }
@@ -138,8 +144,8 @@ namespace Gtk
   {
     gtk_cell_area_context_get_preferred_width (
         const_cast<GtkCellAreaContext*> (gobj ()),
-        &minimum_width,
-        &natural_width);
+        &(minimum_width),
+        &(natural_width));
   }
 
   auto
@@ -148,32 +154,32 @@ namespace Gtk
   {
     gtk_cell_area_context_get_preferred_height (
         const_cast<GtkCellAreaContext*> (gobj ()),
-        &minimum_height,
-        &natural_height);
+        &(minimum_height),
+        &(natural_height));
   }
 
   auto
-  CellAreaContext::get_preferred_height_for_width (const int width,
+  CellAreaContext::get_preferred_height_for_width (int width,
                                                    int& minimum_height,
                                                    int& natural_height) const -> void
   {
     gtk_cell_area_context_get_preferred_height_for_width (
         const_cast<GtkCellAreaContext*> (gobj ()),
         width,
-        &minimum_height,
-        &natural_height);
+        &(minimum_height),
+        &(natural_height));
   }
 
   auto
-  CellAreaContext::get_preferred_width_for_height (const int height,
+  CellAreaContext::get_preferred_width_for_height (int height,
                                                    int& minimum_width,
                                                    int& natural_width) const -> void
   {
     gtk_cell_area_context_get_preferred_width_for_height (
         const_cast<GtkCellAreaContext*> (gobj ()),
         height,
-        &minimum_width,
-        &natural_width);
+        &(minimum_width),
+        &(natural_width));
   }
 
   auto
@@ -181,13 +187,12 @@ namespace Gtk
   {
     gtk_cell_area_context_get_allocation (
         const_cast<GtkCellAreaContext*> (gobj ()),
-        &width,
-        &height);
+        &(width),
+        &(height));
   }
 
   auto
-  CellAreaContext::push_preferred_width (const int minimum_width,
-                                         const int natural_width) -> void
+  CellAreaContext::push_preferred_width (int minimum_width, int natural_width) -> void
   {
     gtk_cell_area_context_push_preferred_width (gobj (),
                                                 minimum_width,
@@ -195,8 +200,8 @@ namespace Gtk
   }
 
   auto
-  CellAreaContext::push_preferred_height (const int minimum_height,
-                                          const int natural_height) -> void
+  CellAreaContext::push_preferred_height (int minimum_height,
+                                          int natural_height) -> void
   {
     gtk_cell_area_context_push_preferred_height (gobj (),
                                                  minimum_height,
@@ -211,31 +216,33 @@ namespace Gtk
   auto
   CellAreaContext::property_area () const -> Glib::PropertyProxy_ReadOnly<CellArea*>
   {
-    return {this, "area"};
+    return Glib::PropertyProxy_ReadOnly<CellArea*> (this, "area");
   }
 
   auto
   CellAreaContext::property_minimum_width () const -> Glib::PropertyProxy_ReadOnly<int>
   {
-    return {this, "minimum-width"};
+    return Glib::PropertyProxy_ReadOnly<int> (this, "minimum-width");
   }
 
   auto
   CellAreaContext::property_natural_width () const -> Glib::PropertyProxy_ReadOnly<int>
   {
-    return {this, "natural-width"};
+    return Glib::PropertyProxy_ReadOnly<int> (this, "natural-width");
   }
 
   auto
   CellAreaContext::property_minimum_height () const -> Glib::PropertyProxy_ReadOnly<int>
   {
-    return {this, "minimum-height"};
+    return Glib::PropertyProxy_ReadOnly<int> (this, "minimum-height");
   }
 
   auto
   CellAreaContext::property_natural_height () const -> Glib::PropertyProxy_ReadOnly<int>
   {
-    return {this, "natural-height"};
+    return Glib::PropertyProxy_ReadOnly<int> (this, "natural-height");
   }
 
 } // namespace Gtk
+
+#endif

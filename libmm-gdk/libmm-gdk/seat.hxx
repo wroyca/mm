@@ -235,9 +235,7 @@ namespace Glib
 
 namespace Glib
 {
-
-  GDKMM_API
-  auto
+  GDKMM_API auto
   wrap (GdkSeat* object, bool take_copy = false) -> Glib::RefPtr<Gdk::Seat>;
 } // namespace Glib
 

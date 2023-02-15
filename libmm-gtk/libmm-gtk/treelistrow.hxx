@@ -88,8 +88,8 @@ namespace Gtk
     auto
     get_item () const -> Glib::RefPtr<const Glib::ObjectBase>;
 
-    void
-    set_expanded (bool expanded = true);
+    auto
+    set_expanded (bool expanded = true) -> void;
 
     auto
     get_expanded () const -> bool;
@@ -150,9 +150,7 @@ namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkTreeListRow* object, bool take_copy = false) -> Glib::RefPtr<Gtk::TreeListRow>;
 } // namespace Glib
 

@@ -23,10 +23,10 @@ namespace Glib
 {
 
   auto
-  wrap (GtkInscription* object, const bool take_copy) -> Gtk::Inscription*
+  wrap (GtkInscription* object, bool take_copy) -> Gtk::Inscription*
   {
     return dynamic_cast<Gtk::Inscription*> (
-        wrap_auto ((GObject*) object, take_copy));
+        Glib::wrap_auto ((GObject*) (object), take_copy));
   }
 
 } // namespace Glib
@@ -35,7 +35,7 @@ namespace Gtk
 {
 
   auto
-  Inscription_Class::init () -> const Class&
+  Inscription_Class::init () -> const Glib::Class&
   {
     if (!gtype_)
     {
@@ -48,28 +48,28 @@ namespace Gtk
   auto
   Inscription_Class::wrap_new (GObject* o) -> Glib::ObjectBase*
   {
-    return manage (new Inscription ((GtkInscription*) o));
+    return manage (new Inscription ((GtkInscription*) (o)));
   }
 
   Inscription::Inscription (const Glib::ConstructParams& construct_params)
-    : Widget (construct_params)
+    : Gtk::Widget (construct_params)
   {
   }
 
   Inscription::Inscription (GtkInscription* castitem)
-    : Widget ((GtkWidget*) castitem)
+    : Gtk::Widget ((GtkWidget*) (castitem))
   {
   }
 
   Inscription::Inscription (Inscription&& src) noexcept
-    : Widget (std::move (src))
+    : Gtk::Widget (std::move (src))
   {
   }
 
   auto
   Inscription::operator= (Inscription&& src) noexcept -> Inscription&
   {
-    Widget::operator= (std::move (src));
+    Gtk::Widget::operator= (std::move (src));
     return *this;
   }
 
@@ -93,17 +93,17 @@ namespace Gtk
   }
 
   Inscription::Inscription ()
-    : ObjectBase (nullptr),
-      Widget (Glib::ConstructParams (inscription_class_.init ()))
+    : Glib::ObjectBase (nullptr),
+      Gtk::Widget (Glib::ConstructParams (inscription_class_.init ()))
   {
   }
 
   Inscription::Inscription (const Glib::ustring& text)
-    : ObjectBase (nullptr),
-      Widget (Glib::ConstructParams (inscription_class_.init (),
-                                     "text",
-                                     text.c_str (),
-                                     nullptr))
+    : Glib::ObjectBase (nullptr),
+      Gtk::Widget (Glib::ConstructParams (inscription_class_.init (),
+                                          "text",
+                                          text.c_str (),
+                                          nullptr))
   {
   }
 
@@ -123,14 +123,14 @@ namespace Gtk
   auto
   Inscription::get_attributes () const -> Pango::AttrList
   {
-    return Pango::AttrList (
-        gtk_inscription_get_attributes (const_cast<GtkInscription*> (gobj ())));
+    return Pango::AttrList ((gtk_inscription_get_attributes (
+        const_cast<GtkInscription*> (gobj ()))));
   }
 
   auto
   Inscription::set_attributes (Pango::AttrList& attrs) -> void
   {
-    gtk_inscription_set_attributes (gobj (), attrs.gobj ());
+    gtk_inscription_set_attributes (gobj (), (attrs).gobj ());
   }
 
   auto
@@ -141,10 +141,11 @@ namespace Gtk
   }
 
   auto
-  Inscription::get_text_overflow () const -> Overflow
+  Inscription::get_text_overflow () const -> Inscription::Overflow
   {
-    return static_cast<Overflow> (gtk_inscription_get_text_overflow (
-        const_cast<GtkInscription*> (gobj ())));
+    return static_cast<Inscription::Overflow> (
+        gtk_inscription_get_text_overflow (
+            const_cast<GtkInscription*> (gobj ())));
   }
 
   auto
@@ -177,7 +178,7 @@ namespace Gtk
   }
 
   auto
-  Inscription::set_min_chars (const unsigned int min_chars) -> void
+  Inscription::set_min_chars (unsigned int min_chars) -> void
   {
     gtk_inscription_set_min_chars (gobj (), min_chars);
   }
@@ -190,7 +191,7 @@ namespace Gtk
   }
 
   auto
-  Inscription::set_nat_chars (const unsigned int nat_chars) -> void
+  Inscription::set_nat_chars (unsigned int nat_chars) -> void
   {
     gtk_inscription_set_nat_chars (gobj (), nat_chars);
   }
@@ -203,7 +204,7 @@ namespace Gtk
   }
 
   auto
-  Inscription::set_min_lines (const unsigned int min_lines) -> void
+  Inscription::set_min_lines (unsigned int min_lines) -> void
   {
     gtk_inscription_set_min_lines (gobj (), min_lines);
   }
@@ -216,7 +217,7 @@ namespace Gtk
   }
 
   auto
-  Inscription::set_nat_lines (const unsigned int nat_lines) -> void
+  Inscription::set_nat_lines (unsigned int nat_lines) -> void
   {
     gtk_inscription_set_nat_lines (gobj (), nat_lines);
   }
@@ -228,7 +229,7 @@ namespace Gtk
   }
 
   auto
-  Inscription::set_xalign (const float xalign) -> void
+  Inscription::set_xalign (float xalign) -> void
   {
     gtk_inscription_set_xalign (gobj (), xalign);
   }
@@ -240,7 +241,7 @@ namespace Gtk
   }
 
   auto
-  Inscription::set_yalign (const float yalign) -> void
+  Inscription::set_yalign (float yalign) -> void
   {
     gtk_inscription_set_yalign (gobj (), yalign);
   }
@@ -253,79 +254,79 @@ namespace Gtk
   auto
   Inscription::property_attributes () -> Glib::PropertyProxy<Pango::AttrList>
   {
-    return {this, "attributes"};
+    return Glib::PropertyProxy<Pango::AttrList> (this, "attributes");
   }
 
   auto
   Inscription::property_attributes () const -> Glib::PropertyProxy_ReadOnly<Pango::AttrList>
   {
-    return {this, "attributes"};
+    return Glib::PropertyProxy_ReadOnly<Pango::AttrList> (this, "attributes");
   }
 
   auto
   Inscription::property_markup () -> Glib::PropertyProxy_WriteOnly<Glib::ustring>
   {
-    return {this, "markup"};
+    return Glib::PropertyProxy_WriteOnly<Glib::ustring> (this, "markup");
   }
 
   auto
   Inscription::property_min_chars () -> Glib::PropertyProxy<unsigned int>
   {
-    return {this, "min-chars"};
+    return Glib::PropertyProxy<unsigned int> (this, "min-chars");
   }
 
   auto
   Inscription::property_min_chars () const -> Glib::PropertyProxy_ReadOnly<unsigned int>
   {
-    return {this, "min-chars"};
+    return Glib::PropertyProxy_ReadOnly<unsigned int> (this, "min-chars");
   }
 
   auto
   Inscription::property_min_lines () -> Glib::PropertyProxy<unsigned int>
   {
-    return {this, "min-lines"};
+    return Glib::PropertyProxy<unsigned int> (this, "min-lines");
   }
 
   auto
   Inscription::property_min_lines () const -> Glib::PropertyProxy_ReadOnly<unsigned int>
   {
-    return {this, "min-lines"};
+    return Glib::PropertyProxy_ReadOnly<unsigned int> (this, "min-lines");
   }
 
   auto
   Inscription::property_nat_chars () -> Glib::PropertyProxy<unsigned int>
   {
-    return {this, "nat-chars"};
+    return Glib::PropertyProxy<unsigned int> (this, "nat-chars");
   }
 
   auto
   Inscription::property_nat_chars () const -> Glib::PropertyProxy_ReadOnly<unsigned int>
   {
-    return {this, "nat-chars"};
+    return Glib::PropertyProxy_ReadOnly<unsigned int> (this, "nat-chars");
   }
 
   auto
   Inscription::property_nat_lines () -> Glib::PropertyProxy<unsigned int>
   {
-    return {this, "nat-lines"};
+    return Glib::PropertyProxy<unsigned int> (this, "nat-lines");
   }
 
   auto
   Inscription::property_nat_lines () const -> Glib::PropertyProxy_ReadOnly<unsigned int>
   {
-    return {this, "nat-lines"};
+    return Glib::PropertyProxy_ReadOnly<unsigned int> (this, "nat-lines");
   }
 
   auto
   Inscription::property_text () -> Glib::PropertyProxy<Glib::ustring>
   {
-    return {this, "text"};
+    return Glib::PropertyProxy<Glib::ustring> (this, "text");
   }
 
   auto
   Inscription::property_text () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>
   {
-    return {this, "text"};
+    return Glib::PropertyProxy_ReadOnly<Glib::ustring> (this, "text");
   }
 
   static_assert (
@@ -335,15 +336,17 @@ namespace Gtk
       "There is no suitable template specialization of Glib::Value<>.");
 
   auto
-  Inscription::property_text_overflow () -> Glib::PropertyProxy<Overflow>
+  Inscription::property_text_overflow () -> Glib::PropertyProxy<Inscription::Overflow>
   {
-    return {this, "text-overflow"};
+    return Glib::PropertyProxy<Inscription::Overflow> (this, "text-overflow");
   }
 
   auto
-  Inscription::property_text_overflow () const -> Glib::PropertyProxy_ReadOnly<Overflow>
+  Inscription::property_text_overflow () const -> Glib::PropertyProxy_ReadOnly<Inscription::Overflow>
   {
-    return {this, "text-overflow"};
+    return Glib::PropertyProxy_ReadOnly<Inscription::Overflow> (
+        this,
+        "text-overflow");
   }
 
   static_assert (
@@ -354,37 +357,37 @@ namespace Gtk
   auto
   Inscription::property_wrap_mode () -> Glib::PropertyProxy<Pango::WrapMode>
   {
-    return {this, "wrap-mode"};
+    return Glib::PropertyProxy<Pango::WrapMode> (this, "wrap-mode");
   }
 
   auto
   Inscription::property_wrap_mode () const -> Glib::PropertyProxy_ReadOnly<Pango::WrapMode>
   {
-    return {this, "wrap-mode"};
+    return Glib::PropertyProxy_ReadOnly<Pango::WrapMode> (this, "wrap-mode");
   }
 
   auto
   Inscription::property_xalign () -> Glib::PropertyProxy<float>
   {
-    return {this, "xalign"};
+    return Glib::PropertyProxy<float> (this, "xalign");
   }
 
   auto
   Inscription::property_xalign () const -> Glib::PropertyProxy_ReadOnly<float>
   {
-    return {this, "xalign"};
+    return Glib::PropertyProxy_ReadOnly<float> (this, "xalign");
   }
 
   auto
   Inscription::property_yalign () -> Glib::PropertyProxy<float>
   {
-    return {this, "yalign"};
+    return Glib::PropertyProxy<float> (this, "yalign");
   }
 
   auto
   Inscription::property_yalign () const -> Glib::PropertyProxy_ReadOnly<float>
   {
-    return {this, "yalign"};
+    return Glib::PropertyProxy_ReadOnly<float> (this, "yalign");
   }
 
 } // namespace Gtk

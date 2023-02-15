@@ -10,7 +10,7 @@
 namespace
 {
 
-  auto
+  static auto
   PrintOperationPreview_signal_ready_callback (GtkPrintOperationPreview* self,
                                                GtkPrintContext* p0,
                                                void* data) -> void
@@ -18,7 +18,7 @@ namespace
     using namespace Gtk;
     using SlotType = sigc::slot<void (const Glib::RefPtr<PrintContext>&)>;
 
-    const auto obj = dynamic_cast<PrintOperationPreview*> (
+    auto obj = dynamic_cast<PrintOperationPreview*> (
         Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
@@ -35,12 +35,12 @@ namespace
     }
   }
 
-  const Glib::SignalProxyInfo PrintOperationPreview_signal_ready_info = {
+  static const Glib::SignalProxyInfo PrintOperationPreview_signal_ready_info = {
       "ready",
       (GCallback) &PrintOperationPreview_signal_ready_callback,
       (GCallback) &PrintOperationPreview_signal_ready_callback};
 
-  auto
+  static auto
   PrintOperationPreview_signal_got_page_size_callback (
       GtkPrintOperationPreview* self,
       GtkPrintContext* p0,
@@ -51,7 +51,7 @@ namespace
     using SlotType = sigc::slot<void (const Glib::RefPtr<PrintContext>&,
                                       const Glib::RefPtr<PageSetup>&)>;
 
-    const auto obj = dynamic_cast<PrintOperationPreview*> (
+    auto obj = dynamic_cast<PrintOperationPreview*> (
         Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
@@ -69,10 +69,11 @@ namespace
     }
   }
 
-  const Glib::SignalProxyInfo PrintOperationPreview_signal_got_page_size_info =
-      {"got_page_size",
-       (GCallback) &PrintOperationPreview_signal_got_page_size_callback,
-       (GCallback) &PrintOperationPreview_signal_got_page_size_callback};
+  static const Glib::SignalProxyInfo
+      PrintOperationPreview_signal_got_page_size_info = {
+          "got_page_size",
+          (GCallback) &PrintOperationPreview_signal_got_page_size_callback,
+          (GCallback) &PrintOperationPreview_signal_got_page_size_callback};
 
 } // namespace
 
@@ -80,12 +81,13 @@ namespace Glib
 {
 
   auto
-  wrap (GtkPrintOperationPreview* object, const bool take_copy) -> RefPtr<Gtk::PrintOperationPreview>
+  wrap (GtkPrintOperationPreview* object, bool take_copy) -> Glib::RefPtr<Gtk::PrintOperationPreview>
   {
     return Glib::make_refptr_for_instance<Gtk::PrintOperationPreview> (
-        Glib::wrap_auto_interface<Gtk::PrintOperationPreview> (
-            (GObject*) object,
-            take_copy));
+        dynamic_cast<Gtk::PrintOperationPreview*> (
+            Glib::wrap_auto_interface<Gtk::PrintOperationPreview> (
+                (GObject*) (object),
+                take_copy)));
   }
 
 } // namespace Glib
@@ -94,7 +96,7 @@ namespace Gtk
 {
 
   auto
-  PrintOperationPreview_Class::init () -> const Interface_Class&
+  PrintOperationPreview_Class::init () -> const Glib::Interface_Class&
   {
     if (!gtype_)
     {
@@ -124,10 +126,10 @@ namespace Gtk
   auto
   PrintOperationPreview_Class::render_page_vfunc_callback (
       GtkPrintOperationPreview* self,
-      const gint page_nr) -> void
+      gint page_nr) -> void
   {
-    const auto obj_base =
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self);
+    const auto obj_base = static_cast<Glib::ObjectBase*> (
+        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -146,7 +148,7 @@ namespace Gtk
       }
     }
 
-    const BaseClassType* const base =
+    BaseClassType* const base =
         static_cast<BaseClassType*> (g_type_interface_peek_parent (
             g_type_interface_peek (G_OBJECT_GET_CLASS (self),
                                    CppObjectType::get_type ())));
@@ -159,8 +161,8 @@ namespace Gtk
   PrintOperationPreview_Class::end_preview_vfunc_callback (
       GtkPrintOperationPreview* self) -> void
   {
-    const auto obj_base =
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self);
+    const auto obj_base = static_cast<Glib::ObjectBase*> (
+        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -179,7 +181,7 @@ namespace Gtk
       }
     }
 
-    const BaseClassType* const base =
+    BaseClassType* const base =
         static_cast<BaseClassType*> (g_type_interface_peek_parent (
             g_type_interface_peek (G_OBJECT_GET_CLASS (self),
                                    CppObjectType::get_type ())));
@@ -191,10 +193,10 @@ namespace Gtk
   auto
   PrintOperationPreview_Class::is_selected_vfunc_callback (
       GtkPrintOperationPreview* self,
-      const gint page_nr) -> gboolean
+      gint page_nr) -> gboolean
   {
-    const auto obj_base =
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self);
+    const auto obj_base = static_cast<Glib::ObjectBase*> (
+        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -203,7 +205,7 @@ namespace Gtk
       {
         try
         {
-          return obj->is_selected_vfunc (page_nr);
+          return static_cast<int> (obj->is_selected_vfunc (page_nr));
         }
         catch (...)
         {
@@ -212,7 +214,7 @@ namespace Gtk
       }
     }
 
-    const BaseClassType* const base =
+    BaseClassType* const base =
         static_cast<BaseClassType*> (g_type_interface_peek_parent (
             g_type_interface_peek (G_OBJECT_GET_CLASS (self),
                                    CppObjectType::get_type ())));
@@ -228,8 +230,8 @@ namespace Gtk
   PrintOperationPreview_Class::ready_callback (GtkPrintOperationPreview* self,
                                                GtkPrintContext* p0) -> void
   {
-    const auto obj_base =
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self);
+    const auto obj_base = static_cast<Glib::ObjectBase*> (
+        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -263,8 +265,8 @@ namespace Gtk
       GtkPrintContext* p0,
       GtkPageSetup* p1) -> void
   {
-    const auto obj_base =
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self);
+    const auto obj_base = static_cast<Glib::ObjectBase*> (
+        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -295,43 +297,43 @@ namespace Gtk
   auto
   PrintOperationPreview_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
   {
-    return new PrintOperationPreview ((GtkPrintOperationPreview*) object);
+    return new PrintOperationPreview ((GtkPrintOperationPreview*) (object));
   }
 
   PrintOperationPreview::PrintOperationPreview ()
-    : Interface (printoperationpreview_class_.init ())
+    : Glib::Interface (printoperationpreview_class_.init ())
   {
   }
 
   PrintOperationPreview::PrintOperationPreview (
       GtkPrintOperationPreview* castitem)
-    : Interface ((GObject*) castitem)
+    : Glib::Interface ((GObject*) (castitem))
   {
   }
 
   PrintOperationPreview::PrintOperationPreview (
       const Glib::Interface_Class& interface_class)
-    : Interface (interface_class)
+    : Glib::Interface (interface_class)
   {
   }
 
   PrintOperationPreview::PrintOperationPreview (
       PrintOperationPreview&& src) noexcept
-    : Interface (std::move (src))
+    : Glib::Interface (std::move (src))
   {
   }
 
   auto
   PrintOperationPreview::operator= (PrintOperationPreview&& src) noexcept -> PrintOperationPreview&
   {
-    Interface::operator= (std::move (src));
+    Glib::Interface::operator= (std::move (src));
     return *this;
   }
 
-  PrintOperationPreview::~PrintOperationPreview () noexcept = default;
+  PrintOperationPreview::~PrintOperationPreview () noexcept {}
 
   auto
-  PrintOperationPreview::add_interface (const GType gtype_implementer) -> void
+  PrintOperationPreview::add_interface (GType gtype_implementer) -> void
   {
     printoperationpreview_class_.init ().add_interface (gtype_implementer);
   }
@@ -352,7 +354,7 @@ namespace Gtk
   }
 
   auto
-  PrintOperationPreview::render_page (const int page_nr) -> void
+  PrintOperationPreview::render_page (int page_nr) -> void
   {
     gtk_print_operation_preview_render_page (gobj (), page_nr);
   }
@@ -364,7 +366,7 @@ namespace Gtk
   }
 
   auto
-  PrintOperationPreview::is_selected (const int page_nr) const -> bool
+  PrintOperationPreview::is_selected (int page_nr) const -> bool
   {
     return gtk_print_operation_preview_is_selected (
         const_cast<GtkPrintOperationPreview*> (gobj ()),
@@ -374,37 +376,43 @@ namespace Gtk
   auto
   PrintOperationPreview::signal_ready () -> Glib::SignalProxy<void (const Glib::RefPtr<PrintContext>&)>
   {
-    return {this, &PrintOperationPreview_signal_ready_info};
+    return Glib::SignalProxy<void (const Glib::RefPtr<PrintContext>&)> (
+        this,
+        &PrintOperationPreview_signal_ready_info);
   }
 
   auto
   PrintOperationPreview::signal_got_page_size () -> Glib::SignalProxy<void (const Glib::RefPtr<PrintContext>&,
                                  const Glib::RefPtr<PageSetup>&)>
   {
-    return {this, &PrintOperationPreview_signal_got_page_size_info};
+    return Glib::SignalProxy<void (const Glib::RefPtr<PrintContext>&,
+                                   const Glib::RefPtr<PageSetup>&)> (
+        this,
+        &PrintOperationPreview_signal_got_page_size_info);
   }
 
   auto
-  PrintOperationPreview::on_ready (const Glib::RefPtr<PrintContext>& context) -> void
+  Gtk::PrintOperationPreview::on_ready (
+      const Glib::RefPtr<PrintContext>& context) -> void
   {
     const auto base =
         static_cast<BaseClassType*> (g_type_interface_peek_parent (
             g_type_interface_peek (G_OBJECT_GET_CLASS (gobject_),
-                                   get_type ())));
+                                   CppObjectType::get_type ())));
 
     if (base && base->ready)
       (*base->ready) (gobj (), Glib::unwrap (context));
   }
 
   auto
-  PrintOperationPreview::on_got_page_size (
+  Gtk::PrintOperationPreview::on_got_page_size (
       const Glib::RefPtr<PrintContext>& context,
       const Glib::RefPtr<PageSetup>& page_setup) -> void
   {
     const auto base =
         static_cast<BaseClassType*> (g_type_interface_peek_parent (
             g_type_interface_peek (G_OBJECT_GET_CLASS (gobject_),
-                                   get_type ())));
+                                   CppObjectType::get_type ())));
 
     if (base && base->got_page_size)
       (*base->got_page_size) (gobj (),
@@ -413,12 +421,12 @@ namespace Gtk
   }
 
   auto
-  PrintOperationPreview::render_page_vfunc (const int page_nr) -> void
+  Gtk::PrintOperationPreview::render_page_vfunc (int page_nr) -> void
   {
     const auto base =
         static_cast<BaseClassType*> (g_type_interface_peek_parent (
             g_type_interface_peek (G_OBJECT_GET_CLASS (gobject_),
-                                   get_type ())));
+                                   CppObjectType::get_type ())));
 
     if (base && base->render_page)
     {
@@ -427,12 +435,12 @@ namespace Gtk
   }
 
   auto
-  PrintOperationPreview::end_preview_vfunc () -> void
+  Gtk::PrintOperationPreview::end_preview_vfunc () -> void
   {
     const auto base =
         static_cast<BaseClassType*> (g_type_interface_peek_parent (
             g_type_interface_peek (G_OBJECT_GET_CLASS (gobject_),
-                                   get_type ())));
+                                   CppObjectType::get_type ())));
 
     if (base && base->end_preview)
     {
@@ -441,16 +449,16 @@ namespace Gtk
   }
 
   auto
-  PrintOperationPreview::is_selected_vfunc (const int page_nr) const -> bool
+  Gtk::PrintOperationPreview::is_selected_vfunc (int page_nr) const -> bool
   {
     const auto base =
         static_cast<BaseClassType*> (g_type_interface_peek_parent (
             g_type_interface_peek (G_OBJECT_GET_CLASS (gobject_),
-                                   get_type ())));
+                                   CppObjectType::get_type ())));
 
     if (base && base->is_selected)
     {
-      const bool retval (
+      bool retval (
           (*base->is_selected) (const_cast<GtkPrintOperationPreview*> (gobj ()),
                                 page_nr));
       return retval;

@@ -86,8 +86,8 @@ namespace Gtk
     static auto
     create () -> Glib::RefPtr<GestureLongPress>;
 
-    void
-    set_delay_factor (double delay_factor);
+    auto
+    set_delay_factor (double delay_factor) -> void;
 
     auto
     get_delay_factor () const -> double;
@@ -113,9 +113,7 @@ namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkGestureLongPress* object, bool take_copy = false) -> Glib::RefPtr<Gtk::GestureLongPress>;
 } // namespace Glib
 

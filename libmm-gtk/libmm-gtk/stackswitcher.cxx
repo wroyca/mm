@@ -26,10 +26,10 @@ namespace Glib
 {
 
   auto
-  wrap (GtkStackSwitcher* object, const bool take_copy) -> Gtk::StackSwitcher*
+  wrap (GtkStackSwitcher* object, bool take_copy) -> Gtk::StackSwitcher*
   {
     return dynamic_cast<Gtk::StackSwitcher*> (
-        wrap_auto ((GObject*) object, take_copy));
+        Glib::wrap_auto ((GObject*) (object), take_copy));
   }
 
 } // namespace Glib
@@ -38,7 +38,7 @@ namespace Gtk
 {
 
   auto
-  StackSwitcher_Class::init () -> const Class&
+  StackSwitcher_Class::init () -> const Glib::Class&
   {
     if (!gtype_)
     {
@@ -60,28 +60,28 @@ namespace Gtk
   auto
   StackSwitcher_Class::wrap_new (GObject* o) -> Glib::ObjectBase*
   {
-    return manage (new StackSwitcher ((GtkStackSwitcher*) o));
+    return manage (new StackSwitcher ((GtkStackSwitcher*) (o)));
   }
 
   StackSwitcher::StackSwitcher (const Glib::ConstructParams& construct_params)
-    : Widget (construct_params)
+    : Gtk::Widget (construct_params)
   {
   }
 
   StackSwitcher::StackSwitcher (GtkStackSwitcher* castitem)
-    : Widget ((GtkWidget*) castitem)
+    : Gtk::Widget ((GtkWidget*) (castitem))
   {
   }
 
   StackSwitcher::StackSwitcher (StackSwitcher&& src) noexcept
-    : Widget (std::move (src))
+    : Gtk::Widget (std::move (src))
   {
   }
 
   auto
   StackSwitcher::operator= (StackSwitcher&& src) noexcept -> StackSwitcher&
   {
-    Widget::operator= (std::move (src));
+    Gtk::Widget::operator= (std::move (src));
     return *this;
   }
 
@@ -105,15 +105,15 @@ namespace Gtk
   }
 
   StackSwitcher::StackSwitcher ()
-    : ObjectBase (nullptr),
-      Widget (Glib::ConstructParams (stackswitcher_class_.init ()))
+    : Glib::ObjectBase (nullptr),
+      Gtk::Widget (Glib::ConstructParams (stackswitcher_class_.init ()))
   {
   }
 
   auto
   StackSwitcher::set_stack (Stack& stack) -> void
   {
-    gtk_stack_switcher_set_stack (gobj (), stack.gobj ());
+    gtk_stack_switcher_set_stack (gobj (), (stack).gobj ());
   }
 
   auto
@@ -136,13 +136,13 @@ namespace Gtk
   auto
   StackSwitcher::property_stack () -> Glib::PropertyProxy<Stack*>
   {
-    return {this, "stack"};
+    return Glib::PropertyProxy<Stack*> (this, "stack");
   }
 
   auto
   StackSwitcher::property_stack () const -> Glib::PropertyProxy_ReadOnly<Stack*>
   {
-    return {this, "stack"};
+    return Glib::PropertyProxy_ReadOnly<Stack*> (this, "stack");
   }
 
 } // namespace Gtk

@@ -87,10 +87,10 @@ namespace Gtk
     static auto
     get_for_drag (const Glib::RefPtr<Gdk::Drag>& drag) -> DragIcon*;
 
-    void
-    set_child (Widget& child);
-    void
-    unset_child ();
+    auto
+    set_child (Widget& child) -> void;
+    auto
+    unset_child () -> void;
 
     auto
     get_child () -> Widget*;
@@ -98,11 +98,11 @@ namespace Gtk
     auto
     get_child () const -> const Widget*;
 
-    static void
+    static auto
     set_from_paintable (const Glib::RefPtr<Gdk::Drag>& drag,
                         const Glib::RefPtr<Gdk::Paintable>& paintable,
                         int hot_x,
-                        int hot_y);
+                        int hot_y) -> void;
 
     static auto
     create_widget_for_value (const Glib::ValueBase& value) -> Widget*;
@@ -122,9 +122,7 @@ namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkDragIcon* object, bool take_copy = false) -> Gtk::DragIcon*;
 } // namespace Glib
 

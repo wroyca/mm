@@ -3,24 +3,26 @@
 #ifndef _GTKMM_COLORBUTTON_H
 #define _GTKMM_COLORBUTTON_H
 
-#include <libmm-glib/ustring.hxx>
-#include <sigc++/sigc++.h>
+#ifndef GTKMM_DISABLE_DEPRECATED
 
-#include <libmm-gdk/rgba.hxx>
-#include <libmm-gtk/colorchooser.hxx>
-#include <libmm-gtk/widget.hxx>
+  #include <libmm-glib/ustring.hxx>
+  #include <sigc++/sigc++.h>
 
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #include <libmm-gdk/rgba.hxx>
+  #include <libmm-gtk/colorchooser.hxx>
+  #include <libmm-gtk/widget.hxx>
+
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
 using GtkColorButton = struct _GtkColorButton;
 using GtkColorButtonClass = struct _GtkColorButtonClass;
-#endif
+  #endif
 
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
   class GTKMM_API ColorButton_Class;
 }
-#endif
+  #endif
 
 namespace Gtk
 {
@@ -29,12 +31,12 @@ namespace Gtk
                                 public ColorChooser
   {
   public:
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
     typedef ColorButton CppObjectType;
     typedef ColorButton_Class CppClassType;
     typedef GtkColorButton BaseObjectType;
     typedef GtkColorButtonClass BaseClassType;
-#endif
+  #endif
 
     ColorButton (ColorButton&& src) noexcept;
     auto
@@ -46,7 +48,7 @@ namespace Gtk
 
     ~ColorButton () noexcept override;
 
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   private:
     friend GTKMM_API class ColorButton_Class;
@@ -56,17 +58,17 @@ namespace Gtk
     explicit ColorButton (const Glib::ConstructParams& construct_params);
     explicit ColorButton (GtkColorButton* castitem);
 
-#endif
+  #endif
 
   public:
     static auto
     get_type () -> GType G_GNUC_CONST;
 
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
     static auto
     get_base_type () -> GType G_GNUC_CONST;
-#endif
+  #endif
 
     auto
     gobj () -> GtkColorButton*
@@ -86,14 +88,14 @@ namespace Gtk
 
     explicit ColorButton (const Gdk::RGBA& rgba);
 
-    void
-    set_title (const Glib::ustring& title);
+    auto
+    set_title (const Glib::ustring& title) -> void;
 
     auto
     get_title () const -> Glib::ustring;
 
-    void
-    set_modal (bool modal = true);
+    auto
+    set_modal (bool modal = true) -> void;
 
     auto
     get_modal () const -> bool;
@@ -128,10 +130,10 @@ namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkColorButton* object, bool take_copy = false) -> Gtk::ColorButton*;
 } // namespace Glib
+
+#endif
 
 #endif

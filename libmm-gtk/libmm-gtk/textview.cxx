@@ -13,17 +13,17 @@ namespace Gtk
 {
 
   TextView::TextView (const Glib::RefPtr<TextBuffer>& buffer)
-    : ObjectBase (nullptr),
-      Widget (Glib::ConstructParams (textview_class_.init ()))
+    : Glib::ObjectBase (nullptr),
+      Gtk::Widget (Glib::ConstructParams (textview_class_.init ()))
   {
     set_buffer (buffer);
   }
 
   auto
-  TextView::scroll_to (TextBuffer::iterator& iter, const double within_margin) -> bool
+  TextView::scroll_to (TextBuffer::iterator& iter, double within_margin) -> bool
   {
     return gtk_text_view_scroll_to_iter (gobj (),
-                                         iter.gobj (),
+                                         (iter).gobj (),
                                          within_margin,
                                          FALSE,
                                          0.0,
@@ -32,12 +32,12 @@ namespace Gtk
 
   auto
   TextView::scroll_to (TextBuffer::iterator& iter,
-                       const double within_margin,
-                       const double xalign,
-                       const double yalign) -> bool
+                       double within_margin,
+                       double xalign,
+                       double yalign) -> bool
   {
     return gtk_text_view_scroll_to_iter (gobj (),
-                                         iter.gobj (),
+                                         (iter).gobj (),
                                          within_margin,
                                          TRUE,
                                          xalign,
@@ -46,7 +46,7 @@ namespace Gtk
 
   auto
   TextView::scroll_to (const Glib::RefPtr<TextBuffer::Mark>& mark,
-                       const double within_margin) -> void
+                       double within_margin) -> void
   {
     gtk_text_view_scroll_to_mark (gobj (),
                                   Glib::unwrap (mark),
@@ -58,9 +58,9 @@ namespace Gtk
 
   auto
   TextView::scroll_to (const Glib::RefPtr<TextBuffer::Mark>& mark,
-                       const double within_margin,
-                       const double xalign,
-                       const double yalign) -> void
+                       double within_margin,
+                       double xalign,
+                       double yalign) -> void
   {
     gtk_text_view_scroll_to_mark (gobj (),
                                   Glib::unwrap (mark),
@@ -83,12 +83,12 @@ namespace Gtk
 namespace
 {
 
-  const Glib::SignalProxyInfo TextView_signal_set_anchor_info = {
+  static const Glib::SignalProxyInfo TextView_signal_set_anchor_info = {
       "set_anchor",
       (GCallback) &Glib::SignalProxyNormal::slot0_void_callback,
       (GCallback) &Glib::SignalProxyNormal::slot0_void_callback};
 
-  auto
+  static auto
   TextView_signal_insert_at_cursor_callback (GtkTextView* self,
                                              const gchar* p0,
                                              void* data) -> void
@@ -96,7 +96,7 @@ namespace
     using namespace Gtk;
     using SlotType = sigc::slot<void (const Glib::ustring&)>;
 
-    const auto obj = dynamic_cast<TextView*> (
+    auto obj = dynamic_cast<TextView*> (
         Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
@@ -114,7 +114,7 @@ namespace
     }
   }
 
-  const Glib::SignalProxyInfo TextView_signal_insert_at_cursor_info = {
+  static const Glib::SignalProxyInfo TextView_signal_insert_at_cursor_info = {
       "insert_at_cursor",
       (GCallback) &TextView_signal_insert_at_cursor_callback,
       (GCallback) &TextView_signal_insert_at_cursor_callback};
@@ -131,10 +131,10 @@ namespace Glib
 {
 
   auto
-  wrap (GtkTextView* object, const bool take_copy) -> Gtk::TextView*
+  wrap (GtkTextView* object, bool take_copy) -> Gtk::TextView*
   {
     return dynamic_cast<Gtk::TextView*> (
-        wrap_auto ((GObject*) object, take_copy));
+        Glib::wrap_auto ((GObject*) (object), take_copy));
   }
 
 } // namespace Glib
@@ -143,7 +143,7 @@ namespace Gtk
 {
 
   auto
-  TextView_Class::init () -> const Class&
+  TextView_Class::init () -> const Glib::Class&
   {
     if (!gtype_)
     {
@@ -170,8 +170,8 @@ namespace Gtk
   auto
   TextView_Class::set_anchor_callback (GtkTextView* self) -> void
   {
-    const auto obj_base =
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self);
+    const auto obj_base = static_cast<Glib::ObjectBase*> (
+        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -200,8 +200,8 @@ namespace Gtk
   auto
   TextView_Class::insert_at_cursor_callback (GtkTextView* self, const gchar* p0) -> void
   {
-    const auto obj_base =
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self);
+    const auto obj_base = static_cast<Glib::ObjectBase*> (
+        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -231,21 +231,21 @@ namespace Gtk
   auto
   TextView_Class::wrap_new (GObject* o) -> Glib::ObjectBase*
   {
-    return manage (new TextView ((GtkTextView*) o));
+    return manage (new TextView ((GtkTextView*) (o)));
   }
 
   TextView::TextView (const Glib::ConstructParams& construct_params)
-    : Widget (construct_params)
+    : Gtk::Widget (construct_params)
   {
   }
 
   TextView::TextView (GtkTextView* castitem)
-    : Widget ((GtkWidget*) castitem)
+    : Gtk::Widget ((GtkWidget*) (castitem))
   {
   }
 
   TextView::TextView (TextView&& src) noexcept
-    : Widget (std::move (src)),
+    : Gtk::Widget (std::move (src)),
       Scrollable (std::move (src))
   {
   }
@@ -253,7 +253,7 @@ namespace Gtk
   auto
   TextView::operator= (TextView&& src) noexcept -> TextView&
   {
-    Widget::operator= (std::move (src));
+    Gtk::Widget::operator= (std::move (src));
     Scrollable::operator= (std::move (src));
     return *this;
   }
@@ -278,8 +278,8 @@ namespace Gtk
   }
 
   TextView::TextView ()
-    : ObjectBase (nullptr),
-      Widget (Glib::ConstructParams (textview_class_.init ()))
+    : Glib::ObjectBase (nullptr),
+      Gtk::Widget (Glib::ConstructParams (textview_class_.init ()))
   {
   }
 
@@ -320,13 +320,13 @@ namespace Gtk
   TextView::get_visible_rect (Gdk::Rectangle& visible_rect) const -> void
   {
     gtk_text_view_get_visible_rect (const_cast<GtkTextView*> (gobj ()),
-                                    visible_rect.gobj ());
+                                    (visible_rect).gobj ());
   }
 
   auto
-  TextView::set_cursor_visible (const bool setting) -> void
+  TextView::set_cursor_visible (bool setting) -> void
   {
-    gtk_text_view_set_cursor_visible (gobj (), setting);
+    gtk_text_view_set_cursor_visible (gobj (), static_cast<int> (setting));
   }
 
   auto
@@ -348,9 +348,9 @@ namespace Gtk
                                   Gdk::Rectangle& weak) const -> void
   {
     gtk_text_view_get_cursor_locations (const_cast<GtkTextView*> (gobj ()),
-                                        iter.gobj (),
-                                        strong.gobj (),
-                                        weak.gobj ());
+                                        (iter).gobj (),
+                                        (strong).gobj (),
+                                        (weak).gobj ());
   }
 
   auto
@@ -359,8 +359,8 @@ namespace Gtk
   {
     gtk_text_view_get_cursor_locations (const_cast<GtkTextView*> (gobj ()),
                                         nullptr,
-                                        strong.gobj (),
-                                        weak.gobj ());
+                                        (strong).gobj (),
+                                        (weak).gobj ());
   }
 
   auto
@@ -368,26 +368,24 @@ namespace Gtk
                                Gdk::Rectangle& location) const -> void
   {
     gtk_text_view_get_iter_location (const_cast<GtkTextView*> (gobj ()),
-                                     iter.gobj (),
-                                     location.gobj ());
+                                     (iter).gobj (),
+                                     (location).gobj ());
   }
 
   auto
-  TextView::get_iter_at_location (TextBuffer::iterator& iter,
-                                  const int x,
-                                  const int y) -> bool
+  TextView::get_iter_at_location (TextBuffer::iterator& iter, int x, int y) -> bool
   {
-    return gtk_text_view_get_iter_at_location (gobj (), iter.gobj (), x, y);
+    return gtk_text_view_get_iter_at_location (gobj (), (iter).gobj (), x, y);
   }
 
   auto
   TextView::get_iter_at_location (TextBuffer::const_iterator& iter,
-                                  const int x,
-                                  const int y) const -> bool
+                                  int x,
+                                  int y) const -> bool
   {
     return gtk_text_view_get_iter_at_location (
         const_cast<GtkTextView*> (gobj ()),
-        iter.gobj (),
+        (iter).gobj (),
         x,
         y);
   }
@@ -395,12 +393,12 @@ namespace Gtk
   auto
   TextView::get_iter_at_position (TextBuffer::iterator& iter,
                                   int& trailing,
-                                  const int x,
-                                  const int y) -> bool
+                                  int x,
+                                  int y) -> bool
   {
     return gtk_text_view_get_iter_at_position (gobj (),
-                                               iter.gobj (),
-                                               &trailing,
+                                               (iter).gobj (),
+                                               &(trailing),
                                                x,
                                                y);
   }
@@ -408,13 +406,13 @@ namespace Gtk
   auto
   TextView::get_iter_at_position (TextBuffer::const_iterator& iter,
                                   int& trailing,
-                                  const int x,
-                                  const int y) const -> bool
+                                  int x,
+                                  int y) const -> bool
   {
     return gtk_text_view_get_iter_at_position (
         const_cast<GtkTextView*> (gobj ()),
-        iter.gobj (),
-        &trailing,
+        (iter).gobj (),
+        &(trailing),
         x,
         y);
   }
@@ -425,34 +423,37 @@ namespace Gtk
                              int& height) const -> void
   {
     gtk_text_view_get_line_yrange (const_cast<GtkTextView*> (gobj ()),
-                                   iter.gobj (),
-                                   &y,
-                                   &height);
+                                   (iter).gobj (),
+                                   &(y),
+                                   &(height));
   }
 
   auto
   TextView::get_line_at_y (TextBuffer::iterator& target_iter,
-                           const int y,
+                           int y,
                            int& line_top) -> void
   {
-    gtk_text_view_get_line_at_y (gobj (), target_iter.gobj (), y, &line_top);
+    gtk_text_view_get_line_at_y (gobj (),
+                                 (target_iter).gobj (),
+                                 y,
+                                 &(line_top));
   }
 
   auto
   TextView::get_line_at_y (TextBuffer::const_iterator& target_iter,
-                           const int y,
+                           int y,
                            int& line_top) const -> void
   {
     gtk_text_view_get_line_at_y (const_cast<GtkTextView*> (gobj ()),
-                                 target_iter.gobj (),
+                                 (target_iter).gobj (),
                                  y,
-                                 &line_top);
+                                 &(line_top));
   }
 
   auto
   TextView::buffer_to_window_coords (TextWindowType win,
-                                     const int buffer_x,
-                                     const int buffer_y,
+                                     int buffer_x,
+                                     int buffer_y,
                                      int& window_x,
                                      int& window_y) const -> void
   {
@@ -460,14 +461,14 @@ namespace Gtk
                                            static_cast<GtkTextWindowType> (win),
                                            buffer_x,
                                            buffer_y,
-                                           &window_x,
-                                           &window_y);
+                                           &(window_x),
+                                           &(window_y));
   }
 
   auto
   TextView::window_to_buffer_coords (TextWindowType win,
-                                     const int window_x,
-                                     const int window_y,
+                                     int window_x,
+                                     int window_y,
                                      int& buffer_x,
                                      int& buffer_y) const -> void
   {
@@ -475,44 +476,44 @@ namespace Gtk
                                            static_cast<GtkTextWindowType> (win),
                                            window_x,
                                            window_y,
-                                           &buffer_x,
-                                           &buffer_y);
+                                           &(buffer_x),
+                                           &(buffer_y));
   }
 
   auto
   TextView::forward_display_line (TextBuffer::iterator& iter) -> bool
   {
-    return gtk_text_view_forward_display_line (gobj (), iter.gobj ());
+    return gtk_text_view_forward_display_line (gobj (), (iter).gobj ());
   }
 
   auto
   TextView::backward_display_line (TextBuffer::iterator& iter) -> bool
   {
-    return gtk_text_view_backward_display_line (gobj (), iter.gobj ());
+    return gtk_text_view_backward_display_line (gobj (), (iter).gobj ());
   }
 
   auto
   TextView::forward_display_line_end (TextBuffer::iterator& iter) -> bool
   {
-    return gtk_text_view_forward_display_line_end (gobj (), iter.gobj ());
+    return gtk_text_view_forward_display_line_end (gobj (), (iter).gobj ());
   }
 
   auto
   TextView::backward_display_line_start (TextBuffer::iterator& iter) -> bool
   {
-    return gtk_text_view_backward_display_line_start (gobj (), iter.gobj ());
+    return gtk_text_view_backward_display_line_start (gobj (), (iter).gobj ());
   }
 
   auto
   TextView::starts_display_line (const TextBuffer::iterator& iter) -> bool
   {
-    return gtk_text_view_starts_display_line (gobj (), iter.gobj ());
+    return gtk_text_view_starts_display_line (gobj (), (iter).gobj ());
   }
 
   auto
-  TextView::move_visually (TextBuffer::iterator& iter, const int count) -> bool
+  TextView::move_visually (TextBuffer::iterator& iter, int count) -> bool
   {
-    return gtk_text_view_move_visually (gobj (), iter.gobj (), count);
+    return gtk_text_view_move_visually (gobj (), (iter).gobj (), count);
   }
 
   auto
@@ -537,7 +538,7 @@ namespace Gtk
   }
 
   auto
-  TextView::get_gutter (const TextWindowType win) const -> const Widget*
+  TextView::get_gutter (TextWindowType win) const -> const Widget*
   {
     return const_cast<TextView*> (this)->get_gutter (win);
   }
@@ -547,7 +548,7 @@ namespace Gtk
   {
     gtk_text_view_set_gutter (gobj (),
                               static_cast<GtkTextWindowType> (win),
-                              widget.gobj ());
+                              (widget).gobj ());
   }
 
   auto
@@ -556,26 +557,26 @@ namespace Gtk
       const Glib::RefPtr<TextBuffer::ChildAnchor>& anchor) -> void
   {
     gtk_text_view_add_child_at_anchor (gobj (),
-                                       child.gobj (),
+                                       (child).gobj (),
                                        Glib::unwrap (anchor));
   }
 
   auto
-  TextView::add_overlay (Widget& child, const int xpos, const int ypos) -> void
+  TextView::add_overlay (Widget& child, int xpos, int ypos) -> void
   {
-    gtk_text_view_add_overlay (gobj (), child.gobj (), xpos, ypos);
+    gtk_text_view_add_overlay (gobj (), (child).gobj (), xpos, ypos);
   }
 
   auto
-  TextView::move_overlay (Widget& child, const int xpos, const int ypos) -> void
+  TextView::move_overlay (Widget& child, int xpos, int ypos) -> void
   {
-    gtk_text_view_move_overlay (gobj (), child.gobj (), xpos, ypos);
+    gtk_text_view_move_overlay (gobj (), (child).gobj (), xpos, ypos);
   }
 
   auto
   TextView::remove (Widget& child) -> void
   {
-    gtk_text_view_remove (gobj (), child.gobj ());
+    gtk_text_view_remove (gobj (), (child).gobj ());
   }
 
   auto
@@ -592,9 +593,9 @@ namespace Gtk
   }
 
   auto
-  TextView::set_editable (const bool setting) -> void
+  TextView::set_editable (bool setting) -> void
   {
-    gtk_text_view_set_editable (gobj (), setting);
+    gtk_text_view_set_editable (gobj (), static_cast<int> (setting));
   }
 
   auto
@@ -604,7 +605,7 @@ namespace Gtk
   }
 
   auto
-  TextView::set_pixels_above_lines (const int pixels_above_lines) -> void
+  TextView::set_pixels_above_lines (int pixels_above_lines) -> void
   {
     gtk_text_view_set_pixels_above_lines (gobj (), pixels_above_lines);
   }
@@ -617,7 +618,7 @@ namespace Gtk
   }
 
   auto
-  TextView::set_pixels_below_lines (const int pixels_below_lines) -> void
+  TextView::set_pixels_below_lines (int pixels_below_lines) -> void
   {
     gtk_text_view_set_pixels_below_lines (gobj (), pixels_below_lines);
   }
@@ -630,7 +631,7 @@ namespace Gtk
   }
 
   auto
-  TextView::set_pixels_inside_wrap (const int pixels_inside_wrap) -> void
+  TextView::set_pixels_inside_wrap (int pixels_inside_wrap) -> void
   {
     gtk_text_view_set_pixels_inside_wrap (gobj (), pixels_inside_wrap);
   }
@@ -658,7 +659,7 @@ namespace Gtk
   }
 
   auto
-  TextView::set_left_margin (const int left_margin) -> void
+  TextView::set_left_margin (int left_margin) -> void
   {
     gtk_text_view_set_left_margin (gobj (), left_margin);
   }
@@ -670,7 +671,7 @@ namespace Gtk
   }
 
   auto
-  TextView::set_right_margin (const int right_margin) -> void
+  TextView::set_right_margin (int right_margin) -> void
   {
     gtk_text_view_set_right_margin (gobj (), right_margin);
   }
@@ -682,7 +683,7 @@ namespace Gtk
   }
 
   auto
-  TextView::set_top_margin (const int top_margin) -> void
+  TextView::set_top_margin (int top_margin) -> void
   {
     gtk_text_view_set_top_margin (gobj (), top_margin);
   }
@@ -694,7 +695,7 @@ namespace Gtk
   }
 
   auto
-  TextView::set_bottom_margin (const int bottom_margin) -> void
+  TextView::set_bottom_margin (int bottom_margin) -> void
   {
     gtk_text_view_set_bottom_margin (gobj (), bottom_margin);
   }
@@ -706,7 +707,7 @@ namespace Gtk
   }
 
   auto
-  TextView::set_indent (const int indent) -> void
+  TextView::set_indent (int indent) -> void
   {
     gtk_text_view_set_indent (gobj (), indent);
   }
@@ -720,21 +721,21 @@ namespace Gtk
   auto
   TextView::set_tabs (Pango::TabArray& tabs) -> void
   {
-    gtk_text_view_set_tabs (gobj (), tabs.gobj ());
+    gtk_text_view_set_tabs (gobj (), (tabs).gobj ());
   }
 
   auto
   TextView::get_tabs () const -> Pango::TabArray
   {
     return Pango::TabArray (
-        gtk_text_view_get_tabs (const_cast<GtkTextView*> (gobj ())),
+        (gtk_text_view_get_tabs (const_cast<GtkTextView*> (gobj ()))),
         false);
   }
 
   auto
-  TextView::set_overwrite (const bool overwrite) -> void
+  TextView::set_overwrite (bool overwrite) -> void
   {
-    gtk_text_view_set_overwrite (gobj (), overwrite);
+    gtk_text_view_set_overwrite (gobj (), static_cast<int> (overwrite));
   }
 
   auto
@@ -744,9 +745,9 @@ namespace Gtk
   }
 
   auto
-  TextView::set_accepts_tab (const bool accepts_tab) -> void
+  TextView::set_accepts_tab (bool accepts_tab) -> void
   {
-    gtk_text_view_set_accepts_tab (gobj (), accepts_tab);
+    gtk_text_view_set_accepts_tab (gobj (), static_cast<int> (accepts_tab));
   }
 
   auto
@@ -783,9 +784,9 @@ namespace Gtk
   }
 
   auto
-  TextView::set_monospace (const bool monospace) -> void
+  TextView::set_monospace (bool monospace) -> void
   {
-    gtk_text_view_set_monospace (gobj (), monospace);
+    gtk_text_view_set_monospace (gobj (), static_cast<int> (monospace));
   }
 
   auto
@@ -848,61 +849,63 @@ namespace Gtk
   auto
   TextView::signal_set_anchor () -> Glib::SignalProxy<void ()>
   {
-    return {this, &TextView_signal_set_anchor_info};
+    return Glib::SignalProxy<void ()> (this, &TextView_signal_set_anchor_info);
   }
 
   auto
   TextView::signal_insert_at_cursor () -> Glib::SignalProxy<void (const Glib::ustring&)>
   {
-    return {this, &TextView_signal_insert_at_cursor_info};
+    return Glib::SignalProxy<void (const Glib::ustring&)> (
+        this,
+        &TextView_signal_insert_at_cursor_info);
   }
 
   auto
   TextView::property_pixels_above_lines () -> Glib::PropertyProxy<int>
   {
-    return {this, "pixels-above-lines"};
+    return Glib::PropertyProxy<int> (this, "pixels-above-lines");
   }
 
   auto
   TextView::property_pixels_above_lines () const -> Glib::PropertyProxy_ReadOnly<int>
   {
-    return {this, "pixels-above-lines"};
+    return Glib::PropertyProxy_ReadOnly<int> (this, "pixels-above-lines");
   }
 
   auto
   TextView::property_pixels_below_lines () -> Glib::PropertyProxy<int>
   {
-    return {this, "pixels-below-lines"};
+    return Glib::PropertyProxy<int> (this, "pixels-below-lines");
   }
 
   auto
   TextView::property_pixels_below_lines () const -> Glib::PropertyProxy_ReadOnly<int>
   {
-    return {this, "pixels-below-lines"};
+    return Glib::PropertyProxy_ReadOnly<int> (this, "pixels-below-lines");
   }
 
   auto
   TextView::property_pixels_inside_wrap () -> Glib::PropertyProxy<int>
   {
-    return {this, "pixels-inside-wrap"};
+    return Glib::PropertyProxy<int> (this, "pixels-inside-wrap");
   }
 
   auto
   TextView::property_pixels_inside_wrap () const -> Glib::PropertyProxy_ReadOnly<int>
   {
-    return {this, "pixels-inside-wrap"};
+    return Glib::PropertyProxy_ReadOnly<int> (this, "pixels-inside-wrap");
   }
 
   auto
   TextView::property_editable () -> Glib::PropertyProxy<bool>
   {
-    return {this, "editable"};
+    return Glib::PropertyProxy<bool> (this, "editable");
   }
 
   auto
   TextView::property_editable () const -> Glib::PropertyProxy_ReadOnly<bool>
   {
-    return {this, "editable"};
+    return Glib::PropertyProxy_ReadOnly<bool> (this, "editable");
   }
 
   static_assert (
@@ -913,13 +916,13 @@ namespace Gtk
   auto
   TextView::property_wrap_mode () -> Glib::PropertyProxy<WrapMode>
   {
-    return {this, "wrap-mode"};
+    return Glib::PropertyProxy<WrapMode> (this, "wrap-mode");
   }
 
   auto
   TextView::property_wrap_mode () const -> Glib::PropertyProxy_ReadOnly<WrapMode>
   {
-    return {this, "wrap-mode"};
+    return Glib::PropertyProxy_ReadOnly<WrapMode> (this, "wrap-mode");
   }
 
   static_assert (
@@ -930,73 +933,73 @@ namespace Gtk
   auto
   TextView::property_justification () -> Glib::PropertyProxy<Justification>
   {
-    return {this, "justification"};
+    return Glib::PropertyProxy<Justification> (this, "justification");
   }
 
   auto
   TextView::property_justification () const -> Glib::PropertyProxy_ReadOnly<Justification>
   {
-    return {this, "justification"};
+    return Glib::PropertyProxy_ReadOnly<Justification> (this, "justification");
   }
 
   auto
   TextView::property_left_margin () -> Glib::PropertyProxy<int>
   {
-    return {this, "left-margin"};
+    return Glib::PropertyProxy<int> (this, "left-margin");
   }
 
   auto
   TextView::property_left_margin () const -> Glib::PropertyProxy_ReadOnly<int>
   {
-    return {this, "left-margin"};
+    return Glib::PropertyProxy_ReadOnly<int> (this, "left-margin");
   }
 
   auto
   TextView::property_right_margin () -> Glib::PropertyProxy<int>
   {
-    return {this, "right-margin"};
+    return Glib::PropertyProxy<int> (this, "right-margin");
   }
 
   auto
   TextView::property_right_margin () const -> Glib::PropertyProxy_ReadOnly<int>
   {
-    return {this, "right-margin"};
+    return Glib::PropertyProxy_ReadOnly<int> (this, "right-margin");
   }
 
   auto
   TextView::property_top_margin () -> Glib::PropertyProxy<int>
   {
-    return {this, "top-margin"};
+    return Glib::PropertyProxy<int> (this, "top-margin");
   }
 
   auto
   TextView::property_top_margin () const -> Glib::PropertyProxy_ReadOnly<int>
   {
-    return {this, "top-margin"};
+    return Glib::PropertyProxy_ReadOnly<int> (this, "top-margin");
   }
 
   auto
   TextView::property_bottom_margin () -> Glib::PropertyProxy<int>
   {
-    return {this, "bottom-margin"};
+    return Glib::PropertyProxy<int> (this, "bottom-margin");
   }
 
   auto
   TextView::property_bottom_margin () const -> Glib::PropertyProxy_ReadOnly<int>
   {
-    return {this, "bottom-margin"};
+    return Glib::PropertyProxy_ReadOnly<int> (this, "bottom-margin");
   }
 
   auto
   TextView::property_indent () -> Glib::PropertyProxy<int>
   {
-    return {this, "indent"};
+    return Glib::PropertyProxy<int> (this, "indent");
   }
 
   auto
   TextView::property_indent () const -> Glib::PropertyProxy_ReadOnly<int>
   {
-    return {this, "indent"};
+    return Glib::PropertyProxy_ReadOnly<int> (this, "indent");
   }
 
   static_assert (
@@ -1007,25 +1010,25 @@ namespace Gtk
   auto
   TextView::property_tabs () -> Glib::PropertyProxy<Pango::TabArray>
   {
-    return {this, "tabs"};
+    return Glib::PropertyProxy<Pango::TabArray> (this, "tabs");
   }
 
   auto
   TextView::property_tabs () const -> Glib::PropertyProxy_ReadOnly<Pango::TabArray>
   {
-    return {this, "tabs"};
+    return Glib::PropertyProxy_ReadOnly<Pango::TabArray> (this, "tabs");
   }
 
   auto
   TextView::property_cursor_visible () -> Glib::PropertyProxy<bool>
   {
-    return {this, "cursor-visible"};
+    return Glib::PropertyProxy<bool> (this, "cursor-visible");
   }
 
   auto
   TextView::property_cursor_visible () const -> Glib::PropertyProxy_ReadOnly<bool>
   {
-    return {this, "cursor-visible"};
+    return Glib::PropertyProxy_ReadOnly<bool> (this, "cursor-visible");
   }
 
   static_assert (
@@ -1037,49 +1040,50 @@ namespace Gtk
   auto
   TextView::property_buffer () -> Glib::PropertyProxy<Glib::RefPtr<TextBuffer>>
   {
-    return {this, "buffer"};
+    return Glib::PropertyProxy<Glib::RefPtr<TextBuffer>> (this, "buffer");
   }
 
   auto
   TextView::property_buffer () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<TextBuffer>>
   {
-    return {this, "buffer"};
+    return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<TextBuffer>> (this,
+                                                                   "buffer");
   }
 
   auto
   TextView::property_overwrite () -> Glib::PropertyProxy<bool>
   {
-    return {this, "overwrite"};
+    return Glib::PropertyProxy<bool> (this, "overwrite");
   }
 
   auto
   TextView::property_overwrite () const -> Glib::PropertyProxy_ReadOnly<bool>
   {
-    return {this, "overwrite"};
+    return Glib::PropertyProxy_ReadOnly<bool> (this, "overwrite");
   }
 
   auto
   TextView::property_accepts_tab () -> Glib::PropertyProxy<bool>
   {
-    return {this, "accepts-tab"};
+    return Glib::PropertyProxy<bool> (this, "accepts-tab");
   }
 
   auto
   TextView::property_accepts_tab () const -> Glib::PropertyProxy_ReadOnly<bool>
   {
-    return {this, "accepts-tab"};
+    return Glib::PropertyProxy_ReadOnly<bool> (this, "accepts-tab");
   }
 
   auto
   TextView::property_im_module () -> Glib::PropertyProxy<Glib::ustring>
   {
-    return {this, "im-module"};
+    return Glib::PropertyProxy<Glib::ustring> (this, "im-module");
   }
 
   auto
   TextView::property_im_module () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>
   {
-    return {this, "im-module"};
+    return Glib::PropertyProxy_ReadOnly<Glib::ustring> (this, "im-module");
   }
 
   static_assert (
@@ -1090,13 +1094,13 @@ namespace Gtk
   auto
   TextView::property_input_purpose () -> Glib::PropertyProxy<InputPurpose>
   {
-    return {this, "input-purpose"};
+    return Glib::PropertyProxy<InputPurpose> (this, "input-purpose");
   }
 
   auto
   TextView::property_input_purpose () const -> Glib::PropertyProxy_ReadOnly<InputPurpose>
   {
-    return {this, "input-purpose"};
+    return Glib::PropertyProxy_ReadOnly<InputPurpose> (this, "input-purpose");
   }
 
   static_assert (
@@ -1107,25 +1111,25 @@ namespace Gtk
   auto
   TextView::property_input_hints () -> Glib::PropertyProxy<InputHints>
   {
-    return {this, "input-hints"};
+    return Glib::PropertyProxy<InputHints> (this, "input-hints");
   }
 
   auto
   TextView::property_input_hints () const -> Glib::PropertyProxy_ReadOnly<InputHints>
   {
-    return {this, "input-hints"};
+    return Glib::PropertyProxy_ReadOnly<InputHints> (this, "input-hints");
   }
 
   auto
   TextView::property_monospace () -> Glib::PropertyProxy<bool>
   {
-    return {this, "monospace"};
+    return Glib::PropertyProxy<bool> (this, "monospace");
   }
 
   auto
   TextView::property_monospace () const -> Glib::PropertyProxy_ReadOnly<bool>
   {
-    return {this, "monospace"};
+    return Glib::PropertyProxy_ReadOnly<bool> (this, "monospace");
   }
 
   static_assert (
@@ -1137,17 +1141,20 @@ namespace Gtk
   auto
   TextView::property_extra_menu () -> Glib::PropertyProxy<Glib::RefPtr<Gio::MenuModel>>
   {
-    return {this, "extra-menu"};
+    return Glib::PropertyProxy<Glib::RefPtr<Gio::MenuModel>> (this,
+                                                              "extra-menu");
   }
 
   auto
   TextView::property_extra_menu () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gio::MenuModel>>
   {
-    return {this, "extra-menu"};
+    return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gio::MenuModel>> (
+        this,
+        "extra-menu");
   }
 
   auto
-  TextView::on_set_anchor () -> void
+  Gtk::TextView::on_set_anchor () -> void
   {
     const auto base = static_cast<BaseClassType*> (
         g_type_class_peek_parent (G_OBJECT_GET_CLASS (gobject_)));
@@ -1157,7 +1164,7 @@ namespace Gtk
   }
 
   auto
-  TextView::on_insert_at_cursor (const Glib::ustring& str) -> void
+  Gtk::TextView::on_insert_at_cursor (const Glib::ustring& str) -> void
   {
     const auto base = static_cast<BaseClassType*> (
         g_type_class_peek_parent (G_OBJECT_GET_CLASS (gobject_)));

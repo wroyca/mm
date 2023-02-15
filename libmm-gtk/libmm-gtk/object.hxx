@@ -71,8 +71,8 @@ namespace Gtk
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
-    void
-    set_manage () override;
+    auto
+    set_manage () -> void override;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -84,19 +84,20 @@ namespace Gtk
   protected:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
-    void
-    destroy_ ();
+    auto
+    destroy_ () -> void;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-    void
-    _init_unmanage ();
-    void
-    destroy_notify_ () override;
-    void
-    disconnect_cpp_wrapper (bool prevent_creation_of_another_wrapper = true);
-    void
-    _release_c_instance ();
+    auto
+    _init_unmanage () -> void;
+    auto
+    destroy_notify_ () -> void override;
+    auto
+    disconnect_cpp_wrapper (bool prevent_creation_of_another_wrapper = true)
+        -> void;
+    auto
+    _release_c_instance () -> void;
 
     bool referenced_;
 #endif

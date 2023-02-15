@@ -14,7 +14,7 @@ namespace Gtk
   PadController::PadController (
       const Glib::RefPtr<Gio::ActionGroup>& action_group,
       const Glib::RefPtr<Gdk::Device>& pad)
-    : ObjectBase (nullptr),
+    : Glib::ObjectBase (nullptr),
       EventController (Glib::ConstructParams (padcontroller_class_.init (),
                                               "propagation-phase",
                                               GTK_PHASE_CAPTURE,
@@ -52,11 +52,11 @@ namespace Glib
 {
 
   auto
-  wrap (GtkPadController* object, const bool take_copy) -> RefPtr<Gtk::PadController>
+  wrap (GtkPadController* object, bool take_copy) -> Glib::RefPtr<Gtk::PadController>
   {
     return Glib::make_refptr_for_instance<Gtk::PadController> (
         dynamic_cast<Gtk::PadController*> (
-            wrap_auto ((GObject*) object, take_copy)));
+            Glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
 } // namespace Glib
@@ -65,7 +65,7 @@ namespace Gtk
 {
 
   auto
-  PadController_Class::init () -> const Class&
+  PadController_Class::init () -> const Glib::Class&
   {
     if (!gtype_)
     {
@@ -103,7 +103,7 @@ namespace Gtk
   }
 
   PadController::PadController (GtkPadController* castitem)
-    : EventController ((GtkEventController*) castitem)
+    : EventController ((GtkEventController*) (castitem))
   {
   }
 
@@ -119,7 +119,7 @@ namespace Gtk
     return *this;
   }
 
-  PadController::~PadController () noexcept = default;
+  PadController::~PadController () noexcept {}
 
   PadController::CppClassType PadController::padcontroller_class_;
 
@@ -145,8 +145,8 @@ namespace Gtk
 
   auto
   PadController::set_action (PadActionType type,
-                             const int index,
-                             const int mode,
+                             int index,
+                             int mode,
                              const Glib::ustring& label,
                              const Glib::ustring& action_name) -> void
   {
@@ -167,7 +167,9 @@ namespace Gtk
   auto
   PadController::property_action_group () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gio::ActionGroup>>
   {
-    return {this, "action-group"};
+    return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gio::ActionGroup>> (
+        this,
+        "action-group");
   }
 
   static_assert (
@@ -179,7 +181,8 @@ namespace Gtk
   auto
   PadController::property_pad () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gdk::Device>>
   {
-    return {this, "pad"};
+    return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gdk::Device>> (this,
+                                                                    "pad");
   }
 
 } // namespace Gtk

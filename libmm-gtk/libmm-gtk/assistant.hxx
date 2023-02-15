@@ -3,25 +3,27 @@
 #ifndef _GTKMM_ASSISTANT_H
 #define _GTKMM_ASSISTANT_H
 
-#include <libmm-glib/ustring.hxx>
-#include <sigc++/sigc++.h>
+#ifndef GTKMM_DISABLE_DEPRECATED
 
-#include <libmm-gdk/pixbuf.hxx>
-#include <libmm-gio/listmodel.hxx>
-#include <libmm-gtk/assistantpage.hxx>
-#include <libmm-gtk/window.hxx>
+  #include <libmm-glib/ustring.hxx>
+  #include <sigc++/sigc++.h>
 
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #include <libmm-gdk/pixbuf.hxx>
+  #include <libmm-gio/listmodel.hxx>
+  #include <libmm-gtk/assistantpage.hxx>
+  #include <libmm-gtk/window.hxx>
+
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
 using GtkAssistant = struct _GtkAssistant;
 using GtkAssistantClass = struct _GtkAssistantClass;
-#endif
+  #endif
 
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
   class GTKMM_API Assistant_Class;
 }
-#endif
+  #endif
 
 namespace Gtk
 {
@@ -29,12 +31,12 @@ namespace Gtk
   class GTKMM_API Assistant : public Window
   {
   public:
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
     typedef Assistant CppObjectType;
     typedef Assistant_Class CppClassType;
     typedef GtkAssistant BaseObjectType;
     typedef GtkAssistantClass BaseClassType;
-#endif
+  #endif
 
     Assistant (Assistant&& src) noexcept;
     auto
@@ -46,7 +48,7 @@ namespace Gtk
 
     ~Assistant () noexcept override;
 
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   private:
     friend GTKMM_API class Assistant_Class;
@@ -56,17 +58,17 @@ namespace Gtk
     explicit Assistant (const Glib::ConstructParams& construct_params);
     explicit Assistant (GtkAssistant* castitem);
 
-#endif
+  #endif
 
   public:
     static auto
     get_type () -> GType G_GNUC_CONST;
 
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
     static auto
     get_base_type () -> GType G_GNUC_CONST;
-#endif
+  #endif
 
     auto
     gobj () -> GtkAssistant*
@@ -86,17 +88,17 @@ namespace Gtk
 
     explicit Assistant (bool use_header_bar);
 
-    void
-    next_page ();
+    auto
+    next_page () -> void;
 
-    void
-    previous_page ();
+    auto
+    previous_page () -> void;
 
     auto
     get_current_page () const -> int;
 
-    void
-    set_current_page (int page_num);
+    auto
+    set_current_page (int page_num) -> void;
 
     auto
     get_n_pages () const -> int;
@@ -116,43 +118,43 @@ namespace Gtk
     auto
     insert_page (Widget& page, int position) -> int;
 
-    void
-    remove_page (int page_num);
+    auto
+    remove_page (int page_num) -> void;
 
     typedef sigc::slot<int (int)> SlotForwardPage;
 
-    void
-    set_forward_page_func (const SlotForwardPage& slot);
+    auto
+    set_forward_page_func (const SlotForwardPage& slot) -> void;
 
-    void
-    set_page_type (const Widget& page, AssistantPage::Type type);
+    auto
+    set_page_type (const Widget& page, AssistantPage::Type type) -> void;
 
     auto
     get_page_type (const Widget& page) const -> AssistantPage::Type;
 
-    void
-    set_page_title (const Widget& page, const Glib::ustring& title);
+    auto
+    set_page_title (const Widget& page, const Glib::ustring& title) -> void;
 
     auto
     get_page_title (const Widget& page) const -> Glib::ustring;
 
-    void
-    set_page_complete (const Widget& page, bool complete = true);
+    auto
+    set_page_complete (const Widget& page, bool complete = true) -> void;
 
     auto
     get_page_complete (const Widget& page) const -> bool;
 
-    void
-    add_action_widget (Widget& child);
+    auto
+    add_action_widget (Widget& child) -> void;
 
-    void
-    remove_action_widget (Widget& child);
+    auto
+    remove_action_widget (Widget& child) -> void;
 
-    void
-    update_buttons_state ();
+    auto
+    update_buttons_state () -> void;
 
-    void
-    commit ();
+    auto
+    commit () -> void;
 
     auto
     get_page (Widget& child) -> Glib::RefPtr<AssistantPage>;
@@ -194,10 +196,10 @@ namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkAssistant* object, bool take_copy = false) -> Gtk::Assistant*;
 } // namespace Glib
+
+#endif
 
 #endif

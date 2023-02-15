@@ -17,11 +17,11 @@ namespace Glib
 {
 
   auto
-  wrap (GtkLayoutChild* object, const bool take_copy) -> RefPtr<Gtk::LayoutChild>
+  wrap (GtkLayoutChild* object, bool take_copy) -> Glib::RefPtr<Gtk::LayoutChild>
   {
     return Glib::make_refptr_for_instance<Gtk::LayoutChild> (
         dynamic_cast<Gtk::LayoutChild*> (
-            wrap_auto ((GObject*) object, take_copy)));
+            Glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
 } // namespace Glib
@@ -30,7 +30,7 @@ namespace Gtk
 {
 
   auto
-  LayoutChild_Class::init () -> const Class&
+  LayoutChild_Class::init () -> const Glib::Class&
   {
     if (!gtype_)
     {
@@ -63,28 +63,28 @@ namespace Gtk
   }
 
   LayoutChild::LayoutChild (const Glib::ConstructParams& construct_params)
-    : Object (construct_params)
+    : Glib::Object (construct_params)
   {
   }
 
   LayoutChild::LayoutChild (GtkLayoutChild* castitem)
-    : Object ((GObject*) castitem)
+    : Glib::Object ((GObject*) (castitem))
   {
   }
 
   LayoutChild::LayoutChild (LayoutChild&& src) noexcept
-    : Object (std::move (src))
+    : Glib::Object (std::move (src))
   {
   }
 
   auto
   LayoutChild::operator= (LayoutChild&& src) noexcept -> LayoutChild&
   {
-    Object::operator= (std::move (src));
+    Glib::Object::operator= (std::move (src));
     return *this;
   }
 
-  LayoutChild::~LayoutChild () noexcept = default;
+  LayoutChild::~LayoutChild () noexcept {}
 
   LayoutChild::CppClassType LayoutChild::layoutchild_class_;
 
@@ -101,8 +101,8 @@ namespace Gtk
   }
 
   LayoutChild::LayoutChild ()
-    : ObjectBase (nullptr),
-      Object (Glib::ConstructParams (layoutchild_class_.init ()))
+    : Glib::ObjectBase (nullptr),
+      Glib::Object (Glib::ConstructParams (layoutchild_class_.init ()))
   {
   }
 
@@ -142,13 +142,15 @@ namespace Gtk
   auto
   LayoutChild::property_layout_manager () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<LayoutManager>>
   {
-    return {this, "layout-manager"};
+    return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<LayoutManager>> (
+        this,
+        "layout-manager");
   }
 
   auto
   LayoutChild::property_child_widget () const -> Glib::PropertyProxy_ReadOnly<Widget*>
   {
-    return {this, "child-widget"};
+    return Glib::PropertyProxy_ReadOnly<Widget*> (this, "child-widget");
   }
 
 } // namespace Gtk

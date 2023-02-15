@@ -50,11 +50,11 @@ namespace Gtk
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
   private:
-    GTKMM_API static void
-    throw_func (GError* gobject);
+    GTKMM_API static auto
+    throw_func (GError* gobject) -> void;
 
-    friend GTKMM_API void
-    wrap_init ();
+    friend GTKMM_API auto
+    wrap_init () -> void;
 
 #endif
   };
@@ -202,17 +202,15 @@ namespace Gtk
   public:
   public:
   protected:
-    virtual void
-    on_changed ();
+    virtual auto
+    on_changed () -> void;
   };
 
 } // namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkRecentManager* object, bool take_copy = false) -> Glib::RefPtr<Gtk::RecentManager>;
 } // namespace Glib
 

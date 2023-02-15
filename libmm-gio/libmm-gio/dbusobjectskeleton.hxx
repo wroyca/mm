@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: LGPL-2.1-or-later
 
 #ifndef _GIOMM_DBUSOBJECTSKELETON_H
 #define _GIOMM_DBUSOBJECTSKELETON_H
@@ -89,20 +90,22 @@ namespace Gio::DBus
     static auto
     create (const Glib::ustring& object_path) -> Glib::RefPtr<ObjectSkeleton>;
 
-    void
-    flush ();
+    auto
+    flush () -> void;
 
-    void
-    add_interface (const Glib::RefPtr<Gio::DBus::InterfaceSkeleton>& iface);
+    auto
+    add_interface (const Glib::RefPtr<Gio::DBus::InterfaceSkeleton>& iface)
+        -> void;
 
-    void
-    remove_interface (const Glib::RefPtr<Gio::DBus::InterfaceSkeleton>& iface);
+    auto
+    remove_interface (const Glib::RefPtr<Gio::DBus::InterfaceSkeleton>& iface)
+        -> void;
 
-    void
-    remove_interface (const Glib::ustring& interface_name);
+    auto
+    remove_interface (const Glib::ustring& interface_name) -> void;
 
-    void
-    set_object_path (const Glib::ustring& object_path);
+    auto
+    set_object_path (const Glib::ustring& object_path) -> void;
 
     auto
     property_g_object_path () -> Glib::PropertyProxy<Glib::ustring>;

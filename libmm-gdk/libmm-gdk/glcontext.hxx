@@ -207,11 +207,11 @@ namespace Gdk
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
   private:
-    GDKMM_API static void
-    throw_func (GError* gobject);
+    GDKMM_API static auto
+    throw_func (GError* gobject) -> void;
 
-    friend GDKMM_API void
-    wrap_init ();
+    friend GDKMM_API auto
+    wrap_init () -> void;
 
 #endif
   };
@@ -320,8 +320,8 @@ namespace Gdk
     get_shared_context () const -> Glib::RefPtr<const GLContext>;
 #endif
 
-    void
-    get_version (int& major, int& minor) const;
+    auto
+    get_version (int& major, int& minor) const -> void;
 
     auto
     is_legacy () const -> bool;
@@ -329,29 +329,29 @@ namespace Gdk
     auto
     is_shared (const Glib::RefPtr<const GLContext>& other) const -> bool;
 
-    void
-    get_required_version (int& major, int& minor) const;
+    auto
+    get_required_version (int& major, int& minor) const -> void;
 
-    void
-    set_required_version (int major, int minor);
+    auto
+    set_required_version (int major, int minor) -> void;
 
     auto
     get_debug_enabled () const -> bool;
 
-    void
-    set_debug_enabled (bool enabled = true);
+    auto
+    set_debug_enabled (bool enabled = true) -> void;
 
     auto
     get_forward_compatible () const -> bool;
 
-    void
-    set_forward_compatible (bool compatible = true);
+    auto
+    set_forward_compatible (bool compatible = true) -> void;
 #ifndef GLAPI
 
   #ifndef GDKMM_DISABLE_DEPRECATED
 
-    void
-    set_allowed_apis (GLAPI apis);
+    auto
+    set_allowed_apis (GLAPI apis) -> void;
   #endif
 
   #ifndef GDKMM_DISABLE_DEPRECATED
@@ -368,8 +368,8 @@ namespace Gdk
 
 #endif
 
-    void
-    set_allowed_apis (GLApi apis);
+    auto
+    set_allowed_apis (GLApi apis) -> void;
 
     auto
     get_allowed_apis2 () const -> GLApi;
@@ -379,14 +379,14 @@ namespace Gdk
 
 #ifndef GDKMM_DISABLE_DEPRECATED
 
-    void
-    set_use_es (bool use_es = true);
+    auto
+    set_use_es (bool use_es = true) -> void;
 #endif
 
 #ifndef GDKMM_DISABLE_DEPRECATED
 
-    void
-    unset_use_es ();
+    auto
+    unset_use_es () -> void;
 #endif
 
     auto
@@ -395,14 +395,14 @@ namespace Gdk
     auto
     realize () -> bool;
 
-    void
-    make_current ();
+    auto
+    make_current () -> void;
 
     static auto
     get_current () -> Glib::RefPtr<GLContext>;
 
-    static void
-    clear_current ();
+    static auto
+    clear_current () -> void;
 
 #ifndef GDKMM_DISABLE_DEPRECATED
 
@@ -442,9 +442,7 @@ namespace Gdk
 
 namespace Glib
 {
-
-  GDKMM_API
-  auto
+  GDKMM_API auto
   wrap (GdkGLContext* object, bool take_copy = false) -> Glib::RefPtr<Gdk::GLContext>;
 } // namespace Glib
 

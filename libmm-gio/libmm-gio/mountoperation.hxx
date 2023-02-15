@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: LGPL-2.1-or-later
 
 #ifndef _GIOMM_MOUNTOPERATION_H
 #define _GIOMM_MOUNTOPERATION_H
@@ -183,41 +184,41 @@ namespace Gio
     auto
     get_username () const -> Glib::ustring;
 
-    void
-    set_username (const Glib::ustring& username);
+    auto
+    set_username (const Glib::ustring& username) -> void;
 
     auto
     get_password () const -> Glib::ustring;
 
-    void
-    set_password (const Glib::ustring& password);
+    auto
+    set_password (const Glib::ustring& password) -> void;
 
     auto
     get_anonymous () const -> bool;
 
-    void
-    set_anonymous (bool anonymous = true);
+    auto
+    set_anonymous (bool anonymous = true) -> void;
 
     auto
     get_domain () const -> Glib::ustring;
 
-    void
-    set_domain (const Glib::ustring& domain);
+    auto
+    set_domain (const Glib::ustring& domain) -> void;
 
     auto
     get_password_save () const -> PasswordSave;
 
-    void
-    set_password_save (PasswordSave save);
+    auto
+    set_password_save (PasswordSave save) -> void;
 
     auto
     get_choice () const -> int;
 
-    void
-    set_choice (int choice);
+    auto
+    set_choice (int choice) -> void;
 
-    void
-    reply (MountOperationResult result);
+    auto
+    reply (MountOperationResult result) -> void;
 
     auto
     signal_ask_password () -> Glib::SignalProxy<void (const Glib::ustring&,
@@ -280,26 +281,26 @@ namespace Gio
   public:
   public:
   protected:
-    virtual void
+    virtual auto
     on_ask_password (const Glib::ustring& message,
                      const Glib::ustring& default_user,
                      const Glib::ustring& default_domain,
-                     AskPasswordFlags flags);
+                     AskPasswordFlags flags) -> void;
 
-    virtual void
+    virtual auto
     on_ask_question (const Glib::ustring& message,
-                     const std::vector<Glib::ustring>& choices);
+                     const std::vector<Glib::ustring>& choices) -> void;
 
-    virtual void
-    on_reply (MountOperationResult result);
+    virtual auto
+    on_reply (MountOperationResult result) -> void;
 
-    virtual void
-    on_aborted ();
+    virtual auto
+    on_aborted () -> void;
 
-    virtual void
+    virtual auto
     on_show_unmount_progress (const Glib::ustring& message,
                               gint64 time_left,
-                              gint64 bytes_left);
+                              gint64 bytes_left) -> void;
   };
 
 } // namespace Gio

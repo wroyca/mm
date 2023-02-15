@@ -71,8 +71,8 @@ namespace Pango
 
     ~CairoFontMap () noexcept override;
 
-    static void
-    add_interface (GType gtype_implementer);
+    static auto
+    add_interface (GType gtype_implementer) -> void;
 
     static auto
     get_type () -> GType G_GNUC_CONST;
@@ -99,14 +99,14 @@ namespace Pango
     static auto
     get_default () -> Glib::RefPtr<FontMap>;
 
-    void
-    set_default ();
+    auto
+    set_default () -> void;
 
     auto
     get_font_type () const -> Cairo::FontType;
 
-    void
-    set_resolution (double dpi);
+    auto
+    set_resolution (double dpi) -> void;
 
     auto
     get_resolution () const -> double;

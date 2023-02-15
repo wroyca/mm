@@ -48,11 +48,11 @@ namespace Gtk
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
   private:
-    GTKMM_API static void
-    throw_func (GError* gobject);
+    GTKMM_API static auto
+    throw_func (GError* gobject) -> void;
 
-    friend GTKMM_API void
-    wrap_init ();
+    friend GTKMM_API auto
+    wrap_init () -> void;
 
 #endif
   };
@@ -142,20 +142,20 @@ namespace Gtk
     static auto
     create () -> Glib::RefPtr<ConstraintLayout>;
 
-    void
-    add_constraint (const Glib::RefPtr<Constraint>& constraint);
+    auto
+    add_constraint (const Glib::RefPtr<Constraint>& constraint) -> void;
 
-    void
-    remove_constraint (const Glib::RefPtr<Constraint>& constraint);
+    auto
+    remove_constraint (const Glib::RefPtr<Constraint>& constraint) -> void;
 
-    void
-    remove_all_constraints ();
+    auto
+    remove_all_constraints () -> void;
 
-    void
-    add_guide (const Glib::RefPtr<ConstraintGuide>& guide);
+    auto
+    add_guide (const Glib::RefPtr<ConstraintGuide>& guide) -> void;
 
-    void
-    remove_guide (const Glib::RefPtr<ConstraintGuide>& guide);
+    auto
+    remove_guide (const Glib::RefPtr<ConstraintGuide>& guide) -> void;
 
     using VFLmap = std::map<Glib::ustring, Glib::RefPtr<ConstraintTarget>>;
 
@@ -187,9 +187,7 @@ namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkConstraintLayout* object, bool take_copy = false) -> Glib::RefPtr<Gtk::ConstraintLayout>;
 } // namespace Glib
 

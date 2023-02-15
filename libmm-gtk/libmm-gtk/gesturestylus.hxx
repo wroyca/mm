@@ -96,6 +96,12 @@ namespace Gtk
     create () -> Glib::RefPtr<GestureStylus>;
 
     auto
+    get_stylus_only () const -> bool;
+
+    auto
+    set_stylus_only (bool stylus_only = true) -> void;
+
+    auto
     get_axis (Gdk::AxisUse axis) const -> std::optional<double>;
 
     auto
@@ -123,6 +129,12 @@ namespace Gtk
     auto
     signal_up () -> Glib::SignalProxy<void (double, double)>;
 
+    auto
+    property_stylus_only () -> Glib::PropertyProxy<bool>;
+
+    auto
+    property_stylus_only () const -> Glib::PropertyProxy_ReadOnly<bool>;
+
   public:
   public:
   protected:
@@ -132,9 +144,7 @@ namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkGestureStylus* object, bool take_copy = false) -> Glib::RefPtr<Gtk::GestureStylus>;
 } // namespace Glib
 

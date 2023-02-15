@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: LGPL-2.1-or-later
 
 #ifndef _GIOMM_IOSTREAM_H
 #define _GIOMM_IOSTREAM_H
@@ -92,18 +93,18 @@ namespace Gio
       WAIT_FOR_BOTH = (1 << 2)
     };
 
-    void
+    auto
     splice_async (const Glib::RefPtr<IOStream>& stream2,
                   const SlotAsyncReady& slot,
                   const Glib::RefPtr<Cancellable>& cancellable,
                   SpliceFlags flags = SpliceFlags::NONE,
-                  int io_priority = Glib::PRIORITY_DEFAULT);
+                  int io_priority = Glib::PRIORITY_DEFAULT) -> void;
 
-    void
+    auto
     splice_async (const Glib::RefPtr<IOStream>& stream2,
                   const SlotAsyncReady& slot,
                   SpliceFlags flags = SpliceFlags::NONE,
-                  int io_priority = Glib::PRIORITY_DEFAULT);
+                  int io_priority = Glib::PRIORITY_DEFAULT) -> void;
 
     static auto
     splice_finish (const Glib::RefPtr<AsyncResult>& result) -> bool;
@@ -120,13 +121,13 @@ namespace Gio
     auto
     close () -> bool;
 
-    void
+    auto
     close_async (const SlotAsyncReady& slot,
                  const Glib::RefPtr<Cancellable>& cancellable,
-                 int io_priority = Glib::PRIORITY_DEFAULT);
-    void
+                 int io_priority = Glib::PRIORITY_DEFAULT) -> void;
+    auto
     close_async (const SlotAsyncReady& slot,
-                 int io_priority = Glib::PRIORITY_DEFAULT);
+                 int io_priority = Glib::PRIORITY_DEFAULT) -> void;
 
     auto
     close_finish (const Glib::RefPtr<AsyncResult>& result) -> bool;
@@ -140,8 +141,8 @@ namespace Gio
     auto
     set_pending () -> bool;
 
-    void
-    clear_pending ();
+    auto
+    clear_pending () -> void;
 
   public:
   public:

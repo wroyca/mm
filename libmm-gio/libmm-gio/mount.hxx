@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: LGPL-2.1-or-later
 
 #ifndef _GIOMM_MOUNT_H
 #define _GIOMM_MOUNT_H
@@ -73,8 +74,8 @@ namespace Gio
 
     ~Mount () noexcept override;
 
-    static void
-    add_interface (GType gtype_implementer);
+    static auto
+    add_interface (GType gtype_implementer) -> void;
 
     static auto
     get_type () -> GType G_GNUC_CONST;
@@ -151,92 +152,94 @@ namespace Gio
     auto
     can_eject () const -> bool;
 
-    void
+    auto
     unmount (const SlotAsyncReady& slot,
              const Glib::RefPtr<Cancellable>& cancellable,
-             UnmountFlags flags = UnmountFlags::NONE);
-    void
+             UnmountFlags flags = UnmountFlags::NONE) -> void;
+    auto
     unmount (const SlotAsyncReady& slot,
-             UnmountFlags flags = UnmountFlags::NONE);
-    void
-    unmount (UnmountFlags flags = UnmountFlags::NONE);
-    void
+             UnmountFlags flags = UnmountFlags::NONE) -> void;
+    auto
+    unmount (UnmountFlags flags = UnmountFlags::NONE) -> void;
+    auto
     unmount (const Glib::RefPtr<MountOperation>& mount_operation,
-             UnmountFlags flags = UnmountFlags::NONE);
-    void
+             UnmountFlags flags = UnmountFlags::NONE) -> void;
+    auto
     unmount (const Glib::RefPtr<MountOperation>& mount_operation,
              const SlotAsyncReady& slot,
-             UnmountFlags flags = UnmountFlags::NONE);
-    void
+             UnmountFlags flags = UnmountFlags::NONE) -> void;
+    auto
     unmount (const Glib::RefPtr<MountOperation>& mount_operation,
              const SlotAsyncReady& slot,
              const Glib::RefPtr<Cancellable>& cancellable,
-             UnmountFlags flags = UnmountFlags::NONE);
+             UnmountFlags flags = UnmountFlags::NONE) -> void;
 
     auto
     unmount_finish (const Glib::RefPtr<AsyncResult>& result) -> bool;
 
-    void
+    auto
     remount (const Glib::RefPtr<MountOperation>& operation,
              const SlotAsyncReady& slot,
              const Glib::RefPtr<Cancellable>& cancellable,
-             MountFlags flags = MountFlags::NONE);
+             MountFlags flags = MountFlags::NONE) -> void;
 
-    void
+    auto
     remount (const Glib::RefPtr<MountOperation>& operation,
              const SlotAsyncReady& slot,
-             MountFlags flags = MountFlags::NONE);
+             MountFlags flags = MountFlags::NONE) -> void;
 
-    void
+    auto
     remount (const Glib::RefPtr<MountOperation>& operation,
-             MountFlags flags = MountFlags::NONE);
+             MountFlags flags = MountFlags::NONE) -> void;
 
-    void
-    remount (MountFlags flags = MountFlags::NONE);
+    auto
+    remount (MountFlags flags = MountFlags::NONE) -> void;
 
     auto
     remount_finish (const Glib::RefPtr<AsyncResult>& result) -> bool;
 
-    void
+    auto
     eject (const SlotAsyncReady& slot,
            const Glib::RefPtr<Cancellable>& cancellable,
-           UnmountFlags flags = UnmountFlags::NONE);
-    void
-    eject (const SlotAsyncReady& slot, UnmountFlags flags = UnmountFlags::NONE);
-    void
-    eject (UnmountFlags flags = UnmountFlags::NONE);
-    void
+           UnmountFlags flags = UnmountFlags::NONE) -> void;
+    auto
+    eject (const SlotAsyncReady& slot, UnmountFlags flags = UnmountFlags::NONE)
+        -> void;
+    auto
+    eject (UnmountFlags flags = UnmountFlags::NONE) -> void;
+    auto
     eject (const Glib::RefPtr<MountOperation>& mount_operation,
            const SlotAsyncReady& slot,
            const Glib::RefPtr<Cancellable>& cancellable,
-           UnmountFlags flags = UnmountFlags::NONE);
-    void
+           UnmountFlags flags = UnmountFlags::NONE) -> void;
+    auto
     eject (const Glib::RefPtr<MountOperation>& mount_operation,
            const SlotAsyncReady& slot,
-           UnmountFlags flags = UnmountFlags::NONE);
-    void
+           UnmountFlags flags = UnmountFlags::NONE) -> void;
+    auto
     eject (const Glib::RefPtr<MountOperation>& mount_operation,
-           UnmountFlags flags = UnmountFlags::NONE);
+           UnmountFlags flags = UnmountFlags::NONE) -> void;
 
     auto
     eject_finish (const Glib::RefPtr<AsyncResult>& result) -> bool;
 
-    void
+    auto
     guess_content_type (const SlotAsyncReady& slot,
                         const Glib::RefPtr<Cancellable>& cancellable,
-                        bool force_rescan = true);
+                        bool force_rescan = true) -> void;
 
-    void
-    guess_content_type (const SlotAsyncReady& slot, bool force_rescan = true);
+    auto
+    guess_content_type (const SlotAsyncReady& slot, bool force_rescan = true)
+        -> void;
 
-    void
-    guess_content_type (bool force_rescan = true);
+    auto
+    guess_content_type (bool force_rescan = true) -> void;
 
-    void
+    auto
     guess_content_type_sync (const Glib::RefPtr<Cancellable>& cancellable,
-                             bool force_rescan = true);
-    void
-    guess_content_type_sync (bool force_rescan = true);
+                             bool force_rescan = true) -> void;
+    auto
+    guess_content_type_sync (bool force_rescan = true) -> void;
 
     auto
     guess_content_type_finish (const Glib::RefPtr<AsyncResult>& result)
@@ -245,11 +248,11 @@ namespace Gio
     auto
     is_shadowed () const -> bool;
 
-    void
-    shadow ();
+    auto
+    shadow () -> void;
 
-    void
-    unshadow ();
+    auto
+    unshadow () -> void;
 
     auto
     get_default_location () const -> Glib::RefPtr<File>;
@@ -269,14 +272,14 @@ namespace Gio
   public:
   public:
   protected:
-    virtual void
-    on_changed ();
+    virtual auto
+    on_changed () -> void;
 
-    virtual void
-    on_unmounted ();
+    virtual auto
+    on_unmounted () -> void;
 
-    virtual void
-    on_pre_unmount ();
+    virtual auto
+    on_pre_unmount () -> void;
   };
 
 } // namespace Gio
@@ -310,8 +313,8 @@ namespace Glib
         return Glib::wrap (item, true);
       }
 
-      static void
-      release_c_type (CType item)
+      static auto
+      release_c_type (CType item) -> void
       {
         GLIBMM_DEBUG_UNREFERENCE (nullptr, item);
         g_object_unref (item);

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: LGPL-2.1-or-later
 
 #ifndef _GIOMM_DBUSOBJECTMANAGERSERVER_H
 #define _GIOMM_DBUSOBJECTMANAGERSERVER_H
@@ -97,14 +98,16 @@ namespace Gio::DBus
     auto
     get_connection () const -> Glib::RefPtr<const Connection>;
 
-    void
-    set_connection (const Glib::RefPtr<Connection>& connection);
+    auto
+    set_connection (const Glib::RefPtr<Connection>& connection) -> void;
 
-    void
-    export_object (const Glib::RefPtr<Gio::DBus::ObjectSkeleton>& object);
+    auto
+    export_object (const Glib::RefPtr<Gio::DBus::ObjectSkeleton>& object)
+        -> void;
 
-    void
-    export_uniquely (const Glib::RefPtr<Gio::DBus::ObjectSkeleton>& object);
+    auto
+    export_uniquely (const Glib::RefPtr<Gio::DBus::ObjectSkeleton>& object)
+        -> void;
 
     auto
     is_exported (const Glib::RefPtr<Gio::DBus::ObjectSkeleton>& object) const

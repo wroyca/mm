@@ -1,11 +1,16 @@
 // SPDX-License-Identifier: LGPL-2.1-or-later
 
-#include <libmm-glib/mm-glib.hxx>
+#undef GTK_DISABLE_DEPRECATED
+#define GDK_DISABLE_DEPRECATION_WARNINGS 1
 
-#include <libmm-gtk/cellrendererprogress.hxx>
-#include <libmm-gtk/cellrendererprogress_p.hxx>
+#ifndef GTKMM_DISABLE_DEPRECATED
 
-#include <gtk/gtk.h>
+  #include <libmm-glib/mm-glib.hxx>
+
+  #include <libmm-gtk/cellrendererprogress.hxx>
+  #include <libmm-gtk/cellrendererprogress_p.hxx>
+
+  #include <gtk/gtk.h>
 
 namespace Gtk
 {
@@ -26,10 +31,10 @@ namespace Glib
 {
 
   auto
-  wrap (GtkCellRendererProgress* object, const bool take_copy) -> Gtk::CellRendererProgress*
+  wrap (GtkCellRendererProgress* object, bool take_copy) -> Gtk::CellRendererProgress*
   {
     return dynamic_cast<Gtk::CellRendererProgress*> (
-        wrap_auto ((GObject*) object, take_copy));
+        Glib::wrap_auto ((GObject*) (object), take_copy));
   }
 
 } // namespace Glib
@@ -38,7 +43,7 @@ namespace Gtk
 {
 
   auto
-  CellRendererProgress_Class::init () -> const Class&
+  CellRendererProgress_Class::init () -> const Glib::Class&
   {
     if (!gtype_)
     {
@@ -63,23 +68,23 @@ namespace Gtk
   auto
   CellRendererProgress_Class::wrap_new (GObject* o) -> Glib::ObjectBase*
   {
-    return manage (new CellRendererProgress ((GtkCellRendererProgress*) o));
+    return manage (new CellRendererProgress ((GtkCellRendererProgress*) (o)));
   }
 
   CellRendererProgress::CellRendererProgress (
       const Glib::ConstructParams& construct_params)
-    : CellRenderer (construct_params)
+    : Gtk::CellRenderer (construct_params)
   {
   }
 
   CellRendererProgress::CellRendererProgress (GtkCellRendererProgress* castitem)
-    : CellRenderer ((GtkCellRenderer*) castitem)
+    : Gtk::CellRenderer ((GtkCellRenderer*) (castitem))
   {
   }
 
   CellRendererProgress::CellRendererProgress (
       CellRendererProgress&& src) noexcept
-    : CellRenderer (std::move (src)),
+    : Gtk::CellRenderer (std::move (src)),
       Orientable (std::move (src))
   {
   }
@@ -87,7 +92,7 @@ namespace Gtk
   auto
   CellRendererProgress::operator= (CellRendererProgress&& src) noexcept -> CellRendererProgress&
   {
-    CellRenderer::operator= (std::move (src));
+    Gtk::CellRenderer::operator= (std::move (src));
     Orientable::operator= (std::move (src));
     return *this;
   }
@@ -113,81 +118,84 @@ namespace Gtk
   }
 
   CellRendererProgress::CellRendererProgress ()
-    : ObjectBase (nullptr),
-      CellRenderer (Glib::ConstructParams (cellrendererprogress_class_.init ()))
+    : Glib::ObjectBase (nullptr),
+      Gtk::CellRenderer (
+          Glib::ConstructParams (cellrendererprogress_class_.init ()))
   {
   }
 
   auto
   CellRendererProgress::property_value () -> Glib::PropertyProxy<int>
   {
-    return {this, "value"};
+    return Glib::PropertyProxy<int> (this, "value");
   }
 
   auto
   CellRendererProgress::property_value () const -> Glib::PropertyProxy_ReadOnly<int>
   {
-    return {this, "value"};
+    return Glib::PropertyProxy_ReadOnly<int> (this, "value");
   }
 
   auto
   CellRendererProgress::property_text () -> Glib::PropertyProxy<Glib::ustring>
   {
-    return {this, "text"};
+    return Glib::PropertyProxy<Glib::ustring> (this, "text");
   }
 
   auto
   CellRendererProgress::property_text () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>
   {
-    return {this, "text"};
+    return Glib::PropertyProxy_ReadOnly<Glib::ustring> (this, "text");
   }
 
   auto
   CellRendererProgress::property_pulse () -> Glib::PropertyProxy<int>
   {
-    return {this, "pulse"};
+    return Glib::PropertyProxy<int> (this, "pulse");
   }
 
   auto
   CellRendererProgress::property_pulse () const -> Glib::PropertyProxy_ReadOnly<int>
   {
-    return {this, "pulse"};
+    return Glib::PropertyProxy_ReadOnly<int> (this, "pulse");
   }
 
   auto
   CellRendererProgress::property_text_xalign () -> Glib::PropertyProxy<float>
   {
-    return {this, "text-xalign"};
+    return Glib::PropertyProxy<float> (this, "text-xalign");
   }
 
   auto
   CellRendererProgress::property_text_xalign () const -> Glib::PropertyProxy_ReadOnly<float>
   {
-    return {this, "text-xalign"};
+    return Glib::PropertyProxy_ReadOnly<float> (this, "text-xalign");
   }
 
   auto
   CellRendererProgress::property_text_yalign () -> Glib::PropertyProxy<float>
   {
-    return {this, "text-yalign"};
+    return Glib::PropertyProxy<float> (this, "text-yalign");
   }
 
   auto
   CellRendererProgress::property_text_yalign () const -> Glib::PropertyProxy_ReadOnly<float>
   {
-    return {this, "text-yalign"};
+    return Glib::PropertyProxy_ReadOnly<float> (this, "text-yalign");
   }
 
   auto
   CellRendererProgress::property_inverted () -> Glib::PropertyProxy<bool>
   {
-    return {this, "inverted"};
+    return Glib::PropertyProxy<bool> (this, "inverted");
   }
 
   auto
   CellRendererProgress::property_inverted () const -> Glib::PropertyProxy_ReadOnly<bool>
   {
-    return {this, "inverted"};
+    return Glib::PropertyProxy_ReadOnly<bool> (this, "inverted");
   }
 
 } // namespace Gtk
+
+#endif

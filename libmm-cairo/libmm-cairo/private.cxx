@@ -16,7 +16,6 @@ namespace Cairo
     switch (status)
     {
       case CAIRO_STATUS_SUCCESS:
-
         break;
 
       case CAIRO_STATUS_NO_MEMORY:
@@ -27,10 +26,8 @@ namespace Cairo
       case CAIRO_STATUS_INVALID_POP_GROUP:
       case CAIRO_STATUS_NO_CURRENT_POINT:
       case CAIRO_STATUS_INVALID_MATRIX:
-
       case CAIRO_STATUS_INVALID_STRING:
       case CAIRO_STATUS_SURFACE_FINISHED:
-
         throw logic_error (status);
         break;
 

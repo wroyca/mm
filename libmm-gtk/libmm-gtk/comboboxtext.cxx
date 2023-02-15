@@ -1,17 +1,22 @@
 // SPDX-License-Identifier: LGPL-2.1-or-later
 
-#include <libmm-glib/mm-glib.hxx>
+#undef GTK_DISABLE_DEPRECATED
+#define GDK_DISABLE_DEPRECATION_WARNINGS 1
 
-#include <libmm-gtk/comboboxtext.hxx>
-#include <libmm-gtk/comboboxtext_p.hxx>
+#ifndef GTKMM_DISABLE_DEPRECATED
 
-#include <gtk/gtk.h>
+  #include <libmm-glib/mm-glib.hxx>
+
+  #include <libmm-gtk/comboboxtext.hxx>
+  #include <libmm-gtk/comboboxtext_p.hxx>
+
+  #include <gtk/gtk.h>
 
 namespace Gtk
 {
 
-  ComboBoxText::ComboBoxText (const bool has_entry)
-    : ObjectBase (nullptr),
+  ComboBoxText::ComboBoxText (bool has_entry)
+    : Glib::ObjectBase (nullptr),
       ComboBox (Glib::ConstructParams (comboboxtext_class_.init (),
                                        "has-entry",
                                        gboolean (has_entry),
@@ -22,10 +27,10 @@ namespace Gtk
   auto
   ComboBoxText::set_active_text (const Glib::ustring& text) -> void
   {
-    const auto model = get_model ();
+    auto model = get_model ();
     if (model)
     {
-      const auto enditer = model->children ().end ();
+      auto enditer = model->children ().end ();
       for (auto iter = model->children ().begin (); iter != enditer; ++iter)
       {
         Glib::ustring this_text;
@@ -52,10 +57,10 @@ namespace Glib
 {
 
   auto
-  wrap (GtkComboBoxText* object, const bool take_copy) -> Gtk::ComboBoxText*
+  wrap (GtkComboBoxText* object, bool take_copy) -> Gtk::ComboBoxText*
   {
     return dynamic_cast<Gtk::ComboBoxText*> (
-        wrap_auto ((GObject*) object, take_copy));
+        Glib::wrap_auto ((GObject*) (object), take_copy));
   }
 
 } // namespace Glib
@@ -64,7 +69,7 @@ namespace Gtk
 {
 
   auto
-  ComboBoxText_Class::init () -> const Class&
+  ComboBoxText_Class::init () -> const Glib::Class&
   {
     if (!gtype_)
     {
@@ -86,7 +91,7 @@ namespace Gtk
   auto
   ComboBoxText_Class::wrap_new (GObject* o) -> Glib::ObjectBase*
   {
-    return manage (new ComboBoxText ((GtkComboBoxText*) o));
+    return manage (new ComboBoxText ((GtkComboBoxText*) (o)));
   }
 
   ComboBoxText::ComboBoxText (const Glib::ConstructParams& construct_params)
@@ -95,7 +100,7 @@ namespace Gtk
   }
 
   ComboBoxText::ComboBoxText (GtkComboBoxText* castitem)
-    : ComboBox ((GtkComboBox*) castitem)
+    : ComboBox ((GtkComboBox*) (castitem))
   {
   }
 
@@ -143,13 +148,13 @@ namespace Gtk
   }
 
   auto
-  ComboBoxText::insert (const int position, const Glib::ustring& text) -> void
+  ComboBoxText::insert (int position, const Glib::ustring& text) -> void
   {
     gtk_combo_box_text_insert_text (gobj (), position, text.c_str ());
   }
 
   auto
-  ComboBoxText::insert (const int position,
+  ComboBoxText::insert (int position,
                         const Glib::ustring& id,
                         const Glib::ustring& text) -> void
   {
@@ -169,7 +174,7 @@ namespace Gtk
   }
 
   auto
-  ComboBoxText::remove_text (const int position) -> void
+  ComboBoxText::remove_text (int position) -> void
   {
     gtk_combo_box_text_remove (gobj (), position);
   }
@@ -189,3 +194,5 @@ namespace Gtk
   }
 
 } // namespace Gtk
+
+#endif

@@ -54,11 +54,11 @@ namespace Gdk
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
   private:
-    GDKMM_API static void
-    throw_func (GError* gobject);
+    GDKMM_API static auto
+    throw_func (GError* gobject) -> void;
 
-    friend GDKMM_API void
-    wrap_init ();
+    friend GDKMM_API auto
+    wrap_init () -> void;
 
 #endif
   };
@@ -170,8 +170,8 @@ namespace Gdk
     auto
     get_height () const -> int;
 
-    void
-    download (guchar* data, gsize stride) const;
+    auto
+    download (guchar* data, gsize stride) const -> void;
 
     auto
     save_to_png (const Glib::ustring& filename) const -> bool;
@@ -200,9 +200,7 @@ namespace Gdk
 
 namespace Glib
 {
-
-  GDKMM_API
-  auto
+  GDKMM_API auto
   wrap (GdkTexture* object, bool take_copy = false) -> Glib::RefPtr<Gdk::Texture>;
 } // namespace Glib
 

@@ -5,40 +5,42 @@
 
 #include <libmm-gtk/mm-gtkconfig.hxx>
 
-#include <libmm-glib/ustring.hxx>
-#include <sigc++/sigc++.h>
+#ifndef GTKMM_DISABLE_DEPRECATED
 
-#include <libmm-glib/interface.hxx>
-#include <libmm-pango/fontdescription.hxx>
-#include <libmm-pango/fontface.hxx>
-#include <libmm-pango/fontfamily.hxx>
-#include <libmm-pango/fontmap.hxx>
+  #include <libmm-glib/ustring.hxx>
+  #include <sigc++/sigc++.h>
 
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #include <libmm-glib/interface.hxx>
+  #include <libmm-pango/fontdescription.hxx>
+  #include <libmm-pango/fontface.hxx>
+  #include <libmm-pango/fontfamily.hxx>
+  #include <libmm-pango/fontmap.hxx>
+
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
 extern "C"
 {
   typedef struct _GtkFontChooserIface GtkFontChooserIface;
 }
-#endif
+  #endif
 
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
 using GtkFontChooser = struct _GtkFontChooser;
 using GtkFontChooserClass = struct _GtkFontChooserClass;
-#endif
+  #endif
 
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
   class GTKMM_API FontChooser_Class;
 }
-#endif
+  #endif
 
 namespace Gtk
 {
 
   class GTKMM_API FontChooser : public Glib::Interface
   {
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   public:
     using CppObjectType = FontChooser;
@@ -54,11 +56,11 @@ namespace Gtk
     friend class FontChooser_Class;
     static CppClassType fontchooser_class_;
 
-#endif
+  #endif
   protected:
     FontChooser ();
 
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
     explicit FontChooser (const Glib::Interface_Class& interface_class);
 
@@ -66,7 +68,7 @@ namespace Gtk
     explicit FontChooser (GtkFontChooser* castitem);
 
   protected:
-#endif
+  #endif
 
   public:
     FontChooser (FontChooser&& src) noexcept;
@@ -75,16 +77,16 @@ namespace Gtk
 
     ~FontChooser () noexcept override;
 
-    static void
-    add_interface (GType gtype_implementer);
+    static auto
+    add_interface (GType gtype_implementer) -> void;
 
     static auto
     get_type () -> GType G_GNUC_CONST;
 
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
     static auto
     get_base_type () -> GType G_GNUC_CONST;
-#endif
+  #endif
 
     auto
     gobj () -> GtkFontChooser*
@@ -127,36 +129,36 @@ namespace Gtk
     auto
     get_font_desc () const -> Pango::FontDescription;
 
-    void
-    set_font_desc (const Pango::FontDescription& font_desc);
+    auto
+    set_font_desc (const Pango::FontDescription& font_desc) -> void;
 
     auto
     get_font () const -> Glib::ustring;
 
-    void
-    set_font (const Glib::ustring& fontname);
+    auto
+    set_font (const Glib::ustring& fontname) -> void;
 
     auto
     get_preview_text () const -> Glib::ustring;
 
-    void
-    set_preview_text (const Glib::ustring& text);
+    auto
+    set_preview_text (const Glib::ustring& text) -> void;
 
     auto
     get_show_preview_entry () const -> bool;
 
-    void
-    set_show_preview_entry (bool show_preview_entry = true);
+    auto
+    set_show_preview_entry (bool show_preview_entry = true) -> void;
 
     typedef sigc::slot<bool (const Glib::RefPtr<const Pango::FontFamily>&,
                              const Glib::RefPtr<const Pango::FontFace>&)>
         SlotFontFilter;
 
-    void
-    set_filter_func (const SlotFontFilter& slot);
+    auto
+    set_filter_func (const SlotFontFilter& slot) -> void;
 
-    void
-    set_font_map (const Glib::RefPtr<Pango::FontMap>& fontmap);
+    auto
+    set_font_map (const Glib::RefPtr<Pango::FontMap>& fontmap) -> void;
 
     auto
     get_font_map () -> Glib::RefPtr<Pango::FontMap>;
@@ -164,8 +166,8 @@ namespace Gtk
     auto
     get_font_map () const -> Glib::RefPtr<const Pango::FontMap>;
 
-    void
-    set_level (Level level);
+    auto
+    set_level (Level level) -> void;
 
     auto
     get_level () const -> Level;
@@ -176,8 +178,8 @@ namespace Gtk
     auto
     get_language () const -> Glib::ustring;
 
-    void
-    set_language (const Glib::ustring& language);
+    auto
+    set_language (const Glib::ustring& language) -> void;
 
     auto
     signal_font_activated () -> Glib::SignalProxy<void (const Glib::ustring&)>;
@@ -227,8 +229,8 @@ namespace Gtk
   public:
   public:
   protected:
-    virtual void
-    on_font_activated (const Glib::ustring& fontname);
+    virtual auto
+    on_font_activated (const Glib::ustring& fontname) -> void;
   };
 
 } // namespace Gtk
@@ -285,7 +287,7 @@ namespace Gtk
   }
 } // namespace Gtk
 
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Glib
 {
 
@@ -299,15 +301,15 @@ namespace Glib
   };
 
 } // namespace Glib
-#endif
+  #endif
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkFontChooser* object, bool take_copy = false) -> Glib::RefPtr<Gtk::FontChooser>;
 
 } // namespace Glib
+
+#endif
 
 #endif

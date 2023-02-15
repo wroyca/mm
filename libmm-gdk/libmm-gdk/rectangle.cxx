@@ -10,10 +10,7 @@
 namespace Gdk
 {
 
-  Rectangle::Rectangle (const int x,
-                        const int y,
-                        const int width,
-                        const int height)
+  Rectangle::Rectangle (int x, int y, int width, int height)
   {
     gobject_.x = x;
     gobject_.y = y;
@@ -35,22 +32,28 @@ namespace Gdk
   auto
   Rectangle::join (const Rectangle& src2) -> Rectangle&
   {
-    gdk_rectangle_union (&gobject_, &src2.gobject_, &gobject_);
+    gdk_rectangle_union (&gobject_,
+                         const_cast<GdkRectangle*> (&src2.gobject_),
+                         &gobject_);
     return *this;
   }
 
   auto
   Rectangle::intersect (const Rectangle& src2) -> Rectangle&
   {
-    gdk_rectangle_intersect (&gobject_, &src2.gobject_, &gobject_);
+    gdk_rectangle_intersect (&gobject_,
+                             const_cast<GdkRectangle*> (&src2.gobject_),
+                             &gobject_);
     return *this;
   }
 
   auto
   Rectangle::intersect (const Rectangle& src2, bool& rectangles_intersect) -> Rectangle&
   {
-    rectangles_intersect =
-        gdk_rectangle_intersect (&gobject_, &src2.gobject_, &gobject_);
+    rectangles_intersect = gdk_rectangle_intersect (
+        &gobject_,
+        const_cast<GdkRectangle*> (&src2.gobject_),
+        &gobject_);
     return *this;
   }
 
@@ -63,7 +66,7 @@ namespace Gdk
   auto
   Rectangle::has_zero_area () const -> bool
   {
-    return gobject_.width == 0 || gobject_.height == 0;
+    return (gobject_.width == 0 || gobject_.height == 0);
   }
 
   auto
@@ -119,10 +122,17 @@ namespace Glib
 namespace Gdk
 {
 
-  Rectangle::Rectangle (const Rectangle& other) noexcept = default;
+  Rectangle::Rectangle (const Rectangle& other) noexcept
+    : gobject_ (other.gobject_)
+  {
+  }
 
   auto
-  Rectangle::operator= (const Rectangle& other) noexcept -> Rectangle& = default;
+  Rectangle::operator= (const Rectangle& other) noexcept -> Rectangle&
+  {
+    gobject_ = other.gobject_;
+    return *this;
+  }
 
   Rectangle::Rectangle (Rectangle&& other) noexcept
     : gobject_ (std::move (other.gobject_))
@@ -156,9 +166,11 @@ namespace Gdk
   }
 
   auto
-  Rectangle::contains_point (const int x, const int y) const -> bool
+  Rectangle::contains_point (int x, int y) const -> bool
   {
-    return gdk_rectangle_contains_point (gobj (), x, y);
+    return gdk_rectangle_contains_point (const_cast<GdkRectangle*> (gobj ()),
+                                         x,
+                                         y);
   }
 
   auto

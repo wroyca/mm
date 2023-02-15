@@ -117,9 +117,7 @@ namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkIconPaintable* object, bool take_copy = false) -> Glib::RefPtr<Gtk::IconPaintable>;
 } // namespace Glib
 

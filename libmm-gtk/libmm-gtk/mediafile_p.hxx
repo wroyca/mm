@@ -17,14 +17,14 @@ namespace Gtk
     using CppObjectType = MediaFile;
     using BaseObjectType = GtkMediaFile;
     using BaseClassType = GtkMediaFileClass;
-    using CppClassParent = MediaStream_Class;
+    using CppClassParent = Gtk::MediaStream_Class;
     using BaseClassParent = GtkMediaStreamClass;
 
     friend class MediaFile;
 #endif
 
     auto
-    init () -> const Class&;
+    init () -> const Glib::Class&;
 
     static auto
     class_init_function (void* g_class, void* class_data) -> void;

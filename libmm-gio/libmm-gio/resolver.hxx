@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: LGPL-2.1-or-later
 
 #ifndef _GIOMM_RESOLVER_H
 #define _GIOMM_RESOLVER_H
@@ -110,8 +111,8 @@ namespace Gio
     static auto
     get_default () -> Glib::RefPtr<Resolver>;
 
-    static void
-    set_default (const Glib::RefPtr<Resolver>& resolver);
+    static auto
+    set_default (const Glib::RefPtr<Resolver>& resolver) -> void;
 
     auto
     lookup_by_name (const Glib::ustring& hostname,
@@ -122,14 +123,14 @@ namespace Gio
     lookup_by_name (const Glib::ustring& hostname)
         -> std::vector<Glib::RefPtr<InetAddress>>;
 
-    void
+    auto
     lookup_by_name_async (const Glib::ustring& hostname,
                           const SlotAsyncReady& slot,
-                          const Glib::RefPtr<Cancellable>& cancellable);
+                          const Glib::RefPtr<Cancellable>& cancellable) -> void;
 
-    void
+    auto
     lookup_by_name_async (const Glib::ustring& hostname,
-                          const SlotAsyncReady& slot);
+                          const SlotAsyncReady& slot) -> void;
 
     auto
     lookup_by_name_finish (const Glib::RefPtr<AsyncResult>& result)
@@ -142,12 +143,12 @@ namespace Gio
         const Glib::RefPtr<Cancellable>& cancellable = {})
         -> std::vector<Glib::RefPtr<InetAddress>>;
 
-    void
+    auto
     lookup_by_name_with_flags_async (
         const Glib::ustring& hostname,
         NameLookupFlags flags,
         const SlotAsyncReady& slot,
-        const Glib::RefPtr<Cancellable>& cancellable = {});
+        const Glib::RefPtr<Cancellable>& cancellable = {}) -> void;
 
     auto
     lookup_by_name_with_flags_finish (const Glib::RefPtr<AsyncResult>& result)
@@ -162,14 +163,15 @@ namespace Gio
     lookup_by_address (const Glib::RefPtr<InetAddress>& address)
         -> Glib::ustring;
 
-    void
+    auto
     lookup_by_address_async (const Glib::RefPtr<InetAddress>& address,
                              const SlotAsyncReady& slot,
-                             const Glib::RefPtr<Cancellable>& cancellable);
+                             const Glib::RefPtr<Cancellable>& cancellable)
+        -> void;
 
-    void
+    auto
     lookup_by_address_async (const Glib::RefPtr<InetAddress>& address,
-                             const SlotAsyncReady& slot);
+                             const SlotAsyncReady& slot) -> void;
 
     auto
     lookup_by_address_finish (const Glib::RefPtr<AsyncResult>& result)
@@ -187,18 +189,18 @@ namespace Gio
                     const Glib::ustring& protocol,
                     const Glib::ustring& domain) -> std::vector<SrvTarget>;
 
-    void
+    auto
     lookup_service_async (const Glib::ustring& service,
                           const Glib::ustring& protocol,
                           const Glib::ustring& domain,
                           const SlotAsyncReady& slot,
-                          const Glib::RefPtr<Cancellable>& cancellable);
+                          const Glib::RefPtr<Cancellable>& cancellable) -> void;
 
-    void
+    auto
     lookup_service_async (const Glib::ustring& service,
                           const Glib::ustring& protocol,
                           const Glib::ustring& domain,
-                          const SlotAsyncReady& slot);
+                          const SlotAsyncReady& slot) -> void;
 
     auto
     lookup_service_finish (const Glib::RefPtr<AsyncResult>& result)
@@ -214,16 +216,16 @@ namespace Gio
     lookup_records (const Glib::ustring& rrname, RecordType record_type)
         -> std::vector<Glib::VariantContainerBase>;
 
-    void
+    auto
     lookup_records_async (const Glib::ustring& rrname,
                           RecordType record_type,
                           const SlotAsyncReady& slot,
-                          const Glib::RefPtr<Cancellable>& cancellable);
+                          const Glib::RefPtr<Cancellable>& cancellable) -> void;
 
-    void
+    auto
     lookup_records_async (const Glib::ustring& rrname,
                           RecordType record_type,
-                          const SlotAsyncReady& slot);
+                          const SlotAsyncReady& slot) -> void;
 
     auto
     lookup_records_finish (const Glib::RefPtr<AsyncResult>& result)
@@ -235,8 +237,8 @@ namespace Gio
   public:
   public:
   protected:
-    virtual void
-    on_reload ();
+    virtual auto
+    on_reload () -> void;
   };
 
   GIOMM_API

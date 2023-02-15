@@ -18,8 +18,8 @@
 extern "C"
 {
   typedef struct _GtkRecentInfo GtkRecentInfo;
-  void
-  gtk_recent_info_unref (GtkRecentInfo* info);
+  auto
+  gtk_recent_info_unref (GtkRecentInfo* info) -> void;
 }
 #endif
 
@@ -34,11 +34,11 @@ namespace Gtk
     using BaseObjectType = GtkRecentInfo;
 #endif
 
-    void
-    reference () const;
+    auto
+    reference () const -> void;
 
-    void
-    unreference () const;
+    auto
+    unreference () const -> void;
 
     auto
     gobj () -> GtkRecentInfo*;
@@ -56,8 +56,8 @@ namespace Gtk
     operator= (const RecentInfo&) -> RecentInfo& = delete;
 
   protected:
-    void
-    operator delete (void*, std::size_t);
+    auto
+    operator delete (void*, std::size_t) -> void;
 
   private:
   public:
@@ -158,8 +158,8 @@ namespace Gtk
     static auto
     to_cpp_type (const CType& obj) -> CppType;
 
-    static inline void
-    release_c_type (const CType& obj)
+    static inline auto
+    release_c_type (const CType& obj) -> void
     {
       gtk_recent_info_unref (const_cast<CTypeNonConst> (obj));
     }
@@ -195,8 +195,8 @@ namespace Glib
     static auto
     value_type () -> GType;
 
-    void
-    set (const CppType& data);
+    auto
+    set (const CppType& data) -> void;
     auto
     get () const -> CppType;
   };
@@ -205,9 +205,7 @@ namespace Glib
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkRecentInfo* object, bool take_copy = false) -> Glib::RefPtr<Gtk::RecentInfo>;
 
 } // namespace Glib

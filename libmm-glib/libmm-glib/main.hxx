@@ -24,8 +24,8 @@ namespace Glib
     explicit PollFD (fd_t fd);
     PollFD (fd_t fd, IOCondition events);
 
-    void
-    set_fd (fd_t fd)
+    auto
+    set_fd (fd_t fd) -> void
     {
       gobject_.fd = fd;
     }
@@ -36,8 +36,8 @@ namespace Glib
       return gobject_.fd;
     }
 
-    void
-    set_events (IOCondition events)
+    auto
+    set_events (IOCondition events) -> void
     {
       gobject_.events = static_cast<decltype (gobject_.events)> (events);
     }
@@ -48,8 +48,8 @@ namespace Glib
       return static_cast<IOCondition> (gobject_.events);
     }
 
-    void
-    set_revents (IOCondition revents)
+    auto
+    set_revents (IOCondition revents) -> void
     {
       gobject_.revents = static_cast<decltype (gobject_.revents)> (revents);
     }
@@ -88,20 +88,20 @@ namespace Glib
              unsigned int interval,
              int priority = PRIORITY_DEFAULT) -> sigc::connection;
 
-    void
+    auto
     connect_once (const sigc::slot<void ()>& slot,
                   unsigned int interval,
-                  int priority = PRIORITY_DEFAULT);
+                  int priority = PRIORITY_DEFAULT) -> void;
 
     auto
     connect_seconds (const sigc::slot<bool ()>& slot,
                      unsigned int interval,
                      int priority = PRIORITY_DEFAULT) -> sigc::connection;
 
-    void
+    auto
     connect_seconds_once (const sigc::slot<void ()>& slot,
                           unsigned int interval,
-                          int priority = PRIORITY_DEFAULT);
+                          int priority = PRIORITY_DEFAULT) -> void;
 
   private:
     GMainContext* context_;
@@ -121,9 +121,9 @@ namespace Glib
     connect (const sigc::slot<bool ()>& slot,
              int priority = PRIORITY_DEFAULT_IDLE) -> sigc::connection;
 
-    void
+    auto
     connect_once (const sigc::slot<void ()>& slot,
-                  int priority = PRIORITY_DEFAULT_IDLE);
+                  int priority = PRIORITY_DEFAULT_IDLE) -> void;
 
   private:
     GMainContext* context_;
@@ -218,14 +218,14 @@ namespace Glib
     auto
     pending () -> bool;
 
-    void
-    wakeup ();
+    auto
+    wakeup () -> void;
 
     auto
     acquire () -> bool;
 
-    void
-    release ();
+    auto
+    release () -> void;
 
     auto
     prepare (int& priority) -> bool;
@@ -233,38 +233,39 @@ namespace Glib
     auto
     prepare () -> bool;
 
-    void
-    query (int max_priority, int& timeout, std::vector<PollFD>& fds);
+    auto
+    query (int max_priority, int& timeout, std::vector<PollFD>& fds) -> void;
 
     auto
     check (int max_priority, std::vector<PollFD>& fds) -> bool;
 
-    void
-    dispatch ();
+    auto
+    dispatch () -> void;
 
-    void
-    set_poll_func (GPollFunc poll_func);
+    auto
+    set_poll_func (GPollFunc poll_func) -> void;
 
-    GPollFunc
-    get_poll_func ();
+    auto
+    get_poll_func () -> GPollFunc;
 
-    void
-    add_poll (PollFD& fd, int priority);
+    auto
+    add_poll (PollFD& fd, int priority) -> void;
 
-    void
-    remove_poll (PollFD& fd);
+    auto
+    remove_poll (PollFD& fd) -> void;
 
-    void
-    push_thread_default ();
+    auto
+    push_thread_default () -> void;
 
-    void
-    pop_thread_default ();
+    auto
+    pop_thread_default () -> void;
 
     static auto
     get_thread_default () -> Glib::RefPtr<MainContext>;
 
-    void
-    invoke (const sigc::slot<bool ()>& slot, int priority = PRIORITY_DEFAULT);
+    auto
+    invoke (const sigc::slot<bool ()>& slot, int priority = PRIORITY_DEFAULT)
+        -> void;
 
     auto
     signal_timeout () -> SignalTimeout;
@@ -278,10 +279,10 @@ namespace Glib
     auto
     signal_child_watch () -> SignalChildWatch;
 
-    void
-    reference () const;
-    void
-    unreference () const;
+    auto
+    reference () const -> void;
+    auto
+    unreference () const -> void;
 
     auto
     gobj () -> GMainContext*;
@@ -292,8 +293,8 @@ namespace Glib
 
   private:
     MainContext ();
-    void
-    operator delete (void*, std::size_t);
+    auto
+    operator delete (void*, std::size_t) -> void;
   };
 
   GLIBMM_API
@@ -312,11 +313,11 @@ namespace Glib
     create (const Glib::RefPtr<MainContext>& context, bool is_running = false)
         -> Glib::RefPtr<MainLoop>;
 
-    void
-    run ();
+    auto
+    run () -> void;
 
-    void
-    quit ();
+    auto
+    quit () -> void;
 
     auto
     is_running () -> bool;
@@ -327,11 +328,11 @@ namespace Glib
     static auto
     depth () -> int;
 
-    void
-    reference () const;
+    auto
+    reference () const -> void;
 
-    void
-    unreference () const;
+    auto
+    unreference () const -> void;
 
     auto
     gobj () -> GMainLoop*;
@@ -342,8 +343,8 @@ namespace Glib
 
   private:
     MainLoop ();
-    void
-    operator delete (void*, std::size_t);
+    auto
+    operator delete (void*, std::size_t) -> void;
 
     MainLoop (const MainLoop&) = delete;
     auto
@@ -373,17 +374,17 @@ namespace Glib
     GLIBMM_API auto
     attach () -> unsigned int;
 
-    GLIBMM_API void
-    destroy ();
+    GLIBMM_API auto
+    destroy () -> void;
 
-    GLIBMM_API void
-    set_priority (int priority);
+    GLIBMM_API auto
+    set_priority (int priority) -> void;
 
     GLIBMM_API auto
     get_priority () const -> int;
 
-    GLIBMM_API void
-    set_can_recurse (bool can_recurse);
+    GLIBMM_API auto
+    set_can_recurse (bool can_recurse) -> void;
 
     GLIBMM_API auto
     get_can_recurse () const -> bool;
@@ -409,10 +410,10 @@ namespace Glib
     GLIBMM_API auto
     gobj_copy () const -> GSource*;
 
-    GLIBMM_API void
-    reference () const;
-    GLIBMM_API void
-    unreference () const;
+    GLIBMM_API auto
+    reference () const -> void;
+    GLIBMM_API auto
+    unreference () const -> void;
 
   protected:
     GLIBMM_API
@@ -426,11 +427,11 @@ namespace Glib
     GLIBMM_API auto
     connect_generic (const sigc::slot_base& slot) -> sigc::connection;
 
-    GLIBMM_API void
-    add_poll (PollFD& poll_fd);
+    GLIBMM_API auto
+    add_poll (PollFD& poll_fd) -> void;
 
-    GLIBMM_API void
-    remove_poll (PollFD& poll_fd);
+    GLIBMM_API auto
+    remove_poll (PollFD& poll_fd) -> void;
 
     GLIBMM_API auto
     get_time () const -> gint64;
@@ -464,8 +465,8 @@ namespace Glib
         -> gboolean;
 
   public:
-    GLIBMM_API static void
-    destroy_notify_callback2 (void* data);
+    GLIBMM_API static auto
+    destroy_notify_callback2 (void* data) -> void;
 
     GLIBMM_API static auto
     attach_signal_source (const sigc::slot_base& slot,

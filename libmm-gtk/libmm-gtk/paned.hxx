@@ -84,8 +84,8 @@ namespace Gtk
   public:
     explicit Paned (Orientation orientation = Orientation::HORIZONTAL);
 
-    void
-    set_start_child (Widget& child);
+    auto
+    set_start_child (Widget& child) -> void;
 
     auto
     get_start_child () -> Widget*;
@@ -93,20 +93,20 @@ namespace Gtk
     auto
     get_start_child () const -> const Widget*;
 
-    void
-    set_resize_start_child (bool resize = true);
+    auto
+    set_resize_start_child (bool resize = true) -> void;
 
     auto
     get_resize_start_child () const -> bool;
 
-    void
-    set_shrink_start_child (bool resize = true);
+    auto
+    set_shrink_start_child (bool resize = true) -> void;
 
     auto
     get_shrink_start_child () const -> bool;
 
-    void
-    set_end_child (Widget& child);
+    auto
+    set_end_child (Widget& child) -> void;
 
     auto
     get_end_child () -> Widget*;
@@ -114,14 +114,14 @@ namespace Gtk
     auto
     get_end_child () const -> const Widget*;
 
-    void
-    set_resize_end_child (bool resize = true);
+    auto
+    set_resize_end_child (bool resize = true) -> void;
 
     auto
     get_resize_end_child () const -> bool;
 
-    void
-    set_shrink_end_child (bool resize = true);
+    auto
+    set_shrink_end_child (bool resize = true) -> void;
 
     auto
     get_shrink_end_child () const -> bool;
@@ -129,11 +129,11 @@ namespace Gtk
     auto
     get_position () const -> int;
 
-    void
-    set_position (int position);
+    auto
+    set_position (int position) -> void;
 
-    void
-    set_wide_handle (bool wide = true);
+    auto
+    set_wide_handle (bool wide = true) -> void;
 
     auto
     get_wide_handle () const -> bool;
@@ -207,9 +207,7 @@ namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkPaned* object, bool take_copy = false) -> Gtk::Paned*;
 } // namespace Glib
 

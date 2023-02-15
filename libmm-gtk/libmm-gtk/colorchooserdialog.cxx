@@ -1,21 +1,26 @@
 // SPDX-License-Identifier: LGPL-2.1-or-later
 
-#include <libmm-glib/mm-glib.hxx>
+#undef GTK_DISABLE_DEPRECATED
+#define GDK_DISABLE_DEPRECATION_WARNINGS 1
 
-#include <libmm-gtk/colorchooserdialog.hxx>
-#include <libmm-gtk/colorchooserdialog_p.hxx>
+#ifndef GTKMM_DISABLE_DEPRECATED
 
-#include <gtk/gtk.h>
+  #include <libmm-glib/mm-glib.hxx>
+
+  #include <libmm-gtk/colorchooserdialog.hxx>
+  #include <libmm-gtk/colorchooserdialog_p.hxx>
+
+  #include <gtk/gtk.h>
 
 namespace Gtk
 {
 
   ColorChooserDialog::ColorChooserDialog (const Glib::ustring& title)
-    : ObjectBase (nullptr),
-      Dialog (Glib::ConstructParams (colorchooserdialog_class_.init (),
-                                     "title",
-                                     title.c_str (),
-                                     nullptr))
+    : Glib::ObjectBase (nullptr),
+      Gtk::Dialog (Glib::ConstructParams (colorchooserdialog_class_.init (),
+                                          "title",
+                                          title.c_str (),
+                                          nullptr))
   {
   }
 
@@ -29,10 +34,10 @@ namespace Glib
 {
 
   auto
-  wrap (GtkColorChooserDialog* object, const bool take_copy) -> Gtk::ColorChooserDialog*
+  wrap (GtkColorChooserDialog* object, bool take_copy) -> Gtk::ColorChooserDialog*
   {
     return dynamic_cast<Gtk::ColorChooserDialog*> (
-        wrap_auto ((GObject*) object, take_copy));
+        Glib::wrap_auto ((GObject*) (object), take_copy));
   }
 
 } // namespace Glib
@@ -41,7 +46,7 @@ namespace Gtk
 {
 
   auto
-  ColorChooserDialog_Class::init () -> const Class&
+  ColorChooserDialog_Class::init () -> const Glib::Class&
   {
     if (!gtype_)
     {
@@ -64,29 +69,29 @@ namespace Gtk
   auto
   ColorChooserDialog_Class::wrap_new (GObject* o) -> Glib::ObjectBase*
   {
-    return new ColorChooserDialog ((GtkColorChooserDialog*) o);
+    return new ColorChooserDialog ((GtkColorChooserDialog*) (o));
   }
 
   ColorChooserDialog::ColorChooserDialog (
       const Glib::ConstructParams& construct_params)
-    : Dialog (construct_params)
+    : Gtk::Dialog (construct_params)
   {
   }
 
   ColorChooserDialog::ColorChooserDialog (GtkColorChooserDialog* castitem)
-    : Dialog ((GtkDialog*) castitem)
+    : Gtk::Dialog ((GtkDialog*) (castitem))
   {
   }
 
   ColorChooserDialog::ColorChooserDialog (ColorChooserDialog&& src) noexcept
-    : Dialog (std::move (src))
+    : Gtk::Dialog (std::move (src))
   {
   }
 
   auto
   ColorChooserDialog::operator= (ColorChooserDialog&& src) noexcept -> ColorChooserDialog&
   {
-    Dialog::operator= (std::move (src));
+    Gtk::Dialog::operator= (std::move (src));
     return *this;
   }
 
@@ -111,33 +116,35 @@ namespace Gtk
   }
 
   ColorChooserDialog::ColorChooserDialog ()
-    : ObjectBase (nullptr),
-      Dialog (Glib::ConstructParams (colorchooserdialog_class_.init ()))
+    : Glib::ObjectBase (nullptr),
+      Gtk::Dialog (Glib::ConstructParams (colorchooserdialog_class_.init ()))
   {
   }
 
   ColorChooserDialog::ColorChooserDialog (const Glib::ustring& title,
                                           Window& transient_for)
-    : ObjectBase (nullptr),
-      Dialog (Glib::ConstructParams (colorchooserdialog_class_.init (),
-                                     "title",
-                                     title.c_str (),
-                                     "transient_for",
-                                     transient_for.gobj (),
-                                     nullptr))
+    : Glib::ObjectBase (nullptr),
+      Gtk::Dialog (Glib::ConstructParams (colorchooserdialog_class_.init (),
+                                          "title",
+                                          title.c_str (),
+                                          "transient_for",
+                                          (transient_for).gobj (),
+                                          nullptr))
   {
   }
 
   auto
   ColorChooserDialog::property_show_editor () -> Glib::PropertyProxy<bool>
   {
-    return {this, "show-editor"};
+    return Glib::PropertyProxy<bool> (this, "show-editor");
   }
 
   auto
   ColorChooserDialog::property_show_editor () const -> Glib::PropertyProxy_ReadOnly<bool>
   {
-    return {this, "show-editor"};
+    return Glib::PropertyProxy_ReadOnly<bool> (this, "show-editor");
   }
 
 } // namespace Gtk
+
+#endif

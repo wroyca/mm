@@ -99,26 +99,26 @@ namespace Gtk
 
     explicit Image (const Glib::RefPtr<Gio::Icon>& gicon);
 
-    void
-    set (const std::string& filename);
+    auto
+    set (const std::string& filename) -> void;
 
-    void
-    set_from_resource (const std::string& resource_path);
+    auto
+    set_from_resource (const std::string& resource_path) -> void;
 
-    void
-    set (const Glib::RefPtr<Gdk::Pixbuf>& pixbuf);
+    auto
+    set (const Glib::RefPtr<Gdk::Pixbuf>& pixbuf) -> void;
 
-    void
-    set (const Glib::RefPtr<Gdk::Paintable>& paintable);
+    auto
+    set (const Glib::RefPtr<Gdk::Paintable>& paintable) -> void;
 
-    void
-    set (const Glib::RefPtr<const Gio::Icon>& icon);
+    auto
+    set (const Glib::RefPtr<const Gio::Icon>& icon) -> void;
 
-    void
-    set_from_icon_name (const Glib::ustring& icon_name);
+    auto
+    set_from_icon_name (const Glib::ustring& icon_name) -> void;
 
-    void
-    clear ();
+    auto
+    clear () -> void;
 
     auto
     get_storage_type () const -> Type;
@@ -129,8 +129,8 @@ namespace Gtk
     auto
     get_paintable () const -> Glib::RefPtr<const Gdk::Paintable>;
 
-    void
-    set_icon_size (IconSize icon_size);
+    auto
+    set_icon_size (IconSize icon_size) -> void;
 
     auto
     get_icon_size () const -> IconSize;
@@ -147,8 +147,8 @@ namespace Gtk
     auto
     get_pixel_size () const -> int;
 
-    void
-    set_pixel_size (int pixel_size);
+    auto
+    set_pixel_size (int pixel_size) -> void;
 
     auto
     property_file () -> Glib::PropertyProxy<Glib::ustring>;
@@ -228,9 +228,7 @@ namespace Glib
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkImage* object, bool take_copy = false) -> Gtk::Image*;
 } // namespace Glib
 

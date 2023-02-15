@@ -5,30 +5,32 @@
 
 #include <libmm-gtk/mm-gtkconfig.hxx>
 
-#include <libmm-glib/ustring.hxx>
-#include <sigc++/sigc++.h>
+#ifndef GTKMM_DISABLE_DEPRECATED
 
-#include <libmm-gdk/texture.hxx>
-#include <libmm-gtk/cellarea.hxx>
-#include <libmm-gtk/cellareacontext.hxx>
-#include <libmm-gtk/celllayout.hxx>
-#include <libmm-gtk/cellrenderer.hxx>
-#include <libmm-gtk/orientable.hxx>
-#include <libmm-gtk/treemodel.hxx>
-#include <libmm-gtk/treepath.hxx>
-#include <libmm-gtk/widget.hxx>
+  #include <libmm-glib/ustring.hxx>
+  #include <sigc++/sigc++.h>
 
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #include <libmm-gdk/texture.hxx>
+  #include <libmm-gtk/cellarea.hxx>
+  #include <libmm-gtk/cellareacontext.hxx>
+  #include <libmm-gtk/celllayout.hxx>
+  #include <libmm-gtk/cellrenderer.hxx>
+  #include <libmm-gtk/orientable.hxx>
+  #include <libmm-gtk/treemodel.hxx>
+  #include <libmm-gtk/treepath.hxx>
+  #include <libmm-gtk/widget.hxx>
+
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
 using GtkCellView = struct _GtkCellView;
 using GtkCellViewClass = struct _GtkCellViewClass;
-#endif
+  #endif
 
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
   class GTKMM_API CellView_Class;
 }
-#endif
+  #endif
 
 namespace Gtk
 {
@@ -38,12 +40,12 @@ namespace Gtk
                              public Orientable
   {
   public:
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
     typedef CellView CppObjectType;
     typedef CellView_Class CppClassType;
     typedef GtkCellView BaseObjectType;
     typedef GtkCellViewClass BaseClassType;
-#endif
+  #endif
 
     CellView (CellView&& src) noexcept;
     auto
@@ -55,7 +57,7 @@ namespace Gtk
 
     ~CellView () noexcept override;
 
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   private:
     friend GTKMM_API class CellView_Class;
@@ -65,17 +67,17 @@ namespace Gtk
     explicit CellView (const Glib::ConstructParams& construct_params);
     explicit CellView (GtkCellView* castitem);
 
-#endif
+  #endif
 
   public:
     static auto
     get_type () -> GType G_GNUC_CONST;
 
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
     static auto
     get_base_type () -> GType G_GNUC_CONST;
-#endif
+  #endif
 
     auto
     gobj () -> GtkCellView*
@@ -97,11 +99,11 @@ namespace Gtk
 
     explicit CellView (const Glib::RefPtr<Gdk::Texture>& texture);
 
-    void
-    set_model (const Glib::RefPtr<TreeModel>& model);
+    auto
+    set_model (const Glib::RefPtr<TreeModel>& model) -> void;
 
-    void
-    unset_model ();
+    auto
+    unset_model () -> void;
 
     auto
     get_model () -> Glib::RefPtr<TreeModel>;
@@ -109,8 +111,8 @@ namespace Gtk
     auto
     get_model () const -> Glib::RefPtr<const TreeModel>;
 
-    void
-    set_displayed_row (const TreeModel::Path& path);
+    auto
+    set_displayed_row (const TreeModel::Path& path) -> void;
 
     auto
     get_displayed_row () const -> TreeModel::Path;
@@ -118,14 +120,14 @@ namespace Gtk
     auto
     get_draw_sensitive () const -> bool;
 
-    void
-    set_draw_sensitive (bool draw_sensitive = true);
+    auto
+    set_draw_sensitive (bool draw_sensitive = true) -> void;
 
     auto
     get_fit_model () const -> bool;
 
-    void
-    set_fit_model (bool fit_model = true);
+    auto
+    set_fit_model (bool fit_model = true) -> void;
 
     auto
     property_model () -> Glib::PropertyProxy<Glib::RefPtr<TreeModel>>;
@@ -163,10 +165,10 @@ namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkCellView* object, bool take_copy = false) -> Gtk::CellView*;
 } // namespace Glib
+
+#endif
 
 #endif

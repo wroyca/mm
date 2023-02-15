@@ -92,15 +92,15 @@ namespace Gtk
             const Glib::RefPtr<Gdk::Device>& pad = {})
         -> Glib::RefPtr<PadController>;
 
-    void
-    set_action_entries (const std::vector<PadActionEntry>& entries);
+    auto
+    set_action_entries (const std::vector<PadActionEntry>& entries) -> void;
 
-    void
+    auto
     set_action (PadActionType type,
                 int index,
                 int mode,
                 const Glib::ustring& label,
-                const Glib::ustring& action_name);
+                const Glib::ustring& action_name) -> void;
 
     auto
     property_action_group () const
@@ -119,9 +119,7 @@ namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkPadController* object, bool take_copy = false) -> Glib::RefPtr<Gtk::PadController>;
 } // namespace Glib
 

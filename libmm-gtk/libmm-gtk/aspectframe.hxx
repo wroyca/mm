@@ -89,40 +89,40 @@ namespace Gtk
                           float ratio = 1.0,
                           bool obey_child = false);
 
-    void
-    set_xalign (Align xalign);
+    auto
+    set_xalign (Align xalign) -> void;
 
-    void
-    set_xalign (float xalign);
+    auto
+    set_xalign (float xalign) -> void;
 
     auto
     get_xalign () const -> float;
 
-    void
-    set_yalign (Align yalign);
+    auto
+    set_yalign (Align yalign) -> void;
 
-    void
-    set_yalign (float yalign);
+    auto
+    set_yalign (float yalign) -> void;
 
     auto
     get_yalign () const -> float;
 
-    void
-    set_ratio (float ratio);
+    auto
+    set_ratio (float ratio) -> void;
 
     auto
     get_ratio () const -> float;
 
-    void
-    set_obey_child (bool obey_child = true);
+    auto
+    set_obey_child (bool obey_child = true) -> void;
 
     auto
     get_obey_child () const -> bool;
 
-    void
-    set_child (Widget& child);
-    void
-    unset_child ();
+    auto
+    set_child (Widget& child) -> void;
+    auto
+    unset_child () -> void;
 
     auto
     get_child () -> Widget*;
@@ -169,9 +169,7 @@ namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkAspectFrame* object, bool take_copy = false) -> Gtk::AspectFrame*;
 } // namespace Glib
 

@@ -50,8 +50,8 @@ namespace Glib
         return item;
       }
 
-      static void
-      release_c_type (const CType&)
+      static auto
+      release_c_type (const CType&) -> void
       {
       }
     };
@@ -86,8 +86,8 @@ namespace Glib
         return dynamic_cast<CppType> (Glib::wrap_auto (cobj, false));
       }
 
-      static void
-      release_c_type (CType ptr)
+      static auto
+      release_c_type (CType ptr) -> void
       {
         GLIBMM_DEBUG_UNREFERENCE (nullptr, ptr);
         g_object_unref (ptr);
@@ -122,8 +122,8 @@ namespace Glib
         return dynamic_cast<CppType> (Glib::wrap_auto (cobj, false));
       }
 
-      static void
-      release_c_type (CType ptr)
+      static auto
+      release_c_type (CType ptr) -> void
       {
         GLIBMM_DEBUG_UNREFERENCE (nullptr, ptr);
         g_object_unref (const_cast<CTypeNonConst> (ptr));
@@ -158,8 +158,8 @@ namespace Glib
             dynamic_cast<T*> (Glib::wrap_auto (cobj, true)));
       }
 
-      static void
-      release_c_type (CType ptr)
+      static auto
+      release_c_type (CType ptr) -> void
       {
         GLIBMM_DEBUG_UNREFERENCE (nullptr, ptr);
         g_object_unref (ptr);
@@ -195,8 +195,8 @@ namespace Glib
             dynamic_cast<const T*> (Glib::wrap_auto (cobj, true)));
       }
 
-      static void
-      release_c_type (CType ptr)
+      static auto
+      release_c_type (CType ptr) -> void
       {
         GLIBMM_DEBUG_UNREFERENCE (nullptr, ptr);
         g_object_unref (const_cast<CTypeNonConst> (ptr));
@@ -238,8 +238,8 @@ namespace Glib
         return (str) ? Glib::ustring (str) : Glib::ustring ();
       }
 
-      static void
-      release_c_type (CType str)
+      static auto
+      release_c_type (CType str) -> void
       {
         g_free (const_cast<CTypeNonConst> (str));
       }
@@ -276,8 +276,8 @@ namespace Glib
         return (str) ? std::string (str) : std::string ();
       }
 
-      static void
-      release_c_type (CType str)
+      static auto
+      release_c_type (CType str) -> void
       {
         g_free (const_cast<CTypeNonConst> (str));
       }
@@ -308,8 +308,8 @@ namespace Glib
         return (item != 0);
       }
 
-      static void
-      release_c_type (CType)
+      static auto
+      release_c_type (CType) -> void
       {
       }
     };
@@ -339,8 +339,8 @@ namespace Glib
         return Glib::VariantBase (v, true);
       }
 
-      static void
-      release_c_type (CType v)
+      static auto
+      release_c_type (CType v) -> void
       {
         g_variant_unref (const_cast<CTypeNonConst> (v));
       }
@@ -371,8 +371,8 @@ namespace Glib
         return Glib::VariantContainerBase (v, true);
       }
 
-      static void
-      release_c_type (CType v)
+      static auto
+      release_c_type (CType v) -> void
       {
         g_variant_unref (const_cast<CTypeNonConst> (v));
       }

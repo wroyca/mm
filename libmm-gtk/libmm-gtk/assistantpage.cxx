@@ -1,12 +1,18 @@
 // SPDX-License-Identifier: LGPL-2.1-or-later
 
-#include <libmm-glib/mm-glib.hxx>
+#undef GTK_DISABLE_DEPRECATED
+#define GDK_DISABLE_DEPRECATION_WARNINGS 1
 
-#include <libmm-gtk/assistantpage.hxx>
-#include <libmm-gtk/assistantpage_p.hxx>
+#include <libmm-gtk/mm-gtkconfig.hxx>
+#ifndef GTKMM_DISABLE_DEPRECATED
 
-#include <gtk/gtk.h>
-#include <libmm-gtk/widget.hxx>
+  #include <libmm-glib/mm-glib.hxx>
+
+  #include <libmm-gtk/assistantpage.hxx>
+  #include <libmm-gtk/assistantpage_p.hxx>
+
+  #include <gtk/gtk.h>
+  #include <libmm-gtk/widget.hxx>
 
 using Type = Gtk::AssistantPage::Type;
 
@@ -24,11 +30,11 @@ namespace Glib
 {
 
   auto
-  wrap (GtkAssistantPage* object, const bool take_copy) -> RefPtr<Gtk::AssistantPage>
+  wrap (GtkAssistantPage* object, bool take_copy) -> Glib::RefPtr<Gtk::AssistantPage>
   {
     return Glib::make_refptr_for_instance<Gtk::AssistantPage> (
         dynamic_cast<Gtk::AssistantPage*> (
-            wrap_auto ((GObject*) object, take_copy)));
+            Glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
 } // namespace Glib
@@ -37,7 +43,7 @@ namespace Gtk
 {
 
   auto
-  AssistantPage_Class::init () -> const Class&
+  AssistantPage_Class::init () -> const Glib::Class&
   {
     if (!gtype_)
     {
@@ -70,28 +76,28 @@ namespace Gtk
   }
 
   AssistantPage::AssistantPage (const Glib::ConstructParams& construct_params)
-    : Object (construct_params)
+    : Glib::Object (construct_params)
   {
   }
 
   AssistantPage::AssistantPage (GtkAssistantPage* castitem)
-    : Object ((GObject*) castitem)
+    : Glib::Object ((GObject*) (castitem))
   {
   }
 
   AssistantPage::AssistantPage (AssistantPage&& src) noexcept
-    : Object (std::move (src))
+    : Glib::Object (std::move (src))
   {
   }
 
   auto
   AssistantPage::operator= (AssistantPage&& src) noexcept -> AssistantPage&
   {
-    Object::operator= (std::move (src));
+    Glib::Object::operator= (std::move (src));
     return *this;
   }
 
-  AssistantPage::~AssistantPage () noexcept = default;
+  AssistantPage::~AssistantPage () noexcept {}
 
   AssistantPage::CppClassType AssistantPage::assistantpage_class_;
 
@@ -127,43 +133,45 @@ namespace Gtk
   auto
   AssistantPage::property_page_type () -> Glib::PropertyProxy<Type>
   {
-    return {this, "page-type"};
+    return Glib::PropertyProxy<Type> (this, "page-type");
   }
 
   auto
   AssistantPage::property_page_type () const -> Glib::PropertyProxy_ReadOnly<Type>
   {
-    return {this, "page-type"};
+    return Glib::PropertyProxy_ReadOnly<Type> (this, "page-type");
   }
 
   auto
   AssistantPage::property_title () -> Glib::PropertyProxy<Glib::ustring>
   {
-    return {this, "title"};
+    return Glib::PropertyProxy<Glib::ustring> (this, "title");
   }
 
   auto
   AssistantPage::property_title () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>
   {
-    return {this, "title"};
+    return Glib::PropertyProxy_ReadOnly<Glib::ustring> (this, "title");
   }
 
   auto
   AssistantPage::property_complete () -> Glib::PropertyProxy<bool>
   {
-    return {this, "complete"};
+    return Glib::PropertyProxy<bool> (this, "complete");
   }
 
   auto
   AssistantPage::property_complete () const -> Glib::PropertyProxy_ReadOnly<bool>
   {
-    return {this, "complete"};
+    return Glib::PropertyProxy_ReadOnly<bool> (this, "complete");
   }
 
   auto
   AssistantPage::property_child () const -> Glib::PropertyProxy_ReadOnly<Widget*>
   {
-    return {this, "child"};
+    return Glib::PropertyProxy_ReadOnly<Widget*> (this, "child");
   }
 
 } // namespace Gtk
+
+#endif

@@ -18,11 +18,11 @@ namespace Glib
 {
 
   auto
-  wrap (GtkWindowGroup* object, const bool take_copy) -> RefPtr<Gtk::WindowGroup>
+  wrap (GtkWindowGroup* object, bool take_copy) -> Glib::RefPtr<Gtk::WindowGroup>
   {
     return Glib::make_refptr_for_instance<Gtk::WindowGroup> (
         dynamic_cast<Gtk::WindowGroup*> (
-            wrap_auto ((GObject*) object, take_copy)));
+            Glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
 } // namespace Glib
@@ -31,7 +31,7 @@ namespace Gtk
 {
 
   auto
-  WindowGroup_Class::init () -> const Class&
+  WindowGroup_Class::init () -> const Glib::Class&
   {
     if (!gtype_)
     {
@@ -64,28 +64,28 @@ namespace Gtk
   }
 
   WindowGroup::WindowGroup (const Glib::ConstructParams& construct_params)
-    : Object (construct_params)
+    : Glib::Object (construct_params)
   {
   }
 
   WindowGroup::WindowGroup (GtkWindowGroup* castitem)
-    : Object ((GObject*) castitem)
+    : Glib::Object ((GObject*) (castitem))
   {
   }
 
   WindowGroup::WindowGroup (WindowGroup&& src) noexcept
-    : Object (std::move (src))
+    : Glib::Object (std::move (src))
   {
   }
 
   auto
   WindowGroup::operator= (WindowGroup&& src) noexcept -> WindowGroup&
   {
-    Object::operator= (std::move (src));
+    Glib::Object::operator= (std::move (src));
     return *this;
   }
 
-  WindowGroup::~WindowGroup () noexcept = default;
+  WindowGroup::~WindowGroup () noexcept {}
 
   WindowGroup::CppClassType WindowGroup::windowgroup_class_;
 
@@ -102,8 +102,8 @@ namespace Gtk
   }
 
   WindowGroup::WindowGroup ()
-    : ObjectBase (nullptr),
-      Object (Glib::ConstructParams (windowgroup_class_.init ()))
+    : Glib::ObjectBase (nullptr),
+      Glib::Object (Glib::ConstructParams (windowgroup_class_.init ()))
   {
   }
 
@@ -116,13 +116,13 @@ namespace Gtk
   auto
   WindowGroup::add_window (Window& window) -> void
   {
-    gtk_window_group_add_window (gobj (), window.gobj ());
+    gtk_window_group_add_window (gobj (), (window).gobj ());
   }
 
   auto
   WindowGroup::remove_window (Window& window) -> void
   {
-    gtk_window_group_remove_window (gobj (), window.gobj ());
+    gtk_window_group_remove_window (gobj (), (window).gobj ());
   }
 
   auto

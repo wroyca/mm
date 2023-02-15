@@ -94,14 +94,14 @@ namespace Gtk
 
     explicit ScaleButton (double min, double max, double step);
 
-    void
-    set_icons (const std::vector<Glib::ustring>& icons);
+    auto
+    set_icons (const std::vector<Glib::ustring>& icons) -> void;
 
     auto
     get_value () const -> double;
 
-    void
-    set_value (double value);
+    auto
+    set_value (double value) -> void;
 
     auto
     get_adjustment () -> Glib::RefPtr<Adjustment>;
@@ -109,8 +109,8 @@ namespace Gtk
     auto
     get_adjustment () const -> Glib::RefPtr<const Adjustment>;
 
-    void
-    set_adjustment (const Glib::RefPtr<Adjustment>& adjustment);
+    auto
+    set_adjustment (const Glib::RefPtr<Adjustment>& adjustment) -> void;
 
     auto
     get_plus_button () -> Button*;
@@ -156,17 +156,15 @@ namespace Gtk
   public:
   public:
   protected:
-    virtual void
-    on_value_changed (double value);
+    virtual auto
+    on_value_changed (double value) -> void;
   };
 
 } // namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkScaleButton* object, bool take_copy = false) -> Gtk::ScaleButton*;
 } // namespace Glib
 

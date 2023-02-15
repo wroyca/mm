@@ -15,11 +15,11 @@ namespace Glib
 {
 
   auto
-  wrap (GtkNumericSorter* object, const bool take_copy) -> RefPtr<Gtk::NumericSorterBase>
+  wrap (GtkNumericSorter* object, bool take_copy) -> Glib::RefPtr<Gtk::NumericSorterBase>
   {
     return Glib::make_refptr_for_instance<Gtk::NumericSorterBase> (
         dynamic_cast<Gtk::NumericSorterBase*> (
-            wrap_auto ((GObject*) object, take_copy)));
+            Glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
 } // namespace Glib
@@ -28,7 +28,7 @@ namespace Gtk
 {
 
   auto
-  NumericSorterBase_Class::init () -> const Class&
+  NumericSorterBase_Class::init () -> const Glib::Class&
   {
     if (!gtype_)
     {
@@ -62,28 +62,28 @@ namespace Gtk
 
   NumericSorterBase::NumericSorterBase (
       const Glib::ConstructParams& construct_params)
-    : Sorter (construct_params)
+    : Gtk::Sorter (construct_params)
   {
   }
 
   NumericSorterBase::NumericSorterBase (GtkNumericSorter* castitem)
-    : Sorter ((GtkSorter*) castitem)
+    : Gtk::Sorter ((GtkSorter*) (castitem))
   {
   }
 
   NumericSorterBase::NumericSorterBase (NumericSorterBase&& src) noexcept
-    : Sorter (std::move (src))
+    : Gtk::Sorter (std::move (src))
   {
   }
 
   auto
   NumericSorterBase::operator= (NumericSorterBase&& src) noexcept -> NumericSorterBase&
   {
-    Sorter::operator= (std::move (src));
+    Gtk::Sorter::operator= (std::move (src));
     return *this;
   }
 
-  NumericSorterBase::~NumericSorterBase () noexcept = default;
+  NumericSorterBase::~NumericSorterBase () noexcept {}
 
   NumericSorterBase::CppClassType NumericSorterBase::numericsorterbase_class_;
 
@@ -101,11 +101,12 @@ namespace Gtk
 
   NumericSorterBase::NumericSorterBase (
       const Glib::RefPtr<ExpressionBase>& expression)
-    : ObjectBase (nullptr),
-      Sorter (Glib::ConstructParams (numericsorterbase_class_.init (),
-                                     "expression",
-                                     expression ? expression->gobj () : nullptr,
-                                     nullptr))
+    : Glib::ObjectBase (nullptr),
+      Gtk::Sorter (Glib::ConstructParams (
+          numericsorterbase_class_.init (),
+          "expression",
+          ((expression) ? (expression)->gobj () : nullptr),
+          nullptr))
   {
   }
 
@@ -131,13 +132,13 @@ namespace Gtk
   auto
   NumericSorterBase::property_sort_order () -> Glib::PropertyProxy<SortType>
   {
-    return {this, "sort-order"};
+    return Glib::PropertyProxy<SortType> (this, "sort-order");
   }
 
   auto
   NumericSorterBase::property_sort_order () const -> Glib::PropertyProxy_ReadOnly<SortType>
   {
-    return {this, "sort-order"};
+    return Glib::PropertyProxy_ReadOnly<SortType> (this, "sort-order");
   }
 
 } // namespace Gtk

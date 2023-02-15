@@ -5,24 +5,26 @@
 
 #include <libmm-gtk/mm-gtkconfig.hxx>
 
-#include <libmm-glib/ustring.hxx>
-#include <sigc++/sigc++.h>
+#ifndef GTKMM_DISABLE_DEPRECATED
 
-#include <libmm-gtk/cellrenderer.hxx>
-#include <libmm-pango/attrlist.hxx>
-#include <libmm-pango/fontdescription.hxx>
+  #include <libmm-glib/ustring.hxx>
+  #include <sigc++/sigc++.h>
 
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #include <libmm-gtk/cellrenderer.hxx>
+  #include <libmm-pango/attrlist.hxx>
+  #include <libmm-pango/fontdescription.hxx>
+
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
 using GtkCellRendererText = struct _GtkCellRendererText;
 using GtkCellRendererTextClass = struct _GtkCellRendererTextClass;
-#endif
+  #endif
 
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
   class GTKMM_API CellRendererText_Class;
 }
-#endif
+  #endif
 
 namespace Gtk
 {
@@ -30,12 +32,12 @@ namespace Gtk
   class GTKMM_API CellRendererText : public CellRenderer
   {
   public:
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
     typedef CellRendererText CppObjectType;
     typedef CellRendererText_Class CppClassType;
     typedef GtkCellRendererText BaseObjectType;
     typedef GtkCellRendererTextClass BaseClassType;
-#endif
+  #endif
 
     CellRendererText (CellRendererText&& src) noexcept;
     auto
@@ -47,7 +49,7 @@ namespace Gtk
 
     ~CellRendererText () noexcept override;
 
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   private:
     friend GTKMM_API class CellRendererText_Class;
@@ -57,17 +59,17 @@ namespace Gtk
     explicit CellRendererText (const Glib::ConstructParams& construct_params);
     explicit CellRendererText (GtkCellRendererText* castitem);
 
-#endif
+  #endif
 
   public:
     static auto
     get_type () -> GType G_GNUC_CONST;
 
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
     static auto
     get_base_type () -> GType G_GNUC_CONST;
-#endif
+  #endif
 
     auto
     gobj () -> GtkCellRendererText*
@@ -85,8 +87,8 @@ namespace Gtk
   public:
     CellRendererText ();
 
-    void
-    set_fixed_height_from_font (int number_of_rows);
+    auto
+    set_fixed_height_from_font (int number_of_rows) -> void;
 
     auto
     signal_edited ()
@@ -373,24 +375,25 @@ namespace Gtk
     _property_renderable () -> Glib::PropertyProxy_Base override;
 
   protected:
-    void
-    edited (const Glib::ustring& path, const Glib::ustring& new_text);
+    auto
+    edited (const Glib::ustring& path, const Glib::ustring& new_text) -> void;
 
   public:
   public:
   protected:
-    virtual void
-    on_edited (const Glib::ustring& path, const Glib::ustring& new_text);
+    virtual auto
+    on_edited (const Glib::ustring& path, const Glib::ustring& new_text)
+        -> void;
   };
 
 } // namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkCellRendererText* object, bool take_copy = false) -> Gtk::CellRendererText*;
 } // namespace Glib
+
+#endif
 
 #endif

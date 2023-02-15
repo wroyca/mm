@@ -92,14 +92,14 @@ namespace Gtk
     auto
     get_expression () const -> Glib::RefPtr<const Expression<bool>>;
 
-    void
-    set_expression (const Glib::RefPtr<Expression<bool>>& expression);
+    auto
+    set_expression (const Glib::RefPtr<Expression<bool>>& expression) -> void;
 
     auto
     get_invert () const -> bool;
 
-    void
-    set_invert (bool invert = true);
+    auto
+    set_invert (bool invert = true) -> void;
 
     auto
     property_expression ()
@@ -124,9 +124,7 @@ namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkBoolFilter* object, bool take_copy = false) -> Glib::RefPtr<Gtk::BoolFilter>;
 } // namespace Glib
 

@@ -49,17 +49,17 @@ namespace Gdk
       return gobject_;
     }
 
-    void
-    get_bounds (int& bounds_width, int& bounds_height) const;
+    auto
+    get_bounds (int& bounds_width, int& bounds_height) const -> void;
 
-    void
-    set_size (int width, int height);
+    auto
+    set_size (int width, int height) -> void;
 
-    void
-    set_min_size (int min_width, int min_height);
+    auto
+    set_min_size (int min_width, int min_height) -> void;
 
-    void
-    set_shadow_width (int left, int right, int top, int bottom);
+    auto
+    set_shadow_width (int left, int right, int top, int bottom) -> void;
 
   protected:
     GdkToplevelSize* gobject_;

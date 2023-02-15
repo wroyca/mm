@@ -29,11 +29,11 @@ namespace Glib
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
   private:
-    GLIBMM_API static void
-    throw_func (GError* gobject);
+    GLIBMM_API static auto
+    throw_func (GError* gobject) -> void;
 
-    friend GLIBMM_API void
-    wrap_init ();
+    friend GLIBMM_API auto
+    wrap_init () -> void;
 
 #endif
   };

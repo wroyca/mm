@@ -3,41 +3,53 @@
 #ifndef _GTKMM_CELLRENDERER_GENERATION_H
 #define _GTKMM_CELLRENDERER_GENERATION_H
 
-#include <libmm-gtk/cellrendereraccel.hxx>
-#include <libmm-gtk/cellrendererpixbuf.hxx>
-#include <libmm-gtk/cellrenderertext.hxx>
-#include <libmm-gtk/cellrenderertoggle.hxx>
+#ifndef GTKMM_DISABLE_DEPRECATED
 
-namespace Gtk::CellRenderer_Generation
+  #include <libmm-gtk/cellrendereraccel.hxx>
+  #include <libmm-gtk/cellrendererpixbuf.hxx>
+  #include <libmm-gtk/cellrenderertext.hxx>
+  #include <libmm-gtk/cellrenderertoggle.hxx>
+
+namespace Gtk
 {
 
-  template <class T_ModelColumnType>
-  auto
-  generate_cellrenderer (bool editable = false) -> CellRenderer*
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
+  namespace CellRenderer_Generation
   {
-    auto cell_renderer = new CellRendererText ();
 
-    cell_renderer->property_editable () = editable;
+    template <class T_ModelColumnType>
+    auto
+    generate_cellrenderer (bool editable = false) -> CellRenderer*
+    {
+      auto cell_renderer = new CellRendererText ();
 
-    return cell_renderer;
-  }
+      cell_renderer->property_editable () = editable;
 
-#if !defined(__GNUC__) || __GNUC__ > 2
+      return cell_renderer;
+    }
 
-  template <>
-  GTKMM_API auto
-  generate_cellrenderer<bool> (bool editable) -> CellRenderer*;
+    #if !defined(__GNUC__) || __GNUC__ > 2
 
-  template <>
-  GTKMM_API auto
-  generate_cellrenderer<Glib::RefPtr<Gdk::Pixbuf>> (bool editable) -> CellRenderer*;
+    template <>
+    GTKMM_API auto
+    generate_cellrenderer<bool> (bool editable) -> CellRenderer*;
 
-  template <>
-  GTKMM_API auto
-  generate_cellrenderer<AccelKey> (bool editable) -> CellRenderer*;
+    template <>
+    GTKMM_API auto
+    generate_cellrenderer<Glib::RefPtr<Gdk::Pixbuf>> (bool editable)
+        -> CellRenderer*;
+
+    template <>
+    GTKMM_API auto
+    generate_cellrenderer<AccelKey> (bool editable) -> CellRenderer*;
+
+    #endif
+
+  } // namespace CellRenderer_Generation
+  #endif
+
+} // namespace Gtk
 
 #endif
-
-} // namespace Gtk::CellRenderer_Generation
 
 #endif

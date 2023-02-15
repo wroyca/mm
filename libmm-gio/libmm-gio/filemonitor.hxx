@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: LGPL-2.1-or-later
 
 #ifndef _GIOMM_FILEMONITOR_H
 #define _GIOMM_FILEMONITOR_H
@@ -105,8 +106,8 @@ namespace Gio
     auto
     is_cancelled () const -> bool;
 
-    void
-    set_rate_limit (int limit_msecs);
+    auto
+    set_rate_limit (int limit_msecs) -> void;
 
     auto
     signal_changed () -> Glib::SignalProxy<
@@ -125,10 +126,10 @@ namespace Gio
   public:
   public:
   protected:
-    virtual void
+    virtual auto
     on_changed (const Glib::RefPtr<File>& file,
                 const Glib::RefPtr<File>& other_file,
-                Event event_type);
+                Event event_type) -> void;
   };
 
 } // namespace Gio

@@ -17,12 +17,12 @@ namespace Gdk
     using CppObjectType = DevicePad;
     using BaseObjectType = GdkDevicePad;
     using BaseClassType = GdkDevicePadInterface;
-    using CppClassParent = Interface_Class;
+    using CppClassParent = Glib::Interface_Class;
 
     friend class DevicePad;
 
     auto
-    init () -> const Interface_Class&;
+    init () -> const Glib::Interface_Class&;
 
     static auto
     iface_init_function (void* g_iface, void* iface_data) -> void;

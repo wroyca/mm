@@ -47,8 +47,8 @@ namespace Pango
 
     ~GlyphString () noexcept;
 
-    void
-    swap (GlyphString& other) noexcept;
+    auto
+    swap (GlyphString& other) noexcept -> void;
 
     auto
     gobj () -> PangoGlyphString*
@@ -77,20 +77,20 @@ namespace Pango
                  const Analysis& analysis,
                  ShapeFlags flags = ShapeFlags::NONE);
 
-    void
-    set_size (int new_len);
+    auto
+    set_size (int new_len) -> void;
 
-    void
+    auto
     get_extents (const Glib::RefPtr<const Font>& font,
                  Rectangle& ink_rect,
-                 Rectangle& logical_rect) const;
+                 Rectangle& logical_rect) const -> void;
 
-    void
+    auto
     get_extents (int start,
                  int end,
                  const Glib::RefPtr<const Font>& font,
                  Rectangle& ink_rect,
-                 Rectangle& logical_rect) const;
+                 Rectangle& logical_rect) const -> void;
 
     auto
     get_width () const -> int;
@@ -123,12 +123,12 @@ namespace Pango
                 int index,
                 bool trailing) const -> int;
 
-    void
+    auto
     x_to_index (const Glib::ustring& text,
                 const Analysis& analysis,
                 int x_pos,
                 int& index,
-                bool& trailing) const;
+                bool& trailing) const -> void;
 
     auto
     get_glyphs () const -> std::vector<GlyphInfo>;
@@ -139,8 +139,8 @@ namespace Pango
 namespace Pango
 {
 
-  inline void
-  swap (GlyphString& lhs, GlyphString& rhs) noexcept
+  inline auto
+  swap (GlyphString& lhs, GlyphString& rhs) noexcept -> void
   {
     lhs.swap (rhs);
   }

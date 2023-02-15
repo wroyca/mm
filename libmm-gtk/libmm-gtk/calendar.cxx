@@ -12,27 +12,27 @@
 namespace
 {
 
-  const Glib::SignalProxyInfo Calendar_signal_day_selected_info = {
+  static const Glib::SignalProxyInfo Calendar_signal_day_selected_info = {
       "day_selected",
       (GCallback) &Glib::SignalProxyNormal::slot0_void_callback,
       (GCallback) &Glib::SignalProxyNormal::slot0_void_callback};
 
-  const Glib::SignalProxyInfo Calendar_signal_prev_month_info = {
+  static const Glib::SignalProxyInfo Calendar_signal_prev_month_info = {
       "prev_month",
       (GCallback) &Glib::SignalProxyNormal::slot0_void_callback,
       (GCallback) &Glib::SignalProxyNormal::slot0_void_callback};
 
-  const Glib::SignalProxyInfo Calendar_signal_next_month_info = {
+  static const Glib::SignalProxyInfo Calendar_signal_next_month_info = {
       "next_month",
       (GCallback) &Glib::SignalProxyNormal::slot0_void_callback,
       (GCallback) &Glib::SignalProxyNormal::slot0_void_callback};
 
-  const Glib::SignalProxyInfo Calendar_signal_prev_year_info = {
+  static const Glib::SignalProxyInfo Calendar_signal_prev_year_info = {
       "prev_year",
       (GCallback) &Glib::SignalProxyNormal::slot0_void_callback,
       (GCallback) &Glib::SignalProxyNormal::slot0_void_callback};
 
-  const Glib::SignalProxyInfo Calendar_signal_next_year_info = {
+  static const Glib::SignalProxyInfo Calendar_signal_next_year_info = {
       "next_year",
       (GCallback) &Glib::SignalProxyNormal::slot0_void_callback,
       (GCallback) &Glib::SignalProxyNormal::slot0_void_callback};
@@ -43,10 +43,10 @@ namespace Glib
 {
 
   auto
-  wrap (GtkCalendar* object, const bool take_copy) -> Gtk::Calendar*
+  wrap (GtkCalendar* object, bool take_copy) -> Gtk::Calendar*
   {
     return dynamic_cast<Gtk::Calendar*> (
-        wrap_auto ((GObject*) object, take_copy));
+        Glib::wrap_auto ((GObject*) (object), take_copy));
   }
 
 } // namespace Glib
@@ -55,7 +55,7 @@ namespace Gtk
 {
 
   auto
-  Calendar_Class::init () -> const Class&
+  Calendar_Class::init () -> const Glib::Class&
   {
     if (!gtype_)
     {
@@ -77,28 +77,28 @@ namespace Gtk
   auto
   Calendar_Class::wrap_new (GObject* o) -> Glib::ObjectBase*
   {
-    return manage (new Calendar ((GtkCalendar*) o));
+    return manage (new Calendar ((GtkCalendar*) (o)));
   }
 
   Calendar::Calendar (const Glib::ConstructParams& construct_params)
-    : Widget (construct_params)
+    : Gtk::Widget (construct_params)
   {
   }
 
   Calendar::Calendar (GtkCalendar* castitem)
-    : Widget ((GtkWidget*) castitem)
+    : Gtk::Widget ((GtkWidget*) (castitem))
   {
   }
 
   Calendar::Calendar (Calendar&& src) noexcept
-    : Widget (std::move (src))
+    : Gtk::Widget (std::move (src))
   {
   }
 
   auto
   Calendar::operator= (Calendar&& src) noexcept -> Calendar&
   {
-    Widget::operator= (std::move (src));
+    Gtk::Widget::operator= (std::move (src));
     return *this;
   }
 
@@ -122,8 +122,8 @@ namespace Gtk
   }
 
   Calendar::Calendar ()
-    : ObjectBase (nullptr),
-      Widget (Glib::ConstructParams (calendar_class_.init ()))
+    : Glib::ObjectBase (nullptr),
+      Gtk::Widget (Glib::ConstructParams (calendar_class_.init ()))
   {
   }
 
@@ -134,13 +134,13 @@ namespace Gtk
   }
 
   auto
-  Calendar::mark_day (const guint day) -> void
+  Calendar::mark_day (guint day) -> void
   {
     gtk_calendar_mark_day (gobj (), day);
   }
 
   auto
-  Calendar::unmark_day (const guint day) -> void
+  Calendar::unmark_day (guint day) -> void
   {
     gtk_calendar_unmark_day (gobj (), day);
   }
@@ -152,9 +152,9 @@ namespace Gtk
   }
 
   auto
-  Calendar::set_show_week_numbers (const bool value) -> void
+  Calendar::set_show_week_numbers (bool value) -> void
   {
-    gtk_calendar_set_show_week_numbers (gobj (), value);
+    gtk_calendar_set_show_week_numbers (gobj (), static_cast<int> (value));
   }
 
   auto
@@ -165,9 +165,9 @@ namespace Gtk
   }
 
   auto
-  Calendar::set_show_heading (const bool value) -> void
+  Calendar::set_show_heading (bool value) -> void
   {
-    gtk_calendar_set_show_heading (gobj (), value);
+    gtk_calendar_set_show_heading (gobj (), static_cast<int> (value));
   }
 
   auto
@@ -177,9 +177,9 @@ namespace Gtk
   }
 
   auto
-  Calendar::set_show_day_names (const bool value) -> void
+  Calendar::set_show_day_names (bool value) -> void
   {
-    gtk_calendar_set_show_day_names (gobj (), value);
+    gtk_calendar_set_show_day_names (gobj (), static_cast<int> (value));
   }
 
   auto
@@ -196,7 +196,7 @@ namespace Gtk
   }
 
   auto
-  Calendar::get_day_is_marked (const guint day) const -> bool
+  Calendar::get_day_is_marked (guint day) const -> bool
   {
     return gtk_calendar_get_day_is_marked (const_cast<GtkCalendar*> (gobj ()),
                                            day);
@@ -205,103 +205,104 @@ namespace Gtk
   auto
   Calendar::signal_day_selected () -> Glib::SignalProxy<void ()>
   {
-    return {this, &Calendar_signal_day_selected_info};
+    return Glib::SignalProxy<void ()> (this,
+                                       &Calendar_signal_day_selected_info);
   }
 
   auto
   Calendar::signal_prev_month () -> Glib::SignalProxy<void ()>
   {
-    return {this, &Calendar_signal_prev_month_info};
+    return Glib::SignalProxy<void ()> (this, &Calendar_signal_prev_month_info);
   }
 
   auto
   Calendar::signal_next_month () -> Glib::SignalProxy<void ()>
   {
-    return {this, &Calendar_signal_next_month_info};
+    return Glib::SignalProxy<void ()> (this, &Calendar_signal_next_month_info);
   }
 
   auto
   Calendar::signal_prev_year () -> Glib::SignalProxy<void ()>
   {
-    return {this, &Calendar_signal_prev_year_info};
+    return Glib::SignalProxy<void ()> (this, &Calendar_signal_prev_year_info);
   }
 
   auto
   Calendar::signal_next_year () -> Glib::SignalProxy<void ()>
   {
-    return {this, &Calendar_signal_next_year_info};
+    return Glib::SignalProxy<void ()> (this, &Calendar_signal_next_year_info);
   }
 
   auto
   Calendar::property_year () -> Glib::PropertyProxy<int>
   {
-    return {this, "year"};
+    return Glib::PropertyProxy<int> (this, "year");
   }
 
   auto
   Calendar::property_year () const -> Glib::PropertyProxy_ReadOnly<int>
   {
-    return {this, "year"};
+    return Glib::PropertyProxy_ReadOnly<int> (this, "year");
   }
 
   auto
   Calendar::property_month () -> Glib::PropertyProxy<int>
   {
-    return {this, "month"};
+    return Glib::PropertyProxy<int> (this, "month");
   }
 
   auto
   Calendar::property_month () const -> Glib::PropertyProxy_ReadOnly<int>
   {
-    return {this, "month"};
+    return Glib::PropertyProxy_ReadOnly<int> (this, "month");
   }
 
   auto
   Calendar::property_day () -> Glib::PropertyProxy<int>
   {
-    return {this, "day"};
+    return Glib::PropertyProxy<int> (this, "day");
   }
 
   auto
   Calendar::property_day () const -> Glib::PropertyProxy_ReadOnly<int>
   {
-    return {this, "day"};
+    return Glib::PropertyProxy_ReadOnly<int> (this, "day");
   }
 
   auto
   Calendar::property_show_heading () -> Glib::PropertyProxy<bool>
   {
-    return {this, "show-heading"};
+    return Glib::PropertyProxy<bool> (this, "show-heading");
   }
 
   auto
   Calendar::property_show_heading () const -> Glib::PropertyProxy_ReadOnly<bool>
   {
-    return {this, "show-heading"};
+    return Glib::PropertyProxy_ReadOnly<bool> (this, "show-heading");
   }
 
   auto
   Calendar::property_show_day_names () -> Glib::PropertyProxy<bool>
   {
-    return {this, "show-day-names"};
+    return Glib::PropertyProxy<bool> (this, "show-day-names");
   }
 
   auto
   Calendar::property_show_day_names () const -> Glib::PropertyProxy_ReadOnly<bool>
   {
-    return {this, "show-day-names"};
+    return Glib::PropertyProxy_ReadOnly<bool> (this, "show-day-names");
   }
 
   auto
   Calendar::property_show_week_numbers () -> Glib::PropertyProxy<bool>
   {
-    return {this, "show-week-numbers"};
+    return Glib::PropertyProxy<bool> (this, "show-week-numbers");
   }
 
   auto
   Calendar::property_show_week_numbers () const -> Glib::PropertyProxy_ReadOnly<bool>
   {
-    return {this, "show-week-numbers"};
+    return Glib::PropertyProxy_ReadOnly<bool> (this, "show-week-numbers");
   }
 
 } // namespace Gtk

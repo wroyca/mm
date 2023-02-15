@@ -12,7 +12,7 @@ using Mode = Gtk::LevelBar::Mode;
 namespace
 {
 
-  auto
+  static auto
   LevelBar_signal_offset_changed_callback (GtkLevelBar* self,
                                            const gchar* p0,
                                            void* data) -> void
@@ -20,7 +20,7 @@ namespace
     using namespace Gtk;
     using SlotType = sigc::slot<void (const Glib::ustring&)>;
 
-    const auto obj = dynamic_cast<LevelBar*> (
+    auto obj = dynamic_cast<LevelBar*> (
         Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
@@ -38,7 +38,7 @@ namespace
     }
   }
 
-  const Glib::SignalProxyInfo LevelBar_signal_offset_changed_info = {
+  static const Glib::SignalProxyInfo LevelBar_signal_offset_changed_info = {
       "offset_changed",
       (GCallback) &LevelBar_signal_offset_changed_callback,
       (GCallback) &LevelBar_signal_offset_changed_callback};
@@ -55,10 +55,10 @@ namespace Glib
 {
 
   auto
-  wrap (GtkLevelBar* object, const bool take_copy) -> Gtk::LevelBar*
+  wrap (GtkLevelBar* object, bool take_copy) -> Gtk::LevelBar*
   {
     return dynamic_cast<Gtk::LevelBar*> (
-        wrap_auto ((GObject*) object, take_copy));
+        Glib::wrap_auto ((GObject*) (object), take_copy));
   }
 
 } // namespace Glib
@@ -67,7 +67,7 @@ namespace Gtk
 {
 
   auto
-  LevelBar_Class::init () -> const Class&
+  LevelBar_Class::init () -> const Glib::Class&
   {
     if (!gtype_)
     {
@@ -91,21 +91,21 @@ namespace Gtk
   auto
   LevelBar_Class::wrap_new (GObject* o) -> Glib::ObjectBase*
   {
-    return manage (new LevelBar ((GtkLevelBar*) o));
+    return manage (new LevelBar ((GtkLevelBar*) (o)));
   }
 
   LevelBar::LevelBar (const Glib::ConstructParams& construct_params)
-    : Widget (construct_params)
+    : Gtk::Widget (construct_params)
   {
   }
 
   LevelBar::LevelBar (GtkLevelBar* castitem)
-    : Widget ((GtkWidget*) castitem)
+    : Gtk::Widget ((GtkWidget*) (castitem))
   {
   }
 
   LevelBar::LevelBar (LevelBar&& src) noexcept
-    : Widget (std::move (src)),
+    : Gtk::Widget (std::move (src)),
       Orientable (std::move (src))
   {
   }
@@ -113,7 +113,7 @@ namespace Gtk
   auto
   LevelBar::operator= (LevelBar&& src) noexcept -> LevelBar&
   {
-    Widget::operator= (std::move (src));
+    Gtk::Widget::operator= (std::move (src));
     Orientable::operator= (std::move (src));
     return *this;
   }
@@ -138,8 +138,8 @@ namespace Gtk
   }
 
   LevelBar::LevelBar ()
-    : ObjectBase (nullptr),
-      Widget (Glib::ConstructParams (levelbar_class_.init ()))
+    : Glib::ObjectBase (nullptr),
+      Gtk::Widget (Glib::ConstructParams (levelbar_class_.init ()))
   {
   }
 
@@ -157,7 +157,7 @@ namespace Gtk
   }
 
   auto
-  LevelBar::set_value (const double value) -> void
+  LevelBar::set_value (double value) -> void
   {
     gtk_level_bar_set_value (gobj (), value);
   }
@@ -169,7 +169,7 @@ namespace Gtk
   }
 
   auto
-  LevelBar::set_min_value (const double value) -> void
+  LevelBar::set_min_value (double value) -> void
   {
     gtk_level_bar_set_min_value (gobj (), value);
   }
@@ -181,7 +181,7 @@ namespace Gtk
   }
 
   auto
-  LevelBar::set_max_value (const double value) -> void
+  LevelBar::set_max_value (double value) -> void
   {
     gtk_level_bar_set_max_value (gobj (), value);
   }
@@ -193,9 +193,9 @@ namespace Gtk
   }
 
   auto
-  LevelBar::set_inverted (const bool inverted) -> void
+  LevelBar::set_inverted (bool inverted) -> void
   {
-    gtk_level_bar_set_inverted (gobj (), inverted);
+    gtk_level_bar_set_inverted (gobj (), static_cast<int> (inverted));
   }
 
   auto
@@ -205,7 +205,7 @@ namespace Gtk
   }
 
   auto
-  LevelBar::add_offset_value (const Glib::ustring& name, const double value) -> void
+  LevelBar::add_offset_value (const Glib::ustring& name, double value) -> void
   {
     gtk_level_bar_add_offset_value (gobj (), name.c_str (), value);
   }
@@ -221,7 +221,7 @@ namespace Gtk
   {
     return gtk_level_bar_get_offset_value (const_cast<GtkLevelBar*> (gobj ()),
                                            name.c_str (),
-                                           &value);
+                                           &(value));
   }
 
   auto
@@ -236,37 +236,37 @@ namespace Gtk
   auto
   LevelBar::property_value () -> Glib::PropertyProxy<double>
   {
-    return {this, "value"};
+    return Glib::PropertyProxy<double> (this, "value");
   }
 
   auto
   LevelBar::property_value () const -> Glib::PropertyProxy_ReadOnly<double>
   {
-    return {this, "value"};
+    return Glib::PropertyProxy_ReadOnly<double> (this, "value");
   }
 
   auto
   LevelBar::property_min_value () -> Glib::PropertyProxy<double>
   {
-    return {this, "min-value"};
+    return Glib::PropertyProxy<double> (this, "min-value");
   }
 
   auto
   LevelBar::property_min_value () const -> Glib::PropertyProxy_ReadOnly<double>
   {
-    return {this, "min-value"};
+    return Glib::PropertyProxy_ReadOnly<double> (this, "min-value");
   }
 
   auto
   LevelBar::property_max_value () -> Glib::PropertyProxy<double>
   {
-    return {this, "max-value"};
+    return Glib::PropertyProxy<double> (this, "max-value");
   }
 
   auto
   LevelBar::property_max_value () const -> Glib::PropertyProxy_ReadOnly<double>
   {
-    return {this, "max-value"};
+    return Glib::PropertyProxy_ReadOnly<double> (this, "max-value");
   }
 
   static_assert (
@@ -277,25 +277,25 @@ namespace Gtk
   auto
   LevelBar::property_mode () -> Glib::PropertyProxy<Mode>
   {
-    return {this, "mode"};
+    return Glib::PropertyProxy<Mode> (this, "mode");
   }
 
   auto
   LevelBar::property_mode () const -> Glib::PropertyProxy_ReadOnly<Mode>
   {
-    return {this, "mode"};
+    return Glib::PropertyProxy_ReadOnly<Mode> (this, "mode");
   }
 
   auto
   LevelBar::property_inverted () -> Glib::PropertyProxy<bool>
   {
-    return {this, "inverted"};
+    return Glib::PropertyProxy<bool> (this, "inverted");
   }
 
   auto
   LevelBar::property_inverted () const -> Glib::PropertyProxy_ReadOnly<bool>
   {
-    return {this, "inverted"};
+    return Glib::PropertyProxy_ReadOnly<bool> (this, "inverted");
   }
 
 } // namespace Gtk

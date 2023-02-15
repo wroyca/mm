@@ -47,8 +47,8 @@ namespace Pango
 
     ~GlyphItem () noexcept;
 
-    void
-    swap (GlyphItem& other) noexcept;
+    auto
+    swap (GlyphItem& other) noexcept -> void;
 
     auto
     gobj () -> PangoGlyphItem*
@@ -73,10 +73,10 @@ namespace Pango
     auto
     split (const Glib::ustring& text, int split_index) -> GlyphItem;
 
-    void
+    auto
     letter_space (const Glib::ustring& text,
                   const LogAttr& log_attrs,
-                  int letter_spacing = 0);
+                  int letter_spacing = 0) -> void;
 
     auto
     get_item () const -> Item;
@@ -90,8 +90,8 @@ namespace Pango
 namespace Pango
 {
 
-  inline void
-  swap (GlyphItem& lhs, GlyphItem& rhs) noexcept
+  inline auto
+  swap (GlyphItem& lhs, GlyphItem& rhs) noexcept -> void
   {
     lhs.swap (rhs);
   }

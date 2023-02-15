@@ -90,8 +90,8 @@ namespace Gtk
     create (const Glib::RefPtr<SelectionModel>& model)
         -> Glib::RefPtr<SelectionFilterModel>;
 
-    void
-    set_model (const Glib::RefPtr<SelectionModel>& model);
+    auto
+    set_model (const Glib::RefPtr<SelectionModel>& model) -> void;
 
     auto
     get_model () -> Glib::RefPtr<SelectionModel>;
@@ -121,9 +121,7 @@ namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkSelectionFilterModel* object, bool take_copy = false) -> Glib::RefPtr<Gtk::SelectionFilterModel>;
 } // namespace Glib
 

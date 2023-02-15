@@ -3,28 +3,30 @@
 #ifndef _GTKMM_COMBOBOX_H
 #define _GTKMM_COMBOBOX_H
 
-#include <libmm-glib/ustring.hxx>
-#include <sigc++/sigc++.h>
+#ifndef GTKMM_DISABLE_DEPRECATED
 
-#include <libmm-gtk/celleditable.hxx>
-#include <libmm-gtk/celllayout.hxx>
-#include <libmm-gtk/entry.hxx>
-#include <libmm-gtk/enums.hxx>
-#include <libmm-gtk/treemodel.hxx>
-#include <libmm-gtk/treeview.hxx>
-#include <libmm-gtk/widget.hxx>
+  #include <libmm-glib/ustring.hxx>
+  #include <sigc++/sigc++.h>
 
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #include <libmm-gtk/celleditable.hxx>
+  #include <libmm-gtk/celllayout.hxx>
+  #include <libmm-gtk/entry.hxx>
+  #include <libmm-gtk/enums.hxx>
+  #include <libmm-gtk/treemodel.hxx>
+  #include <libmm-gtk/treeview.hxx>
+  #include <libmm-gtk/widget.hxx>
+
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
 using GtkComboBox = struct _GtkComboBox;
 using GtkComboBoxClass = struct _GtkComboBoxClass;
-#endif
+  #endif
 
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
   class GTKMM_API ComboBox_Class;
 }
-#endif
+  #endif
 
 namespace Gdk
 {
@@ -39,12 +41,12 @@ namespace Gtk
                              public CellEditable
   {
   public:
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
     typedef ComboBox CppObjectType;
     typedef ComboBox_Class CppClassType;
     typedef GtkComboBox BaseObjectType;
     typedef GtkComboBoxClass BaseClassType;
-#endif
+  #endif
 
     ComboBox (ComboBox&& src) noexcept;
     auto
@@ -56,7 +58,7 @@ namespace Gtk
 
     ~ComboBox () noexcept override;
 
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   private:
     friend GTKMM_API class ComboBox_Class;
@@ -66,17 +68,17 @@ namespace Gtk
     explicit ComboBox (const Glib::ConstructParams& construct_params);
     explicit ComboBox (GtkComboBox* castitem);
 
-#endif
+  #endif
 
   public:
     static auto
     get_type () -> GType G_GNUC_CONST;
 
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
     static auto
     get_base_type () -> GType G_GNUC_CONST;
-#endif
+  #endif
 
     auto
     gobj () -> GtkComboBox*
@@ -106,17 +108,17 @@ namespace Gtk
     auto
     get_active () const -> TreeModel::const_iterator;
 
-    void
-    set_active (int index);
+    auto
+    set_active (int index) -> void;
 
-    void
-    set_active (const TreeModel::const_iterator& iter);
+    auto
+    set_active (const TreeModel::const_iterator& iter) -> void;
 
     auto
     get_entry_text () const -> Glib::ustring;
 
-    void
-    unset_active ();
+    auto
+    unset_active () -> void;
 
     auto
     get_model () -> Glib::RefPtr<TreeModel>;
@@ -124,22 +126,22 @@ namespace Gtk
     auto
     get_model () const -> Glib::RefPtr<const TreeModel>;
 
-    void
-    set_model (const Glib::RefPtr<TreeModel>& model);
+    auto
+    set_model (const Glib::RefPtr<TreeModel>& model) -> void;
 
-    void
-    unset_model ();
+    auto
+    unset_model () -> void;
 
     typedef TreeView::SlotRowSeparator SlotRowSeparator;
 
-    void
-    set_row_separator_func (const SlotRowSeparator& slot);
+    auto
+    set_row_separator_func (const SlotRowSeparator& slot) -> void;
 
-    void
-    unset_row_separator_func ();
+    auto
+    unset_row_separator_func () -> void;
 
-    void
-    set_button_sensitivity (SensitivityType sensitivity);
+    auto
+    set_button_sensitivity (SensitivityType sensitivity) -> void;
 
     auto
     get_button_sensitivity () const -> SensitivityType;
@@ -147,35 +149,36 @@ namespace Gtk
     auto
     get_has_entry () const -> bool;
 
-    void
-    set_entry_text_column (const TreeModelColumnBase& text_column) const;
+    auto
+    set_entry_text_column (const TreeModelColumnBase& text_column) const
+        -> void;
 
-    void
-    set_entry_text_column (int text_column);
+    auto
+    set_entry_text_column (int text_column) -> void;
 
     auto
     get_entry_text_column () const -> int;
 
-    void
-    set_popup_fixed_width (bool fixed = true);
+    auto
+    set_popup_fixed_width (bool fixed = true) -> void;
 
     auto
     get_popup_fixed_width () const -> bool;
 
-    void
-    popup ();
+    auto
+    popup () -> void;
 
-    void
-    popup (const Glib::RefPtr<Gdk::Device>& device);
+    auto
+    popup (const Glib::RefPtr<Gdk::Device>& device) -> void;
 
-    void
-    popdown ();
+    auto
+    popdown () -> void;
 
     auto
     get_id_column () const -> int;
 
-    void
-    set_id_column (int id_column);
+    auto
+    set_id_column (int id_column) -> void;
 
     auto
     get_active_id () const -> Glib::ustring;
@@ -183,10 +186,10 @@ namespace Gtk
     auto
     set_active_id (const Glib::ustring& active_id) -> bool;
 
-    void
-    set_child (Widget& child);
-    void
-    unset_child ();
+    auto
+    set_child (Widget& child) -> void;
+    auto
+    unset_child () -> void;
 
     auto
     get_child () -> Widget*;
@@ -272,8 +275,8 @@ namespace Gtk
   public:
   public:
   protected:
-    virtual void
-    on_changed ();
+    virtual auto
+    on_changed () -> void;
 
     virtual auto
     on_format_entry_text (const TreeModel::Path& path) -> Glib::ustring;
@@ -283,10 +286,10 @@ namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkComboBox* object, bool take_copy = false) -> Gtk::ComboBox*;
 } // namespace Glib
+
+#endif
 
 #endif

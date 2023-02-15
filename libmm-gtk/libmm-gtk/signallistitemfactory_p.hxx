@@ -17,14 +17,14 @@ namespace Gtk
     using CppObjectType = SignalListItemFactory;
     using BaseObjectType = GtkSignalListItemFactory;
     using BaseClassType = GtkSignalListItemFactoryClass;
-    using CppClassParent = ListItemFactory_Class;
+    using CppClassParent = Gtk::ListItemFactory_Class;
     using BaseClassParent = GtkListItemFactoryClass;
 
     friend class SignalListItemFactory;
 #endif
 
     auto
-    init () -> const Class&;
+    init () -> const Glib::Class&;
 
     static auto
     class_init_function (void* g_class, void* class_data) -> void;

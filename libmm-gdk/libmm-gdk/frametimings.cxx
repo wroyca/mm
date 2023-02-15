@@ -15,7 +15,7 @@ namespace Glib
 {
 
   auto
-  wrap (GdkFrameTimings* object, const bool take_copy) -> RefPtr<Gdk::FrameTimings>
+  wrap (GdkFrameTimings* object, bool take_copy) -> Glib::RefPtr<Gdk::FrameTimings>
   {
     if (take_copy && object)
       gdk_frame_timings_ref (object);

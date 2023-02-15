@@ -17,7 +17,7 @@ namespace Gdk
   ContentProvider::create (
       const std::vector<Glib::RefPtr<ContentProvider>>& providers) -> Glib::RefPtr<ContentProvider>
   {
-    for (const auto& provider : providers)
+    for (auto provider : providers)
       provider->reference ();
 
     return Glib::wrap (gdk_content_provider_new_union (
@@ -32,10 +32,11 @@ namespace Gdk
 namespace
 {
 
-  const Glib::SignalProxyInfo ContentProvider_signal_content_changed_info = {
-      "content-changed",
-      (GCallback) &Glib::SignalProxyNormal::slot0_void_callback,
-      (GCallback) &Glib::SignalProxyNormal::slot0_void_callback};
+  static const Glib::SignalProxyInfo
+      ContentProvider_signal_content_changed_info = {
+          "content-changed",
+          (GCallback) &Glib::SignalProxyNormal::slot0_void_callback,
+          (GCallback) &Glib::SignalProxyNormal::slot0_void_callback};
 
 }
 
@@ -43,11 +44,11 @@ namespace Glib
 {
 
   auto
-  wrap (GdkContentProvider* object, const bool take_copy) -> RefPtr<Gdk::ContentProvider>
+  wrap (GdkContentProvider* object, bool take_copy) -> Glib::RefPtr<Gdk::ContentProvider>
   {
     return Glib::make_refptr_for_instance<Gdk::ContentProvider> (
         dynamic_cast<Gdk::ContentProvider*> (
-            wrap_auto ((GObject*) object, take_copy)));
+            Glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
 } // namespace Glib
@@ -56,7 +57,7 @@ namespace Gdk
 {
 
   auto
-  ContentProvider_Class::init () -> const Class&
+  ContentProvider_Class::init () -> const Glib::Class&
   {
     if (!gtype_)
     {
@@ -80,8 +81,8 @@ namespace Gdk
   auto
   ContentProvider_Class::content_changed_callback (GdkContentProvider* self) -> void
   {
-    const auto obj_base =
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self);
+    const auto obj_base = static_cast<Glib::ObjectBase*> (
+        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -122,28 +123,28 @@ namespace Gdk
 
   ContentProvider::ContentProvider (
       const Glib::ConstructParams& construct_params)
-    : Object (construct_params)
+    : Glib::Object (construct_params)
   {
   }
 
   ContentProvider::ContentProvider (GdkContentProvider* castitem)
-    : Object ((GObject*) castitem)
+    : Glib::Object ((GObject*) (castitem))
   {
   }
 
   ContentProvider::ContentProvider (ContentProvider&& src) noexcept
-    : Object (std::move (src))
+    : Glib::Object (std::move (src))
   {
   }
 
   auto
   ContentProvider::operator= (ContentProvider&& src) noexcept -> ContentProvider&
   {
-    Object::operator= (std::move (src));
+    Glib::Object::operator= (std::move (src));
     return *this;
   }
 
-  ContentProvider::~ContentProvider () noexcept = default;
+  ContentProvider::~ContentProvider () noexcept {}
 
   ContentProvider::CppClassType ContentProvider::contentprovider_class_;
 
@@ -160,15 +161,15 @@ namespace Gdk
   }
 
   ContentProvider::ContentProvider ()
-    : ObjectBase (nullptr),
-      Object (Glib::ConstructParams (contentprovider_class_.init ()))
+    : Glib::ObjectBase (nullptr),
+      Glib::Object (Glib::ConstructParams (contentprovider_class_.init ()))
   {
   }
 
   auto
   ContentProvider::create (const Glib::ValueBase& value) -> Glib::RefPtr<ContentProvider>
   {
-    return Glib::wrap (gdk_content_provider_new_for_value (value.gobj ()));
+    return Glib::wrap (gdk_content_provider_new_for_value ((value).gobj ()));
   }
 
   auto
@@ -204,18 +205,18 @@ namespace Gdk
   ContentProvider::write_mime_type_async (
       const Glib::ustring& mime_type,
       const Glib::RefPtr<Gio::OutputStream>& stream,
-      const int io_priority,
+      int io_priority,
       const Gio::SlotAsyncReady& slot,
       const Glib::RefPtr<Gio::Cancellable>& cancellable) const -> void
   {
-    const auto slot_copy = new Gio::SlotAsyncReady (slot);
+    auto slot_copy = new Gio::SlotAsyncReady (slot);
 
     gdk_content_provider_write_mime_type_async (
         const_cast<GdkContentProvider*> (gobj ()),
         mime_type.c_str (),
         Glib::unwrap (stream),
         io_priority,
-        Glib::unwrap (cancellable),
+        const_cast<GCancellable*> (Glib::unwrap (cancellable)),
         &Gio::SignalProxy_async_callback,
         slot_copy);
   }
@@ -224,10 +225,10 @@ namespace Gdk
   ContentProvider::write_mime_type_async (
       const Glib::ustring& mime_type,
       const Glib::RefPtr<Gio::OutputStream>& stream,
-      const int io_priority,
+      int io_priority,
       const Gio::SlotAsyncReady& slot) const -> void
   {
-    const auto slot_copy = new Gio::SlotAsyncReady (slot);
+    auto slot_copy = new Gio::SlotAsyncReady (slot);
 
     gdk_content_provider_write_mime_type_async (
         const_cast<GdkContentProvider*> (gobj ()),
@@ -247,9 +248,9 @@ namespace Gdk
     gdk_content_provider_write_mime_type_finish (
         const_cast<GdkContentProvider*> (gobj ()),
         Glib::unwrap (result),
-        &gerror);
+        &(gerror));
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      ::Glib::Error::throw_exception (gerror);
   }
 
   auto
@@ -257,16 +258,18 @@ namespace Gdk
   {
     GError* gerror = nullptr;
     gdk_content_provider_get_value (const_cast<GdkContentProvider*> (gobj ()),
-                                    value.gobj (),
-                                    &gerror);
+                                    (value).gobj (),
+                                    &(gerror));
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      ::Glib::Error::throw_exception (gerror);
   }
 
   auto
   ContentProvider::signal_content_changed () -> Glib::SignalProxy<void ()>
   {
-    return {this, &ContentProvider_signal_content_changed_info};
+    return Glib::SignalProxy<void ()> (
+        this,
+        &ContentProvider_signal_content_changed_info);
   }
 
   static_assert (
@@ -278,7 +281,9 @@ namespace Gdk
   auto
   ContentProvider::property_formats () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<ContentFormats>>
   {
-    return {this, "formats"};
+    return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<ContentFormats>> (
+        this,
+        "formats");
   }
 
   static_assert (
@@ -290,11 +295,13 @@ namespace Gdk
   auto
   ContentProvider::property_storable_formats () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<ContentFormats>>
   {
-    return {this, "storable-formats"};
+    return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<ContentFormats>> (
+        this,
+        "storable-formats");
   }
 
   auto
-  ContentProvider::on_content_changed () -> void
+  Gdk::ContentProvider::on_content_changed () -> void
   {
     const auto base = static_cast<BaseClassType*> (
         g_type_class_peek_parent (G_OBJECT_GET_CLASS (gobject_)));

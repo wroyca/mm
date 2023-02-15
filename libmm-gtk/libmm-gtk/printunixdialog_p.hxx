@@ -17,14 +17,14 @@ namespace Gtk
     using CppObjectType = PrintUnixDialog;
     using BaseObjectType = GtkPrintUnixDialog;
     using BaseClassType = GtkPrintUnixDialogClass;
-    using CppClassParent = Dialog_Class;
+    using CppClassParent = Gtk::Dialog_Class;
     using BaseClassParent = GtkDialogClass;
 
     friend class PrintUnixDialog;
 #endif
 
     auto
-    init () -> const Class&;
+    init () -> const Glib::Class&;
 
     static auto
     class_init_function (void* g_class, void* class_data) -> void;

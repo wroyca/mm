@@ -11,15 +11,15 @@ namespace Gtk
 {
 
   auto
-  Bitset::begin () const -> const_iterator
+  Bitset::begin () const -> Bitset::const_iterator
   {
-    return {gobj (), false};
+    return BitsetConstIter (gobj (), false);
   }
 
   auto
-  Bitset::end () const -> const_iterator
+  Bitset::end () const -> Bitset::const_iterator
   {
-    return {gobj (), true};
+    return BitsetConstIter (gobj (), true);
   }
 
 } // namespace Gtk
@@ -32,7 +32,7 @@ namespace Glib
 {
 
   auto
-  wrap (GtkBitset* object, const bool take_copy) -> RefPtr<Gtk::Bitset>
+  wrap (GtkBitset* object, bool take_copy) -> Glib::RefPtr<Gtk::Bitset>
   {
     if (take_copy && object)
       gtk_bitset_ref (object);
@@ -87,57 +87,60 @@ namespace Gtk
   }
 
   auto
-  Bitset::contains (const guint value) const -> bool
+  Bitset::contains (guint value) const -> bool
   {
-    return gtk_bitset_contains (gobj (), value);
+    return gtk_bitset_contains (const_cast<GtkBitset*> (gobj ()), value);
   }
 
   auto
   Bitset::is_empty () const -> bool
   {
-    return gtk_bitset_is_empty (gobj ());
+    return gtk_bitset_is_empty (const_cast<GtkBitset*> (gobj ()));
   }
 
   auto
   Bitset::get_size () const -> guint64
   {
-    return gtk_bitset_get_size (gobj ());
+    return gtk_bitset_get_size (const_cast<GtkBitset*> (gobj ()));
   }
 
   auto
-  Bitset::get_size (const guint first, const guint last) const -> guint64
+  Bitset::get_size (guint first, guint last) const -> guint64
   {
-    return gtk_bitset_get_size_in_range (gobj (), first, last);
+    return gtk_bitset_get_size_in_range (const_cast<GtkBitset*> (gobj ()),
+                                         first,
+                                         last);
   }
 
   auto
-  Bitset::get_nth (const guint nth) const -> guint
+  Bitset::get_nth (guint nth) const -> guint
   {
-    return gtk_bitset_get_nth (gobj (), nth);
+    return gtk_bitset_get_nth (const_cast<GtkBitset*> (gobj ()), nth);
   }
 
   auto
   Bitset::equals (const Glib::RefPtr<const Bitset>& other) const -> bool
   {
-    return gtk_bitset_equals (gobj (), Glib::unwrap (other));
+    return gtk_bitset_equals (const_cast<GtkBitset*> (gobj ()),
+                              Glib::unwrap (other));
   }
 
   auto
   Bitset::get_minimum () const -> guint
   {
-    return gtk_bitset_get_minimum (gobj ());
+    return gtk_bitset_get_minimum (const_cast<GtkBitset*> (gobj ()));
   }
 
   auto
   Bitset::get_maximum () const -> guint
   {
-    return gtk_bitset_get_maximum (gobj ());
+    return gtk_bitset_get_maximum (const_cast<GtkBitset*> (gobj ()));
   }
 
   auto
   Bitset::copy () const -> Glib::RefPtr<Bitset>
   {
-    return Glib::wrap (gtk_bitset_copy (gobj ()));
+    return Glib::wrap (gtk_bitset_copy (const_cast<GtkBitset*> (gobj ())));
   }
 
   auto
@@ -147,55 +150,52 @@ namespace Gtk
   }
 
   auto
-  Bitset::add (const guint value) -> bool
+  Bitset::add (guint value) -> bool
   {
     return gtk_bitset_add (gobj (), value);
   }
 
   auto
-  Bitset::remove (const guint value) -> bool
+  Bitset::remove (guint value) -> bool
   {
     return gtk_bitset_remove (gobj (), value);
   }
 
   auto
-  Bitset::add_range (const guint start, const guint n_items) -> void
+  Bitset::add_range (guint start, guint n_items) -> void
   {
     gtk_bitset_add_range (gobj (), start, n_items);
   }
 
   auto
-  Bitset::remove_range (const guint start, const guint n_items) -> void
+  Bitset::remove_range (guint start, guint n_items) -> void
   {
     gtk_bitset_remove_range (gobj (), start, n_items);
   }
 
   auto
-  Bitset::add_range_closed (const guint first, const guint last) -> void
+  Bitset::add_range_closed (guint first, guint last) -> void
   {
     gtk_bitset_add_range_closed (gobj (), first, last);
   }
 
   auto
-  Bitset::remove_range_closed (const guint first, const guint last) -> void
+  Bitset::remove_range_closed (guint first, guint last) -> void
   {
     gtk_bitset_remove_range_closed (gobj (), first, last);
   }
 
   auto
-  Bitset::add_rectangle (const guint start,
-                         const guint width,
-                         const guint height,
-                         const guint stride) -> void
+  Bitset::add_rectangle (guint start, guint width, guint height, guint stride) -> void
   {
     gtk_bitset_add_rectangle (gobj (), start, width, height, stride);
   }
 
   auto
-  Bitset::remove_rectangle (const guint start,
-                            const guint width,
-                            const guint height,
-                            const guint stride) -> void
+  Bitset::remove_rectangle (guint start,
+                            guint width,
+                            guint height,
+                            guint stride) -> void
   {
     gtk_bitset_remove_rectangle (gobj (), start, width, height, stride);
   }
@@ -225,19 +225,19 @@ namespace Gtk
   }
 
   auto
-  Bitset::shift_left (const guint amount) -> void
+  Bitset::shift_left (guint amount) -> void
   {
     gtk_bitset_shift_left (gobj (), amount);
   }
 
   auto
-  Bitset::shift_right (const guint amount) -> void
+  Bitset::shift_right (guint amount) -> void
   {
     gtk_bitset_shift_right (gobj (), amount);
   }
 
   auto
-  Bitset::splice (const guint position, const guint removed, const guint value) -> void
+  Bitset::splice (guint position, guint removed, guint value) -> void
   {
     gtk_bitset_splice (gobj (), position, removed, value);
   }

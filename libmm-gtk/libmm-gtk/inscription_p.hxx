@@ -16,13 +16,13 @@ namespace Gtk
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
     using CppObjectType = Inscription;
     using BaseObjectType = GtkInscription;
-    using CppClassParent = Widget_Class;
+    using CppClassParent = Gtk::Widget_Class;
 
     friend class Inscription;
 #endif
 
     auto
-    init () -> const Class&;
+    init () -> const Glib::Class&;
 
     static auto
     wrap_new (GObject*) -> Glib::ObjectBase*;

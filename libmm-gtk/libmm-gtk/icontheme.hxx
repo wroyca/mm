@@ -101,11 +101,11 @@ namespace Gtk
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
   private:
-    GTKMM_API static void
-    throw_func (GError* gobject);
+    GTKMM_API static auto
+    throw_func (GError* gobject) -> void;
 
-    friend GTKMM_API void
-    wrap_init ();
+    friend GTKMM_API auto
+    wrap_init () -> void;
 
 #endif
   };
@@ -204,26 +204,26 @@ namespace Gtk
     auto
     get_display () const -> Glib::RefPtr<const Gdk::Display>;
 
-    void
-    set_search_path (const std::vector<std::string>& path);
+    auto
+    set_search_path (const std::vector<std::string>& path) -> void;
 
     auto
     get_search_path () const -> std::vector<std::string>;
 
-    void
-    add_search_path (const std::string& path);
+    auto
+    add_search_path (const std::string& path) -> void;
 
-    void
-    set_resource_path (const std::vector<std::string>& path);
+    auto
+    set_resource_path (const std::vector<std::string>& path) -> void;
 
     auto
     get_resource_path () const -> std::vector<std::string>;
 
-    void
-    add_resource_path (const std::string& path);
+    auto
+    add_resource_path (const std::string& path) -> void;
 
-    void
-    set_theme_name (const Glib::ustring& theme_name);
+    auto
+    set_theme_name (const Glib::ustring& theme_name) -> void;
 
     auto
     get_theme_name () const -> Glib::ustring;
@@ -333,9 +333,7 @@ namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkIconTheme* object, bool take_copy = false) -> Glib::RefPtr<Gtk::IconTheme>;
 } // namespace Glib
 

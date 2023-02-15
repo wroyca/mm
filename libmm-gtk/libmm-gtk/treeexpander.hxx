@@ -88,11 +88,11 @@ namespace Gtk
     auto
     get_child () const -> const Widget*;
 
-    void
-    set_child (Widget& widget);
+    auto
+    set_child (Widget& widget) -> void;
 
-    void
-    unset_child ();
+    auto
+    unset_child () -> void;
 
     auto
     get_item () -> Glib::RefPtr<Glib::ObjectBase>;
@@ -106,23 +106,53 @@ namespace Gtk
     auto
     get_list_row () const -> Glib::RefPtr<const TreeListRow>;
 
-    void
-    set_list_row (const Glib::RefPtr<TreeListRow>& list_row);
+    auto
+    set_list_row (const Glib::RefPtr<TreeListRow>& list_row) -> void;
 
-    void
-    unset_list_row ();
+    auto
+    unset_list_row () -> void;
+
+    auto
+    get_indent_for_depth () const -> bool;
+
+    auto
+    set_indent_for_depth (bool indent_for_depth = true) -> void;
 
     auto
     get_indent_for_icon () const -> bool;
 
-    void
-    set_indent_for_icon (bool indent_for_icon = true);
+    auto
+    set_indent_for_icon (bool indent_for_icon = true) -> void;
+
+    auto
+    get_hide_expander () const -> bool;
+
+    auto
+    set_hide_expander (bool hide_expander = true) -> void;
 
     auto
     property_child () -> Glib::PropertyProxy<Widget*>;
 
     auto
     property_child () const -> Glib::PropertyProxy_ReadOnly<Widget*>;
+
+    auto
+    property_hide_expander () -> Glib::PropertyProxy<bool>;
+
+    auto
+    property_hide_expander () const -> Glib::PropertyProxy_ReadOnly<bool>;
+
+    auto
+    property_indent_for_depth () -> Glib::PropertyProxy<bool>;
+
+    auto
+    property_indent_for_depth () const -> Glib::PropertyProxy_ReadOnly<bool>;
+
+    auto
+    property_indent_for_icon () -> Glib::PropertyProxy<bool>;
+
+    auto
+    property_indent_for_icon () const -> Glib::PropertyProxy_ReadOnly<bool>;
 
     auto
     property_item () const
@@ -135,12 +165,6 @@ namespace Gtk
     property_list_row () const
         -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<TreeListRow>>;
 
-    auto
-    property_indent_for_icon () -> Glib::PropertyProxy<bool>;
-
-    auto
-    property_indent_for_icon () const -> Glib::PropertyProxy_ReadOnly<bool>;
-
   public:
   public:
   protected:
@@ -150,9 +174,7 @@ namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkTreeExpander* object, bool take_copy = false) -> Gtk::TreeExpander*;
 } // namespace Glib
 

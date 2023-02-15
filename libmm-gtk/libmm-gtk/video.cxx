@@ -11,8 +11,8 @@ namespace Gtk
 {
 
   Video::Video (const std::string& filename)
-    : ObjectBase (nullptr),
-      Widget (Glib::ConstructParams (video_class_.init ()))
+    : Glib::ObjectBase (nullptr),
+      Gtk::Widget (Glib::ConstructParams (video_class_.init ()))
   {
     gtk_video_set_filename (gobj (), Glib::c_str_or_nullptr (filename));
   }
@@ -27,9 +27,10 @@ namespace Glib
 {
 
   auto
-  wrap (GtkVideo* object, const bool take_copy) -> Gtk::Video*
+  wrap (GtkVideo* object, bool take_copy) -> Gtk::Video*
   {
-    return dynamic_cast<Gtk::Video*> (wrap_auto ((GObject*) object, take_copy));
+    return dynamic_cast<Gtk::Video*> (
+        Glib::wrap_auto ((GObject*) (object), take_copy));
   }
 
 } // namespace Glib
@@ -38,7 +39,7 @@ namespace Gtk
 {
 
   auto
-  Video_Class::init () -> const Class&
+  Video_Class::init () -> const Glib::Class&
   {
     if (!gtype_)
     {
@@ -60,28 +61,28 @@ namespace Gtk
   auto
   Video_Class::wrap_new (GObject* o) -> Glib::ObjectBase*
   {
-    return manage (new Video ((GtkVideo*) o));
+    return manage (new Video ((GtkVideo*) (o)));
   }
 
   Video::Video (const Glib::ConstructParams& construct_params)
-    : Widget (construct_params)
+    : Gtk::Widget (construct_params)
   {
   }
 
   Video::Video (GtkVideo* castitem)
-    : Widget ((GtkWidget*) castitem)
+    : Gtk::Widget ((GtkWidget*) (castitem))
   {
   }
 
   Video::Video (Video&& src) noexcept
-    : Widget (std::move (src))
+    : Gtk::Widget (std::move (src))
   {
   }
 
   auto
   Video::operator= (Video&& src) noexcept -> Video&
   {
-    Widget::operator= (std::move (src));
+    Gtk::Widget::operator= (std::move (src));
     return *this;
   }
 
@@ -105,26 +106,27 @@ namespace Gtk
   }
 
   Video::Video ()
-    : ObjectBase (nullptr),
-      Widget (Glib::ConstructParams (video_class_.init ()))
+    : Glib::ObjectBase (nullptr),
+      Gtk::Widget (Glib::ConstructParams (video_class_.init ()))
   {
   }
 
   Video::Video (const Glib::RefPtr<MediaStream>& media_stream)
-    : ObjectBase (nullptr),
-      Widget (Glib::ConstructParams (video_class_.init (),
-                                     "media_stream",
-                                     Glib::unwrap (media_stream),
-                                     nullptr))
+    : Glib::ObjectBase (nullptr),
+      Gtk::Widget (Glib::ConstructParams (video_class_.init (),
+                                          "media_stream",
+                                          Glib::unwrap (media_stream),
+                                          nullptr))
   {
   }
 
   Video::Video (const Glib::RefPtr<Gio::File>& file)
-    : ObjectBase (nullptr),
-      Widget (Glib::ConstructParams (video_class_.init (),
-                                     "file",
-                                     Glib::unwrap<Gio::File> (file),
-                                     nullptr))
+    : Glib::ObjectBase (nullptr),
+      Gtk::Widget (Glib::ConstructParams (
+          video_class_.init (),
+          "file",
+          const_cast<GFile*> (Glib::unwrap<Gio::File> (file)),
+          nullptr))
   {
   }
 
@@ -190,9 +192,9 @@ namespace Gtk
   }
 
   auto
-  Video::set_autoplay (const bool autoplay) -> void
+  Video::set_autoplay (bool autoplay) -> void
   {
-    gtk_video_set_autoplay (gobj (), autoplay);
+    gtk_video_set_autoplay (gobj (), static_cast<int> (autoplay));
   }
 
   auto
@@ -202,9 +204,9 @@ namespace Gtk
   }
 
   auto
-  Video::set_loop (const bool loop) -> void
+  Video::set_loop (bool loop) -> void
   {
-    gtk_video_set_loop (gobj (), loop);
+    gtk_video_set_loop (gobj (), static_cast<int> (loop));
   }
 
   static_assert (
@@ -216,13 +218,16 @@ namespace Gtk
   auto
   Video::property_media_stream () -> Glib::PropertyProxy<Glib::RefPtr<MediaStream>>
   {
-    return {this, "media-stream"};
+    return Glib::PropertyProxy<Glib::RefPtr<MediaStream>> (this,
+                                                           "media-stream");
   }
 
   auto
   Video::property_media_stream () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<MediaStream>>
   {
-    return {this, "media-stream"};
+    return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<MediaStream>> (
+        this,
+        "media-stream");
   }
 
   static_assert (
@@ -234,37 +239,37 @@ namespace Gtk
   auto
   Video::property_file () -> Glib::PropertyProxy<Glib::RefPtr<Gio::File>>
   {
-    return {this, "file"};
+    return Glib::PropertyProxy<Glib::RefPtr<Gio::File>> (this, "file");
   }
 
   auto
   Video::property_file () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gio::File>>
   {
-    return {this, "file"};
+    return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gio::File>> (this, "file");
   }
 
   auto
   Video::property_autoplay () -> Glib::PropertyProxy<bool>
   {
-    return {this, "autoplay"};
+    return Glib::PropertyProxy<bool> (this, "autoplay");
   }
 
   auto
   Video::property_autoplay () const -> Glib::PropertyProxy_ReadOnly<bool>
   {
-    return {this, "autoplay"};
+    return Glib::PropertyProxy_ReadOnly<bool> (this, "autoplay");
   }
 
   auto
   Video::property_loop () -> Glib::PropertyProxy<bool>
   {
-    return {this, "loop"};
+    return Glib::PropertyProxy<bool> (this, "loop");
   }
 
   auto
   Video::property_loop () const -> Glib::PropertyProxy_ReadOnly<bool>
   {
-    return {this, "loop"};
+    return Glib::PropertyProxy_ReadOnly<bool> (this, "loop");
   }
 
 } // namespace Gtk

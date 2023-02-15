@@ -183,11 +183,11 @@ namespace Glib
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
   private:
-    GLIBMM_API static void
-    throw_func (GError* gobject);
+    GLIBMM_API static auto
+    throw_func (GError* gobject) -> void;
 
-    friend GLIBMM_API void
-    wrap_init ();
+    friend GLIBMM_API auto
+    wrap_init () -> void;
 
 #endif
   };
@@ -221,11 +221,11 @@ namespace Glib
 
 #ifdef G_OS_WIN32
 
-    static Glib::RefPtr<IOChannel>
-    create_from_win32_fd (int fd);
+    static auto
+    create_from_win32_fd (int fd) -> Glib::RefPtr<IOChannel>;
 
-    static Glib::RefPtr<IOChannel>
-    create_from_win32_socket (int socket);
+    static auto
+    create_from_win32_socket (int socket) -> Glib::RefPtr<IOChannel>;
 
 #endif
 
@@ -265,8 +265,8 @@ namespace Glib
     auto
     get_buffer_size () const -> gsize;
 
-    void
-    set_buffer_size (gsize size);
+    auto
+    set_buffer_size (gsize size) -> void;
 
     auto
     get_flags () const -> IOFlags;
@@ -274,8 +274,8 @@ namespace Glib
     auto
     set_flags (IOFlags flags) -> IOStatus;
 
-    void
-    set_buffered (bool buffered);
+    auto
+    set_buffered (bool buffered) -> void;
 
     auto
     get_buffered () const -> bool;
@@ -286,8 +286,8 @@ namespace Glib
     auto
     get_close_on_unref () const -> bool;
 
-    void
-    set_close_on_unref (bool do_close);
+    auto
+    set_close_on_unref (bool do_close) -> void;
 
     auto
     set_encoding (const std::string& encoding = {}) -> IOStatus;
@@ -295,8 +295,8 @@ namespace Glib
     auto
     get_encoding () const -> std::string;
 
-    void
-    set_line_term (const std::string& term = {});
+    auto
+    set_line_term (const std::string& term = {}) -> void;
 
     auto
     get_line_term () const -> std::string;
@@ -304,10 +304,10 @@ namespace Glib
     auto
     create_watch (IOCondition condition) -> Glib::RefPtr<IOSource>;
 
-    virtual void
-    reference () const;
-    virtual void
-    unreference () const;
+    virtual auto
+    reference () const -> void;
+    virtual auto
+    unreference () const -> void;
 
     auto
     gobj () -> GIOChannel*
@@ -329,8 +329,8 @@ namespace Glib
 #endif
 
   private:
-    void
-    release_gobject ();
+    auto
+    release_gobject () -> void;
   };
 
   GLIBMM_API auto

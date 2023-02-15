@@ -26,6 +26,7 @@ namespace Gtk
     if (gobject_)
     {
       if (g_object_is_floating (gobject_))
+
       {
         GLIBMM_DEBUG_REFERENCE (this, gobject_);
         g_object_ref_sink (gobject_);
@@ -94,7 +95,8 @@ namespace Gtk
         {
 #ifdef GLIBMM_DEBUG_REFCOUNTING
           g_warning ("Gtk::Object::_release_c_instance(): Calling "
-                     "g_object_run_dispose(): gobject_=%p, gtypename=%s\n",
+                     "g_object_run_dispose(): "
+                     "gobject_=%p, gtypename=%s\n",
                      (void*) object,
                      G_OBJECT_TYPE_NAME (object));
 #endif
@@ -152,8 +154,7 @@ namespace Gtk
   }
 
   auto
-  Object::disconnect_cpp_wrapper (
-      const bool prevent_creation_of_another_wrapper) -> void
+  Object::disconnect_cpp_wrapper (bool prevent_creation_of_another_wrapper) -> void
   {
 #ifdef GLIBMM_DEBUG_REFCOUNTING
     g_warning ("Gtk::Object::disconnect_cpp_wrapper() this=%p, gobject_=%p\n",
@@ -165,11 +166,11 @@ namespace Gtk
 
     if (gobj ())
     {
-      g_object_steal_qdata (gobj (), Glib::quark_);
+      g_object_steal_qdata ((GObject*) gobj (), Glib::quark_);
 
       if (prevent_creation_of_another_wrapper)
 
-        g_object_set_qdata (gobj (),
+        g_object_set_qdata ((GObject*) gobj (),
                             Glib::quark_cpp_wrapper_deleted_,
                             (gpointer) true);
 
@@ -191,6 +192,7 @@ namespace Gtk
     gobject_ = nullptr;
 
     if (!cpp_destruction_in_progress_)
+
     {
       if (!referenced_)
       {
@@ -232,6 +234,7 @@ namespace Gtk
       return;
 
     if (gobject_->ref_count >= 1)
+
     {
 #ifdef GLIBMM_DEBUG_REFCOUNTING
       g_warning ("Object::set_manage(): setting GTK_FLOATING: gobject_ = %p",
@@ -262,7 +265,7 @@ namespace Gtk
 {
 
   auto
-  Object_Class::init () -> const Class&
+  Object_Class::init () -> const Glib::Class&
   {
     if (!gtype_)
     {
@@ -284,7 +287,7 @@ namespace Gtk
   auto
   Object_Class::wrap_new (GObject* o) -> Glib::ObjectBase*
   {
-    return manage (new Object (o));
+    return manage (new Object ((GObject*) (o)));
   }
 
   Object::CppClassType Object::object_class_;

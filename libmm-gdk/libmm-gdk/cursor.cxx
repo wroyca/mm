@@ -20,10 +20,11 @@ namespace Glib
 {
 
   auto
-  wrap (GdkCursor* object, const bool take_copy) -> RefPtr<Gdk::Cursor>
+  wrap (GdkCursor* object, bool take_copy) -> Glib::RefPtr<Gdk::Cursor>
   {
     return Glib::make_refptr_for_instance<Gdk::Cursor> (
-        dynamic_cast<Gdk::Cursor*> (wrap_auto ((GObject*) object, take_copy)));
+        dynamic_cast<Gdk::Cursor*> (
+            Glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
 } // namespace Glib
@@ -32,7 +33,7 @@ namespace Gdk
 {
 
   auto
-  Cursor_Class::init () -> const Class&
+  Cursor_Class::init () -> const Glib::Class&
   {
     if (!gtype_)
     {
@@ -56,28 +57,28 @@ namespace Gdk
   }
 
   Cursor::Cursor (const Glib::ConstructParams& construct_params)
-    : Object (construct_params)
+    : Glib::Object (construct_params)
   {
   }
 
   Cursor::Cursor (GdkCursor* castitem)
-    : Object ((GObject*) castitem)
+    : Glib::Object ((GObject*) (castitem))
   {
   }
 
   Cursor::Cursor (Cursor&& src) noexcept
-    : Object (std::move (src))
+    : Glib::Object (std::move (src))
   {
   }
 
   auto
   Cursor::operator= (Cursor&& src) noexcept -> Cursor&
   {
-    Object::operator= (std::move (src));
+    Glib::Object::operator= (std::move (src));
     return *this;
   }
 
-  Cursor::~Cursor () noexcept = default;
+  Cursor::~Cursor () noexcept {}
 
   Cursor::CppClassType Cursor::cursor_class_;
 
@@ -95,8 +96,8 @@ namespace Gdk
 
   auto
   Cursor::create (const Glib::RefPtr<const Texture>& texture,
-                  const int hotspot_x,
-                  const int hotspot_y,
+                  int hotspot_x,
+                  int hotspot_y,
                   const Glib::RefPtr<Cursor>& fallback) -> Glib::RefPtr<Cursor>
   {
     return Glib::wrap (gdk_cursor_new_from_texture (
@@ -172,25 +173,26 @@ namespace Gdk
   auto
   Cursor::property_fallback () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Cursor>>
   {
-    return {this, "fallback"};
+    return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Cursor>> (this,
+                                                               "fallback");
   }
 
   auto
   Cursor::property_hotspot_x () const -> Glib::PropertyProxy_ReadOnly<int>
   {
-    return {this, "hotspot-x"};
+    return Glib::PropertyProxy_ReadOnly<int> (this, "hotspot-x");
   }
 
   auto
   Cursor::property_hotspot_y () const -> Glib::PropertyProxy_ReadOnly<int>
   {
-    return {this, "hotspot-y"};
+    return Glib::PropertyProxy_ReadOnly<int> (this, "hotspot-y");
   }
 
   auto
   Cursor::property_name () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>
   {
-    return {this, "name"};
+    return Glib::PropertyProxy_ReadOnly<Glib::ustring> (this, "name");
   }
 
   static_assert (
@@ -202,7 +204,8 @@ namespace Gdk
   auto
   Cursor::property_texture () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Texture>>
   {
-    return {this, "texture"};
+    return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Texture>> (this,
+                                                                "texture");
   }
 
 } // namespace Gdk

@@ -42,11 +42,11 @@ namespace Glib
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
   private:
-    GLIBMM_API static void
-    throw_func (GError* gobject);
+    GLIBMM_API static auto
+    throw_func (GError* gobject) -> void;
 
-    friend GLIBMM_API void
-    wrap_init ();
+    friend GLIBMM_API auto
+    wrap_init () -> void;
 
 #endif
   };
@@ -62,11 +62,11 @@ namespace Glib
     static auto
     create () -> Glib::RefPtr<KeyFile>;
 
-    void
-    reference () const;
+    auto
+    reference () const -> void;
 
-    void
-    unreference () const;
+    auto
+    unreference () const -> void;
 
     auto
     gobj () -> GKeyFile*;
@@ -84,8 +84,8 @@ namespace Glib
     operator= (const KeyFile&) -> KeyFile& = delete;
 
   protected:
-    void
-    operator delete (void*, std::size_t);
+    auto
+    operator delete (void*, std::size_t) -> void;
 
   private:
   public:
@@ -195,13 +195,13 @@ namespace Glib
     get_double (const Glib::ustring& group_name, const Glib::ustring& key) const
         -> double;
 
-    void
+    auto
     set_double (const Glib::ustring& group_name,
                 const Glib::ustring& key,
-                double value);
+                double value) -> void;
 
-    void
-    set_double (const Glib::ustring& key, double value);
+    auto
+    set_double (const Glib::ustring& key, double value) -> void;
 
     auto
     get_string_list (const Glib::ustring& group_name,
@@ -241,90 +241,93 @@ namespace Glib
     get_comment (const Glib::ustring& group_name,
                  const Glib::ustring& key) const -> Glib::ustring;
 
-    void
-    set_list_separator (gchar separator);
+    auto
+    set_list_separator (gchar separator) -> void;
 
-    void
+    auto
     set_value (const Glib::ustring& group_name,
                const Glib::ustring& key,
-               const Glib::ustring& value);
+               const Glib::ustring& value) -> void;
 
-    void
+    auto
     set_string (const Glib::ustring& group_name,
                 const Glib::ustring& key,
-                const Glib::ustring& string);
+                const Glib::ustring& string) -> void;
 
-    void
+    auto
     set_locale_string (const Glib::ustring& group_name,
                        const Glib::ustring& key,
                        const Glib::ustring& locale,
-                       const Glib::ustring& string);
+                       const Glib::ustring& string) -> void;
 
-    void
+    auto
     set_boolean (const Glib::ustring& group_name,
                  const Glib::ustring& key,
-                 bool value);
+                 bool value) -> void;
 
-    void
+    auto
     set_integer (const Glib::ustring& group_name,
                  const Glib::ustring& key,
-                 int value);
+                 int value) -> void;
 
-    void
+    auto
     set_int64 (const Glib::ustring& group_name,
                const Glib::ustring& key,
-               gint64 value);
+               gint64 value) -> void;
 
-    void
+    auto
     set_uint64 (const Glib::ustring& group_name,
                 const Glib::ustring& key,
-                guint64 value);
+                guint64 value) -> void;
 
-    void
+    auto
     set_string_list (const Glib::ustring& group_name,
                      const Glib::ustring& key,
-                     const std::vector<Glib::ustring>& list);
+                     const std::vector<Glib::ustring>& list) -> void;
 
-    void
+    auto
     set_locale_string_list (const Glib::ustring& group_name,
                             const Glib::ustring& key,
                             const Glib::ustring& locale,
-                            const std::vector<Glib::ustring>& list);
+                            const std::vector<Glib::ustring>& list) -> void;
 
-    void
+    auto
     set_boolean_list (const Glib::ustring& group_name,
                       const Glib::ustring& key,
-                      const std::vector<bool>& list);
+                      const std::vector<bool>& list) -> void;
 
-    void
+    auto
     set_integer_list (const Glib::ustring& group_name,
                       const Glib::ustring& key,
-                      const std::vector<int>& list);
+                      const std::vector<int>& list) -> void;
 
-    void
+    auto
     set_double_list (const Glib::ustring& group_name,
                      const Glib::ustring& key,
-                     const std::vector<double>& list);
+                     const std::vector<double>& list) -> void;
 
-    void
-    set_comment (const Glib::ustring& comment);
+    auto
+    set_comment (const Glib::ustring& comment) -> void;
 
-    void
-    set_comment (const Glib::ustring& group_name, const Glib::ustring& comment);
+    auto
+    set_comment (const Glib::ustring& group_name, const Glib::ustring& comment)
+        -> void;
 
-    void
+    auto
     set_comment (const Glib::ustring& group_name,
                  const Glib::ustring& key,
-                 const Glib::ustring& comment);
+                 const Glib::ustring& comment) -> void;
 
-    void
-    remove_comment (const Glib::ustring& group_name, const Glib::ustring& key);
+    auto
+    remove_comment (const Glib::ustring& group_name, const Glib::ustring& key)
+        -> void;
 
-    void
-    remove_key (const Glib::ustring& group_name, const Glib::ustring& key);
+    auto
+    remove_key (const Glib::ustring& group_name, const Glib::ustring& key)
+        -> void;
 
-    void
-    remove_group (const Glib::ustring& group_name);
+    auto
+    remove_group (const Glib::ustring& group_name) -> void;
   };
 
 } // namespace Glib

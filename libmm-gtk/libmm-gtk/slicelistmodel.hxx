@@ -91,8 +91,8 @@ namespace Gtk
     create (const Glib::RefPtr<Gio::ListModel>& model, guint offset, guint size)
         -> Glib::RefPtr<SliceListModel>;
 
-    void
-    set_model (const Glib::RefPtr<Gio::ListModel>& model);
+    auto
+    set_model (const Glib::RefPtr<Gio::ListModel>& model) -> void;
 
     auto
     get_model () -> Glib::RefPtr<Gio::ListModel>;
@@ -100,14 +100,14 @@ namespace Gtk
     auto
     get_model () const -> Glib::RefPtr<const Gio::ListModel>;
 
-    void
-    set_offset (guint offset);
+    auto
+    set_offset (guint offset) -> void;
 
     auto
     get_offset () const -> guint;
 
-    void
-    set_size (guint size);
+    auto
+    set_size (guint size) -> void;
 
     auto
     get_size () const -> guint;
@@ -146,9 +146,7 @@ namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkSliceListModel* object, bool take_copy = false) -> Glib::RefPtr<Gtk::SliceListModel>;
 } // namespace Glib
 

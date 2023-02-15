@@ -58,25 +58,22 @@ namespace Gtk
 
     auto
     get_width () const -> int;
-    void
-    set_width (const int& value);
+    auto
+    set_width (const int& value) -> void;
     auto
     get_height () const -> int;
-    void
-    set_height (const int& value);
+    auto
+    set_height (const int& value) -> void;
   };
 
 } // namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkRequisition* object) -> Gtk::Requisition&;
 
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (const GtkRequisition* object) -> const Gtk::Requisition&;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

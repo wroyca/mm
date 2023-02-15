@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: LGPL-2.1-or-later
 
 #ifndef _GIOMM_MENU_H
 #define _GIOMM_MENU_H
@@ -86,78 +87,82 @@ namespace Gio
     static auto
     create () -> Glib::RefPtr<Menu>;
 
-    void
-    freeze ();
+    auto
+    freeze () -> void;
 
-    void
-    insert_item (int position, const Glib::RefPtr<const MenuItem>& item);
+    auto
+    insert_item (int position, const Glib::RefPtr<const MenuItem>& item)
+        -> void;
 
-    void
-    prepend_item (const Glib::RefPtr<const MenuItem>& item);
+    auto
+    prepend_item (const Glib::RefPtr<const MenuItem>& item) -> void;
 
-    void
-    append_item (const Glib::RefPtr<const MenuItem>& item);
+    auto
+    append_item (const Glib::RefPtr<const MenuItem>& item) -> void;
 
-    void
-    remove (int position);
+    auto
+    remove (int position) -> void;
 
-    void
-    remove_all ();
+    auto
+    remove_all () -> void;
 
-    void
+    auto
     insert (int position,
             const Glib::ustring& label,
-            const Glib::ustring& detailed_action);
+            const Glib::ustring& detailed_action) -> void;
 
-    void
-    insert (int position, const Glib::ustring& label);
+    auto
+    insert (int position, const Glib::ustring& label) -> void;
 
-    void
-    prepend (const Glib::ustring& label, const Glib::ustring& detailed_action);
+    auto
+    prepend (const Glib::ustring& label, const Glib::ustring& detailed_action)
+        -> void;
 
-    void
-    prepend (const Glib::ustring& label);
+    auto
+    prepend (const Glib::ustring& label) -> void;
 
-    void
-    append (const Glib::ustring& label, const Glib::ustring& detailed_action);
+    auto
+    append (const Glib::ustring& label, const Glib::ustring& detailed_action)
+        -> void;
 
-    void
-    append (const Glib::ustring& label);
+    auto
+    append (const Glib::ustring& label) -> void;
 
-    void
+    auto
     insert_section (int position,
                     const Glib::ustring& label,
-                    const Glib::RefPtr<MenuModel>& section);
+                    const Glib::RefPtr<MenuModel>& section) -> void;
 
-    void
-    insert_section (int position, const Glib::RefPtr<MenuModel>& section);
+    auto
+    insert_section (int position, const Glib::RefPtr<MenuModel>& section)
+        -> void;
 
-    void
+    auto
     prepend_section (const Glib::ustring& label,
-                     const Glib::RefPtr<MenuModel>& section);
+                     const Glib::RefPtr<MenuModel>& section) -> void;
 
-    void
-    prepend_section (const Glib::RefPtr<MenuModel>& section);
+    auto
+    prepend_section (const Glib::RefPtr<MenuModel>& section) -> void;
 
-    void
+    auto
     append_section (const Glib::ustring& label,
-                    const Glib::RefPtr<MenuModel>& section);
+                    const Glib::RefPtr<MenuModel>& section) -> void;
 
-    void
-    append_section (const Glib::RefPtr<MenuModel>& section);
+    auto
+    append_section (const Glib::RefPtr<MenuModel>& section) -> void;
 
-    void
+    auto
     insert_submenu (int position,
                     const Glib::ustring& label,
-                    const Glib::RefPtr<MenuModel>& submenu);
+                    const Glib::RefPtr<MenuModel>& submenu) -> void;
 
-    void
+    auto
     prepend_submenu (const Glib::ustring& label,
-                     const Glib::RefPtr<MenuModel>& submenu);
+                     const Glib::RefPtr<MenuModel>& submenu) -> void;
 
-    void
+    auto
     append_submenu (const Glib::ustring& label,
-                    const Glib::RefPtr<MenuModel>& submenu);
+                    const Glib::RefPtr<MenuModel>& submenu) -> void;
 
   public:
   public:

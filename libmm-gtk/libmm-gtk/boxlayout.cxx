@@ -15,11 +15,11 @@ namespace Glib
 {
 
   auto
-  wrap (GtkBoxLayout* object, const bool take_copy) -> RefPtr<Gtk::BoxLayout>
+  wrap (GtkBoxLayout* object, bool take_copy) -> Glib::RefPtr<Gtk::BoxLayout>
   {
     return Glib::make_refptr_for_instance<Gtk::BoxLayout> (
         dynamic_cast<Gtk::BoxLayout*> (
-            wrap_auto ((GObject*) object, take_copy)));
+            Glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
 } // namespace Glib
@@ -28,7 +28,7 @@ namespace Gtk
 {
 
   auto
-  BoxLayout_Class::init () -> const Class&
+  BoxLayout_Class::init () -> const Glib::Class&
   {
     if (!gtype_)
     {
@@ -66,7 +66,7 @@ namespace Gtk
   }
 
   BoxLayout::BoxLayout (GtkBoxLayout* castitem)
-    : LayoutManager ((GtkLayoutManager*) castitem)
+    : LayoutManager ((GtkLayoutManager*) (castitem))
   {
   }
 
@@ -84,7 +84,7 @@ namespace Gtk
     return *this;
   }
 
-  BoxLayout::~BoxLayout () noexcept = default;
+  BoxLayout::~BoxLayout () noexcept {}
 
   BoxLayout::CppClassType BoxLayout::boxlayout_class_;
 
@@ -100,26 +100,27 @@ namespace Gtk
     return gtk_box_layout_get_type ();
   }
 
-  BoxLayout::BoxLayout (const Orientation orientation)
-    : ObjectBase (nullptr),
-      LayoutManager (Glib::ConstructParams (boxlayout_class_.init (),
-                                            "orientation",
-                                            orientation,
-                                            nullptr))
+  BoxLayout::BoxLayout (Orientation orientation)
+    : Glib::ObjectBase (nullptr),
+      LayoutManager (
+          Glib::ConstructParams (boxlayout_class_.init (),
+                                 "orientation",
+                                 static_cast<GtkOrientation> (orientation),
+                                 nullptr))
   {
   }
 
   auto
-  BoxLayout::create (const Orientation orientation) -> Glib::RefPtr<BoxLayout>
+  BoxLayout::create (Orientation orientation) -> Glib::RefPtr<BoxLayout>
   {
     return Glib::make_refptr_for_instance<BoxLayout> (
         new BoxLayout (orientation));
   }
 
   auto
-  BoxLayout::set_homogeneous (const bool homogeneous) -> void
+  BoxLayout::set_homogeneous (bool homogeneous) -> void
   {
-    gtk_box_layout_set_homogeneous (gobj (), homogeneous);
+    gtk_box_layout_set_homogeneous (gobj (), static_cast<int> (homogeneous));
   }
 
   auto
@@ -129,7 +130,7 @@ namespace Gtk
   }
 
   auto
-  BoxLayout::set_spacing (const guint spacing) -> void
+  BoxLayout::set_spacing (guint spacing) -> void
   {
     gtk_box_layout_set_spacing (gobj (), spacing);
   }
@@ -158,25 +159,25 @@ namespace Gtk
   auto
   BoxLayout::property_homogeneous () -> Glib::PropertyProxy<bool>
   {
-    return {this, "homogeneous"};
+    return Glib::PropertyProxy<bool> (this, "homogeneous");
   }
 
   auto
   BoxLayout::property_homogeneous () const -> Glib::PropertyProxy_ReadOnly<bool>
   {
-    return {this, "homogeneous"};
+    return Glib::PropertyProxy_ReadOnly<bool> (this, "homogeneous");
   }
 
   auto
   BoxLayout::property_spacing () -> Glib::PropertyProxy<int>
   {
-    return {this, "spacing"};
+    return Glib::PropertyProxy<int> (this, "spacing");
   }
 
   auto
   BoxLayout::property_spacing () const -> Glib::PropertyProxy_ReadOnly<int>
   {
-    return {this, "spacing"};
+    return Glib::PropertyProxy_ReadOnly<int> (this, "spacing");
   }
 
   static_assert (
@@ -187,13 +188,14 @@ namespace Gtk
   auto
   BoxLayout::property_baseline_position () -> Glib::PropertyProxy<BaselinePosition>
   {
-    return {this, "baseline-position"};
+    return Glib::PropertyProxy<BaselinePosition> (this, "baseline-position");
   }
 
   auto
   BoxLayout::property_baseline_position () const -> Glib::PropertyProxy_ReadOnly<BaselinePosition>
   {
-    return {this, "baseline-position"};
+    return Glib::PropertyProxy_ReadOnly<BaselinePosition> (this,
+                                                           "baseline-position");
   }
 
 } // namespace Gtk

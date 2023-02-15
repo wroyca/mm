@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: LGPL-2.1-or-later
 
 #ifndef _GIOMM_DBUSINTERFACESKELETON_H
 #define _GIOMM_DBUSINTERFACESKELETON_H
@@ -91,8 +92,8 @@ namespace Gio::DBus
       HANDLE_METHOD_INVOCATIONS_IN_THREAD = (1 << 0)
     };
 
-    void
-    flush ();
+    auto
+    flush () -> void;
 
     auto
     get_info () -> Glib::RefPtr<InterfaceInfo>;
@@ -103,15 +104,16 @@ namespace Gio::DBus
     auto
     get_properties () const -> Glib::VariantBase;
 
-    void
+    auto
     export_interface_skeleton (const Glib::RefPtr<Connection>& connection,
-                               const Glib::ustring& object_path);
+                               const Glib::ustring& object_path) -> void;
 
-    void
-    unexport ();
+    auto
+    unexport () -> void;
 
-    void
-    unexport_from_connection (const Glib::RefPtr<Connection>& connection);
+    auto
+    unexport_from_connection (const Glib::RefPtr<Connection>& connection)
+        -> void;
 
     auto
     get_connection () -> Glib::RefPtr<Connection>;
@@ -135,8 +137,8 @@ namespace Gio::DBus
     auto
     get_flags () const -> Flags;
 
-    void
-    set_flags (Flags flags);
+    auto
+    set_flags (Flags flags) -> void;
 
     auto
     property_g_flags () -> Glib::PropertyProxy<Flags>;

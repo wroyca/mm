@@ -1,12 +1,17 @@
 // SPDX-License-Identifier: LGPL-2.1-or-later
 
-#include <libmm-glib/mm-glib.hxx>
+#undef GTK_DISABLE_DEPRECATED
+#define GDK_DISABLE_DEPRECATION_WARNINGS 1
 
-#include <libmm-gtk/treedragsource.hxx>
-#include <libmm-gtk/treedragsource_p.hxx>
+#ifndef GTKMM_DISABLE_DEPRECATED
 
-#include <gtk/gtk.h>
-#include <libmm-gtk/treepath.hxx>
+  #include <libmm-glib/mm-glib.hxx>
+
+  #include <libmm-gtk/treedragsource.hxx>
+  #include <libmm-gtk/treedragsource_p.hxx>
+
+  #include <gtk/gtk.h>
+  #include <libmm-gtk/treepath.hxx>
 
 namespace
 {
@@ -16,11 +21,12 @@ namespace Glib
 {
 
   auto
-  wrap (GtkTreeDragSource* object, const bool take_copy) -> RefPtr<Gtk::TreeDragSource>
+  wrap (GtkTreeDragSource* object, bool take_copy) -> Glib::RefPtr<Gtk::TreeDragSource>
   {
     return Glib::make_refptr_for_instance<Gtk::TreeDragSource> (
-        Glib::wrap_auto_interface<Gtk::TreeDragSource> ((GObject*) object,
-                                                        take_copy));
+        dynamic_cast<Gtk::TreeDragSource*> (
+            Glib::wrap_auto_interface<Gtk::TreeDragSource> ((GObject*) (object),
+                                                            take_copy)));
   }
 
 } // namespace Glib
@@ -29,7 +35,7 @@ namespace Gtk
 {
 
   auto
-  TreeDragSource_Class::init () -> const Interface_Class&
+  TreeDragSource_Class::init () -> const Glib::Interface_Class&
   {
     if (!gtype_)
     {
@@ -57,8 +63,8 @@ namespace Gtk
   TreeDragSource_Class::row_draggable_vfunc_callback (GtkTreeDragSource* self,
                                                       GtkTreePath* path) -> gboolean
   {
-    const auto obj_base =
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self);
+    const auto obj_base = static_cast<Glib::ObjectBase*> (
+        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -67,7 +73,8 @@ namespace Gtk
       {
         try
         {
-          return obj->row_draggable_vfunc (TreePath (path, true));
+          return static_cast<int> (
+              obj->row_draggable_vfunc (Gtk::TreePath (path, true)));
         }
         catch (...)
         {
@@ -76,7 +83,7 @@ namespace Gtk
       }
     }
 
-    const BaseClassType* const base =
+    BaseClassType* const base =
         static_cast<BaseClassType*> (g_type_interface_peek_parent (
             g_type_interface_peek (G_OBJECT_GET_CLASS (self),
                                    CppObjectType::get_type ())));
@@ -92,8 +99,8 @@ namespace Gtk
   TreeDragSource_Class::drag_data_get_vfunc_callback (GtkTreeDragSource* self,
                                                       GtkTreePath* path) -> GdkContentProvider*
   {
-    const auto obj_base =
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self);
+    const auto obj_base = static_cast<Glib::ObjectBase*> (
+        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -102,7 +109,8 @@ namespace Gtk
       {
         try
         {
-          return unwrap_copy (obj->drag_data_get_vfunc (TreePath (path, true)));
+          return Glib::unwrap_copy (
+              obj->drag_data_get_vfunc (Gtk::TreePath (path, true)));
         }
         catch (...)
         {
@@ -111,7 +119,7 @@ namespace Gtk
       }
     }
 
-    const BaseClassType* const base =
+    BaseClassType* const base =
         static_cast<BaseClassType*> (g_type_interface_peek_parent (
             g_type_interface_peek (G_OBJECT_GET_CLASS (self),
                                    CppObjectType::get_type ())));
@@ -128,8 +136,8 @@ namespace Gtk
       GtkTreeDragSource* self,
       GtkTreePath* path) -> gboolean
   {
-    const auto obj_base =
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self);
+    const auto obj_base = static_cast<Glib::ObjectBase*> (
+        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -138,7 +146,8 @@ namespace Gtk
       {
         try
         {
-          return obj->drag_data_delete_vfunc (TreePath (path, true));
+          return static_cast<int> (
+              obj->drag_data_delete_vfunc (Gtk::TreePath (path, true)));
         }
         catch (...)
         {
@@ -147,7 +156,7 @@ namespace Gtk
       }
     }
 
-    const BaseClassType* const base =
+    BaseClassType* const base =
         static_cast<BaseClassType*> (g_type_interface_peek_parent (
             g_type_interface_peek (G_OBJECT_GET_CLASS (self),
                                    CppObjectType::get_type ())));
@@ -162,40 +171,40 @@ namespace Gtk
   auto
   TreeDragSource_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
   {
-    return new TreeDragSource ((GtkTreeDragSource*) object);
+    return new TreeDragSource ((GtkTreeDragSource*) (object));
   }
 
   TreeDragSource::TreeDragSource ()
-    : Interface (treedragsource_class_.init ())
+    : Glib::Interface (treedragsource_class_.init ())
   {
   }
 
   TreeDragSource::TreeDragSource (GtkTreeDragSource* castitem)
-    : Interface ((GObject*) castitem)
+    : Glib::Interface ((GObject*) (castitem))
   {
   }
 
   TreeDragSource::TreeDragSource (const Glib::Interface_Class& interface_class)
-    : Interface (interface_class)
+    : Glib::Interface (interface_class)
   {
   }
 
   TreeDragSource::TreeDragSource (TreeDragSource&& src) noexcept
-    : Interface (std::move (src))
+    : Glib::Interface (std::move (src))
   {
   }
 
   auto
   TreeDragSource::operator= (TreeDragSource&& src) noexcept -> TreeDragSource&
   {
-    Interface::operator= (std::move (src));
+    Glib::Interface::operator= (std::move (src));
     return *this;
   }
 
-  TreeDragSource::~TreeDragSource () noexcept = default;
+  TreeDragSource::~TreeDragSource () noexcept {}
 
   auto
-  TreeDragSource::add_interface (const GType gtype_implementer) -> void
+  TreeDragSource::add_interface (GType gtype_implementer) -> void
   {
     treedragsource_class_.init ().add_interface (gtype_implementer);
   }
@@ -219,7 +228,7 @@ namespace Gtk
   {
     return gtk_tree_drag_source_row_draggable (
         const_cast<GtkTreeDragSource*> (gobj ()),
-        const_cast<GtkTreePath*> (path.gobj ()));
+        const_cast<GtkTreePath*> ((path).gobj ()));
   }
 
   auto
@@ -227,7 +236,7 @@ namespace Gtk
   {
     return Glib::wrap (gtk_tree_drag_source_drag_data_get (
         const_cast<GtkTreeDragSource*> (gobj ()),
-        const_cast<GtkTreePath*> (path.gobj ())));
+        const_cast<GtkTreePath*> ((path).gobj ())));
   }
 
   auto
@@ -235,22 +244,22 @@ namespace Gtk
   {
     return gtk_tree_drag_source_drag_data_delete (
         gobj (),
-        const_cast<GtkTreePath*> (path.gobj ()));
+        const_cast<GtkTreePath*> ((path).gobj ()));
   }
 
   auto
-  TreeDragSource::row_draggable_vfunc (const TreeModel::Path& path) const -> bool
+  Gtk::TreeDragSource::row_draggable_vfunc (const TreeModel::Path& path) const -> bool
   {
     const auto base =
         static_cast<BaseClassType*> (g_type_interface_peek_parent (
             g_type_interface_peek (G_OBJECT_GET_CLASS (gobject_),
-                                   get_type ())));
+                                   CppObjectType::get_type ())));
 
     if (base && base->row_draggable)
     {
-      const bool retval (
+      bool retval (
           (*base->row_draggable) (const_cast<GtkTreeDragSource*> (gobj ()),
-                                  const_cast<GtkTreePath*> (path.gobj ())));
+                                  const_cast<GtkTreePath*> ((path).gobj ())));
       return retval;
     }
 
@@ -259,38 +268,38 @@ namespace Gtk
   }
 
   auto
-  TreeDragSource::drag_data_get_vfunc (const TreeModel::Path& path) const -> Glib::RefPtr<Gdk::ContentProvider>
+  Gtk::TreeDragSource::drag_data_get_vfunc (const TreeModel::Path& path) const -> Glib::RefPtr<Gdk::ContentProvider>
   {
     const auto base =
         static_cast<BaseClassType*> (g_type_interface_peek_parent (
             g_type_interface_peek (G_OBJECT_GET_CLASS (gobject_),
-                                   get_type ())));
+                                   CppObjectType::get_type ())));
 
     if (base && base->drag_data_get)
     {
       Glib::RefPtr<Gdk::ContentProvider> retval (Glib::wrap (
           (*base->drag_data_get) (const_cast<GtkTreeDragSource*> (gobj ()),
-                                  const_cast<GtkTreePath*> (path.gobj ()))));
+                                  const_cast<GtkTreePath*> ((path).gobj ()))));
       return retval;
     }
 
     using RType = Glib::RefPtr<Gdk::ContentProvider>;
-    return {};
+    return RType ();
   }
 
   auto
-  TreeDragSource::drag_data_delete_vfunc (const TreeModel::Path& path) -> bool
+  Gtk::TreeDragSource::drag_data_delete_vfunc (const TreeModel::Path& path) -> bool
   {
     const auto base =
         static_cast<BaseClassType*> (g_type_interface_peek_parent (
             g_type_interface_peek (G_OBJECT_GET_CLASS (gobject_),
-                                   get_type ())));
+                                   CppObjectType::get_type ())));
 
     if (base && base->drag_data_delete)
     {
-      const bool retval (
-          (*base->drag_data_delete) (gobj (),
-                                     const_cast<GtkTreePath*> (path.gobj ())));
+      bool retval ((*base->drag_data_delete) (
+          gobj (),
+          const_cast<GtkTreePath*> ((path).gobj ())));
       return retval;
     }
 
@@ -299,3 +308,5 @@ namespace Gtk
   }
 
 } // namespace Gtk
+
+#endif

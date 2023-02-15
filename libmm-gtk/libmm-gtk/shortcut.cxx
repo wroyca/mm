@@ -13,11 +13,11 @@ namespace Glib
 {
 
   auto
-  wrap (GtkShortcut* object, const bool take_copy) -> RefPtr<Gtk::Shortcut>
+  wrap (GtkShortcut* object, bool take_copy) -> Glib::RefPtr<Gtk::Shortcut>
   {
     return Glib::make_refptr_for_instance<Gtk::Shortcut> (
         dynamic_cast<Gtk::Shortcut*> (
-            wrap_auto ((GObject*) object, take_copy)));
+            Glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
 } // namespace Glib
@@ -26,7 +26,7 @@ namespace Gtk
 {
 
   auto
-  Shortcut_Class::init () -> const Class&
+  Shortcut_Class::init () -> const Glib::Class&
   {
     if (!gtype_)
     {
@@ -59,28 +59,28 @@ namespace Gtk
   }
 
   Shortcut::Shortcut (const Glib::ConstructParams& construct_params)
-    : Object (construct_params)
+    : Glib::Object (construct_params)
   {
   }
 
   Shortcut::Shortcut (GtkShortcut* castitem)
-    : Object ((GObject*) castitem)
+    : Glib::Object ((GObject*) (castitem))
   {
   }
 
   Shortcut::Shortcut (Shortcut&& src) noexcept
-    : Object (std::move (src))
+    : Glib::Object (std::move (src))
   {
   }
 
   auto
   Shortcut::operator= (Shortcut&& src) noexcept -> Shortcut&
   {
-    Object::operator= (std::move (src));
+    Glib::Object::operator= (std::move (src));
     return *this;
   }
 
-  Shortcut::~Shortcut () noexcept = default;
+  Shortcut::~Shortcut () noexcept {}
 
   Shortcut::CppClassType Shortcut::shortcut_class_;
 
@@ -98,13 +98,14 @@ namespace Gtk
 
   Shortcut::Shortcut (const Glib::RefPtr<const ShortcutTrigger>& trigger,
                       const Glib::RefPtr<const ShortcutAction>& action)
-    : ObjectBase (nullptr),
-      Object (Glib::ConstructParams (shortcut_class_.init (),
-                                     "trigger",
-                                     Glib::unwrap (trigger),
-                                     "action",
-                                     Glib::unwrap (action),
-                                     nullptr))
+    : Glib::ObjectBase (nullptr),
+      Glib::Object (Glib::ConstructParams (
+          shortcut_class_.init (),
+          "trigger",
+          const_cast<GtkShortcutTrigger*> (Glib::unwrap (trigger)),
+          "action",
+          const_cast<GtkShortcutAction*> (Glib::unwrap (action)),
+          nullptr))
   {
   }
 
@@ -131,7 +132,7 @@ namespace Gtk
   {
     gtk_shortcut_set_trigger (
         gobj (),
-        unwrap_copy (std::const_pointer_cast<ShortcutTrigger> (trigger)));
+        Glib::unwrap_copy (std::const_pointer_cast<ShortcutTrigger> (trigger)));
   }
 
   auto
@@ -149,7 +150,7 @@ namespace Gtk
   {
     gtk_shortcut_set_action (
         gobj (),
-        unwrap_copy (std::const_pointer_cast<ShortcutAction> (action)));
+        Glib::unwrap_copy (std::const_pointer_cast<ShortcutAction> (action)));
   }
 
   auto
@@ -164,7 +165,7 @@ namespace Gtk
   Shortcut::set_arguments (const Glib::VariantBase& args) const -> void
   {
     gtk_shortcut_set_arguments (const_cast<GtkShortcut*> (gobj ()),
-                                const_cast<GVariant*> (args.gobj ()));
+                                const_cast<GVariant*> ((args).gobj ()));
   }
 
   static_assert (
@@ -176,13 +177,15 @@ namespace Gtk
   auto
   Shortcut::property_trigger () -> Glib::PropertyProxy<Glib::RefPtr<ShortcutTrigger>>
   {
-    return {this, "trigger"};
+    return Glib::PropertyProxy<Glib::RefPtr<ShortcutTrigger>> (this, "trigger");
   }
 
   auto
   Shortcut::property_trigger () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<ShortcutTrigger>>
   {
-    return {this, "trigger"};
+    return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<ShortcutTrigger>> (
+        this,
+        "trigger");
   }
 
   static_assert (
@@ -194,13 +197,15 @@ namespace Gtk
   auto
   Shortcut::property_action () -> Glib::PropertyProxy<Glib::RefPtr<ShortcutAction>>
   {
-    return {this, "action"};
+    return Glib::PropertyProxy<Glib::RefPtr<ShortcutAction>> (this, "action");
   }
 
   auto
   Shortcut::property_action () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<ShortcutAction>>
   {
-    return {this, "action"};
+    return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<ShortcutAction>> (
+        this,
+        "action");
   }
 
   static_assert (
@@ -211,13 +216,13 @@ namespace Gtk
   auto
   Shortcut::property_arguments () -> Glib::PropertyProxy<Glib::VariantBase>
   {
-    return {this, "arguments"};
+    return Glib::PropertyProxy<Glib::VariantBase> (this, "arguments");
   }
 
   auto
   Shortcut::property_arguments () const -> Glib::PropertyProxy_ReadOnly<Glib::VariantBase>
   {
-    return {this, "arguments"};
+    return Glib::PropertyProxy_ReadOnly<Glib::VariantBase> (this, "arguments");
   }
 
 } // namespace Gtk

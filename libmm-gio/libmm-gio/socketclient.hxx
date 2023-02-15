@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: LGPL-2.1-or-later
 
 #ifndef _GIOMM_SOCKETCLIENT_H
 #define _GIOMM_SOCKETCLIENT_H
@@ -129,20 +130,20 @@ namespace Gio
     auto
     get_family () const -> SocketFamily;
 
-    void
-    set_family (SocketFamily family);
+    auto
+    set_family (SocketFamily family) -> void;
 
     auto
     get_socket_type () const -> Socket::Type;
 
-    void
-    set_socket_type (Socket::Type type);
+    auto
+    set_socket_type (Socket::Type type) -> void;
 
     auto
     get_protocol () const -> Socket::Protocol;
 
-    void
-    set_protocol (Socket::Protocol protocol);
+    auto
+    set_protocol (Socket::Protocol protocol) -> void;
 
     auto
     get_local_address () -> Glib::RefPtr<SocketAddress>;
@@ -150,8 +151,8 @@ namespace Gio
     auto
     get_local_address () const -> Glib::RefPtr<const SocketAddress>;
 
-    void
-    set_local_address (const Glib::RefPtr<SocketAddress>& address);
+    auto
+    set_local_address (const Glib::RefPtr<SocketAddress>& address) -> void;
 
     auto
     connect (const Glib::RefPtr<SocketConnectable>& connectable,
@@ -193,59 +194,59 @@ namespace Gio
     connect_to_uri (const Glib::ustring& uri, guint16 default_port)
         -> Glib::RefPtr<SocketConnection>;
 
-    void
+    auto
     connect_async (const Glib::RefPtr<SocketConnectable>& connectable,
                    const Glib::RefPtr<Cancellable>& cancellable,
-                   const SlotAsyncReady& slot);
+                   const SlotAsyncReady& slot) -> void;
 
-    void
+    auto
     connect_async (const Glib::RefPtr<SocketConnectable>& connectable,
-                   const SlotAsyncReady& slot);
+                   const SlotAsyncReady& slot) -> void;
 
     auto
     connect_finish (const Glib::RefPtr<AsyncResult>& result)
         -> Glib::RefPtr<SocketConnection>;
 
-    void
+    auto
     connect_to_host_async (const Glib::ustring& host_and_port,
                            guint16 default_port,
                            const Glib::RefPtr<Cancellable>& cancellable,
-                           const SlotAsyncReady& slot);
+                           const SlotAsyncReady& slot) -> void;
 
-    void
+    auto
     connect_to_host_async (const Glib::ustring& host_and_port,
                            guint16 default_port,
-                           const SlotAsyncReady& slot);
+                           const SlotAsyncReady& slot) -> void;
 
     auto
     connect_to_host_finish (const Glib::RefPtr<AsyncResult>& result)
         -> Glib::RefPtr<SocketConnection>;
 
-    void
+    auto
     connect_to_service_async (const Glib::ustring& domain,
                               const Glib::ustring& service,
                               const Glib::RefPtr<Cancellable>& cancellable,
-                              const SlotAsyncReady& slot);
+                              const SlotAsyncReady& slot) -> void;
 
-    void
+    auto
     connect_to_service_async (const Glib::ustring& domain,
                               const Glib::ustring& service,
-                              const SlotAsyncReady& slot);
+                              const SlotAsyncReady& slot) -> void;
 
     auto
     connect_to_service_finish (const Glib::RefPtr<AsyncResult>& result)
         -> Glib::RefPtr<SocketConnection>;
 
-    void
+    auto
     connect_to_uri_async (const Glib::ustring& uri,
                           guint16 default_port,
                           const Glib::RefPtr<Cancellable>& cancellable,
-                          const SlotAsyncReady& slot);
+                          const SlotAsyncReady& slot) -> void;
 
-    void
+    auto
     connect_to_uri_async (const Glib::ustring& uri,
                           guint16 default_port,
-                          const SlotAsyncReady& slot);
+                          const SlotAsyncReady& slot) -> void;
 
     auto
     connect_to_uri_finish (const Glib::RefPtr<AsyncResult>& result)
@@ -254,14 +255,14 @@ namespace Gio
     auto
     get_enable_proxy () const -> bool;
 
-    void
-    set_enable_proxy (bool enable);
+    auto
+    set_enable_proxy (bool enable) -> void;
 
     auto
     get_tls () const -> bool;
 
-    void
-    set_tls (bool tls = true);
+    auto
+    set_tls (bool tls = true) -> void;
 
 #ifndef GIOMM_DISABLE_DEPRECATED
 
@@ -271,8 +272,8 @@ namespace Gio
 
 #ifndef GIOMM_DISABLE_DEPRECATED
 
-    void
-    set_tls_validation_flags (TlsCertificateFlags flags);
+    auto
+    set_tls_validation_flags (TlsCertificateFlags flags) -> void;
 #endif
 
     auto
@@ -281,17 +282,18 @@ namespace Gio
     auto
     get_proxy_resolver () const -> Glib::RefPtr<const ProxyResolver>;
 
-    void
-    set_proxy_resolver (const Glib::RefPtr<ProxyResolver>& proxy_resolver);
+    auto
+    set_proxy_resolver (const Glib::RefPtr<ProxyResolver>& proxy_resolver)
+        -> void;
 
     auto
     get_timeout () const -> guint;
 
-    void
-    set_timeout (guint timeout);
+    auto
+    set_timeout (guint timeout) -> void;
 
-    void
-    add_application_proxy (const Glib::ustring& protocol);
+    auto
+    add_application_proxy (const Glib::ustring& protocol) -> void;
 
     auto
     property_family () -> Glib::PropertyProxy<SocketFamily>;
@@ -367,10 +369,10 @@ namespace Gio
   public:
   public:
   protected:
-    virtual void
+    virtual auto
     on_event (SocketClientEvent event,
               const Glib::RefPtr<SocketConnectable>& connectable,
-              const Glib::RefPtr<IOStream>& connection);
+              const Glib::RefPtr<IOStream>& connection) -> void;
   };
 
 } // namespace Gio

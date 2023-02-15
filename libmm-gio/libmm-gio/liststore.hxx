@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: LGPL-2.1-or-later
 
 #ifndef _GIOMM_LISTSTORE_H
 #define _GIOMM_LISTSTORE_H
@@ -89,8 +90,8 @@ namespace Gio
     static auto
     create (GType item_type) -> Glib::RefPtr<ListStoreBase>;
 
-    void
-    insert (guint position, const Glib::RefPtr<Glib::ObjectBase>& item);
+    auto
+    insert (guint position, const Glib::RefPtr<Glib::ObjectBase>& item) -> void;
 
     using SlotCompare =
         sigc::slot<int (const Glib::RefPtr<const Glib::ObjectBase>&,
@@ -100,22 +101,23 @@ namespace Gio
     insert_sorted (const Glib::RefPtr<Glib::ObjectBase>& item,
                    const SlotCompare& slot) -> guint;
 
-    void
-    sort (const SlotCompare& slot);
+    auto
+    sort (const SlotCompare& slot) -> void;
 
-    void
-    append (const Glib::RefPtr<Glib::ObjectBase>& item);
+    auto
+    append (const Glib::RefPtr<Glib::ObjectBase>& item) -> void;
 
-    void
-    remove (guint position);
+    auto
+    remove (guint position) -> void;
 
-    void
-    remove_all ();
+    auto
+    remove_all () -> void;
 
-    void
+    auto
     splice (guint position,
             guint n_removals,
-            const std::vector<Glib::RefPtr<Glib::ObjectBase>>& additions);
+            const std::vector<Glib::RefPtr<Glib::ObjectBase>>& additions)
+        -> void;
 
     auto
     find (const Glib::RefPtr<const Glib::ObjectBase>& item) const
@@ -160,8 +162,8 @@ namespace Gio
     auto
     get_item (guint position) const -> Glib::RefPtr<const T_item>;
 
-    void
-    insert (guint position, const Glib::RefPtr<T_item>& item);
+    auto
+    insert (guint position, const Glib::RefPtr<T_item>& item) -> void;
 
     using SlotCompare = sigc::slot<int (const Glib::RefPtr<const T_item>&,
                                         const Glib::RefPtr<const T_item>&)>;
@@ -170,16 +172,16 @@ namespace Gio
     insert_sorted (const Glib::RefPtr<T_item>& item, const SlotCompare& slot)
         -> guint;
 
-    void
-    sort (const SlotCompare& slot);
+    auto
+    sort (const SlotCompare& slot) -> void;
 
-    void
-    append (const Glib::RefPtr<T_item>& item);
+    auto
+    append (const Glib::RefPtr<T_item>& item) -> void;
 
-    void
+    auto
     splice (guint position,
             guint n_removals,
-            const std::vector<Glib::RefPtr<T_item>>& additions);
+            const std::vector<Glib::RefPtr<T_item>>& additions) -> void;
 
     auto
     find (const Glib::RefPtr<const T_item>& item) const
@@ -233,8 +235,8 @@ namespace Gio
   }
 
   template <typename T_item>
-  void
-  ListStore<T_item>::insert (guint position, const Glib::RefPtr<T_item>& item)
+  auto
+  ListStore<T_item>::insert (guint position, const Glib::RefPtr<T_item>& item) -> void
   {
     ListStoreBase::insert (position, item);
   }
@@ -253,8 +255,8 @@ namespace Gio
   }
 
   template <typename T_item>
-  void
-  ListStore<T_item>::sort (const SlotCompare& slot)
+  auto
+  ListStore<T_item>::sort (const SlotCompare& slot) -> void
   {
     auto slot_copy = const_cast<SlotCompare*> (&slot);
 
@@ -262,17 +264,17 @@ namespace Gio
   }
 
   template <typename T_item>
-  void
-  ListStore<T_item>::append (const Glib::RefPtr<T_item>& item)
+  auto
+  ListStore<T_item>::append (const Glib::RefPtr<T_item>& item) -> void
   {
     ListStoreBase::append (item);
   }
 
   template <typename T_item>
-  void
+  auto
   ListStore<T_item>::splice (guint position,
                              guint n_removals,
-                             const std::vector<Glib::RefPtr<T_item>>& additions)
+                             const std::vector<Glib::RefPtr<T_item>>& additions) -> void
   {
     const std::size_t n_additions = additions.size ();
     std::unique_ptr<gpointer[]> g_additions{new gpointer[n_additions]};

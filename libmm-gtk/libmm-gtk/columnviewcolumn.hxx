@@ -102,8 +102,8 @@ namespace Gtk
     auto
     get_column_view () const -> const ColumnView*;
 
-    void
-    set_factory (const Glib::RefPtr<ListItemFactory>& factory);
+    auto
+    set_factory (const Glib::RefPtr<ListItemFactory>& factory) -> void;
 
     auto
     get_factory () -> Glib::RefPtr<ListItemFactory>;
@@ -111,14 +111,14 @@ namespace Gtk
     auto
     get_factory () const -> Glib::RefPtr<const ListItemFactory>;
 
-    void
-    set_title (const Glib::ustring& title);
+    auto
+    set_title (const Glib::ustring& title) -> void;
 
     auto
     get_title () const -> Glib::ustring;
 
-    void
-    set_sorter (const Glib::RefPtr<Sorter>& sorter);
+    auto
+    set_sorter (const Glib::RefPtr<Sorter>& sorter) -> void;
 
     auto
     get_sorter () -> Glib::RefPtr<Sorter>;
@@ -126,14 +126,14 @@ namespace Gtk
     auto
     get_sorter () const -> Glib::RefPtr<const Sorter>;
 
-    void
-    set_visible (bool visible = true);
+    auto
+    set_visible (bool visible = true) -> void;
 
     auto
     get_visible () const -> bool;
 
-    void
-    set_header_menu (const Glib::RefPtr<Gio::MenuModel>& model);
+    auto
+    set_header_menu (const Glib::RefPtr<Gio::MenuModel>& model) -> void;
 
     auto
     get_header_menu () -> Glib::RefPtr<Gio::MenuModel>;
@@ -141,23 +141,29 @@ namespace Gtk
     auto
     get_header_menu () const -> Glib::RefPtr<const Gio::MenuModel>;
 
-    void
-    set_fixed_width (int fixed_width);
+    auto
+    set_fixed_width (int fixed_width) -> void;
 
     auto
     get_fixed_width () const -> int;
 
-    void
-    set_resizable (bool resizable = true);
+    auto
+    set_resizable (bool resizable = true) -> void;
 
     auto
     get_resizable () const -> bool;
 
-    void
-    set_expand (bool expand = true);
+    auto
+    set_expand (bool expand = true) -> void;
 
     auto
     get_expand () const -> bool;
+
+    auto
+    set_id (const Glib::ustring& id) -> void;
+
+    auto
+    get_id () const -> Glib::ustring;
 
     auto
     property_column_view () const -> Glib::PropertyProxy_ReadOnly<ColumnView*>;
@@ -214,6 +220,12 @@ namespace Gtk
     auto
     property_fixed_width () const -> Glib::PropertyProxy_ReadOnly<int>;
 
+    auto
+    property_id () -> Glib::PropertyProxy<Glib::ustring>;
+
+    auto
+    property_id () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+
   public:
   public:
   protected:
@@ -223,9 +235,7 @@ namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkColumnViewColumn* object, bool take_copy = false) -> Glib::RefPtr<Gtk::ColumnViewColumn>;
 } // namespace Glib
 

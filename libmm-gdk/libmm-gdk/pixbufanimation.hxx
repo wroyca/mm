@@ -94,11 +94,11 @@ namespace Gdk
                         const Glib::RefPtr<Gio::Cancellable>& cancellable = {})
         -> Glib::RefPtr<PixbufAnimation>;
 
-    static void
+    static auto
     create_from_stream_async (
         const Glib::RefPtr<Gio::InputStream>& stream,
         const Gio::SlotAsyncReady& slot,
-        const Glib::RefPtr<Gio::Cancellable>& cancellable = {});
+        const Glib::RefPtr<Gio::Cancellable>& cancellable = {}) -> void;
 
     static auto
     create_from_stream_finish (const Glib::RefPtr<Gio::AsyncResult>& result)
@@ -133,9 +133,7 @@ namespace Gdk
 
 namespace Glib
 {
-
-  GDKMM_API
-  auto
+  GDKMM_API auto
   wrap (GdkPixbufAnimation* object, bool take_copy = false) -> Glib::RefPtr<Gdk::PixbufAnimation>;
 } // namespace Glib
 

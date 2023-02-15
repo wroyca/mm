@@ -47,17 +47,17 @@ namespace Cairo
     auto
     get_type () const -> DeviceType;
 
-    void
-    flush ();
+    auto
+    flush () -> void;
 
-    void
-    finish ();
+    auto
+    finish () -> void;
 
-    void
-    acquire ();
+    auto
+    acquire () -> void;
 
-    void
-    release ();
+    auto
+    release () -> void;
 
     typedef cairo_device_t cobject;
 
@@ -82,10 +82,10 @@ namespace Cairo
     }
 #endif
 
-    void
-    reference () const;
-    void
-    unreference () const;
+    auto
+    reference () const -> void;
+    auto
+    unreference () const -> void;
 
   protected:
     cobject* m_cobject;

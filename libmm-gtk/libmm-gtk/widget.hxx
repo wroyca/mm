@@ -18,6 +18,7 @@
 #include <libmm-gdk/cursor.hxx>
 #include <libmm-gdk/display.hxx>
 #include <libmm-gdk/rectangle.hxx>
+#include <libmm-gdk/rgba.hxx>
 #include <libmm-gio/actiongroup.hxx>
 #include <libmm-gtk/accessible.hxx>
 #include <libmm-gtk/buildable.hxx>
@@ -131,44 +132,51 @@ namespace Gtk
     make_refptr_constrainttarget () const
         -> Glib::RefPtr<const ConstraintTarget>;
 
-    void
-    show ();
+#ifndef GTKMM_DISABLE_DEPRECATED
 
-    void
-    hide ();
+    auto
+    show () -> void;
+#endif
 
-    void
-    queue_draw ();
+#ifndef GTKMM_DISABLE_DEPRECATED
 
-    void
-    queue_resize ();
+    auto
+    hide () -> void;
+#endif
 
-    void
-    queue_allocate ();
+    auto
+    queue_draw () -> void;
 
-    void
-    size_allocate (const Allocation& allocation, int baseline);
+    auto
+    queue_resize () -> void;
+
+    auto
+    queue_allocate () -> void;
+
+    auto
+    size_allocate (const Allocation& allocation, int baseline) -> void;
 
     auto
     get_request_mode () const -> SizeRequestMode;
 
-    void
+    auto
     measure (Orientation orientation,
              int for_size,
              int& minimum,
              int& natural,
              int& minimum_baseline,
-             int& natural_baseline) const;
+             int& natural_baseline) const -> void;
 
-    void
+    auto
     get_preferred_size (Requisition& minimum_size,
-                        Requisition& natural_size) const;
+                        Requisition& natural_size) const -> void;
 
-    void
-    set_layout_manager (const Glib::RefPtr<LayoutManager>& layout_manager);
+    auto
+    set_layout_manager (const Glib::RefPtr<LayoutManager>& layout_manager)
+        -> void;
 
-    void
-    unset_layout_manager ();
+    auto
+    unset_layout_manager () -> void;
 
     auto
     get_layout_manager () -> Glib::RefPtr<LayoutManager>;
@@ -182,14 +190,14 @@ namespace Gtk
     auto
     activate () -> bool;
 
-    void
-    set_can_focus (bool can_focus = true);
+    auto
+    set_can_focus (bool can_focus = true) -> void;
 
     auto
     get_can_focus () const -> bool;
 
-    void
-    set_focusable (bool focusable = true);
+    auto
+    set_focusable (bool focusable = true) -> void;
 
     auto
     get_focusable () const -> bool;
@@ -206,14 +214,14 @@ namespace Gtk
     auto
     grab_focus () -> bool;
 
-    void
-    set_focus_on_click (bool focus_on_click = true);
+    auto
+    set_focus_on_click (bool focus_on_click = true) -> void;
 
     auto
     get_focus_on_click () const -> bool;
 
-    void
-    set_can_target (bool can_target = true);
+    auto
+    set_can_target (bool can_target = true) -> void;
 
     auto
     get_can_target () const -> bool;
@@ -221,31 +229,31 @@ namespace Gtk
     auto
     has_default () const -> bool;
 
-    void
-    set_receives_default (bool receives_default = true);
+    auto
+    set_receives_default (bool receives_default = true) -> void;
 
     auto
     get_receives_default () const -> bool;
 
-    void
-    set_name (const Glib::ustring& name);
-    void
-    unset_name ();
+    auto
+    set_name (const Glib::ustring& name) -> void;
+    auto
+    unset_name () -> void;
 
     auto
     get_name () const -> Glib::ustring;
 
-    void
-    set_state_flags (StateFlags flags, bool clear = true);
+    auto
+    set_state_flags (StateFlags flags, bool clear = true) -> void;
 
-    void
-    unset_state_flags (StateFlags flags);
+    auto
+    unset_state_flags (StateFlags flags) -> void;
 
     auto
     get_state_flags () const -> StateFlags;
 
-    void
-    set_sensitive (bool sensitive = true);
+    auto
+    set_sensitive (bool sensitive = true) -> void;
 
     auto
     get_sensitive () const -> bool;
@@ -253,8 +261,8 @@ namespace Gtk
     auto
     is_sensitive () const -> bool;
 
-    void
-    set_visible (bool visible = true);
+    auto
+    set_visible (bool visible = true) -> void;
 
     auto
     get_visible () const -> bool;
@@ -271,8 +279,8 @@ namespace Gtk
     auto
     get_mapped () const -> bool;
 
-    void
-    set_child_visible (bool visible = true);
+    auto
+    set_child_visible (bool visible = true) -> void;
 
     auto
     get_child_visible () const -> bool;
@@ -322,23 +330,23 @@ namespace Gtk
     auto
     keynav_failed (DirectionType direction) -> bool;
 
-    void
-    error_bell ();
+    auto
+    error_bell () -> void;
 
-    void
-    set_size_request (int width = -1, int height = -1);
+    auto
+    set_size_request (int width = -1, int height = -1) -> void;
 
-    void
-    get_size_request (int& width, int& height) const;
+    auto
+    get_size_request (int& width, int& height) const -> void;
 
-    void
-    set_opacity (double opacity);
+    auto
+    set_opacity (double opacity) -> void;
 
     auto
     get_opacity () const -> double;
 
-    void
-    set_overflow (Overflow overflow);
+    auto
+    set_overflow (Overflow overflow) -> void;
 
     auto
     get_overflow () const -> Overflow;
@@ -376,71 +384,71 @@ namespace Gtk
     auto
     get_hexpand () const -> bool;
 
-    void
-    set_hexpand (bool expand = true);
+    auto
+    set_hexpand (bool expand = true) -> void;
 
     auto
     get_hexpand_set () const -> bool;
 
-    void
-    set_hexpand_set (bool set = true);
+    auto
+    set_hexpand_set (bool set = true) -> void;
 
     auto
     get_vexpand () const -> bool;
 
-    void
-    set_vexpand (bool expand = true);
+    auto
+    set_vexpand (bool expand = true) -> void;
 
     auto
     get_vexpand_set () const -> bool;
 
-    void
-    set_vexpand_set (bool set = true);
+    auto
+    set_vexpand_set (bool set = true) -> void;
 
     auto
     compute_expand (Orientation orientation) -> bool;
 
-    void
-    set_expand (bool expand = true);
+    auto
+    set_expand (bool expand = true) -> void;
 
     auto
     get_halign () const -> Align;
 
-    void
-    set_halign (Align align);
+    auto
+    set_halign (Align align) -> void;
 
     auto
     get_valign () const -> Align;
 
-    void
-    set_valign (Align align);
+    auto
+    set_valign (Align align) -> void;
 
     auto
     get_margin_start () const -> int;
 
-    void
-    set_margin_start (int margin);
+    auto
+    set_margin_start (int margin) -> void;
 
     auto
     get_margin_end () const -> int;
 
-    void
-    set_margin_end (int margin);
+    auto
+    set_margin_end (int margin) -> void;
 
     auto
     get_margin_top () const -> int;
 
-    void
-    set_margin_top (int margin);
+    auto
+    set_margin_top (int margin) -> void;
 
     auto
     get_margin_bottom () const -> int;
 
-    void
-    set_margin_bottom (int margin);
+    auto
+    set_margin_bottom (int margin) -> void;
 
-    void
-    set_margin (int margin);
+    auto
+    set_margin (int margin) -> void;
 
     auto
     is_ancestor (Widget& ancestor) const -> bool;
@@ -462,11 +470,11 @@ namespace Gtk
     pick (double x, double y, PickFlags flags = PickFlags::DEFAULT) const
         -> const Widget*;
 
-    void
-    add_controller (const Glib::RefPtr<EventController>& controller);
+    auto
+    add_controller (const Glib::RefPtr<EventController>& controller) -> void;
 
-    void
-    remove_controller (const Glib::RefPtr<EventController>& controller);
+    auto
+    remove_controller (const Glib::RefPtr<EventController>& controller) -> void;
 
     auto
     create_pango_context () -> Glib::RefPtr<Pango::Context>;
@@ -474,11 +482,11 @@ namespace Gtk
     auto
     get_pango_context () -> Glib::RefPtr<Pango::Context>;
 
-    void
-    set_font_options (const Cairo::FontOptions& options);
+    auto
+    set_font_options (const Cairo::FontOptions& options) -> void;
 
-    void
-    unset_font_options ();
+    auto
+    unset_font_options () -> void;
 
     auto
     get_font_options () const -> Cairo::FontOptions;
@@ -487,23 +495,23 @@ namespace Gtk
     create_pango_layout (const Glib::ustring& text)
         -> Glib::RefPtr<Pango::Layout>;
 
-    void
-    set_direction (TextDirection dir);
+    auto
+    set_direction (TextDirection dir) -> void;
 
     auto
     get_direction () const -> TextDirection;
 
-    static void
-    set_default_direction (TextDirection dir);
+    static auto
+    set_default_direction (TextDirection dir) -> void;
 
     static auto
     get_default_direction () -> TextDirection;
 
-    void
-    set_cursor (const Glib::RefPtr<Gdk::Cursor>& cursor);
+    auto
+    set_cursor (const Glib::RefPtr<Gdk::Cursor>& cursor) -> void;
 
-    void
-    set_cursor (const Glib::ustring& name = {});
+    auto
+    set_cursor (const Glib::ustring& name = {}) -> void;
 
     auto
     get_cursor () -> Glib::RefPtr<Gdk::Cursor>;
@@ -517,11 +525,11 @@ namespace Gtk
     auto
     list_mnemonic_labels () const -> std::vector<const Widget*>;
 
-    void
-    add_mnemonic_label (Widget& label);
+    auto
+    add_mnemonic_label (Widget& label) -> void;
 
-    void
-    remove_mnemonic_label (Widget& label);
+    auto
+    remove_mnemonic_label (Widget& label) -> void;
 
     auto
     drag_check_threshold (int start_x,
@@ -535,35 +543,35 @@ namespace Gtk
     auto
     get_frame_clock () const -> Glib::RefPtr<const Gdk::FrameClock>;
 
-    void
-    set_parent (Widget& parent);
+    auto
+    set_parent (Widget& parent) -> void;
 
-    void
-    unparent ();
+    auto
+    unparent () -> void;
 
-    void
-    map ();
+    auto
+    map () -> void;
 
-    void
-    unmap ();
+    auto
+    unmap () -> void;
 
-    void
-    trigger_tooltip_query ();
+    auto
+    trigger_tooltip_query () -> void;
 
-    void
-    set_tooltip_text (const Glib::ustring& text);
+    auto
+    set_tooltip_text (const Glib::ustring& text) -> void;
 
     auto
     get_tooltip_text () const -> Glib::ustring;
 
-    void
-    set_tooltip_markup (const Glib::ustring& markup);
+    auto
+    set_tooltip_markup (const Glib::ustring& markup) -> void;
 
     auto
     get_tooltip_markup () const -> Glib::ustring;
 
-    void
-    set_has_tooltip (bool has_tooltip = TRUE);
+    auto
+    set_has_tooltip (bool has_tooltip = TRUE) -> void;
 
     auto
     get_has_tooltip () const -> bool;
@@ -571,36 +579,42 @@ namespace Gtk
     auto
     in_destruction () const -> bool;
 
+#ifndef GTKMM_DISABLE_DEPRECATED
+
     auto
     get_style_context () -> Glib::RefPtr<StyleContext>;
+#endif
+
+#ifndef GTKMM_DISABLE_DEPRECATED
 
     auto
     get_style_context () const -> Glib::RefPtr<const StyleContext>;
+#endif
 
     using SlotTick = sigc::slot<bool (const Glib::RefPtr<Gdk::FrameClock>&)>;
 
     auto
     add_tick_callback (const SlotTick& slot) -> guint;
 
-    void
-    remove_tick_callback (guint id);
+    auto
+    remove_tick_callback (guint id) -> void;
 
-    void
+    auto
     insert_action_group (const Glib::ustring& name,
-                         const Glib::RefPtr<Gio::ActionGroup>& group);
+                         const Glib::RefPtr<Gio::ActionGroup>& group) -> void;
 
-    void
-    remove_action_group (const Glib::ustring& name);
+    auto
+    remove_action_group (const Glib::ustring& name) -> void;
 
     auto
     activate_action (const Glib::ustring& name,
                      const Glib::VariantBase& args = {}) -> bool;
 
-    void
-    activate_default ();
+    auto
+    activate_default () -> void;
 
-    void
-    set_font_map (const Glib::RefPtr<Pango::FontMap>& font_map);
+    auto
+    set_font_map (const Glib::RefPtr<Pango::FontMap>& font_map) -> void;
 
     auto
     get_font_map () -> Glib::RefPtr<Pango::FontMap>;
@@ -644,20 +658,21 @@ namespace Gtk
     auto
     observe_controllers () const -> Glib::RefPtr<const Gio::ListModel>;
 
-    void
-    insert_after (Widget& parent, const Widget& previous_sibling);
+    auto
+    insert_after (Widget& parent, const Widget& previous_sibling) -> void;
 
-    void
-    insert_before (Widget& parent, const Widget& next_sibling);
+    auto
+    insert_before (Widget& parent, const Widget& next_sibling) -> void;
 
-    void
-    insert_at_start (Widget& parent);
+    auto
+    insert_at_start (Widget& parent) -> void;
 
-    void
-    insert_at_end (Widget& parent);
+    auto
+    insert_at_end (Widget& parent) -> void;
 
-    void
-    snapshot_child (Widget& child, const Glib::RefPtr<Gtk::Snapshot>& snapshot);
+    auto
+    snapshot_child (Widget& child, const Glib::RefPtr<Gtk::Snapshot>& snapshot)
+        -> void;
 
     auto
     should_layout () const -> bool;
@@ -665,11 +680,11 @@ namespace Gtk
     auto
     get_css_name () const -> Glib::ustring;
 
-    void
-    add_css_class (const Glib::ustring& css_class);
+    auto
+    add_css_class (const Glib::ustring& css_class) -> void;
 
-    void
-    remove_css_class (const Glib::ustring& css_class);
+    auto
+    remove_css_class (const Glib::ustring& css_class) -> void;
 
     auto
     has_css_class (const Glib::ustring& css_class) const -> bool;
@@ -677,8 +692,11 @@ namespace Gtk
     auto
     get_css_classes () const -> std::vector<Glib::ustring>;
 
-    void
-    set_css_classes (const std::vector<Glib::ustring>& classes);
+    auto
+    set_css_classes (const std::vector<Glib::ustring>& classes) -> void;
+
+    auto
+    get_color () const -> Gdk::RGBA;
 
     auto
     signal_show () -> Glib::SignalProxy<void ()>;
@@ -907,58 +925,58 @@ namespace Gtk
         -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<LayoutManager>>;
 
   protected:
-    virtual void
-    root_vfunc ();
+    virtual auto
+    root_vfunc () -> void;
 
-    virtual void
-    unroot_vfunc ();
+    virtual auto
+    unroot_vfunc () -> void;
 
-    virtual void
-    size_allocate_vfunc (int width, int height, int baseline);
+    virtual auto
+    size_allocate_vfunc (int width, int height, int baseline) -> void;
 
     virtual auto
     get_request_mode_vfunc () const -> SizeRequestMode;
 
-    virtual void
+    virtual auto
     measure_vfunc (Orientation orientation,
                    int for_size,
                    int& minimum,
                    int& natural,
                    int& minimum_baseline,
-                   int& natural_baseline) const;
+                   int& natural_baseline) const -> void;
 
     virtual auto
     grab_focus_vfunc () -> bool;
 
-    virtual void
-    set_focus_child_vfunc (Widget* child);
+    virtual auto
+    set_focus_child_vfunc (Widget* child) -> void;
 
-    virtual void
-    compute_expand_vfunc (bool& hexpand_p, bool& vexpand_p);
+    virtual auto
+    compute_expand_vfunc (bool& hexpand_p, bool& vexpand_p) -> void;
 
     virtual auto
     contains_vfunc (double x, double y) const -> bool;
 
-    virtual void
-    snapshot_vfunc (const Glib::RefPtr<Gtk::Snapshot>& snapshot);
+    virtual auto
+    snapshot_vfunc (const Glib::RefPtr<Gtk::Snapshot>& snapshot) -> void;
 
   protected:
     Widget ();
 
-    void
-    realize ();
+    auto
+    realize () -> void;
 
-    void
-    unrealize ();
+    auto
+    unrealize () -> void;
 
-    void
-    realize_if_needed ();
+    auto
+    realize_if_needed () -> void;
 
-    void
-    set_focus_child (Widget& child);
+    auto
+    set_focus_child (Widget& child) -> void;
 
-    void
-    unset_focus_child ();
+    auto
+    unset_focus_child () -> void;
 
     auto
     get_focus_child () -> Widget*;
@@ -969,29 +987,29 @@ namespace Gtk
   public:
   public:
   protected:
-    virtual void
-    on_show ();
+    virtual auto
+    on_show () -> void;
 
-    virtual void
-    on_hide ();
+    virtual auto
+    on_hide () -> void;
 
-    virtual void
-    on_map ();
+    virtual auto
+    on_map () -> void;
 
-    virtual void
-    on_unmap ();
+    virtual auto
+    on_unmap () -> void;
 
-    virtual void
-    on_realize ();
+    virtual auto
+    on_realize () -> void;
 
-    virtual void
-    on_unrealize ();
+    virtual auto
+    on_unrealize () -> void;
 
-    virtual void
-    on_state_flags_changed (Gtk::StateFlags previous_state_flags);
+    virtual auto
+    on_state_flags_changed (Gtk::StateFlags previous_state_flags) -> void;
 
-    virtual void
-    on_direction_changed (TextDirection direction);
+    virtual auto
+    on_direction_changed (TextDirection direction) -> void;
 
     virtual auto
     on_mnemonic_activate (bool group_cycling) -> bool;
@@ -1007,9 +1025,7 @@ namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkWidget* object, bool take_copy = false) -> Gtk::Widget*;
 } // namespace Glib
 

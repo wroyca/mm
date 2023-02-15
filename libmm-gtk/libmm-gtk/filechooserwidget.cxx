@@ -1,11 +1,16 @@
 // SPDX-License-Identifier: LGPL-2.1-or-later
 
-#include <libmm-glib/mm-glib.hxx>
+#undef GTK_DISABLE_DEPRECATED
+#define GDK_DISABLE_DEPRECATION_WARNINGS 1
 
-#include <libmm-gtk/filechooserwidget.hxx>
-#include <libmm-gtk/filechooserwidget_p.hxx>
+#ifndef GTKMM_DISABLE_DEPRECATED
 
-#include <gtk/gtk.h>
+  #include <libmm-glib/mm-glib.hxx>
+
+  #include <libmm-gtk/filechooserwidget.hxx>
+  #include <libmm-gtk/filechooserwidget_p.hxx>
+
+  #include <gtk/gtk.h>
 
 namespace Gtk
 {
@@ -20,10 +25,10 @@ namespace Glib
 {
 
   auto
-  wrap (GtkFileChooserWidget* object, const bool take_copy) -> Gtk::FileChooserWidget*
+  wrap (GtkFileChooserWidget* object, bool take_copy) -> Gtk::FileChooserWidget*
   {
     return dynamic_cast<Gtk::FileChooserWidget*> (
-        wrap_auto ((GObject*) object, take_copy));
+        Glib::wrap_auto ((GObject*) (object), take_copy));
   }
 
 } // namespace Glib
@@ -32,7 +37,7 @@ namespace Gtk
 {
 
   auto
-  FileChooserWidget_Class::init () -> const Class&
+  FileChooserWidget_Class::init () -> const Glib::Class&
   {
     if (!gtype_)
     {
@@ -56,22 +61,22 @@ namespace Gtk
   auto
   FileChooserWidget_Class::wrap_new (GObject* o) -> Glib::ObjectBase*
   {
-    return manage (new FileChooserWidget ((GtkFileChooserWidget*) o));
+    return manage (new FileChooserWidget ((GtkFileChooserWidget*) (o)));
   }
 
   FileChooserWidget::FileChooserWidget (
       const Glib::ConstructParams& construct_params)
-    : Widget (construct_params)
+    : Gtk::Widget (construct_params)
   {
   }
 
   FileChooserWidget::FileChooserWidget (GtkFileChooserWidget* castitem)
-    : Widget ((GtkWidget*) castitem)
+    : Gtk::Widget ((GtkWidget*) (castitem))
   {
   }
 
   FileChooserWidget::FileChooserWidget (FileChooserWidget&& src) noexcept
-    : Widget (std::move (src)),
+    : Gtk::Widget (std::move (src)),
       FileChooser (std::move (src))
   {
   }
@@ -79,7 +84,7 @@ namespace Gtk
   auto
   FileChooserWidget::operator= (FileChooserWidget&& src) noexcept -> FileChooserWidget&
   {
-    Widget::operator= (std::move (src));
+    Gtk::Widget::operator= (std::move (src));
     FileChooser::operator= (std::move (src));
     return *this;
   }
@@ -104,18 +109,21 @@ namespace Gtk
   }
 
   FileChooserWidget::FileChooserWidget ()
-    : ObjectBase (nullptr),
-      Widget (Glib::ConstructParams (filechooserwidget_class_.init ()))
+    : Glib::ObjectBase (nullptr),
+      Gtk::Widget (Glib::ConstructParams (filechooserwidget_class_.init ()))
   {
   }
 
-  FileChooserWidget::FileChooserWidget (const Action action)
-    : ObjectBase (nullptr),
-      Widget (Glib::ConstructParams (filechooserwidget_class_.init (),
-                                     "action",
-                                     action,
-                                     nullptr))
+  FileChooserWidget::FileChooserWidget (Action action)
+    : Glib::ObjectBase (nullptr),
+      Gtk::Widget (
+          Glib::ConstructParams (filechooserwidget_class_.init (),
+                                 "action",
+                                 static_cast<GtkFileChooserAction> (action),
+                                 nullptr))
   {
   }
 
 } // namespace Gtk
+
+#endif

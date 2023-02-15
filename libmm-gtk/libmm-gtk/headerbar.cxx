@@ -26,10 +26,10 @@ namespace Glib
 {
 
   auto
-  wrap (GtkHeaderBar* object, const bool take_copy) -> Gtk::HeaderBar*
+  wrap (GtkHeaderBar* object, bool take_copy) -> Gtk::HeaderBar*
   {
     return dynamic_cast<Gtk::HeaderBar*> (
-        wrap_auto ((GObject*) object, take_copy));
+        Glib::wrap_auto ((GObject*) (object), take_copy));
   }
 
 } // namespace Glib
@@ -38,7 +38,7 @@ namespace Gtk
 {
 
   auto
-  HeaderBar_Class::init () -> const Class&
+  HeaderBar_Class::init () -> const Glib::Class&
   {
     if (!gtype_)
     {
@@ -60,28 +60,28 @@ namespace Gtk
   auto
   HeaderBar_Class::wrap_new (GObject* o) -> Glib::ObjectBase*
   {
-    return manage (new HeaderBar ((GtkHeaderBar*) o));
+    return manage (new HeaderBar ((GtkHeaderBar*) (o)));
   }
 
   HeaderBar::HeaderBar (const Glib::ConstructParams& construct_params)
-    : Widget (construct_params)
+    : Gtk::Widget (construct_params)
   {
   }
 
   HeaderBar::HeaderBar (GtkHeaderBar* castitem)
-    : Widget ((GtkWidget*) castitem)
+    : Gtk::Widget ((GtkWidget*) (castitem))
   {
   }
 
   HeaderBar::HeaderBar (HeaderBar&& src) noexcept
-    : Widget (std::move (src))
+    : Gtk::Widget (std::move (src))
   {
   }
 
   auto
   HeaderBar::operator= (HeaderBar&& src) noexcept -> HeaderBar&
   {
-    Widget::operator= (std::move (src));
+    Gtk::Widget::operator= (std::move (src));
     return *this;
   }
 
@@ -105,15 +105,15 @@ namespace Gtk
   }
 
   HeaderBar::HeaderBar ()
-    : ObjectBase (nullptr),
-      Widget (Glib::ConstructParams (headerbar_class_.init ()))
+    : Glib::ObjectBase (nullptr),
+      Gtk::Widget (Glib::ConstructParams (headerbar_class_.init ()))
   {
   }
 
   auto
-  HeaderBar::set_title_widget (Widget& title_widget) -> void
+  HeaderBar::set_title_widget (Gtk::Widget& title_widget) -> void
   {
-    gtk_header_bar_set_title_widget (gobj (), title_widget.gobj ());
+    gtk_header_bar_set_title_widget (gobj (), (title_widget).gobj ());
   }
 
   auto
@@ -129,27 +129,27 @@ namespace Gtk
   }
 
   auto
-  HeaderBar::pack_start (Widget& child) -> void
+  HeaderBar::pack_start (Gtk::Widget& child) -> void
   {
-    gtk_header_bar_pack_start (gobj (), child.gobj ());
+    gtk_header_bar_pack_start (gobj (), (child).gobj ());
   }
 
   auto
-  HeaderBar::pack_end (Widget& child) -> void
+  HeaderBar::pack_end (Gtk::Widget& child) -> void
   {
-    gtk_header_bar_pack_end (gobj (), child.gobj ());
+    gtk_header_bar_pack_end (gobj (), (child).gobj ());
   }
 
   auto
-  HeaderBar::remove (Widget& child) -> void
+  HeaderBar::remove (Gtk::Widget& child) -> void
   {
-    gtk_header_bar_remove (gobj (), child.gobj ());
+    gtk_header_bar_remove (gobj (), (child).gobj ());
   }
 
   auto
-  HeaderBar::set_show_title_buttons (const bool setting) -> void
+  HeaderBar::set_show_title_buttons (bool setting) -> void
   {
-    gtk_header_bar_set_show_title_buttons (gobj (), setting);
+    gtk_header_bar_set_show_title_buttons (gobj (), static_cast<int> (setting));
   }
 
   auto
@@ -174,39 +174,40 @@ namespace Gtk
   }
 
   auto
-  HeaderBar::property_title_widget () -> Glib::PropertyProxy<Widget*>
+  HeaderBar::property_title_widget () -> Glib::PropertyProxy<Gtk::Widget*>
   {
-    return {this, "title-widget"};
+    return Glib::PropertyProxy<Gtk::Widget*> (this, "title-widget");
   }
 
   auto
-  HeaderBar::property_title_widget () const -> Glib::PropertyProxy_ReadOnly<Widget*>
+  HeaderBar::property_title_widget () const -> Glib::PropertyProxy_ReadOnly<Gtk::Widget*>
   {
-    return {this, "title-widget"};
+    return Glib::PropertyProxy_ReadOnly<Gtk::Widget*> (this, "title-widget");
   }
 
   auto
   HeaderBar::property_show_title_buttons () -> Glib::PropertyProxy<bool>
   {
-    return {this, "show-title-buttons"};
+    return Glib::PropertyProxy<bool> (this, "show-title-buttons");
   }
 
   auto
   HeaderBar::property_show_title_buttons () const -> Glib::PropertyProxy_ReadOnly<bool>
   {
-    return {this, "show-title-buttons"};
+    return Glib::PropertyProxy_ReadOnly<bool> (this, "show-title-buttons");
   }
 
   auto
   HeaderBar::property_decoration_layout () -> Glib::PropertyProxy<Glib::ustring>
   {
-    return {this, "decoration-layout"};
+    return Glib::PropertyProxy<Glib::ustring> (this, "decoration-layout");
   }
 
   auto
   HeaderBar::property_decoration_layout () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>
   {
-    return {this, "decoration-layout"};
+    return Glib::PropertyProxy_ReadOnly<Glib::ustring> (this,
+                                                        "decoration-layout");
   }
 
 } // namespace Gtk

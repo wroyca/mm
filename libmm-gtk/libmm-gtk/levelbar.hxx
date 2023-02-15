@@ -89,41 +89,41 @@ namespace Gtk
 
     LevelBar ();
 
-    void
-    set_mode (Mode mode);
+    auto
+    set_mode (Mode mode) -> void;
 
     auto
     get_mode () const -> Mode;
 
-    void
-    set_value (double value);
+    auto
+    set_value (double value) -> void;
 
     auto
     get_value () const -> double;
 
-    void
-    set_min_value (double value);
+    auto
+    set_min_value (double value) -> void;
 
     auto
     get_min_value () const -> double;
 
-    void
-    set_max_value (double value);
+    auto
+    set_max_value (double value) -> void;
 
     auto
     get_max_value () const -> double;
 
-    void
-    set_inverted (bool inverted = true);
+    auto
+    set_inverted (bool inverted = true) -> void;
 
     auto
     get_inverted () const -> bool;
 
-    void
-    add_offset_value (const Glib::ustring& name, double value);
+    auto
+    add_offset_value (const Glib::ustring& name, double value) -> void;
 
-    void
-    remove_offset_value (const Glib::ustring& name);
+    auto
+    remove_offset_value (const Glib::ustring& name) -> void;
 
     auto
     get_offset_value (const Glib::ustring& name, double& value) const -> bool;
@@ -187,9 +187,7 @@ namespace Glib
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkLevelBar* object, bool take_copy = false) -> Gtk::LevelBar*;
 } // namespace Glib
 

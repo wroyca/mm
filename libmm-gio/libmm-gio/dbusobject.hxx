@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: LGPL-2.1-or-later
 
 #ifndef _GIOMM_DBUSOBJECT_H
 #define _GIOMM_DBUSOBJECT_H
@@ -69,8 +70,8 @@ namespace Gio::DBus
 
     ~Object () noexcept override;
 
-    static void
-    add_interface (GType gtype_implementer);
+    static auto
+    add_interface (GType gtype_implementer) -> void;
 
     static auto
     get_type () -> GType G_GNUC_CONST;
@@ -135,11 +136,13 @@ namespace Gio::DBus
   public:
   public:
   protected:
-    virtual void
-    on_interface_added (const Glib::RefPtr<Gio::DBus::Interface>& iface);
+    virtual auto
+    on_interface_added (const Glib::RefPtr<Gio::DBus::Interface>& iface)
+        -> void;
 
-    virtual void
-    on_interface_removed (const Glib::RefPtr<Gio::DBus::Interface>& iface);
+    virtual auto
+    on_interface_removed (const Glib::RefPtr<Gio::DBus::Interface>& iface)
+        -> void;
   };
 
 } // namespace Gio::DBus

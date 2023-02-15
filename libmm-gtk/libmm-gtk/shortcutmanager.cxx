@@ -16,11 +16,13 @@ namespace Glib
 {
 
   auto
-  wrap (GtkShortcutManager* object, const bool take_copy) -> RefPtr<Gtk::ShortcutManager>
+  wrap (GtkShortcutManager* object, bool take_copy) -> Glib::RefPtr<Gtk::ShortcutManager>
   {
     return Glib::make_refptr_for_instance<Gtk::ShortcutManager> (
-        Glib::wrap_auto_interface<Gtk::ShortcutManager> ((GObject*) object,
-                                                         take_copy));
+        dynamic_cast<Gtk::ShortcutManager*> (
+            Glib::wrap_auto_interface<Gtk::ShortcutManager> (
+                (GObject*) (object),
+                take_copy)));
   }
 
 } // namespace Glib
@@ -29,7 +31,7 @@ namespace Gtk
 {
 
   auto
-  ShortcutManager_Class::init () -> const Interface_Class&
+  ShortcutManager_Class::init () -> const Glib::Interface_Class&
   {
     if (!gtype_)
     {
@@ -57,8 +59,8 @@ namespace Gtk
       GtkShortcutManager* self,
       GtkShortcutController* controller) -> void
   {
-    const auto obj_base =
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self);
+    const auto obj_base = static_cast<Glib::ObjectBase*> (
+        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -77,7 +79,7 @@ namespace Gtk
       }
     }
 
-    const BaseClassType* const base =
+    BaseClassType* const base =
         static_cast<BaseClassType*> (g_type_interface_peek_parent (
             g_type_interface_peek (G_OBJECT_GET_CLASS (self),
                                    CppObjectType::get_type ())));
@@ -91,8 +93,8 @@ namespace Gtk
       GtkShortcutManager* self,
       GtkShortcutController* controller) -> void
   {
-    const auto obj_base =
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self);
+    const auto obj_base = static_cast<Glib::ObjectBase*> (
+        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -111,7 +113,7 @@ namespace Gtk
       }
     }
 
-    const BaseClassType* const base =
+    BaseClassType* const base =
         static_cast<BaseClassType*> (g_type_interface_peek_parent (
             g_type_interface_peek (G_OBJECT_GET_CLASS (self),
                                    CppObjectType::get_type ())));
@@ -123,41 +125,41 @@ namespace Gtk
   auto
   ShortcutManager_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
   {
-    return new ShortcutManager ((GtkShortcutManager*) object);
+    return new ShortcutManager ((GtkShortcutManager*) (object));
   }
 
   ShortcutManager::ShortcutManager ()
-    : Interface (shortcutmanager_class_.init ())
+    : Glib::Interface (shortcutmanager_class_.init ())
   {
   }
 
   ShortcutManager::ShortcutManager (GtkShortcutManager* castitem)
-    : Interface ((GObject*) castitem)
+    : Glib::Interface ((GObject*) (castitem))
   {
   }
 
   ShortcutManager::ShortcutManager (
       const Glib::Interface_Class& interface_class)
-    : Interface (interface_class)
+    : Glib::Interface (interface_class)
   {
   }
 
   ShortcutManager::ShortcutManager (ShortcutManager&& src) noexcept
-    : Interface (std::move (src))
+    : Glib::Interface (std::move (src))
   {
   }
 
   auto
   ShortcutManager::operator= (ShortcutManager&& src) noexcept -> ShortcutManager&
   {
-    Interface::operator= (std::move (src));
+    Glib::Interface::operator= (std::move (src));
     return *this;
   }
 
-  ShortcutManager::~ShortcutManager () noexcept = default;
+  ShortcutManager::~ShortcutManager () noexcept {}
 
   auto
-  ShortcutManager::add_interface (const GType gtype_implementer) -> void
+  ShortcutManager::add_interface (GType gtype_implementer) -> void
   {
     shortcutmanager_class_.init ().add_interface (gtype_implementer);
   }
@@ -177,13 +179,13 @@ namespace Gtk
   }
 
   auto
-  ShortcutManager::add_controller_vfunc (
+  Gtk::ShortcutManager::add_controller_vfunc (
       const Glib::RefPtr<ShortcutController>& controller) -> void
   {
     const auto base =
         static_cast<BaseClassType*> (g_type_interface_peek_parent (
             g_type_interface_peek (G_OBJECT_GET_CLASS (gobject_),
-                                   get_type ())));
+                                   CppObjectType::get_type ())));
 
     if (base && base->add_controller)
     {
@@ -192,13 +194,13 @@ namespace Gtk
   }
 
   auto
-  ShortcutManager::remove_controller_vfunc (
+  Gtk::ShortcutManager::remove_controller_vfunc (
       const Glib::RefPtr<ShortcutController>& controller) -> void
   {
     const auto base =
         static_cast<BaseClassType*> (g_type_interface_peek_parent (
             g_type_interface_peek (G_OBJECT_GET_CLASS (gobject_),
-                                   get_type ())));
+                                   CppObjectType::get_type ())));
 
     if (base && base->remove_controller)
     {

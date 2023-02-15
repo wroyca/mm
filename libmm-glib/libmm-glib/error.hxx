@@ -46,20 +46,20 @@ namespace Glib
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
-    GLIBMM_API void
-    propagate (GError** dest);
+    GLIBMM_API auto
+    propagate (GError** dest) -> void;
 
     using ThrowFunc = void (*) (GError*);
 
-    GLIBMM_API static void
-    register_init ();
-    GLIBMM_API static void
-    register_cleanup ();
-    GLIBMM_API static void
-    register_domain (GQuark error_domain, ThrowFunc throw_func);
+    GLIBMM_API static auto
+    register_init () -> void;
+    GLIBMM_API static auto
+    register_cleanup () -> void;
+    GLIBMM_API static auto
+    register_domain (GQuark error_domain, ThrowFunc throw_func) -> void;
 
-    GLIBMM_API static void
-    throw_exception (GError* gobject) G_GNUC_NORETURN;
+    GLIBMM_API static auto
+    throw_exception (GError* gobject) -> void G_GNUC_NORETURN;
 
 #endif
 
@@ -79,8 +79,8 @@ namespace Glib
     static auto
     value_type () -> GType;
 
-    void
-    set (const CppType& data);
+    auto
+    set (const CppType& data) -> void;
     auto
     get () const -> CppType;
   };

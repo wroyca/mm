@@ -12,8 +12,8 @@ namespace Glib
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
   template <class T_CppObject>
-  void
-  RefPtrDeleter (T_CppObject* object)
+  auto
+  RefPtrDeleter (T_CppObject* object) -> void
   {
     if (!object)
       return;

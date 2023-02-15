@@ -23,11 +23,11 @@ namespace Glib
 {
 
   auto
-  wrap (GdkDeviceTool* object, const bool take_copy) -> RefPtr<Gdk::DeviceTool>
+  wrap (GdkDeviceTool* object, bool take_copy) -> Glib::RefPtr<Gdk::DeviceTool>
   {
     return Glib::make_refptr_for_instance<Gdk::DeviceTool> (
         dynamic_cast<Gdk::DeviceTool*> (
-            wrap_auto ((GObject*) object, take_copy)));
+            Glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
 } // namespace Glib
@@ -36,7 +36,7 @@ namespace Gdk
 {
 
   auto
-  DeviceTool_Class::init () -> const Class&
+  DeviceTool_Class::init () -> const Glib::Class&
   {
     if (!gtype_)
     {
@@ -69,28 +69,28 @@ namespace Gdk
   }
 
   DeviceTool::DeviceTool (const Glib::ConstructParams& construct_params)
-    : Object (construct_params)
+    : Glib::Object (construct_params)
   {
   }
 
   DeviceTool::DeviceTool (GdkDeviceTool* castitem)
-    : Object ((GObject*) castitem)
+    : Glib::Object ((GObject*) (castitem))
   {
   }
 
   DeviceTool::DeviceTool (DeviceTool&& src) noexcept
-    : Object (std::move (src))
+    : Glib::Object (std::move (src))
   {
   }
 
   auto
   DeviceTool::operator= (DeviceTool&& src) noexcept -> DeviceTool&
   {
-    Object::operator= (std::move (src));
+    Glib::Object::operator= (std::move (src));
     return *this;
   }
 
-  DeviceTool::~DeviceTool () noexcept = default;
+  DeviceTool::~DeviceTool () noexcept {}
 
   DeviceTool::CppClassType DeviceTool::devicetool_class_;
 
@@ -141,7 +141,7 @@ namespace Gdk
   auto
   DeviceTool::property_serial () const -> Glib::PropertyProxy_ReadOnly<guint64>
   {
-    return {this, "serial"};
+    return Glib::PropertyProxy_ReadOnly<guint64> (this, "serial");
   }
 
   static_assert (
@@ -152,7 +152,7 @@ namespace Gdk
   auto
   DeviceTool::property_tool_type () const -> Glib::PropertyProxy_ReadOnly<Type>
   {
-    return {this, "tool-type"};
+    return Glib::PropertyProxy_ReadOnly<Type> (this, "tool-type");
   }
 
   static_assert (
@@ -163,7 +163,7 @@ namespace Gdk
   auto
   DeviceTool::property_axes () const -> Glib::PropertyProxy_ReadOnly<AxisFlags>
   {
-    return {this, "axes"};
+    return Glib::PropertyProxy_ReadOnly<AxisFlags> (this, "axes");
   }
 
   static_assert (
@@ -174,7 +174,7 @@ namespace Gdk
   auto
   DeviceTool::property_hardware_id () const -> Glib::PropertyProxy_ReadOnly<guint64>
   {
-    return {this, "hardware-id"};
+    return Glib::PropertyProxy_ReadOnly<guint64> (this, "hardware-id");
   }
 
 } // namespace Gdk

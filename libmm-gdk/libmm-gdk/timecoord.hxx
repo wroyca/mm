@@ -83,8 +83,8 @@ namespace Gdk
       return CppType (const_cast<CType> (obj));
     }
 
-    static void
-    release_c_type (const CType& obj)
+    static auto
+    release_c_type (const CType& obj) -> void
     {
       g_free (const_cast<CType> (obj));
     }
@@ -114,8 +114,8 @@ namespace Gdk
       return CppType (const_cast<CType*> (&obj), true);
     }
 
-    static void
-    release_c_type (const CType&)
+    static auto
+    release_c_type (const CType&) -> void
     {
     }
   };

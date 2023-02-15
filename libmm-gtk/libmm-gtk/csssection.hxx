@@ -25,11 +25,11 @@ namespace Gtk
     using BaseObjectType = GtkCssSection;
 #endif
 
-    void
-    reference () const;
+    auto
+    reference () const -> void;
 
-    void
-    unreference () const;
+    auto
+    unreference () const -> void;
 
     auto
     gobj () -> GtkCssSection*;
@@ -47,8 +47,8 @@ namespace Gtk
     operator= (const CssSection&) -> CssSection& = delete;
 
   protected:
-    void
-    operator delete (void*, std::size_t);
+    auto
+    operator delete (void*, std::size_t) -> void;
 
   private:
   public:
@@ -83,9 +83,7 @@ namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkCssSection* object, bool take_copy = false) -> Glib::RefPtr<Gtk::CssSection>;
 
 } // namespace Glib

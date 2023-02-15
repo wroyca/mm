@@ -1,37 +1,46 @@
 // SPDX-License-Identifier: LGPL-2.1-or-later
 
-#include <libmm-gtk/cellrenderer_generation.hxx>
+#ifndef GTKMM_DISABLE_DEPRECATED
 
-namespace Gtk::CellRenderer_Generation
+  #include <libmm-gtk/cellrenderer_generation.hxx>
+
+namespace Gtk
 {
 
-  template <>
-  auto
-  generate_cellrenderer<Glib::RefPtr<Gdk::Pixbuf>> (bool) -> CellRenderer*
+  namespace CellRenderer_Generation
   {
-    return new CellRendererPixbuf ();
-  }
 
-  template <>
-  auto
-  generate_cellrenderer<bool> (const bool editable) -> CellRenderer*
-  {
-    CellRendererToggle* pCellRenderer = new CellRendererToggle ();
+    template <>
+    auto
+    generate_cellrenderer<Glib::RefPtr<Gdk::Pixbuf>> (bool) -> CellRenderer*
+    {
+      return new CellRendererPixbuf ();
+    }
 
-    pCellRenderer->property_activatable () = editable;
+    template <>
+    auto
+    generate_cellrenderer<bool> (bool editable) -> CellRenderer*
+    {
+      CellRendererToggle* pCellRenderer = new CellRendererToggle ();
 
-    return pCellRenderer;
-  }
+      pCellRenderer->property_activatable () = editable;
 
-  template <>
-  auto
-  generate_cellrenderer<AccelKey> (const bool editable) -> CellRenderer*
-  {
-    CellRendererAccel* pCellRenderer = new CellRendererAccel ();
+      return pCellRenderer;
+    }
 
-    pCellRenderer->property_editable () = editable;
+    template <>
+    auto
+    generate_cellrenderer<AccelKey> (bool editable) -> CellRenderer*
+    {
+      CellRendererAccel* pCellRenderer = new CellRendererAccel ();
 
-    return pCellRenderer;
-  }
+      pCellRenderer->property_editable () = editable;
 
-} // namespace Gtk::CellRenderer_Generation
+      return pCellRenderer;
+    }
+
+  } // namespace CellRenderer_Generation
+
+} // namespace Gtk
+
+#endif

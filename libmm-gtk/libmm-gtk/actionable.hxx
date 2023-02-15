@@ -71,8 +71,8 @@ namespace Gtk
 
     ~Actionable () noexcept override;
 
-    static void
-    add_interface (GType gtype_implementer);
+    static auto
+    add_interface (GType gtype_implementer) -> void;
 
     static auto
     get_type () -> GType G_GNUC_CONST;
@@ -99,8 +99,8 @@ namespace Gtk
     auto
     get_action_name () const -> Glib::ustring;
 
-    void
-    set_action_name (const Glib::ustring& action_name);
+    auto
+    set_action_name (const Glib::ustring& action_name) -> void;
 
     auto
     get_action_target_value () -> Glib::VariantBase;
@@ -108,11 +108,12 @@ namespace Gtk
     auto
     get_action_target_value () const -> const Glib::VariantBase;
 
-    void
-    set_action_target_value (const Glib::VariantBase& target_value);
+    auto
+    set_action_target_value (const Glib::VariantBase& target_value) -> void;
 
-    void
-    set_detailed_action_name (const Glib::ustring& detailed_action_name);
+    auto
+    set_detailed_action_name (const Glib::ustring& detailed_action_name)
+        -> void;
 
     auto
     property_action_name () -> Glib::PropertyProxy<Glib::ustring>;
@@ -132,15 +133,15 @@ namespace Gtk
     virtual auto
     get_action_name_vfunc () const -> Glib::ustring;
 
-    virtual void
-    set_action_name_vfunc (const Glib::ustring& action_name);
+    virtual auto
+    set_action_name_vfunc (const Glib::ustring& action_name) -> void;
 
     virtual auto
     get_action_target_value_vfunc () const -> Glib::VariantBase;
 
-    virtual void
-    set_action_target_value_vfunc (
-        const Glib::VariantBase& action_target_value);
+    virtual auto
+    set_action_target_value_vfunc (const Glib::VariantBase& action_target_value)
+        -> void;
 
   public:
   public:
@@ -151,9 +152,7 @@ namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkActionable* object, bool take_copy = false) -> Glib::RefPtr<Gtk::Actionable>;
 
 } // namespace Glib

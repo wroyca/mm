@@ -58,11 +58,11 @@ namespace Gtk
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
   private:
-    GTKMM_API static void
-    throw_func (GError* gobject);
+    GTKMM_API static auto
+    throw_func (GError* gobject) -> void;
 
-    friend GTKMM_API void
-    wrap_init ();
+    friend GTKMM_API auto
+    wrap_init () -> void;
 
 #endif
   };
@@ -249,12 +249,12 @@ namespace Gtk
     auto
     add_from_string (const char* buffer, gssize length) -> bool;
 
-    void
+    auto
     expose_object (const Glib::ustring& name,
-                   const Glib::RefPtr<Glib::Object>& object);
+                   const Glib::RefPtr<Glib::Object>& object) -> void;
 
-    void
-    expose_widget (const Glib::ustring& name, Widget& widget);
+    auto
+    expose_widget (const Glib::ustring& name, Widget& widget) -> void;
 
     auto
     get_object (const Glib::ustring& name) -> Glib::RefPtr<Glib::Object>;
@@ -321,9 +321,9 @@ namespace Gtk
         widget = dynamic_cast<T_Widget*> (Glib::wrap ((GtkWidget*) pCWidget));
 
         if (!widget)
-          g_critical (
-              "Gtk::Builder::get_widget_derived(): dynamic_cast<> failed. An "
-              "existing C++ instance, of a different type, seems to exist.");
+          g_critical ("Gtk::Builder::get_widget_derived(): dynamic_cast<> "
+                      "failed. An existing C++ "
+                      "instance, of a different type, seems to exist.");
       }
       else
       {
@@ -351,8 +351,8 @@ namespace Gtk
     auto
     get_objects () const -> std::vector<Glib::RefPtr<const Glib::Object>>;
 
-    void
-    set_translation_domain (const Glib::ustring& domain);
+    auto
+    set_translation_domain (const Glib::ustring& domain) -> void;
 
     auto
     get_translation_domain () const -> Glib::ustring;
@@ -372,8 +372,8 @@ namespace Gtk
 
   private:
     bool no_gtkmm_derived_types{false};
-    void
-    set_no_gtkmm_derived_types (bool status);
+    auto
+    set_no_gtkmm_derived_types (bool status) -> void;
     auto
     get_no_gtkmm_derived_types () const -> bool;
     friend class GTKMM_API Buildable_Class;
@@ -388,9 +388,7 @@ namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkBuilder* object, bool take_copy = false) -> Glib::RefPtr<Gtk::Builder>;
 } // namespace Glib
 

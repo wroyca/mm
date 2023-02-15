@@ -15,25 +15,25 @@ namespace Gtk
 {
 
   Window::Window (const Glib::ConstructParams& construct_params)
-    : Widget (construct_params)
+    : Gtk::Widget (construct_params)
   {
-    signal_hide ().connect (mem_fun (*this, &Window::on_window_hide));
+    signal_hide ().connect (sigc::mem_fun (*this, &Window::on_window_hide));
   }
 
   Window::Window (GtkWindow* castitem)
-    : Widget ((GtkWidget*) castitem)
+    : Gtk::Widget ((GtkWidget*) castitem)
   {
-    signal_hide ().connect (mem_fun (*this, &Window::on_window_hide));
+    signal_hide ().connect (sigc::mem_fun (*this, &Window::on_window_hide));
   }
 
   Window::Window (Window&& src) noexcept
-    : Widget (std::move (src)),
+    : Gtk::Widget (std::move (src)),
       Native (std::move (src)),
       Root (std::move (src))
   {
     try
     {
-      signal_hide ().connect (mem_fun (*this, &Window::on_window_hide));
+      signal_hide ().connect (sigc::mem_fun (*this, &Window::on_window_hide));
     }
     catch (...)
     {
@@ -43,17 +43,17 @@ namespace Gtk
   auto
   Window::operator= (Window&& src) noexcept -> Window&
   {
-    Widget::operator= (std::move (src));
+    Gtk::Widget::operator= (std::move (src));
     Native::operator= (std::move (src));
     Root::operator= (std::move (src));
     return *this;
   }
 
   Window::Window ()
-    : ObjectBase (nullptr),
-      Widget (Glib::ConstructParams (window_class_.init ()))
+    : Glib::ObjectBase (nullptr),
+      Gtk::Widget (Glib::ConstructParams (window_class_.init ()))
   {
-    signal_hide ().connect (mem_fun (*this, &Window::on_window_hide));
+    signal_hide ().connect (sigc::mem_fun (*this, &Window::on_window_hide));
   }
 
   auto
@@ -63,7 +63,7 @@ namespace Gtk
     g_warning ("Gtk::Window::on_window_hide() gobject_=%p\n", (void*) gobject_);
 #endif
 
-    const auto appl = get_application ();
+    auto appl = get_application ();
     if (appl)
     {
 #ifdef GLIBMM_DEBUG_REFCOUNTING
@@ -132,19 +132,19 @@ namespace Gtk
       g_return_if_fail (pWidget == GTK_WIDGET (self));
 
 #ifdef GLIBMM_DEBUG_REFCOUNTING
-      g_warning (
-          "Window_Class::dispose_vfunc_callback(): before gtk_widget_hide().");
+      g_warning ("Window_Class::dispose_vfunc_callback(): before "
+                 "gtk_widget_set_visible(pWidget, false).");
 #endif
 
       const auto win = dynamic_cast<Window*> (obj);
       if (win)
         win->on_window_hide ();
 
-      gtk_widget_hide (pWidget);
+      gtk_widget_set_visible (pWidget, false);
 
 #ifdef GLIBMM_DEBUG_REFCOUNTING
-      g_warning (
-          "Window_Class::dispose_vfunc_callback(): after gtk_widget_hide().");
+      g_warning ("Window_Class::dispose_vfunc_callback(): after "
+                 "gtk_widget_set_visible(pWidget, false).");
 #endif
     }
 
@@ -213,18 +213,22 @@ namespace Gtk
 namespace
 {
 
-  const Glib::SignalProxyInfo Window_signal_keys_changed_info = {
+#ifndef GTKMM_DISABLE_DEPRECATED
+
+  static const Glib::SignalProxyInfo Window_signal_keys_changed_info = {
       "keys_changed",
       (GCallback) &Glib::SignalProxyNormal::slot0_void_callback,
       (GCallback) &Glib::SignalProxyNormal::slot0_void_callback};
 
-  auto
+#endif
+
+  static auto
   Window_signal_close_request_callback (GtkWindow* self, void* data) -> gboolean
   {
     using namespace Gtk;
     using SlotType = sigc::slot<bool ()>;
 
-    const auto obj = dynamic_cast<Window*> (
+    auto obj = dynamic_cast<Window*> (
         Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
@@ -232,7 +236,7 @@ namespace
       try
       {
         if (const auto slot = Glib::SignalProxyNormal::data_to_slot (data))
-          return (*static_cast<SlotType*> (slot)) ();
+          return static_cast<int> ((*static_cast<SlotType*> (slot)) ());
       }
       catch (...)
       {
@@ -244,13 +248,13 @@ namespace
     return RType ();
   }
 
-  auto
+  static auto
   Window_signal_close_request_notify_callback (GtkWindow* self, void* data) -> gboolean
   {
     using namespace Gtk;
     using SlotType = sigc::slot<void ()>;
 
-    const auto obj = dynamic_cast<Window*> (
+    auto obj = dynamic_cast<Window*> (
         Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
@@ -270,7 +274,7 @@ namespace
     return RType ();
   }
 
-  const Glib::SignalProxyInfo Window_signal_close_request_info = {
+  static const Glib::SignalProxyInfo Window_signal_close_request_info = {
       "close-request",
       (GCallback) &Window_signal_close_request_callback,
       (GCallback) &Window_signal_close_request_notify_callback};
@@ -281,10 +285,10 @@ namespace Glib
 {
 
   auto
-  wrap (GtkWindow* object, const bool take_copy) -> Gtk::Window*
+  wrap (GtkWindow* object, bool take_copy) -> Gtk::Window*
   {
     return dynamic_cast<Gtk::Window*> (
-        wrap_auto ((GObject*) object, take_copy));
+        Glib::wrap_auto ((GObject*) (object), take_copy));
   }
 
 } // namespace Glib
@@ -293,7 +297,7 @@ namespace Gtk
 {
 
   auto
-  Window_Class::init () -> const Class&
+  Window_Class::init () -> const Glib::Class&
   {
     if (!gtype_)
     {
@@ -317,15 +321,21 @@ namespace Gtk
 
     reinterpret_cast<GObjectClass*> (klass)->dispose = &dispose_vfunc_callback;
 
+#ifndef GTKMM_DISABLE_DEPRECATED
+
     klass->keys_changed = &keys_changed_callback;
+#endif
+
     klass->close_request = &close_request_callback;
   }
+
+#ifndef GTKMM_DISABLE_DEPRECATED
 
   auto
   Window_Class::keys_changed_callback (GtkWindow* self) -> void
   {
-    const auto obj_base =
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self);
+    const auto obj_base = static_cast<Glib::ObjectBase*> (
+        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -350,12 +360,13 @@ namespace Gtk
     if (base && base->keys_changed)
       (*base->keys_changed) (self);
   }
+#endif
 
   auto
   Window_Class::close_request_callback (GtkWindow* self) -> gboolean
   {
-    const auto obj_base =
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self);
+    const auto obj_base = static_cast<Glib::ObjectBase*> (
+        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -364,7 +375,7 @@ namespace Gtk
       {
         try
         {
-          return obj->on_close_request ();
+          return static_cast<int> (obj->on_close_request ());
         }
         catch (...)
         {
@@ -386,7 +397,7 @@ namespace Gtk
   auto
   Window_Class::wrap_new (GObject* o) -> Glib::ObjectBase*
   {
-    return new Window ((GtkWindow*) o);
+    return new Window ((GtkWindow*) (o));
   }
 
   Window::~Window () noexcept
@@ -428,9 +439,9 @@ namespace Gtk
   }
 
   auto
-  Window::set_focus (Widget& focus) -> void
+  Window::set_focus (Gtk::Widget& focus) -> void
   {
-    gtk_window_set_focus (gobj (), focus.gobj ());
+    gtk_window_set_focus (gobj (), (focus).gobj ());
   }
 
   auto
@@ -446,9 +457,9 @@ namespace Gtk
   }
 
   auto
-  Window::set_default_widget (Widget& default_widget) -> void
+  Window::set_default_widget (Gtk::Widget& default_widget) -> void
   {
-    gtk_window_set_default_widget (gobj (), default_widget.gobj ());
+    gtk_window_set_default_widget (gobj (), (default_widget).gobj ());
   }
 
   auto
@@ -466,7 +477,7 @@ namespace Gtk
   auto
   Window::set_transient_for (Window& parent) -> void
   {
-    gtk_window_set_transient_for (gobj (), parent.gobj ());
+    gtk_window_set_transient_for (gobj (), (parent).gobj ());
   }
 
   auto
@@ -482,9 +493,9 @@ namespace Gtk
   }
 
   auto
-  Window::set_destroy_with_parent (const bool setting) -> void
+  Window::set_destroy_with_parent (bool setting) -> void
   {
-    gtk_window_set_destroy_with_parent (gobj (), setting);
+    gtk_window_set_destroy_with_parent (gobj (), static_cast<int> (setting));
   }
 
   auto
@@ -495,9 +506,9 @@ namespace Gtk
   }
 
   auto
-  Window::set_hide_on_close (const bool setting) -> void
+  Window::set_hide_on_close (bool setting) -> void
   {
-    gtk_window_set_hide_on_close (gobj (), setting);
+    gtk_window_set_hide_on_close (gobj (), static_cast<int> (setting));
   }
 
   auto
@@ -507,9 +518,9 @@ namespace Gtk
   }
 
   auto
-  Window::set_mnemonics_visible (const bool setting) -> void
+  Window::set_mnemonics_visible (bool setting) -> void
   {
-    gtk_window_set_mnemonics_visible (gobj (), setting);
+    gtk_window_set_mnemonics_visible (gobj (), static_cast<int> (setting));
   }
 
   auto
@@ -519,9 +530,9 @@ namespace Gtk
   }
 
   auto
-  Window::set_focus_visible (const bool setting) -> void
+  Window::set_focus_visible (bool setting) -> void
   {
-    gtk_window_set_focus_visible (gobj (), setting);
+    gtk_window_set_focus_visible (gobj (), static_cast<int> (setting));
   }
 
   auto
@@ -531,9 +542,9 @@ namespace Gtk
   }
 
   auto
-  Window::set_resizable (const bool resizable) -> void
+  Window::set_resizable (bool resizable) -> void
   {
-    gtk_window_set_resizable (gobj (), resizable);
+    gtk_window_set_resizable (gobj (), static_cast<int> (resizable));
   }
 
   auto
@@ -555,9 +566,9 @@ namespace Gtk
   }
 
   auto
-  Window::set_decorated (const bool setting) -> void
+  Window::set_decorated (bool setting) -> void
   {
-    gtk_window_set_decorated (gobj (), setting);
+    gtk_window_set_decorated (gobj (), static_cast<int> (setting));
   }
 
   auto
@@ -567,9 +578,9 @@ namespace Gtk
   }
 
   auto
-  Window::set_deletable (const bool setting) -> void
+  Window::set_deletable (bool setting) -> void
   {
-    gtk_window_set_deletable (gobj (), setting);
+    gtk_window_set_deletable (gobj (), static_cast<int> (setting));
   }
 
   auto
@@ -605,15 +616,15 @@ namespace Gtk
   }
 
   auto
-  Window::set_auto_startup_notification (const bool setting) -> void
+  Window::set_auto_startup_notification (bool setting) -> void
   {
-    gtk_window_set_auto_startup_notification (setting);
+    gtk_window_set_auto_startup_notification (static_cast<int> (setting));
   }
 
   auto
-  Window::set_modal (const bool modal) -> void
+  Window::set_modal (bool modal) -> void
   {
-    gtk_window_set_modal (gobj (), modal);
+    gtk_window_set_modal (gobj (), static_cast<int> (modal));
   }
 
   auto
@@ -646,7 +657,7 @@ namespace Gtk
   }
 
   auto
-  Window::present (const guint32 timestamp) -> void
+  Window::present (guint32 timestamp) -> void
   {
     gtk_window_present_with_time (gobj (), timestamp);
   }
@@ -700,7 +711,7 @@ namespace Gtk
   }
 
   auto
-  Window::set_default_size (const int width, const int height) -> void
+  Window::set_default_size (int width, int height) -> void
   {
     gtk_window_set_default_size (gobj (), width, height);
   }
@@ -709,8 +720,8 @@ namespace Gtk
   Window::get_default_size (int& width, int& height) const -> void
   {
     gtk_window_get_default_size (const_cast<GtkWindow*> (gobj ()),
-                                 &width,
-                                 &height);
+                                 &(width),
+                                 &(height));
   }
 
   auto
@@ -762,7 +773,7 @@ namespace Gtk
   auto
   Window::set_child (Widget& child) -> void
   {
-    gtk_window_set_child (gobj (), child.gobj ());
+    gtk_window_set_child (gobj (), (child).gobj ());
   }
 
   auto
@@ -780,7 +791,7 @@ namespace Gtk
   auto
   Window::set_titlebar (Widget& titlebar) -> void
   {
-    gtk_window_set_titlebar (gobj (), titlebar.gobj ());
+    gtk_window_set_titlebar (gobj (), (titlebar).gobj ());
   }
 
   auto
@@ -808,9 +819,11 @@ namespace Gtk
   }
 
   auto
-  Window::set_handle_menubar_accel (const bool handle_menubar_accel) -> void
+  Window::set_handle_menubar_accel (bool handle_menubar_accel) -> void
   {
-    gtk_window_set_handle_menubar_accel (gobj (), handle_menubar_accel);
+    gtk_window_set_handle_menubar_accel (
+        gobj (),
+        static_cast<int> (handle_menubar_accel));
   }
 
   auto
@@ -820,130 +833,133 @@ namespace Gtk
         const_cast<GtkWindow*> (gobj ()));
   }
 
+#ifndef GTKMM_DISABLE_DEPRECATED
+
   auto
   Window::signal_keys_changed () -> Glib::SignalProxy<void ()>
   {
-    return {this, &Window_signal_keys_changed_info};
+    return Glib::SignalProxy<void ()> (this, &Window_signal_keys_changed_info);
   }
+#endif
 
   auto
   Window::signal_close_request () -> Glib::SignalProxy<bool ()>
   {
-    return {this, &Window_signal_close_request_info};
+    return Glib::SignalProxy<bool ()> (this, &Window_signal_close_request_info);
   }
 
   auto
   Window::property_title () -> Glib::PropertyProxy<Glib::ustring>
   {
-    return {this, "title"};
+    return Glib::PropertyProxy<Glib::ustring> (this, "title");
   }
 
   auto
   Window::property_title () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>
   {
-    return {this, "title"};
+    return Glib::PropertyProxy_ReadOnly<Glib::ustring> (this, "title");
   }
 
   auto
   Window::property_startup_id () -> Glib::PropertyProxy_WriteOnly<Glib::ustring>
   {
-    return {this, "startup-id"};
+    return Glib::PropertyProxy_WriteOnly<Glib::ustring> (this, "startup-id");
   }
 
   auto
   Window::property_resizable () -> Glib::PropertyProxy<bool>
   {
-    return {this, "resizable"};
+    return Glib::PropertyProxy<bool> (this, "resizable");
   }
 
   auto
   Window::property_resizable () const -> Glib::PropertyProxy_ReadOnly<bool>
   {
-    return {this, "resizable"};
+    return Glib::PropertyProxy_ReadOnly<bool> (this, "resizable");
   }
 
   auto
   Window::property_modal () -> Glib::PropertyProxy<bool>
   {
-    return {this, "modal"};
+    return Glib::PropertyProxy<bool> (this, "modal");
   }
 
   auto
   Window::property_modal () const -> Glib::PropertyProxy_ReadOnly<bool>
   {
-    return {this, "modal"};
+    return Glib::PropertyProxy_ReadOnly<bool> (this, "modal");
   }
 
   auto
   Window::property_default_width () -> Glib::PropertyProxy<int>
   {
-    return {this, "default-width"};
+    return Glib::PropertyProxy<int> (this, "default-width");
   }
 
   auto
   Window::property_default_width () const -> Glib::PropertyProxy_ReadOnly<int>
   {
-    return {this, "default-width"};
+    return Glib::PropertyProxy_ReadOnly<int> (this, "default-width");
   }
 
   auto
   Window::property_default_height () -> Glib::PropertyProxy<int>
   {
-    return {this, "default-height"};
+    return Glib::PropertyProxy<int> (this, "default-height");
   }
 
   auto
   Window::property_default_height () const -> Glib::PropertyProxy_ReadOnly<int>
   {
-    return {this, "default-height"};
+    return Glib::PropertyProxy_ReadOnly<int> (this, "default-height");
   }
 
   auto
   Window::property_destroy_with_parent () -> Glib::PropertyProxy<bool>
   {
-    return {this, "destroy-with-parent"};
+    return Glib::PropertyProxy<bool> (this, "destroy-with-parent");
   }
 
   auto
   Window::property_destroy_with_parent () const -> Glib::PropertyProxy_ReadOnly<bool>
   {
-    return {this, "destroy-with-parent"};
+    return Glib::PropertyProxy_ReadOnly<bool> (this, "destroy-with-parent");
   }
 
   auto
   Window::property_hide_on_close () -> Glib::PropertyProxy<bool>
   {
-    return {this, "hide-on-close"};
+    return Glib::PropertyProxy<bool> (this, "hide-on-close");
   }
 
   auto
   Window::property_hide_on_close () const -> Glib::PropertyProxy_ReadOnly<bool>
   {
-    return {this, "hide-on-close"};
+    return Glib::PropertyProxy_ReadOnly<bool> (this, "hide-on-close");
   }
 
   auto
   Window::property_mnemonics_visible () -> Glib::PropertyProxy<bool>
   {
-    return {this, "mnemonics-visible"};
+    return Glib::PropertyProxy<bool> (this, "mnemonics-visible");
   }
 
   auto
   Window::property_mnemonics_visible () const -> Glib::PropertyProxy_ReadOnly<bool>
   {
-    return {this, "mnemonics-visible"};
+    return Glib::PropertyProxy_ReadOnly<bool> (this, "mnemonics-visible");
   }
 
   auto
   Window::property_icon_name () -> Glib::PropertyProxy<Glib::ustring>
   {
-    return {this, "icon-name"};
+    return Glib::PropertyProxy<Glib::ustring> (this, "icon-name");
   }
 
   auto
   Window::property_icon_name () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>
   {
-    return {this, "icon-name"};
+    return Glib::PropertyProxy_ReadOnly<Glib::ustring> (this, "icon-name");
   }
 
   static_assert (
@@ -955,31 +971,32 @@ namespace Gtk
   auto
   Window::property_display () -> Glib::PropertyProxy<Glib::RefPtr<Gdk::Display>>
   {
-    return {this, "display"};
+    return Glib::PropertyProxy<Glib::RefPtr<Gdk::Display>> (this, "display");
   }
 
   auto
   Window::property_display () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gdk::Display>>
   {
-    return {this, "display"};
+    return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gdk::Display>> (this,
+                                                                     "display");
   }
 
   auto
   Window::property_is_active () const -> Glib::PropertyProxy_ReadOnly<bool>
   {
-    return {this, "is-active"};
+    return Glib::PropertyProxy_ReadOnly<bool> (this, "is-active");
   }
 
   auto
   Window::property_decorated () -> Glib::PropertyProxy<bool>
   {
-    return {this, "decorated"};
+    return Glib::PropertyProxy<bool> (this, "decorated");
   }
 
   auto
   Window::property_decorated () const -> Glib::PropertyProxy_ReadOnly<bool>
   {
-    return {this, "decorated"};
+    return Glib::PropertyProxy_ReadOnly<bool> (this, "decorated");
   }
 
   static_assert (
@@ -990,25 +1007,25 @@ namespace Gtk
   auto
   Window::property_transient_for () -> Glib::PropertyProxy<Window*>
   {
-    return {this, "transient-for"};
+    return Glib::PropertyProxy<Window*> (this, "transient-for");
   }
 
   auto
   Window::property_transient_for () const -> Glib::PropertyProxy_ReadOnly<Window*>
   {
-    return {this, "transient-for"};
+    return Glib::PropertyProxy_ReadOnly<Window*> (this, "transient-for");
   }
 
   auto
   Window::property_deletable () -> Glib::PropertyProxy<bool>
   {
-    return {this, "deletable"};
+    return Glib::PropertyProxy<bool> (this, "deletable");
   }
 
   auto
   Window::property_deletable () const -> Glib::PropertyProxy_ReadOnly<bool>
   {
-    return {this, "deletable"};
+    return Glib::PropertyProxy_ReadOnly<bool> (this, "deletable");
   }
 
   static_assert (
@@ -1020,113 +1037,115 @@ namespace Gtk
   auto
   Window::property_application () -> Glib::PropertyProxy<Glib::RefPtr<Application>>
   {
-    return {this, "application"};
+    return Glib::PropertyProxy<Glib::RefPtr<Application>> (this, "application");
   }
 
   auto
   Window::property_application () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Application>>
   {
-    return {this, "application"};
+    return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Application>> (
+        this,
+        "application");
   }
 
   auto
   Window::property_focus_visible () -> Glib::PropertyProxy<bool>
   {
-    return {this, "focus-visible"};
+    return Glib::PropertyProxy<bool> (this, "focus-visible");
   }
 
   auto
   Window::property_focus_visible () const -> Glib::PropertyProxy_ReadOnly<bool>
   {
-    return {this, "focus-visible"};
+    return Glib::PropertyProxy_ReadOnly<bool> (this, "focus-visible");
   }
 
   auto
   Window::property_maximized () -> Glib::PropertyProxy<bool>
   {
-    return {this, "maximized"};
+    return Glib::PropertyProxy<bool> (this, "maximized");
   }
 
   auto
   Window::property_maximized () const -> Glib::PropertyProxy_ReadOnly<bool>
   {
-    return {this, "maximized"};
+    return Glib::PropertyProxy_ReadOnly<bool> (this, "maximized");
   }
 
   auto
   Window::property_fullscreened () -> Glib::PropertyProxy<bool>
   {
-    return {this, "fullscreened"};
+    return Glib::PropertyProxy<bool> (this, "fullscreened");
   }
 
   auto
   Window::property_fullscreened () const -> Glib::PropertyProxy_ReadOnly<bool>
   {
-    return {this, "fullscreened"};
+    return Glib::PropertyProxy_ReadOnly<bool> (this, "fullscreened");
   }
 
   auto
   Window::property_default_widget () -> Glib::PropertyProxy<Widget*>
   {
-    return {this, "default-widget"};
+    return Glib::PropertyProxy<Widget*> (this, "default-widget");
   }
 
   auto
   Window::property_default_widget () const -> Glib::PropertyProxy_ReadOnly<Widget*>
   {
-    return {this, "default-widget"};
+    return Glib::PropertyProxy_ReadOnly<Widget*> (this, "default-widget");
   }
 
   auto
   Window::property_focus_widget () -> Glib::PropertyProxy<Widget*>
   {
-    return {this, "focus-widget"};
+    return Glib::PropertyProxy<Widget*> (this, "focus-widget");
   }
 
   auto
   Window::property_focus_widget () const -> Glib::PropertyProxy_ReadOnly<Widget*>
   {
-    return {this, "focus-widget"};
+    return Glib::PropertyProxy_ReadOnly<Widget*> (this, "focus-widget");
   }
 
   auto
   Window::property_child () -> Glib::PropertyProxy<Widget*>
   {
-    return {this, "child"};
+    return Glib::PropertyProxy<Widget*> (this, "child");
   }
 
   auto
   Window::property_child () const -> Glib::PropertyProxy_ReadOnly<Widget*>
   {
-    return {this, "child"};
+    return Glib::PropertyProxy_ReadOnly<Widget*> (this, "child");
   }
 
   auto
   Window::property_titlebar () -> Glib::PropertyProxy<Widget*>
   {
-    return {this, "titlebar"};
+    return Glib::PropertyProxy<Widget*> (this, "titlebar");
   }
 
   auto
   Window::property_titlebar () const -> Glib::PropertyProxy_ReadOnly<Widget*>
   {
-    return {this, "titlebar"};
+    return Glib::PropertyProxy_ReadOnly<Widget*> (this, "titlebar");
   }
 
   auto
   Window::property_handle_menubar_accel () -> Glib::PropertyProxy<bool>
   {
-    return {this, "handle-menubar-accel"};
+    return Glib::PropertyProxy<bool> (this, "handle-menubar-accel");
   }
 
   auto
   Window::property_handle_menubar_accel () const -> Glib::PropertyProxy_ReadOnly<bool>
   {
-    return {this, "handle-menubar-accel"};
+    return Glib::PropertyProxy_ReadOnly<bool> (this, "handle-menubar-accel");
   }
 
   auto
-  Window::on_keys_changed () -> void
+  Gtk::Window::on_keys_changed () -> void
   {
     const auto base = static_cast<BaseClassType*> (
         g_type_class_peek_parent (G_OBJECT_GET_CLASS (gobject_)));
@@ -1136,7 +1155,7 @@ namespace Gtk
   }
 
   auto
-  Window::on_close_request () -> bool
+  Gtk::Window::on_close_request () -> bool
   {
     const auto base = static_cast<BaseClassType*> (
         g_type_class_peek_parent (G_OBJECT_GET_CLASS (gobject_)));

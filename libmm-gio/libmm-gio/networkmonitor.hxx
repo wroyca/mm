@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: LGPL-2.1-or-later
 
 #ifndef _GIOMM_NETWORKMONITOR_H
 #define _GIOMM_NETWORKMONITOR_H
@@ -98,8 +99,8 @@ namespace Gio
 
     ~NetworkMonitor () noexcept override;
 
-    static void
-    add_interface (GType gtype_implementer);
+    static auto
+    add_interface (GType gtype_implementer) -> void;
 
     static auto
     get_type () -> GType G_GNUC_CONST;
@@ -142,10 +143,10 @@ namespace Gio
     auto
     can_reach (const Glib::RefPtr<SocketConnectable>& connectable) -> bool;
 
-    void
+    auto
     can_reach_async (const Glib::RefPtr<SocketConnectable>& connectable,
                      const SlotAsyncReady& slot,
-                     const Glib::RefPtr<Cancellable>& cancellable);
+                     const Glib::RefPtr<Cancellable>& cancellable) -> void;
 
     auto
     can_reach_finish (const Glib::RefPtr<AsyncResult>& result) -> bool;
@@ -166,8 +167,8 @@ namespace Gio
   public:
   public:
   protected:
-    virtual void
-    on_network_changed (bool available);
+    virtual auto
+    on_network_changed (bool available) -> void;
   };
 
 } // namespace Gio

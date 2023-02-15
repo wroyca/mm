@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: LGPL-2.1-or-later
 
 #ifndef _GIOMM_ZLIBCOMPRESSOR_H
 #define _GIOMM_ZLIBCOMPRESSOR_H
@@ -126,8 +127,8 @@ namespace Gio
     auto
     get_file_info () const -> Glib::RefPtr<const FileInfo>;
 
-    void
-    set_file_info (const Glib::RefPtr<FileInfo>& file_info);
+    auto
+    set_file_info (const Glib::RefPtr<FileInfo>& file_info) -> void;
 
     auto
     property_file_info () -> Glib::PropertyProxy<Glib::RefPtr<FileInfo>>;

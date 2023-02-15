@@ -23,11 +23,11 @@ namespace Gdk
     using BaseObjectType = GdkFrameTimings;
 #endif
 
-    void
-    reference () const;
+    auto
+    reference () const -> void;
 
-    void
-    unreference () const;
+    auto
+    unreference () const -> void;
 
     auto
     gobj () -> GdkFrameTimings*;
@@ -45,8 +45,8 @@ namespace Gdk
     operator= (const FrameTimings&) -> FrameTimings& = delete;
 
   protected:
-    void
-    operator delete (void*, std::size_t);
+    auto
+    operator delete (void*, std::size_t) -> void;
 
   private:
   public:
@@ -73,9 +73,7 @@ namespace Gdk
 
 namespace Glib
 {
-
-  GDKMM_API
-  auto
+  GDKMM_API auto
   wrap (GdkFrameTimings* object, bool take_copy = false) -> Glib::RefPtr<Gdk::FrameTimings>;
 
 } // namespace Glib

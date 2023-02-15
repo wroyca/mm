@@ -15,11 +15,11 @@ namespace Glib
 {
 
   auto
-  wrap (GtkSliceListModel* object, const bool take_copy) -> RefPtr<Gtk::SliceListModel>
+  wrap (GtkSliceListModel* object, bool take_copy) -> Glib::RefPtr<Gtk::SliceListModel>
   {
     return Glib::make_refptr_for_instance<Gtk::SliceListModel> (
         dynamic_cast<Gtk::SliceListModel*> (
-            wrap_auto ((GObject*) object, take_copy)));
+            Glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
 } // namespace Glib
@@ -28,7 +28,7 @@ namespace Gtk
 {
 
   auto
-  SliceListModel_Class::init () -> const Class&
+  SliceListModel_Class::init () -> const Glib::Class&
   {
     if (!gtype_)
     {
@@ -61,30 +61,30 @@ namespace Gtk
   }
 
   SliceListModel::SliceListModel (const Glib::ConstructParams& construct_params)
-    : Object (construct_params)
+    : Glib::Object (construct_params)
   {
   }
 
   SliceListModel::SliceListModel (GtkSliceListModel* castitem)
-    : Object ((GObject*) castitem)
+    : Glib::Object ((GObject*) (castitem))
   {
   }
 
   SliceListModel::SliceListModel (SliceListModel&& src) noexcept
-    : Object (std::move (src)),
-      ListModel (std::move (src))
+    : Glib::Object (std::move (src)),
+      Gio::ListModel (std::move (src))
   {
   }
 
   auto
   SliceListModel::operator= (SliceListModel&& src) noexcept -> SliceListModel&
   {
-    Object::operator= (std::move (src));
-    ListModel::operator= (std::move (src));
+    Glib::Object::operator= (std::move (src));
+    Gio::ListModel::operator= (std::move (src));
     return *this;
   }
 
-  SliceListModel::~SliceListModel () noexcept = default;
+  SliceListModel::~SliceListModel () noexcept {}
 
   SliceListModel::CppClassType SliceListModel::slicelistmodel_class_;
 
@@ -100,38 +100,38 @@ namespace Gtk
     return gtk_slice_list_model_get_type ();
   }
 
-  SliceListModel::SliceListModel (const Glib::RefPtr<ListModel>& model,
-                                  const guint offset,
-                                  const guint size)
-    : ObjectBase (nullptr),
-      Object (Glib::ConstructParams (slicelistmodel_class_.init (),
-                                     "model",
-                                     Glib::unwrap (model),
-                                     "offset",
-                                     offset,
-                                     "size",
-                                     size,
-                                     nullptr))
+  SliceListModel::SliceListModel (const Glib::RefPtr<Gio::ListModel>& model,
+                                  guint offset,
+                                  guint size)
+    : Glib::ObjectBase (nullptr),
+      Glib::Object (Glib::ConstructParams (slicelistmodel_class_.init (),
+                                           "model",
+                                           Glib::unwrap (model),
+                                           "offset",
+                                           offset,
+                                           "size",
+                                           size,
+                                           nullptr))
   {
   }
 
   auto
-  SliceListModel::create (const Glib::RefPtr<ListModel>& model,
-                          const guint offset,
-                          const guint size) -> Glib::RefPtr<SliceListModel>
+  SliceListModel::create (const Glib::RefPtr<Gio::ListModel>& model,
+                          guint offset,
+                          guint size) -> Glib::RefPtr<SliceListModel>
   {
     return Glib::make_refptr_for_instance<SliceListModel> (
         new SliceListModel (model, offset, size));
   }
 
   auto
-  SliceListModel::set_model (const Glib::RefPtr<ListModel>& model) -> void
+  SliceListModel::set_model (const Glib::RefPtr<Gio::ListModel>& model) -> void
   {
     gtk_slice_list_model_set_model (gobj (), Glib::unwrap (model));
   }
 
   auto
-  SliceListModel::get_model () -> Glib::RefPtr<ListModel>
+  SliceListModel::get_model () -> Glib::RefPtr<Gio::ListModel>
   {
     auto retvalue = Glib::wrap (gtk_slice_list_model_get_model (gobj ()));
     if (retvalue)
@@ -140,13 +140,13 @@ namespace Gtk
   }
 
   auto
-  SliceListModel::get_model () const -> Glib::RefPtr<const ListModel>
+  SliceListModel::get_model () const -> Glib::RefPtr<const Gio::ListModel>
   {
     return const_cast<SliceListModel*> (this)->get_model ();
   }
 
   auto
-  SliceListModel::set_offset (const guint offset) -> void
+  SliceListModel::set_offset (guint offset) -> void
   {
     gtk_slice_list_model_set_offset (gobj (), offset);
   }
@@ -159,7 +159,7 @@ namespace Gtk
   }
 
   auto
-  SliceListModel::set_size (const guint size) -> void
+  SliceListModel::set_size (guint size) -> void
   {
     gtk_slice_list_model_set_size (gobj (), size);
   }
@@ -179,7 +179,7 @@ namespace Gtk
   auto
   SliceListModel::property_item_type () const -> Glib::PropertyProxy_ReadOnly<GType>
   {
-    return {this, "item-type"};
+    return Glib::PropertyProxy_ReadOnly<GType> (this, "item-type");
   }
 
   static_assert (
@@ -189,45 +189,46 @@ namespace Gtk
       "There is no suitable template specialization of Glib::Value<>.");
 
   auto
-  SliceListModel::property_model () -> Glib::PropertyProxy<Glib::RefPtr<ListModel>>
+  SliceListModel::property_model () -> Glib::PropertyProxy<Glib::RefPtr<Gio::ListModel>>
   {
-    return {this, "model"};
+    return Glib::PropertyProxy<Glib::RefPtr<Gio::ListModel>> (this, "model");
   }
 
   auto
-  SliceListModel::property_model () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<ListModel>>
+  SliceListModel::property_model () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gio::ListModel>>
   {
-    return {this, "model"};
+    return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gio::ListModel>> (this,
+                                                                       "model");
   }
 
   auto
   SliceListModel::property_n_items () const -> Glib::PropertyProxy_ReadOnly<unsigned int>
   {
-    return {this, "n-items"};
+    return Glib::PropertyProxy_ReadOnly<unsigned int> (this, "n-items");
   }
 
   auto
   SliceListModel::property_offset () -> Glib::PropertyProxy<guint>
   {
-    return {this, "offset"};
+    return Glib::PropertyProxy<guint> (this, "offset");
   }
 
   auto
   SliceListModel::property_offset () const -> Glib::PropertyProxy_ReadOnly<guint>
   {
-    return {this, "offset"};
+    return Glib::PropertyProxy_ReadOnly<guint> (this, "offset");
   }
 
   auto
   SliceListModel::property_size () -> Glib::PropertyProxy<guint>
   {
-    return {this, "size"};
+    return Glib::PropertyProxy<guint> (this, "size");
   }
 
   auto
   SliceListModel::property_size () const -> Glib::PropertyProxy_ReadOnly<guint>
   {
-    return {this, "size"};
+    return Glib::PropertyProxy_ReadOnly<guint> (this, "size");
   }
 
 } // namespace Gtk

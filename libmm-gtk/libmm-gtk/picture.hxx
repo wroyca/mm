@@ -89,8 +89,8 @@ namespace Gtk
 
     explicit Picture (const std::string& filename);
 
-    void
-    set_paintable (const Glib::RefPtr<Gdk::Paintable>& paintable);
+    auto
+    set_paintable (const Glib::RefPtr<Gdk::Paintable>& paintable) -> void;
 
     auto
     get_paintable () -> Glib::RefPtr<Gdk::Paintable>;
@@ -98,8 +98,8 @@ namespace Gtk
     auto
     get_paintable () const -> Glib::RefPtr<const Gdk::Paintable>;
 
-    void
-    set_file (const Glib::RefPtr<const Gio::File>& file);
+    auto
+    set_file (const Glib::RefPtr<const Gio::File>& file) -> void;
 
     auto
     get_file () -> Glib::RefPtr<Gio::File>;
@@ -107,19 +107,19 @@ namespace Gtk
     auto
     get_file () const -> Glib::RefPtr<const Gio::File>;
 
-    void
-    set_filename (const std::string& filename);
+    auto
+    set_filename (const std::string& filename) -> void;
 
-    void
-    set_resource (const std::string& resource_path);
+    auto
+    set_resource (const std::string& resource_path) -> void;
 
-    void
-    set_pixbuf (const Glib::RefPtr<Gdk::Pixbuf>& pixbuf);
+    auto
+    set_pixbuf (const Glib::RefPtr<Gdk::Pixbuf>& pixbuf) -> void;
 
 #ifndef GTKMM_DISABLE_DEPRECATED
 
-    void
-    set_keep_aspect_ratio (bool keep_aspect_ratio = true);
+    auto
+    set_keep_aspect_ratio (bool keep_aspect_ratio = true) -> void;
 #endif
 
 #ifndef GTKMM_DISABLE_DEPRECATED
@@ -128,20 +128,20 @@ namespace Gtk
     get_keep_aspect_ratio () const -> bool;
 #endif
 
-    void
-    set_can_shrink (bool can_shrink = true);
+    auto
+    set_can_shrink (bool can_shrink = true) -> void;
 
     auto
     get_can_shrink () const -> bool;
 
-    void
-    set_content_fit (ContentFit content_fit);
+    auto
+    set_content_fit (ContentFit content_fit) -> void;
 
     auto
     get_content_fit () const -> ContentFit;
 
-    void
-    set_alternative_text (const Glib::ustring& alternative_text);
+    auto
+    set_alternative_text (const Glib::ustring& alternative_text) -> void;
 
     auto
     get_alternative_text () const -> Glib::ustring;
@@ -198,9 +198,7 @@ namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkPicture* object, bool take_copy = false) -> Gtk::Picture*;
 } // namespace Glib
 

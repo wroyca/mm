@@ -87,8 +87,8 @@ namespace Gtk
     auto
     get_media_stream () const -> Glib::RefPtr<const MediaStream>;
 
-    void
-    set_media_stream (const Glib::RefPtr<MediaStream>& stream);
+    auto
+    set_media_stream (const Glib::RefPtr<MediaStream>& stream) -> void;
 
     auto
     property_media_stream () -> Glib::PropertyProxy<Glib::RefPtr<MediaStream>>;
@@ -106,9 +106,7 @@ namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkMediaControls* object, bool take_copy = false) -> Gtk::MediaControls*;
 } // namespace Glib
 

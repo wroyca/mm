@@ -13,7 +13,7 @@ using Change = Gtk::Sorter::Change;
 namespace
 {
 
-  auto
+  static auto
   Sorter_signal_changed_callback (GtkSorter* self,
                                   GtkSorterChange p0,
                                   void* data) -> void
@@ -21,7 +21,7 @@ namespace
     using namespace Gtk;
     using SlotType = sigc::slot<void (Change)>;
 
-    const auto obj = dynamic_cast<Sorter*> (
+    auto obj = dynamic_cast<Sorter*> (
         Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
@@ -38,7 +38,7 @@ namespace
     }
   }
 
-  const Glib::SignalProxyInfo Sorter_signal_changed_info = {
+  static const Glib::SignalProxyInfo Sorter_signal_changed_info = {
       "changed",
       (GCallback) &Sorter_signal_changed_callback,
       (GCallback) &Sorter_signal_changed_callback};
@@ -61,10 +61,11 @@ namespace Glib
 {
 
   auto
-  wrap (GtkSorter* object, const bool take_copy) -> RefPtr<Gtk::Sorter>
+  wrap (GtkSorter* object, bool take_copy) -> Glib::RefPtr<Gtk::Sorter>
   {
     return Glib::make_refptr_for_instance<Gtk::Sorter> (
-        dynamic_cast<Gtk::Sorter*> (wrap_auto ((GObject*) object, take_copy)));
+        dynamic_cast<Gtk::Sorter*> (
+            Glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
 } // namespace Glib
@@ -73,7 +74,7 @@ namespace Gtk
 {
 
   auto
-  Sorter_Class::init () -> const Class&
+  Sorter_Class::init () -> const Glib::Class&
   {
     if (!gtype_)
     {
@@ -97,11 +98,11 @@ namespace Gtk
 
   auto
   Sorter_Class::compare_vfunc_callback (GtkSorter* self,
-                                        const gpointer item1,
-                                        const gpointer item2) -> GtkOrdering
+                                        gpointer item1,
+                                        gpointer item2) -> GtkOrdering
   {
-    const auto obj_base =
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self);
+    const auto obj_base = static_cast<Glib::ObjectBase*> (
+        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -119,7 +120,7 @@ namespace Gtk
       }
     }
 
-    const BaseClassType* const base = static_cast<BaseClassType*> (
+    BaseClassType* const base = static_cast<BaseClassType*> (
         g_type_class_peek_parent (G_OBJECT_GET_CLASS (self)));
 
     if (base && base->compare)
@@ -132,8 +133,8 @@ namespace Gtk
   auto
   Sorter_Class::get_order_vfunc_callback (GtkSorter* self) -> GtkSorterOrder
   {
-    const auto obj_base =
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self);
+    const auto obj_base = static_cast<Glib::ObjectBase*> (
+        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -151,7 +152,7 @@ namespace Gtk
       }
     }
 
-    const BaseClassType* const base = static_cast<BaseClassType*> (
+    BaseClassType* const base = static_cast<BaseClassType*> (
         g_type_class_peek_parent (G_OBJECT_GET_CLASS (self)));
 
     if (base && base->get_order)
@@ -175,28 +176,28 @@ namespace Gtk
   }
 
   Sorter::Sorter (const Glib::ConstructParams& construct_params)
-    : Object (construct_params)
+    : Glib::Object (construct_params)
   {
   }
 
   Sorter::Sorter (GtkSorter* castitem)
-    : Object ((GObject*) castitem)
+    : Glib::Object ((GObject*) (castitem))
   {
   }
 
   Sorter::Sorter (Sorter&& src) noexcept
-    : Object (std::move (src))
+    : Glib::Object (std::move (src))
   {
   }
 
   auto
   Sorter::operator= (Sorter&& src) noexcept -> Sorter&
   {
-    Object::operator= (std::move (src));
+    Glib::Object::operator= (std::move (src));
     return *this;
   }
 
-  Sorter::~Sorter () noexcept = default;
+  Sorter::~Sorter () noexcept {}
 
   Sorter::CppClassType Sorter::sorter_class_;
 
@@ -213,13 +214,13 @@ namespace Gtk
   }
 
   Sorter::Sorter ()
-    : ObjectBase (nullptr),
-      Object (Glib::ConstructParams (sorter_class_.init ()))
+    : Glib::ObjectBase (nullptr),
+      Glib::Object (Glib::ConstructParams (sorter_class_.init ()))
   {
   }
 
   auto
-  Sorter::compare (const gpointer item1, const gpointer item2) -> Ordering
+  Sorter::compare (gpointer item1, gpointer item2) -> Ordering
   {
     return static_cast<Ordering> (gtk_sorter_compare (gobj (), item1, item2));
   }
@@ -240,18 +241,18 @@ namespace Gtk
   auto
   Sorter::signal_changed () -> Glib::SignalProxy<void (Change)>
   {
-    return {this, &Sorter_signal_changed_info};
+    return Glib::SignalProxy<void (Change)> (this, &Sorter_signal_changed_info);
   }
 
   auto
-  Sorter::compare_vfunc (const gpointer item1, const gpointer item2) -> Ordering
+  Gtk::Sorter::compare_vfunc (gpointer item1, gpointer item2) -> Ordering
   {
     const auto base = static_cast<BaseClassType*> (
         g_type_class_peek_parent (G_OBJECT_GET_CLASS (gobject_)));
 
     if (base && base->compare)
     {
-      const Ordering retval (
+      Ordering retval (
           static_cast<Ordering> ((*base->compare) (gobj (), item1, item2)));
       return retval;
     }
@@ -261,14 +262,14 @@ namespace Gtk
   }
 
   auto
-  Sorter::get_order_vfunc () -> Order
+  Gtk::Sorter::get_order_vfunc () -> Order
   {
     const auto base = static_cast<BaseClassType*> (
         g_type_class_peek_parent (G_OBJECT_GET_CLASS (gobject_)));
 
     if (base && base->get_order)
     {
-      const Order retval (static_cast<Order> ((*base->get_order) (gobj ())));
+      Order retval (static_cast<Order> ((*base->get_order) (gobj ())));
       return retval;
     }
 

@@ -339,29 +339,29 @@ namespace Gtk
     auto
     backward_visible_cursor_positions (int count) -> bool;
 
-    void
-    set_offset (int char_offset);
+    auto
+    set_offset (int char_offset) -> void;
 
-    void
-    set_line (int line_number);
+    auto
+    set_line (int line_number) -> void;
 
-    void
-    set_line_offset (int char_on_line);
+    auto
+    set_line_offset (int char_on_line) -> void;
 
-    void
-    set_line_index (int byte_on_line);
+    auto
+    set_line_index (int byte_on_line) -> void;
 
-    void
-    forward_to_end ();
+    auto
+    forward_to_end () -> void;
 
     auto
     forward_to_line_end () -> bool;
 
-    void
-    set_visible_line_offset (int char_on_line);
+    auto
+    set_visible_line_offset (int char_on_line) -> void;
 
-    void
-    set_visible_line_index (int byte_on_line);
+    auto
+    set_visible_line_index (int byte_on_line) -> void;
 
     auto
     forward_to_tag_toggle (const Glib::RefPtr<const TextTag>& tag = {}) -> bool;
@@ -458,8 +458,8 @@ namespace Gtk
                      TextIter& match_start,
                      TextIter& match_end) const -> bool;
 
-    void
-    order (TextIter& second);
+    auto
+    order (TextIter& second) -> void;
   };
 
   class GTKMM_API TextConstIter : public TextIterBase
@@ -534,8 +534,8 @@ namespace Gtk
                      TextConstIter& match_start,
                      TextConstIter& match_end) const -> bool;
 
-    void
-    order (TextConstIter& second);
+    auto
+    order (TextConstIter& second) -> void;
   };
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -631,63 +631,48 @@ namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap_iter (GtkTextIter* object) -> Gtk::TextIter&;
 
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap_iter (const GtkTextIter* object) -> const Gtk::TextIter&;
 
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap_const_iter (GtkTextIter* object) -> Gtk::TextConstIter&;
 
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap_const_iter (const GtkTextIter* object) -> const Gtk::TextConstIter&;
 
 } // namespace Glib
 
 namespace Gtk
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   operator== (const TextIterBase& lhs, const TextIterBase& rhs) -> bool;
 
-  GTKMM_API
-  auto
+  GTKMM_API auto
   operator!= (const TextIterBase& lhs, const TextIterBase& rhs) -> bool;
 
-  GTKMM_API
-  auto
+  GTKMM_API auto
   operator<(const TextIterBase& lhs, const TextIterBase& rhs) -> bool;
 
-  GTKMM_API
-  auto
+  GTKMM_API auto
   operator> (const TextIterBase& lhs, const TextIterBase& rhs) -> bool;
 
-  GTKMM_API
-  auto
+  GTKMM_API auto
   operator<= (const TextIterBase& lhs, const TextIterBase& rhs) -> bool;
 
-  GTKMM_API
-  auto
+  GTKMM_API auto
   operator>= (const TextIterBase& lhs, const TextIterBase& rhs) -> bool;
 
 } // namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkTextIter* object) -> Gtk::TextIterBase&;
 
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (const GtkTextIter* object) -> const Gtk::TextIterBase&;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

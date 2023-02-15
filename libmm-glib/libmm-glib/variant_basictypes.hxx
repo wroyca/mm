@@ -25,14 +25,14 @@ namespace Glib
     {
     }
 
-    static const VariantType&
-    variant_type () G_GNUC_CONST;
+    static auto
+    variant_type () -> const VariantType& G_GNUC_CONST;
 
-    static Variant<bool>
-    create (bool data);
+    static auto
+    create (bool data) -> Variant<bool>;
 
-    bool
-    get () const;
+    auto
+    get () const -> bool;
   };
 
   template <>
@@ -51,14 +51,14 @@ namespace Glib
     {
     }
 
-    static const VariantType&
-    variant_type () G_GNUC_CONST;
+    static auto
+    variant_type () -> const VariantType& G_GNUC_CONST;
 
-    static Variant<unsigned char>
-    create (unsigned char data);
+    static auto
+    create (unsigned char data) -> Variant<unsigned char>;
 
-    unsigned char
-    get () const;
+    auto
+    get () const -> unsigned char;
   };
 
   template <>
@@ -77,14 +77,14 @@ namespace Glib
     {
     }
 
-    static const VariantType&
-    variant_type () G_GNUC_CONST;
+    static auto
+    variant_type () -> const VariantType& G_GNUC_CONST;
 
-    static Variant<gint16>
-    create (gint16 data);
+    static auto
+    create (gint16 data) -> Variant<gint16>;
 
-    gint16
-    get () const;
+    auto
+    get () const -> gint16;
   };
 
   template <>
@@ -103,14 +103,14 @@ namespace Glib
     {
     }
 
-    static const VariantType&
-    variant_type () G_GNUC_CONST;
+    static auto
+    variant_type () -> const VariantType& G_GNUC_CONST;
 
-    static Variant<guint16>
-    create (guint16 data);
+    static auto
+    create (guint16 data) -> Variant<guint16>;
 
-    guint16
-    get () const;
+    auto
+    get () const -> guint16;
   };
 
   template <>
@@ -129,17 +129,17 @@ namespace Glib
     {
     }
 
-    static const VariantType&
-    variant_type () G_GNUC_CONST;
+    static auto
+    variant_type () -> const VariantType& G_GNUC_CONST;
 
-    static Variant<gint32>
-    create (gint32 data);
+    static auto
+    create (gint32 data) -> Variant<gint32>;
 
-    static Variant<gint32>
-    create_handle (gint32 data);
+    static auto
+    create_handle (gint32 data) -> Variant<gint32>;
 
-    gint32
-    get () const;
+    auto
+    get () const -> gint32;
   };
 
   template <>
@@ -158,14 +158,14 @@ namespace Glib
     {
     }
 
-    static const VariantType&
-    variant_type () G_GNUC_CONST;
+    static auto
+    variant_type () -> const VariantType& G_GNUC_CONST;
 
-    static Variant<guint32>
-    create (guint32 data);
+    static auto
+    create (guint32 data) -> Variant<guint32>;
 
-    guint32
-    get () const;
+    auto
+    get () const -> guint32;
   };
 
   template <>
@@ -184,14 +184,14 @@ namespace Glib
     {
     }
 
-    static const VariantType&
-    variant_type () G_GNUC_CONST;
+    static auto
+    variant_type () -> const VariantType& G_GNUC_CONST;
 
-    static Variant<gint64>
-    create (gint64 data);
+    static auto
+    create (gint64 data) -> Variant<gint64>;
 
-    gint64
-    get () const;
+    auto
+    get () const -> gint64;
   };
 
   template <>
@@ -210,14 +210,14 @@ namespace Glib
     {
     }
 
-    static const VariantType&
-    variant_type () G_GNUC_CONST;
+    static auto
+    variant_type () -> const VariantType& G_GNUC_CONST;
 
-    static Variant<guint64>
-    create (guint64 data);
+    static auto
+    create (guint64 data) -> Variant<guint64>;
 
-    guint64
-    get () const;
+    auto
+    get () const -> guint64;
   };
 
   template <>
@@ -236,14 +236,14 @@ namespace Glib
     {
     }
 
-    static const VariantType&
-    variant_type () G_GNUC_CONST;
+    static auto
+    variant_type () -> const VariantType& G_GNUC_CONST;
 
-    static Variant<double>
-    create (double data);
+    static auto
+    create (double data) -> Variant<double>;
 
-    double
-    get () const;
+    auto
+    get () const -> double;
   };
 
 } // namespace Glib

@@ -59,11 +59,12 @@ namespace Glib
 {
 
   auto
-  wrap (GtkBuilderScope* object, const bool take_copy) -> RefPtr<Gtk::BuilderScope>
+  wrap (GtkBuilderScope* object, bool take_copy) -> Glib::RefPtr<Gtk::BuilderScope>
   {
     return Glib::make_refptr_for_instance<Gtk::BuilderScope> (
-        Glib::wrap_auto_interface<Gtk::BuilderScope> ((GObject*) object,
-                                                      take_copy));
+        dynamic_cast<Gtk::BuilderScope*> (
+            Glib::wrap_auto_interface<Gtk::BuilderScope> ((GObject*) (object),
+                                                          take_copy)));
   }
 
 } // namespace Glib
@@ -72,7 +73,7 @@ namespace Gtk
 {
 
   auto
-  BuilderScope_Class::init () -> const Interface_Class&
+  BuilderScope_Class::init () -> const Glib::Interface_Class&
   {
     if (!gtype_)
     {
@@ -97,40 +98,40 @@ namespace Gtk
   auto
   BuilderScope_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
   {
-    return new BuilderScope ((GtkBuilderScope*) object);
+    return new BuilderScope ((GtkBuilderScope*) (object));
   }
 
   BuilderScope::BuilderScope ()
-    : Interface (builderscope_class_.init ())
+    : Glib::Interface (builderscope_class_.init ())
   {
   }
 
   BuilderScope::BuilderScope (GtkBuilderScope* castitem)
-    : Interface ((GObject*) castitem)
+    : Glib::Interface ((GObject*) (castitem))
   {
   }
 
   BuilderScope::BuilderScope (const Glib::Interface_Class& interface_class)
-    : Interface (interface_class)
+    : Glib::Interface (interface_class)
   {
   }
 
   BuilderScope::BuilderScope (BuilderScope&& src) noexcept
-    : Interface (std::move (src))
+    : Glib::Interface (std::move (src))
   {
   }
 
   auto
   BuilderScope::operator= (BuilderScope&& src) noexcept -> BuilderScope&
   {
-    Interface::operator= (std::move (src));
+    Glib::Interface::operator= (std::move (src));
     return *this;
   }
 
-  BuilderScope::~BuilderScope () noexcept = default;
+  BuilderScope::~BuilderScope () noexcept {}
 
   auto
-  BuilderScope::add_interface (const GType gtype_implementer) -> void
+  BuilderScope::add_interface (GType gtype_implementer) -> void
   {
     builderscope_class_.init ().add_interface (gtype_implementer);
   }

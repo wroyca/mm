@@ -3,23 +3,25 @@
 #ifndef _GTKMM_MESSAGEDIALOG_H
 #define _GTKMM_MESSAGEDIALOG_H
 
-#include <libmm-glib/ustring.hxx>
-#include <sigc++/sigc++.h>
+#ifndef GTKMM_DISABLE_DEPRECATED
 
-#include <libmm-gtk/dialog.hxx>
-#include <libmm-gtk/enums.hxx>
+  #include <libmm-glib/ustring.hxx>
+  #include <sigc++/sigc++.h>
 
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #include <libmm-gtk/dialog.hxx>
+  #include <libmm-gtk/enums.hxx>
+
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
 using GtkMessageDialog = struct _GtkMessageDialog;
 using GtkMessageDialogClass = struct _GtkMessageDialogClass;
-#endif
+  #endif
 
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
   class GTKMM_API MessageDialog_Class;
 }
-#endif
+  #endif
 
 namespace Gtk
 {
@@ -36,7 +38,7 @@ namespace Gtk
 
 } // namespace Gtk
 
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Glib
 {
 
@@ -50,7 +52,7 @@ namespace Glib
   };
 
 } // namespace Glib
-#endif
+  #endif
 
 namespace Gtk
 {
@@ -58,12 +60,12 @@ namespace Gtk
   class GTKMM_API MessageDialog : public Dialog
   {
   public:
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
     typedef MessageDialog CppObjectType;
     typedef MessageDialog_Class CppClassType;
     typedef GtkMessageDialog BaseObjectType;
     typedef GtkMessageDialogClass BaseClassType;
-#endif
+  #endif
 
     MessageDialog (MessageDialog&& src) noexcept;
     auto
@@ -75,7 +77,7 @@ namespace Gtk
 
     ~MessageDialog () noexcept override;
 
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   private:
     friend GTKMM_API class MessageDialog_Class;
@@ -85,17 +87,17 @@ namespace Gtk
     explicit MessageDialog (const Glib::ConstructParams& construct_params);
     explicit MessageDialog (GtkMessageDialog* castitem);
 
-#endif
+  #endif
 
   public:
     static auto
     get_type () -> GType G_GNUC_CONST;
 
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
     static auto
     get_base_type () -> GType G_GNUC_CONST;
-#endif
+  #endif
 
     auto
     gobj () -> GtkMessageDialog*
@@ -123,11 +125,12 @@ namespace Gtk
                    ButtonsType buttons = ButtonsType::OK,
                    bool modal = false);
 
-    void
-    set_message (const Glib::ustring& message, bool use_markup = false);
+    auto
+    set_message (const Glib::ustring& message, bool use_markup = false) -> void;
 
-    void
-    set_secondary_text (const Glib::ustring& text, bool use_markup = false);
+    auto
+    set_secondary_text (const Glib::ustring& text, bool use_markup = false)
+        -> void;
 
     auto
     get_message_area () -> Box*;
@@ -179,10 +182,10 @@ namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkMessageDialog* object, bool take_copy = false) -> Gtk::MessageDialog*;
 } // namespace Glib
+
+#endif
 
 #endif

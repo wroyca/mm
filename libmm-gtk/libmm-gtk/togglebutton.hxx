@@ -83,19 +83,22 @@ namespace Gtk
 
     explicit ToggleButton (const Glib::ustring& label, bool mnemonic = false);
 
-    void
-    set_active (bool is_active = true);
+    auto
+    set_active (bool is_active = true) -> void;
 
     auto
     get_active () const -> bool;
 
-    void
-    toggled ();
+#ifndef GTKMM_DISABLE_DEPRECATED
 
-    void
-    set_group (ToggleButton& group);
-    void
-    unset_group ();
+    auto
+    toggled () -> void;
+#endif
+
+    auto
+    set_group (ToggleButton& group) -> void;
+    auto
+    unset_group () -> void;
 
     auto
     signal_toggled () -> Glib::SignalProxy<void ()>;
@@ -112,17 +115,15 @@ namespace Gtk
   public:
   public:
   protected:
-    virtual void
-    on_toggled ();
+    virtual auto
+    on_toggled () -> void;
   };
 
 } // namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkToggleButton* object, bool take_copy = false) -> Gtk::ToggleButton*;
 } // namespace Glib
 

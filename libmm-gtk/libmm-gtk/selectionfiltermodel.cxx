@@ -15,11 +15,11 @@ namespace Glib
 {
 
   auto
-  wrap (GtkSelectionFilterModel* object, const bool take_copy) -> RefPtr<Gtk::SelectionFilterModel>
+  wrap (GtkSelectionFilterModel* object, bool take_copy) -> Glib::RefPtr<Gtk::SelectionFilterModel>
   {
     return Glib::make_refptr_for_instance<Gtk::SelectionFilterModel> (
         dynamic_cast<Gtk::SelectionFilterModel*> (
-            wrap_auto ((GObject*) object, take_copy)));
+            Glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
 } // namespace Glib
@@ -28,7 +28,7 @@ namespace Gtk
 {
 
   auto
-  SelectionFilterModel_Class::init () -> const Class&
+  SelectionFilterModel_Class::init () -> const Glib::Class&
   {
     if (!gtype_)
     {
@@ -63,31 +63,31 @@ namespace Gtk
 
   SelectionFilterModel::SelectionFilterModel (
       const Glib::ConstructParams& construct_params)
-    : Object (construct_params)
+    : Glib::Object (construct_params)
   {
   }
 
   SelectionFilterModel::SelectionFilterModel (GtkSelectionFilterModel* castitem)
-    : Object ((GObject*) castitem)
+    : Glib::Object ((GObject*) (castitem))
   {
   }
 
   SelectionFilterModel::SelectionFilterModel (
       SelectionFilterModel&& src) noexcept
-    : Object (std::move (src)),
-      ListModel (std::move (src))
+    : Glib::Object (std::move (src)),
+      Gio::ListModel (std::move (src))
   {
   }
 
   auto
   SelectionFilterModel::operator= (SelectionFilterModel&& src) noexcept -> SelectionFilterModel&
   {
-    Object::operator= (std::move (src));
-    ListModel::operator= (std::move (src));
+    Glib::Object::operator= (std::move (src));
+    Gio::ListModel::operator= (std::move (src));
     return *this;
   }
 
-  SelectionFilterModel::~SelectionFilterModel () noexcept = default;
+  SelectionFilterModel::~SelectionFilterModel () noexcept {}
 
   SelectionFilterModel::CppClassType
       SelectionFilterModel::selectionfiltermodel_class_;
@@ -106,11 +106,11 @@ namespace Gtk
 
   SelectionFilterModel::SelectionFilterModel (
       const Glib::RefPtr<SelectionModel>& model)
-    : ObjectBase (nullptr),
-      Object (Glib::ConstructParams (selectionfiltermodel_class_.init (),
-                                     "model",
-                                     Glib::unwrap (model),
-                                     nullptr))
+    : Glib::ObjectBase (nullptr),
+      Glib::Object (Glib::ConstructParams (selectionfiltermodel_class_.init (),
+                                           "model",
+                                           Glib::unwrap (model),
+                                           nullptr))
   {
   }
 
@@ -150,7 +150,7 @@ namespace Gtk
   auto
   SelectionFilterModel::property_item_type () const -> Glib::PropertyProxy_ReadOnly<GType>
   {
-    return {this, "item-type"};
+    return Glib::PropertyProxy_ReadOnly<GType> (this, "item-type");
   }
 
   static_assert (
@@ -162,19 +162,20 @@ namespace Gtk
   auto
   SelectionFilterModel::property_model () -> Glib::PropertyProxy<Glib::RefPtr<SelectionModel>>
   {
-    return {this, "model"};
+    return Glib::PropertyProxy<Glib::RefPtr<SelectionModel>> (this, "model");
   }
 
   auto
   SelectionFilterModel::property_model () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<SelectionModel>>
   {
-    return {this, "model"};
+    return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<SelectionModel>> (this,
+                                                                       "model");
   }
 
   auto
   SelectionFilterModel::property_n_items () const -> Glib::PropertyProxy_ReadOnly<unsigned int>
   {
-    return {this, "n-items"};
+    return Glib::PropertyProxy_ReadOnly<unsigned int> (this, "n-items");
   }
 
 } // namespace Gtk

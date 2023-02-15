@@ -100,9 +100,7 @@ namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkEventControllerLegacy* object, bool take_copy = false) -> Glib::RefPtr<Gtk::EventControllerLegacy>;
 } // namespace Glib
 

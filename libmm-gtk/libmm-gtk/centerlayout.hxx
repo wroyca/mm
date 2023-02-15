@@ -86,20 +86,20 @@ namespace Gtk
     static auto
     create () -> Glib::RefPtr<CenterLayout>;
 
-    void
-    set_orientation (Orientation orientation);
+    auto
+    set_orientation (Orientation orientation) -> void;
 
     auto
     get_orientation () const -> Orientation;
 
-    void
-    set_baseline_position (BaselinePosition baseline_position);
+    auto
+    set_baseline_position (BaselinePosition baseline_position) -> void;
 
     auto
     get_baseline_position () const -> BaselinePosition;
 
-    void
-    set_start_widget (Widget* widget);
+    auto
+    set_start_widget (Widget* widget) -> void;
 
     auto
     get_start_widget () -> Widget*;
@@ -107,8 +107,8 @@ namespace Gtk
     auto
     get_start_widget () const -> const Widget*;
 
-    void
-    set_center_widget (Widget* widget);
+    auto
+    set_center_widget (Widget* widget) -> void;
 
     auto
     get_center_widget () -> Widget*;
@@ -116,8 +116,8 @@ namespace Gtk
     auto
     get_center_widget () const -> const Widget*;
 
-    void
-    set_end_widget (Widget* widget);
+    auto
+    set_end_widget (Widget* widget) -> void;
 
     auto
     get_end_widget () -> Widget*;
@@ -134,9 +134,7 @@ namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkCenterLayout* object, bool take_copy = false) -> Glib::RefPtr<Gtk::CenterLayout>;
 } // namespace Glib
 

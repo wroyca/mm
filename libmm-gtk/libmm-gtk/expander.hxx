@@ -83,32 +83,32 @@ namespace Gtk
 
     explicit Expander (const Glib::ustring& label, bool mnemonic = false);
 
-    void
-    set_expanded (bool expanded = true);
+    auto
+    set_expanded (bool expanded = true) -> void;
 
     auto
     get_expanded () const -> bool;
 
-    void
-    set_label (const Glib::ustring& label);
+    auto
+    set_label (const Glib::ustring& label) -> void;
 
     auto
     get_label () const -> Glib::ustring;
 
-    void
-    set_use_underline (bool use_underline = true);
+    auto
+    set_use_underline (bool use_underline = true) -> void;
 
     auto
     get_use_underline () const -> bool;
 
-    void
-    set_use_markup (bool use_markup = true);
+    auto
+    set_use_markup (bool use_markup = true) -> void;
 
     auto
     get_use_markup () const -> bool;
 
-    void
-    set_label_widget (Widget& label_widget);
+    auto
+    set_label_widget (Widget& label_widget) -> void;
 
     auto
     get_label_widget () -> Widget*;
@@ -116,16 +116,16 @@ namespace Gtk
     auto
     get_label_widget () const -> const Widget*;
 
-    void
-    set_resize_toplevel (bool resize_toplevel = true);
+    auto
+    set_resize_toplevel (bool resize_toplevel = true) -> void;
 
     auto
     get_resize_toplevel () const -> bool;
 
-    void
-    set_child (Widget& child);
-    void
-    unset_child ();
+    auto
+    set_child (Widget& child) -> void;
+    auto
+    unset_child () -> void;
 
     auto
     get_child () -> Widget*;
@@ -184,9 +184,7 @@ namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkExpander* object, bool take_copy = false) -> Gtk::Expander*;
 } // namespace Glib
 

@@ -17,14 +17,14 @@ namespace Gtk
     using CppObjectType = Window;
     using BaseObjectType = GtkWindow;
     using BaseClassType = GtkWindowClass;
-    using CppClassParent = Widget_Class;
+    using CppClassParent = Gtk::Widget_Class;
     using BaseClassParent = GtkWidgetClass;
 
     friend class Window;
 #endif
 
     auto
-    init () -> const Class&;
+    init () -> const Glib::Class&;
 
     static auto
     class_init_function (void* g_class, void* class_data) -> void;
@@ -33,8 +33,12 @@ namespace Gtk
     wrap_new (GObject*) -> Glib::ObjectBase*;
 
   protected:
+#ifndef GTKMM_DISABLE_DEPRECATED
+
     static auto
     keys_changed_callback (GtkWindow* self) -> void;
+#endif
+
     static auto
     close_request_callback (GtkWindow* self) -> gboolean;
 

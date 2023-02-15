@@ -9,6 +9,6 @@ location: libmm-gdk/
 :
 location: libmm-gio/
 :
-location: libmm-gtk/
-:
 location: libmm-pango/
+:
+location: libmm-gtk/

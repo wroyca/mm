@@ -17,14 +17,14 @@ namespace Gdk
     using CppObjectType = CairoContext;
     using BaseObjectType = GdkCairoContext;
     using BaseClassType = GdkCairoContextClass;
-    using CppClassParent = DrawContext_Class;
+    using CppClassParent = Gdk::DrawContext_Class;
     using BaseClassParent = GdkDrawContextClass;
 
     friend class CairoContext;
 #endif
 
     auto
-    init () -> const Class&;
+    init () -> const Glib::Class&;
 
     static auto
     class_init_function (void* g_class, void* class_data) -> void;

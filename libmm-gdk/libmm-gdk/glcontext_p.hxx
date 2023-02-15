@@ -17,14 +17,14 @@ namespace Gdk
     using CppObjectType = GLContext;
     using BaseObjectType = GdkGLContext;
     using BaseClassType = GdkGLContextClass;
-    using CppClassParent = DrawContext_Class;
+    using CppClassParent = Gdk::DrawContext_Class;
     using BaseClassParent = GdkDrawContextClass;
 
     friend class GLContext;
 #endif
 
     auto
-    init () -> const Class&;
+    init () -> const Glib::Class&;
 
     static auto
     class_init_function (void* g_class, void* class_data) -> void;

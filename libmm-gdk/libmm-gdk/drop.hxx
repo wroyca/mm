@@ -126,44 +126,45 @@ namespace Gdk
     auto
     get_drag () const -> Glib::RefPtr<const Drag>;
 
-    void
-    status (DragAction actions, DragAction preferred);
+    auto
+    status (DragAction actions, DragAction preferred) -> void;
 
-    void
-    refuse ();
+    auto
+    refuse () -> void;
 
-    void
-    finish (DragAction action);
+    auto
+    finish (DragAction action) -> void;
 
-    void
-    failed ();
+    auto
+    failed () -> void;
 
-    void
+    auto
     read_async (const std::vector<Glib::ustring>& mime_types,
                 int io_priority,
                 const Gio::SlotAsyncReady& slot,
-                const Glib::RefPtr<Gio::Cancellable>& cancellable);
+                const Glib::RefPtr<Gio::Cancellable>& cancellable) -> void;
 
-    void
+    auto
     read_async (const std::vector<Glib::ustring>& mime_types,
                 int io_priority,
-                const Gio::SlotAsyncReady& slot);
+                const Gio::SlotAsyncReady& slot) -> void;
 
     auto
     read_finish (const Glib::RefPtr<Gio::AsyncResult>& result,
                  Glib::ustring& out_mime_type)
         -> Glib::RefPtr<Gio::InputStream>;
 
-    void
+    auto
     read_value_async (GType type,
                       int io_priority,
                       const Gio::SlotAsyncReady& slot,
-                      const Glib::RefPtr<Gio::Cancellable>& cancellable);
+                      const Glib::RefPtr<Gio::Cancellable>& cancellable)
+        -> void;
 
-    void
+    auto
     read_value_async (GType type,
                       int io_priority,
-                      const Gio::SlotAsyncReady& slot);
+                      const Gio::SlotAsyncReady& slot) -> void;
 
     auto
     read_value_finish (const Glib::RefPtr<Gio::AsyncResult>& result)
@@ -200,9 +201,7 @@ namespace Gdk
 
 namespace Glib
 {
-
-  GDKMM_API
-  auto
+  GDKMM_API auto
   wrap (GdkDrop* object, bool take_copy = false) -> Glib::RefPtr<Gdk::Drop>;
 } // namespace Glib
 

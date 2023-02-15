@@ -26,10 +26,10 @@ namespace Glib
 {
 
   auto
-  wrap (GtkRevealer* object, const bool take_copy) -> Gtk::Revealer*
+  wrap (GtkRevealer* object, bool take_copy) -> Gtk::Revealer*
   {
     return dynamic_cast<Gtk::Revealer*> (
-        wrap_auto ((GObject*) object, take_copy));
+        Glib::wrap_auto ((GObject*) (object), take_copy));
   }
 
 } // namespace Glib
@@ -38,7 +38,7 @@ namespace Gtk
 {
 
   auto
-  Revealer_Class::init () -> const Class&
+  Revealer_Class::init () -> const Glib::Class&
   {
     if (!gtype_)
     {
@@ -60,28 +60,28 @@ namespace Gtk
   auto
   Revealer_Class::wrap_new (GObject* o) -> Glib::ObjectBase*
   {
-    return manage (new Revealer ((GtkRevealer*) o));
+    return manage (new Revealer ((GtkRevealer*) (o)));
   }
 
   Revealer::Revealer (const Glib::ConstructParams& construct_params)
-    : Widget (construct_params)
+    : Gtk::Widget (construct_params)
   {
   }
 
   Revealer::Revealer (GtkRevealer* castitem)
-    : Widget ((GtkWidget*) castitem)
+    : Gtk::Widget ((GtkWidget*) (castitem))
   {
   }
 
   Revealer::Revealer (Revealer&& src) noexcept
-    : Widget (std::move (src))
+    : Gtk::Widget (std::move (src))
   {
   }
 
   auto
   Revealer::operator= (Revealer&& src) noexcept -> Revealer&
   {
-    Widget::operator= (std::move (src));
+    Gtk::Widget::operator= (std::move (src));
     return *this;
   }
 
@@ -105,8 +105,8 @@ namespace Gtk
   }
 
   Revealer::Revealer ()
-    : ObjectBase (nullptr),
-      Widget (Glib::ConstructParams (revealer_class_.init ()))
+    : Glib::ObjectBase (nullptr),
+      Gtk::Widget (Glib::ConstructParams (revealer_class_.init ()))
   {
   }
 
@@ -117,9 +117,9 @@ namespace Gtk
   }
 
   auto
-  Revealer::set_reveal_child (const bool reveal_child) -> void
+  Revealer::set_reveal_child (bool reveal_child) -> void
   {
-    gtk_revealer_set_reveal_child (gobj (), reveal_child);
+    gtk_revealer_set_reveal_child (gobj (), static_cast<int> (reveal_child));
   }
 
   auto
@@ -136,7 +136,7 @@ namespace Gtk
   }
 
   auto
-  Revealer::set_transition_duration (const guint duration) -> void
+  Revealer::set_transition_duration (guint duration) -> void
   {
     gtk_revealer_set_transition_duration (gobj (), duration);
   }
@@ -159,7 +159,7 @@ namespace Gtk
   auto
   Revealer::set_child (Widget& child) -> void
   {
-    gtk_revealer_set_child (gobj (), child.gobj ());
+    gtk_revealer_set_child (gobj (), (child).gobj ());
   }
 
   auto
@@ -183,55 +183,58 @@ namespace Gtk
   auto
   Revealer::property_transition_type () -> Glib::PropertyProxy<RevealerTransitionType>
   {
-    return {this, "transition-type"};
+    return Glib::PropertyProxy<RevealerTransitionType> (this,
+                                                        "transition-type");
   }
 
   auto
   Revealer::property_transition_type () const -> Glib::PropertyProxy_ReadOnly<RevealerTransitionType>
   {
-    return {this, "transition-type"};
+    return Glib::PropertyProxy_ReadOnly<RevealerTransitionType> (
+        this,
+        "transition-type");
   }
 
   auto
   Revealer::property_transition_duration () -> Glib::PropertyProxy<guint>
   {
-    return {this, "transition-duration"};
+    return Glib::PropertyProxy<guint> (this, "transition-duration");
   }
 
   auto
   Revealer::property_transition_duration () const -> Glib::PropertyProxy_ReadOnly<guint>
   {
-    return {this, "transition-duration"};
+    return Glib::PropertyProxy_ReadOnly<guint> (this, "transition-duration");
   }
 
   auto
   Revealer::property_reveal_child () -> Glib::PropertyProxy<bool>
   {
-    return {this, "reveal-child"};
+    return Glib::PropertyProxy<bool> (this, "reveal-child");
   }
 
   auto
   Revealer::property_reveal_child () const -> Glib::PropertyProxy_ReadOnly<bool>
   {
-    return {this, "reveal-child"};
+    return Glib::PropertyProxy_ReadOnly<bool> (this, "reveal-child");
   }
 
   auto
   Revealer::property_child_revealed () const -> Glib::PropertyProxy_ReadOnly<bool>
   {
-    return {this, "child-revealed"};
+    return Glib::PropertyProxy_ReadOnly<bool> (this, "child-revealed");
   }
 
   auto
   Revealer::property_child () -> Glib::PropertyProxy<Widget*>
   {
-    return {this, "child"};
+    return Glib::PropertyProxy<Widget*> (this, "child");
   }
 
   auto
   Revealer::property_child () const -> Glib::PropertyProxy_ReadOnly<Widget*>
   {
-    return {this, "child"};
+    return Glib::PropertyProxy_ReadOnly<Widget*> (this, "child");
   }
 
 } // namespace Gtk

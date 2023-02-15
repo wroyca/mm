@@ -19,8 +19,7 @@ namespace Gtk
   auto
   GLArea::throw_if_error () const -> void
   {
-    const GError* error =
-        gtk_gl_area_get_error (const_cast<GtkGLArea*> (gobj ()));
+    GError* error = gtk_gl_area_get_error (const_cast<GtkGLArea*> (gobj ()));
     if (error)
     {
       Glib::Error::throw_exception (g_error_copy (error));
@@ -38,13 +37,13 @@ namespace Gtk
 namespace
 {
 
-  auto
+  static auto
   GLArea_signal_create_context_callback (GtkGLArea* self, void* data) -> GdkGLContext*
   {
     using namespace Gtk;
     using SlotType = sigc::slot<Glib::RefPtr<Gdk::GLContext> ()>;
 
-    const auto obj = dynamic_cast<GLArea*> (
+    auto obj = dynamic_cast<GLArea*> (
         Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
@@ -52,7 +51,7 @@ namespace
       try
       {
         if (const auto slot = Glib::SignalProxyNormal::data_to_slot (data))
-          return unwrap_copy ((*static_cast<SlotType*> (slot)) ());
+          return Glib::unwrap_copy ((*static_cast<SlotType*> (slot)) ());
       }
       catch (...)
       {
@@ -64,13 +63,13 @@ namespace
     return RType ();
   }
 
-  auto
+  static auto
   GLArea_signal_create_context_notify_callback (GtkGLArea* self, void* data) -> GdkGLContext*
   {
     using namespace Gtk;
     using SlotType = sigc::slot<void ()>;
 
-    const auto obj = dynamic_cast<GLArea*> (
+    auto obj = dynamic_cast<GLArea*> (
         Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
@@ -90,18 +89,18 @@ namespace
     return RType ();
   }
 
-  const Glib::SignalProxyInfo GLArea_signal_create_context_info = {
+  static const Glib::SignalProxyInfo GLArea_signal_create_context_info = {
       "create_context",
       (GCallback) &GLArea_signal_create_context_callback,
       (GCallback) &GLArea_signal_create_context_notify_callback};
 
-  auto
+  static auto
   GLArea_signal_render_callback (GtkGLArea* self, GdkGLContext* p0, void* data) -> gboolean
   {
     using namespace Gtk;
     using SlotType = sigc::slot<bool (const Glib::RefPtr<Gdk::GLContext>&)>;
 
-    const auto obj = dynamic_cast<GLArea*> (
+    auto obj = dynamic_cast<GLArea*> (
         Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
@@ -109,7 +108,8 @@ namespace
       try
       {
         if (const auto slot = Glib::SignalProxyNormal::data_to_slot (data))
-          return (*static_cast<SlotType*> (slot)) (Glib::wrap (p0, true));
+          return static_cast<int> (
+              (*static_cast<SlotType*> (slot)) (Glib::wrap (p0, true)));
       }
       catch (...)
       {
@@ -121,7 +121,7 @@ namespace
     return RType ();
   }
 
-  auto
+  static auto
   GLArea_signal_render_notify_callback (GtkGLArea* self,
                                         GdkGLContext* p0,
                                         void* data) -> gboolean
@@ -129,7 +129,7 @@ namespace
     using namespace Gtk;
     using SlotType = sigc::slot<void (const Glib::RefPtr<Gdk::GLContext>&)>;
 
-    const auto obj = dynamic_cast<GLArea*> (
+    auto obj = dynamic_cast<GLArea*> (
         Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
@@ -149,21 +149,18 @@ namespace
     return RType ();
   }
 
-  const Glib::SignalProxyInfo GLArea_signal_render_info = {
+  static const Glib::SignalProxyInfo GLArea_signal_render_info = {
       "render",
       (GCallback) &GLArea_signal_render_callback,
       (GCallback) &GLArea_signal_render_notify_callback};
 
-  auto
-  GLArea_signal_resize_callback (GtkGLArea* self,
-                                 const gint p0,
-                                 const gint p1,
-                                 void* data) -> void
+  static auto
+  GLArea_signal_resize_callback (GtkGLArea* self, gint p0, gint p1, void* data) -> void
   {
     using namespace Gtk;
     using SlotType = sigc::slot<void (int, int)>;
 
-    const auto obj = dynamic_cast<GLArea*> (
+    auto obj = dynamic_cast<GLArea*> (
         Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
@@ -180,7 +177,7 @@ namespace
     }
   }
 
-  const Glib::SignalProxyInfo GLArea_signal_resize_info = {
+  static const Glib::SignalProxyInfo GLArea_signal_resize_info = {
       "resize",
       (GCallback) &GLArea_signal_resize_callback,
       (GCallback) &GLArea_signal_resize_callback};
@@ -191,10 +188,10 @@ namespace Glib
 {
 
   auto
-  wrap (GtkGLArea* object, const bool take_copy) -> Gtk::GLArea*
+  wrap (GtkGLArea* object, bool take_copy) -> Gtk::GLArea*
   {
     return dynamic_cast<Gtk::GLArea*> (
-        wrap_auto ((GObject*) object, take_copy));
+        Glib::wrap_auto ((GObject*) (object), take_copy));
   }
 
 } // namespace Glib
@@ -203,7 +200,7 @@ namespace Gtk
 {
 
   auto
-  GLArea_Class::init () -> const Class&
+  GLArea_Class::init () -> const Glib::Class&
   {
     if (!gtype_)
     {
@@ -229,8 +226,8 @@ namespace Gtk
   auto
   GLArea_Class::create_context_callback (GtkGLArea* self) -> GdkGLContext*
   {
-    const auto obj_base =
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self);
+    const auto obj_base = static_cast<Glib::ObjectBase*> (
+        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -239,7 +236,7 @@ namespace Gtk
       {
         try
         {
-          return unwrap_copy (obj->on_create_context ());
+          return Glib::unwrap_copy (obj->on_create_context ());
         }
         catch (...)
         {
@@ -261,8 +258,8 @@ namespace Gtk
   auto
   GLArea_Class::render_callback (GtkGLArea* self, GdkGLContext* p0) -> gboolean
   {
-    const auto obj_base =
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self);
+    const auto obj_base = static_cast<Glib::ObjectBase*> (
+        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -271,7 +268,7 @@ namespace Gtk
       {
         try
         {
-          return obj->on_render (Glib::wrap (p0, true));
+          return static_cast<int> (obj->on_render (Glib::wrap (p0, true)));
         }
         catch (...)
         {
@@ -291,10 +288,10 @@ namespace Gtk
   }
 
   auto
-  GLArea_Class::resize_callback (GtkGLArea* self, const gint p0, const gint p1) -> void
+  GLArea_Class::resize_callback (GtkGLArea* self, gint p0, gint p1) -> void
   {
-    const auto obj_base =
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self);
+    const auto obj_base = static_cast<Glib::ObjectBase*> (
+        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -323,28 +320,28 @@ namespace Gtk
   auto
   GLArea_Class::wrap_new (GObject* o) -> Glib::ObjectBase*
   {
-    return manage (new GLArea ((GtkGLArea*) o));
+    return manage (new GLArea ((GtkGLArea*) (o)));
   }
 
   GLArea::GLArea (const Glib::ConstructParams& construct_params)
-    : Widget (construct_params)
+    : Gtk::Widget (construct_params)
   {
   }
 
   GLArea::GLArea (GtkGLArea* castitem)
-    : Widget ((GtkWidget*) castitem)
+    : Gtk::Widget ((GtkWidget*) (castitem))
   {
   }
 
   GLArea::GLArea (GLArea&& src) noexcept
-    : Widget (std::move (src))
+    : Gtk::Widget (std::move (src))
   {
   }
 
   auto
   GLArea::operator= (GLArea&& src) noexcept -> GLArea&
   {
-    Widget::operator= (std::move (src));
+    Gtk::Widget::operator= (std::move (src));
     return *this;
   }
 
@@ -368,8 +365,8 @@ namespace Gtk
   }
 
   GLArea::GLArea ()
-    : ObjectBase (nullptr),
-      Widget (Glib::ConstructParams (glarea_class_.init ()))
+    : Glib::ObjectBase (nullptr),
+      Gtk::Widget (Glib::ConstructParams (glarea_class_.init ()))
   {
   }
 
@@ -409,7 +406,7 @@ namespace Gtk
   auto
   GLArea::set_error (const Glib::Error& error) -> void
   {
-    gtk_gl_area_set_error (gobj (), error.gobj ());
+    gtk_gl_area_set_error (gobj (), (error).gobj ());
   }
 
   auto
@@ -419,9 +416,10 @@ namespace Gtk
   }
 
   auto
-  GLArea::set_has_depth_buffer (const bool has_depth_buffer) -> void
+  GLArea::set_has_depth_buffer (bool has_depth_buffer) -> void
   {
-    gtk_gl_area_set_has_depth_buffer (gobj (), has_depth_buffer);
+    gtk_gl_area_set_has_depth_buffer (gobj (),
+                                      static_cast<int> (has_depth_buffer));
   }
 
   auto
@@ -432,9 +430,10 @@ namespace Gtk
   }
 
   auto
-  GLArea::set_has_stencil_buffer (const bool has_stencil_buffer) -> void
+  GLArea::set_has_stencil_buffer (bool has_stencil_buffer) -> void
   {
-    gtk_gl_area_set_has_stencil_buffer (gobj (), has_stencil_buffer);
+    gtk_gl_area_set_has_stencil_buffer (gobj (),
+                                        static_cast<int> (has_stencil_buffer));
   }
 
   auto
@@ -444,21 +443,21 @@ namespace Gtk
   }
 
   auto
-  GLArea::set_auto_render (const bool auto_render) -> void
+  GLArea::set_auto_render (bool auto_render) -> void
   {
-    gtk_gl_area_set_auto_render (gobj (), auto_render);
+    gtk_gl_area_set_auto_render (gobj (), static_cast<int> (auto_render));
   }
 
   auto
   GLArea::get_required_version (int& major, int& minor) const -> void
   {
     gtk_gl_area_get_required_version (const_cast<GtkGLArea*> (gobj ()),
-                                      &major,
-                                      &minor);
+                                      &(major),
+                                      &(minor));
   }
 
   auto
-  GLArea::set_required_version (const int major, const int minor) -> void
+  GLArea::set_required_version (int major, int minor) -> void
   {
     gtk_gl_area_set_required_version (gobj (), major, minor);
   }
@@ -470,39 +469,44 @@ namespace Gtk
   }
 
   auto
-  GLArea::set_use_es (const bool use_es) -> void
+  GLArea::set_use_es (bool use_es) -> void
   {
-    gtk_gl_area_set_use_es (gobj (), use_es);
+    gtk_gl_area_set_use_es (gobj (), static_cast<int> (use_es));
   }
 
   auto
   GLArea::signal_create_context () -> Glib::SignalProxy<Glib::RefPtr<Gdk::GLContext> ()>
   {
-    return {this, &GLArea_signal_create_context_info};
+    return Glib::SignalProxy<Glib::RefPtr<Gdk::GLContext> ()> (
+        this,
+        &GLArea_signal_create_context_info);
   }
 
   auto
   GLArea::signal_render () -> Glib::SignalProxy<bool (const Glib::RefPtr<Gdk::GLContext>&)>
   {
-    return {this, &GLArea_signal_render_info};
+    return Glib::SignalProxy<bool (const Glib::RefPtr<Gdk::GLContext>&)> (
+        this,
+        &GLArea_signal_render_info);
   }
 
   auto
   GLArea::signal_resize () -> Glib::SignalProxy<void (int, int)>
   {
-    return {this, &GLArea_signal_resize_info};
+    return Glib::SignalProxy<void (int, int)> (this,
+                                               &GLArea_signal_resize_info);
   }
 
   auto
   GLArea::property_auto_render () -> Glib::PropertyProxy<bool>
   {
-    return {this, "auto-render"};
+    return Glib::PropertyProxy<bool> (this, "auto-render");
   }
 
   auto
   GLArea::property_auto_render () const -> Glib::PropertyProxy_ReadOnly<bool>
   {
-    return {this, "auto-render"};
+    return Glib::PropertyProxy_ReadOnly<bool> (this, "auto-render");
   }
 
   static_assert (
@@ -514,47 +518,49 @@ namespace Gtk
   auto
   GLArea::property_context () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gdk::GLContext>>
   {
-    return {this, "context"};
+    return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gdk::GLContext>> (
+        this,
+        "context");
   }
 
   auto
   GLArea::property_has_depth_buffer () -> Glib::PropertyProxy<bool>
   {
-    return {this, "has-depth-buffer"};
+    return Glib::PropertyProxy<bool> (this, "has-depth-buffer");
   }
 
   auto
   GLArea::property_has_depth_buffer () const -> Glib::PropertyProxy_ReadOnly<bool>
   {
-    return {this, "has-depth-buffer"};
+    return Glib::PropertyProxy_ReadOnly<bool> (this, "has-depth-buffer");
   }
 
   auto
   GLArea::property_has_stencil_buffer () -> Glib::PropertyProxy<bool>
   {
-    return {this, "has-stencil-buffer"};
+    return Glib::PropertyProxy<bool> (this, "has-stencil-buffer");
   }
 
   auto
   GLArea::property_has_stencil_buffer () const -> Glib::PropertyProxy_ReadOnly<bool>
   {
-    return {this, "has-stencil-buffer"};
+    return Glib::PropertyProxy_ReadOnly<bool> (this, "has-stencil-buffer");
   }
 
   auto
   GLArea::property_use_es () -> Glib::PropertyProxy<bool>
   {
-    return {this, "use-es"};
+    return Glib::PropertyProxy<bool> (this, "use-es");
   }
 
   auto
   GLArea::property_use_es () const -> Glib::PropertyProxy_ReadOnly<bool>
   {
-    return {this, "use-es"};
+    return Glib::PropertyProxy_ReadOnly<bool> (this, "use-es");
   }
 
   auto
-  GLArea::on_create_context () -> Glib::RefPtr<Gdk::GLContext>
+  Gtk::GLArea::on_create_context () -> Glib::RefPtr<Gdk::GLContext>
   {
     const auto base = static_cast<BaseClassType*> (
         g_type_class_peek_parent (G_OBJECT_GET_CLASS (gobject_)));
@@ -563,11 +569,11 @@ namespace Gtk
       return Glib::wrap ((*base->create_context) (gobj ()));
 
     using RType = Glib::RefPtr<Gdk::GLContext>;
-    return {};
+    return RType ();
   }
 
   auto
-  GLArea::on_render (const Glib::RefPtr<Gdk::GLContext>& context) -> bool
+  Gtk::GLArea::on_render (const Glib::RefPtr<Gdk::GLContext>& context) -> bool
   {
     const auto base = static_cast<BaseClassType*> (
         g_type_class_peek_parent (G_OBJECT_GET_CLASS (gobject_)));
@@ -580,7 +586,7 @@ namespace Gtk
   }
 
   auto
-  GLArea::on_resize (const int width, const int height) -> void
+  Gtk::GLArea::on_resize (int width, int height) -> void
   {
     const auto base = static_cast<BaseClassType*> (
         g_type_class_peek_parent (G_OBJECT_GET_CLASS (gobject_)));

@@ -90,13 +90,13 @@ namespace Glib
 
     auto
     get_data (const QueryQuark& key) -> void*;
-    void
-    set_data (const Quark& key, void* data);
+    auto
+    set_data (const Quark& key, void* data) -> void;
     using DestroyNotify = void (*) (gpointer data);
-    void
-    set_data (const Quark& key, void* data, DestroyNotify notify);
-    void
-    remove_data (const QueryQuark& quark);
+    auto
+    set_data (const Quark& key, void* data, DestroyNotify notify) -> void;
+    auto
+    remove_data (const QueryQuark& quark) -> void;
 
     auto
     steal_data (const QueryQuark& quark) -> void*;

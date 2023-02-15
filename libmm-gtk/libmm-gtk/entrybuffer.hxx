@@ -104,11 +104,11 @@ namespace Gtk
     auto
     get_text () const -> Glib::ustring;
 
-    void
-    set_text (const Glib::ustring& text);
+    auto
+    set_text (const Glib::ustring& text) -> void;
 
-    void
-    set_max_length (int max_length);
+    auto
+    set_max_length (int max_length) -> void;
 
     auto
     get_max_length () const -> int;
@@ -119,11 +119,11 @@ namespace Gtk
     auto
     delete_text (guint position, int n_chars) -> guint;
 
-    void
-    emit_inserted_text (guint position, const Glib::ustring& text);
+    auto
+    emit_inserted_text (guint position, const Glib::ustring& text) -> void;
 
-    void
-    emit_deleted_text (guint position, guint n_chars);
+    auto
+    emit_deleted_text (guint position, guint n_chars) -> void;
 
     auto
     signal_inserted_text ()
@@ -150,20 +150,18 @@ namespace Gtk
   public:
   public:
   protected:
-    virtual void
-    on_inserted_text (guint position, const char* chars, guint n_chars);
+    virtual auto
+    on_inserted_text (guint position, const char* chars, guint n_chars) -> void;
 
-    virtual void
-    on_deleted_text (guint position, guint n_chars);
+    virtual auto
+    on_deleted_text (guint position, guint n_chars) -> void;
   };
 
 } // namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkEntryBuffer* object, bool take_copy = false) -> Glib::RefPtr<Gtk::EntryBuffer>;
 } // namespace Glib
 

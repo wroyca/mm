@@ -86,32 +86,32 @@ namespace Gtk
     NativeDialog ();
 
   public:
-    void
-    show ();
+    auto
+    show () -> void;
 
-    void
-    hide ();
+    auto
+    hide () -> void;
 
     auto
     get_visible () const -> bool;
 
-    void
-    set_modal (bool modal = true);
+    auto
+    set_modal (bool modal = true) -> void;
 
     auto
     get_modal () const -> bool;
 
-    void
-    set_title (const Glib::ustring& title);
+    auto
+    set_title (const Glib::ustring& title) -> void;
 
     auto
     get_title () const -> Glib::ustring;
 
-    void
-    set_transient_for (Window& parent);
+    auto
+    set_transient_for (Window& parent) -> void;
 
-    void
-    unset_transient_for ();
+    auto
+    unset_transient_for () -> void;
 
     auto
     get_transient_for () -> Window*;
@@ -149,17 +149,15 @@ namespace Gtk
   public:
   public:
   protected:
-    virtual void
-    on_response (int response_id);
+    virtual auto
+    on_response (int response_id) -> void;
   };
 
 } // namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkNativeDialog* object, bool take_copy = false) -> Glib::RefPtr<Gtk::NativeDialog>;
 } // namespace Glib
 

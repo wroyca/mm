@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: LGPL-2.1-or-later
 
 #ifndef _GIOMM_SRVTARGET_H
 #define _GIOMM_SRVTARGET_H
@@ -44,8 +45,8 @@ namespace Gio
 
     ~SrvTarget () noexcept;
 
-    void
-    swap (SrvTarget& other) noexcept;
+    auto
+    swap (SrvTarget& other) noexcept -> void;
 
     auto
     gobj () -> GSrvTarget*
@@ -90,8 +91,8 @@ namespace Gio
 namespace Gio
 {
 
-  inline void
-  swap (SrvTarget& lhs, SrvTarget& rhs) noexcept
+  inline auto
+  swap (SrvTarget& lhs, SrvTarget& rhs) noexcept -> void
   {
     lhs.swap (rhs);
   }

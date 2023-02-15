@@ -130,15 +130,15 @@ namespace Gtk
                          double climb_rate = 0.0,
                          guint digits = 0);
 
-    void
+    auto
     configure (const Glib::RefPtr<Adjustment>& adjustment,
                double climb_rate,
-               guint digits);
+               guint digits) -> void;
 
-    void
-    set_adjustment (const Glib::RefPtr<Adjustment>& adjustment);
-    void
-    unset_adjustment ();
+    auto
+    set_adjustment (const Glib::RefPtr<Adjustment>& adjustment) -> void;
+    auto
+    unset_adjustment () -> void;
 
     auto
     get_adjustment () -> Glib::RefPtr<Adjustment>;
@@ -146,23 +146,23 @@ namespace Gtk
     auto
     get_adjustment () const -> Glib::RefPtr<const Adjustment>;
 
-    void
-    set_digits (guint digits);
+    auto
+    set_digits (guint digits) -> void;
 
     auto
     get_digits () const -> guint;
 
-    void
-    set_increments (double step, double page);
+    auto
+    set_increments (double step, double page) -> void;
 
-    void
-    get_increments (double& step, double& page) const;
+    auto
+    get_increments (double& step, double& page) const -> void;
 
-    void
-    set_range (double min, double max);
+    auto
+    set_range (double min, double max) -> void;
 
-    void
-    get_range (double& min, double& max) const;
+    auto
+    get_range (double& min, double& max) const -> void;
 
     auto
     get_value () const -> double;
@@ -170,44 +170,44 @@ namespace Gtk
     auto
     get_value_as_int () const -> int;
 
-    void
-    set_value (double value);
+    auto
+    set_value (double value) -> void;
 
-    void
-    set_update_policy (UpdatePolicy policy);
+    auto
+    set_update_policy (UpdatePolicy policy) -> void;
 
     auto
     get_update_policy () const -> UpdatePolicy;
 
-    void
-    set_numeric (bool numeric = true);
+    auto
+    set_numeric (bool numeric = true) -> void;
 
     auto
     get_numeric () const -> bool;
 
-    void
-    spin (SpinType direction, double increment);
+    auto
+    spin (SpinType direction, double increment) -> void;
 
-    void
-    set_wrap (bool wrap = true);
+    auto
+    set_wrap (bool wrap = true) -> void;
 
     auto
     get_wrap () const -> bool;
 
-    void
-    set_snap_to_ticks (bool snap_to_ticks = true);
+    auto
+    set_snap_to_ticks (bool snap_to_ticks = true) -> void;
 
     auto
     get_snap_to_ticks () const -> bool;
 
-    void
-    set_climb_rate (double climb_rate);
+    auto
+    set_climb_rate (double climb_rate) -> void;
 
     auto
     get_climb_rate () const -> double;
 
-    void
-    update ();
+    auto
+    update () -> void;
 
     enum
     {
@@ -301,9 +301,7 @@ namespace Glib
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkSpinButton* object, bool take_copy = false) -> Gtk::SpinButton*;
 } // namespace Glib
 

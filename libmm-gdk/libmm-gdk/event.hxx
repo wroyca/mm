@@ -74,11 +74,11 @@ namespace Gdk
     using BaseObjectType = GdkEvent;
 #endif
 
-    void
-    reference () const;
+    auto
+    reference () const -> void;
 
-    void
-    unreference () const;
+    auto
+    unreference () const -> void;
 
     auto
     gobj () -> GdkEvent*;
@@ -96,8 +96,8 @@ namespace Gdk
     operator= (const Event&) -> Event& = delete;
 
   protected:
-    void
-    operator delete (void*, std::size_t);
+    auto
+    operator delete (void*, std::size_t) -> void;
 
   private:
   public:
@@ -195,8 +195,8 @@ namespace Gdk
     auto
     get_direction () const -> ScrollDirection;
 
-    void
-    get_deltas (double& delta_x, double& delta_y) const;
+    auto
+    get_deltas (double& delta_x, double& delta_y) const -> void;
 
     auto
     get_scroll_unit () const -> ScrollUnit;
@@ -243,8 +243,8 @@ namespace Gdk
     auto
     get_touchpad_n_fingers () const -> guint;
 
-    void
-    get_touchpad_deltas (double& dx, double& dy) const;
+    auto
+    get_touchpad_deltas (double& dx, double& dy) const -> void;
 
     auto
     get_touchpad_pinch_angle_delta () const -> double;
@@ -255,11 +255,11 @@ namespace Gdk
     auto
     get_pad_button () const -> guint;
 
-    void
-    get_pad_axis_value (guint& index, double& value) const;
+    auto
+    get_pad_axis_value (guint& index, double& value) const -> void;
 
-    void
-    get_pad_group_mode (guint& group, guint& mode) const;
+    auto
+    get_pad_group_mode (guint& group, guint& mode) const -> void;
 
     auto
     get_dnd_drop () -> Glib::RefPtr<Drop>;
@@ -322,9 +322,7 @@ namespace Glib
 
 namespace Glib
 {
-
-  GDKMM_API
-  auto
+  GDKMM_API auto
   wrap (GdkEvent* object, bool take_copy = false) -> Glib::RefPtr<Gdk::Event>;
 
 } // namespace Glib

@@ -96,9 +96,7 @@ namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkVolumeButton* object, bool take_copy = false) -> Gtk::VolumeButton*;
 } // namespace Glib
 

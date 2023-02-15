@@ -53,13 +53,12 @@ namespace Glib
     return str.empty () ? nullptr : str.c_str ();
   }
 
-  GLIBMM_API
-  void
-  append_canonical_typename (std::string& dest, const char* type_name);
+  GLIBMM_API auto
+  append_canonical_typename (std::string& dest, const char* type_name) -> void;
 
   template <typename T>
-  void
-  destroy_notify_delete (void* data)
+  auto
+  destroy_notify_delete (void* data) -> void
   {
     delete static_cast<T*> (data);
   }

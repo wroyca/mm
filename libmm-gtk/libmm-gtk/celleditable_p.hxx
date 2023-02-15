@@ -16,12 +16,12 @@ namespace Gtk
     using CppObjectType = CellEditable;
     using BaseObjectType = GtkCellEditable;
     using BaseClassType = GtkCellEditableIface;
-    using CppClassParent = Interface_Class;
+    using CppClassParent = Glib::Interface_Class;
 
     friend class CellEditable;
 
     auto
-    init () -> const Interface_Class&;
+    init () -> const Glib::Interface_Class&;
 
     static auto
     iface_init_function (void* g_iface, void* iface_data) -> void;
@@ -30,10 +30,17 @@ namespace Gtk
     wrap_new (GObject*) -> Glib::ObjectBase*;
 
   protected:
+#ifndef GTKMM_DISABLE_DEPRECATED
+
     static auto
     editing_done_callback (GtkCellEditable* self) -> void;
+#endif
+
+#ifndef GTKMM_DISABLE_DEPRECATED
+
     static auto
     remove_widget_callback (GtkCellEditable* self) -> void;
+#endif
 
     static auto
     start_editing_vfunc_callback (GtkCellEditable* self, GdkEvent* event)

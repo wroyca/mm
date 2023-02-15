@@ -26,11 +26,11 @@ namespace Glib
 {
 
   auto
-  wrap (GtkWidgetPaintable* object, const bool take_copy) -> RefPtr<Gtk::WidgetPaintable>
+  wrap (GtkWidgetPaintable* object, bool take_copy) -> Glib::RefPtr<Gtk::WidgetPaintable>
   {
     return Glib::make_refptr_for_instance<Gtk::WidgetPaintable> (
         dynamic_cast<Gtk::WidgetPaintable*> (
-            wrap_auto ((GObject*) object, take_copy)));
+            Glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
 } // namespace Glib
@@ -39,7 +39,7 @@ namespace Gtk
 {
 
   auto
-  WidgetPaintable_Class::init () -> const Class&
+  WidgetPaintable_Class::init () -> const Glib::Class&
   {
     if (!gtype_)
     {
@@ -73,30 +73,30 @@ namespace Gtk
 
   WidgetPaintable::WidgetPaintable (
       const Glib::ConstructParams& construct_params)
-    : Object (construct_params)
+    : Glib::Object (construct_params)
   {
   }
 
   WidgetPaintable::WidgetPaintable (GtkWidgetPaintable* castitem)
-    : Object ((GObject*) castitem)
+    : Glib::Object ((GObject*) (castitem))
   {
   }
 
   WidgetPaintable::WidgetPaintable (WidgetPaintable&& src) noexcept
-    : Object (std::move (src)),
-      Paintable (std::move (src))
+    : Glib::Object (std::move (src)),
+      Gdk::Paintable (std::move (src))
   {
   }
 
   auto
   WidgetPaintable::operator= (WidgetPaintable&& src) noexcept -> WidgetPaintable&
   {
-    Object::operator= (std::move (src));
-    Paintable::operator= (std::move (src));
+    Glib::Object::operator= (std::move (src));
+    Gdk::Paintable::operator= (std::move (src));
     return *this;
   }
 
-  WidgetPaintable::~WidgetPaintable () noexcept = default;
+  WidgetPaintable::~WidgetPaintable () noexcept {}
 
   WidgetPaintable::CppClassType WidgetPaintable::widgetpaintable_class_;
 
@@ -113,17 +113,17 @@ namespace Gtk
   }
 
   WidgetPaintable::WidgetPaintable ()
-    : ObjectBase (nullptr),
-      Object (Glib::ConstructParams (widgetpaintable_class_.init ()))
+    : Glib::ObjectBase (nullptr),
+      Glib::Object (Glib::ConstructParams (widgetpaintable_class_.init ()))
   {
   }
 
   WidgetPaintable::WidgetPaintable (Widget& widget)
-    : ObjectBase (nullptr),
-      Object (Glib::ConstructParams (widgetpaintable_class_.init (),
-                                     "widget",
-                                     widget.gobj (),
-                                     nullptr))
+    : Glib::ObjectBase (nullptr),
+      Glib::Object (Glib::ConstructParams (widgetpaintable_class_.init (),
+                                           "widget",
+                                           (widget).gobj (),
+                                           nullptr))
   {
   }
 
@@ -156,19 +156,19 @@ namespace Gtk
   auto
   WidgetPaintable::set_widget (Widget& widget) -> void
   {
-    gtk_widget_paintable_set_widget (gobj (), widget.gobj ());
+    gtk_widget_paintable_set_widget (gobj (), (widget).gobj ());
   }
 
   auto
   WidgetPaintable::property_widget () -> Glib::PropertyProxy<Widget*>
   {
-    return {this, "widget"};
+    return Glib::PropertyProxy<Widget*> (this, "widget");
   }
 
   auto
   WidgetPaintable::property_widget () const -> Glib::PropertyProxy_ReadOnly<Widget*>
   {
-    return {this, "widget"};
+    return Glib::PropertyProxy_ReadOnly<Widget*> (this, "widget");
   }
 
 } // namespace Gtk

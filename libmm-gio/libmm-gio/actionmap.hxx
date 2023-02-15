@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: LGPL-2.1-or-later
 
 #ifndef _GIOMM_ACTIONMAP_H
 #define _GIOMM_ACTIONMAP_H
@@ -68,8 +69,8 @@ namespace Gio
 
     ~ActionMap () noexcept override;
 
-    static void
-    add_interface (GType gtype_implementer);
+    static auto
+    add_interface (GType gtype_implementer) -> void;
 
     static auto
     get_type () -> GType G_GNUC_CONST;
@@ -93,11 +94,11 @@ namespace Gio
 
   private:
   public:
-    void
-    add_action (const Glib::RefPtr<Action>& action);
+    auto
+    add_action (const Glib::RefPtr<Action>& action) -> void;
 
-    void
-    remove_action (const Glib::ustring& action_name);
+    auto
+    remove_action (const Glib::ustring& action_name) -> void;
 
     auto
     lookup_action (const Glib::ustring& action_name) -> Glib::RefPtr<Action>;
@@ -163,11 +164,11 @@ namespace Gio
     lookup_action_vfunc (const Glib::ustring& name) const
         -> Glib::RefPtr<Action>;
 
-    virtual void
-    add_action_vfunc (const Glib::RefPtr<Action>& action) const;
+    virtual auto
+    add_action_vfunc (const Glib::RefPtr<Action>& action) const -> void;
 
-    virtual void
-    remove_action_vfunc (const Glib::ustring& name);
+    virtual auto
+    remove_action_vfunc (const Glib::ustring& name) -> void;
 
   public:
   public:

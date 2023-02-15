@@ -82,23 +82,23 @@ namespace Gtk
 
   private:
   protected:
-    StringList (const std::vector<Glib::ustring>& strings);
+    explicit StringList (const std::vector<Glib::ustring>& strings);
 
   public:
     static auto
-    create (const std::vector<Glib::ustring>& strings)
+    create (const std::vector<Glib::ustring>& strings = {})
         -> Glib::RefPtr<StringList>;
 
-    void
-    append (const Glib::ustring& string);
+    auto
+    append (const Glib::ustring& string) -> void;
 
-    void
-    remove (guint position);
+    auto
+    remove (guint position) -> void;
 
-    void
+    auto
     splice (guint position,
             guint n_removals,
-            const std::vector<Glib::ustring>& additions);
+            const std::vector<Glib::ustring>& additions) -> void;
 
     auto
     get_string (guint position) const -> Glib::ustring;
@@ -112,9 +112,7 @@ namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkStringList* object, bool take_copy = false) -> Glib::RefPtr<Gtk::StringList>;
 } // namespace Glib
 

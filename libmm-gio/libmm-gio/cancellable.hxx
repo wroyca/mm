@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: LGPL-2.1-or-later
 
 #ifndef _GIOMM_CANCELLABLE_H
 #define _GIOMM_CANCELLABLE_H
@@ -98,29 +99,29 @@ namespace Gio
     auto
     make_pollfd (GPollFD* pollfd) -> bool;
 
-    void
-    release_fd ();
+    auto
+    release_fd () -> void;
 
-    void
-    cancel ();
+    auto
+    cancel () -> void;
 
     static auto
     get_current () -> Glib::RefPtr<Cancellable>;
 
-    void
-    push_current ();
+    auto
+    push_current () -> void;
 
-    void
-    pop_current ();
+    auto
+    pop_current () -> void;
 
-    void
-    reset ();
+    auto
+    reset () -> void;
 
     auto
     connect (const SlotCancelledCallback& slot) -> gulong;
 
-    void
-    disconnect (gulong handler_id);
+    auto
+    disconnect (gulong handler_id) -> void;
 
     auto
     signal_cancelled () -> Glib::SignalProxy<void ()>;
@@ -128,8 +129,8 @@ namespace Gio
   public:
   public:
   protected:
-    virtual void
-    on_cancelled ();
+    virtual auto
+    on_cancelled () -> void;
   };
 
 } // namespace Gio

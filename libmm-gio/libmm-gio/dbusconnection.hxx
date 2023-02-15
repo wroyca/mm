@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: LGPL-2.1-or-later
 
 #ifndef _GIOMM_DBUSCONNECTION_H
 #define _GIOMM_DBUSCONNECTION_H
@@ -523,13 +524,13 @@ namespace Gio::DBus
                                           const Glib::RefPtr<Message>&,
                                           bool)>;
 
-    static void
+    static auto
     get (BusType bus_type,
          const SlotAsyncReady& slot,
-         const Glib::RefPtr<Cancellable>& cancellable);
+         const Glib::RefPtr<Cancellable>& cancellable) -> void;
 
-    static void
-    get (BusType bus_type, const SlotAsyncReady& slot);
+    static auto
+    get (BusType bus_type, const SlotAsyncReady& slot) -> void;
 
     static auto
     get_finish (const Glib::RefPtr<AsyncResult>& res)
@@ -542,65 +543,65 @@ namespace Gio::DBus
     static auto
     get_sync (BusType bus_type) -> Glib::RefPtr<Connection>;
 
-    static void
+    static auto
     create (const Glib::RefPtr<IOStream>& stream,
             const std::string& guid,
             const Glib::RefPtr<AuthObserver>& observer,
             const SlotAsyncReady& slot,
             const Glib::RefPtr<Cancellable>& cancellable,
-            ConnectionFlags flags = Gio::DBus::ConnectionFlags::NONE);
+            ConnectionFlags flags = Gio::DBus::ConnectionFlags::NONE) -> void;
 
-    static void
+    static auto
     create (const Glib::RefPtr<IOStream>& stream,
             const std::string& guid,
             const SlotAsyncReady& slot,
             const Glib::RefPtr<Cancellable>& cancellable,
-            ConnectionFlags flags = Gio::DBus::ConnectionFlags::NONE);
+            ConnectionFlags flags = Gio::DBus::ConnectionFlags::NONE) -> void;
 
-    static void
+    static auto
     create (const Glib::RefPtr<IOStream>& stream,
             const std::string& guid,
             const Glib::RefPtr<AuthObserver>& observer,
             const SlotAsyncReady& slot,
-            ConnectionFlags flags = Gio::DBus::ConnectionFlags::NONE);
+            ConnectionFlags flags = Gio::DBus::ConnectionFlags::NONE) -> void;
 
-    static void
+    static auto
     create (const Glib::RefPtr<IOStream>& stream,
             const std::string& guid,
             const SlotAsyncReady& slot,
-            ConnectionFlags flags = Gio::DBus::ConnectionFlags::NONE);
+            ConnectionFlags flags = Gio::DBus::ConnectionFlags::NONE) -> void;
 
     static auto
     create_finish (const Glib::RefPtr<AsyncResult>& res)
         -> Glib::RefPtr<Connection>;
 
-    static void
+    static auto
     create_for_address (
         const std::string& address,
         const Glib::RefPtr<AuthObserver>& observer,
         const SlotAsyncReady& slot,
         const Glib::RefPtr<Cancellable>& cancellable,
-        ConnectionFlags flags = Gio::DBus::ConnectionFlags::NONE);
+        ConnectionFlags flags = Gio::DBus::ConnectionFlags::NONE) -> void;
 
-    static void
+    static auto
     create_for_address (
         const std::string& address,
         const SlotAsyncReady& slot,
         const Glib::RefPtr<Cancellable>& cancellable,
-        ConnectionFlags flags = Gio::DBus::ConnectionFlags::NONE);
+        ConnectionFlags flags = Gio::DBus::ConnectionFlags::NONE) -> void;
 
-    static void
+    static auto
     create_for_address (
         const std::string& address,
         const Glib::RefPtr<AuthObserver>& observer,
         const SlotAsyncReady& slot,
-        ConnectionFlags flags = Gio::DBus::ConnectionFlags::NONE);
+        ConnectionFlags flags = Gio::DBus::ConnectionFlags::NONE) -> void;
 
-    static void
+    static auto
     create_for_address (
         const std::string& address,
         const SlotAsyncReady& slot,
-        ConnectionFlags flags = Gio::DBus::ConnectionFlags::NONE);
+        ConnectionFlags flags = Gio::DBus::ConnectionFlags::NONE) -> void;
 
     static auto
     create_for_address_finish (const Glib::RefPtr<AsyncResult>& res)
@@ -662,49 +663,49 @@ namespace Gio::DBus
         ConnectionFlags flags = Gio::DBus::ConnectionFlags::NONE)
         -> Glib::RefPtr<Connection>;
 
-    void
-    close ();
+    auto
+    close () -> void;
 
-    void
+    auto
     close (const SlotAsyncReady& slot,
-           const Glib::RefPtr<Cancellable>& cancellable);
+           const Glib::RefPtr<Cancellable>& cancellable) -> void;
 
-    void
-    close (const SlotAsyncReady& slot);
+    auto
+    close (const SlotAsyncReady& slot) -> void;
 
     auto
     close_finish (const Glib::RefPtr<AsyncResult>& res) -> bool;
 
-    void
-    close_sync (const Glib::RefPtr<Cancellable>& cancellable);
+    auto
+    close_sync (const Glib::RefPtr<Cancellable>& cancellable) -> void;
 
-    void
-    close_sync ();
+    auto
+    close_sync () -> void;
 
-    void
-    flush ();
+    auto
+    flush () -> void;
 
-    void
+    auto
     flush (const SlotAsyncReady& slot,
-           const Glib::RefPtr<Cancellable>& cancellable);
+           const Glib::RefPtr<Cancellable>& cancellable) -> void;
 
-    void
-    flush (const SlotAsyncReady& slot);
+    auto
+    flush (const SlotAsyncReady& slot) -> void;
 
     auto
     flush_finish (const Glib::RefPtr<AsyncResult>& res) -> bool;
 
-    void
-    flush_sync (const Glib::RefPtr<Cancellable>& cancellable);
+    auto
+    flush_sync (const Glib::RefPtr<Cancellable>& cancellable) -> void;
 
-    void
-    flush_sync ();
+    auto
+    flush_sync () -> void;
 
     auto
     get_exit_on_close () const -> bool;
 
-    void
-    set_exit_on_close (bool exit_on_close = true);
+    auto
+    set_exit_on_close (bool exit_on_close = true) -> void;
 
     auto
     send_message (const Glib::RefPtr<Message>& message,
@@ -716,16 +717,17 @@ namespace Gio::DBus
                   SendMessageFlags flags = Gio::DBus::SendMessageFlags::NONE)
         -> bool;
 
-    void
+    auto
     send_message_with_reply (const Glib::RefPtr<Message>& message,
                              int timeout_msec,
                              const SlotAsyncReady& slot,
-                             const Glib::RefPtr<Cancellable>& cancellable);
+                             const Glib::RefPtr<Cancellable>& cancellable)
+        -> void;
 
-    void
+    auto
     send_message_with_reply (const Glib::RefPtr<Message>& message,
                              int timeout_msec,
-                             const SlotAsyncReady& slot);
+                             const SlotAsyncReady& slot) -> void;
 
     auto
     send_message_with_reply_finish (const Glib::RefPtr<AsyncResult>& res)
@@ -740,8 +742,8 @@ namespace Gio::DBus
     send_message_with_reply_sync (const Glib::RefPtr<Message>& message,
                                   gint timeout_msec) -> Glib::RefPtr<Message>;
 
-    void
-    start_message_processing ();
+    auto
+    start_message_processing () -> void;
 
     auto
     is_closed () const -> bool;
@@ -773,7 +775,7 @@ namespace Gio::DBus
     auto
     get_last_serial () const -> guint32;
 
-    void
+    auto
     call (const Glib::ustring& object_path,
           const Glib::ustring& interface_name,
           const Glib::ustring& method_name,
@@ -783,9 +785,9 @@ namespace Gio::DBus
           const Glib::ustring& bus_name = {},
           int timeout_msec = -1,
           CallFlags flags = Gio::DBus::CallFlags::NONE,
-          const Glib::VariantType& reply_type = {});
+          const Glib::VariantType& reply_type = {}) -> void;
 
-    void
+    auto
     call (const Glib::ustring& object_path,
           const Glib::ustring& interface_name,
           const Glib::ustring& method_name,
@@ -794,7 +796,7 @@ namespace Gio::DBus
           const Glib::ustring& bus_name = {},
           int timeout_msec = -1,
           CallFlags flags = Gio::DBus::CallFlags::NONE,
-          const Glib::VariantType& reply_type = {});
+          const Glib::VariantType& reply_type = {}) -> void;
 
     auto
     call_finish (const Glib::RefPtr<AsyncResult>& res)
@@ -892,12 +894,12 @@ namespace Gio::DBus
         -> Glib::VariantContainerBase;
 #endif
 
-    void
+    auto
     emit_signal (const Glib::ustring& object_path,
                  const Glib::ustring& interface_name,
                  const Glib::ustring& signal_name,
                  const Glib::ustring& destination_bus_name = {},
-                 const Glib::VariantContainerBase& parameters = {});
+                 const Glib::VariantContainerBase& parameters = {}) -> void;
 
     auto
     signal_subscribe (const SlotSignal& slot,
@@ -909,14 +911,14 @@ namespace Gio::DBus
                       SignalFlags flags = Gio::DBus::SignalFlags::NONE)
         -> guint;
 
-    void
-    signal_unsubscribe (guint subscription_id);
+    auto
+    signal_unsubscribe (guint subscription_id) -> void;
 
     auto
     add_filter (const SlotMessageFilter& slot) -> guint;
 
-    void
-    remove_filter (guint filter_id);
+    auto
+    remove_filter (guint filter_id) -> void;
 
     auto
     register_object (const Glib::ustring& object_path,
@@ -945,15 +947,15 @@ namespace Gio::DBus
                          const Glib::RefPtr<ActionGroup>& action_group)
         -> guint;
 
-    void
-    unexport_action_group (guint export_id);
+    auto
+    unexport_action_group (guint export_id) -> void;
 
     auto
     export_menu_model (const Glib::ustring& object_path,
                        const Glib::RefPtr<MenuModel>& menu) -> guint;
 
-    void
-    unexport_menu_model (guint export_id);
+    auto
+    unexport_menu_model (guint export_id) -> void;
 
     auto
     property_capabilities () const

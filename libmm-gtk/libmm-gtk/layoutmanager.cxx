@@ -16,14 +16,14 @@ namespace Gtk
   LayoutManager_Class::measure_vfunc_callback (GtkLayoutManager* self,
                                                GtkWidget* widget,
                                                GtkOrientation orientation,
-                                               const int for_size,
+                                               int for_size,
                                                int* minimum,
                                                int* natural,
                                                int* minimum_baseline,
                                                int* natural_baseline) -> void
   {
-    const auto obj_base =
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self);
+    const auto obj_base = static_cast<Glib::ObjectBase*> (
+        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -40,10 +40,10 @@ namespace Gtk
               *Glib::wrap (widget),
               static_cast<Orientation> (orientation),
               for_size,
-              minimum ? *minimum : no_minimum,
-              natural ? *natural : no_natural,
-              minimum_baseline ? *minimum_baseline : no_minimum_baseline,
-              natural_baseline ? *natural_baseline : no_natural_baseline);
+              (minimum ? *minimum : no_minimum),
+              (natural ? *natural : no_natural),
+              (minimum_baseline ? *minimum_baseline : no_minimum_baseline),
+              (natural_baseline ? *natural_baseline : no_natural_baseline));
           return;
         }
         catch (...)
@@ -53,7 +53,7 @@ namespace Gtk
       }
     }
 
-    const BaseClassType* const base = static_cast<BaseClassType*> (
+    BaseClassType* const base = static_cast<BaseClassType*> (
         g_type_class_peek_parent (G_OBJECT_GET_CLASS (self)));
 
     if (base && base->measure)
@@ -77,11 +77,11 @@ namespace Glib
 {
 
   auto
-  wrap (GtkLayoutManager* object, const bool take_copy) -> RefPtr<Gtk::LayoutManager>
+  wrap (GtkLayoutManager* object, bool take_copy) -> Glib::RefPtr<Gtk::LayoutManager>
   {
     return Glib::make_refptr_for_instance<Gtk::LayoutManager> (
         dynamic_cast<Gtk::LayoutManager*> (
-            wrap_auto ((GObject*) object, take_copy)));
+            Glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
 } // namespace Glib
@@ -90,7 +90,7 @@ namespace Gtk
 {
 
   auto
-  LayoutManager_Class::init () -> const Class&
+  LayoutManager_Class::init () -> const Glib::Class&
   {
     if (!gtype_)
     {
@@ -120,8 +120,8 @@ namespace Gtk
   LayoutManager_Class::get_request_mode_vfunc_callback (GtkLayoutManager* self,
                                                         GtkWidget* widget) -> GtkSizeRequestMode
   {
-    const auto obj_base =
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self);
+    const auto obj_base = static_cast<Glib::ObjectBase*> (
+        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -140,7 +140,7 @@ namespace Gtk
       }
     }
 
-    const BaseClassType* const base = static_cast<BaseClassType*> (
+    BaseClassType* const base = static_cast<BaseClassType*> (
         g_type_class_peek_parent (G_OBJECT_GET_CLASS (self)));
 
     if (base && base->get_request_mode)
@@ -153,12 +153,12 @@ namespace Gtk
   auto
   LayoutManager_Class::allocate_vfunc_callback (GtkLayoutManager* self,
                                                 GtkWidget* widget,
-                                                const int width,
-                                                const int height,
-                                                const int baseline) -> void
+                                                int width,
+                                                int height,
+                                                int baseline) -> void
   {
-    const auto obj_base =
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self);
+    const auto obj_base = static_cast<Glib::ObjectBase*> (
+        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -177,7 +177,7 @@ namespace Gtk
       }
     }
 
-    const BaseClassType* const base = static_cast<BaseClassType*> (
+    BaseClassType* const base = static_cast<BaseClassType*> (
         g_type_class_peek_parent (G_OBJECT_GET_CLASS (self)));
 
     if (base && base->allocate)
@@ -190,8 +190,8 @@ namespace Gtk
       GtkWidget* widget,
       GtkWidget* for_child) -> GtkLayoutChild*
   {
-    const auto obj_base =
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self);
+    const auto obj_base = static_cast<Glib::ObjectBase*> (
+        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -211,7 +211,7 @@ namespace Gtk
       }
     }
 
-    const BaseClassType* const base = static_cast<BaseClassType*> (
+    BaseClassType* const base = static_cast<BaseClassType*> (
         g_type_class_peek_parent (G_OBJECT_GET_CLASS (self)));
 
     if (base && base->create_layout_child)
@@ -224,8 +224,8 @@ namespace Gtk
   auto
   LayoutManager_Class::root_vfunc_callback (GtkLayoutManager* self) -> void
   {
-    const auto obj_base =
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self);
+    const auto obj_base = static_cast<Glib::ObjectBase*> (
+        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -244,7 +244,7 @@ namespace Gtk
       }
     }
 
-    const BaseClassType* const base = static_cast<BaseClassType*> (
+    BaseClassType* const base = static_cast<BaseClassType*> (
         g_type_class_peek_parent (G_OBJECT_GET_CLASS (self)));
 
     if (base && base->root)
@@ -254,8 +254,8 @@ namespace Gtk
   auto
   LayoutManager_Class::unroot_vfunc_callback (GtkLayoutManager* self) -> void
   {
-    const auto obj_base =
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self);
+    const auto obj_base = static_cast<Glib::ObjectBase*> (
+        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -274,7 +274,7 @@ namespace Gtk
       }
     }
 
-    const BaseClassType* const base = static_cast<BaseClassType*> (
+    BaseClassType* const base = static_cast<BaseClassType*> (
         g_type_class_peek_parent (G_OBJECT_GET_CLASS (self)));
 
     if (base && base->unroot)
@@ -295,28 +295,28 @@ namespace Gtk
   }
 
   LayoutManager::LayoutManager (const Glib::ConstructParams& construct_params)
-    : Object (construct_params)
+    : Glib::Object (construct_params)
   {
   }
 
   LayoutManager::LayoutManager (GtkLayoutManager* castitem)
-    : Object ((GObject*) castitem)
+    : Glib::Object ((GObject*) (castitem))
   {
   }
 
   LayoutManager::LayoutManager (LayoutManager&& src) noexcept
-    : Object (std::move (src))
+    : Glib::Object (std::move (src))
   {
   }
 
   auto
   LayoutManager::operator= (LayoutManager&& src) noexcept -> LayoutManager&
   {
-    Object::operator= (std::move (src));
+    Glib::Object::operator= (std::move (src));
     return *this;
   }
 
-  LayoutManager::~LayoutManager () noexcept = default;
+  LayoutManager::~LayoutManager () noexcept {}
 
   LayoutManager::CppClassType LayoutManager::layoutmanager_class_;
 
@@ -333,38 +333,35 @@ namespace Gtk
   }
 
   LayoutManager::LayoutManager ()
-    : ObjectBase (nullptr),
-      Object (Glib::ConstructParams (layoutmanager_class_.init ()))
+    : Glib::ObjectBase (nullptr),
+      Glib::Object (Glib::ConstructParams (layoutmanager_class_.init ()))
   {
   }
 
   auto
   LayoutManager::measure (Widget& widget,
                           Orientation orientation,
-                          const int for_size,
+                          int for_size,
                           int& minimum,
                           int& natural,
                           int& minimum_baseline,
                           int& natural_baseline) const -> void
   {
     gtk_layout_manager_measure (const_cast<GtkLayoutManager*> (gobj ()),
-                                widget.gobj (),
+                                (widget).gobj (),
                                 static_cast<GtkOrientation> (orientation),
                                 for_size,
-                                &minimum,
-                                &natural,
-                                &minimum_baseline,
-                                &natural_baseline);
+                                &(minimum),
+                                &(natural),
+                                &(minimum_baseline),
+                                &(natural_baseline));
   }
 
   auto
-  LayoutManager::allocate (Widget& widget,
-                           const int width,
-                           const int height,
-                           const int baseline) -> void
+  LayoutManager::allocate (Widget& widget, int width, int height, int baseline) -> void
   {
     gtk_layout_manager_allocate (gobj (),
-                                 widget.gobj (),
+                                 (widget).gobj (),
                                  width,
                                  height,
                                  baseline);
@@ -399,7 +396,7 @@ namespace Gtk
   LayoutManager::get_layout_child (Widget& child) -> Glib::RefPtr<LayoutChild>
   {
     auto retvalue = Glib::wrap (
-        gtk_layout_manager_get_layout_child (gobj (), child.gobj ()));
+        gtk_layout_manager_get_layout_child (gobj (), (child).gobj ()));
     if (retvalue)
       retvalue->reference ();
     return retvalue;
@@ -412,16 +409,17 @@ namespace Gtk
   }
 
   auto
-  LayoutManager::get_request_mode_vfunc (const Widget& widget) const -> SizeRequestMode
+  Gtk::LayoutManager::get_request_mode_vfunc (const Widget& widget) const -> SizeRequestMode
   {
     const auto base = static_cast<BaseClassType*> (
         g_type_class_peek_parent (G_OBJECT_GET_CLASS (gobject_)));
 
     if (base && base->get_request_mode)
     {
-      const SizeRequestMode retval (static_cast<SizeRequestMode> (
-          (*base->get_request_mode) (const_cast<GtkLayoutManager*> (gobj ()),
-                                     const_cast<GtkWidget*> (widget.gobj ()))));
+      SizeRequestMode retval (
+          static_cast<SizeRequestMode> ((*base->get_request_mode) (
+              const_cast<GtkLayoutManager*> (gobj ()),
+              const_cast<GtkWidget*> ((widget).gobj ()))));
       return retval;
     }
 
@@ -430,13 +428,13 @@ namespace Gtk
   }
 
   auto
-  LayoutManager::measure_vfunc (const Widget& widget,
-                                Orientation orientation,
-                                const int for_size,
-                                int& minimum,
-                                int& natural,
-                                int& minimum_baseline,
-                                int& natural_baseline) const -> void
+  Gtk::LayoutManager::measure_vfunc (const Widget& widget,
+                                     Orientation orientation,
+                                     int for_size,
+                                     int& minimum,
+                                     int& natural,
+                                     int& minimum_baseline,
+                                     int& natural_baseline) const -> void
   {
     const auto base = static_cast<BaseClassType*> (
         g_type_class_peek_parent (G_OBJECT_GET_CLASS (gobject_)));
@@ -444,21 +442,21 @@ namespace Gtk
     if (base && base->measure)
     {
       (*base->measure) (const_cast<GtkLayoutManager*> (gobj ()),
-                        const_cast<GtkWidget*> (widget.gobj ()),
+                        const_cast<GtkWidget*> ((widget).gobj ()),
                         static_cast<GtkOrientation> (orientation),
                         for_size,
-                        &minimum,
-                        &natural,
-                        &minimum_baseline,
-                        &natural_baseline);
+                        &(minimum),
+                        &(natural),
+                        &(minimum_baseline),
+                        &(natural_baseline));
     }
   }
 
   auto
-  LayoutManager::allocate_vfunc (const Widget& widget,
-                                 const int width,
-                                 const int height,
-                                 const int baseline) -> void
+  Gtk::LayoutManager::allocate_vfunc (const Widget& widget,
+                                      int width,
+                                      int height,
+                                      int baseline) -> void
   {
     const auto base = static_cast<BaseClassType*> (
         g_type_class_peek_parent (G_OBJECT_GET_CLASS (gobject_)));
@@ -466,7 +464,7 @@ namespace Gtk
     if (base && base->allocate)
     {
       (*base->allocate) (gobj (),
-                         const_cast<GtkWidget*> (widget.gobj ()),
+                         const_cast<GtkWidget*> ((widget).gobj ()),
                          width,
                          height,
                          baseline);
@@ -474,8 +472,8 @@ namespace Gtk
   }
 
   auto
-  LayoutManager::create_layout_child_vfunc (const Widget& widget,
-                                            const Widget& for_child) -> Glib::RefPtr<LayoutChild>
+  Gtk::LayoutManager::create_layout_child_vfunc (const Widget& widget,
+                                                 const Widget& for_child) -> Glib::RefPtr<LayoutChild>
   {
     const auto base = static_cast<BaseClassType*> (
         g_type_class_peek_parent (G_OBJECT_GET_CLASS (gobject_)));
@@ -485,18 +483,18 @@ namespace Gtk
       Glib::RefPtr<LayoutChild> retval (
           Glib::wrap ((*base->create_layout_child) (
                           gobj (),
-                          const_cast<GtkWidget*> (widget.gobj ()),
-                          const_cast<GtkWidget*> (for_child.gobj ())),
+                          const_cast<GtkWidget*> ((widget).gobj ()),
+                          const_cast<GtkWidget*> ((for_child).gobj ())),
                       true));
       return retval;
     }
 
     using RType = Glib::RefPtr<LayoutChild>;
-    return {};
+    return RType ();
   }
 
   auto
-  LayoutManager::root_vfunc () -> void
+  Gtk::LayoutManager::root_vfunc () -> void
   {
     const auto base = static_cast<BaseClassType*> (
         g_type_class_peek_parent (G_OBJECT_GET_CLASS (gobject_)));
@@ -508,7 +506,7 @@ namespace Gtk
   }
 
   auto
-  LayoutManager::unroot_vfunc () -> void
+  Gtk::LayoutManager::unroot_vfunc () -> void
   {
     const auto base = static_cast<BaseClassType*> (
         g_type_class_peek_parent (G_OBJECT_GET_CLASS (gobject_)));

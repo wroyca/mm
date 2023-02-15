@@ -95,38 +95,38 @@ namespace Gtk
     auto
     get_visible () const -> bool;
 
-    void
-    set_visible (bool visible = true);
+    auto
+    set_visible (bool visible = true) -> void;
 
     auto
     get_needs_attention () const -> bool;
 
-    void
-    set_needs_attention (bool setting = true);
+    auto
+    set_needs_attention (bool setting = true) -> void;
 
     auto
     get_use_underline () const -> bool;
 
-    void
-    set_use_underline (bool setting = true);
+    auto
+    set_use_underline (bool setting = true) -> void;
 
     auto
     get_name () const -> Glib::ustring;
 
-    void
-    set_name (const Glib::ustring& setting);
+    auto
+    set_name (const Glib::ustring& setting) -> void;
 
     auto
     get_title () const -> Glib::ustring;
 
-    void
-    set_title (const Glib::ustring& setting);
+    auto
+    set_title (const Glib::ustring& setting) -> void;
 
     auto
     get_icon_name () const -> Glib::ustring;
 
-    void
-    set_icon_name (const Glib::ustring& setting);
+    auto
+    set_icon_name (const Glib::ustring& setting) -> void;
 
     auto
     property_child () const -> Glib::PropertyProxy_ReadOnly<Widget*>;
@@ -176,9 +176,7 @@ namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkStackPage* object, bool take_copy = false) -> Glib::RefPtr<Gtk::StackPage>;
 } // namespace Glib
 

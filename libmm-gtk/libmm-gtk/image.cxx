@@ -15,8 +15,8 @@ namespace Gtk
 {
 
   Image::Image (const Glib::RefPtr<Gdk::Pixbuf>& pixbuf)
-    : ObjectBase (nullptr),
-      Widget (Glib::ConstructParams (image_class_.init ()))
+    : Glib::ObjectBase (nullptr),
+      Gtk::Widget (Glib::ConstructParams (image_class_.init ()))
   {
     gtk_image_set_from_pixbuf (gobj (), Glib::unwrap (pixbuf));
   }
@@ -37,9 +37,10 @@ namespace Glib
 {
 
   auto
-  wrap (GtkImage* object, const bool take_copy) -> Gtk::Image*
+  wrap (GtkImage* object, bool take_copy) -> Gtk::Image*
   {
-    return dynamic_cast<Gtk::Image*> (wrap_auto ((GObject*) object, take_copy));
+    return dynamic_cast<Gtk::Image*> (
+        Glib::wrap_auto ((GObject*) (object), take_copy));
   }
 
 } // namespace Glib
@@ -48,7 +49,7 @@ namespace Gtk
 {
 
   auto
-  Image_Class::init () -> const Class&
+  Image_Class::init () -> const Glib::Class&
   {
     if (!gtype_)
     {
@@ -70,28 +71,28 @@ namespace Gtk
   auto
   Image_Class::wrap_new (GObject* o) -> Glib::ObjectBase*
   {
-    return manage (new Image ((GtkImage*) o));
+    return manage (new Image ((GtkImage*) (o)));
   }
 
   Image::Image (const Glib::ConstructParams& construct_params)
-    : Widget (construct_params)
+    : Gtk::Widget (construct_params)
   {
   }
 
   Image::Image (GtkImage* castitem)
-    : Widget ((GtkWidget*) castitem)
+    : Gtk::Widget ((GtkWidget*) (castitem))
   {
   }
 
   Image::Image (Image&& src) noexcept
-    : Widget (std::move (src))
+    : Gtk::Widget (std::move (src))
   {
   }
 
   auto
   Image::operator= (Image&& src) noexcept -> Image&
   {
-    Widget::operator= (std::move (src));
+    Gtk::Widget::operator= (std::move (src));
     return *this;
   }
 
@@ -115,35 +116,36 @@ namespace Gtk
   }
 
   Image::Image ()
-    : ObjectBase (nullptr),
-      Widget (Glib::ConstructParams (image_class_.init ()))
+    : Glib::ObjectBase (nullptr),
+      Gtk::Widget (Glib::ConstructParams (image_class_.init ()))
   {
   }
 
   Image::Image (const std::string& file)
-    : ObjectBase (nullptr),
-      Widget (Glib::ConstructParams (image_class_.init (),
-                                     "file",
-                                     file.c_str (),
-                                     nullptr))
+    : Glib::ObjectBase (nullptr),
+      Gtk::Widget (Glib::ConstructParams (image_class_.init (),
+                                          "file",
+                                          file.c_str (),
+                                          nullptr))
   {
   }
 
   Image::Image (const Glib::RefPtr<Gdk::Paintable>& paintable)
-    : ObjectBase (nullptr),
-      Widget (Glib::ConstructParams (image_class_.init (),
-                                     "paintable",
-                                     Glib::unwrap (paintable),
-                                     nullptr))
+    : Glib::ObjectBase (nullptr),
+      Gtk::Widget (Glib::ConstructParams (image_class_.init (),
+                                          "paintable",
+                                          Glib::unwrap (paintable),
+                                          nullptr))
   {
   }
 
   Image::Image (const Glib::RefPtr<Gio::Icon>& gicon)
-    : ObjectBase (nullptr),
-      Widget (Glib::ConstructParams (image_class_.init (),
-                                     "gicon",
-                                     Glib::unwrap<Gio::Icon> (gicon),
-                                     nullptr))
+    : Glib::ObjectBase (nullptr),
+      Gtk::Widget (Glib::ConstructParams (
+          image_class_.init (),
+          "gicon",
+          const_cast<GIcon*> (Glib::unwrap<Gio::Icon> (gicon)),
+          nullptr))
   {
   }
 
@@ -255,7 +257,7 @@ namespace Gtk
   }
 
   auto
-  Image::set_pixel_size (const int pixel_size) -> void
+  Image::set_pixel_size (int pixel_size) -> void
   {
     gtk_image_set_pixel_size (gobj (), pixel_size);
   }
@@ -263,13 +265,13 @@ namespace Gtk
   auto
   Image::property_file () -> Glib::PropertyProxy<Glib::ustring>
   {
-    return {this, "file"};
+    return Glib::PropertyProxy<Glib::ustring> (this, "file");
   }
 
   auto
   Image::property_file () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>
   {
-    return {this, "file"};
+    return Glib::PropertyProxy_ReadOnly<Glib::ustring> (this, "file");
   }
 
   static_assert (
@@ -280,37 +282,37 @@ namespace Gtk
   auto
   Image::property_icon_size () -> Glib::PropertyProxy<IconSize>
   {
-    return {this, "icon-size"};
+    return Glib::PropertyProxy<IconSize> (this, "icon-size");
   }
 
   auto
   Image::property_icon_size () const -> Glib::PropertyProxy_ReadOnly<IconSize>
   {
-    return {this, "icon-size"};
+    return Glib::PropertyProxy_ReadOnly<IconSize> (this, "icon-size");
   }
 
   auto
   Image::property_pixel_size () -> Glib::PropertyProxy<int>
   {
-    return {this, "pixel-size"};
+    return Glib::PropertyProxy<int> (this, "pixel-size");
   }
 
   auto
   Image::property_pixel_size () const -> Glib::PropertyProxy_ReadOnly<int>
   {
-    return {this, "pixel-size"};
+    return Glib::PropertyProxy_ReadOnly<int> (this, "pixel-size");
   }
 
   auto
   Image::property_icon_name () -> Glib::PropertyProxy<Glib::ustring>
   {
-    return {this, "icon-name"};
+    return Glib::PropertyProxy<Glib::ustring> (this, "icon-name");
   }
 
   auto
   Image::property_icon_name () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>
   {
-    return {this, "icon-name"};
+    return Glib::PropertyProxy_ReadOnly<Glib::ustring> (this, "icon-name");
   }
 
   static_assert (
@@ -321,7 +323,7 @@ namespace Gtk
   auto
   Image::property_storage_type () const -> Glib::PropertyProxy_ReadOnly<Type>
   {
-    return {this, "storage-type"};
+    return Glib::PropertyProxy_ReadOnly<Type> (this, "storage-type");
   }
 
   static_assert (
@@ -333,37 +335,38 @@ namespace Gtk
   auto
   Image::property_gicon () -> Glib::PropertyProxy<Glib::RefPtr<Gio::Icon>>
   {
-    return {this, "gicon"};
+    return Glib::PropertyProxy<Glib::RefPtr<Gio::Icon>> (this, "gicon");
   }
 
   auto
   Image::property_gicon () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gio::Icon>>
   {
-    return {this, "gicon"};
+    return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gio::Icon>> (this,
+                                                                  "gicon");
   }
 
   auto
   Image::property_use_fallback () -> Glib::PropertyProxy<bool>
   {
-    return {this, "use-fallback"};
+    return Glib::PropertyProxy<bool> (this, "use-fallback");
   }
 
   auto
   Image::property_use_fallback () const -> Glib::PropertyProxy_ReadOnly<bool>
   {
-    return {this, "use-fallback"};
+    return Glib::PropertyProxy_ReadOnly<bool> (this, "use-fallback");
   }
 
   auto
   Image::property_resource () -> Glib::PropertyProxy<std::string>
   {
-    return {this, "resource"};
+    return Glib::PropertyProxy<std::string> (this, "resource");
   }
 
   auto
   Image::property_resource () const -> Glib::PropertyProxy_ReadOnly<std::string>
   {
-    return {this, "resource"};
+    return Glib::PropertyProxy_ReadOnly<std::string> (this, "resource");
   }
 
   static_assert (
@@ -375,13 +378,16 @@ namespace Gtk
   auto
   Image::property_paintable () -> Glib::PropertyProxy<Glib::RefPtr<Gdk::Paintable>>
   {
-    return {this, "paintable"};
+    return Glib::PropertyProxy<Glib::RefPtr<Gdk::Paintable>> (this,
+                                                              "paintable");
   }
 
   auto
   Image::property_paintable () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gdk::Paintable>>
   {
-    return {this, "paintable"};
+    return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gdk::Paintable>> (
+        this,
+        "paintable");
   }
 
 } // namespace Gtk

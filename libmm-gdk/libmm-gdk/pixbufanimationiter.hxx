@@ -7,6 +7,7 @@
 #include <sigc++/sigc++.h>
 
 #include <gdk-pixbuf/gdk-pixbuf.h>
+
 #include <libmm-gdk/pixbuf.hxx>
 #include <libmm-glib/object.hxx>
 
@@ -108,9 +109,7 @@ namespace Gdk
 
 namespace Glib
 {
-
-  GDKMM_API
-  auto
+  GDKMM_API auto
   wrap (GdkPixbufAnimationIter* object, bool take_copy = false) -> Glib::RefPtr<Gdk::PixbufAnimationIter>;
 } // namespace Glib
 

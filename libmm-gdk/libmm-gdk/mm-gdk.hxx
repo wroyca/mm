@@ -1,8 +1,7 @@
 // SPDX-License-Identifier: LGPL-2.1-or-later
 
-#pragma once
-
-#include <libmm-gdk/export.hxx>
+#ifndef _GDKMM_GDKMM_H_
+#define _GDKMM_GDKMM_H_
 
 #include <libmm-gdk/applaunchcontext.hxx>
 #include <libmm-gdk/cairocontext.hxx>
@@ -38,3 +37,5 @@
 #include <libmm-gdk/texture.hxx>
 #include <libmm-gdk/toplevel.hxx>
 #include <libmm-gdk/toplevelsurfaceimpl.hxx>
+
+#endif

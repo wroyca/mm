@@ -19,11 +19,11 @@ namespace Glib
 {
 
   auto
-  wrap (GdkMemoryTexture* object, const bool take_copy) -> RefPtr<Gdk::MemoryTexture>
+  wrap (GdkMemoryTexture* object, bool take_copy) -> Glib::RefPtr<Gdk::MemoryTexture>
   {
     return Glib::make_refptr_for_instance<Gdk::MemoryTexture> (
         dynamic_cast<Gdk::MemoryTexture*> (
-            wrap_auto ((GObject*) object, take_copy)));
+            Glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
 } // namespace Glib
@@ -32,7 +32,7 @@ namespace Gdk
 {
 
   auto
-  MemoryTexture_Class::init () -> const Class&
+  MemoryTexture_Class::init () -> const Glib::Class&
   {
     if (!gtype_)
     {
@@ -65,28 +65,28 @@ namespace Gdk
   }
 
   MemoryTexture::MemoryTexture (const Glib::ConstructParams& construct_params)
-    : Texture (construct_params)
+    : Gdk::Texture (construct_params)
   {
   }
 
   MemoryTexture::MemoryTexture (GdkMemoryTexture* castitem)
-    : Texture ((GdkTexture*) castitem)
+    : Gdk::Texture ((GdkTexture*) (castitem))
   {
   }
 
   MemoryTexture::MemoryTexture (MemoryTexture&& src) noexcept
-    : Texture (std::move (src))
+    : Gdk::Texture (std::move (src))
   {
   }
 
   auto
   MemoryTexture::operator= (MemoryTexture&& src) noexcept -> MemoryTexture&
   {
-    Texture::operator= (std::move (src));
+    Gdk::Texture::operator= (std::move (src));
     return *this;
   }
 
-  MemoryTexture::~MemoryTexture () noexcept = default;
+  MemoryTexture::~MemoryTexture () noexcept {}
 
   MemoryTexture::CppClassType MemoryTexture::memorytexture_class_;
 
@@ -103,17 +103,17 @@ namespace Gdk
   }
 
   MemoryTexture::MemoryTexture ()
-    : ObjectBase (nullptr),
-      Texture (Glib::ConstructParams (memorytexture_class_.init ()))
+    : Glib::ObjectBase (nullptr),
+      Gdk::Texture (Glib::ConstructParams (memorytexture_class_.init ()))
   {
   }
 
   auto
-  MemoryTexture::create (const int width,
-                         const int height,
+  MemoryTexture::create (int width,
+                         int height,
                          Format format,
                          const Glib::RefPtr<const Glib::Bytes>& bytes,
-                         const gsize stride) -> Glib::RefPtr<Texture>
+                         gsize stride) -> Glib::RefPtr<Texture>
   {
     return Glib::wrap (gdk_memory_texture_new (
         width,

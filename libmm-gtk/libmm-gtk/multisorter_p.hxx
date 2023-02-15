@@ -17,14 +17,14 @@ namespace Gtk
     using CppObjectType = MultiSorter;
     using BaseObjectType = GtkMultiSorter;
     using BaseClassType = GtkMultiSorterClass;
-    using CppClassParent = Sorter_Class;
+    using CppClassParent = Gtk::Sorter_Class;
     using BaseClassParent = GtkSorterClass;
 
     friend class MultiSorter;
 #endif
 
     auto
-    init () -> const Class&;
+    init () -> const Glib::Class&;
 
     static auto
     class_init_function (void* g_class, void* class_data) -> void;

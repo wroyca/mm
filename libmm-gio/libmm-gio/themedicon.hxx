@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: LGPL-2.1-or-later
 
 #ifndef _GIOMM_THEMEDICON_H
 #define _GIOMM_THEMEDICON_H
@@ -97,11 +98,11 @@ namespace Gio
     create (const std::vector<Glib::ustring>& iconnames)
         -> Glib::RefPtr<ThemedIcon>;
 
-    void
-    prepend_name (const Glib::ustring& iconname);
+    auto
+    prepend_name (const Glib::ustring& iconname) -> void;
 
-    void
-    append_name (const Glib::ustring& iconname);
+    auto
+    append_name (const Glib::ustring& iconname) -> void;
 
     auto
     get_names () const -> std::vector<Glib::ustring>;

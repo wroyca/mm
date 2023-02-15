@@ -1,15 +1,14 @@
 // SPDX-License-Identifier: LGPL-2.1-or-later
 
-#ifndef _WIN32
+#include <libmm-glib/mm-glib.hxx>
 
-  #include <libmm-glib/mm-glib.hxx>
+#include <libmm-gtk/printer.hxx>
+#include <libmm-gtk/printer_p.hxx>
 
-  #include <libmm-glib/vectorutils.hxx>
-  #include <libmm-gtk/papersize.hxx>
-  #include <libmm-gtk/printer.hxx>
-  #include <libmm-gtk/printer_p.hxx>
+#include <libmm-glib/vectorutils.hxx>
+#include <libmm-gtk/papersize.hxx>
 
-  #include <gtk/gtkunixprint.h>
+#include <gtk/gtkunixprint.hxx>
 
 static auto
 SignalProxy_Custom_gtk_callback (GtkPrinter* gtk_printer, gpointer data)
@@ -30,8 +29,8 @@ SignalProxy_Custom_gtk_callback (GtkPrinter* gtk_printer, gpointer data)
   }
 }
 
-static void
-SignalProxy_Custom_gtk_callback_destroy (void* data)
+static auto
+SignalProxy_Custom_gtk_callback_destroy (void* data) -> void
 {
   delete static_cast<Gtk::SlotPrinterEnumerator*> (data);
 }
@@ -47,8 +46,8 @@ namespace Gtk
                              const_cast<GtkPrinter*> (other->gobj ()))));
   }
 
-  void
-  enumerate_printers (const SlotPrinterEnumerator& slot, bool wait)
+  auto
+  enumerate_printers (const SlotPrinterEnumerator& slot, bool wait) -> void
   {
     auto slot_copy = new SlotPrinterEnumerator (slot);
 
@@ -63,10 +62,10 @@ namespace Gtk
 namespace
 {
 
-  void
+  static auto
   Printer_signal_details_acquired_callback (GtkPrinter* self,
                                             gboolean p0,
-                                            void* data)
+                                            void* data) -> void
   {
     using namespace Gtk;
     using SlotType = sigc::slot<void (bool)>;
@@ -88,7 +87,7 @@ namespace
     }
   }
 
-  const Glib::SignalProxyInfo Printer_signal_details_acquired_info = {
+  static const Glib::SignalProxyInfo Printer_signal_details_acquired_info = {
       "details_acquired",
       (GCallback) &Printer_signal_details_acquired_callback,
       (GCallback) &Printer_signal_details_acquired_callback};
@@ -130,8 +129,8 @@ namespace Gtk
     return *this;
   }
 
-  void
-  Printer_Class::class_init_function (void* g_class, void* class_data)
+  auto
+  Printer_Class::class_init_function (void* g_class, void* class_data) -> void
   {
     const auto klass = static_cast<BaseClassType*> (g_class);
     CppClassParent::class_init_function (klass, class_data);
@@ -303,8 +302,8 @@ namespace Gtk
     return gtk_printer_has_details (const_cast<GtkPrinter*> (gobj ()));
   }
 
-  void
-  Printer::request_details ()
+  auto
+  Printer::request_details () -> void
   {
     gtk_printer_request_details (gobj ());
   }
@@ -414,5 +413,3 @@ namespace Gtk
   }
 
 } // namespace Gtk
-
-#endif

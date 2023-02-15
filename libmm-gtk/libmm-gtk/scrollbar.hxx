@@ -87,10 +87,10 @@ namespace Gtk
     explicit Scrollbar (const Glib::RefPtr<Adjustment>& adjustment,
                         Orientation orientation = Orientation::HORIZONTAL);
 
-    void
-    set_adjustment (const Glib::RefPtr<Adjustment>& adjustment);
-    void
-    unset_adjustment ();
+    auto
+    set_adjustment (const Glib::RefPtr<Adjustment>& adjustment) -> void;
+    auto
+    unset_adjustment () -> void;
 
     auto
     get_adjustment () -> Glib::RefPtr<Adjustment>;
@@ -114,9 +114,7 @@ namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkScrollbar* object, bool take_copy = false) -> Gtk::Scrollbar*;
 } // namespace Glib
 

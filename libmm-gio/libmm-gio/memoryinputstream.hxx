@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: LGPL-2.1-or-later
 
 #ifndef _GIOMM_MEMORYINPUTSTREAM_H
 #define _GIOMM_MEMORYINPUTSTREAM_H
@@ -91,18 +92,17 @@ namespace Gio
     static auto
     create () -> Glib::RefPtr<MemoryInputStream>;
 
-    void
-    add_data (const void* data, gssize len, GDestroyNotify destroy);
+    auto
+    add_data (const void* data, gssize len, GDestroyNotify destroy) -> void;
 
     using SlotDestroyData = sigc::slot<void (void*)>;
 
-    void
-    add_data (const void* data,
-              gssize len,
-              const SlotDestroyData& destroy_slot);
+    auto
+    add_data (const void* data, gssize len, const SlotDestroyData& destroy_slot)
+        -> void;
 
-    void
-    add_bytes (const Glib::RefPtr<const Glib::Bytes>& bytes);
+    auto
+    add_bytes (const Glib::RefPtr<const Glib::Bytes>& bytes) -> void;
 
   public:
   public:

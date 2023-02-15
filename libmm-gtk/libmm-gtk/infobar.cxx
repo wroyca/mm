@@ -1,11 +1,16 @@
 // SPDX-License-Identifier: LGPL-2.1-or-later
 
-#include <libmm-glib/mm-glib.hxx>
+#undef GTK_DISABLE_DEPRECATED
+#define GDK_DISABLE_DEPRECATION_WARNINGS 1
 
-#include <libmm-gtk/infobar.hxx>
-#include <libmm-gtk/infobar_p.hxx>
+#ifndef GTKMM_DISABLE_DEPRECATED
 
-#include <gtk/gtk.h>
+  #include <libmm-glib/mm-glib.hxx>
+
+  #include <libmm-gtk/infobar.hxx>
+  #include <libmm-gtk/infobar_p.hxx>
+
+  #include <gtk/gtk.h>
 
 namespace Gtk
 {
@@ -15,13 +20,13 @@ namespace Gtk
 namespace
 {
 
-  auto
-  InfoBar_signal_response_callback (GtkInfoBar* self, const gint p0, void* data) -> void
+  static auto
+  InfoBar_signal_response_callback (GtkInfoBar* self, gint p0, void* data) -> void
   {
     using namespace Gtk;
     using SlotType = sigc::slot<void (int)>;
 
-    const auto obj = dynamic_cast<InfoBar*> (
+    auto obj = dynamic_cast<InfoBar*> (
         Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
@@ -38,7 +43,7 @@ namespace
     }
   }
 
-  const Glib::SignalProxyInfo InfoBar_signal_response_info = {
+  static const Glib::SignalProxyInfo InfoBar_signal_response_info = {
       "response",
       (GCallback) &InfoBar_signal_response_callback,
       (GCallback) &InfoBar_signal_response_callback};
@@ -49,10 +54,10 @@ namespace Glib
 {
 
   auto
-  wrap (GtkInfoBar* object, const bool take_copy) -> Gtk::InfoBar*
+  wrap (GtkInfoBar* object, bool take_copy) -> Gtk::InfoBar*
   {
     return dynamic_cast<Gtk::InfoBar*> (
-        wrap_auto ((GObject*) object, take_copy));
+        Glib::wrap_auto ((GObject*) (object), take_copy));
   }
 
 } // namespace Glib
@@ -61,7 +66,7 @@ namespace Gtk
 {
 
   auto
-  InfoBar_Class::init () -> const Class&
+  InfoBar_Class::init () -> const Glib::Class&
   {
     if (!gtype_)
     {
@@ -83,28 +88,28 @@ namespace Gtk
   auto
   InfoBar_Class::wrap_new (GObject* o) -> Glib::ObjectBase*
   {
-    return manage (new InfoBar ((GtkInfoBar*) o));
+    return manage (new InfoBar ((GtkInfoBar*) (o)));
   }
 
   InfoBar::InfoBar (const Glib::ConstructParams& construct_params)
-    : Widget (construct_params)
+    : Gtk::Widget (construct_params)
   {
   }
 
   InfoBar::InfoBar (GtkInfoBar* castitem)
-    : Widget ((GtkWidget*) castitem)
+    : Gtk::Widget ((GtkWidget*) (castitem))
   {
   }
 
   InfoBar::InfoBar (InfoBar&& src) noexcept
-    : Widget (std::move (src))
+    : Gtk::Widget (std::move (src))
   {
   }
 
   auto
   InfoBar::operator= (InfoBar&& src) noexcept -> InfoBar&
   {
-    Widget::operator= (std::move (src));
+    Gtk::Widget::operator= (std::move (src));
     return *this;
   }
 
@@ -128,58 +133,60 @@ namespace Gtk
   }
 
   InfoBar::InfoBar ()
-    : ObjectBase (nullptr),
-      Widget (Glib::ConstructParams (infobar_class_.init ()))
+    : Glib::ObjectBase (nullptr),
+      Gtk::Widget (Glib::ConstructParams (infobar_class_.init ()))
   {
   }
 
   auto
-  InfoBar::add_action_widget (Widget& child, const int response_id) -> void
+  InfoBar::add_action_widget (Widget& child, int response_id) -> void
   {
-    gtk_info_bar_add_action_widget (gobj (), child.gobj (), response_id);
+    gtk_info_bar_add_action_widget (gobj (), (child).gobj (), response_id);
   }
 
   auto
   InfoBar::remove_action_widget (Widget& widget) -> void
   {
-    gtk_info_bar_remove_action_widget (gobj (), widget.gobj ());
+    gtk_info_bar_remove_action_widget (gobj (), (widget).gobj ());
   }
 
   auto
-  InfoBar::add_button (const Glib::ustring& button_text, const int response_id) -> Button*
+  InfoBar::add_button (const Glib::ustring& button_text, int response_id) -> Button*
   {
     return Glib::wrap (
-        (GtkButton*) gtk_info_bar_add_button (gobj (),
-                                              button_text.c_str (),
-                                              response_id));
+        (GtkButton*) (gtk_info_bar_add_button (gobj (),
+                                               button_text.c_str (),
+                                               response_id)));
   }
 
   auto
   InfoBar::add_child (Widget& widget) -> void
   {
-    gtk_info_bar_add_child (gobj (), widget.gobj ());
+    gtk_info_bar_add_child (gobj (), (widget).gobj ());
   }
 
   auto
   InfoBar::remove_child (Widget& widget) -> void
   {
-    gtk_info_bar_remove_child (gobj (), widget.gobj ());
+    gtk_info_bar_remove_child (gobj (), (widget).gobj ());
   }
 
   auto
-  InfoBar::set_response_sensitive (const int response_id, const bool setting) -> void
+  InfoBar::set_response_sensitive (int response_id, bool setting) -> void
   {
-    gtk_info_bar_set_response_sensitive (gobj (), response_id, setting);
+    gtk_info_bar_set_response_sensitive (gobj (),
+                                         response_id,
+                                         static_cast<int> (setting));
   }
 
   auto
-  InfoBar::set_default_response (const int response_id) -> void
+  InfoBar::set_default_response (int response_id) -> void
   {
     gtk_info_bar_set_default_response (gobj (), response_id);
   }
 
   auto
-  InfoBar::response (const int response_id) -> void
+  InfoBar::response (int response_id) -> void
   {
     gtk_info_bar_response (gobj (), response_id);
   }
@@ -199,9 +206,9 @@ namespace Gtk
   }
 
   auto
-  InfoBar::set_show_close_button (const bool setting) -> void
+  InfoBar::set_show_close_button (bool setting) -> void
   {
-    gtk_info_bar_set_show_close_button (gobj (), setting);
+    gtk_info_bar_set_show_close_button (gobj (), static_cast<int> (setting));
   }
 
   auto
@@ -212,9 +219,9 @@ namespace Gtk
   }
 
   auto
-  InfoBar::set_revealed (const bool revealed) -> void
+  InfoBar::set_revealed (bool revealed) -> void
   {
-    gtk_info_bar_set_revealed (gobj (), revealed);
+    gtk_info_bar_set_revealed (gobj (), static_cast<int> (revealed));
   }
 
   auto
@@ -226,7 +233,7 @@ namespace Gtk
   auto
   InfoBar::signal_response () -> Glib::SignalProxy<void (int)>
   {
-    return {this, &InfoBar_signal_response_info};
+    return Glib::SignalProxy<void (int)> (this, &InfoBar_signal_response_info);
   }
 
   static_assert (
@@ -237,37 +244,39 @@ namespace Gtk
   auto
   InfoBar::property_message_type () -> Glib::PropertyProxy<MessageType>
   {
-    return {this, "message-type"};
+    return Glib::PropertyProxy<MessageType> (this, "message-type");
   }
 
   auto
   InfoBar::property_message_type () const -> Glib::PropertyProxy_ReadOnly<MessageType>
   {
-    return {this, "message-type"};
+    return Glib::PropertyProxy_ReadOnly<MessageType> (this, "message-type");
   }
 
   auto
   InfoBar::property_show_close_button () -> Glib::PropertyProxy<bool>
   {
-    return {this, "show-close-button"};
+    return Glib::PropertyProxy<bool> (this, "show-close-button");
   }
 
   auto
   InfoBar::property_show_close_button () const -> Glib::PropertyProxy_ReadOnly<bool>
   {
-    return {this, "show-close-button"};
+    return Glib::PropertyProxy_ReadOnly<bool> (this, "show-close-button");
   }
 
   auto
   InfoBar::property_revealed () -> Glib::PropertyProxy<bool>
   {
-    return {this, "revealed"};
+    return Glib::PropertyProxy<bool> (this, "revealed");
   }
 
   auto
   InfoBar::property_revealed () const -> Glib::PropertyProxy_ReadOnly<bool>
   {
-    return {this, "revealed"};
+    return Glib::PropertyProxy_ReadOnly<bool> (this, "revealed");
   }
 
 } // namespace Gtk
+
+#endif

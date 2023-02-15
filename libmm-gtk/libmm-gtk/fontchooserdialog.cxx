@@ -1,21 +1,26 @@
 // SPDX-License-Identifier: LGPL-2.1-or-later
 
-#include <libmm-glib/mm-glib.hxx>
+#undef GTK_DISABLE_DEPRECATED
+#define GDK_DISABLE_DEPRECATION_WARNINGS 1
 
-#include <libmm-gtk/fontchooserdialog.hxx>
-#include <libmm-gtk/fontchooserdialog_p.hxx>
+#ifndef GTKMM_DISABLE_DEPRECATED
 
-#include <gtk/gtk.h>
+  #include <libmm-glib/mm-glib.hxx>
+
+  #include <libmm-gtk/fontchooserdialog.hxx>
+  #include <libmm-gtk/fontchooserdialog_p.hxx>
+
+  #include <gtk/gtk.h>
 
 namespace Gtk
 {
 
   FontChooserDialog::FontChooserDialog (const Glib::ustring& title)
-    : ObjectBase (nullptr),
-      Dialog (Glib::ConstructParams (fontchooserdialog_class_.init (),
-                                     "title",
-                                     title.c_str (),
-                                     nullptr))
+    : Glib::ObjectBase (nullptr),
+      Gtk::Dialog (Glib::ConstructParams (fontchooserdialog_class_.init (),
+                                          "title",
+                                          title.c_str (),
+                                          nullptr))
   {
   }
 
@@ -29,10 +34,10 @@ namespace Glib
 {
 
   auto
-  wrap (GtkFontChooserDialog* object, const bool take_copy) -> Gtk::FontChooserDialog*
+  wrap (GtkFontChooserDialog* object, bool take_copy) -> Gtk::FontChooserDialog*
   {
     return dynamic_cast<Gtk::FontChooserDialog*> (
-        wrap_auto ((GObject*) object, take_copy));
+        Glib::wrap_auto ((GObject*) (object), take_copy));
   }
 
 } // namespace Glib
@@ -41,7 +46,7 @@ namespace Gtk
 {
 
   auto
-  FontChooserDialog_Class::init () -> const Class&
+  FontChooserDialog_Class::init () -> const Glib::Class&
   {
     if (!gtype_)
     {
@@ -65,22 +70,22 @@ namespace Gtk
   auto
   FontChooserDialog_Class::wrap_new (GObject* o) -> Glib::ObjectBase*
   {
-    return new FontChooserDialog ((GtkFontChooserDialog*) o);
+    return new FontChooserDialog ((GtkFontChooserDialog*) (o));
   }
 
   FontChooserDialog::FontChooserDialog (
       const Glib::ConstructParams& construct_params)
-    : Dialog (construct_params)
+    : Gtk::Dialog (construct_params)
   {
   }
 
   FontChooserDialog::FontChooserDialog (GtkFontChooserDialog* castitem)
-    : Dialog ((GtkDialog*) castitem)
+    : Gtk::Dialog ((GtkDialog*) (castitem))
   {
   }
 
   FontChooserDialog::FontChooserDialog (FontChooserDialog&& src) noexcept
-    : Dialog (std::move (src)),
+    : Gtk::Dialog (std::move (src)),
       FontChooser (std::move (src))
   {
   }
@@ -88,7 +93,7 @@ namespace Gtk
   auto
   FontChooserDialog::operator= (FontChooserDialog&& src) noexcept -> FontChooserDialog&
   {
-    Dialog::operator= (std::move (src));
+    Gtk::Dialog::operator= (std::move (src));
     FontChooser::operator= (std::move (src));
     return *this;
   }
@@ -113,21 +118,23 @@ namespace Gtk
   }
 
   FontChooserDialog::FontChooserDialog ()
-    : ObjectBase (nullptr),
-      Dialog (Glib::ConstructParams (fontchooserdialog_class_.init ()))
+    : Glib::ObjectBase (nullptr),
+      Gtk::Dialog (Glib::ConstructParams (fontchooserdialog_class_.init ()))
   {
   }
 
   FontChooserDialog::FontChooserDialog (const Glib::ustring& title,
                                         Window& transient_for)
-    : ObjectBase (nullptr),
-      Dialog (Glib::ConstructParams (fontchooserdialog_class_.init (),
-                                     "title",
-                                     title.c_str (),
-                                     "transient_for",
-                                     transient_for.gobj (),
-                                     nullptr))
+    : Glib::ObjectBase (nullptr),
+      Gtk::Dialog (Glib::ConstructParams (fontchooserdialog_class_.init (),
+                                          "title",
+                                          title.c_str (),
+                                          "transient_for",
+                                          (transient_for).gobj (),
+                                          nullptr))
   {
   }
 
 } // namespace Gtk
+
+#endif

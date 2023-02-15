@@ -7,11 +7,9 @@
 
 namespace Glib
 {
+  GLIBMM_API auto
+  wrap_init () -> void;
 
-  GLIBMM_API
-  void
-  wrap_init ();
-
-} // namespace Glib
+}
 
 #endif

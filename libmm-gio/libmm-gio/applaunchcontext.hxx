@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: LGPL-2.1-or-later
 
 #ifndef _GIOMM_APPLAUNCHCONTEXT_H
 #define _GIOMM_APPLAUNCHCONTEXT_H
@@ -95,11 +96,11 @@ namespace Gio
     static auto
     create () -> Glib::RefPtr<AppLaunchContext>;
 
-    void
-    setenv (const Glib::ustring& variable, const Glib::ustring& value);
+    auto
+    setenv (const Glib::ustring& variable, const Glib::ustring& value) -> void;
 
-    void
-    unsetenv (const Glib::ustring& variable);
+    auto
+    unsetenv (const Glib::ustring& variable) -> void;
 
     auto
     get_environment () const -> std::vector<Glib::ustring>;
@@ -114,8 +115,8 @@ namespace Gio
                            const std::vector<Glib::RefPtr<Gio::File>>& files)
         -> std::string;
 
-    void
-    launch_failed (const std::string& startup_notify_id);
+    auto
+    launch_failed (const std::string& startup_notify_id) -> void;
 
   public:
   public:

@@ -115,19 +115,18 @@ namespace Glib
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
   private:
-    GLIBMM_API static void
-    throw_func (GError* gobject);
+    GLIBMM_API static auto
+    throw_func (GError* gobject) -> void;
 
-    friend GLIBMM_API void
-    wrap_init ();
+    friend GLIBMM_API auto
+    wrap_init () -> void;
 
 #endif
   };
 
   using SlotSpawnChildSetup = sigc::slot<void ()>;
 
-  GLIBMM_API
-  void
+  GLIBMM_API auto
   spawn_async_with_pipes (const std::string& working_directory,
                           const std::vector<std::string>& argv,
                           const std::vector<std::string>& envp,
@@ -136,10 +135,9 @@ namespace Glib
                           Pid* child_pid = nullptr,
                           int* standard_input = nullptr,
                           int* standard_output = nullptr,
-                          int* standard_error = nullptr);
+                          int* standard_error = nullptr) -> void;
 
-  GLIBMM_API
-  void
+  GLIBMM_API auto
   spawn_async_with_pipes (const std::string& working_directory,
                           const std::vector<std::string>& argv,
                           SpawnFlags flags = SpawnFlags::DEFAULT,
@@ -147,27 +145,24 @@ namespace Glib
                           Pid* child_pid = nullptr,
                           int* standard_input = nullptr,
                           int* standard_output = nullptr,
-                          int* standard_error = nullptr);
+                          int* standard_error = nullptr) -> void;
 
-  GLIBMM_API
-  void
+  GLIBMM_API auto
   spawn_async (const std::string& working_directory,
                const std::vector<std::string>& argv,
                const std::vector<std::string>& envp,
                SpawnFlags flags = SpawnFlags::DEFAULT,
                const SlotSpawnChildSetup& child_setup = {},
-               Pid* child_pid = nullptr);
+               Pid* child_pid = nullptr) -> void;
 
-  GLIBMM_API
-  void
+  GLIBMM_API auto
   spawn_async (const std::string& working_directory,
                const std::vector<std::string>& argv,
                SpawnFlags flags = SpawnFlags::DEFAULT,
                const SlotSpawnChildSetup& child_setup = {},
-               Pid* child_pid = nullptr);
+               Pid* child_pid = nullptr) -> void;
 
-  GLIBMM_API
-  void
+  GLIBMM_API auto
   spawn_sync (const std::string& working_directory,
               const std::vector<std::string>& argv,
               const std::vector<std::string>& envp,
@@ -175,32 +170,28 @@ namespace Glib
               const SlotSpawnChildSetup& child_setup = {},
               std::string* standard_output = nullptr,
               std::string* standard_error = nullptr,
-              int* wait_status = nullptr);
+              int* wait_status = nullptr) -> void;
 
-  GLIBMM_API
-  void
+  GLIBMM_API auto
   spawn_sync (const std::string& working_directory,
               const std::vector<std::string>& argv,
               SpawnFlags flags = SpawnFlags::DEFAULT,
               const SlotSpawnChildSetup& child_setup = {},
               std::string* standard_output = nullptr,
               std::string* standard_error = nullptr,
-              int* wait_status = nullptr);
+              int* wait_status = nullptr) -> void;
 
-  GLIBMM_API
-  void
-  spawn_command_line_async (const std::string& command_line);
+  GLIBMM_API auto
+  spawn_command_line_async (const std::string& command_line) -> void;
 
-  GLIBMM_API
-  void
+  GLIBMM_API auto
   spawn_command_line_sync (const std::string& command_line,
                            std::string* standard_output = nullptr,
                            std::string* standard_error = nullptr,
-                           int* wait_status = nullptr);
+                           int* wait_status = nullptr) -> void;
 
-  GLIBMM_API
-  void
-  spawn_close_pid (Pid pid);
+  GLIBMM_API auto
+  spawn_close_pid (Pid pid) -> void;
 
 } // namespace Glib
 

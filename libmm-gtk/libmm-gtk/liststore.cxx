@@ -1,20 +1,25 @@
 // SPDX-License-Identifier: LGPL-2.1-or-later
 
-#include <libmm-glib/mm-glib.hxx>
+#undef GTK_DISABLE_DEPRECATED
+#define GDK_DISABLE_DEPRECATION_WARNINGS 1
 
-#include <libmm-gtk/liststore.hxx>
-#include <libmm-gtk/liststore_p.hxx>
+#ifndef GTKMM_DISABLE_DEPRECATED
 
-#include <libmm-glib/vectorutils.hxx>
+  #include <libmm-glib/mm-glib.hxx>
 
-#include <gtk/gtk.h>
+  #include <libmm-gtk/liststore.hxx>
+  #include <libmm-gtk/liststore_p.hxx>
+
+  #include <libmm-glib/vectorutils.hxx>
+
+  #include <gtk/gtk.h>
 
 namespace Gtk
 {
 
   ListStore::ListStore (const TreeModelColumnRecord& columns)
-    : ObjectBase (nullptr),
-      Object (Glib::ConstructParams (liststore_class_.init ()))
+    : Glib::ObjectBase (nullptr),
+      Glib::Object (Glib::ConstructParams (liststore_class_.init ()))
   {
     gtk_list_store_set_column_types (gobj (),
                                      columns.size (),
@@ -30,7 +35,7 @@ namespace Gtk
   }
 
   auto
-  ListStore::erase (const iterator& iter) -> iterator
+  ListStore::erase (const iterator& iter) -> TreeModel::iterator
   {
     g_assert (iter.get_gobject_if_not_end () != nullptr);
 
@@ -44,7 +49,7 @@ namespace Gtk
   }
 
   auto
-  ListStore::insert (const iterator& iter) -> iterator
+  ListStore::insert (const iterator& iter) -> TreeModel::iterator
   {
     iterator new_pos (this);
 
@@ -60,7 +65,7 @@ namespace Gtk
   }
 
   auto
-  ListStore::insert_after (const iterator& iter) -> iterator
+  ListStore::insert_after (const iterator& iter) -> TreeModel::iterator
   {
     iterator new_pos (this);
 
@@ -76,7 +81,7 @@ namespace Gtk
   }
 
   auto
-  ListStore::prepend () -> iterator
+  ListStore::prepend () -> TreeModel::iterator
   {
     iterator new_pos (this);
     gtk_list_store_prepend (gobj (), new_pos.gobj ());
@@ -84,7 +89,7 @@ namespace Gtk
   }
 
   auto
-  ListStore::append () -> iterator
+  ListStore::append () -> TreeModel::iterator
   {
     iterator new_pos (this);
     gtk_list_store_append (gobj (), new_pos.gobj ());
@@ -105,12 +110,13 @@ namespace Gtk
   {
     gtk_list_store_reorder (
         gobj (),
-        Glib::ArrayHandler<int>::vector_to_array (new_order).data ());
+        const_cast<int*> (
+            Glib::ArrayHandler<int>::vector_to_array (new_order).data ()));
   }
 
   auto
   ListStore::set_value_impl (const iterator& row,
-                             const int column,
+                             int column,
                              const Glib::ValueBase& value) -> void
   {
     gtk_list_store_set_value (gobj (),
@@ -129,11 +135,11 @@ namespace Glib
 {
 
   auto
-  wrap (GtkListStore* object, const bool take_copy) -> RefPtr<Gtk::ListStore>
+  wrap (GtkListStore* object, bool take_copy) -> Glib::RefPtr<Gtk::ListStore>
   {
     return Glib::make_refptr_for_instance<Gtk::ListStore> (
         dynamic_cast<Gtk::ListStore*> (
-            wrap_auto ((GObject*) object, take_copy)));
+            Glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
 } // namespace Glib
@@ -142,7 +148,7 @@ namespace Gtk
 {
 
   auto
-  ListStore_Class::init () -> const Class&
+  ListStore_Class::init () -> const Glib::Class&
   {
     if (!gtype_)
     {
@@ -181,17 +187,17 @@ namespace Gtk
   }
 
   ListStore::ListStore (const Glib::ConstructParams& construct_params)
-    : Object (construct_params)
+    : Glib::Object (construct_params)
   {
   }
 
   ListStore::ListStore (GtkListStore* castitem)
-    : Object ((GObject*) castitem)
+    : Glib::Object ((GObject*) (castitem))
   {
   }
 
   ListStore::ListStore (ListStore&& src) noexcept
-    : Object (std::move (src)),
+    : Glib::Object (std::move (src)),
       TreeModel (std::move (src)),
       TreeSortable (std::move (src)),
       TreeDragSource (std::move (src)),
@@ -203,7 +209,7 @@ namespace Gtk
   auto
   ListStore::operator= (ListStore&& src) noexcept -> ListStore&
   {
-    Object::operator= (std::move (src));
+    Glib::Object::operator= (std::move (src));
     TreeModel::operator= (std::move (src));
     TreeSortable::operator= (std::move (src));
     TreeDragSource::operator= (std::move (src));
@@ -212,7 +218,7 @@ namespace Gtk
     return *this;
   }
 
-  ListStore::~ListStore () noexcept = default;
+  ListStore::~ListStore () noexcept {}
 
   ListStore::CppClassType ListStore::liststore_class_;
 
@@ -229,8 +235,8 @@ namespace Gtk
   }
 
   ListStore::ListStore ()
-    : ObjectBase (nullptr),
-      Object (Glib::ConstructParams (liststore_class_.init ()))
+    : Glib::ObjectBase (nullptr),
+      Glib::Object (Glib::ConstructParams (liststore_class_.init ()))
   {
   }
 
@@ -244,8 +250,8 @@ namespace Gtk
   ListStore::iter_swap (const iterator& a, const iterator& b) -> void
   {
     gtk_list_store_swap (gobj (),
-                         const_cast<GtkTreeIter*> (a.gobj ()),
-                         const_cast<GtkTreeIter*> (b.gobj ()));
+                         const_cast<GtkTreeIter*> ((a).gobj ()),
+                         const_cast<GtkTreeIter*> ((b).gobj ()));
   }
 
   auto
@@ -259,7 +265,9 @@ namespace Gtk
   {
     return gtk_list_store_iter_is_valid (
         const_cast<GtkListStore*> (gobj ()),
-        const_cast<GtkTreeIter*> (iter.gobj ()));
+        const_cast<GtkTreeIter*> ((iter).gobj ()));
   }
 
 } // namespace Gtk
+
+#endif

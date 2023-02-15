@@ -15,7 +15,7 @@ namespace Gtk
 {
 
   auto
-  Builder::set_no_gtkmm_derived_types (const bool status) -> void
+  Builder::set_no_gtkmm_derived_types (bool status) -> void
   {
     no_gtkmm_derived_types = status;
   }
@@ -27,146 +27,146 @@ namespace Gtk
   }
 
   Builder::Builder ()
-    : ObjectBase (nullptr),
-      Object (Glib::ConstructParams (builder_class_.init (),
-                                     "scope",
-                                     BuilderCScope::create ()->gobj (),
-                                     nullptr))
+    : Glib::ObjectBase (nullptr),
+      Glib::Object (Glib::ConstructParams (builder_class_.init (),
+                                           "scope",
+                                           BuilderCScope::create ()->gobj (),
+                                           nullptr))
   {
   }
 
   auto
   Builder::create_from_file (const std::string& filename) -> Glib::RefPtr<Builder>
   {
-    auto builder = create ();
+    auto builder = Builder::create ();
     if (builder->add_from_file (filename))
       return builder;
     else
-      return {};
+      return Glib::RefPtr<Builder> ();
   }
 
   auto
   Builder::create_from_file (const std::string& filename, const char* object_id) -> Glib::RefPtr<Builder>
   {
-    auto builder = create ();
+    auto builder = Builder::create ();
     if (builder->add_from_file (filename, object_id))
       return builder;
     else
-      return {};
+      return Glib::RefPtr<Builder> ();
   }
 
   auto
   Builder::create_from_file (const std::string& filename,
                              const Glib::ustring& object_id) -> Glib::RefPtr<Builder>
   {
-    auto builder = create ();
+    auto builder = Builder::create ();
     if (builder->add_from_file (filename, object_id))
       return builder;
     else
-      return {};
+      return Glib::RefPtr<Builder> ();
   }
 
   auto
   Builder::create_from_file (const std::string& filename,
                              const std::vector<Glib::ustring>& object_ids) -> Glib::RefPtr<Builder>
   {
-    auto builder = create ();
+    auto builder = Builder::create ();
     if (builder->add_from_file (filename, object_ids))
       return builder;
     else
-      return {};
+      return Glib::RefPtr<Builder> ();
   }
 
   auto
   Builder::create_from_resource (const std::string& resource_path) -> Glib::RefPtr<Builder>
   {
-    auto builder = create ();
+    auto builder = Builder::create ();
     if (builder->add_from_resource (resource_path))
       return builder;
     else
-      return {};
+      return Glib::RefPtr<Builder> ();
   }
 
   auto
   Builder::create_from_resource (const std::string& resource_path,
                                  const char* object_id) -> Glib::RefPtr<Builder>
   {
-    auto builder = create ();
+    auto builder = Builder::create ();
     if (builder->add_from_resource (resource_path, object_id))
       return builder;
     else
-      return {};
+      return Glib::RefPtr<Builder> ();
   }
 
   auto
   Builder::create_from_resource (const std::string& resource_path,
                                  const Glib::ustring& object_id) -> Glib::RefPtr<Builder>
   {
-    auto builder = create ();
+    auto builder = Builder::create ();
     if (builder->add_from_resource (resource_path, object_id))
       return builder;
     else
-      return {};
+      return Glib::RefPtr<Builder> ();
   }
 
   auto
   Builder::create_from_resource (const std::string& resource_path,
                                  const std::vector<Glib::ustring>& object_ids) -> Glib::RefPtr<Builder>
   {
-    auto builder = create ();
+    auto builder = Builder::create ();
     if (builder->add_from_resource (resource_path, object_ids))
       return builder;
     else
-      return {};
+      return Glib::RefPtr<Builder> ();
   }
 
   auto
   Builder::create_from_string (const Glib::ustring& buffer) -> Glib::RefPtr<Builder>
   {
-    auto builder = create ();
+    auto builder = Builder::create ();
     if (builder->add_from_string (buffer))
       return builder;
     else
-      return {};
+      return Glib::RefPtr<Builder> ();
   }
 
   auto
   Builder::create_from_string (const Glib::ustring& buffer,
                                const char* object_id) -> Glib::RefPtr<Builder>
   {
-    auto builder = create ();
+    auto builder = Builder::create ();
     if (builder->add_from_string (buffer, object_id))
       return builder;
     else
-      return {};
+      return Glib::RefPtr<Builder> ();
   }
 
   auto
   Builder::create_from_string (const Glib::ustring& buffer,
                                const Glib::ustring& object_id) -> Glib::RefPtr<Builder>
   {
-    auto builder = create ();
+    auto builder = Builder::create ();
     if (builder->add_from_string (buffer, object_id))
       return builder;
     else
-      return {};
+      return Glib::RefPtr<Builder> ();
   }
 
   auto
   Builder::create_from_string (const Glib::ustring& buffer,
                                const std::vector<Glib::ustring>& object_ids) -> Glib::RefPtr<Builder>
   {
-    auto builder = create ();
+    auto builder = Builder::create ();
     if (builder->add_from_string (buffer, object_ids))
       return builder;
     else
-      return {};
+      return Glib::RefPtr<Builder> ();
   }
 
   auto
   Builder::add_from_file (const std::string& filename, const char* object_id) -> bool
   {
-    const std::vector<Glib::ustring> object_ids (1, object_id);
+    std::vector<Glib::ustring> object_ids (1, object_id);
 
     return add_from_file (filename, object_ids);
   }
@@ -175,7 +175,7 @@ namespace Gtk
   Builder::add_from_file (const std::string& filename,
                           const Glib::ustring& object_id) -> bool
   {
-    const std::vector<Glib::ustring> object_ids (1, object_id);
+    std::vector<Glib::ustring> object_ids (1, object_id);
 
     return add_from_file (filename, object_ids);
   }
@@ -184,7 +184,7 @@ namespace Gtk
   Builder::add_from_resource (const std::string& resource_path,
                               const char* object_id) -> bool
   {
-    const std::vector<Glib::ustring> object_ids (1, object_id);
+    std::vector<Glib::ustring> object_ids (1, object_id);
 
     return add_from_resource (resource_path, object_ids);
   }
@@ -193,7 +193,7 @@ namespace Gtk
   Builder::add_from_resource (const std::string& resource_path,
                               const Glib::ustring& object_id) -> bool
   {
-    const std::vector<Glib::ustring> object_ids (1, object_id);
+    std::vector<Glib::ustring> object_ids (1, object_id);
 
     return add_from_resource (resource_path, object_ids);
   }
@@ -202,10 +202,10 @@ namespace Gtk
   Builder::add_from_string (const Glib::ustring& buffer) -> bool
   {
     GError* gerror = nullptr;
-    const bool retvalue =
-        gtk_builder_add_from_string (gobj (), buffer.c_str (), -1, &gerror);
+    bool retvalue =
+        gtk_builder_add_from_string (gobj (), buffer.c_str (), -1, &(gerror));
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      ::Glib::Error::throw_exception (gerror);
 
     return retvalue;
   }
@@ -213,7 +213,7 @@ namespace Gtk
   auto
   Builder::add_from_string (const Glib::ustring& buffer, const char* object_id) -> bool
   {
-    const std::vector<Glib::ustring> object_ids (1, object_id);
+    std::vector<Glib::ustring> object_ids (1, object_id);
 
     return add_from_string (buffer, object_ids);
   }
@@ -222,7 +222,7 @@ namespace Gtk
   Builder::add_from_string (const Glib::ustring& buffer,
                             const Glib::ustring& object_id) -> bool
   {
-    const std::vector<Glib::ustring> object_ids (1, object_id);
+    std::vector<Glib::ustring> object_ids (1, object_id);
 
     return add_from_string (buffer, object_ids);
   }
@@ -232,14 +232,14 @@ namespace Gtk
                             const std::vector<Glib::ustring>& object_ids) -> bool
   {
     GError* gerror = nullptr;
-    const bool retvalue = gtk_builder_add_objects_from_string (
+    bool retvalue = gtk_builder_add_objects_from_string (
         gobj (),
         buffer.c_str (),
         -1,
         Glib::ArrayHandler<Glib::ustring>::vector_to_array (object_ids).data (),
-        &gerror);
+        &(gerror));
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      ::Glib::Error::throw_exception (gerror);
 
     return retvalue;
   }
@@ -269,13 +269,14 @@ namespace Gtk
   }
 
   auto
-  Builder::get_widget_checked (const Glib::ustring& name, const GType type) -> Widget*
+  Builder::get_widget_checked (const Glib::ustring& name, GType type) -> Gtk::Widget*
   {
     auto* cobject = get_cwidget (name);
     if (!cobject)
     {
       g_critical ("gtkmm: Gtk::Builder: widget `%s' was not found in the "
-                  "GtkBuilder file, or the specified part of it.",
+                  "GtkBuilder file, or the "
+                  "specified part of it.",
                   name.c_str ());
       return nullptr;
     }
@@ -299,27 +300,27 @@ namespace
 {
 }
 
-Gtk::BuilderError::BuilderError (const Code error_code,
+Gtk::BuilderError::BuilderError (Gtk::BuilderError::Code error_code,
                                  const Glib::ustring& error_message)
-  : Error (GTK_BUILDER_ERROR, error_code, error_message)
+  : Glib::Error (GTK_BUILDER_ERROR, error_code, error_message)
 {
 }
 
 Gtk::BuilderError::BuilderError (GError* gobject)
-  : Error (gobject)
+  : Glib::Error (gobject)
 {
 }
 
 auto
-Gtk::BuilderError::code () const -> Code
+Gtk::BuilderError::code () const -> Gtk::BuilderError::Code
 {
-  return static_cast<Code> (Error::code ());
+  return static_cast<Code> (Glib::Error::code ());
 }
 
 auto
 Gtk::BuilderError::throw_func (GError* gobject) -> void
 {
-  throw BuilderError (gobject);
+  throw Gtk::BuilderError (gobject);
 }
 
 auto
@@ -332,10 +333,11 @@ namespace Glib
 {
 
   auto
-  wrap (GtkBuilder* object, const bool take_copy) -> RefPtr<Gtk::Builder>
+  wrap (GtkBuilder* object, bool take_copy) -> Glib::RefPtr<Gtk::Builder>
   {
     return Glib::make_refptr_for_instance<Gtk::Builder> (
-        dynamic_cast<Gtk::Builder*> (wrap_auto ((GObject*) object, take_copy)));
+        dynamic_cast<Gtk::Builder*> (
+            Glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
 } // namespace Glib
@@ -344,7 +346,7 @@ namespace Gtk
 {
 
   auto
-  Builder_Class::init () -> const Class&
+  Builder_Class::init () -> const Glib::Class&
   {
     if (!gtype_)
     {
@@ -377,28 +379,28 @@ namespace Gtk
   }
 
   Builder::Builder (const Glib::ConstructParams& construct_params)
-    : Object (construct_params)
+    : Glib::Object (construct_params)
   {
   }
 
   Builder::Builder (GtkBuilder* castitem)
-    : Object ((GObject*) castitem)
+    : Glib::Object ((GObject*) (castitem))
   {
   }
 
   Builder::Builder (Builder&& src) noexcept
-    : Object (std::move (src))
+    : Glib::Object (std::move (src))
   {
   }
 
   auto
   Builder::operator= (Builder&& src) noexcept -> Builder&
   {
-    Object::operator= (std::move (src));
+    Glib::Object::operator= (std::move (src));
     return *this;
   }
 
-  Builder::~Builder () noexcept = default;
+  Builder::~Builder () noexcept {}
 
   Builder::CppClassType Builder::builder_class_;
 
@@ -424,10 +426,10 @@ namespace Gtk
   Builder::add_from_file (const std::string& filename) -> bool
   {
     GError* gerror = nullptr;
-    const auto retvalue =
-        gtk_builder_add_from_file (gobj (), filename.c_str (), &gerror);
+    auto retvalue =
+        gtk_builder_add_from_file (gobj (), filename.c_str (), &(gerror));
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      ::Glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
@@ -436,13 +438,13 @@ namespace Gtk
                           const std::vector<Glib::ustring>& object_ids) -> bool
   {
     GError* gerror = nullptr;
-    const auto retvalue = gtk_builder_add_objects_from_file (
+    auto retvalue = gtk_builder_add_objects_from_file (
         gobj (),
         filename.c_str (),
         Glib::ArrayHandler<Glib::ustring>::vector_to_array (object_ids).data (),
-        &gerror);
+        &(gerror));
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      ::Glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
@@ -450,11 +452,11 @@ namespace Gtk
   Builder::add_from_resource (const std::string& resource_path) -> bool
   {
     GError* gerror = nullptr;
-    const auto retvalue = gtk_builder_add_from_resource (gobj (),
-                                                         resource_path.c_str (),
-                                                         &gerror);
+    auto retvalue = gtk_builder_add_from_resource (gobj (),
+                                                   resource_path.c_str (),
+                                                   &(gerror));
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      ::Glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
@@ -463,30 +465,30 @@ namespace Gtk
                               const std::vector<Glib::ustring>& object_ids) -> bool
   {
     GError* gerror = nullptr;
-    const auto retvalue = gtk_builder_add_objects_from_resource (
+    auto retvalue = gtk_builder_add_objects_from_resource (
         gobj (),
         resource_path.c_str (),
         Glib::ArrayHandler<Glib::ustring>::vector_to_array (object_ids).data (),
-        &gerror);
+        &(gerror));
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      ::Glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
   auto
-  Builder::add_from_string (const char* buffer, const gssize length) -> bool
+  Builder::add_from_string (const char* buffer, gssize length) -> bool
   {
     GError* gerror = nullptr;
-    const auto retvalue =
-        gtk_builder_add_from_string (gobj (), buffer, length, &gerror);
+    auto retvalue =
+        gtk_builder_add_from_string (gobj (), buffer, length, &(gerror));
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      ::Glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
   auto
   Builder::expose_object (const Glib::ustring& name,
-                          const Glib::RefPtr<Object>& object) -> void
+                          const Glib::RefPtr<Glib::Object>& object) -> void
   {
     gtk_builder_expose_object (gobj (), name.c_str (), Glib::unwrap (object));
   }
@@ -496,11 +498,11 @@ namespace Gtk
   {
     gtk_builder_expose_object (gobj (),
                                name.c_str (),
-                               G_OBJECT (widget.gobj ()));
+                               G_OBJECT ((widget).gobj ()));
   }
 
   auto
-  Builder::get_object (const Glib::ustring& name) -> Glib::RefPtr<Object>
+  Builder::get_object (const Glib::ustring& name) -> Glib::RefPtr<Glib::Object>
   {
     auto retvalue =
         Glib::wrap (gtk_builder_get_object (gobj (), name.c_str ()));
@@ -510,25 +512,26 @@ namespace Gtk
   }
 
   auto
-  Builder::get_object (const Glib::ustring& name) const -> Glib::RefPtr<const Object>
+  Builder::get_object (const Glib::ustring& name) const -> Glib::RefPtr<const Glib::Object>
   {
     return const_cast<Builder*> (this)->get_object (name);
   }
 
   auto
-  Builder::get_objects () -> std::vector<Glib::RefPtr<Object>>
+  Builder::get_objects () -> std::vector<Glib::RefPtr<Glib::Object>>
   {
-    return Glib::SListHandler<Glib::RefPtr<Object>>::slist_to_vector (
+    return Glib::SListHandler<Glib::RefPtr<Glib::Object>>::slist_to_vector (
         gtk_builder_get_objects (gobj ()),
         Glib::OWNERSHIP_SHALLOW);
   }
 
   auto
-  Builder::get_objects () const -> std::vector<Glib::RefPtr<const Object>>
+  Builder::get_objects () const -> std::vector<Glib::RefPtr<const Glib::Object>>
   {
-    return Glib::SListHandler<Glib::RefPtr<const Object>>::slist_to_vector (
-        gtk_builder_get_objects (const_cast<GtkBuilder*> (gobj ())),
-        Glib::OWNERSHIP_SHALLOW);
+    return Glib::SListHandler<Glib::RefPtr<const Glib::Object>>::
+        slist_to_vector (
+            gtk_builder_get_objects (const_cast<GtkBuilder*> (gobj ())),
+            Glib::OWNERSHIP_SHALLOW);
   }
 
   auto
@@ -547,13 +550,14 @@ namespace Gtk
   auto
   Builder::property_translation_domain () -> Glib::PropertyProxy<Glib::ustring>
   {
-    return {this, "translation-domain"};
+    return Glib::PropertyProxy<Glib::ustring> (this, "translation-domain");
   }
 
   auto
   Builder::property_translation_domain () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>
   {
-    return {this, "translation-domain"};
+    return Glib::PropertyProxy_ReadOnly<Glib::ustring> (this,
+                                                        "translation-domain");
   }
 
 } // namespace Gtk

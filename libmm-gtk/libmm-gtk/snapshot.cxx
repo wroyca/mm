@@ -44,11 +44,11 @@ namespace Glib
 {
 
   auto
-  wrap_gtk_snapshot (GtkSnapshot* object, const bool take_copy) -> RefPtr<Gtk::Snapshot>
+  wrap_gtk_snapshot (GtkSnapshot* object, bool take_copy) -> Glib::RefPtr<Gtk::Snapshot>
   {
     return Glib::make_refptr_for_instance<Gtk::Snapshot> (
         dynamic_cast<Gtk::Snapshot*> (
-            wrap_auto ((GObject*) object, take_copy)));
+            Glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
 } // namespace Glib
@@ -61,7 +61,7 @@ namespace Gtk
 {
 
   auto
-  Snapshot_Class::init () -> const Class&
+  Snapshot_Class::init () -> const Glib::Class&
   {
     if (!gtype_)
     {
@@ -99,7 +99,7 @@ namespace Gtk
   }
 
   Snapshot::Snapshot (GtkSnapshot* castitem)
-    : Gdk::Snapshot (castitem)
+    : Gdk::Snapshot ((GdkSnapshot*) (castitem))
   {
   }
 
@@ -115,7 +115,7 @@ namespace Gtk
     return *this;
   }
 
-  Snapshot::~Snapshot () noexcept = default;
+  Snapshot::~Snapshot () noexcept {}
 
   Snapshot::CppClassType Snapshot::snapshot_class_;
 
@@ -138,13 +138,13 @@ namespace Gtk
   }
 
   auto
-  Snapshot::push_opacity (const double opacity) -> void
+  Snapshot::push_opacity (double opacity) -> void
   {
     gtk_snapshot_push_opacity (gobj (), opacity);
   }
 
   auto
-  Snapshot::push_blur (const double radius) -> void
+  Snapshot::push_blur (double radius) -> void
   {
     gtk_snapshot_push_blur (gobj (), radius);
   }
@@ -186,7 +186,7 @@ namespace Gtk
   }
 
   auto
-  Snapshot::push_cross_fade (const double progress) -> void
+  Snapshot::push_cross_fade (double progress) -> void
   {
     gtk_snapshot_push_cross_fade (gobj (), progress);
   }
@@ -216,27 +216,25 @@ namespace Gtk
   }
 
   auto
-  Snapshot::rotate (const float angle) -> void
+  Snapshot::rotate (float angle) -> void
   {
     gtk_snapshot_rotate (gobj (), angle);
   }
 
   auto
-  Snapshot::scale (const float factor_x, const float factor_y) -> void
+  Snapshot::scale (float factor_x, float factor_y) -> void
   {
     gtk_snapshot_scale (gobj (), factor_x, factor_y);
   }
 
   auto
-  Snapshot::scale (const float factor_x,
-                   const float factor_y,
-                   const float factor_z) -> void
+  Snapshot::scale (float factor_x, float factor_y, float factor_z) -> void
   {
     gtk_snapshot_scale_3d (gobj (), factor_x, factor_y, factor_z);
   }
 
   auto
-  Snapshot::perspective (const float depth) -> void
+  Snapshot::perspective (float depth) -> void
   {
     gtk_snapshot_perspective (gobj (), depth);
   }
@@ -274,14 +272,14 @@ namespace Gtk
   auto
   Snapshot::append_color (const Gdk::RGBA& color, const graphene_rect_t* bounds) -> void
   {
-    gtk_snapshot_append_color (gobj (), color.gobj (), bounds);
+    gtk_snapshot_append_color (gobj (), (color).gobj (), bounds);
   }
 
   auto
   Snapshot::append_color (const Gdk::RGBA& color, const Gdk::Rectangle& bounds) -> void
   {
     gtk_snapshot_append_color (gobj (),
-                               color.gobj (),
+                               (color).gobj (),
                                gdk_rect_to_graphene_rect (bounds).get ());
   }
 
@@ -289,15 +287,19 @@ namespace Gtk
   Snapshot::append_layout (const Glib::RefPtr<Pango::Layout>& layout,
                            const Gdk::RGBA& color) -> void
   {
-    gtk_snapshot_append_layout (gobj (), Glib::unwrap (layout), color.gobj ());
+    gtk_snapshot_append_layout (gobj (),
+                                Glib::unwrap (layout),
+                                (color).gobj ());
   }
 
+#ifndef GTKMM_DISABLE_DEPRECATED
+  G_GNUC_BEGIN_IGNORE_DEPRECATIONS
   auto
   Snapshot::render_backgrount (const Glib::RefPtr<StyleContext>& context,
-                               const double x,
-                               const double y,
-                               const double width,
-                               const double height) -> void
+                               double x,
+                               double y,
+                               double width,
+                               double height) -> void
   {
     gtk_snapshot_render_background (gobj (),
                                     Glib::unwrap (context),
@@ -307,12 +309,17 @@ namespace Gtk
                                     height);
   }
 
+  G_GNUC_END_IGNORE_DEPRECATIONS
+#endif
+
+#ifndef GTKMM_DISABLE_DEPRECATED
+  G_GNUC_BEGIN_IGNORE_DEPRECATIONS
   auto
   Snapshot::render_frame (const Glib::RefPtr<StyleContext>& context,
-                          const double x,
-                          const double y,
-                          const double width,
-                          const double height) -> void
+                          double x,
+                          double y,
+                          double width,
+                          double height) -> void
   {
     gtk_snapshot_render_frame (gobj (),
                                Glib::unwrap (context),
@@ -322,12 +329,17 @@ namespace Gtk
                                height);
   }
 
+  G_GNUC_END_IGNORE_DEPRECATIONS
+#endif
+
+#ifndef GTKMM_DISABLE_DEPRECATED
+  G_GNUC_BEGIN_IGNORE_DEPRECATIONS
   auto
   Snapshot::render_focus (const Glib::RefPtr<StyleContext>& context,
-                          const double x,
-                          const double y,
-                          const double width,
-                          const double height) -> void
+                          double x,
+                          double y,
+                          double width,
+                          double height) -> void
   {
     gtk_snapshot_render_focus (gobj (),
                                Glib::unwrap (context),
@@ -337,10 +349,15 @@ namespace Gtk
                                height);
   }
 
+  G_GNUC_END_IGNORE_DEPRECATIONS
+#endif
+
+#ifndef GTKMM_DISABLE_DEPRECATED
+  G_GNUC_BEGIN_IGNORE_DEPRECATIONS
   auto
   Snapshot::render_layout (const Glib::RefPtr<StyleContext>& context,
-                           const double x,
-                           const double y,
+                           double x,
+                           double y,
                            const Glib::RefPtr<Pango::Layout>& layout) -> void
   {
     gtk_snapshot_render_layout (gobj (),
@@ -350,12 +367,17 @@ namespace Gtk
                                 Glib::unwrap (layout));
   }
 
+  G_GNUC_END_IGNORE_DEPRECATIONS
+#endif
+
+#ifndef GTKMM_DISABLE_DEPRECATED
+  G_GNUC_BEGIN_IGNORE_DEPRECATIONS
   auto
   Snapshot::render_insertion_cursor (const Glib::RefPtr<StyleContext>& context,
-                                     const double x,
-                                     const double y,
+                                     double x,
+                                     double y,
                                      const Glib::RefPtr<Pango::Layout>& layout,
-                                     const int index,
+                                     int index,
                                      Pango::Direction direction) -> void
   {
     gtk_snapshot_render_insertion_cursor (
@@ -367,5 +389,8 @@ namespace Gtk
         index,
         static_cast<PangoDirection> (direction));
   }
+
+  G_GNUC_END_IGNORE_DEPRECATIONS
+#endif
 
 } // namespace Gtk

@@ -32,9 +32,10 @@ namespace Glib
 {
 
   auto
-  wrap (GtkBox* object, const bool take_copy) -> Gtk::Box*
+  wrap (GtkBox* object, bool take_copy) -> Gtk::Box*
   {
-    return dynamic_cast<Gtk::Box*> (wrap_auto ((GObject*) object, take_copy));
+    return dynamic_cast<Gtk::Box*> (
+        Glib::wrap_auto ((GObject*) (object), take_copy));
   }
 
 } // namespace Glib
@@ -43,7 +44,7 @@ namespace Gtk
 {
 
   auto
-  Box_Class::init () -> const Class&
+  Box_Class::init () -> const Glib::Class&
   {
     if (!gtype_)
     {
@@ -67,21 +68,21 @@ namespace Gtk
   auto
   Box_Class::wrap_new (GObject* o) -> Glib::ObjectBase*
   {
-    return manage (new Box ((GtkBox*) o));
+    return manage (new Box ((GtkBox*) (o)));
   }
 
   Box::Box (const Glib::ConstructParams& construct_params)
-    : Widget (construct_params)
+    : Gtk::Widget (construct_params)
   {
   }
 
   Box::Box (GtkBox* castitem)
-    : Widget ((GtkWidget*) castitem)
+    : Gtk::Widget ((GtkWidget*) (castitem))
   {
   }
 
   Box::Box (Box&& src) noexcept
-    : Widget (std::move (src)),
+    : Gtk::Widget (std::move (src)),
       Orientable (std::move (src))
   {
   }
@@ -89,7 +90,7 @@ namespace Gtk
   auto
   Box::operator= (Box&& src) noexcept -> Box&
   {
-    Widget::operator= (std::move (src));
+    Gtk::Widget::operator= (std::move (src));
     Orientable::operator= (std::move (src));
     return *this;
   }
@@ -113,21 +114,22 @@ namespace Gtk
     return gtk_box_get_type ();
   }
 
-  Box::Box (const Orientation orientation, const int spacing)
-    : ObjectBase (nullptr),
-      Widget (Glib::ConstructParams (box_class_.init (),
-                                     "orientation",
-                                     orientation,
-                                     "spacing",
-                                     spacing,
-                                     nullptr))
+  Box::Box (Orientation orientation, int spacing)
+    : Glib::ObjectBase (nullptr),
+      Gtk::Widget (
+          Glib::ConstructParams (box_class_.init (),
+                                 "orientation",
+                                 static_cast<GtkOrientation> (orientation),
+                                 "spacing",
+                                 spacing,
+                                 nullptr))
   {
   }
 
   auto
-  Box::set_homogeneous (const bool homogeneous) -> void
+  Box::set_homogeneous (bool homogeneous) -> void
   {
-    gtk_box_set_homogeneous (gobj (), homogeneous);
+    gtk_box_set_homogeneous (gobj (), static_cast<int> (homogeneous));
   }
 
   auto
@@ -137,7 +139,7 @@ namespace Gtk
   }
 
   auto
-  Box::set_spacing (const int spacing) -> void
+  Box::set_spacing (int spacing) -> void
   {
     gtk_box_set_spacing (gobj (), spacing);
   }
@@ -163,61 +165,61 @@ namespace Gtk
   }
 
   auto
-  Box::append (Widget& child) -> void
+  Box::append (Gtk::Widget& child) -> void
   {
-    gtk_box_append (gobj (), child.gobj ());
+    gtk_box_append (gobj (), (child).gobj ());
   }
 
   auto
-  Box::prepend (Widget& child) -> void
+  Box::prepend (Gtk::Widget& child) -> void
   {
-    gtk_box_prepend (gobj (), child.gobj ());
+    gtk_box_prepend (gobj (), (child).gobj ());
   }
 
   auto
-  Box::remove (Widget& child) -> void
+  Box::remove (Gtk::Widget& child) -> void
   {
-    gtk_box_remove (gobj (), child.gobj ());
+    gtk_box_remove (gobj (), (child).gobj ());
   }
 
   auto
   Box::insert_child_after (Widget& child, const Widget& sibling) -> void
   {
     gtk_box_insert_child_after (gobj (),
-                                child.gobj (),
-                                const_cast<GtkWidget*> (sibling.gobj ()));
+                                (child).gobj (),
+                                const_cast<GtkWidget*> ((sibling).gobj ()));
   }
 
   auto
   Box::reorder_child_after (Widget& child, const Widget& sibling) -> void
   {
     gtk_box_reorder_child_after (gobj (),
-                                 child.gobj (),
-                                 const_cast<GtkWidget*> (sibling.gobj ()));
+                                 (child).gobj (),
+                                 const_cast<GtkWidget*> ((sibling).gobj ()));
   }
 
   auto
   Box::property_spacing () -> Glib::PropertyProxy<int>
   {
-    return {this, "spacing"};
+    return Glib::PropertyProxy<int> (this, "spacing");
   }
 
   auto
   Box::property_spacing () const -> Glib::PropertyProxy_ReadOnly<int>
   {
-    return {this, "spacing"};
+    return Glib::PropertyProxy_ReadOnly<int> (this, "spacing");
   }
 
   auto
   Box::property_homogeneous () -> Glib::PropertyProxy<bool>
   {
-    return {this, "homogeneous"};
+    return Glib::PropertyProxy<bool> (this, "homogeneous");
   }
 
   auto
   Box::property_homogeneous () const -> Glib::PropertyProxy_ReadOnly<bool>
   {
-    return {this, "homogeneous"};
+    return Glib::PropertyProxy_ReadOnly<bool> (this, "homogeneous");
   }
 
   static_assert (
@@ -228,13 +230,14 @@ namespace Gtk
   auto
   Box::property_baseline_position () -> Glib::PropertyProxy<BaselinePosition>
   {
-    return {this, "baseline-position"};
+    return Glib::PropertyProxy<BaselinePosition> (this, "baseline-position");
   }
 
   auto
   Box::property_baseline_position () const -> Glib::PropertyProxy_ReadOnly<BaselinePosition>
   {
-    return {this, "baseline-position"};
+    return Glib::PropertyProxy_ReadOnly<BaselinePosition> (this,
+                                                           "baseline-position");
   }
 
 } // namespace Gtk

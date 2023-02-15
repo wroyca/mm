@@ -3,25 +3,27 @@
 #ifndef _GTKMM_CELLRENDERERPIXBUF_H
 #define _GTKMM_CELLRENDERERPIXBUF_H
 
-#include <libmm-glib/ustring.hxx>
-#include <sigc++/sigc++.h>
+#ifndef GTKMM_DISABLE_DEPRECATED
 
-#include <libmm-gdk/pixbuf.hxx>
-#include <libmm-gdk/texture.hxx>
-#include <libmm-gio/icon.hxx>
-#include <libmm-gtk/cellrenderer.hxx>
+  #include <libmm-glib/ustring.hxx>
+  #include <sigc++/sigc++.h>
 
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #include <libmm-gdk/pixbuf.hxx>
+  #include <libmm-gdk/texture.hxx>
+  #include <libmm-gio/icon.hxx>
+  #include <libmm-gtk/cellrenderer.hxx>
+
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
 using GtkCellRendererPixbuf = struct _GtkCellRendererPixbuf;
 using GtkCellRendererPixbufClass = struct _GtkCellRendererPixbufClass;
-#endif
+  #endif
 
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
   class GTKMM_API CellRendererPixbuf_Class;
 }
-#endif
+  #endif
 
 namespace Gtk
 {
@@ -29,12 +31,12 @@ namespace Gtk
   class GTKMM_API CellRendererPixbuf : public CellRenderer
   {
   public:
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
     typedef CellRendererPixbuf CppObjectType;
     typedef CellRendererPixbuf_Class CppClassType;
     typedef GtkCellRendererPixbuf BaseObjectType;
     typedef GtkCellRendererPixbufClass BaseClassType;
-#endif
+  #endif
 
     CellRendererPixbuf (CellRendererPixbuf&& src) noexcept;
     auto
@@ -46,7 +48,7 @@ namespace Gtk
 
     ~CellRendererPixbuf () noexcept override;
 
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   private:
     friend GTKMM_API class CellRendererPixbuf_Class;
@@ -56,17 +58,17 @@ namespace Gtk
     explicit CellRendererPixbuf (const Glib::ConstructParams& construct_params);
     explicit CellRendererPixbuf (GtkCellRendererPixbuf* castitem);
 
-#endif
+  #endif
 
   public:
     static auto
     get_type () -> GType G_GNUC_CONST;
 
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
     static auto
     get_base_type () -> GType G_GNUC_CONST;
-#endif
+  #endif
 
     auto
     gobj () -> GtkCellRendererPixbuf*
@@ -142,10 +144,10 @@ namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkCellRendererPixbuf* object, bool take_copy = false) -> Gtk::CellRendererPixbuf*;
 } // namespace Glib
+
+#endif
 
 #endif

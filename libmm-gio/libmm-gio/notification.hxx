@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: LGPL-2.1-or-later
 
 #ifndef _GIOMM_NOTIFICATION_H
 #define _GIOMM_NOTIFICATION_H
@@ -98,46 +99,47 @@ namespace Gio
     static auto
     create (const Glib::ustring& title) -> Glib::RefPtr<Notification>;
 
-    void
-    set_title (const Glib::ustring& title);
+    auto
+    set_title (const Glib::ustring& title) -> void;
 
-    void
-    set_body (const Glib::ustring& body);
+    auto
+    set_body (const Glib::ustring& body) -> void;
 
-    void
-    set_icon (const Glib::RefPtr<Icon>& icon);
+    auto
+    set_icon (const Glib::RefPtr<Icon>& icon) -> void;
 
-    void
-    set_priority (Priority priority = Priority::NORMAL);
+    auto
+    set_priority (Priority priority = Priority::NORMAL) -> void;
 
-    void
-    set_category (const Glib::ustring& category);
+    auto
+    set_category (const Glib::ustring& category) -> void;
 
-    void
+    auto
     add_button (const Glib::ustring& label,
-                const Glib::ustring& detailed_action);
+                const Glib::ustring& detailed_action) -> void;
 
     template <typename T_Value>
-    void
+    auto
     add_button (const Glib::ustring& label,
                 const Glib::ustring& action,
-                const T_Value& target);
+                const T_Value& target) -> void;
 
-    void
+    auto
     add_button_variant (const Glib::ustring& label,
                         const Glib::ustring& action,
-                        const Glib::VariantBase& target);
+                        const Glib::VariantBase& target) -> void;
 
-    void
-    set_default_action (const Glib::ustring& detailed_action);
+    auto
+    set_default_action (const Glib::ustring& detailed_action) -> void;
 
     template <typename T_Value>
-    void
-    set_default_action (const Glib::ustring& action, const T_Value& target);
+    auto
+    set_default_action (const Glib::ustring& action, const T_Value& target)
+        -> void;
 
-    void
+    auto
     set_default_action_variant (const Glib::ustring& action,
-                                const Glib::VariantBase& target);
+                                const Glib::VariantBase& target) -> void;
 
   public:
   public:
@@ -145,10 +147,10 @@ namespace Gio
   };
 
   template <typename T_Value>
-  void
+  auto
   Notification::add_button (const Glib::ustring& label,
                             const Glib::ustring& action,
-                            const T_Value& target)
+                            const T_Value& target) -> void
   {
     using type_glib_variant = Glib::Variant<T_Value>;
 
@@ -156,9 +158,9 @@ namespace Gio
   }
 
   template <typename T_Value>
-  void
+  auto
   Notification::set_default_action (const Glib::ustring& action,
-                                    const T_Value& target)
+                                    const T_Value& target) -> void
   {
     using type_glib_variant = Glib::Variant<T_Value>;
 

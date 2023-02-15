@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: LGPL-2.1-or-later
 
 #ifndef _GIOMM_DBUSERROR_H
 #define _GIOMM_DBUSERROR_H
@@ -72,11 +73,11 @@ namespace Gio::DBus
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
   private:
-    GIOMM_API static void
-    throw_func (GError* gobject);
+    GIOMM_API static auto
+    throw_func (GError* gobject) -> void;
 
-    friend GIOMM_API void
-    wrap_init ();
+    friend GIOMM_API auto
+    wrap_init () -> void;
 
 #endif
   };

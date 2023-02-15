@@ -2,5 +2,8 @@
 
 #ifndef _GTKMM_TREEITER_P_H
 #define _GTKMM_TREEITER_P_H
+#ifndef GTKMM_DISABLE_DEPRECATED
+
+#endif
 
 #endif

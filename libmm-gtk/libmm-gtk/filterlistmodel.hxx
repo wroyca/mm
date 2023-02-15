@@ -91,8 +91,8 @@ namespace Gtk
             const Glib::RefPtr<Filter>& filter)
         -> Glib::RefPtr<FilterListModel>;
 
-    void
-    set_filter (const Glib::RefPtr<Filter>& filter);
+    auto
+    set_filter (const Glib::RefPtr<Filter>& filter) -> void;
 
     auto
     get_filter () -> Glib::RefPtr<Filter>;
@@ -100,8 +100,8 @@ namespace Gtk
     auto
     get_filter () const -> Glib::RefPtr<const Filter>;
 
-    void
-    set_model (const Glib::RefPtr<Gio::ListModel>& model);
+    auto
+    set_model (const Glib::RefPtr<Gio::ListModel>& model) -> void;
 
     auto
     get_model () -> Glib::RefPtr<Gio::ListModel>;
@@ -109,8 +109,8 @@ namespace Gtk
     auto
     get_model () const -> Glib::RefPtr<const Gio::ListModel>;
 
-    void
-    set_incremental (bool incremental = true);
+    auto
+    set_incremental (bool incremental = true) -> void;
 
     auto
     get_incremental () const -> bool;
@@ -156,9 +156,7 @@ namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkFilterListModel* object, bool take_copy = false) -> Glib::RefPtr<Gtk::FilterListModel>;
 } // namespace Glib
 

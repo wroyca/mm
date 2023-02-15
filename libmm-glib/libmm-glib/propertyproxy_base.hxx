@@ -57,12 +57,12 @@ namespace Glib
     }
 
   protected:
-    void
-    set_property_ (const Glib::ValueBase& value);
-    void
-    get_property_ (Glib::ValueBase& value) const;
-    void
-    reset_property_ ();
+    auto
+    set_property_ (const Glib::ValueBase& value) -> void;
+    auto
+    get_property_ (Glib::ValueBase& value) const -> void;
+    auto
+    reset_property_ () -> void;
 
     ObjectBase* obj_;
 
@@ -90,8 +90,8 @@ namespace Glib
     auto
     connect_changed (const Glib::ustring& property_name) -> sigc::connection;
 
-    static void
-    callback (GObject* object, GParamSpec* pspec, gpointer data);
+    static auto
+    callback (GObject* object, GParamSpec* pspec, gpointer data) -> void;
   };
 
 #endif

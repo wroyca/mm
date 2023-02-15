@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: LGPL-2.1-or-later
 
 #ifndef _GIOMM_NETWORKSERVICE_H
 #define _GIOMM_NETWORKSERVICE_H
@@ -102,8 +103,8 @@ namespace Gio
     auto
     get_scheme () const -> Glib::ustring;
 
-    void
-    set_scheme (const Glib::ustring& scheme);
+    auto
+    set_scheme (const Glib::ustring& scheme) -> void;
 
     auto
     property_domain () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: LGPL-2.1-or-later
 
 #ifndef _GIOMM_DATAINPUTSTREAM_H
 #define _GIOMM_DATAINPUTSTREAM_H
@@ -87,14 +88,14 @@ namespace Gio
     create (const Glib::RefPtr<InputStream>& base_stream)
         -> Glib::RefPtr<DataInputStream>;
 
-    void
-    set_byte_order (DataStreamByteOrder order);
+    auto
+    set_byte_order (DataStreamByteOrder order) -> void;
 
     auto
     get_byte_order () const -> DataStreamByteOrder;
 
-    void
-    set_newline_type (DataStreamNewlineType type);
+    auto
+    set_newline_type (DataStreamNewlineType type) -> void;
 
     auto
     get_newline_type () const -> DataStreamNewlineType;
@@ -148,38 +149,38 @@ namespace Gio
     auto
     read_line (std::string& line) -> bool;
 
-    void
+    auto
     read_line_utf8 (std::string& line,
                     const Glib::RefPtr<Cancellable>& cancellable,
-                    gsize& length);
+                    gsize& length) -> void;
 
-    void
+    auto
     read_line_utf8 (std::string& line,
-                    const Glib::RefPtr<Cancellable>& cancellable);
+                    const Glib::RefPtr<Cancellable>& cancellable) -> void;
 
-    void
-    read_line_utf8 (std::string& line, gsize& length);
+    auto
+    read_line_utf8 (std::string& line, gsize& length) -> void;
 
-    void
-    read_line_utf8 (std::string& line);
+    auto
+    read_line_utf8 (std::string& line) -> void;
 
-    void
+    auto
     read_line_async (const SlotAsyncReady& slot,
                      const Glib::RefPtr<Cancellable>& cancellable,
-                     int io_priority = Glib::PRIORITY_DEFAULT);
+                     int io_priority = Glib::PRIORITY_DEFAULT) -> void;
 
     auto
     read_line_finish (const Glib::RefPtr<AsyncResult>& result,
                       std::string& data) -> bool;
 
-    void
+    auto
     read_line_finish_utf8 (const Glib::RefPtr<AsyncResult>& result,
                            std::string& data,
-                           gsize& length);
+                           gsize& length) -> void;
 
-    void
+    auto
     read_line_finish_utf8 (const Glib::RefPtr<AsyncResult>& result,
-                           std::string& data);
+                           std::string& data) -> void;
 
     auto
     read_upto (std::string& data,
@@ -189,11 +190,11 @@ namespace Gio
     auto
     read_upto (std::string& data, const std::string& stop_chars) -> bool;
 
-    void
+    auto
     read_upto_async (const std::string& stop_chars,
                      const SlotAsyncReady& slot,
                      const Glib::RefPtr<Cancellable>& cancellable,
-                     int io_priority = Glib::PRIORITY_DEFAULT);
+                     int io_priority = Glib::PRIORITY_DEFAULT) -> void;
 
     auto
     read_upto_finish (const Glib::RefPtr<AsyncResult>& result,

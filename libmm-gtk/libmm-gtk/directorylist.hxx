@@ -92,8 +92,8 @@ namespace Gtk
             const Glib::RefPtr<Gio::File>& file = {})
         -> Glib::RefPtr<DirectoryList>;
 
-    void
-    set_file (const Glib::RefPtr<Gio::File>& file);
+    auto
+    set_file (const Glib::RefPtr<Gio::File>& file) -> void;
 
     auto
     get_file () -> Glib::RefPtr<Gio::File>;
@@ -101,14 +101,14 @@ namespace Gtk
     auto
     get_file () const -> Glib::RefPtr<const Gio::File>;
 
-    void
-    set_attributes (const std::string& attributes);
+    auto
+    set_attributes (const std::string& attributes) -> void;
 
     auto
     get_attributes () const -> std::string;
 
-    void
-    set_io_priority (int io_priority);
+    auto
+    set_io_priority (int io_priority) -> void;
 
     auto
     get_io_priority () const -> int;
@@ -119,8 +119,8 @@ namespace Gtk
     auto
     get_error () const -> Glib::Error;
 
-    void
-    set_monitored (bool monitored = true);
+    auto
+    set_monitored (bool monitored = true) -> void;
 
     auto
     get_monitored () const -> bool;
@@ -171,9 +171,7 @@ namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkDirectoryList* object, bool take_copy = false) -> Glib::RefPtr<Gtk::DirectoryList>;
 } // namespace Glib
 

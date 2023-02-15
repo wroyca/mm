@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: LGPL-2.1-or-later
 
 #ifndef _GIOMM_LISTMODEL_H
 #define _GIOMM_LISTMODEL_H
@@ -68,8 +69,8 @@ namespace Gio
 
     ~ListModel () noexcept override;
 
-    static void
-    add_interface (GType gtype_implementer);
+    static auto
+    add_interface (GType gtype_implementer) -> void;
 
     static auto
     get_type () -> GType G_GNUC_CONST;
@@ -93,8 +94,8 @@ namespace Gio
 
   private:
   protected:
-    void
-    items_changed (guint position, guint removed, guint added);
+    auto
+    items_changed (guint position, guint removed, guint added) -> void;
 
   public:
     auto

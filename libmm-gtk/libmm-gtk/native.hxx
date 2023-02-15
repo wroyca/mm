@@ -77,8 +77,8 @@ namespace Gtk
 
     ~Native () noexcept override;
 
-    static void
-    add_interface (GType gtype_implementer);
+    static auto
+    add_interface (GType gtype_implementer) -> void;
 
     static auto
     get_type () -> GType G_GNUC_CONST;
@@ -102,11 +102,11 @@ namespace Gtk
 
   private:
   public:
-    void
-    realize ();
+    auto
+    realize () -> void;
 
-    void
-    unrealize ();
+    auto
+    unrealize () -> void;
 
     static auto
     get_for_surface (const Glib::RefPtr<const Gdk::Surface>& surface)
@@ -118,8 +118,8 @@ namespace Gtk
     auto
     get_surface () const -> Glib::RefPtr<const Gdk::Surface>;
 
-    void
-    get_surface_transform (double& x, double& y);
+    auto
+    get_surface_transform (double& x, double& y) -> void;
 
   public:
   public:
@@ -130,9 +130,7 @@ namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkNative* object, bool take_copy = false) -> Glib::RefPtr<Gtk::Native>;
 
 } // namespace Glib

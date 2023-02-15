@@ -86,8 +86,8 @@ namespace Gtk
     explicit PrintUnixDialog (Gtk::Window& parent, const Glib::ustring& title);
     explicit PrintUnixDialog (const Glib::ustring& title);
 
-    void
-    set_page_setup (const Glib::RefPtr<PageSetup>& page_setup);
+    auto
+    set_page_setup (const Glib::RefPtr<PageSetup>& page_setup) -> void;
 
     auto
     get_page_setup () -> Glib::RefPtr<PageSetup>;
@@ -95,14 +95,14 @@ namespace Gtk
     auto
     get_page_setup () const -> Glib::RefPtr<const PageSetup>;
 
-    void
-    set_current_page (int current_page);
+    auto
+    set_current_page (int current_page) -> void;
 
     auto
     get_current_page () const -> int;
 
-    void
-    set_settings (const Glib::RefPtr<PrintSettings>& settings);
+    auto
+    set_settings (const Glib::RefPtr<PrintSettings>& settings) -> void;
 
     auto
     get_settings () -> Glib::RefPtr<PrintSettings>;
@@ -116,32 +116,33 @@ namespace Gtk
     auto
     get_selected_printer () const -> Glib::RefPtr<const Printer>;
 
-    void
-    add_custom_tab (const Widget& child, const Glib::ustring& tab_label);
+    auto
+    add_custom_tab (const Widget& child, const Glib::ustring& tab_label)
+        -> void;
 
-    void
-    add_custom_tab (const Widget& child, const Widget& tab_label);
+    auto
+    add_custom_tab (const Widget& child, const Widget& tab_label) -> void;
 
-    void
-    set_manual_capabilities (PrintCapabilities capabilities);
+    auto
+    set_manual_capabilities (PrintCapabilities capabilities) -> void;
 
     auto
     get_manual_capabilities () const -> PrintCapabilities;
 
-    void
-    get_support_selection (bool support_selection = true);
+    auto
+    get_support_selection (bool support_selection = true) -> void;
 
     auto
     get_support_selection () const -> bool;
 
-    void
-    set_has_selection (bool has_selection = true);
+    auto
+    set_has_selection (bool has_selection = true) -> void;
 
     auto
     get_has_selection () const -> bool;
 
-    void
-    set_embed_page_setup (bool embed = true);
+    auto
+    set_embed_page_setup (bool embed = true) -> void;
 
     auto
     get_embed_page_setup () const -> bool;
@@ -207,9 +208,7 @@ namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkPrintUnixDialog* object, bool take_copy = false) -> Gtk::PrintUnixDialog*;
 } // namespace Glib
 

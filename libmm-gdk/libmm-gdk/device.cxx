@@ -85,12 +85,12 @@ namespace Gdk
 namespace
 {
 
-  const Glib::SignalProxyInfo Device_signal_changed_info = {
+  static const Glib::SignalProxyInfo Device_signal_changed_info = {
       "changed",
       (GCallback) &Glib::SignalProxyNormal::slot0_void_callback,
       (GCallback) &Glib::SignalProxyNormal::slot0_void_callback};
 
-  auto
+  static auto
   Device_signal_tool_changed_callback (GdkDevice* self,
                                        GdkDeviceTool* p0,
                                        void* data) -> void
@@ -98,7 +98,7 @@ namespace
     using namespace Gdk;
     using SlotType = sigc::slot<void (const Glib::RefPtr<DeviceTool>&)>;
 
-    const auto obj = dynamic_cast<Device*> (
+    auto obj = dynamic_cast<Device*> (
         Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
@@ -115,7 +115,7 @@ namespace
     }
   }
 
-  const Glib::SignalProxyInfo Device_signal_tool_changed_info = {
+  static const Glib::SignalProxyInfo Device_signal_tool_changed_info = {
       "tool-changed",
       (GCallback) &Device_signal_tool_changed_callback,
       (GCallback) &Device_signal_tool_changed_callback};
@@ -132,10 +132,11 @@ namespace Glib
 {
 
   auto
-  wrap (GdkDevice* object, const bool take_copy) -> RefPtr<Gdk::Device>
+  wrap (GdkDevice* object, bool take_copy) -> Glib::RefPtr<Gdk::Device>
   {
     return Glib::make_refptr_for_instance<Gdk::Device> (
-        dynamic_cast<Gdk::Device*> (wrap_auto ((GObject*) object, take_copy)));
+        dynamic_cast<Gdk::Device*> (
+            Glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
 } // namespace Glib
@@ -144,7 +145,7 @@ namespace Gdk
 {
 
   auto
-  Device_Class::init () -> const Class&
+  Device_Class::init () -> const Glib::Class&
   {
     if (!gtype_)
     {
@@ -171,28 +172,28 @@ namespace Gdk
   }
 
   Device::Device (const Glib::ConstructParams& construct_params)
-    : Object (construct_params)
+    : Glib::Object (construct_params)
   {
   }
 
   Device::Device (GdkDevice* castitem)
-    : Object ((GObject*) castitem)
+    : Glib::Object ((GObject*) (castitem))
   {
   }
 
   Device::Device (Device&& src) noexcept
-    : Object (std::move (src))
+    : Glib::Object (std::move (src))
   {
   }
 
   auto
   Device::operator= (Device&& src) noexcept -> Device&
   {
-    Object::operator= (std::move (src));
+    Glib::Object::operator= (std::move (src));
     return *this;
   }
 
-  Device::~Device () noexcept = default;
+  Device::~Device () noexcept {}
 
   Device::CppClassType Device::device_class_;
 
@@ -209,8 +210,8 @@ namespace Gdk
   }
 
   Device::Device ()
-    : ObjectBase (nullptr),
-      Object (Glib::ConstructParams (device_class_.init ()))
+    : Glib::ObjectBase (nullptr),
+      Glib::Object (Glib::ConstructParams (device_class_.init ()))
   {
   }
 
@@ -253,7 +254,7 @@ namespace Gdk
   Device::get_surface_at_position (double& win_x, double& win_y) -> Glib::RefPtr<Surface>
   {
     auto retvalue = Glib::wrap (
-        gdk_device_get_surface_at_position (gobj (), &win_x, &win_y));
+        gdk_device_get_surface_at_position (gobj (), &(win_x), &(win_y)));
     if (retvalue)
       retvalue->reference ();
     return retvalue;
@@ -347,13 +348,15 @@ namespace Gdk
   auto
   Device::signal_changed () -> Glib::SignalProxy<void ()>
   {
-    return {this, &Device_signal_changed_info};
+    return Glib::SignalProxy<void ()> (this, &Device_signal_changed_info);
   }
 
   auto
   Device::signal_tool_changed () -> Glib::SignalProxy<void (const Glib::RefPtr<DeviceTool>&)>
   {
-    return {this, &Device_signal_tool_changed_info};
+    return Glib::SignalProxy<void (const Glib::RefPtr<DeviceTool>&)> (
+        this,
+        &Device_signal_tool_changed_info);
   }
 
   static_assert (
@@ -365,13 +368,14 @@ namespace Gdk
   auto
   Device::property_display () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Display>>
   {
-    return {this, "display"};
+    return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Display>> (this,
+                                                                "display");
   }
 
   auto
   Device::property_name () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>
   {
-    return {this, "name"};
+    return Glib::PropertyProxy_ReadOnly<Glib::ustring> (this, "name");
   }
 
   static_assert (
@@ -382,31 +386,31 @@ namespace Gdk
   auto
   Device::property_source () const -> Glib::PropertyProxy_ReadOnly<InputSource>
   {
-    return {this, "source"};
+    return Glib::PropertyProxy_ReadOnly<InputSource> (this, "source");
   }
 
   auto
   Device::property_has_cursor () const -> Glib::PropertyProxy_ReadOnly<bool>
   {
-    return {this, "has-cursor"};
+    return Glib::PropertyProxy_ReadOnly<bool> (this, "has-cursor");
   }
 
   auto
   Device::property_n_axes () const -> Glib::PropertyProxy_ReadOnly<guint>
   {
-    return {this, "n-axes"};
+    return Glib::PropertyProxy_ReadOnly<guint> (this, "n-axes");
   }
 
   auto
   Device::property_vendor_id () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>
   {
-    return {this, "vendor-id"};
+    return Glib::PropertyProxy_ReadOnly<Glib::ustring> (this, "vendor-id");
   }
 
   auto
   Device::property_product_id () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>
   {
-    return {this, "product-id"};
+    return Glib::PropertyProxy_ReadOnly<Glib::ustring> (this, "product-id");
   }
 
   static_assert (
@@ -417,19 +421,19 @@ namespace Gdk
   auto
   Device::property_seat () -> Glib::PropertyProxy<Glib::RefPtr<Seat>>
   {
-    return {this, "seat"};
+    return Glib::PropertyProxy<Glib::RefPtr<Seat>> (this, "seat");
   }
 
   auto
   Device::property_seat () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Seat>>
   {
-    return {this, "seat"};
+    return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Seat>> (this, "seat");
   }
 
   auto
   Device::property_num_touches () const -> Glib::PropertyProxy_ReadOnly<guint>
   {
-    return {this, "num-touches"};
+    return Glib::PropertyProxy_ReadOnly<guint> (this, "num-touches");
   }
 
   static_assert (
@@ -441,7 +445,8 @@ namespace Gdk
   auto
   Device::property_tool () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<DeviceTool>>
   {
-    return {this, "tool"};
+    return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<DeviceTool>> (this,
+                                                                   "tool");
   }
 
   static_assert (
@@ -452,31 +457,31 @@ namespace Gdk
   auto
   Device::property_direction () const -> Glib::PropertyProxy_ReadOnly<Pango::Direction>
   {
-    return {this, "direction"};
+    return Glib::PropertyProxy_ReadOnly<Pango::Direction> (this, "direction");
   }
 
   auto
   Device::property_has_bidi_layouts () const -> Glib::PropertyProxy_ReadOnly<bool>
   {
-    return {this, "has-bidi-layouts"};
+    return Glib::PropertyProxy_ReadOnly<bool> (this, "has-bidi-layouts");
   }
 
   auto
   Device::property_caps_lock_state () const -> Glib::PropertyProxy_ReadOnly<bool>
   {
-    return {this, "caps-lock-state"};
+    return Glib::PropertyProxy_ReadOnly<bool> (this, "caps-lock-state");
   }
 
   auto
   Device::property_num_lock_state () const -> Glib::PropertyProxy_ReadOnly<bool>
   {
-    return {this, "num-lock-state"};
+    return Glib::PropertyProxy_ReadOnly<bool> (this, "num-lock-state");
   }
 
   auto
   Device::property_scroll_lock_state () const -> Glib::PropertyProxy_ReadOnly<bool>
   {
-    return {this, "scroll-lock-state"};
+    return Glib::PropertyProxy_ReadOnly<bool> (this, "scroll-lock-state");
   }
 
   static_assert (
@@ -487,7 +492,7 @@ namespace Gdk
   auto
   Device::property_modifier_state () const -> Glib::PropertyProxy_ReadOnly<ModifierType>
   {
-    return {this, "modifier-state"};
+    return Glib::PropertyProxy_ReadOnly<ModifierType> (this, "modifier-state");
   }
 
 } // namespace Gdk

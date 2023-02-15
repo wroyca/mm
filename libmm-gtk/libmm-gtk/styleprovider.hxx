@@ -6,6 +6,7 @@
 #include <libmm-glib/ustring.hxx>
 #include <sigc++/sigc++.h>
 
+#include <libmm-gdk/display.hxx>
 #include <libmm-glib/interface.hxx>
 #include <libmm-gtk/enums.hxx>
 
@@ -70,8 +71,8 @@ namespace Gtk
 
     ~StyleProvider () noexcept override;
 
-    static void
-    add_interface (GType gtype_implementer);
+    static auto
+    add_interface (GType gtype_implementer) -> void;
 
     static auto
     get_type () -> GType G_GNUC_CONST;
@@ -95,6 +96,16 @@ namespace Gtk
 
   private:
   public:
+    static auto
+    add_provider_for_display (const Glib::RefPtr<Gdk::Display>& display,
+                              const Glib::RefPtr<StyleProvider>& provider,
+                              guint priority) -> void;
+
+    static auto
+    remove_provider_for_display (const Glib::RefPtr<Gdk::Display>& display,
+                                 const Glib::RefPtr<StyleProvider>& provider)
+        -> void;
+
   public:
   public:
   protected:
@@ -104,9 +115,7 @@ namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkStyleProvider* object, bool take_copy = false) -> Glib::RefPtr<Gtk::StyleProvider>;
 
 } // namespace Glib

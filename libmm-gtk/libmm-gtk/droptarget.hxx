@@ -86,8 +86,8 @@ namespace Gtk
     static auto
     create (GType type, Gdk::DragAction actions) -> Glib::RefPtr<DropTarget>;
 
-    void
-    set_gtypes (const std::vector<GType>& types);
+    auto
+    set_gtypes (const std::vector<GType>& types) -> void;
 
     auto
     get_gtypes () const -> std::vector<GType>;
@@ -98,14 +98,14 @@ namespace Gtk
     auto
     get_formats () const -> Glib::RefPtr<const Gdk::ContentFormats>;
 
-    void
-    set_actions (Gdk::DragAction actions);
+    auto
+    set_actions (Gdk::DragAction actions) -> void;
 
     auto
     get_actions () const -> Gdk::DragAction;
 
-    void
-    set_preload (bool preload = true);
+    auto
+    set_preload (bool preload = true) -> void;
 
     auto
     get_preload () const -> bool;
@@ -131,8 +131,8 @@ namespace Gtk
     auto
     get_value () const -> Glib::ValueBase;
 
-    void
-    reject ();
+    auto
+    reject () -> void;
 
     auto
     property_actions () -> Glib::PropertyProxy<Gdk::DragAction>;
@@ -191,9 +191,7 @@ namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkDropTarget* object, bool take_copy = false) -> Glib::RefPtr<Gtk::DropTarget>;
 } // namespace Glib
 

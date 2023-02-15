@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: LGPL-2.1-or-later
 
 #ifndef _GIOMM_FILEINFO_H
 #define _GIOMM_FILEINFO_H
@@ -44,11 +45,11 @@ namespace Gio
     using BaseObjectType = GFileAttributeMatcher;
 #endif
 
-    void
-    reference () const;
+    auto
+    reference () const -> void;
 
-    void
-    unreference () const;
+    auto
+    unreference () const -> void;
 
     auto
     gobj () -> GFileAttributeMatcher*;
@@ -66,8 +67,8 @@ namespace Gio
     operator= (const FileAttributeMatcher&) -> FileAttributeMatcher& = delete;
 
   protected:
-    void
-    operator delete (void*, std::size_t);
+    auto
+    operator delete (void*, std::size_t) -> void;
 
   private:
   public:
@@ -157,8 +158,8 @@ namespace Gio
     auto
     dup () const -> Glib::RefPtr<FileInfo>;
 
-    void
-    copy_into (Glib::RefPtr<FileInfo>& dest_info) const;
+    auto
+    copy_into (Glib::RefPtr<FileInfo>& dest_info) const -> void;
 
     auto
     has_attribute (const std::string& attribute) const -> bool;
@@ -177,8 +178,8 @@ namespace Gio
     get_attribute_type (const std::string& attribute) const
         -> FileAttributeType;
 
-    void
-    remove_attribute (const std::string& attribute);
+    auto
+    remove_attribute (const std::string& attribute) -> void;
 
     auto
     get_attribute_status (const std::string& attribute) const
@@ -222,39 +223,45 @@ namespace Gio
     set_attribute_status (const std::string& attribute,
                           FileAttributeStatus status) -> bool;
 
-    void
+    auto
     set_attribute_string (const std::string& attribute,
-                          const Glib::ustring& attr_value);
+                          const Glib::ustring& attr_value) -> void;
 
-    void
+    auto
     set_attribute_strings (const std::string& attribute,
-                           const std::vector<Glib::ustring>& attr_value);
+                           const std::vector<Glib::ustring>& attr_value)
+        -> void;
 
-    void
+    auto
     set_attribute_byte_string (const std::string& attribute,
-                               const std::string& attr_value);
+                               const std::string& attr_value) -> void;
 
-    void
-    set_attribute_boolean (const std::string& attribute, bool attr_value);
+    auto
+    set_attribute_boolean (const std::string& attribute, bool attr_value)
+        -> void;
 
-    void
-    set_attribute_uint32 (const std::string& attribute, guint32 attr_value);
+    auto
+    set_attribute_uint32 (const std::string& attribute, guint32 attr_value)
+        -> void;
 
-    void
-    set_attribute_int32 (const std::string& attribute, gint32 attr_value);
+    auto
+    set_attribute_int32 (const std::string& attribute, gint32 attr_value)
+        -> void;
 
-    void
-    set_attribute_uint64 (const std::string& attribute, guint64 attr_value);
+    auto
+    set_attribute_uint64 (const std::string& attribute, guint64 attr_value)
+        -> void;
 
-    void
-    set_attribute_int64 (const std::string& attribute, gint64 attr_value);
+    auto
+    set_attribute_int64 (const std::string& attribute, gint64 attr_value)
+        -> void;
 
-    void
+    auto
     set_attribute_object (const std::string& attribute,
-                          const Glib::RefPtr<Glib::Object>& attr_value);
+                          const Glib::RefPtr<Glib::Object>& attr_value) -> void;
 
-    void
-    clear_status ();
+    auto
+    clear_status () -> void;
 
     auto
     get_deletion_date () const -> Glib::DateTime;
@@ -316,56 +323,56 @@ namespace Gio
     auto
     get_sort_order () const -> gint32;
 
-    void
-    set_attribute_mask (const Glib::RefPtr<FileAttributeMatcher>& mask);
+    auto
+    set_attribute_mask (const Glib::RefPtr<FileAttributeMatcher>& mask) -> void;
 
-    void
-    unset_attribute_mask ();
+    auto
+    unset_attribute_mask () -> void;
 
-    void
-    set_file_type (FileType type);
+    auto
+    set_file_type (FileType type) -> void;
 
-    void
-    set_is_hidden (bool hidden = true);
+    auto
+    set_is_hidden (bool hidden = true) -> void;
 
-    void
-    set_is_symlink (bool symlink = true);
+    auto
+    set_is_symlink (bool symlink = true) -> void;
 
-    void
-    set_name (const std::string& name);
+    auto
+    set_name (const std::string& name) -> void;
 
-    void
-    set_display_name (const Glib::ustring& display_name);
+    auto
+    set_display_name (const Glib::ustring& display_name) -> void;
 
-    void
-    set_edit_name (const Glib::ustring& edit_name);
+    auto
+    set_edit_name (const Glib::ustring& edit_name) -> void;
 
-    void
-    set_icon (const Glib::RefPtr<Icon>& icon);
+    auto
+    set_icon (const Glib::RefPtr<Icon>& icon) -> void;
 
-    void
-    set_symbolic_icon (const Glib::RefPtr<Icon>& icon);
+    auto
+    set_symbolic_icon (const Glib::RefPtr<Icon>& icon) -> void;
 
-    void
-    set_content_type (const Glib::ustring& content_type);
+    auto
+    set_content_type (const Glib::ustring& content_type) -> void;
 
-    void
-    set_size (goffset size);
+    auto
+    set_size (goffset size) -> void;
 
-    void
-    set_modification_date_time (const Glib::DateTime& mtime);
+    auto
+    set_modification_date_time (const Glib::DateTime& mtime) -> void;
 
-    void
-    set_access_date_time (const Glib::DateTime& atime);
+    auto
+    set_access_date_time (const Glib::DateTime& atime) -> void;
 
-    void
-    set_creation_date_time (const Glib::DateTime& creation_time);
+    auto
+    set_creation_date_time (const Glib::DateTime& creation_time) -> void;
 
-    void
-    set_symlink_target (const std::string& symlink_target);
+    auto
+    set_symlink_target (const std::string& symlink_target) -> void;
 
-    void
-    set_sort_order (gint32 sort_order);
+    auto
+    set_sort_order (gint32 sort_order) -> void;
 
   public:
   public:

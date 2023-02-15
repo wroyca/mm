@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: LGPL-2.1-or-later
 
 #ifndef _GIOMM_VOLUMEMONITOR_H
 #define _GIOMM_VOLUMEMONITOR_H
@@ -154,41 +155,41 @@ namespace Gio
   public:
   public:
   protected:
-    virtual void
-    on_volume_added (const Glib::RefPtr<Volume>& volume);
+    virtual auto
+    on_volume_added (const Glib::RefPtr<Volume>& volume) -> void;
 
-    virtual void
-    on_volume_removed (const Glib::RefPtr<Volume>& volume);
+    virtual auto
+    on_volume_removed (const Glib::RefPtr<Volume>& volume) -> void;
 
-    virtual void
-    on_volume_changed (const Glib::RefPtr<Volume>& volume);
+    virtual auto
+    on_volume_changed (const Glib::RefPtr<Volume>& volume) -> void;
 
-    virtual void
-    on_mount_added (const Glib::RefPtr<Mount>& mount);
+    virtual auto
+    on_mount_added (const Glib::RefPtr<Mount>& mount) -> void;
 
-    virtual void
-    on_mount_removed (const Glib::RefPtr<Mount>& mount);
+    virtual auto
+    on_mount_removed (const Glib::RefPtr<Mount>& mount) -> void;
 
-    virtual void
-    on_mount_pre_unmount (const Glib::RefPtr<Mount>& mount);
+    virtual auto
+    on_mount_pre_unmount (const Glib::RefPtr<Mount>& mount) -> void;
 
-    virtual void
-    on_mount_changed (const Glib::RefPtr<Mount>& mount);
+    virtual auto
+    on_mount_changed (const Glib::RefPtr<Mount>& mount) -> void;
 
-    virtual void
-    on_drive_connected (const Glib::RefPtr<Drive>& drive);
+    virtual auto
+    on_drive_connected (const Glib::RefPtr<Drive>& drive) -> void;
 
-    virtual void
-    on_drive_disconnected (const Glib::RefPtr<Drive>& drive);
+    virtual auto
+    on_drive_disconnected (const Glib::RefPtr<Drive>& drive) -> void;
 
-    virtual void
-    on_drive_changed (const Glib::RefPtr<Drive>& drive);
+    virtual auto
+    on_drive_changed (const Glib::RefPtr<Drive>& drive) -> void;
 
-    virtual void
-    on_drive_eject_button (const Glib::RefPtr<Drive>& drive);
+    virtual auto
+    on_drive_eject_button (const Glib::RefPtr<Drive>& drive) -> void;
 
-    virtual void
-    on_drive_stop_button (const Glib::RefPtr<Drive>& drive);
+    virtual auto
+    on_drive_stop_button (const Glib::RefPtr<Drive>& drive) -> void;
   };
 
 } // namespace Gio

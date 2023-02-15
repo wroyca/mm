@@ -17,14 +17,14 @@ namespace Gdk
     using CppObjectType = MemoryTexture;
     using BaseObjectType = GdkMemoryTexture;
     using BaseClassType = GdkMemoryTextureClass;
-    using CppClassParent = Texture_Class;
+    using CppClassParent = Gdk::Texture_Class;
     using BaseClassParent = GdkTextureClass;
 
     friend class MemoryTexture;
 #endif
 
     auto
-    init () -> const Class&;
+    init () -> const Glib::Class&;
 
     static auto
     class_init_function (void* g_class, void* class_data) -> void;

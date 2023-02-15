@@ -17,14 +17,14 @@ namespace Gtk
     using CppObjectType = Picture;
     using BaseObjectType = GtkPicture;
     using BaseClassType = GtkPictureClass;
-    using CppClassParent = Widget_Class;
+    using CppClassParent = Gtk::Widget_Class;
     using BaseClassParent = GtkWidgetClass;
 
     friend class Picture;
 #endif
 
     auto
-    init () -> const Class&;
+    init () -> const Glib::Class&;
 
     static auto
     class_init_function (void* g_class, void* class_data) -> void;

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: LGPL-2.1-or-later
 
 #ifndef _GIOMM_DBUSOWNNAME_H
 #define _GIOMM_DBUSOWNNAME_H
@@ -108,9 +109,8 @@ namespace Gio::DBus
             const SlotNameLost& name_lost_slot = {},
             BusNameOwnerFlags flags = Gio::DBus::BusNameOwnerFlags::NONE) -> guint;
 
-  GIOMM_API
-  void
-  unown_name (guint owner_id);
+  GIOMM_API auto
+  unown_name (guint owner_id) -> void;
 
 } // namespace Gio::DBus
 

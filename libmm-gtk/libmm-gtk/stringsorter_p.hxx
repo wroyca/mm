@@ -17,14 +17,14 @@ namespace Gtk
     using CppObjectType = StringSorter;
     using BaseObjectType = GtkStringSorter;
     using BaseClassType = GtkStringSorterClass;
-    using CppClassParent = Sorter_Class;
+    using CppClassParent = Gtk::Sorter_Class;
     using BaseClassParent = GtkSorterClass;
 
     friend class StringSorter;
 #endif
 
     auto
-    init () -> const Class&;
+    init () -> const Glib::Class&;
 
     static auto
     class_init_function (void* g_class, void* class_data) -> void;

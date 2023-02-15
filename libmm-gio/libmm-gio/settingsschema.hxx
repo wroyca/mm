@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: LGPL-2.1-or-later
 
 #ifndef _GIOMM_SETTINGSSCHEMA_H
 #define _GIOMM_SETTINGSSCHEMA_H
@@ -27,11 +28,11 @@ namespace Gio
     static auto
     get_type () -> GType G_GNUC_CONST;
 
-    void
-    reference () const;
+    auto
+    reference () const -> void;
 
-    void
-    unreference () const;
+    auto
+    unreference () const -> void;
 
     auto
     gobj () -> GSettingsSchema*;
@@ -49,8 +50,8 @@ namespace Gio
     operator= (const SettingsSchema&) -> SettingsSchema& = delete;
 
   protected:
-    void
-    operator delete (void*, std::size_t);
+    auto
+    operator delete (void*, std::size_t) -> void;
 
   private:
   protected:

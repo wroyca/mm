@@ -94,65 +94,65 @@ namespace Gtk
     auto
     get_text () const -> Glib::ustring;
 
-    void
-    set_text (const Glib::ustring& text);
+    auto
+    set_text (const Glib::ustring& text) -> void;
 
     auto
     get_attributes () const -> Pango::AttrList;
 
-    void
-    set_attributes (Pango::AttrList& attrs);
+    auto
+    set_attributes (Pango::AttrList& attrs) -> void;
 
-    void
-    set_markup (const Glib::ustring& markup);
+    auto
+    set_markup (const Glib::ustring& markup) -> void;
 
     auto
     get_text_overflow () const -> Inscription::Overflow;
 
-    void
-    set_text_overflow (Overflow overflow);
+    auto
+    set_text_overflow (Overflow overflow) -> void;
 
     auto
     get_wrap_mode () const -> Pango::WrapMode;
 
-    void
-    set_wrap_mode (Pango::WrapMode wrap_mode);
+    auto
+    set_wrap_mode (Pango::WrapMode wrap_mode) -> void;
 
     auto
     get_min_chars () const -> unsigned int;
 
-    void
-    set_min_chars (unsigned int min_chars);
+    auto
+    set_min_chars (unsigned int min_chars) -> void;
 
     auto
     get_nat_chars () const -> unsigned int;
 
-    void
-    set_nat_chars (unsigned int nat_chars);
+    auto
+    set_nat_chars (unsigned int nat_chars) -> void;
 
     auto
     get_min_lines () const -> unsigned int;
 
-    void
-    set_min_lines (unsigned int min_lines);
+    auto
+    set_min_lines (unsigned int min_lines) -> void;
 
     auto
     get_nat_lines () const -> unsigned int;
 
-    void
-    set_nat_lines (unsigned int nat_lines);
+    auto
+    set_nat_lines (unsigned int nat_lines) -> void;
 
     auto
     get_xalign () const -> float;
 
-    void
-    set_xalign (float xalign);
+    auto
+    set_xalign (float xalign) -> void;
 
     auto
     get_yalign () const -> float;
 
-    void
-    set_yalign (float yalign);
+    auto
+    set_yalign (float yalign) -> void;
 
     auto
     property_attributes () -> Glib::PropertyProxy<Pango::AttrList>;
@@ -245,9 +245,7 @@ namespace Glib
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkInscription* object, bool take_copy = false) -> Gtk::Inscription*;
 } // namespace Glib
 

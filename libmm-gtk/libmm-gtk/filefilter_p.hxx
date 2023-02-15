@@ -17,14 +17,14 @@ namespace Gtk
     using CppObjectType = FileFilter;
     using BaseObjectType = GtkFileFilter;
     using BaseClassType = GtkFileFilterClass;
-    using CppClassParent = Filter_Class;
+    using CppClassParent = Gtk::Filter_Class;
     using BaseClassParent = GtkFilterClass;
 
     friend class FileFilter;
 #endif
 
     auto
-    init () -> const Class&;
+    init () -> const Glib::Class&;
 
     static auto
     class_init_function (void* g_class, void* class_data) -> void;

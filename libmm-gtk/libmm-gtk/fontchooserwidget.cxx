@@ -1,11 +1,16 @@
 // SPDX-License-Identifier: LGPL-2.1-or-later
 
-#include <libmm-glib/mm-glib.hxx>
+#undef GTK_DISABLE_DEPRECATED
+#define GDK_DISABLE_DEPRECATION_WARNINGS 1
 
-#include <libmm-gtk/fontchooserwidget.hxx>
-#include <libmm-gtk/fontchooserwidget_p.hxx>
+#ifndef GTKMM_DISABLE_DEPRECATED
 
-#include <gtk/gtk.h>
+  #include <libmm-glib/mm-glib.hxx>
+
+  #include <libmm-gtk/fontchooserwidget.hxx>
+  #include <libmm-gtk/fontchooserwidget_p.hxx>
+
+  #include <gtk/gtk.h>
 
 namespace Gtk
 {
@@ -20,10 +25,10 @@ namespace Glib
 {
 
   auto
-  wrap (GtkFontChooserWidget* object, const bool take_copy) -> Gtk::FontChooserWidget*
+  wrap (GtkFontChooserWidget* object, bool take_copy) -> Gtk::FontChooserWidget*
   {
     return dynamic_cast<Gtk::FontChooserWidget*> (
-        wrap_auto ((GObject*) object, take_copy));
+        Glib::wrap_auto ((GObject*) (object), take_copy));
   }
 
 } // namespace Glib
@@ -32,7 +37,7 @@ namespace Gtk
 {
 
   auto
-  FontChooserWidget_Class::init () -> const Class&
+  FontChooserWidget_Class::init () -> const Glib::Class&
   {
     if (!gtype_)
     {
@@ -56,22 +61,22 @@ namespace Gtk
   auto
   FontChooserWidget_Class::wrap_new (GObject* o) -> Glib::ObjectBase*
   {
-    return manage (new FontChooserWidget ((GtkFontChooserWidget*) o));
+    return manage (new FontChooserWidget ((GtkFontChooserWidget*) (o)));
   }
 
   FontChooserWidget::FontChooserWidget (
       const Glib::ConstructParams& construct_params)
-    : Widget (construct_params)
+    : Gtk::Widget (construct_params)
   {
   }
 
   FontChooserWidget::FontChooserWidget (GtkFontChooserWidget* castitem)
-    : Widget ((GtkWidget*) castitem)
+    : Gtk::Widget ((GtkWidget*) (castitem))
   {
   }
 
   FontChooserWidget::FontChooserWidget (FontChooserWidget&& src) noexcept
-    : Widget (std::move (src)),
+    : Gtk::Widget (std::move (src)),
       FontChooser (std::move (src))
   {
   }
@@ -79,7 +84,7 @@ namespace Gtk
   auto
   FontChooserWidget::operator= (FontChooserWidget&& src) noexcept -> FontChooserWidget&
   {
-    Widget::operator= (std::move (src));
+    Gtk::Widget::operator= (std::move (src));
     FontChooser::operator= (std::move (src));
     return *this;
   }
@@ -104,9 +109,11 @@ namespace Gtk
   }
 
   FontChooserWidget::FontChooserWidget ()
-    : ObjectBase (nullptr),
-      Widget (Glib::ConstructParams (fontchooserwidget_class_.init ()))
+    : Glib::ObjectBase (nullptr),
+      Gtk::Widget (Glib::ConstructParams (fontchooserwidget_class_.init ()))
   {
   }
 
 } // namespace Gtk
+
+#endif

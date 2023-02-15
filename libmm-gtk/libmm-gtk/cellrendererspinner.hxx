@@ -3,23 +3,25 @@
 #ifndef _GTKMM_CELLRENDERERSPINNER_H
 #define _GTKMM_CELLRENDERERSPINNER_H
 
-#include <libmm-glib/ustring.hxx>
-#include <sigc++/sigc++.h>
+#ifndef GTKMM_DISABLE_DEPRECATED
 
-#include <libmm-gtk/cellrenderer.hxx>
-#include <libmm-gtk/enums.hxx>
+  #include <libmm-glib/ustring.hxx>
+  #include <sigc++/sigc++.h>
 
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #include <libmm-gtk/cellrenderer.hxx>
+  #include <libmm-gtk/enums.hxx>
+
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
 using GtkCellRendererSpinner = struct _GtkCellRendererSpinner;
 using GtkCellRendererSpinnerClass = struct _GtkCellRendererSpinnerClass;
-#endif
+  #endif
 
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
   class GTKMM_API CellRendererSpinner_Class;
 }
-#endif
+  #endif
 
 namespace Gtk
 {
@@ -27,12 +29,12 @@ namespace Gtk
   class GTKMM_API CellRendererSpinner : public CellRenderer
   {
   public:
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
     typedef CellRendererSpinner CppObjectType;
     typedef CellRendererSpinner_Class CppClassType;
     typedef GtkCellRendererSpinner BaseObjectType;
     typedef GtkCellRendererSpinnerClass BaseClassType;
-#endif
+  #endif
 
     CellRendererSpinner (CellRendererSpinner&& src) noexcept;
     auto
@@ -44,7 +46,7 @@ namespace Gtk
 
     ~CellRendererSpinner () noexcept override;
 
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   private:
     friend GTKMM_API class CellRendererSpinner_Class;
@@ -55,17 +57,17 @@ namespace Gtk
         const Glib::ConstructParams& construct_params);
     explicit CellRendererSpinner (GtkCellRendererSpinner* castitem);
 
-#endif
+  #endif
 
   public:
     static auto
     get_type () -> GType G_GNUC_CONST;
 
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
     static auto
     get_base_type () -> GType G_GNUC_CONST;
-#endif
+  #endif
 
     auto
     gobj () -> GtkCellRendererSpinner*
@@ -110,10 +112,10 @@ namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkCellRendererSpinner* object, bool take_copy = false) -> Gtk::CellRendererSpinner*;
 } // namespace Glib
+
+#endif
 
 #endif

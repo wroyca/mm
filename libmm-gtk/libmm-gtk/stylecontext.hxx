@@ -3,32 +3,34 @@
 #ifndef _GTKMM_STYLECONTEXT_H
 #define _GTKMM_STYLECONTEXT_H
 
-#include <libmm-glib/ustring.hxx>
-#include <sigc++/sigc++.h>
+#ifndef GTKMM_DISABLE_DEPRECATED
 
-#include <libmm-gdk/display.hxx>
-#include <libmm-gdk/rgba.hxx>
-#include <libmm-gtk/border.hxx>
-#include <libmm-gtk/enums.hxx>
-#include <libmm-gtk/styleprovider.hxx>
+  #include <libmm-glib/ustring.hxx>
+  #include <sigc++/sigc++.h>
 
-#include <libmm-gtk/enums.hxx>
-#include <libmm-gtk/mm-gtkconfig.hxx>
-#include <libmm-pango/context.hxx>
-#include <libmm-pango/fontdescription.hxx>
-#include <libmm-pango/layout.hxx>
+  #include <libmm-gdk/display.hxx>
+  #include <libmm-gdk/rgba.hxx>
+  #include <libmm-gtk/border.hxx>
+  #include <libmm-gtk/enums.hxx>
+  #include <libmm-gtk/styleprovider.hxx>
 
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #include <libmm-gtk/enums.hxx>
+  #include <libmm-gtk/mm-gtkconfig.hxx>
+  #include <libmm-pango/context.hxx>
+  #include <libmm-pango/fontdescription.hxx>
+  #include <libmm-pango/layout.hxx>
+
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
 using GtkStyleContext = struct _GtkStyleContext;
 using GtkStyleContextClass = struct _GtkStyleContextClass;
-#endif
+  #endif
 
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
   class GTKMM_API StyleContext_Class;
 }
-#endif
+  #endif
 
 namespace Gdk
 {
@@ -40,7 +42,7 @@ namespace Gtk
 
   class GTKMM_API StyleContext : public Glib::Object
   {
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   public:
     using CppObjectType = StyleContext;
@@ -60,7 +62,7 @@ namespace Gtk
     explicit StyleContext (const Glib::ConstructParams& construct_params);
     explicit StyleContext (GtkStyleContext* castitem);
 
-#endif
+  #endif
 
   public:
     StyleContext (StyleContext&& src) noexcept;
@@ -72,11 +74,11 @@ namespace Gtk
     static auto
     get_type () -> GType G_GNUC_CONST;
 
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
     static auto
     get_base_type () -> GType G_GNUC_CONST;
-#endif
+  #endif
 
     auto
     gobj () -> GtkStyleContext*
@@ -106,56 +108,94 @@ namespace Gtk
       SHOW_CHANGE = 1 << 2
     };
 
-    static void
+  #ifndef GTKMM_DISABLE_DEPRECATED
+
+    static auto
     add_provider_for_display (const Glib::RefPtr<Gdk::Display>& display,
                               const Glib::RefPtr<StyleProvider>& provider,
-                              guint priority);
+                              guint priority) -> void;
+  #endif
 
-    static void
+  #ifndef GTKMM_DISABLE_DEPRECATED
+
+    static auto
     remove_provider_for_display (const Glib::RefPtr<Gdk::Display>& display,
-                                 const Glib::RefPtr<StyleProvider>& provider);
+                                 const Glib::RefPtr<StyleProvider>& provider)
+        -> void;
+  #endif
 
-    void
-    add_provider (const Glib::RefPtr<StyleProvider>& provider, guint priority);
+    auto
+    add_provider (const Glib::RefPtr<StyleProvider>& provider, guint priority)
+        -> void;
 
-    void
-    remove_provider (const Glib::RefPtr<StyleProvider>& provider);
+    auto
+    remove_provider (const Glib::RefPtr<StyleProvider>& provider) -> void;
 
-    void
-    context_save ();
+    auto
+    context_save () -> void;
 
-    void
-    context_restore ();
+    auto
+    context_restore () -> void;
 
-    void
-    set_state (StateFlags flags);
+  #ifndef GTKMM_DISABLE_DEPRECATED
+
+    auto
+    set_state (StateFlags flags) -> void;
+  #endif
+
+  #ifndef GTKMM_DISABLE_DEPRECATED
 
     auto
     get_state () const -> StateFlags;
+  #endif
 
-    void
-    set_scale (int scale);
+  #ifndef GTKMM_DISABLE_DEPRECATED
+
+    auto
+    set_scale (int scale) -> void;
+  #endif
+
+  #ifndef GTKMM_DISABLE_DEPRECATED
 
     auto
     get_scale () const -> int;
+  #endif
 
-    void
-    add_class (const Glib::ustring& class_name);
+  #ifndef GTKMM_DISABLE_DEPRECATED
 
-    void
-    remove_class (const Glib::ustring& class_name);
+    auto
+    add_class (const Glib::ustring& class_name) -> void;
+  #endif
+
+  #ifndef GTKMM_DISABLE_DEPRECATED
+
+    auto
+    remove_class (const Glib::ustring& class_name) -> void;
+  #endif
+
+  #ifndef GTKMM_DISABLE_DEPRECATED
 
     auto
     has_class (const Glib::ustring& class_name) -> bool;
+  #endif
 
-    void
-    set_display (const Glib::RefPtr<Gdk::Display>& display);
+  #ifndef GTKMM_DISABLE_DEPRECATED
+
+    auto
+    set_display (const Glib::RefPtr<Gdk::Display>& display) -> void;
+  #endif
+
+  #ifndef GTKMM_DISABLE_DEPRECATED
 
     auto
     get_display () -> Glib::RefPtr<Gdk::Display>;
+  #endif
+
+  #ifndef GTKMM_DISABLE_DEPRECATED
 
     auto
     get_display () const -> Glib::RefPtr<const Gdk::Display>;
+  #endif
 
     auto
     lookup_color (const Glib::ustring& color_name, Gdk::RGBA& color) -> bool;
@@ -172,87 +212,87 @@ namespace Gtk
     auto
     get_margin () const -> Border;
 
-    void
+    auto
     render_check (const Cairo::RefPtr<Cairo::Context>& cr,
                   double x,
                   double y,
                   double width,
-                  double height);
+                  double height) -> void;
 
-    void
+    auto
     render_option (const Cairo::RefPtr<Cairo::Context>& cr,
                    double x,
                    double y,
                    double width,
-                   double height);
+                   double height) -> void;
 
-    void
+    auto
     render_arrow (const Cairo::RefPtr<Cairo::Context>& cr,
                   double angle,
                   double x,
                   double y,
-                  double size);
+                  double size) -> void;
 
-    void
+    auto
     render_background (const Cairo::RefPtr<Cairo::Context>& cr,
                        double x,
                        double y,
                        double width,
-                       double height);
+                       double height) -> void;
 
-    void
+    auto
     render_frame (const Cairo::RefPtr<Cairo::Context>& cr,
                   double x,
                   double y,
                   double width,
-                  double height);
+                  double height) -> void;
 
-    void
+    auto
     render_expander (const Cairo::RefPtr<Cairo::Context>& cr,
                      double x,
                      double y,
                      double width,
-                     double height);
+                     double height) -> void;
 
-    void
+    auto
     render_focus (const Cairo::RefPtr<Cairo::Context>& cr,
                   double x,
                   double y,
                   double width,
-                  double height);
+                  double height) -> void;
 
-    void
+    auto
     render_layout (const Cairo::RefPtr<Cairo::Context>& cr,
                    double x,
                    double y,
-                   const Glib::RefPtr<Pango::Layout>& layout);
+                   const Glib::RefPtr<Pango::Layout>& layout) -> void;
 
-    void
+    auto
     render_line (const Cairo::RefPtr<Cairo::Context>& cr,
                  double x0,
                  double y0,
                  double x1,
-                 double y1);
+                 double y1) -> void;
 
-    void
+    auto
     render_handle (const Cairo::RefPtr<Cairo::Context>& cr,
                    double x,
                    double y,
                    double width,
-                   double height);
+                   double height) -> void;
 
-    void
+    auto
     render_activity (const Cairo::RefPtr<Cairo::Context>& cr,
                      double x,
                      double y,
                      double width,
-                     double height);
+                     double height) -> void;
 
-    void
+    auto
     render_icon (const Cairo::RefPtr<Cairo::Context>& cr,
                  const Glib::RefPtr<Gdk::Texture>& texture,
                  double x,
-                 double y);
+                 double y) -> void;
 
     auto
     to_string (PrintFlags flags) const -> Glib::ustring;
@@ -324,7 +364,7 @@ namespace Gtk
   }
 } // namespace Gtk
 
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Glib
 {
 
@@ -338,14 +378,14 @@ namespace Glib
   };
 
 } // namespace Glib
-#endif
+  #endif
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkStyleContext* object, bool take_copy = false) -> Glib::RefPtr<Gtk::StyleContext>;
 } // namespace Glib
+
+#endif
 
 #endif

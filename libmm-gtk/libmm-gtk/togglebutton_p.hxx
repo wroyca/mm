@@ -17,14 +17,14 @@ namespace Gtk
     using CppObjectType = ToggleButton;
     using BaseObjectType = GtkToggleButton;
     using BaseClassType = GtkToggleButtonClass;
-    using CppClassParent = Button_Class;
+    using CppClassParent = Gtk::Button_Class;
     using BaseClassParent = GtkButtonClass;
 
     friend class ToggleButton;
 #endif
 
     auto
-    init () -> const Class&;
+    init () -> const Glib::Class&;
 
     static auto
     class_init_function (void* g_class, void* class_data) -> void;

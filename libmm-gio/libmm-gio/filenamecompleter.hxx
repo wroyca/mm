@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: LGPL-2.1-or-later
 
 #ifndef _GIOMM_FILENAMECOMPLETER_H
 #define _GIOMM_FILENAMECOMPLETER_H
@@ -97,8 +98,8 @@ namespace Gio
     get_completions (const std::string& initial_text) const
         -> std::vector<Glib::ustring>;
 
-    void
-    set_dirs_only (bool dirs_only = true);
+    auto
+    set_dirs_only (bool dirs_only = true) -> void;
 
     auto
     signal_got_completion_data () -> Glib::SignalProxy<void ()>;
@@ -106,8 +107,8 @@ namespace Gio
   public:
   public:
   protected:
-    virtual void
-    on_got_completion_data ();
+    virtual auto
+    on_got_completion_data () -> void;
   };
 
 } // namespace Gio

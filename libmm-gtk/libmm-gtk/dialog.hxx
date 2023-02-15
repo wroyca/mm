@@ -138,17 +138,17 @@ namespace Gtk
             bool modal = false,
             bool use_header_bar = false);
 
-    void
-    add_action_widget (Widget& child, int response_id);
+    auto
+    add_action_widget (Widget& child, int response_id) -> void;
 
     auto
     add_button (const Glib::ustring& button_text, int response_id) -> Button*;
 
-    void
-    set_response_sensitive (int response_id, bool setting = true);
+    auto
+    set_response_sensitive (int response_id, bool setting = true) -> void;
 
-    void
-    set_default_response (int response_id);
+    auto
+    set_default_response (int response_id) -> void;
 
     auto
     get_widget_for_response (int response_id) -> Widget*;
@@ -159,8 +159,8 @@ namespace Gtk
     auto
     get_response_for_widget (const Gtk::Widget& widget) const -> int;
 
-    void
-    response (int response_id);
+    auto
+    response (int response_id) -> void;
 
     auto
     get_content_area () -> Box*;
@@ -183,17 +183,15 @@ namespace Gtk
   public:
   public:
   protected:
-    virtual void
-    on_response (int response_id);
+    virtual auto
+    on_response (int response_id) -> void;
   };
 
 } // namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkDialog* object, bool take_copy = false) -> Gtk::Dialog*;
 } // namespace Glib
 

@@ -15,11 +15,11 @@ namespace Glib
 {
 
   auto
-  wrap (GtkFilterListModel* object, const bool take_copy) -> RefPtr<Gtk::FilterListModel>
+  wrap (GtkFilterListModel* object, bool take_copy) -> Glib::RefPtr<Gtk::FilterListModel>
   {
     return Glib::make_refptr_for_instance<Gtk::FilterListModel> (
         dynamic_cast<Gtk::FilterListModel*> (
-            wrap_auto ((GObject*) object, take_copy)));
+            Glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
 } // namespace Glib
@@ -28,7 +28,7 @@ namespace Gtk
 {
 
   auto
-  FilterListModel_Class::init () -> const Class&
+  FilterListModel_Class::init () -> const Glib::Class&
   {
     if (!gtype_)
     {
@@ -62,30 +62,30 @@ namespace Gtk
 
   FilterListModel::FilterListModel (
       const Glib::ConstructParams& construct_params)
-    : Object (construct_params)
+    : Glib::Object (construct_params)
   {
   }
 
   FilterListModel::FilterListModel (GtkFilterListModel* castitem)
-    : Object ((GObject*) castitem)
+    : Glib::Object ((GObject*) (castitem))
   {
   }
 
   FilterListModel::FilterListModel (FilterListModel&& src) noexcept
-    : Object (std::move (src)),
-      ListModel (std::move (src))
+    : Glib::Object (std::move (src)),
+      Gio::ListModel (std::move (src))
   {
   }
 
   auto
   FilterListModel::operator= (FilterListModel&& src) noexcept -> FilterListModel&
   {
-    Object::operator= (std::move (src));
-    ListModel::operator= (std::move (src));
+    Glib::Object::operator= (std::move (src));
+    Gio::ListModel::operator= (std::move (src));
     return *this;
   }
 
-  FilterListModel::~FilterListModel () noexcept = default;
+  FilterListModel::~FilterListModel () noexcept {}
 
   FilterListModel::CppClassType FilterListModel::filterlistmodel_class_;
 
@@ -101,20 +101,20 @@ namespace Gtk
     return gtk_filter_list_model_get_type ();
   }
 
-  FilterListModel::FilterListModel (const Glib::RefPtr<ListModel>& model,
+  FilterListModel::FilterListModel (const Glib::RefPtr<Gio::ListModel>& model,
                                     const Glib::RefPtr<Filter>& filter)
-    : ObjectBase (nullptr),
-      Object (Glib::ConstructParams (filterlistmodel_class_.init (),
-                                     "model",
-                                     Glib::unwrap (model),
-                                     "filter",
-                                     Glib::unwrap (filter),
-                                     nullptr))
+    : Glib::ObjectBase (nullptr),
+      Glib::Object (Glib::ConstructParams (filterlistmodel_class_.init (),
+                                           "model",
+                                           Glib::unwrap (model),
+                                           "filter",
+                                           Glib::unwrap (filter),
+                                           nullptr))
   {
   }
 
   auto
-  FilterListModel::create (const Glib::RefPtr<ListModel>& model,
+  FilterListModel::create (const Glib::RefPtr<Gio::ListModel>& model,
                            const Glib::RefPtr<Filter>& filter) -> Glib::RefPtr<FilterListModel>
   {
     return Glib::make_refptr_for_instance<FilterListModel> (
@@ -143,13 +143,13 @@ namespace Gtk
   }
 
   auto
-  FilterListModel::set_model (const Glib::RefPtr<ListModel>& model) -> void
+  FilterListModel::set_model (const Glib::RefPtr<Gio::ListModel>& model) -> void
   {
     gtk_filter_list_model_set_model (gobj (), Glib::unwrap (model));
   }
 
   auto
-  FilterListModel::get_model () -> Glib::RefPtr<ListModel>
+  FilterListModel::get_model () -> Glib::RefPtr<Gio::ListModel>
   {
     auto retvalue = Glib::wrap (gtk_filter_list_model_get_model (gobj ()));
     if (retvalue)
@@ -158,15 +158,16 @@ namespace Gtk
   }
 
   auto
-  FilterListModel::get_model () const -> Glib::RefPtr<const ListModel>
+  FilterListModel::get_model () const -> Glib::RefPtr<const Gio::ListModel>
   {
     return const_cast<FilterListModel*> (this)->get_model ();
   }
 
   auto
-  FilterListModel::set_incremental (const bool incremental) -> void
+  FilterListModel::set_incremental (bool incremental) -> void
   {
-    gtk_filter_list_model_set_incremental (gobj (), incremental);
+    gtk_filter_list_model_set_incremental (gobj (),
+                                           static_cast<int> (incremental));
   }
 
   auto
@@ -192,25 +193,25 @@ namespace Gtk
   auto
   FilterListModel::property_filter () -> Glib::PropertyProxy<Glib::RefPtr<Filter>>
   {
-    return {this, "filter"};
+    return Glib::PropertyProxy<Glib::RefPtr<Filter>> (this, "filter");
   }
 
   auto
   FilterListModel::property_filter () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Filter>>
   {
-    return {this, "filter"};
+    return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Filter>> (this, "filter");
   }
 
   auto
   FilterListModel::property_incremental () -> Glib::PropertyProxy<bool>
   {
-    return {this, "incremental"};
+    return Glib::PropertyProxy<bool> (this, "incremental");
   }
 
   auto
   FilterListModel::property_incremental () const -> Glib::PropertyProxy_ReadOnly<bool>
   {
-    return {this, "incremental"};
+    return Glib::PropertyProxy_ReadOnly<bool> (this, "incremental");
   }
 
   static_assert (
@@ -221,7 +222,7 @@ namespace Gtk
   auto
   FilterListModel::property_item_type () const -> Glib::PropertyProxy_ReadOnly<GType>
   {
-    return {this, "item-type"};
+    return Glib::PropertyProxy_ReadOnly<GType> (this, "item-type");
   }
 
   static_assert (
@@ -231,27 +232,28 @@ namespace Gtk
       "There is no suitable template specialization of Glib::Value<>.");
 
   auto
-  FilterListModel::property_model () -> Glib::PropertyProxy<Glib::RefPtr<ListModel>>
+  FilterListModel::property_model () -> Glib::PropertyProxy<Glib::RefPtr<Gio::ListModel>>
   {
-    return {this, "model"};
+    return Glib::PropertyProxy<Glib::RefPtr<Gio::ListModel>> (this, "model");
   }
 
   auto
-  FilterListModel::property_model () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<ListModel>>
+  FilterListModel::property_model () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gio::ListModel>>
   {
-    return {this, "model"};
+    return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gio::ListModel>> (this,
+                                                                       "model");
   }
 
   auto
   FilterListModel::property_n_items () const -> Glib::PropertyProxy_ReadOnly<unsigned int>
   {
-    return {this, "n-items"};
+    return Glib::PropertyProxy_ReadOnly<unsigned int> (this, "n-items");
   }
 
   auto
   FilterListModel::property_pending () const -> Glib::PropertyProxy_ReadOnly<guint>
   {
-    return {this, "pending"};
+    return Glib::PropertyProxy_ReadOnly<guint> (this, "pending");
   }
 
 } // namespace Gtk

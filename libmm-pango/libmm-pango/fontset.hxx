@@ -92,7 +92,7 @@ namespace Pango
 
     typedef sigc::slot<bool (const Glib::RefPtr<Font>&)> ForeachSlot;
 
-    void foreach (const ForeachSlot& slot);
+    auto foreach (const ForeachSlot& slot) -> void;
 
   public:
   public:

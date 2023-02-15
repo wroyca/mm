@@ -94,68 +94,67 @@ namespace Pango
       OVERLINE
     };
 
-    void
-    draw_layout (const Glib::RefPtr<Layout>& layout, int x, int y);
+    auto
+    draw_layout (const Glib::RefPtr<Layout>& layout, int x, int y) -> void;
 
-    void
-    draw_layout_line (const Glib::RefPtr<LayoutLine>& line, int x, int y);
+    auto
+    draw_layout_line (const Glib::RefPtr<LayoutLine>& line, int x, int y)
+        -> void;
 
-    void
+    auto
     draw_glyphs (const Glib::RefPtr<Font>& font,
                  const GlyphString& glyphs,
                  int x,
-                 int y);
+                 int y) -> void;
 
-    void
+    auto
     draw_glyph_item (const Glib::ustring& text,
                      const GlyphItem& glyph_item,
                      int x,
-                     int y);
+                     int y) -> void;
 
-    void
-    draw_rectangle (Part part, int x, int y, int width, int height);
+    auto
+    draw_rectangle (Part part, int x, int y, int width, int height) -> void;
 
-    void
-    draw_error_underline (int x, int y, int width, int height);
+    auto
+    draw_error_underline (int x, int y, int width, int height) -> void;
 
-    void
+    auto
     draw_trapezoid (Part part,
                     double y1,
                     double x11,
                     double x21,
                     double y2,
                     double x12,
-                    double x22);
+                    double x22) -> void;
 
-    void
-    draw_glyph (const Glib::RefPtr<Font>& font,
-                Glyph glyph,
-                double x,
-                double y);
+    auto
+    draw_glyph (const Glib::RefPtr<Font>& font, Glyph glyph, double x, double y)
+        -> void;
 
-    void
-    activate ();
+    auto
+    activate () -> void;
 
-    void
-    deactivate ();
+    auto
+    deactivate () -> void;
 
-    void
-    part_changed (Part part);
+    auto
+    part_changed (Part part) -> void;
 
-    void
-    set_color (Part part, const Color& color);
+    auto
+    set_color (Part part, const Color& color) -> void;
 
     auto
     get_color (Part part) const -> Color;
 
-    void
-    set_alpha (Part part, guint16 alpha);
+    auto
+    set_alpha (Part part, guint16 alpha) -> void;
 
     auto
     get_alpha (Part part) const -> guint16;
 
-    void
-    set_matrix (const Matrix& matrix);
+    auto
+    set_matrix (const Matrix& matrix) -> void;
 
     auto
     get_matrix () const -> Matrix;
@@ -173,53 +172,54 @@ namespace Pango
     get_layout_line () const -> Glib::RefPtr<const LayoutLine>;
 
   protected:
-    virtual void
+    virtual auto
     draw_glyphs_vfunc (const Glib::RefPtr<Font>& font,
                        const GlyphString& glyphs,
                        int x,
-                       int y);
+                       int y) -> void;
 
-    virtual void
-    draw_rectangle_vfunc (Part part, int x, int y, int width, int height);
+    virtual auto
+    draw_rectangle_vfunc (Part part, int x, int y, int width, int height)
+        -> void;
 
-    virtual void
-    draw_error_underline_vfunc (int x, int y, int width, int height);
+    virtual auto
+    draw_error_underline_vfunc (int x, int y, int width, int height) -> void;
 
-    virtual void
-    draw_shape_vfunc (const AttrShape& attr, int x, int y);
+    virtual auto
+    draw_shape_vfunc (const AttrShape& attr, int x, int y) -> void;
 
-    virtual void
+    virtual auto
     draw_trapezoid_vfunc (Part part,
                           double y1,
                           double x11,
                           double x21,
                           double y2,
                           double x12,
-                          double x22);
+                          double x22) -> void;
 
-    virtual void
+    virtual auto
     draw_glyph_vfunc (const Glib::RefPtr<Font>& font,
                       Glyph glyph,
                       double x,
-                      double y);
+                      double y) -> void;
 
-    virtual void
-    part_changed_vfunc (Part part);
+    virtual auto
+    part_changed_vfunc (Part part) -> void;
 
-    virtual void
-    begin_vfunc ();
+    virtual auto
+    begin_vfunc () -> void;
 
-    virtual void
-    end_vfunc ();
+    virtual auto
+    end_vfunc () -> void;
 
-    virtual void
-    prepare_run_vfunc (const GlyphItem& run);
+    virtual auto
+    prepare_run_vfunc (const GlyphItem& run) -> void;
 
-    virtual void
+    virtual auto
     draw_glyph_item_vfunc (const Glib::ustring& text,
                            const GlyphItem& glyph_item,
                            int x,
-                           int y);
+                           int y) -> void;
 
   public:
   public:

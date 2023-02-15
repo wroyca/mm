@@ -26,9 +26,10 @@ namespace Gtk
   Entry::set_icon_from_gicon (const Glib::RefPtr<Gio::Icon>& icon,
                               IconPosition icon_pos) -> void
   {
-    gtk_entry_set_icon_from_gicon (gobj (),
-                                   static_cast<GtkEntryIconPosition> (icon_pos),
-                                   Glib::unwrap<Gio::Icon> (icon));
+    gtk_entry_set_icon_from_gicon (
+        gobj (),
+        static_cast<GtkEntryIconPosition> (icon_pos),
+        const_cast<GIcon*> (Glib::unwrap<Gio::Icon> (icon)));
   }
 
   auto
@@ -41,12 +42,12 @@ namespace Gtk
   }
 
   auto
-  Entry::set_icon_activatable (const bool activatable, IconPosition icon_pos) -> void
+  Entry::set_icon_activatable (bool activatable, IconPosition icon_pos) -> void
   {
     gtk_entry_set_icon_activatable (
         gobj (),
         static_cast<GtkEntryIconPosition> (icon_pos),
-        activatable);
+        static_cast<int> (activatable));
   }
 
   auto
@@ -84,12 +85,12 @@ namespace Gtk
 namespace
 {
 
-  const Glib::SignalProxyInfo Entry_signal_activate_info = {
+  static const Glib::SignalProxyInfo Entry_signal_activate_info = {
       "activate",
       (GCallback) &Glib::SignalProxyNormal::slot0_void_callback,
       (GCallback) &Glib::SignalProxyNormal::slot0_void_callback};
 
-  auto
+  static auto
   Entry_signal_icon_release_callback (GtkEntry* self,
                                       GtkEntryIconPosition p0,
                                       void* data) -> void
@@ -97,7 +98,7 @@ namespace
     using namespace Gtk;
     using SlotType = sigc::slot<void (IconPosition)>;
 
-    const auto obj = dynamic_cast<Entry*> (
+    auto obj = dynamic_cast<Entry*> (
         Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
@@ -114,12 +115,12 @@ namespace
     }
   }
 
-  const Glib::SignalProxyInfo Entry_signal_icon_release_info = {
+  static const Glib::SignalProxyInfo Entry_signal_icon_release_info = {
       "icon-release",
       (GCallback) &Entry_signal_icon_release_callback,
       (GCallback) &Entry_signal_icon_release_callback};
 
-  auto
+  static auto
   Entry_signal_icon_press_callback (GtkEntry* self,
                                     GtkEntryIconPosition p0,
                                     void* data) -> void
@@ -127,7 +128,7 @@ namespace
     using namespace Gtk;
     using SlotType = sigc::slot<void (IconPosition)>;
 
-    const auto obj = dynamic_cast<Entry*> (
+    auto obj = dynamic_cast<Entry*> (
         Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
@@ -144,7 +145,7 @@ namespace
     }
   }
 
-  const Glib::SignalProxyInfo Entry_signal_icon_press_info = {
+  static const Glib::SignalProxyInfo Entry_signal_icon_press_info = {
       "icon-press",
       (GCallback) &Entry_signal_icon_press_callback,
       (GCallback) &Entry_signal_icon_press_callback};
@@ -161,9 +162,10 @@ namespace Glib
 {
 
   auto
-  wrap (GtkEntry* object, const bool take_copy) -> Gtk::Entry*
+  wrap (GtkEntry* object, bool take_copy) -> Gtk::Entry*
   {
-    return dynamic_cast<Gtk::Entry*> (wrap_auto ((GObject*) object, take_copy));
+    return dynamic_cast<Gtk::Entry*> (
+        Glib::wrap_auto ((GObject*) (object), take_copy));
   }
 
 } // namespace Glib
@@ -172,7 +174,7 @@ namespace Gtk
 {
 
   auto
-  Entry_Class::init () -> const Class&
+  Entry_Class::init () -> const Glib::Class&
   {
     if (!gtype_)
     {
@@ -197,21 +199,21 @@ namespace Gtk
   auto
   Entry_Class::wrap_new (GObject* o) -> Glib::ObjectBase*
   {
-    return manage (new Entry ((GtkEntry*) o));
+    return manage (new Entry ((GtkEntry*) (o)));
   }
 
   Entry::Entry (const Glib::ConstructParams& construct_params)
-    : Widget (construct_params)
+    : Gtk::Widget (construct_params)
   {
   }
 
   Entry::Entry (GtkEntry* castitem)
-    : Widget ((GtkWidget*) castitem)
+    : Gtk::Widget ((GtkWidget*) (castitem))
   {
   }
 
   Entry::Entry (Entry&& src) noexcept
-    : Widget (std::move (src)),
+    : Gtk::Widget (std::move (src)),
       Editable (std::move (src)),
       CellEditable (std::move (src))
   {
@@ -220,7 +222,7 @@ namespace Gtk
   auto
   Entry::operator= (Entry&& src) noexcept -> Entry&
   {
-    Widget::operator= (std::move (src));
+    Gtk::Widget::operator= (std::move (src));
     Editable::operator= (std::move (src));
     CellEditable::operator= (std::move (src));
     return *this;
@@ -246,17 +248,17 @@ namespace Gtk
   }
 
   Entry::Entry ()
-    : ObjectBase (nullptr),
-      Widget (Glib::ConstructParams (entry_class_.init ()))
+    : Glib::ObjectBase (nullptr),
+      Gtk::Widget (Glib::ConstructParams (entry_class_.init ()))
   {
   }
 
   Entry::Entry (const Glib::RefPtr<EntryBuffer>& buffer)
-    : ObjectBase (nullptr),
-      Widget (Glib::ConstructParams (entry_class_.init (),
-                                     "buffer",
-                                     Glib::unwrap (buffer),
-                                     nullptr))
+    : Glib::ObjectBase (nullptr),
+      Gtk::Widget (Glib::ConstructParams (entry_class_.init (),
+                                          "buffer",
+                                          Glib::unwrap (buffer),
+                                          nullptr))
   {
   }
 
@@ -282,9 +284,9 @@ namespace Gtk
   }
 
   auto
-  Entry::set_visibility (const bool visible) -> void
+  Entry::set_visibility (bool visible) -> void
   {
-    gtk_entry_set_visibility (gobj (), visible);
+    gtk_entry_set_visibility (gobj (), static_cast<int> (visible));
   }
 
   auto
@@ -294,7 +296,7 @@ namespace Gtk
   }
 
   auto
-  Entry::set_invisible_char (const gunichar ch) -> void
+  Entry::set_invisible_char (gunichar ch) -> void
   {
     gtk_entry_set_invisible_char (gobj (), ch);
   }
@@ -312,9 +314,9 @@ namespace Gtk
   }
 
   auto
-  Entry::set_has_frame (const bool setting) -> void
+  Entry::set_has_frame (bool setting) -> void
   {
-    gtk_entry_set_has_frame (gobj (), setting);
+    gtk_entry_set_has_frame (gobj (), static_cast<int> (setting));
   }
 
   auto
@@ -324,9 +326,9 @@ namespace Gtk
   }
 
   auto
-  Entry::set_overwrite_mode (const bool overwrite) -> void
+  Entry::set_overwrite_mode (bool overwrite) -> void
   {
-    gtk_entry_set_overwrite_mode (gobj (), overwrite);
+    gtk_entry_set_overwrite_mode (gobj (), static_cast<int> (overwrite));
   }
 
   auto
@@ -336,7 +338,7 @@ namespace Gtk
   }
 
   auto
-  Entry::set_max_length (const int max) -> void
+  Entry::set_max_length (int max) -> void
   {
     gtk_entry_set_max_length (gobj (), max);
   }
@@ -354,9 +356,9 @@ namespace Gtk
   }
 
   auto
-  Entry::set_activates_default (const bool setting) -> void
+  Entry::set_activates_default (bool setting) -> void
   {
-    gtk_entry_set_activates_default (gobj (), setting);
+    gtk_entry_set_activates_default (gobj (), static_cast<int> (setting));
   }
 
   auto
@@ -366,13 +368,13 @@ namespace Gtk
   }
 
   auto
-  Entry::set_alignment (const float xalign) -> void
+  Entry::set_alignment (float xalign) -> void
   {
     gtk_entry_set_alignment (gobj (), xalign);
   }
 
   auto
-  Entry::set_alignment (const Align xalign) -> void
+  Entry::set_alignment (Align xalign) -> void
   {
     gtk_entry_set_alignment (gobj (), _gtkmm_align_float_from_enum (xalign));
   }
@@ -383,12 +385,19 @@ namespace Gtk
     return gtk_entry_get_alignment (const_cast<GtkEntry*> (gobj ()));
   }
 
+#ifndef GTKMM_DISABLE_DEPRECATED
+  G_GNUC_BEGIN_IGNORE_DEPRECATIONS
   auto
   Entry::set_completion (const Glib::RefPtr<EntryCompletion>& completion) -> void
   {
     gtk_entry_set_completion (gobj (), Glib::unwrap (completion));
   }
 
+  G_GNUC_END_IGNORE_DEPRECATIONS
+#endif
+
+#ifndef GTKMM_DISABLE_DEPRECATED
+  G_GNUC_BEGIN_IGNORE_DEPRECATIONS
   auto
   Entry::get_completion () -> Glib::RefPtr<EntryCompletion>
   {
@@ -398,14 +407,22 @@ namespace Gtk
     return retvalue;
   }
 
+  G_GNUC_END_IGNORE_DEPRECATIONS
+#endif
+
+#ifndef GTKMM_DISABLE_DEPRECATED
+  G_GNUC_BEGIN_IGNORE_DEPRECATIONS
   auto
   Entry::get_completion () const -> Glib::RefPtr<const EntryCompletion>
   {
     return const_cast<Entry*> (this)->get_completion ();
   }
 
+  G_GNUC_END_IGNORE_DEPRECATIONS
+#endif
+
   auto
-  Entry::set_progress_fraction (const double fraction) -> void
+  Entry::set_progress_fraction (double fraction) -> void
   {
     gtk_entry_set_progress_fraction (gobj (), fraction);
   }
@@ -417,7 +434,7 @@ namespace Gtk
   }
 
   auto
-  Entry::set_progress_pulse_step (const double fraction) -> void
+  Entry::set_progress_pulse_step (double fraction) -> void
   {
     gtk_entry_set_progress_pulse_step (gobj (), fraction);
   }
@@ -477,7 +494,7 @@ namespace Gtk
   }
 
   auto
-  Entry::get_icon_paintable (const IconPosition icon_pos) const -> Glib::RefPtr<const Gdk::Paintable>
+  Entry::get_icon_paintable (IconPosition icon_pos) const -> Glib::RefPtr<const Gdk::Paintable>
   {
     return const_cast<Entry*> (this)->get_icon_paintable (icon_pos);
   }
@@ -502,7 +519,7 @@ namespace Gtk
   }
 
   auto
-  Entry::get_icon_gicon (const IconPosition icon_pos) const -> Glib::RefPtr<const Gio::Icon>
+  Entry::get_icon_gicon (IconPosition icon_pos) const -> Glib::RefPtr<const Gio::Icon>
   {
     return const_cast<Entry*> (this)->get_icon_gicon (icon_pos);
   }
@@ -516,11 +533,11 @@ namespace Gtk
   }
 
   auto
-  Entry::set_icon_sensitive (IconPosition icon_pos, const bool sensitive) -> void
+  Entry::set_icon_sensitive (IconPosition icon_pos, bool sensitive) -> void
   {
     gtk_entry_set_icon_sensitive (gobj (),
                                   static_cast<GtkEntryIconPosition> (icon_pos),
-                                  sensitive);
+                                  static_cast<int> (sensitive));
   }
 
   auto
@@ -532,7 +549,7 @@ namespace Gtk
   }
 
   auto
-  Entry::get_icon_at_pos (const int x, const int y) const -> int
+  Entry::get_icon_at_pos (int x, int y) const -> int
   {
     return gtk_entry_get_icon_at_pos (const_cast<GtkEntry*> (gobj ()), x, y);
   }
@@ -610,14 +627,14 @@ namespace Gtk
   auto
   Entry::set_attributes (Pango::AttrList& attrs) -> void
   {
-    gtk_entry_set_attributes (gobj (), attrs.gobj ());
+    gtk_entry_set_attributes (gobj (), (attrs).gobj ());
   }
 
   auto
   Entry::get_attributes () const -> Pango::AttrList
   {
     return Pango::AttrList (
-        gtk_entry_get_attributes (const_cast<GtkEntry*> (gobj ())));
+        (gtk_entry_get_attributes (const_cast<GtkEntry*> (gobj ()))));
   }
 
   auto
@@ -630,7 +647,7 @@ namespace Gtk
   Entry::get_tabs () const -> Pango::TabArray
   {
     return Pango::TabArray (
-        gtk_entry_get_tabs (const_cast<GtkEntry*> (gobj ())));
+        (gtk_entry_get_tabs (const_cast<GtkEntry*> (gobj ()))));
   }
 
   auto
@@ -663,19 +680,23 @@ namespace Gtk
   auto
   Entry::signal_activate () -> Glib::SignalProxy<void ()>
   {
-    return {this, &Entry_signal_activate_info};
+    return Glib::SignalProxy<void ()> (this, &Entry_signal_activate_info);
   }
 
   auto
   Entry::signal_icon_release () -> Glib::SignalProxy<void (IconPosition)>
   {
-    return {this, &Entry_signal_icon_release_info};
+    return Glib::SignalProxy<void (IconPosition)> (
+        this,
+        &Entry_signal_icon_release_info);
   }
 
   auto
   Entry::signal_icon_press () -> Glib::SignalProxy<void (IconPosition)>
   {
-    return {this, &Entry_signal_icon_press_info};
+    return Glib::SignalProxy<void (IconPosition)> (
+        this,
+        &Entry_signal_icon_press_info);
   }
 
   static_assert (
@@ -687,49 +708,50 @@ namespace Gtk
   auto
   Entry::property_buffer () -> Glib::PropertyProxy<Glib::RefPtr<EntryBuffer>>
   {
-    return {this, "buffer"};
+    return Glib::PropertyProxy<Glib::RefPtr<EntryBuffer>> (this, "buffer");
   }
 
   auto
   Entry::property_buffer () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<EntryBuffer>>
   {
-    return {this, "buffer"};
+    return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<EntryBuffer>> (this,
+                                                                    "buffer");
   }
 
   auto
   Entry::property_max_length () -> Glib::PropertyProxy<int>
   {
-    return {this, "max-length"};
+    return Glib::PropertyProxy<int> (this, "max-length");
   }
 
   auto
   Entry::property_max_length () const -> Glib::PropertyProxy_ReadOnly<int>
   {
-    return {this, "max-length"};
+    return Glib::PropertyProxy_ReadOnly<int> (this, "max-length");
   }
 
   auto
   Entry::property_visibility () -> Glib::PropertyProxy<bool>
   {
-    return {this, "visibility"};
+    return Glib::PropertyProxy<bool> (this, "visibility");
   }
 
   auto
   Entry::property_visibility () const -> Glib::PropertyProxy_ReadOnly<bool>
   {
-    return {this, "visibility"};
+    return Glib::PropertyProxy_ReadOnly<bool> (this, "visibility");
   }
 
   auto
   Entry::property_has_frame () -> Glib::PropertyProxy<bool>
   {
-    return {this, "has-frame"};
+    return Glib::PropertyProxy<bool> (this, "has-frame");
   }
 
   auto
   Entry::property_has_frame () const -> Glib::PropertyProxy_ReadOnly<bool>
   {
-    return {this, "has-frame"};
+    return Glib::PropertyProxy_ReadOnly<bool> (this, "has-frame");
   }
 
   static_assert (
@@ -740,97 +762,97 @@ namespace Gtk
   auto
   Entry::property_invisible_char () -> Glib::PropertyProxy<gunichar>
   {
-    return {this, "invisible-char"};
+    return Glib::PropertyProxy<gunichar> (this, "invisible-char");
   }
 
   auto
   Entry::property_invisible_char () const -> Glib::PropertyProxy_ReadOnly<gunichar>
   {
-    return {this, "invisible-char"};
+    return Glib::PropertyProxy_ReadOnly<gunichar> (this, "invisible-char");
   }
 
   auto
   Entry::property_invisible_char_set () -> Glib::PropertyProxy<bool>
   {
-    return {this, "invisible-char-set"};
+    return Glib::PropertyProxy<bool> (this, "invisible-char-set");
   }
 
   auto
   Entry::property_invisible_char_set () const -> Glib::PropertyProxy_ReadOnly<bool>
   {
-    return {this, "invisible-char-set"};
+    return Glib::PropertyProxy_ReadOnly<bool> (this, "invisible-char-set");
   }
 
   auto
   Entry::property_activates_default () -> Glib::PropertyProxy<bool>
   {
-    return {this, "activates-default"};
+    return Glib::PropertyProxy<bool> (this, "activates-default");
   }
 
   auto
   Entry::property_activates_default () const -> Glib::PropertyProxy_ReadOnly<bool>
   {
-    return {this, "activates-default"};
+    return Glib::PropertyProxy_ReadOnly<bool> (this, "activates-default");
   }
 
   auto
   Entry::property_scroll_offset () const -> Glib::PropertyProxy_ReadOnly<int>
   {
-    return {this, "scroll-offset"};
+    return Glib::PropertyProxy_ReadOnly<int> (this, "scroll-offset");
   }
 
   auto
   Entry::property_truncate_multiline () -> Glib::PropertyProxy<bool>
   {
-    return {this, "truncate-multiline"};
+    return Glib::PropertyProxy<bool> (this, "truncate-multiline");
   }
 
   auto
   Entry::property_truncate_multiline () const -> Glib::PropertyProxy_ReadOnly<bool>
   {
-    return {this, "truncate-multiline"};
+    return Glib::PropertyProxy_ReadOnly<bool> (this, "truncate-multiline");
   }
 
   auto
   Entry::property_overwrite_mode () -> Glib::PropertyProxy<bool>
   {
-    return {this, "overwrite-mode"};
+    return Glib::PropertyProxy<bool> (this, "overwrite-mode");
   }
 
   auto
   Entry::property_overwrite_mode () const -> Glib::PropertyProxy_ReadOnly<bool>
   {
-    return {this, "overwrite-mode"};
+    return Glib::PropertyProxy_ReadOnly<bool> (this, "overwrite-mode");
   }
 
   auto
   Entry::property_text_length () const -> Glib::PropertyProxy_ReadOnly<guint>
   {
-    return {this, "text-length"};
+    return Glib::PropertyProxy_ReadOnly<guint> (this, "text-length");
   }
 
   auto
   Entry::property_progress_fraction () -> Glib::PropertyProxy<double>
   {
-    return {this, "progress-fraction"};
+    return Glib::PropertyProxy<double> (this, "progress-fraction");
   }
 
   auto
   Entry::property_progress_fraction () const -> Glib::PropertyProxy_ReadOnly<double>
   {
-    return {this, "progress-fraction"};
+    return Glib::PropertyProxy_ReadOnly<double> (this, "progress-fraction");
   }
 
   auto
   Entry::property_progress_pulse_step () -> Glib::PropertyProxy<double>
   {
-    return {this, "progress-pulse-step"};
+    return Glib::PropertyProxy<double> (this, "progress-pulse-step");
   }
 
   auto
   Entry::property_progress_pulse_step () const -> Glib::PropertyProxy_ReadOnly<double>
   {
-    return {this, "progress-pulse-step"};
+    return Glib::PropertyProxy_ReadOnly<double> (this, "progress-pulse-step");
   }
 
   static_assert (
@@ -842,13 +864,17 @@ namespace Gtk
   auto
   Entry::property_primary_icon_paintable () -> Glib::PropertyProxy<Glib::RefPtr<Gdk::Paintable>>
   {
-    return {this, "primary-icon-paintable"};
+    return Glib::PropertyProxy<Glib::RefPtr<Gdk::Paintable>> (
+        this,
+        "primary-icon-paintable");
   }
 
   auto
   Entry::property_primary_icon_paintable () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gdk::Paintable>>
   {
-    return {this, "primary-icon-paintable"};
+    return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gdk::Paintable>> (
+        this,
+        "primary-icon-paintable");
   }
 
   static_assert (
@@ -860,37 +886,43 @@ namespace Gtk
   auto
   Entry::property_secondary_icon_paintable () -> Glib::PropertyProxy<Glib::RefPtr<Gdk::Paintable>>
   {
-    return {this, "secondary-icon-paintable"};
+    return Glib::PropertyProxy<Glib::RefPtr<Gdk::Paintable>> (
+        this,
+        "secondary-icon-paintable");
   }
 
   auto
   Entry::property_secondary_icon_paintable () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gdk::Paintable>>
   {
-    return {this, "secondary-icon-paintable"};
+    return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gdk::Paintable>> (
+        this,
+        "secondary-icon-paintable");
   }
 
   auto
   Entry::property_primary_icon_name () -> Glib::PropertyProxy<Glib::ustring>
   {
-    return {this, "primary-icon-name"};
+    return Glib::PropertyProxy<Glib::ustring> (this, "primary-icon-name");
   }
 
   auto
   Entry::property_primary_icon_name () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>
   {
-    return {this, "primary-icon-name"};
+    return Glib::PropertyProxy_ReadOnly<Glib::ustring> (this,
+                                                        "primary-icon-name");
   }
 
   auto
   Entry::property_secondary_icon_name () -> Glib::PropertyProxy<Glib::ustring>
   {
-    return {this, "secondary-icon-name"};
+    return Glib::PropertyProxy<Glib::ustring> (this, "secondary-icon-name");
   }
 
   auto
   Entry::property_secondary_icon_name () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>
   {
-    return {this, "secondary-icon-name"};
+    return Glib::PropertyProxy_ReadOnly<Glib::ustring> (this,
+                                                        "secondary-icon-name");
   }
 
   static_assert (
@@ -902,13 +934,16 @@ namespace Gtk
   auto
   Entry::property_primary_icon_gicon () -> Glib::PropertyProxy<Glib::RefPtr<Gio::Icon>>
   {
-    return {this, "primary-icon-gicon"};
+    return Glib::PropertyProxy<Glib::RefPtr<Gio::Icon>> (this,
+                                                         "primary-icon-gicon");
   }
 
   auto
   Entry::property_primary_icon_gicon () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gio::Icon>>
   {
-    return {this, "primary-icon-gicon"};
+    return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gio::Icon>> (
+        this,
+        "primary-icon-gicon");
   }
 
   static_assert (
@@ -920,13 +955,17 @@ namespace Gtk
   auto
   Entry::property_secondary_icon_gicon () -> Glib::PropertyProxy<Glib::RefPtr<Gio::Icon>>
   {
-    return {this, "secondary-icon-gicon"};
+    return Glib::PropertyProxy<Glib::RefPtr<Gio::Icon>> (
+        this,
+        "secondary-icon-gicon");
   }
 
   auto
   Entry::property_secondary_icon_gicon () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gio::Icon>>
   {
-    return {this, "secondary-icon-gicon"};
+    return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gio::Icon>> (
+        this,
+        "secondary-icon-gicon");
   }
 
   static_assert (
@@ -937,7 +976,9 @@ namespace Gtk
   auto
   Entry::property_primary_icon_storage_type () const -> Glib::PropertyProxy_ReadOnly<Image::Type>
   {
-    return {this, "primary-icon-storage-type"};
+    return Glib::PropertyProxy_ReadOnly<Image::Type> (
+        this,
+        "primary-icon-storage-type");
   }
 
   static_assert (
@@ -948,128 +989,140 @@ namespace Gtk
   auto
   Entry::property_secondary_icon_storage_type () const -> Glib::PropertyProxy_ReadOnly<Image::Type>
   {
-    return {this, "secondary-icon-storage-type"};
+    return Glib::PropertyProxy_ReadOnly<Image::Type> (
+        this,
+        "secondary-icon-storage-type");
   }
 
   auto
   Entry::property_primary_icon_activatable () -> Glib::PropertyProxy<bool>
   {
-    return {this, "primary-icon-activatable"};
+    return Glib::PropertyProxy<bool> (this, "primary-icon-activatable");
   }
 
   auto
   Entry::property_primary_icon_activatable () const -> Glib::PropertyProxy_ReadOnly<bool>
   {
-    return {this, "primary-icon-activatable"};
+    return Glib::PropertyProxy_ReadOnly<bool> (this,
+                                               "primary-icon-activatable");
   }
 
   auto
   Entry::property_secondary_icon_activatable () -> Glib::PropertyProxy<bool>
   {
-    return {this, "secondary-icon-activatable"};
+    return Glib::PropertyProxy<bool> (this, "secondary-icon-activatable");
   }
 
   auto
   Entry::property_secondary_icon_activatable () const -> Glib::PropertyProxy_ReadOnly<bool>
   {
-    return {this, "secondary-icon-activatable"};
+    return Glib::PropertyProxy_ReadOnly<bool> (this,
+                                               "secondary-icon-activatable");
   }
 
   auto
   Entry::property_primary_icon_sensitive () -> Glib::PropertyProxy<bool>
   {
-    return {this, "primary-icon-sensitive"};
+    return Glib::PropertyProxy<bool> (this, "primary-icon-sensitive");
   }
 
   auto
   Entry::property_primary_icon_sensitive () const -> Glib::PropertyProxy_ReadOnly<bool>
   {
-    return {this, "primary-icon-sensitive"};
+    return Glib::PropertyProxy_ReadOnly<bool> (this, "primary-icon-sensitive");
   }
 
   auto
   Entry::property_secondary_icon_sensitive () -> Glib::PropertyProxy<bool>
   {
-    return {this, "secondary-icon-sensitive"};
+    return Glib::PropertyProxy<bool> (this, "secondary-icon-sensitive");
   }
 
   auto
   Entry::property_secondary_icon_sensitive () const -> Glib::PropertyProxy_ReadOnly<bool>
   {
-    return {this, "secondary-icon-sensitive"};
+    return Glib::PropertyProxy_ReadOnly<bool> (this,
+                                               "secondary-icon-sensitive");
   }
 
   auto
   Entry::property_primary_icon_tooltip_text () -> Glib::PropertyProxy<bool>
   {
-    return {this, "primary-icon-tooltip-text"};
+    return Glib::PropertyProxy<bool> (this, "primary-icon-tooltip-text");
   }
 
   auto
   Entry::property_primary_icon_tooltip_text () const -> Glib::PropertyProxy_ReadOnly<bool>
   {
-    return {this, "primary-icon-tooltip-text"};
+    return Glib::PropertyProxy_ReadOnly<bool> (this,
+                                               "primary-icon-tooltip-text");
   }
 
   auto
   Entry::property_secondary_icon_tooltip_text () -> Glib::PropertyProxy<bool>
   {
-    return {this, "secondary-icon-tooltip-text"};
+    return Glib::PropertyProxy<bool> (this, "secondary-icon-tooltip-text");
   }
 
   auto
   Entry::property_secondary_icon_tooltip_text () const -> Glib::PropertyProxy_ReadOnly<bool>
   {
-    return {this, "secondary-icon-tooltip-text"};
+    return Glib::PropertyProxy_ReadOnly<bool> (this,
+                                               "secondary-icon-tooltip-text");
   }
 
   auto
   Entry::property_primary_icon_tooltip_markup () -> Glib::PropertyProxy<bool>
   {
-    return {this, "primary-icon-tooltip-markup"};
+    return Glib::PropertyProxy<bool> (this, "primary-icon-tooltip-markup");
   }
 
   auto
   Entry::property_primary_icon_tooltip_markup () const -> Glib::PropertyProxy_ReadOnly<bool>
   {
-    return {this, "primary-icon-tooltip-markup"};
+    return Glib::PropertyProxy_ReadOnly<bool> (this,
+                                               "primary-icon-tooltip-markup");
   }
 
   auto
   Entry::property_secondary_icon_tooltip_markup () -> Glib::PropertyProxy<bool>
   {
-    return {this, "secondary-icon-tooltip-markup"};
+    return Glib::PropertyProxy<bool> (this, "secondary-icon-tooltip-markup");
   }
 
   auto
   Entry::property_secondary_icon_tooltip_markup () const -> Glib::PropertyProxy_ReadOnly<bool>
   {
-    return {this, "secondary-icon-tooltip-markup"};
+    return Glib::PropertyProxy_ReadOnly<bool> (this,
+                                               "secondary-icon-tooltip-markup");
   }
 
   auto
   Entry::property_im_module () -> Glib::PropertyProxy<Glib::ustring>
   {
-    return {this, "im-module"};
+    return Glib::PropertyProxy<Glib::ustring> (this, "im-module");
   }
 
   auto
   Entry::property_im_module () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>
   {
-    return {this, "im-module"};
+    return Glib::PropertyProxy_ReadOnly<Glib::ustring> (this, "im-module");
   }
 
   auto
   Entry::property_placeholder_text () -> Glib::PropertyProxy<Glib::ustring>
   {
-    return {this, "placeholder-text"};
+    return Glib::PropertyProxy<Glib::ustring> (this, "placeholder-text");
   }
 
   auto
   Entry::property_placeholder_text () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>
   {
-    return {this, "placeholder-text"};
+    return Glib::PropertyProxy_ReadOnly<Glib::ustring> (this,
+                                                        "placeholder-text");
   }
+
+#ifndef GTKMM_DISABLE_DEPRECATED
 
   static_assert (
       Glib::Traits::ValueCompatibleWithWrapProperty<
@@ -1080,14 +1133,21 @@ namespace Gtk
   auto
   Entry::property_completion () -> Glib::PropertyProxy<Glib::RefPtr<EntryCompletion>>
   {
-    return {this, "completion"};
+    return Glib::PropertyProxy<Glib::RefPtr<EntryCompletion>> (this,
+                                                               "completion");
   }
+#endif
+
+#ifndef GTKMM_DISABLE_DEPRECATED
 
   auto
   Entry::property_completion () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<EntryCompletion>>
   {
-    return {this, "completion"};
+    return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<EntryCompletion>> (
+        this,
+        "completion");
   }
+#endif
 
   static_assert (
       Glib::Traits::ValueCompatibleWithWrapProperty<InputPurpose>::value,
@@ -1097,13 +1157,13 @@ namespace Gtk
   auto
   Entry::property_input_purpose () -> Glib::PropertyProxy<InputPurpose>
   {
-    return {this, "input-purpose"};
+    return Glib::PropertyProxy<InputPurpose> (this, "input-purpose");
   }
 
   auto
   Entry::property_input_purpose () const -> Glib::PropertyProxy_ReadOnly<InputPurpose>
   {
-    return {this, "input-purpose"};
+    return Glib::PropertyProxy_ReadOnly<InputPurpose> (this, "input-purpose");
   }
 
   static_assert (
@@ -1114,13 +1174,13 @@ namespace Gtk
   auto
   Entry::property_input_hints () -> Glib::PropertyProxy<InputHints>
   {
-    return {this, "input-hints"};
+    return Glib::PropertyProxy<InputHints> (this, "input-hints");
   }
 
   auto
   Entry::property_input_hints () const -> Glib::PropertyProxy_ReadOnly<InputHints>
   {
-    return {this, "input-hints"};
+    return Glib::PropertyProxy_ReadOnly<InputHints> (this, "input-hints");
   }
 
   static_assert (
@@ -1131,13 +1191,13 @@ namespace Gtk
   auto
   Entry::property_attributes () -> Glib::PropertyProxy<Pango::AttrList>
   {
-    return {this, "attributes"};
+    return Glib::PropertyProxy<Pango::AttrList> (this, "attributes");
   }
 
   auto
   Entry::property_attributes () const -> Glib::PropertyProxy_ReadOnly<Pango::AttrList>
   {
-    return {this, "attributes"};
+    return Glib::PropertyProxy_ReadOnly<Pango::AttrList> (this, "attributes");
   }
 
   static_assert (
@@ -1148,13 +1208,13 @@ namespace Gtk
   auto
   Entry::property_tabs () -> Glib::PropertyProxy<Pango::TabArray>
   {
-    return {this, "tabs"};
+    return Glib::PropertyProxy<Pango::TabArray> (this, "tabs");
   }
 
   auto
   Entry::property_tabs () const -> Glib::PropertyProxy_ReadOnly<Pango::TabArray>
   {
-    return {this, "tabs"};
+    return Glib::PropertyProxy_ReadOnly<Pango::TabArray> (this, "tabs");
   }
 
   static_assert (
@@ -1166,37 +1226,40 @@ namespace Gtk
   auto
   Entry::property_extra_menu () -> Glib::PropertyProxy<Glib::RefPtr<Gio::MenuModel>>
   {
-    return {this, "extra-menu"};
+    return Glib::PropertyProxy<Glib::RefPtr<Gio::MenuModel>> (this,
+                                                              "extra-menu");
   }
 
   auto
   Entry::property_extra_menu () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gio::MenuModel>>
   {
-    return {this, "extra-menu"};
+    return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gio::MenuModel>> (
+        this,
+        "extra-menu");
   }
 
   auto
   Entry::property_show_emoji_icon () -> Glib::PropertyProxy<bool>
   {
-    return {this, "show-emoji-icon"};
+    return Glib::PropertyProxy<bool> (this, "show-emoji-icon");
   }
 
   auto
   Entry::property_show_emoji_icon () const -> Glib::PropertyProxy_ReadOnly<bool>
   {
-    return {this, "show-emoji-icon"};
+    return Glib::PropertyProxy_ReadOnly<bool> (this, "show-emoji-icon");
   }
 
   auto
   Entry::property_enable_emoji_completion () -> Glib::PropertyProxy<bool>
   {
-    return {this, "enable-emoji-completion"};
+    return Glib::PropertyProxy<bool> (this, "enable-emoji-completion");
   }
 
   auto
   Entry::property_enable_emoji_completion () const -> Glib::PropertyProxy_ReadOnly<bool>
   {
-    return {this, "enable-emoji-completion"};
+    return Glib::PropertyProxy_ReadOnly<bool> (this, "enable-emoji-completion");
   }
 
 } // namespace Gtk

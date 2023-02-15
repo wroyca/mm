@@ -95,20 +95,20 @@ namespace Gtk
     auto
     get_trigger () const -> Glib::RefPtr<ShortcutTrigger>;
 
-    void
-    set_trigger (const Glib::RefPtr<const ShortcutTrigger>& trigger);
+    auto
+    set_trigger (const Glib::RefPtr<const ShortcutTrigger>& trigger) -> void;
 
     auto
     get_action () const -> Glib::RefPtr<ShortcutAction>;
 
-    void
-    set_trigger (const Glib::RefPtr<const ShortcutAction>& action);
+    auto
+    set_trigger (const Glib::RefPtr<const ShortcutAction>& action) -> void;
 
     auto
     get_arguments () const -> Glib::VariantBase;
 
-    void
-    set_arguments (const Glib::VariantBase& args) const;
+    auto
+    set_arguments (const Glib::VariantBase& args) const -> void;
 
     auto
     property_trigger () -> Glib::PropertyProxy<Glib::RefPtr<ShortcutTrigger>>;
@@ -140,9 +140,7 @@ namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkShortcut* object, bool take_copy = false) -> Glib::RefPtr<Gtk::Shortcut>;
 } // namespace Glib
 

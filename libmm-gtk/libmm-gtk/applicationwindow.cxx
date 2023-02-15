@@ -12,8 +12,8 @@ namespace Gtk
 {
   ApplicationWindow::ApplicationWindow (
       const Glib::RefPtr<Application>& application)
-    : ObjectBase (nullptr),
-      Window (Glib::ConstructParams (applicationwindow_class_.init ()))
+    : Glib::ObjectBase (nullptr),
+      Gtk::Window (Glib::ConstructParams (applicationwindow_class_.init ()))
   {
     if (application)
       application->add_window (*this);
@@ -35,10 +35,10 @@ namespace Glib
 {
 
   auto
-  wrap (GtkApplicationWindow* object, const bool take_copy) -> Gtk::ApplicationWindow*
+  wrap (GtkApplicationWindow* object, bool take_copy) -> Gtk::ApplicationWindow*
   {
     return dynamic_cast<Gtk::ApplicationWindow*> (
-        wrap_auto ((GObject*) object, take_copy));
+        Glib::wrap_auto ((GObject*) (object), take_copy));
   }
 
 } // namespace Glib
@@ -47,7 +47,7 @@ namespace Gtk
 {
 
   auto
-  ApplicationWindow_Class::init () -> const Class&
+  ApplicationWindow_Class::init () -> const Glib::Class&
   {
     if (!gtype_)
     {
@@ -72,33 +72,33 @@ namespace Gtk
   auto
   ApplicationWindow_Class::wrap_new (GObject* o) -> Glib::ObjectBase*
   {
-    return new ApplicationWindow ((GtkApplicationWindow*) o);
+    return new ApplicationWindow ((GtkApplicationWindow*) (o));
   }
 
   ApplicationWindow::ApplicationWindow (
       const Glib::ConstructParams& construct_params)
-    : Window (construct_params)
+    : Gtk::Window (construct_params)
   {
   }
 
   ApplicationWindow::ApplicationWindow (GtkApplicationWindow* castitem)
-    : Window ((GtkWindow*) castitem)
+    : Gtk::Window ((GtkWindow*) (castitem))
   {
   }
 
   ApplicationWindow::ApplicationWindow (ApplicationWindow&& src) noexcept
-    : Window (std::move (src)),
-      ActionGroup (std::move (src)),
-      ActionMap (std::move (src))
+    : Gtk::Window (std::move (src)),
+      Gio::ActionGroup (std::move (src)),
+      Gio::ActionMap (std::move (src))
   {
   }
 
   auto
   ApplicationWindow::operator= (ApplicationWindow&& src) noexcept -> ApplicationWindow&
   {
-    Window::operator= (std::move (src));
-    ActionGroup::operator= (std::move (src));
-    ActionMap::operator= (std::move (src));
+    Gtk::Window::operator= (std::move (src));
+    Gio::ActionGroup::operator= (std::move (src));
+    Gio::ActionMap::operator= (std::move (src));
     return *this;
   }
 
@@ -122,15 +122,16 @@ namespace Gtk
   }
 
   ApplicationWindow::ApplicationWindow ()
-    : ObjectBase (nullptr),
-      Window (Glib::ConstructParams (applicationwindow_class_.init ()))
+    : Glib::ObjectBase (nullptr),
+      Gtk::Window (Glib::ConstructParams (applicationwindow_class_.init ()))
   {
   }
 
   auto
-  ApplicationWindow::set_show_menubar (const bool show_menubar) -> void
+  ApplicationWindow::set_show_menubar (bool show_menubar) -> void
   {
-    gtk_application_window_set_show_menubar (gobj (), show_menubar);
+    gtk_application_window_set_show_menubar (gobj (),
+                                             static_cast<int> (show_menubar));
   }
 
   auto
@@ -150,7 +151,7 @@ namespace Gtk
   auto
   ApplicationWindow::set_help_overlay (ShortcutsWindow& help_overlay) -> void
   {
-    gtk_application_window_set_help_overlay (gobj (), help_overlay.gobj ());
+    gtk_application_window_set_help_overlay (gobj (), (help_overlay).gobj ());
   }
 
   auto
@@ -168,13 +169,13 @@ namespace Gtk
   auto
   ApplicationWindow::property_show_menubar () -> Glib::PropertyProxy<bool>
   {
-    return {this, "show-menubar"};
+    return Glib::PropertyProxy<bool> (this, "show-menubar");
   }
 
   auto
   ApplicationWindow::property_show_menubar () const -> Glib::PropertyProxy_ReadOnly<bool>
   {
-    return {this, "show-menubar"};
+    return Glib::PropertyProxy_ReadOnly<bool> (this, "show-menubar");
   }
 
 } // namespace Gtk

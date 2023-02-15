@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: LGPL-2.1-or-later
 
 #ifndef _GIOMM_REMOTEACTIONGROUP_H
 #define _GIOMM_REMOTEACTIONGROUP_H
@@ -67,8 +68,8 @@ namespace Gio
 
     ~RemoteActionGroup () noexcept override;
 
-    static void
-    add_interface (GType gtype_implementer);
+    static auto
+    add_interface (GType gtype_implementer) -> void;
 
     static auto
     get_type () -> GType G_GNUC_CONST;
@@ -92,26 +93,27 @@ namespace Gio
 
   private:
   public:
-    void
+    auto
     activate_action (const Glib::ustring& action_name,
                      const Glib::VariantBase& parameter,
-                     const Glib::VariantBase& platform_data);
+                     const Glib::VariantBase& platform_data) -> void;
 
-    void
+    auto
     change_action_state (const Glib::ustring& action_name,
                          const Glib::VariantBase& value,
-                         const Glib::VariantBase& platform_data);
+                         const Glib::VariantBase& platform_data) -> void;
 
   protected:
-    virtual void
+    virtual auto
     activate_action_full_vfunc (const Glib::ustring& action_name,
                                 const Glib::VariantBase& parameter,
-                                const Glib::VariantBase& platform_data);
+                                const Glib::VariantBase& platform_data) -> void;
 
-    virtual void
+    virtual auto
     change_action_state_full_vfunc (const Glib::ustring& action_name,
                                     const Glib::VariantBase& value,
-                                    const Glib::VariantBase& platform_data);
+                                    const Glib::VariantBase& platform_data)
+        -> void;
 
   public:
   public:

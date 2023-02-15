@@ -133,80 +133,80 @@ namespace Gtk
     auto
     get_program_name () const -> Glib::ustring;
 
-    void
-    set_program_name (const Glib::ustring& name);
+    auto
+    set_program_name (const Glib::ustring& name) -> void;
 
     auto
     get_version () const -> Glib::ustring;
 
-    void
-    set_version (const Glib::ustring& version);
+    auto
+    set_version (const Glib::ustring& version) -> void;
 
     auto
     get_copyright () const -> Glib::ustring;
 
-    void
-    set_copyright (const Glib::ustring& copyright);
+    auto
+    set_copyright (const Glib::ustring& copyright) -> void;
 
     auto
     get_comments () const -> Glib::ustring;
 
-    void
-    set_comments (const Glib::ustring& comments);
+    auto
+    set_comments (const Glib::ustring& comments) -> void;
 
     auto
     get_license () const -> Glib::ustring;
 
-    void
-    set_license (const Glib::ustring& license);
+    auto
+    set_license (const Glib::ustring& license) -> void;
 
     auto
     get_license_type () const -> License;
 
-    void
-    set_license_type (License license_type);
+    auto
+    set_license_type (License license_type) -> void;
 
     auto
     get_system_information () const -> Glib::ustring;
 
-    void
-    set_system_information (const Glib::ustring& system_information);
+    auto
+    set_system_information (const Glib::ustring& system_information) -> void;
 
     auto
     get_website () const -> Glib::ustring;
 
-    void
-    set_website (const Glib::ustring& website);
+    auto
+    set_website (const Glib::ustring& website) -> void;
 
     auto
     get_website_label () const -> Glib::ustring;
 
-    void
-    set_website_label (const Glib::ustring& website_label);
+    auto
+    set_website_label (const Glib::ustring& website_label) -> void;
 
     auto
     get_authors () const -> std::vector<Glib::ustring>;
 
-    void
-    set_authors (const std::vector<Glib::ustring>& authors) const;
+    auto
+    set_authors (const std::vector<Glib::ustring>& authors) const -> void;
 
     auto
     get_documenters () const -> std::vector<Glib::ustring>;
 
-    void
-    set_documenters (const std::vector<Glib::ustring>& documenters);
+    auto
+    set_documenters (const std::vector<Glib::ustring>& documenters) -> void;
 
     auto
     get_artists () const -> std::vector<Glib::ustring>;
 
-    void
-    set_artists (const std::vector<Glib::ustring>& artists);
+    auto
+    set_artists (const std::vector<Glib::ustring>& artists) -> void;
 
     auto
     get_translator_credits () const -> Glib::ustring;
 
-    void
-    set_translator_credits (const Glib::ustring& translator_credits);
+    auto
+    set_translator_credits (const Glib::ustring& translator_credits) -> void;
 
     auto
     get_logo () -> Glib::RefPtr<Gdk::Paintable>;
@@ -214,27 +214,27 @@ namespace Gtk
     auto
     get_logo () const -> Glib::RefPtr<const Gdk::Paintable>;
 
-    void
-    set_logo (const Glib::RefPtr<const Gdk::Paintable>& logo);
+    auto
+    set_logo (const Glib::RefPtr<const Gdk::Paintable>& logo) -> void;
 
-    void
-    set_logo_default ();
+    auto
+    set_logo_default () -> void;
 
     auto
     get_logo_icon_name () const -> Glib::ustring;
 
-    void
-    set_logo_icon_name (const Glib::ustring& icon_name);
+    auto
+    set_logo_icon_name (const Glib::ustring& icon_name) -> void;
 
     auto
     get_wrap_license () const -> bool;
 
-    void
-    set_wrap_license (bool wrap_license);
+    auto
+    set_wrap_license (bool wrap_license) -> void;
 
-    void
+    auto
     add_credit_section (const Glib::ustring& section_name,
-                        const std::vector<Glib::ustring>& people);
+                        const std::vector<Glib::ustring>& people) -> void;
 
     auto
     property_program_name () -> Glib::PropertyProxy<Glib::ustring>;
@@ -354,9 +354,7 @@ namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkAboutDialog* object, bool take_copy = false) -> Gtk::AboutDialog*;
 } // namespace Glib
 

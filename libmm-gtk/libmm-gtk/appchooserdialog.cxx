@@ -1,17 +1,22 @@
 // SPDX-License-Identifier: LGPL-2.1-or-later
 
-#include <libmm-glib/mm-glib.hxx>
+#undef GTK_DISABLE_DEPRECATED
+#define GDK_DISABLE_DEPRECATION_WARNINGS 1
 
-#include <libmm-gtk/appchooserdialog.hxx>
-#include <libmm-gtk/appchooserdialog_p.hxx>
+#ifndef GTKMM_DISABLE_DEPRECATED
 
-#include <gtk/gtk.h>
+  #include <libmm-glib/mm-glib.hxx>
+
+  #include <libmm-gtk/appchooserdialog.hxx>
+  #include <libmm-gtk/appchooserdialog_p.hxx>
+
+  #include <gtk/gtk.h>
 
 namespace Gtk
 {
 
   AppChooserDialog::AppChooserDialog (const Glib::ustring& content_type)
-    : ObjectBase (nullptr),
+    : Glib::ObjectBase (nullptr),
       Dialog (Glib::ConstructParams (appchooserdialog_class_.init (),
                                      "content_type",
                                      content_type.c_str (),
@@ -20,8 +25,8 @@ namespace Gtk
   }
 
   AppChooserDialog::AppChooserDialog (const Glib::ustring& content_type,
-                                      Window& parent)
-    : ObjectBase (nullptr),
+                                      Gtk::Window& parent)
+    : Glib::ObjectBase (nullptr),
       Dialog (Glib::ConstructParams (appchooserdialog_class_.init (),
                                      "content_type",
                                      content_type.c_str (),
@@ -31,7 +36,7 @@ namespace Gtk
   }
 
   AppChooserDialog::AppChooserDialog (const Glib::RefPtr<Gio::File>& file)
-    : ObjectBase (nullptr),
+    : Glib::ObjectBase (nullptr),
       Dialog (Glib::ConstructParams (appchooserdialog_class_.init (),
                                      "gfile",
                                      Glib::unwrap (file),
@@ -40,8 +45,8 @@ namespace Gtk
   }
 
   AppChooserDialog::AppChooserDialog (const Glib::RefPtr<Gio::File>& file,
-                                      Window& parent)
-    : ObjectBase (nullptr),
+                                      Gtk::Window& parent)
+    : Glib::ObjectBase (nullptr),
       Dialog (Glib::ConstructParams (appchooserdialog_class_.init (),
                                      "gfile",
                                      Glib::unwrap (file),
@@ -60,10 +65,10 @@ namespace Glib
 {
 
   auto
-  wrap (GtkAppChooserDialog* object, const bool take_copy) -> Gtk::AppChooserDialog*
+  wrap (GtkAppChooserDialog* object, bool take_copy) -> Gtk::AppChooserDialog*
   {
     return dynamic_cast<Gtk::AppChooserDialog*> (
-        wrap_auto ((GObject*) object, take_copy));
+        Glib::wrap_auto ((GObject*) (object), take_copy));
   }
 
 } // namespace Glib
@@ -72,7 +77,7 @@ namespace Gtk
 {
 
   auto
-  AppChooserDialog_Class::init () -> const Class&
+  AppChooserDialog_Class::init () -> const Glib::Class&
   {
     if (!gtype_)
     {
@@ -96,7 +101,7 @@ namespace Gtk
   auto
   AppChooserDialog_Class::wrap_new (GObject* o) -> Glib::ObjectBase*
   {
-    return new AppChooserDialog ((GtkAppChooserDialog*) o);
+    return new AppChooserDialog ((GtkAppChooserDialog*) (o));
   }
 
   AppChooserDialog::AppChooserDialog (
@@ -106,7 +111,7 @@ namespace Gtk
   }
 
   AppChooserDialog::AppChooserDialog (GtkAppChooserDialog* castitem)
-    : Dialog ((GtkDialog*) castitem)
+    : Dialog ((GtkDialog*) (castitem))
   {
   }
 
@@ -178,19 +183,22 @@ namespace Gtk
   auto
   AppChooserDialog::property_gfile () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gio::File>>
   {
-    return {this, "gfile"};
+    return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gio::File>> (this,
+                                                                  "gfile");
   }
 
   auto
   AppChooserDialog::property_heading () -> Glib::PropertyProxy<Glib::ustring>
   {
-    return {this, "heading"};
+    return Glib::PropertyProxy<Glib::ustring> (this, "heading");
   }
 
   auto
   AppChooserDialog::property_heading () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>
   {
-    return {this, "heading"};
+    return Glib::PropertyProxy_ReadOnly<Glib::ustring> (this, "heading");
   }
 
 } // namespace Gtk
+
+#endif

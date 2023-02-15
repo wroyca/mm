@@ -16,7 +16,7 @@ namespace Gtk
   GestureStylus::get_axis (Gdk::AxisUse axis) const -> std::optional<double>
   {
     double g_value = double ();
-    const auto retvalue = gtk_gesture_stylus_get_axis (
+    auto retvalue = gtk_gesture_stylus_get_axis (
         const_cast<GtkGestureStylus*> (gobj ()),
         static_cast<GdkAxisUse> (axis),
         &g_value);
@@ -71,16 +71,16 @@ namespace Gtk
 namespace
 {
 
-  auto
+  static auto
   GestureStylus_signal_proximity_callback (GtkGestureStylus* self,
-                                           const gdouble p0,
-                                           const gdouble p1,
+                                           gdouble p0,
+                                           gdouble p1,
                                            void* data) -> void
   {
     using namespace Gtk;
     using SlotType = sigc::slot<void (double, double)>;
 
-    const auto obj = dynamic_cast<GestureStylus*> (
+    auto obj = dynamic_cast<GestureStylus*> (
         Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
@@ -97,21 +97,21 @@ namespace
     }
   }
 
-  const Glib::SignalProxyInfo GestureStylus_signal_proximity_info = {
+  static const Glib::SignalProxyInfo GestureStylus_signal_proximity_info = {
       "proximity",
       (GCallback) &GestureStylus_signal_proximity_callback,
       (GCallback) &GestureStylus_signal_proximity_callback};
 
-  auto
+  static auto
   GestureStylus_signal_down_callback (GtkGestureStylus* self,
-                                      const gdouble p0,
-                                      const gdouble p1,
+                                      gdouble p0,
+                                      gdouble p1,
                                       void* data) -> void
   {
     using namespace Gtk;
     using SlotType = sigc::slot<void (double, double)>;
 
-    const auto obj = dynamic_cast<GestureStylus*> (
+    auto obj = dynamic_cast<GestureStylus*> (
         Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
@@ -128,21 +128,21 @@ namespace
     }
   }
 
-  const Glib::SignalProxyInfo GestureStylus_signal_down_info = {
+  static const Glib::SignalProxyInfo GestureStylus_signal_down_info = {
       "down",
       (GCallback) &GestureStylus_signal_down_callback,
       (GCallback) &GestureStylus_signal_down_callback};
 
-  auto
+  static auto
   GestureStylus_signal_motion_callback (GtkGestureStylus* self,
-                                        const gdouble p0,
-                                        const gdouble p1,
+                                        gdouble p0,
+                                        gdouble p1,
                                         void* data) -> void
   {
     using namespace Gtk;
     using SlotType = sigc::slot<void (double, double)>;
 
-    const auto obj = dynamic_cast<GestureStylus*> (
+    auto obj = dynamic_cast<GestureStylus*> (
         Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
@@ -159,21 +159,21 @@ namespace
     }
   }
 
-  const Glib::SignalProxyInfo GestureStylus_signal_motion_info = {
+  static const Glib::SignalProxyInfo GestureStylus_signal_motion_info = {
       "motion",
       (GCallback) &GestureStylus_signal_motion_callback,
       (GCallback) &GestureStylus_signal_motion_callback};
 
-  auto
+  static auto
   GestureStylus_signal_up_callback (GtkGestureStylus* self,
-                                    const gdouble p0,
-                                    const gdouble p1,
+                                    gdouble p0,
+                                    gdouble p1,
                                     void* data) -> void
   {
     using namespace Gtk;
     using SlotType = sigc::slot<void (double, double)>;
 
-    const auto obj = dynamic_cast<GestureStylus*> (
+    auto obj = dynamic_cast<GestureStylus*> (
         Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
@@ -190,7 +190,7 @@ namespace
     }
   }
 
-  const Glib::SignalProxyInfo GestureStylus_signal_up_info = {
+  static const Glib::SignalProxyInfo GestureStylus_signal_up_info = {
       "up",
       (GCallback) &GestureStylus_signal_up_callback,
       (GCallback) &GestureStylus_signal_up_callback};
@@ -201,11 +201,11 @@ namespace Glib
 {
 
   auto
-  wrap (GtkGestureStylus* object, const bool take_copy) -> RefPtr<Gtk::GestureStylus>
+  wrap (GtkGestureStylus* object, bool take_copy) -> Glib::RefPtr<Gtk::GestureStylus>
   {
     return Glib::make_refptr_for_instance<Gtk::GestureStylus> (
         dynamic_cast<Gtk::GestureStylus*> (
-            wrap_auto ((GObject*) object, take_copy)));
+            Glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
 } // namespace Glib
@@ -214,7 +214,7 @@ namespace Gtk
 {
 
   auto
-  GestureStylus_Class::init () -> const Class&
+  GestureStylus_Class::init () -> const Glib::Class&
   {
     if (!gtype_)
     {
@@ -252,7 +252,7 @@ namespace Gtk
   }
 
   GestureStylus::GestureStylus (GtkGestureStylus* castitem)
-    : GestureSingle ((GtkGestureSingle*) castitem)
+    : GestureSingle ((GtkGestureSingle*) (castitem))
   {
   }
 
@@ -268,7 +268,7 @@ namespace Gtk
     return *this;
   }
 
-  GestureStylus::~GestureStylus () noexcept = default;
+  GestureStylus::~GestureStylus () noexcept {}
 
   GestureStylus::CppClassType GestureStylus::gesturestylus_class_;
 
@@ -285,7 +285,7 @@ namespace Gtk
   }
 
   GestureStylus::GestureStylus ()
-    : ObjectBase (nullptr),
+    : Glib::ObjectBase (nullptr),
       GestureSingle (Glib::ConstructParams (gesturestylus_class_.init ()))
   {
   }
@@ -294,6 +294,20 @@ namespace Gtk
   GestureStylus::create () -> Glib::RefPtr<GestureStylus>
   {
     return Glib::make_refptr_for_instance<GestureStylus> (new GestureStylus ());
+  }
+
+  auto
+  GestureStylus::get_stylus_only () const -> bool
+  {
+    return gtk_gesture_stylus_get_stylus_only (
+        const_cast<GtkGestureStylus*> (gobj ()));
+  }
+
+  auto
+  GestureStylus::set_stylus_only (bool stylus_only) -> void
+  {
+    gtk_gesture_stylus_set_stylus_only (gobj (),
+                                        static_cast<int> (stylus_only));
   }
 
   auto
@@ -314,25 +328,45 @@ namespace Gtk
   auto
   GestureStylus::signal_proximity () -> Glib::SignalProxy<void (double, double)>
   {
-    return {this, &GestureStylus_signal_proximity_info};
+    return Glib::SignalProxy<void (double, double)> (
+        this,
+        &GestureStylus_signal_proximity_info);
   }
 
   auto
   GestureStylus::signal_down () -> Glib::SignalProxy<void (double, double)>
   {
-    return {this, &GestureStylus_signal_down_info};
+    return Glib::SignalProxy<void (double, double)> (
+        this,
+        &GestureStylus_signal_down_info);
   }
 
   auto
   GestureStylus::signal_motion () -> Glib::SignalProxy<void (double, double)>
   {
-    return {this, &GestureStylus_signal_motion_info};
+    return Glib::SignalProxy<void (double, double)> (
+        this,
+        &GestureStylus_signal_motion_info);
   }
 
   auto
   GestureStylus::signal_up () -> Glib::SignalProxy<void (double, double)>
   {
-    return {this, &GestureStylus_signal_up_info};
+    return Glib::SignalProxy<void (double, double)> (
+        this,
+        &GestureStylus_signal_up_info);
+  }
+
+  auto
+  GestureStylus::property_stylus_only () -> Glib::PropertyProxy<bool>
+  {
+    return Glib::PropertyProxy<bool> (this, "stylus-only");
+  }
+
+  auto
+  GestureStylus::property_stylus_only () const -> Glib::PropertyProxy_ReadOnly<bool>
+  {
+    return Glib::PropertyProxy_ReadOnly<bool> (this, "stylus-only");
   }
 
 } // namespace Gtk

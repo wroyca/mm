@@ -15,11 +15,11 @@ namespace Glib
 {
 
   auto
-  wrap (GtkMultiFilter* object, const bool take_copy) -> RefPtr<Gtk::MultiFilter>
+  wrap (GtkMultiFilter* object, bool take_copy) -> Glib::RefPtr<Gtk::MultiFilter>
   {
     return Glib::make_refptr_for_instance<Gtk::MultiFilter> (
         dynamic_cast<Gtk::MultiFilter*> (
-            wrap_auto ((GObject*) object, take_copy)));
+            Glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
 } // namespace Glib
@@ -28,7 +28,7 @@ namespace Gtk
 {
 
   auto
-  MultiFilter_Class::init () -> const Class&
+  MultiFilter_Class::init () -> const Glib::Class&
   {
     if (!gtype_)
     {
@@ -61,18 +61,18 @@ namespace Gtk
   }
 
   MultiFilter::MultiFilter (const Glib::ConstructParams& construct_params)
-    : Filter (construct_params)
+    : Gtk::Filter (construct_params)
   {
   }
 
   MultiFilter::MultiFilter (GtkMultiFilter* castitem)
-    : Filter ((GtkFilter*) castitem)
+    : Gtk::Filter ((GtkFilter*) (castitem))
   {
   }
 
   MultiFilter::MultiFilter (MultiFilter&& src) noexcept
-    : Filter (std::move (src)),
-      ListModel (std::move (src)),
+    : Gtk::Filter (std::move (src)),
+      Gio::ListModel (std::move (src)),
       Buildable (std::move (src))
   {
   }
@@ -80,13 +80,13 @@ namespace Gtk
   auto
   MultiFilter::operator= (MultiFilter&& src) noexcept -> MultiFilter&
   {
-    Filter::operator= (std::move (src));
-    ListModel::operator= (std::move (src));
+    Gtk::Filter::operator= (std::move (src));
+    Gio::ListModel::operator= (std::move (src));
     Buildable::operator= (std::move (src));
     return *this;
   }
 
-  MultiFilter::~MultiFilter () noexcept = default;
+  MultiFilter::~MultiFilter () noexcept {}
 
   MultiFilter::CppClassType MultiFilter::multifilter_class_;
 
@@ -103,19 +103,19 @@ namespace Gtk
   }
 
   MultiFilter::MultiFilter ()
-    : ObjectBase (nullptr),
-      Filter (Glib::ConstructParams (multifilter_class_.init ()))
+    : Glib::ObjectBase (nullptr),
+      Gtk::Filter (Glib::ConstructParams (multifilter_class_.init ()))
   {
   }
 
   auto
   MultiFilter::append (const Glib::RefPtr<Filter>& filter) -> void
   {
-    gtk_multi_filter_append (gobj (), unwrap_copy (filter));
+    gtk_multi_filter_append (gobj (), Glib::unwrap_copy (filter));
   }
 
   auto
-  MultiFilter::remove (const guint position) -> void
+  MultiFilter::remove (guint position) -> void
   {
     gtk_multi_filter_remove (gobj (), position);
   }
@@ -128,13 +128,13 @@ namespace Gtk
   auto
   MultiFilter::property_item_type () const -> Glib::PropertyProxy_ReadOnly<GType>
   {
-    return {this, "item-type"};
+    return Glib::PropertyProxy_ReadOnly<GType> (this, "item-type");
   }
 
   auto
   MultiFilter::property_n_items () const -> Glib::PropertyProxy_ReadOnly<unsigned int>
   {
-    return {this, "n-items"};
+    return Glib::PropertyProxy_ReadOnly<unsigned int> (this, "n-items");
   }
 
 } // namespace Gtk
@@ -143,11 +143,11 @@ namespace Glib
 {
 
   auto
-  wrap (GtkAnyFilter* object, const bool take_copy) -> RefPtr<Gtk::AnyFilter>
+  wrap (GtkAnyFilter* object, bool take_copy) -> Glib::RefPtr<Gtk::AnyFilter>
   {
     return Glib::make_refptr_for_instance<Gtk::AnyFilter> (
         dynamic_cast<Gtk::AnyFilter*> (
-            wrap_auto ((GObject*) object, take_copy)));
+            Glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
 } // namespace Glib
@@ -156,7 +156,7 @@ namespace Gtk
 {
 
   auto
-  AnyFilter_Class::init () -> const Class&
+  AnyFilter_Class::init () -> const Glib::Class&
   {
     if (!gtype_)
     {
@@ -189,28 +189,28 @@ namespace Gtk
   }
 
   AnyFilter::AnyFilter (const Glib::ConstructParams& construct_params)
-    : MultiFilter (construct_params)
+    : Gtk::MultiFilter (construct_params)
   {
   }
 
   AnyFilter::AnyFilter (GtkAnyFilter* castitem)
-    : MultiFilter ((GtkMultiFilter*) castitem)
+    : Gtk::MultiFilter ((GtkMultiFilter*) (castitem))
   {
   }
 
   AnyFilter::AnyFilter (AnyFilter&& src) noexcept
-    : MultiFilter (std::move (src))
+    : Gtk::MultiFilter (std::move (src))
   {
   }
 
   auto
   AnyFilter::operator= (AnyFilter&& src) noexcept -> AnyFilter&
   {
-    MultiFilter::operator= (std::move (src));
+    Gtk::MultiFilter::operator= (std::move (src));
     return *this;
   }
 
-  AnyFilter::~AnyFilter () noexcept = default;
+  AnyFilter::~AnyFilter () noexcept {}
 
   AnyFilter::CppClassType AnyFilter::anyfilter_class_;
 
@@ -227,8 +227,8 @@ namespace Gtk
   }
 
   AnyFilter::AnyFilter ()
-    : ObjectBase (nullptr),
-      MultiFilter (Glib::ConstructParams (anyfilter_class_.init ()))
+    : Glib::ObjectBase (nullptr),
+      Gtk::MultiFilter (Glib::ConstructParams (anyfilter_class_.init ()))
   {
   }
 
@@ -244,11 +244,11 @@ namespace Glib
 {
 
   auto
-  wrap (GtkEveryFilter* object, const bool take_copy) -> RefPtr<Gtk::EveryFilter>
+  wrap (GtkEveryFilter* object, bool take_copy) -> Glib::RefPtr<Gtk::EveryFilter>
   {
     return Glib::make_refptr_for_instance<Gtk::EveryFilter> (
         dynamic_cast<Gtk::EveryFilter*> (
-            wrap_auto ((GObject*) object, take_copy)));
+            Glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
 } // namespace Glib
@@ -257,7 +257,7 @@ namespace Gtk
 {
 
   auto
-  EveryFilter_Class::init () -> const Class&
+  EveryFilter_Class::init () -> const Glib::Class&
   {
     if (!gtype_)
     {
@@ -290,28 +290,28 @@ namespace Gtk
   }
 
   EveryFilter::EveryFilter (const Glib::ConstructParams& construct_params)
-    : MultiFilter (construct_params)
+    : Gtk::MultiFilter (construct_params)
   {
   }
 
   EveryFilter::EveryFilter (GtkEveryFilter* castitem)
-    : MultiFilter ((GtkMultiFilter*) castitem)
+    : Gtk::MultiFilter ((GtkMultiFilter*) (castitem))
   {
   }
 
   EveryFilter::EveryFilter (EveryFilter&& src) noexcept
-    : MultiFilter (std::move (src))
+    : Gtk::MultiFilter (std::move (src))
   {
   }
 
   auto
   EveryFilter::operator= (EveryFilter&& src) noexcept -> EveryFilter&
   {
-    MultiFilter::operator= (std::move (src));
+    Gtk::MultiFilter::operator= (std::move (src));
     return *this;
   }
 
-  EveryFilter::~EveryFilter () noexcept = default;
+  EveryFilter::~EveryFilter () noexcept {}
 
   EveryFilter::CppClassType EveryFilter::everyfilter_class_;
 
@@ -328,8 +328,8 @@ namespace Gtk
   }
 
   EveryFilter::EveryFilter ()
-    : ObjectBase (nullptr),
-      MultiFilter (Glib::ConstructParams (everyfilter_class_.init ()))
+    : Glib::ObjectBase (nullptr),
+      Gtk::MultiFilter (Glib::ConstructParams (everyfilter_class_.init ()))
   {
   }
 

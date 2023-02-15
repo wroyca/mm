@@ -87,17 +87,17 @@ namespace Gtk
     LayoutManager ();
 
   public:
-    void
+    auto
     measure (Widget& widget,
              Orientation orientation,
              int for_size,
              int& minimum,
              int& natural,
              int& minimum_baseline,
-             int& natural_baseline) const;
+             int& natural_baseline) const -> void;
 
-    void
-    allocate (Widget& widget, int width, int height, int baseline);
+    auto
+    allocate (Widget& widget, int width, int height, int baseline) -> void;
 
     auto
     get_request_mode () const -> SizeRequestMode;
@@ -108,8 +108,8 @@ namespace Gtk
     auto
     get_widget () const -> const Widget*;
 
-    void
-    layout_changed ();
+    auto
+    layout_changed () -> void;
 
     auto
     get_layout_child (Widget& child) -> Glib::RefPtr<LayoutChild>;
@@ -121,27 +121,28 @@ namespace Gtk
     virtual auto
     get_request_mode_vfunc (const Widget& widget) const -> SizeRequestMode;
 
-    virtual void
+    virtual auto
     measure_vfunc (const Widget& widget,
                    Orientation orientation,
                    int for_size,
                    int& minimum,
                    int& natural,
                    int& minimum_baseline,
-                   int& natural_baseline) const;
+                   int& natural_baseline) const -> void;
 
-    virtual void
-    allocate_vfunc (const Widget& widget, int width, int height, int baseline);
+    virtual auto
+    allocate_vfunc (const Widget& widget, int width, int height, int baseline)
+        -> void;
 
     virtual auto
     create_layout_child_vfunc (const Widget& widget, const Widget& for_child)
         -> Glib::RefPtr<LayoutChild>;
 
-    virtual void
-    root_vfunc ();
+    virtual auto
+    root_vfunc () -> void;
 
-    virtual void
-    unroot_vfunc ();
+    virtual auto
+    unroot_vfunc () -> void;
 
   public:
   public:
@@ -152,9 +153,7 @@ namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkLayoutManager* object, bool take_copy = false) -> Glib::RefPtr<Gtk::LayoutManager>;
 } // namespace Glib
 

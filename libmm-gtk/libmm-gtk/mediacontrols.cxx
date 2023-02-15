@@ -15,10 +15,10 @@ namespace Glib
 {
 
   auto
-  wrap (GtkMediaControls* object, const bool take_copy) -> Gtk::MediaControls*
+  wrap (GtkMediaControls* object, bool take_copy) -> Gtk::MediaControls*
   {
     return dynamic_cast<Gtk::MediaControls*> (
-        wrap_auto ((GObject*) object, take_copy));
+        Glib::wrap_auto ((GObject*) (object), take_copy));
   }
 
 } // namespace Glib
@@ -27,7 +27,7 @@ namespace Gtk
 {
 
   auto
-  MediaControls_Class::init () -> const Class&
+  MediaControls_Class::init () -> const Glib::Class&
   {
     if (!gtype_)
     {
@@ -49,28 +49,28 @@ namespace Gtk
   auto
   MediaControls_Class::wrap_new (GObject* o) -> Glib::ObjectBase*
   {
-    return manage (new MediaControls ((GtkMediaControls*) o));
+    return manage (new MediaControls ((GtkMediaControls*) (o)));
   }
 
   MediaControls::MediaControls (const Glib::ConstructParams& construct_params)
-    : Widget (construct_params)
+    : Gtk::Widget (construct_params)
   {
   }
 
   MediaControls::MediaControls (GtkMediaControls* castitem)
-    : Widget ((GtkWidget*) castitem)
+    : Gtk::Widget ((GtkWidget*) (castitem))
   {
   }
 
   MediaControls::MediaControls (MediaControls&& src) noexcept
-    : Widget (std::move (src))
+    : Gtk::Widget (std::move (src))
   {
   }
 
   auto
   MediaControls::operator= (MediaControls&& src) noexcept -> MediaControls&
   {
-    Widget::operator= (std::move (src));
+    Gtk::Widget::operator= (std::move (src));
     return *this;
   }
 
@@ -94,17 +94,17 @@ namespace Gtk
   }
 
   MediaControls::MediaControls ()
-    : ObjectBase (nullptr),
-      Widget (Glib::ConstructParams (mediacontrols_class_.init ()))
+    : Glib::ObjectBase (nullptr),
+      Gtk::Widget (Glib::ConstructParams (mediacontrols_class_.init ()))
   {
   }
 
   MediaControls::MediaControls (const Glib::RefPtr<MediaStream>& media_stream)
-    : ObjectBase (nullptr),
-      Widget (Glib::ConstructParams (mediacontrols_class_.init (),
-                                     "media_stream",
-                                     Glib::unwrap (media_stream),
-                                     nullptr))
+    : Glib::ObjectBase (nullptr),
+      Gtk::Widget (Glib::ConstructParams (mediacontrols_class_.init (),
+                                          "media_stream",
+                                          Glib::unwrap (media_stream),
+                                          nullptr))
   {
   }
 
@@ -138,13 +138,16 @@ namespace Gtk
   auto
   MediaControls::property_media_stream () -> Glib::PropertyProxy<Glib::RefPtr<MediaStream>>
   {
-    return {this, "media-stream"};
+    return Glib::PropertyProxy<Glib::RefPtr<MediaStream>> (this,
+                                                           "media-stream");
   }
 
   auto
   MediaControls::property_media_stream () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<MediaStream>>
   {
-    return {this, "media-stream"};
+    return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<MediaStream>> (
+        this,
+        "media-stream");
   }
 
 } // namespace Gtk

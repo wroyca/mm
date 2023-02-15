@@ -36,11 +36,11 @@ namespace Glib
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
   private:
-    GLIBMM_API static void
-    throw_func (GError* gobject);
+    GLIBMM_API static auto
+    throw_func (GError* gobject) -> void;
 
-    friend GLIBMM_API void
-    wrap_init ();
+    friend GLIBMM_API auto
+    wrap_init () -> void;
 
 #endif
   };
@@ -70,20 +70,20 @@ namespace Glib
 
     virtual ~OptionContext ();
 
-    void
-    set_help_enabled (bool help_enabled = true);
+    auto
+    set_help_enabled (bool help_enabled = true) -> void;
 
     auto
     get_help_enabled () const -> bool;
 
-    void
-    set_ignore_unknown_options (bool ignore_unknown = true);
+    auto
+    set_ignore_unknown_options (bool ignore_unknown = true) -> void;
 
     auto
     get_ignore_unknown_options () const -> bool;
 
-    void
-    set_strict_posix (bool strict_posix = true);
+    auto
+    set_strict_posix (bool strict_posix = true) -> void;
 
     auto
     get_strict_posix () const -> bool;
@@ -94,11 +94,11 @@ namespace Glib
     auto
     parse (char**& argv) -> bool;
 
-    void
-    add_group (OptionGroup& group);
+    auto
+    add_group (OptionGroup& group) -> void;
 
-    void
-    set_main_group (OptionGroup& group);
+    auto
+    set_main_group (OptionGroup& group) -> void;
 
     auto
     get_help (bool main_help, const OptionGroup& group) const -> Glib::ustring;
@@ -118,25 +118,25 @@ namespace Glib
       return gobject_;
     }
 
-    void
-    set_summary (const Glib::ustring& summary);
+    auto
+    set_summary (const Glib::ustring& summary) -> void;
 
     auto
     get_summary () const -> Glib::ustring;
 
-    void
-    set_description (const Glib::ustring& description);
+    auto
+    set_description (const Glib::ustring& description) -> void;
 
     auto
     get_description () const -> Glib::ustring;
 
-    void
-    set_translation_domain (const Glib::ustring& domain);
+    auto
+    set_translation_domain (const Glib::ustring& domain) -> void;
 
     using SlotTranslate = sigc::slot<Glib::ustring (const Glib::ustring&)>;
 
-    void
-    set_translate_func (const SlotTranslate& slot);
+    auto
+    set_translate_func (const SlotTranslate& slot) -> void;
 
   protected:
     GOptionContext* gobject_;

@@ -81,16 +81,16 @@ namespace Gtk
   public:
     Overlay ();
 
-    void
-    add_overlay (Gtk::Widget& widget);
+    auto
+    add_overlay (Gtk::Widget& widget) -> void;
 
-    void
-    remove_overlay (Gtk::Widget& widget);
+    auto
+    remove_overlay (Gtk::Widget& widget) -> void;
 
-    void
-    set_child (Widget& child);
-    void
-    unset_child ();
+    auto
+    set_child (Widget& child) -> void;
+    auto
+    unset_child () -> void;
 
     auto
     get_child () -> Widget*;
@@ -101,14 +101,14 @@ namespace Gtk
     auto
     get_measure_overlay (Widget& widget) const -> bool;
 
-    void
-    set_measure_overlay (Widget& widget, bool measure = true);
+    auto
+    set_measure_overlay (Widget& widget, bool measure = true) -> void;
 
     auto
     get_clip_overlay (const Widget& widget) const -> bool;
 
-    void
-    set_clip_overlay (const Widget& widget, bool clip_overlay = true);
+    auto
+    set_clip_overlay (const Widget& widget, bool clip_overlay = true) -> void;
 
     auto
     signal_get_child_position ()
@@ -129,9 +129,7 @@ namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkOverlay* object, bool take_copy = false) -> Gtk::Overlay*;
 } // namespace Glib
 

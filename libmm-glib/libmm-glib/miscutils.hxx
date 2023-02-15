@@ -85,17 +85,15 @@ namespace Glib
   auto
   get_application_name () -> Glib::ustring;
 
-  GLIBMM_API
-  void
-  set_application_name (UStringView application_name);
+  GLIBMM_API auto
+  set_application_name (UStringView application_name) -> void;
 
   GLIBMM_API
   auto
   get_prgname () -> std::string;
 
-  GLIBMM_API
-  void
-  set_prgname (StdStringView prgname);
+  GLIBMM_API auto
+  set_prgname (StdStringView prgname) -> void;
 
   GLIBMM_API
   auto
@@ -109,9 +107,8 @@ namespace Glib
   auto
   setenv (StdStringView variable, StdStringView value, bool overwrite = true) -> bool;
 
-  GLIBMM_API
-  void
-  unsetenv (StdStringView variable);
+  GLIBMM_API auto
+  unsetenv (StdStringView variable) -> void;
 
   GLIBMM_API
   auto

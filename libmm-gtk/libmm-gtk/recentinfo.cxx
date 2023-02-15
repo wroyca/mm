@@ -47,7 +47,7 @@ namespace Gtk
     else
       app_exec.erase ();
 
-    return found != 0;
+    return (found != 0);
   }
 
   auto
@@ -65,7 +65,7 @@ namespace Gtk
   }
 
   auto
-  RecentInfoTraits::to_cpp_type (const CType& obj) -> CppType
+  RecentInfoTraits::to_cpp_type (const CType& obj) -> RecentInfoTraits::CppType
   {
     return Glib::wrap (const_cast<CTypeNonConst> (obj), true);
   }
@@ -84,13 +84,13 @@ namespace Glib
   auto
   Value<RefPtr<Gtk::RecentInfo>>::set (const CppType& data) -> void
   {
-    set_boxed (unwrap (data));
+    set_boxed (Glib::unwrap (data));
   }
 
   auto
-  Value<RefPtr<Gtk::RecentInfo>>::get () const -> CppType
+  Value<RefPtr<Gtk::RecentInfo>>::get () const -> Value<RefPtr<Gtk::RecentInfo>>::CppType
   {
-    return wrap (static_cast<CType> (get_boxed ()), true);
+    return Glib::wrap (static_cast<CType> (get_boxed ()), true);
   }
 
 } // namespace Glib
@@ -103,7 +103,7 @@ namespace Glib
 {
 
   auto
-  wrap (GtkRecentInfo* object, const bool take_copy) -> RefPtr<Gtk::RecentInfo>
+  wrap (GtkRecentInfo* object, bool take_copy) -> Glib::RefPtr<Gtk::RecentInfo>
   {
     if (take_copy && object)
       gtk_recent_info_ref (object);
@@ -213,10 +213,12 @@ namespace Gtk
   RecentInfo::create_app_info (const Glib::ustring& app_name) -> Glib::RefPtr<Gio::AppInfo>
   {
     GError* gerror = nullptr;
-    auto retvalue = Glib::wrap (
-        gtk_recent_info_create_app_info (gobj (), app_name.c_str (), &gerror));
+    auto retvalue =
+        Glib::wrap (gtk_recent_info_create_app_info (gobj (),
+                                                     app_name.c_str (),
+                                                     &(gerror)));
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      ::Glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
@@ -295,7 +297,7 @@ namespace Gtk
   {
     return gtk_recent_info_match (
         const_cast<GtkRecentInfo*> (gobj ()),
-        const_cast<GtkRecentInfo*> (Glib::unwrap<RecentInfo> (info_b)));
+        const_cast<GtkRecentInfo*> (Glib::unwrap<Gtk::RecentInfo> (info_b)));
   }
 
 } // namespace Gtk

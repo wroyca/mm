@@ -3,26 +3,28 @@
 #ifndef _GTKMM_TREEMODELFILTER_H
 #define _GTKMM_TREEMODELFILTER_H
 
-#include <libmm-glib/ustring.hxx>
-#include <sigc++/sigc++.h>
+#ifndef GTKMM_DISABLE_DEPRECATED
 
-#include <libmm-gtk/treedragsource.hxx>
-#include <libmm-gtk/treeiter.hxx>
-#include <libmm-gtk/treemodel.hxx>
+  #include <libmm-glib/ustring.hxx>
+  #include <sigc++/sigc++.h>
 
-#include <libmm-gtk/treepath.hxx>
+  #include <libmm-gtk/treedragsource.hxx>
+  #include <libmm-gtk/treeiter.hxx>
+  #include <libmm-gtk/treemodel.hxx>
 
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #include <libmm-gtk/treepath.hxx>
+
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
 using GtkTreeModelFilter = struct _GtkTreeModelFilter;
 using GtkTreeModelFilterClass = struct _GtkTreeModelFilterClass;
-#endif
+  #endif
 
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
   class GTKMM_API TreeModelFilter_Class;
 }
-#endif
+  #endif
 
 namespace Gtk
 {
@@ -31,7 +33,7 @@ namespace Gtk
                                     public TreeModel,
                                     public TreeDragSource
   {
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   public:
     using CppObjectType = TreeModelFilter;
@@ -51,7 +53,7 @@ namespace Gtk
     explicit TreeModelFilter (const Glib::ConstructParams& construct_params);
     explicit TreeModelFilter (GtkTreeModelFilter* castitem);
 
-#endif
+  #endif
 
   public:
     TreeModelFilter (TreeModelFilter&& src) noexcept;
@@ -63,11 +65,11 @@ namespace Gtk
     static auto
     get_type () -> GType G_GNUC_CONST;
 
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
     static auto
     get_base_type () -> GType G_GNUC_CONST;
-#endif
+  #endif
 
     auto
     gobj () -> GtkTreeModelFilter*
@@ -102,22 +104,22 @@ namespace Gtk
 
     typedef sigc::slot<bool (const TreeModel::const_iterator&)> SlotVisible;
 
-    void
-    set_visible_func (const SlotVisible& slot);
+    auto
+    set_visible_func (const SlotVisible& slot) -> void;
 
     typedef sigc::slot<
         void (const Gtk::TreeModel::iterator&, Glib::ValueBase&, int)>
         SlotModify;
 
-    void
+    auto
     set_modify_func (const TreeModelColumnRecord& columns,
-                     const SlotModify& slot);
+                     const SlotModify& slot) -> void;
 
-    void
-    set_visible_column (const TreeModelColumnBase& column);
+    auto
+    set_visible_column (const TreeModelColumnBase& column) -> void;
 
-    void
-    set_visible_column (int column);
+    auto
+    set_visible_column (int column) -> void;
 
     auto
     get_model () -> Glib::RefPtr<TreeModel>;
@@ -145,11 +147,11 @@ namespace Gtk
     auto
     convert_path_to_child_path (const Path& filter_path) const -> Path;
 
-    void
-    refilter ();
+    auto
+    refilter () -> void;
 
-    void
-    clear_cache ();
+    auto
+    clear_cache () -> void;
 
     auto
     property_child_model () const
@@ -160,10 +162,10 @@ namespace Gtk
         -> Glib::PropertyProxy_ReadOnly<TreeModel::Path>;
 
   protected:
-    void
+    auto
     set_value_impl (const iterator& row,
                     int column,
-                    const Glib::ValueBase& value) override;
+                    const Glib::ValueBase& value) -> void override;
 
   public:
   public:
@@ -174,10 +176,10 @@ namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkTreeModelFilter* object, bool take_copy = false) -> Glib::RefPtr<Gtk::TreeModelFilter>;
 } // namespace Glib
+
+#endif
 
 #endif

@@ -39,11 +39,11 @@ namespace Glib
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
   private:
-    GLIBMM_API static void
-    throw_func (GError* gobject);
+    GLIBMM_API static auto
+    throw_func (GError* gobject) -> void;
 
-    friend GLIBMM_API void
-    wrap_init ();
+    friend GLIBMM_API auto
+    wrap_init () -> void;
 
 #endif
   };
@@ -152,23 +152,24 @@ namespace Glib
       auto
       operator= (Parser&& other) noexcept -> Parser&;
 
-      virtual void
+      virtual auto
       on_start_element (ParseContext& context,
                         const Glib::ustring& element_name,
-                        const AttributeMap& attributes);
+                        const AttributeMap& attributes) -> void;
 
-      virtual void
-      on_end_element (ParseContext& context, const Glib::ustring& element_name);
+      virtual auto
+      on_end_element (ParseContext& context, const Glib::ustring& element_name)
+          -> void;
 
-      virtual void
-      on_text (ParseContext& context, const Glib::ustring& text);
+      virtual auto
+      on_text (ParseContext& context, const Glib::ustring& text) -> void;
 
-      virtual void
+      virtual auto
       on_passthrough (ParseContext& context,
-                      const Glib::ustring& passthrough_text);
+                      const Glib::ustring& passthrough_text) -> void;
 
-      virtual void
-      on_error (ParseContext& context, const MarkupError& error);
+      virtual auto
+      on_error (ParseContext& context, const MarkupError& error) -> void;
 
     private:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -191,14 +192,14 @@ namespace Glib
 
       virtual ~ParseContext ();
 
-      void
-      parse (const Glib::ustring& text);
+      auto
+      parse (const Glib::ustring& text) -> void;
 
-      void
-      parse (const char* text_begin, const char* text_end);
+      auto
+      parse (const char* text_begin, const char* text_end) -> void;
 
-      void
-      end_parse ();
+      auto
+      end_parse () -> void;
 
       auto
       get_element () const -> Glib::ustring;
@@ -239,8 +240,8 @@ namespace Glib
       Markup::Parser* parser_;
       GMarkupParseContext* gobject_;
 
-      static void
-      destroy_notify_callback (void* data);
+      static auto
+      destroy_notify_callback (void* data) -> void;
     };
 
   } // namespace Markup

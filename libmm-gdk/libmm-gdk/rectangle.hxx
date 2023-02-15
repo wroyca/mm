@@ -79,32 +79,29 @@ namespace Gdk
 
     auto
     get_x () const -> int;
-    void
-    set_x (const int& value);
+    auto
+    set_x (const int& value) -> void;
     auto
     get_y () const -> int;
-    void
-    set_y (const int& value);
+    auto
+    set_y (const int& value) -> void;
     auto
     get_width () const -> int;
-    void
-    set_width (const int& value);
+    auto
+    set_width (const int& value) -> void;
     auto
     get_height () const -> int;
-    void
-    set_height (const int& value);
+    auto
+    set_height (const int& value) -> void;
   };
 
-  GDKMM_API
-  auto
+  GDKMM_API auto
   join (const Rectangle& src1, const Rectangle& src2) -> Rectangle;
 
-  GDKMM_API
-  auto
+  GDKMM_API auto
   intersect (const Rectangle& src1, const Rectangle& src2) -> Rectangle;
 
-  GDKMM_API
-  auto
+  GDKMM_API auto
   intersect (const Rectangle& src1,
              const Rectangle& src2,
              bool& rectangles_intersect) -> Rectangle;
@@ -113,13 +110,10 @@ namespace Gdk
 
 namespace Glib
 {
-
-  GDKMM_API
-  auto
+  GDKMM_API auto
   wrap (GdkRectangle* object) -> Gdk::Rectangle&;
 
-  GDKMM_API
-  auto
+  GDKMM_API auto
   wrap (const GdkRectangle* object) -> const Gdk::Rectangle&;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

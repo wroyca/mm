@@ -10,7 +10,7 @@ namespace Gdk
 
   G_GNUC_BEGIN_IGNORE_DEPRECATIONS
   auto
-  PixbufAnimationIter::advance (const gint64 current_time) -> bool
+  PixbufAnimationIter::advance (gint64 current_time) -> bool
   {
     GTimeVal tv;
     tv.tv_sec = current_time / 1000000;
@@ -30,11 +30,11 @@ namespace Glib
 {
 
   auto
-  wrap (GdkPixbufAnimationIter* object, const bool take_copy) -> RefPtr<Gdk::PixbufAnimationIter>
+  wrap (GdkPixbufAnimationIter* object, bool take_copy) -> Glib::RefPtr<Gdk::PixbufAnimationIter>
   {
     return Glib::make_refptr_for_instance<Gdk::PixbufAnimationIter> (
         dynamic_cast<Gdk::PixbufAnimationIter*> (
-            wrap_auto ((GObject*) object, take_copy)));
+            Glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
 } // namespace Glib
@@ -43,7 +43,7 @@ namespace Gdk
 {
 
   auto
-  PixbufAnimationIter_Class::init () -> const Class&
+  PixbufAnimationIter_Class::init () -> const Glib::Class&
   {
     if (!gtype_)
     {
@@ -78,28 +78,28 @@ namespace Gdk
 
   PixbufAnimationIter::PixbufAnimationIter (
       const Glib::ConstructParams& construct_params)
-    : Object (construct_params)
+    : Glib::Object (construct_params)
   {
   }
 
   PixbufAnimationIter::PixbufAnimationIter (GdkPixbufAnimationIter* castitem)
-    : Object ((GObject*) castitem)
+    : Glib::Object ((GObject*) (castitem))
   {
   }
 
   PixbufAnimationIter::PixbufAnimationIter (PixbufAnimationIter&& src) noexcept
-    : Object (std::move (src))
+    : Glib::Object (std::move (src))
   {
   }
 
   auto
   PixbufAnimationIter::operator= (PixbufAnimationIter&& src) noexcept -> PixbufAnimationIter&
   {
-    Object::operator= (std::move (src));
+    Glib::Object::operator= (std::move (src));
     return *this;
   }
 
-  PixbufAnimationIter::~PixbufAnimationIter () noexcept = default;
+  PixbufAnimationIter::~PixbufAnimationIter () noexcept {}
 
   PixbufAnimationIter::CppClassType
       PixbufAnimationIter::pixbufanimationiter_class_;
@@ -124,7 +124,7 @@ namespace Gdk
   }
 
   auto
-  PixbufAnimationIter::get_pixbuf () -> Glib::RefPtr<Pixbuf>
+  PixbufAnimationIter::get_pixbuf () -> Glib::RefPtr<Gdk::Pixbuf>
   {
     auto retvalue = Glib::wrap (gdk_pixbuf_animation_iter_get_pixbuf (gobj ()));
     if (retvalue)
@@ -133,7 +133,7 @@ namespace Gdk
   }
 
   auto
-  PixbufAnimationIter::get_pixbuf () const -> Glib::RefPtr<const Pixbuf>
+  PixbufAnimationIter::get_pixbuf () const -> Glib::RefPtr<const Gdk::Pixbuf>
   {
     return const_cast<PixbufAnimationIter*> (this)->get_pixbuf ();
   }

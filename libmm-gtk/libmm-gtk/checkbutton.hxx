@@ -85,34 +85,34 @@ namespace Gtk
 
     explicit CheckButton (const Glib::ustring& label, bool mnemonic = false);
 
-    void
-    set_inconsistent (bool inconsistent = true);
+    auto
+    set_inconsistent (bool inconsistent = true) -> void;
 
     auto
     get_inconsistent () const -> bool;
 
-    void
-    set_active (bool setting = true);
+    auto
+    set_active (bool setting = true) -> void;
 
     auto
     get_active () const -> bool;
 
-    void
-    set_label (const Glib::ustring& label);
+    auto
+    set_label (const Glib::ustring& label) -> void;
 
     auto
     get_label () const -> Glib::ustring;
 
-    void
-    set_use_underline (bool setting = true);
+    auto
+    set_use_underline (bool setting = true) -> void;
 
     auto
     get_use_underline () const -> bool;
 
-    void
-    set_child (Widget& child);
-    void
-    unset_child ();
+    auto
+    set_child (Widget& child) -> void;
+    auto
+    unset_child () -> void;
 
     auto
     get_child () -> Widget*;
@@ -120,10 +120,10 @@ namespace Gtk
     auto
     get_child () const -> const Widget*;
 
-    void
-    set_group (CheckButton& group);
-    void
-    unset_group ();
+    auto
+    set_group (CheckButton& group) -> void;
+    auto
+    unset_group () -> void;
 
     auto
     signal_toggled () -> Glib::SignalProxy<void ()>;
@@ -164,17 +164,15 @@ namespace Gtk
   public:
   public:
   protected:
-    virtual void
-    on_toggled ();
+    virtual auto
+    on_toggled () -> void;
   };
 
 } // namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkCheckButton* object, bool take_copy = false) -> Gtk::CheckButton*;
 } // namespace Glib
 

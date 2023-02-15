@@ -15,11 +15,11 @@ namespace Glib
 {
 
   auto
-  wrap (GtkGestureSingle* object, const bool take_copy) -> RefPtr<Gtk::GestureSingle>
+  wrap (GtkGestureSingle* object, bool take_copy) -> Glib::RefPtr<Gtk::GestureSingle>
   {
     return Glib::make_refptr_for_instance<Gtk::GestureSingle> (
         dynamic_cast<Gtk::GestureSingle*> (
-            wrap_auto ((GObject*) object, take_copy)));
+            Glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
 } // namespace Glib
@@ -28,7 +28,7 @@ namespace Gtk
 {
 
   auto
-  GestureSingle_Class::init () -> const Class&
+  GestureSingle_Class::init () -> const Glib::Class&
   {
     if (!gtype_)
     {
@@ -66,7 +66,7 @@ namespace Gtk
   }
 
   GestureSingle::GestureSingle (GtkGestureSingle* castitem)
-    : Gesture ((GtkGesture*) castitem)
+    : Gesture ((GtkGesture*) (castitem))
   {
   }
 
@@ -82,7 +82,7 @@ namespace Gtk
     return *this;
   }
 
-  GestureSingle::~GestureSingle () noexcept = default;
+  GestureSingle::~GestureSingle () noexcept {}
 
   GestureSingle::CppClassType GestureSingle::gesturesingle_class_;
 
@@ -99,7 +99,7 @@ namespace Gtk
   }
 
   GestureSingle::GestureSingle ()
-    : ObjectBase (nullptr),
+    : Glib::ObjectBase (nullptr),
       Gesture (Glib::ConstructParams (gesturesingle_class_.init ()))
   {
   }
@@ -112,9 +112,9 @@ namespace Gtk
   }
 
   auto
-  GestureSingle::set_touch_only (const bool touch_only) -> void
+  GestureSingle::set_touch_only (bool touch_only) -> void
   {
-    gtk_gesture_single_set_touch_only (gobj (), touch_only);
+    gtk_gesture_single_set_touch_only (gobj (), static_cast<int> (touch_only));
   }
 
   auto
@@ -125,10 +125,10 @@ namespace Gtk
   }
 
   auto
-  GestureSingle::set_exclusive (const bool exclusive) const -> void
+  GestureSingle::set_exclusive (bool exclusive) const -> void
   {
     gtk_gesture_single_set_exclusive (const_cast<GtkGestureSingle*> (gobj ()),
-                                      exclusive);
+                                      static_cast<int> (exclusive));
   }
 
   auto
@@ -139,7 +139,7 @@ namespace Gtk
   }
 
   auto
-  GestureSingle::set_button (const unsigned int button) -> void
+  GestureSingle::set_button (unsigned int button) -> void
   {
     gtk_gesture_single_set_button (gobj (), button);
   }
@@ -167,37 +167,37 @@ namespace Gtk
   auto
   GestureSingle::property_touch_only () -> Glib::PropertyProxy<bool>
   {
-    return {this, "touch-only"};
+    return Glib::PropertyProxy<bool> (this, "touch-only");
   }
 
   auto
   GestureSingle::property_touch_only () const -> Glib::PropertyProxy_ReadOnly<bool>
   {
-    return {this, "touch-only"};
+    return Glib::PropertyProxy_ReadOnly<bool> (this, "touch-only");
   }
 
   auto
   GestureSingle::property_exclusive () -> Glib::PropertyProxy<bool>
   {
-    return {this, "exclusive"};
+    return Glib::PropertyProxy<bool> (this, "exclusive");
   }
 
   auto
   GestureSingle::property_exclusive () const -> Glib::PropertyProxy_ReadOnly<bool>
   {
-    return {this, "exclusive"};
+    return Glib::PropertyProxy_ReadOnly<bool> (this, "exclusive");
   }
 
   auto
   GestureSingle::property_button () -> Glib::PropertyProxy<unsigned int>
   {
-    return {this, "button"};
+    return Glib::PropertyProxy<unsigned int> (this, "button");
   }
 
   auto
   GestureSingle::property_button () const -> Glib::PropertyProxy_ReadOnly<unsigned int>
   {
-    return {this, "button"};
+    return Glib::PropertyProxy_ReadOnly<unsigned int> (this, "button");
   }
 
 } // namespace Gtk

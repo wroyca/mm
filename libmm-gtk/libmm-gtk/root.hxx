@@ -78,8 +78,8 @@ namespace Gtk
 
     ~Root () noexcept override;
 
-    static void
-    add_interface (GType gtype_implementer);
+    static auto
+    add_interface (GType gtype_implementer) -> void;
 
     static auto
     get_type () -> GType G_GNUC_CONST;
@@ -109,11 +109,11 @@ namespace Gtk
     auto
     get_display () const -> Glib::RefPtr<const Gdk::Display>;
 
-    void
-    set_focus (Widget& focus);
+    auto
+    set_focus (Widget& focus) -> void;
 
-    void
-    unset_focus ();
+    auto
+    unset_focus () -> void;
 
     auto
     get_focus () -> Widget*;
@@ -130,9 +130,7 @@ namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkRoot* object, bool take_copy = false) -> Glib::RefPtr<Gtk::Root>;
 
 } // namespace Glib

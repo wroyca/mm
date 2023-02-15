@@ -25,15 +25,13 @@ namespace Gdk
 namespace
 {
 
-  auto
-  Display_signal_closed_callback (GdkDisplay* self,
-                                  const gboolean p0,
-                                  void* data) -> void
+  static auto
+  Display_signal_closed_callback (GdkDisplay* self, gboolean p0, void* data) -> void
   {
     using namespace Gdk;
     using SlotType = sigc::slot<void (bool)>;
 
-    const auto obj = dynamic_cast<Display*> (
+    auto obj = dynamic_cast<Display*> (
         Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
@@ -50,23 +48,23 @@ namespace
     }
   }
 
-  const Glib::SignalProxyInfo Display_signal_closed_info = {
+  static const Glib::SignalProxyInfo Display_signal_closed_info = {
       "closed",
       (GCallback) &Display_signal_closed_callback,
       (GCallback) &Display_signal_closed_callback};
 
-  const Glib::SignalProxyInfo Display_signal_opened_info = {
+  static const Glib::SignalProxyInfo Display_signal_opened_info = {
       "opened",
       (GCallback) &Glib::SignalProxyNormal::slot0_void_callback,
       (GCallback) &Glib::SignalProxyNormal::slot0_void_callback};
 
-  auto
+  static auto
   Display_signal_seat_added_callback (GdkDisplay* self, GdkSeat* p0, void* data) -> void
   {
     using namespace Gdk;
     using SlotType = sigc::slot<void (const Glib::RefPtr<Seat>&)>;
 
-    const auto obj = dynamic_cast<Display*> (
+    auto obj = dynamic_cast<Display*> (
         Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
@@ -83,12 +81,12 @@ namespace
     }
   }
 
-  const Glib::SignalProxyInfo Display_signal_seat_added_info = {
+  static const Glib::SignalProxyInfo Display_signal_seat_added_info = {
       "seat-added",
       (GCallback) &Display_signal_seat_added_callback,
       (GCallback) &Display_signal_seat_added_callback};
 
-  auto
+  static auto
   Display_signal_seat_removed_callback (GdkDisplay* self,
                                         GdkSeat* p0,
                                         void* data) -> void
@@ -96,7 +94,7 @@ namespace
     using namespace Gdk;
     using SlotType = sigc::slot<void (const Glib::RefPtr<Seat>&)>;
 
-    const auto obj = dynamic_cast<Display*> (
+    auto obj = dynamic_cast<Display*> (
         Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
@@ -113,12 +111,12 @@ namespace
     }
   }
 
-  const Glib::SignalProxyInfo Display_signal_seat_removed_info = {
+  static const Glib::SignalProxyInfo Display_signal_seat_removed_info = {
       "seat-removed",
       (GCallback) &Display_signal_seat_removed_callback,
       (GCallback) &Display_signal_seat_removed_callback};
 
-  auto
+  static auto
   Display_signal_setting_changed_callback (GdkDisplay* self,
                                            const gchar* p0,
                                            void* data) -> void
@@ -126,7 +124,7 @@ namespace
     using namespace Gdk;
     using SlotType = sigc::slot<void (const Glib::ustring&)>;
 
-    const auto obj = dynamic_cast<Display*> (
+    auto obj = dynamic_cast<Display*> (
         Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
@@ -144,7 +142,7 @@ namespace
     }
   }
 
-  const Glib::SignalProxyInfo Display_signal_setting_changed_info = {
+  static const Glib::SignalProxyInfo Display_signal_setting_changed_info = {
       "setting-changed",
       (GCallback) &Display_signal_setting_changed_callback,
       (GCallback) &Display_signal_setting_changed_callback};
@@ -155,10 +153,11 @@ namespace Glib
 {
 
   auto
-  wrap (GdkDisplay* object, const bool take_copy) -> RefPtr<Gdk::Display>
+  wrap (GdkDisplay* object, bool take_copy) -> Glib::RefPtr<Gdk::Display>
   {
     return Glib::make_refptr_for_instance<Gdk::Display> (
-        dynamic_cast<Gdk::Display*> (wrap_auto ((GObject*) object, take_copy)));
+        dynamic_cast<Gdk::Display*> (
+            Glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
 } // namespace Glib
@@ -167,7 +166,7 @@ namespace Gdk
 {
 
   auto
-  Display_Class::init () -> const Class&
+  Display_Class::init () -> const Glib::Class&
   {
     if (!gtype_)
     {
@@ -200,28 +199,28 @@ namespace Gdk
   }
 
   Display::Display (const Glib::ConstructParams& construct_params)
-    : Object (construct_params)
+    : Glib::Object (construct_params)
   {
   }
 
   Display::Display (GdkDisplay* castitem)
-    : Object ((GObject*) castitem)
+    : Glib::Object ((GObject*) (castitem))
   {
   }
 
   Display::Display (Display&& src) noexcept
-    : Object (std::move (src))
+    : Glib::Object (std::move (src))
   {
   }
 
   auto
   Display::operator= (Display&& src) noexcept -> Display&
   {
-    Object::operator= (std::move (src));
+    Glib::Object::operator= (std::move (src));
     return *this;
   }
 
-  Display::~Display () noexcept = default;
+  Display::~Display () noexcept {}
 
   Display::CppClassType Display::display_class_;
 
@@ -238,8 +237,8 @@ namespace Gdk
   }
 
   Display::Display ()
-    : ObjectBase (nullptr),
-      Object (Glib::ConstructParams (display_class_.init ()))
+    : Glib::ObjectBase (nullptr),
+      Glib::Object (Glib::ConstructParams (display_class_.init ()))
   {
   }
 
@@ -260,11 +259,12 @@ namespace Gdk
   }
 
   auto
-  Display::device_is_grabbed (const Glib::RefPtr<const Device>& device) const -> bool
+  Display::device_is_grabbed (
+      const Glib::RefPtr<const Gdk::Device>& device) const -> bool
   {
     return gdk_display_device_is_grabbed (
         const_cast<GdkDisplay*> (gobj ()),
-        const_cast<GdkDevice*> (Glib::unwrap<Device> (device)));
+        const_cast<GdkDevice*> (Glib::unwrap<Gdk::Device> (device)));
   }
 
   auto
@@ -303,12 +303,17 @@ namespace Gdk
     return gdk_display_is_rgba (const_cast<GdkDisplay*> (gobj ()));
   }
 
+#ifndef GDKMM_DISABLE_DEPRECATED
+  G_GNUC_BEGIN_IGNORE_DEPRECATIONS
   auto
   Display::put_event (const Glib::RefPtr<const Event>& event) -> void
   {
     gdk_display_put_event (gobj (),
                            const_cast<GdkEvent*> (Glib::unwrap (event)));
   }
+
+  G_GNUC_END_IGNORE_DEPRECATIONS
+#endif
 
   auto
   Display::get_default () -> Glib::RefPtr<Display>
@@ -366,9 +371,9 @@ namespace Gdk
   Display::prepare_gl () -> void
   {
     GError* gerror = nullptr;
-    gdk_display_prepare_gl (gobj (), &gerror);
+    gdk_display_prepare_gl (gobj (), &(gerror));
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      ::Glib::Error::throw_exception (gerror);
   }
 
   auto
@@ -376,18 +381,25 @@ namespace Gdk
   {
     GError* gerror = nullptr;
     auto retvalue =
-        Glib::wrap (gdk_display_create_gl_context (gobj (), &gerror));
+        Glib::wrap (gdk_display_create_gl_context (gobj (), &(gerror)));
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      ::Glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
+#ifndef GDKMM_DISABLE_DEPRECATED
+  G_GNUC_BEGIN_IGNORE_DEPRECATIONS
   auto
   Display::notify_startup_complete (const Glib::ustring& startup_id) -> void
   {
     gdk_display_notify_startup_complete (gobj (), startup_id.c_str ());
   }
 
+  G_GNUC_END_IGNORE_DEPRECATIONS
+#endif
+
+#ifndef GDKMM_DISABLE_DEPRECATED
+  G_GNUC_BEGIN_IGNORE_DEPRECATIONS
   auto
   Display::get_startup_notification_id () const -> Glib::ustring
   {
@@ -395,6 +407,9 @@ namespace Gdk
         gdk_display_get_startup_notification_id (
             const_cast<GdkDisplay*> (gobj ())));
   }
+
+  G_GNUC_END_IGNORE_DEPRECATIONS
+#endif
 
   auto
   Display::get_app_launch_context () -> Glib::RefPtr<AppLaunchContext>
@@ -476,49 +491,55 @@ namespace Gdk
   auto
   Display::signal_closed () -> Glib::SignalProxy<void (bool)>
   {
-    return {this, &Display_signal_closed_info};
+    return Glib::SignalProxy<void (bool)> (this, &Display_signal_closed_info);
   }
 
   auto
   Display::signal_opened () -> Glib::SignalProxy<void ()>
   {
-    return {this, &Display_signal_opened_info};
+    return Glib::SignalProxy<void ()> (this, &Display_signal_opened_info);
   }
 
   auto
   Display::signal_seat_added () -> Glib::SignalProxy<void (const Glib::RefPtr<Seat>&)>
   {
-    return {this, &Display_signal_seat_added_info};
+    return Glib::SignalProxy<void (const Glib::RefPtr<Seat>&)> (
+        this,
+        &Display_signal_seat_added_info);
   }
 
   auto
   Display::signal_seat_removed () -> Glib::SignalProxy<void (const Glib::RefPtr<Seat>&)>
   {
-    return {this, &Display_signal_seat_removed_info};
+    return Glib::SignalProxy<void (const Glib::RefPtr<Seat>&)> (
+        this,
+        &Display_signal_seat_removed_info);
   }
 
   auto
   Display::signal_setting_changed () -> Glib::SignalProxy<void (const Glib::ustring&)>
   {
-    return {this, &Display_signal_setting_changed_info};
+    return Glib::SignalProxy<void (const Glib::ustring&)> (
+        this,
+        &Display_signal_setting_changed_info);
   }
 
   auto
   Display::property_composited () const -> Glib::PropertyProxy_ReadOnly<bool>
   {
-    return {this, "composited"};
+    return Glib::PropertyProxy_ReadOnly<bool> (this, "composited");
   }
 
   auto
   Display::property_rgba () const -> Glib::PropertyProxy_ReadOnly<bool>
   {
-    return {this, "rgba"};
+    return Glib::PropertyProxy_ReadOnly<bool> (this, "rgba");
   }
 
   auto
   Display::property_input_shapes () const -> Glib::PropertyProxy_ReadOnly<bool>
   {
-    return {this, "input-shapes"};
+    return Glib::PropertyProxy_ReadOnly<bool> (this, "input-shapes");
   }
 
 } // namespace Gdk

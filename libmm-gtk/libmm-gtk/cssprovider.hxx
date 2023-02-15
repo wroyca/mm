@@ -46,11 +46,11 @@ namespace Gtk
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
   private:
-    GTKMM_API static void
-    throw_func (GError* gobject);
+    GTKMM_API static auto
+    throw_func (GError* gobject) -> void;
 
-    friend GTKMM_API void
-    wrap_init ();
+    friend GTKMM_API auto
+    wrap_init () -> void;
 
 #endif
   };
@@ -94,11 +94,11 @@ namespace Gtk
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
   private:
-    GTKMM_API static void
-    throw_func (GError* gobject);
+    GTKMM_API static auto
+    throw_func (GError* gobject) -> void;
 
-    friend GTKMM_API void
-    wrap_init ();
+    friend GTKMM_API auto
+    wrap_init () -> void;
 
 #endif
   };
@@ -191,20 +191,21 @@ namespace Gtk
     auto
     to_string () const -> Glib::ustring;
 
-    void
-    load_from_data (const std::string& data);
+    auto
+    load_from_data (const std::string& data) -> void;
 
-    void
-    load_from_file (const Glib::RefPtr<const Gio::File>& file);
+    auto
+    load_from_file (const Glib::RefPtr<const Gio::File>& file) -> void;
 
-    void
-    load_from_path (const std::string& path);
+    auto
+    load_from_path (const std::string& path) -> void;
 
-    void
-    load_from_resource (const std::string& resource_path);
+    auto
+    load_from_resource (const std::string& resource_path) -> void;
 
-    void
-    load_named (const Glib::ustring& name, const Glib::ustring& variant);
+    auto
+    load_named (const Glib::ustring& name, const Glib::ustring& variant)
+        -> void;
 
     auto
     signal_parsing_error ()
@@ -220,9 +221,7 @@ namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkCssProvider* object, bool take_copy = false) -> Glib::RefPtr<Gtk::CssProvider>;
 } // namespace Glib
 

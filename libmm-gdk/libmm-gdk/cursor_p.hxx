@@ -22,7 +22,7 @@ namespace Gdk
 #endif
 
     auto
-    init () -> const Class&;
+    init () -> const Glib::Class&;
 
     static auto
     wrap_new (GObject*) -> Glib::ObjectBase*;

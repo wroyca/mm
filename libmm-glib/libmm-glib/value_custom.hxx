@@ -26,16 +26,14 @@ namespace Glib
     typedef void (*ValueCopyFunc) (const GValue*, GValue*);
   }
 
-  GLIBMM_API
-  GType
+  GLIBMM_API auto
   custom_boxed_type_register (const char* type_name,
                               ValueInitFunc init_func,
                               ValueFreeFunc free_func,
-                              ValueCopyFunc copy_func);
+                              ValueCopyFunc copy_func) -> GType;
 
-  GLIBMM_API
-  GType
-  custom_pointer_type_register (const char* type_name);
+  GLIBMM_API auto
+  custom_pointer_type_register (const char* type_name) -> GType;
 
 #endif
 
@@ -46,29 +44,29 @@ namespace Glib
     using T = std::remove_cv_t<std::remove_pointer_t<PtrT>>;
     using CppType = PtrT;
 
-    static inline GType
-    value_type () G_GNUC_CONST;
+    static inline auto
+    value_type () -> GType G_GNUC_CONST;
 
-    inline void
-    set (CppType data);
-    inline CppType
-    get () const;
+    inline auto
+    set (CppType data) -> void;
+    inline auto
+    get () const -> CppType;
 
   private:
-    inline static GType
-    value_type_ (Glib::Object*);
-    static GType
-    value_type_ (void*);
+    inline static auto
+    value_type_ (Glib::Object*) -> GType;
+    static auto
+    value_type_ (void*) -> GType;
 
-    inline void
-    set_ (CppType data, Glib::Object*);
-    inline void
-    set_ (CppType data, void*);
+    inline auto
+    set_ (CppType data, Glib::Object*) -> void;
+    inline auto
+    set_ (CppType data, void*) -> void;
 
-    inline CppType
-    get_ (Glib::Object*) const;
-    inline CppType
-    get_ (void*) const;
+    inline auto
+    get_ (Glib::Object*) const -> CppType;
+    inline auto
+    get_ (void*) const -> CppType;
   };
 
   template <class T, typename Enable = void>
@@ -95,23 +93,23 @@ namespace Glib
 #endif
     using CppType = T;
 
-    static GType
-    value_type () G_GNUC_CONST;
+    static auto
+    value_type () -> GType G_GNUC_CONST;
 
-    inline void
-    set (const CppType& data);
-    inline CppType
-    get () const;
+    inline auto
+    set (const CppType& data) -> void;
+    inline auto
+    get () const -> CppType;
 
   private:
     static GType custom_type_;
 
-    static void
-    value_init_func (GValue* value);
-    static void
-    value_free_func (GValue* value);
-    static void
-    value_copy_func (const GValue* src_value, GValue* dest_value);
+    static auto
+    value_init_func (GValue* value) -> void;
+    static auto
+    value_free_func (GValue* value) -> void;
+    static auto
+    value_copy_func (const GValue* src_value, GValue* dest_value) -> void;
   };
 
   template <class T, typename Enable>
@@ -127,31 +125,31 @@ namespace Glib
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   template <class PtrT>
-  inline GType
-  Value_Pointer<PtrT>::value_type_ (Glib::Object*)
+  inline auto
+  Value_Pointer<PtrT>::value_type_ (Glib::Object*) -> GType
   {
     return T::get_base_type ();
   }
 
   template <class PtrT>
-  inline void
-  Value_Pointer<PtrT>::set_ (PtrT data, Glib::Object*)
+  inline auto
+  Value_Pointer<PtrT>::set_ (PtrT data, Glib::Object*) -> void
   {
     set_object (const_cast<T*> (data));
   }
 
   #ifdef GLIBMM_CAN_USE_DYNAMIC_CAST_IN_UNUSED_TEMPLATE_WITHOUT_DEFINITION
   template <class PtrT>
-  inline PtrT
-  Value_Pointer<PtrT>::get_ (Glib::Object*) const
+  inline auto
+  Value_Pointer<PtrT>::get_ (Glib::Object*) const -> PtrT
   {
     return dynamic_cast<T*> (get_object ());
   }
   #endif
 
   template <class PtrT>
-  GType
-  Value_Pointer<PtrT>::value_type_ (void*)
+  auto
+  Value_Pointer<PtrT>::value_type_ (void*) -> GType
   {
     static GType custom_type = 0;
 
@@ -162,36 +160,36 @@ namespace Glib
   }
 
   template <class PtrT>
-  inline void
-  Value_Pointer<PtrT>::set_ (PtrT data, void*)
+  inline auto
+  Value_Pointer<PtrT>::set_ (PtrT data, void*) -> void
   {
     gobject_.data[0].v_pointer = const_cast<T*> (data);
   }
 
   template <class PtrT>
-  inline PtrT
-  Value_Pointer<PtrT>::get_ (void*) const
+  inline auto
+  Value_Pointer<PtrT>::get_ (void*) const -> PtrT
   {
     return static_cast<T*> (gobject_.data[0].v_pointer);
   }
 
   template <class PtrT>
-  inline GType
-  Value_Pointer<PtrT>::value_type ()
+  inline auto
+  Value_Pointer<PtrT>::value_type () -> GType
   {
     return Value_Pointer<PtrT>::value_type_ (static_cast<T*> (nullptr));
   }
 
   template <class PtrT>
-  inline void
-  Value_Pointer<PtrT>::set (PtrT data)
+  inline auto
+  Value_Pointer<PtrT>::set (PtrT data) -> void
   {
     this->set_ (data, static_cast<T*> (nullptr));
   }
 
   template <class PtrT>
-  inline PtrT
-  Value_Pointer<PtrT>::get () const
+  inline auto
+  Value_Pointer<PtrT>::get () const -> PtrT
   {
     return this->get_ (static_cast<T*> (nullptr));
   }
@@ -200,22 +198,22 @@ namespace Glib
   GType Value<T, Enable>::custom_type_ = 0;
 
   template <class T, typename Enable>
-  inline void
-  Value<T, Enable>::set (const typename Value<T, Enable>::CppType& data)
+  inline auto
+  Value<T, Enable>::set (const typename Value<T, Enable>::CppType& data) -> void
   {
     *static_cast<T*> (gobject_.data[0].v_pointer) = data;
   }
 
   template <class T, typename Enable>
-  inline typename Value<T, Enable>::CppType
-  Value<T, Enable>::get () const
+  inline auto
+  Value<T, Enable>::get () const -> typename Value<T, Enable>::CppType
   {
     return *static_cast<T*> (gobject_.data[0].v_pointer);
   }
 
   template <class T, typename Enable>
-  GType
-  Value<T, Enable>::value_type ()
+  auto
+  Value<T, Enable>::value_type () -> GType
   {
     if (!custom_type_)
     {
@@ -229,23 +227,23 @@ namespace Glib
   }
 
   template <class T, typename Enable>
-  void
-  Value<T, Enable>::value_init_func (GValue* value)
+  auto
+  Value<T, Enable>::value_init_func (GValue* value) -> void
   {
     value->data[0].v_pointer = new (std::nothrow) T ();
   }
 
   template <class T, typename Enable>
-  void
-  Value<T, Enable>::value_free_func (GValue* value)
+  auto
+  Value<T, Enable>::value_free_func (GValue* value) -> void
   {
     delete static_cast<T*> (value->data[0].v_pointer);
   }
 
   template <class T, typename Enable>
-  void
+  auto
   Value<T, Enable>::value_copy_func (const GValue* src_value,
-                                     GValue* dest_value)
+                                     GValue* dest_value) -> void
   {
     const T& source = *static_cast<T*> (src_value->data[0].v_pointer);
     dest_value->data[0].v_pointer = new (std::nothrow) T (source);
@@ -263,12 +261,13 @@ namespace Glib
         int memory[64];
       };
 
-      static big
-      check_type (...);
+      static auto
+      check_type (...) -> big;
 
       template <typename X>
-      static typename Glib::Value<X>::dont_use_with_wrap_property_
-      check_type (X* obj);
+      static auto
+      check_type (X* obj) ->
+          typename Glib::Value<X>::dont_use_with_wrap_property_;
 
     public:
       static const bool value =

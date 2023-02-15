@@ -13,15 +13,15 @@ namespace Gtk
 {
 
   Picture::Picture (const Glib::RefPtr<Gdk::Pixbuf>& pixbuf)
-    : ObjectBase (nullptr),
-      Widget (Glib::ConstructParams (picture_class_.init ()))
+    : Glib::ObjectBase (nullptr),
+      Gtk::Widget (Glib::ConstructParams (picture_class_.init ()))
   {
     gtk_picture_set_pixbuf (gobj (), Glib::unwrap (pixbuf));
   }
 
   Picture::Picture (const std::string& filename)
-    : ObjectBase (nullptr),
-      Widget (Glib::ConstructParams (picture_class_.init ()))
+    : Glib::ObjectBase (nullptr),
+      Gtk::Widget (Glib::ConstructParams (picture_class_.init ()))
   {
     gtk_picture_set_filename (gobj (), Glib::c_str_or_nullptr (filename));
   }
@@ -36,10 +36,10 @@ namespace Glib
 {
 
   auto
-  wrap (GtkPicture* object, const bool take_copy) -> Gtk::Picture*
+  wrap (GtkPicture* object, bool take_copy) -> Gtk::Picture*
   {
     return dynamic_cast<Gtk::Picture*> (
-        wrap_auto ((GObject*) object, take_copy));
+        Glib::wrap_auto ((GObject*) (object), take_copy));
   }
 
 } // namespace Glib
@@ -48,7 +48,7 @@ namespace Gtk
 {
 
   auto
-  Picture_Class::init () -> const Class&
+  Picture_Class::init () -> const Glib::Class&
   {
     if (!gtype_)
     {
@@ -70,28 +70,28 @@ namespace Gtk
   auto
   Picture_Class::wrap_new (GObject* o) -> Glib::ObjectBase*
   {
-    return manage (new Picture ((GtkPicture*) o));
+    return manage (new Picture ((GtkPicture*) (o)));
   }
 
   Picture::Picture (const Glib::ConstructParams& construct_params)
-    : Widget (construct_params)
+    : Gtk::Widget (construct_params)
   {
   }
 
   Picture::Picture (GtkPicture* castitem)
-    : Widget ((GtkWidget*) castitem)
+    : Gtk::Widget ((GtkWidget*) (castitem))
   {
   }
 
   Picture::Picture (Picture&& src) noexcept
-    : Widget (std::move (src))
+    : Gtk::Widget (std::move (src))
   {
   }
 
   auto
   Picture::operator= (Picture&& src) noexcept -> Picture&
   {
-    Widget::operator= (std::move (src));
+    Gtk::Widget::operator= (std::move (src));
     return *this;
   }
 
@@ -115,26 +115,27 @@ namespace Gtk
   }
 
   Picture::Picture ()
-    : ObjectBase (nullptr),
-      Widget (Glib::ConstructParams (picture_class_.init ()))
+    : Glib::ObjectBase (nullptr),
+      Gtk::Widget (Glib::ConstructParams (picture_class_.init ()))
   {
   }
 
   Picture::Picture (const Glib::RefPtr<Gdk::Paintable>& paintable)
-    : ObjectBase (nullptr),
-      Widget (Glib::ConstructParams (picture_class_.init (),
-                                     "paintable",
-                                     Glib::unwrap (paintable),
-                                     nullptr))
+    : Glib::ObjectBase (nullptr),
+      Gtk::Widget (Glib::ConstructParams (picture_class_.init (),
+                                          "paintable",
+                                          Glib::unwrap (paintable),
+                                          nullptr))
   {
   }
 
   Picture::Picture (const Glib::RefPtr<Gio::File>& file)
-    : ObjectBase (nullptr),
-      Widget (Glib::ConstructParams (picture_class_.init (),
-                                     "file",
-                                     Glib::unwrap<Gio::File> (file),
-                                     nullptr))
+    : Glib::ObjectBase (nullptr),
+      Gtk::Widget (Glib::ConstructParams (
+          picture_class_.init (),
+          "file",
+          const_cast<GFile*> (Glib::unwrap<Gio::File> (file)),
+          nullptr))
   {
   }
 
@@ -202,9 +203,10 @@ namespace Gtk
 #ifndef GTKMM_DISABLE_DEPRECATED
   G_GNUC_BEGIN_IGNORE_DEPRECATIONS
   auto
-  Picture::set_keep_aspect_ratio (const bool keep_aspect_ratio) -> void
+  Picture::set_keep_aspect_ratio (bool keep_aspect_ratio) -> void
   {
-    gtk_picture_set_keep_aspect_ratio (gobj (), keep_aspect_ratio);
+    gtk_picture_set_keep_aspect_ratio (gobj (),
+                                       static_cast<int> (keep_aspect_ratio));
   }
 
   G_GNUC_END_IGNORE_DEPRECATIONS
@@ -223,9 +225,9 @@ namespace Gtk
 #endif
 
   auto
-  Picture::set_can_shrink (const bool can_shrink) -> void
+  Picture::set_can_shrink (bool can_shrink) -> void
   {
-    gtk_picture_set_can_shrink (gobj (), can_shrink);
+    gtk_picture_set_can_shrink (gobj (), static_cast<int> (can_shrink));
   }
 
   auto
@@ -272,13 +274,16 @@ namespace Gtk
   auto
   Picture::property_paintable () -> Glib::PropertyProxy<Glib::RefPtr<Gdk::Paintable>>
   {
-    return {this, "paintable"};
+    return Glib::PropertyProxy<Glib::RefPtr<Gdk::Paintable>> (this,
+                                                              "paintable");
   }
 
   auto
   Picture::property_paintable () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gdk::Paintable>>
   {
-    return {this, "paintable"};
+    return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gdk::Paintable>> (
+        this,
+        "paintable");
   }
 
   static_assert (
@@ -290,25 +295,26 @@ namespace Gtk
   auto
   Picture::property_file () -> Glib::PropertyProxy<Glib::RefPtr<Gio::File>>
   {
-    return {this, "file"};
+    return Glib::PropertyProxy<Glib::RefPtr<Gio::File>> (this, "file");
   }
 
   auto
   Picture::property_file () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gio::File>>
   {
-    return {this, "file"};
+    return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gio::File>> (this, "file");
   }
 
   auto
   Picture::property_alternative_text () -> Glib::PropertyProxy<Glib::ustring>
   {
-    return {this, "alternative-text"};
+    return Glib::PropertyProxy<Glib::ustring> (this, "alternative-text");
   }
 
   auto
   Picture::property_alternative_text () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>
   {
-    return {this, "alternative-text"};
+    return Glib::PropertyProxy_ReadOnly<Glib::ustring> (this,
+                                                        "alternative-text");
   }
 
 #ifndef GTKMM_DISABLE_DEPRECATED
@@ -316,7 +322,7 @@ namespace Gtk
   auto
   Picture::property_keep_aspect_ratio () -> Glib::PropertyProxy<bool>
   {
-    return {this, "keep-aspect-ratio"};
+    return Glib::PropertyProxy<bool> (this, "keep-aspect-ratio");
   }
 #endif
 
@@ -325,20 +331,20 @@ namespace Gtk
   auto
   Picture::property_keep_aspect_ratio () const -> Glib::PropertyProxy_ReadOnly<bool>
   {
-    return {this, "keep-aspect-ratio"};
+    return Glib::PropertyProxy_ReadOnly<bool> (this, "keep-aspect-ratio");
   }
 #endif
 
   auto
   Picture::property_can_shrink () -> Glib::PropertyProxy<bool>
   {
-    return {this, "can-shrink"};
+    return Glib::PropertyProxy<bool> (this, "can-shrink");
   }
 
   auto
   Picture::property_can_shrink () const -> Glib::PropertyProxy_ReadOnly<bool>
   {
-    return {this, "can-shrink"};
+    return Glib::PropertyProxy_ReadOnly<bool> (this, "can-shrink");
   }
 
   static_assert (
@@ -349,13 +355,13 @@ namespace Gtk
   auto
   Picture::property_content_fit () -> Glib::PropertyProxy<ContentFit>
   {
-    return {this, "content-fit"};
+    return Glib::PropertyProxy<ContentFit> (this, "content-fit");
   }
 
   auto
   Picture::property_content_fit () const -> Glib::PropertyProxy_ReadOnly<ContentFit>
   {
-    return {this, "content-fit"};
+    return Glib::PropertyProxy_ReadOnly<ContentFit> (this, "content-fit");
   }
 
 } // namespace Gtk

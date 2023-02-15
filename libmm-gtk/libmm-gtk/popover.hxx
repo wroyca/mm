@@ -85,10 +85,10 @@ namespace Gtk
   public:
     Popover ();
 
-    void
-    set_child (Widget& child);
-    void
-    unset_child ();
+    auto
+    set_child (Widget& child) -> void;
+    auto
+    unset_child () -> void;
 
     auto
     get_child () -> Widget*;
@@ -96,59 +96,59 @@ namespace Gtk
     auto
     get_child () const -> const Widget*;
 
-    void
-    set_pointing_to (const Gdk::Rectangle& rect);
+    auto
+    set_pointing_to (const Gdk::Rectangle& rect) -> void;
 
     auto
     get_pointing_to (Gdk::Rectangle& rect) const -> bool;
 
-    void
-    set_position (PositionType position = PositionType::TOP);
+    auto
+    set_position (PositionType position = PositionType::TOP) -> void;
 
     auto
     get_position () const -> PositionType;
 
-    void
-    set_autohide (bool autohide = true);
+    auto
+    set_autohide (bool autohide = true) -> void;
 
     auto
     get_autohide () const -> bool;
 
-    void
-    set_has_arrow (bool has_arrow = true);
+    auto
+    set_has_arrow (bool has_arrow = true) -> void;
 
     auto
     get_has_arrow () const -> bool;
 
-    void
-    set_mnemonics_visible (bool mnemonics_visible = true);
+    auto
+    set_mnemonics_visible (bool mnemonics_visible = true) -> void;
 
     auto
     get_mnemonics_visible () const -> bool;
 
-    void
-    popup ();
+    auto
+    popup () -> void;
 
-    void
-    popdown ();
+    auto
+    popdown () -> void;
 
-    void
-    set_offset (int x_offset, int y_offset);
+    auto
+    set_offset (int x_offset, int y_offset) -> void;
 
-    void
-    get_offset (int& x_offset, int& y_offset) const;
+    auto
+    get_offset (int& x_offset, int& y_offset) const -> void;
 
-    void
-    set_cascade_popdown (bool cascade_popdown = true);
+    auto
+    set_cascade_popdown (bool cascade_popdown = true) -> void;
 
     auto
     get_cascade_popdown () const -> bool;
 
-    void
-    set_default_widget (Widget& widget);
+    auto
+    set_default_widget (Widget& widget) -> void;
 
-    void
-    present ();
+    auto
+    present () -> void;
 
     auto
     property_pointing_to () -> Glib::PropertyProxy<Gdk::Rectangle>;
@@ -205,17 +205,15 @@ namespace Gtk
   public:
   public:
   protected:
-    virtual void
-    on_closed ();
+    virtual auto
+    on_closed () -> void;
   };
 
 } // namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkPopover* object, bool take_copy = false) -> Gtk::Popover*;
 } // namespace Glib
 

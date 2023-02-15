@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: LGPL-2.1-or-later
+
 #ifndef _WIN32
 
   #include <libmm-glib/mm-glib.hxx>

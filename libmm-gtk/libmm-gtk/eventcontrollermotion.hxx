@@ -118,9 +118,7 @@ namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkEventControllerMotion* object, bool take_copy = false) -> Glib::RefPtr<Gtk::EventControllerMotion>;
 } // namespace Glib
 

@@ -21,11 +21,11 @@ namespace Glib
 {
 
   auto
-  wrap (GdkAppLaunchContext* object, const bool take_copy) -> RefPtr<Gdk::AppLaunchContext>
+  wrap (GdkAppLaunchContext* object, bool take_copy) -> Glib::RefPtr<Gdk::AppLaunchContext>
   {
     return Glib::make_refptr_for_instance<Gdk::AppLaunchContext> (
         dynamic_cast<Gdk::AppLaunchContext*> (
-            wrap_auto ((GObject*) object, take_copy)));
+            Glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
 } // namespace Glib
@@ -34,7 +34,7 @@ namespace Gdk
 {
 
   auto
-  AppLaunchContext_Class::init () -> const Class&
+  AppLaunchContext_Class::init () -> const Glib::Class&
   {
     if (!gtype_)
     {
@@ -73,7 +73,7 @@ namespace Gdk
   }
 
   AppLaunchContext::AppLaunchContext (GdkAppLaunchContext* castitem)
-    : Gio::AppLaunchContext ((GAppLaunchContext*) castitem)
+    : Gio::AppLaunchContext ((GAppLaunchContext*) (castitem))
   {
   }
 
@@ -89,7 +89,7 @@ namespace Gdk
     return *this;
   }
 
-  AppLaunchContext::~AppLaunchContext () noexcept = default;
+  AppLaunchContext::~AppLaunchContext () noexcept {}
 
   AppLaunchContext::CppClassType AppLaunchContext::applaunchcontext_class_;
 
@@ -106,7 +106,7 @@ namespace Gdk
   }
 
   AppLaunchContext::AppLaunchContext ()
-    : ObjectBase (nullptr),
+    : Glib::ObjectBase (nullptr),
       Gio::AppLaunchContext (
           Glib::ConstructParams (applaunchcontext_class_.init ()))
   {
@@ -135,13 +135,13 @@ namespace Gdk
   }
 
   auto
-  AppLaunchContext::set_desktop (const int desktop) -> void
+  AppLaunchContext::set_desktop (int desktop) -> void
   {
     gdk_app_launch_context_set_desktop (gobj (), desktop);
   }
 
   auto
-  AppLaunchContext::set_timestamp (const guint32 timestamp) -> void
+  AppLaunchContext::set_timestamp (guint32 timestamp) -> void
   {
     gdk_app_launch_context_set_timestamp (gobj (), timestamp);
   }
@@ -149,7 +149,9 @@ namespace Gdk
   auto
   AppLaunchContext::set_icon (const Glib::RefPtr<Gio::Icon>& icon) -> void
   {
-    gdk_app_launch_context_set_icon (gobj (), Glib::unwrap<Gio::Icon> (icon));
+    gdk_app_launch_context_set_icon (
+        gobj (),
+        const_cast<GIcon*> (Glib::unwrap<Gio::Icon> (icon)));
   }
 
   auto
@@ -167,7 +169,8 @@ namespace Gdk
   auto
   AppLaunchContext::property_display () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Display>>
   {
-    return {this, "display"};
+    return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Display>> (this,
+                                                                "display");
   }
 
 } // namespace Gdk

@@ -5,13 +5,15 @@
 
 #include <libmm-gtk/mm-gtkconfig.hxx>
 
-#include <libmm-glib/ustring.hxx>
-#include <sigc++/sigc++.h>
+#ifndef GTKMM_DISABLE_DEPRECATED
 
-#include <gtk/gtk.h>
-#include <iterator>
-#include <libmm-gtk/treemodelcolumn.hxx>
-#include <type_traits>
+  #include <libmm-glib/ustring.hxx>
+  #include <sigc++/sigc++.h>
+
+  #include <gtk/gtk.h>
+  #include <iterator>
+  #include <libmm-gtk/treemodelcolumn.hxx>
+  #include <type_traits>
 
 namespace Gtk
 {
@@ -27,10 +29,10 @@ namespace Gtk
   class GTKMM_API TreeIterBase
   {
   public:
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
     using CppObjectType = TreeIterBase;
     using BaseObjectType = GtkTreeIter;
-#endif
+  #endif
 
     TreeIterBase (const TreeIterBase& other) noexcept;
     auto
@@ -68,7 +70,7 @@ namespace Gtk
   class GTKMM_API TreeIterBase2 : public TreeIterBase
   {
   protected:
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
     TreeIterBase2 ();
     explicit TreeIterBase2 (TreeModel* model);
     TreeIterBase2 (GtkTreeModel* model, const GtkTreeIter* iter);
@@ -82,7 +84,7 @@ namespace Gtk
     friend class Gtk::TreeRow;
     friend class Gtk::TreeNodeConstChildren;
     friend class Gtk::TreeNodeChildren;
-#endif
+  #endif
   };
 
   class GTKMM_API TreeIterBase3 : public TreeIterBase2
@@ -94,22 +96,22 @@ namespace Gtk
     auto
     get_stamp () const -> int;
 
-    void
-    set_stamp (int stamp);
+    auto
+    set_stamp (int stamp) -> void;
 
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
-    void
-    set_model_refptr (const Glib::RefPtr<TreeModel>& model);
-    void
-    set_model_gobject (GtkTreeModel* model);
+    auto
+    set_model_refptr (const Glib::RefPtr<TreeModel>& model) -> void;
+    auto
+    set_model_gobject (GtkTreeModel* model) -> void;
     auto
     get_model_gobject () -> GtkTreeModel*;
     auto
     get_model_gobject () const -> const GtkTreeModel*;
 
-    void
-    setup_end_iterator (const TreeIterBase3& last_valid);
+    auto
+    setup_end_iterator (const TreeIterBase3& last_valid) -> void;
 
     auto
     get_gobject_if_not_end () const -> const GtkTreeIter*
@@ -128,12 +130,12 @@ namespace Gtk
     explicit TreeIterBase3 (TreeModel* model);
     TreeIterBase3 (GtkTreeModel* model, const GtkTreeIter* iter);
 
-    void
-    plus_plus ();
+    auto
+    plus_plus () -> void;
 
-    void
-    minus_minus ();
-#endif
+    auto
+    minus_minus () -> void;
+  #endif
   };
 
   template <typename T>
@@ -167,10 +169,10 @@ namespace Gtk
     auto
     operator= (const TreeIter<T2>& src) -> TreeIter&;
 
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
     explicit TreeIter (TreeModel* model);
     TreeIter (GtkTreeModel* model, const GtkTreeIter* iter);
-#endif
+  #endif
 
     auto
     operator++ () -> TreeIter&;
@@ -207,10 +209,10 @@ namespace Gtk
   class TreeValueProxy
   {
   public:
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
     inline TreeValueProxy (const RowType& row,
                            const TreeModelColumn<ColumnType>& column);
-#endif
+  #endif
 
     inline auto
     operator= (const ColumnType& data) -> TreeValueProxy&;
@@ -237,8 +239,8 @@ namespace Gtk
     get_value (const TreeModelColumn<ColumnType>& column) const -> ColumnType;
 
     template <typename ColumnType>
-    void
-    get_value (int column, ColumnType& data) const;
+    auto
+    get_value (int column, ColumnType& data) const -> void;
 
     auto
     children () const -> const TreeNodeConstChildren&;
@@ -252,8 +254,8 @@ namespace Gtk
     explicit operator bool () const;
 
   private:
-    void
-    get_value_impl (int column, Glib::ValueBase& value) const;
+    auto
+    get_value_impl (int column, Glib::ValueBase& value) const -> void;
   };
 
   class GTKMM_API TreeRow : public TreeConstRow
@@ -270,13 +272,13 @@ namespace Gtk
         -> TreeValueProxy<TreeRow, ColumnType>;
 
     template <typename ColumnType>
-    void
+    auto
     set_value (const TreeModelColumn<ColumnType>& column,
-               const ColumnType& data);
+               const ColumnType& data) -> void;
 
     template <typename ColumnType>
-    void
-    set_value (int column, const ColumnType& data);
+    auto
+    set_value (int column, const ColumnType& data) -> void;
 
     auto
     children () -> TreeNodeChildren&;
@@ -288,10 +290,10 @@ namespace Gtk
     get_iter () -> TreeIter<TreeRow>;
 
   private:
-    void
-    set_value_impl (int column, const Glib::ValueBase& value);
-    void
-    get_value_impl (int column, Glib::ValueBase& value) const;
+    auto
+    set_value_impl (int column, const Glib::ValueBase& value) -> void;
+    auto
+    get_value_impl (int column, Glib::ValueBase& value) const -> void;
   };
 
   class GTKMM_API TreeNodeConstChildren : public TreeIterBase2
@@ -320,7 +322,7 @@ namespace Gtk
       return !empty ();
     }
 
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
     explicit TreeNodeConstChildren (const TreeModel* model)
       : TreeIterBase2 (const_cast<TreeModel*> (model))
@@ -333,7 +335,7 @@ namespace Gtk
       return (gobject_.stamp != 0) ? &gobject_ : nullptr;
     }
 
-#endif
+  #endif
   };
 
   class GTKMM_API TreeNodeChildren : public TreeNodeConstChildren
@@ -354,17 +356,17 @@ namespace Gtk
     auto
     operator[] (size_type index) -> value_type;
 
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
     explicit TreeNodeChildren (TreeModel* model)
       : TreeNodeConstChildren (model)
     {
     }
 
-#endif
+  #endif
   };
 
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   template <typename T>
   TreeIter<T>::TreeIter ()
@@ -498,9 +500,9 @@ namespace Gtk
   }
 
   template <typename ColumnType>
-  void
+  auto
   TreeRow::set_value (const TreeModelColumn<ColumnType>& column,
-                      const ColumnType& data)
+                      const ColumnType& data) -> void
   {
     using ValueType = typename Gtk::TreeModelColumn<ColumnType>::ValueType;
 
@@ -512,8 +514,8 @@ namespace Gtk
   }
 
   template <typename ColumnType>
-  void
-  TreeRow::set_value (int column, const ColumnType& data)
+  auto
+  TreeRow::set_value (int column, const ColumnType& data) -> void
   {
     using ValueType = typename Gtk::TreeModelColumn<ColumnType>::ValueType;
 
@@ -537,8 +539,8 @@ namespace Gtk
   }
 
   template <typename ColumnType>
-  void
-  TreeConstRow::get_value (int column, ColumnType& data) const
+  auto
+  TreeConstRow::get_value (int column, ColumnType& data) const -> void
   {
     using ValueType = typename Gtk::TreeModelColumn<ColumnType>::ValueType;
 
@@ -548,21 +550,23 @@ namespace Gtk
     data = value.get ();
   }
 
-#endif
+  #endif
 
 } // namespace Gtk
 
 namespace Glib
 {
 
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
   template <>
   class GTKMM_API Value<Gtk::TreeIterBase>
     : public Glib::Value_Boxed<Gtk::TreeIterBase>
   {
   };
-#endif
+  #endif
 
 } // namespace Glib
+
+#endif
 
 #endif

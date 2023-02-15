@@ -97,10 +97,10 @@ namespace Gtk
     auto
     get_widget () const -> const Widget*;
 
-    void
-    set_widget (Widget& widget);
-    void
-    unset_widget ();
+    auto
+    set_widget (Widget& widget) -> void;
+    auto
+    unset_widget () -> void;
 
     auto
     property_widget () -> Glib::PropertyProxy<Widget*>;
@@ -117,9 +117,7 @@ namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkWidgetPaintable* object, bool take_copy = false) -> Glib::RefPtr<Gtk::WidgetPaintable>;
 } // namespace Glib
 

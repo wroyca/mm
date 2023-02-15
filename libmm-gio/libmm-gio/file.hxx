@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: LGPL-2.1-or-later
 
 #ifndef _GIOMM_FILE_H
 #define _GIOMM_FILE_H
@@ -193,8 +194,8 @@ namespace Gio
 
     ~File () noexcept override;
 
-    static void
-    add_interface (GType gtype_implementer);
+    static auto
+    add_interface (GType gtype_implementer) -> void;
 
     static auto
     get_type () -> GType G_GNUC_CONST;
@@ -325,14 +326,14 @@ namespace Gio
     auto
     read () -> Glib::RefPtr<FileInputStream>;
 
-    void
+    auto
     read_async (const SlotAsyncReady& slot,
                 const Glib::RefPtr<Cancellable>& cancellable,
-                int io_priority = Glib::PRIORITY_DEFAULT);
+                int io_priority = Glib::PRIORITY_DEFAULT) -> void;
 
-    void
+    auto
     read_async (const SlotAsyncReady& slot,
-                int io_priority = Glib::PRIORITY_DEFAULT);
+                int io_priority = Glib::PRIORITY_DEFAULT) -> void;
 
     auto
     read_finish (const Glib::RefPtr<AsyncResult>& res)
@@ -378,65 +379,67 @@ namespace Gio
              CreateFlags flags = CreateFlags::NONE)
         -> Glib::RefPtr<FileOutputStream>;
 
-    void
+    auto
     append_to_async (const SlotAsyncReady& slot,
                      const Glib::RefPtr<Cancellable>& cancellable,
                      CreateFlags flags = CreateFlags::NONE,
-                     int io_priority = Glib::PRIORITY_DEFAULT);
+                     int io_priority = Glib::PRIORITY_DEFAULT) -> void;
 
-    void
+    auto
     append_to_async (const SlotAsyncReady& slot,
                      CreateFlags flags = CreateFlags::NONE,
-                     int io_priority = Glib::PRIORITY_DEFAULT);
+                     int io_priority = Glib::PRIORITY_DEFAULT) -> void;
 
     auto
     append_to_finish (const Glib::RefPtr<AsyncResult>& res)
         -> Glib::RefPtr<FileOutputStream>;
 
-    void
+    auto
     create_file_async (const SlotAsyncReady& slot,
                        const Glib::RefPtr<Cancellable>& cancellable,
                        CreateFlags flags = CreateFlags::NONE,
-                       int io_priority = Glib::PRIORITY_DEFAULT);
+                       int io_priority = Glib::PRIORITY_DEFAULT) -> void;
 
-    void
+    auto
     create_file_async (const SlotAsyncReady& slot,
                        CreateFlags flags = CreateFlags::NONE,
-                       int io_priority = Glib::PRIORITY_DEFAULT);
+                       int io_priority = Glib::PRIORITY_DEFAULT) -> void;
 
     auto
     create_file_finish (const Glib::RefPtr<AsyncResult>& res)
         -> Glib::RefPtr<FileOutputStream>;
 
-    void
+    auto
     create_file_readwrite_async (const SlotAsyncReady& slot,
                                  const Glib::RefPtr<Cancellable>& cancellable,
                                  CreateFlags flags = CreateFlags::NONE,
-                                 int io_priority = Glib::PRIORITY_DEFAULT);
+                                 int io_priority = Glib::PRIORITY_DEFAULT)
+        -> void;
 
-    void
+    auto
     create_file_readwrite_async (const SlotAsyncReady& slot,
                                  CreateFlags flags = CreateFlags::NONE,
-                                 int io_priority = Glib::PRIORITY_DEFAULT);
+                                 int io_priority = Glib::PRIORITY_DEFAULT)
+        -> void;
 
     auto
     create_file_readwrite_finish (const Glib::RefPtr<AsyncResult>& res)
         -> Glib::RefPtr<FileIOStream>;
 
-    void
+    auto
     replace_async (const SlotAsyncReady& slot,
                    const Glib::RefPtr<Cancellable>& cancellable,
                    const std::string& etag = {},
                    bool make_backup = false,
                    CreateFlags flags = CreateFlags::NONE,
-                   int io_priority = Glib::PRIORITY_DEFAULT);
+                   int io_priority = Glib::PRIORITY_DEFAULT) -> void;
 
-    void
+    auto
     replace_async (const SlotAsyncReady& slot,
                    const std::string& etag = {},
                    bool make_backup = false,
                    CreateFlags flags = CreateFlags::NONE,
-                   int io_priority = Glib::PRIORITY_DEFAULT);
+                   int io_priority = Glib::PRIORITY_DEFAULT) -> void;
 
     auto
     replace_finish (const Glib::RefPtr<AsyncResult>& res)
@@ -449,14 +452,14 @@ namespace Gio
     auto
     open_readwrite () -> Glib::RefPtr<FileIOStream>;
 
-    void
+    auto
     open_readwrite_async (const SlotAsyncReady& slot,
                           const Glib::RefPtr<Cancellable>& cancellable,
-                          int io_priority = Glib::PRIORITY_DEFAULT);
+                          int io_priority = Glib::PRIORITY_DEFAULT) -> void;
 
-    void
+    auto
     open_readwrite_async (const SlotAsyncReady& slot,
-                          int io_priority = Glib::PRIORITY_DEFAULT);
+                          int io_priority = Glib::PRIORITY_DEFAULT) -> void;
 
     auto
     open_readwrite_finish (const Glib::RefPtr<AsyncResult>& res)
@@ -475,20 +478,20 @@ namespace Gio
                        CreateFlags flags = CreateFlags::NONE)
         -> Glib::RefPtr<FileIOStream>;
 
-    void
+    auto
     replace_readwrite_async (const SlotAsyncReady& slot,
                              const Glib::RefPtr<Cancellable>& cancellable,
                              const std::string& etag = {},
                              bool make_backup = false,
                              CreateFlags flags = CreateFlags::NONE,
-                             int io_priority = Glib::PRIORITY_DEFAULT);
+                             int io_priority = Glib::PRIORITY_DEFAULT) -> void;
 
-    void
+    auto
     replace_readwrite_async (const SlotAsyncReady& slot,
                              const std::string& etag = {},
                              bool make_backup = false,
                              CreateFlags flags = CreateFlags::NONE,
-                             int io_priority = Glib::PRIORITY_DEFAULT);
+                             int io_priority = Glib::PRIORITY_DEFAULT) -> void;
 
     auto
     replace_readwrite_finish (const Glib::RefPtr<AsyncResult>& res)
@@ -520,18 +523,18 @@ namespace Gio
     query_file_type (FileQueryInfoFlags flags = FileQueryInfoFlags::NONE) const
         -> FileType;
 
-    void
+    auto
     query_info_async (const SlotAsyncReady& slot,
                       const Glib::RefPtr<Cancellable>& cancellable,
                       const std::string& attributes = "*",
                       FileQueryInfoFlags flags = FileQueryInfoFlags::NONE,
-                      int io_priority = Glib::PRIORITY_DEFAULT) const;
+                      int io_priority = Glib::PRIORITY_DEFAULT) const -> void;
 
-    void
+    auto
     query_info_async (const SlotAsyncReady& slot,
                       const std::string& attributes = "*",
                       FileQueryInfoFlags flags = FileQueryInfoFlags::NONE,
-                      int io_priority = Glib::PRIORITY_DEFAULT) const;
+                      int io_priority = Glib::PRIORITY_DEFAULT) const -> void;
 
     auto
     query_info_finish (const Glib::RefPtr<AsyncResult>& res)
@@ -553,31 +556,33 @@ namespace Gio
     auto
     find_enclosing_mount () -> Glib::RefPtr<Mount>;
 
-    void
-    query_filesystem_info_async (
-        const SlotAsyncReady& slot,
-        const Glib::RefPtr<Cancellable>& cancellable,
-        const std::string& attributes = "*",
-        int io_priority = Glib::PRIORITY_DEFAULT) const;
+    auto
+    query_filesystem_info_async (const SlotAsyncReady& slot,
+                                 const Glib::RefPtr<Cancellable>& cancellable,
+                                 const std::string& attributes = "*",
+                                 int io_priority = Glib::PRIORITY_DEFAULT) const
+        -> void;
 
-    void
-    query_filesystem_info_async (
-        const SlotAsyncReady& slot,
-        const std::string& attributes = "*",
-        int io_priority = Glib::PRIORITY_DEFAULT) const;
+    auto
+    query_filesystem_info_async (const SlotAsyncReady& slot,
+                                 const std::string& attributes = "*",
+                                 int io_priority = Glib::PRIORITY_DEFAULT) const
+        -> void;
 
     auto
     query_filesystem_info_finish (const Glib::RefPtr<AsyncResult>& res)
         -> Glib::RefPtr<FileInfo>;
 
-    void
+    auto
     find_enclosing_mount_async (const SlotAsyncReady& slot,
                                 const Glib::RefPtr<Cancellable>& cancellable,
-                                int io_priority = Glib::PRIORITY_DEFAULT);
+                                int io_priority = Glib::PRIORITY_DEFAULT)
+        -> void;
 
-    void
+    auto
     find_enclosing_mount_async (const SlotAsyncReady& slot,
-                                int io_priority = Glib::PRIORITY_DEFAULT);
+                                int io_priority = Glib::PRIORITY_DEFAULT)
+        -> void;
 
     auto
     find_enclosing_mount_finish (const Glib::RefPtr<AsyncResult>& res)
@@ -594,20 +599,20 @@ namespace Gio
                         FileQueryInfoFlags flags = FileQueryInfoFlags::NONE)
         -> Glib::RefPtr<FileEnumerator>;
 
-    void
+    auto
     enumerate_children_async (
         const SlotAsyncReady& slot,
         const Glib::RefPtr<Cancellable>& cancellable,
         const std::string& attributes = "*",
         FileQueryInfoFlags flags = FileQueryInfoFlags::NONE,
-        int io_priority = Glib::PRIORITY_DEFAULT);
+        int io_priority = Glib::PRIORITY_DEFAULT) -> void;
 
-    void
+    auto
     enumerate_children_async (
         const SlotAsyncReady& slot,
         const std::string& attributes = "*",
         FileQueryInfoFlags flags = FileQueryInfoFlags::NONE,
-        int io_priority = Glib::PRIORITY_DEFAULT);
+        int io_priority = Glib::PRIORITY_DEFAULT) -> void;
 
     auto
     enumerate_children_finish (const Glib::RefPtr<AsyncResult>& res)
@@ -621,16 +626,16 @@ namespace Gio
     auto
     set_display_name (const Glib::ustring& display_name) -> Glib::RefPtr<File>;
 
-    void
+    auto
     set_display_name_async (const Glib::ustring& display_name,
                             const SlotAsyncReady& slot,
                             const Glib::RefPtr<Cancellable>& cancellable,
-                            int io_priority = Glib::PRIORITY_DEFAULT);
+                            int io_priority = Glib::PRIORITY_DEFAULT) -> void;
 
-    void
+    auto
     set_display_name_async (const Glib::ustring& display_name,
                             const SlotAsyncReady& slot,
-                            int io_priority = Glib::PRIORITY_DEFAULT);
+                            int io_priority = Glib::PRIORITY_DEFAULT) -> void;
 
     auto
     set_display_name_finish (const Glib::RefPtr<AsyncResult>& res)
@@ -642,14 +647,14 @@ namespace Gio
     auto
     remove () -> bool;
 
-    void
+    auto
     remove_async (const SlotAsyncReady& slot_ready,
                   const Glib::RefPtr<Cancellable>& cancellable,
-                  int io_priority = Glib::PRIORITY_DEFAULT);
+                  int io_priority = Glib::PRIORITY_DEFAULT) -> void;
 
-    void
+    auto
     remove_async (const SlotAsyncReady& slot_ready,
-                  int io_priority = Glib::PRIORITY_DEFAULT);
+                  int io_priority = Glib::PRIORITY_DEFAULT) -> void;
 
     auto
     remove_finish (const Glib::RefPtr<AsyncResult>& result) -> bool;
@@ -660,14 +665,14 @@ namespace Gio
     auto
     trash () -> bool;
 
-    void
+    auto
     trash_async (const SlotAsyncReady& slot_ready,
                  const Glib::RefPtr<Cancellable>& cancellable,
-                 int io_priority = Glib::PRIORITY_DEFAULT);
+                 int io_priority = Glib::PRIORITY_DEFAULT) -> void;
 
-    void
+    auto
     trash_async (const SlotAsyncReady& slot_ready,
-                 int io_priority = Glib::PRIORITY_DEFAULT);
+                 int io_priority = Glib::PRIORITY_DEFAULT) -> void;
 
     auto
     trash_finish (const Glib::RefPtr<AsyncResult>& result) -> bool;
@@ -689,33 +694,33 @@ namespace Gio
     copy (const Glib::RefPtr<File>& destination,
           CopyFlags flags = CopyFlags::NONE) -> bool;
 
-    void
+    auto
     copy_async (const Glib::RefPtr<File>& destination,
                 const SlotFileProgress& slot_progress,
                 const SlotAsyncReady& slot_ready,
                 const Glib::RefPtr<Cancellable>& cancellable,
                 CopyFlags flags = CopyFlags::NONE,
-                int io_priority = Glib::PRIORITY_DEFAULT);
+                int io_priority = Glib::PRIORITY_DEFAULT) -> void;
 
-    void
+    auto
     copy_async (const Glib::RefPtr<File>& destination,
                 const SlotAsyncReady& slot_ready,
                 const Glib::RefPtr<Cancellable>& cancellable,
                 CopyFlags flags = CopyFlags::NONE,
-                int io_priority = Glib::PRIORITY_DEFAULT);
+                int io_priority = Glib::PRIORITY_DEFAULT) -> void;
 
-    void
+    auto
     copy_async (const Glib::RefPtr<File>& destination,
                 const SlotFileProgress& slot_progress,
                 const SlotAsyncReady& slot_ready,
                 CopyFlags flags = CopyFlags::NONE,
-                int io_priority = Glib::PRIORITY_DEFAULT);
+                int io_priority = Glib::PRIORITY_DEFAULT) -> void;
 
-    void
+    auto
     copy_async (const Glib::RefPtr<File>& destination,
                 const SlotAsyncReady& slot_ready,
                 CopyFlags flags = CopyFlags::NONE,
-                int io_priority = Glib::PRIORITY_DEFAULT);
+                int io_priority = Glib::PRIORITY_DEFAULT) -> void;
 
     auto
     copy_finish (const Glib::RefPtr<AsyncResult>& res) -> bool;
@@ -735,33 +740,33 @@ namespace Gio
     move (const Glib::RefPtr<File>& destination,
           CopyFlags flags = CopyFlags::NONE) -> bool;
 
-    void
+    auto
     move_async (const Glib::RefPtr<File>& destination,
                 const SlotFileProgress& slot_progress,
                 const SlotAsyncReady& slot_ready,
                 const Glib::RefPtr<Cancellable>& cancellable,
                 CopyFlags flags = CopyFlags::NONE,
-                int io_priority = Glib::PRIORITY_DEFAULT);
+                int io_priority = Glib::PRIORITY_DEFAULT) -> void;
 
-    void
+    auto
     move_async (const Glib::RefPtr<File>& destination,
                 const SlotAsyncReady& slot_ready,
                 const Glib::RefPtr<Cancellable>& cancellable,
                 CopyFlags flags = CopyFlags::NONE,
-                int io_priority = Glib::PRIORITY_DEFAULT);
+                int io_priority = Glib::PRIORITY_DEFAULT) -> void;
 
-    void
+    auto
     move_async (const Glib::RefPtr<File>& destination,
                 const SlotFileProgress& slot_progress,
                 const SlotAsyncReady& slot_ready,
                 CopyFlags flags = CopyFlags::NONE,
-                int io_priority = Glib::PRIORITY_DEFAULT);
+                int io_priority = Glib::PRIORITY_DEFAULT) -> void;
 
-    void
+    auto
     move_async (const Glib::RefPtr<File>& destination,
                 const SlotAsyncReady& slot_ready,
                 CopyFlags flags = CopyFlags::NONE,
-                int io_priority = Glib::PRIORITY_DEFAULT);
+                int io_priority = Glib::PRIORITY_DEFAULT) -> void;
 
     auto
     move_finish (const Glib::RefPtr<AsyncResult>& res) -> bool;
@@ -772,14 +777,14 @@ namespace Gio
     auto
     make_directory () -> bool;
 
-    void
+    auto
     make_directory_async (const SlotAsyncReady& slot_ready,
                           const Glib::RefPtr<Cancellable>& cancellable,
-                          int io_priority = Glib::PRIORITY_DEFAULT);
+                          int io_priority = Glib::PRIORITY_DEFAULT) -> void;
 
-    void
+    auto
     make_directory_async (const SlotAsyncReady& slot_ready,
-                          int io_priority = Glib::PRIORITY_DEFAULT);
+                          int io_priority = Glib::PRIORITY_DEFAULT) -> void;
 
     auto
     make_directory_finish (const Glib::RefPtr<AsyncResult>& result) -> bool;
@@ -798,11 +803,11 @@ namespace Gio
     auto
     make_symbolic_link (const std::string& symlink_value) -> bool;
 
-    void
+    auto
     make_symbolic_link_async (const std::string& symlink_value,
                               const SlotAsyncReady& slot,
                               const Glib::RefPtr<Cancellable>& cancellable = {},
-                              int io_priority = Glib::PRIORITY_DEFAULT);
+                              int io_priority = Glib::PRIORITY_DEFAULT) -> void;
 
     auto
     make_symbolic_link_finish (const Glib::RefPtr<AsyncResult>& result) -> bool;
@@ -832,18 +837,18 @@ namespace Gio
         const Glib::RefPtr<FileInfo>& info,
         FileQueryInfoFlags flags = FileQueryInfoFlags::NONE) -> bool;
 
-    void
+    auto
     set_attributes_async (const Glib::RefPtr<FileInfo>& info,
                           const SlotAsyncReady& slot,
                           const Glib::RefPtr<Cancellable>& cancellable,
                           FileQueryInfoFlags flags = FileQueryInfoFlags::NONE,
-                          int io_priority = Glib::PRIORITY_DEFAULT);
+                          int io_priority = Glib::PRIORITY_DEFAULT) -> void;
 
-    void
+    auto
     set_attributes_async (const Glib::RefPtr<FileInfo>& info,
                           const SlotAsyncReady& slot,
                           FileQueryInfoFlags flags = FileQueryInfoFlags::NONE,
-                          int io_priority = Glib::PRIORITY_DEFAULT);
+                          int io_priority = Glib::PRIORITY_DEFAULT) -> void;
 
     auto
     set_attributes_finish (const Glib::RefPtr<AsyncResult>& result,
@@ -916,106 +921,122 @@ namespace Gio
                          gint64 value,
                          FileQueryInfoFlags flags) -> bool;
 
-    void
+    auto
     mount_enclosing_volume (const Glib::RefPtr<MountOperation>& mount_operation,
                             const SlotAsyncReady& slot,
                             const Glib::RefPtr<Cancellable>& cancellable,
-                            Mount::MountFlags flags = Mount::MountFlags::NONE);
+                            Mount::MountFlags flags = Mount::MountFlags::NONE)
+        -> void;
 
-    void
+    auto
     mount_enclosing_volume (const Glib::RefPtr<MountOperation>& mount_operation,
                             const SlotAsyncReady& slot,
-                            Mount::MountFlags flags = Mount::MountFlags::NONE);
+                            Mount::MountFlags flags = Mount::MountFlags::NONE)
+        -> void;
 
-    void
+    auto
     mount_enclosing_volume (const SlotAsyncReady& slot,
-                            Mount::MountFlags flags = Mount::MountFlags::NONE);
+                            Mount::MountFlags flags = Mount::MountFlags::NONE)
+        -> void;
 
-    void
-    mount_enclosing_volume (Mount::MountFlags flags = Mount::MountFlags::NONE);
+    auto
+    mount_enclosing_volume (Mount::MountFlags flags = Mount::MountFlags::NONE)
+        -> void;
 
     auto
     mount_enclosing_volume_finish (const Glib::RefPtr<AsyncResult>& result)
         -> bool;
 
-    void
+    auto
     mount_mountable (const Glib::RefPtr<MountOperation>& mount_operation,
                      const SlotAsyncReady& slot,
                      const Glib::RefPtr<Cancellable>& cancellable,
-                     Mount::MountFlags flags = Mount::MountFlags::NONE);
+                     Mount::MountFlags flags = Mount::MountFlags::NONE) -> void;
 
-    void
+    auto
     mount_mountable (const Glib::RefPtr<MountOperation>& mount_operation,
                      const SlotAsyncReady& slot,
-                     Mount::MountFlags flags = Mount::MountFlags::NONE);
+                     Mount::MountFlags flags = Mount::MountFlags::NONE) -> void;
 
-    void
+    auto
     mount_mountable (const SlotAsyncReady& slot,
-                     Mount::MountFlags flags = Mount::MountFlags::NONE);
+                     Mount::MountFlags flags = Mount::MountFlags::NONE) -> void;
 
-    void
-    mount_mountable (Mount::MountFlags flags = Mount::MountFlags::NONE);
+    auto
+    mount_mountable (Mount::MountFlags flags = Mount::MountFlags::NONE) -> void;
 
     auto
     mount_mountable_finish (const Glib::RefPtr<AsyncResult>& result)
         -> Glib::RefPtr<File>;
 
-    void
+    auto
     unmount_mountable (const SlotAsyncReady& slot,
                        const Glib::RefPtr<Cancellable>& cancellable,
-                       Mount::UnmountFlags flags = Mount::UnmountFlags::NONE);
+                       Mount::UnmountFlags flags = Mount::UnmountFlags::NONE)
+        -> void;
 
-    void
+    auto
     unmount_mountable (const SlotAsyncReady& slot,
-                       Mount::UnmountFlags flags = Mount::UnmountFlags::NONE);
+                       Mount::UnmountFlags flags = Mount::UnmountFlags::NONE)
+        -> void;
 
-    void
-    unmount_mountable (Mount::UnmountFlags flags = Mount::UnmountFlags::NONE);
+    auto
+    unmount_mountable (Mount::UnmountFlags flags = Mount::UnmountFlags::NONE)
+        -> void;
 
-    void
+    auto
     unmount_mountable (const SlotAsyncReady& slot,
                        const Glib::RefPtr<Cancellable>& cancellable,
                        const Glib::RefPtr<MountOperation>& mount_operation,
-                       Mount::UnmountFlags flags = Mount::UnmountFlags::NONE);
+                       Mount::UnmountFlags flags = Mount::UnmountFlags::NONE)
+        -> void;
 
-    void
+    auto
     unmount_mountable (const SlotAsyncReady& slot,
                        const Glib::RefPtr<MountOperation>& mount_operation,
-                       Mount::UnmountFlags flags = Mount::UnmountFlags::NONE);
+                       Mount::UnmountFlags flags = Mount::UnmountFlags::NONE)
+        -> void;
 
-    void
+    auto
     unmount_mountable (const Glib::RefPtr<MountOperation>& mount_operation,
-                       Mount::UnmountFlags flags = Mount::UnmountFlags::NONE);
+                       Mount::UnmountFlags flags = Mount::UnmountFlags::NONE)
+        -> void;
 
     auto
     unmount_mountable_finish (const Glib::RefPtr<AsyncResult>& result) -> bool;
 
-    void
+    auto
     eject_mountable (const SlotAsyncReady& slot,
                      const Glib::RefPtr<Cancellable>& cancellable,
-                     Mount::UnmountFlags flags = Mount::UnmountFlags::NONE);
+                     Mount::UnmountFlags flags = Mount::UnmountFlags::NONE)
+        -> void;
 
-    void
+    auto
     eject_mountable (const SlotAsyncReady& slot,
-                     Mount::UnmountFlags flags = Mount::UnmountFlags::NONE);
+                     Mount::UnmountFlags flags = Mount::UnmountFlags::NONE)
+        -> void;
 
-    void
-    eject_mountable (Mount::UnmountFlags flags = Mount::UnmountFlags::NONE);
+    auto
+    eject_mountable (Mount::UnmountFlags flags = Mount::UnmountFlags::NONE)
+        -> void;
 
-    void
+    auto
     eject_mountable (const SlotAsyncReady& slot,
                      const Glib::RefPtr<Cancellable>& cancellable,
                      const Glib::RefPtr<MountOperation>& mount_operation,
-                     Mount::UnmountFlags flags = Mount::UnmountFlags::NONE);
+                     Mount::UnmountFlags flags = Mount::UnmountFlags::NONE)
+        -> void;
 
-    void
+    auto
     eject_mountable (const SlotAsyncReady& slot,
                      const Glib::RefPtr<MountOperation>& mount_operation,
-                     Mount::UnmountFlags flags = Mount::UnmountFlags::NONE);
+                     Mount::UnmountFlags flags = Mount::UnmountFlags::NONE)
+        -> void;
 
-    void
+    auto
     eject_mountable (const Glib::RefPtr<MountOperation>& mount_operation,
-                     Mount::UnmountFlags flags = Mount::UnmountFlags::NONE);
+                     Mount::UnmountFlags flags = Mount::UnmountFlags::NONE)
+        -> void;
 
     auto
     eject_mountable_finish (const Glib::RefPtr<AsyncResult>& result) -> bool;
@@ -1059,20 +1080,20 @@ namespace Gio
     using SlotFileMeasureProgress =
         sigc::slot<void (bool, guint64, guint64, guint64)>;
 
-    void
+    auto
     measure_disk_usage (const Glib::RefPtr<Cancellable>& cancellable,
                         const SlotFileMeasureProgress& slot_progress,
                         guint64& disk_usage,
                         guint64& num_dirs,
                         guint64& num_files,
-                        MeasureFlags flags = MeasureFlags::NONE);
+                        MeasureFlags flags = MeasureFlags::NONE) -> void;
 
-    void
+    auto
     measure_disk_usage_async (const SlotAsyncReady& slot_ready,
                               const Glib::RefPtr<Cancellable>& cancellable,
                               const SlotFileMeasureProgress& slot_progress,
                               MeasureFlags flags = MeasureFlags::NONE,
-                              int io_priority = Glib::PRIORITY_DEFAULT);
+                              int io_priority = Glib::PRIORITY_DEFAULT) -> void;
 
     auto
     measure_disk_usage_finish (const Glib::RefPtr<AsyncResult>& result,
@@ -1080,40 +1101,42 @@ namespace Gio
                                guint64& num_dirs,
                                guint64& num_files) -> bool;
 
-    void
+    auto
     start_mountable (const SlotAsyncReady& slot,
                      const Glib::RefPtr<Cancellable>& cancellable,
                      const Glib::RefPtr<MountOperation>& start_operation,
-                     Drive::StartFlags flags = Drive::StartFlags::NONE);
+                     Drive::StartFlags flags = Drive::StartFlags::NONE) -> void;
 
-    void
+    auto
     start_mountable (const SlotAsyncReady& slot,
                      const Glib::RefPtr<MountOperation>& start_operation,
-                     Drive::StartFlags flags = Drive::StartFlags::NONE);
+                     Drive::StartFlags flags = Drive::StartFlags::NONE) -> void;
 
     auto
     start_mountable_finish (const Glib::RefPtr<AsyncResult>& result) -> bool;
 
-    void
+    auto
     stop_mountable (const SlotAsyncReady& slot,
                     const Glib::RefPtr<Cancellable>& cancellable,
                     const Glib::RefPtr<MountOperation>& start_operation,
-                    Mount::UnmountFlags flags = Mount::UnmountFlags::NONE);
+                    Mount::UnmountFlags flags = Mount::UnmountFlags::NONE)
+        -> void;
 
-    void
+    auto
     stop_mountable (const SlotAsyncReady& slot,
                     const Glib::RefPtr<MountOperation>& start_operation,
-                    Mount::UnmountFlags flags = Mount::UnmountFlags::NONE);
+                    Mount::UnmountFlags flags = Mount::UnmountFlags::NONE)
+        -> void;
 
     auto
     stop_mountable_finish (const Glib::RefPtr<AsyncResult>& result) -> bool;
 
-    void
+    auto
     poll_mountable (const SlotAsyncReady& slot,
-                    const Glib::RefPtr<Cancellable>& cancellable);
+                    const Glib::RefPtr<Cancellable>& cancellable) -> void;
 
-    void
-    poll_mountable (const SlotAsyncReady& slot);
+    auto
+    poll_mountable (const SlotAsyncReady& slot) -> void;
 
     auto
     poll_mountable_finish (const Glib::RefPtr<AsyncResult>& result) -> bool;
@@ -1143,12 +1166,12 @@ namespace Gio
     auto
     load_contents (char*& contents, gsize& length) -> bool;
 
-    void
+    auto
     load_contents_async (const SlotAsyncReady& slot,
-                         const Glib::RefPtr<Cancellable>& cancellable);
+                         const Glib::RefPtr<Cancellable>& cancellable) -> void;
 
-    void
-    load_contents_async (const SlotAsyncReady& slot);
+    auto
+    load_contents_async (const SlotAsyncReady& slot) -> void;
 
     auto
     load_contents_finish (const Glib::RefPtr<AsyncResult>& result,
@@ -1163,14 +1186,16 @@ namespace Gio
 
     using SlotReadMore = sigc::slot<bool (const char*, goffset)>;
 
-    void
+    auto
     load_partial_contents_async (const SlotReadMore& slot_read_more,
                                  const SlotAsyncReady& slot_async_ready,
-                                 const Glib::RefPtr<Cancellable>& cancellable);
+                                 const Glib::RefPtr<Cancellable>& cancellable)
+        -> void;
 
-    void
+    auto
     load_partial_contents_async (const SlotReadMore& slot_read_more,
-                                 const SlotAsyncReady& slot_async_ready);
+                                 const SlotAsyncReady& slot_async_ready)
+        -> void;
 
     auto
     load_partial_contents_finish (const Glib::RefPtr<AsyncResult>& result,
@@ -1183,93 +1208,93 @@ namespace Gio
                                   char*& contents,
                                   gsize& length) -> bool;
 
-    void
+    auto
     replace_contents (const char* contents,
                       gsize length,
                       const std::string& etag,
                       std::string& new_etag,
                       const Glib::RefPtr<Cancellable>& cancellable,
                       bool make_backup = false,
-                      CreateFlags flags = CreateFlags::NONE);
+                      CreateFlags flags = CreateFlags::NONE) -> void;
 
-    void
+    auto
     replace_contents (const char* contents,
                       gsize length,
                       const std::string& etag,
                       std::string& new_etag,
                       bool make_backup = false,
-                      CreateFlags flags = CreateFlags::NONE);
+                      CreateFlags flags = CreateFlags::NONE) -> void;
 
-    void
+    auto
     replace_contents (const std::string& contents,
                       const std::string& etag,
                       std::string& new_etag,
                       const Glib::RefPtr<Cancellable>& cancellable,
                       bool make_backup = false,
-                      CreateFlags flags = CreateFlags::NONE);
+                      CreateFlags flags = CreateFlags::NONE) -> void;
 
-    void
+    auto
     replace_contents (const std::string& contents,
                       const std::string& etag,
                       std::string& new_etag,
                       bool make_backup = false,
-                      CreateFlags flags = CreateFlags::NONE);
+                      CreateFlags flags = CreateFlags::NONE) -> void;
 
-    void
+    auto
     replace_contents_async (const SlotAsyncReady& slot,
                             const Glib::RefPtr<Cancellable>& cancellable,
                             const char* contents,
                             gsize length,
                             const std::string& etag,
                             bool make_backup = false,
-                            CreateFlags flags = CreateFlags::NONE);
+                            CreateFlags flags = CreateFlags::NONE) -> void;
 
-    void
+    auto
     replace_contents_async (const SlotAsyncReady& slot,
                             const char* contents,
                             gsize length,
                             const std::string& etag,
                             bool make_backup = false,
-                            CreateFlags flags = CreateFlags::NONE);
+                            CreateFlags flags = CreateFlags::NONE) -> void;
 
-    void
+    auto
     replace_contents_async (const SlotAsyncReady& slot,
                             const Glib::RefPtr<Cancellable>& cancellable,
                             const std::string& contents,
                             const std::string& etag,
                             bool make_backup = false,
-                            CreateFlags flags = CreateFlags::NONE);
+                            CreateFlags flags = CreateFlags::NONE) -> void;
 
-    void
+    auto
     replace_contents_async (const SlotAsyncReady& slot,
                             const std::string& contents,
                             const std::string& etag,
                             bool make_backup = false,
-                            CreateFlags flags = CreateFlags::NONE);
+                            CreateFlags flags = CreateFlags::NONE) -> void;
 
-    void
+    auto
     replace_contents_finish (const Glib::RefPtr<AsyncResult>& result,
-                             std::string& new_etag);
+                             std::string& new_etag) -> void;
 
-    void
-    replace_contents_finish (const Glib::RefPtr<AsyncResult>& result);
+    auto
+    replace_contents_finish (const Glib::RefPtr<AsyncResult>& result) -> void;
 
-    void
+    auto
     replace_contents_bytes_async (
         const SlotAsyncReady& slot,
         const Glib::RefPtr<Cancellable>& cancellable,
         const Glib::RefPtr<const Glib::Bytes>& contents,
         const std::string& etag,
         bool make_backup = false,
-        CreateFlags flags = CreateFlags::NONE);
+        CreateFlags flags = CreateFlags::NONE) -> void;
 
-    void
+    auto
     replace_contents_bytes_async (
         const SlotAsyncReady& slot,
         const Glib::RefPtr<const Glib::Bytes>& contents,
         const std::string& etag,
         bool make_backup = false,
-        CreateFlags flags = CreateFlags::NONE);
+        CreateFlags flags = CreateFlags::NONE) -> void;
 
     auto
     supports_thread_contexts () const -> bool;
@@ -1311,8 +1336,8 @@ namespace Glib
         return Glib::wrap (item, true);
       }
 
-      static void
-      release_c_type (CType item)
+      static auto
+      release_c_type (CType item) -> void
       {
         GLIBMM_DEBUG_UNREFERENCE (nullptr, item);
         g_object_unref (item);

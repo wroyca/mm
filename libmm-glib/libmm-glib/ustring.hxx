@@ -207,8 +207,8 @@ namespace Glib
     GLIBMM_API auto
     operator= (ustring&& other) -> ustring&;
 
-    GLIBMM_API void
-    swap (ustring& other);
+    GLIBMM_API auto
+    swap (ustring& other) -> void;
 
     GLIBMM_API
     ustring (const std::string& src);
@@ -271,10 +271,10 @@ namespace Glib
     operator+= (gunichar uc) -> ustring&;
     GLIBMM_API auto
     operator+= (char c) -> ustring&;
-    GLIBMM_API void
-    push_back (gunichar uc);
-    GLIBMM_API void
-    push_back (char c);
+    GLIBMM_API auto
+    push_back (gunichar uc) -> void;
+    GLIBMM_API auto
+    push_back (char c) -> void;
 
     GLIBMM_API auto
     append (const ustring& src) -> ustring&;
@@ -310,13 +310,13 @@ namespace Glib
     insert (iterator p, gunichar uc) -> iterator;
     GLIBMM_API auto
     insert (iterator p, char c) -> iterator;
-    GLIBMM_API void
-    insert (iterator p, size_type n, gunichar uc);
-    GLIBMM_API void
-    insert (iterator p, size_type n, char c);
+    GLIBMM_API auto
+    insert (iterator p, size_type n, gunichar uc) -> void;
+    GLIBMM_API auto
+    insert (iterator p, size_type n, char c) -> void;
     template <class In>
-    void
-    insert (iterator p, In pbegin, In pend);
+    auto
+    insert (iterator p, In pbegin, In pend) -> void;
 
     GLIBMM_API auto
     replace (size_type i, size_type n, const ustring& src) -> ustring&;
@@ -352,8 +352,8 @@ namespace Glib
     auto
     replace (iterator pbegin, iterator pend, In pbegin2, In pend2) -> ustring&;
 
-    GLIBMM_API void
-    clear ();
+    GLIBMM_API auto
+    clear () -> void;
     GLIBMM_API auto
     erase (size_type i, size_type n = npos) -> ustring&;
     GLIBMM_API auto
@@ -499,17 +499,17 @@ namespace Glib
     GLIBMM_API auto
     bytes () const -> size_type;
 
-    GLIBMM_API void
-    resize (size_type n, gunichar uc);
-    GLIBMM_API void
-    resize (size_type n, char c = '\0');
+    GLIBMM_API auto
+    resize (size_type n, gunichar uc) -> void;
+    GLIBMM_API auto
+    resize (size_type n, char c = '\0') -> void;
 
     GLIBMM_API auto
     capacity () const -> size_type;
     GLIBMM_API auto
     max_size () const -> size_type;
-    GLIBMM_API void
-    reserve (size_type n = 0);
+    GLIBMM_API auto
+    reserve (size_type n = 0) -> void;
 
     GLIBMM_API inline operator std::string () const;
     GLIBMM_API inline auto
@@ -676,14 +676,14 @@ namespace Glib
     GLIBMM_API ~FormatStream () noexcept;
 
     template <class T>
-    inline void
-    stream (const T& value);
+    inline auto
+    stream (const T& value) -> void;
 
-    GLIBMM_API inline void
-    stream (const char* value);
+    GLIBMM_API inline auto
+    stream (const char* value) -> void;
 
-    GLIBMM_API inline void
-    stream (char* value);
+    GLIBMM_API inline auto
+    stream (char* value) -> void;
 
     GLIBMM_API auto
     to_string () const -> ustring;
@@ -850,20 +850,20 @@ namespace Glib
   }
 
   template <class T>
-  inline void
-  ustring::FormatStream::stream (const T& value)
+  inline auto
+  ustring::FormatStream::stream (const T& value) -> void
   {
     stream_ << value;
   }
 
-  inline void
-  ustring::FormatStream::stream (const char* value)
+  inline auto
+  ustring::FormatStream::stream (const char* value) -> void
   {
     stream_ << ustring (value);
   }
 
-  inline void
-  ustring::FormatStream::stream (char* value)
+  inline auto
+  ustring::FormatStream::stream (char* value) -> void
   {
     stream_ << ustring (value);
   }
@@ -892,8 +892,8 @@ namespace Glib
   }
 
   template <class In>
-  void
-  ustring::insert (ustring::iterator p, In pbegin, In pend)
+  auto
+  ustring::insert (ustring::iterator p, In pbegin, In pend) -> void
   {
     size_type pos = p.base () - string_.begin ();
     string_.insert (pos, Glib::ustring::SequenceToString<In> (pbegin, pend));
@@ -1130,8 +1130,8 @@ namespace Glib
 
 #endif
 
-  inline void
-  swap (ustring& lhs, ustring& rhs)
+  inline auto
+  swap (ustring& lhs, ustring& rhs) -> void
   {
     lhs.swap (rhs);
   }

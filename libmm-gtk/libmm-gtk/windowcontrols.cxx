@@ -26,10 +26,10 @@ namespace Glib
 {
 
   auto
-  wrap (GtkWindowControls* object, const bool take_copy) -> Gtk::WindowControls*
+  wrap (GtkWindowControls* object, bool take_copy) -> Gtk::WindowControls*
   {
     return dynamic_cast<Gtk::WindowControls*> (
-        wrap_auto ((GObject*) object, take_copy));
+        Glib::wrap_auto ((GObject*) (object), take_copy));
   }
 
 } // namespace Glib
@@ -38,7 +38,7 @@ namespace Gtk
 {
 
   auto
-  WindowControls_Class::init () -> const Class&
+  WindowControls_Class::init () -> const Glib::Class&
   {
     if (!gtype_)
     {
@@ -60,28 +60,28 @@ namespace Gtk
   auto
   WindowControls_Class::wrap_new (GObject* o) -> Glib::ObjectBase*
   {
-    return manage (new WindowControls ((GtkWindowControls*) o));
+    return manage (new WindowControls ((GtkWindowControls*) (o)));
   }
 
   WindowControls::WindowControls (const Glib::ConstructParams& construct_params)
-    : Widget (construct_params)
+    : Gtk::Widget (construct_params)
   {
   }
 
   WindowControls::WindowControls (GtkWindowControls* castitem)
-    : Widget ((GtkWidget*) castitem)
+    : Gtk::Widget ((GtkWidget*) (castitem))
   {
   }
 
   WindowControls::WindowControls (WindowControls&& src) noexcept
-    : Widget (std::move (src))
+    : Gtk::Widget (std::move (src))
   {
   }
 
   auto
   WindowControls::operator= (WindowControls&& src) noexcept -> WindowControls&
   {
-    Widget::operator= (std::move (src));
+    Gtk::Widget::operator= (std::move (src));
     return *this;
   }
 
@@ -104,12 +104,12 @@ namespace Gtk
     return gtk_window_controls_get_type ();
   }
 
-  WindowControls::WindowControls (const PackType side)
-    : ObjectBase (nullptr),
-      Widget (Glib::ConstructParams (windowcontrols_class_.init (),
-                                     "side",
-                                     side,
-                                     nullptr))
+  WindowControls::WindowControls (PackType side)
+    : Glib::ObjectBase (nullptr),
+      Gtk::Widget (Glib::ConstructParams (windowcontrols_class_.init (),
+                                          "side",
+                                          static_cast<GtkPackType> (side),
+                                          nullptr))
   {
   }
 
@@ -155,31 +155,32 @@ namespace Gtk
   auto
   WindowControls::property_side () -> Glib::PropertyProxy<PackType>
   {
-    return {this, "side"};
+    return Glib::PropertyProxy<PackType> (this, "side");
   }
 
   auto
   WindowControls::property_side () const -> Glib::PropertyProxy_ReadOnly<PackType>
   {
-    return {this, "side"};
+    return Glib::PropertyProxy_ReadOnly<PackType> (this, "side");
   }
 
   auto
   WindowControls::property_decoration_layout () -> Glib::PropertyProxy<Glib::ustring>
   {
-    return {this, "decoration-layout"};
+    return Glib::PropertyProxy<Glib::ustring> (this, "decoration-layout");
   }
 
   auto
   WindowControls::property_decoration_layout () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>
   {
-    return {this, "decoration-layout"};
+    return Glib::PropertyProxy_ReadOnly<Glib::ustring> (this,
+                                                        "decoration-layout");
   }
 
   auto
   WindowControls::property_empty () const -> Glib::PropertyProxy_ReadOnly<bool>
   {
-    return {this, "empty"};
+    return Glib::PropertyProxy_ReadOnly<bool> (this, "empty");
   }
 
 } // namespace Gtk

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: LGPL-2.1-or-later
 
 #ifndef _GIOMM_OUTPUTSTREAM_H
 #define _GIOMM_OUTPUTSTREAM_H
@@ -131,16 +132,16 @@ namespace Gio
     auto
     write_bytes (const Glib::RefPtr<const Glib::Bytes>& bytes) -> gssize;
 
-    void
+    auto
     write_bytes_async (const Glib::RefPtr<const Glib::Bytes>& bytes,
                        const SlotAsyncReady& slot,
                        const Glib::RefPtr<Cancellable>& cancellable,
-                       int io_priority = Glib::PRIORITY_DEFAULT);
+                       int io_priority = Glib::PRIORITY_DEFAULT) -> void;
 
-    void
+    auto
     write_bytes_async (const Glib::RefPtr<const Glib::Bytes>& bytes,
                        const SlotAsyncReady& slot,
-                       int io_priority = Glib::PRIORITY_DEFAULT);
+                       int io_priority = Glib::PRIORITY_DEFAULT) -> void;
 
     auto
     write_bytes_finish (const Glib::RefPtr<AsyncResult>& result) -> gssize;
@@ -166,75 +167,75 @@ namespace Gio
     auto
     close () -> bool;
 
-    void
+    auto
     write_async (const void* buffer,
                  gsize count,
                  const SlotAsyncReady& slot,
                  const Glib::RefPtr<Cancellable>& cancellable,
-                 int io_priority = Glib::PRIORITY_DEFAULT);
+                 int io_priority = Glib::PRIORITY_DEFAULT) -> void;
 
-    void
+    auto
     write_async (const void* buffer,
                  gsize count,
                  const SlotAsyncReady& slot,
-                 int io_priority = Glib::PRIORITY_DEFAULT);
+                 int io_priority = Glib::PRIORITY_DEFAULT) -> void;
 
     auto
     write_finish (const Glib::RefPtr<AsyncResult>& result) -> gssize;
 
-    void
+    auto
     write_all_async (const void* buffer,
                      gsize count,
                      const SlotAsyncReady& slot,
                      const Glib::RefPtr<Cancellable>& cancellable,
-                     int io_priority = Glib::PRIORITY_DEFAULT);
+                     int io_priority = Glib::PRIORITY_DEFAULT) -> void;
 
-    void
+    auto
     write_all_async (const void* buffer,
                      gsize count,
                      const SlotAsyncReady& slot,
-                     int io_priority = Glib::PRIORITY_DEFAULT);
+                     int io_priority = Glib::PRIORITY_DEFAULT) -> void;
 
     auto
     write_all_finish (const Glib::RefPtr<AsyncResult>& result,
                       gsize& bytes_written) -> bool;
 
-    void
+    auto
     splice_async (const Glib::RefPtr<InputStream>& source,
                   const SlotAsyncReady& slot,
                   const Glib::RefPtr<Cancellable>& cancellable,
                   SpliceFlags flags = SpliceFlags::NONE,
-                  int io_priority = Glib::PRIORITY_DEFAULT);
+                  int io_priority = Glib::PRIORITY_DEFAULT) -> void;
 
-    void
+    auto
     splice_async (const Glib::RefPtr<InputStream>& source,
                   const SlotAsyncReady& slot,
                   SpliceFlags flags = SpliceFlags::NONE,
-                  int io_priority = Glib::PRIORITY_DEFAULT);
+                  int io_priority = Glib::PRIORITY_DEFAULT) -> void;
 
     auto
     splice_finish (const Glib::RefPtr<AsyncResult>& result) -> gssize;
 
-    void
+    auto
     flush_async (const SlotAsyncReady& slot,
                  const Glib::RefPtr<Cancellable>& cancellable,
-                 int io_priority = Glib::PRIORITY_DEFAULT);
+                 int io_priority = Glib::PRIORITY_DEFAULT) -> void;
 
-    void
+    auto
     flush_async (const SlotAsyncReady& slot,
-                 int io_priority = Glib::PRIORITY_DEFAULT);
+                 int io_priority = Glib::PRIORITY_DEFAULT) -> void;
 
     auto
     flush_finish (const Glib::RefPtr<AsyncResult>& result) -> bool;
 
-    void
+    auto
     close_async (const SlotAsyncReady& slot,
                  const Glib::RefPtr<Cancellable>& cancellable,
-                 int io_priority = Glib::PRIORITY_DEFAULT);
+                 int io_priority = Glib::PRIORITY_DEFAULT) -> void;
 
-    void
+    auto
     close_async (const SlotAsyncReady& slot,
-                 int io_priority = Glib::PRIORITY_DEFAULT);
+                 int io_priority = Glib::PRIORITY_DEFAULT) -> void;
 
     auto
     close_finish (const Glib::RefPtr<AsyncResult>& result) -> bool;
@@ -252,8 +253,8 @@ namespace Gio
     auto
     set_pending () -> bool;
 
-    void
-    clear_pending ();
+    auto
+    clear_pending () -> void;
 
     virtual auto
     write_vfunc (const void* buffer,

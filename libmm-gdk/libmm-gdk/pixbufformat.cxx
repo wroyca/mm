@@ -25,7 +25,7 @@ namespace Glib
 {
 
   auto
-  wrap (GdkPixbufFormat* object, const bool take_copy) -> Gdk::PixbufFormat
+  wrap (GdkPixbufFormat* object, bool take_copy) -> Gdk::PixbufFormat
   {
     return Gdk::PixbufFormat (object, take_copy);
   }
@@ -42,8 +42,8 @@ namespace Gdk
   }
 
   PixbufFormat::PixbufFormat (const PixbufFormat& other)
-    : gobject_ (other.gobject_ ? gdk_pixbuf_format_copy (other.gobject_) :
-                                 nullptr)
+    : gobject_ ((other.gobject_) ? gdk_pixbuf_format_copy (other.gobject_) :
+                                   nullptr)
   {
   }
 
@@ -61,9 +61,9 @@ namespace Gdk
     return *this;
   }
 
-  PixbufFormat::PixbufFormat (GdkPixbufFormat* gobject, const bool make_a_copy)
-    : gobject_ (make_a_copy && gobject ? gdk_pixbuf_format_copy (gobject) :
-                                         gobject)
+  PixbufFormat::PixbufFormat (GdkPixbufFormat* gobject, bool make_a_copy)
+    : gobject_ ((make_a_copy && gobject) ? gdk_pixbuf_format_copy (gobject) :
+                                           gobject)
   {
   }
 
@@ -156,9 +156,9 @@ namespace Gdk
   }
 
   auto
-  PixbufFormat::set_disabled (const bool disabled) -> void
+  PixbufFormat::set_disabled (bool disabled) -> void
   {
-    gdk_pixbuf_format_set_disabled (gobj (), disabled);
+    gdk_pixbuf_format_set_disabled (gobj (), static_cast<int> (disabled));
   }
 
   auto

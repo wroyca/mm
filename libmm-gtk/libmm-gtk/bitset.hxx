@@ -24,11 +24,11 @@ namespace Gtk
     using BaseObjectType = GtkBitset;
 #endif
 
-    void
-    reference () const;
+    auto
+    reference () const -> void;
 
-    void
-    unreference () const;
+    auto
+    unreference () const -> void;
 
     auto
     gobj () -> GtkBitset*;
@@ -46,8 +46,8 @@ namespace Gtk
     operator= (const Bitset&) -> Bitset& = delete;
 
   protected:
-    void
-    operator delete (void*, std::size_t);
+    auto
+    operator delete (void*, std::size_t) -> void;
 
   private:
   public:
@@ -100,8 +100,8 @@ namespace Gtk
     auto
     copy () const -> Glib::RefPtr<Bitset>;
 
-    void
-    remove_all ();
+    auto
+    remove_all () -> void;
 
     auto
     add (guint value) -> bool;
@@ -109,53 +109,53 @@ namespace Gtk
     auto
     remove (guint value) -> bool;
 
-    void
-    add_range (guint start, guint n_items);
+    auto
+    add_range (guint start, guint n_items) -> void;
 
-    void
-    remove_range (guint start, guint n_items);
+    auto
+    remove_range (guint start, guint n_items) -> void;
 
-    void
-    add_range_closed (guint first, guint last);
+    auto
+    add_range_closed (guint first, guint last) -> void;
 
-    void
-    remove_range_closed (guint first, guint last);
+    auto
+    remove_range_closed (guint first, guint last) -> void;
 
-    void
-    add_rectangle (guint start, guint width, guint height, guint stride);
+    auto
+    add_rectangle (guint start, guint width, guint height, guint stride)
+        -> void;
 
-    void
-    remove_rectangle (guint start, guint width, guint height, guint stride);
+    auto
+    remove_rectangle (guint start, guint width, guint height, guint stride)
+        -> void;
 
-    void
-    join (const Glib::RefPtr<const Bitset>& other);
+    auto
+    join (const Glib::RefPtr<const Bitset>& other) -> void;
 
-    void
-    intersect (const Glib::RefPtr<const Bitset>& other);
+    auto
+    intersect (const Glib::RefPtr<const Bitset>& other) -> void;
 
-    void
-    subtract (const Glib::RefPtr<const Bitset>& other);
+    auto
+    subtract (const Glib::RefPtr<const Bitset>& other) -> void;
 
-    void
-    difference (const Glib::RefPtr<const Bitset>& other);
+    auto
+    difference (const Glib::RefPtr<const Bitset>& other) -> void;
 
-    void
-    shift_left (guint amount);
+    auto
+    shift_left (guint amount) -> void;
 
-    void
-    shift_right (guint amount);
+    auto
+    shift_right (guint amount) -> void;
 
-    void
-    splice (guint position, guint removed, guint value);
+    auto
+    splice (guint position, guint removed, guint value) -> void;
   };
 
 } // namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkBitset* object, bool take_copy = false) -> Glib::RefPtr<Gtk::Bitset>;
 
 } // namespace Glib

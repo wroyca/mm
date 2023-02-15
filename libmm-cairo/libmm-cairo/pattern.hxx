@@ -51,11 +51,11 @@ namespace Cairo
 
     virtual ~Pattern ();
 
-    void
-    set_matrix (const Matrix& matrix);
+    auto
+    set_matrix (const Matrix& matrix) -> void;
 
-    void
-    get_matrix (Matrix& matrix) const;
+    auto
+    get_matrix (Matrix& matrix) const -> void;
 
     auto
     get_matrix () const -> Matrix;
@@ -63,8 +63,8 @@ namespace Cairo
     auto
     get_type () const -> Type;
 
-    void
-    set_extend (Extend extend);
+    auto
+    set_extend (Extend extend) -> void;
 
     auto
     get_extend () const -> Extend;
@@ -92,10 +92,10 @@ namespace Cairo
     }
 #endif
 
-    void
-    reference () const;
-    void
-    unreference () const;
+    auto
+    reference () const -> void;
+    auto
+    unreference () const -> void;
 
   protected:
     Pattern ();
@@ -110,8 +110,9 @@ namespace Cairo
     explicit SolidPattern (cairo_pattern_t* cobject,
                            bool has_reference = false);
 
-    void
-    get_rgba (double& red, double& green, double& blue, double& alpha) const;
+    auto
+    get_rgba (double& red, double& green, double& blue, double& alpha) const
+        -> void;
 
     static auto
     create_rgb (double red, double green, double blue) -> RefPtr<SolidPattern>;
@@ -157,8 +158,8 @@ namespace Cairo
     static auto
     create (const RefPtr<Surface>& surface) -> RefPtr<SurfacePattern>;
 
-    void
-    set_filter (Filter filter);
+    auto
+    set_filter (Filter filter) -> void;
 
     auto
     get_filter () const -> Filter;
@@ -172,15 +173,16 @@ namespace Cairo
 
     ~Gradient () override;
 
-    void
-    add_color_stop_rgb (double offset, double red, double green, double blue);
+    auto
+    add_color_stop_rgb (double offset, double red, double green, double blue)
+        -> void;
 
-    void
+    auto
     add_color_stop_rgba (double offset,
                          double red,
                          double green,
                          double blue,
-                         double alpha);
+                         double alpha) -> void;
 
     auto
     get_color_stops () const -> std::vector<ColorStop>;
@@ -198,8 +200,9 @@ namespace Cairo
     explicit LinearGradient (cairo_pattern_t* cobject,
                              bool has_reference = false);
 
-    void
-    get_linear_points (double& x0, double& y0, double& x1, double& y1) const;
+    auto
+    get_linear_points (double& x0, double& y0, double& x1, double& y1) const
+        -> void;
 
     ~LinearGradient () override;
 
@@ -222,13 +225,13 @@ namespace Cairo
     explicit RadialGradient (cairo_pattern_t* cobject,
                              bool has_reference = false);
 
-    void
+    auto
     get_radial_circles (double& x0,
                         double& y0,
                         double& r0,
                         double& x1,
                         double& y1,
-                        double& r1) const;
+                        double& r1) const -> void;
 
     ~RadialGradient () override;
 

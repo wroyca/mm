@@ -1,11 +1,17 @@
 // SPDX-License-Identifier: LGPL-2.1-or-later
 
-#include <libmm-glib/mm-glib.hxx>
+#undef GTK_DISABLE_DEPRECATED
+#define GDK_DISABLE_DEPRECATION_WARNINGS 1
 
-#include <libmm-gtk/cellrenderertext.hxx>
-#include <libmm-gtk/cellrenderertext_p.hxx>
+#include <libmm-gtk/mm-gtkconfig.hxx>
+#ifndef GTKMM_DISABLE_DEPRECATED
 
-#include <gtk/gtk.h>
+  #include <libmm-glib/mm-glib.hxx>
+
+  #include <libmm-gtk/cellrenderertext.hxx>
+  #include <libmm-gtk/cellrenderertext_p.hxx>
+
+  #include <gtk/gtk.h>
 
 namespace Gtk
 {
@@ -28,7 +34,7 @@ namespace Gtk
 namespace
 {
 
-  auto
+  static auto
   CellRendererText_signal_edited_callback (GtkCellRendererText* self,
                                            const gchar* p0,
                                            const gchar* p1,
@@ -38,7 +44,7 @@ namespace
     using SlotType =
         sigc::slot<void (const Glib::ustring&, const Glib::ustring&)>;
 
-    const auto obj = dynamic_cast<CellRendererText*> (
+    auto obj = dynamic_cast<CellRendererText*> (
         Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
@@ -57,7 +63,7 @@ namespace
     }
   }
 
-  const Glib::SignalProxyInfo CellRendererText_signal_edited_info = {
+  static const Glib::SignalProxyInfo CellRendererText_signal_edited_info = {
       "edited",
       (GCallback) &CellRendererText_signal_edited_callback,
       (GCallback) &CellRendererText_signal_edited_callback};
@@ -68,10 +74,10 @@ namespace Glib
 {
 
   auto
-  wrap (GtkCellRendererText* object, const bool take_copy) -> Gtk::CellRendererText*
+  wrap (GtkCellRendererText* object, bool take_copy) -> Gtk::CellRendererText*
   {
     return dynamic_cast<Gtk::CellRendererText*> (
-        wrap_auto ((GObject*) object, take_copy));
+        Glib::wrap_auto ((GObject*) (object), take_copy));
   }
 
 } // namespace Glib
@@ -80,7 +86,7 @@ namespace Gtk
 {
 
   auto
-  CellRendererText_Class::init () -> const Class&
+  CellRendererText_Class::init () -> const Glib::Class&
   {
     if (!gtype_)
     {
@@ -106,8 +112,8 @@ namespace Gtk
                                            const gchar* p0,
                                            const gchar* p1) -> void
   {
-    const auto obj_base =
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self);
+    const auto obj_base = static_cast<Glib::ObjectBase*> (
+        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -137,29 +143,29 @@ namespace Gtk
   auto
   CellRendererText_Class::wrap_new (GObject* o) -> Glib::ObjectBase*
   {
-    return manage (new CellRendererText ((GtkCellRendererText*) o));
+    return manage (new CellRendererText ((GtkCellRendererText*) (o)));
   }
 
   CellRendererText::CellRendererText (
       const Glib::ConstructParams& construct_params)
-    : CellRenderer (construct_params)
+    : Gtk::CellRenderer (construct_params)
   {
   }
 
   CellRendererText::CellRendererText (GtkCellRendererText* castitem)
-    : CellRenderer ((GtkCellRenderer*) castitem)
+    : Gtk::CellRenderer ((GtkCellRenderer*) (castitem))
   {
   }
 
   CellRendererText::CellRendererText (CellRendererText&& src) noexcept
-    : CellRenderer (std::move (src))
+    : Gtk::CellRenderer (std::move (src))
   {
   }
 
   auto
   CellRendererText::operator= (CellRendererText&& src) noexcept -> CellRendererText&
   {
-    CellRenderer::operator= (std::move (src));
+    Gtk::CellRenderer::operator= (std::move (src));
     return *this;
   }
 
@@ -183,13 +189,14 @@ namespace Gtk
   }
 
   CellRendererText::CellRendererText ()
-    : ObjectBase (nullptr),
-      CellRenderer (Glib::ConstructParams (cellrenderertext_class_.init ()))
+    : Glib::ObjectBase (nullptr),
+      Gtk::CellRenderer (
+          Glib::ConstructParams (cellrenderertext_class_.init ()))
   {
   }
 
   auto
-  CellRendererText::set_fixed_height_from_font (const int number_of_rows) -> void
+  CellRendererText::set_fixed_height_from_font (int number_of_rows) -> void
   {
     gtk_cell_renderer_text_set_fixed_height_from_font (gobj (), number_of_rows);
   }
@@ -197,25 +204,28 @@ namespace Gtk
   auto
   CellRendererText::signal_edited () -> Glib::SignalProxy<void (const Glib::ustring&, const Glib::ustring&)>
   {
-    return {this, &CellRendererText_signal_edited_info};
+    return Glib::SignalProxy<void (const Glib::ustring&,
+                                   const Glib::ustring&)> (
+        this,
+        &CellRendererText_signal_edited_info);
   }
 
   auto
   CellRendererText::property_text () -> Glib::PropertyProxy<Glib::ustring>
   {
-    return {this, "text"};
+    return Glib::PropertyProxy<Glib::ustring> (this, "text");
   }
 
   auto
   CellRendererText::property_text () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>
   {
-    return {this, "text"};
+    return Glib::PropertyProxy_ReadOnly<Glib::ustring> (this, "text");
   }
 
   auto
   CellRendererText::property_markup () -> Glib::PropertyProxy_WriteOnly<Glib::ustring>
   {
-    return {this, "markup"};
+    return Glib::PropertyProxy_WriteOnly<Glib::ustring> (this, "markup");
   }
 
   static_assert (
@@ -226,25 +236,25 @@ namespace Gtk
   auto
   CellRendererText::property_attributes () -> Glib::PropertyProxy<Pango::AttrList>
   {
-    return {this, "attributes"};
+    return Glib::PropertyProxy<Pango::AttrList> (this, "attributes");
   }
 
   auto
   CellRendererText::property_attributes () const -> Glib::PropertyProxy_ReadOnly<Pango::AttrList>
   {
-    return {this, "attributes"};
+    return Glib::PropertyProxy_ReadOnly<Pango::AttrList> (this, "attributes");
   }
 
   auto
   CellRendererText::property_background () -> Glib::PropertyProxy_WriteOnly<Glib::ustring>
   {
-    return {this, "background"};
+    return Glib::PropertyProxy_WriteOnly<Glib::ustring> (this, "background");
   }
 
   auto
   CellRendererText::property_foreground () -> Glib::PropertyProxy_WriteOnly<Glib::ustring>
   {
-    return {this, "foreground"};
+    return Glib::PropertyProxy_WriteOnly<Glib::ustring> (this, "foreground");
   }
 
   static_assert (
@@ -255,13 +265,13 @@ namespace Gtk
   auto
   CellRendererText::property_background_rgba () -> Glib::PropertyProxy<Gdk::RGBA>
   {
-    return {this, "background-rgba"};
+    return Glib::PropertyProxy<Gdk::RGBA> (this, "background-rgba");
   }
 
   auto
   CellRendererText::property_background_rgba () const -> Glib::PropertyProxy_ReadOnly<Gdk::RGBA>
   {
-    return {this, "background-rgba"};
+    return Glib::PropertyProxy_ReadOnly<Gdk::RGBA> (this, "background-rgba");
   }
 
   static_assert (
@@ -272,25 +282,25 @@ namespace Gtk
   auto
   CellRendererText::property_foreground_rgba () -> Glib::PropertyProxy<Gdk::RGBA>
   {
-    return {this, "foreground-rgba"};
+    return Glib::PropertyProxy<Gdk::RGBA> (this, "foreground-rgba");
   }
 
   auto
   CellRendererText::property_foreground_rgba () const -> Glib::PropertyProxy_ReadOnly<Gdk::RGBA>
   {
-    return {this, "foreground-rgba"};
+    return Glib::PropertyProxy_ReadOnly<Gdk::RGBA> (this, "foreground-rgba");
   }
 
   auto
   CellRendererText::property_font () -> Glib::PropertyProxy<Glib::ustring>
   {
-    return {this, "font"};
+    return Glib::PropertyProxy<Glib::ustring> (this, "font");
   }
 
   auto
   CellRendererText::property_font () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>
   {
-    return {this, "font"};
+    return Glib::PropertyProxy_ReadOnly<Glib::ustring> (this, "font");
   }
 
   static_assert (
@@ -302,25 +312,26 @@ namespace Gtk
   auto
   CellRendererText::property_font_desc () -> Glib::PropertyProxy<Pango::FontDescription>
   {
-    return {this, "font-desc"};
+    return Glib::PropertyProxy<Pango::FontDescription> (this, "font-desc");
   }
 
   auto
   CellRendererText::property_font_desc () const -> Glib::PropertyProxy_ReadOnly<Pango::FontDescription>
   {
-    return {this, "font-desc"};
+    return Glib::PropertyProxy_ReadOnly<Pango::FontDescription> (this,
+                                                                 "font-desc");
   }
 
   auto
   CellRendererText::property_family () -> Glib::PropertyProxy<Glib::ustring>
   {
-    return {this, "family"};
+    return Glib::PropertyProxy<Glib::ustring> (this, "family");
   }
 
   auto
   CellRendererText::property_family () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>
   {
-    return {this, "family"};
+    return Glib::PropertyProxy_ReadOnly<Glib::ustring> (this, "family");
   }
 
   static_assert (
@@ -331,13 +342,13 @@ namespace Gtk
   auto
   CellRendererText::property_style () -> Glib::PropertyProxy<Pango::Style>
   {
-    return {this, "style"};
+    return Glib::PropertyProxy<Pango::Style> (this, "style");
   }
 
   auto
   CellRendererText::property_style () const -> Glib::PropertyProxy_ReadOnly<Pango::Style>
   {
-    return {this, "style"};
+    return Glib::PropertyProxy_ReadOnly<Pango::Style> (this, "style");
   }
 
   static_assert (
@@ -348,25 +359,25 @@ namespace Gtk
   auto
   CellRendererText::property_variant () -> Glib::PropertyProxy<Pango::Variant>
   {
-    return {this, "variant"};
+    return Glib::PropertyProxy<Pango::Variant> (this, "variant");
   }
 
   auto
   CellRendererText::property_variant () const -> Glib::PropertyProxy_ReadOnly<Pango::Variant>
   {
-    return {this, "variant"};
+    return Glib::PropertyProxy_ReadOnly<Pango::Variant> (this, "variant");
   }
 
   auto
   CellRendererText::property_weight () -> Glib::PropertyProxy<int>
   {
-    return {this, "weight"};
+    return Glib::PropertyProxy<int> (this, "weight");
   }
 
   auto
   CellRendererText::property_weight () const -> Glib::PropertyProxy_ReadOnly<int>
   {
-    return {this, "weight"};
+    return Glib::PropertyProxy_ReadOnly<int> (this, "weight");
   }
 
   static_assert (
@@ -377,73 +388,73 @@ namespace Gtk
   auto
   CellRendererText::property_stretch () -> Glib::PropertyProxy<Pango::Stretch>
   {
-    return {this, "stretch"};
+    return Glib::PropertyProxy<Pango::Stretch> (this, "stretch");
   }
 
   auto
   CellRendererText::property_stretch () const -> Glib::PropertyProxy_ReadOnly<Pango::Stretch>
   {
-    return {this, "stretch"};
+    return Glib::PropertyProxy_ReadOnly<Pango::Stretch> (this, "stretch");
   }
 
   auto
   CellRendererText::property_size () -> Glib::PropertyProxy<int>
   {
-    return {this, "size"};
+    return Glib::PropertyProxy<int> (this, "size");
   }
 
   auto
   CellRendererText::property_size () const -> Glib::PropertyProxy_ReadOnly<int>
   {
-    return {this, "size"};
+    return Glib::PropertyProxy_ReadOnly<int> (this, "size");
   }
 
   auto
   CellRendererText::property_size_points () -> Glib::PropertyProxy<double>
   {
-    return {this, "size-points"};
+    return Glib::PropertyProxy<double> (this, "size-points");
   }
 
   auto
   CellRendererText::property_size_points () const -> Glib::PropertyProxy_ReadOnly<double>
   {
-    return {this, "size-points"};
+    return Glib::PropertyProxy_ReadOnly<double> (this, "size-points");
   }
 
   auto
   CellRendererText::property_scale () -> Glib::PropertyProxy<double>
   {
-    return {this, "scale"};
+    return Glib::PropertyProxy<double> (this, "scale");
   }
 
   auto
   CellRendererText::property_scale () const -> Glib::PropertyProxy_ReadOnly<double>
   {
-    return {this, "scale"};
+    return Glib::PropertyProxy_ReadOnly<double> (this, "scale");
   }
 
   auto
   CellRendererText::property_editable () -> Glib::PropertyProxy<bool>
   {
-    return {this, "editable"};
+    return Glib::PropertyProxy<bool> (this, "editable");
   }
 
   auto
   CellRendererText::property_editable () const -> Glib::PropertyProxy_ReadOnly<bool>
   {
-    return {this, "editable"};
+    return Glib::PropertyProxy_ReadOnly<bool> (this, "editable");
   }
 
   auto
   CellRendererText::property_strikethrough () -> Glib::PropertyProxy<bool>
   {
-    return {this, "strikethrough"};
+    return Glib::PropertyProxy<bool> (this, "strikethrough");
   }
 
   auto
   CellRendererText::property_strikethrough () const -> Glib::PropertyProxy_ReadOnly<bool>
   {
-    return {this, "strikethrough"};
+    return Glib::PropertyProxy_ReadOnly<bool> (this, "strikethrough");
   }
 
   static_assert (
@@ -454,37 +465,37 @@ namespace Gtk
   auto
   CellRendererText::property_underline () -> Glib::PropertyProxy<Pango::Underline>
   {
-    return {this, "underline"};
+    return Glib::PropertyProxy<Pango::Underline> (this, "underline");
   }
 
   auto
   CellRendererText::property_underline () const -> Glib::PropertyProxy_ReadOnly<Pango::Underline>
   {
-    return {this, "underline"};
+    return Glib::PropertyProxy_ReadOnly<Pango::Underline> (this, "underline");
   }
 
   auto
   CellRendererText::property_rise () -> Glib::PropertyProxy<int>
   {
-    return {this, "rise"};
+    return Glib::PropertyProxy<int> (this, "rise");
   }
 
   auto
   CellRendererText::property_rise () const -> Glib::PropertyProxy_ReadOnly<int>
   {
-    return {this, "rise"};
+    return Glib::PropertyProxy_ReadOnly<int> (this, "rise");
   }
 
   auto
   CellRendererText::property_language () -> Glib::PropertyProxy<Glib::ustring>
   {
-    return {this, "language"};
+    return Glib::PropertyProxy<Glib::ustring> (this, "language");
   }
 
   auto
   CellRendererText::property_language () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>
   {
-    return {this, "language"};
+    return Glib::PropertyProxy_ReadOnly<Glib::ustring> (this, "language");
   }
 
   static_assert (
@@ -496,37 +507,38 @@ namespace Gtk
   auto
   CellRendererText::property_ellipsize () -> Glib::PropertyProxy<Pango::EllipsizeMode>
   {
-    return {this, "ellipsize"};
+    return Glib::PropertyProxy<Pango::EllipsizeMode> (this, "ellipsize");
   }
 
   auto
   CellRendererText::property_ellipsize () const -> Glib::PropertyProxy_ReadOnly<Pango::EllipsizeMode>
   {
-    return {this, "ellipsize"};
+    return Glib::PropertyProxy_ReadOnly<Pango::EllipsizeMode> (this,
+                                                               "ellipsize");
   }
 
   auto
   CellRendererText::property_width_chars () -> Glib::PropertyProxy<int>
   {
-    return {this, "width-chars"};
+    return Glib::PropertyProxy<int> (this, "width-chars");
   }
 
   auto
   CellRendererText::property_width_chars () const -> Glib::PropertyProxy_ReadOnly<int>
   {
-    return {this, "width-chars"};
+    return Glib::PropertyProxy_ReadOnly<int> (this, "width-chars");
   }
 
   auto
   CellRendererText::property_max_width_chars () -> Glib::PropertyProxy<int>
   {
-    return {this, "max-width-chars"};
+    return Glib::PropertyProxy<int> (this, "max-width-chars");
   }
 
   auto
   CellRendererText::property_max_width_chars () const -> Glib::PropertyProxy_ReadOnly<int>
   {
-    return {this, "max-width-chars"};
+    return Glib::PropertyProxy_ReadOnly<int> (this, "max-width-chars");
   }
 
   static_assert (
@@ -537,25 +549,25 @@ namespace Gtk
   auto
   CellRendererText::property_wrap_mode () -> Glib::PropertyProxy<Pango::WrapMode>
   {
-    return {this, "wrap-mode"};
+    return Glib::PropertyProxy<Pango::WrapMode> (this, "wrap-mode");
   }
 
   auto
   CellRendererText::property_wrap_mode () const -> Glib::PropertyProxy_ReadOnly<Pango::WrapMode>
   {
-    return {this, "wrap-mode"};
+    return Glib::PropertyProxy_ReadOnly<Pango::WrapMode> (this, "wrap-mode");
   }
 
   auto
   CellRendererText::property_wrap_width () -> Glib::PropertyProxy<int>
   {
-    return {this, "wrap-width"};
+    return Glib::PropertyProxy<int> (this, "wrap-width");
   }
 
   auto
   CellRendererText::property_wrap_width () const -> Glib::PropertyProxy_ReadOnly<int>
   {
-    return {this, "wrap-width"};
+    return Glib::PropertyProxy_ReadOnly<int> (this, "wrap-width");
   }
 
   static_assert (
@@ -566,234 +578,235 @@ namespace Gtk
   auto
   CellRendererText::property_alignment () -> Glib::PropertyProxy<Pango::Alignment>
   {
-    return {this, "alignment"};
+    return Glib::PropertyProxy<Pango::Alignment> (this, "alignment");
   }
 
   auto
   CellRendererText::property_alignment () const -> Glib::PropertyProxy_ReadOnly<Pango::Alignment>
   {
-    return {this, "alignment"};
+    return Glib::PropertyProxy_ReadOnly<Pango::Alignment> (this, "alignment");
   }
 
   auto
   CellRendererText::property_background_set () -> Glib::PropertyProxy<bool>
   {
-    return {this, "background-set"};
+    return Glib::PropertyProxy<bool> (this, "background-set");
   }
 
   auto
   CellRendererText::property_background_set () const -> Glib::PropertyProxy_ReadOnly<bool>
   {
-    return {this, "background-set"};
+    return Glib::PropertyProxy_ReadOnly<bool> (this, "background-set");
   }
 
   auto
   CellRendererText::property_foreground_set () -> Glib::PropertyProxy<bool>
   {
-    return {this, "foreground-set"};
+    return Glib::PropertyProxy<bool> (this, "foreground-set");
   }
 
   auto
   CellRendererText::property_foreground_set () const -> Glib::PropertyProxy_ReadOnly<bool>
   {
-    return {this, "foreground-set"};
+    return Glib::PropertyProxy_ReadOnly<bool> (this, "foreground-set");
   }
 
   auto
   CellRendererText::property_family_set () -> Glib::PropertyProxy<bool>
   {
-    return {this, "family-set"};
+    return Glib::PropertyProxy<bool> (this, "family-set");
   }
 
   auto
   CellRendererText::property_family_set () const -> Glib::PropertyProxy_ReadOnly<bool>
   {
-    return {this, "family-set"};
+    return Glib::PropertyProxy_ReadOnly<bool> (this, "family-set");
   }
 
   auto
   CellRendererText::property_style_set () -> Glib::PropertyProxy<bool>
   {
-    return {this, "style-set"};
+    return Glib::PropertyProxy<bool> (this, "style-set");
   }
 
   auto
   CellRendererText::property_style_set () const -> Glib::PropertyProxy_ReadOnly<bool>
   {
-    return {this, "style-set"};
+    return Glib::PropertyProxy_ReadOnly<bool> (this, "style-set");
   }
 
   auto
   CellRendererText::property_variant_set () -> Glib::PropertyProxy<bool>
   {
-    return {this, "variant-set"};
+    return Glib::PropertyProxy<bool> (this, "variant-set");
   }
 
   auto
   CellRendererText::property_variant_set () const -> Glib::PropertyProxy_ReadOnly<bool>
   {
-    return {this, "variant-set"};
+    return Glib::PropertyProxy_ReadOnly<bool> (this, "variant-set");
   }
 
   auto
   CellRendererText::property_weight_set () -> Glib::PropertyProxy<bool>
   {
-    return {this, "weight-set"};
+    return Glib::PropertyProxy<bool> (this, "weight-set");
   }
 
   auto
   CellRendererText::property_weight_set () const -> Glib::PropertyProxy_ReadOnly<bool>
   {
-    return {this, "weight-set"};
+    return Glib::PropertyProxy_ReadOnly<bool> (this, "weight-set");
   }
 
   auto
   CellRendererText::property_stretch_set () -> Glib::PropertyProxy<bool>
   {
-    return {this, "stretch-set"};
+    return Glib::PropertyProxy<bool> (this, "stretch-set");
   }
 
   auto
   CellRendererText::property_stretch_set () const -> Glib::PropertyProxy_ReadOnly<bool>
   {
-    return {this, "stretch-set"};
+    return Glib::PropertyProxy_ReadOnly<bool> (this, "stretch-set");
   }
 
   auto
   CellRendererText::property_size_set () -> Glib::PropertyProxy<bool>
   {
-    return {this, "size-set"};
+    return Glib::PropertyProxy<bool> (this, "size-set");
   }
 
   auto
   CellRendererText::property_size_set () const -> Glib::PropertyProxy_ReadOnly<bool>
   {
-    return {this, "size-set"};
+    return Glib::PropertyProxy_ReadOnly<bool> (this, "size-set");
   }
 
   auto
   CellRendererText::property_scale_set () -> Glib::PropertyProxy<bool>
   {
-    return {this, "scale-set"};
+    return Glib::PropertyProxy<bool> (this, "scale-set");
   }
 
   auto
   CellRendererText::property_scale_set () const -> Glib::PropertyProxy_ReadOnly<bool>
   {
-    return {this, "scale-set"};
+    return Glib::PropertyProxy_ReadOnly<bool> (this, "scale-set");
   }
 
   auto
   CellRendererText::property_editable_set () -> Glib::PropertyProxy<bool>
   {
-    return {this, "editable-set"};
+    return Glib::PropertyProxy<bool> (this, "editable-set");
   }
 
   auto
   CellRendererText::property_editable_set () const -> Glib::PropertyProxy_ReadOnly<bool>
   {
-    return {this, "editable-set"};
+    return Glib::PropertyProxy_ReadOnly<bool> (this, "editable-set");
   }
 
   auto
   CellRendererText::property_strikethrough_set () -> Glib::PropertyProxy<bool>
   {
-    return {this, "strikethrough-set"};
+    return Glib::PropertyProxy<bool> (this, "strikethrough-set");
   }
 
   auto
   CellRendererText::property_strikethrough_set () const -> Glib::PropertyProxy_ReadOnly<bool>
   {
-    return {this, "strikethrough-set"};
+    return Glib::PropertyProxy_ReadOnly<bool> (this, "strikethrough-set");
   }
 
   auto
   CellRendererText::property_underline_set () -> Glib::PropertyProxy<bool>
   {
-    return {this, "underline-set"};
+    return Glib::PropertyProxy<bool> (this, "underline-set");
   }
 
   auto
   CellRendererText::property_underline_set () const -> Glib::PropertyProxy_ReadOnly<bool>
   {
-    return {this, "underline-set"};
+    return Glib::PropertyProxy_ReadOnly<bool> (this, "underline-set");
   }
 
   auto
   CellRendererText::property_rise_set () -> Glib::PropertyProxy<bool>
   {
-    return {this, "rise-set"};
+    return Glib::PropertyProxy<bool> (this, "rise-set");
   }
 
   auto
   CellRendererText::property_rise_set () const -> Glib::PropertyProxy_ReadOnly<bool>
   {
-    return {this, "rise-set"};
+    return Glib::PropertyProxy_ReadOnly<bool> (this, "rise-set");
   }
 
   auto
   CellRendererText::property_language_set () -> Glib::PropertyProxy<bool>
   {
-    return {this, "language-set"};
+    return Glib::PropertyProxy<bool> (this, "language-set");
   }
 
   auto
   CellRendererText::property_language_set () const -> Glib::PropertyProxy_ReadOnly<bool>
   {
-    return {this, "language-set"};
+    return Glib::PropertyProxy_ReadOnly<bool> (this, "language-set");
   }
 
   auto
   CellRendererText::property_ellipsize_set () -> Glib::PropertyProxy<bool>
   {
-    return {this, "ellipsize-set"};
+    return Glib::PropertyProxy<bool> (this, "ellipsize-set");
   }
 
   auto
   CellRendererText::property_ellipsize_set () const -> Glib::PropertyProxy_ReadOnly<bool>
   {
-    return {this, "ellipsize-set"};
+    return Glib::PropertyProxy_ReadOnly<bool> (this, "ellipsize-set");
   }
 
   auto
   CellRendererText::property_single_paragraph_mode () -> Glib::PropertyProxy<bool>
   {
-    return {this, "single-paragraph-mode"};
+    return Glib::PropertyProxy<bool> (this, "single-paragraph-mode");
   }
 
   auto
   CellRendererText::property_single_paragraph_mode () const -> Glib::PropertyProxy_ReadOnly<bool>
   {
-    return {this, "single-paragraph-mode"};
+    return Glib::PropertyProxy_ReadOnly<bool> (this, "single-paragraph-mode");
   }
 
   auto
   CellRendererText::property_align_set () -> Glib::PropertyProxy<bool>
   {
-    return {this, "align-set"};
+    return Glib::PropertyProxy<bool> (this, "align-set");
   }
 
   auto
   CellRendererText::property_align_set () const -> Glib::PropertyProxy_ReadOnly<bool>
   {
-    return {this, "align-set"};
+    return Glib::PropertyProxy_ReadOnly<bool> (this, "align-set");
   }
 
   auto
   CellRendererText::property_placeholder_text () -> Glib::PropertyProxy<Glib::ustring>
   {
-    return {this, "placeholder-text"};
+    return Glib::PropertyProxy<Glib::ustring> (this, "placeholder-text");
   }
 
   auto
   CellRendererText::property_placeholder_text () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>
   {
-    return {this, "placeholder-text"};
+    return Glib::PropertyProxy_ReadOnly<Glib::ustring> (this,
+                                                        "placeholder-text");
   }
 
   auto
-  CellRendererText::on_edited (const Glib::ustring& path,
-                               const Glib::ustring& new_text) -> void
+  Gtk::CellRendererText::on_edited (const Glib::ustring& path,
+                                    const Glib::ustring& new_text) -> void
   {
     const auto base = static_cast<BaseClassType*> (
         g_type_class_peek_parent (G_OBJECT_GET_CLASS (gobject_)));
@@ -803,3 +816,5 @@ namespace Gtk
   }
 
 } // namespace Gtk
+
+#endif

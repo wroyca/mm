@@ -21,10 +21,10 @@ namespace Glib
     explicit Dispatcher (const Glib::RefPtr<MainContext>& context);
     ~Dispatcher () noexcept;
 
-    void
-    emit ();
-    void
-    operator() ();
+    auto
+    emit () -> void;
+    auto
+    operator() () -> void;
 
     auto
     connect (const sigc::slot<void ()>& slot) -> sigc::connection;

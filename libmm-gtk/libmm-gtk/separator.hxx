@@ -92,9 +92,7 @@ namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkSeparator* object, bool take_copy = false) -> Gtk::Separator*;
 } // namespace Glib
 

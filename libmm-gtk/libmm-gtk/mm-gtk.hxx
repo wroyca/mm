@@ -1,14 +1,12 @@
 // SPDX-License-Identifier: LGPL-2.1-or-later
 
-#pragma once
-
-#include <libmm-gtk/export.hxx>
+#ifndef _GTKMM_H
+#define _GTKMM_H
 
 extern const int gtkmm_major_version;
 extern const int gtkmm_minor_version;
 extern const int gtkmm_micro_version;
 
-#include <libmm-gio/gio.hxx>
 #include <libmm-glib/mm-glib.hxx>
 
 #include <libmm-gdk/mm-gdk.hxx>
@@ -19,6 +17,7 @@ extern const int gtkmm_micro_version;
 #include <libmm-gtk/actionable.hxx>
 #include <libmm-gtk/actionbar.hxx>
 #include <libmm-gtk/adjustment.hxx>
+#include <libmm-gtk/alertdialog.hxx>
 #include <libmm-gtk/appchooserbutton.hxx>
 #include <libmm-gtk/appchooserdialog.hxx>
 #include <libmm-gtk/appchooserwidget.hxx>
@@ -26,6 +25,7 @@ extern const int gtkmm_micro_version;
 #include <libmm-gtk/applicationwindow.hxx>
 #include <libmm-gtk/aspectframe.hxx>
 #include <libmm-gtk/assistant.hxx>
+#include <libmm-gtk/atcontext.hxx>
 #include <libmm-gtk/binlayout.hxx>
 #include <libmm-gtk/boolfilter.hxx>
 #include <libmm-gtk/border.hxx>
@@ -53,7 +53,9 @@ extern const int gtkmm_micro_version;
 #include <libmm-gtk/colorbutton.hxx>
 #include <libmm-gtk/colorchooser.hxx>
 #include <libmm-gtk/colorchooserdialog.hxx>
+#include <libmm-gtk/colordialogbutton.hxx>
 #include <libmm-gtk/columnview.hxx>
+#include <libmm-gtk/columnviewsorter.hxx>
 #include <libmm-gtk/combobox.hxx>
 #include <libmm-gtk/comboboxtext.hxx>
 #include <libmm-gtk/constraintlayout.hxx>
@@ -72,6 +74,7 @@ extern const int gtkmm_micro_version;
 #include <libmm-gtk/emojichooser.hxx>
 #include <libmm-gtk/entry.hxx>
 #include <libmm-gtk/enums.hxx>
+#include <libmm-gtk/error.hxx>
 #include <libmm-gtk/eventcontroller.hxx>
 #include <libmm-gtk/eventcontrollerfocus.hxx>
 #include <libmm-gtk/eventcontrollerkey.hxx>
@@ -82,7 +85,9 @@ extern const int gtkmm_micro_version;
 #include <libmm-gtk/filechooserdialog.hxx>
 #include <libmm-gtk/filechoosernative.hxx>
 #include <libmm-gtk/filechooserwidget.hxx>
+#include <libmm-gtk/filedialog.hxx>
 #include <libmm-gtk/filefilter.hxx>
+#include <libmm-gtk/filelauncher.hxx>
 #include <libmm-gtk/filterlistmodel.hxx>
 #include <libmm-gtk/fixed.hxx>
 #include <libmm-gtk/flattenlistmodel.hxx>
@@ -92,6 +97,7 @@ extern const int gtkmm_micro_version;
 #include <libmm-gtk/fontchooser.hxx>
 #include <libmm-gtk/fontchooserdialog.hxx>
 #include <libmm-gtk/fontchooserwidget.hxx>
+#include <libmm-gtk/fontdialogbutton.hxx>
 #include <libmm-gtk/frame.hxx>
 #include <libmm-gtk/gesture.hxx>
 #include <libmm-gtk/gestureclick.hxx>
@@ -219,6 +225,7 @@ extern const int gtkmm_micro_version;
 #include <libmm-gtk/treestore.hxx>
 #include <libmm-gtk/treeview.hxx>
 #include <libmm-gtk/treeviewcolumn.hxx>
+#include <libmm-gtk/urilauncher.hxx>
 #include <libmm-gtk/version.hxx>
 #include <libmm-gtk/video.hxx>
 #include <libmm-gtk/viewport.hxx>
@@ -228,3 +235,5 @@ extern const int gtkmm_micro_version;
 #include <libmm-gtk/window.hxx>
 #include <libmm-gtk/windowcontrols.hxx>
 #include <libmm-gtk/windowhandle.hxx>
+
+#endif

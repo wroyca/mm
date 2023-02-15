@@ -26,10 +26,10 @@ namespace Glib
 {
 
   auto
-  wrap (GtkActionBar* object, const bool take_copy) -> Gtk::ActionBar*
+  wrap (GtkActionBar* object, bool take_copy) -> Gtk::ActionBar*
   {
     return dynamic_cast<Gtk::ActionBar*> (
-        wrap_auto ((GObject*) object, take_copy));
+        Glib::wrap_auto ((GObject*) (object), take_copy));
   }
 
 } // namespace Glib
@@ -38,7 +38,7 @@ namespace Gtk
 {
 
   auto
-  ActionBar_Class::init () -> const Class&
+  ActionBar_Class::init () -> const Glib::Class&
   {
     if (!gtype_)
     {
@@ -60,28 +60,28 @@ namespace Gtk
   auto
   ActionBar_Class::wrap_new (GObject* o) -> Glib::ObjectBase*
   {
-    return manage (new ActionBar ((GtkActionBar*) o));
+    return manage (new ActionBar ((GtkActionBar*) (o)));
   }
 
   ActionBar::ActionBar (const Glib::ConstructParams& construct_params)
-    : Widget (construct_params)
+    : Gtk::Widget (construct_params)
   {
   }
 
   ActionBar::ActionBar (GtkActionBar* castitem)
-    : Widget ((GtkWidget*) castitem)
+    : Gtk::Widget ((GtkWidget*) (castitem))
   {
   }
 
   ActionBar::ActionBar (ActionBar&& src) noexcept
-    : Widget (std::move (src))
+    : Gtk::Widget (std::move (src))
   {
   }
 
   auto
   ActionBar::operator= (ActionBar&& src) noexcept -> ActionBar&
   {
-    Widget::operator= (std::move (src));
+    Gtk::Widget::operator= (std::move (src));
     return *this;
   }
 
@@ -105,27 +105,27 @@ namespace Gtk
   }
 
   ActionBar::ActionBar ()
-    : ObjectBase (nullptr),
-      Widget (Glib::ConstructParams (actionbar_class_.init ()))
+    : Glib::ObjectBase (nullptr),
+      Gtk::Widget (Glib::ConstructParams (actionbar_class_.init ()))
   {
   }
 
   auto
-  ActionBar::pack_start (Widget& child) -> void
+  ActionBar::pack_start (Gtk::Widget& child) -> void
   {
-    gtk_action_bar_pack_start (gobj (), child.gobj ());
+    gtk_action_bar_pack_start (gobj (), (child).gobj ());
   }
 
   auto
-  ActionBar::pack_end (Widget& child) -> void
+  ActionBar::pack_end (Gtk::Widget& child) -> void
   {
-    gtk_action_bar_pack_end (gobj (), child.gobj ());
+    gtk_action_bar_pack_end (gobj (), (child).gobj ());
   }
 
   auto
-  ActionBar::remove (Widget& child) -> void
+  ActionBar::remove (Gtk::Widget& child) -> void
   {
-    gtk_action_bar_remove (gobj (), child.gobj ());
+    gtk_action_bar_remove (gobj (), (child).gobj ());
   }
 
   auto
@@ -143,13 +143,13 @@ namespace Gtk
   auto
   ActionBar::set_center_widget (Widget& center_widget) -> void
   {
-    gtk_action_bar_set_center_widget (gobj (), center_widget.gobj ());
+    gtk_action_bar_set_center_widget (gobj (), (center_widget).gobj ());
   }
 
   auto
-  ActionBar::set_revealed (const bool revealed) -> void
+  ActionBar::set_revealed (bool revealed) -> void
   {
-    gtk_action_bar_set_revealed (gobj (), revealed);
+    gtk_action_bar_set_revealed (gobj (), static_cast<int> (revealed));
   }
 
   auto
@@ -161,13 +161,13 @@ namespace Gtk
   auto
   ActionBar::property_revealed () -> Glib::PropertyProxy<bool>
   {
-    return {this, "revealed"};
+    return Glib::PropertyProxy<bool> (this, "revealed");
   }
 
   auto
   ActionBar::property_revealed () const -> Glib::PropertyProxy_ReadOnly<bool>
   {
-    return {this, "revealed"};
+    return Glib::PropertyProxy_ReadOnly<bool> (this, "revealed");
   }
 
 } // namespace Gtk

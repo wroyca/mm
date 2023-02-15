@@ -81,8 +81,8 @@ namespace Gtk
   public:
     HeaderBar ();
 
-    void
-    set_title_widget (Gtk::Widget& title_widget);
+    auto
+    set_title_widget (Gtk::Widget& title_widget) -> void;
 
     auto
     get_title_widget () -> Widget*;
@@ -90,26 +90,26 @@ namespace Gtk
     auto
     get_title_widget () const -> const Widget*;
 
-    void
-    pack_start (Gtk::Widget& child);
+    auto
+    pack_start (Gtk::Widget& child) -> void;
 
-    void
-    pack_end (Gtk::Widget& child);
+    auto
+    pack_end (Gtk::Widget& child) -> void;
 
-    void
-    remove (Gtk::Widget& child);
+    auto
+    remove (Gtk::Widget& child) -> void;
 
-    void
-    set_show_title_buttons (bool setting = true);
+    auto
+    set_show_title_buttons (bool setting = true) -> void;
 
     auto
     get_show_title_buttons () const -> bool;
 
-    void
-    set_decoration_layout (const Glib::ustring& layout);
+    auto
+    set_decoration_layout (const Glib::ustring& layout) -> void;
 
-    void
-    unset_decoration_layout ();
+    auto
+    unset_decoration_layout () -> void;
 
     auto
     get_decoration_layout () const -> Glib::ustring;
@@ -143,9 +143,7 @@ namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkHeaderBar* object, bool take_copy = false) -> Gtk::HeaderBar*;
 } // namespace Glib
 

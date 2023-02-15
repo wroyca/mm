@@ -15,11 +15,11 @@ namespace Glib
 {
 
   auto
-  wrap (GtkNoSelection* object, const bool take_copy) -> RefPtr<Gtk::NoSelection>
+  wrap (GtkNoSelection* object, bool take_copy) -> Glib::RefPtr<Gtk::NoSelection>
   {
     return Glib::make_refptr_for_instance<Gtk::NoSelection> (
         dynamic_cast<Gtk::NoSelection*> (
-            wrap_auto ((GObject*) object, take_copy)));
+            Glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
 } // namespace Glib
@@ -28,7 +28,7 @@ namespace Gtk
 {
 
   auto
-  NoSelection_Class::init () -> const Class&
+  NoSelection_Class::init () -> const Glib::Class&
   {
     if (!gtype_)
     {
@@ -61,18 +61,18 @@ namespace Gtk
   }
 
   NoSelection::NoSelection (const Glib::ConstructParams& construct_params)
-    : Object (construct_params)
+    : Glib::Object (construct_params)
   {
   }
 
   NoSelection::NoSelection (GtkNoSelection* castitem)
-    : Object ((GObject*) castitem)
+    : Glib::Object ((GObject*) (castitem))
   {
   }
 
   NoSelection::NoSelection (NoSelection&& src) noexcept
-    : Object (std::move (src)),
-      ListModel (std::move (src)),
+    : Glib::Object (std::move (src)),
+      Gio::ListModel (std::move (src)),
       SelectionModel (std::move (src))
   {
   }
@@ -80,13 +80,13 @@ namespace Gtk
   auto
   NoSelection::operator= (NoSelection&& src) noexcept -> NoSelection&
   {
-    Object::operator= (std::move (src));
-    ListModel::operator= (std::move (src));
+    Glib::Object::operator= (std::move (src));
+    Gio::ListModel::operator= (std::move (src));
     SelectionModel::operator= (std::move (src));
     return *this;
   }
 
-  NoSelection::~NoSelection () noexcept = default;
+  NoSelection::~NoSelection () noexcept {}
 
   NoSelection::CppClassType NoSelection::noselection_class_;
 
@@ -103,17 +103,17 @@ namespace Gtk
   }
 
   NoSelection::NoSelection ()
-    : ObjectBase (nullptr),
-      Object (Glib::ConstructParams (noselection_class_.init ()))
+    : Glib::ObjectBase (nullptr),
+      Glib::Object (Glib::ConstructParams (noselection_class_.init ()))
   {
   }
 
-  NoSelection::NoSelection (const Glib::RefPtr<ListModel>& model)
-    : ObjectBase (nullptr),
-      Object (Glib::ConstructParams (noselection_class_.init (),
-                                     "model",
-                                     Glib::unwrap (model),
-                                     nullptr))
+  NoSelection::NoSelection (const Glib::RefPtr<Gio::ListModel>& model)
+    : Glib::ObjectBase (nullptr),
+      Glib::Object (Glib::ConstructParams (noselection_class_.init (),
+                                           "model",
+                                           Glib::unwrap (model),
+                                           nullptr))
   {
   }
 
@@ -124,14 +124,14 @@ namespace Gtk
   }
 
   auto
-  NoSelection::create (const Glib::RefPtr<ListModel>& model) -> Glib::RefPtr<NoSelection>
+  NoSelection::create (const Glib::RefPtr<Gio::ListModel>& model) -> Glib::RefPtr<NoSelection>
   {
     return Glib::make_refptr_for_instance<NoSelection> (
         new NoSelection (model));
   }
 
   auto
-  NoSelection::get_model () -> Glib::RefPtr<ListModel>
+  NoSelection::get_model () -> Glib::RefPtr<Gio::ListModel>
   {
     auto retvalue = Glib::wrap (gtk_no_selection_get_model (gobj ()));
     if (retvalue)
@@ -140,13 +140,13 @@ namespace Gtk
   }
 
   auto
-  NoSelection::get_model () const -> Glib::RefPtr<const ListModel>
+  NoSelection::get_model () const -> Glib::RefPtr<const Gio::ListModel>
   {
     return const_cast<NoSelection*> (this)->get_model ();
   }
 
   auto
-  NoSelection::set_model (const Glib::RefPtr<ListModel>& model) -> void
+  NoSelection::set_model (const Glib::RefPtr<Gio::ListModel>& model) -> void
   {
     gtk_no_selection_set_model (gobj (), Glib::unwrap (model));
   }
@@ -159,7 +159,7 @@ namespace Gtk
   auto
   NoSelection::property_item_type () const -> Glib::PropertyProxy_ReadOnly<GType>
   {
-    return {this, "item-type"};
+    return Glib::PropertyProxy_ReadOnly<GType> (this, "item-type");
   }
 
   static_assert (
@@ -169,21 +169,22 @@ namespace Gtk
       "There is no suitable template specialization of Glib::Value<>.");
 
   auto
-  NoSelection::property_model () -> Glib::PropertyProxy<Glib::RefPtr<ListModel>>
+  NoSelection::property_model () -> Glib::PropertyProxy<Glib::RefPtr<Gio::ListModel>>
   {
-    return {this, "model"};
+    return Glib::PropertyProxy<Glib::RefPtr<Gio::ListModel>> (this, "model");
   }
 
   auto
-  NoSelection::property_model () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<ListModel>>
+  NoSelection::property_model () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gio::ListModel>>
   {
-    return {this, "model"};
+    return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gio::ListModel>> (this,
+                                                                       "model");
   }
 
   auto
   NoSelection::property_n_items () const -> Glib::PropertyProxy_ReadOnly<unsigned int>
   {
-    return {this, "n-items"};
+    return Glib::PropertyProxy_ReadOnly<unsigned int> (this, "n-items");
   }
 
 } // namespace Gtk

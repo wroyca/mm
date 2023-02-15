@@ -1,6 +1,16 @@
 intf_libs = # Interface dependencies.
 impl_libs = # Implementation dependencies.
-#import xxxx_libs += libhello%lib{hello}
+
+import impl_libs += libmm-pango%lib{mm-pango}
+import impl_libs += libmm-gtk%lib{mm-gtk}
+import impl_libs += libmm-glib%lib{mm-glib}
+import impl_libs += libmm-gio%lib{mm-gio}
+import impl_libs += libmm-gdk%lib{mm-gdk}
+import impl_libs += libmm-cairo%lib{mm-cairo}
+
+import impl_libs += sigc++%lib{sigc++-3.0}
+import impl_libs += glib-2.0%lib{glib-2.0}
+import impl_libs += libadwaita-1.0%lib{adwaita-1}
 
 liba{mm-adw}: {hxx ixx txx cxx}{** -version} hxx{version} $impl_libs $intf_libs
 
@@ -11,6 +21,7 @@ hxx{export}@./: cxx.importable = false
 # Build options.
 #
 cxx.poptions =+ "-I$out_root" "-I$src_root"
+cxx.loptions =+ "/LIBPATH:C:/gnome/lib"
 
 #{hbmia obja}{*}: cxx.poptions += -DLIBMM_ADW_STATIC_BUILD
 #{hbmis objs}{*}: cxx.poptions += -DLIBMM_ADW_SHARED_BUILD

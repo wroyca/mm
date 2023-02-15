@@ -84,8 +84,8 @@ namespace Gtk
     auto
     get_reveal_child () const -> bool;
 
-    void
-    set_reveal_child (bool reveal_child = true);
+    auto
+    set_reveal_child (bool reveal_child = true) -> void;
 
     auto
     get_child_revealed () const -> bool;
@@ -93,19 +93,19 @@ namespace Gtk
     auto
     get_transition_duration () const -> guint;
 
-    void
-    set_transition_duration (guint duration);
+    auto
+    set_transition_duration (guint duration) -> void;
 
     auto
     get_transition_type () const -> RevealerTransitionType;
 
-    void
-    set_transition_type (RevealerTransitionType transition);
+    auto
+    set_transition_type (RevealerTransitionType transition) -> void;
 
-    void
-    set_child (Widget& child);
-    void
-    unset_child ();
+    auto
+    set_child (Widget& child) -> void;
+    auto
+    unset_child () -> void;
 
     auto
     get_child () -> Widget*;
@@ -151,9 +151,7 @@ namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkRevealer* object, bool take_copy = false) -> Gtk::Revealer*;
 } // namespace Glib
 

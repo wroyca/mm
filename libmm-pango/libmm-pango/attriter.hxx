@@ -47,8 +47,8 @@ namespace Pango
     auto
     next () -> bool;
 
-    void
-    get_range (int& start, int& end) const;
+    auto
+    get_range (int& start, int& end) const -> void;
 
     auto
     get_attribute (AttrType type) const -> Attribute;

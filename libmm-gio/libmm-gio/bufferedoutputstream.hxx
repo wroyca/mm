@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: LGPL-2.1-or-later
 
 #ifndef _GIOMM_BUFFEREDOUTPUTSTREAM_H
 #define _GIOMM_BUFFEREDOUTPUTSTREAM_H
@@ -102,11 +103,11 @@ namespace Gio
     auto
     get_buffer_size () const -> gsize;
 
-    void
-    set_buffer_size (gsize size);
+    auto
+    set_buffer_size (gsize size) -> void;
 
-    void
-    set_auto_grow (bool auto_grow = true);
+    auto
+    set_auto_grow (bool auto_grow = true) -> void;
 
     auto
     get_auto_grow () const -> bool;

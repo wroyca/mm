@@ -15,11 +15,11 @@ namespace Glib
 {
 
   auto
-  wrap (GtkBuilderCScope* object, const bool take_copy) -> RefPtr<Gtk::BuilderCScope>
+  wrap (GtkBuilderCScope* object, bool take_copy) -> Glib::RefPtr<Gtk::BuilderCScope>
   {
     return Glib::make_refptr_for_instance<Gtk::BuilderCScope> (
         dynamic_cast<Gtk::BuilderCScope*> (
-            wrap_auto ((GObject*) object, take_copy)));
+            Glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
 } // namespace Glib
@@ -28,7 +28,7 @@ namespace Gtk
 {
 
   auto
-  BuilderCScope_Class::init () -> const Class&
+  BuilderCScope_Class::init () -> const Glib::Class&
   {
     if (!gtype_)
     {
@@ -63,17 +63,17 @@ namespace Gtk
   }
 
   BuilderCScope::BuilderCScope (const Glib::ConstructParams& construct_params)
-    : Object (construct_params)
+    : Glib::Object (construct_params)
   {
   }
 
   BuilderCScope::BuilderCScope (GtkBuilderCScope* castitem)
-    : Object ((GObject*) castitem)
+    : Glib::Object ((GObject*) (castitem))
   {
   }
 
   BuilderCScope::BuilderCScope (BuilderCScope&& src) noexcept
-    : Object (std::move (src)),
+    : Glib::Object (std::move (src)),
       BuilderScope (std::move (src))
   {
   }
@@ -81,12 +81,12 @@ namespace Gtk
   auto
   BuilderCScope::operator= (BuilderCScope&& src) noexcept -> BuilderCScope&
   {
-    Object::operator= (std::move (src));
+    Glib::Object::operator= (std::move (src));
     BuilderScope::operator= (std::move (src));
     return *this;
   }
 
-  BuilderCScope::~BuilderCScope () noexcept = default;
+  BuilderCScope::~BuilderCScope () noexcept {}
 
   BuilderCScope::CppClassType BuilderCScope::buildercscope_class_;
 
@@ -103,8 +103,8 @@ namespace Gtk
   }
 
   BuilderCScope::BuilderCScope ()
-    : ObjectBase (nullptr),
-      Object (Glib::ConstructParams (buildercscope_class_.init ()))
+    : Glib::ObjectBase (nullptr),
+      Glib::Object (Glib::ConstructParams (buildercscope_class_.init ()))
   {
   }
 

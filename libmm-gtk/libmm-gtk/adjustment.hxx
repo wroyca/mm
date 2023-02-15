@@ -103,52 +103,52 @@ namespace Gtk
             double page_increment = 10,
             double page_size = 0) -> Glib::RefPtr<Adjustment>;
 
-    void
-    clamp_page (double lower, double upper);
+    auto
+    clamp_page (double lower, double upper) -> void;
 
-    void
-    set_value (double value);
+    auto
+    set_value (double value) -> void;
 
     auto
     get_value () const -> double;
 
-    void
-    set_lower (double lower);
+    auto
+    set_lower (double lower) -> void;
 
     auto
     get_lower () const -> double;
 
-    void
-    set_upper (double upper);
+    auto
+    set_upper (double upper) -> void;
 
     auto
     get_upper () const -> double;
 
-    void
-    set_step_increment (double step_increment);
+    auto
+    set_step_increment (double step_increment) -> void;
 
     auto
     get_step_increment () const -> double;
 
-    void
-    set_page_increment (double page_increment);
+    auto
+    set_page_increment (double page_increment) -> void;
 
     auto
     get_page_increment () const -> double;
 
-    void
-    set_page_size (double page_size);
+    auto
+    set_page_size (double page_size) -> void;
 
     auto
     get_page_size () const -> double;
 
-    void
+    auto
     configure (double value,
                double lower,
                double upper,
                double step_increment,
                double page_increment,
-               double page_size);
+               double page_size) -> void;
 
     auto
     get_minimum_increment () const -> double;
@@ -198,20 +198,18 @@ namespace Gtk
   public:
   public:
   protected:
-    virtual void
-    on_changed ();
+    virtual auto
+    on_changed () -> void;
 
-    virtual void
-    on_value_changed ();
+    virtual auto
+    on_value_changed () -> void;
   };
 
 } // namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkAdjustment* object, bool take_copy = false) -> Glib::RefPtr<Gtk::Adjustment>;
 } // namespace Glib
 

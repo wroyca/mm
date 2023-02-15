@@ -16,14 +16,14 @@ namespace Cairo
   class CAIROMM_API Win32FontFace : public FontFace
   {
   public:
-    static RefPtr<Win32FontFace>
-    create (LOGFONTW* logfont);
+    static auto
+    create (LOGFONTW* logfont) -> RefPtr<Win32FontFace>;
 
-    static RefPtr<Win32FontFace>
-    create (HFONT font);
+    static auto
+    create (HFONT font) -> RefPtr<Win32FontFace>;
 
-    static RefPtr<Win32FontFace>
-    create (LOGFONTW* logfont, HFONT font);
+    static auto
+    create (LOGFONTW* logfont, HFONT font) -> RefPtr<Win32FontFace>;
 
   protected:
     Win32FontFace (LOGFONTW* logfont);
@@ -34,26 +34,27 @@ namespace Cairo
   class CAIROMM_API Win32ScaledFont : public ScaledFont
   {
   public:
-    static RefPtr<Win32ScaledFont>
+    static auto
     create (const RefPtr<Win32FontFace>& font_face,
             const Matrix& font_matrix,
             const Matrix& ctm,
-            const FontOptions& options = FontOptions ());
+            const FontOptions& options = FontOptions ())
+        -> RefPtr<Win32ScaledFont>;
 
-    void
-    select_font (HDC hdc);
+    auto
+    select_font (HDC hdc) -> void;
 
-    void
-    done_font ();
+    auto
+    done_font () -> void;
 
-    double
-    get_metrics_factor () const;
+    auto
+    get_metrics_factor () const -> double;
 
-    void
-    get_logical_to_device (Matrix& logical_to_device) const;
+    auto
+    get_logical_to_device (Matrix& logical_to_device) const -> void;
 
-    void
-    get_device_to_logical (Matrix& device_to_logical) const;
+    auto
+    get_device_to_logical (Matrix& device_to_logical) const -> void;
 
   protected:
     Win32ScaledFont (const RefPtr<Win32FontFace>& font_face,

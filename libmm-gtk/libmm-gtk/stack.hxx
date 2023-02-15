@@ -94,8 +94,8 @@ namespace Gtk
     add (Widget& child, const Glib::ustring& name, const Glib::ustring& title)
         -> Glib::RefPtr<StackPage>;
 
-    void
-    remove (Widget& child);
+    auto
+    remove (Widget& child) -> void;
 
     auto
     get_page (Widget& child) -> Glib::RefPtr<StackPage>;
@@ -103,8 +103,8 @@ namespace Gtk
     auto
     get_page (const Widget& child) const -> Glib::RefPtr<const StackPage>;
 
-    void
-    set_visible_child (Widget& child);
+    auto
+    set_visible_child (Widget& child) -> void;
 
     auto
     get_visible_child () -> Widget*;
@@ -112,36 +112,36 @@ namespace Gtk
     auto
     get_visible_child () const -> const Widget*;
 
-    void
-    set_visible_child (const Glib::ustring& name);
+    auto
+    set_visible_child (const Glib::ustring& name) -> void;
 
-    void
+    auto
     set_visible_child (const Glib::ustring& name,
-                       StackTransitionType transition);
+                       StackTransitionType transition) -> void;
 
     auto
     get_visible_child_name () const -> Glib::ustring;
 
-    void
-    set_hhomogeneous (bool hhomogeneous = true);
+    auto
+    set_hhomogeneous (bool hhomogeneous = true) -> void;
 
     auto
     get_hhomogeneous () const -> bool;
 
-    void
-    set_vhomogeneous (bool vhomogeneous = true);
+    auto
+    set_vhomogeneous (bool vhomogeneous = true) -> void;
 
     auto
     get_vhomogeneous () const -> bool;
 
-    void
-    set_transition_duration (guint duration);
+    auto
+    set_transition_duration (guint duration) -> void;
 
     auto
     get_transition_duration () const -> guint;
 
-    void
-    set_transition_type (StackTransitionType transition);
+    auto
+    set_transition_type (StackTransitionType transition) -> void;
 
     auto
     get_transition_type () const -> StackTransitionType;
@@ -155,8 +155,8 @@ namespace Gtk
     auto
     get_child_by_name (const Glib::ustring& name) const -> const Widget*;
 
-    void
-    set_interpolate_size (bool interpolate_size);
+    auto
+    set_interpolate_size (bool interpolate_size) -> void;
 
     auto
     get_interpolate_size () const -> bool;
@@ -228,9 +228,7 @@ namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkStack* object, bool take_copy = false) -> Gtk::Stack*;
 } // namespace Glib
 

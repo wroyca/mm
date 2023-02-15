@@ -80,17 +80,17 @@ namespace Gtk
   public:
     explicit WindowControls (PackType side);
 
-    void
-    set_side (PackType side);
+    auto
+    set_side (PackType side) -> void;
 
     auto
     get_side () const -> PackType;
 
-    void
-    set_decoration_layout (const Glib::ustring& layout);
+    auto
+    set_decoration_layout (const Glib::ustring& layout) -> void;
 
-    void
-    unset_decoration_layout ();
+    auto
+    unset_decoration_layout () -> void;
 
     auto
     get_decoration_layout () const -> Glib::ustring;
@@ -123,9 +123,7 @@ namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkWindowControls* object, bool take_copy = false) -> Gtk::WindowControls*;
 } // namespace Glib
 

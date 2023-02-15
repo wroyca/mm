@@ -101,8 +101,8 @@ namespace Gtk
     auto
     get_model () const -> Glib::RefPtr<const Gio::ListModel>;
 
-    void
-    set_model (const Glib::RefPtr<Gio::ListModel>& model);
+    auto
+    set_model (const Glib::RefPtr<Gio::ListModel>& model) -> void;
 
     auto
     property_item_type () const -> Glib::PropertyProxy_ReadOnly<GType>;
@@ -126,9 +126,7 @@ namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkMultiSelection* object, bool take_copy = false) -> Glib::RefPtr<Gtk::MultiSelection>;
 } // namespace Glib
 

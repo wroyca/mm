@@ -93,8 +93,8 @@ namespace Gdk
     auto
     get_default_display () const -> Glib::RefPtr<const Display>;
 
-    void
-    set_default_display (const Glib::RefPtr<Display>& display);
+    auto
+    set_default_display (const Glib::RefPtr<Display>& display) -> void;
 
     auto
     list_displays () -> std::vector<Glib::RefPtr<Display>>;
@@ -122,9 +122,7 @@ namespace Gdk
 
 namespace Glib
 {
-
-  GDKMM_API
-  auto
+  GDKMM_API auto
   wrap (GdkDisplayManager* object, bool take_copy = false) -> Glib::RefPtr<Gdk::DisplayManager>;
 } // namespace Glib
 

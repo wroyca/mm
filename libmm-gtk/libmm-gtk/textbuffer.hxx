@@ -126,11 +126,11 @@ namespace Gtk
     auto
     get_tag_table () const -> Glib::RefPtr<const TextBuffer::TagTable>;
 
-    void
-    set_text (const Glib::ustring& text);
+    auto
+    set_text (const Glib::ustring& text) -> void;
 
-    void
-    set_text (const char* text_begin, const char* text_end);
+    auto
+    set_text (const char* text_begin, const char* text_end) -> void;
 
     auto
     insert (const iterator& pos, const Glib::ustring& text) -> iterator;
@@ -139,11 +139,11 @@ namespace Gtk
     insert (const iterator& pos, const char* text_begin, const char* text_end)
         -> iterator;
 
-    void
-    insert_at_cursor (const Glib::ustring& text);
+    auto
+    insert_at_cursor (const Glib::ustring& text) -> void;
 
-    void
-    insert_at_cursor (const char* text_begin, const char* text_end);
+    auto
+    insert_at_cursor (const char* text_begin, const char* text_end) -> void;
 
     auto
     insert_interactive (const iterator& pos,
@@ -271,9 +271,9 @@ namespace Gtk
     auto
     create_child_anchor (const iterator& pos) -> Glib::RefPtr<ChildAnchor>;
 
-    void
-    add_mark (const Glib::RefPtr<TextBuffer::Mark>& mark,
-              const iterator& where);
+    auto
+    add_mark (const Glib::RefPtr<TextBuffer::Mark>& mark, const iterator& where)
+        -> void;
 
     auto
     create_mark (const Glib::ustring& mark_name,
@@ -284,11 +284,11 @@ namespace Gtk
     create_mark (const iterator& where, bool left_gravity = true)
         -> Glib::RefPtr<Mark>;
 
-    void
-    move_mark (const Glib::RefPtr<Mark>& mark, const iterator& where);
+    auto
+    move_mark (const Glib::RefPtr<Mark>& mark, const iterator& where) -> void;
 
-    void
-    delete_mark (const Glib::RefPtr<Mark>& mark);
+    auto
+    delete_mark (const Glib::RefPtr<Mark>& mark) -> void;
 
     auto
     get_mark (const Glib::ustring& name) -> Glib::RefPtr<TextBuffer::Mark>;
@@ -297,11 +297,12 @@ namespace Gtk
     get_mark (const Glib::ustring& name) const
         -> Glib::RefPtr<const TextBuffer::Mark>;
 
-    void
-    move_mark_by_name (const Glib::ustring& name, const iterator& where);
+    auto
+    move_mark_by_name (const Glib::ustring& name, const iterator& where)
+        -> void;
 
-    void
-    delete_mark_by_name (const Glib::ustring& name);
+    auto
+    delete_mark_by_name (const Glib::ustring& name) -> void;
 
     auto
     get_insert () -> Glib::RefPtr<TextBuffer::Mark>;
@@ -309,31 +310,32 @@ namespace Gtk
     auto
     get_selection_bound () -> Glib::RefPtr<TextBuffer::Mark>;
 
-    void
-    place_cursor (const iterator& where);
+    auto
+    place_cursor (const iterator& where) -> void;
 
-    void
+    auto
     apply_tag (const Glib::RefPtr<Tag>& tag,
                const iterator& range_start,
-               const iterator& range_end);
+               const iterator& range_end) -> void;
 
-    void
+    auto
     remove_tag (const Glib::RefPtr<Tag>& tag,
                 const iterator& range_start,
-                const iterator& range_end);
+                const iterator& range_end) -> void;
 
-    void
+    auto
     apply_tag_by_name (const Glib::ustring& name,
                        const iterator& range_start,
-                       const iterator& range_end);
+                       const iterator& range_end) -> void;
 
-    void
+    auto
     remove_tag_by_name (const Glib::ustring& name,
                         const iterator& range_start,
-                        const iterator& range_end);
+                        const iterator& range_end) -> void;
 
-    void
-    remove_all_tags (const iterator& range_start, const iterator& range_end);
+    auto
+    remove_all_tags (const iterator& range_start, const iterator& range_end)
+        -> void;
 
     auto
     create_tag (const Glib::ustring& tag_name) -> Glib::RefPtr<Tag>;
@@ -367,10 +369,11 @@ namespace Gtk
     end () -> iterator;
     auto
     end () const -> const_iterator;
-    void
-    get_bounds (iterator& range_begin, iterator& range_end);
-    void
-    get_bounds (const_iterator& range_begin, const_iterator& range_end) const;
+    auto
+    get_bounds (iterator& range_begin, iterator& range_end) -> void;
+    auto
+    get_bounds (const_iterator& range_begin, const_iterator& range_end) const
+        -> void;
 
     auto
     get_iter_at_mark (const Glib::RefPtr<Mark>& mark) -> iterator;
@@ -389,33 +392,35 @@ namespace Gtk
     auto
     get_modified () const -> bool;
 
-    void
-    set_modified (bool setting = true);
+    auto
+    set_modified (bool setting = true) -> void;
 
     auto
     get_has_selection () const -> bool;
 
-    void
-    add_selection_clipboard (const Glib::RefPtr<Gdk::Clipboard>& clipboard);
+    auto
+    add_selection_clipboard (const Glib::RefPtr<Gdk::Clipboard>& clipboard)
+        -> void;
 
-    void
-    remove_selection_clipboard (const Glib::RefPtr<Gdk::Clipboard>& clipboard);
+    auto
+    remove_selection_clipboard (const Glib::RefPtr<Gdk::Clipboard>& clipboard)
+        -> void;
 
-    void
+    auto
     cut_clipboard (const Glib::RefPtr<Gdk::Clipboard>& clipboard,
-                   bool default_editable = true);
+                   bool default_editable = true) -> void;
 
-    void
-    copy_clipboard (const Glib::RefPtr<Gdk::Clipboard>& clipboard);
+    auto
+    copy_clipboard (const Glib::RefPtr<Gdk::Clipboard>& clipboard) -> void;
 
-    void
+    auto
     paste_clipboard (const Glib::RefPtr<Gdk::Clipboard>& clipboard,
                      const iterator& override_location,
-                     bool default_editable = true);
+                     bool default_editable = true) -> void;
 
-    void
+    auto
     paste_clipboard (const Glib::RefPtr<Gdk::Clipboard>& clipboard,
-                     bool default_editable = true);
+                     bool default_editable = true) -> void;
 
     auto
     get_selection_bounds (iterator& range_start, iterator& range_end) -> bool;
@@ -431,8 +436,8 @@ namespace Gtk
     auto
     get_selection_content () -> Glib::RefPtr<Gdk::ContentProvider>;
 
-    void
-    select_range (const iterator& ins, const iterator& bound);
+    auto
+    select_range (const iterator& ins, const iterator& bound) -> void;
 
     auto
     get_can_undo () const -> bool;
@@ -443,32 +448,32 @@ namespace Gtk
     auto
     get_enable_undo () const -> bool;
 
-    void
-    set_enable_undo (bool enable_undo = true);
+    auto
+    set_enable_undo (bool enable_undo = true) -> void;
 
     auto
     get_max_undo_levels () const -> guint;
 
-    void
-    set_max_undo_levels (guint max_undo_levels);
+    auto
+    set_max_undo_levels (guint max_undo_levels) -> void;
 
-    void
-    undo ();
+    auto
+    undo () -> void;
 
-    void
-    redo ();
+    auto
+    redo () -> void;
 
-    void
-    begin_irreversible_action ();
+    auto
+    begin_irreversible_action () -> void;
 
-    void
-    end_irreversible_action ();
+    auto
+    end_irreversible_action () -> void;
 
-    void
-    begin_user_action ();
+    auto
+    begin_user_action () -> void;
 
-    void
-    end_user_action ();
+    auto
+    end_user_action () -> void;
 
     auto
     signal_insert () -> Glib::SignalProxy<
@@ -568,67 +573,66 @@ namespace Gtk
   public:
   public:
   protected:
-    virtual void
-    on_insert (TextBuffer::iterator& pos, const Glib::ustring& text, int bytes);
+    virtual auto
+    on_insert (TextBuffer::iterator& pos, const Glib::ustring& text, int bytes)
+        -> void;
 
-    virtual void
+    virtual auto
     on_insert_paintable (TextBuffer::iterator& pos,
-                         const Glib::RefPtr<Gdk::Paintable>& paintable);
+                         const Glib::RefPtr<Gdk::Paintable>& paintable) -> void;
 
-    virtual void
+    virtual auto
     on_insert_child_anchor (TextBuffer::iterator& pos,
-                            const Glib::RefPtr<ChildAnchor>& anchor);
+                            const Glib::RefPtr<ChildAnchor>& anchor) -> void;
 
-    virtual void
+    virtual auto
     on_erase (TextBuffer::iterator& range_start,
-              TextBuffer::iterator& range_end);
+              TextBuffer::iterator& range_end) -> void;
 
-    virtual void
-    on_changed ();
+    virtual auto
+    on_changed () -> void;
 
-    virtual void
-    on_modified_changed ();
+    virtual auto
+    on_modified_changed () -> void;
 
-    virtual void
+    virtual auto
     on_mark_set (const TextBuffer::iterator& location,
-                 const Glib::RefPtr<TextBuffer::Mark>& mark);
+                 const Glib::RefPtr<TextBuffer::Mark>& mark) -> void;
 
-    virtual void
-    on_mark_deleted (const Glib::RefPtr<TextBuffer::Mark>& mark);
+    virtual auto
+    on_mark_deleted (const Glib::RefPtr<TextBuffer::Mark>& mark) -> void;
 
-    virtual void
+    virtual auto
     on_apply_tag (const Glib::RefPtr<TextBuffer::Tag>& tag,
                   const TextBuffer::iterator& range_begin,
-                  const TextBuffer::iterator& range_end);
+                  const TextBuffer::iterator& range_end) -> void;
 
-    virtual void
+    virtual auto
     on_remove_tag (const Glib::RefPtr<TextBuffer::Tag>& tag,
                    const TextBuffer::iterator& range_begin,
-                   const TextBuffer::iterator& range_end);
+                   const TextBuffer::iterator& range_end) -> void;
 
-    virtual void
-    on_begin_user_action ();
+    virtual auto
+    on_begin_user_action () -> void;
 
-    virtual void
-    on_end_user_action ();
+    virtual auto
+    on_end_user_action () -> void;
 
-    virtual void
-    on_paste_done (const Glib::RefPtr<Gdk::Clipboard>& clipboard);
+    virtual auto
+    on_paste_done (const Glib::RefPtr<Gdk::Clipboard>& clipboard) -> void;
 
-    virtual void
-    on_redo ();
+    virtual auto
+    on_redo () -> void;
 
-    virtual void
-    on_undo ();
+    virtual auto
+    on_undo () -> void;
   };
 
 } // namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkTextBuffer* object, bool take_copy = false) -> Glib::RefPtr<Gtk::TextBuffer>;
 } // namespace Glib
 

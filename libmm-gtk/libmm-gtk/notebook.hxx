@@ -147,13 +147,13 @@ namespace Gtk
                  int position,
                  bool use_mnemonic = false) -> int;
 
-    void
-    remove_page (int page_number = 0);
-    void
-    remove_page (Widget& child);
+    auto
+    remove_page (int page_number = 0) -> void;
+    auto
+    remove_page (Widget& child) -> void;
 
-    void
-    set_group_name (const Glib::ustring& group_name);
+    auto
+    set_group_name (const Glib::ustring& group_name) -> void;
 
     auto
     get_group_name () const -> Glib::ustring;
@@ -173,44 +173,44 @@ namespace Gtk
     auto
     page_num (const Widget& child) const -> int;
 
-    void
-    set_current_page (int page_number);
+    auto
+    set_current_page (int page_number) -> void;
 
-    void
-    next_page ();
+    auto
+    next_page () -> void;
 
-    void
-    prev_page ();
+    auto
+    prev_page () -> void;
 
-    void
-    set_show_border (bool show_border = true);
+    auto
+    set_show_border (bool show_border = true) -> void;
 
     auto
     get_show_border () const -> bool;
 
-    void
-    set_show_tabs (bool show_tabs = true);
+    auto
+    set_show_tabs (bool show_tabs = true) -> void;
 
     auto
     get_show_tabs () const -> bool;
 
-    void
-    set_tab_pos (PositionType pos);
+    auto
+    set_tab_pos (PositionType pos) -> void;
 
     auto
     get_tab_pos () const -> PositionType;
 
-    void
-    set_scrollable (bool scrollable = true);
+    auto
+    set_scrollable (bool scrollable = true) -> void;
 
     auto
     get_scrollable () const -> bool;
 
-    void
-    popup_enable ();
+    auto
+    popup_enable () -> void;
 
-    void
-    popup_disable ();
+    auto
+    popup_disable () -> void;
 
     auto
     get_tab_label (Widget& child) -> Widget*;
@@ -218,11 +218,11 @@ namespace Gtk
     auto
     get_tab_label (Widget& child) const -> const Widget*;
 
-    void
-    set_tab_label (Widget& child, Widget& tab_label);
+    auto
+    set_tab_label (Widget& child, Widget& tab_label) -> void;
 
-    void
-    set_tab_label_text (Widget& child, const Glib::ustring& tab_text);
+    auto
+    set_tab_label_text (Widget& child, const Glib::ustring& tab_text) -> void;
 
     auto
     get_tab_label_text (Widget& child) const -> Glib::ustring;
@@ -233,38 +233,39 @@ namespace Gtk
     auto
     get_menu_label (Widget& child) const -> const Widget*;
 
-    void
-    set_menu_label (Widget& child, Widget& menu_label);
+    auto
+    set_menu_label (Widget& child, Widget& menu_label) -> void;
 
-    void
-    set_menu_label_text (Widget& child, const Glib::ustring& menu_text);
+    auto
+    set_menu_label_text (Widget& child, const Glib::ustring& menu_text) -> void;
 
     auto
     get_menu_label_text (Widget& child) const -> Glib::ustring;
 
-    void
-    reorder_child (Widget& child, int position);
+    auto
+    reorder_child (Widget& child, int position) -> void;
 
     auto
     get_tab_reorderable (Widget& child) const -> bool;
 
-    void
-    set_tab_reorderable (Widget& child, bool reorderable = true);
+    auto
+    set_tab_reorderable (Widget& child, bool reorderable = true) -> void;
 
     auto
     get_tab_detachable (Widget& child) const -> bool;
 
-    void
-    set_tab_detachable (Widget& child, bool detachable = true);
+    auto
+    set_tab_detachable (Widget& child, bool detachable = true) -> void;
 
-    void
-    detach_tab (Widget& child);
+    auto
+    detach_tab (Widget& child) -> void;
 
     auto
     get_action_widget (PackType pack_type = PackType::START) -> Widget*;
 
-    void
-    set_action_widget (Widget* widget, PackType pack_type = PackType::START);
+    auto
+    set_action_widget (Widget* widget, PackType pack_type = PackType::START)
+        -> void;
 
     auto
     get_page (Widget& child) -> Glib::RefPtr<NotebookPage>;
@@ -345,9 +346,7 @@ namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkNotebook* object, bool take_copy = false) -> Gtk::Notebook*;
 } // namespace Glib
 

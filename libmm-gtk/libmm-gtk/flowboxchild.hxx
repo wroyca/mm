@@ -81,10 +81,10 @@ namespace Gtk
   public:
     FlowBoxChild ();
 
-    void
-    set_child (Widget& child);
-    void
-    unset_child ();
+    auto
+    set_child (Widget& child) -> void;
+    auto
+    unset_child () -> void;
 
     auto
     get_child () -> Widget*;
@@ -98,8 +98,8 @@ namespace Gtk
     auto
     is_selected () const -> bool;
 
-    void
-    changed ();
+    auto
+    changed () -> void;
 
     auto
     signal_activate () -> Glib::SignalProxy<void ()>;
@@ -113,17 +113,15 @@ namespace Gtk
   public:
   public:
   protected:
-    virtual void
-    on_activate ();
+    virtual auto
+    on_activate () -> void;
   };
 
 } // namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkFlowBoxChild* object, bool take_copy = false) -> Gtk::FlowBoxChild*;
 } // namespace Glib
 

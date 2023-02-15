@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: LGPL-2.1-or-later
 
 #ifndef _GIOMM_TLSCLIENTCONNECTION_H
 #define _GIOMM_TLSCLIENTCONNECTION_H
@@ -75,8 +76,8 @@ namespace Gio
 
     ~TlsClientConnection () noexcept override;
 
-    static void
-    add_interface (GType gtype_implementer);
+    static auto
+    add_interface (GType gtype_implementer) -> void;
 
     static auto
     get_type () -> GType G_GNUC_CONST;
@@ -109,8 +110,9 @@ namespace Gio
     create (const Glib::RefPtr<IOStream>& base_io_stream)
         -> Glib::RefPtr<TlsClientConnectionImpl>;
 
-    void
-    set_server_identity (const Glib::RefPtr<SocketConnectable>& identity);
+    auto
+    set_server_identity (const Glib::RefPtr<SocketConnectable>& identity)
+        -> void;
 
     auto
     get_server_identity () -> Glib::RefPtr<SocketConnectable>;
@@ -120,8 +122,8 @@ namespace Gio
 
 #ifndef GIOMM_DISABLE_DEPRECATED
 
-    void
-    set_validation_flags (TlsCertificateFlags flags);
+    auto
+    set_validation_flags (TlsCertificateFlags flags) -> void;
 #endif
 
 #ifndef GIOMM_DISABLE_DEPRECATED
@@ -137,8 +139,9 @@ namespace Gio
     get_accepted_cas () const
         -> std::vector<Glib::RefPtr<const Glib::ByteArray>>;
 
-    void
-    copy_session_state (const Glib::RefPtr<TlsClientConnection>& source);
+    auto
+    copy_session_state (const Glib::RefPtr<TlsClientConnection>& source)
+        -> void;
 
     auto
     property_server_identity ()

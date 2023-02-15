@@ -15,7 +15,7 @@ namespace Glib
 {
 
   auto
-  wrap (GtkCssSection* object, const bool take_copy) -> RefPtr<Gtk::CssSection>
+  wrap (GtkCssSection* object, bool take_copy) -> Glib::RefPtr<Gtk::CssSection>
   {
     if (take_copy && object)
       gtk_css_section_ref (object);
@@ -69,16 +69,17 @@ namespace Gtk
                       const CssLocation& start,
                       const CssLocation& end) -> Glib::RefPtr<CssSection>
   {
-    return Glib::wrap (gtk_css_section_new (Glib::unwrap<Gio::File> (file),
-                                            start.gobj (),
-                                            end.gobj ()));
+    return Glib::wrap (gtk_css_section_new (
+        const_cast<GFile*> (Glib::unwrap<Gio::File> (file)),
+        (start).gobj (),
+        (end).gobj ()));
   }
 
   auto
   CssSection::to_string () const -> Glib::ustring
   {
     return Glib::convert_return_gchar_ptr_to_ustring (
-        gtk_css_section_to_string (gobj ()));
+        gtk_css_section_to_string (const_cast<GtkCssSection*> (gobj ())));
   }
 
   auto
@@ -114,13 +115,15 @@ namespace Gtk
   auto
   CssSection::get_start_location () const -> CssLocation
   {
-    return Glib::wrap (gtk_css_section_get_start_location (gobj ()));
+    return Glib::wrap (gtk_css_section_get_start_location (
+        const_cast<GtkCssSection*> (gobj ())));
   }
 
   auto
   CssSection::get_end_location () const -> CssLocation
   {
-    return Glib::wrap (gtk_css_section_get_end_location (gobj ()));
+    return Glib::wrap (gtk_css_section_get_end_location (
+        const_cast<GtkCssSection*> (gobj ())));
   }
 
 } // namespace Gtk

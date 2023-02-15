@@ -85,8 +85,8 @@ namespace Gtk
     auto
     get_sort_order () const -> SortType;
 
-    void
-    set_sort_order (SortType sort_order);
+    auto
+    set_sort_order (SortType sort_order) -> void;
 
     auto
     property_sort_order () -> Glib::PropertyProxy<SortType>;
@@ -118,8 +118,8 @@ namespace Gtk
     auto
     get_expression () const -> Glib::RefPtr<const Expression<T>>;
 
-    void
-    set_expression (const Glib::RefPtr<Expression<T>>& expression);
+    auto
+    set_expression (const Glib::RefPtr<Expression<T>>& expression) -> void;
 
     auto
     property_expression () -> Glib::PropertyProxy<Glib::RefPtr<Expression<T>>>;
@@ -147,9 +147,9 @@ namespace Gtk
   }
 
   template <class T>
-  void
+  auto
   NumericSorter<T>::set_expression (
-      const Glib::RefPtr<Expression<T>>& expression)
+      const Glib::RefPtr<Expression<T>>& expression) -> void
   {
     gtk_numeric_sorter_set_expression (
         gobj (),
@@ -195,9 +195,7 @@ namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkNumericSorter* object, bool take_copy = false) -> Glib::RefPtr<Gtk::NumericSorterBase>;
 } // namespace Glib
 

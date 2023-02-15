@@ -94,53 +94,53 @@ namespace Gtk
 
     typedef sigc::slot<int (FlowBoxChild*, FlowBoxChild*)> SlotSort;
 
-    void
-    set_homogeneous (bool homogeneous = true);
+    auto
+    set_homogeneous (bool homogeneous = true) -> void;
 
     auto
     get_homogeneous () const -> bool;
 
-    void
-    set_row_spacing (guint spacing);
+    auto
+    set_row_spacing (guint spacing) -> void;
 
     auto
     get_row_spacing () const -> guint;
 
-    void
-    set_column_spacing (guint spacing);
+    auto
+    set_column_spacing (guint spacing) -> void;
 
     auto
     get_column_spacing () const -> guint;
 
-    void
-    set_min_children_per_line (guint n_children);
+    auto
+    set_min_children_per_line (guint n_children) -> void;
 
     auto
     get_min_children_per_line () const -> guint;
 
-    void
-    set_max_children_per_line (guint n_children);
+    auto
+    set_max_children_per_line (guint n_children) -> void;
 
     auto
     get_max_children_per_line () const -> guint;
 
-    void
-    set_activate_on_single_click (bool single = true);
+    auto
+    set_activate_on_single_click (bool single = true) -> void;
 
     auto
     get_activate_on_single_click () const -> bool;
 
-    void
-    prepend (Widget& child);
+    auto
+    prepend (Widget& child) -> void;
 
-    void
-    append (Widget& child);
+    auto
+    append (Widget& child) -> void;
 
-    void
-    insert (Widget& widget, int position);
+    auto
+    insert (Widget& widget, int position) -> void;
 
-    void
-    remove (Widget& widget);
+    auto
+    remove (Widget& widget) -> void;
 
     auto
     get_child_at_index (int idx) -> FlowBoxChild*;
@@ -154,8 +154,8 @@ namespace Gtk
     auto
     get_child_at_pos (int x, int y) const -> const FlowBoxChild*;
 
-    void
-    selected_foreach (const SlotSelectedForeach& slot);
+    auto
+    selected_foreach (const SlotSelectedForeach& slot) -> void;
 
     auto
     get_selected_children () -> std::vector<Gtk::FlowBoxChild*>;
@@ -163,60 +163,61 @@ namespace Gtk
     auto
     get_selected_children () const -> std::vector<const Gtk::FlowBoxChild*>;
 
-    void
-    select_child (FlowBoxChild& child);
+    auto
+    select_child (FlowBoxChild& child) -> void;
 
-    void
-    unselect_child (FlowBoxChild& child);
+    auto
+    unselect_child (FlowBoxChild& child) -> void;
 
-    void
-    select_all ();
+    auto
+    select_all () -> void;
 
-    void
-    unselect_all ();
+    auto
+    unselect_all () -> void;
 
-    void
-    set_selection_mode (SelectionMode mode = SelectionMode::NONE);
+    auto
+    set_selection_mode (SelectionMode mode = SelectionMode::NONE) -> void;
 
     auto
     get_selection_mode () const -> SelectionMode;
 
-    void
-    set_hadjustment (const Glib::RefPtr<Adjustment>& adjustment);
+    auto
+    set_hadjustment (const Glib::RefPtr<Adjustment>& adjustment) -> void;
 
-    void
-    set_vadjustment (const Glib::RefPtr<Adjustment>& adjustment);
+    auto
+    set_vadjustment (const Glib::RefPtr<Adjustment>& adjustment) -> void;
 
-    void
-    set_filter_func (const SlotFilter& slot);
+    auto
+    set_filter_func (const SlotFilter& slot) -> void;
 
-    void
-    unset_filter_func ();
+    auto
+    unset_filter_func () -> void;
 
-    void
-    invalidate_filter ();
+    auto
+    invalidate_filter () -> void;
 
-    void
-    set_sort_func (const SlotSort& slot);
+    auto
+    set_sort_func (const SlotSort& slot) -> void;
 
-    void
-    unset_sort_func ();
+    auto
+    unset_sort_func () -> void;
 
-    void
-    invalidate_sort ();
+    auto
+    invalidate_sort () -> void;
 
     template <typename T_item>
     using SlotCreateWidget =
         sigc::slot<Gtk::Widget*(const Glib::RefPtr<T_item>&)>;
 
-    void
+    auto
     bind_model (const Glib::RefPtr<Gio::ListModel>& model,
-                const SlotCreateWidget<Glib::Object>& slot_create_widget);
+                const SlotCreateWidget<Glib::Object>& slot_create_widget)
+        -> void;
 
     template <typename T_item, typename T_slot>
-    void
+    auto
     bind_list_store (const Glib::RefPtr<Gio::ListStore<T_item>>& store,
-                     T_slot&& slot_create_widget);
+                     T_slot&& slot_create_widget) -> void;
 
     auto
     property_selection_mode () -> Glib::PropertyProxy<SelectionMode>;
@@ -291,9 +292,9 @@ namespace Gtk
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   template <typename T_item, typename T_slot>
-  void
+  auto
   FlowBox::bind_list_store (const Glib::RefPtr<Gio::ListStore<T_item>>& store,
-                            T_slot&& slot_create_widget)
+                            T_slot&& slot_create_widget) -> void
   {
     auto slot_copy = new SlotCreateWidget<T_item> (
         std::forward<T_slot> (slot_create_widget));
@@ -333,9 +334,7 @@ namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkFlowBox* object, bool take_copy = false) -> Gtk::FlowBox*;
 } // namespace Glib
 

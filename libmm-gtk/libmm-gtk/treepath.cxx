@@ -1,25 +1,31 @@
 // SPDX-License-Identifier: LGPL-2.1-or-later
 
-#include <libmm-glib/mm-glib.hxx>
+#undef GTK_DISABLE_DEPRECATED
+#define GDK_DISABLE_DEPRECATION_WARNINGS 1
 
-#include <libmm-gtk/treepath.hxx>
-#include <libmm-gtk/treepath_p.hxx>
+#include <libmm-gtk/mm-gtkconfig.hxx>
+#ifndef GTKMM_DISABLE_DEPRECATED
 
-#include <gtk/gtk.h>
-#include <libmm-glib/utility.hxx>
-#include <libmm-gtk/treemodel.hxx>
+  #include <libmm-glib/mm-glib.hxx>
+
+  #include <libmm-gtk/treepath.hxx>
+  #include <libmm-gtk/treepath_p.hxx>
+
+  #include <gtk/gtk.h>
+  #include <libmm-glib/utility.hxx>
+  #include <libmm-gtk/treemodel.hxx>
 
 namespace Gtk
 {
 
-  TreePath::TreePath (GtkTreePath* gobject, const bool make_a_copy)
+  TreePath::TreePath (GtkTreePath* gobject, bool make_a_copy)
     : gobject_ (gobject ?
                     (make_a_copy ? gtk_tree_path_copy (gobject) : gobject) :
                     gtk_tree_path_new ())
   {
   }
 
-  TreePath::TreePath (size_type n, const value_type value)
+  TreePath::TreePath (TreePath::size_type n, TreePath::value_type value)
     : gobject_ (gtk_tree_path_new ())
   {
     for (; n > 0; --n)
@@ -58,7 +64,7 @@ namespace Gtk
   }
 
   auto
-  TreePath::size () const -> size_type
+  TreePath::size () const -> TreePath::size_type
   {
     return gtk_tree_path_get_depth (gobject_);
   }
@@ -71,44 +77,44 @@ namespace Gtk
   auto
   TreePath::empty () const -> bool
   {
-    return gtk_tree_path_get_depth (gobject_) == 0;
+    return (gtk_tree_path_get_depth (gobject_) == 0);
   }
 
   auto
-  TreePath::operator[] (const size_type i) -> reference
+  TreePath::operator[] (TreePath::size_type i) -> TreePath::reference
   {
     int* const indices = gtk_tree_path_get_indices (gobject_);
     return indices[i];
   }
 
   auto
-  TreePath::operator[] (const size_type i) const -> const_reference
+  TreePath::operator[] (TreePath::size_type i) const -> TreePath::const_reference
   {
     const int* const indices = gtk_tree_path_get_indices (gobject_);
     return indices[i];
   }
 
   auto
-  TreePath::begin () -> iterator
+  TreePath::begin () -> TreePath::iterator
   {
     return gtk_tree_path_get_indices (gobject_);
   }
 
   auto
-  TreePath::end () -> iterator
+  TreePath::end () -> TreePath::iterator
   {
     return gtk_tree_path_get_indices (gobject_) +
            gtk_tree_path_get_depth (gobject_);
   }
 
   auto
-  TreePath::begin () const -> const_iterator
+  TreePath::begin () const -> TreePath::const_iterator
   {
     return gtk_tree_path_get_indices (gobject_);
   }
 
   auto
-  TreePath::end () const -> const_iterator
+  TreePath::end () const -> TreePath::const_iterator
   {
     return gtk_tree_path_get_indices (gobject_) +
            gtk_tree_path_get_depth (gobject_);
@@ -121,7 +127,7 @@ namespace Gtk
   {
     GtkTreeModel* src_model = nullptr;
     GtkTreePath* src_path = nullptr;
-    const gboolean result =
+    gboolean result =
         gtk_tree_get_row_drag_data (value.gobj (), &src_model, &src_path);
 
     model = Glib::wrap (src_model, true);
@@ -135,7 +141,7 @@ namespace Gtk
   TreePath::get_row_drag_data (const Glib::ValueBase& value, TreePath& path) -> bool
   {
     GtkTreePath* src_path = nullptr;
-    const gboolean result =
+    gboolean result =
         gtk_tree_get_row_drag_data (value.gobj (), nullptr, &src_path);
 
     path = Glib::wrap (src_path, false);
@@ -162,7 +168,7 @@ namespace Glib
 {
 
   auto
-  wrap (GtkTreePath* object, const bool take_copy) -> Gtk::TreePath
+  wrap (GtkTreePath* object, bool take_copy) -> Gtk::TreePath
   {
     return Gtk::TreePath (object, take_copy);
   }
@@ -184,7 +190,8 @@ namespace Gtk
   }
 
   TreePath::TreePath (const TreePath& other)
-    : gobject_ (other.gobject_ ? gtk_tree_path_copy (other.gobject_) : nullptr)
+    : gobject_ ((other.gobject_) ? gtk_tree_path_copy (other.gobject_) :
+                                   nullptr)
   {
   }
 
@@ -229,13 +236,13 @@ namespace Gtk
   }
 
   auto
-  TreePath::push_back (const int index) -> void
+  TreePath::push_back (int index) -> void
   {
     gtk_tree_path_append_index (gobj (), index);
   }
 
   auto
-  TreePath::push_front (const int index) -> void
+  TreePath::push_front (int index) -> void
   {
     gtk_tree_path_prepend_index (gobj (), index);
   }
@@ -269,7 +276,7 @@ namespace Gtk
   {
     return gtk_tree_path_is_ancestor (
         const_cast<GtkTreePath*> (gobj ()),
-        const_cast<GtkTreePath*> (descendant.gobj ()));
+        const_cast<GtkTreePath*> ((descendant).gobj ()));
   }
 
   auto
@@ -277,7 +284,7 @@ namespace Gtk
   {
     return gtk_tree_path_is_descendant (
         const_cast<GtkTreePath*> (gobj ()),
-        const_cast<GtkTreePath*> (ancestor.gobj ()));
+        const_cast<GtkTreePath*> ((ancestor).gobj ()));
   }
 
   auto
@@ -290,37 +297,39 @@ namespace Gtk
   auto
   operator== (const TreePath& lhs, const TreePath& rhs) -> bool
   {
-    return gtk_tree_path_compare (lhs.gobj (), rhs.gobj ()) == 0;
+    return (gtk_tree_path_compare (lhs.gobj (), rhs.gobj ()) == 0);
   }
 
   auto
   operator!= (const TreePath& lhs, const TreePath& rhs) -> bool
   {
-    return gtk_tree_path_compare (lhs.gobj (), rhs.gobj ()) != 0;
+    return (gtk_tree_path_compare (lhs.gobj (), rhs.gobj ()) != 0);
   }
 
   auto
   operator<(const TreePath& lhs, const TreePath& rhs) -> bool
   {
-    return gtk_tree_path_compare (lhs.gobj (), rhs.gobj ()) < 0;
+    return (gtk_tree_path_compare (lhs.gobj (), rhs.gobj ()) < 0);
   }
 
   auto
   operator> (const TreePath& lhs, const TreePath& rhs) -> bool
   {
-    return gtk_tree_path_compare (lhs.gobj (), rhs.gobj ()) > 0;
+    return (gtk_tree_path_compare (lhs.gobj (), rhs.gobj ()) > 0);
   }
 
   auto
   operator<= (const TreePath& lhs, const TreePath& rhs) -> bool
   {
-    return gtk_tree_path_compare (lhs.gobj (), rhs.gobj ()) <= 0;
+    return (gtk_tree_path_compare (lhs.gobj (), rhs.gobj ()) <= 0);
   }
 
   auto
   operator>= (const TreePath& lhs, const TreePath& rhs) -> bool
   {
-    return gtk_tree_path_compare (lhs.gobj (), rhs.gobj ()) >= 0;
+    return (gtk_tree_path_compare (lhs.gobj (), rhs.gobj ()) >= 0);
   }
 
 } // namespace Gtk
+
+#endif

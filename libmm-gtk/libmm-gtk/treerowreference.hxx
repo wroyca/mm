@@ -3,18 +3,20 @@
 #ifndef _GTKMM_TREEROWREFERENCE_H
 #define _GTKMM_TREEROWREFERENCE_H
 
-#include <libmm-glib/ustring.hxx>
-#include <sigc++/sigc++.h>
+#ifndef GTKMM_DISABLE_DEPRECATED
 
-#include <libmm-gtk/treemodel.hxx>
-#include <libmm-gtk/treepath.hxx>
+  #include <libmm-glib/ustring.hxx>
+  #include <sigc++/sigc++.h>
 
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #include <libmm-gtk/treemodel.hxx>
+  #include <libmm-gtk/treepath.hxx>
+
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
 extern "C"
 {
   typedef struct _GtkTreeRowReference GtkTreeRowReference;
 }
-#endif
+  #endif
 
 namespace Gtk
 {
@@ -22,10 +24,10 @@ namespace Gtk
   class GTKMM_API TreeRowReference
   {
   public:
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
     using CppObjectType = TreeRowReference;
     using BaseObjectType = GtkTreeRowReference;
-#endif
+  #endif
 
     static auto
     get_type () -> GType G_GNUC_CONST;
@@ -45,8 +47,8 @@ namespace Gtk
 
     ~TreeRowReference () noexcept;
 
-    void
-    swap (TreeRowReference& other) noexcept;
+    auto
+    swap (TreeRowReference& other) noexcept -> void;
 
     auto
     gobj () -> GtkTreeRowReference*
@@ -91,8 +93,8 @@ namespace Gtk
 namespace Gtk
 {
 
-  inline void
-  swap (TreeRowReference& lhs, TreeRowReference& rhs) noexcept
+  inline auto
+  swap (TreeRowReference& lhs, TreeRowReference& rhs) noexcept -> void
   {
     lhs.swap (rhs);
   }
@@ -101,19 +103,19 @@ namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkTreeRowReference* object, bool take_copy = false) -> Gtk::TreeRowReference;
 
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
   template <>
   class GTKMM_API Value<Gtk::TreeRowReference>
     : public Glib::Value_Boxed<Gtk::TreeRowReference>
   {
   };
-#endif
+  #endif
 
 } // namespace Glib
+
+#endif
 
 #endif

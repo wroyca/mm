@@ -83,10 +83,10 @@ namespace Gtk
   public:
     ListBoxRow ();
 
-    void
-    set_child (Widget& child);
-    void
-    unset_child ();
+    auto
+    set_child (Widget& child) -> void;
+    auto
+    unset_child () -> void;
 
     auto
     get_child () -> Widget*;
@@ -94,11 +94,11 @@ namespace Gtk
     auto
     get_child () const -> const Widget*;
 
-    void
-    set_header (Widget& header);
+    auto
+    set_header (Widget& header) -> void;
 
-    void
-    unset_header ();
+    auto
+    unset_header () -> void;
 
     auto
     get_header () -> Widget*;
@@ -109,20 +109,20 @@ namespace Gtk
     auto
     get_index () const -> int;
 
-    void
-    changed ();
+    auto
+    changed () -> void;
 
     auto
     is_selected () const -> bool;
 
-    void
-    set_selectable (bool selectable = true);
+    auto
+    set_selectable (bool selectable = true) -> void;
 
     auto
     get_selectable () const -> bool;
 
-    void
-    set_activatable (bool activatable = true);
+    auto
+    set_activatable (bool activatable = true) -> void;
 
     auto
     get_activatable () const -> bool;
@@ -154,9 +154,7 @@ namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkListBoxRow* object, bool take_copy = false) -> Gtk::ListBoxRow*;
 } // namespace Glib
 

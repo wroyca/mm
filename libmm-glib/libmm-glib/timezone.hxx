@@ -54,8 +54,8 @@ namespace Glib
 
     ~TimeZone () noexcept;
 
-    void
-    swap (TimeZone& other) noexcept;
+    auto
+    swap (TimeZone& other) noexcept -> void;
 
     auto
     gobj () -> GTimeZone*
@@ -118,8 +118,8 @@ namespace Glib
 namespace Glib
 {
 
-  inline void
-  swap (TimeZone& lhs, TimeZone& rhs) noexcept
+  inline auto
+  swap (TimeZone& lhs, TimeZone& rhs) noexcept -> void
   {
     lhs.swap (rhs);
   }

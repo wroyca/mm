@@ -113,11 +113,11 @@ namespace Gtk
     auto
     get_windows () const -> std::vector<const Window*>;
 
-    void
-    add_window (Window& window);
+    auto
+    add_window (Window& window) -> void;
 
-    void
-    remove_window (Window& window);
+    auto
+    remove_window (Window& window) -> void;
 
     auto
     run (int argc, char** argv) -> int;
@@ -147,15 +147,15 @@ namespace Gtk
     auto
     get_menubar () const -> Glib::RefPtr<const Gio::MenuModel>;
 
-    void
-    set_menubar (const Glib::RefPtr<Gio::MenuModel>& menubar);
+    auto
+    set_menubar (const Glib::RefPtr<Gio::MenuModel>& menubar) -> void;
 
     auto
     inhibit (Window& window, InhibitFlags flags, const Glib::ustring& reason)
         -> guint;
 
-    void
-    uninhibit (guint cookie);
+    auto
+    uninhibit (guint cookie) -> void;
 
     auto
     get_window_by_id (guint id) -> Window*;
@@ -180,16 +180,16 @@ namespace Gtk
     get_actions_for_accel (const Glib::ustring& accel) const
         -> std::vector<Glib::ustring>;
 
-    void
+    auto
     set_accels_for_action (const Glib::ustring& detailed_action_name,
-                           const std::vector<Glib::ustring>& accels);
+                           const std::vector<Glib::ustring>& accels) -> void;
 
-    void
+    auto
     set_accel_for_action (const Glib::ustring& detailed_action_name,
-                          const Glib::ustring& accel);
+                          const Glib::ustring& accel) -> void;
 
-    void
-    unset_accels_for_action (const Glib::ustring& detailed_action_name);
+    auto
+    unset_accels_for_action (const Glib::ustring& detailed_action_name) -> void;
 
     auto
     get_menu_by_id (const Glib::ustring& id) -> Glib::RefPtr<Gio::Menu>;
@@ -235,11 +235,11 @@ namespace Gtk
   public:
   public:
   protected:
-    virtual void
-    on_window_added (Window* window);
+    virtual auto
+    on_window_added (Window* window) -> void;
 
-    virtual void
-    on_window_removed (Window* window);
+    virtual auto
+    on_window_removed (Window* window) -> void;
   };
 
   template <typename T_Window, typename... T_Args>
@@ -352,9 +352,7 @@ namespace Glib
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkApplication* object, bool take_copy = false) -> Glib::RefPtr<Gtk::Application>;
 } // namespace Glib
 

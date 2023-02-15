@@ -11,96 +11,102 @@
 #include <libmm-glib/containerhandle_shared.hxx>
 #include <type_traits>
 
-namespace Gdk::Cairo
+namespace Gdk
 {
-
-  GDKMM_API
-  auto
-  wrap (cairo_t* cobject, bool has_reference = true) -> ::Cairo::RefPtr<::Cairo::Context>;
-
-  GDKMM_API
-  auto
-  wrap (cairo_region_t* cobject, bool has_reference = true) -> ::Cairo::RefPtr<::Cairo::Region>;
-
-  template <
-      typename T = ::Cairo::Surface,
-      typename = std::enable_if<std::is_base_of<::Cairo::Surface, T>::value>>
-  auto
-  wrap (cairo_surface_t* cobject, bool has_reference = true) -> ::Cairo::RefPtr<T>
+  namespace Cairo
   {
-    return ::Cairo::make_refptr_for_instance<T> (
-        cobject ? new T (cobject, has_reference) : nullptr);
-  }
+    GDKMM_API auto
+    wrap (cairo_t* cobject, bool has_reference = true)
+        -> ::Cairo::RefPtr<::Cairo::Context>;
 
-} // namespace Gdk::Cairo
+    GDKMM_API auto
+    wrap (cairo_region_t* cobject, bool has_reference = true)
+        -> ::Cairo::RefPtr<::Cairo::Region>;
 
-namespace Glib::Container_Helpers
+    template <
+        typename T = ::Cairo::Surface,
+        typename = std::enable_if<std::is_base_of<::Cairo::Surface, T>::value>>
+    auto
+    wrap (cairo_surface_t* cobject, bool has_reference = true)
+        -> ::Cairo::RefPtr<T>
+    {
+      return ::Cairo::make_refptr_for_instance<T> (
+          cobject ? new T (cobject, has_reference) : nullptr);
+    }
+
+  } // namespace Cairo
+} // namespace Gdk
+
+namespace Glib
 {
-
-  template <>
-  struct TypeTraits<::Cairo::RefPtr<::Cairo::Surface>>
+  namespace Container_Helpers
   {
-    using CppType = ::Cairo::RefPtr<::Cairo::Surface>;
-    using CType = ::Cairo::Surface::cobject*;
-    using CTypeNonConst = ::Cairo::Surface::cobject*;
 
-    static auto
-    to_c_type (const CppType& ptr) -> CType
+    template <>
+    struct TypeTraits<::Cairo::RefPtr<::Cairo::Surface>>
     {
-      return ptr ? ptr->cobj () : nullptr;
-    }
+      using CppType = ::Cairo::RefPtr<::Cairo::Surface>;
+      using CType = ::Cairo::Surface::cobject*;
+      using CTypeNonConst = ::Cairo::Surface::cobject*;
 
-    static auto
-    to_c_type (CType ptr) -> CType
+      static auto
+      to_c_type (const CppType& ptr) -> CType
+      {
+        return ptr ? ptr->cobj () : nullptr;
+      }
+
+      static auto
+      to_c_type (CType ptr) -> CType
+      {
+        return ptr;
+      }
+
+      static auto
+      to_cpp_type (CType ptr) -> CppType
+      {
+        return Gdk::Cairo::wrap (ptr, false);
+      }
+
+      static auto
+      release_c_type (CType ptr) -> void
+      {
+        cairo_surface_destroy (ptr);
+      }
+    };
+
+    template <>
+    struct TypeTraits<::Cairo::RefPtr<const ::Cairo::Surface>>
     {
-      return ptr;
-    }
+      using CppType = Cairo::RefPtr<const ::Cairo::Surface>;
+      using CType = const ::Cairo::Surface::cobject*;
+      using CTypeNonConst = ::Cairo::Surface::cobject*;
 
-    static auto
-    to_cpp_type (CType ptr) -> CppType
-    {
-      return Gdk::Cairo::wrap (ptr, false);
-    }
+      static auto
+      to_c_type (const CppType& ptr) -> CType
+      {
+        return ptr ? ptr->cobj () : nullptr;
+      }
 
-    static void
-    release_c_type (CType ptr)
-    {
-      cairo_surface_destroy (ptr);
-    }
-  };
+      static auto
+      to_c_type (CType ptr) -> CType
+      {
+        return ptr;
+      }
 
-  template <>
-  struct TypeTraits<::Cairo::RefPtr<const ::Cairo::Surface>>
-  {
-    using CppType = Cairo::RefPtr<const ::Cairo::Surface>;
-    using CType = const ::Cairo::Surface::cobject*;
-    using CTypeNonConst = ::Cairo::Surface::cobject*;
+      static auto
+      to_cpp_type (CType ptr) -> CppType
+      {
+        return Gdk::Cairo::wrap (const_cast<CTypeNonConst> (ptr), false);
+      }
 
-    static auto
-    to_c_type (const CppType& ptr) -> CType
-    {
-      return ptr ? ptr->cobj () : nullptr;
-    }
+      static auto
+      release_c_type (CType ptr) -> void
+      {
+        cairo_surface_destroy (const_cast<CTypeNonConst> (ptr));
+      }
+    };
 
-    static auto
-    to_c_type (CType ptr) -> CType
-    {
-      return ptr;
-    }
-
-    static auto
-    to_cpp_type (CType ptr) -> CppType
-    {
-      return Gdk::Cairo::wrap (const_cast<CTypeNonConst> (ptr), false);
-    }
-
-    static void
-    release_c_type (CType ptr)
-    {
-      cairo_surface_destroy (const_cast<CTypeNonConst> (ptr));
-    }
-  };
-
-} // namespace Glib::Container_Helpers
+  } // namespace Container_Helpers
+} // namespace Glib
 
 #endif

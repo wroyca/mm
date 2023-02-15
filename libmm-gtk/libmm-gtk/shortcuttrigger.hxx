@@ -476,41 +476,31 @@ namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkShortcutTrigger* object, bool take_copy = false) -> Glib::RefPtr<Gtk::ShortcutTrigger>;
 } // namespace Glib
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkNeverTrigger* object, bool take_copy = false) -> Glib::RefPtr<Gtk::NeverTrigger>;
 } // namespace Glib
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkKeyvalTrigger* object, bool take_copy = false) -> Glib::RefPtr<Gtk::KeyvalTrigger>;
 } // namespace Glib
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkMnemonicTrigger* object, bool take_copy = false) -> Glib::RefPtr<Gtk::MnemonicTrigger>;
 } // namespace Glib
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkAlternativeTrigger* object, bool take_copy = false) -> Glib::RefPtr<Gtk::AlternativeTrigger>;
 } // namespace Glib
 

@@ -19,10 +19,10 @@ namespace Glib
 {
 
   auto
-  wrap (GtkShortcutsSection* object, const bool take_copy) -> Gtk::ShortcutsSection*
+  wrap (GtkShortcutsSection* object, bool take_copy) -> Gtk::ShortcutsSection*
   {
     return dynamic_cast<Gtk::ShortcutsSection*> (
-        wrap_auto ((GObject*) object, take_copy));
+        Glib::wrap_auto ((GObject*) (object), take_copy));
   }
 
 } // namespace Glib
@@ -31,7 +31,7 @@ namespace Gtk
 {
 
   auto
-  ShortcutsSection_Class::init () -> const Class&
+  ShortcutsSection_Class::init () -> const Glib::Class&
   {
     if (!gtype_)
     {
@@ -53,7 +53,7 @@ namespace Gtk
   auto
   ShortcutsSection_Class::wrap_new (GObject* o) -> Glib::ObjectBase*
   {
-    return manage (new ShortcutsSection ((GtkShortcutsSection*) o));
+    return manage (new ShortcutsSection ((GtkShortcutsSection*) (o)));
   }
 
   ShortcutsSection::ShortcutsSection (
@@ -63,7 +63,7 @@ namespace Gtk
   }
 
   ShortcutsSection::ShortcutsSection (GtkShortcutsSection* castitem)
-    : Box ((GtkBox*) castitem)
+    : Box ((GtkBox*) (castitem))
   {
   }
 
@@ -99,7 +99,7 @@ namespace Gtk
   }
 
   ShortcutsSection::ShortcutsSection ()
-    : ObjectBase (nullptr),
+    : Glib::ObjectBase (nullptr),
       Box (Glib::ConstructParams (shortcutssection_class_.init ()))
   {
   }
@@ -107,37 +107,37 @@ namespace Gtk
   auto
   ShortcutsSection::property_section_name () -> Glib::PropertyProxy<Glib::ustring>
   {
-    return {this, "section-name"};
+    return Glib::PropertyProxy<Glib::ustring> (this, "section-name");
   }
 
   auto
   ShortcutsSection::property_section_name () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>
   {
-    return {this, "section-name"};
+    return Glib::PropertyProxy_ReadOnly<Glib::ustring> (this, "section-name");
   }
 
   auto
   ShortcutsSection::property_title () -> Glib::PropertyProxy<Glib::ustring>
   {
-    return {this, "title"};
+    return Glib::PropertyProxy<Glib::ustring> (this, "title");
   }
 
   auto
   ShortcutsSection::property_title () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>
   {
-    return {this, "title"};
+    return Glib::PropertyProxy_ReadOnly<Glib::ustring> (this, "title");
   }
 
   auto
   ShortcutsSection::property_max_height () -> Glib::PropertyProxy<unsigned int>
   {
-    return {this, "max-height"};
+    return Glib::PropertyProxy<unsigned int> (this, "max-height");
   }
 
   auto
   ShortcutsSection::property_max_height () const -> Glib::PropertyProxy_ReadOnly<unsigned int>
   {
-    return {this, "max-height"};
+    return Glib::PropertyProxy_ReadOnly<unsigned int> (this, "max-height");
   }
 
 } // namespace Gtk

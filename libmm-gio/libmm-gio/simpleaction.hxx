@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: LGPL-2.1-or-later
 
 #ifndef _GIOMM_SIMPLEACTION_H
 #define _GIOMM_SIMPLEACTION_H
@@ -125,14 +126,14 @@ namespace Gio
     create_radio_integer (const Glib::ustring& name, gint32 initial_state)
         -> Glib::RefPtr<SimpleAction>;
 
-    void
-    set_enabled (bool enabled = true);
+    auto
+    set_enabled (bool enabled = true) -> void;
 
-    void
-    set_state (const Glib::VariantBase& value);
+    auto
+    set_state (const Glib::VariantBase& value) -> void;
 
-    void
-    set_state_hint (const Glib::VariantBase& state_hint);
+    auto
+    set_state_hint (const Glib::VariantBase& state_hint) -> void;
 
     auto
     property_enabled () -> Glib::PropertyProxy<bool>;

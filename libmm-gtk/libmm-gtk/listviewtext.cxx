@@ -1,14 +1,16 @@
 // SPDX-License-Identifier: LGPL-2.1-or-later
 
-#include <libmm-gtk/listviewtext.hxx>
+#ifndef GTKMM_DISABLE_DEPRECATED
+
+  #include <libmm-gtk/listviewtext.hxx>
 
 namespace Gtk
 {
 
-  ListViewText::TextModelColumns::TextModelColumns (const guint columns_count)
+  ListViewText::TextModelColumns::TextModelColumns (guint columns_count)
     : m_columns_count (columns_count)
   {
-    m_columns = new TreeModelColumn<Glib::ustring>[m_columns_count];
+    m_columns = new Gtk::TreeModelColumn<Glib::ustring>[m_columns_count];
 
     if (m_columns)
     {
@@ -31,14 +33,14 @@ namespace Gtk
     return m_columns_count;
   }
 
-  ListViewText::ListViewText (const guint columns_count,
-                              const bool editable,
-                              const SelectionMode mode)
+  ListViewText::ListViewText (guint columns_count,
+                              bool editable,
+                              Gtk::SelectionMode mode)
     : m_model_columns (columns_count)
   {
     char column_title[20];
 
-    m_model = ListStore::create (m_model_columns);
+    m_model = Gtk::ListStore::create (m_model_columns);
     set_model (m_model);
 
     for (guint i = 0; i < columns_count; ++i)
@@ -54,11 +56,10 @@ namespace Gtk
     get_selection ()->set_mode (mode);
   }
 
-  ListViewText::~ListViewText () noexcept = default;
+  ListViewText::~ListViewText () noexcept {}
 
   auto
-  ListViewText::set_column_title (const guint column,
-                                  const Glib::ustring& title) -> void
+  ListViewText::set_column_title (guint column, const Glib::ustring& title) -> void
   {
     g_return_if_fail (column < get_columns ().size ());
 
@@ -66,7 +67,7 @@ namespace Gtk
   }
 
   auto
-  ListViewText::get_column_title (const guint column) const -> Glib::ustring
+  ListViewText::get_column_title (guint column) const -> Glib::ustring
   {
     g_return_val_if_fail (column < get_columns ().size (), "");
 
@@ -76,7 +77,7 @@ namespace Gtk
   auto
   ListViewText::append (const Glib::ustring& column_one_value) -> guint
   {
-    auto newRow = *m_model->append ();
+    auto newRow = *(m_model->append ());
 
     newRow[m_model_columns.m_columns[0]] = column_one_value;
 
@@ -86,18 +87,18 @@ namespace Gtk
   auto
   ListViewText::prepend (const Glib::ustring& column_one_value) -> void
   {
-    auto newRow = *m_model->prepend ();
+    auto newRow = *(m_model->prepend ());
 
     newRow[m_model_columns.m_columns[0]] = column_one_value;
   }
 
   auto
-  ListViewText::insert (const guint row, const Glib::ustring& column_one_value) -> void
+  ListViewText::insert (guint row, const Glib::ustring& column_one_value) -> void
   {
     g_return_if_fail (row < size ());
 
-    const auto iter = m_model->children ()[row].get_iter ();
-    auto newRow = *m_model->insert (iter);
+    auto iter = m_model->children ()[row].get_iter ();
+    auto newRow = *(m_model->insert (iter));
 
     if (!column_one_value.empty ())
     {
@@ -112,7 +113,7 @@ namespace Gtk
   }
 
   auto
-  ListViewText::get_text (const guint row, const guint column) const -> Glib::ustring
+  ListViewText::get_text (guint row, guint column) const -> Glib::ustring
   {
     Glib::ustring result;
 
@@ -125,9 +126,7 @@ namespace Gtk
   }
 
   auto
-  ListViewText::set_text (const guint row,
-                          const guint column,
-                          const Glib::ustring& value) -> void
+  ListViewText::set_text (guint row, guint column, const Glib::ustring& value) -> void
   {
     g_return_if_fail (row < size ());
 
@@ -136,7 +135,7 @@ namespace Gtk
   }
 
   auto
-  ListViewText::set_text (const guint row, const Glib::ustring& value) -> void
+  ListViewText::set_text (guint row, const Glib::ustring& value) -> void
   {
     g_return_if_fail (row < size ());
 
@@ -147,7 +146,7 @@ namespace Gtk
   auto
   ListViewText::size () const -> guint
   {
-    return m_model->children ().size ();
+    return (guint) m_model->children ().size ();
   }
 
   auto
@@ -157,9 +156,9 @@ namespace Gtk
   }
 
   auto
-  ListViewText::get_selected () -> SelectionList
+  ListViewText::get_selected () -> ListViewText::SelectionList
   {
-    const Glib::RefPtr<TreeSelection> selected = get_selection ();
+    Glib::RefPtr<Gtk::TreeSelection> selected = get_selection ();
     std::vector<TreeModel::Path> selectedRows = selected->get_selected_rows ();
 
     SelectionList selectionList;
@@ -170,10 +169,12 @@ namespace Gtk
          iter != selectedRows.end ();
          ++iter)
     {
-      selectionList.push_back (*(*iter).begin ());
+      selectionList.push_back (*((*iter).begin ()));
     }
 
     return selectionList;
   }
 
 } // namespace Gtk
+
+#endif

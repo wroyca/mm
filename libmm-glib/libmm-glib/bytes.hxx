@@ -24,11 +24,11 @@ namespace Glib
     using BaseObjectType = GBytes;
 #endif
 
-    void
-    reference () const;
+    auto
+    reference () const -> void;
 
-    void
-    unreference () const;
+    auto
+    unreference () const -> void;
 
     auto
     gobj () -> GBytes*;
@@ -46,8 +46,8 @@ namespace Glib
     operator= (const Bytes&) -> Bytes& = delete;
 
   protected:
-    void
-    operator delete (void*, std::size_t);
+    auto
+    operator delete (void*, std::size_t) -> void;
 
   private:
   public:

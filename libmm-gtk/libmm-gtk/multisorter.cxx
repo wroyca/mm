@@ -15,11 +15,11 @@ namespace Glib
 {
 
   auto
-  wrap (GtkMultiSorter* object, const bool take_copy) -> RefPtr<Gtk::MultiSorter>
+  wrap (GtkMultiSorter* object, bool take_copy) -> Glib::RefPtr<Gtk::MultiSorter>
   {
     return Glib::make_refptr_for_instance<Gtk::MultiSorter> (
         dynamic_cast<Gtk::MultiSorter*> (
-            wrap_auto ((GObject*) object, take_copy)));
+            Glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
 } // namespace Glib
@@ -28,7 +28,7 @@ namespace Gtk
 {
 
   auto
-  MultiSorter_Class::init () -> const Class&
+  MultiSorter_Class::init () -> const Glib::Class&
   {
     if (!gtype_)
     {
@@ -61,18 +61,18 @@ namespace Gtk
   }
 
   MultiSorter::MultiSorter (const Glib::ConstructParams& construct_params)
-    : Sorter (construct_params)
+    : Gtk::Sorter (construct_params)
   {
   }
 
   MultiSorter::MultiSorter (GtkMultiSorter* castitem)
-    : Sorter ((GtkSorter*) castitem)
+    : Gtk::Sorter ((GtkSorter*) (castitem))
   {
   }
 
   MultiSorter::MultiSorter (MultiSorter&& src) noexcept
-    : Sorter (std::move (src)),
-      ListModel (std::move (src)),
+    : Gtk::Sorter (std::move (src)),
+      Gio::ListModel (std::move (src)),
       Buildable (std::move (src))
   {
   }
@@ -80,13 +80,13 @@ namespace Gtk
   auto
   MultiSorter::operator= (MultiSorter&& src) noexcept -> MultiSorter&
   {
-    Sorter::operator= (std::move (src));
-    ListModel::operator= (std::move (src));
+    Gtk::Sorter::operator= (std::move (src));
+    Gio::ListModel::operator= (std::move (src));
     Buildable::operator= (std::move (src));
     return *this;
   }
 
-  MultiSorter::~MultiSorter () noexcept = default;
+  MultiSorter::~MultiSorter () noexcept {}
 
   MultiSorter::CppClassType MultiSorter::multisorter_class_;
 
@@ -103,8 +103,8 @@ namespace Gtk
   }
 
   MultiSorter::MultiSorter ()
-    : ObjectBase (nullptr),
-      Sorter (Glib::ConstructParams (multisorter_class_.init ()))
+    : Glib::ObjectBase (nullptr),
+      Gtk::Sorter (Glib::ConstructParams (multisorter_class_.init ()))
   {
   }
 
@@ -117,11 +117,11 @@ namespace Gtk
   auto
   MultiSorter::append (const Glib::RefPtr<Sorter>& sorter) -> void
   {
-    gtk_multi_sorter_append (gobj (), unwrap_copy (sorter));
+    gtk_multi_sorter_append (gobj (), Glib::unwrap_copy (sorter));
   }
 
   auto
-  MultiSorter::remove (const guint position) -> void
+  MultiSorter::remove (guint position) -> void
   {
     gtk_multi_sorter_remove (gobj (), position);
   }
@@ -134,13 +134,13 @@ namespace Gtk
   auto
   MultiSorter::property_item_type () const -> Glib::PropertyProxy_ReadOnly<GType>
   {
-    return {this, "item-type"};
+    return Glib::PropertyProxy_ReadOnly<GType> (this, "item-type");
   }
 
   auto
   MultiSorter::property_n_items () const -> Glib::PropertyProxy_ReadOnly<unsigned int>
   {
-    return {this, "n-items"};
+    return Glib::PropertyProxy_ReadOnly<unsigned int> (this, "n-items");
   }
 
 } // namespace Gtk

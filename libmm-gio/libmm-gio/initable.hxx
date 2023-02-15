@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: LGPL-2.1-or-later
 
 #ifndef _GIOMM_INITABLE_H
 #define _GIOMM_INITABLE_H
@@ -66,8 +67,8 @@ namespace Gio
 
     ~Initable () noexcept override;
 
-    static void
-    add_interface (GType gtype_implementer);
+    static auto
+    add_interface (GType gtype_implementer) -> void;
 
     static auto
     get_type () -> GType G_GNUC_CONST;
@@ -91,11 +92,11 @@ namespace Gio
 
   private:
   protected:
-    void
-    init (const Glib::RefPtr<Cancellable>& cancellable);
+    auto
+    init (const Glib::RefPtr<Cancellable>& cancellable) -> void;
 
-    void
-    init ();
+    auto
+    init () -> void;
 
   protected:
     virtual auto

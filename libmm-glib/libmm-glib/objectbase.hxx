@@ -56,30 +56,31 @@ namespace Glib
 
     virtual ~ObjectBase () noexcept = 0;
 
-    void
-    initialize (GObject* castitem);
+    auto
+    initialize (GObject* castitem) -> void;
 
-    void
-    initialize_move (GObject* castitem, Glib::ObjectBase* previous_wrapper);
+    auto
+    initialize_move (GObject* castitem, Glib::ObjectBase* previous_wrapper)
+        -> void;
 
   public:
-    void
+    auto
     set_property_value (const Glib::ustring& property_name,
-                        const Glib::ValueBase& value);
+                        const Glib::ValueBase& value) -> void;
 
-    void
+    auto
     get_property_value (const Glib::ustring& property_name,
-                        Glib::ValueBase& value) const;
+                        Glib::ValueBase& value) const -> void;
 
     template <class PropertyType>
-    void
-    set_property (const Glib::ustring& property_name,
-                  const PropertyType& value);
+    auto
+    set_property (const Glib::ustring& property_name, const PropertyType& value)
+        -> void;
 
     template <class PropertyType>
-    void
-    get_property (const Glib::ustring& property_name,
-                  PropertyType& value) const;
+    auto
+    get_property (const Glib::ustring& property_name, PropertyType& value) const
+        -> void;
 
     template <class PropertyType>
     auto
@@ -94,17 +95,17 @@ namespace Glib
     connect_property_changed (const Glib::ustring& property_name,
                               sigc::slot<void ()>&& slot) -> sigc::connection;
 
-    void
-    freeze_notify ();
+    auto
+    freeze_notify () -> void;
 
-    void
-    thaw_notify ();
+    auto
+    thaw_notify () -> void;
 
-    virtual void
-    reference () const;
+    virtual auto
+    reference () const -> void;
 
-    virtual void
-    unreference () const;
+    virtual auto
+    unreference () const -> void;
 
     inline auto
     gobj () -> GObject*
@@ -139,40 +140,41 @@ namespace Glib
     auto
     is_anonymous_custom_ () const -> bool;
 
-    void
-    add_custom_interface_class (const Interface_Class* iface_class);
-    void
+    auto
+    add_custom_interface_class (const Interface_Class* iface_class) -> void;
+    auto
     add_custom_class_init_function (GClassInitFunc class_init_func,
-                                    void* class_data = nullptr);
-    void
-    set_custom_instance_init_function (GInstanceInitFunc instance_init_func);
+                                    void* class_data = nullptr) -> void;
+    auto
+    set_custom_instance_init_function (GInstanceInitFunc instance_init_func)
+        -> void;
     auto
     get_custom_interface_classes () const
         -> const Class::interface_classes_type*;
     auto
     get_custom_class_init_functions () const
         -> const Class::class_init_funcs_type*;
-    GInstanceInitFunc
-    get_custom_instance_init_function () const;
-    void
-    custom_class_init_finished ();
+    auto
+    get_custom_instance_init_function () const -> GInstanceInitFunc;
+    auto
+    custom_class_init_finished () -> void;
 
   public:
     auto
     is_derived_ () const -> bool;
 
   protected:
-    static void
-    destroy_notify_callback_ (void* data);
-    virtual void
-    destroy_notify_ ();
+    static auto
+    destroy_notify_callback_ (void* data) -> void;
+    virtual auto
+    destroy_notify_ () -> void;
 
-    void
-    _set_current_wrapper (GObject* object);
+    auto
+    _set_current_wrapper (GObject* object) -> void;
 
-    void
+    auto
     _move_current_wrapper (GObject* object,
-                           Glib::ObjectBase* previous_wrapper) noexcept;
+                           Glib::ObjectBase* previous_wrapper) noexcept -> void;
 #endif
 
   private:
@@ -181,8 +183,8 @@ namespace Glib
     struct PrivImpl;
     std::unique_ptr<PrivImpl> priv_pimpl_;
 
-    virtual void
-    set_manage ();
+    virtual auto
+    set_manage () -> void;
 
     friend class Glib::GSigConnectionNode;
 #endif
@@ -191,9 +193,9 @@ namespace Glib
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   template <class PropertyType>
-  inline void
+  inline auto
   ObjectBase::set_property (const Glib::ustring& property_name,
-                            const PropertyType& value)
+                            const PropertyType& value) -> void
   {
     Glib::Value<PropertyType> property_value;
     property_value.init (Glib::Value<PropertyType>::value_type ());
@@ -203,9 +205,9 @@ namespace Glib
   }
 
   template <class PropertyType>
-  inline void
+  inline auto
   ObjectBase::get_property (const Glib::ustring& property_name,
-                            PropertyType& value) const
+                            PropertyType& value) const -> void
   {
     Glib::Value<PropertyType> property_value;
     property_value.init (Glib::Value<PropertyType>::value_type ());

@@ -3,38 +3,40 @@
 #ifndef _GTKMM_TREEDRAGSOURCE_H
 #define _GTKMM_TREEDRAGSOURCE_H
 
-#include <libmm-glib/ustring.hxx>
-#include <sigc++/sigc++.h>
+#ifndef GTKMM_DISABLE_DEPRECATED
 
-#include <libmm-gdk/contentprovider.hxx>
-#include <libmm-glib/interface.hxx>
-#include <libmm-gtk/treemodel.hxx>
+  #include <libmm-glib/ustring.hxx>
+  #include <sigc++/sigc++.h>
 
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #include <libmm-gdk/contentprovider.hxx>
+  #include <libmm-glib/interface.hxx>
+  #include <libmm-gtk/treemodel.hxx>
+
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
 extern "C"
 {
   typedef struct _GtkTreeDragSourceIface GtkTreeDragSourceIface;
 }
-#endif
+  #endif
 
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
 using GtkTreeDragSource = struct _GtkTreeDragSource;
 using GtkTreeDragSourceClass = struct _GtkTreeDragSourceClass;
-#endif
+  #endif
 
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
   class GTKMM_API TreeDragSource_Class;
 }
-#endif
+  #endif
 
 namespace Gtk
 {
 
   class GTKMM_API TreeDragSource : public Glib::Interface
   {
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   public:
     using CppObjectType = TreeDragSource;
@@ -50,11 +52,11 @@ namespace Gtk
     friend class TreeDragSource_Class;
     static CppClassType treedragsource_class_;
 
-#endif
+  #endif
   protected:
     TreeDragSource ();
 
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
     explicit TreeDragSource (const Glib::Interface_Class& interface_class);
 
@@ -62,7 +64,7 @@ namespace Gtk
     explicit TreeDragSource (GtkTreeDragSource* castitem);
 
   protected:
-#endif
+  #endif
 
   public:
     TreeDragSource (TreeDragSource&& src) noexcept;
@@ -71,16 +73,16 @@ namespace Gtk
 
     ~TreeDragSource () noexcept override;
 
-    static void
-    add_interface (GType gtype_implementer);
+    static auto
+    add_interface (GType gtype_implementer) -> void;
 
     static auto
     get_type () -> GType G_GNUC_CONST;
 
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
     static auto
     get_base_type () -> GType G_GNUC_CONST;
-#endif
+  #endif
 
     auto
     gobj () -> GtkTreeDragSource*
@@ -126,11 +128,11 @@ namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkTreeDragSource* object, bool take_copy = false) -> Glib::RefPtr<Gtk::TreeDragSource>;
 
 } // namespace Glib
+
+#endif
 
 #endif

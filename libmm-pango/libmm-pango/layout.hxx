@@ -183,8 +183,9 @@ namespace Pango
     create (const Cairo::RefPtr<Cairo::Context>& context)
         -> Glib::RefPtr<Layout>;
 
-    void
-    update_from_cairo_context (const Cairo::RefPtr<Cairo::Context>& context);
+    auto
+    update_from_cairo_context (const Cairo::RefPtr<Cairo::Context>& context)
+        -> void;
 
     auto
     copy () -> Glib::RefPtr<Layout>;
@@ -192,14 +193,14 @@ namespace Pango
     auto
     get_context () const -> Glib::RefPtr<Context>;
 
-    void
-    set_attributes (AttrList& attrs);
+    auto
+    set_attributes (AttrList& attrs) -> void;
 
     auto
     get_attributes () const -> AttrList;
 
-    void
-    set_text (const Glib::ustring& text);
+    auto
+    set_text (const Glib::ustring& text) -> void;
 
     auto
     get_text () const -> Glib::ustring;
@@ -207,36 +208,36 @@ namespace Pango
     auto
     get_character_count () const -> int;
 
-    void
-    set_markup (const Glib::ustring& markup);
+    auto
+    set_markup (const Glib::ustring& markup) -> void;
 
-    void
+    auto
     set_markup (const Glib::ustring& markup,
                 gunichar accel_marker,
-                gunichar& accel_char);
+                gunichar& accel_char) -> void;
 
-    void
-    set_font_description (const FontDescription& desc);
-    void
-    unset_font_description ();
+    auto
+    set_font_description (const FontDescription& desc) -> void;
+    auto
+    unset_font_description () -> void;
 
     auto
     get_font_description () const -> FontDescription;
 
-    void
-    set_width (int width);
+    auto
+    set_width (int width) -> void;
 
     auto
     get_width () const -> int;
 
-    void
-    set_height (int height);
+    auto
+    set_height (int height) -> void;
 
     auto
     get_height () const -> int;
 
-    void
-    set_wrap (WrapMode wrap);
+    auto
+    set_wrap (WrapMode wrap) -> void;
 
     auto
     get_wrap () const -> WrapMode;
@@ -244,26 +245,26 @@ namespace Pango
     auto
     is_wrapped () const -> bool;
 
-    void
-    set_indent (int indent);
+    auto
+    set_indent (int indent) -> void;
 
     auto
     get_indent () const -> int;
 
-    void
-    set_spacing (int spacing);
+    auto
+    set_spacing (int spacing) -> void;
 
     auto
     get_spacing () const -> int;
 
-    void
-    set_line_spacing (float factor);
+    auto
+    set_line_spacing (float factor) -> void;
 
     auto
     get_line_spacing () const -> float;
 
-    void
-    set_justify (bool justify = true);
+    auto
+    set_justify (bool justify = true) -> void;
 
     auto
     get_justify () const -> bool;
@@ -271,29 +272,29 @@ namespace Pango
     auto
     get_auto_dir () const -> bool;
 
-    void
-    set_auto_dir (bool auto_dir = true);
+    auto
+    set_auto_dir (bool auto_dir = true) -> void;
 
-    void
-    set_alignment (Alignment alignment);
+    auto
+    set_alignment (Alignment alignment) -> void;
 
     auto
     get_alignment () const -> Alignment;
 
-    void
-    set_tabs (TabArray& tabs);
+    auto
+    set_tabs (TabArray& tabs) -> void;
 
     auto
     get_tabs () const -> TabArray;
 
-    void
-    set_single_paragraph_mode (bool setting = true);
+    auto
+    set_single_paragraph_mode (bool setting = true) -> void;
 
     auto
     get_single_paragraph_mode () const -> bool;
 
-    void
-    set_ellipsize (EllipsizeMode ellipsize);
+    auto
+    set_ellipsize (EllipsizeMode ellipsize) -> void;
 
     auto
     get_ellipsize () const -> EllipsizeMode;
@@ -304,8 +305,8 @@ namespace Pango
     auto
     get_unknown_glyphs_count () const -> int;
 
-    void
-    context_changed ();
+    auto
+    context_changed () -> void;
 
     auto
     get_serial () const -> guint;
@@ -316,13 +317,13 @@ namespace Pango
     auto
     index_to_pos (int index) const -> Rectangle;
 
-    void
-    index_to_line_x (int index_, bool trailing, int& line, int& x_pos) const;
+    auto
+    index_to_line_x (int index_, bool trailing, int& line, int& x_pos) const
+        -> void;
 
-    void
-    get_cursor_pos (int index,
-                    Rectangle& strong_pos,
-                    Rectangle& weak_pos) const;
+    auto
+    get_cursor_pos (int index, Rectangle& strong_pos, Rectangle& weak_pos) const
+        -> void;
 
     auto
     get_cursor_strong_pos (int index) const -> Rectangle;
@@ -330,19 +331,19 @@ namespace Pango
     auto
     get_cursor_weak_pos (int index) const -> Rectangle;
 
-    void
+    auto
     move_cursor_visually (bool strong,
                           int old_index,
                           int old_trailing,
                           int direction,
                           int& new_index,
-                          int& new_trailing) const;
+                          int& new_trailing) const -> void;
 
     auto
     xy_to_index (int x, int y, int& index, int& trailing) const -> bool;
 
-    void
-    get_extents (Rectangle& ink_rect, Rectangle& logical_rect) const;
+    auto
+    get_extents (Rectangle& ink_rect, Rectangle& logical_rect) const -> void;
 
     auto
     get_ink_extents () const -> Rectangle;
@@ -350,8 +351,9 @@ namespace Pango
     auto
     get_logical_extents () const -> Rectangle;
 
-    void
-    get_pixel_extents (Rectangle& ink_rect, Rectangle& logical_rect) const;
+    auto
+    get_pixel_extents (Rectangle& ink_rect, Rectangle& logical_rect) const
+        -> void;
 
     auto
     get_pixel_ink_extents () const -> Rectangle;
@@ -359,11 +361,11 @@ namespace Pango
     auto
     get_pixel_logical_extents () const -> Rectangle;
 
-    void
-    get_size (int& width, int& height) const;
+    auto
+    get_size (int& width, int& height) const -> void;
 
-    void
-    get_pixel_size (int& width, int& height) const;
+    auto
+    get_pixel_size (int& width, int& height) const -> void;
 
     auto
     get_baseline () const -> int;
@@ -392,11 +394,12 @@ namespace Pango
     auto
     get_iter () -> LayoutIter;
 
-    void
-    add_to_cairo_context (const Cairo::RefPtr<Cairo::Context>& context);
+    auto
+    add_to_cairo_context (const Cairo::RefPtr<Cairo::Context>& context) -> void;
 
-    void
-    show_in_cairo_context (const Cairo::RefPtr<Cairo::Context>& context);
+    auto
+    show_in_cairo_context (const Cairo::RefPtr<Cairo::Context>& context)
+        -> void;
 
   public:
   public:

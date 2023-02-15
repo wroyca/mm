@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: LGPL-2.1-or-later
 
 #ifndef _GIOMM_DBUSMESSAGE_H
 #define _GIOMM_DBUSMESSAGE_H
@@ -280,8 +281,8 @@ namespace Gio::DBus
     auto
     get_locked () const -> bool;
 
-    void
-    lock ();
+    auto
+    lock () -> void;
 
     auto
     copy () const -> Glib::RefPtr<Message>;
@@ -289,8 +290,8 @@ namespace Gio::DBus
     auto
     get_message_type () const -> MessageType;
 
-    void
-    set_message_type (MessageType type);
+    auto
+    set_message_type (MessageType type) -> void;
 
     enum class ByteOrder
     {
@@ -301,26 +302,26 @@ namespace Gio::DBus
     auto
     get_byte_order () const -> ByteOrder;
 
-    void
-    set_byte_order (ByteOrder byte_order);
+    auto
+    set_byte_order (ByteOrder byte_order) -> void;
 
     auto
     get_serial () const -> guint32;
 
-    void
-    set_serial (guint32 serial);
+    auto
+    set_serial (guint32 serial) -> void;
 
     auto
     get_flags () const -> MessageFlags;
 
-    void
-    set_flags (MessageFlags flags);
+    auto
+    set_flags (MessageFlags flags) -> void;
 
-    void
-    get_body (Glib::VariantBase& value) const;
+    auto
+    get_body (Glib::VariantBase& value) const -> void;
 
-    void
-    set_body (const Glib::VariantBase& body);
+    auto
+    set_body (const Glib::VariantBase& body) -> void;
 
 #ifdef G_OS_UNIX
 
@@ -349,16 +350,16 @@ namespace Gio::DBus
     auto
     get_num_unix_fds () const -> guint32;
 
-    void
-    set_num_unix_fds (guint32 value);
+    auto
+    set_num_unix_fds (guint32 value) -> void;
 
-    void
-    get_header (Glib::VariantBase& value,
-                MessageHeaderField header_field) const;
+    auto
+    get_header (Glib::VariantBase& value, MessageHeaderField header_field) const
+        -> void;
 
-    void
-    set_header (MessageHeaderField header_field,
-                const Glib::VariantBase& value);
+    auto
+    set_header (MessageHeaderField header_field, const Glib::VariantBase& value)
+        -> void;
 
     auto
     get_header_fields () const -> std::vector<guchar>;
@@ -366,50 +367,50 @@ namespace Gio::DBus
     auto
     get_destination () const -> Glib::ustring;
 
-    void
-    set_destination (const Glib::ustring& value);
+    auto
+    set_destination (const Glib::ustring& value) -> void;
 
     auto
     get_error_name () const -> Glib::ustring;
 
-    void
-    set_error_name (const Glib::ustring& value);
+    auto
+    set_error_name (const Glib::ustring& value) -> void;
 
     auto
     get_interface () const -> Glib::ustring;
 
-    void
-    set_interface (const Glib::ustring& value);
+    auto
+    set_interface (const Glib::ustring& value) -> void;
 
     auto
     get_member () const -> Glib::ustring;
 
-    void
-    set_member (const Glib::ustring& value);
+    auto
+    set_member (const Glib::ustring& value) -> void;
 
     auto
     get_path () const -> Glib::ustring;
 
-    void
-    set_path (const Glib::ustring& value);
+    auto
+    set_path (const Glib::ustring& value) -> void;
 
     auto
     get_reply_serial () const -> guint32;
 
-    void
-    set_reply_serial (guint32 value);
+    auto
+    set_reply_serial (guint32 value) -> void;
 
     auto
     get_sender () const -> Glib::ustring;
 
-    void
-    set_sender (const Glib::ustring& value);
+    auto
+    set_sender (const Glib::ustring& value) -> void;
 
     auto
     get_signature () const -> Glib::ustring;
 
-    void
-    set_signature (const Glib::ustring& value);
+    auto
+    set_signature (const Glib::ustring& value) -> void;
 
     auto
     get_arg0 () const -> Glib::ustring;
@@ -421,8 +422,8 @@ namespace Gio::DBus
     to_blob (gsize& out_size,
              CapabilityFlags capabilities = CapabilityFlags::NONE) -> guchar*;
 
-    void
-    to_exception ();
+    auto
+    to_exception () -> void;
 
     auto
     property_locked () const -> Glib::PropertyProxy_ReadOnly<bool>;

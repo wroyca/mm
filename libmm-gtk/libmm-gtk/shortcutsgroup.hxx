@@ -81,8 +81,8 @@ namespace Gtk
   public:
     ShortcutsGroup ();
 
-    void
-    unset_view ();
+    auto
+    unset_view () -> void;
 
     auto
     property_title () -> Glib::PropertyProxy<Glib::ustring>;
@@ -105,9 +105,7 @@ namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkShortcutsGroup* object, bool take_copy = false) -> Gtk::ShortcutsGroup*;
 } // namespace Glib
 

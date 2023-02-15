@@ -45,8 +45,8 @@ namespace Gtk
 
     ~Border () noexcept;
 
-    void
-    swap (Border& other) noexcept;
+    auto
+    swap (Border& other) noexcept -> void;
 
     auto
     gobj () -> GtkBorder*
@@ -71,26 +71,26 @@ namespace Gtk
     auto
     get_left () const -> int;
 
-    void
-    set_left (const int& value);
+    auto
+    set_left (const int& value) -> void;
 
     auto
     get_right () const -> int;
 
-    void
-    set_right (const int& value);
+    auto
+    set_right (const int& value) -> void;
 
     auto
     get_top () const -> int;
 
-    void
-    set_top (const int& value);
+    auto
+    set_top (const int& value) -> void;
 
     auto
     get_bottom () const -> int;
 
-    void
-    set_bottom (const int& value);
+    auto
+    set_bottom (const int& value) -> void;
   };
 
 } // namespace Gtk
@@ -98,8 +98,8 @@ namespace Gtk
 namespace Gtk
 {
 
-  inline void
-  swap (Border& lhs, Border& rhs) noexcept
+  inline auto
+  swap (Border& lhs, Border& rhs) noexcept -> void
   {
     lhs.swap (rhs);
   }
@@ -108,9 +108,7 @@ namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkBorder* object, bool take_copy = false) -> Gtk::Border;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

@@ -16,12 +16,12 @@ namespace Gtk
     using CppObjectType = Editable;
     using BaseObjectType = GtkEditable;
     using BaseClassType = GtkEditableInterface;
-    using CppClassParent = Interface_Class;
+    using CppClassParent = Glib::Interface_Class;
 
     friend class Editable;
 
     auto
-    init () -> const Interface_Class&;
+    init () -> const Glib::Interface_Class&;
 
     static auto
     iface_init_function (void* g_iface, void* iface_data) -> void;

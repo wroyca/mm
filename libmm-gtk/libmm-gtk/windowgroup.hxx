@@ -90,11 +90,11 @@ namespace Gtk
     static auto
     create () -> Glib::RefPtr<WindowGroup>;
 
-    void
-    add_window (Window& window);
+    auto
+    add_window (Window& window) -> void;
 
-    void
-    remove_window (Window& window);
+    auto
+    remove_window (Window& window) -> void;
 
     auto
     list_windows () -> std::vector<Window*>;
@@ -111,9 +111,7 @@ namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkWindowGroup* object, bool take_copy = false) -> Glib::RefPtr<Gtk::WindowGroup>;
 } // namespace Glib
 

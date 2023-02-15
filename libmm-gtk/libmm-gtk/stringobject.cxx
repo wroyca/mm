@@ -15,11 +15,11 @@ namespace Glib
 {
 
   auto
-  wrap (GtkStringObject* object, const bool take_copy) -> RefPtr<Gtk::StringObject>
+  wrap (GtkStringObject* object, bool take_copy) -> Glib::RefPtr<Gtk::StringObject>
   {
     return Glib::make_refptr_for_instance<Gtk::StringObject> (
         dynamic_cast<Gtk::StringObject*> (
-            wrap_auto ((GObject*) object, take_copy)));
+            Glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
 } // namespace Glib
@@ -28,7 +28,7 @@ namespace Gtk
 {
 
   auto
-  StringObject_Class::init () -> const Class&
+  StringObject_Class::init () -> const Glib::Class&
   {
     if (!gtype_)
     {
@@ -61,28 +61,28 @@ namespace Gtk
   }
 
   StringObject::StringObject (const Glib::ConstructParams& construct_params)
-    : Object (construct_params)
+    : Glib::Object (construct_params)
   {
   }
 
   StringObject::StringObject (GtkStringObject* castitem)
-    : Object ((GObject*) castitem)
+    : Glib::Object ((GObject*) (castitem))
   {
   }
 
   StringObject::StringObject (StringObject&& src) noexcept
-    : Object (std::move (src))
+    : Glib::Object (std::move (src))
   {
   }
 
   auto
   StringObject::operator= (StringObject&& src) noexcept -> StringObject&
   {
-    Object::operator= (std::move (src));
+    Glib::Object::operator= (std::move (src));
     return *this;
   }
 
-  StringObject::~StringObject () noexcept = default;
+  StringObject::~StringObject () noexcept {}
 
   StringObject::CppClassType StringObject::stringobject_class_;
 
@@ -114,7 +114,7 @@ namespace Gtk
   auto
   StringObject::property_string () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>
   {
-    return {this, "string"};
+    return Glib::PropertyProxy_ReadOnly<Glib::ustring> (this, "string");
   }
 
 } // namespace Gtk

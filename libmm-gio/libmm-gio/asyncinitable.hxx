@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: LGPL-2.1-or-later
 
 #ifndef _GIOMM_ASYNCINITABLE_H
 #define _GIOMM_ASYNCINITABLE_H
@@ -69,8 +70,8 @@ namespace Gio
 
     ~AsyncInitable () noexcept override;
 
-    static void
-    add_interface (GType gtype_implementer);
+    static auto
+    add_interface (GType gtype_implementer) -> void;
 
     static auto
     get_type () -> GType G_GNUC_CONST;
@@ -94,14 +95,14 @@ namespace Gio
 
   private:
   protected:
-    void
+    auto
     init_async (const SlotAsyncReady& slot,
                 const Glib::RefPtr<Cancellable>& cancellable,
-                int io_priority = Glib::PRIORITY_DEFAULT);
+                int io_priority = Glib::PRIORITY_DEFAULT) -> void;
 
-    void
+    auto
     init_async (const SlotAsyncReady& slot,
-                int io_priority = Glib::PRIORITY_DEFAULT);
+                int io_priority = Glib::PRIORITY_DEFAULT) -> void;
 
     auto
     init_finish (const Glib::RefPtr<AsyncResult>& res) -> bool;
@@ -110,10 +111,10 @@ namespace Gio
     create_finish (const Glib::RefPtr<AsyncResult>& res)
         -> Glib::RefPtr<Glib::Object>;
 
-    virtual void
+    virtual auto
     init_async_vfunc (const SlotAsyncReady& slot,
                       const Glib::RefPtr<Cancellable>& cancellable,
-                      int io_priority = Glib::PRIORITY_DEFAULT);
+                      int io_priority = Glib::PRIORITY_DEFAULT) -> void;
 
     virtual auto
     init_finish_vfunc (const Glib::RefPtr<AsyncResult>& res) -> bool;

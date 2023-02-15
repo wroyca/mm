@@ -101,9 +101,7 @@ namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkGestureRotate* object, bool take_copy = false) -> Glib::RefPtr<Gtk::GestureRotate>;
 } // namespace Glib
 

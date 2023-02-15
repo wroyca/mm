@@ -111,11 +111,11 @@ namespace Gtk
     MultiFilter ();
 
   public:
-    void
-    append (const Glib::RefPtr<Filter>& filter);
+    auto
+    append (const Glib::RefPtr<Filter>& filter) -> void;
 
-    void
-    remove (guint position);
+    auto
+    remove (guint position) -> void;
 
     auto
     property_item_type () const -> Glib::PropertyProxy_ReadOnly<GType>;
@@ -268,25 +268,19 @@ namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkMultiFilter* object, bool take_copy = false) -> Glib::RefPtr<Gtk::MultiFilter>;
 } // namespace Glib
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkAnyFilter* object, bool take_copy = false) -> Glib::RefPtr<Gtk::AnyFilter>;
 } // namespace Glib
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkEveryFilter* object, bool take_copy = false) -> Glib::RefPtr<Gtk::EveryFilter>;
 } // namespace Glib
 

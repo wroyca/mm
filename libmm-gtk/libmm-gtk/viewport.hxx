@@ -84,16 +84,16 @@ namespace Gtk
     explicit Viewport (const Glib::RefPtr<Adjustment>& hadjustment,
                        const Glib::RefPtr<Adjustment>& vadjustment);
 
-    void
-    set_scroll_to_focus (bool scroll_to_focus = true);
+    auto
+    set_scroll_to_focus (bool scroll_to_focus = true) -> void;
 
     auto
     get_scroll_to_focus () const -> bool;
 
-    void
-    set_child (Widget& child);
-    void
-    unset_child ();
+    auto
+    set_child (Widget& child) -> void;
+    auto
+    unset_child () -> void;
 
     auto
     get_child () -> Widget*;
@@ -122,9 +122,7 @@ namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkViewport* object, bool take_copy = false) -> Gtk::Viewport*;
 } // namespace Glib
 

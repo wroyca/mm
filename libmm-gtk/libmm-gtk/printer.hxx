@@ -220,8 +220,8 @@ namespace Gtk
     auto
     has_details () const -> bool;
 
-    void
-    request_details ();
+    auto
+    request_details () -> void;
 
     auto
     get_capabilities () const -> PrintCapabilities;
@@ -294,17 +294,14 @@ namespace Gtk
 
   typedef sigc::slot<bool (const Glib::RefPtr<Printer>&)> SlotPrinterEnumerator;
 
-  GTKMM_API
-  void
-  enumerate_printers (const SlotPrinterEnumerator& slot, bool wait = true);
+  GTKMM_API auto
+  enumerate_printers (const SlotPrinterEnumerator& slot, bool wait = true) -> void;
 
 } // namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkPrinter* object, bool take_copy = false) -> Glib::RefPtr<Gtk::Printer>;
 } // namespace Glib
 

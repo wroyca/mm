@@ -96,14 +96,14 @@ namespace Gdk
     create (const Glib::ustring& image_type, bool mime_type = false)
         -> Glib::RefPtr<PixbufLoader>;
 
-    void
-    set_size (int width, int height);
+    auto
+    set_size (int width, int height) -> void;
 
-    void
-    write (const guint8* buf, gsize count);
+    auto
+    write (const guint8* buf, gsize count) -> void;
 
-    void
-    close ();
+    auto
+    close () -> void;
 
     auto
     get_pixbuf () -> Glib::RefPtr<Gdk::Pixbuf>;
@@ -129,26 +129,24 @@ namespace Gdk
   public:
   public:
   protected:
-    virtual void
-    on_area_prepared ();
+    virtual auto
+    on_area_prepared () -> void;
 
-    virtual void
-    on_area_updated (int x, int y, int width, int height);
+    virtual auto
+    on_area_updated (int x, int y, int width, int height) -> void;
 
-    virtual void
-    on_closed ();
+    virtual auto
+    on_closed () -> void;
 
-    virtual void
-    on_size_prepared (int width, int height);
+    virtual auto
+    on_size_prepared (int width, int height) -> void;
   };
 
 } // namespace Gdk
 
 namespace Glib
 {
-
-  GDKMM_API
-  auto
+  GDKMM_API auto
   wrap (GdkPixbufLoader* object, bool take_copy = false) -> Glib::RefPtr<Gdk::PixbufLoader>;
 } // namespace Glib
 

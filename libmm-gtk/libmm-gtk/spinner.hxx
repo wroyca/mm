@@ -81,14 +81,14 @@ namespace Gtk
   public:
     Spinner ();
 
-    void
-    start ();
+    auto
+    start () -> void;
 
-    void
-    stop ();
+    auto
+    stop () -> void;
 
-    void
-    set_spinning (bool spinning = true);
+    auto
+    set_spinning (bool spinning = true) -> void;
 
     auto
     get_spinning () const -> bool;
@@ -108,9 +108,7 @@ namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkSpinner* object, bool take_copy = false) -> Gtk::Spinner*;
 } // namespace Glib
 

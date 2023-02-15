@@ -16,12 +16,12 @@ namespace Gtk
     using CppObjectType = Buildable;
     using BaseObjectType = GtkBuildable;
     using BaseClassType = GtkBuildableIface;
-    using CppClassParent = Interface_Class;
+    using CppClassParent = Glib::Interface_Class;
 
     friend class Buildable;
 
     auto
-    init () -> const Interface_Class&;
+    init () -> const Glib::Interface_Class&;
 
     static auto
     iface_init_function (void* g_iface, void* iface_data) -> void;

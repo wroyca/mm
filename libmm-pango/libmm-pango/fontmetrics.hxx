@@ -46,8 +46,8 @@ namespace Pango
 
     ~FontMetrics () noexcept;
 
-    void
-    swap (FontMetrics& other) noexcept;
+    auto
+    swap (FontMetrics& other) noexcept -> void;
 
     auto
     gobj () -> PangoFontMetrics*
@@ -102,8 +102,8 @@ namespace Pango
 namespace Pango
 {
 
-  inline void
-  swap (FontMetrics& lhs, FontMetrics& rhs) noexcept
+  inline auto
+  swap (FontMetrics& lhs, FontMetrics& rhs) noexcept -> void
   {
     lhs.swap (rhs);
   }

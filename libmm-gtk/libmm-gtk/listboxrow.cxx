@@ -32,10 +32,10 @@ namespace Glib
 {
 
   auto
-  wrap (GtkListBoxRow* object, const bool take_copy) -> Gtk::ListBoxRow*
+  wrap (GtkListBoxRow* object, bool take_copy) -> Gtk::ListBoxRow*
   {
     return dynamic_cast<Gtk::ListBoxRow*> (
-        wrap_auto ((GObject*) object, take_copy));
+        Glib::wrap_auto ((GObject*) (object), take_copy));
   }
 
 } // namespace Glib
@@ -44,7 +44,7 @@ namespace Gtk
 {
 
   auto
-  ListBoxRow_Class::init () -> const Class&
+  ListBoxRow_Class::init () -> const Glib::Class&
   {
     if (!gtype_)
     {
@@ -68,21 +68,21 @@ namespace Gtk
   auto
   ListBoxRow_Class::wrap_new (GObject* o) -> Glib::ObjectBase*
   {
-    return manage (new ListBoxRow ((GtkListBoxRow*) o));
+    return manage (new ListBoxRow ((GtkListBoxRow*) (o)));
   }
 
   ListBoxRow::ListBoxRow (const Glib::ConstructParams& construct_params)
-    : Widget (construct_params)
+    : Gtk::Widget (construct_params)
   {
   }
 
   ListBoxRow::ListBoxRow (GtkListBoxRow* castitem)
-    : Widget ((GtkWidget*) castitem)
+    : Gtk::Widget ((GtkWidget*) (castitem))
   {
   }
 
   ListBoxRow::ListBoxRow (ListBoxRow&& src) noexcept
-    : Widget (std::move (src)),
+    : Gtk::Widget (std::move (src)),
       Actionable (std::move (src))
   {
   }
@@ -90,7 +90,7 @@ namespace Gtk
   auto
   ListBoxRow::operator= (ListBoxRow&& src) noexcept -> ListBoxRow&
   {
-    Widget::operator= (std::move (src));
+    Gtk::Widget::operator= (std::move (src));
     Actionable::operator= (std::move (src));
     return *this;
   }
@@ -115,15 +115,15 @@ namespace Gtk
   }
 
   ListBoxRow::ListBoxRow ()
-    : ObjectBase (nullptr),
-      Widget (Glib::ConstructParams (listboxrow_class_.init ()))
+    : Glib::ObjectBase (nullptr),
+      Gtk::Widget (Glib::ConstructParams (listboxrow_class_.init ()))
   {
   }
 
   auto
   ListBoxRow::set_child (Widget& child) -> void
   {
-    gtk_list_box_row_set_child (gobj (), child.gobj ());
+    gtk_list_box_row_set_child (gobj (), (child).gobj ());
   }
 
   auto
@@ -141,7 +141,7 @@ namespace Gtk
   auto
   ListBoxRow::set_header (Widget& header) -> void
   {
-    gtk_list_box_row_set_header (gobj (), header.gobj ());
+    gtk_list_box_row_set_header (gobj (), (header).gobj ());
   }
 
   auto
@@ -175,9 +175,9 @@ namespace Gtk
   }
 
   auto
-  ListBoxRow::set_selectable (const bool selectable) -> void
+  ListBoxRow::set_selectable (bool selectable) -> void
   {
-    gtk_list_box_row_set_selectable (gobj (), selectable);
+    gtk_list_box_row_set_selectable (gobj (), static_cast<int> (selectable));
   }
 
   auto
@@ -188,9 +188,9 @@ namespace Gtk
   }
 
   auto
-  ListBoxRow::set_activatable (const bool activatable) -> void
+  ListBoxRow::set_activatable (bool activatable) -> void
   {
-    gtk_list_box_row_set_activatable (gobj (), activatable);
+    gtk_list_box_row_set_activatable (gobj (), static_cast<int> (activatable));
   }
 
   auto
@@ -203,37 +203,37 @@ namespace Gtk
   auto
   ListBoxRow::property_selectable () -> Glib::PropertyProxy<bool>
   {
-    return {this, "selectable"};
+    return Glib::PropertyProxy<bool> (this, "selectable");
   }
 
   auto
   ListBoxRow::property_selectable () const -> Glib::PropertyProxy_ReadOnly<bool>
   {
-    return {this, "selectable"};
+    return Glib::PropertyProxy_ReadOnly<bool> (this, "selectable");
   }
 
   auto
   ListBoxRow::property_activatable () -> Glib::PropertyProxy<bool>
   {
-    return {this, "activatable"};
+    return Glib::PropertyProxy<bool> (this, "activatable");
   }
 
   auto
   ListBoxRow::property_activatable () const -> Glib::PropertyProxy_ReadOnly<bool>
   {
-    return {this, "activatable"};
+    return Glib::PropertyProxy_ReadOnly<bool> (this, "activatable");
   }
 
   auto
   ListBoxRow::property_child () -> Glib::PropertyProxy<Widget*>
   {
-    return {this, "child"};
+    return Glib::PropertyProxy<Widget*> (this, "child");
   }
 
   auto
   ListBoxRow::property_child () const -> Glib::PropertyProxy_ReadOnly<Widget*>
   {
-    return {this, "child"};
+    return Glib::PropertyProxy_ReadOnly<Widget*> (this, "child");
   }
 
 } // namespace Gtk

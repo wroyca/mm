@@ -187,8 +187,8 @@ namespace Pango
 
     ~Language () noexcept;
 
-    void
-    swap (Language& other) noexcept;
+    auto
+    swap (Language& other) noexcept -> void;
 
     auto
     gobj () -> PangoLanguage*
@@ -232,8 +232,8 @@ namespace Pango
 namespace Pango
 {
 
-  inline void
-  swap (Language& lhs, Language& rhs) noexcept
+  inline auto
+  swap (Language& lhs, Language& rhs) noexcept -> void
   {
     lhs.swap (rhs);
   }

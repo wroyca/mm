@@ -107,17 +107,17 @@ namespace Gtk
     create (const Glib::RefPtr<Gio::InputStream>& stream)
         -> Glib::RefPtr<MediaFile>;
 
-    void
-    clear ();
+    auto
+    clear () -> void;
 
-    void
-    set_filename (const std::string& filename);
+    auto
+    set_filename (const std::string& filename) -> void;
 
-    void
-    set_resource (const std::string& resource_path);
+    auto
+    set_resource (const std::string& resource_path) -> void;
 
-    void
-    set_file (const Glib::RefPtr<Gio::File>& file);
+    auto
+    set_file (const Glib::RefPtr<Gio::File>& file) -> void;
 
     auto
     get_file () -> Glib::RefPtr<Gio::File>;
@@ -125,8 +125,8 @@ namespace Gtk
     auto
     get_file () const -> Glib::RefPtr<const Gio::File>;
 
-    void
-    set_input_stream (const Glib::RefPtr<Gio::InputStream>& stream);
+    auto
+    set_input_stream (const Glib::RefPtr<Gio::InputStream>& stream) -> void;
 
     auto
     get_input_stream () -> Glib::RefPtr<Gio::InputStream>;
@@ -150,11 +150,11 @@ namespace Gtk
         -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gio::InputStream>>;
 
   protected:
-    virtual void
-    open_vfunc ();
+    virtual auto
+    open_vfunc () -> void;
 
-    virtual void
-    close_vfunc ();
+    virtual auto
+    close_vfunc () -> void;
 
   public:
   public:
@@ -165,9 +165,7 @@ namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkMediaFile* object, bool take_copy = false) -> Glib::RefPtr<Gtk::MediaFile>;
 } // namespace Glib
 

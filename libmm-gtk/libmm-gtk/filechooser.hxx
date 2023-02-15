@@ -3,27 +3,29 @@
 #ifndef _GTKMM_FILECHOOSER_H
 #define _GTKMM_FILECHOOSER_H
 
-#include <libmm-glib/ustring.hxx>
-#include <sigc++/sigc++.h>
+#ifndef GTKMM_DISABLE_DEPRECATED
 
-#include <vector>
+  #include <libmm-glib/ustring.hxx>
+  #include <sigc++/sigc++.h>
 
-#include <libmm-gio/file.hxx>
-#include <libmm-gio/listmodel.hxx>
-#include <libmm-gtk/filefilter.hxx>
-#include <libmm-gtk/widget.hxx>
+  #include <vector>
 
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #include <libmm-gio/file.hxx>
+  #include <libmm-gio/listmodel.hxx>
+  #include <libmm-gtk/filefilter.hxx>
+  #include <libmm-gtk/widget.hxx>
+
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
 using GtkFileChooser = struct _GtkFileChooser;
 using GtkFileChooserClass = struct _GtkFileChooserClass;
-#endif
+  #endif
 
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
   class GTKMM_API FileChooser_Class;
 }
-#endif
+  #endif
 
 namespace Gtk
 {
@@ -45,20 +47,20 @@ namespace Gtk
     GTKMM_API auto
     code () const -> Code;
 
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
   private:
-    GTKMM_API static void
-    throw_func (GError* gobject);
+    GTKMM_API static auto
+    throw_func (GError* gobject) -> void;
 
-    friend GTKMM_API void
-    wrap_init ();
+    friend GTKMM_API auto
+    wrap_init () -> void;
 
-#endif
+  #endif
   };
 
 } // namespace Gtk
 
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Glib
 {
 
@@ -72,14 +74,14 @@ namespace Glib
   };
 
 } // namespace Glib
-#endif
+  #endif
 
 namespace Gtk
 {
 
   class GTKMM_API FileChooser : public Glib::Interface
   {
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   public:
     using CppObjectType = FileChooser;
@@ -95,11 +97,11 @@ namespace Gtk
     friend class FileChooser_Class;
     static CppClassType filechooser_class_;
 
-#endif
+  #endif
   protected:
     FileChooser ();
 
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
     explicit FileChooser (const Glib::Interface_Class& interface_class);
 
@@ -107,7 +109,7 @@ namespace Gtk
     explicit FileChooser (GtkFileChooser* castitem);
 
   protected:
-#endif
+  #endif
 
   public:
     FileChooser (FileChooser&& src) noexcept;
@@ -116,16 +118,16 @@ namespace Gtk
 
     ~FileChooser () noexcept override;
 
-    static void
-    add_interface (GType gtype_implementer);
+    static auto
+    add_interface (GType gtype_implementer) -> void;
 
     static auto
     get_type () -> GType G_GNUC_CONST;
 
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
     static auto
     get_base_type () -> GType G_GNUC_CONST;
-#endif
+  #endif
 
     auto
     gobj () -> GtkFileChooser*
@@ -148,26 +150,26 @@ namespace Gtk
       SELECT_FOLDER
     };
 
-    void
-    set_action (Action action);
+    auto
+    set_action (Action action) -> void;
 
     auto
     get_action () const -> Action;
 
-    void
-    set_select_multiple (bool select_multiple = true);
+    auto
+    set_select_multiple (bool select_multiple = true) -> void;
 
     auto
     get_select_multiple () const -> bool;
 
-    void
-    set_create_folders (bool create_folders = true);
+    auto
+    set_create_folders (bool create_folders = true) -> void;
 
     auto
     get_create_folders () const -> bool;
 
-    void
-    set_current_name (const Glib::ustring& name);
+    auto
+    set_current_name (const Glib::ustring& name) -> void;
 
     auto
     get_current_name () const -> Glib::ustring;
@@ -196,17 +198,17 @@ namespace Gtk
     auto
     get_file () const -> Glib::RefPtr<const Gio::File>;
 
-    void
-    add_filter (const Glib::RefPtr<FileFilter>& filter);
+    auto
+    add_filter (const Glib::RefPtr<FileFilter>& filter) -> void;
 
-    void
-    remove_filter (const Glib::RefPtr<FileFilter>& filter);
+    auto
+    remove_filter (const Glib::RefPtr<FileFilter>& filter) -> void;
 
     auto
     get_filters () const -> Glib::RefPtr<const Gio::ListModel>;
 
-    void
-    set_filter (const Glib::RefPtr<FileFilter>& filter);
+    auto
+    set_filter (const Glib::RefPtr<FileFilter>& filter) -> void;
 
     auto
     get_filter () -> Glib::RefPtr<FileFilter>;
@@ -223,20 +225,20 @@ namespace Gtk
     auto
     get_shortcut_folders () const -> Glib::RefPtr<const Gio::ListModel>;
 
-    void
+    auto
     add_choice (const Glib::ustring& id,
                 const Glib::ustring& label,
                 const std::vector<Glib::ustring>& options,
-                const std::vector<Glib::ustring>& option_labels);
+                const std::vector<Glib::ustring>& option_labels) -> void;
 
-    void
-    add_choice (const Glib::ustring& id, const Glib::ustring& label);
+    auto
+    add_choice (const Glib::ustring& id, const Glib::ustring& label) -> void;
 
-    void
-    remove_choice (const Glib::ustring& id);
+    auto
+    remove_choice (const Glib::ustring& id) -> void;
 
-    void
-    set_choice (const Glib::ustring& id, const Glib::ustring& option);
+    auto
+    set_choice (const Glib::ustring& id, const Glib::ustring& option) -> void;
 
     auto
     get_choice (const Glib::ustring& id) const -> Glib::ustring;
@@ -281,7 +283,7 @@ namespace Gtk
 
 } // namespace Gtk
 
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Glib
 {
 
@@ -295,15 +297,15 @@ namespace Glib
   };
 
 } // namespace Glib
-#endif
+  #endif
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkFileChooser* object, bool take_copy = false) -> Glib::RefPtr<Gtk::FileChooser>;
 
 } // namespace Glib
+
+#endif
 
 #endif

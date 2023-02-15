@@ -88,10 +88,10 @@ namespace Gtk
     Range ();
 
   public:
-    void
-    set_adjustment (const Glib::RefPtr<Adjustment>& adjustment);
-    void
-    unset_adjustment ();
+    auto
+    set_adjustment (const Glib::RefPtr<Adjustment>& adjustment) -> void;
+    auto
+    unset_adjustment () -> void;
 
     auto
     get_adjustment () -> Glib::RefPtr<Adjustment>;
@@ -99,20 +99,20 @@ namespace Gtk
     auto
     get_adjustment () const -> Glib::RefPtr<const Adjustment>;
 
-    void
-    set_inverted (bool setting = true);
+    auto
+    set_inverted (bool setting = true) -> void;
 
     auto
     get_inverted () const -> bool;
 
-    void
-    set_flippable (bool flippable = true);
+    auto
+    set_flippable (bool flippable = true) -> void;
 
     auto
     get_flippable () const -> bool;
 
-    void
-    set_slider_size_fixed (bool size_fixed = true);
+    auto
+    set_slider_size_fixed (bool size_fixed = true) -> void;
 
     auto
     get_slider_size_fixed () const -> bool;
@@ -120,41 +120,41 @@ namespace Gtk
     auto
     get_range_rect () const -> Gdk::Rectangle;
 
-    void
-    get_slider_range (int& slider_start, int& slider_end) const;
+    auto
+    get_slider_range (int& slider_start, int& slider_end) const -> void;
 
-    void
-    set_increments (double step, double page);
+    auto
+    set_increments (double step, double page) -> void;
 
-    void
-    set_range (double min, double max);
+    auto
+    set_range (double min, double max) -> void;
 
-    void
-    set_value (double value);
+    auto
+    set_value (double value) -> void;
 
     auto
     get_value () const -> double;
 
-    void
-    set_show_fill_level (bool show_fill_level = true);
+    auto
+    set_show_fill_level (bool show_fill_level = true) -> void;
 
     auto
     get_show_fill_level () const -> bool;
 
-    void
-    set_restrict_to_fill_level (bool restrict_to_fill_level = true);
+    auto
+    set_restrict_to_fill_level (bool restrict_to_fill_level = true) -> void;
 
     auto
     get_restrict_to_fill_level () const -> bool;
 
-    void
-    set_fill_level (double fill_level);
+    auto
+    set_fill_level (double fill_level) -> void;
 
     auto
     get_fill_level () const -> double;
 
-    void
-    set_round_digits (int round_digits);
+    auto
+    set_round_digits (int round_digits) -> void;
 
     auto
     get_round_digits () const -> int;
@@ -210,20 +210,20 @@ namespace Gtk
     property_round_digits () const -> Glib::PropertyProxy_ReadOnly<int>;
 
   protected:
-    virtual void
-    get_range_border_vfunc (Gtk::Border& border) const;
+    virtual auto
+    get_range_border_vfunc (Gtk::Border& border) const -> void;
 
   public:
   public:
   protected:
-    virtual void
-    on_value_changed ();
+    virtual auto
+    on_value_changed () -> void;
 
-    virtual void
-    on_adjust_bounds (double new_value);
+    virtual auto
+    on_adjust_bounds (double new_value) -> void;
 
-    virtual void
-    on_move_slider (ScrollType scroll);
+    virtual auto
+    on_move_slider (ScrollType scroll) -> void;
 
     virtual auto
     on_change_value (ScrollType scroll, double new_value) -> bool;
@@ -233,9 +233,7 @@ namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkRange* object, bool take_copy = false) -> Gtk::Range*;
 } // namespace Glib
 

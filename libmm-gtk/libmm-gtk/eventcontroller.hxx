@@ -149,26 +149,26 @@ namespace Gtk
     auto
     get_widget () const -> const Widget*;
 
-    void
-    reset ();
+    auto
+    reset () -> void;
 
     auto
     get_propagation_phase () const -> PropagationPhase;
 
-    void
-    set_propagation_phase (PropagationPhase phase);
+    auto
+    set_propagation_phase (PropagationPhase phase) -> void;
 
     auto
     get_propagation_limit () const -> PropagationLimit;
 
-    void
-    set_propagation_limit (PropagationLimit limit);
+    auto
+    set_propagation_limit (PropagationLimit limit) -> void;
 
     auto
     get_name () const -> Glib::ustring;
 
-    void
-    set_name (const Glib::ustring& name);
+    auto
+    set_name (const Glib::ustring& name) -> void;
 
     auto
     get_current_event () const -> Glib::RefPtr<const Gdk::Event>;
@@ -217,9 +217,7 @@ namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkEventController* object, bool take_copy = false) -> Glib::RefPtr<Gtk::EventController>;
 } // namespace Glib
 

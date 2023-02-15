@@ -71,8 +71,8 @@ namespace Gdk
 
     ~DragSurface () noexcept override;
 
-    static void
-    add_interface (GType gtype_implementer);
+    static auto
+    add_interface (GType gtype_implementer) -> void;
 
     static auto
     get_type () -> GType G_GNUC_CONST;
@@ -108,9 +108,7 @@ namespace Gdk
 
 namespace Glib
 {
-
-  GDKMM_API
-  auto
+  GDKMM_API auto
   wrap (GdkDragSurface* object, bool take_copy = false) -> Glib::RefPtr<Gdk::DragSurface>;
 
 } // namespace Glib

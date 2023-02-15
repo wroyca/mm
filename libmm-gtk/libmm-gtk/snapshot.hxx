@@ -88,58 +88,58 @@ namespace Gtk
     static auto
     create () -> Glib::RefPtr<Snapshot>;
 
-    void
-    push_debug (const Glib::ustring& name);
+    auto
+    push_debug (const Glib::ustring& name) -> void;
 
-    void
-    push_opacity (double opacity);
+    auto
+    push_opacity (double opacity) -> void;
 
-    void
-    push_blur (double radius);
+    auto
+    push_blur (double radius) -> void;
 
-    void
+    auto
     push_repeat (const graphene_rect_t* bounds,
-                 const graphene_rect_t* child_bounds);
+                 const graphene_rect_t* child_bounds) -> void;
 
-    void
+    auto
     push_repeat (const Gdk::Rectangle& bounds,
-                 const Gdk::Rectangle& child_bounds);
+                 const Gdk::Rectangle& child_bounds) -> void;
 
-    void
-    push_repeat (const Gdk::Rectangle& bounds);
+    auto
+    push_repeat (const Gdk::Rectangle& bounds) -> void;
 
-    void
-    push_clip (const graphene_rect_t* bounds);
+    auto
+    push_clip (const graphene_rect_t* bounds) -> void;
 
-    void
-    push_clip (const Gdk::Rectangle& bounds);
+    auto
+    push_clip (const Gdk::Rectangle& bounds) -> void;
 
-    void
-    push_cross_fade (double progress);
+    auto
+    push_cross_fade (double progress) -> void;
 
-    void
-    gl_shader_pop_texture ();
+    auto
+    gl_shader_pop_texture () -> void;
 
-    void
-    pop ();
+    auto
+    pop () -> void;
 
-    void
-    save ();
+    auto
+    save () -> void;
 
-    void
-    restore ();
+    auto
+    restore () -> void;
 
-    void
-    rotate (float angle);
+    auto
+    rotate (float angle) -> void;
 
-    void
-    scale (float factor_x, float factor_y);
+    auto
+    scale (float factor_x, float factor_y) -> void;
 
-    void
-    scale (float factor_x, float factor_y, float factor_z);
+    auto
+    scale (float factor_x, float factor_y, float factor_z) -> void;
 
-    void
-    perspective (float depth);
+    auto
+    perspective (float depth) -> void;
 
     auto
     append_cairo (const graphene_rect_t* bounds)
@@ -149,58 +149,74 @@ namespace Gtk
     append_cairo (const Gdk::Rectangle& bounds)
         -> Cairo::RefPtr<Cairo::Context>;
 
-    void
+    auto
     append_texture (const Glib::RefPtr<Gdk::Texture>& texture,
-                    const graphene_rect_t* bounds);
+                    const graphene_rect_t* bounds) -> void;
 
-    void
+    auto
     append_texture (const Glib::RefPtr<Gdk::Texture>& texture,
-                    const Gdk::Rectangle& bounds);
+                    const Gdk::Rectangle& bounds) -> void;
 
-    void
-    append_color (const Gdk::RGBA& color, const graphene_rect_t* bounds);
+    auto
+    append_color (const Gdk::RGBA& color, const graphene_rect_t* bounds)
+        -> void;
 
-    void
-    append_color (const Gdk::RGBA& color, const Gdk::Rectangle& bounds);
+    auto
+    append_color (const Gdk::RGBA& color, const Gdk::Rectangle& bounds) -> void;
 
-    void
+    auto
     append_layout (const Glib::RefPtr<Pango::Layout>& layout,
-                   const Gdk::RGBA& color);
+                   const Gdk::RGBA& color) -> void;
 
-    void
+#ifndef GTKMM_DISABLE_DEPRECATED
+
+    auto
     render_backgrount (const Glib::RefPtr<StyleContext>& context,
                        double x,
                        double y,
                        double width,
-                       double height);
+                       double height) -> void;
+#endif
 
-    void
+#ifndef GTKMM_DISABLE_DEPRECATED
+
+    auto
     render_frame (const Glib::RefPtr<StyleContext>& context,
                   double x,
                   double y,
                   double width,
-                  double height);
+                  double height) -> void;
+#endif
 
-    void
+#ifndef GTKMM_DISABLE_DEPRECATED
+
+    auto
     render_focus (const Glib::RefPtr<StyleContext>& context,
                   double x,
                   double y,
                   double width,
-                  double height);
+                  double height) -> void;
+#endif
 
-    void
+#ifndef GTKMM_DISABLE_DEPRECATED
+
+    auto
     render_layout (const Glib::RefPtr<StyleContext>& context,
                    double x,
                    double y,
-                   const Glib::RefPtr<Pango::Layout>& layout);
+                   const Glib::RefPtr<Pango::Layout>& layout) -> void;
+#endif
 
-    void
+#ifndef GTKMM_DISABLE_DEPRECATED
+
+    auto
     render_insertion_cursor (const Glib::RefPtr<StyleContext>& context,
                              double x,
                              double y,
                              const Glib::RefPtr<Pango::Layout>& layout,
                              int index,
-                             Pango::Direction direction);
+                             Pango::Direction direction) -> void;
+#endif
 
   public:
   public:
@@ -211,9 +227,7 @@ namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap_gtk_snapshot (GtkSnapshot* object, bool take_copy = false) -> Glib::RefPtr<Gtk::Snapshot>;
 } // namespace Glib
 

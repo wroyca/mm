@@ -84,14 +84,14 @@ namespace Gtk
   public:
     PasswordEntry ();
 
-    void
-    set_show_peek_icon (bool show_peek_icon = true);
+    auto
+    set_show_peek_icon (bool show_peek_icon = true) -> void;
 
     auto
     get_show_peek_icon () const -> bool;
 
-    void
-    set_extra_menu (const Glib::RefPtr<Gio::MenuModel>& model);
+    auto
+    set_extra_menu (const Glib::RefPtr<Gio::MenuModel>& model) -> void;
 
     auto
     get_extra_menu () -> Glib::RefPtr<Gio::MenuModel>;
@@ -134,9 +134,7 @@ namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkPasswordEntry* object, bool take_copy = false) -> Gtk::PasswordEntry*;
 } // namespace Glib
 

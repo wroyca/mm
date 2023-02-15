@@ -85,38 +85,38 @@ namespace Gtk
 
   private:
   public:
-    void
-    set_markup (const Glib::ustring& markup);
+    auto
+    set_markup (const Glib::ustring& markup) -> void;
 
-    void
-    unset_markup ();
+    auto
+    unset_markup () -> void;
 
-    void
-    set_text (const Glib::ustring& text);
+    auto
+    set_text (const Glib::ustring& text) -> void;
 
-    void
-    unset_text ();
+    auto
+    unset_text () -> void;
 
-    void
-    set_icon (const Glib::RefPtr<Gdk::Paintable>& paintable);
+    auto
+    set_icon (const Glib::RefPtr<Gdk::Paintable>& paintable) -> void;
 
-    void
-    set_icon (const Glib::RefPtr<Gio::Icon>& gicon);
+    auto
+    set_icon (const Glib::RefPtr<Gio::Icon>& gicon) -> void;
 
-    void
-    set_icon (const Glib::ustring& icon_name);
+    auto
+    set_icon (const Glib::ustring& icon_name) -> void;
 
-    void
-    unset_icon ();
+    auto
+    unset_icon () -> void;
 
-    void
-    set_custom (Widget& custom_widget);
+    auto
+    set_custom (Widget& custom_widget) -> void;
 
-    void
-    unset_custom ();
+    auto
+    unset_custom () -> void;
 
-    void
-    set_tip_area (const Gdk::Rectangle& rect);
+    auto
+    set_tip_area (const Gdk::Rectangle& rect) -> void;
 
   public:
   public:
@@ -127,9 +127,7 @@ namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkTooltip* object, bool take_copy = false) -> Glib::RefPtr<Gtk::Tooltip>;
 } // namespace Glib
 

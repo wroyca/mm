@@ -84,44 +84,44 @@ namespace Gtk
     explicit Box (Orientation orientation = Orientation::HORIZONTAL,
                   int spacing = 0);
 
-    void
-    set_homogeneous (bool homogeneous = true);
+    auto
+    set_homogeneous (bool homogeneous = true) -> void;
 
     auto
     get_homogeneous () const -> bool;
 
-    void
-    set_spacing (int spacing);
+    auto
+    set_spacing (int spacing) -> void;
 
     auto
     get_spacing () const -> int;
 
-    void
-    set_baseline_position (BaselinePosition position);
+    auto
+    set_baseline_position (BaselinePosition position) -> void;
 
     auto
     get_baseline_position () const -> BaselinePosition;
 
-    void
-    append (Gtk::Widget& child);
+    auto
+    append (Gtk::Widget& child) -> void;
 
-    void
-    prepend (Gtk::Widget& child);
+    auto
+    prepend (Gtk::Widget& child) -> void;
 
-    void
-    remove (Gtk::Widget& child);
+    auto
+    remove (Gtk::Widget& child) -> void;
 
-    void
-    insert_child_after (Widget& child, const Widget& sibling);
+    auto
+    insert_child_after (Widget& child, const Widget& sibling) -> void;
 
-    void
-    insert_child_at_start (Widget& child);
+    auto
+    insert_child_at_start (Widget& child) -> void;
 
-    void
-    reorder_child_after (Widget& child, const Widget& sibling);
+    auto
+    reorder_child_after (Widget& child, const Widget& sibling) -> void;
 
-    void
-    reorder_child_at_start (Widget& child);
+    auto
+    reorder_child_at_start (Widget& child) -> void;
 
     auto
     property_spacing () -> Glib::PropertyProxy<int>;
@@ -151,9 +151,7 @@ namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkBox* object, bool take_copy = false) -> Gtk::Box*;
 } // namespace Glib
 

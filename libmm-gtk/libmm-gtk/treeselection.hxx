@@ -3,27 +3,29 @@
 #ifndef _GTKMM_TREESELECTION_H
 #define _GTKMM_TREESELECTION_H
 
-#include <libmm-glib/ustring.hxx>
-#include <sigc++/sigc++.h>
+#ifndef GTKMM_DISABLE_DEPRECATED
 
-#include <vector>
+  #include <libmm-glib/ustring.hxx>
+  #include <sigc++/sigc++.h>
 
-#include <libmm-gtk/enums.hxx>
-#include <libmm-gtk/treeiter.hxx>
-#include <libmm-gtk/treemodel.hxx>
-#include <libmm-gtk/treepath.hxx>
+  #include <vector>
 
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #include <libmm-gtk/enums.hxx>
+  #include <libmm-gtk/treeiter.hxx>
+  #include <libmm-gtk/treemodel.hxx>
+  #include <libmm-gtk/treepath.hxx>
+
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
 using GtkTreeSelection = struct _GtkTreeSelection;
 using GtkTreeSelectionClass = struct _GtkTreeSelectionClass;
-#endif
+  #endif
 
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
   class GTKMM_API TreeSelection_Class;
 }
-#endif
+  #endif
 
 namespace Gtk
 {
@@ -32,7 +34,7 @@ namespace Gtk
 
   class GTKMM_API TreeSelection : public Glib::Object
   {
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   public:
     using CppObjectType = TreeSelection;
@@ -52,7 +54,7 @@ namespace Gtk
     explicit TreeSelection (const Glib::ConstructParams& construct_params);
     explicit TreeSelection (GtkTreeSelection* castitem);
 
-#endif
+  #endif
 
   public:
     TreeSelection (TreeSelection&& src) noexcept;
@@ -64,11 +66,11 @@ namespace Gtk
     static auto
     get_type () -> GType G_GNUC_CONST;
 
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
     static auto
     get_base_type () -> GType G_GNUC_CONST;
-#endif
+  #endif
 
     auto
     gobj () -> GtkTreeSelection*
@@ -87,8 +89,8 @@ namespace Gtk
 
   private:
   public:
-    void
-    set_mode (SelectionMode type);
+    auto
+    set_mode (SelectionMode type) -> void;
 
     auto
     get_mode () const -> SelectionMode;
@@ -96,8 +98,8 @@ namespace Gtk
     using SlotSelect = sigc::slot<
         bool (const Glib::RefPtr<TreeModel>&, const TreeModel::Path&, bool)>;
 
-    void
-    set_select_function (const SlotSelect& slot);
+    auto
+    set_select_function (const SlotSelect& slot) -> void;
 
     auto
     get_tree_view () -> TreeView*;
@@ -135,39 +137,40 @@ namespace Gtk
 
     using SlotForeachIter = sigc::slot<void (const TreeModel::const_iterator&)>;
 
-    void
-    selected_foreach_iter (const SlotForeachIter& slot) const;
+    auto
+    selected_foreach_iter (const SlotForeachIter& slot) const -> void;
 
     using SlotForeachPath = sigc::slot<void (const TreeModel::Path&)>;
 
-    void
-    selected_foreach_path (const SlotForeachPath& slot) const;
+    auto
+    selected_foreach_path (const SlotForeachPath& slot) const -> void;
 
     using SlotForeachPathAndIter =
         sigc::slot<void (const TreeModel::Path&,
                          const TreeModel::const_iterator&)>;
 
-    void
-    selected_foreach (const SlotForeachPathAndIter& slot) const;
+    auto
+    selected_foreach (const SlotForeachPathAndIter& slot) const -> void;
 
-    void
-    select (const TreeModel::Path& path);
+    auto
+    select (const TreeModel::Path& path) -> void;
 
-    void
-    select (const TreeModel::Path& start_path, const TreeModel::Path& end_path);
+    auto
+    select (const TreeModel::Path& start_path, const TreeModel::Path& end_path)
+        -> void;
 
-    void
-    select (const TreeModel::const_iterator& iter);
+    auto
+    select (const TreeModel::const_iterator& iter) -> void;
 
-    void
-    unselect (const TreeModel::Path& path);
+    auto
+    unselect (const TreeModel::Path& path) -> void;
 
-    void
+    auto
     unselect (const TreeModel::Path& start_path,
-              const TreeModel::Path& end_path);
+              const TreeModel::Path& end_path) -> void;
 
-    void
-    unselect (const TreeModel::const_iterator& iter);
+    auto
+    unselect (const TreeModel::const_iterator& iter) -> void;
 
     auto
     is_selected (const TreeModel::Path& path) const -> bool;
@@ -175,11 +178,11 @@ namespace Gtk
     auto
     is_selected (const TreeModel::const_iterator& iter) const -> bool;
 
-    void
-    select_all ();
+    auto
+    select_all () -> void;
 
-    void
-    unselect_all ();
+    auto
+    unselect_all () -> void;
 
     auto
     property_mode () -> Glib::PropertyProxy<SelectionMode>;
@@ -199,10 +202,10 @@ namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkTreeSelection* object, bool take_copy = false) -> Glib::RefPtr<Gtk::TreeSelection>;
 } // namespace Glib
+
+#endif
 
 #endif

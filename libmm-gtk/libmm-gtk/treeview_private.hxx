@@ -3,32 +3,38 @@
 #ifndef _GTKMM_TREEVIEW_PRIVATE_H
 #define _GTKMM_TREEVIEW_PRIVATE_H
 
-#include <libmm-gtk/treeview.hxx>
-#include <libmm-gtk/treeviewcolumn.hxx>
+#ifndef GTKMM_DISABLE_DEPRECATED
 
-namespace Gtk::TreeView_Private
+  #include <libmm-gtk/treeview.hxx>
+  #include <libmm-gtk/treeviewcolumn.hxx>
+
+namespace Gtk
 {
 
-  GTKMM_API
-  void
-  SignalProxy_CellData_gtk_callback (GtkTreeViewColumn*,
-                                     GtkCellRenderer* cell,
-                                     GtkTreeModel* model,
-                                     GtkTreeIter* iter,
-                                     void* data);
-  GTKMM_API
-  void
-  SignalProxy_CellData_gtk_callback_destroy (void* data);
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
+  namespace TreeView_Private
+  {
+    GTKMM_API auto
+    SignalProxy_CellData_gtk_callback (GtkTreeViewColumn*,
+                                       GtkCellRenderer* cell,
+                                       GtkTreeModel* model,
+                                       GtkTreeIter* iter,
+                                       void* data) -> void;
+    GTKMM_API auto
+    SignalProxy_CellData_gtk_callback_destroy (void* data) -> void;
 
-  GTKMM_API
-  auto
-  SignalProxy_RowSeparator_gtk_callback (GtkTreeModel* model,
-                                         GtkTreeIter* iter,
-                                         void* data) -> gboolean;
-  GTKMM_API
-  void
-  SignalProxy_RowSeparator_gtk_callback_destroy (void* data);
+    GTKMM_API auto
+    SignalProxy_RowSeparator_gtk_callback (GtkTreeModel* model,
+                                           GtkTreeIter* iter,
+                                           void* data) -> gboolean;
+    GTKMM_API auto
+    SignalProxy_RowSeparator_gtk_callback_destroy (void* data) -> void;
 
-} // namespace Gtk::TreeView_Private
+  } // namespace TreeView_Private
+  #endif
+
+} // namespace Gtk
+
+#endif
 
 #endif

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: LGPL-2.1-or-later
 
 #ifndef _GIOMM_BUFFEREDINPUTSTREAM_H
 #define _GIOMM_BUFFEREDINPUTSTREAM_H
@@ -100,8 +101,8 @@ namespace Gio
     auto
     get_buffer_size () const -> gsize;
 
-    void
-    set_buffer_size (gsize size);
+    auto
+    set_buffer_size (gsize size) -> void;
 
     auto
     get_available () const -> gsize;
@@ -118,16 +119,16 @@ namespace Gio
     auto
     fill (gssize count) -> gssize;
 
-    void
+    auto
     fill_async (const SlotAsyncReady& slot,
                 gssize count,
                 const Glib::RefPtr<Cancellable>& cancellable,
-                int io_priority = Glib::PRIORITY_DEFAULT);
+                int io_priority = Glib::PRIORITY_DEFAULT) -> void;
 
-    void
+    auto
     fill_async (const SlotAsyncReady& slot,
                 gssize count,
-                int io_priority = Glib::PRIORITY_DEFAULT);
+                int io_priority = Glib::PRIORITY_DEFAULT) -> void;
 
     auto
     fill_finish (const Glib::RefPtr<AsyncResult>& result) -> gssize;

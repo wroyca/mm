@@ -94,32 +94,32 @@ namespace Gtk
     auto
     get_buffer () const -> Glib::RefPtr<const EntryBuffer>;
 
-    void
-    set_buffer (const Glib::RefPtr<EntryBuffer>& buffer);
+    auto
+    set_buffer (const Glib::RefPtr<EntryBuffer>& buffer) -> void;
 
-    void
-    set_visibility (bool visible = true);
+    auto
+    set_visibility (bool visible = true) -> void;
 
     auto
     get_visibility () const -> bool;
 
-    void
-    set_invisible_char (gunichar ch);
+    auto
+    set_invisible_char (gunichar ch) -> void;
 
-    void
-    unset_invisible_char ();
+    auto
+    unset_invisible_char () -> void;
 
     auto
     get_invisible_char () const -> gunichar;
 
-    void
-    set_overwrite_mode (bool overwrite = true);
+    auto
+    set_overwrite_mode (bool overwrite = true) -> void;
 
     auto
     get_overwrite_mode () const -> bool;
 
-    void
-    set_max_length (int max);
+    auto
+    set_max_length (int max) -> void;
 
     auto
     get_max_length () const -> int;
@@ -127,8 +127,8 @@ namespace Gtk
     auto
     get_text_length () const -> guint16;
 
-    void
-    set_activates_default (bool setting = true);
+    auto
+    set_activates_default (bool setting = true) -> void;
 
     auto
     get_activates_default () const -> bool;
@@ -136,29 +136,29 @@ namespace Gtk
     auto
     get_placeholder_text () const -> Glib::ustring;
 
-    void
-    set_placeholder_text (const Glib::ustring& text);
+    auto
+    set_placeholder_text (const Glib::ustring& text) -> void;
 
-    void
-    set_input_purpose (InputPurpose purpose);
+    auto
+    set_input_purpose (InputPurpose purpose) -> void;
 
     auto
     get_input_purpose () const -> InputPurpose;
 
-    void
-    set_input_hints (InputHints hints);
+    auto
+    set_input_hints (InputHints hints) -> void;
 
     auto
     get_input_hints () const -> InputHints;
 
-    void
-    set_attributes (Pango::AttrList& attrs);
+    auto
+    set_attributes (Pango::AttrList& attrs) -> void;
 
     auto
     get_attributes () const -> Pango::AttrList;
 
-    void
-    set_tabs (const Pango::TabArray& tabs);
+    auto
+    set_tabs (const Pango::TabArray& tabs) -> void;
 
     auto
     get_tabs () const -> Pango::TabArray;
@@ -166,8 +166,8 @@ namespace Gtk
     auto
     grab_focus_without_selecting () -> bool;
 
-    void
-    set_extra_menu (const Glib::RefPtr<Gio::MenuModel>& model);
+    auto
+    set_extra_menu (const Glib::RefPtr<Gio::MenuModel>& model) -> void;
 
     auto
     get_extra_menu () -> Glib::RefPtr<Gio::MenuModel>;
@@ -175,20 +175,20 @@ namespace Gtk
     auto
     get_extra_menu () const -> Glib::RefPtr<const Gio::MenuModel>;
 
-    void
-    set_enable_emoji_completion (bool enable_emoji_completion = true);
+    auto
+    set_enable_emoji_completion (bool enable_emoji_completion = true) -> void;
 
     auto
     get_enable_emoji_completion () const -> bool;
 
-    void
-    set_propagate_text_width (bool propagate_text_width = true);
+    auto
+    set_propagate_text_width (bool propagate_text_width = true) -> void;
 
     auto
     get_propagate_text_width () const -> bool;
 
-    void
-    set_truncate_multiline (bool truncate_multiline = true);
+    auto
+    set_truncate_multiline (bool truncate_multiline = true) -> void;
 
     auto
     get_truncate_multiline () const -> bool;
@@ -314,9 +314,7 @@ namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkText* object, bool take_copy = false) -> Gtk::Text*;
 } // namespace Glib
 

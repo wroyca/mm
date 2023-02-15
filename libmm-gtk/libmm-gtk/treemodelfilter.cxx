@@ -1,18 +1,23 @@
 // SPDX-License-Identifier: LGPL-2.1-or-later
 
-#include <libmm-glib/mm-glib.hxx>
+#undef GTK_DISABLE_DEPRECATED
+#define GDK_DISABLE_DEPRECATION_WARNINGS 1
 
-#include <libmm-gtk/treemodelfilter.hxx>
-#include <libmm-gtk/treemodelfilter_p.hxx>
+#ifndef GTKMM_DISABLE_DEPRECATED
 
-#include <gtk/gtk.h>
+  #include <libmm-glib/mm-glib.hxx>
+
+  #include <libmm-gtk/treemodelfilter.hxx>
+  #include <libmm-gtk/treemodelfilter_p.hxx>
+
+  #include <gtk/gtk.h>
 
 static auto
 SignalProxy_Visible_gtk_callback (GtkTreeModel* model,
                                   GtkTreeIter* iter,
-                                  const gpointer data) -> gboolean
+                                  gpointer data) -> gboolean
 {
-  const auto the_slot = static_cast<Gtk::TreeModelFilter::SlotVisible*> (data);
+  auto the_slot = static_cast<Gtk::TreeModelFilter::SlotVisible*> (data);
 
   try
   {
@@ -36,15 +41,15 @@ static auto
 SignalProxy_Modify_gtk_callback (GtkTreeModel* model,
                                  GtkTreeIter* iter,
                                  GValue* value,
-                                 const int column,
-                                 const gpointer data) -> void
+                                 int column,
+                                 gpointer data) -> void
 {
-  const auto the_slot = static_cast<Gtk::TreeModelFilter::SlotModify*> (data);
+  auto the_slot = static_cast<Gtk::TreeModelFilter::SlotModify*> (data);
 
   try
   {
     Glib::ValueBase cppValue;
-    const auto column_type = gtk_tree_model_get_column_type (model, column);
+    auto column_type = gtk_tree_model_get_column_type (model, column);
     cppValue.init (column_type);
 
     (*the_slot) (Gtk::TreeModel::iterator (model, iter), cppValue, column);
@@ -69,25 +74,25 @@ namespace Gtk
 {
 
   TreeModelFilter::TreeModelFilter (const Glib::RefPtr<TreeModel>& child_model)
-    : ObjectBase (nullptr),
-      Object (Glib::ConstructParams (treemodelfilter_class_.init (),
-                                     "child_model",
-                                     child_model->gobj (),
-                                     nullptr))
+    : Glib::ObjectBase (nullptr),
+      Glib::Object (Glib::ConstructParams (treemodelfilter_class_.init (),
+                                           "child_model",
+                                           child_model->gobj (),
+                                           nullptr))
   {
   }
 
   TreeModelFilter::TreeModelFilter (const Glib::RefPtr<TreeModel>& child_model,
-                                    const Path& virtual_root)
-    : ObjectBase (nullptr),
-      Object (Glib::ConstructParams (
+                                    const TreeModel::Path& virtual_root)
+    : Glib::ObjectBase (nullptr),
+      Glib::Object (Glib::ConstructParams (
           treemodelfilter_class_.init (),
           "child_model",
           child_model->gobj (),
           "virtual_root",
-          virtual_root.empty () ?
-              nullptr :
-              const_cast<GtkTreePath*> (virtual_root.gobj ()),
+          (virtual_root.empty () ?
+               nullptr :
+               const_cast<GtkTreePath*> ((virtual_root).gobj ())),
           nullptr))
   {
   }
@@ -95,7 +100,7 @@ namespace Gtk
   auto
   TreeModelFilter::set_visible_func (const SlotVisible& slot) -> void
   {
-    const auto slot_copy = new SlotVisible (slot);
+    auto slot_copy = new SlotVisible (slot);
 
     gtk_tree_model_filter_set_visible_func (
         gobj (),
@@ -105,7 +110,7 @@ namespace Gtk
   }
 
   auto
-  TreeModelFilter::convert_child_iter_to_iter (const iterator& child_iter) -> iterator
+  TreeModelFilter::convert_child_iter_to_iter (const iterator& child_iter) -> TreeModel::iterator
   {
     iterator filter_iter (this);
 
@@ -119,7 +124,7 @@ namespace Gtk
 
   auto
   TreeModelFilter::convert_child_iter_to_iter (
-      const const_iterator& child_iter) const -> const_iterator
+      const const_iterator& child_iter) const -> TreeModel::const_iterator
   {
     const_iterator filter_iter (const_cast<TreeModelFilter*> (this));
 
@@ -132,7 +137,7 @@ namespace Gtk
   }
 
   auto
-  TreeModelFilter::convert_iter_to_child_iter (const iterator& filter_iter) -> iterator
+  TreeModelFilter::convert_iter_to_child_iter (const iterator& filter_iter) -> TreeModel::iterator
   {
     const auto child_model = gtk_tree_model_filter_get_model (gobj ());
 
@@ -149,7 +154,7 @@ namespace Gtk
 
   auto
   TreeModelFilter::convert_iter_to_child_iter (
-      const const_iterator& filter_iter) const -> const_iterator
+      const const_iterator& filter_iter) const -> TreeModel::const_iterator
   {
     const auto child_model = gtk_tree_model_filter_get_model (
         const_cast<GtkTreeModelFilter*> (gobj ()));
@@ -169,7 +174,7 @@ namespace Gtk
   TreeModelFilter::set_modify_func (const TreeModelColumnRecord& columns,
                                     const SlotModify& slot) -> void
   {
-    const auto slot_copy = new SlotModify (slot);
+    auto slot_copy = new SlotModify (slot);
 
     gtk_tree_model_filter_set_modify_func (
         gobj (),
@@ -182,7 +187,7 @@ namespace Gtk
 
   auto
   TreeModelFilter::set_value_impl (const iterator& row,
-                                   const int column,
+                                   int column,
                                    const Glib::ValueBase& value) -> void
   {
     const auto child_model = dynamic_cast<TreeModel*> (
@@ -209,11 +214,11 @@ namespace Glib
 {
 
   auto
-  wrap (GtkTreeModelFilter* object, const bool take_copy) -> RefPtr<Gtk::TreeModelFilter>
+  wrap (GtkTreeModelFilter* object, bool take_copy) -> Glib::RefPtr<Gtk::TreeModelFilter>
   {
     return Glib::make_refptr_for_instance<Gtk::TreeModelFilter> (
         dynamic_cast<Gtk::TreeModelFilter*> (
-            wrap_auto ((GObject*) object, take_copy)));
+            Glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
 } // namespace Glib
@@ -222,7 +227,7 @@ namespace Gtk
 {
 
   auto
-  TreeModelFilter_Class::init () -> const Class&
+  TreeModelFilter_Class::init () -> const Glib::Class&
   {
     if (!gtype_)
     {
@@ -259,17 +264,17 @@ namespace Gtk
 
   TreeModelFilter::TreeModelFilter (
       const Glib::ConstructParams& construct_params)
-    : Object (construct_params)
+    : Glib::Object (construct_params)
   {
   }
 
   TreeModelFilter::TreeModelFilter (GtkTreeModelFilter* castitem)
-    : Object ((GObject*) castitem)
+    : Glib::Object ((GObject*) (castitem))
   {
   }
 
   TreeModelFilter::TreeModelFilter (TreeModelFilter&& src) noexcept
-    : Object (std::move (src)),
+    : Glib::Object (std::move (src)),
       TreeModel (std::move (src)),
       TreeDragSource (std::move (src))
   {
@@ -278,13 +283,13 @@ namespace Gtk
   auto
   TreeModelFilter::operator= (TreeModelFilter&& src) noexcept -> TreeModelFilter&
   {
-    Object::operator= (std::move (src));
+    Glib::Object::operator= (std::move (src));
     TreeModel::operator= (std::move (src));
     TreeDragSource::operator= (std::move (src));
     return *this;
   }
 
-  TreeModelFilter::~TreeModelFilter () noexcept = default;
+  TreeModelFilter::~TreeModelFilter () noexcept {}
 
   TreeModelFilter::CppClassType TreeModelFilter::treemodelfilter_class_;
 
@@ -309,7 +314,7 @@ namespace Gtk
 
   auto
   TreeModelFilter::create (const Glib::RefPtr<TreeModel>& child_model,
-                           const Path& virtual_root) -> Glib::RefPtr<TreeModelFilter>
+                           const TreeModel::Path& virtual_root) -> Glib::RefPtr<TreeModelFilter>
   {
     return Glib::make_refptr_for_instance<TreeModelFilter> (
         new TreeModelFilter (child_model, virtual_root));
@@ -318,11 +323,11 @@ namespace Gtk
   auto
   TreeModelFilter::set_visible_column (const TreeModelColumnBase& column) -> void
   {
-    gtk_tree_model_filter_set_visible_column (gobj (), column.index ());
+    gtk_tree_model_filter_set_visible_column (gobj (), (column).index ());
   }
 
   auto
-  TreeModelFilter::set_visible_column (const int column) -> void
+  TreeModelFilter::set_visible_column (int column) -> void
   {
     gtk_tree_model_filter_set_visible_column (gobj (), column);
   }
@@ -345,19 +350,19 @@ namespace Gtk
   auto
   TreeModelFilter::convert_child_path_to_path (const Path& child_path) const -> Path
   {
-    return TreePath (gtk_tree_model_filter_convert_child_path_to_path (
-                         const_cast<GtkTreeModelFilter*> (gobj ()),
-                         const_cast<GtkTreePath*> (child_path.gobj ())),
-                     false);
+    return Gtk::TreePath (gtk_tree_model_filter_convert_child_path_to_path (
+                              const_cast<GtkTreeModelFilter*> (gobj ()),
+                              const_cast<GtkTreePath*> ((child_path).gobj ())),
+                          false);
   }
 
   auto
   TreeModelFilter::convert_path_to_child_path (const Path& filter_path) const -> Path
   {
-    return TreePath (gtk_tree_model_filter_convert_path_to_child_path (
-                         const_cast<GtkTreeModelFilter*> (gobj ()),
-                         const_cast<GtkTreePath*> (filter_path.gobj ())),
-                     false);
+    return Gtk::TreePath (gtk_tree_model_filter_convert_path_to_child_path (
+                              const_cast<GtkTreeModelFilter*> (gobj ()),
+                              const_cast<GtkTreePath*> ((filter_path).gobj ())),
+                          false);
   }
 
   auto
@@ -381,7 +386,9 @@ namespace Gtk
   auto
   TreeModelFilter::property_child_model () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<TreeModel>>
   {
-    return {this, "child-model"};
+    return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<TreeModel>> (
+        this,
+        "child-model");
   }
 
   static_assert (
@@ -390,9 +397,11 @@ namespace Gtk
       "There is no suitable template specialization of Glib::Value<>.");
 
   auto
-  TreeModelFilter::property_virtual_root () const -> Glib::PropertyProxy_ReadOnly<Path>
+  TreeModelFilter::property_virtual_root () const -> Glib::PropertyProxy_ReadOnly<TreeModel::Path>
   {
-    return {this, "virtual-root"};
+    return Glib::PropertyProxy_ReadOnly<TreeModel::Path> (this, "virtual-root");
   }
 
 } // namespace Gtk
+
+#endif

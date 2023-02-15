@@ -3,22 +3,24 @@
 #ifndef _GTKMM_COMBOBOXTEXT_H
 #define _GTKMM_COMBOBOXTEXT_H
 
-#include <libmm-glib/ustring.hxx>
-#include <sigc++/sigc++.h>
+#ifndef GTKMM_DISABLE_DEPRECATED
 
-#include <libmm-gtk/combobox.hxx>
+  #include <libmm-glib/ustring.hxx>
+  #include <sigc++/sigc++.h>
 
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #include <libmm-gtk/combobox.hxx>
+
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
 using GtkComboBoxText = struct _GtkComboBoxText;
 using GtkComboBoxTextClass = struct _GtkComboBoxTextClass;
-#endif
+  #endif
 
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
   class GTKMM_API ComboBoxText_Class;
 }
-#endif
+  #endif
 
 namespace Gtk
 {
@@ -26,12 +28,12 @@ namespace Gtk
   class GTKMM_API ComboBoxText : public ComboBox
   {
   public:
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
     typedef ComboBoxText CppObjectType;
     typedef ComboBoxText_Class CppClassType;
     typedef GtkComboBoxText BaseObjectType;
     typedef GtkComboBoxTextClass BaseClassType;
-#endif
+  #endif
 
     ComboBoxText (ComboBoxText&& src) noexcept;
     auto
@@ -43,7 +45,7 @@ namespace Gtk
 
     ~ComboBoxText () noexcept override;
 
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   private:
     friend GTKMM_API class ComboBoxText_Class;
@@ -53,17 +55,17 @@ namespace Gtk
     explicit ComboBoxText (const Glib::ConstructParams& construct_params);
     explicit ComboBoxText (GtkComboBoxText* castitem);
 
-#endif
+  #endif
 
   public:
     static auto
     get_type () -> GType G_GNUC_CONST;
 
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
     static auto
     get_base_type () -> GType G_GNUC_CONST;
-#endif
+  #endif
 
     auto
     gobj () -> GtkComboBoxText*
@@ -81,35 +83,36 @@ namespace Gtk
   public:
     explicit ComboBoxText (bool has_entry = false);
 
-    void
-    append (const Glib::ustring& text);
+    auto
+    append (const Glib::ustring& text) -> void;
 
-    void
-    append (const Glib::ustring& id, const Glib::ustring& text);
+    auto
+    append (const Glib::ustring& id, const Glib::ustring& text) -> void;
 
-    void
-    insert (int position, const Glib::ustring& text);
+    auto
+    insert (int position, const Glib::ustring& text) -> void;
 
-    void
-    insert (int position, const Glib::ustring& id, const Glib::ustring& text);
+    auto
+    insert (int position, const Glib::ustring& id, const Glib::ustring& text)
+        -> void;
 
-    void
-    prepend (const Glib::ustring& text);
+    auto
+    prepend (const Glib::ustring& text) -> void;
 
-    void
-    prepend (const Glib::ustring& id, const Glib::ustring& text);
+    auto
+    prepend (const Glib::ustring& id, const Glib::ustring& text) -> void;
 
-    void
-    remove_text (int position);
+    auto
+    remove_text (int position) -> void;
 
     auto
     get_active_text () const -> Glib::ustring;
 
-    void
-    remove_all ();
+    auto
+    remove_all () -> void;
 
-    void
-    set_active_text (const Glib::ustring& text);
+    auto
+    set_active_text (const Glib::ustring& text) -> void;
 
   public:
   public:
@@ -120,10 +123,10 @@ namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkComboBoxText* object, bool take_copy = false) -> Gtk::ComboBoxText*;
 } // namespace Glib
+
+#endif
 
 #endif

@@ -196,8 +196,8 @@ namespace Gtk
       return c_obj;
     }
 
-    static void
-    release_c_type (CType)
+    static auto
+    release_c_type (CType) -> void
     {
     }
 
@@ -343,12 +343,13 @@ namespace Gtk
     auto
     save_to_file (const std::string& file_name) const -> bool;
 
-    void
+    auto
     save_to_key_file (const Glib::RefPtr<Glib::KeyFile>& key_file,
-                      const Glib::ustring& group_name) const;
+                      const Glib::ustring& group_name) const -> void;
 
-    void
-    save_to_key_file (const Glib::RefPtr<Glib::KeyFile>& key_file) const;
+    auto
+    save_to_key_file (const Glib::RefPtr<Glib::KeyFile>& key_file) const
+        -> void;
 
     auto
     has_key (const Glib::ustring& key) const -> bool;
@@ -356,23 +357,23 @@ namespace Gtk
     auto
     get (const Glib::ustring& key) const -> Glib::ustring;
 
-    void
-    set (const Glib::ustring& key, const Glib::ustring& value);
+    auto
+    set (const Glib::ustring& key, const Glib::ustring& value) -> void;
 
-    void
-    unset (const Glib::ustring& key);
+    auto
+    unset (const Glib::ustring& key) -> void;
 
     typedef sigc::slot<void (const Glib::ustring&, const Glib::ustring&)>
         SlotForeach;
 
-    void
-    setting_foreach (const SlotForeach& slot);
+    auto
+    setting_foreach (const SlotForeach& slot) -> void;
 
     auto
     get_bool (const Glib::ustring& key) const -> bool;
 
-    void
-    set_bool (const Glib::ustring& key, bool value = true);
+    auto
+    set_bool (const Glib::ustring& key, bool value = true) -> void;
 
     auto
     get_double (const Glib::ustring& key) const -> double;
@@ -381,14 +382,14 @@ namespace Gtk
     get_double_with_default (const Glib::ustring& key, double def) const
         -> double;
 
-    void
-    set_double (const Glib::ustring& key, double value);
+    auto
+    set_double (const Glib::ustring& key, double value) -> void;
 
     auto
     get_length (const Glib::ustring& key, Unit unit) const -> double;
 
-    void
-    set_length (const Glib::ustring& key, double value, Unit unit);
+    auto
+    set_length (const Glib::ustring& key, double value, Unit unit) -> void;
 
     auto
     get_int (const Glib::ustring& key) const -> int;
@@ -396,20 +397,20 @@ namespace Gtk
     auto
     get_int_with_default (const Glib::ustring& key, int def) const -> int;
 
-    void
-    set_int (const Glib::ustring& key, int value);
+    auto
+    set_int (const Glib::ustring& key, int value) -> void;
 
     auto
     get_printer () const -> Glib::ustring;
 
-    void
-    set_printer (const Glib::ustring& printer);
+    auto
+    set_printer (const Glib::ustring& printer) -> void;
 
     auto
     get_orientation () const -> PageOrientation;
 
-    void
-    set_orientation (PageOrientation orientation);
+    auto
+    set_orientation (PageOrientation orientation) -> void;
 
     auto
     get_paper_size () -> PaperSize;
@@ -417,74 +418,74 @@ namespace Gtk
     auto
     get_paper_size () const -> const PaperSize;
 
-    void
-    set_paper_size (const PaperSize& paper_size);
+    auto
+    set_paper_size (const PaperSize& paper_size) -> void;
 
     auto
     get_paper_width (Unit unit) const -> double;
 
-    void
-    set_paper_width (double width, Unit unit);
+    auto
+    set_paper_width (double width, Unit unit) -> void;
 
     auto
     get_paper_height (Unit unit) const -> double;
 
-    void
-    set_paper_height (double height, Unit unit);
+    auto
+    set_paper_height (double height, Unit unit) -> void;
 
     auto
     get_use_color () const -> bool;
 
-    void
-    set_use_color (bool use_color = true);
+    auto
+    set_use_color (bool use_color = true) -> void;
 
     auto
     get_collate () const -> bool;
 
-    void
-    set_collate (bool collate = true);
+    auto
+    set_collate (bool collate = true) -> void;
 
     auto
     get_reverse () const -> bool;
 
-    void
-    set_reverse (bool reverse = true);
+    auto
+    set_reverse (bool reverse = true) -> void;
 
     auto
     get_duplex () const -> PrintDuplex;
 
-    void
-    set_duplex (PrintDuplex duplex);
+    auto
+    set_duplex (PrintDuplex duplex) -> void;
 
     auto
     get_quality () const -> PrintQuality;
 
-    void
-    set_quality (PrintQuality quality);
+    auto
+    set_quality (PrintQuality quality) -> void;
 
     auto
     get_n_copies () const -> int;
 
-    void
-    set_n_copies (int num_copies);
+    auto
+    set_n_copies (int num_copies) -> void;
 
     auto
     get_number_up () const -> int;
 
-    void
-    set_number_up (int number_up);
+    auto
+    set_number_up (int number_up) -> void;
 
     auto
     get_number_up_layout () const -> NumberUpLayout;
 
-    void
-    set_number_up (NumberUpLayout number_up_layout);
+    auto
+    set_number_up (NumberUpLayout number_up_layout) -> void;
 
     auto
     get_resolution () const -> int;
 
-    void
-    set_resolution (int resolution);
+    auto
+    set_resolution (int resolution) -> void;
 
     auto
     get_resolution_x () const -> int;
@@ -492,67 +493,67 @@ namespace Gtk
     auto
     get_resolution_y () const -> int;
 
-    void
-    set_resolution_xy (int resolution_x, int resolution_y);
+    auto
+    set_resolution_xy (int resolution_x, int resolution_y) -> void;
 
     auto
     get_printer_lpi () const -> double;
 
-    void
-    set_printer_lpi (double lpi);
+    auto
+    set_printer_lpi (double lpi) -> void;
 
     auto
     get_scale () const -> double;
 
-    void
-    set_scale (double scale);
+    auto
+    set_scale (double scale) -> void;
 
     auto
     get_print_pages () const -> PrintPages;
 
-    void
-    set_print_pages (PrintPages pages);
+    auto
+    set_print_pages (PrintPages pages) -> void;
 
     auto
     get_page_ranges () const -> std::vector<PageRange>;
-    void
-    set_page_ranges (const std::vector<PageRange>& page_ranges);
+    auto
+    set_page_ranges (const std::vector<PageRange>& page_ranges) -> void;
 
     auto
     get_page_set () const -> PageSet;
 
-    void
-    set_page_set (PageSet page_set);
+    auto
+    set_page_set (PageSet page_set) -> void;
 
     auto
     get_default_source () const -> Glib::ustring;
 
-    void
-    set_default_source (const Glib::ustring& default_source);
+    auto
+    set_default_source (const Glib::ustring& default_source) -> void;
 
     auto
     get_media_type () const -> Glib::ustring;
 
-    void
-    set_media_type (const Glib::ustring& media_type);
+    auto
+    set_media_type (const Glib::ustring& media_type) -> void;
 
     auto
     get_dither () const -> Glib::ustring;
 
-    void
-    set_dither (const Glib::ustring& dither);
+    auto
+    set_dither (const Glib::ustring& dither) -> void;
 
     auto
     get_finishings () const -> Glib::ustring;
 
-    void
-    set_finishings (const Glib::ustring& finishings);
+    auto
+    set_finishings (const Glib::ustring& finishings) -> void;
 
     auto
     get_output_bin () const -> Glib::ustring;
 
-    void
-    set_output_bin (const Glib::ustring& output_bin);
+    auto
+    set_output_bin (const Glib::ustring& output_bin) -> void;
 
   public:
   public:
@@ -563,9 +564,7 @@ namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkPrintSettings* object, bool take_copy = false) -> Glib::RefPtr<Gtk::PrintSettings>;
 } // namespace Glib
 

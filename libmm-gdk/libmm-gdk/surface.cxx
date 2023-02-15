@@ -46,16 +46,16 @@ namespace Gdk
 namespace
 {
 
-  auto
+  static auto
   Surface_signal_layout_callback (GdkSurface* self,
-                                  const gint p0,
-                                  const gint p1,
+                                  gint p0,
+                                  gint p1,
                                   void* data) -> void
   {
     using namespace Gdk;
     using SlotType = sigc::slot<void (int, int)>;
 
-    const auto obj = dynamic_cast<Surface*> (
+    auto obj = dynamic_cast<Surface*> (
         Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
@@ -72,19 +72,19 @@ namespace
     }
   }
 
-  const Glib::SignalProxyInfo Surface_signal_layout_info = {
+  static const Glib::SignalProxyInfo Surface_signal_layout_info = {
       "layout",
       (GCallback) &Surface_signal_layout_callback,
       (GCallback) &Surface_signal_layout_callback};
 
-  auto
+  static auto
   Surface_signal_render_callback (GdkSurface* self, CairoRegion* p0, void* data) -> gboolean
   {
     using namespace Gdk;
     using SlotType =
         sigc::slot<bool (const ::Cairo::RefPtr<const ::Cairo::Region>&)>;
 
-    const auto obj = dynamic_cast<Surface*> (
+    auto obj = dynamic_cast<Surface*> (
         Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
@@ -92,8 +92,8 @@ namespace
       try
       {
         if (const auto slot = Glib::SignalProxyNormal::data_to_slot (data))
-          return (*static_cast<SlotType*> (slot)) (
-              Gdk::Cairo::wrap (p0, false));
+          return static_cast<int> (
+              (*static_cast<SlotType*> (slot)) (Gdk::Cairo::wrap (p0, false)));
       }
       catch (...)
       {
@@ -105,7 +105,7 @@ namespace
     return RType ();
   }
 
-  auto
+  static auto
   Surface_signal_render_notify_callback (GdkSurface* self,
                                          CairoRegion* p0,
                                          void* data) -> gboolean
@@ -114,7 +114,7 @@ namespace
     using SlotType =
         sigc::slot<void (const ::Cairo::RefPtr<const ::Cairo::Region>&)>;
 
-    const auto obj = dynamic_cast<Surface*> (
+    auto obj = dynamic_cast<Surface*> (
         Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
@@ -134,18 +134,18 @@ namespace
     return RType ();
   }
 
-  const Glib::SignalProxyInfo Surface_signal_render_info = {
+  static const Glib::SignalProxyInfo Surface_signal_render_info = {
       "render",
       (GCallback) &Surface_signal_render_callback,
       (GCallback) &Surface_signal_render_notify_callback};
 
-  auto
+  static auto
   Surface_signal_event_callback (GdkSurface* self, GdkEvent* p0, void* data) -> gboolean
   {
     using namespace Gdk;
     using SlotType = sigc::slot<bool (const Glib::RefPtr<const Event>&)>;
 
-    const auto obj = dynamic_cast<Surface*> (
+    auto obj = dynamic_cast<Surface*> (
         Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
@@ -153,7 +153,8 @@ namespace
       try
       {
         if (const auto slot = Glib::SignalProxyNormal::data_to_slot (data))
-          return (*static_cast<SlotType*> (slot)) (Glib::wrap (p0, true));
+          return static_cast<int> (
+              (*static_cast<SlotType*> (slot)) (Glib::wrap (p0, true)));
       }
       catch (...)
       {
@@ -165,7 +166,7 @@ namespace
     return RType ();
   }
 
-  auto
+  static auto
   Surface_signal_event_notify_callback (GdkSurface* self,
                                         GdkEvent* p0,
                                         void* data) -> gboolean
@@ -173,7 +174,7 @@ namespace
     using namespace Gdk;
     using SlotType = sigc::slot<void (const Glib::RefPtr<const Event>&)>;
 
-    const auto obj = dynamic_cast<Surface*> (
+    auto obj = dynamic_cast<Surface*> (
         Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
@@ -193,12 +194,12 @@ namespace
     return RType ();
   }
 
-  const Glib::SignalProxyInfo Surface_signal_event_info = {
+  static const Glib::SignalProxyInfo Surface_signal_event_info = {
       "event",
       (GCallback) &Surface_signal_event_callback,
       (GCallback) &Surface_signal_event_notify_callback};
 
-  auto
+  static auto
   Surface_signal_enter_monitor_callback (GdkSurface* self,
                                          GdkMonitor* p0,
                                          void* data) -> void
@@ -206,7 +207,7 @@ namespace
     using namespace Gdk;
     using SlotType = sigc::slot<void (const Glib::RefPtr<Monitor>&)>;
 
-    const auto obj = dynamic_cast<Surface*> (
+    auto obj = dynamic_cast<Surface*> (
         Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
@@ -223,12 +224,12 @@ namespace
     }
   }
 
-  const Glib::SignalProxyInfo Surface_signal_enter_monitor_info = {
+  static const Glib::SignalProxyInfo Surface_signal_enter_monitor_info = {
       "enter-monitor",
       (GCallback) &Surface_signal_enter_monitor_callback,
       (GCallback) &Surface_signal_enter_monitor_callback};
 
-  auto
+  static auto
   Surface_signal_leave_monitor_callback (GdkSurface* self,
                                          GdkMonitor* p0,
                                          void* data) -> void
@@ -236,7 +237,7 @@ namespace
     using namespace Gdk;
     using SlotType = sigc::slot<void (const Glib::RefPtr<Monitor>&)>;
 
-    const auto obj = dynamic_cast<Surface*> (
+    auto obj = dynamic_cast<Surface*> (
         Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
@@ -253,7 +254,7 @@ namespace
     }
   }
 
-  const Glib::SignalProxyInfo Surface_signal_leave_monitor_info = {
+  static const Glib::SignalProxyInfo Surface_signal_leave_monitor_info = {
       "leave-monitor",
       (GCallback) &Surface_signal_leave_monitor_callback,
       (GCallback) &Surface_signal_leave_monitor_callback};
@@ -264,10 +265,11 @@ namespace Glib
 {
 
   auto
-  wrap (GdkSurface* object, const bool take_copy) -> RefPtr<Gdk::Surface>
+  wrap (GdkSurface* object, bool take_copy) -> Glib::RefPtr<Gdk::Surface>
   {
     return Glib::make_refptr_for_instance<Gdk::Surface> (
-        dynamic_cast<Gdk::Surface*> (wrap_auto ((GObject*) object, take_copy)));
+        dynamic_cast<Gdk::Surface*> (
+            Glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
 } // namespace Glib
@@ -276,7 +278,7 @@ namespace Gdk
 {
 
   auto
-  Surface_Class::init () -> const Class&
+  Surface_Class::init () -> const Glib::Class&
   {
     if (!gtype_)
     {
@@ -303,28 +305,28 @@ namespace Gdk
   }
 
   Surface::Surface (const Glib::ConstructParams& construct_params)
-    : Object (construct_params)
+    : Glib::Object (construct_params)
   {
   }
 
   Surface::Surface (GdkSurface* castitem)
-    : Object ((GObject*) castitem)
+    : Glib::Object ((GObject*) (castitem))
   {
   }
 
   Surface::Surface (Surface&& src) noexcept
-    : Object (std::move (src))
+    : Glib::Object (std::move (src))
   {
   }
 
   auto
   Surface::operator= (Surface&& src) noexcept -> Surface&
   {
-    Object::operator= (std::move (src));
+    Glib::Object::operator= (std::move (src));
     return *this;
   }
 
-  Surface::~Surface () noexcept = default;
+  Surface::~Surface () noexcept {}
 
   Surface::CppClassType Surface::surface_class_;
 
@@ -347,10 +349,10 @@ namespace Gdk
   }
 
   auto
-  Surface::create_popup (const Glib::RefPtr<Surface>& parent,
-                         const bool autohide) -> Glib::RefPtr<Surface>
+  Surface::create_popup (const Glib::RefPtr<Surface>& parent, bool autohide) -> Glib::RefPtr<Surface>
   {
-    return Glib::wrap (gdk_surface_new_popup (Glib::unwrap (parent), autohide));
+    return Glib::wrap (gdk_surface_new_popup (Glib::unwrap (parent),
+                                              static_cast<int> (autohide)));
   }
 
   auto
@@ -377,7 +379,8 @@ namespace Gdk
   auto
   Surface::set_input_region (const ::Cairo::RefPtr<::Cairo::Region>& region) -> void
   {
-    gdk_surface_set_input_region (gobj (), region ? region->cobj () : nullptr);
+    gdk_surface_set_input_region (gobj (),
+                                  ((region) ? (region)->cobj () : nullptr));
   }
 
   auto
@@ -416,7 +419,7 @@ namespace Gdk
   {
     auto retvalue = Glib::wrap (gdk_surface_get_device_cursor (
         const_cast<GdkSurface*> (gobj ()),
-        const_cast<GdkDevice*> (Glib::unwrap<Device> (device))));
+        const_cast<GdkDevice*> (Glib::unwrap<Gdk::Device> (device))));
     if (retvalue)
       retvalue->reference ();
     return retvalue;
@@ -463,20 +466,20 @@ namespace Gdk
   {
     return gdk_surface_get_device_position (
         const_cast<GdkSurface*> (gobj ()),
-        const_cast<GdkDevice*> (Glib::unwrap<Device> (device)),
-        &x,
-        &y,
-        (GdkModifierType*) &mask);
+        const_cast<GdkDevice*> (Glib::unwrap<Gdk::Device> (device)),
+        &(x),
+        &(y),
+        ((GdkModifierType*) &(mask)));
   }
 
   auto
   Surface::create_similar_surface (::Cairo::Content content,
-                                   const int width,
-                                   const int height) -> ::Cairo::RefPtr<::Cairo::Surface>
+                                   int width,
+                                   int height) -> ::Cairo::RefPtr<::Cairo::Surface>
   {
-    return Cairo::wrap (
+    return Gdk::Cairo::wrap (
         gdk_surface_create_similar_surface (gobj (),
-                                            (cairo_content_t) content,
+                                            (cairo_content_t) (content),
                                             width,
                                             height));
   }
@@ -491,8 +494,8 @@ namespace Gdk
   Surface::drag_begin_from_point (const Glib::RefPtr<Device>& device,
                                   const Glib::RefPtr<ContentProvider>& content,
                                   DragAction actions,
-                                  const double dx,
-                                  const double dy) -> Glib::RefPtr<Drag>
+                                  double dx,
+                                  double dy) -> Glib::RefPtr<Drag>
   {
     return Glib::wrap (gdk_drag_begin (gobj (),
                                        Glib::unwrap (device),
@@ -535,22 +538,22 @@ namespace Gdk
   {
     gdk_surface_set_opaque_region (
         gobj (),
-        const_cast<cairo_region_t*> (region ? region->cobj () : nullptr));
+        const_cast<cairo_region_t*> ((region) ? (region)->cobj () : nullptr));
   }
 
   auto
-  Surface::create_gl_context () -> Glib::RefPtr<GLContext>
+  Surface::create_gl_context () -> Glib::RefPtr<Gdk::GLContext>
   {
     GError* gerror = nullptr;
     auto retvalue =
-        Glib::wrap (gdk_surface_create_gl_context (gobj (), &gerror));
+        Glib::wrap (gdk_surface_create_gl_context (gobj (), &(gerror)));
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      ::Glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
   auto
-  Surface::create_cairo_context () -> Glib::RefPtr<CairoContext>
+  Surface::create_cairo_context () -> Glib::RefPtr<Gdk::CairoContext>
   {
     return Glib::wrap (gdk_surface_create_cairo_context (gobj ()));
   }
@@ -558,31 +561,41 @@ namespace Gdk
   auto
   Surface::signal_layout () -> Glib::SignalProxy<void (int, int)>
   {
-    return {this, &Surface_signal_layout_info};
+    return Glib::SignalProxy<void (int, int)> (this,
+                                               &Surface_signal_layout_info);
   }
 
   auto
   Surface::signal_render () -> Glib::SignalProxy<bool (const ::Cairo::RefPtr<const ::Cairo::Region>&)>
   {
-    return {this, &Surface_signal_render_info};
+    return Glib::SignalProxy<bool (
+        const ::Cairo::RefPtr<const ::Cairo::Region>&)> (
+        this,
+        &Surface_signal_render_info);
   }
 
   auto
   Surface::signal_event () -> Glib::SignalProxy<bool (const Glib::RefPtr<const Event>&)>
   {
-    return {this, &Surface_signal_event_info};
+    return Glib::SignalProxy<bool (const Glib::RefPtr<const Event>&)> (
+        this,
+        &Surface_signal_event_info);
   }
 
   auto
   Surface::signal_enter_monitor () -> Glib::SignalProxy<void (const Glib::RefPtr<Monitor>&)>
   {
-    return {this, &Surface_signal_enter_monitor_info};
+    return Glib::SignalProxy<void (const Glib::RefPtr<Monitor>&)> (
+        this,
+        &Surface_signal_enter_monitor_info);
   }
 
   auto
   Surface::signal_leave_monitor () -> Glib::SignalProxy<void (const Glib::RefPtr<Monitor>&)>
   {
-    return {this, &Surface_signal_leave_monitor_info};
+    return Glib::SignalProxy<void (const Glib::RefPtr<Monitor>&)> (
+        this,
+        &Surface_signal_leave_monitor_info);
   }
 
   static_assert (
@@ -594,13 +607,13 @@ namespace Gdk
   auto
   Surface::property_cursor () -> Glib::PropertyProxy<Glib::RefPtr<Cursor>>
   {
-    return {this, "cursor"};
+    return Glib::PropertyProxy<Glib::RefPtr<Cursor>> (this, "cursor");
   }
 
   auto
   Surface::property_cursor () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Cursor>>
   {
-    return {this, "cursor"};
+    return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Cursor>> (this, "cursor");
   }
 
   static_assert (
@@ -612,7 +625,8 @@ namespace Gdk
   auto
   Surface::property_display () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Display>>
   {
-    return {this, "display"};
+    return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Display>> (this,
+                                                                "display");
   }
 
   static_assert (
@@ -624,31 +638,33 @@ namespace Gdk
   auto
   Surface::property_frame_clock () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<FrameClock>>
   {
-    return {this, "frame-clock"};
+    return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<FrameClock>> (
+        this,
+        "frame-clock");
   }
 
   auto
   Surface::property_mapped () const -> Glib::PropertyProxy_ReadOnly<bool>
   {
-    return {this, "mapped"};
+    return Glib::PropertyProxy_ReadOnly<bool> (this, "mapped");
   }
 
   auto
   Surface::property_width () const -> Glib::PropertyProxy_ReadOnly<int>
   {
-    return {this, "width"};
+    return Glib::PropertyProxy_ReadOnly<int> (this, "width");
   }
 
   auto
   Surface::property_height () const -> Glib::PropertyProxy_ReadOnly<int>
   {
-    return {this, "height"};
+    return Glib::PropertyProxy_ReadOnly<int> (this, "height");
   }
 
   auto
   Surface::property_scale_factor () const -> Glib::PropertyProxy_ReadOnly<int>
   {
-    return {this, "scale-factor"};
+    return Glib::PropertyProxy_ReadOnly<int> (this, "scale-factor");
   }
 
 } // namespace Gdk

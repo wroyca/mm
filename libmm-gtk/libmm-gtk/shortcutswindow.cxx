@@ -24,10 +24,10 @@ namespace Glib
 {
 
   auto
-  wrap (GtkShortcutsWindow* object, const bool take_copy) -> Gtk::ShortcutsWindow*
+  wrap (GtkShortcutsWindow* object, bool take_copy) -> Gtk::ShortcutsWindow*
   {
     return dynamic_cast<Gtk::ShortcutsWindow*> (
-        wrap_auto ((GObject*) object, take_copy));
+        Glib::wrap_auto ((GObject*) (object), take_copy));
   }
 
 } // namespace Glib
@@ -36,7 +36,7 @@ namespace Gtk
 {
 
   auto
-  ShortcutsWindow_Class::init () -> const Class&
+  ShortcutsWindow_Class::init () -> const Glib::Class&
   {
     if (!gtype_)
     {
@@ -58,7 +58,7 @@ namespace Gtk
   auto
   ShortcutsWindow_Class::wrap_new (GObject* o) -> Glib::ObjectBase*
   {
-    return new ShortcutsWindow ((GtkShortcutsWindow*) o);
+    return new ShortcutsWindow ((GtkShortcutsWindow*) (o));
   }
 
   ShortcutsWindow::ShortcutsWindow (
@@ -68,7 +68,7 @@ namespace Gtk
   }
 
   ShortcutsWindow::ShortcutsWindow (GtkShortcutsWindow* castitem)
-    : Window ((GtkWindow*) castitem)
+    : Window ((GtkWindow*) (castitem))
   {
   }
 
@@ -104,7 +104,7 @@ namespace Gtk
   }
 
   ShortcutsWindow::ShortcutsWindow ()
-    : ObjectBase (nullptr),
+    : Glib::ObjectBase (nullptr),
       Window (Glib::ConstructParams (shortcutswindow_class_.init ()))
   {
   }
@@ -112,25 +112,25 @@ namespace Gtk
   auto
   ShortcutsWindow::property_section_name () -> Glib::PropertyProxy<Glib::ustring>
   {
-    return {this, "section-name"};
+    return Glib::PropertyProxy<Glib::ustring> (this, "section-name");
   }
 
   auto
   ShortcutsWindow::property_section_name () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>
   {
-    return {this, "section-name"};
+    return Glib::PropertyProxy_ReadOnly<Glib::ustring> (this, "section-name");
   }
 
   auto
   ShortcutsWindow::property_view_name () -> Glib::PropertyProxy<Glib::ustring>
   {
-    return {this, "view-name"};
+    return Glib::PropertyProxy<Glib::ustring> (this, "view-name");
   }
 
   auto
   ShortcutsWindow::property_view_name () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>
   {
-    return {this, "view-name"};
+    return Glib::PropertyProxy_ReadOnly<Glib::ustring> (this, "view-name");
   }
 
 } // namespace Gtk

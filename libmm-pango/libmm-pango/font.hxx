@@ -116,10 +116,10 @@ namespace Pango
     auto
     get_metrics (const Language& language) const -> FontMetrics;
 
-    void
+    auto
     get_glyph_extents (Glyph glyph,
                        Rectangle& ink_rect,
-                       Rectangle& logical_rect) const;
+                       Rectangle& logical_rect) const -> void;
 
     auto
     get_font_map () -> Glib::RefPtr<FontMap>;

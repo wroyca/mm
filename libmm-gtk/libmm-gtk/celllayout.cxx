@@ -1,23 +1,28 @@
 // SPDX-License-Identifier: LGPL-2.1-or-later
 
-#include <libmm-glib/mm-glib.hxx>
+#undef GTK_DISABLE_DEPRECATED
+#define GDK_DISABLE_DEPRECATION_WARNINGS 1
 
-#include <libmm-gtk/celllayout.hxx>
-#include <libmm-gtk/celllayout_p.hxx>
+#ifndef GTKMM_DISABLE_DEPRECATED
 
-#include <libmm-glib/vectorutils.hxx>
+  #include <libmm-glib/mm-glib.hxx>
 
-#include <gtk/gtk.h>
-#include <libmm-gtk/cellarea.hxx>
+  #include <libmm-gtk/celllayout.hxx>
+  #include <libmm-gtk/celllayout_p.hxx>
+
+  #include <libmm-glib/vectorutils.hxx>
+
+  #include <gtk/gtk.h>
+  #include <libmm-gtk/cellarea.hxx>
 
 static auto
 SignalProxy_CellData_gtk_callback (GtkCellLayout*,
                                    GtkCellRenderer*,
                                    GtkTreeModel* tree_model,
                                    GtkTreeIter* iter,
-                                   const gpointer data) -> void
+                                   gpointer data) -> void
 {
-  const auto the_slot = static_cast<Gtk::CellLayout::SlotCellData*> (data);
+  auto the_slot = static_cast<Gtk::CellLayout::SlotCellData*> (data);
 
   try
   {
@@ -55,7 +60,7 @@ namespace Gtk
                              const TreeModelColumnBase& column) -> void
   {
     gtk_cell_layout_add_attribute (gobj (),
-                                   cell.gobj (),
+                                   (GtkCellRenderer*) cell.gobj (),
                                    attribute.c_str (),
                                    column.index ());
   }
@@ -63,7 +68,7 @@ namespace Gtk
   auto
   CellLayout::set_cell_data_func (CellRenderer& cell, const SlotCellData& slot) -> void
   {
-    const auto slot_copy = new SlotCellData (slot);
+    auto slot_copy = new SlotCellData (slot);
 
     gtk_cell_layout_set_cell_data_func (
         gobj (),
@@ -76,7 +81,7 @@ namespace Gtk
   auto
   CellLayout::get_first_cell () -> CellRenderer*
   {
-    const auto vecCellRenderers = get_cells ();
+    auto vecCellRenderers = get_cells ();
     if (!vecCellRenderers.empty ())
       return vecCellRenderers[0];
     else
@@ -99,11 +104,12 @@ namespace Glib
 {
 
   auto
-  wrap (GtkCellLayout* object, const bool take_copy) -> RefPtr<Gtk::CellLayout>
+  wrap (GtkCellLayout* object, bool take_copy) -> Glib::RefPtr<Gtk::CellLayout>
   {
     return Glib::make_refptr_for_instance<Gtk::CellLayout> (
-        Glib::wrap_auto_interface<Gtk::CellLayout> ((GObject*) object,
-                                                    take_copy));
+        dynamic_cast<Gtk::CellLayout*> (
+            Glib::wrap_auto_interface<Gtk::CellLayout> ((GObject*) (object),
+                                                        take_copy)));
   }
 
 } // namespace Glib
@@ -112,7 +118,7 @@ namespace Gtk
 {
 
   auto
-  CellLayout_Class::init () -> const Interface_Class&
+  CellLayout_Class::init () -> const Glib::Interface_Class&
   {
     if (!gtype_)
     {
@@ -142,10 +148,10 @@ namespace Gtk
   auto
   CellLayout_Class::pack_start_vfunc_callback (GtkCellLayout* self,
                                                GtkCellRenderer* cell,
-                                               const gboolean expand) -> void
+                                               gboolean expand) -> void
   {
-    const auto obj_base =
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self);
+    const auto obj_base = static_cast<Glib::ObjectBase*> (
+        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -164,7 +170,7 @@ namespace Gtk
       }
     }
 
-    const BaseClassType* const base =
+    BaseClassType* const base =
         static_cast<BaseClassType*> (g_type_interface_peek_parent (
             g_type_interface_peek (G_OBJECT_GET_CLASS (self),
                                    CppObjectType::get_type ())));
@@ -176,10 +182,10 @@ namespace Gtk
   auto
   CellLayout_Class::pack_end_vfunc_callback (GtkCellLayout* self,
                                              GtkCellRenderer* cell,
-                                             const gboolean expand) -> void
+                                             gboolean expand) -> void
   {
-    const auto obj_base =
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self);
+    const auto obj_base = static_cast<Glib::ObjectBase*> (
+        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -198,7 +204,7 @@ namespace Gtk
       }
     }
 
-    const BaseClassType* const base =
+    BaseClassType* const base =
         static_cast<BaseClassType*> (g_type_interface_peek_parent (
             g_type_interface_peek (G_OBJECT_GET_CLASS (self),
                                    CppObjectType::get_type ())));
@@ -210,8 +216,8 @@ namespace Gtk
   auto
   CellLayout_Class::clear_vfunc_callback (GtkCellLayout* self) -> void
   {
-    const auto obj_base =
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self);
+    const auto obj_base = static_cast<Glib::ObjectBase*> (
+        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -230,7 +236,7 @@ namespace Gtk
       }
     }
 
-    const BaseClassType* const base =
+    BaseClassType* const base =
         static_cast<BaseClassType*> (g_type_interface_peek_parent (
             g_type_interface_peek (G_OBJECT_GET_CLASS (self),
                                    CppObjectType::get_type ())));
@@ -243,10 +249,10 @@ namespace Gtk
   CellLayout_Class::add_attribute_vfunc_callback (GtkCellLayout* self,
                                                   GtkCellRenderer* cell,
                                                   const gchar* attribute,
-                                                  const gint column) -> void
+                                                  gint column) -> void
   {
-    const auto obj_base =
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self);
+    const auto obj_base = static_cast<Glib::ObjectBase*> (
+        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -268,7 +274,7 @@ namespace Gtk
       }
     }
 
-    const BaseClassType* const base =
+    BaseClassType* const base =
         static_cast<BaseClassType*> (g_type_interface_peek_parent (
             g_type_interface_peek (G_OBJECT_GET_CLASS (self),
                                    CppObjectType::get_type ())));
@@ -281,8 +287,8 @@ namespace Gtk
   CellLayout_Class::clear_attributes_vfunc_callback (GtkCellLayout* self,
                                                      GtkCellRenderer* cell) -> void
   {
-    const auto obj_base =
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self);
+    const auto obj_base = static_cast<Glib::ObjectBase*> (
+        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -301,7 +307,7 @@ namespace Gtk
       }
     }
 
-    const BaseClassType* const base =
+    BaseClassType* const base =
         static_cast<BaseClassType*> (g_type_interface_peek_parent (
             g_type_interface_peek (G_OBJECT_GET_CLASS (self),
                                    CppObjectType::get_type ())));
@@ -313,10 +319,10 @@ namespace Gtk
   auto
   CellLayout_Class::reorder_vfunc_callback (GtkCellLayout* self,
                                             GtkCellRenderer* cell,
-                                            const gint position) -> void
+                                            gint position) -> void
   {
-    const auto obj_base =
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self);
+    const auto obj_base = static_cast<Glib::ObjectBase*> (
+        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -335,7 +341,7 @@ namespace Gtk
       }
     }
 
-    const BaseClassType* const base =
+    BaseClassType* const base =
         static_cast<BaseClassType*> (g_type_interface_peek_parent (
             g_type_interface_peek (G_OBJECT_GET_CLASS (self),
                                    CppObjectType::get_type ())));
@@ -347,40 +353,40 @@ namespace Gtk
   auto
   CellLayout_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
   {
-    return new CellLayout ((GtkCellLayout*) object);
+    return new CellLayout ((GtkCellLayout*) (object));
   }
 
   CellLayout::CellLayout ()
-    : Interface (celllayout_class_.init ())
+    : Glib::Interface (celllayout_class_.init ())
   {
   }
 
   CellLayout::CellLayout (GtkCellLayout* castitem)
-    : Interface ((GObject*) castitem)
+    : Glib::Interface ((GObject*) (castitem))
   {
   }
 
   CellLayout::CellLayout (const Glib::Interface_Class& interface_class)
-    : Interface (interface_class)
+    : Glib::Interface (interface_class)
   {
   }
 
   CellLayout::CellLayout (CellLayout&& src) noexcept
-    : Interface (std::move (src))
+    : Glib::Interface (std::move (src))
   {
   }
 
   auto
   CellLayout::operator= (CellLayout&& src) noexcept -> CellLayout&
   {
-    Interface::operator= (std::move (src));
+    Glib::Interface::operator= (std::move (src));
     return *this;
   }
 
-  CellLayout::~CellLayout () noexcept = default;
+  CellLayout::~CellLayout () noexcept {}
 
   auto
-  CellLayout::add_interface (const GType gtype_implementer) -> void
+  CellLayout::add_interface (GType gtype_implementer) -> void
   {
     celllayout_class_.init ().add_interface (gtype_implementer);
   }
@@ -400,15 +406,19 @@ namespace Gtk
   }
 
   auto
-  CellLayout::pack_start (CellRenderer& cell, const bool expand) -> void
+  CellLayout::pack_start (CellRenderer& cell, bool expand) -> void
   {
-    gtk_cell_layout_pack_start (gobj (), cell.gobj (), expand);
+    gtk_cell_layout_pack_start (gobj (),
+                                (cell).gobj (),
+                                static_cast<int> (expand));
   }
 
   auto
-  CellLayout::pack_end (CellRenderer& cell, const bool expand) -> void
+  CellLayout::pack_end (CellRenderer& cell, bool expand) -> void
   {
-    gtk_cell_layout_pack_end (gobj (), cell.gobj (), expand);
+    gtk_cell_layout_pack_end (gobj (),
+                              (cell).gobj (),
+                              static_cast<int> (expand));
   }
 
   auto
@@ -436,10 +446,10 @@ namespace Gtk
   auto
   CellLayout::add_attribute (CellRenderer& cell,
                              const Glib::ustring& attribute,
-                             const int column) -> void
+                             int column) -> void
   {
     gtk_cell_layout_add_attribute (gobj (),
-                                   cell.gobj (),
+                                   (cell).gobj (),
                                    attribute.c_str (),
                                    column);
   }
@@ -447,13 +457,13 @@ namespace Gtk
   auto
   CellLayout::clear_attributes (CellRenderer& cell) -> void
   {
-    gtk_cell_layout_clear_attributes (gobj (), cell.gobj ());
+    gtk_cell_layout_clear_attributes (gobj (), (cell).gobj ());
   }
 
   auto
-  CellLayout::reorder (CellRenderer& cell, const int position) -> void
+  CellLayout::reorder (CellRenderer& cell, int position) -> void
   {
-    gtk_cell_layout_reorder (gobj (), cell.gobj (), position);
+    gtk_cell_layout_reorder (gobj (), (cell).gobj (), position);
   }
 
   auto
@@ -472,44 +482,44 @@ namespace Gtk
   }
 
   auto
-  CellLayout::pack_start_vfunc (CellRenderer* cell, const bool expand) -> void
+  Gtk::CellLayout::pack_start_vfunc (CellRenderer* cell, bool expand) -> void
   {
     const auto base =
         static_cast<BaseClassType*> (g_type_interface_peek_parent (
             g_type_interface_peek (G_OBJECT_GET_CLASS (gobject_),
-                                   get_type ())));
+                                   CppObjectType::get_type ())));
 
     if (base && base->pack_start)
     {
       (*base->pack_start) (gobj (),
-                           Glib::unwrap (cell),
+                           (GtkCellRenderer*) Glib::unwrap (cell),
                            static_cast<int> (expand));
     }
   }
 
   auto
-  CellLayout::pack_end_vfunc (CellRenderer* cell, const bool expand) -> void
+  Gtk::CellLayout::pack_end_vfunc (CellRenderer* cell, bool expand) -> void
   {
     const auto base =
         static_cast<BaseClassType*> (g_type_interface_peek_parent (
             g_type_interface_peek (G_OBJECT_GET_CLASS (gobject_),
-                                   get_type ())));
+                                   CppObjectType::get_type ())));
 
     if (base && base->pack_end)
     {
       (*base->pack_end) (gobj (),
-                         Glib::unwrap (cell),
+                         (GtkCellRenderer*) Glib::unwrap (cell),
                          static_cast<int> (expand));
     }
   }
 
   auto
-  CellLayout::clear_vfunc () -> void
+  Gtk::CellLayout::clear_vfunc () -> void
   {
     const auto base =
         static_cast<BaseClassType*> (g_type_interface_peek_parent (
             g_type_interface_peek (G_OBJECT_GET_CLASS (gobject_),
-                                   get_type ())));
+                                   CppObjectType::get_type ())));
 
     if (base && base->clear)
     {
@@ -518,50 +528,55 @@ namespace Gtk
   }
 
   auto
-  CellLayout::add_attribute_vfunc (CellRenderer* cell,
-                                   const Glib::ustring& attribute,
-                                   const int column) -> void
+  Gtk::CellLayout::add_attribute_vfunc (CellRenderer* cell,
+                                        const Glib::ustring& attribute,
+                                        int column) -> void
   {
     const auto base =
         static_cast<BaseClassType*> (g_type_interface_peek_parent (
             g_type_interface_peek (G_OBJECT_GET_CLASS (gobject_),
-                                   get_type ())));
+                                   CppObjectType::get_type ())));
 
     if (base && base->add_attribute)
     {
       (*base->add_attribute) (gobj (),
-                              Glib::unwrap (cell),
+                              (GtkCellRenderer*) Glib::unwrap (cell),
                               attribute.c_str (),
                               column);
     }
   }
 
   auto
-  CellLayout::clear_attributes_vfunc (CellRenderer* cell) -> void
+  Gtk::CellLayout::clear_attributes_vfunc (CellRenderer* cell) -> void
   {
     const auto base =
         static_cast<BaseClassType*> (g_type_interface_peek_parent (
             g_type_interface_peek (G_OBJECT_GET_CLASS (gobject_),
-                                   get_type ())));
+                                   CppObjectType::get_type ())));
 
     if (base && base->clear_attributes)
     {
-      (*base->clear_attributes) (gobj (), Glib::unwrap (cell));
+      (*base->clear_attributes) (gobj (),
+                                 (GtkCellRenderer*) Glib::unwrap (cell));
     }
   }
 
   auto
-  CellLayout::reorder_vfunc (CellRenderer* cell, const int position) -> void
+  Gtk::CellLayout::reorder_vfunc (CellRenderer* cell, int position) -> void
   {
     const auto base =
         static_cast<BaseClassType*> (g_type_interface_peek_parent (
             g_type_interface_peek (G_OBJECT_GET_CLASS (gobject_),
-                                   get_type ())));
+                                   CppObjectType::get_type ())));
 
     if (base && base->reorder)
     {
-      (*base->reorder) (gobj (), Glib::unwrap (cell), position);
+      (*base->reorder) (gobj (),
+                        (GtkCellRenderer*) Glib::unwrap (cell),
+                        position);
     }
   }
 
 } // namespace Gtk
+
+#endif

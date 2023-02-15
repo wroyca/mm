@@ -90,8 +90,8 @@ namespace Gtk
     get_for_display (const Glib::RefPtr<Gdk::Display>& display)
         -> Glib::RefPtr<Settings>;
 
-    void
-    reset_property (const Glib::ustring& name);
+    auto
+    reset_property (const Glib::ustring& name) -> void;
 
     auto
     property_gtk_double_click_time () -> Glib::PropertyProxy<int>;
@@ -445,9 +445,7 @@ namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkSettings* object, bool take_copy = false) -> Glib::RefPtr<Gtk::Settings>;
 } // namespace Glib
 

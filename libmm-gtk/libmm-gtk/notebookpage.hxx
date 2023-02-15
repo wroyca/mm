@@ -150,9 +150,7 @@ namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkNotebookPage* object, bool take_copy = false) -> Glib::RefPtr<Gtk::NotebookPage>;
 } // namespace Glib
 

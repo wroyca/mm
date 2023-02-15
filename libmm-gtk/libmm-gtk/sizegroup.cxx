@@ -16,12 +16,12 @@ using Mode = Gtk::SizeGroup::Mode;
 namespace Gtk
 {
 
-  SizeGroup::SizeGroup (const Mode mode)
-    : ObjectBase (nullptr),
-      Object (Glib::ConstructParams (sizegroup_class_.init (),
-                                     "mode",
-                                     mode,
-                                     nullptr))
+  SizeGroup::SizeGroup (Mode mode)
+    : Glib::ObjectBase (nullptr),
+      Glib::Object (Glib::ConstructParams (sizegroup_class_.init (),
+                                           "mode",
+                                           (GtkSizeGroupMode) mode,
+                                           nullptr))
   {
   }
 
@@ -41,11 +41,11 @@ namespace Glib
 {
 
   auto
-  wrap (GtkSizeGroup* object, const bool take_copy) -> RefPtr<Gtk::SizeGroup>
+  wrap (GtkSizeGroup* object, bool take_copy) -> Glib::RefPtr<Gtk::SizeGroup>
   {
     return Glib::make_refptr_for_instance<Gtk::SizeGroup> (
         dynamic_cast<Gtk::SizeGroup*> (
-            wrap_auto ((GObject*) object, take_copy)));
+            Glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
 } // namespace Glib
@@ -54,7 +54,7 @@ namespace Gtk
 {
 
   auto
-  SizeGroup_Class::init () -> const Class&
+  SizeGroup_Class::init () -> const Glib::Class&
   {
     if (!gtype_)
     {
@@ -89,17 +89,17 @@ namespace Gtk
   }
 
   SizeGroup::SizeGroup (const Glib::ConstructParams& construct_params)
-    : Object (construct_params)
+    : Glib::Object (construct_params)
   {
   }
 
   SizeGroup::SizeGroup (GtkSizeGroup* castitem)
-    : Object ((GObject*) castitem)
+    : Glib::Object ((GObject*) (castitem))
   {
   }
 
   SizeGroup::SizeGroup (SizeGroup&& src) noexcept
-    : Object (std::move (src)),
+    : Glib::Object (std::move (src)),
       Buildable (std::move (src))
   {
   }
@@ -107,12 +107,12 @@ namespace Gtk
   auto
   SizeGroup::operator= (SizeGroup&& src) noexcept -> SizeGroup&
   {
-    Object::operator= (std::move (src));
+    Glib::Object::operator= (std::move (src));
     Buildable::operator= (std::move (src));
     return *this;
   }
 
-  SizeGroup::~SizeGroup () noexcept = default;
+  SizeGroup::~SizeGroup () noexcept {}
 
   SizeGroup::CppClassType SizeGroup::sizegroup_class_;
 
@@ -129,7 +129,7 @@ namespace Gtk
   }
 
   auto
-  SizeGroup::create (const Mode mode) -> Glib::RefPtr<SizeGroup>
+  SizeGroup::create (Mode mode) -> Glib::RefPtr<SizeGroup>
   {
     return Glib::make_refptr_for_instance<SizeGroup> (new SizeGroup (mode));
   }
@@ -150,13 +150,13 @@ namespace Gtk
   auto
   SizeGroup::add_widget (Widget& widget) -> void
   {
-    gtk_size_group_add_widget (gobj (), widget.gobj ());
+    gtk_size_group_add_widget (gobj (), (widget).gobj ());
   }
 
   auto
   SizeGroup::remove_widget (Widget& widget) -> void
   {
-    gtk_size_group_remove_widget (gobj (), widget.gobj ());
+    gtk_size_group_remove_widget (gobj (), (widget).gobj ());
   }
 
   auto
@@ -183,13 +183,13 @@ namespace Gtk
   auto
   SizeGroup::property_mode () -> Glib::PropertyProxy<Mode>
   {
-    return {this, "mode"};
+    return Glib::PropertyProxy<Mode> (this, "mode");
   }
 
   auto
   SizeGroup::property_mode () const -> Glib::PropertyProxy_ReadOnly<Mode>
   {
-    return {this, "mode"};
+    return Glib::PropertyProxy_ReadOnly<Mode> (this, "mode");
   }
 
 } // namespace Gtk

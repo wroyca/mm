@@ -14,27 +14,27 @@ namespace
 {
 }
 
-Gdk::TextureError::TextureError (const Code error_code,
+Gdk::TextureError::TextureError (Gdk::TextureError::Code error_code,
                                  const Glib::ustring& error_message)
-  : Error (GDK_TEXTURE_ERROR, error_code, error_message)
+  : Glib::Error (GDK_TEXTURE_ERROR, error_code, error_message)
 {
 }
 
 Gdk::TextureError::TextureError (GError* gobject)
-  : Error (gobject)
+  : Glib::Error (gobject)
 {
 }
 
 auto
-Gdk::TextureError::code () const -> Code
+Gdk::TextureError::code () const -> Gdk::TextureError::Code
 {
-  return static_cast<Code> (Error::code ());
+  return static_cast<Code> (Glib::Error::code ());
 }
 
 auto
 Gdk::TextureError::throw_func (GError* gobject) -> void
 {
-  throw TextureError (gobject);
+  throw Gdk::TextureError (gobject);
 }
 
 auto
@@ -47,10 +47,11 @@ namespace Glib
 {
 
   auto
-  wrap (GdkTexture* object, const bool take_copy) -> RefPtr<Gdk::Texture>
+  wrap (GdkTexture* object, bool take_copy) -> Glib::RefPtr<Gdk::Texture>
   {
     return Glib::make_refptr_for_instance<Gdk::Texture> (
-        dynamic_cast<Gdk::Texture*> (wrap_auto ((GObject*) object, take_copy)));
+        dynamic_cast<Gdk::Texture*> (
+            Glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
 } // namespace Glib
@@ -59,7 +60,7 @@ namespace Gdk
 {
 
   auto
-  Texture_Class::init () -> const Class&
+  Texture_Class::init () -> const Glib::Class&
   {
     if (!gtype_)
     {
@@ -94,17 +95,17 @@ namespace Gdk
   }
 
   Texture::Texture (const Glib::ConstructParams& construct_params)
-    : Object (construct_params)
+    : Glib::Object (construct_params)
   {
   }
 
   Texture::Texture (GdkTexture* castitem)
-    : Object ((GObject*) castitem)
+    : Glib::Object ((GObject*) (castitem))
   {
   }
 
   Texture::Texture (Texture&& src) noexcept
-    : Object (std::move (src)),
+    : Glib::Object (std::move (src)),
       Paintable (std::move (src))
   {
   }
@@ -112,12 +113,12 @@ namespace Gdk
   auto
   Texture::operator= (Texture&& src) noexcept -> Texture&
   {
-    Object::operator= (std::move (src));
+    Glib::Object::operator= (std::move (src));
     Paintable::operator= (std::move (src));
     return *this;
   }
 
-  Texture::~Texture () noexcept = default;
+  Texture::~Texture () noexcept {}
 
   Texture::CppClassType Texture::texture_class_;
 
@@ -134,8 +135,8 @@ namespace Gdk
   }
 
   Texture::Texture ()
-    : ObjectBase (nullptr),
-      Object (Glib::ConstructParams (texture_class_.init ()))
+    : Glib::ObjectBase (nullptr),
+      Glib::Object (Glib::ConstructParams (texture_class_.init ()))
   {
   }
 
@@ -155,10 +156,11 @@ namespace Gdk
   Texture::create_from_file (const Glib::RefPtr<Gio::File>& file) -> Glib::RefPtr<Texture>
   {
     GError* gerror = nullptr;
-    auto retvalue = Glib::wrap (
-        gdk_texture_new_from_file (Glib::unwrap<Gio::File> (file), &gerror));
+    auto retvalue = Glib::wrap (gdk_texture_new_from_file (
+        const_cast<GFile*> (Glib::unwrap<Gio::File> (file)),
+        &(gerror)));
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      ::Glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
@@ -167,9 +169,9 @@ namespace Gdk
   {
     GError* gerror = nullptr;
     auto retvalue =
-        Glib::wrap (gdk_texture_new_from_filename (path.c_str (), &gerror));
+        Glib::wrap (gdk_texture_new_from_filename (path.c_str (), &(gerror)));
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      ::Glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
@@ -179,9 +181,9 @@ namespace Gdk
     GError* gerror = nullptr;
     auto retvalue = Glib::wrap (gdk_texture_new_from_bytes (
         const_cast<GBytes*> (Glib::unwrap<Glib::Bytes> (bytes)),
-        &gerror));
+        &(gerror)));
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      ::Glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
@@ -198,7 +200,7 @@ namespace Gdk
   }
 
   auto
-  Texture::download (guchar* data, const gsize stride) const -> void
+  Texture::download (guchar* data, gsize stride) const -> void
   {
     gdk_texture_download (const_cast<GdkTexture*> (gobj ()), data, stride);
   }
@@ -234,13 +236,13 @@ namespace Gdk
   auto
   Texture::property_width () const -> Glib::PropertyProxy_ReadOnly<int>
   {
-    return {this, "width"};
+    return Glib::PropertyProxy_ReadOnly<int> (this, "width");
   }
 
   auto
   Texture::property_height () const -> Glib::PropertyProxy_ReadOnly<int>
   {
-    return {this, "height"};
+    return Glib::PropertyProxy_ReadOnly<int> (this, "height");
   }
 
 } // namespace Gdk

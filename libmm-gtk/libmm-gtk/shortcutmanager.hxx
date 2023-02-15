@@ -72,8 +72,8 @@ namespace Gtk
 
     ~ShortcutManager () noexcept override;
 
-    static void
-    add_interface (GType gtype_implementer);
+    static auto
+    add_interface (GType gtype_implementer) -> void;
 
     static auto
     get_type () -> GType G_GNUC_CONST;
@@ -98,12 +98,13 @@ namespace Gtk
   private:
   public:
   protected:
-    virtual void
-    add_controller_vfunc (const Glib::RefPtr<ShortcutController>& controller);
+    virtual auto
+    add_controller_vfunc (const Glib::RefPtr<ShortcutController>& controller)
+        -> void;
 
-    virtual void
-    remove_controller_vfunc (
-        const Glib::RefPtr<ShortcutController>& controller);
+    virtual auto
+    remove_controller_vfunc (const Glib::RefPtr<ShortcutController>& controller)
+        -> void;
 
   public:
   public:
@@ -114,9 +115,7 @@ namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkShortcutManager* object, bool take_copy = false) -> Glib::RefPtr<Gtk::ShortcutManager>;
 
 } // namespace Glib

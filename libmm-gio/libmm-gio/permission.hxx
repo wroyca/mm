@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: LGPL-2.1-or-later
 
 #ifndef _GIOMM_PERMISSION_H
 #define _GIOMM_PERMISSION_H
@@ -87,12 +88,12 @@ namespace Gio
     auto
     acquire () -> bool;
 
-    void
+    auto
     acquire_async (const SlotAsyncReady& slot,
-                   const Glib::RefPtr<Cancellable>& cancellable);
+                   const Glib::RefPtr<Cancellable>& cancellable) -> void;
 
-    void
-    acquire_async (const SlotAsyncReady& slot);
+    auto
+    acquire_async (const SlotAsyncReady& slot) -> void;
 
     auto
     acquire_finish (const Glib::RefPtr<AsyncResult>& result) -> bool;
@@ -103,12 +104,12 @@ namespace Gio
     auto
     release () -> bool;
 
-    void
+    auto
     release_async (const SlotAsyncReady& slot,
-                   const Glib::RefPtr<Cancellable>& cancellable);
+                   const Glib::RefPtr<Cancellable>& cancellable) -> void;
 
-    void
-    release_async (const SlotAsyncReady& slot);
+    auto
+    release_async (const SlotAsyncReady& slot) -> void;
 
     auto
     release_finish (const Glib::RefPtr<AsyncResult>& result) -> bool;
@@ -137,9 +138,9 @@ namespace Gio
     virtual auto
     acquire_vfunc (const Glib::RefPtr<Cancellable>& cancellable) -> bool;
 
-    virtual void
+    virtual auto
     acquire_async_vfunc (const SlotAsyncReady& slot,
-                         const Glib::RefPtr<Cancellable>& cancellable);
+                         const Glib::RefPtr<Cancellable>& cancellable) -> void;
 
     virtual auto
     acquire_finish_vfunc (const Glib::RefPtr<AsyncResult>& result) -> bool;
@@ -147,15 +148,15 @@ namespace Gio
     virtual auto
     release_vfunc (const Glib::RefPtr<Cancellable>& cancellable) -> bool;
 
-    virtual void
+    virtual auto
     release_async_vfunc (const SlotAsyncReady& slot,
-                         const Glib::RefPtr<Cancellable>& cancellable);
+                         const Glib::RefPtr<Cancellable>& cancellable) -> void;
 
     virtual auto
     release_finish_vfunc (const Glib::RefPtr<AsyncResult>& result) -> bool;
 
-    void
-    impl_update (bool allowed, bool can_acquire, bool can_release);
+    auto
+    impl_update (bool allowed, bool can_acquire, bool can_release) -> void;
 
   public:
   public:

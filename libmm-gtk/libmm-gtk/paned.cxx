@@ -19,9 +19,10 @@ namespace Glib
 {
 
   auto
-  wrap (GtkPaned* object, const bool take_copy) -> Gtk::Paned*
+  wrap (GtkPaned* object, bool take_copy) -> Gtk::Paned*
   {
-    return dynamic_cast<Gtk::Paned*> (wrap_auto ((GObject*) object, take_copy));
+    return dynamic_cast<Gtk::Paned*> (
+        Glib::wrap_auto ((GObject*) (object), take_copy));
   }
 
 } // namespace Glib
@@ -30,7 +31,7 @@ namespace Gtk
 {
 
   auto
-  Paned_Class::init () -> const Class&
+  Paned_Class::init () -> const Glib::Class&
   {
     if (!gtype_)
     {
@@ -54,21 +55,21 @@ namespace Gtk
   auto
   Paned_Class::wrap_new (GObject* o) -> Glib::ObjectBase*
   {
-    return manage (new Paned ((GtkPaned*) o));
+    return manage (new Paned ((GtkPaned*) (o)));
   }
 
   Paned::Paned (const Glib::ConstructParams& construct_params)
-    : Widget (construct_params)
+    : Gtk::Widget (construct_params)
   {
   }
 
   Paned::Paned (GtkPaned* castitem)
-    : Widget ((GtkWidget*) castitem)
+    : Gtk::Widget ((GtkWidget*) (castitem))
   {
   }
 
   Paned::Paned (Paned&& src) noexcept
-    : Widget (std::move (src)),
+    : Gtk::Widget (std::move (src)),
       Orientable (std::move (src))
   {
   }
@@ -76,7 +77,7 @@ namespace Gtk
   auto
   Paned::operator= (Paned&& src) noexcept -> Paned&
   {
-    Widget::operator= (std::move (src));
+    Gtk::Widget::operator= (std::move (src));
     Orientable::operator= (std::move (src));
     return *this;
   }
@@ -100,19 +101,20 @@ namespace Gtk
     return gtk_paned_get_type ();
   }
 
-  Paned::Paned (const Orientation orientation)
-    : ObjectBase (nullptr),
-      Widget (Glib::ConstructParams (paned_class_.init (),
-                                     "orientation",
-                                     orientation,
-                                     nullptr))
+  Paned::Paned (Orientation orientation)
+    : Glib::ObjectBase (nullptr),
+      Gtk::Widget (
+          Glib::ConstructParams (paned_class_.init (),
+                                 "orientation",
+                                 static_cast<GtkOrientation> (orientation),
+                                 nullptr))
   {
   }
 
   auto
   Paned::set_start_child (Widget& child) -> void
   {
-    gtk_paned_set_start_child (gobj (), child.gobj ());
+    gtk_paned_set_start_child (gobj (), (child).gobj ());
   }
 
   auto
@@ -128,9 +130,9 @@ namespace Gtk
   }
 
   auto
-  Paned::set_resize_start_child (const bool resize) -> void
+  Paned::set_resize_start_child (bool resize) -> void
   {
-    gtk_paned_set_resize_start_child (gobj (), resize);
+    gtk_paned_set_resize_start_child (gobj (), static_cast<int> (resize));
   }
 
   auto
@@ -140,9 +142,9 @@ namespace Gtk
   }
 
   auto
-  Paned::set_shrink_start_child (const bool resize) -> void
+  Paned::set_shrink_start_child (bool resize) -> void
   {
-    gtk_paned_set_shrink_start_child (gobj (), resize);
+    gtk_paned_set_shrink_start_child (gobj (), static_cast<int> (resize));
   }
 
   auto
@@ -154,7 +156,7 @@ namespace Gtk
   auto
   Paned::set_end_child (Widget& child) -> void
   {
-    gtk_paned_set_end_child (gobj (), child.gobj ());
+    gtk_paned_set_end_child (gobj (), (child).gobj ());
   }
 
   auto
@@ -170,9 +172,9 @@ namespace Gtk
   }
 
   auto
-  Paned::set_resize_end_child (const bool resize) -> void
+  Paned::set_resize_end_child (bool resize) -> void
   {
-    gtk_paned_set_resize_end_child (gobj (), resize);
+    gtk_paned_set_resize_end_child (gobj (), static_cast<int> (resize));
   }
 
   auto
@@ -182,9 +184,9 @@ namespace Gtk
   }
 
   auto
-  Paned::set_shrink_end_child (const bool resize) -> void
+  Paned::set_shrink_end_child (bool resize) -> void
   {
-    gtk_paned_set_shrink_end_child (gobj (), resize);
+    gtk_paned_set_shrink_end_child (gobj (), static_cast<int> (resize));
   }
 
   auto
@@ -200,15 +202,15 @@ namespace Gtk
   }
 
   auto
-  Paned::set_position (const int position) -> void
+  Paned::set_position (int position) -> void
   {
     gtk_paned_set_position (gobj (), position);
   }
 
   auto
-  Paned::set_wide_handle (const bool wide) -> void
+  Paned::set_wide_handle (bool wide) -> void
   {
-    gtk_paned_set_wide_handle (gobj (), wide);
+    gtk_paned_set_wide_handle (gobj (), static_cast<int> (wide));
   }
 
   auto
@@ -220,121 +222,121 @@ namespace Gtk
   auto
   Paned::property_position () -> Glib::PropertyProxy<int>
   {
-    return {this, "position"};
+    return Glib::PropertyProxy<int> (this, "position");
   }
 
   auto
   Paned::property_position () const -> Glib::PropertyProxy_ReadOnly<int>
   {
-    return {this, "position"};
+    return Glib::PropertyProxy_ReadOnly<int> (this, "position");
   }
 
   auto
   Paned::property_position_set () -> Glib::PropertyProxy<bool>
   {
-    return {this, "position-set"};
+    return Glib::PropertyProxy<bool> (this, "position-set");
   }
 
   auto
   Paned::property_position_set () const -> Glib::PropertyProxy_ReadOnly<bool>
   {
-    return {this, "position-set"};
+    return Glib::PropertyProxy_ReadOnly<bool> (this, "position-set");
   }
 
   auto
   Paned::property_min_position () const -> Glib::PropertyProxy_ReadOnly<int>
   {
-    return {this, "min-position"};
+    return Glib::PropertyProxy_ReadOnly<int> (this, "min-position");
   }
 
   auto
   Paned::property_max_position () const -> Glib::PropertyProxy_ReadOnly<int>
   {
-    return {this, "max-position"};
+    return Glib::PropertyProxy_ReadOnly<int> (this, "max-position");
   }
 
   auto
   Paned::property_wide_handle () -> Glib::PropertyProxy<bool>
   {
-    return {this, "wide-handle"};
+    return Glib::PropertyProxy<bool> (this, "wide-handle");
   }
 
   auto
   Paned::property_wide_handle () const -> Glib::PropertyProxy_ReadOnly<bool>
   {
-    return {this, "wide-handle"};
+    return Glib::PropertyProxy_ReadOnly<bool> (this, "wide-handle");
   }
 
   auto
   Paned::property_resize_start_child () -> Glib::PropertyProxy<bool>
   {
-    return {this, "resize-start-child"};
+    return Glib::PropertyProxy<bool> (this, "resize-start-child");
   }
 
   auto
   Paned::property_resize_start_child () const -> Glib::PropertyProxy_ReadOnly<bool>
   {
-    return {this, "resize-start-child"};
+    return Glib::PropertyProxy_ReadOnly<bool> (this, "resize-start-child");
   }
 
   auto
   Paned::property_resize_end_child () -> Glib::PropertyProxy<bool>
   {
-    return {this, "resize-end-child"};
+    return Glib::PropertyProxy<bool> (this, "resize-end-child");
   }
 
   auto
   Paned::property_resize_end_child () const -> Glib::PropertyProxy_ReadOnly<bool>
   {
-    return {this, "resize-end-child"};
+    return Glib::PropertyProxy_ReadOnly<bool> (this, "resize-end-child");
   }
 
   auto
   Paned::property_shrink_start_child () -> Glib::PropertyProxy<bool>
   {
-    return {this, "shrink-start-child"};
+    return Glib::PropertyProxy<bool> (this, "shrink-start-child");
   }
 
   auto
   Paned::property_shrink_start_child () const -> Glib::PropertyProxy_ReadOnly<bool>
   {
-    return {this, "shrink-start-child"};
+    return Glib::PropertyProxy_ReadOnly<bool> (this, "shrink-start-child");
   }
 
   auto
   Paned::property_shrink_end_child () -> Glib::PropertyProxy<bool>
   {
-    return {this, "shrink-end-child"};
+    return Glib::PropertyProxy<bool> (this, "shrink-end-child");
   }
 
   auto
   Paned::property_shrink_end_child () const -> Glib::PropertyProxy_ReadOnly<bool>
   {
-    return {this, "shrink-end-child"};
+    return Glib::PropertyProxy_ReadOnly<bool> (this, "shrink-end-child");
   }
 
   auto
   Paned::property_start_child () -> Glib::PropertyProxy<Widget*>
   {
-    return {this, "start-child"};
+    return Glib::PropertyProxy<Widget*> (this, "start-child");
   }
 
   auto
   Paned::property_start_child () const -> Glib::PropertyProxy_ReadOnly<Widget*>
   {
-    return {this, "start-child"};
+    return Glib::PropertyProxy_ReadOnly<Widget*> (this, "start-child");
   }
 
   auto
   Paned::property_end_child () -> Glib::PropertyProxy<Widget*>
   {
-    return {this, "end-child"};
+    return Glib::PropertyProxy<Widget*> (this, "end-child");
   }
 
   auto
   Paned::property_end_child () const -> Glib::PropertyProxy_ReadOnly<Widget*>
   {
-    return {this, "end-child"};
+    return Glib::PropertyProxy_ReadOnly<Widget*> (this, "end-child");
   }
 
 } // namespace Gtk

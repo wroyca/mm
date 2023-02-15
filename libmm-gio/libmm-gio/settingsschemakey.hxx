@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: LGPL-2.1-or-later
 
 #ifndef _GIOMM_SETTINGSSCHEMAKEY_H
 #define _GIOMM_SETTINGSSCHEMAKEY_H
@@ -25,11 +26,11 @@ namespace Gio
     using BaseObjectType = GSettingsSchemaKey;
 #endif
 
-    void
-    reference () const;
+    auto
+    reference () const -> void;
 
-    void
-    unreference () const;
+    auto
+    unreference () const -> void;
 
     auto
     gobj () -> GSettingsSchemaKey*;
@@ -47,8 +48,8 @@ namespace Gio
     operator= (const SettingsSchemaKey&) -> SettingsSchemaKey& = delete;
 
   protected:
-    void
-    operator delete (void*, std::size_t);
+    auto
+    operator delete (void*, std::size_t) -> void;
 
   private:
   protected:

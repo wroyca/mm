@@ -15,11 +15,11 @@ namespace Glib
 {
 
   auto
-  wrap (GtkListItemFactory* object, const bool take_copy) -> RefPtr<Gtk::ListItemFactory>
+  wrap (GtkListItemFactory* object, bool take_copy) -> Glib::RefPtr<Gtk::ListItemFactory>
   {
     return Glib::make_refptr_for_instance<Gtk::ListItemFactory> (
         dynamic_cast<Gtk::ListItemFactory*> (
-            wrap_auto ((GObject*) object, take_copy)));
+            Glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
 } // namespace Glib
@@ -28,7 +28,7 @@ namespace Gtk
 {
 
   auto
-  ListItemFactory_Class::init () -> const Class&
+  ListItemFactory_Class::init () -> const Glib::Class&
   {
     if (!gtype_)
     {
@@ -62,28 +62,28 @@ namespace Gtk
 
   ListItemFactory::ListItemFactory (
       const Glib::ConstructParams& construct_params)
-    : Object (construct_params)
+    : Glib::Object (construct_params)
   {
   }
 
   ListItemFactory::ListItemFactory (GtkListItemFactory* castitem)
-    : Object ((GObject*) castitem)
+    : Glib::Object ((GObject*) (castitem))
   {
   }
 
   ListItemFactory::ListItemFactory (ListItemFactory&& src) noexcept
-    : Object (std::move (src))
+    : Glib::Object (std::move (src))
   {
   }
 
   auto
   ListItemFactory::operator= (ListItemFactory&& src) noexcept -> ListItemFactory&
   {
-    Object::operator= (std::move (src));
+    Glib::Object::operator= (std::move (src));
     return *this;
   }
 
-  ListItemFactory::~ListItemFactory () noexcept = default;
+  ListItemFactory::~ListItemFactory () noexcept {}
 
   ListItemFactory::CppClassType ListItemFactory::listitemfactory_class_;
 

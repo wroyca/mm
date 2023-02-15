@@ -3,23 +3,25 @@
 #ifndef _GTKMM_FILECHOOSERDIALOG_H
 #define _GTKMM_FILECHOOSERDIALOG_H
 
-#include <libmm-glib/ustring.hxx>
-#include <sigc++/sigc++.h>
+#ifndef GTKMM_DISABLE_DEPRECATED
 
-#include <libmm-gtk/dialog.hxx>
-#include <libmm-gtk/filechooser.hxx>
+  #include <libmm-glib/ustring.hxx>
+  #include <sigc++/sigc++.h>
 
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #include <libmm-gtk/dialog.hxx>
+  #include <libmm-gtk/filechooser.hxx>
+
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
 using GtkFileChooserDialog = struct _GtkFileChooserDialog;
 using GtkFileChooserDialogClass = struct _GtkFileChooserDialogClass;
-#endif
+  #endif
 
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
   class GTKMM_API FileChooserDialog_Class;
 }
-#endif
+  #endif
 
 namespace Gtk
 {
@@ -28,12 +30,12 @@ namespace Gtk
                                       public FileChooser
   {
   public:
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
     typedef FileChooserDialog CppObjectType;
     typedef FileChooserDialog_Class CppClassType;
     typedef GtkFileChooserDialog BaseObjectType;
     typedef GtkFileChooserDialogClass BaseClassType;
-#endif
+  #endif
 
     FileChooserDialog (FileChooserDialog&& src) noexcept;
     auto
@@ -45,7 +47,7 @@ namespace Gtk
 
     ~FileChooserDialog () noexcept override;
 
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   private:
     friend GTKMM_API class FileChooserDialog_Class;
@@ -55,17 +57,17 @@ namespace Gtk
     explicit FileChooserDialog (const Glib::ConstructParams& construct_params);
     explicit FileChooserDialog (GtkFileChooserDialog* castitem);
 
-#endif
+  #endif
 
   public:
     static auto
     get_type () -> GType G_GNUC_CONST;
 
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
     static auto
     get_base_type () -> GType G_GNUC_CONST;
-#endif
+  #endif
 
     auto
     gobj () -> GtkFileChooserDialog*
@@ -98,10 +100,10 @@ namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkFileChooserDialog* object, bool take_copy = false) -> Gtk::FileChooserDialog*;
 } // namespace Glib
+
+#endif
 
 #endif

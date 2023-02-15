@@ -36,10 +36,10 @@ namespace Glib
 {
 
   auto
-  wrap (GtkCenterBox* object, const bool take_copy) -> Gtk::CenterBox*
+  wrap (GtkCenterBox* object, bool take_copy) -> Gtk::CenterBox*
   {
     return dynamic_cast<Gtk::CenterBox*> (
-        wrap_auto ((GObject*) object, take_copy));
+        Glib::wrap_auto ((GObject*) (object), take_copy));
   }
 
 } // namespace Glib
@@ -48,7 +48,7 @@ namespace Gtk
 {
 
   auto
-  CenterBox_Class::init () -> const Class&
+  CenterBox_Class::init () -> const Glib::Class&
   {
     if (!gtype_)
     {
@@ -72,7 +72,7 @@ namespace Gtk
   auto
   CenterBox_Class::wrap_new (GObject* o) -> Glib::ObjectBase*
   {
-    return manage (new CenterBox ((GtkCenterBox*) o));
+    return manage (new CenterBox ((GtkCenterBox*) (o)));
   }
 
   CenterBox::CenterBox (const Glib::ConstructParams& construct_params)
@@ -81,7 +81,7 @@ namespace Gtk
   }
 
   CenterBox::CenterBox (GtkCenterBox* castitem)
-    : Widget ((GtkWidget*) castitem)
+    : Widget ((GtkWidget*) (castitem))
   {
   }
 
@@ -119,7 +119,7 @@ namespace Gtk
   }
 
   CenterBox::CenterBox ()
-    : ObjectBase (nullptr),
+    : Glib::ObjectBase (nullptr),
       Widget (Glib::ConstructParams (centerbox_class_.init ()))
   {
   }
@@ -127,7 +127,7 @@ namespace Gtk
   auto
   CenterBox::set_start_widget (Widget& child) -> void
   {
-    gtk_center_box_set_start_widget (gobj (), child.gobj ());
+    gtk_center_box_set_start_widget (gobj (), (child).gobj ());
   }
 
   auto
@@ -145,7 +145,7 @@ namespace Gtk
   auto
   CenterBox::set_center_widget (Widget& child) -> void
   {
-    gtk_center_box_set_center_widget (gobj (), child.gobj ());
+    gtk_center_box_set_center_widget (gobj (), (child).gobj ());
   }
 
   auto
@@ -163,7 +163,7 @@ namespace Gtk
   auto
   CenterBox::set_end_widget (Widget& child) -> void
   {
-    gtk_center_box_set_end_widget (gobj (), child.gobj ());
+    gtk_center_box_set_end_widget (gobj (), (child).gobj ());
   }
 
   auto
@@ -193,6 +193,42 @@ namespace Gtk
         gtk_center_box_get_baseline_position (gobj ()));
   }
 
+  auto
+  CenterBox::property_start_widget () -> Glib::PropertyProxy<Widget*>
+  {
+    return Glib::PropertyProxy<Widget*> (this, "start-widget");
+  }
+
+  auto
+  CenterBox::property_start_widget () const -> Glib::PropertyProxy_ReadOnly<Widget*>
+  {
+    return Glib::PropertyProxy_ReadOnly<Widget*> (this, "start-widget");
+  }
+
+  auto
+  CenterBox::property_center_widget () -> Glib::PropertyProxy<Widget*>
+  {
+    return Glib::PropertyProxy<Widget*> (this, "center-widget");
+  }
+
+  auto
+  CenterBox::property_center_widget () const -> Glib::PropertyProxy_ReadOnly<Widget*>
+  {
+    return Glib::PropertyProxy_ReadOnly<Widget*> (this, "center-widget");
+  }
+
+  auto
+  CenterBox::property_end_widget () -> Glib::PropertyProxy<Widget*>
+  {
+    return Glib::PropertyProxy<Widget*> (this, "end-widget");
+  }
+
+  auto
+  CenterBox::property_end_widget () const -> Glib::PropertyProxy_ReadOnly<Widget*>
+  {
+    return Glib::PropertyProxy_ReadOnly<Widget*> (this, "end-widget");
+  }
+
   static_assert (
       Glib::Traits::ValueCompatibleWithWrapProperty<BaselinePosition>::value,
       "Type BaselinePosition cannot be used in _WRAP_PROPERTY. "
@@ -201,13 +237,14 @@ namespace Gtk
   auto
   CenterBox::property_baseline_position () -> Glib::PropertyProxy<BaselinePosition>
   {
-    return {this, "baseline-position"};
+    return Glib::PropertyProxy<BaselinePosition> (this, "baseline-position");
   }
 
   auto
   CenterBox::property_baseline_position () const -> Glib::PropertyProxy_ReadOnly<BaselinePosition>
   {
-    return {this, "baseline-position"};
+    return Glib::PropertyProxy_ReadOnly<BaselinePosition> (this,
+                                                           "baseline-position");
   }
 
 } // namespace Gtk

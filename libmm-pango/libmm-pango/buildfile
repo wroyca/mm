@@ -17,7 +17,7 @@ hxx{export}@./: cxx.importable = false
 #
 cxx.poptions =+ "-I$out_root" "-I$src_root"
 cxx.loptions =+ "/LIBPATH:C:/gnome/lib"
-cxx.poptions =+ "-DPANGOMM_BUILD" "-DPANGO_STATIC_LIB"
+cxx.poptions =+ "-DPANGOMM_DISABLE_DEPRECATED" "-DPANGOMM_BUILD" "-DPANGO_STATIC_LIB"
 
 #{hbmia obja}{*}: cxx.poptions += -DLIBMM_PANGO_STATIC_BUILD
 #{hbmis objs}{*}: cxx.poptions += -DLIBMM_PANGO_SHARED_BUILD

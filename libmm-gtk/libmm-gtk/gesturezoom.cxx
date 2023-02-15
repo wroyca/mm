@@ -10,15 +10,15 @@
 namespace
 {
 
-  auto
+  static auto
   GestureZoom_signal_scale_changed_callback (GtkGestureZoom* self,
-                                             const gdouble p0,
+                                             gdouble p0,
                                              void* data) -> void
   {
     using namespace Gtk;
     using SlotType = sigc::slot<void (double)>;
 
-    const auto obj = dynamic_cast<GestureZoom*> (
+    auto obj = dynamic_cast<GestureZoom*> (
         Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
@@ -35,7 +35,7 @@ namespace
     }
   }
 
-  const Glib::SignalProxyInfo GestureZoom_signal_scale_changed_info = {
+  static const Glib::SignalProxyInfo GestureZoom_signal_scale_changed_info = {
       "scale-changed",
       (GCallback) &GestureZoom_signal_scale_changed_callback,
       (GCallback) &GestureZoom_signal_scale_changed_callback};
@@ -46,11 +46,11 @@ namespace Glib
 {
 
   auto
-  wrap (GtkGestureZoom* object, const bool take_copy) -> RefPtr<Gtk::GestureZoom>
+  wrap (GtkGestureZoom* object, bool take_copy) -> Glib::RefPtr<Gtk::GestureZoom>
   {
     return Glib::make_refptr_for_instance<Gtk::GestureZoom> (
         dynamic_cast<Gtk::GestureZoom*> (
-            wrap_auto ((GObject*) object, take_copy)));
+            Glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
 } // namespace Glib
@@ -59,7 +59,7 @@ namespace Gtk
 {
 
   auto
-  GestureZoom_Class::init () -> const Class&
+  GestureZoom_Class::init () -> const Glib::Class&
   {
     if (!gtype_)
     {
@@ -97,7 +97,7 @@ namespace Gtk
   }
 
   GestureZoom::GestureZoom (GtkGestureZoom* castitem)
-    : Gesture ((GtkGesture*) castitem)
+    : Gesture ((GtkGesture*) (castitem))
   {
   }
 
@@ -113,7 +113,7 @@ namespace Gtk
     return *this;
   }
 
-  GestureZoom::~GestureZoom () noexcept = default;
+  GestureZoom::~GestureZoom () noexcept {}
 
   GestureZoom::CppClassType GestureZoom::gesturezoom_class_;
 
@@ -130,7 +130,7 @@ namespace Gtk
   }
 
   GestureZoom::GestureZoom ()
-    : ObjectBase (nullptr),
+    : Glib::ObjectBase (nullptr),
       Gesture (Glib::ConstructParams (gesturezoom_class_.init ()))
   {
   }
@@ -151,7 +151,9 @@ namespace Gtk
   auto
   GestureZoom::signal_scale_changed () -> Glib::SignalProxy<void (double)>
   {
-    return {this, &GestureZoom_signal_scale_changed_info};
+    return Glib::SignalProxy<void (double)> (
+        this,
+        &GestureZoom_signal_scale_changed_info);
   }
 
 } // namespace Gtk

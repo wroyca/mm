@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: LGPL-2.1-or-later
 
 #ifndef _GIOMM_MENUMODEL_H
 #define _GIOMM_MENUMODEL_H
@@ -140,8 +141,8 @@ namespace Gio
     iterate_item_links (int item_index) const
         -> Glib::RefPtr<const MenuLinkIter>;
 
-    void
-    items_changed (int position, int removed, int added);
+    auto
+    items_changed (int position, int removed, int added) -> void;
 
     auto
     signal_items_changed () -> Glib::SignalProxy<void (int, int, int)>;

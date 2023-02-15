@@ -3,23 +3,25 @@
 #ifndef _GTKMM_FONTCHOOSERDIALOG_H
 #define _GTKMM_FONTCHOOSERDIALOG_H
 
-#include <libmm-glib/ustring.hxx>
-#include <sigc++/sigc++.h>
+#ifndef GTKMM_DISABLE_DEPRECATED
 
-#include <libmm-gtk/dialog.hxx>
-#include <libmm-gtk/fontchooser.hxx>
+  #include <libmm-glib/ustring.hxx>
+  #include <sigc++/sigc++.h>
 
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #include <libmm-gtk/dialog.hxx>
+  #include <libmm-gtk/fontchooser.hxx>
+
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
 using GtkFontChooserDialog = struct _GtkFontChooserDialog;
 using GtkFontChooserDialogClass = struct _GtkFontChooserDialogClass;
-#endif
+  #endif
 
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
   class GTKMM_API FontChooserDialog_Class;
 }
-#endif
+  #endif
 
 namespace Gtk
 {
@@ -28,12 +30,12 @@ namespace Gtk
                                       public FontChooser
   {
   public:
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
     typedef FontChooserDialog CppObjectType;
     typedef FontChooserDialog_Class CppClassType;
     typedef GtkFontChooserDialog BaseObjectType;
     typedef GtkFontChooserDialogClass BaseClassType;
-#endif
+  #endif
 
     FontChooserDialog (FontChooserDialog&& src) noexcept;
     auto
@@ -45,7 +47,7 @@ namespace Gtk
 
     ~FontChooserDialog () noexcept override;
 
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   private:
     friend GTKMM_API class FontChooserDialog_Class;
@@ -55,17 +57,17 @@ namespace Gtk
     explicit FontChooserDialog (const Glib::ConstructParams& construct_params);
     explicit FontChooserDialog (GtkFontChooserDialog* castitem);
 
-#endif
+  #endif
 
   public:
     static auto
     get_type () -> GType G_GNUC_CONST;
 
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
     static auto
     get_base_type () -> GType G_GNUC_CONST;
-#endif
+  #endif
 
     auto
     gobj () -> GtkFontChooserDialog*
@@ -96,10 +98,10 @@ namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkFontChooserDialog* object, bool take_copy = false) -> Gtk::FontChooserDialog*;
 } // namespace Glib
+
+#endif
 
 #endif

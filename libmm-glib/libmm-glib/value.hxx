@@ -27,14 +27,14 @@ namespace Glib
 
     ~ValueBase () noexcept;
 
-    void
-    init (GType type);
+    auto
+    init (GType type) -> void;
 
-    void
-    init (const GValue* value);
+    auto
+    init (const GValue* value) -> void;
 
-    void
-    reset ();
+    auto
+    reset () -> void;
 
     auto
     gobj () -> GValue*
@@ -67,8 +67,8 @@ namespace Glib
 #endif
 
   protected:
-    void
-    set_boxed (const void* data);
+    auto
+    set_boxed (const void* data) -> void;
     auto
     get_boxed () const -> void*;
   };
@@ -88,8 +88,8 @@ namespace Glib
 #endif
 
   protected:
-    void
-    set_object (Glib::ObjectBase* data);
+    auto
+    set_object (Glib::ObjectBase* data) -> void;
     auto
     get_object () const -> Glib::ObjectBase*;
     auto
@@ -111,8 +111,8 @@ namespace Glib
 #endif
 
   protected:
-    void
-    set_enum (int data);
+    auto
+    set_enum (int data) -> void;
     auto
     get_enum () const -> int;
   };
@@ -132,8 +132,8 @@ namespace Glib
 #endif
 
   protected:
-    void
-    set_flags (unsigned int data);
+    auto
+    set_flags (unsigned int data) -> void;
     auto
     get_flags () const -> unsigned int;
   };
@@ -153,8 +153,8 @@ namespace Glib
 #endif
 
   protected:
-    void
-    set_cstring (const char* data);
+    auto
+    set_cstring (const char* data) -> void;
     auto
     get_cstring () const -> const char*;
   };
@@ -174,8 +174,8 @@ namespace Glib
 #endif
 
   protected:
-    void
-    set_variant (GVariant* data);
+    auto
+    set_variant (GVariant* data) -> void;
     auto
     get_variant () const -> GVariant*;
   };
@@ -201,8 +201,8 @@ namespace Glib
       return T::get_type ();
     }
 
-    void
-    set (const CppType& data)
+    auto
+    set (const CppType& data) -> void
     {
       set_boxed (data.gobj ());
     }
@@ -226,8 +226,8 @@ namespace Glib
       return T::get_type ();
     }
 
-    void
-    set (const CppType& data)
+    auto
+    set (const CppType& data) -> void
     {
       set_boxed (data ? data->gobj () : nullptr);
     }
@@ -275,8 +275,8 @@ namespace Glib
       return T::get_base_type ();
     }
 
-    void
-    set (const CppType& data)
+    auto
+    set (const CppType& data) -> void
     {
       set_object (const_cast<std::remove_const_t<T>*> (data.get ()));
     }
@@ -309,8 +309,8 @@ namespace Glib
   public:
     using CppType = std::string;
 
-    void
-    set (const std::string& data);
+    auto
+    set (const std::string& data) -> void;
 
     auto
     get () const -> std::string
@@ -325,8 +325,8 @@ namespace Glib
   public:
     using CppType = Glib::ustring;
 
-    void
-    set (const Glib::ustring& data);
+    auto
+    set (const Glib::ustring& data) -> void;
 
     auto
     get () const -> Glib::ustring
@@ -344,8 +344,8 @@ namespace Glib
     static auto
     value_type () -> GType;
 
-    void
-    set (const CppType& data);
+    auto
+    set (const CppType& data) -> void;
     auto
     get () const -> CppType;
   };
@@ -359,8 +359,8 @@ namespace Glib
     static auto
     value_type () -> GType;
 
-    void
-    set (const CppType& data);
+    auto
+    set (const CppType& data) -> void;
     auto
     get () const -> CppType;
   };
@@ -371,8 +371,8 @@ namespace Glib
   public:
     using CppType = T;
 
-    void
-    set (CppType data)
+    auto
+    set (CppType data) -> void
     {
       set_enum (static_cast<int> (data));
     }
@@ -390,8 +390,8 @@ namespace Glib
   public:
     using CppType = T;
 
-    void
-    set (CppType data)
+    auto
+    set (CppType data) -> void
     {
       set_flags (static_cast<unsigned int> (data));
     }

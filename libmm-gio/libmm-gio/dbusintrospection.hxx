@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: LGPL-2.1-or-later
 
 #ifndef _GIOMM_DBUSINTROSPECTION_H
 #define _GIOMM_DBUSINTROSPECTION_H
@@ -78,11 +79,11 @@ namespace Gio::DBus
     using BaseObjectType = GDBusAnnotationInfo;
 #endif
 
-    void
-    reference () const;
+    auto
+    reference () const -> void;
 
-    void
-    unreference () const;
+    auto
+    unreference () const -> void;
 
     auto
     gobj () -> GDBusAnnotationInfo*;
@@ -100,8 +101,8 @@ namespace Gio::DBus
     operator= (const AnnotationInfo&) -> AnnotationInfo& = delete;
 
   protected:
-    void
-    operator delete (void*, std::size_t);
+    auto
+    operator delete (void*, std::size_t) -> void;
 
   private:
   public:
@@ -118,11 +119,11 @@ namespace Gio::DBus
     using BaseObjectType = GDBusArgInfo;
 #endif
 
-    void
-    reference () const;
+    auto
+    reference () const -> void;
 
-    void
-    unreference () const;
+    auto
+    unreference () const -> void;
 
     auto
     gobj () -> GDBusArgInfo*;
@@ -140,8 +141,8 @@ namespace Gio::DBus
     operator= (const ArgInfo&) -> ArgInfo& = delete;
 
   protected:
-    void
-    operator delete (void*, std::size_t);
+    auto
+    operator delete (void*, std::size_t) -> void;
 
   private:
   public:
@@ -155,11 +156,11 @@ namespace Gio::DBus
     using BaseObjectType = GDBusMethodInfo;
 #endif
 
-    void
-    reference () const;
+    auto
+    reference () const -> void;
 
-    void
-    unreference () const;
+    auto
+    unreference () const -> void;
 
     auto
     gobj () -> GDBusMethodInfo*;
@@ -177,8 +178,8 @@ namespace Gio::DBus
     operator= (const MethodInfo&) -> MethodInfo& = delete;
 
   protected:
-    void
-    operator delete (void*, std::size_t);
+    auto
+    operator delete (void*, std::size_t) -> void;
 
   private:
   public:
@@ -192,11 +193,11 @@ namespace Gio::DBus
     using BaseObjectType = GDBusSignalInfo;
 #endif
 
-    void
-    reference () const;
+    auto
+    reference () const -> void;
 
-    void
-    unreference () const;
+    auto
+    unreference () const -> void;
 
     auto
     gobj () -> GDBusSignalInfo*;
@@ -214,8 +215,8 @@ namespace Gio::DBus
     operator= (const SignalInfo&) -> SignalInfo& = delete;
 
   protected:
-    void
-    operator delete (void*, std::size_t);
+    auto
+    operator delete (void*, std::size_t) -> void;
 
   private:
   public:
@@ -229,11 +230,11 @@ namespace Gio::DBus
     using BaseObjectType = GDBusPropertyInfo;
 #endif
 
-    void
-    reference () const;
+    auto
+    reference () const -> void;
 
-    void
-    unreference () const;
+    auto
+    unreference () const -> void;
 
     auto
     gobj () -> GDBusPropertyInfo*;
@@ -251,8 +252,8 @@ namespace Gio::DBus
     operator= (const PropertyInfo&) -> PropertyInfo& = delete;
 
   protected:
-    void
-    operator delete (void*, std::size_t);
+    auto
+    operator delete (void*, std::size_t) -> void;
 
   private:
   public:
@@ -269,11 +270,11 @@ namespace Gio::DBus
     static auto
     get_type () -> GType G_GNUC_CONST;
 
-    void
-    reference () const;
+    auto
+    reference () const -> void;
 
-    void
-    unreference () const;
+    auto
+    unreference () const -> void;
 
     auto
     gobj () -> GDBusInterfaceInfo*;
@@ -291,8 +292,8 @@ namespace Gio::DBus
     operator= (const InterfaceInfo&) -> InterfaceInfo& = delete;
 
   protected:
-    void
-    operator delete (void*, std::size_t);
+    auto
+    operator delete (void*, std::size_t) -> void;
 
   private:
   public:
@@ -317,11 +318,11 @@ namespace Gio::DBus
     lookup_property (const Glib::ustring& name) const
         -> Glib::RefPtr<const PropertyInfo>;
 
-    void
-    cache_build ();
+    auto
+    cache_build () -> void;
 
-    void
-    cache_release ();
+    auto
+    cache_release () -> void;
   };
 
   class GIOMM_API NodeInfo final
@@ -332,11 +333,11 @@ namespace Gio::DBus
     using BaseObjectType = GDBusNodeInfo;
 #endif
 
-    void
-    reference () const;
+    auto
+    reference () const -> void;
 
-    void
-    unreference () const;
+    auto
+    unreference () const -> void;
 
     auto
     gobj () -> GDBusNodeInfo*;
@@ -354,8 +355,8 @@ namespace Gio::DBus
     operator= (const NodeInfo&) -> NodeInfo& = delete;
 
   protected:
-    void
-    operator delete (void*, std::size_t);
+    auto
+    operator delete (void*, std::size_t) -> void;
 
   private:
   public:

@@ -83,11 +83,11 @@ namespace Gtk
   public:
     MenuButton ();
 
-    void
-    set_popover (Popover& popover);
+    auto
+    set_popover (Popover& popover) -> void;
 
-    void
-    unset_popover ();
+    auto
+    unset_popover () -> void;
 
     auto
     get_popover () -> Popover*;
@@ -95,17 +95,18 @@ namespace Gtk
     auto
     get_popover () const -> const Popover*;
 
-    void
-    set_direction (ArrowType direction);
+    auto
+    set_direction (ArrowType direction) -> void;
 
     auto
     get_direction () const -> ArrowType;
 
-    void
-    set_menu_model (const Glib::RefPtr<const Gio::MenuModel>& menu_model);
+    auto
+    set_menu_model (const Glib::RefPtr<const Gio::MenuModel>& menu_model)
+        -> void;
 
-    void
-    unset_menu_model ();
+    auto
+    unset_menu_model () -> void;
 
     auto
     get_menu_model () -> Glib::RefPtr<Gio::MenuModel>;
@@ -113,61 +114,61 @@ namespace Gtk
     auto
     get_menu_model () const -> Glib::RefPtr<const Gio::MenuModel>;
 
-    void
-    set_icon_name (const Glib::ustring& icon_name);
+    auto
+    set_icon_name (const Glib::ustring& icon_name) -> void;
 
     auto
     get_icon_name () const -> Glib::ustring;
 
-    void
-    set_always_show_arrow (bool always_show_arrow = true);
+    auto
+    set_always_show_arrow (bool always_show_arrow = true) -> void;
 
     auto
     get_always_show_arrow () const -> bool;
 
-    void
-    set_label (const Glib::ustring& label);
+    auto
+    set_label (const Glib::ustring& label) -> void;
 
     auto
     get_label () const -> Glib::ustring;
 
-    void
-    set_use_underline (bool use_underline = true);
+    auto
+    set_use_underline (bool use_underline = true) -> void;
 
     auto
     get_use_underline () const -> bool;
 
-    void
-    set_has_frame (bool has_frame = true);
+    auto
+    set_has_frame (bool has_frame = true) -> void;
 
     auto
     get_has_frame () const -> bool;
 
-    void
-    popup ();
+    auto
+    popup () -> void;
 
-    void
-    popdown ();
+    auto
+    popdown () -> void;
 
     using SlotCreatePopup = sigc::slot<void ()>;
 
-    void
-    set_create_popup_func (const SlotCreatePopup& slot);
+    auto
+    set_create_popup_func (const SlotCreatePopup& slot) -> void;
 
-    void
-    unset_create_popup_func ();
+    auto
+    unset_create_popup_func () -> void;
 
-    void
-    set_primary (bool primary = true);
+    auto
+    set_primary (bool primary = true) -> void;
 
     auto
     get_primary () const -> bool;
 
-    void
-    set_child (Widget& child);
+    auto
+    set_child (Widget& child) -> void;
 
-    void
-    unset_child ();
+    auto
+    unset_child () -> void;
 
     auto
     get_child () -> Widget*;
@@ -245,9 +246,7 @@ namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkMenuButton* object, bool take_copy = false) -> Gtk::MenuButton*;
 } // namespace Glib
 

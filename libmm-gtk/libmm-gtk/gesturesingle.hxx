@@ -86,20 +86,20 @@ namespace Gtk
     auto
     get_touch_only () const -> bool;
 
-    void
-    set_touch_only (bool touch_only = true);
+    auto
+    set_touch_only (bool touch_only = true) -> void;
 
     auto
     get_exclusive () const -> bool;
 
-    void
-    set_exclusive (bool exclusive = true) const;
+    auto
+    set_exclusive (bool exclusive = true) const -> void;
 
     auto
     get_button () const -> unsigned int;
 
-    void
-    set_button (unsigned int button = 0);
+    auto
+    set_button (unsigned int button = 0) -> void;
 
     auto
     get_current_button () const -> unsigned int;
@@ -137,9 +137,7 @@ namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkGestureSingle* object, bool take_copy = false) -> Glib::RefPtr<Gtk::GestureSingle>;
 } // namespace Glib
 

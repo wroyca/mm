@@ -121,8 +121,8 @@ namespace Gtk
     auto
     get_orientation () const -> Orientation;
 
-    void
-    set_orientation (Orientation orientation);
+    auto
+    set_orientation (Orientation orientation) -> void;
 
     auto
     signal_pan () -> Glib::SignalProxy<void (PanDirection, double)>;
@@ -142,9 +142,7 @@ namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkGesturePan* object, bool take_copy = false) -> Glib::RefPtr<Gtk::GesturePan>;
 } // namespace Glib
 

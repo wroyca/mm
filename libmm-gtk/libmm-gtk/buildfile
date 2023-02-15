@@ -9,7 +9,7 @@ import impl_libs += libmm-gio%lib{mm-gio}
 import impl_libs += glib-2.0%lib{glib-2.0}
 import impl_libs += gtk4%lib{gtk4}
 
-liba{mm-gtk}: {hxx ixx txx cxx}{** -version} hxx{version} $impl_libs $intf_libs
+liba{mm-gtk}: {hxx ixx txx cxx}{** -version -printunixdialog -pagesetupunixdialog -printer -printjob} hxx{version} $impl_libs $intf_libs
 
 hxx{version}: in{version} $src_root/manifest
 

@@ -100,11 +100,11 @@ namespace Gdk
     auto
     get_surface () const -> Glib::RefPtr<const Surface>;
 
-    void
-    begin_frame (const ::Cairo::RefPtr<const ::Cairo::Region>& region);
+    auto
+    begin_frame (const ::Cairo::RefPtr<const ::Cairo::Region>& region) -> void;
 
-    void
-    end_frame ();
+    auto
+    end_frame () -> void;
 
     auto
     is_in_frame () const -> bool;
@@ -129,9 +129,7 @@ namespace Gdk
 
 namespace Glib
 {
-
-  GDKMM_API
-  auto
+  GDKMM_API auto
   wrap (GdkDrawContext* object, bool take_copy = false) -> Glib::RefPtr<Gdk::DrawContext>;
 } // namespace Glib
 

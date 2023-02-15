@@ -112,28 +112,29 @@ namespace Gdk
     auto
     ref_storable_formats () const -> Glib::RefPtr<ContentFormats>;
 
-    void
-    content_changed ();
+    auto
+    content_changed () -> void;
 
-    void
+    auto
     write_mime_type_async (
         const Glib::ustring& mime_type,
         const Glib::RefPtr<Gio::OutputStream>& stream,
         int io_priority,
         const Gio::SlotAsyncReady& slot,
-        const Glib::RefPtr<Gio::Cancellable>& cancellable) const;
+        const Glib::RefPtr<Gio::Cancellable>& cancellable) const -> void;
 
-    void
+    auto
     write_mime_type_async (const Glib::ustring& mime_type,
                            const Glib::RefPtr<Gio::OutputStream>& stream,
                            int io_priority,
-                           const Gio::SlotAsyncReady& slot) const;
+                           const Gio::SlotAsyncReady& slot) const -> void;
 
-    void
-    write_mime_type_finish (const Glib::RefPtr<Gio::AsyncResult>& result) const;
+    auto
+    write_mime_type_finish (const Glib::RefPtr<Gio::AsyncResult>& result) const
+        -> void;
 
-    void
-    get_value (Glib::ValueBase& value) const;
+    auto
+    get_value (Glib::ValueBase& value) const -> void;
 
     auto
     property_formats () const
@@ -149,17 +150,15 @@ namespace Gdk
   public:
   public:
   protected:
-    virtual void
-    on_content_changed ();
+    virtual auto
+    on_content_changed () -> void;
   };
 
 } // namespace Gdk
 
 namespace Glib
 {
-
-  GDKMM_API
-  auto
+  GDKMM_API auto
   wrap (GdkContentProvider* object, bool take_copy = false) -> Glib::RefPtr<Gdk::ContentProvider>;
 } // namespace Glib
 

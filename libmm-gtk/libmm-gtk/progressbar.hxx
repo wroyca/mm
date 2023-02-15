@@ -83,41 +83,41 @@ namespace Gtk
   public:
     ProgressBar ();
 
-    void
-    pulse ();
+    auto
+    pulse () -> void;
 
     auto
     get_text () const -> Glib::ustring;
 
-    void
-    set_text (const Glib::ustring& text);
+    auto
+    set_text (const Glib::ustring& text) -> void;
 
     auto
     get_fraction () const -> double;
 
-    void
-    set_fraction (double fraction);
+    auto
+    set_fraction (double fraction) -> void;
 
     auto
     get_pulse_step () const -> double;
 
-    void
-    set_pulse_step (double fraction);
+    auto
+    set_pulse_step (double fraction) -> void;
 
-    void
-    set_inverted (bool inverted = true);
+    auto
+    set_inverted (bool inverted = true) -> void;
 
     auto
     get_inverted () const -> bool;
 
-    void
-    set_ellipsize (Pango::EllipsizeMode mode);
+    auto
+    set_ellipsize (Pango::EllipsizeMode mode) -> void;
 
     auto
     get_ellipsize () const -> Pango::EllipsizeMode;
 
-    void
-    set_show_text (bool show_text = true);
+    auto
+    set_show_text (bool show_text = true) -> void;
 
     auto
     get_show_text () const -> bool;

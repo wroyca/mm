@@ -15,11 +15,13 @@ namespace Glib
 {
 
   auto
-  wrap (GtkConstraintTarget* object, const bool take_copy) -> RefPtr<Gtk::ConstraintTarget>
+  wrap (GtkConstraintTarget* object, bool take_copy) -> Glib::RefPtr<Gtk::ConstraintTarget>
   {
     return Glib::make_refptr_for_instance<Gtk::ConstraintTarget> (
-        Glib::wrap_auto_interface<Gtk::ConstraintTarget> ((GObject*) object,
-                                                          take_copy));
+        dynamic_cast<Gtk::ConstraintTarget*> (
+            Glib::wrap_auto_interface<Gtk::ConstraintTarget> (
+                (GObject*) (object),
+                take_copy)));
   }
 
 } // namespace Glib
@@ -28,7 +30,7 @@ namespace Gtk
 {
 
   auto
-  ConstraintTarget_Class::init () -> const Interface_Class&
+  ConstraintTarget_Class::init () -> const Glib::Interface_Class&
   {
     if (!gtype_)
     {
@@ -51,41 +53,41 @@ namespace Gtk
   auto
   ConstraintTarget_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
   {
-    return new ConstraintTarget ((GtkConstraintTarget*) object);
+    return new ConstraintTarget ((GtkConstraintTarget*) (object));
   }
 
   ConstraintTarget::ConstraintTarget ()
-    : Interface (constrainttarget_class_.init ())
+    : Glib::Interface (constrainttarget_class_.init ())
   {
   }
 
   ConstraintTarget::ConstraintTarget (GtkConstraintTarget* castitem)
-    : Interface ((GObject*) castitem)
+    : Glib::Interface ((GObject*) (castitem))
   {
   }
 
   ConstraintTarget::ConstraintTarget (
       const Glib::Interface_Class& interface_class)
-    : Interface (interface_class)
+    : Glib::Interface (interface_class)
   {
   }
 
   ConstraintTarget::ConstraintTarget (ConstraintTarget&& src) noexcept
-    : Interface (std::move (src))
+    : Glib::Interface (std::move (src))
   {
   }
 
   auto
   ConstraintTarget::operator= (ConstraintTarget&& src) noexcept -> ConstraintTarget&
   {
-    Interface::operator= (std::move (src));
+    Glib::Interface::operator= (std::move (src));
     return *this;
   }
 
-  ConstraintTarget::~ConstraintTarget () noexcept = default;
+  ConstraintTarget::~ConstraintTarget () noexcept {}
 
   auto
-  ConstraintTarget::add_interface (const GType gtype_implementer) -> void
+  ConstraintTarget::add_interface (GType gtype_implementer) -> void
   {
     constrainttarget_class_.init ().add_interface (gtype_implementer);
   }

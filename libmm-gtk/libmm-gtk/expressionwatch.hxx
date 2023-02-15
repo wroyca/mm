@@ -22,11 +22,11 @@ namespace Gtk
     using BaseObjectType = GtkExpressionWatch;
 #endif
 
-    void
-    reference () const;
+    auto
+    reference () const -> void;
 
-    void
-    unreference () const;
+    auto
+    unreference () const -> void;
 
     auto
     gobj () -> GtkExpressionWatch*;
@@ -44,13 +44,13 @@ namespace Gtk
     operator= (const ExpressionWatchBase&) -> ExpressionWatchBase& = delete;
 
   protected:
-    void
-    operator delete (void*, std::size_t);
+    auto
+    operator delete (void*, std::size_t) -> void;
 
   private:
   public:
-    void
-    unwatch ();
+    auto
+    unwatch () -> void;
   };
 
   template <class T>
@@ -102,9 +102,7 @@ namespace Glib
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkExpressionWatch* object, bool take_copy = false) -> Glib::RefPtr<Gtk::ExpressionWatchBase>;
 
 } // namespace Glib

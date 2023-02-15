@@ -2,5 +2,8 @@
 
 #ifndef _GTKMM_TREEROWREFERENCE_P_H
 #define _GTKMM_TREEROWREFERENCE_P_H
+#ifndef GTKMM_DISABLE_DEPRECATED
+
+#endif
 
 #endif

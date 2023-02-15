@@ -108,8 +108,8 @@ namespace Gtk
     auto
     get_passthrough () const -> bool;
 
-    void
-    set_autoexpand (bool autoexpand = true);
+    auto
+    set_autoexpand (bool autoexpand = true) -> void;
 
     auto
     get_autoexpand () const -> bool;
@@ -154,9 +154,7 @@ namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkTreeListModel* object, bool take_copy = false) -> Glib::RefPtr<Gtk::TreeListModel>;
 } // namespace Glib
 

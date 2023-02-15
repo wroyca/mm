@@ -89,8 +89,8 @@ namespace Gtk
     create (const Glib::RefPtr<Gio::ListModel>& model)
         -> Glib::RefPtr<FlattenListModel>;
 
-    void
-    set_model (const Glib::RefPtr<Gio::ListModel>& model);
+    auto
+    set_model (const Glib::RefPtr<Gio::ListModel>& model) -> void;
 
     auto
     get_model () -> Glib::RefPtr<Gio::ListModel>;
@@ -123,9 +123,7 @@ namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkFlattenListModel* object, bool take_copy = false) -> Glib::RefPtr<Gtk::FlattenListModel>;
 } // namespace Glib
 

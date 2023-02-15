@@ -1,74 +1,83 @@
 // SPDX-License-Identifier: LGPL-2.1-or-later
 
-#include <libmm-glib/mm-glib.hxx>
-#include <libmm-gtk/treeview_private.hxx>
+#ifndef GTKMM_DISABLE_DEPRECATED
 
-namespace Gtk::TreeView_Private
+  #include <libmm-glib/mm-glib.hxx>
+  #include <libmm-gtk/treeview_private.hxx>
+
+namespace Gtk
 {
 
-  auto
-  SignalProxy_CellData_gtk_callback (GtkTreeViewColumn*,
-                                     GtkCellRenderer* cell,
-                                     GtkTreeModel* model,
-                                     GtkTreeIter* iter,
-                                     void* data) -> void
+  namespace TreeView_Private
   {
-    if (!model)
-      g_warning ("SignalProxy_CellData_gtk_callback(): model is NULL, which is "
-                 "unusual.\n");
 
-    const TreeViewColumn::SlotTreeCellData* the_slot =
-        static_cast<TreeViewColumn::SlotTreeCellData*> (data);
-
-    try
+    auto
+    SignalProxy_CellData_gtk_callback (GtkTreeViewColumn*,
+                                       GtkCellRenderer* cell,
+                                       GtkTreeModel* model,
+                                       GtkTreeIter* iter,
+                                       void* data) -> void
     {
-      auto cppiter = TreeModel::iterator (model, iter);
-      if (!cppiter.get_model_gobject ())
+      if (!model)
+        g_warning ("SignalProxy_CellData_gtk_callback(): model is NULL, which "
+                   "is unusual.\n");
+
+      TreeViewColumn::SlotTreeCellData* the_slot =
+          static_cast<TreeViewColumn::SlotTreeCellData*> (data);
+
+      try
       {
-        g_warning (
-            "SignalProxy_CellData_gtk_callback() The cppiter has no model\n");
-        return;
+        auto cppiter = Gtk::TreeModel::iterator (model, iter);
+        if (!cppiter.get_model_gobject ())
+        {
+          g_warning (
+              "SignalProxy_CellData_gtk_callback() The cppiter has no model\n");
+          return;
+        }
+
+        (*the_slot) (Glib::wrap (cell, false), cppiter);
+      }
+      catch (...)
+      {
+        Glib::exception_handlers_invoke ();
+      }
+    }
+
+    auto
+    SignalProxy_CellData_gtk_callback_destroy (void* data) -> void
+    {
+      delete static_cast<TreeViewColumn::SlotTreeCellData*> (data);
+    }
+
+    auto
+    SignalProxy_RowSeparator_gtk_callback (GtkTreeModel* model,
+                                           GtkTreeIter* iter,
+                                           void* data) -> gboolean
+    {
+      TreeView::SlotRowSeparator* the_slot =
+          static_cast<TreeView::SlotRowSeparator*> (data);
+
+      try
+      {
+        return (*the_slot) (Glib::wrap (model, true),
+                            Gtk::TreeModel::iterator (model, iter));
+      }
+      catch (...)
+      {
+        Glib::exception_handlers_invoke ();
       }
 
-      (*the_slot) (Glib::wrap (cell, false), cppiter);
+      return 0;
     }
-    catch (...)
+
+    auto
+    SignalProxy_RowSeparator_gtk_callback_destroy (void* data) -> void
     {
-      Glib::exception_handlers_invoke ();
-    }
-  }
-
-  auto
-  SignalProxy_CellData_gtk_callback_destroy (void* data) -> void
-  {
-    delete static_cast<TreeViewColumn::SlotTreeCellData*> (data);
-  }
-
-  auto
-  SignalProxy_RowSeparator_gtk_callback (GtkTreeModel* model,
-                                         GtkTreeIter* iter,
-                                         void* data) -> gboolean
-  {
-    const TreeView::SlotRowSeparator* the_slot =
-        static_cast<TreeView::SlotRowSeparator*> (data);
-
-    try
-    {
-      return (*the_slot) (Glib::wrap (model, true),
-                          TreeModel::iterator (model, iter));
-    }
-    catch (...)
-    {
-      Glib::exception_handlers_invoke ();
+      delete static_cast<TreeView::SlotRowSeparator*> (data);
     }
 
-    return 0;
-  }
+  } // namespace TreeView_Private
 
-  auto
-  SignalProxy_RowSeparator_gtk_callback_destroy (void* data) -> void
-  {
-    delete static_cast<TreeView::SlotRowSeparator*> (data);
-  }
+} // namespace Gtk
 
-} // namespace Gtk::TreeView_Private
+#endif

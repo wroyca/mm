@@ -62,48 +62,49 @@ namespace Glib
     on_pre_parse (OptionContext& context) -> bool;
     virtual auto
     on_post_parse (OptionContext& context) -> bool;
-    virtual void
-    on_error (OptionContext& context, const Error& error);
+    virtual auto
+    on_error (OptionContext& context, const Error& error) -> void;
 
-    void
-    add_entry (const OptionEntry& entry);
+    auto
+    add_entry (const OptionEntry& entry) -> void;
 
     using vecustrings = std::vector<Glib::ustring>;
     using vecstrings = std::vector<std::string>;
 
-    void
-    add_entry (const OptionEntry& entry, bool& arg);
+    auto
+    add_entry (const OptionEntry& entry, bool& arg) -> void;
 
-    void
-    add_entry (const OptionEntry& entry, int& arg);
+    auto
+    add_entry (const OptionEntry& entry, int& arg) -> void;
 
-    void
-    add_entry (const OptionEntry& entry, double& arg);
+    auto
+    add_entry (const OptionEntry& entry, double& arg) -> void;
 
-    void
-    add_entry (const OptionEntry& entry, Glib::ustring& arg);
+    auto
+    add_entry (const OptionEntry& entry, Glib::ustring& arg) -> void;
 
-    void
-    add_entry_filename (const OptionEntry& entry, std::string& arg);
+    auto
+    add_entry_filename (const OptionEntry& entry, std::string& arg) -> void;
 
-    void
-    add_entry (const OptionEntry& entry, vecustrings& arg);
+    auto
+    add_entry (const OptionEntry& entry, vecustrings& arg) -> void;
 
-    void
-    add_entry_filename (const OptionEntry& entry, vecstrings& arg);
+    auto
+    add_entry_filename (const OptionEntry& entry, vecstrings& arg) -> void;
 
-    void
-    add_entry (const OptionEntry& entry, const SlotOptionArgString& slot);
+    auto
+    add_entry (const OptionEntry& entry, const SlotOptionArgString& slot)
+        -> void;
 
-    void
+    auto
     add_entry_filename (const OptionEntry& entry,
-                        const SlotOptionArgFilename& slot);
+                        const SlotOptionArgFilename& slot) -> void;
 
-    void
-    set_translate_func (const SlotTranslate& slot);
+    auto
+    set_translate_func (const SlotTranslate& slot) -> void;
 
-    void
-    set_translation_domain (const Glib::ustring& domain);
+    auto
+    set_translation_domain (const Glib::ustring& domain) -> void;
 
     auto
     gobj () -> GOptionGroup*
@@ -128,14 +129,14 @@ namespace Glib
     public:
       CppOptionEntry ();
 
-      void
-      allocate_c_arg ();
-      void
-      set_c_arg_default (void* cpp_arg);
-      void
-      convert_c_to_cpp ();
-      void
-      release_c_arg ();
+      auto
+      allocate_c_arg () -> void;
+      auto
+      set_c_arg_default (void* cpp_arg) -> void;
+      auto
+      convert_c_to_cpp () -> void;
+      auto
+      release_c_arg () -> void;
 
       GOptionArg carg_type_;
       void* carg_;
@@ -143,10 +144,10 @@ namespace Glib
       OptionEntry* entry_;
     };
 
-    void
+    auto
     add_entry_with_wrapper (const OptionEntry& entry,
                             GOptionArg arg_type,
-                            void* cpp_arg);
+                            void* cpp_arg) -> void;
 
     static auto
     post_parse_callback (GOptionContext* context,
@@ -167,8 +168,8 @@ namespace Glib
 #endif
 
   private:
-    void
-    release_gobject () noexcept;
+    auto
+    release_gobject () noexcept -> void;
   };
 
 } // namespace Glib

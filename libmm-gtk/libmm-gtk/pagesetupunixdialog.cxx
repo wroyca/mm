@@ -1,13 +1,11 @@
 // SPDX-License-Identifier: LGPL-2.1-or-later
 
-#ifndef _WIN32
+#include <libmm-glib/mm-glib.hxx>
 
-  #include <libmm-glib/mm-glib.hxx>
+#include <libmm-gtk/pagesetupunixdialog.hxx>
+#include <libmm-gtk/pagesetupunixdialog_p.hxx>
 
-  #include <libmm-gtk/pagesetupunixdialog.hxx>
-  #include <libmm-gtk/pagesetupunixdialog_p.hxx>
-
-  #include <gtk/gtkunixprint.h>
+#include <gtk/gtkunixprint.hxx>
 
 namespace Gtk
 {
@@ -66,9 +64,9 @@ namespace Gtk
     return *this;
   }
 
-  void
+  auto
   PageSetupUnixDialog_Class::class_init_function (void* g_class,
-                                                  void* class_data)
+                                                  void* class_data) -> void
   {
     const auto klass = static_cast<BaseClassType*> (g_class);
     CppClassParent::class_init_function (klass, class_data);
@@ -123,9 +121,9 @@ namespace Gtk
     return gtk_page_setup_unix_dialog_get_type ();
   }
 
-  void
+  auto
   PageSetupUnixDialog::set_page_setup (
-      const Glib::RefPtr<PageSetup>& page_setup)
+      const Glib::RefPtr<PageSetup>& page_setup) -> void
   {
     gtk_page_setup_unix_dialog_set_page_setup (gobj (),
                                                Glib::unwrap (page_setup));
@@ -147,9 +145,9 @@ namespace Gtk
     return const_cast<PageSetupUnixDialog*> (this)->get_page_setup ();
   }
 
-  void
+  auto
   PageSetupUnixDialog::set_print_settings (
-      const Glib::RefPtr<PrintSettings>& print_settings)
+      const Glib::RefPtr<PrintSettings>& print_settings) -> void
   {
     gtk_page_setup_unix_dialog_set_print_settings (
         gobj (),
@@ -173,5 +171,3 @@ namespace Gtk
   }
 
 } // namespace Gtk
-
-#endif

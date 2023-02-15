@@ -15,11 +15,11 @@ namespace Glib
 {
 
   auto
-  wrap (GtkFlattenListModel* object, const bool take_copy) -> RefPtr<Gtk::FlattenListModel>
+  wrap (GtkFlattenListModel* object, bool take_copy) -> Glib::RefPtr<Gtk::FlattenListModel>
   {
     return Glib::make_refptr_for_instance<Gtk::FlattenListModel> (
         dynamic_cast<Gtk::FlattenListModel*> (
-            wrap_auto ((GObject*) object, take_copy)));
+            Glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
 } // namespace Glib
@@ -28,7 +28,7 @@ namespace Gtk
 {
 
   auto
-  FlattenListModel_Class::init () -> const Class&
+  FlattenListModel_Class::init () -> const Glib::Class&
   {
     if (!gtype_)
     {
@@ -62,30 +62,30 @@ namespace Gtk
 
   FlattenListModel::FlattenListModel (
       const Glib::ConstructParams& construct_params)
-    : Object (construct_params)
+    : Glib::Object (construct_params)
   {
   }
 
   FlattenListModel::FlattenListModel (GtkFlattenListModel* castitem)
-    : Object ((GObject*) castitem)
+    : Glib::Object ((GObject*) (castitem))
   {
   }
 
   FlattenListModel::FlattenListModel (FlattenListModel&& src) noexcept
-    : Object (std::move (src)),
-      ListModel (std::move (src))
+    : Glib::Object (std::move (src)),
+      Gio::ListModel (std::move (src))
   {
   }
 
   auto
   FlattenListModel::operator= (FlattenListModel&& src) noexcept -> FlattenListModel&
   {
-    Object::operator= (std::move (src));
-    ListModel::operator= (std::move (src));
+    Glib::Object::operator= (std::move (src));
+    Gio::ListModel::operator= (std::move (src));
     return *this;
   }
 
-  FlattenListModel::~FlattenListModel () noexcept = default;
+  FlattenListModel::~FlattenListModel () noexcept {}
 
   FlattenListModel::CppClassType FlattenListModel::flattenlistmodel_class_;
 
@@ -101,30 +101,30 @@ namespace Gtk
     return gtk_flatten_list_model_get_type ();
   }
 
-  FlattenListModel::FlattenListModel (const Glib::RefPtr<ListModel>& model)
-    : ObjectBase (nullptr),
-      Object (Glib::ConstructParams (flattenlistmodel_class_.init (),
-                                     "model",
-                                     Glib::unwrap (model),
-                                     nullptr))
+  FlattenListModel::FlattenListModel (const Glib::RefPtr<Gio::ListModel>& model)
+    : Glib::ObjectBase (nullptr),
+      Glib::Object (Glib::ConstructParams (flattenlistmodel_class_.init (),
+                                           "model",
+                                           Glib::unwrap (model),
+                                           nullptr))
   {
   }
 
   auto
-  FlattenListModel::create (const Glib::RefPtr<ListModel>& model) -> Glib::RefPtr<FlattenListModel>
+  FlattenListModel::create (const Glib::RefPtr<Gio::ListModel>& model) -> Glib::RefPtr<FlattenListModel>
   {
     return Glib::make_refptr_for_instance<FlattenListModel> (
         new FlattenListModel (model));
   }
 
   auto
-  FlattenListModel::set_model (const Glib::RefPtr<ListModel>& model) -> void
+  FlattenListModel::set_model (const Glib::RefPtr<Gio::ListModel>& model) -> void
   {
     gtk_flatten_list_model_set_model (gobj (), Glib::unwrap (model));
   }
 
   auto
-  FlattenListModel::get_model () -> Glib::RefPtr<ListModel>
+  FlattenListModel::get_model () -> Glib::RefPtr<Gio::ListModel>
   {
     auto retvalue = Glib::wrap (gtk_flatten_list_model_get_model (gobj ()));
     if (retvalue)
@@ -133,13 +133,13 @@ namespace Gtk
   }
 
   auto
-  FlattenListModel::get_model () const -> Glib::RefPtr<const ListModel>
+  FlattenListModel::get_model () const -> Glib::RefPtr<const Gio::ListModel>
   {
     return const_cast<FlattenListModel*> (this)->get_model ();
   }
 
   auto
-  FlattenListModel::get_model_for_item (const guint position) -> Glib::RefPtr<ListModel>
+  FlattenListModel::get_model_for_item (guint position) -> Glib::RefPtr<Gio::ListModel>
   {
     auto retvalue = Glib::wrap (
         gtk_flatten_list_model_get_model_for_item (gobj (), position));
@@ -156,7 +156,7 @@ namespace Gtk
   auto
   FlattenListModel::property_item_type () const -> Glib::PropertyProxy_ReadOnly<GType>
   {
-    return {this, "item-type"};
+    return Glib::PropertyProxy_ReadOnly<GType> (this, "item-type");
   }
 
   static_assert (
@@ -166,21 +166,22 @@ namespace Gtk
       "There is no suitable template specialization of Glib::Value<>.");
 
   auto
-  FlattenListModel::property_model () -> Glib::PropertyProxy<Glib::RefPtr<ListModel>>
+  FlattenListModel::property_model () -> Glib::PropertyProxy<Glib::RefPtr<Gio::ListModel>>
   {
-    return {this, "model"};
+    return Glib::PropertyProxy<Glib::RefPtr<Gio::ListModel>> (this, "model");
   }
 
   auto
-  FlattenListModel::property_model () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<ListModel>>
+  FlattenListModel::property_model () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gio::ListModel>>
   {
-    return {this, "model"};
+    return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gio::ListModel>> (this,
+                                                                       "model");
   }
 
   auto
   FlattenListModel::property_n_items () const -> Glib::PropertyProxy_ReadOnly<unsigned int>
   {
-    return {this, "n-items"};
+    return Glib::PropertyProxy_ReadOnly<unsigned int> (this, "n-items");
   }
 
 } // namespace Gtk

@@ -38,8 +38,8 @@ namespace Glib
 
     ~VariantType () noexcept;
 
-    void
-    swap (VariantType& other) noexcept;
+    auto
+    swap (VariantType& other) noexcept -> void;
 
     auto
     gobj () -> GVariantType*
@@ -200,8 +200,8 @@ namespace Glib
     static auto
     value_type () -> GType;
 
-    void
-    set (const CppType& data);
+    auto
+    set (const CppType& data) -> void;
     auto
     get () const -> CppType;
   };
@@ -212,8 +212,8 @@ namespace Glib
 namespace Glib
 {
 
-  inline void
-  swap (VariantType& lhs, VariantType& rhs) noexcept
+  inline auto
+  swap (VariantType& lhs, VariantType& rhs) noexcept -> void
   {
     lhs.swap (rhs);
   }

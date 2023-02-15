@@ -10,16 +10,16 @@
 namespace
 {
 
-  auto
+  static auto
   GestureRotate_signal_angle_changed_callback (GtkGestureRotate* self,
-                                               const gdouble p0,
-                                               const gdouble p1,
+                                               gdouble p0,
+                                               gdouble p1,
                                                void* data) -> void
   {
     using namespace Gtk;
     using SlotType = sigc::slot<void (double, double)>;
 
-    const auto obj = dynamic_cast<GestureRotate*> (
+    auto obj = dynamic_cast<GestureRotate*> (
         Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
@@ -36,7 +36,7 @@ namespace
     }
   }
 
-  const Glib::SignalProxyInfo GestureRotate_signal_angle_changed_info = {
+  static const Glib::SignalProxyInfo GestureRotate_signal_angle_changed_info = {
       "angle-changed",
       (GCallback) &GestureRotate_signal_angle_changed_callback,
       (GCallback) &GestureRotate_signal_angle_changed_callback};
@@ -47,11 +47,11 @@ namespace Glib
 {
 
   auto
-  wrap (GtkGestureRotate* object, const bool take_copy) -> RefPtr<Gtk::GestureRotate>
+  wrap (GtkGestureRotate* object, bool take_copy) -> Glib::RefPtr<Gtk::GestureRotate>
   {
     return Glib::make_refptr_for_instance<Gtk::GestureRotate> (
         dynamic_cast<Gtk::GestureRotate*> (
-            wrap_auto ((GObject*) object, take_copy)));
+            Glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
 } // namespace Glib
@@ -60,7 +60,7 @@ namespace Gtk
 {
 
   auto
-  GestureRotate_Class::init () -> const Class&
+  GestureRotate_Class::init () -> const Glib::Class&
   {
     if (!gtype_)
     {
@@ -98,7 +98,7 @@ namespace Gtk
   }
 
   GestureRotate::GestureRotate (GtkGestureRotate* castitem)
-    : Gesture ((GtkGesture*) castitem)
+    : Gesture ((GtkGesture*) (castitem))
   {
   }
 
@@ -114,7 +114,7 @@ namespace Gtk
     return *this;
   }
 
-  GestureRotate::~GestureRotate () noexcept = default;
+  GestureRotate::~GestureRotate () noexcept {}
 
   GestureRotate::CppClassType GestureRotate::gesturerotate_class_;
 
@@ -131,7 +131,7 @@ namespace Gtk
   }
 
   GestureRotate::GestureRotate ()
-    : ObjectBase (nullptr),
+    : Glib::ObjectBase (nullptr),
       Gesture (Glib::ConstructParams (gesturerotate_class_.init ()))
   {
   }
@@ -152,7 +152,9 @@ namespace Gtk
   auto
   GestureRotate::signal_angle_changed () -> Glib::SignalProxy<void (double, double)>
   {
-    return {this, &GestureRotate_signal_angle_changed_info};
+    return Glib::SignalProxy<void (double, double)> (
+        this,
+        &GestureRotate_signal_angle_changed_info);
   }
 
 } // namespace Gtk

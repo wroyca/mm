@@ -84,11 +84,11 @@ namespace Gtk
   public:
     ScrolledWindow ();
 
-    void
-    set_hadjustment (const Glib::RefPtr<Adjustment>& hadjustment);
+    auto
+    set_hadjustment (const Glib::RefPtr<Adjustment>& hadjustment) -> void;
 
-    void
-    set_vadjustment (const Glib::RefPtr<Adjustment>& vadjustment);
+    auto
+    set_vadjustment (const Glib::RefPtr<Adjustment>& vadjustment) -> void;
 
     auto
     get_hadjustment () -> Glib::RefPtr<Adjustment>;
@@ -102,24 +102,25 @@ namespace Gtk
     auto
     get_vadjustment () const -> Glib::RefPtr<const Adjustment>;
 
-    void
-    set_policy (PolicyType hscrollbar_policy, PolicyType vscrollbar_policy);
+    auto
+    set_policy (PolicyType hscrollbar_policy, PolicyType vscrollbar_policy)
+        -> void;
 
-    void
+    auto
     get_policy (PolicyType& hscrollbar_policy,
-                PolicyType& vscrollbar_policy) const;
+                PolicyType& vscrollbar_policy) const -> void;
 
-    void
-    set_placement (CornerType window_placement);
+    auto
+    set_placement (CornerType window_placement) -> void;
 
-    void
-    unset_placement ();
+    auto
+    unset_placement () -> void;
 
     auto
     get_placement () const -> CornerType;
 
-    void
-    set_has_frame (bool has_frame = true);
+    auto
+    set_has_frame (bool has_frame = true) -> void;
 
     auto
     get_has_frame () const -> bool;
@@ -139,55 +140,55 @@ namespace Gtk
     auto
     get_min_content_width () const -> int;
 
-    void
-    set_min_content_width (int width);
+    auto
+    set_min_content_width (int width) -> void;
 
     auto
     get_min_content_height () const -> int;
 
-    void
-    set_min_content_height (int height);
+    auto
+    set_min_content_height (int height) -> void;
 
-    void
-    set_kinetic_scrolling (bool kinetic_scrolling = true);
+    auto
+    set_kinetic_scrolling (bool kinetic_scrolling = true) -> void;
 
     auto
     get_kinetic_scrolling () const -> bool;
 
-    void
-    set_overlay_scrolling (bool overlay_scrolling = true);
+    auto
+    set_overlay_scrolling (bool overlay_scrolling = true) -> void;
 
     auto
     get_overlay_scrolling () const -> bool;
 
-    void
-    set_max_content_width (int width);
+    auto
+    set_max_content_width (int width) -> void;
 
     auto
     get_max_content_width () const -> int;
 
-    void
-    set_max_content_height (int height);
+    auto
+    set_max_content_height (int height) -> void;
 
     auto
     get_max_content_height () const -> int;
 
-    void
-    set_propagate_natural_width (bool propagate = true);
+    auto
+    set_propagate_natural_width (bool propagate = true) -> void;
 
     auto
     get_propagate_natural_width () const -> bool;
 
-    void
-    set_propagate_natural_height (bool propagate = true);
+    auto
+    set_propagate_natural_height (bool propagate = true) -> void;
 
     auto
     get_propagate_natural_height () const -> bool;
 
-    void
-    set_child (Widget& child);
-    void
-    unset_child ();
+    auto
+    set_child (Widget& child) -> void;
+    auto
+    unset_child () -> void;
 
     auto
     get_child () -> Widget*;
@@ -307,9 +308,7 @@ namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkScrolledWindow* object, bool take_copy = false) -> Gtk::ScrolledWindow*;
 } // namespace Glib
 

@@ -73,8 +73,8 @@ namespace Gtk
 
     ~PrintOperationPreview () noexcept override;
 
-    static void
-    add_interface (GType gtype_implementer);
+    static auto
+    add_interface (GType gtype_implementer) -> void;
 
     static auto
     get_type () -> GType G_GNUC_CONST;
@@ -98,11 +98,11 @@ namespace Gtk
 
   private:
   public:
-    void
-    render_page (int page_nr);
+    auto
+    render_page (int page_nr) -> void;
 
-    void
-    end_preview ();
+    auto
+    end_preview () -> void;
 
     auto
     is_selected (int page_nr) const -> bool;
@@ -117,11 +117,11 @@ namespace Gtk
                                    const Glib::RefPtr<PageSetup>&)>;
 
   protected:
-    virtual void
-    render_page_vfunc (int page_nr);
+    virtual auto
+    render_page_vfunc (int page_nr) -> void;
 
-    virtual void
-    end_preview_vfunc ();
+    virtual auto
+    end_preview_vfunc () -> void;
 
     virtual auto
     is_selected_vfunc (int page_nr) const -> bool;
@@ -129,21 +129,19 @@ namespace Gtk
   public:
   public:
   protected:
-    virtual void
-    on_ready (const Glib::RefPtr<PrintContext>& context);
+    virtual auto
+    on_ready (const Glib::RefPtr<PrintContext>& context) -> void;
 
-    virtual void
+    virtual auto
     on_got_page_size (const Glib::RefPtr<PrintContext>& context,
-                      const Glib::RefPtr<PageSetup>& page_setup);
+                      const Glib::RefPtr<PageSetup>& page_setup) -> void;
   };
 
 } // namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkPrintOperationPreview* object, bool take_copy = false) -> Glib::RefPtr<Gtk::PrintOperationPreview>;
 
 } // namespace Glib

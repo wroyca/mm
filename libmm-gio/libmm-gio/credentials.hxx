@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: LGPL-2.1-or-later
 
 #ifndef _GIOMM_CREDENTIALS_H
 #define _GIOMM_CREDENTIALS_H
@@ -105,8 +106,8 @@ namespace Gio
     auto
     get_native (Type native_type) -> gpointer;
 
-    void
-    set_native (Type native_type, gpointer native);
+    auto
+    set_native (Type native_type, gpointer native) -> void;
 
     auto
     is_same_user (const Glib::RefPtr<const Credentials>& other_credentials)

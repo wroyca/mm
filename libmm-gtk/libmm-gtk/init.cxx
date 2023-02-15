@@ -22,7 +22,7 @@ namespace Gtk
 
       Pango::wrap_init ();
       Gdk::wrap_init ();
-      wrap_init ();
+      Gtk::wrap_init ();
 
       init_done = true;
     }

@@ -16,12 +16,12 @@ namespace Gtk
     using CppObjectType = Accessible;
     using BaseObjectType = GtkAccessible;
     using BaseClassType = GtkAccessibleInterface;
-    using CppClassParent = Interface_Class;
+    using CppClassParent = Glib::Interface_Class;
 
     friend class Accessible;
 
     auto
-    init () -> const Interface_Class&;
+    init () -> const Glib::Interface_Class&;
 
     static auto
     iface_init_function (void* g_iface, void* iface_data) -> void;

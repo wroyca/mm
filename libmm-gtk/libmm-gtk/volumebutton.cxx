@@ -20,10 +20,10 @@ namespace Glib
 {
 
   auto
-  wrap (GtkVolumeButton* object, const bool take_copy) -> Gtk::VolumeButton*
+  wrap (GtkVolumeButton* object, bool take_copy) -> Gtk::VolumeButton*
   {
     return dynamic_cast<Gtk::VolumeButton*> (
-        wrap_auto ((GObject*) object, take_copy));
+        Glib::wrap_auto ((GObject*) (object), take_copy));
   }
 
 } // namespace Glib
@@ -32,7 +32,7 @@ namespace Gtk
 {
 
   auto
-  VolumeButton_Class::init () -> const Class&
+  VolumeButton_Class::init () -> const Glib::Class&
   {
     if (!gtype_)
     {
@@ -54,28 +54,28 @@ namespace Gtk
   auto
   VolumeButton_Class::wrap_new (GObject* o) -> Glib::ObjectBase*
   {
-    return manage (new VolumeButton ((GtkVolumeButton*) o));
+    return manage (new VolumeButton ((GtkVolumeButton*) (o)));
   }
 
   VolumeButton::VolumeButton (const Glib::ConstructParams& construct_params)
-    : ScaleButton (construct_params)
+    : Gtk::ScaleButton (construct_params)
   {
   }
 
   VolumeButton::VolumeButton (GtkVolumeButton* castitem)
-    : ScaleButton ((GtkScaleButton*) castitem)
+    : Gtk::ScaleButton ((GtkScaleButton*) (castitem))
   {
   }
 
   VolumeButton::VolumeButton (VolumeButton&& src) noexcept
-    : ScaleButton (std::move (src))
+    : Gtk::ScaleButton (std::move (src))
   {
   }
 
   auto
   VolumeButton::operator= (VolumeButton&& src) noexcept -> VolumeButton&
   {
-    ScaleButton::operator= (std::move (src));
+    Gtk::ScaleButton::operator= (std::move (src));
     return *this;
   }
 
@@ -99,21 +99,21 @@ namespace Gtk
   }
 
   VolumeButton::VolumeButton ()
-    : ObjectBase (nullptr),
-      ScaleButton (Glib::ConstructParams (volumebutton_class_.init ()))
+    : Glib::ObjectBase (nullptr),
+      Gtk::ScaleButton (Glib::ConstructParams (volumebutton_class_.init ()))
   {
   }
 
   auto
   VolumeButton::property_use_symbolic () -> Glib::PropertyProxy<bool>
   {
-    return {this, "use-symbolic"};
+    return Glib::PropertyProxy<bool> (this, "use-symbolic");
   }
 
   auto
   VolumeButton::property_use_symbolic () const -> Glib::PropertyProxy_ReadOnly<bool>
   {
-    return {this, "use-symbolic"};
+    return Glib::PropertyProxy_ReadOnly<bool> (this, "use-symbolic");
   }
 
 } // namespace Gtk

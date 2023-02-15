@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: LGPL-2.1-or-later
 
 #ifndef _GIOMM_TLSPASSWORD_H
 #define _GIOMM_TLSPASSWORD_H
@@ -107,26 +108,26 @@ namespace Gio
     auto
     get_value () const -> const guchar*;
 
-    void
-    set_value (const guchar* value, gssize length = -1);
+    auto
+    set_value (const guchar* value, gssize length = -1) -> void;
 
     auto
     get_description () const -> Glib::ustring;
 
-    void
-    set_description (const Glib::ustring& description);
+    auto
+    set_description (const Glib::ustring& description) -> void;
 
     auto
     get_flags () const -> Flags;
 
-    void
-    set_flags (Flags flags);
+    auto
+    set_flags (Flags flags) -> void;
 
     auto
     get_warning () const -> Glib::ustring;
 
-    void
-    set_warning (const Glib::ustring& warning);
+    auto
+    set_warning (const Glib::ustring& warning) -> void;
 
     auto
     property_description () -> Glib::PropertyProxy<Glib::ustring>;

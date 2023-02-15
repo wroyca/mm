@@ -24,11 +24,11 @@ namespace Pango
     using BaseObjectType = PangoLayoutLine;
 #endif
 
-    void
-    reference () const;
+    auto
+    reference () const -> void;
 
-    void
-    unreference () const;
+    auto
+    unreference () const -> void;
 
     auto
     gobj () -> PangoLayoutLine*;
@@ -46,8 +46,8 @@ namespace Pango
     operator= (const LayoutLine&) -> LayoutLine& = delete;
 
   protected:
-    void
-    operator delete (void*, std::size_t);
+    auto
+    operator delete (void*, std::size_t) -> void;
 
   private:
   public:
@@ -61,8 +61,8 @@ namespace Pango
     get_x_ranges (int start_index, int end_index) const
         -> std::vector<std::pair<int, int>>;
 
-    void
-    get_extents (Rectangle& ink_rect, Rectangle& logical_rect) const;
+    auto
+    get_extents (Rectangle& ink_rect, Rectangle& logical_rect) const -> void;
 
     auto
     get_ink_extents () const -> Rectangle;
@@ -70,8 +70,9 @@ namespace Pango
     auto
     get_logical_extents () const -> Rectangle;
 
-    void
-    get_pixel_extents (Rectangle& ink_rect, Rectangle& logical_rect) const;
+    auto
+    get_pixel_extents (Rectangle& ink_rect, Rectangle& logical_rect) const
+        -> void;
 
     auto
     get_pixel_ink_extents () const -> Rectangle;
@@ -79,11 +80,12 @@ namespace Pango
     auto
     get_pixel_logical_extents () const -> Rectangle;
 
-    void
-    show_in_cairo_context (const Cairo::RefPtr<Cairo::Context>& context);
+    auto
+    show_in_cairo_context (const Cairo::RefPtr<Cairo::Context>& context)
+        -> void;
 
-    void
-    add_to_cairo_context (const Cairo::RefPtr<Cairo::Context>& context);
+    auto
+    add_to_cairo_context (const Cairo::RefPtr<Cairo::Context>& context) -> void;
 
     auto
     get_layout () -> Glib::RefPtr<Pango::Layout>;

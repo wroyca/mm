@@ -1,11 +1,16 @@
 // SPDX-License-Identifier: LGPL-2.1-or-later
 
-#include <libmm-glib/mm-glib.hxx>
+#undef GTK_DISABLE_DEPRECATED
+#define GDK_DISABLE_DEPRECATION_WARNINGS 1
 
-#include <libmm-gtk/fontbutton.hxx>
-#include <libmm-gtk/fontbutton_p.hxx>
+#ifndef GTKMM_DISABLE_DEPRECATED
 
-#include <gtk/gtk.h>
+  #include <libmm-glib/mm-glib.hxx>
+
+  #include <libmm-gtk/fontbutton.hxx>
+  #include <libmm-gtk/fontbutton_p.hxx>
+
+  #include <gtk/gtk.h>
 
 namespace Gtk
 {
@@ -15,7 +20,7 @@ namespace Gtk
 namespace
 {
 
-  const Glib::SignalProxyInfo FontButton_signal_font_set_info = {
+  static const Glib::SignalProxyInfo FontButton_signal_font_set_info = {
       "font-set",
       (GCallback) &Glib::SignalProxyNormal::slot0_void_callback,
       (GCallback) &Glib::SignalProxyNormal::slot0_void_callback};
@@ -26,10 +31,10 @@ namespace Glib
 {
 
   auto
-  wrap (GtkFontButton* object, const bool take_copy) -> Gtk::FontButton*
+  wrap (GtkFontButton* object, bool take_copy) -> Gtk::FontButton*
   {
     return dynamic_cast<Gtk::FontButton*> (
-        wrap_auto ((GObject*) object, take_copy));
+        Glib::wrap_auto ((GObject*) (object), take_copy));
   }
 
 } // namespace Glib
@@ -38,7 +43,7 @@ namespace Gtk
 {
 
   auto
-  FontButton_Class::init () -> const Class&
+  FontButton_Class::init () -> const Glib::Class&
   {
     if (!gtype_)
     {
@@ -62,21 +67,21 @@ namespace Gtk
   auto
   FontButton_Class::wrap_new (GObject* o) -> Glib::ObjectBase*
   {
-    return manage (new FontButton ((GtkFontButton*) o));
+    return manage (new FontButton ((GtkFontButton*) (o)));
   }
 
   FontButton::FontButton (const Glib::ConstructParams& construct_params)
-    : Widget (construct_params)
+    : Gtk::Widget (construct_params)
   {
   }
 
   FontButton::FontButton (GtkFontButton* castitem)
-    : Widget ((GtkWidget*) castitem)
+    : Gtk::Widget ((GtkWidget*) (castitem))
   {
   }
 
   FontButton::FontButton (FontButton&& src) noexcept
-    : Widget (std::move (src)),
+    : Gtk::Widget (std::move (src)),
       FontChooser (std::move (src))
   {
   }
@@ -84,7 +89,7 @@ namespace Gtk
   auto
   FontButton::operator= (FontButton&& src) noexcept -> FontButton&
   {
-    Widget::operator= (std::move (src));
+    Gtk::Widget::operator= (std::move (src));
     FontChooser::operator= (std::move (src));
     return *this;
   }
@@ -109,17 +114,17 @@ namespace Gtk
   }
 
   FontButton::FontButton ()
-    : ObjectBase (nullptr),
-      Widget (Glib::ConstructParams (fontbutton_class_.init ()))
+    : Glib::ObjectBase (nullptr),
+      Gtk::Widget (Glib::ConstructParams (fontbutton_class_.init ()))
   {
   }
 
   FontButton::FontButton (const Glib::ustring& font)
-    : ObjectBase (nullptr),
-      Widget (Glib::ConstructParams (fontbutton_class_.init (),
-                                     "font",
-                                     font.c_str (),
-                                     nullptr))
+    : Glib::ObjectBase (nullptr),
+      Gtk::Widget (Glib::ConstructParams (fontbutton_class_.init (),
+                                          "font",
+                                          font.c_str (),
+                                          nullptr))
   {
   }
 
@@ -143,9 +148,9 @@ namespace Gtk
   }
 
   auto
-  FontButton::set_modal (const bool modal) -> void
+  FontButton::set_modal (bool modal) -> void
   {
-    gtk_font_button_set_modal (gobj (), modal);
+    gtk_font_button_set_modal (gobj (), static_cast<int> (modal));
   }
 
   auto
@@ -155,9 +160,9 @@ namespace Gtk
   }
 
   auto
-  FontButton::set_use_font (const bool use_font) -> void
+  FontButton::set_use_font (bool use_font) -> void
   {
-    gtk_font_button_set_use_font (gobj (), use_font);
+    gtk_font_button_set_use_font (gobj (), static_cast<int> (use_font));
   }
 
   auto
@@ -167,63 +172,65 @@ namespace Gtk
   }
 
   auto
-  FontButton::set_use_size (const bool use_size) -> void
+  FontButton::set_use_size (bool use_size) -> void
   {
-    gtk_font_button_set_use_size (gobj (), use_size);
+    gtk_font_button_set_use_size (gobj (), static_cast<int> (use_size));
   }
 
   auto
   FontButton::signal_font_set () -> Glib::SignalProxy<void ()>
   {
-    return {this, &FontButton_signal_font_set_info};
+    return Glib::SignalProxy<void ()> (this, &FontButton_signal_font_set_info);
   }
 
   auto
   FontButton::property_title () -> Glib::PropertyProxy<Glib::ustring>
   {
-    return {this, "title"};
+    return Glib::PropertyProxy<Glib::ustring> (this, "title");
   }
 
   auto
   FontButton::property_title () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>
   {
-    return {this, "title"};
+    return Glib::PropertyProxy_ReadOnly<Glib::ustring> (this, "title");
   }
 
   auto
   FontButton::property_modal () -> Glib::PropertyProxy<bool>
   {
-    return {this, "modal"};
+    return Glib::PropertyProxy<bool> (this, "modal");
   }
 
   auto
   FontButton::property_modal () const -> Glib::PropertyProxy_ReadOnly<bool>
   {
-    return {this, "modal"};
+    return Glib::PropertyProxy_ReadOnly<bool> (this, "modal");
   }
 
   auto
   FontButton::property_use_font () -> Glib::PropertyProxy<bool>
   {
-    return {this, "use-font"};
+    return Glib::PropertyProxy<bool> (this, "use-font");
   }
 
   auto
   FontButton::property_use_font () const -> Glib::PropertyProxy_ReadOnly<bool>
   {
-    return {this, "use-font"};
+    return Glib::PropertyProxy_ReadOnly<bool> (this, "use-font");
   }
 
   auto
   FontButton::property_use_size () -> Glib::PropertyProxy<bool>
   {
-    return {this, "use-size"};
+    return Glib::PropertyProxy<bool> (this, "use-size");
   }
 
   auto
   FontButton::property_use_size () const -> Glib::PropertyProxy_ReadOnly<bool>
   {
-    return {this, "use-size"};
+    return Glib::PropertyProxy_ReadOnly<bool> (this, "use-size");
   }
 
 } // namespace Gtk
+
+#endif

@@ -41,11 +41,11 @@ namespace Glib
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
   private:
-    GLIBMM_API static void
-    throw_func (GError* gobject);
+    GLIBMM_API static auto
+    throw_func (GError* gobject) -> void;
 
-    friend GLIBMM_API void
-    wrap_init ();
+    friend GLIBMM_API auto
+    wrap_init () -> void;
 
 #endif
   };
@@ -69,8 +69,8 @@ namespace Glib
            char** outbuf,
            gsize* outbytes_left) -> std::size_t;
 
-    void
-    reset ();
+    auto
+    reset () -> void;
 
     auto
     convert (const std::string& str) -> std::string;

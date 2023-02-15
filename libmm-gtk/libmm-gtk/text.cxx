@@ -15,9 +15,10 @@ namespace Glib
 {
 
   auto
-  wrap (GtkText* object, const bool take_copy) -> Gtk::Text*
+  wrap (GtkText* object, bool take_copy) -> Gtk::Text*
   {
-    return dynamic_cast<Gtk::Text*> (wrap_auto ((GObject*) object, take_copy));
+    return dynamic_cast<Gtk::Text*> (
+        Glib::wrap_auto ((GObject*) (object), take_copy));
   }
 
 } // namespace Glib
@@ -26,7 +27,7 @@ namespace Gtk
 {
 
   auto
-  Text_Class::init () -> const Class&
+  Text_Class::init () -> const Glib::Class&
   {
     if (!gtype_)
     {
@@ -50,21 +51,21 @@ namespace Gtk
   auto
   Text_Class::wrap_new (GObject* o) -> Glib::ObjectBase*
   {
-    return manage (new Text ((GtkText*) o));
+    return manage (new Text ((GtkText*) (o)));
   }
 
   Text::Text (const Glib::ConstructParams& construct_params)
-    : Widget (construct_params)
+    : Gtk::Widget (construct_params)
   {
   }
 
   Text::Text (GtkText* castitem)
-    : Widget ((GtkWidget*) castitem)
+    : Gtk::Widget ((GtkWidget*) (castitem))
   {
   }
 
   Text::Text (Text&& src) noexcept
-    : Widget (std::move (src)),
+    : Gtk::Widget (std::move (src)),
       Editable (std::move (src))
   {
   }
@@ -72,7 +73,7 @@ namespace Gtk
   auto
   Text::operator= (Text&& src) noexcept -> Text&
   {
-    Widget::operator= (std::move (src));
+    Gtk::Widget::operator= (std::move (src));
     Editable::operator= (std::move (src));
     return *this;
   }
@@ -97,17 +98,17 @@ namespace Gtk
   }
 
   Text::Text ()
-    : ObjectBase (nullptr),
-      Widget (Glib::ConstructParams (text_class_.init ()))
+    : Glib::ObjectBase (nullptr),
+      Gtk::Widget (Glib::ConstructParams (text_class_.init ()))
   {
   }
 
   Text::Text (const Glib::RefPtr<EntryBuffer>& buffer)
-    : ObjectBase (nullptr),
-      Widget (Glib::ConstructParams (text_class_.init (),
-                                     "buffer",
-                                     Glib::unwrap (buffer),
-                                     nullptr))
+    : Glib::ObjectBase (nullptr),
+      Gtk::Widget (Glib::ConstructParams (text_class_.init (),
+                                          "buffer",
+                                          Glib::unwrap (buffer),
+                                          nullptr))
   {
   }
 
@@ -133,9 +134,9 @@ namespace Gtk
   }
 
   auto
-  Text::set_visibility (const bool visible) -> void
+  Text::set_visibility (bool visible) -> void
   {
-    gtk_text_set_visibility (gobj (), visible);
+    gtk_text_set_visibility (gobj (), static_cast<int> (visible));
   }
 
   auto
@@ -145,7 +146,7 @@ namespace Gtk
   }
 
   auto
-  Text::set_invisible_char (const gunichar ch) -> void
+  Text::set_invisible_char (gunichar ch) -> void
   {
     gtk_text_set_invisible_char (gobj (), ch);
   }
@@ -163,9 +164,9 @@ namespace Gtk
   }
 
   auto
-  Text::set_overwrite_mode (const bool overwrite) -> void
+  Text::set_overwrite_mode (bool overwrite) -> void
   {
-    gtk_text_set_overwrite_mode (gobj (), overwrite);
+    gtk_text_set_overwrite_mode (gobj (), static_cast<int> (overwrite));
   }
 
   auto
@@ -175,7 +176,7 @@ namespace Gtk
   }
 
   auto
-  Text::set_max_length (const int max) -> void
+  Text::set_max_length (int max) -> void
   {
     gtk_text_set_max_length (gobj (), max);
   }
@@ -193,9 +194,9 @@ namespace Gtk
   }
 
   auto
-  Text::set_activates_default (const bool setting) -> void
+  Text::set_activates_default (bool setting) -> void
   {
-    gtk_text_set_activates_default (gobj (), setting);
+    gtk_text_set_activates_default (gobj (), static_cast<int> (setting));
   }
 
   auto
@@ -247,14 +248,14 @@ namespace Gtk
   auto
   Text::set_attributes (Pango::AttrList& attrs) -> void
   {
-    gtk_text_set_attributes (gobj (), attrs.gobj ());
+    gtk_text_set_attributes (gobj (), (attrs).gobj ());
   }
 
   auto
   Text::get_attributes () const -> Pango::AttrList
   {
     return Pango::AttrList (
-        gtk_text_get_attributes (const_cast<GtkText*> (gobj ())));
+        (gtk_text_get_attributes (const_cast<GtkText*> (gobj ()))));
   }
 
   auto
@@ -266,7 +267,8 @@ namespace Gtk
   auto
   Text::get_tabs () const -> Pango::TabArray
   {
-    return Pango::TabArray (gtk_text_get_tabs (const_cast<GtkText*> (gobj ())));
+    return Pango::TabArray (
+        (gtk_text_get_tabs (const_cast<GtkText*> (gobj ()))));
   }
 
   auto
@@ -297,9 +299,11 @@ namespace Gtk
   }
 
   auto
-  Text::set_enable_emoji_completion (const bool enable_emoji_completion) -> void
+  Text::set_enable_emoji_completion (bool enable_emoji_completion) -> void
   {
-    gtk_text_set_enable_emoji_completion (gobj (), enable_emoji_completion);
+    gtk_text_set_enable_emoji_completion (
+        gobj (),
+        static_cast<int> (enable_emoji_completion));
   }
 
   auto
@@ -310,9 +314,10 @@ namespace Gtk
   }
 
   auto
-  Text::set_propagate_text_width (const bool propagate_text_width) -> void
+  Text::set_propagate_text_width (bool propagate_text_width) -> void
   {
-    gtk_text_set_propagate_text_width (gobj (), propagate_text_width);
+    gtk_text_set_propagate_text_width (gobj (),
+                                       static_cast<int> (propagate_text_width));
   }
 
   auto
@@ -322,9 +327,10 @@ namespace Gtk
   }
 
   auto
-  Text::set_truncate_multiline (const bool truncate_multiline) -> void
+  Text::set_truncate_multiline (bool truncate_multiline) -> void
   {
-    gtk_text_set_truncate_multiline (gobj (), truncate_multiline);
+    gtk_text_set_truncate_multiline (gobj (),
+                                     static_cast<int> (truncate_multiline));
   }
 
   auto
@@ -342,37 +348,38 @@ namespace Gtk
   auto
   Text::property_buffer () -> Glib::PropertyProxy<Glib::RefPtr<EntryBuffer>>
   {
-    return {this, "buffer"};
+    return Glib::PropertyProxy<Glib::RefPtr<EntryBuffer>> (this, "buffer");
   }
 
   auto
   Text::property_buffer () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<EntryBuffer>>
   {
-    return {this, "buffer"};
+    return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<EntryBuffer>> (this,
+                                                                    "buffer");
   }
 
   auto
   Text::property_max_length () -> Glib::PropertyProxy<int>
   {
-    return {this, "max-length"};
+    return Glib::PropertyProxy<int> (this, "max-length");
   }
 
   auto
   Text::property_max_length () const -> Glib::PropertyProxy_ReadOnly<int>
   {
-    return {this, "max-length"};
+    return Glib::PropertyProxy_ReadOnly<int> (this, "max-length");
   }
 
   auto
   Text::property_visibility () -> Glib::PropertyProxy<bool>
   {
-    return {this, "visibility"};
+    return Glib::PropertyProxy<bool> (this, "visibility");
   }
 
   auto
   Text::property_visibility () const -> Glib::PropertyProxy_ReadOnly<bool>
   {
-    return {this, "visibility"};
+    return Glib::PropertyProxy_ReadOnly<bool> (this, "visibility");
   }
 
   static_assert (
@@ -383,91 +390,92 @@ namespace Gtk
   auto
   Text::property_invisible_char () -> Glib::PropertyProxy<gunichar>
   {
-    return {this, "invisible-char"};
+    return Glib::PropertyProxy<gunichar> (this, "invisible-char");
   }
 
   auto
   Text::property_invisible_char () const -> Glib::PropertyProxy_ReadOnly<gunichar>
   {
-    return {this, "invisible-char"};
+    return Glib::PropertyProxy_ReadOnly<gunichar> (this, "invisible-char");
   }
 
   auto
   Text::property_invisible_char_set () -> Glib::PropertyProxy<bool>
   {
-    return {this, "invisible-char-set"};
+    return Glib::PropertyProxy<bool> (this, "invisible-char-set");
   }
 
   auto
   Text::property_invisible_char_set () const -> Glib::PropertyProxy_ReadOnly<bool>
   {
-    return {this, "invisible-char-set"};
+    return Glib::PropertyProxy_ReadOnly<bool> (this, "invisible-char-set");
   }
 
   auto
   Text::property_activates_default () -> Glib::PropertyProxy<bool>
   {
-    return {this, "activates-default"};
+    return Glib::PropertyProxy<bool> (this, "activates-default");
   }
 
   auto
   Text::property_activates_default () const -> Glib::PropertyProxy_ReadOnly<bool>
   {
-    return {this, "activates-default"};
+    return Glib::PropertyProxy_ReadOnly<bool> (this, "activates-default");
   }
 
   auto
   Text::property_scroll_offset () const -> Glib::PropertyProxy_ReadOnly<int>
   {
-    return {this, "scroll-offset"};
+    return Glib::PropertyProxy_ReadOnly<int> (this, "scroll-offset");
   }
 
   auto
   Text::property_truncate_multiline () -> Glib::PropertyProxy<bool>
   {
-    return {this, "truncate-multiline"};
+    return Glib::PropertyProxy<bool> (this, "truncate-multiline");
   }
 
   auto
   Text::property_truncate_multiline () const -> Glib::PropertyProxy_ReadOnly<bool>
   {
-    return {this, "truncate-multiline"};
+    return Glib::PropertyProxy_ReadOnly<bool> (this, "truncate-multiline");
   }
 
   auto
   Text::property_overwrite_mode () -> Glib::PropertyProxy<bool>
   {
-    return {this, "overwrite-mode"};
+    return Glib::PropertyProxy<bool> (this, "overwrite-mode");
   }
 
   auto
   Text::property_overwrite_mode () const -> Glib::PropertyProxy_ReadOnly<bool>
   {
-    return {this, "overwrite-mode"};
+    return Glib::PropertyProxy_ReadOnly<bool> (this, "overwrite-mode");
   }
 
   auto
   Text::property_im_module () -> Glib::PropertyProxy<Glib::ustring>
   {
-    return {this, "im-module"};
+    return Glib::PropertyProxy<Glib::ustring> (this, "im-module");
   }
 
   auto
   Text::property_im_module () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>
   {
-    return {this, "im-module"};
+    return Glib::PropertyProxy_ReadOnly<Glib::ustring> (this, "im-module");
   }
 
   auto
   Text::property_placeholder_text () -> Glib::PropertyProxy<Glib::ustring>
   {
-    return {this, "placeholder-text"};
+    return Glib::PropertyProxy<Glib::ustring> (this, "placeholder-text");
   }
 
   auto
   Text::property_placeholder_text () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>
   {
-    return {this, "placeholder-text"};
+    return Glib::PropertyProxy_ReadOnly<Glib::ustring> (this,
+                                                        "placeholder-text");
   }
 
   static_assert (
@@ -478,13 +486,13 @@ namespace Gtk
   auto
   Text::property_input_purpose () -> Glib::PropertyProxy<InputPurpose>
   {
-    return {this, "input-purpose"};
+    return Glib::PropertyProxy<InputPurpose> (this, "input-purpose");
   }
 
   auto
   Text::property_input_purpose () const -> Glib::PropertyProxy_ReadOnly<InputPurpose>
   {
-    return {this, "input-purpose"};
+    return Glib::PropertyProxy_ReadOnly<InputPurpose> (this, "input-purpose");
   }
 
   static_assert (
@@ -495,13 +503,13 @@ namespace Gtk
   auto
   Text::property_input_hints () -> Glib::PropertyProxy<InputHints>
   {
-    return {this, "input-hints"};
+    return Glib::PropertyProxy<InputHints> (this, "input-hints");
   }
 
   auto
   Text::property_input_hints () const -> Glib::PropertyProxy_ReadOnly<InputHints>
   {
-    return {this, "input-hints"};
+    return Glib::PropertyProxy_ReadOnly<InputHints> (this, "input-hints");
   }
 
   static_assert (
@@ -512,13 +520,13 @@ namespace Gtk
   auto
   Text::property_attributes () -> Glib::PropertyProxy<Pango::AttrList>
   {
-    return {this, "attributes"};
+    return Glib::PropertyProxy<Pango::AttrList> (this, "attributes");
   }
 
   auto
   Text::property_attributes () const -> Glib::PropertyProxy_ReadOnly<Pango::AttrList>
   {
-    return {this, "attributes"};
+    return Glib::PropertyProxy_ReadOnly<Pango::AttrList> (this, "attributes");
   }
 
   static_assert (
@@ -529,37 +537,37 @@ namespace Gtk
   auto
   Text::property_tabs () -> Glib::PropertyProxy<Pango::TabArray>
   {
-    return {this, "tabs"};
+    return Glib::PropertyProxy<Pango::TabArray> (this, "tabs");
   }
 
   auto
   Text::property_tabs () const -> Glib::PropertyProxy_ReadOnly<Pango::TabArray>
   {
-    return {this, "tabs"};
+    return Glib::PropertyProxy_ReadOnly<Pango::TabArray> (this, "tabs");
   }
 
   auto
   Text::property_enable_emoji_completion () -> Glib::PropertyProxy<bool>
   {
-    return {this, "enable-emoji-completion"};
+    return Glib::PropertyProxy<bool> (this, "enable-emoji-completion");
   }
 
   auto
   Text::property_enable_emoji_completion () const -> Glib::PropertyProxy_ReadOnly<bool>
   {
-    return {this, "enable-emoji-completion"};
+    return Glib::PropertyProxy_ReadOnly<bool> (this, "enable-emoji-completion");
   }
 
   auto
   Text::property_propagate_text_width () -> Glib::PropertyProxy<bool>
   {
-    return {this, "propagate-text-width"};
+    return Glib::PropertyProxy<bool> (this, "propagate-text-width");
   }
 
   auto
   Text::property_propagate_text_width () const -> Glib::PropertyProxy_ReadOnly<bool>
   {
-    return {this, "propagate-text-width"};
+    return Glib::PropertyProxy_ReadOnly<bool> (this, "propagate-text-width");
   }
 
   static_assert (
@@ -571,13 +579,16 @@ namespace Gtk
   auto
   Text::property_extra_menu () -> Glib::PropertyProxy<Glib::RefPtr<Gio::MenuModel>>
   {
-    return {this, "extra-menu"};
+    return Glib::PropertyProxy<Glib::RefPtr<Gio::MenuModel>> (this,
+                                                              "extra-menu");
   }
 
   auto
   Text::property_extra_menu () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gio::MenuModel>>
   {
-    return {this, "extra-menu"};
+    return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gio::MenuModel>> (
+        this,
+        "extra-menu");
   }
 
 } // namespace Gtk

@@ -87,14 +87,14 @@ namespace Gtk
     auto
     get_uri () const -> Glib::ustring;
 
-    void
-    set_uri (const Glib::ustring& uri);
+    auto
+    set_uri (const Glib::ustring& uri) -> void;
 
     auto
     get_visited () const -> bool;
 
-    void
-    set_visited (bool visited = true);
+    auto
+    set_visited (bool visited = true) -> void;
 
     auto
     property_uri () -> Glib::PropertyProxy<Glib::ustring>;
@@ -120,9 +120,7 @@ namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkLinkButton* object, bool take_copy = false) -> Gtk::LinkButton*;
 } // namespace Glib
 

@@ -27,8 +27,8 @@ namespace
 namespace Gdk
 {
 
-  TimeCoord::TimeCoord (GdkTimeCoord* gobject, const bool make_a_copy)
-    : gobject_ (make_a_copy && gobject ? time_coord_copy (gobject) : gobject)
+  TimeCoord::TimeCoord (GdkTimeCoord* gobject, bool make_a_copy)
+    : gobject_ ((make_a_copy && gobject) ? time_coord_copy (gobject) : gobject)
   {
   }
 
@@ -65,7 +65,7 @@ namespace Gdk
   }
 
   auto
-  TimeCoord::get_value_at_axis (const guint index) const -> double
+  TimeCoord::get_value_at_axis (guint index) const -> double
   {
     if (gobject_)
     {

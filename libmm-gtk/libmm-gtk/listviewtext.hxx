@@ -3,10 +3,12 @@
 #ifndef _GTKMM_LISTVIEW_TEXT_H
 #define _GTKMM_LISTVIEW_TEXT_H
 
-#include <libmm-gtk/liststore.hxx>
-#include <libmm-gtk/treeview.hxx>
+#ifndef GTKMM_DISABLE_DEPRECATED
 
-#include <vector>
+  #include <libmm-gtk/liststore.hxx>
+  #include <libmm-gtk/treeview.hxx>
+
+  #include <vector>
 
 namespace Gtk
 {
@@ -19,8 +21,8 @@ namespace Gtk
                   Gtk::SelectionMode mode = Gtk::SelectionMode::SINGLE);
     ~ListViewText () noexcept override;
 
-    void
-    set_column_title (guint column, const Glib::ustring& title);
+    auto
+    set_column_title (guint column, const Glib::ustring& title) -> void;
 
     auto
     get_column_title (guint column) const -> Glib::ustring;
@@ -28,23 +30,23 @@ namespace Gtk
     auto
     append (const Glib::ustring& column_one_value = {}) -> guint;
 
-    void
-    prepend (const Glib::ustring& column_one_value = {});
+    auto
+    prepend (const Glib::ustring& column_one_value = {}) -> void;
 
-    void
-    insert (guint row, const Glib::ustring& column_one_value = {});
+    auto
+    insert (guint row, const Glib::ustring& column_one_value = {}) -> void;
 
-    void
-    clear_items ();
+    auto
+    clear_items () -> void;
 
     auto
     get_text (guint row, guint column = 0) const -> Glib::ustring;
 
-    void
-    set_text (guint row, guint column, const Glib::ustring& value);
+    auto
+    set_text (guint row, guint column, const Glib::ustring& value) -> void;
 
-    void
-    set_text (guint row, const Glib::ustring& value);
+    auto
+    set_text (guint row, const Glib::ustring& value) -> void;
 
     auto
     size () const -> guint;
@@ -62,7 +64,7 @@ namespace Gtk
     {
     public:
       TextModelColumns (guint columns_count);
-      ~TextModelColumns () noexcept override;
+      ~TextModelColumns () noexcept;
 
       auto
       get_num_columns () const -> guint;
@@ -78,5 +80,7 @@ namespace Gtk
   };
 
 } // namespace Gtk
+
+#endif
 
 #endif

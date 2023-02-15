@@ -25,11 +25,11 @@ namespace Pango
     static auto
     create () -> Glib::RefPtr<Coverage>;
 
-    void
-    reference () const;
+    auto
+    reference () const -> void;
 
-    void
-    unreference () const;
+    auto
+    unreference () const -> void;
 
     auto
     gobj () -> PangoCoverage*;
@@ -47,8 +47,8 @@ namespace Pango
     operator= (const Coverage&) -> Coverage& = delete;
 
   protected:
-    void
-    operator delete (void*, std::size_t);
+    auto
+    operator delete (void*, std::size_t) -> void;
 
   private:
   public:
@@ -63,8 +63,8 @@ namespace Pango
     auto
     get (int index) const -> Level;
 
-    void
-    set (int index, Level level);
+    auto
+    set (int index, Level level) -> void;
   };
 
 } // namespace Pango

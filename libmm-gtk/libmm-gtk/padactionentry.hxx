@@ -79,28 +79,28 @@ namespace Gtk
 
     auto
     get_type () const -> PadActionType;
-    void
-    set_type (const PadActionType& value);
+    auto
+    set_type (const PadActionType& value) -> void;
 
     auto
     get_index () const -> int;
-    void
-    set_index (const int& value);
+    auto
+    set_index (const int& value) -> void;
 
     auto
     get_mode () const -> int;
-    void
-    set_mode (const int& value);
+    auto
+    set_mode (const int& value) -> void;
 
     auto
     get_label () const -> Glib::ustring;
-    void
-    set_label (const Glib::ustring& value);
+    auto
+    set_label (const Glib::ustring& value) -> void;
 
     auto
     get_action_name () const -> Glib::ustring;
-    void
-    set_action_name (const Glib::ustring& value);
+    auto
+    set_action_name (const Glib::ustring& value) -> void;
 
     auto
     gobj () -> GtkPadActionEntry*
@@ -118,8 +118,8 @@ namespace Gtk
     GtkPadActionEntry* gobject_;
 
   private:
-    void
-    release_gobject () noexcept;
+    auto
+    release_gobject () noexcept -> void;
   };
 
 } // namespace Gtk

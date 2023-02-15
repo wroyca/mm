@@ -72,8 +72,8 @@ namespace Gtk
 
     ~SelectionModel () noexcept override;
 
-    static void
-    add_interface (GType gtype_implementer);
+    static auto
+    add_interface (GType gtype_implementer) -> void;
 
     static auto
     get_type () -> GType G_GNUC_CONST;
@@ -133,8 +133,8 @@ namespace Gtk
     signal_selection_changed () -> Glib::SignalProxy<void (guint, guint)>;
 
   protected:
-    void
-    selection_changed (guint position, guint n_items);
+    auto
+    selection_changed (guint position, guint n_items) -> void;
 
     virtual auto
     is_selected_vfunc (guint position) const -> bool;
@@ -175,9 +175,7 @@ namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkSelectionModel* object, bool take_copy = false) -> Glib::RefPtr<Gtk::SelectionModel>;
 
 } // namespace Glib

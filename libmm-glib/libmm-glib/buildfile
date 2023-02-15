@@ -12,7 +12,7 @@ hxx{export}@./: cxx.importable = false
 #
 cxx.poptions =+ "-I$out_root" "-I$src_root"
 cxx.loptions =+ "/LIBPATH:C:/gnome/lib"
-cxx.poptions =+ "-DGLIBMM_BUILD" "-DGLIBMM_STATIC_LIB"
+cxx.poptions =+ "-DGLIBMM_DISABLE_DEPRECATED" "-DGLIBMM_BUILD" "-DGLIBMM_STATIC_LIB"
 
 #{hbmia obja}{*}: cxx.poptions += -DLIBMM_GLIB_STATIC_BUILD
 #{hbmis objs}{*}: cxx.poptions += -DLIBMM_GLIB_SHARED_BUILD

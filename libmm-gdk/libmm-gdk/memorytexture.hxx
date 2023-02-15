@@ -143,9 +143,7 @@ namespace Glib
 
 namespace Glib
 {
-
-  GDKMM_API
-  auto
+  GDKMM_API auto
   wrap (GdkMemoryTexture* object, bool take_copy = false) -> Glib::RefPtr<Gdk::MemoryTexture>;
 } // namespace Glib
 

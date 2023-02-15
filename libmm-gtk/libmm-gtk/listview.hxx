@@ -90,11 +90,11 @@ namespace Gtk
     auto
     get_model () const -> Glib::RefPtr<const SelectionModel>;
 
-    void
-    set_model (const Glib::RefPtr<SelectionModel>& model);
+    auto
+    set_model (const Glib::RefPtr<SelectionModel>& model) -> void;
 
-    void
-    set_factory (const Glib::RefPtr<ListItemFactory>& factory);
+    auto
+    set_factory (const Glib::RefPtr<ListItemFactory>& factory) -> void;
 
     auto
     get_factory () -> Glib::RefPtr<ListItemFactory>;
@@ -102,20 +102,20 @@ namespace Gtk
     auto
     get_factory () const -> Glib::RefPtr<const ListItemFactory>;
 
-    void
-    set_show_separators (bool show_separators = true);
+    auto
+    set_show_separators (bool show_separators = true) -> void;
 
     auto
     get_show_separators () const -> bool;
 
-    void
-    set_single_click_activate (bool single_click_activate = true);
+    auto
+    set_single_click_activate (bool single_click_activate = true) -> void;
 
     auto
     get_single_click_activate () const -> bool;
 
-    void
-    set_enable_rubberband (bool enable_rubberband = true);
+    auto
+    set_enable_rubberband (bool enable_rubberband = true) -> void;
 
     auto
     get_enable_rubberband () const -> bool;
@@ -165,9 +165,7 @@ namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkListView* object, bool take_copy = false) -> Gtk::ListView*;
 } // namespace Glib
 

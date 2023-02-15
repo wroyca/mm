@@ -10,14 +10,14 @@
 namespace Gtk
 {
 
-  Expander::Expander (const Glib::ustring& label, const bool mnemonic)
-    : ObjectBase (nullptr),
-      Widget (Glib::ConstructParams (expander_class_.init (),
-                                     "label",
-                                     label.c_str (),
-                                     "use_underline",
-                                     gboolean (mnemonic),
-                                     nullptr))
+  Expander::Expander (const Glib::ustring& label, bool mnemonic)
+    : Glib::ObjectBase (nullptr),
+      Gtk::Widget (Glib::ConstructParams (expander_class_.init (),
+                                          "label",
+                                          label.c_str (),
+                                          "use_underline",
+                                          gboolean (mnemonic),
+                                          nullptr))
   {
   }
 
@@ -37,10 +37,10 @@ namespace Glib
 {
 
   auto
-  wrap (GtkExpander* object, const bool take_copy) -> Gtk::Expander*
+  wrap (GtkExpander* object, bool take_copy) -> Gtk::Expander*
   {
     return dynamic_cast<Gtk::Expander*> (
-        wrap_auto ((GObject*) object, take_copy));
+        Glib::wrap_auto ((GObject*) (object), take_copy));
   }
 
 } // namespace Glib
@@ -49,7 +49,7 @@ namespace Gtk
 {
 
   auto
-  Expander_Class::init () -> const Class&
+  Expander_Class::init () -> const Glib::Class&
   {
     if (!gtype_)
     {
@@ -71,28 +71,28 @@ namespace Gtk
   auto
   Expander_Class::wrap_new (GObject* o) -> Glib::ObjectBase*
   {
-    return manage (new Expander ((GtkExpander*) o));
+    return manage (new Expander ((GtkExpander*) (o)));
   }
 
   Expander::Expander (const Glib::ConstructParams& construct_params)
-    : Widget (construct_params)
+    : Gtk::Widget (construct_params)
   {
   }
 
   Expander::Expander (GtkExpander* castitem)
-    : Widget ((GtkWidget*) castitem)
+    : Gtk::Widget ((GtkWidget*) (castitem))
   {
   }
 
   Expander::Expander (Expander&& src) noexcept
-    : Widget (std::move (src))
+    : Gtk::Widget (std::move (src))
   {
   }
 
   auto
   Expander::operator= (Expander&& src) noexcept -> Expander&
   {
-    Widget::operator= (std::move (src));
+    Gtk::Widget::operator= (std::move (src));
     return *this;
   }
 
@@ -116,15 +116,15 @@ namespace Gtk
   }
 
   Expander::Expander ()
-    : ObjectBase (nullptr),
-      Widget (Glib::ConstructParams (expander_class_.init ()))
+    : Glib::ObjectBase (nullptr),
+      Gtk::Widget (Glib::ConstructParams (expander_class_.init ()))
   {
   }
 
   auto
-  Expander::set_expanded (const bool expanded) -> void
+  Expander::set_expanded (bool expanded) -> void
   {
-    gtk_expander_set_expanded (gobj (), expanded);
+    gtk_expander_set_expanded (gobj (), static_cast<int> (expanded));
   }
 
   auto
@@ -147,9 +147,9 @@ namespace Gtk
   }
 
   auto
-  Expander::set_use_underline (const bool use_underline) -> void
+  Expander::set_use_underline (bool use_underline) -> void
   {
-    gtk_expander_set_use_underline (gobj (), use_underline);
+    gtk_expander_set_use_underline (gobj (), static_cast<int> (use_underline));
   }
 
   auto
@@ -159,9 +159,9 @@ namespace Gtk
   }
 
   auto
-  Expander::set_use_markup (const bool use_markup) -> void
+  Expander::set_use_markup (bool use_markup) -> void
   {
-    gtk_expander_set_use_markup (gobj (), use_markup);
+    gtk_expander_set_use_markup (gobj (), static_cast<int> (use_markup));
   }
 
   auto
@@ -173,7 +173,7 @@ namespace Gtk
   auto
   Expander::set_label_widget (Widget& label_widget) -> void
   {
-    gtk_expander_set_label_widget (gobj (), label_widget.gobj ());
+    gtk_expander_set_label_widget (gobj (), (label_widget).gobj ());
   }
 
   auto
@@ -189,9 +189,10 @@ namespace Gtk
   }
 
   auto
-  Expander::set_resize_toplevel (const bool resize_toplevel) -> void
+  Expander::set_resize_toplevel (bool resize_toplevel) -> void
   {
-    gtk_expander_set_resize_toplevel (gobj (), resize_toplevel);
+    gtk_expander_set_resize_toplevel (gobj (),
+                                      static_cast<int> (resize_toplevel));
   }
 
   auto
@@ -204,7 +205,7 @@ namespace Gtk
   auto
   Expander::set_child (Widget& child) -> void
   {
-    gtk_expander_set_child (gobj (), child.gobj ());
+    gtk_expander_set_child (gobj (), (child).gobj ());
   }
 
   auto
@@ -222,85 +223,85 @@ namespace Gtk
   auto
   Expander::property_expanded () -> Glib::PropertyProxy<bool>
   {
-    return {this, "expanded"};
+    return Glib::PropertyProxy<bool> (this, "expanded");
   }
 
   auto
   Expander::property_expanded () const -> Glib::PropertyProxy_ReadOnly<bool>
   {
-    return {this, "expanded"};
+    return Glib::PropertyProxy_ReadOnly<bool> (this, "expanded");
   }
 
   auto
   Expander::property_label () -> Glib::PropertyProxy<Glib::ustring>
   {
-    return {this, "label"};
+    return Glib::PropertyProxy<Glib::ustring> (this, "label");
   }
 
   auto
   Expander::property_label () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>
   {
-    return {this, "label"};
+    return Glib::PropertyProxy_ReadOnly<Glib::ustring> (this, "label");
   }
 
   auto
   Expander::property_use_underline () -> Glib::PropertyProxy<bool>
   {
-    return {this, "use-underline"};
+    return Glib::PropertyProxy<bool> (this, "use-underline");
   }
 
   auto
   Expander::property_use_underline () const -> Glib::PropertyProxy_ReadOnly<bool>
   {
-    return {this, "use-underline"};
+    return Glib::PropertyProxy_ReadOnly<bool> (this, "use-underline");
   }
 
   auto
   Expander::property_use_markup () -> Glib::PropertyProxy<bool>
   {
-    return {this, "use-markup"};
+    return Glib::PropertyProxy<bool> (this, "use-markup");
   }
 
   auto
   Expander::property_use_markup () const -> Glib::PropertyProxy_ReadOnly<bool>
   {
-    return {this, "use-markup"};
+    return Glib::PropertyProxy_ReadOnly<bool> (this, "use-markup");
   }
 
   auto
   Expander::property_label_widget () -> Glib::PropertyProxy<Widget*>
   {
-    return {this, "label-widget"};
+    return Glib::PropertyProxy<Widget*> (this, "label-widget");
   }
 
   auto
   Expander::property_label_widget () const -> Glib::PropertyProxy_ReadOnly<Widget*>
   {
-    return {this, "label-widget"};
+    return Glib::PropertyProxy_ReadOnly<Widget*> (this, "label-widget");
   }
 
   auto
   Expander::property_resize_toplevel () -> Glib::PropertyProxy<bool>
   {
-    return {this, "resize-toplevel"};
+    return Glib::PropertyProxy<bool> (this, "resize-toplevel");
   }
 
   auto
   Expander::property_resize_toplevel () const -> Glib::PropertyProxy_ReadOnly<bool>
   {
-    return {this, "resize-toplevel"};
+    return Glib::PropertyProxy_ReadOnly<bool> (this, "resize-toplevel");
   }
 
   auto
   Expander::property_child () -> Glib::PropertyProxy<Widget*>
   {
-    return {this, "child"};
+    return Glib::PropertyProxy<Widget*> (this, "child");
   }
 
   auto
   Expander::property_child () const -> Glib::PropertyProxy_ReadOnly<Widget*>
   {
-    return {this, "child"};
+    return Glib::PropertyProxy_ReadOnly<Widget*> (this, "child");
   }
 
 } // namespace Gtk

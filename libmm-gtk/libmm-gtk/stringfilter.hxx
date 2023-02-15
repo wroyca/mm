@@ -97,8 +97,8 @@ namespace Gtk
     auto
     get_search () const -> Glib::ustring;
 
-    void
-    set_search (const Glib::ustring& search);
+    auto
+    set_search (const Glib::ustring& search) -> void;
 
     auto
     get_expression () -> Glib::RefPtr<Expression<Glib::ustring>>;
@@ -106,20 +106,21 @@ namespace Gtk
     auto
     get_expression () const -> Glib::RefPtr<const Expression<Glib::ustring>>;
 
-    void
-    set_expression (const Glib::RefPtr<Expression<Glib::ustring>>& expression);
+    auto
+    set_expression (const Glib::RefPtr<Expression<Glib::ustring>>& expression)
+        -> void;
 
     auto
     get_ignore_case () const -> bool;
 
-    void
-    set_ignore_case (bool ignore_case = true);
+    auto
+    set_ignore_case (bool ignore_case = true) -> void;
 
     auto
     get_match_mode () const -> MatchMode;
 
-    void
-    set_match_mode (MatchMode mode);
+    auto
+    set_match_mode (MatchMode mode) -> void;
 
     auto
     property_expression ()
@@ -172,9 +173,7 @@ namespace Glib
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkStringFilter* object, bool take_copy = false) -> Glib::RefPtr<Gtk::StringFilter>;
 } // namespace Glib
 

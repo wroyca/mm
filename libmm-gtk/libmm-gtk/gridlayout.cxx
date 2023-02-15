@@ -15,11 +15,11 @@ namespace Glib
 {
 
   auto
-  wrap (GtkGridLayout* object, const bool take_copy) -> RefPtr<Gtk::GridLayout>
+  wrap (GtkGridLayout* object, bool take_copy) -> Glib::RefPtr<Gtk::GridLayout>
   {
     return Glib::make_refptr_for_instance<Gtk::GridLayout> (
         dynamic_cast<Gtk::GridLayout*> (
-            wrap_auto ((GObject*) object, take_copy)));
+            Glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
 } // namespace Glib
@@ -28,7 +28,7 @@ namespace Gtk
 {
 
   auto
-  GridLayout_Class::init () -> const Class&
+  GridLayout_Class::init () -> const Glib::Class&
   {
     if (!gtype_)
     {
@@ -66,7 +66,7 @@ namespace Gtk
   }
 
   GridLayout::GridLayout (GtkGridLayout* castitem)
-    : LayoutManager ((GtkLayoutManager*) castitem)
+    : LayoutManager ((GtkLayoutManager*) (castitem))
   {
   }
 
@@ -82,7 +82,7 @@ namespace Gtk
     return *this;
   }
 
-  GridLayout::~GridLayout () noexcept = default;
+  GridLayout::~GridLayout () noexcept {}
 
   GridLayout::CppClassType GridLayout::gridlayout_class_;
 
@@ -99,7 +99,7 @@ namespace Gtk
   }
 
   GridLayout::GridLayout ()
-    : ObjectBase (nullptr),
+    : Glib::ObjectBase (nullptr),
       LayoutManager (Glib::ConstructParams (gridlayout_class_.init ()))
   {
   }
@@ -111,9 +111,10 @@ namespace Gtk
   }
 
   auto
-  GridLayout::set_row_homogeneous (const bool homogeneous) -> void
+  GridLayout::set_row_homogeneous (bool homogeneous) -> void
   {
-    gtk_grid_layout_set_row_homogeneous (gobj (), homogeneous);
+    gtk_grid_layout_set_row_homogeneous (gobj (),
+                                         static_cast<int> (homogeneous));
   }
 
   auto
@@ -124,7 +125,7 @@ namespace Gtk
   }
 
   auto
-  GridLayout::set_row_spacing (const guint spacing) -> void
+  GridLayout::set_row_spacing (guint spacing) -> void
   {
     gtk_grid_layout_set_row_spacing (gobj (), spacing);
   }
@@ -137,9 +138,10 @@ namespace Gtk
   }
 
   auto
-  GridLayout::set_column_homogeneous (const bool homogeneous) -> void
+  GridLayout::set_column_homogeneous (bool homogeneous) -> void
   {
-    gtk_grid_layout_set_column_homogeneous (gobj (), homogeneous);
+    gtk_grid_layout_set_column_homogeneous (gobj (),
+                                            static_cast<int> (homogeneous));
   }
 
   auto
@@ -150,7 +152,7 @@ namespace Gtk
   }
 
   auto
-  GridLayout::set_column_spacing (const guint spacing) -> void
+  GridLayout::set_column_spacing (guint spacing) -> void
   {
     gtk_grid_layout_set_column_spacing (gobj (), spacing);
   }
@@ -163,7 +165,7 @@ namespace Gtk
   }
 
   auto
-  GridLayout::set_row_baseline_position (const int row, BaselinePosition pos) -> void
+  GridLayout::set_row_baseline_position (int row, BaselinePosition pos) -> void
   {
     gtk_grid_layout_set_row_baseline_position (
         gobj (),
@@ -172,7 +174,7 @@ namespace Gtk
   }
 
   auto
-  GridLayout::get_row_baseline_position (const int row) const -> BaselinePosition
+  GridLayout::get_row_baseline_position (int row) const -> BaselinePosition
   {
     return static_cast<BaselinePosition> (
         gtk_grid_layout_get_row_baseline_position (
@@ -181,7 +183,7 @@ namespace Gtk
   }
 
   auto
-  GridLayout::set_baseline_row (const int row) -> void
+  GridLayout::set_baseline_row (int row) -> void
   {
     gtk_grid_layout_set_baseline_row (gobj (), row);
   }
@@ -196,61 +198,61 @@ namespace Gtk
   auto
   GridLayout::property_row_spacing () -> Glib::PropertyProxy<int>
   {
-    return {this, "row-spacing"};
+    return Glib::PropertyProxy<int> (this, "row-spacing");
   }
 
   auto
   GridLayout::property_row_spacing () const -> Glib::PropertyProxy_ReadOnly<int>
   {
-    return {this, "row-spacing"};
+    return Glib::PropertyProxy_ReadOnly<int> (this, "row-spacing");
   }
 
   auto
   GridLayout::property_column_spacing () -> Glib::PropertyProxy<int>
   {
-    return {this, "column-spacing"};
+    return Glib::PropertyProxy<int> (this, "column-spacing");
   }
 
   auto
   GridLayout::property_column_spacing () const -> Glib::PropertyProxy_ReadOnly<int>
   {
-    return {this, "column-spacing"};
+    return Glib::PropertyProxy_ReadOnly<int> (this, "column-spacing");
   }
 
   auto
   GridLayout::property_row_homogeneous () -> Glib::PropertyProxy<bool>
   {
-    return {this, "row-homogeneous"};
+    return Glib::PropertyProxy<bool> (this, "row-homogeneous");
   }
 
   auto
   GridLayout::property_row_homogeneous () const -> Glib::PropertyProxy_ReadOnly<bool>
   {
-    return {this, "row-homogeneous"};
+    return Glib::PropertyProxy_ReadOnly<bool> (this, "row-homogeneous");
   }
 
   auto
   GridLayout::property_column_homogeneous () -> Glib::PropertyProxy<bool>
   {
-    return {this, "column-homogeneous"};
+    return Glib::PropertyProxy<bool> (this, "column-homogeneous");
   }
 
   auto
   GridLayout::property_column_homogeneous () const -> Glib::PropertyProxy_ReadOnly<bool>
   {
-    return {this, "column-homogeneous"};
+    return Glib::PropertyProxy_ReadOnly<bool> (this, "column-homogeneous");
   }
 
   auto
   GridLayout::property_baseline_row () -> Glib::PropertyProxy<int>
   {
-    return {this, "baseline-row"};
+    return Glib::PropertyProxy<int> (this, "baseline-row");
   }
 
   auto
   GridLayout::property_baseline_row () const -> Glib::PropertyProxy_ReadOnly<int>
   {
-    return {this, "baseline-row"};
+    return Glib::PropertyProxy_ReadOnly<int> (this, "baseline-row");
   }
 
 } // namespace Gtk

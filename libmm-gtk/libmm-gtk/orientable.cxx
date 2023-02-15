@@ -15,11 +15,12 @@ namespace Glib
 {
 
   auto
-  wrap (GtkOrientable* object, const bool take_copy) -> RefPtr<Gtk::Orientable>
+  wrap (GtkOrientable* object, bool take_copy) -> Glib::RefPtr<Gtk::Orientable>
   {
     return Glib::make_refptr_for_instance<Gtk::Orientable> (
-        Glib::wrap_auto_interface<Gtk::Orientable> ((GObject*) object,
-                                                    take_copy));
+        dynamic_cast<Gtk::Orientable*> (
+            Glib::wrap_auto_interface<Gtk::Orientable> ((GObject*) (object),
+                                                        take_copy)));
   }
 
 } // namespace Glib
@@ -28,7 +29,7 @@ namespace Gtk
 {
 
   auto
-  Orientable_Class::init () -> const Interface_Class&
+  Orientable_Class::init () -> const Glib::Interface_Class&
   {
     if (!gtype_)
     {
@@ -51,40 +52,40 @@ namespace Gtk
   auto
   Orientable_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
   {
-    return new Orientable ((GtkOrientable*) object);
+    return new Orientable ((GtkOrientable*) (object));
   }
 
   Orientable::Orientable ()
-    : Interface (orientable_class_.init ())
+    : Glib::Interface (orientable_class_.init ())
   {
   }
 
   Orientable::Orientable (GtkOrientable* castitem)
-    : Interface ((GObject*) castitem)
+    : Glib::Interface ((GObject*) (castitem))
   {
   }
 
   Orientable::Orientable (const Glib::Interface_Class& interface_class)
-    : Interface (interface_class)
+    : Glib::Interface (interface_class)
   {
   }
 
   Orientable::Orientable (Orientable&& src) noexcept
-    : Interface (std::move (src))
+    : Glib::Interface (std::move (src))
   {
   }
 
   auto
   Orientable::operator= (Orientable&& src) noexcept -> Orientable&
   {
-    Interface::operator= (std::move (src));
+    Glib::Interface::operator= (std::move (src));
     return *this;
   }
 
-  Orientable::~Orientable () noexcept = default;
+  Orientable::~Orientable () noexcept {}
 
   auto
-  Orientable::add_interface (const GType gtype_implementer) -> void
+  Orientable::add_interface (GType gtype_implementer) -> void
   {
     orientable_class_.init ().add_interface (gtype_implementer);
   }
@@ -125,13 +126,13 @@ namespace Gtk
   auto
   Orientable::property_orientation () -> Glib::PropertyProxy<Orientation>
   {
-    return {this, "orientation"};
+    return Glib::PropertyProxy<Orientation> (this, "orientation");
   }
 
   auto
   Orientable::property_orientation () const -> Glib::PropertyProxy_ReadOnly<Orientation>
   {
-    return {this, "orientation"};
+    return Glib::PropertyProxy_ReadOnly<Orientation> (this, "orientation");
   }
 
 } // namespace Gtk

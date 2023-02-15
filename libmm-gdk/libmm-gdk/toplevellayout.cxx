@@ -15,7 +15,7 @@ namespace Glib
 {
 
   auto
-  wrap (GdkToplevelLayout* object, const bool take_copy) -> RefPtr<Gdk::ToplevelLayout>
+  wrap (GdkToplevelLayout* object, bool take_copy) -> Glib::RefPtr<Gdk::ToplevelLayout>
   {
     if (take_copy && object)
       gdk_toplevel_layout_ref (object);
@@ -86,17 +86,17 @@ namespace Gdk
   }
 
   auto
-  ToplevelLayout::set_maximized (const bool maximized) -> void
+  ToplevelLayout::set_maximized (bool maximized) -> void
   {
-    gdk_toplevel_layout_set_maximized (gobj (), maximized);
+    gdk_toplevel_layout_set_maximized (gobj (), static_cast<int> (maximized));
   }
 
   auto
-  ToplevelLayout::set_fullscreen (const bool fullscreen,
+  ToplevelLayout::set_fullscreen (bool fullscreen,
                                   const Glib::RefPtr<Monitor>& monitor) -> void
   {
     gdk_toplevel_layout_set_fullscreen (gobj (),
-                                        fullscreen,
+                                        static_cast<int> (fullscreen),
                                         Glib::unwrap (monitor));
   }
 
@@ -105,7 +105,7 @@ namespace Gdk
   {
     return gdk_toplevel_layout_get_maximized (
         const_cast<GdkToplevelLayout*> (gobj ()),
-        (gboolean*) &maximized);
+        ((gboolean*) &(maximized)));
   }
 
   auto
@@ -113,7 +113,7 @@ namespace Gdk
   {
     return gdk_toplevel_layout_get_fullscreen (
         const_cast<GdkToplevelLayout*> (gobj ()),
-        (gboolean*) &fullscreen);
+        ((gboolean*) &(fullscreen)));
   }
 
   auto
@@ -133,9 +133,9 @@ namespace Gdk
   }
 
   auto
-  ToplevelLayout::set_resizable (const bool resizable) -> void
+  ToplevelLayout::set_resizable (bool resizable) -> void
   {
-    gdk_toplevel_layout_set_resizable (gobj (), resizable);
+    gdk_toplevel_layout_set_resizable (gobj (), static_cast<int> (resizable));
   }
 
   auto

@@ -15,7 +15,7 @@
 namespace
 {
 
-  auto
+  static auto
   Drag_signal_cancel_callback (GdkDrag* self,
                                GdkDragCancelReason p0,
                                void* data) -> void
@@ -23,7 +23,7 @@ namespace
     using namespace Gdk;
     using SlotType = sigc::slot<void (DragCancelReason)>;
 
-    const auto obj = dynamic_cast<Drag*> (
+    auto obj = dynamic_cast<Drag*> (
         Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
@@ -40,17 +40,17 @@ namespace
     }
   }
 
-  const Glib::SignalProxyInfo Drag_signal_cancel_info = {
+  static const Glib::SignalProxyInfo Drag_signal_cancel_info = {
       "cancel",
       (GCallback) &Drag_signal_cancel_callback,
       (GCallback) &Drag_signal_cancel_callback};
 
-  const Glib::SignalProxyInfo Drag_signal_drop_performed_info = {
+  static const Glib::SignalProxyInfo Drag_signal_drop_performed_info = {
       "drop-performed",
       (GCallback) &Glib::SignalProxyNormal::slot0_void_callback,
       (GCallback) &Glib::SignalProxyNormal::slot0_void_callback};
 
-  const Glib::SignalProxyInfo Drag_signal_dnd_finished_info = {
+  static const Glib::SignalProxyInfo Drag_signal_dnd_finished_info = {
       "dnd-finished",
       (GCallback) &Glib::SignalProxyNormal::slot0_void_callback,
       (GCallback) &Glib::SignalProxyNormal::slot0_void_callback};
@@ -67,10 +67,10 @@ namespace Glib
 {
 
   auto
-  wrap (GdkDrag* object, const bool take_copy) -> RefPtr<Gdk::Drag>
+  wrap (GdkDrag* object, bool take_copy) -> Glib::RefPtr<Gdk::Drag>
   {
-    return Glib::make_refptr_for_instance<Gdk::Drag> (
-        dynamic_cast<Gdk::Drag*> (wrap_auto ((GObject*) object, take_copy)));
+    return Glib::make_refptr_for_instance<Gdk::Drag> (dynamic_cast<Gdk::Drag*> (
+        Glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
 } // namespace Glib
@@ -79,7 +79,7 @@ namespace Gdk
 {
 
   auto
-  Drag_Class::init () -> const Class&
+  Drag_Class::init () -> const Glib::Class&
   {
     if (!gtype_)
     {
@@ -112,28 +112,28 @@ namespace Gdk
   }
 
   Drag::Drag (const Glib::ConstructParams& construct_params)
-    : Object (construct_params)
+    : Glib::Object (construct_params)
   {
   }
 
   Drag::Drag (GdkDrag* castitem)
-    : Object ((GObject*) castitem)
+    : Glib::Object ((GObject*) (castitem))
   {
   }
 
   Drag::Drag (Drag&& src) noexcept
-    : Object (std::move (src))
+    : Glib::Object (std::move (src))
   {
   }
 
   auto
   Drag::operator= (Drag&& src) noexcept -> Drag&
   {
-    Object::operator= (std::move (src));
+    Glib::Object::operator= (std::move (src));
     return *this;
   }
 
-  Drag::~Drag () noexcept = default;
+  Drag::~Drag () noexcept {}
 
   Drag::CppClassType Drag::drag_class_;
 
@@ -215,9 +215,9 @@ namespace Gdk
   }
 
   auto
-  Drag::drag_drop_done (const bool success) -> void
+  Drag::drag_drop_done (bool success) -> void
   {
-    gdk_drag_drop_done (gobj (), success);
+    gdk_drag_drop_done (gobj (), static_cast<int> (success));
   }
 
   auto
@@ -236,7 +236,7 @@ namespace Gdk
   }
 
   auto
-  Drag::set_hotspot (const int hot_x, const int hot_y) -> void
+  Drag::set_hotspot (int hot_x, int hot_y) -> void
   {
     gdk_drag_set_hotspot (gobj (), hot_x, hot_y);
   }
@@ -274,19 +274,21 @@ namespace Gdk
   auto
   Drag::signal_cancel () -> Glib::SignalProxy<void (DragCancelReason)>
   {
-    return {this, &Drag_signal_cancel_info};
+    return Glib::SignalProxy<void (DragCancelReason)> (
+        this,
+        &Drag_signal_cancel_info);
   }
 
   auto
   Drag::signal_drop_performed () -> Glib::SignalProxy<void ()>
   {
-    return {this, &Drag_signal_drop_performed_info};
+    return Glib::SignalProxy<void ()> (this, &Drag_signal_drop_performed_info);
   }
 
   auto
   Drag::signal_dnd_finished () -> Glib::SignalProxy<void ()>
   {
-    return {this, &Drag_signal_dnd_finished_info};
+    return Glib::SignalProxy<void ()> (this, &Drag_signal_dnd_finished_info);
   }
 
   static_assert (
@@ -298,7 +300,9 @@ namespace Gdk
   auto
   Drag::property_content () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<ContentProvider>>
   {
-    return {this, "content"};
+    return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<ContentProvider>> (
+        this,
+        "content");
   }
 
   static_assert (
@@ -310,7 +314,7 @@ namespace Gdk
   auto
   Drag::property_device () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Device>>
   {
-    return {this, "device"};
+    return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Device>> (this, "device");
   }
 
   static_assert (
@@ -322,7 +326,8 @@ namespace Gdk
   auto
   Drag::property_display () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Display>>
   {
-    return {this, "display"};
+    return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Display>> (this,
+                                                                "display");
   }
 
   static_assert (
@@ -334,7 +339,9 @@ namespace Gdk
   auto
   Drag::property_formats () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<ContentFormats>>
   {
-    return {this, "formats"};
+    return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<ContentFormats>> (
+        this,
+        "formats");
   }
 
   static_assert (
@@ -345,13 +352,13 @@ namespace Gdk
   auto
   Drag::property_selected_action () -> Glib::PropertyProxy<DragAction>
   {
-    return {this, "selected-action"};
+    return Glib::PropertyProxy<DragAction> (this, "selected-action");
   }
 
   auto
   Drag::property_selected_action () const -> Glib::PropertyProxy_ReadOnly<DragAction>
   {
-    return {this, "selected-action"};
+    return Glib::PropertyProxy_ReadOnly<DragAction> (this, "selected-action");
   }
 
   static_assert (
@@ -362,13 +369,13 @@ namespace Gdk
   auto
   Drag::property_actions () -> Glib::PropertyProxy<DragAction>
   {
-    return {this, "actions"};
+    return Glib::PropertyProxy<DragAction> (this, "actions");
   }
 
   auto
   Drag::property_actions () const -> Glib::PropertyProxy_ReadOnly<DragAction>
   {
-    return {this, "actions"};
+    return Glib::PropertyProxy_ReadOnly<DragAction> (this, "actions");
   }
 
   static_assert (
@@ -380,7 +387,8 @@ namespace Gdk
   auto
   Drag::property_surface () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Surface>>
   {
-    return {this, "surface"};
+    return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Surface>> (this,
+                                                                "surface");
   }
 
 } // namespace Gdk

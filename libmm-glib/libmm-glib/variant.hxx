@@ -56,11 +56,11 @@ namespace Glib
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
   private:
-    GLIBMM_API static void
-    throw_func (GError* gobject);
+    GLIBMM_API static auto
+    throw_func (GError* gobject) -> void;
 
-    friend GLIBMM_API void
-    wrap_init ();
+    friend GLIBMM_API auto
+    wrap_init () -> void;
 
 #endif
   };
@@ -87,8 +87,8 @@ namespace Glib
 
     ~VariantBase () noexcept;
 
-    void
-    swap (VariantBase& other) noexcept;
+    auto
+    swap (VariantBase& other) noexcept -> void;
 
     auto
     gobj () -> GVariant*
@@ -112,8 +112,8 @@ namespace Glib
   public:
     explicit operator bool () const;
 
-    void
-    init (const GVariant* cobject, bool take_a_reference = false);
+    auto
+    init (const GVariant* cobject, bool take_a_reference = false) -> void;
 
     auto
     get_type () const -> VariantType;
@@ -142,8 +142,8 @@ namespace Glib
     auto
     get_data_as_bytes () const -> Glib::RefPtr<const Glib::Bytes>;
 
-    void
-    store (gpointer data) const;
+    auto
+    store (gpointer data) const -> void;
 
     auto
     print (bool type_annotate = false) const -> Glib::ustring;
@@ -172,14 +172,14 @@ namespace Glib
     auto
     operator>= (const VariantBase& other) const -> bool = delete;
 
-    void
-    get_normal_form (VariantBase& result) const;
+    auto
+    get_normal_form (VariantBase& result) const -> void;
 
     auto
     is_normal_form () const -> bool;
 
-    void
-    byteswap (VariantBase& result) const;
+    auto
+    byteswap (VariantBase& result) const -> void;
 
     auto
     check_format_string (const std::string& format_string,
@@ -233,15 +233,16 @@ namespace Glib
     explicit VariantStringBase (GVariant* castitem,
                                 bool take_a_reference = false);
 
-    static void
+    static auto
     create_object_path (VariantStringBase& output,
-                        const std::string& object_path);
+                        const std::string& object_path) -> void;
 
     static auto
     is_object_path (const std::string& string) -> bool;
 
-    static void
-    create_signature (VariantStringBase& output, const std::string& signature);
+    static auto
+    create_signature (VariantStringBase& output, const std::string& signature)
+        -> void;
 
     static auto
     is_signature (const std::string& string) -> bool;
@@ -279,8 +280,8 @@ namespace Glib
     auto
     get_n_children () const -> gsize;
 
-    void
-    get_child (VariantBase& child, gsize index = 0) const;
+    auto
+    get_child (VariantBase& child, gsize index = 0) const -> void;
 
     auto
     get_child (gsize index = 0) -> VariantBase;
@@ -332,8 +333,8 @@ namespace Glib
     static auto
     create (const VariantBase& data) -> Variant<VariantBase>;
 
-    void
-    get (VariantBase& variant) const;
+    auto
+    get (VariantBase& variant) const -> void;
 
     auto
     get () const -> VariantBase;
@@ -973,10 +974,10 @@ namespace Glib
   namespace detail
   {
     template <class Tuple, std::size_t... Is>
-    void
+    auto
     expand_tuple (std::vector<VariantBase>& variants,
                   const Tuple& t,
-                  std::index_sequence<Is...>)
+                  std::index_sequence<Is...>) -> void
     {
       using swallow = int[];
       auto expander = [&variants] (const VariantBase& variant) -> int
@@ -1043,10 +1044,10 @@ namespace Glib
     }
 
     template <class Tuple, std::size_t... Is>
-    void
+    auto
     assign_tuple (std::vector<VariantBase>& variants,
                   Tuple& t,
-                  std::index_sequence<Is...>)
+                  std::index_sequence<Is...>) -> void
     {
       int i = 0;
       using swallow = int[];
@@ -1096,8 +1097,8 @@ namespace Glib
   public:
     using CppType = Glib::VariantBase;
 
-    void
-    set (CppType data);
+    auto
+    set (CppType data) -> void;
     auto
     get () const -> CppType;
   };
@@ -1108,8 +1109,8 @@ namespace Glib
 namespace Glib
 {
 
-  inline void
-  swap (VariantBase& lhs, VariantBase& rhs) noexcept
+  inline auto
+  swap (VariantBase& lhs, VariantBase& rhs) noexcept -> void
   {
     lhs.swap (rhs);
   }

@@ -256,8 +256,8 @@ namespace Glib
     auto
     get_flags () const -> Flags;
 
-    void
-    unbind ();
+    auto
+    unbind () -> void;
 
     auto
     property_flags () const -> Glib::PropertyProxy_ReadOnly<Flags>;

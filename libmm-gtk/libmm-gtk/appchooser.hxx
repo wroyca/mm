@@ -5,37 +5,39 @@
 
 #include <libmm-gtk/mm-gtkconfig.hxx>
 
-#include <libmm-glib/ustring.hxx>
-#include <sigc++/sigc++.h>
+#ifndef GTKMM_DISABLE_DEPRECATED
 
-#include <libmm-gio/appinfo.hxx>
-#include <libmm-glib/interface.hxx>
+  #include <libmm-glib/ustring.hxx>
+  #include <sigc++/sigc++.h>
 
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #include <libmm-gio/appinfo.hxx>
+  #include <libmm-glib/interface.hxx>
+
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
 extern "C"
 {
   typedef struct _GtkAppChooserIface GtkAppChooserIface;
 }
-#endif
+  #endif
 
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
 using GtkAppChooser = struct _GtkAppChooser;
 using GtkAppChooserClass = struct _GtkAppChooserClass;
-#endif
+  #endif
 
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
   class GTKMM_API AppChooser_Class;
 }
-#endif
+  #endif
 
 namespace Gtk
 {
 
   class GTKMM_API AppChooser : public Glib::Interface
   {
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   public:
     using CppObjectType = AppChooser;
@@ -51,11 +53,11 @@ namespace Gtk
     friend class AppChooser_Class;
     static CppClassType appchooser_class_;
 
-#endif
+  #endif
   protected:
     AppChooser ();
 
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
     explicit AppChooser (const Glib::Interface_Class& interface_class);
 
@@ -63,7 +65,7 @@ namespace Gtk
     explicit AppChooser (GtkAppChooser* castitem);
 
   protected:
-#endif
+  #endif
 
   public:
     AppChooser (AppChooser&& src) noexcept;
@@ -72,16 +74,16 @@ namespace Gtk
 
     ~AppChooser () noexcept override;
 
-    static void
-    add_interface (GType gtype_implementer);
+    static auto
+    add_interface (GType gtype_implementer) -> void;
 
     static auto
     get_type () -> GType G_GNUC_CONST;
 
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
     static auto
     get_base_type () -> GType G_GNUC_CONST;
-#endif
+  #endif
 
     auto
     gobj () -> GtkAppChooser*
@@ -106,8 +108,8 @@ namespace Gtk
     auto
     get_content_type () const -> Glib::ustring;
 
-    void
-    refresh ();
+    auto
+    refresh () -> void;
 
     auto
     property_content_type () const
@@ -122,11 +124,11 @@ namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkAppChooser* object, bool take_copy = false) -> Glib::RefPtr<Gtk::AppChooser>;
 
 } // namespace Glib
+
+#endif
 
 #endif

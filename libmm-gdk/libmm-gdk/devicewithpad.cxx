@@ -24,5 +24,6 @@ namespace Gdk
     return *this;
   }
 
-  DeviceWithPad::~DeviceWithPad () noexcept = default;
+  DeviceWithPad::~DeviceWithPad () noexcept {}
+
 } // namespace Gdk

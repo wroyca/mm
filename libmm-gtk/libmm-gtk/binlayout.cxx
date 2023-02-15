@@ -15,11 +15,11 @@ namespace Glib
 {
 
   auto
-  wrap (GtkBinLayout* object, const bool take_copy) -> RefPtr<Gtk::BinLayout>
+  wrap (GtkBinLayout* object, bool take_copy) -> Glib::RefPtr<Gtk::BinLayout>
   {
     return Glib::make_refptr_for_instance<Gtk::BinLayout> (
         dynamic_cast<Gtk::BinLayout*> (
-            wrap_auto ((GObject*) object, take_copy)));
+            Glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
 } // namespace Glib
@@ -28,7 +28,7 @@ namespace Gtk
 {
 
   auto
-  BinLayout_Class::init () -> const Class&
+  BinLayout_Class::init () -> const Glib::Class&
   {
     if (!gtype_)
     {
@@ -66,7 +66,7 @@ namespace Gtk
   }
 
   BinLayout::BinLayout (GtkBinLayout* castitem)
-    : LayoutManager ((GtkLayoutManager*) castitem)
+    : LayoutManager ((GtkLayoutManager*) (castitem))
   {
   }
 
@@ -82,7 +82,7 @@ namespace Gtk
     return *this;
   }
 
-  BinLayout::~BinLayout () noexcept = default;
+  BinLayout::~BinLayout () noexcept {}
 
   BinLayout::CppClassType BinLayout::binlayout_class_;
 
@@ -99,7 +99,7 @@ namespace Gtk
   }
 
   BinLayout::BinLayout ()
-    : ObjectBase (nullptr),
+    : Glib::ObjectBase (nullptr),
       LayoutManager (Glib::ConstructParams (binlayout_class_.init ()))
   {
   }

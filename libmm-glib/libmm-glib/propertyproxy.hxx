@@ -20,14 +20,14 @@ namespace Glib
     {
     }
 
-    void
-    set_value (const PropertyType& data);
+    auto
+    set_value (const PropertyType& data) -> void;
 
     auto
     get_value () const -> PropertyType;
 
-    void
-    reset_value ()
+    auto
+    reset_value () -> void
     {
       reset_property_ ();
     }
@@ -56,11 +56,11 @@ namespace Glib
     {
     }
 
-    void
-    set_value (const PropertyType& data);
+    auto
+    set_value (const PropertyType& data) -> void;
 
-    void
-    reset_value ()
+    auto
+    reset_value () -> void
     {
       reset_property_ ();
     }
@@ -96,8 +96,8 @@ namespace Glib
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   template <class T>
-  void
-  PropertyProxy<T>::set_value (const T& data)
+  auto
+  PropertyProxy<T>::set_value (const T& data) -> void
   {
     Glib::Value<T> value;
     value.init (Glib::Value<T>::value_type ());
@@ -118,8 +118,8 @@ namespace Glib
   }
 
   template <class T>
-  void
-  PropertyProxy_WriteOnly<T>::set_value (const T& data)
+  auto
+  PropertyProxy_WriteOnly<T>::set_value (const T& data) -> void
   {
     Glib::Value<T> value;
     value.init (Glib::Value<T>::value_type ());

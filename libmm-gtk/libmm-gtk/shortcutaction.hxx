@@ -675,57 +675,43 @@ namespace Glib
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkShortcutAction* object, bool take_copy = false) -> Glib::RefPtr<Gtk::ShortcutAction>;
 } // namespace Glib
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkNothingAction* object, bool take_copy = false) -> Glib::RefPtr<Gtk::NothingAction>;
 } // namespace Glib
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkCallbackAction* object, bool take_copy = false) -> Glib::RefPtr<Gtk::CallbackAction>;
 } // namespace Glib
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkMnemonicAction* object, bool take_copy = false) -> Glib::RefPtr<Gtk::MnemonicAction>;
 } // namespace Glib
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkActivateAction* object, bool take_copy = false) -> Glib::RefPtr<Gtk::ActivateAction>;
 } // namespace Glib
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkSignalAction* object, bool take_copy = false) -> Glib::RefPtr<Gtk::SignalAction>;
 } // namespace Glib
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkNamedAction* object, bool take_copy = false) -> Glib::RefPtr<Gtk::NamedAction>;
 } // namespace Glib
 

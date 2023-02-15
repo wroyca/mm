@@ -185,9 +185,7 @@ namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkShortcutsShortcut* object, bool take_copy = false) -> Gtk::ShortcutsShortcut*;
 } // namespace Glib
 

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: LGPL-2.1-or-later
 
 #ifndef _GIOMM_TLSCONNECTION_H
 #define _GIOMM_TLSCONNECTION_H
@@ -123,8 +124,8 @@ namespace Gio
     TlsConnection ();
 
   public:
-    void
-    set_certificate (const Glib::RefPtr<TlsCertificate>& certificate);
+    auto
+    set_certificate (const Glib::RefPtr<TlsCertificate>& certificate) -> void;
 
     auto
     get_certificate () -> Glib::RefPtr<TlsCertificate>;
@@ -141,8 +142,8 @@ namespace Gio
     auto
     get_peer_certificate_errors () const -> TlsCertificateFlags;
 
-    void
-    set_require_close_notify (bool require_close_notify = true);
+    auto
+    set_require_close_notify (bool require_close_notify = true) -> void;
 
     auto
     get_require_close_notify () const -> bool;
@@ -153,8 +154,8 @@ namespace Gio
     auto
     get_database () const -> Glib::RefPtr<const TlsDatabase>;
 
-    void
-    set_database (const Glib::RefPtr<TlsDatabase>& database);
+    auto
+    set_database (const Glib::RefPtr<TlsDatabase>& database) -> void;
 
     auto
     get_interaction () -> Glib::RefPtr<TlsInteraction>;
@@ -162,8 +163,8 @@ namespace Gio
     auto
     get_interaction () const -> Glib::RefPtr<const TlsInteraction>;
 
-    void
-    set_interaction (const Glib::RefPtr<TlsInteraction>& interaction);
+    auto
+    set_interaction (const Glib::RefPtr<TlsInteraction>& interaction) -> void;
 
     auto
     handshake (const Glib::RefPtr<Cancellable>& cancellable) -> bool;
@@ -171,14 +172,14 @@ namespace Gio
     auto
     handshake () -> bool;
 
-    void
+    auto
     handshake_async (const SlotAsyncReady& slot,
                      const Glib::RefPtr<Cancellable>& cancellable,
-                     int io_priority = Glib::PRIORITY_DEFAULT);
+                     int io_priority = Glib::PRIORITY_DEFAULT) -> void;
 
-    void
+    auto
     handshake_async (const SlotAsyncReady& slot,
-                     int io_priority = Glib::PRIORITY_DEFAULT);
+                     int io_priority = Glib::PRIORITY_DEFAULT) -> void;
 
     auto
     handshake_finish (const Glib::RefPtr<AsyncResult>& result) -> bool;
@@ -253,10 +254,10 @@ namespace Gio
     virtual auto
     handshake_vfunc (const Glib::RefPtr<Cancellable>& cancellable) -> bool;
 
-    virtual void
+    virtual auto
     handshake_async_vfunc (const SlotAsyncReady& slot,
                            const Glib::RefPtr<Cancellable>& cancellable,
-                           int io_priority);
+                           int io_priority) -> void;
 
     virtual auto
     handshake_finish_vfunc (const Glib::RefPtr<AsyncResult>& result) -> bool;

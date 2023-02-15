@@ -23,15 +23,15 @@ namespace Glib
     auto
     operator= (const Timer&) -> Timer& = delete;
 
-    void
-    start ();
-    void
-    stop ();
-    void
-    reset ();
+    auto
+    start () -> void;
+    auto
+    stop () -> void;
+    auto
+    reset () -> void;
 
-    void
-    resume ();
+    auto
+    resume () -> void;
 
     auto
     elapsed () const -> double;
@@ -60,9 +60,8 @@ namespace Glib
     GTimer* gobject_;
   };
 
-  GLIBMM_API
-  void
-  usleep (unsigned long microseconds);
+  GLIBMM_API auto
+  usleep (unsigned long microseconds) -> void;
 
 } // namespace Glib
 

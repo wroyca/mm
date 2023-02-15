@@ -3,23 +3,25 @@
 #ifndef _GTKMM_CELLRENDERERACCEL_H
 #define _GTKMM_CELLRENDERERACCEL_H
 
-#include <libmm-glib/ustring.hxx>
-#include <sigc++/sigc++.h>
+#ifndef GTKMM_DISABLE_DEPRECATED
 
-#include <libmm-gtk/accelkey.hxx>
-#include <libmm-gtk/cellrenderertext.hxx>
+  #include <libmm-glib/ustring.hxx>
+  #include <sigc++/sigc++.h>
 
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #include <libmm-gtk/accelkey.hxx>
+  #include <libmm-gtk/cellrenderertext.hxx>
+
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
 using GtkCellRendererAccel = struct _GtkCellRendererAccel;
 using GtkCellRendererAccelClass = struct _GtkCellRendererAccelClass;
-#endif
+  #endif
 
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
   class GTKMM_API CellRendererAccel_Class;
 }
-#endif
+  #endif
 
 namespace Gtk
 {
@@ -27,12 +29,12 @@ namespace Gtk
   class GTKMM_API CellRendererAccel : public CellRendererText
   {
   public:
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
     typedef CellRendererAccel CppObjectType;
     typedef CellRendererAccel_Class CppClassType;
     typedef GtkCellRendererAccel BaseObjectType;
     typedef GtkCellRendererAccelClass BaseClassType;
-#endif
+  #endif
 
     CellRendererAccel (CellRendererAccel&& src) noexcept;
     auto
@@ -44,7 +46,7 @@ namespace Gtk
 
     ~CellRendererAccel () noexcept override;
 
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   private:
     friend GTKMM_API class CellRendererAccel_Class;
@@ -54,17 +56,17 @@ namespace Gtk
     explicit CellRendererAccel (const Glib::ConstructParams& construct_params);
     explicit CellRendererAccel (GtkCellRendererAccel* castitem);
 
-#endif
+  #endif
 
   public:
     static auto
     get_type () -> GType G_GNUC_CONST;
 
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
     static auto
     get_base_type () -> GType G_GNUC_CONST;
-#endif
+  #endif
 
     auto
     gobj () -> GtkCellRendererAccel*
@@ -130,7 +132,7 @@ namespace Gtk
 
 } // namespace Gtk
 
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Glib
 {
 
@@ -144,14 +146,14 @@ namespace Glib
   };
 
 } // namespace Glib
-#endif
+  #endif
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkCellRendererAccel* object, bool take_copy = false) -> Gtk::CellRendererAccel*;
 } // namespace Glib
+
+#endif
 
 #endif

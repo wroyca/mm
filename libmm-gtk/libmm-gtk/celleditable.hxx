@@ -72,8 +72,8 @@ namespace Gtk
 
     ~CellEditable () noexcept override;
 
-    static void
-    add_interface (GType gtype_implementer);
+    static auto
+    add_interface (GType gtype_implementer) -> void;
 
     static auto
     get_type () -> GType G_GNUC_CONST;
@@ -97,20 +97,37 @@ namespace Gtk
 
   private:
   public:
-    void
-    start_editing (const Glib::RefPtr<const Gdk::Event>& event);
+#ifndef GTKMM_DISABLE_DEPRECATED
 
-    void
-    editing_done ();
+    auto
+    start_editing (const Glib::RefPtr<const Gdk::Event>& event) -> void;
+#endif
 
-    void
-    remove_widget ();
+#ifndef GTKMM_DISABLE_DEPRECATED
+
+    auto
+    editing_done () -> void;
+#endif
+
+#ifndef GTKMM_DISABLE_DEPRECATED
+
+    auto
+    remove_widget () -> void;
+#endif
+
+#ifndef GTKMM_DISABLE_DEPRECATED
 
     auto
     signal_editing_done () -> Glib::SignalProxy<void ()>;
+#endif
+
+#ifndef GTKMM_DISABLE_DEPRECATED
 
     auto
     signal_remove_widget () -> Glib::SignalProxy<void ()>;
+#endif
+
+#ifndef GTKMM_DISABLE_DEPRECATED
 
     auto
     property_editing_canceled () -> Glib::PropertyProxy<bool>;
@@ -118,27 +135,27 @@ namespace Gtk
     auto
     property_editing_canceled () const -> Glib::PropertyProxy_ReadOnly<bool>;
 
+#endif
+
   protected:
-    virtual void
-    start_editing_vfunc (const Glib::RefPtr<const Gdk::Event>& event);
+    virtual auto
+    start_editing_vfunc (const Glib::RefPtr<const Gdk::Event>& event) -> void;
 
   public:
   public:
   protected:
-    virtual void
-    on_editing_done ();
+    virtual auto
+    on_editing_done () -> void;
 
-    virtual void
-    on_remove_widget ();
+    virtual auto
+    on_remove_widget () -> void;
   };
 
 } // namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkCellEditable* object, bool take_copy = false) -> Glib::RefPtr<Gtk::CellEditable>;
 
 } // namespace Glib

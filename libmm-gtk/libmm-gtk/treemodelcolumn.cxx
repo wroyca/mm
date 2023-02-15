@@ -1,6 +1,8 @@
 // SPDX-License-Identifier: LGPL-2.1-or-later
 
-#include <libmm-gtk/treemodelcolumn.hxx>
+#ifndef GTKMM_DISABLE_DEPRECATED
+
+  #include <libmm-gtk/treemodelcolumn.hxx>
 
 namespace Gtk
 {
@@ -10,7 +12,7 @@ namespace Gtk
   {
   }
 
-  TreeModelColumnRecord::~TreeModelColumnRecord () noexcept = default;
+  TreeModelColumnRecord::~TreeModelColumnRecord () noexcept {}
 
   auto
   TreeModelColumnRecord::add (TreeModelColumnBase& column) -> void
@@ -35,10 +37,12 @@ namespace Gtk
     return &column_types_.front ();
   }
 
-  TreeModelColumnBase::TreeModelColumnBase (const GType g_type)
+  TreeModelColumnBase::TreeModelColumnBase (GType g_type)
     : type_ (g_type),
       index_ (-1)
   {
   }
 
 } // namespace Gtk
+
+#endif

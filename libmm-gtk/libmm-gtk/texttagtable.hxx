@@ -94,8 +94,8 @@ namespace Gtk
     auto
     add (const Glib::RefPtr<TextTag>& tag) -> bool;
 
-    void
-    remove (const Glib::RefPtr<TextTag>& tag);
+    auto
+    remove (const Glib::RefPtr<TextTag>& tag) -> void;
 
     auto
     lookup (const Glib::ustring& name) -> Glib::RefPtr<TextTag>;
@@ -104,7 +104,7 @@ namespace Gtk
     lookup (const Glib::ustring& name) const -> Glib::RefPtr<const TextTag>;
 
     typedef sigc::slot<void (const Glib::RefPtr<TextTag>&)> SlotForEach;
-    void foreach (const SlotForEach& slot);
+    auto foreach (const SlotForEach& slot) -> void;
 
     auto
     get_size () const -> int;
@@ -130,9 +130,7 @@ namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkTextTagTable* object, bool take_copy = false) -> Glib::RefPtr<Gtk::TextTagTable>;
 } // namespace Glib
 

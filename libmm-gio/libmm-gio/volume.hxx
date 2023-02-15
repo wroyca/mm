@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: LGPL-2.1-or-later
 
 #ifndef _GIOMM_VOLUME_H
 #define _GIOMM_VOLUME_H
@@ -70,8 +71,8 @@ namespace Gio
 
     ~Volume () noexcept override;
 
-    static void
-    add_interface (GType gtype_implementer);
+    static auto
+    add_interface (GType gtype_implementer) -> void;
 
     static auto
     get_type () -> GType G_GNUC_CONST;
@@ -134,48 +135,48 @@ namespace Gio
     auto
     should_automount () const -> bool;
 
-    void
+    auto
     mount (const Glib::RefPtr<MountOperation>& mount_operation,
            const SlotAsyncReady& slot,
            const Glib::RefPtr<Cancellable>& cancellable,
-           Mount::MountFlags flags = Mount::MountFlags::NONE);
+           Mount::MountFlags flags = Mount::MountFlags::NONE) -> void;
 
-    void
+    auto
     mount (const Glib::RefPtr<MountOperation>& mount_operation,
            const SlotAsyncReady& slot,
-           Mount::MountFlags flags = Mount::MountFlags::NONE);
+           Mount::MountFlags flags = Mount::MountFlags::NONE) -> void;
 
-    void
+    auto
     mount (const Glib::RefPtr<MountOperation>& mount_operation,
-           Mount::MountFlags flags = Mount::MountFlags::NONE);
+           Mount::MountFlags flags = Mount::MountFlags::NONE) -> void;
 
-    void
-    mount (Mount::MountFlags flags = Mount::MountFlags::NONE);
+    auto
+    mount (Mount::MountFlags flags = Mount::MountFlags::NONE) -> void;
 
     auto
     mount_finish (const Glib::RefPtr<AsyncResult>& result) -> bool;
 
-    void
+    auto
     eject (const SlotAsyncReady& slot,
            const Glib::RefPtr<Cancellable>& cancellable,
-           Mount::UnmountFlags flags = Mount::UnmountFlags::NONE);
-    void
+           Mount::UnmountFlags flags = Mount::UnmountFlags::NONE) -> void;
+    auto
     eject (const SlotAsyncReady& slot,
-           Mount::UnmountFlags flags = Mount::UnmountFlags::NONE);
-    void
-    eject (Mount::UnmountFlags flags = Mount::UnmountFlags::NONE);
-    void
+           Mount::UnmountFlags flags = Mount::UnmountFlags::NONE) -> void;
+    auto
+    eject (Mount::UnmountFlags flags = Mount::UnmountFlags::NONE) -> void;
+    auto
     eject (const Glib::RefPtr<MountOperation>& mount_operation,
            const SlotAsyncReady& slot,
            const Glib::RefPtr<Cancellable>& cancellable,
-           Mount::UnmountFlags flags = Mount::UnmountFlags::NONE);
-    void
+           Mount::UnmountFlags flags = Mount::UnmountFlags::NONE) -> void;
+    auto
     eject (const Glib::RefPtr<MountOperation>& mount_operation,
            const SlotAsyncReady& slot,
-           Mount::UnmountFlags flags = Mount::UnmountFlags::NONE);
-    void
+           Mount::UnmountFlags flags = Mount::UnmountFlags::NONE) -> void;
+    auto
     eject (const Glib::RefPtr<MountOperation>& mount_operation,
-           Mount::UnmountFlags flags = Mount::UnmountFlags::NONE);
+           Mount::UnmountFlags flags = Mount::UnmountFlags::NONE) -> void;
 
     auto
     eject_finish (const Glib::RefPtr<AsyncResult>& result) -> bool;
@@ -205,11 +206,11 @@ namespace Gio
   public:
   public:
   protected:
-    virtual void
-    on_changed ();
+    virtual auto
+    on_changed () -> void;
 
-    virtual void
-    on_removed ();
+    virtual auto
+    on_removed () -> void;
   };
 
 } // namespace Gio
@@ -243,8 +244,8 @@ namespace Glib
         return Glib::wrap (item, true);
       }
 
-      static void
-      release_c_type (CType item)
+      static auto
+      release_c_type (CType item) -> void
       {
         GLIBMM_DEBUG_UNREFERENCE (nullptr, item);
         g_object_unref (item);

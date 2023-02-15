@@ -89,11 +89,11 @@ namespace Glib
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
   private:
-    GLIBMM_API static void
-    throw_func (GError* gobject);
+    GLIBMM_API static auto
+    throw_func (GError* gobject) -> void;
 
-    friend GLIBMM_API void
-    wrap_init ();
+    friend GLIBMM_API auto
+    wrap_init () -> void;
 
 #endif
   };
@@ -108,11 +108,11 @@ namespace Glib
     using BaseObjectType = GRegex;
 #endif
 
-    void
-    reference () const;
+    auto
+    reference () const -> void;
 
-    void
-    unreference () const;
+    auto
+    unreference () const -> void;
 
     auto
     gobj () -> GRegex*;
@@ -130,8 +130,8 @@ namespace Glib
     operator= (const Regex&) -> Regex& = delete;
 
   protected:
-    void
-    operator delete (void*, std::size_t);
+    auto
+    operator delete (void*, std::size_t) -> void;
 
   private:
   public:
@@ -435,8 +435,8 @@ namespace Glib
     bool take_ownership_;
 
   protected:
-    void
-    set_gobject (GMatchInfo* castitem, bool take_ownership = true);
+    auto
+    set_gobject (GMatchInfo* castitem, bool take_ownership = true) -> void;
   };
 
 } // namespace Glib

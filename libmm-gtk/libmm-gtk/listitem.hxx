@@ -95,19 +95,19 @@ namespace Gtk
     auto
     get_selectable () const -> bool;
 
-    void
-    set_selectable (bool selectable = true);
+    auto
+    set_selectable (bool selectable = true) -> void;
 
     auto
     get_activatable () const -> bool;
 
-    void
-    set_activatable (bool activatable = true);
+    auto
+    set_activatable (bool activatable = true) -> void;
 
-    void
-    set_child (Widget& child);
-    void
-    unset_child ();
+    auto
+    set_child (Widget& child) -> void;
+    auto
+    unset_child () -> void;
 
     auto
     get_child () -> Widget*;
@@ -152,9 +152,7 @@ namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkListItem* object, bool take_copy = false) -> Glib::RefPtr<Gtk::ListItem>;
 } // namespace Glib
 

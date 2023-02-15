@@ -72,8 +72,8 @@ namespace Gdk
 
     ~Paintable () noexcept override;
 
-    static void
-    add_interface (GType gtype_implementer);
+    static auto
+    add_interface (GType gtype_implementer) -> void;
 
     static auto
     get_type () -> GType G_GNUC_CONST;
@@ -103,10 +103,10 @@ namespace Gdk
       STATIC_CONTENTS = 1 << 1
     };
 
-    void
+    auto
     snapshot (const Glib::RefPtr<Gdk::Snapshot>& snapshot,
               double width,
-              double height);
+              double height) -> void;
 
     auto
     get_current_image () const -> Glib::RefPtr<const Paintable>;
@@ -123,19 +123,19 @@ namespace Gdk
     auto
     get_intrinsic_aspect_ratio () const -> double;
 
-    void
+    auto
     compute_concrete_size (double specified_width,
                            double specified_height,
                            double default_width,
                            double default_height,
                            double& concrete_width,
-                           double& concrete_height) const;
+                           double& concrete_height) const -> void;
 
-    void
-    invalidate_contents ();
+    auto
+    invalidate_contents () -> void;
 
-    void
-    invalidate_size ();
+    auto
+    invalidate_size () -> void;
 
     auto
     signal_invalidate_contents () -> Glib::SignalProxy<void ()>;
@@ -144,10 +144,10 @@ namespace Gdk
     signal_invalidate_size () -> Glib::SignalProxy<void ()>;
 
   protected:
-    virtual void
+    virtual auto
     snapshot_vfunc (const Glib::RefPtr<Gdk::Snapshot>& snapshot,
                     double width,
-                    double height);
+                    double height) -> void;
 
     virtual auto
     get_current_image_vfunc () const -> Glib::RefPtr<Paintable>;
@@ -241,9 +241,7 @@ namespace Glib
 
 namespace Glib
 {
-
-  GDKMM_API
-  auto
+  GDKMM_API auto
   wrap (GdkPaintable* object, bool take_copy = false) -> Glib::RefPtr<Gdk::Paintable>;
 
 } // namespace Glib

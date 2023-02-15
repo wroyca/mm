@@ -17,14 +17,14 @@ namespace Gtk
     using CppObjectType = MultiFilter;
     using BaseObjectType = GtkMultiFilter;
     using BaseClassType = GtkMultiFilterClass;
-    using CppClassParent = Filter_Class;
+    using CppClassParent = Gtk::Filter_Class;
     using BaseClassParent = GtkFilterClass;
 
     friend class MultiFilter;
 #endif
 
     auto
-    init () -> const Class&;
+    init () -> const Glib::Class&;
 
     static auto
     class_init_function (void* g_class, void* class_data) -> void;
@@ -49,14 +49,14 @@ namespace Gtk
     using CppObjectType = AnyFilter;
     using BaseObjectType = GtkAnyFilter;
     using BaseClassType = GtkAnyFilterClass;
-    using CppClassParent = MultiFilter_Class;
+    using CppClassParent = Gtk::MultiFilter_Class;
     using BaseClassParent = GtkMultiFilterClass;
 
     friend class AnyFilter;
 #endif
 
     auto
-    init () -> const Class&;
+    init () -> const Glib::Class&;
 
     static auto
     class_init_function (void* g_class, void* class_data) -> void;
@@ -81,14 +81,14 @@ namespace Gtk
     using CppObjectType = EveryFilter;
     using BaseObjectType = GtkEveryFilter;
     using BaseClassType = GtkEveryFilterClass;
-    using CppClassParent = MultiFilter_Class;
+    using CppClassParent = Gtk::MultiFilter_Class;
     using BaseClassParent = GtkMultiFilterClass;
 
     friend class EveryFilter;
 #endif
 
     auto
-    init () -> const Class&;
+    init () -> const Glib::Class&;
 
     static auto
     class_init_function (void* g_class, void* class_data) -> void;

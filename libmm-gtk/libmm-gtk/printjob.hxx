@@ -6,12 +6,12 @@
 #include <libmm-glib/ustring.hxx>
 #include <sigc++/sigc++.h>
 
-#include <libmm-cairo/surface.hxx>
 #include <libmm-glib/object.hxx>
 #include <libmm-gtk/pagesetup.hxx>
 #include <libmm-gtk/printer.hxx>
 #include <libmm-gtk/printoperation.hxx>
 #include <libmm-gtk/printsettings.hxx>
+#include <libmm-pango/surface.hxx>
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 using GtkPrintJob = struct _GtkPrintJob;
@@ -116,8 +116,8 @@ namespace Gtk
     auto
     get_status () const -> PrintStatus;
 
-    void
-    set_source_file (const std::string& filename);
+    auto
+    set_source_file (const std::string& filename) -> void;
 
     auto
     get_surface () -> Cairo::RefPtr<Cairo::Surface>;
@@ -125,8 +125,8 @@ namespace Gtk
     auto
     get_surface () const -> Cairo::RefPtr<const Cairo::Surface>;
 
-    void
-    set_track_print_status (bool track_status = true);
+    auto
+    set_track_print_status (bool track_status = true) -> void;
 
     auto
     get_track_print_status () const -> bool;
@@ -134,68 +134,68 @@ namespace Gtk
     typedef sigc::slot<void (const Glib::RefPtr<PrintJob>&)>
         SlotPrintJobComplete;
 
-    void
-    send (const SlotPrintJobComplete& slot);
+    auto
+    send (const SlotPrintJobComplete& slot) -> void;
 
     auto
     get_pages () const -> PrintPages;
 
-    void
-    set_pages (PrintPages pages);
+    auto
+    set_pages (PrintPages pages) -> void;
 
     auto
     get_page_ranges () const -> std::vector<PageRange>;
 
-    void
-    set_page_ranges (const std::vector<PageRange>& ranges);
+    auto
+    set_page_ranges (const std::vector<PageRange>& ranges) -> void;
 
     auto
     get_page_set () const -> PageSet;
 
-    void
-    set_page_set (PageSet page_set);
+    auto
+    set_page_set (PageSet page_set) -> void;
 
     auto
     get_num_copies () const -> int;
 
-    void
-    set_num_copies (int num_copies);
+    auto
+    set_num_copies (int num_copies) -> void;
 
     auto
     get_scale () const -> double;
 
-    void
-    set_scale (double scale);
+    auto
+    set_scale (double scale) -> void;
 
     auto
     get_n_up () const -> guint;
 
-    void
-    set_n_up (guint n_up);
+    auto
+    set_n_up (guint n_up) -> void;
 
     auto
     get_n_up_layout () const -> NumberUpLayout;
 
-    void
-    set_n_up_layout (NumberUpLayout layout);
+    auto
+    set_n_up_layout (NumberUpLayout layout) -> void;
 
     auto
     get_rotate () const -> bool;
 
-    void
-    set_rotate (bool rotate = true);
+    auto
+    set_rotate (bool rotate = true) -> void;
 
     auto
     get_collate () const -> bool;
 
-    void
-    set_collate (bool collate = true);
+    auto
+    set_collate (bool collate = true) -> void;
 
     auto
     get_reverse () const -> bool;
 
-    void
-    set_reverse (bool reverse = true);
+    auto
+    set_reverse (bool reverse = true) -> void;
 
     auto
     signal_status_changed () -> Glib::SignalProxy<void ()>;
@@ -230,9 +230,7 @@ namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkPrintJob* object, bool take_copy = false) -> Glib::RefPtr<Gtk::PrintJob>;
 } // namespace Glib
 

@@ -91,166 +91,169 @@ namespace Cairo
 
     virtual ~Context ();
 
-    void
-    save ();
+    auto
+    save () -> void;
 
-    void
-    restore ();
+    auto
+    restore () -> void;
 
-    void
-    set_operator (Operator op);
+    auto
+    set_operator (Operator op) -> void;
 
-    void
-    set_source (const RefPtr<const Pattern>& source);
+    auto
+    set_source (const RefPtr<const Pattern>& source) -> void;
 
-    void
-    set_source_rgb (double red, double green, double blue);
+    auto
+    set_source_rgb (double red, double green, double blue) -> void;
 
-    void
-    set_source_rgba (double red, double green, double blue, double alpha);
+    auto
+    set_source_rgba (double red, double green, double blue, double alpha)
+        -> void;
 
-    void
-    set_source (const RefPtr<Surface>& surface, double x, double y);
+    auto
+    set_source (const RefPtr<Surface>& surface, double x, double y) -> void;
 
-    void
-    set_tolerance (double tolerance);
+    auto
+    set_tolerance (double tolerance) -> void;
 
-    void
-    set_antialias (Antialias antialias);
+    auto
+    set_antialias (Antialias antialias) -> void;
 
-    void
-    set_fill_rule (FillRule fill_rule);
+    auto
+    set_fill_rule (FillRule fill_rule) -> void;
 
-    void
-    set_line_width (double width);
+    auto
+    set_line_width (double width) -> void;
 
-    void
-    set_line_cap (LineCap line_cap);
+    auto
+    set_line_cap (LineCap line_cap) -> void;
 
-    void
-    set_line_join (LineJoin line_join);
+    auto
+    set_line_join (LineJoin line_join) -> void;
 
-    void
-    set_dash (const std::valarray<double>& dashes, double offset);
+    auto
+    set_dash (const std::valarray<double>& dashes, double offset) -> void;
 
-    void
-    set_dash (const std::vector<double>& dashes, double offset);
+    auto
+    set_dash (const std::vector<double>& dashes, double offset) -> void;
 
-    void
-    unset_dash ();
+    auto
+    unset_dash () -> void;
 
-    void
-    set_miter_limit (double limit);
+    auto
+    set_miter_limit (double limit) -> void;
 
-    void
-    translate (double tx, double ty);
+    auto
+    translate (double tx, double ty) -> void;
 
-    void
-    scale (double sx, double sy);
+    auto
+    scale (double sx, double sy) -> void;
 
-    void
-    rotate (double angle_radians);
+    auto
+    rotate (double angle_radians) -> void;
 
-    void
-    rotate_degrees (double angle_degres);
+    auto
+    rotate_degrees (double angle_degres) -> void;
 
-    void
-    transform (const Matrix& matrix);
+    auto
+    transform (const Matrix& matrix) -> void;
 
-    void
-    set_matrix (const Matrix& matrix);
+    auto
+    set_matrix (const Matrix& matrix) -> void;
 
-    void
-    set_identity_matrix ();
+    auto
+    set_identity_matrix () -> void;
 
-    void
-    user_to_device (double& x, double& y) const;
+    auto
+    user_to_device (double& x, double& y) const -> void;
 
-    void
-    user_to_device_distance (double& dx, double& dy) const;
+    auto
+    user_to_device_distance (double& dx, double& dy) const -> void;
 
-    void
-    device_to_user (double& x, double& y) const;
+    auto
+    device_to_user (double& x, double& y) const -> void;
 
-    void
-    device_to_user_distance (double& dx, double& dy) const;
+    auto
+    device_to_user_distance (double& dx, double& dy) const -> void;
 
-    void
-    begin_new_path ();
+    auto
+    begin_new_path () -> void;
 
-    void
-    begin_new_sub_path ();
+    auto
+    begin_new_sub_path () -> void;
 
-    void
-    move_to (double x, double y);
+    auto
+    move_to (double x, double y) -> void;
 
-    void
-    line_to (double x, double y);
+    auto
+    line_to (double x, double y) -> void;
 
-    void
-    curve_to (double x1, double y1, double x2, double y2, double x3, double y3);
+    auto
+    curve_to (double x1, double y1, double x2, double y2, double x3, double y3)
+        -> void;
 
-    void
-    arc (double xc, double yc, double radius, double angle1, double angle2);
+    auto
+    arc (double xc, double yc, double radius, double angle1, double angle2)
+        -> void;
 
-    void
+    auto
     arc_negative (double xc,
                   double yc,
                   double radius,
                   double angle1,
-                  double angle2);
+                  double angle2) -> void;
 
-    void
-    rel_move_to (double dx, double dy);
+    auto
+    rel_move_to (double dx, double dy) -> void;
 
-    void
-    rel_line_to (double dx, double dy);
+    auto
+    rel_line_to (double dx, double dy) -> void;
 
-    void
+    auto
     rel_curve_to (double dx1,
                   double dy1,
                   double dx2,
                   double dy2,
                   double dx3,
-                  double dy3);
+                  double dy3) -> void;
 
-    void
-    rectangle (double x, double y, double width, double height);
+    auto
+    rectangle (double x, double y, double width, double height) -> void;
 
-    void
-    close_path ();
+    auto
+    close_path () -> void;
 
-    void
-    paint ();
+    auto
+    paint () -> void;
 
-    void
-    paint_with_alpha (double alpha);
+    auto
+    paint_with_alpha (double alpha) -> void;
 
-    void
-    mask (const RefPtr<const Pattern>& pattern);
+    auto
+    mask (const RefPtr<const Pattern>& pattern) -> void;
 
-    void
+    auto
     mask (const RefPtr<const Surface>& surface,
           double surface_x,
-          double surface_y);
+          double surface_y) -> void;
 
-    void
-    stroke ();
+    auto
+    stroke () -> void;
 
-    void
-    stroke_preserve ();
+    auto
+    stroke_preserve () -> void;
 
-    void
-    fill ();
+    auto
+    fill () -> void;
 
-    void
-    fill_preserve ();
+    auto
+    fill_preserve () -> void;
 
-    void
-    copy_page ();
+    auto
+    copy_page () -> void;
 
-    void
-    show_page ();
+    auto
+    show_page () -> void;
 
     auto
     in_stroke (double x, double y) const -> bool;
@@ -261,88 +264,92 @@ namespace Cairo
     auto
     in_clip (double x, double y) const -> bool;
 
-    void
-    get_stroke_extents (double& x1, double& y1, double& x2, double& y2) const;
+    auto
+    get_stroke_extents (double& x1, double& y1, double& x2, double& y2) const
+        -> void;
 
-    void
-    get_fill_extents (double& x1, double& y1, double& x2, double& y2) const;
+    auto
+    get_fill_extents (double& x1, double& y1, double& x2, double& y2) const
+        -> void;
 
-    void
-    reset_clip ();
+    auto
+    reset_clip () -> void;
 
-    void
-    clip ();
+    auto
+    clip () -> void;
 
-    void
-    clip_preserve ();
+    auto
+    clip_preserve () -> void;
 
-    void
-    get_clip_extents (double& x1, double& y1, double& x2, double& y2) const;
+    auto
+    get_clip_extents (double& x1, double& y1, double& x2, double& y2) const
+        -> void;
 
-    void
-    copy_clip_rectangle_list (std::vector<Rectangle>& rectangles) const;
+    auto
+    copy_clip_rectangle_list (std::vector<Rectangle>& rectangles) const -> void;
 
-    void
+    auto
     select_font_face (const std::string& family,
                       ToyFontFace::Slant slant,
-                      ToyFontFace::Weight weight);
+                      ToyFontFace::Weight weight) -> void;
 
-    void
-    set_font_size (double size);
+    auto
+    set_font_size (double size) -> void;
 
-    void
-    set_font_matrix (const Matrix& matrix);
+    auto
+    set_font_matrix (const Matrix& matrix) -> void;
 
-    void
-    get_font_matrix (Matrix& matrix) const;
+    auto
+    get_font_matrix (Matrix& matrix) const -> void;
 
-    void
-    set_font_options (const FontOptions& options);
+    auto
+    set_font_options (const FontOptions& options) -> void;
 
-    void
-    get_font_options (FontOptions& options) const;
+    auto
+    get_font_options (FontOptions& options) const -> void;
 
-    void
-    set_scaled_font (const RefPtr<const ScaledFont>& scaled_font);
+    auto
+    set_scaled_font (const RefPtr<const ScaledFont>& scaled_font) -> void;
 
     auto
     get_scaled_font () -> RefPtr<ScaledFont>;
 
-    void
-    show_text (const std::string& utf8);
+    auto
+    show_text (const std::string& utf8) -> void;
 
-    void
-    show_glyphs (const std::vector<Glyph>& glyphs);
+    auto
+    show_glyphs (const std::vector<Glyph>& glyphs) -> void;
 
-    void
+    auto
     show_text_glyphs (const std::string& utf8,
                       const std::vector<Glyph>& glyphs,
                       const std::vector<TextCluster>& clusters,
-                      TextClusterFlags cluster_flags);
+                      TextClusterFlags cluster_flags) -> void;
 
     auto
     get_font_face () -> RefPtr<FontFace>;
     auto
     get_font_face () const -> RefPtr<const FontFace>;
 
-    void
-    get_font_extents (FontExtents& extents) const;
+    auto
+    get_font_extents (FontExtents& extents) const -> void;
 
-    void
-    set_font_face (const RefPtr<const FontFace>& font_face);
+    auto
+    set_font_face (const RefPtr<const FontFace>& font_face) -> void;
 
-    void
-    get_text_extents (const std::string& utf8, TextExtents& extents) const;
+    auto
+    get_text_extents (const std::string& utf8, TextExtents& extents) const
+        -> void;
 
-    void
+    auto
     get_glyph_extents (const std::vector<Glyph>& glyphs,
-                       TextExtents& extents) const;
+                       TextExtents& extents) const -> void;
 
-    void
-    text_path (const std::string& utf8);
+    auto
+    text_path (const std::string& utf8) -> void;
 
-    void
-    glyph_path (const std::vector<Glyph>& glyphs);
+    auto
+    glyph_path (const std::vector<Glyph>& glyphs) -> void;
 
     auto
     get_operator () const -> Operator;
@@ -363,8 +370,8 @@ namespace Cairo
     auto
     get_antialias () const -> Antialias;
 
-    void
-    get_current_point (double& x, double& y) const;
+    auto
+    get_current_point (double& x, double& y) const -> void;
 
     auto
     has_current_point () const -> bool;
@@ -384,11 +391,11 @@ namespace Cairo
     auto
     get_miter_limit () const -> double;
 
-    void
-    get_dash (std::vector<double>& dashes, double& offset) const;
+    auto
+    get_dash (std::vector<double>& dashes, double& offset) const -> void;
 
-    void
-    get_matrix (Matrix& matrix);
+    auto
+    get_matrix (Matrix& matrix) -> void;
 
     auto
     get_matrix () const -> Matrix;
@@ -401,26 +408,27 @@ namespace Cairo
     auto
     copy_path () const -> Path*;
 
-    void
-    get_path_extents (double& x1, double& y1, double& x2, double& y2) const;
+    auto
+    get_path_extents (double& x1, double& y1, double& x2, double& y2) const
+        -> void;
 
     auto
     copy_path_flat () const -> Path*;
 
-    void
-    append_path (const Path& path);
+    auto
+    append_path (const Path& path) -> void;
 
-    void
-    push_group ();
+    auto
+    push_group () -> void;
 
-    void
-    push_group_with_content (Content content);
+    auto
+    push_group_with_content (Content content) -> void;
 
     auto
     pop_group () -> RefPtr<Pattern>;
 
-    void
-    pop_group_to_source ();
+    auto
+    pop_group_to_source () -> void;
 
     auto
     get_group_target () -> RefPtr<Surface>;
@@ -450,10 +458,10 @@ namespace Cairo
       return cairo_status (const_cast<cairo_t*> (cobj ()));
     }
 
-    void
-    reference () const;
-    void
-    unreference () const;
+    auto
+    reference () const -> void;
+    auto
+    unreference () const -> void;
 #endif
 
   protected:

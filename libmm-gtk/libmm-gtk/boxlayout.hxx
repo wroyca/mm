@@ -87,20 +87,20 @@ namespace Gtk
     create (Orientation orientation = Orientation::HORIZONTAL)
         -> Glib::RefPtr<BoxLayout>;
 
-    void
-    set_homogeneous (bool homogeneous = true);
+    auto
+    set_homogeneous (bool homogeneous = true) -> void;
 
     auto
     get_homogeneous () const -> bool;
 
-    void
-    set_spacing (guint spacing);
+    auto
+    set_spacing (guint spacing) -> void;
 
     auto
     get_spacing () const -> guint;
 
-    void
-    set_baseline_position (BaselinePosition position);
+    auto
+    set_baseline_position (BaselinePosition position) -> void;
 
     auto
     get_baseline_position () const -> BaselinePosition;
@@ -133,9 +133,7 @@ namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkBoxLayout* object, bool take_copy = false) -> Glib::RefPtr<Gtk::BoxLayout>;
 } // namespace Glib
 

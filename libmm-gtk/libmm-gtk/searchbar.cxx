@@ -32,10 +32,10 @@ namespace Glib
 {
 
   auto
-  wrap (GtkSearchBar* object, const bool take_copy) -> Gtk::SearchBar*
+  wrap (GtkSearchBar* object, bool take_copy) -> Gtk::SearchBar*
   {
     return dynamic_cast<Gtk::SearchBar*> (
-        wrap_auto ((GObject*) object, take_copy));
+        Glib::wrap_auto ((GObject*) (object), take_copy));
   }
 
 } // namespace Glib
@@ -44,7 +44,7 @@ namespace Gtk
 {
 
   auto
-  SearchBar_Class::init () -> const Class&
+  SearchBar_Class::init () -> const Glib::Class&
   {
     if (!gtype_)
     {
@@ -66,28 +66,28 @@ namespace Gtk
   auto
   SearchBar_Class::wrap_new (GObject* o) -> Glib::ObjectBase*
   {
-    return manage (new SearchBar ((GtkSearchBar*) o));
+    return manage (new SearchBar ((GtkSearchBar*) (o)));
   }
 
   SearchBar::SearchBar (const Glib::ConstructParams& construct_params)
-    : Widget (construct_params)
+    : Gtk::Widget (construct_params)
   {
   }
 
   SearchBar::SearchBar (GtkSearchBar* castitem)
-    : Widget ((GtkWidget*) castitem)
+    : Gtk::Widget ((GtkWidget*) (castitem))
   {
   }
 
   SearchBar::SearchBar (SearchBar&& src) noexcept
-    : Widget (std::move (src))
+    : Gtk::Widget (std::move (src))
   {
   }
 
   auto
   SearchBar::operator= (SearchBar&& src) noexcept -> SearchBar&
   {
-    Widget::operator= (std::move (src));
+    Gtk::Widget::operator= (std::move (src));
     return *this;
   }
 
@@ -111,15 +111,15 @@ namespace Gtk
   }
 
   SearchBar::SearchBar ()
-    : ObjectBase (nullptr),
-      Widget (Glib::ConstructParams (searchbar_class_.init ()))
+    : Glib::ObjectBase (nullptr),
+      Gtk::Widget (Glib::ConstructParams (searchbar_class_.init ()))
   {
   }
 
   auto
   SearchBar::connect_entry (Editable& entry) -> void
   {
-    gtk_search_bar_connect_entry (gobj (), entry.gobj ());
+    gtk_search_bar_connect_entry (gobj (), (entry).gobj ());
   }
 
   auto
@@ -129,9 +129,9 @@ namespace Gtk
   }
 
   auto
-  SearchBar::set_search_mode (const bool search_mode) -> void
+  SearchBar::set_search_mode (bool search_mode) -> void
   {
-    gtk_search_bar_set_search_mode (gobj (), search_mode);
+    gtk_search_bar_set_search_mode (gobj (), static_cast<int> (search_mode));
   }
 
   auto
@@ -142,15 +142,15 @@ namespace Gtk
   }
 
   auto
-  SearchBar::set_show_close_button (const bool visible) -> void
+  SearchBar::set_show_close_button (bool visible) -> void
   {
-    gtk_search_bar_set_show_close_button (gobj (), visible);
+    gtk_search_bar_set_show_close_button (gobj (), static_cast<int> (visible));
   }
 
   auto
   SearchBar::set_key_capture_widget (Widget& widget) -> void
   {
-    gtk_search_bar_set_key_capture_widget (gobj (), widget.gobj ());
+    gtk_search_bar_set_key_capture_widget (gobj (), (widget).gobj ());
   }
 
   auto
@@ -168,7 +168,7 @@ namespace Gtk
   auto
   SearchBar::set_child (Widget& child) -> void
   {
-    gtk_search_bar_set_child (gobj (), child.gobj ());
+    gtk_search_bar_set_child (gobj (), (child).gobj ());
   }
 
   auto
@@ -186,49 +186,49 @@ namespace Gtk
   auto
   SearchBar::property_search_mode_enabled () -> Glib::PropertyProxy<bool>
   {
-    return {this, "search-mode-enabled"};
+    return Glib::PropertyProxy<bool> (this, "search-mode-enabled");
   }
 
   auto
   SearchBar::property_search_mode_enabled () const -> Glib::PropertyProxy_ReadOnly<bool>
   {
-    return {this, "search-mode-enabled"};
+    return Glib::PropertyProxy_ReadOnly<bool> (this, "search-mode-enabled");
   }
 
   auto
   SearchBar::property_show_close_button () -> Glib::PropertyProxy<bool>
   {
-    return {this, "show-close-button"};
+    return Glib::PropertyProxy<bool> (this, "show-close-button");
   }
 
   auto
   SearchBar::property_show_close_button () const -> Glib::PropertyProxy_ReadOnly<bool>
   {
-    return {this, "show-close-button"};
+    return Glib::PropertyProxy_ReadOnly<bool> (this, "show-close-button");
   }
 
   auto
   SearchBar::property_child () -> Glib::PropertyProxy<Widget*>
   {
-    return {this, "child"};
+    return Glib::PropertyProxy<Widget*> (this, "child");
   }
 
   auto
   SearchBar::property_child () const -> Glib::PropertyProxy_ReadOnly<Widget*>
   {
-    return {this, "child"};
+    return Glib::PropertyProxy_ReadOnly<Widget*> (this, "child");
   }
 
   auto
   SearchBar::property_key_capture_widget () -> Glib::PropertyProxy<Widget*>
   {
-    return {this, "key-capture-widget"};
+    return Glib::PropertyProxy<Widget*> (this, "key-capture-widget");
   }
 
   auto
   SearchBar::property_key_capture_widget () const -> Glib::PropertyProxy_ReadOnly<Widget*>
   {
-    return {this, "key-capture-widget"};
+    return Glib::PropertyProxy_ReadOnly<Widget*> (this, "key-capture-widget");
   }
 
 } // namespace Gtk

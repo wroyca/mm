@@ -32,17 +32,18 @@ namespace Cairo
     explicit Script (cairo_device_t* cobject, bool has_reference = false);
     ~Script () override;
 
-    void
-    add_from_recording_surface (const RefPtr<ScriptSurface>& recording_surface);
+    auto
+    add_from_recording_surface (const RefPtr<ScriptSurface>& recording_surface)
+        -> void;
 
     auto
     get_mode () const -> ScriptMode;
 
-    void
-    set_mode (ScriptMode new_mode);
+    auto
+    set_mode (ScriptMode new_mode) -> void;
 
-    void
-    write_comment (const std::string& comment);
+    auto
+    write_comment (const std::string& comment) -> void;
 
     static auto
     create (const std::string& filename) -> RefPtr<Script>;

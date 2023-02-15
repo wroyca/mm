@@ -81,17 +81,17 @@ namespace Gtk
   public:
     Fixed ();
 
-    void
-    put (Widget& widget, double x, double y);
+    auto
+    put (Widget& widget, double x, double y) -> void;
 
-    void
-    remove (Widget& widget);
+    auto
+    remove (Widget& widget) -> void;
 
-    void
-    move (Widget& widget, double x, double y);
+    auto
+    move (Widget& widget, double x, double y) -> void;
 
-    void
-    get_child_position (Widget& widget, double& x, double& y) const;
+    auto
+    get_child_position (Widget& widget, double& x, double& y) const -> void;
 
   public:
   public:
@@ -102,9 +102,7 @@ namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkFixed* object, bool take_copy = false) -> Gtk::Fixed*;
 } // namespace Glib
 

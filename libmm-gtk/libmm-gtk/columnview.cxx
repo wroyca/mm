@@ -10,15 +10,15 @@
 namespace
 {
 
-  auto
+  static auto
   ColumnView_signal_activate_callback (GtkColumnView* self,
-                                       const guint p0,
+                                       guint p0,
                                        void* data) -> void
   {
     using namespace Gtk;
     using SlotType = sigc::slot<void (guint)>;
 
-    const auto obj = dynamic_cast<ColumnView*> (
+    auto obj = dynamic_cast<ColumnView*> (
         Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
@@ -35,7 +35,7 @@ namespace
     }
   }
 
-  const Glib::SignalProxyInfo ColumnView_signal_activate_info = {
+  static const Glib::SignalProxyInfo ColumnView_signal_activate_info = {
       "activate",
       (GCallback) &ColumnView_signal_activate_callback,
       (GCallback) &ColumnView_signal_activate_callback};
@@ -46,10 +46,10 @@ namespace Glib
 {
 
   auto
-  wrap (GtkColumnView* object, const bool take_copy) -> Gtk::ColumnView*
+  wrap (GtkColumnView* object, bool take_copy) -> Gtk::ColumnView*
   {
     return dynamic_cast<Gtk::ColumnView*> (
-        wrap_auto ((GObject*) object, take_copy));
+        Glib::wrap_auto ((GObject*) (object), take_copy));
   }
 
 } // namespace Glib
@@ -58,7 +58,7 @@ namespace Gtk
 {
 
   auto
-  ColumnView_Class::init () -> const Class&
+  ColumnView_Class::init () -> const Glib::Class&
   {
     if (!gtype_)
     {
@@ -82,21 +82,21 @@ namespace Gtk
   auto
   ColumnView_Class::wrap_new (GObject* o) -> Glib::ObjectBase*
   {
-    return manage (new ColumnView ((GtkColumnView*) o));
+    return manage (new ColumnView ((GtkColumnView*) (o)));
   }
 
   ColumnView::ColumnView (const Glib::ConstructParams& construct_params)
-    : Widget (construct_params)
+    : Gtk::Widget (construct_params)
   {
   }
 
   ColumnView::ColumnView (GtkColumnView* castitem)
-    : Widget ((GtkWidget*) castitem)
+    : Gtk::Widget ((GtkWidget*) (castitem))
   {
   }
 
   ColumnView::ColumnView (ColumnView&& src) noexcept
-    : Widget (std::move (src)),
+    : Gtk::Widget (std::move (src)),
       Scrollable (std::move (src))
   {
   }
@@ -104,7 +104,7 @@ namespace Gtk
   auto
   ColumnView::operator= (ColumnView&& src) noexcept -> ColumnView&
   {
-    Widget::operator= (std::move (src));
+    Gtk::Widget::operator= (std::move (src));
     Scrollable::operator= (std::move (src));
     return *this;
   }
@@ -129,11 +129,11 @@ namespace Gtk
   }
 
   ColumnView::ColumnView (const Glib::RefPtr<SelectionModel>& model)
-    : ObjectBase (nullptr),
-      Widget (Glib::ConstructParams (columnview_class_.init (),
-                                     "model",
-                                     Glib::unwrap (model),
-                                     nullptr))
+    : Glib::ObjectBase (nullptr),
+      Gtk::Widget (Glib::ConstructParams (columnview_class_.init (),
+                                          "model",
+                                          Glib::unwrap (model),
+                                          nullptr))
   {
   }
 
@@ -165,7 +165,7 @@ namespace Gtk
   }
 
   auto
-  ColumnView::insert_column (const guint position,
+  ColumnView::insert_column (guint position,
                              const Glib::RefPtr<ColumnViewColumn>& column) -> void
   {
     gtk_column_view_insert_column (gobj (), position, Glib::unwrap (column));
@@ -200,9 +200,11 @@ namespace Gtk
   }
 
   auto
-  ColumnView::set_show_row_separators (const bool show_separators) -> void
+  ColumnView::set_show_row_separators (bool show_separators) -> void
   {
-    gtk_column_view_set_show_row_separators (gobj (), show_separators);
+    gtk_column_view_set_show_row_separators (
+        gobj (),
+        static_cast<int> (show_separators));
   }
 
   auto
@@ -213,9 +215,11 @@ namespace Gtk
   }
 
   auto
-  ColumnView::set_show_column_separators (const bool show_separators) -> void
+  ColumnView::set_show_column_separators (bool show_separators) -> void
   {
-    gtk_column_view_set_show_column_separators (gobj (), show_separators);
+    gtk_column_view_set_show_column_separators (
+        gobj (),
+        static_cast<int> (show_separators));
   }
 
   auto
@@ -243,9 +247,11 @@ namespace Gtk
   }
 
   auto
-  ColumnView::set_single_click_activate (const bool single_click_activate) -> void
+  ColumnView::set_single_click_activate (bool single_click_activate) -> void
   {
-    gtk_column_view_set_single_click_activate (gobj (), single_click_activate);
+    gtk_column_view_set_single_click_activate (
+        gobj (),
+        static_cast<int> (single_click_activate));
   }
 
   auto
@@ -256,9 +262,9 @@ namespace Gtk
   }
 
   auto
-  ColumnView::set_reorderable (const bool reorderable) -> void
+  ColumnView::set_reorderable (bool reorderable) -> void
   {
-    gtk_column_view_set_reorderable (gobj (), reorderable);
+    gtk_column_view_set_reorderable (gobj (), static_cast<int> (reorderable));
   }
 
   auto
@@ -269,9 +275,11 @@ namespace Gtk
   }
 
   auto
-  ColumnView::set_enable_rubberband (const bool enable_rubberband) -> void
+  ColumnView::set_enable_rubberband (bool enable_rubberband) -> void
   {
-    gtk_column_view_set_enable_rubberband (gobj (), enable_rubberband);
+    gtk_column_view_set_enable_rubberband (
+        gobj (),
+        static_cast<int> (enable_rubberband));
   }
 
   auto
@@ -284,7 +292,8 @@ namespace Gtk
   auto
   ColumnView::signal_activate () -> Glib::SignalProxy<void (guint)>
   {
-    return {this, &ColumnView_signal_activate_info};
+    return Glib::SignalProxy<void (guint)> (this,
+                                            &ColumnView_signal_activate_info);
   }
 
   static_assert (
@@ -296,7 +305,9 @@ namespace Gtk
   auto
   ColumnView::property_columns () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gio::ListModel>>
   {
-    return {this, "columns"};
+    return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gio::ListModel>> (
+        this,
+        "columns");
   }
 
   static_assert (
@@ -308,37 +319,38 @@ namespace Gtk
   auto
   ColumnView::property_model () -> Glib::PropertyProxy<Glib::RefPtr<SelectionModel>>
   {
-    return {this, "model"};
+    return Glib::PropertyProxy<Glib::RefPtr<SelectionModel>> (this, "model");
   }
 
   auto
   ColumnView::property_model () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<SelectionModel>>
   {
-    return {this, "model"};
+    return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<SelectionModel>> (this,
+                                                                       "model");
   }
 
   auto
   ColumnView::property_show_row_separators () -> Glib::PropertyProxy<bool>
   {
-    return {this, "show-row-separators"};
+    return Glib::PropertyProxy<bool> (this, "show-row-separators");
   }
 
   auto
   ColumnView::property_show_row_separators () const -> Glib::PropertyProxy_ReadOnly<bool>
   {
-    return {this, "show-row-separators"};
+    return Glib::PropertyProxy_ReadOnly<bool> (this, "show-row-separators");
   }
 
   auto
   ColumnView::property_show_column_separators () -> Glib::PropertyProxy<bool>
   {
-    return {this, "show-column-separators"};
+    return Glib::PropertyProxy<bool> (this, "show-column-separators");
   }
 
   auto
   ColumnView::property_show_column_separators () const -> Glib::PropertyProxy_ReadOnly<bool>
   {
-    return {this, "show-column-separators"};
+    return Glib::PropertyProxy_ReadOnly<bool> (this, "show-column-separators");
   }
 
   static_assert (
@@ -350,43 +362,43 @@ namespace Gtk
   auto
   ColumnView::property_sorter () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Sorter>>
   {
-    return {this, "sorter"};
+    return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Sorter>> (this, "sorter");
   }
 
   auto
   ColumnView::property_single_click_activate () -> Glib::PropertyProxy<bool>
   {
-    return {this, "single-click-activate"};
+    return Glib::PropertyProxy<bool> (this, "single-click-activate");
   }
 
   auto
   ColumnView::property_single_click_activate () const -> Glib::PropertyProxy_ReadOnly<bool>
   {
-    return {this, "single-click-activate"};
+    return Glib::PropertyProxy_ReadOnly<bool> (this, "single-click-activate");
   }
 
   auto
   ColumnView::property_reorderable () -> Glib::PropertyProxy<bool>
   {
-    return {this, "reorderable"};
+    return Glib::PropertyProxy<bool> (this, "reorderable");
   }
 
   auto
   ColumnView::property_reorderable () const -> Glib::PropertyProxy_ReadOnly<bool>
   {
-    return {this, "reorderable"};
+    return Glib::PropertyProxy_ReadOnly<bool> (this, "reorderable");
   }
 
   auto
   ColumnView::property_enable_rubberband () -> Glib::PropertyProxy<bool>
   {
-    return {this, "enable-rubberband"};
+    return Glib::PropertyProxy<bool> (this, "enable-rubberband");
   }
 
   auto
   ColumnView::property_enable_rubberband () const -> Glib::PropertyProxy_ReadOnly<bool>
   {
-    return {this, "enable-rubberband"};
+    return Glib::PropertyProxy_ReadOnly<bool> (this, "enable-rubberband");
   }
 
 } // namespace Gtk

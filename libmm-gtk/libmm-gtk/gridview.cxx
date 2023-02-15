@@ -10,15 +10,13 @@
 namespace
 {
 
-  auto
-  GridView_signal_activate_callback (GtkGridView* self,
-                                     const guint p0,
-                                     void* data) -> void
+  static auto
+  GridView_signal_activate_callback (GtkGridView* self, guint p0, void* data) -> void
   {
     using namespace Gtk;
     using SlotType = sigc::slot<void (guint)>;
 
-    const auto obj = dynamic_cast<GridView*> (
+    auto obj = dynamic_cast<GridView*> (
         Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
@@ -35,7 +33,7 @@ namespace
     }
   }
 
-  const Glib::SignalProxyInfo GridView_signal_activate_info = {
+  static const Glib::SignalProxyInfo GridView_signal_activate_info = {
       "activate",
       (GCallback) &GridView_signal_activate_callback,
       (GCallback) &GridView_signal_activate_callback};
@@ -46,10 +44,10 @@ namespace Glib
 {
 
   auto
-  wrap (GtkGridView* object, const bool take_copy) -> Gtk::GridView*
+  wrap (GtkGridView* object, bool take_copy) -> Gtk::GridView*
   {
     return dynamic_cast<Gtk::GridView*> (
-        wrap_auto ((GObject*) object, take_copy));
+        Glib::wrap_auto ((GObject*) (object), take_copy));
   }
 
 } // namespace Glib
@@ -58,7 +56,7 @@ namespace Gtk
 {
 
   auto
-  GridView_Class::init () -> const Class&
+  GridView_Class::init () -> const Glib::Class&
   {
     if (!gtype_)
     {
@@ -80,7 +78,7 @@ namespace Gtk
   auto
   GridView_Class::wrap_new (GObject* o) -> Glib::ObjectBase*
   {
-    return manage (new GridView ((GtkGridView*) o));
+    return manage (new GridView ((GtkGridView*) (o)));
   }
 
   GridView::GridView (const Glib::ConstructParams& construct_params)
@@ -89,7 +87,7 @@ namespace Gtk
   }
 
   GridView::GridView (GtkGridView* castitem)
-    : ListBase ((GtkListBase*) castitem)
+    : ListBase ((GtkListBase*) (castitem))
   {
   }
 
@@ -126,7 +124,7 @@ namespace Gtk
 
   GridView::GridView (const Glib::RefPtr<SelectionModel>& model,
                       const Glib::RefPtr<ListItemFactory>& factory)
-    : ObjectBase (nullptr),
+    : Glib::ObjectBase (nullptr),
       ListBase (Glib::ConstructParams (gridview_class_.init (),
                                        "model",
                                        Glib::unwrap (model),
@@ -185,7 +183,7 @@ namespace Gtk
   }
 
   auto
-  GridView::set_min_columns (const guint min_columns) -> void
+  GridView::set_min_columns (guint min_columns) -> void
   {
     gtk_grid_view_set_min_columns (gobj (), min_columns);
   }
@@ -197,15 +195,16 @@ namespace Gtk
   }
 
   auto
-  GridView::set_max_columns (const guint max_columns) -> void
+  GridView::set_max_columns (guint max_columns) -> void
   {
     gtk_grid_view_set_max_columns (gobj (), max_columns);
   }
 
   auto
-  GridView::set_enable_rubberband (const bool enable_rubberband) -> void
+  GridView::set_enable_rubberband (bool enable_rubberband) -> void
   {
-    gtk_grid_view_set_enable_rubberband (gobj (), enable_rubberband);
+    gtk_grid_view_set_enable_rubberband (gobj (),
+                                         static_cast<int> (enable_rubberband));
   }
 
   auto
@@ -216,9 +215,11 @@ namespace Gtk
   }
 
   auto
-  GridView::set_single_click_activate (const bool single_click_activate) -> void
+  GridView::set_single_click_activate (bool single_click_activate) -> void
   {
-    gtk_grid_view_set_single_click_activate (gobj (), single_click_activate);
+    gtk_grid_view_set_single_click_activate (
+        gobj (),
+        static_cast<int> (single_click_activate));
   }
 
   auto
@@ -231,7 +232,8 @@ namespace Gtk
   auto
   GridView::signal_activate () -> Glib::SignalProxy<void (guint)>
   {
-    return {this, &GridView_signal_activate_info};
+    return Glib::SignalProxy<void (guint)> (this,
+                                            &GridView_signal_activate_info);
   }
 
   static_assert (
@@ -243,37 +245,39 @@ namespace Gtk
   auto
   GridView::property_factory () -> Glib::PropertyProxy<Glib::RefPtr<ListItemFactory>>
   {
-    return {this, "factory"};
+    return Glib::PropertyProxy<Glib::RefPtr<ListItemFactory>> (this, "factory");
   }
 
   auto
   GridView::property_factory () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<ListItemFactory>>
   {
-    return {this, "factory"};
+    return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<ListItemFactory>> (
+        this,
+        "factory");
   }
 
   auto
   GridView::property_max_columns () -> Glib::PropertyProxy<guint>
   {
-    return {this, "max-columns"};
+    return Glib::PropertyProxy<guint> (this, "max-columns");
   }
 
   auto
   GridView::property_max_columns () const -> Glib::PropertyProxy_ReadOnly<guint>
   {
-    return {this, "max-columns"};
+    return Glib::PropertyProxy_ReadOnly<guint> (this, "max-columns");
   }
 
   auto
   GridView::property_min_columns () -> Glib::PropertyProxy<guint>
   {
-    return {this, "min-columns"};
+    return Glib::PropertyProxy<guint> (this, "min-columns");
   }
 
   auto
   GridView::property_min_columns () const -> Glib::PropertyProxy_ReadOnly<guint>
   {
-    return {this, "min-columns"};
+    return Glib::PropertyProxy_ReadOnly<guint> (this, "min-columns");
   }
 
   static_assert (
@@ -285,37 +289,38 @@ namespace Gtk
   auto
   GridView::property_model () -> Glib::PropertyProxy<Glib::RefPtr<SelectionModel>>
   {
-    return {this, "model"};
+    return Glib::PropertyProxy<Glib::RefPtr<SelectionModel>> (this, "model");
   }
 
   auto
   GridView::property_model () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<SelectionModel>>
   {
-    return {this, "model"};
+    return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<SelectionModel>> (this,
+                                                                       "model");
   }
 
   auto
   GridView::property_single_click_activate () -> Glib::PropertyProxy<bool>
   {
-    return {this, "single-click-activate"};
+    return Glib::PropertyProxy<bool> (this, "single-click-activate");
   }
 
   auto
   GridView::property_single_click_activate () const -> Glib::PropertyProxy_ReadOnly<bool>
   {
-    return {this, "single-click-activate"};
+    return Glib::PropertyProxy_ReadOnly<bool> (this, "single-click-activate");
   }
 
   auto
   GridView::property_enable_rubberband () -> Glib::PropertyProxy<bool>
   {
-    return {this, "enable-rubberband"};
+    return Glib::PropertyProxy<bool> (this, "enable-rubberband");
   }
 
   auto
   GridView::property_enable_rubberband () const -> Glib::PropertyProxy_ReadOnly<bool>
   {
-    return {this, "enable-rubberband"};
+    return Glib::PropertyProxy_ReadOnly<bool> (this, "enable-rubberband");
   }
 
 } // namespace Gtk

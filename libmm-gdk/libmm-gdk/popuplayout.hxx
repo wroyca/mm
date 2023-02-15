@@ -104,11 +104,11 @@ namespace Gdk
     using BaseObjectType = GdkPopupLayout;
 #endif
 
-    void
-    reference () const;
+    auto
+    reference () const -> void;
 
-    void
-    unreference () const;
+    auto
+    unreference () const -> void;
 
     auto
     gobj () -> GdkPopupLayout*;
@@ -126,8 +126,8 @@ namespace Gdk
     operator= (const PopupLayout&) -> PopupLayout& = delete;
 
   protected:
-    void
-    operator delete (void*, std::size_t);
+    auto
+    operator delete (void*, std::size_t) -> void;
 
   private:
   public:
@@ -142,53 +142,52 @@ namespace Gdk
     auto
     equal (const Glib::RefPtr<const PopupLayout>& other) const -> bool;
 
-    void
-    set_anchor_rect (const Rectangle& anchor_rect);
+    auto
+    set_anchor_rect (const Rectangle& anchor_rect) -> void;
 
     auto
     get_anchor_rect () const -> Rectangle;
 
-    void
-    set_rect_anchor (Gravity anchor);
+    auto
+    set_rect_anchor (Gravity anchor) -> void;
 
     auto
     get_rect_anchor () const -> Gravity;
 
-    void
-    set_surface_anchor (Gravity anchor);
+    auto
+    set_surface_anchor (Gravity anchor) -> void;
 
     auto
     get_surface_anchor () const -> Gravity;
 
-    void
-    set_anchor_hints (AnchorHints anchor_hints);
+    auto
+    set_anchor_hints (AnchorHints anchor_hints) -> void;
 
     auto
     get_anchor_hints () const -> AnchorHints;
 
-    void
-    set_offset (int dx, int dy);
+    auto
+    set_offset (int dx, int dy) -> void;
 
-    void
-    get_offset (int& dx, int& dy);
+    auto
+    get_offset (int& dx, int& dy) -> void;
 
-    void
-    set_shadow_width (int left, int right, int top, int bottom);
+    auto
+    set_shadow_width (int left, int right, int top, int bottom) -> void;
 
-    void
-    set_shadow_width (int width);
+    auto
+    set_shadow_width (int width) -> void;
 
-    void
-    get_shadow_width (int& left, int& right, int& top, int& bottom) const;
+    auto
+    get_shadow_width (int& left, int& right, int& top, int& bottom) const
+        -> void;
   };
 
 } // namespace Gdk
 
 namespace Glib
 {
-
-  GDKMM_API
-  auto
+  GDKMM_API auto
   wrap (GdkPopupLayout* object, bool take_copy = false) -> Glib::RefPtr<Gdk::PopupLayout>;
 
 } // namespace Glib

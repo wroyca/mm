@@ -99,17 +99,17 @@ namespace Gtk
     static auto
     create (Mode mode) -> Glib::RefPtr<SizeGroup>;
 
-    void
-    set_mode (Mode mode);
+    auto
+    set_mode (Mode mode) -> void;
 
     auto
     get_mode () const -> Mode;
 
-    void
-    add_widget (Widget& widget);
+    auto
+    add_widget (Widget& widget) -> void;
 
-    void
-    remove_widget (Widget& widget);
+    auto
+    remove_widget (Widget& widget) -> void;
 
     auto
     get_widgets () -> std::vector<Widget*>;
@@ -148,9 +148,7 @@ namespace Glib
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkSizeGroup* object, bool take_copy = false) -> Glib::RefPtr<Gtk::SizeGroup>;
 } // namespace Glib
 

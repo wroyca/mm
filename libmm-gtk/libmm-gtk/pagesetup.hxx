@@ -117,8 +117,8 @@ namespace Gtk
     auto
     get_orientation () const -> PageOrientation;
 
-    void
-    set_orientation (PageOrientation orientation);
+    auto
+    set_orientation (PageOrientation orientation) -> void;
 
     auto
     get_paper_size () -> PaperSize;
@@ -126,35 +126,35 @@ namespace Gtk
     auto
     get_paper_size () const -> const PaperSize;
 
-    void
-    set_paper_size (const PaperSize& size);
+    auto
+    set_paper_size (const PaperSize& size) -> void;
 
     auto
     get_top_margin (Unit unit) const -> double;
 
-    void
-    set_top_margin (double margin, Unit unit);
+    auto
+    set_top_margin (double margin, Unit unit) -> void;
 
     auto
     get_bottom_margin (Unit unit) const -> double;
 
-    void
-    set_bottom_margin (double margin, Unit unit);
+    auto
+    set_bottom_margin (double margin, Unit unit) -> void;
 
     auto
     get_left_margin (Unit unit) const -> double;
 
-    void
-    set_left_margin (double margin, Unit unit);
+    auto
+    set_left_margin (double margin, Unit unit) -> void;
 
     auto
     get_right_margin (Unit unit) const -> double;
 
-    void
-    set_right_margin (double margin, Unit unit);
+    auto
+    set_right_margin (double margin, Unit unit) -> void;
 
-    void
-    set_paper_size_and_default_margins (const PaperSize& size);
+    auto
+    set_paper_size_and_default_margins (const PaperSize& size) -> void;
 
     auto
     get_paper_width (Unit unit) const -> double;
@@ -171,12 +171,13 @@ namespace Gtk
     auto
     save_to_file (const std::string& file_name) const -> bool;
 
-    void
+    auto
     save_to_key_file (const Glib::RefPtr<Glib::KeyFile>& key_file,
-                      const Glib::ustring& group_name) const;
+                      const Glib::ustring& group_name) const -> void;
 
-    void
-    save_to_key_file (const Glib::RefPtr<Glib::KeyFile>& key_file) const;
+    auto
+    save_to_key_file (const Glib::RefPtr<Glib::KeyFile>& key_file) const
+        -> void;
 
   public:
   public:
@@ -187,9 +188,7 @@ namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkPageSetup* object, bool take_copy = false) -> Glib::RefPtr<Gtk::PageSetup>;
 } // namespace Glib
 

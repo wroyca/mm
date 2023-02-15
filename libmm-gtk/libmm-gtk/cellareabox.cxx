@@ -1,11 +1,16 @@
 // SPDX-License-Identifier: LGPL-2.1-or-later
 
-#include <libmm-glib/mm-glib.hxx>
+#undef GTK_DISABLE_DEPRECATED
+#define GDK_DISABLE_DEPRECATION_WARNINGS 1
 
-#include <libmm-gtk/cellareabox.hxx>
-#include <libmm-gtk/cellareabox_p.hxx>
+#ifndef GTKMM_DISABLE_DEPRECATED
 
-#include <gtk/gtk.h>
+  #include <libmm-glib/mm-glib.hxx>
+
+  #include <libmm-gtk/cellareabox.hxx>
+  #include <libmm-gtk/cellareabox_p.hxx>
+
+  #include <gtk/gtk.h>
 
 namespace Gtk
 {
@@ -20,11 +25,11 @@ namespace Glib
 {
 
   auto
-  wrap (GtkCellAreaBox* object, const bool take_copy) -> RefPtr<Gtk::CellAreaBox>
+  wrap (GtkCellAreaBox* object, bool take_copy) -> Glib::RefPtr<Gtk::CellAreaBox>
   {
     return Glib::make_refptr_for_instance<Gtk::CellAreaBox> (
         dynamic_cast<Gtk::CellAreaBox*> (
-            wrap_auto ((GObject*) object, take_copy)));
+            Glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
 } // namespace Glib
@@ -33,7 +38,7 @@ namespace Gtk
 {
 
   auto
-  CellAreaBox_Class::init () -> const Class&
+  CellAreaBox_Class::init () -> const Glib::Class&
   {
     if (!gtype_)
     {
@@ -73,7 +78,7 @@ namespace Gtk
   }
 
   CellAreaBox::CellAreaBox (GtkCellAreaBox* castitem)
-    : CellArea ((GtkCellArea*) castitem)
+    : CellArea ((GtkCellArea*) (castitem))
   {
   }
 
@@ -91,7 +96,7 @@ namespace Gtk
     return *this;
   }
 
-  CellAreaBox::~CellAreaBox () noexcept = default;
+  CellAreaBox::~CellAreaBox () noexcept {}
 
   CellAreaBox::CppClassType CellAreaBox::cellareabox_class_;
 
@@ -108,7 +113,7 @@ namespace Gtk
   }
 
   CellAreaBox::CellAreaBox ()
-    : ObjectBase (nullptr),
+    : Glib::ObjectBase (nullptr),
       CellArea (Glib::ConstructParams (cellareabox_class_.init ()))
   {
   }
@@ -121,28 +126,28 @@ namespace Gtk
 
   auto
   CellAreaBox::pack_start (CellRenderer& renderer,
-                           const bool expand,
-                           const bool align,
-                           const bool fixed) -> void
+                           bool expand,
+                           bool align,
+                           bool fixed) -> void
   {
     gtk_cell_area_box_pack_start (gobj (),
-                                  renderer.gobj (),
-                                  expand,
-                                  align,
-                                  fixed);
+                                  (renderer).gobj (),
+                                  static_cast<int> (expand),
+                                  static_cast<int> (align),
+                                  static_cast<int> (fixed));
   }
 
   auto
   CellAreaBox::pack_end (CellRenderer& renderer,
-                         const bool expand,
-                         const bool align,
-                         const bool fixed) -> void
+                         bool expand,
+                         bool align,
+                         bool fixed) -> void
   {
     gtk_cell_area_box_pack_end (gobj (),
-                                renderer.gobj (),
-                                expand,
-                                align,
-                                fixed);
+                                (renderer).gobj (),
+                                static_cast<int> (expand),
+                                static_cast<int> (align),
+                                static_cast<int> (fixed));
   }
 
   auto
@@ -153,7 +158,7 @@ namespace Gtk
   }
 
   auto
-  CellAreaBox::set_spacing (const int spacing) -> void
+  CellAreaBox::set_spacing (int spacing) -> void
   {
     gtk_cell_area_box_set_spacing (gobj (), spacing);
   }
@@ -161,13 +166,15 @@ namespace Gtk
   auto
   CellAreaBox::property_spacing () -> Glib::PropertyProxy<int>
   {
-    return {this, "spacing"};
+    return Glib::PropertyProxy<int> (this, "spacing");
   }
 
   auto
   CellAreaBox::property_spacing () const -> Glib::PropertyProxy_ReadOnly<int>
   {
-    return {this, "spacing"};
+    return Glib::PropertyProxy_ReadOnly<int> (this, "spacing");
   }
 
 } // namespace Gtk
+
+#endif

@@ -12,21 +12,22 @@ using Flags = Gtk::EventControllerScroll::Flags;
 namespace
 {
 
-  const Glib::SignalProxyInfo EventControllerScroll_signal_scroll_begin_info = {
-      "scroll-begin",
-      (GCallback) &Glib::SignalProxyNormal::slot0_void_callback,
-      (GCallback) &Glib::SignalProxyNormal::slot0_void_callback};
+  static const Glib::SignalProxyInfo
+      EventControllerScroll_signal_scroll_begin_info = {
+          "scroll-begin",
+          (GCallback) &Glib::SignalProxyNormal::slot0_void_callback,
+          (GCallback) &Glib::SignalProxyNormal::slot0_void_callback};
 
-  auto
+  static auto
   EventControllerScroll_signal_scroll_callback (GtkEventControllerScroll* self,
-                                                const gdouble p0,
-                                                const gdouble p1,
+                                                gdouble p0,
+                                                gdouble p1,
                                                 void* data) -> gboolean
   {
     using namespace Gtk;
     using SlotType = sigc::slot<bool (double, double)>;
 
-    const auto obj = dynamic_cast<EventControllerScroll*> (
+    auto obj = dynamic_cast<EventControllerScroll*> (
         Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
@@ -34,7 +35,7 @@ namespace
       try
       {
         if (const auto slot = Glib::SignalProxyNormal::data_to_slot (data))
-          return (*static_cast<SlotType*> (slot)) (p0, p1);
+          return static_cast<int> ((*static_cast<SlotType*> (slot)) (p0, p1));
       }
       catch (...)
       {
@@ -46,17 +47,17 @@ namespace
     return RType ();
   }
 
-  auto
+  static auto
   EventControllerScroll_signal_scroll_notify_callback (
       GtkEventControllerScroll* self,
-      const gdouble p0,
-      const gdouble p1,
+      gdouble p0,
+      gdouble p1,
       void* data) -> gboolean
   {
     using namespace Gtk;
     using SlotType = sigc::slot<void (double, double)>;
 
-    const auto obj = dynamic_cast<EventControllerScroll*> (
+    auto obj = dynamic_cast<EventControllerScroll*> (
         Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
@@ -76,27 +77,28 @@ namespace
     return RType ();
   }
 
-  const Glib::SignalProxyInfo EventControllerScroll_signal_scroll_info = {
-      "scroll",
-      (GCallback) &EventControllerScroll_signal_scroll_callback,
-      (GCallback) &EventControllerScroll_signal_scroll_notify_callback};
+  static const Glib::SignalProxyInfo EventControllerScroll_signal_scroll_info =
+      {"scroll",
+       (GCallback) &EventControllerScroll_signal_scroll_callback,
+       (GCallback) &EventControllerScroll_signal_scroll_notify_callback};
 
-  const Glib::SignalProxyInfo EventControllerScroll_signal_scroll_end_info = {
-      "scroll-end",
-      (GCallback) &Glib::SignalProxyNormal::slot0_void_callback,
-      (GCallback) &Glib::SignalProxyNormal::slot0_void_callback};
+  static const Glib::SignalProxyInfo
+      EventControllerScroll_signal_scroll_end_info = {
+          "scroll-end",
+          (GCallback) &Glib::SignalProxyNormal::slot0_void_callback,
+          (GCallback) &Glib::SignalProxyNormal::slot0_void_callback};
 
-  auto
+  static auto
   EventControllerScroll_signal_decelerate_callback (
       GtkEventControllerScroll* self,
-      const gdouble p0,
-      const gdouble p1,
+      gdouble p0,
+      gdouble p1,
       void* data) -> void
   {
     using namespace Gtk;
     using SlotType = sigc::slot<void (double, double)>;
 
-    const auto obj = dynamic_cast<EventControllerScroll*> (
+    auto obj = dynamic_cast<EventControllerScroll*> (
         Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
@@ -113,10 +115,11 @@ namespace
     }
   }
 
-  const Glib::SignalProxyInfo EventControllerScroll_signal_decelerate_info = {
-      "decelerate",
-      (GCallback) &EventControllerScroll_signal_decelerate_callback,
-      (GCallback) &EventControllerScroll_signal_decelerate_callback};
+  static const Glib::SignalProxyInfo
+      EventControllerScroll_signal_decelerate_info = {
+          "decelerate",
+          (GCallback) &EventControllerScroll_signal_decelerate_callback,
+          (GCallback) &EventControllerScroll_signal_decelerate_callback};
 
 } // namespace
 
@@ -130,11 +133,11 @@ namespace Glib
 {
 
   auto
-  wrap (GtkEventControllerScroll* object, const bool take_copy) -> RefPtr<Gtk::EventControllerScroll>
+  wrap (GtkEventControllerScroll* object, bool take_copy) -> Glib::RefPtr<Gtk::EventControllerScroll>
   {
     return Glib::make_refptr_for_instance<Gtk::EventControllerScroll> (
         dynamic_cast<Gtk::EventControllerScroll*> (
-            wrap_auto ((GObject*) object, take_copy)));
+            Glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
 } // namespace Glib
@@ -143,7 +146,7 @@ namespace Gtk
 {
 
   auto
-  EventControllerScroll_Class::init () -> const Class&
+  EventControllerScroll_Class::init () -> const Glib::Class&
   {
     if (!gtype_)
     {
@@ -184,7 +187,7 @@ namespace Gtk
 
   EventControllerScroll::EventControllerScroll (
       GtkEventControllerScroll* castitem)
-    : EventController ((GtkEventController*) castitem)
+    : EventController ((GtkEventController*) (castitem))
   {
   }
 
@@ -201,7 +204,7 @@ namespace Gtk
     return *this;
   }
 
-  EventControllerScroll::~EventControllerScroll () noexcept = default;
+  EventControllerScroll::~EventControllerScroll () noexcept {}
 
   EventControllerScroll::CppClassType
       EventControllerScroll::eventcontrollerscroll_class_;
@@ -219,7 +222,7 @@ namespace Gtk
   }
 
   EventControllerScroll::EventControllerScroll ()
-    : ObjectBase (nullptr),
+    : Glib::ObjectBase (nullptr),
       EventController (
           Glib::ConstructParams (eventcontrollerscroll_class_.init ()))
   {
@@ -257,25 +260,33 @@ namespace Gtk
   auto
   EventControllerScroll::signal_scroll_begin () -> Glib::SignalProxy<void ()>
   {
-    return {this, &EventControllerScroll_signal_scroll_begin_info};
+    return Glib::SignalProxy<void ()> (
+        this,
+        &EventControllerScroll_signal_scroll_begin_info);
   }
 
   auto
   EventControllerScroll::signal_scroll () -> Glib::SignalProxy<bool (double, double)>
   {
-    return {this, &EventControllerScroll_signal_scroll_info};
+    return Glib::SignalProxy<bool (double, double)> (
+        this,
+        &EventControllerScroll_signal_scroll_info);
   }
 
   auto
   EventControllerScroll::signal_scroll_end () -> Glib::SignalProxy<void ()>
   {
-    return {this, &EventControllerScroll_signal_scroll_end_info};
+    return Glib::SignalProxy<void ()> (
+        this,
+        &EventControllerScroll_signal_scroll_end_info);
   }
 
   auto
   EventControllerScroll::signal_decelerate () -> Glib::SignalProxy<void (double, double)>
   {
-    return {this, &EventControllerScroll_signal_decelerate_info};
+    return Glib::SignalProxy<void (double, double)> (
+        this,
+        &EventControllerScroll_signal_decelerate_info);
   }
 
   static_assert (
@@ -286,13 +297,13 @@ namespace Gtk
   auto
   EventControllerScroll::property_flags () -> Glib::PropertyProxy<Flags>
   {
-    return {this, "flags"};
+    return Glib::PropertyProxy<Flags> (this, "flags");
   }
 
   auto
   EventControllerScroll::property_flags () const -> Glib::PropertyProxy_ReadOnly<Flags>
   {
-    return {this, "flags"};
+    return Glib::PropertyProxy_ReadOnly<Flags> (this, "flags");
   }
 
 } // namespace Gtk

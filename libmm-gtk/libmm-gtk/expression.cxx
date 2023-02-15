@@ -7,22 +7,27 @@
 
 #include <libmm-gtk/expression.hxx>
 
-namespace Gtk::Expression_Private
+namespace Gtk
 {
 
-  auto
-  watch_callback (const gpointer data) -> void
+  namespace Expression_Private
   {
-    const auto slot = static_cast<sigc::slot<void ()>*> (data);
-    (*slot) ();
-  }
 
-  auto
-  closure_callback_func () -> void
-  {
-  }
+    auto
+    watch_callback (gpointer data) -> void
+    {
+      auto slot = static_cast<sigc::slot<void ()>*> (data);
+      (*slot) ();
+    }
 
-} // namespace Gtk::Expression_Private
+    auto
+    closure_callback_func () -> void
+    {
+    }
+
+  } // namespace Expression_Private
+
+} // namespace Gtk
 
 namespace
 {
@@ -32,7 +37,7 @@ namespace Glib
 {
 
   auto
-  wrap (GtkExpression* object, const bool take_copy) -> RefPtr<Gtk::ExpressionBase>
+  wrap (GtkExpression* object, bool take_copy) -> Glib::RefPtr<Gtk::ExpressionBase>
   {
     if (take_copy && object)
       gtk_expression_ref (object);

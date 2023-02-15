@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: LGPL-2.1-or-later
 
 #ifndef _GIOMM_FILEIOSTREAM_H
 #define _GIOMM_FILEIOSTREAM_H
@@ -89,16 +90,16 @@ namespace Gio
     auto
     query_info (const std::string& attributes = "*") -> Glib::RefPtr<FileInfo>;
 
-    void
+    auto
     query_info_async (const SlotAsyncReady& slot,
                       const Glib::RefPtr<Cancellable>& cancellable,
                       const std::string& attributes = "*",
-                      int io_priority = Glib::PRIORITY_DEFAULT);
+                      int io_priority = Glib::PRIORITY_DEFAULT) -> void;
 
-    void
+    auto
     query_info_async (const SlotAsyncReady& slot,
                       const std::string& attributes = "*",
-                      int io_priority = Glib::PRIORITY_DEFAULT);
+                      int io_priority = Glib::PRIORITY_DEFAULT) -> void;
 
     auto
     query_info_finish (const Glib::RefPtr<AsyncResult>& result)

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: LGPL-2.1-or-later
 
 #ifndef _GIOMM_UNIXCONNECTION_H
 #define _GIOMM_UNIXCONNECTION_H
@@ -106,12 +107,13 @@ namespace Gio
     auto
     receive_credentials () const -> Glib::RefPtr<const Credentials>;
 
-    void
+    auto
     receive_credentials_async (const SlotAsyncReady& slot,
-                               const Glib::RefPtr<Cancellable>& cancellable);
+                               const Glib::RefPtr<Cancellable>& cancellable)
+        -> void;
 
-    void
-    receive_credentials_async (const SlotAsyncReady& slot);
+    auto
+    receive_credentials_async (const SlotAsyncReady& slot) -> void;
 
     auto
     receive_credentials_finish (const Glib::RefPtr<AsyncResult>& result)
@@ -123,12 +125,13 @@ namespace Gio
     auto
     send_credentials () -> bool;
 
-    void
+    auto
     send_credentials_async (const SlotAsyncReady& slot,
-                            const Glib::RefPtr<Cancellable>& cancellable);
+                            const Glib::RefPtr<Cancellable>& cancellable)
+        -> void;
 
-    void
-    send_credentials_async (const SlotAsyncReady& slot);
+    auto
+    send_credentials_async (const SlotAsyncReady& slot) -> void;
 
     auto
     send_credentials_finish (const Glib::RefPtr<AsyncResult>& result) -> bool;

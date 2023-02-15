@@ -82,26 +82,26 @@ namespace Gtk
     GridLayoutChild ();
 
   public:
-    void
-    set_row (int row);
+    auto
+    set_row (int row) -> void;
 
     auto
     get_row () const -> int;
 
-    void
-    set_column (int column);
+    auto
+    set_column (int column) -> void;
 
     auto
     get_column () const -> int;
 
-    void
-    set_column_span (int span);
+    auto
+    set_column_span (int span) -> void;
 
     auto
     get_column_span () const -> int;
 
-    void
-    set_row_span (int span);
+    auto
+    set_row_span (int span) -> void;
 
     auto
     get_row_span () const -> int;
@@ -139,9 +139,7 @@ namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkGridLayoutChild* object, bool take_copy = false) -> Glib::RefPtr<Gtk::GridLayoutChild>;
 } // namespace Glib
 

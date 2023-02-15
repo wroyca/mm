@@ -278,9 +278,7 @@ namespace Glib
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkConstraint* object, bool take_copy = false) -> Glib::RefPtr<Gtk::Constraint>;
 } // namespace Glib
 

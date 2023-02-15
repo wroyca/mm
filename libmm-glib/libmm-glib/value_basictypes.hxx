@@ -19,20 +19,20 @@ namespace Glib
   public:
     using CppType = bool;
 
-    static GType
-    value_type () G_GNUC_CONST;
+    static auto
+    value_type () -> GType G_GNUC_CONST;
 
-    void
-    set (bool data);
-    bool
-    get () const;
+    auto
+    set (bool data) -> void;
+    auto
+    get () const -> bool;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-    GParamSpec*
+    auto
     create_param_spec (const Glib::ustring& name,
                        const Glib::ustring& nick,
                        const Glib::ustring& blurb,
-                       Glib::ParamFlags flags) const;
+                       Glib::ParamFlags flags) const -> GParamSpec*;
 #endif
   };
 
@@ -42,20 +42,20 @@ namespace Glib
   public:
     using CppType = signed char;
 
-    static GType
-    value_type () G_GNUC_CONST;
+    static auto
+    value_type () -> GType G_GNUC_CONST;
 
-    void
-    set (signed char data);
-    signed char
-    get () const;
+    auto
+    set (signed char data) -> void;
+    auto
+    get () const -> signed char;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-    GParamSpec*
+    auto
     create_param_spec (const Glib::ustring& name,
                        const Glib::ustring& nick,
                        const Glib::ustring& blurb,
-                       Glib::ParamFlags flags) const;
+                       Glib::ParamFlags flags) const -> GParamSpec*;
 #endif
   };
 
@@ -65,20 +65,20 @@ namespace Glib
   public:
     using CppType = unsigned char;
 
-    static GType
-    value_type () G_GNUC_CONST;
+    static auto
+    value_type () -> GType G_GNUC_CONST;
 
-    void
-    set (unsigned char data);
-    unsigned char
-    get () const;
+    auto
+    set (unsigned char data) -> void;
+    auto
+    get () const -> unsigned char;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-    GParamSpec*
+    auto
     create_param_spec (const Glib::ustring& name,
                        const Glib::ustring& nick,
                        const Glib::ustring& blurb,
-                       Glib::ParamFlags flags) const;
+                       Glib::ParamFlags flags) const -> GParamSpec*;
 #endif
   };
 
@@ -88,20 +88,20 @@ namespace Glib
   public:
     using CppType = int;
 
-    static GType
-    value_type () G_GNUC_CONST;
+    static auto
+    value_type () -> GType G_GNUC_CONST;
 
-    void
-    set (int data);
-    int
-    get () const;
+    auto
+    set (int data) -> void;
+    auto
+    get () const -> int;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-    GParamSpec*
+    auto
     create_param_spec (const Glib::ustring& name,
                        const Glib::ustring& nick,
                        const Glib::ustring& blurb,
-                       Glib::ParamFlags flags) const;
+                       Glib::ParamFlags flags) const -> GParamSpec*;
 #endif
   };
 
@@ -111,20 +111,20 @@ namespace Glib
   public:
     using CppType = unsigned int;
 
-    static GType
-    value_type () G_GNUC_CONST;
+    static auto
+    value_type () -> GType G_GNUC_CONST;
 
-    void
-    set (unsigned int data);
-    unsigned int
-    get () const;
+    auto
+    set (unsigned int data) -> void;
+    auto
+    get () const -> unsigned int;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-    GParamSpec*
+    auto
     create_param_spec (const Glib::ustring& name,
                        const Glib::ustring& nick,
                        const Glib::ustring& blurb,
-                       Glib::ParamFlags flags) const;
+                       Glib::ParamFlags flags) const -> GParamSpec*;
 #endif
   };
 
@@ -134,20 +134,20 @@ namespace Glib
   public:
     using CppType = long;
 
-    static GType
-    value_type () G_GNUC_CONST;
+    static auto
+    value_type () -> GType G_GNUC_CONST;
 
-    void
-    set (long data);
-    long
-    get () const;
+    auto
+    set (long data) -> void;
+    auto
+    get () const -> long;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-    GParamSpec*
+    auto
     create_param_spec (const Glib::ustring& name,
                        const Glib::ustring& nick,
                        const Glib::ustring& blurb,
-                       Glib::ParamFlags flags) const;
+                       Glib::ParamFlags flags) const -> GParamSpec*;
 #endif
   };
 
@@ -157,20 +157,20 @@ namespace Glib
   public:
     using CppType = unsigned long;
 
-    static GType
-    value_type () G_GNUC_CONST;
+    static auto
+    value_type () -> GType G_GNUC_CONST;
 
-    void
-    set (unsigned long data);
-    unsigned long
-    get () const;
+    auto
+    set (unsigned long data) -> void;
+    auto
+    get () const -> unsigned long;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-    GParamSpec*
+    auto
     create_param_spec (const Glib::ustring& name,
                        const Glib::ustring& nick,
                        const Glib::ustring& blurb,
-                       Glib::ParamFlags flags) const;
+                       Glib::ParamFlags flags) const -> GParamSpec*;
 #endif
   };
 
@@ -180,20 +180,20 @@ namespace Glib
   public:
     using CppType = long long;
 
-    static GType
-    value_type () G_GNUC_CONST;
+    static auto
+    value_type () -> GType G_GNUC_CONST;
 
-    void
-    set (long long data);
-    long long
-    get () const;
+    auto
+    set (long long data) -> void;
+    auto
+    get () const -> long long;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-    GParamSpec*
+    auto
     create_param_spec (const Glib::ustring& name,
                        const Glib::ustring& nick,
                        const Glib::ustring& blurb,
-                       Glib::ParamFlags flags) const;
+                       Glib::ParamFlags flags) const -> GParamSpec*;
 #endif
   };
 
@@ -203,20 +203,20 @@ namespace Glib
   public:
     using CppType = unsigned long long;
 
-    static GType
-    value_type () G_GNUC_CONST;
+    static auto
+    value_type () -> GType G_GNUC_CONST;
 
-    void
-    set (unsigned long long data);
-    unsigned long long
-    get () const;
+    auto
+    set (unsigned long long data) -> void;
+    auto
+    get () const -> unsigned long long;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-    GParamSpec*
+    auto
     create_param_spec (const Glib::ustring& name,
                        const Glib::ustring& nick,
                        const Glib::ustring& blurb,
-                       Glib::ParamFlags flags) const;
+                       Glib::ParamFlags flags) const -> GParamSpec*;
 #endif
   };
 
@@ -226,20 +226,20 @@ namespace Glib
   public:
     using CppType = float;
 
-    static GType
-    value_type () G_GNUC_CONST;
+    static auto
+    value_type () -> GType G_GNUC_CONST;
 
-    void
-    set (float data);
-    float
-    get () const;
+    auto
+    set (float data) -> void;
+    auto
+    get () const -> float;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-    GParamSpec*
+    auto
     create_param_spec (const Glib::ustring& name,
                        const Glib::ustring& nick,
                        const Glib::ustring& blurb,
-                       Glib::ParamFlags flags) const;
+                       Glib::ParamFlags flags) const -> GParamSpec*;
 #endif
   };
 
@@ -249,20 +249,20 @@ namespace Glib
   public:
     using CppType = double;
 
-    static GType
-    value_type () G_GNUC_CONST;
+    static auto
+    value_type () -> GType G_GNUC_CONST;
 
-    void
-    set (double data);
-    double
-    get () const;
+    auto
+    set (double data) -> void;
+    auto
+    get () const -> double;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-    GParamSpec*
+    auto
     create_param_spec (const Glib::ustring& name,
                        const Glib::ustring& nick,
                        const Glib::ustring& blurb,
-                       Glib::ParamFlags flags) const;
+                       Glib::ParamFlags flags) const -> GParamSpec*;
 #endif
   };
 
@@ -272,20 +272,20 @@ namespace Glib
   public:
     using CppType = void*;
 
-    static GType
-    value_type () G_GNUC_CONST;
+    static auto
+    value_type () -> GType G_GNUC_CONST;
 
-    void
-    set (void* data);
-    void*
-    get () const;
+    auto
+    set (void* data) -> void;
+    auto
+    get () const -> void*;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-    GParamSpec*
+    auto
     create_param_spec (const Glib::ustring& name,
                        const Glib::ustring& nick,
                        const Glib::ustring& blurb,
-                       Glib::ParamFlags flags) const;
+                       Glib::ParamFlags flags) const -> GParamSpec*;
 #endif
   };
 

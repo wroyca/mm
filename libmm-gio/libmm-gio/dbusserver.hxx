@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: LGPL-2.1-or-later
 
 #ifndef _GIOMM_DBUSSERVER_H
 #define _GIOMM_DBUSSERVER_H
@@ -139,11 +140,11 @@ namespace Gio::DBus
                  Flags flags = Gio::DBus::Server::Flags::NONE)
         -> Glib::RefPtr<Server>;
 
-    void
-    start ();
+    auto
+    start () -> void;
 
-    void
-    stop ();
+    auto
+    stop () -> void;
 
     auto
     is_active () const -> bool;

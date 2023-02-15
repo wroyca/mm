@@ -3,31 +3,33 @@
 #ifndef _GTKMM_ICONVIEW_H
 #define _GTKMM_ICONVIEW_H
 
-#include <libmm-glib/ustring.hxx>
-#include <sigc++/sigc++.h>
+#ifndef GTKMM_DISABLE_DEPRECATED
 
-#include <vector>
+  #include <libmm-glib/ustring.hxx>
+  #include <sigc++/sigc++.h>
 
-#include <libmm-gtk/cellarea.hxx>
-#include <libmm-gtk/celllayout.hxx>
-#include <libmm-gtk/cellrenderer.hxx>
-#include <libmm-gtk/scrollable.hxx>
-#include <libmm-gtk/tooltip.hxx>
-#include <libmm-gtk/treemodel.hxx>
-#include <libmm-gtk/treepath.hxx>
-#include <libmm-gtk/widget.hxx>
+  #include <vector>
 
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #include <libmm-gtk/cellarea.hxx>
+  #include <libmm-gtk/celllayout.hxx>
+  #include <libmm-gtk/cellrenderer.hxx>
+  #include <libmm-gtk/scrollable.hxx>
+  #include <libmm-gtk/tooltip.hxx>
+  #include <libmm-gtk/treemodel.hxx>
+  #include <libmm-gtk/treepath.hxx>
+  #include <libmm-gtk/widget.hxx>
+
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
 using GtkIconView = struct _GtkIconView;
 using GtkIconViewClass = struct _GtkIconViewClass;
-#endif
+  #endif
 
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
   class GTKMM_API IconView_Class;
 }
-#endif
+  #endif
 
 namespace Gtk
 {
@@ -37,12 +39,12 @@ namespace Gtk
                              public Scrollable
   {
   public:
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
     typedef IconView CppObjectType;
     typedef IconView_Class CppClassType;
     typedef GtkIconView BaseObjectType;
     typedef GtkIconViewClass BaseClassType;
-#endif
+  #endif
 
     IconView (IconView&& src) noexcept;
     auto
@@ -54,7 +56,7 @@ namespace Gtk
 
     ~IconView () noexcept override;
 
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   private:
     friend GTKMM_API class IconView_Class;
@@ -64,17 +66,17 @@ namespace Gtk
     explicit IconView (const Glib::ConstructParams& construct_params);
     explicit IconView (GtkIconView* castitem);
 
-#endif
+  #endif
 
   public:
     static auto
     get_type () -> GType G_GNUC_CONST;
 
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
     static auto
     get_base_type () -> GType G_GNUC_CONST;
-#endif
+  #endif
 
     auto
     gobj () -> GtkIconView*
@@ -105,8 +107,8 @@ namespace Gtk
 
     explicit IconView (const Glib::RefPtr<CellArea>& cell_area);
 
-    void
-    set_model (const Glib::RefPtr<TreeModel>& model);
+    auto
+    set_model (const Glib::RefPtr<TreeModel>& model) -> void;
 
     auto
     get_model () -> Glib::RefPtr<TreeModel>;
@@ -114,80 +116,80 @@ namespace Gtk
     auto
     get_model () const -> Glib::RefPtr<const TreeModel>;
 
-    void
-    unset_model ();
+    auto
+    unset_model () -> void;
 
-    void
-    set_text_column (int column);
+    auto
+    set_text_column (int column) -> void;
 
-    void
-    set_text_column (const TreeModelColumnBase& model_column);
+    auto
+    set_text_column (const TreeModelColumnBase& model_column) -> void;
 
     auto
     get_text_column () const -> int;
 
-    void
-    set_markup_column (int column);
+    auto
+    set_markup_column (int column) -> void;
 
-    void
-    set_markup_column (const TreeModelColumnBase& column);
+    auto
+    set_markup_column (const TreeModelColumnBase& column) -> void;
 
     auto
     get_markup_column () const -> int;
 
-    void
-    set_pixbuf_column (int column);
+    auto
+    set_pixbuf_column (int column) -> void;
 
-    void
-    set_pixbuf_column (const TreeModelColumnBase& column);
+    auto
+    set_pixbuf_column (const TreeModelColumnBase& column) -> void;
 
     auto
     get_pixbuf_column () const -> int;
 
-    void
-    set_item_orientation (Orientation orientation);
+    auto
+    set_item_orientation (Orientation orientation) -> void;
 
     auto
     get_item_orientation () const -> Orientation;
 
-    void
-    set_columns (int columns);
+    auto
+    set_columns (int columns) -> void;
 
     auto
     get_columns () const -> int;
 
-    void
-    set_item_width (int item_width);
+    auto
+    set_item_width (int item_width) -> void;
 
     auto
     get_icon_width () const -> int;
 
-    void
-    set_spacing (int spacing);
+    auto
+    set_spacing (int spacing) -> void;
 
     auto
     get_spacing () const -> int;
 
-    void
-    set_row_spacing (int row_spacing);
+    auto
+    set_row_spacing (int row_spacing) -> void;
 
     auto
     get_row_spacing () const -> int;
 
-    void
-    set_column_spacing (int column_spacing);
+    auto
+    set_column_spacing (int column_spacing) -> void;
 
     auto
     get_column_spacing () const -> int;
 
-    void
-    set_margin (int margin);
+    auto
+    set_margin (int margin) -> void;
 
     auto
     get_margin () const -> int;
 
-    void
-    set_item_padding (int item_padding);
+    auto
+    set_item_padding (int item_padding) -> void;
 
     auto
     get_item_padding () const -> int;
@@ -211,28 +213,28 @@ namespace Gtk
     get_visible_range (TreeModel::Path& start_path,
                        TreeModel::Path& end_path) const -> bool;
 
-    void
-    set_activate_on_single_click (bool single = true);
+    auto
+    set_activate_on_single_click (bool single = true) -> void;
 
     auto
     get_activate_on_single_click () const -> bool;
 
     using SlotForeach = sigc::slot<void (const TreeModel::Path&)>;
 
-    void
-    selected_foreach (const SlotForeach& slot);
+    auto
+    selected_foreach (const SlotForeach& slot) -> void;
 
-    void
-    set_selection_mode (SelectionMode mode);
+    auto
+    set_selection_mode (SelectionMode mode) -> void;
 
     auto
     get_selection_mode () const -> SelectionMode;
 
-    void
-    select_path (const TreeModel::Path& path);
+    auto
+    select_path (const TreeModel::Path& path) -> void;
 
-    void
-    unselect_path (const TreeModel::Path& path);
+    auto
+    unselect_path (const TreeModel::Path& path) -> void;
 
     auto
     path_is_selected (const TreeModel::Path& path) const -> bool;
@@ -246,22 +248,22 @@ namespace Gtk
     auto
     get_selected_items () const -> std::vector<TreePath>;
 
-    void
-    select_all ();
+    auto
+    select_all () -> void;
 
-    void
-    unselect_all ();
+    auto
+    unselect_all () -> void;
 
-    void
-    item_activated (const TreeModel::Path& path);
+    auto
+    item_activated (const TreeModel::Path& path) -> void;
 
-    void
+    auto
     set_cursor (const TreeModel::Path& path,
                 CellRenderer& cell,
-                bool start_editing);
+                bool start_editing) -> void;
 
-    void
-    set_cursor (const TreeModel::Path& path, bool start_editing);
+    auto
+    set_cursor (const TreeModel::Path& path, bool start_editing) -> void;
 
     auto
     get_cursor (TreeModel::Path& path, CellRenderer*& cell) const -> bool;
@@ -272,49 +274,49 @@ namespace Gtk
     auto
     get_cursor (CellRenderer*& cell) const -> bool;
 
-    void
+    auto
     scroll_to_path (const TreeModel::Path& path,
                     bool use_align,
                     float row_align,
-                    float col_align);
+                    float col_align) -> void;
 
-    void
+    auto
     enable_model_drag_source (
         const Glib::RefPtr<const Gdk::ContentFormats>& formats,
         Gdk::ModifierType start_button_mask =
             static_cast<Gdk::ModifierType> (GDK_MODIFIER_MASK),
-        Gdk::DragAction actions = Gdk::DragAction::COPY |
-                                  Gdk::DragAction::MOVE);
+        Gdk::DragAction actions = Gdk::DragAction::COPY | Gdk::DragAction::MOVE)
+        -> void;
 
-    void
+    auto
     enable_model_drag_dest (
         const Glib::RefPtr<const Gdk::ContentFormats>& formats,
-        Gdk::DragAction actions = Gdk::DragAction::COPY |
-                                  Gdk::DragAction::MOVE);
+        Gdk::DragAction actions = Gdk::DragAction::COPY | Gdk::DragAction::MOVE)
+        -> void;
 
-    void
-    unset_model_drag_source ();
+    auto
+    unset_model_drag_source () -> void;
 
-    void
-    unset_model_drag_dest ();
+    auto
+    unset_model_drag_dest () -> void;
 
-    void
-    set_reorderable (bool reorderable = true);
+    auto
+    set_reorderable (bool reorderable = true) -> void;
 
     auto
     get_reorderable () const -> bool;
 
-    void
-    set_drag_dest_item (const TreeModel::Path& path, DropPosition pos);
+    auto
+    set_drag_dest_item (const TreeModel::Path& path, DropPosition pos) -> void;
 
-    void
-    get_drag_dest_item (TreeModel::Path& path, DropPosition& pos) const;
+    auto
+    get_drag_dest_item (TreeModel::Path& path, DropPosition& pos) const -> void;
 
-    void
-    get_drag_dest_item (TreeModel::Path& path) const;
+    auto
+    get_drag_dest_item (TreeModel::Path& path) const -> void;
 
-    void
-    get_drag_dest_item (DropPosition& pos) const;
+    auto
+    get_drag_dest_item (DropPosition& pos) const -> void;
 
     auto
     get_dest_item_at_pos (int drag_x,
@@ -343,18 +345,18 @@ namespace Gtk
     get_cell_rect (const TreeModel::Path& path, Gdk::Rectangle& rect) const
         -> bool;
 
-    void
+    auto
     set_tooltip_item (const Glib::RefPtr<Tooltip>& tooltip,
-                      const TreeModel::Path& path);
+                      const TreeModel::Path& path) -> void;
 
-    void
+    auto
     set_tooltip_cell (const Glib::RefPtr<Tooltip>& tooltip,
                       const TreeModel::Path& path,
-                      CellRenderer& cell);
+                      CellRenderer& cell) -> void;
 
-    void
+    auto
     set_tooltip_cell (const Glib::RefPtr<Tooltip>& tooltip,
-                      const TreeModel::Path& path);
+                      const TreeModel::Path& path) -> void;
 
     auto
     get_tooltip_context_path (int x,
@@ -368,8 +370,8 @@ namespace Gtk
                               bool keyboard_tip,
                               Gtk::TreeModel::iterator& iter) -> bool;
 
-    void
-    set_tooltip_column (int column);
+    auto
+    set_tooltip_column (int column) -> void;
 
     auto
     get_tooltip_column () const -> int;
@@ -492,7 +494,7 @@ namespace Gtk
 
 } // namespace Gtk
 
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Glib
 {
 
@@ -506,14 +508,14 @@ namespace Glib
   };
 
 } // namespace Glib
-#endif
+  #endif
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkIconView* object, bool take_copy = false) -> Gtk::IconView*;
 } // namespace Glib
+
+#endif
 
 #endif

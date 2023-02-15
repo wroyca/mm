@@ -3,23 +3,25 @@
 #ifndef _GTKMM_COLORCHOOSERDIALOG_H
 #define _GTKMM_COLORCHOOSERDIALOG_H
 
-#include <libmm-glib/ustring.hxx>
-#include <sigc++/sigc++.h>
+#ifndef GTKMM_DISABLE_DEPRECATED
 
-#include <libmm-gtk/colorchooser.hxx>
-#include <libmm-gtk/dialog.hxx>
+  #include <libmm-glib/ustring.hxx>
+  #include <sigc++/sigc++.h>
 
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #include <libmm-gtk/colorchooser.hxx>
+  #include <libmm-gtk/dialog.hxx>
+
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
 using GtkColorChooserDialog = struct _GtkColorChooserDialog;
 using GtkColorChooserDialogClass = struct _GtkColorChooserDialogClass;
-#endif
+  #endif
 
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
   class GTKMM_API ColorChooserDialog_Class;
 }
-#endif
+  #endif
 
 namespace Gtk
 {
@@ -28,12 +30,12 @@ namespace Gtk
                                        public ColorChooser
   {
   public:
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
     typedef ColorChooserDialog CppObjectType;
     typedef ColorChooserDialog_Class CppClassType;
     typedef GtkColorChooserDialog BaseObjectType;
     typedef GtkColorChooserDialogClass BaseClassType;
-#endif
+  #endif
 
     ColorChooserDialog (ColorChooserDialog&& src) noexcept;
     auto
@@ -45,7 +47,7 @@ namespace Gtk
 
     ~ColorChooserDialog () noexcept override;
 
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   private:
     friend GTKMM_API class ColorChooserDialog_Class;
@@ -55,17 +57,17 @@ namespace Gtk
     explicit ColorChooserDialog (const Glib::ConstructParams& construct_params);
     explicit ColorChooserDialog (GtkColorChooserDialog* castitem);
 
-#endif
+  #endif
 
   public:
     static auto
     get_type () -> GType G_GNUC_CONST;
 
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
     static auto
     get_base_type () -> GType G_GNUC_CONST;
-#endif
+  #endif
 
     auto
     gobj () -> GtkColorChooserDialog*
@@ -103,10 +105,10 @@ namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkColorChooserDialog* object, bool take_copy = false) -> Gtk::ColorChooserDialog*;
 } // namespace Glib
+
+#endif
 
 #endif

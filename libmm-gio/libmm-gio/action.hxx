@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: LGPL-2.1-or-later
 
 #ifndef _GIOMM_ACTION_H
 #define _GIOMM_ACTION_H
@@ -70,8 +71,8 @@ namespace Gio
 
     ~Action () noexcept override;
 
-    static void
-    add_interface (GType gtype_implementer);
+    static auto
+    add_interface (GType gtype_implementer) -> void;
 
     static auto
     get_type () -> GType G_GNUC_CONST;
@@ -105,8 +106,8 @@ namespace Gio
     get_state_type () const -> Glib::VariantType;
 
     template <typename T_Value>
-    void
-    get_state_hint (T_Value& value) const;
+    auto
+    get_state_hint (T_Value& value) const -> void;
 
     auto
     get_state_hint_variant () const -> Glib::VariantContainerBase;
@@ -115,50 +116,50 @@ namespace Gio
     get_enabled () const -> bool;
 
     template <typename T_Value>
-    void
-    change_state (const T_Value& value);
+    auto
+    change_state (const T_Value& value) -> void;
 
     template <typename T_Value>
-    void
-    change_state (const Glib::Variant<T_Value>& value);
+    auto
+    change_state (const Glib::Variant<T_Value>& value) -> void;
 
-    void
-    change_state_variant (const Glib::VariantBase& value);
+    auto
+    change_state_variant (const Glib::VariantBase& value) -> void;
 
     template <typename T_Value>
-    void
-    get_state (T_Value& value) const;
+    auto
+    get_state (T_Value& value) const -> void;
 
     auto
     get_state_variant () const -> Glib::VariantBase;
 
-    void
-    activate ();
+    auto
+    activate () -> void;
 
     template <typename T_Value>
-    void
-    activate (const T_Value& parameter);
+    auto
+    activate (const T_Value& parameter) -> void;
 
     template <typename T_Value>
-    void
-    activate (const Glib::Variant<T_Value>& parameter);
+    auto
+    activate (const Glib::Variant<T_Value>& parameter) -> void;
 
-    void
-    activate_variant (const Glib::VariantBase& parameter);
+    auto
+    activate_variant (const Glib::VariantBase& parameter) -> void;
 
     static auto
     name_is_valid (const Glib::ustring& action_name) -> bool;
 
     template <typename T_Value>
-    static void
+    static auto
     parse_detailed_name (const Glib::ustring& detailed_name,
                          Glib::ustring& action_name,
-                         T_Value& target_value);
+                         T_Value& target_value) -> void;
 
-    static void
+    static auto
     parse_detailed_name_variant (const Glib::ustring& detailed_name,
                                  Glib::ustring& action_name,
-                                 Glib::VariantBase& target_value);
+                                 Glib::VariantBase& target_value) -> void;
 
     template <typename T_Value>
     auto
@@ -205,11 +206,11 @@ namespace Gio
     virtual auto
     get_state_vfunc () const -> Glib::VariantBase;
 
-    virtual void
-    change_state_vfunc (const Glib::VariantBase& value);
+    virtual auto
+    change_state_vfunc (const Glib::VariantBase& value) -> void;
 
-    virtual void
-    activate_vfunc (const Glib::VariantBase& parameter);
+    virtual auto
+    activate_vfunc (const Glib::VariantBase& parameter) -> void;
 
   public:
   public:
@@ -217,8 +218,8 @@ namespace Gio
   };
 
   template <typename T_Value>
-  void
-  Action::get_state (T_Value& value) const
+  auto
+  Action::get_state (T_Value& value) const -> void
   {
     value = T_Value ();
 
@@ -235,8 +236,8 @@ namespace Gio
   }
 
   template <typename T_Value>
-  void
-  Action::get_state_hint (T_Value& value) const
+  auto
+  Action::get_state_hint (T_Value& value) const -> void
   {
     value = T_Value ();
 
@@ -256,10 +257,10 @@ namespace Gio
 
   template <typename T_Value>
 
-  void
+  auto
   Action::parse_detailed_name (const Glib::ustring& detailed_name,
                                Glib::ustring& action_name,
-                               T_Value& target_value)
+                               T_Value& target_value) -> void
   {
     action_name.clear ();
     target_value = T_Value ();
@@ -310,8 +311,8 @@ namespace Gio
   }
 
   template <typename T_Value>
-  void
-  Action::change_state (const T_Value& value)
+  auto
+  Action::change_state (const T_Value& value) -> void
   {
     using type_glib_variant = Glib::Variant<T_Value>;
 
@@ -323,15 +324,15 @@ namespace Gio
   }
 
   template <typename T_Value>
-  void
-  Action::change_state (const Glib::Variant<T_Value>& value)
+  auto
+  Action::change_state (const Glib::Variant<T_Value>& value) -> void
   {
     change_state_variant (value);
   }
 
   template <typename T_Value>
-  void
-  Action::activate (const T_Value& parameter)
+  auto
+  Action::activate (const T_Value& parameter) -> void
   {
     using type_glib_variant = Glib::Variant<T_Value>;
 
@@ -343,8 +344,8 @@ namespace Gio
   }
 
   template <typename T_Value>
-  void
-  Action::activate (const Glib::Variant<T_Value>& value)
+  auto
+  Action::activate (const Glib::Variant<T_Value>& value) -> void
   {
     activate_variant (value);
   }

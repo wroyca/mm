@@ -17,14 +17,14 @@ namespace Gtk
     using CppObjectType = BoolFilter;
     using BaseObjectType = GtkBoolFilter;
     using BaseClassType = GtkBoolFilterClass;
-    using CppClassParent = Filter_Class;
+    using CppClassParent = Gtk::Filter_Class;
     using BaseClassParent = GtkFilterClass;
 
     friend class BoolFilter;
 #endif
 
     auto
-    init () -> const Class&;
+    init () -> const Glib::Class&;
 
     static auto
     class_init_function (void* g_class, void* class_data) -> void;

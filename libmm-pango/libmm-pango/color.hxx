@@ -66,14 +66,14 @@ namespace Pango
     auto
     get_blue () const -> guint16;
 
-    void
-    set_red (const guint16& value);
+    auto
+    set_red (const guint16& value) -> void;
 
-    void
-    set_green (const guint16& value);
+    auto
+    set_green (const guint16& value) -> void;
 
-    void
-    set_blue (const guint16& value);
+    auto
+    set_blue (const guint16& value) -> void;
 
     auto
     parse (const Glib::ustring& spec) -> bool;

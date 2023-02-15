@@ -14,13 +14,13 @@ using Capabilities = Gdk::Seat::Capabilities;
 namespace
 {
 
-  auto
+  static auto
   Seat_signal_device_added_callback (GdkSeat* self, GdkDevice* p0, void* data) -> void
   {
     using namespace Gdk;
     using SlotType = sigc::slot<void (const Glib::RefPtr<Device>&)>;
 
-    const auto obj = dynamic_cast<Seat*> (
+    auto obj = dynamic_cast<Seat*> (
         Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
@@ -37,18 +37,18 @@ namespace
     }
   }
 
-  const Glib::SignalProxyInfo Seat_signal_device_added_info = {
+  static const Glib::SignalProxyInfo Seat_signal_device_added_info = {
       "device-added",
       (GCallback) &Seat_signal_device_added_callback,
       (GCallback) &Seat_signal_device_added_callback};
 
-  auto
+  static auto
   Seat_signal_device_removed_callback (GdkSeat* self, GdkDevice* p0, void* data) -> void
   {
     using namespace Gdk;
     using SlotType = sigc::slot<void (const Glib::RefPtr<Device>&)>;
 
-    const auto obj = dynamic_cast<Seat*> (
+    auto obj = dynamic_cast<Seat*> (
         Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
@@ -65,18 +65,18 @@ namespace
     }
   }
 
-  const Glib::SignalProxyInfo Seat_signal_device_removed_info = {
+  static const Glib::SignalProxyInfo Seat_signal_device_removed_info = {
       "device-removed",
       (GCallback) &Seat_signal_device_removed_callback,
       (GCallback) &Seat_signal_device_removed_callback};
 
-  auto
+  static auto
   Seat_signal_tool_added_callback (GdkSeat* self, GdkDeviceTool* p0, void* data) -> void
   {
     using namespace Gdk;
     using SlotType = sigc::slot<void (const Glib::RefPtr<DeviceTool>&)>;
 
-    const auto obj = dynamic_cast<Seat*> (
+    auto obj = dynamic_cast<Seat*> (
         Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
@@ -93,12 +93,12 @@ namespace
     }
   }
 
-  const Glib::SignalProxyInfo Seat_signal_tool_added_info = {
+  static const Glib::SignalProxyInfo Seat_signal_tool_added_info = {
       "tool-added",
       (GCallback) &Seat_signal_tool_added_callback,
       (GCallback) &Seat_signal_tool_added_callback};
 
-  auto
+  static auto
   Seat_signal_tool_removed_callback (GdkSeat* self,
                                      GdkDeviceTool* p0,
                                      void* data) -> void
@@ -106,7 +106,7 @@ namespace
     using namespace Gdk;
     using SlotType = sigc::slot<void (const Glib::RefPtr<DeviceTool>&)>;
 
-    const auto obj = dynamic_cast<Seat*> (
+    auto obj = dynamic_cast<Seat*> (
         Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
@@ -123,7 +123,7 @@ namespace
     }
   }
 
-  const Glib::SignalProxyInfo Seat_signal_tool_removed_info = {
+  static const Glib::SignalProxyInfo Seat_signal_tool_removed_info = {
       "tool-removed",
       (GCallback) &Seat_signal_tool_removed_callback,
       (GCallback) &Seat_signal_tool_removed_callback};
@@ -140,10 +140,10 @@ namespace Glib
 {
 
   auto
-  wrap (GdkSeat* object, const bool take_copy) -> RefPtr<Gdk::Seat>
+  wrap (GdkSeat* object, bool take_copy) -> Glib::RefPtr<Gdk::Seat>
   {
-    return Glib::make_refptr_for_instance<Gdk::Seat> (
-        dynamic_cast<Gdk::Seat*> (wrap_auto ((GObject*) object, take_copy)));
+    return Glib::make_refptr_for_instance<Gdk::Seat> (dynamic_cast<Gdk::Seat*> (
+        Glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
 } // namespace Glib
@@ -152,7 +152,7 @@ namespace Gdk
 {
 
   auto
-  Seat_Class::init () -> const Class&
+  Seat_Class::init () -> const Glib::Class&
   {
     if (!gtype_)
     {
@@ -185,28 +185,28 @@ namespace Gdk
   }
 
   Seat::Seat (const Glib::ConstructParams& construct_params)
-    : Object (construct_params)
+    : Glib::Object (construct_params)
   {
   }
 
   Seat::Seat (GdkSeat* castitem)
-    : Object ((GObject*) castitem)
+    : Glib::Object ((GObject*) (castitem))
   {
   }
 
   Seat::Seat (Seat&& src) noexcept
-    : Object (std::move (src))
+    : Glib::Object (std::move (src))
   {
   }
 
   auto
   Seat::operator= (Seat&& src) noexcept -> Seat&
   {
-    Object::operator= (std::move (src));
+    Glib::Object::operator= (std::move (src));
     return *this;
   }
 
-  Seat::~Seat () noexcept = default;
+  Seat::~Seat () noexcept {}
 
   Seat::CppClassType Seat::seat_class_;
 
@@ -223,8 +223,8 @@ namespace Gdk
   }
 
   Seat::Seat ()
-    : ObjectBase (nullptr),
-      Object (Glib::ConstructParams (seat_class_.init ()))
+    : Glib::ObjectBase (nullptr),
+      Glib::Object (Glib::ConstructParams (seat_class_.init ()))
   {
   }
 
@@ -317,25 +317,33 @@ namespace Gdk
   auto
   Seat::signal_device_added () -> Glib::SignalProxy<void (const Glib::RefPtr<Device>&)>
   {
-    return {this, &Seat_signal_device_added_info};
+    return Glib::SignalProxy<void (const Glib::RefPtr<Device>&)> (
+        this,
+        &Seat_signal_device_added_info);
   }
 
   auto
   Seat::signal_device_removed () -> Glib::SignalProxy<void (const Glib::RefPtr<Device>&)>
   {
-    return {this, &Seat_signal_device_removed_info};
+    return Glib::SignalProxy<void (const Glib::RefPtr<Device>&)> (
+        this,
+        &Seat_signal_device_removed_info);
   }
 
   auto
   Seat::signal_tool_added () -> Glib::SignalProxy<void (const Glib::RefPtr<DeviceTool>&)>
   {
-    return {this, &Seat_signal_tool_added_info};
+    return Glib::SignalProxy<void (const Glib::RefPtr<DeviceTool>&)> (
+        this,
+        &Seat_signal_tool_added_info);
   }
 
   auto
   Seat::signal_tool_removed () -> Glib::SignalProxy<void (const Glib::RefPtr<DeviceTool>&)>
   {
-    return {this, &Seat_signal_tool_removed_info};
+    return Glib::SignalProxy<void (const Glib::RefPtr<DeviceTool>&)> (
+        this,
+        &Seat_signal_tool_removed_info);
   }
 
   static_assert (
@@ -347,7 +355,8 @@ namespace Gdk
   auto
   Seat::property_display () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Display>>
   {
-    return {this, "display"};
+    return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Display>> (this,
+                                                                "display");
   }
 
 } // namespace Gdk

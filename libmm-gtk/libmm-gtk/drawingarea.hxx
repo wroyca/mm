@@ -84,20 +84,20 @@ namespace Gtk
     using SlotDraw =
         sigc::slot<void (const Cairo::RefPtr<Cairo::Context>&, int, int)>;
 
-    void
-    set_content_width (int width);
+    auto
+    set_content_width (int width) -> void;
 
     auto
     get_content_width () const -> int;
 
-    void
-    set_content_height (int width);
+    auto
+    set_content_height (int width) -> void;
 
     auto
     get_content_height () const -> int;
 
-    void
-    set_draw_func (const SlotDraw& slot);
+    auto
+    set_draw_func (const SlotDraw& slot) -> void;
 
     auto
     signal_resize () -> Glib::SignalProxy<void (int, int)>;
@@ -117,17 +117,15 @@ namespace Gtk
   public:
   public:
   protected:
-    virtual void
-    on_resize (int width, int height);
+    virtual auto
+    on_resize (int width, int height) -> void;
   };
 
 } // namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkDrawingArea* object, bool take_copy = false) -> Gtk::DrawingArea*;
 } // namespace Glib
 

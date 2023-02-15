@@ -45,8 +45,8 @@ namespace Pango
 
     ~AttrList () noexcept;
 
-    void
-    swap (AttrList& other) noexcept;
+    auto
+    swap (AttrList& other) noexcept -> void;
 
     auto
     gobj () -> PangoAttrList*
@@ -78,20 +78,20 @@ namespace Pango
 
     explicit operator bool () const;
 
-    void
-    insert (Attribute& attr);
+    auto
+    insert (Attribute& attr) -> void;
 
-    void
-    insert_before (Attribute& attr);
+    auto
+    insert_before (Attribute& attr) -> void;
 
-    void
-    change (Attribute& attr);
+    auto
+    change (Attribute& attr) -> void;
 
-    void
-    splice (AttrList& other, int pos, int len);
+    auto
+    splice (AttrList& other, int pos, int len) -> void;
 
-    void
-    update (int pos, int remove, int add);
+    auto
+    update (int pos, int remove, int add) -> void;
 
     auto
     get_attributes () const -> std::vector<Attribute>;
@@ -114,8 +114,8 @@ namespace Pango
 namespace Pango
 {
 
-  inline void
-  swap (AttrList& lhs, AttrList& rhs) noexcept
+  inline auto
+  swap (AttrList& lhs, AttrList& rhs) noexcept -> void
   {
     lhs.swap (rhs);
   }

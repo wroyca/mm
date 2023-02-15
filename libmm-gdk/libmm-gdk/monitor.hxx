@@ -123,8 +123,8 @@ namespace Gdk
     auto
     get_display () const -> Glib::RefPtr<const Display>;
 
-    void
-    get_geometry (Rectangle& geometry) const;
+    auto
+    get_geometry (Rectangle& geometry) const -> void;
 
     auto
     get_width_mm () const -> int;
@@ -154,7 +154,14 @@ namespace Gdk
     is_valid () const -> bool;
 
     auto
+    get_description () const -> Glib::ustring;
+
+    auto
     signal_invalidate () -> Glib::SignalProxy<void ()>;
+
+    auto
+    property_description () const
+        -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
 
     auto
     property_display () const
@@ -201,9 +208,7 @@ namespace Gdk
 
 namespace Glib
 {
-
-  GDKMM_API
-  auto
+  GDKMM_API auto
   wrap (GdkMonitor* object, bool take_copy = false) -> Glib::RefPtr<Gdk::Monitor>;
 } // namespace Glib
 

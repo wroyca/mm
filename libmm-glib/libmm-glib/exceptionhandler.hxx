@@ -15,9 +15,8 @@ namespace Glib
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
-  GLIBMM_API
-  void
-  exception_handlers_invoke () noexcept;
+  GLIBMM_API auto
+  exception_handlers_invoke () noexcept -> void;
 #endif
 
 } // namespace Glib

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: LGPL-2.1-or-later
 
 #ifndef _GIOMM_SOCKETCONTROLMESSAGE_H
 #define _GIOMM_SOCKETCONTROLMESSAGE_H
@@ -99,8 +100,8 @@ namespace Gio
     auto
     get_size () const -> gsize;
 
-    void
-    serialize (gpointer data);
+    auto
+    serialize (gpointer data) -> void;
 
   protected:
     using DeserializeFunc =
@@ -109,8 +110,8 @@ namespace Gio
                                                 gsize size,
                                                 gpointer data);
 
-    static void
-    add_deserialize_func (DeserializeFunc func);
+    static auto
+    add_deserialize_func (DeserializeFunc func) -> void;
 
     virtual auto
     get_size_vfunc () const -> gsize;
@@ -121,8 +122,8 @@ namespace Gio
     virtual auto
     get_type_vfunc () const -> int;
 
-    virtual void
-    serialize_vfunc (gpointer data);
+    virtual auto
+    serialize_vfunc (gpointer data) -> void;
 
   private:
     static std::set<DeserializeFunc> m_deserialize_funcs;

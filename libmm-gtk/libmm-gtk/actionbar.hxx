@@ -81,14 +81,14 @@ namespace Gtk
   public:
     ActionBar ();
 
-    void
-    pack_start (Gtk::Widget& child);
+    auto
+    pack_start (Gtk::Widget& child) -> void;
 
-    void
-    pack_end (Gtk::Widget& child);
+    auto
+    pack_end (Gtk::Widget& child) -> void;
 
-    void
-    remove (Gtk::Widget& child);
+    auto
+    remove (Gtk::Widget& child) -> void;
 
     auto
     get_center_widget () -> Widget*;
@@ -96,14 +96,14 @@ namespace Gtk
     auto
     get_center_widget () const -> const Widget*;
 
-    void
-    set_center_widget (Widget& center_widget);
+    auto
+    set_center_widget (Widget& center_widget) -> void;
 
-    void
-    unset_center_widget ();
+    auto
+    unset_center_widget () -> void;
 
-    void
-    set_revealed (bool revealed = true);
+    auto
+    set_revealed (bool revealed = true) -> void;
 
     auto
     get_revealed () const -> bool;
@@ -123,9 +123,7 @@ namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkActionBar* object, bool take_copy = false) -> Gtk::ActionBar*;
 } // namespace Glib
 

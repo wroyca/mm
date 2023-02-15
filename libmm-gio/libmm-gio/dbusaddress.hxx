@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: LGPL-2.1-or-later
 
 #ifndef _GIOMM_DBUSADDRESS_H
 #define _GIOMM_DBUSADDRESS_H
@@ -18,15 +19,13 @@ namespace Gio::DBus::Address
   auto
   is_supported (const std::string& address) -> bool;
 
-  GIOMM_API
-  void
+  GIOMM_API auto
   get_stream (const std::string& address,
               const SlotAsyncReady slot,
-              const Glib::RefPtr<Cancellable>& cancellable);
+              const Glib::RefPtr<Cancellable>& cancellable) -> void;
 
-  GIOMM_API
-  void
-  get_stream (const std::string& address, const SlotAsyncReady slot);
+  GIOMM_API auto
+  get_stream (const std::string& address, const SlotAsyncReady slot) -> void;
 
   GIOMM_API
   auto

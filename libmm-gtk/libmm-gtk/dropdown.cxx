@@ -12,11 +12,11 @@ namespace Gtk
 {
 
   DropDown::DropDown (const std::vector<Glib::ustring>& strings)
-    : ObjectBase (nullptr),
-      Widget (Glib::ConstructParams (dropdown_class_.init (),
-                                     "model",
-                                     StringList::create (strings)->gobj (),
-                                     nullptr))
+    : Glib::ObjectBase (nullptr),
+      Gtk::Widget (Glib::ConstructParams (dropdown_class_.init (),
+                                          "model",
+                                          StringList::create (strings)->gobj (),
+                                          nullptr))
   {
   }
 
@@ -30,10 +30,10 @@ namespace Glib
 {
 
   auto
-  wrap (GtkDropDown* object, const bool take_copy) -> Gtk::DropDown*
+  wrap (GtkDropDown* object, bool take_copy) -> Gtk::DropDown*
   {
     return dynamic_cast<Gtk::DropDown*> (
-        wrap_auto ((GObject*) object, take_copy));
+        Glib::wrap_auto ((GObject*) (object), take_copy));
   }
 
 } // namespace Glib
@@ -42,7 +42,7 @@ namespace Gtk
 {
 
   auto
-  DropDown_Class::init () -> const Class&
+  DropDown_Class::init () -> const Glib::Class&
   {
     if (!gtype_)
     {
@@ -64,28 +64,28 @@ namespace Gtk
   auto
   DropDown_Class::wrap_new (GObject* o) -> Glib::ObjectBase*
   {
-    return manage (new DropDown ((GtkDropDown*) o));
+    return manage (new DropDown ((GtkDropDown*) (o)));
   }
 
   DropDown::DropDown (const Glib::ConstructParams& construct_params)
-    : Widget (construct_params)
+    : Gtk::Widget (construct_params)
   {
   }
 
   DropDown::DropDown (GtkDropDown* castitem)
-    : Widget ((GtkWidget*) castitem)
+    : Gtk::Widget ((GtkWidget*) (castitem))
   {
   }
 
   DropDown::DropDown (DropDown&& src) noexcept
-    : Widget (std::move (src))
+    : Gtk::Widget (std::move (src))
   {
   }
 
   auto
   DropDown::operator= (DropDown&& src) noexcept -> DropDown&
   {
-    Widget::operator= (std::move (src));
+    Gtk::Widget::operator= (std::move (src));
     return *this;
   }
 
@@ -110,13 +110,14 @@ namespace Gtk
 
   DropDown::DropDown (const Glib::RefPtr<Gio::ListModel>& model,
                       const Glib::RefPtr<Expression<Glib::ustring>>& expression)
-    : ObjectBase (nullptr),
-      Widget (Glib::ConstructParams (dropdown_class_.init (),
-                                     "model",
-                                     Glib::unwrap (model),
-                                     "expression",
-                                     expression ? expression->gobj () : nullptr,
-                                     nullptr))
+    : Glib::ObjectBase (nullptr),
+      Gtk::Widget (Glib::ConstructParams (
+          dropdown_class_.init (),
+          "model",
+          Glib::unwrap (model),
+          "expression",
+          ((expression) ? (expression)->gobj () : nullptr),
+          nullptr))
   {
   }
 
@@ -142,7 +143,7 @@ namespace Gtk
   }
 
   auto
-  DropDown::set_selected (const guint position) -> void
+  DropDown::set_selected (guint position) -> void
   {
     gtk_drop_down_set_selected (gobj (), position);
   }
@@ -154,9 +155,9 @@ namespace Gtk
   }
 
   auto
-  DropDown::get_selected_item () -> Glib::RefPtr<ObjectBase>
+  DropDown::get_selected_item () -> Glib::RefPtr<Glib::ObjectBase>
   {
-    auto retvalue = Glib::make_refptr_for_instance<ObjectBase> (
+    auto retvalue = Glib::make_refptr_for_instance<Glib::ObjectBase> (
         Glib::wrap_auto (G_OBJECT (gtk_drop_down_get_selected_item (gobj ()))));
     if (retvalue)
       retvalue->reference ();
@@ -164,7 +165,7 @@ namespace Gtk
   }
 
   auto
-  DropDown::get_selected_item () const -> Glib::RefPtr<const ObjectBase>
+  DropDown::get_selected_item () const -> Glib::RefPtr<const Glib::ObjectBase>
   {
     return const_cast<DropDown*> (this)->get_selected_item ();
   }
@@ -215,8 +216,9 @@ namespace Gtk
   DropDown::set_expression (
       const Glib::RefPtr<Expression<Glib::ustring>>& expression) -> void
   {
-    gtk_drop_down_set_expression (gobj (),
-                                  expression ? expression->gobj () : nullptr);
+    gtk_drop_down_set_expression (
+        gobj (),
+        ((expression) ? (expression)->gobj () : nullptr));
   }
 
   auto
@@ -240,9 +242,9 @@ namespace Gtk
   }
 
   auto
-  DropDown::set_enable_search (const bool enable_search) -> void
+  DropDown::set_enable_search (bool enable_search) -> void
   {
-    gtk_drop_down_set_enable_search (gobj (), enable_search);
+    gtk_drop_down_set_enable_search (gobj (), static_cast<int> (enable_search));
   }
 
   auto
@@ -252,9 +254,9 @@ namespace Gtk
   }
 
   auto
-  DropDown::set_show_arrow (const bool show_arrow) -> void
+  DropDown::set_show_arrow (bool show_arrow) -> void
   {
-    gtk_drop_down_set_show_arrow (gobj (), show_arrow);
+    gtk_drop_down_set_show_arrow (gobj (), static_cast<int> (show_arrow));
   }
 
   auto
@@ -272,13 +274,15 @@ namespace Gtk
   auto
   DropDown::property_factory () -> Glib::PropertyProxy<Glib::RefPtr<ListItemFactory>>
   {
-    return {this, "factory"};
+    return Glib::PropertyProxy<Glib::RefPtr<ListItemFactory>> (this, "factory");
   }
 
   auto
   DropDown::property_factory () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<ListItemFactory>>
   {
-    return {this, "factory"};
+    return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<ListItemFactory>> (
+        this,
+        "factory");
   }
 
   static_assert (
@@ -290,13 +294,16 @@ namespace Gtk
   auto
   DropDown::property_list_factory () -> Glib::PropertyProxy<Glib::RefPtr<ListItemFactory>>
   {
-    return {this, "list-factory"};
+    return Glib::PropertyProxy<Glib::RefPtr<ListItemFactory>> (this,
+                                                               "list-factory");
   }
 
   auto
   DropDown::property_list_factory () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<ListItemFactory>>
   {
-    return {this, "list-factory"};
+    return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<ListItemFactory>> (
+        this,
+        "list-factory");
   }
 
   static_assert (
@@ -308,25 +315,26 @@ namespace Gtk
   auto
   DropDown::property_model () -> Glib::PropertyProxy<Glib::RefPtr<Gio::ListModel>>
   {
-    return {this, "model"};
+    return Glib::PropertyProxy<Glib::RefPtr<Gio::ListModel>> (this, "model");
   }
 
   auto
   DropDown::property_model () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gio::ListModel>>
   {
-    return {this, "model"};
+    return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gio::ListModel>> (this,
+                                                                       "model");
   }
 
   auto
   DropDown::property_selected () -> Glib::PropertyProxy<guint>
   {
-    return {this, "selected"};
+    return Glib::PropertyProxy<guint> (this, "selected");
   }
 
   auto
   DropDown::property_selected () const -> Glib::PropertyProxy_ReadOnly<guint>
   {
-    return {this, "selected"};
+    return Glib::PropertyProxy_ReadOnly<guint> (this, "selected");
   }
 
   static_assert (
@@ -336,21 +344,23 @@ namespace Gtk
       "There is no suitable template specialization of Glib::Value<>.");
 
   auto
-  DropDown::property_selected_item () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<ObjectBase>>
+  DropDown::property_selected_item () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Glib::ObjectBase>>
   {
-    return {this, "selected-item"};
+    return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Glib::ObjectBase>> (
+        this,
+        "selected-item");
   }
 
   auto
   DropDown::property_enable_search () -> Glib::PropertyProxy<bool>
   {
-    return {this, "enable-search"};
+    return Glib::PropertyProxy<bool> (this, "enable-search");
   }
 
   auto
   DropDown::property_enable_search () const -> Glib::PropertyProxy_ReadOnly<bool>
   {
-    return {this, "enable-search"};
+    return Glib::PropertyProxy_ReadOnly<bool> (this, "enable-search");
   }
 
   static_assert (
@@ -363,25 +373,28 @@ namespace Gtk
   auto
   DropDown::property_expression () -> Glib::PropertyProxy<Glib::RefPtr<Expression<Glib::ustring>>>
   {
-    return {this, "expression"};
+    return Glib::PropertyProxy<Glib::RefPtr<Expression<Glib::ustring>>> (
+        this,
+        "expression");
   }
 
   auto
   DropDown::property_expression () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Expression<Glib::ustring>>>
   {
-    return {this, "expression"};
+    return Glib::PropertyProxy_ReadOnly<
+        Glib::RefPtr<Expression<Glib::ustring>>> (this, "expression");
   }
 
   auto
   DropDown::property_show_arrow () -> Glib::PropertyProxy<bool>
   {
-    return {this, "show-arrow"};
+    return Glib::PropertyProxy<bool> (this, "show-arrow");
   }
 
   auto
   DropDown::property_show_arrow () const -> Glib::PropertyProxy_ReadOnly<bool>
   {
-    return {this, "show-arrow"};
+    return Glib::PropertyProxy_ReadOnly<bool> (this, "show-arrow");
   }
 
 } // namespace Gtk

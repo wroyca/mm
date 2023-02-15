@@ -122,58 +122,58 @@ namespace Cairo
 
     typedef sigc::slot<void ()> SlotDestroy;
 
-    void
+    auto
     set_mime_data (const std::string& mime_type,
                    unsigned char* data,
                    unsigned long length,
-                   const SlotDestroy& slot_destroy);
+                   const SlotDestroy& slot_destroy) -> void;
 
-    void
-    unset_mime_data (const std::string& mime_type);
+    auto
+    unset_mime_data (const std::string& mime_type) -> void;
 
-    void
-    get_font_options (FontOptions& options) const;
+    auto
+    get_font_options (FontOptions& options) const -> void;
 
-    void
-    finish ();
+    auto
+    finish () -> void;
 
-    void
-    flush ();
+    auto
+    flush () -> void;
 
-    void
-    mark_dirty ();
+    auto
+    mark_dirty () -> void;
 
-    void
-    mark_dirty (int x, int y, int width, int height);
+    auto
+    mark_dirty (int x, int y, int width, int height) -> void;
 
-    void
-    set_device_offset (double x_offset, double y_offset);
+    auto
+    set_device_offset (double x_offset, double y_offset) -> void;
 
-    void
-    get_device_offset (double& x_offset, double& y_offset) const;
+    auto
+    get_device_offset (double& x_offset, double& y_offset) const -> void;
 
-    void
-    set_device_scale (double x_scale, double y_scale);
+    auto
+    set_device_scale (double x_scale, double y_scale) -> void;
 
-    inline void
-    set_device_scale (double scale)
+    inline auto
+    set_device_scale (double scale) -> void
     {
       set_device_scale (scale, scale);
     }
 
-    void
-    get_device_scale (double& x_scale, double& y_scale) const;
+    auto
+    get_device_scale (double& x_scale, double& y_scale) const -> void;
 
     auto
     get_device_scale () const -> double;
 
-    void
-    set_fallback_resolution (double x_pixels_per_inch,
-                             double y_pixels_per_inch);
+    auto
+    set_fallback_resolution (double x_pixels_per_inch, double y_pixels_per_inch)
+        -> void;
 
-    void
+    auto
     get_fallback_resolution (double& x_pixels_per_inch,
-                             double& y_pixels_per_inch) const;
+                             double& y_pixels_per_inch) const -> void;
 
     auto
     get_type () const -> Type;
@@ -181,22 +181,22 @@ namespace Cairo
     auto
     get_content () const -> Content;
 
-    void
-    copy_page ();
+    auto
+    copy_page () -> void;
 
-    void
-    show_page ();
+    auto
+    show_page () -> void;
 
     auto
     has_show_text_glyphs () const -> bool;
 
 #ifdef CAIRO_HAS_PNG_FUNCTIONS
 
-    void
-    write_to_png (const std::string& filename);
+    auto
+    write_to_png (const std::string& filename) -> void;
 
-    void
-    write_to_png_stream (const SlotWriteFunc& write_func);
+    auto
+    write_to_png_stream (const SlotWriteFunc& write_func) -> void;
 
 #endif
 
@@ -225,10 +225,10 @@ namespace Cairo
       return cairo_surface_status (const_cast<cairo_surface_t*> (cobj ()));
     }
 
-    void
-    reference () const;
-    void
-    unreference () const;
+    auto
+    reference () const -> void;
+    auto
+    unreference () const -> void;
 #endif
 
     static auto
@@ -345,11 +345,11 @@ namespace Cairo
                        double width_in_points,
                        double height_in_points) -> RefPtr<PdfSurface>;
 
-    void
-    set_size (double width_in_points, double height_in_points);
+    auto
+    set_size (double width_in_points, double height_in_points) -> void;
 
-    void
-    restrict_to_version (PdfVersion version);
+    auto
+    restrict_to_version (PdfVersion version) -> void;
 
     static auto
     get_versions () -> const std::vector<PdfVersion>;
@@ -384,26 +384,26 @@ namespace Cairo
                        double width_in_points,
                        double height_in_points) -> RefPtr<PsSurface>;
 
-    void
-    set_size (double width_in_points, double height_in_points);
+    auto
+    set_size (double width_in_points, double height_in_points) -> void;
 
-    void
-    dsc_comment (std::string comment);
+    auto
+    dsc_comment (std::string comment) -> void;
 
-    void
-    dsc_begin_setup ();
+    auto
+    dsc_begin_setup () -> void;
 
-    void
-    dsc_begin_page_setup ();
+    auto
+    dsc_begin_page_setup () -> void;
 
-    void
-    set_eps (bool eps);
+    auto
+    set_eps (bool eps) -> void;
 
     auto
     get_eps () const -> bool;
 
-    void
-    restrict_to_level (PsLevel level);
+    auto
+    restrict_to_level (PsLevel level) -> void;
 
     static auto
     get_levels () -> const std::vector<PsLevel>;
@@ -438,8 +438,8 @@ namespace Cairo
                        double width_in_points,
                        double height_in_points) -> RefPtr<SvgSurface>;
 
-    void
-    restrict_to_version (SvgVersion version);
+    auto
+    restrict_to_version (SvgVersion version) -> void;
 
     static auto
     get_versions () -> const std::vector<SvgVersion>;

@@ -120,8 +120,8 @@ namespace Gtk
     TextView ();
     explicit TextView (const Glib::RefPtr<TextBuffer>& buffer);
 
-    void
-    set_buffer (const Glib::RefPtr<TextBuffer>& buffer);
+    auto
+    set_buffer (const Glib::RefPtr<TextBuffer>& buffer) -> void;
 
     auto
     get_buffer () -> Glib::RefPtr<TextBuffer>;
@@ -138,15 +138,15 @@ namespace Gtk
                double xalign,
                double yalign) -> bool;
 
-    void
+    auto
     scroll_to (const Glib::RefPtr<TextBuffer::Mark>& mark,
-               double within_margin = 0);
+               double within_margin = 0) -> void;
 
-    void
+    auto
     scroll_to (const Glib::RefPtr<TextBuffer::Mark>& mark,
                double within_margin,
                double xalign,
-               double yalign);
+               double yalign) -> void;
 
     auto
     move_mark_onscreen (const Glib::RefPtr<TextBuffer::Mark>& mark) -> bool;
@@ -154,29 +154,30 @@ namespace Gtk
     auto
     place_cursor_onscreen () -> bool;
 
-    void
-    get_visible_rect (Gdk::Rectangle& visible_rect) const;
+    auto
+    get_visible_rect (Gdk::Rectangle& visible_rect) const -> void;
 
-    void
-    set_cursor_visible (bool setting = true);
+    auto
+    set_cursor_visible (bool setting = true) -> void;
 
     auto
     get_cursor_visible () const -> bool;
 
-    void
-    reset_cursor_blink ();
+    auto
+    reset_cursor_blink () -> void;
 
-    void
+    auto
     get_cursor_locations (const TextBuffer::const_iterator& iter,
                           Gdk::Rectangle& strong,
-                          Gdk::Rectangle& weak) const;
+                          Gdk::Rectangle& weak) const -> void;
 
-    void
-    get_cursor_locations (Gdk::Rectangle& strong, Gdk::Rectangle& weak) const;
+    auto
+    get_cursor_locations (Gdk::Rectangle& strong, Gdk::Rectangle& weak) const
+        -> void;
 
-    void
+    auto
     get_iter_location (const TextBuffer::const_iterator& iter,
-                       Gdk::Rectangle& location) const;
+                       Gdk::Rectangle& location) const -> void;
 
     auto
     get_iter_at_location (TextBuffer::iterator& iter, int x, int y) -> bool;
@@ -197,32 +198,33 @@ namespace Gtk
                           int x,
                           int y) const -> bool;
 
-    void
+    auto
     get_line_yrange (const TextBuffer::const_iterator& iter,
                      int& y,
-                     int& height) const;
+                     int& height) const -> void;
 
-    void
-    get_line_at_y (TextBuffer::iterator& target_iter, int y, int& line_top);
+    auto
+    get_line_at_y (TextBuffer::iterator& target_iter, int y, int& line_top)
+        -> void;
 
-    void
+    auto
     get_line_at_y (TextBuffer::const_iterator& target_iter,
                    int y,
-                   int& line_top) const;
+                   int& line_top) const -> void;
 
-    void
+    auto
     buffer_to_window_coords (TextWindowType win,
                              int buffer_x,
                              int buffer_y,
                              int& window_x,
-                             int& window_y) const;
+                             int& window_y) const -> void;
 
-    void
+    auto
     window_to_buffer_coords (TextWindowType win,
                              int window_x,
                              int window_y,
                              int& buffer_x,
-                             int& buffer_y) const;
+                             int& buffer_y) const -> void;
 
     auto
     forward_display_line (TextBuffer::iterator& iter) -> bool;
@@ -245,8 +247,8 @@ namespace Gtk
     auto
     im_context_filter_keypress (const Glib::RefPtr<Gdk::Event>& event) -> bool;
 
-    void
-    reset_im_context ();
+    auto
+    reset_im_context () -> void;
 
     auto
     get_gutter (TextWindowType win) -> Widget*;
@@ -254,129 +256,130 @@ namespace Gtk
     auto
     get_gutter (TextWindowType win) const -> const Widget*;
 
-    void
-    set_gutter (TextWindowType win, Widget& widget);
+    auto
+    set_gutter (TextWindowType win, Widget& widget) -> void;
 
-    void
-    unset_gutter (TextWindowType win);
+    auto
+    unset_gutter (TextWindowType win) -> void;
 
-    void
+    auto
     add_child_at_anchor (Widget& child,
-                         const Glib::RefPtr<TextBuffer::ChildAnchor>& anchor);
+                         const Glib::RefPtr<TextBuffer::ChildAnchor>& anchor)
+        -> void;
 
-    void
-    add_overlay (Widget& child, int xpos, int ypos);
+    auto
+    add_overlay (Widget& child, int xpos, int ypos) -> void;
 
-    void
-    move_overlay (Widget& child, int xpos, int ypos);
+    auto
+    move_overlay (Widget& child, int xpos, int ypos) -> void;
 
-    void
-    remove (Widget& child);
+    auto
+    remove (Widget& child) -> void;
 
-    void
-    set_wrap_mode (WrapMode wrap_mode);
+    auto
+    set_wrap_mode (WrapMode wrap_mode) -> void;
 
     auto
     get_wrap_mode () const -> WrapMode;
 
-    void
-    set_editable (bool setting = true);
+    auto
+    set_editable (bool setting = true) -> void;
 
     auto
     get_editable () const -> bool;
 
-    void
-    set_pixels_above_lines (int pixels_above_lines);
+    auto
+    set_pixels_above_lines (int pixels_above_lines) -> void;
 
     auto
     get_pixels_above_lines () const -> int;
 
-    void
-    set_pixels_below_lines (int pixels_below_lines);
+    auto
+    set_pixels_below_lines (int pixels_below_lines) -> void;
 
     auto
     get_pixels_below_lines () const -> int;
 
-    void
-    set_pixels_inside_wrap (int pixels_inside_wrap);
+    auto
+    set_pixels_inside_wrap (int pixels_inside_wrap) -> void;
 
     auto
     get_pixels_inside_wrap () const -> int;
 
-    void
-    set_justification (Justification justification);
+    auto
+    set_justification (Justification justification) -> void;
 
     auto
     get_justification () const -> Justification;
 
-    void
-    set_left_margin (int left_margin);
+    auto
+    set_left_margin (int left_margin) -> void;
 
     auto
     get_left_margin () const -> int;
 
-    void
-    set_right_margin (int right_margin);
+    auto
+    set_right_margin (int right_margin) -> void;
 
     auto
     get_right_margin () const -> int;
 
-    void
-    set_top_margin (int top_margin);
+    auto
+    set_top_margin (int top_margin) -> void;
 
     auto
     get_top_margin () const -> int;
 
-    void
-    set_bottom_margin (int bottom_margin);
+    auto
+    set_bottom_margin (int bottom_margin) -> void;
 
     auto
     get_bottom_margin () const -> int;
 
-    void
-    set_indent (int indent);
+    auto
+    set_indent (int indent) -> void;
 
     auto
     get_indent () const -> int;
 
-    void
-    set_tabs (Pango::TabArray& tabs);
+    auto
+    set_tabs (Pango::TabArray& tabs) -> void;
 
     auto
     get_tabs () const -> Pango::TabArray;
 
-    void
-    set_overwrite (bool overwrite = true);
+    auto
+    set_overwrite (bool overwrite = true) -> void;
 
     auto
     get_overwrite () const -> bool;
 
-    void
-    set_accepts_tab (bool accepts_tab = true);
+    auto
+    set_accepts_tab (bool accepts_tab = true) -> void;
 
     auto
     get_accepts_tab () const -> bool;
 
-    void
-    set_input_purpose (InputPurpose purpose);
+    auto
+    set_input_purpose (InputPurpose purpose) -> void;
 
     auto
     get_input_purpose () const -> InputPurpose;
 
-    void
-    set_input_hints (InputHints hints);
+    auto
+    set_input_hints (InputHints hints) -> void;
 
     auto
     get_input_hints () const -> InputHints;
 
-    void
-    set_monospace (bool monospace = true);
+    auto
+    set_monospace (bool monospace = true) -> void;
 
     auto
     get_monospace () const -> bool;
 
-    void
-    set_extra_menu (const Glib::RefPtr<Gio::MenuModel>& model);
+    auto
+    set_extra_menu (const Glib::RefPtr<Gio::MenuModel>& model) -> void;
 
     auto
     get_extra_menu () -> Glib::RefPtr<Gio::MenuModel>;
@@ -536,20 +539,18 @@ namespace Gtk
   public:
   public:
   protected:
-    virtual void
-    on_set_anchor ();
+    virtual auto
+    on_set_anchor () -> void;
 
-    virtual void
-    on_insert_at_cursor (const Glib::ustring& str);
+    virtual auto
+    on_insert_at_cursor (const Glib::ustring& str) -> void;
   };
 
 } // namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkTextView* object, bool take_copy = false) -> Gtk::TextView*;
 } // namespace Glib
 

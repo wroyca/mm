@@ -101,14 +101,14 @@ namespace Gtk
     auto
     get_model () const -> Glib::RefPtr<const Gio::ListModel>;
 
-    void
-    set_model (const Glib::RefPtr<Gio::ListModel>& model);
+    auto
+    set_model (const Glib::RefPtr<Gio::ListModel>& model) -> void;
 
     auto
     get_selected () const -> guint;
 
-    void
-    set_selected (guint position);
+    auto
+    set_selected (guint position) -> void;
 
     auto
     get_selected_item () -> Glib::RefPtr<Glib::ObjectBase>;
@@ -119,14 +119,14 @@ namespace Gtk
     auto
     get_autoselect () const -> bool;
 
-    void
-    set_autoselect (bool autoselect = true);
+    auto
+    set_autoselect (bool autoselect = true) -> void;
 
     auto
     get_can_unselect () const -> bool;
 
-    void
-    set_can_unselect (bool can_unselect = true);
+    auto
+    set_can_unselect (bool can_unselect = true) -> void;
 
     auto
     property_autoselect () -> Glib::PropertyProxy<bool>;
@@ -172,9 +172,7 @@ namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkSingleSelection* object, bool take_copy = false) -> Glib::RefPtr<Gtk::SingleSelection>;
 } // namespace Glib
 

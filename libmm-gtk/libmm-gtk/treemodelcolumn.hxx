@@ -3,10 +3,12 @@
 #ifndef _GTKMM_TREEMODELCOLUMN_H
 #define _GTKMM_TREEMODELCOLUMN_H
 
-#include <glib-object.h>
-#include <libmm-glib/value.hxx>
-#include <libmm-gtk/mm-gtkconfig.hxx>
-#include <vector>
+#ifndef GTKMM_DISABLE_DEPRECATED
+
+  #include <glib-object.h>
+  #include <libmm-glib/value.hxx>
+  #include <libmm-gtk/mm-gtkconfig.hxx>
+  #include <vector>
 
 namespace Gtk
 {
@@ -20,8 +22,8 @@ namespace Gtk
     TreeModelColumnRecord ();
     GTKMM_API virtual ~TreeModelColumnRecord () noexcept;
 
-    GTKMM_API void
-    add (TreeModelColumnBase& column);
+    GTKMM_API auto
+    add (TreeModelColumnBase& column) -> void;
 
     GTKMM_API auto
     size () const -> unsigned int;
@@ -88,5 +90,7 @@ namespace Gtk
   };
 
 } // namespace Gtk
+
+#endif
 
 #endif

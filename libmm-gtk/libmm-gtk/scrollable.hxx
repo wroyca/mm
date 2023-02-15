@@ -72,8 +72,8 @@ namespace Gtk
 
     ~Scrollable () noexcept override;
 
-    static void
-    add_interface (GType gtype_implementer);
+    static auto
+    add_interface (GType gtype_implementer) -> void;
 
     static auto
     get_type () -> GType G_GNUC_CONST;
@@ -109,11 +109,11 @@ namespace Gtk
     auto
     get_hadjustment () const -> Glib::RefPtr<const Adjustment>;
 
-    void
-    set_hadjustment (const Glib::RefPtr<Adjustment>& hadjustment);
+    auto
+    set_hadjustment (const Glib::RefPtr<Adjustment>& hadjustment) -> void;
 
-    void
-    unset_hadjustment ();
+    auto
+    unset_hadjustment () -> void;
 
     auto
     get_vadjustment () -> Glib::RefPtr<Adjustment>;
@@ -121,23 +121,23 @@ namespace Gtk
     auto
     get_vadjustment () const -> Glib::RefPtr<const Adjustment>;
 
-    void
-    set_vadjustment (const Glib::RefPtr<Adjustment>& vadjustment);
+    auto
+    set_vadjustment (const Glib::RefPtr<Adjustment>& vadjustment) -> void;
 
-    void
-    unset_vadjustment ();
+    auto
+    unset_vadjustment () -> void;
 
     auto
     get_hscroll_policy () const -> Policy;
 
-    void
-    set_hscroll_policy (Policy policy);
+    auto
+    set_hscroll_policy (Policy policy) -> void;
 
     auto
     get_vscroll_policy () const -> Policy;
 
-    void
-    set_vscroll_policy (Policy policy);
+    auto
+    set_vscroll_policy (Policy policy) -> void;
 
     auto
     get_border (Border& border) const -> bool;
@@ -197,9 +197,7 @@ namespace Glib
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkScrollable* object, bool take_copy = false) -> Glib::RefPtr<Gtk::Scrollable>;
 
 } // namespace Glib

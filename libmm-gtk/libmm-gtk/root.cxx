@@ -28,10 +28,10 @@ namespace Glib
 {
 
   auto
-  wrap (GtkRoot* object, const bool take_copy) -> RefPtr<Gtk::Root>
+  wrap (GtkRoot* object, bool take_copy) -> Glib::RefPtr<Gtk::Root>
   {
-    return Glib::make_refptr_for_instance<Gtk::Root> (
-        Glib::wrap_auto_interface<Gtk::Root> ((GObject*) object, take_copy));
+    return Glib::make_refptr_for_instance<Gtk::Root> (dynamic_cast<Gtk::Root*> (
+        Glib::wrap_auto_interface<Gtk::Root> ((GObject*) (object), take_copy)));
   }
 
 } // namespace Glib
@@ -40,7 +40,7 @@ namespace Gtk
 {
 
   auto
-  Root_Class::init () -> const Interface_Class&
+  Root_Class::init () -> const Glib::Interface_Class&
   {
     if (!gtype_)
     {
@@ -63,40 +63,40 @@ namespace Gtk
   auto
   Root_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
   {
-    return new Root ((GtkRoot*) object);
+    return new Root ((GtkRoot*) (object));
   }
 
   Root::Root ()
-    : Interface (root_class_.init ())
+    : Glib::Interface (root_class_.init ())
   {
   }
 
   Root::Root (GtkRoot* castitem)
-    : Interface ((GObject*) castitem)
+    : Glib::Interface ((GObject*) (castitem))
   {
   }
 
   Root::Root (const Glib::Interface_Class& interface_class)
-    : Interface (interface_class)
+    : Glib::Interface (interface_class)
   {
   }
 
   Root::Root (Root&& src) noexcept
-    : Interface (std::move (src))
+    : Glib::Interface (std::move (src))
   {
   }
 
   auto
   Root::operator= (Root&& src) noexcept -> Root&
   {
-    Interface::operator= (std::move (src));
+    Glib::Interface::operator= (std::move (src));
     return *this;
   }
 
-  Root::~Root () noexcept = default;
+  Root::~Root () noexcept {}
 
   auto
-  Root::add_interface (const GType gtype_implementer) -> void
+  Root::add_interface (GType gtype_implementer) -> void
   {
     root_class_.init ().add_interface (gtype_implementer);
   }
@@ -133,7 +133,7 @@ namespace Gtk
   auto
   Root::set_focus (Widget& focus) -> void
   {
-    gtk_root_set_focus (gobj (), focus.gobj ());
+    gtk_root_set_focus (gobj (), (focus).gobj ());
   }
 
   auto

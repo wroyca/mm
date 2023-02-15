@@ -15,11 +15,11 @@ namespace Glib
 {
 
   auto
-  wrap (GtkShortcutTrigger* object, const bool take_copy) -> RefPtr<Gtk::ShortcutTrigger>
+  wrap (GtkShortcutTrigger* object, bool take_copy) -> Glib::RefPtr<Gtk::ShortcutTrigger>
   {
     return Glib::make_refptr_for_instance<Gtk::ShortcutTrigger> (
         dynamic_cast<Gtk::ShortcutTrigger*> (
-            wrap_auto ((GObject*) object, take_copy)));
+            Glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
 } // namespace Glib
@@ -28,7 +28,7 @@ namespace Gtk
 {
 
   auto
-  ShortcutTrigger_Class::init () -> const Class&
+  ShortcutTrigger_Class::init () -> const Glib::Class&
   {
     if (!gtype_)
     {
@@ -62,28 +62,28 @@ namespace Gtk
 
   ShortcutTrigger::ShortcutTrigger (
       const Glib::ConstructParams& construct_params)
-    : Object (construct_params)
+    : Glib::Object (construct_params)
   {
   }
 
   ShortcutTrigger::ShortcutTrigger (GtkShortcutTrigger* castitem)
-    : Object ((GObject*) castitem)
+    : Glib::Object ((GObject*) (castitem))
   {
   }
 
   ShortcutTrigger::ShortcutTrigger (ShortcutTrigger&& src) noexcept
-    : Object (std::move (src))
+    : Glib::Object (std::move (src))
   {
   }
 
   auto
   ShortcutTrigger::operator= (ShortcutTrigger&& src) noexcept -> ShortcutTrigger&
   {
-    Object::operator= (std::move (src));
+    Glib::Object::operator= (std::move (src));
     return *this;
   }
 
-  ShortcutTrigger::~ShortcutTrigger () noexcept = default;
+  ShortcutTrigger::~ShortcutTrigger () noexcept {}
 
   ShortcutTrigger::CppClassType ShortcutTrigger::shortcuttrigger_class_;
 
@@ -100,8 +100,8 @@ namespace Gtk
   }
 
   ShortcutTrigger::ShortcutTrigger ()
-    : ObjectBase (nullptr),
-      Object (Glib::ConstructParams (shortcuttrigger_class_.init ()))
+    : Glib::ObjectBase (nullptr),
+      Glib::Object (Glib::ConstructParams (shortcuttrigger_class_.init ()))
   {
   }
 
@@ -133,24 +133,28 @@ namespace Gtk
   ShortcutTrigger::equal (
       const Glib::RefPtr<const ShortcutTrigger>& trigger2) const -> bool
   {
-    return gtk_shortcut_trigger_equal (gobj (), Glib::unwrap (trigger2));
+    return gtk_shortcut_trigger_equal (
+        const_cast<GtkShortcutTrigger*> (gobj ()),
+        Glib::unwrap (trigger2));
   }
 
   auto
   ShortcutTrigger::compare (
       const Glib::RefPtr<const ShortcutTrigger>& trigger2) const -> int
   {
-    return gtk_shortcut_trigger_compare (gobj (), Glib::unwrap (trigger2));
+    return gtk_shortcut_trigger_compare (
+        const_cast<GtkShortcutTrigger*> (gobj ()),
+        Glib::unwrap (trigger2));
   }
 
   auto
   ShortcutTrigger::trigger (const Glib::RefPtr<const Gdk::Event>& event,
-                            const bool enable_mnemonics) const -> Gdk::KeyMatch
+                            bool enable_mnemonics) const -> Gdk::KeyMatch
   {
     return static_cast<Gdk::KeyMatch> (gtk_shortcut_trigger_trigger (
         const_cast<GtkShortcutTrigger*> (gobj ()),
         const_cast<GdkEvent*> (Glib::unwrap (event)),
-        enable_mnemonics));
+        static_cast<int> (enable_mnemonics)));
   }
 
 } // namespace Gtk
@@ -159,11 +163,11 @@ namespace Glib
 {
 
   auto
-  wrap (GtkNeverTrigger* object, const bool take_copy) -> RefPtr<Gtk::NeverTrigger>
+  wrap (GtkNeverTrigger* object, bool take_copy) -> Glib::RefPtr<Gtk::NeverTrigger>
   {
     return Glib::make_refptr_for_instance<Gtk::NeverTrigger> (
         dynamic_cast<Gtk::NeverTrigger*> (
-            wrap_auto ((GObject*) object, take_copy)));
+            Glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
 } // namespace Glib
@@ -172,7 +176,7 @@ namespace Gtk
 {
 
   auto
-  NeverTrigger_Class::init () -> const Class&
+  NeverTrigger_Class::init () -> const Glib::Class&
   {
     if (!gtype_)
     {
@@ -210,7 +214,7 @@ namespace Gtk
   }
 
   NeverTrigger::NeverTrigger (GtkNeverTrigger* castitem)
-    : ShortcutTrigger ((GtkShortcutTrigger*) castitem)
+    : ShortcutTrigger ((GtkShortcutTrigger*) (castitem))
   {
   }
 
@@ -226,7 +230,7 @@ namespace Gtk
     return *this;
   }
 
-  NeverTrigger::~NeverTrigger () noexcept = default;
+  NeverTrigger::~NeverTrigger () noexcept {}
 
   NeverTrigger::CppClassType NeverTrigger::nevertrigger_class_;
 
@@ -243,7 +247,7 @@ namespace Gtk
   }
 
   NeverTrigger::NeverTrigger ()
-    : ObjectBase (nullptr),
+    : Glib::ObjectBase (nullptr),
       ShortcutTrigger (Glib::ConstructParams (nevertrigger_class_.init ()))
   {
   }
@@ -263,11 +267,11 @@ namespace Glib
 {
 
   auto
-  wrap (GtkKeyvalTrigger* object, const bool take_copy) -> RefPtr<Gtk::KeyvalTrigger>
+  wrap (GtkKeyvalTrigger* object, bool take_copy) -> Glib::RefPtr<Gtk::KeyvalTrigger>
   {
     return Glib::make_refptr_for_instance<Gtk::KeyvalTrigger> (
         dynamic_cast<Gtk::KeyvalTrigger*> (
-            wrap_auto ((GObject*) object, take_copy)));
+            Glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
 } // namespace Glib
@@ -276,7 +280,7 @@ namespace Gtk
 {
 
   auto
-  KeyvalTrigger_Class::init () -> const Class&
+  KeyvalTrigger_Class::init () -> const Glib::Class&
   {
     if (!gtype_)
     {
@@ -314,7 +318,7 @@ namespace Gtk
   }
 
   KeyvalTrigger::KeyvalTrigger (GtkKeyvalTrigger* castitem)
-    : ShortcutTrigger ((GtkShortcutTrigger*) castitem)
+    : ShortcutTrigger ((GtkShortcutTrigger*) (castitem))
   {
   }
 
@@ -330,7 +334,7 @@ namespace Gtk
     return *this;
   }
 
-  KeyvalTrigger::~KeyvalTrigger () noexcept = default;
+  KeyvalTrigger::~KeyvalTrigger () noexcept {}
 
   KeyvalTrigger::CppClassType KeyvalTrigger::keyvaltrigger_class_;
 
@@ -346,20 +350,20 @@ namespace Gtk
     return gtk_keyval_trigger_get_type ();
   }
 
-  KeyvalTrigger::KeyvalTrigger (const guint keyval,
-                                const Gdk::ModifierType modifiers)
-    : ObjectBase (nullptr),
-      ShortcutTrigger (Glib::ConstructParams (keyvaltrigger_class_.init (),
-                                              "keyval",
-                                              keyval,
-                                              "modifiers",
-                                              modifiers,
-                                              nullptr))
+  KeyvalTrigger::KeyvalTrigger (guint keyval, Gdk::ModifierType modifiers)
+    : Glib::ObjectBase (nullptr),
+      ShortcutTrigger (
+          Glib::ConstructParams (keyvaltrigger_class_.init (),
+                                 "keyval",
+                                 keyval,
+                                 "modifiers",
+                                 static_cast<GdkModifierType> (modifiers),
+                                 nullptr))
   {
   }
 
   auto
-  KeyvalTrigger::create (const guint keyval, const Gdk::ModifierType modifiers) -> Glib::RefPtr<KeyvalTrigger>
+  KeyvalTrigger::create (guint keyval, Gdk::ModifierType modifiers) -> Glib::RefPtr<KeyvalTrigger>
   {
     return Glib::make_refptr_for_instance<KeyvalTrigger> (
         new KeyvalTrigger (keyval, modifiers));
@@ -382,7 +386,7 @@ namespace Gtk
   auto
   KeyvalTrigger::property_keyval () const -> Glib::PropertyProxy_ReadOnly<guint>
   {
-    return {this, "keyval"};
+    return Glib::PropertyProxy_ReadOnly<guint> (this, "keyval");
   }
 
   static_assert (
@@ -393,7 +397,7 @@ namespace Gtk
   auto
   KeyvalTrigger::property_modifiers () const -> Glib::PropertyProxy_ReadOnly<Gdk::ModifierType>
   {
-    return {this, "modifiers"};
+    return Glib::PropertyProxy_ReadOnly<Gdk::ModifierType> (this, "modifiers");
   }
 
 } // namespace Gtk
@@ -402,11 +406,11 @@ namespace Glib
 {
 
   auto
-  wrap (GtkMnemonicTrigger* object, const bool take_copy) -> RefPtr<Gtk::MnemonicTrigger>
+  wrap (GtkMnemonicTrigger* object, bool take_copy) -> Glib::RefPtr<Gtk::MnemonicTrigger>
   {
     return Glib::make_refptr_for_instance<Gtk::MnemonicTrigger> (
         dynamic_cast<Gtk::MnemonicTrigger*> (
-            wrap_auto ((GObject*) object, take_copy)));
+            Glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
 } // namespace Glib
@@ -415,7 +419,7 @@ namespace Gtk
 {
 
   auto
-  MnemonicTrigger_Class::init () -> const Class&
+  MnemonicTrigger_Class::init () -> const Glib::Class&
   {
     if (!gtype_)
     {
@@ -454,7 +458,7 @@ namespace Gtk
   }
 
   MnemonicTrigger::MnemonicTrigger (GtkMnemonicTrigger* castitem)
-    : ShortcutTrigger ((GtkShortcutTrigger*) castitem)
+    : ShortcutTrigger ((GtkShortcutTrigger*) (castitem))
   {
   }
 
@@ -470,7 +474,7 @@ namespace Gtk
     return *this;
   }
 
-  MnemonicTrigger::~MnemonicTrigger () noexcept = default;
+  MnemonicTrigger::~MnemonicTrigger () noexcept {}
 
   MnemonicTrigger::CppClassType MnemonicTrigger::mnemonictrigger_class_;
 
@@ -486,8 +490,8 @@ namespace Gtk
     return gtk_mnemonic_trigger_get_type ();
   }
 
-  MnemonicTrigger::MnemonicTrigger (const guint keyval)
-    : ObjectBase (nullptr),
+  MnemonicTrigger::MnemonicTrigger (guint keyval)
+    : Glib::ObjectBase (nullptr),
       ShortcutTrigger (Glib::ConstructParams (mnemonictrigger_class_.init (),
                                               "keyval",
                                               keyval,
@@ -496,7 +500,7 @@ namespace Gtk
   }
 
   auto
-  MnemonicTrigger::create (const guint keyval) -> Glib::RefPtr<MnemonicTrigger>
+  MnemonicTrigger::create (guint keyval) -> Glib::RefPtr<MnemonicTrigger>
   {
     return Glib::make_refptr_for_instance<MnemonicTrigger> (
         new MnemonicTrigger (keyval));
@@ -512,7 +516,7 @@ namespace Gtk
   auto
   MnemonicTrigger::property_keyval () const -> Glib::PropertyProxy_ReadOnly<guint>
   {
-    return {this, "keyval"};
+    return Glib::PropertyProxy_ReadOnly<guint> (this, "keyval");
   }
 
 } // namespace Gtk
@@ -521,11 +525,11 @@ namespace Glib
 {
 
   auto
-  wrap (GtkAlternativeTrigger* object, const bool take_copy) -> RefPtr<Gtk::AlternativeTrigger>
+  wrap (GtkAlternativeTrigger* object, bool take_copy) -> Glib::RefPtr<Gtk::AlternativeTrigger>
   {
     return Glib::make_refptr_for_instance<Gtk::AlternativeTrigger> (
         dynamic_cast<Gtk::AlternativeTrigger*> (
-            wrap_auto ((GObject*) object, take_copy)));
+            Glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
 } // namespace Glib
@@ -534,7 +538,7 @@ namespace Gtk
 {
 
   auto
-  AlternativeTrigger_Class::init () -> const Class&
+  AlternativeTrigger_Class::init () -> const Glib::Class&
   {
     if (!gtype_)
     {
@@ -574,7 +578,7 @@ namespace Gtk
   }
 
   AlternativeTrigger::AlternativeTrigger (GtkAlternativeTrigger* castitem)
-    : ShortcutTrigger ((GtkShortcutTrigger*) castitem)
+    : ShortcutTrigger ((GtkShortcutTrigger*) (castitem))
   {
   }
 
@@ -590,7 +594,7 @@ namespace Gtk
     return *this;
   }
 
-  AlternativeTrigger::~AlternativeTrigger () noexcept = default;
+  AlternativeTrigger::~AlternativeTrigger () noexcept {}
 
   AlternativeTrigger::CppClassType
       AlternativeTrigger::alternativetrigger_class_;
@@ -610,13 +614,14 @@ namespace Gtk
   AlternativeTrigger::AlternativeTrigger (
       const Glib::RefPtr<const ShortcutTrigger>& first,
       const Glib::RefPtr<const ShortcutTrigger>& second)
-    : ObjectBase (nullptr),
-      ShortcutTrigger (Glib::ConstructParams (alternativetrigger_class_.init (),
-                                              "first",
-                                              Glib::unwrap (first),
-                                              "second",
-                                              Glib::unwrap (second),
-                                              nullptr))
+    : Glib::ObjectBase (nullptr),
+      ShortcutTrigger (Glib::ConstructParams (
+          alternativetrigger_class_.init (),
+          "first",
+          const_cast<GtkShortcutTrigger*> (Glib::unwrap (first)),
+          "second",
+          const_cast<GtkShortcutTrigger*> (Glib::unwrap (second)),
+          nullptr))
   {
   }
 
@@ -658,7 +663,9 @@ namespace Gtk
   auto
   AlternativeTrigger::property_first () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<const ShortcutTrigger>>
   {
-    return {this, "first"};
+    return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<const ShortcutTrigger>> (
+        this,
+        "first");
   }
 
   static_assert (
@@ -671,7 +678,9 @@ namespace Gtk
   auto
   AlternativeTrigger::property_second () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<const ShortcutTrigger>>
   {
-    return {this, "second"};
+    return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<const ShortcutTrigger>> (
+        this,
+        "second");
   }
 
 } // namespace Gtk

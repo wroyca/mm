@@ -3,22 +3,24 @@
 #ifndef _GTKMM_CELLRENDERERTOGGLE_H
 #define _GTKMM_CELLRENDERERTOGGLE_H
 
-#include <libmm-glib/ustring.hxx>
-#include <sigc++/sigc++.h>
+#ifndef GTKMM_DISABLE_DEPRECATED
 
-#include <libmm-gtk/cellrenderer.hxx>
+  #include <libmm-glib/ustring.hxx>
+  #include <sigc++/sigc++.h>
 
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #include <libmm-gtk/cellrenderer.hxx>
+
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
 using GtkCellRendererToggle = struct _GtkCellRendererToggle;
 using GtkCellRendererToggleClass = struct _GtkCellRendererToggleClass;
-#endif
+  #endif
 
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
   class GTKMM_API CellRendererToggle_Class;
 }
-#endif
+  #endif
 
 namespace Gtk
 {
@@ -26,12 +28,12 @@ namespace Gtk
   class GTKMM_API CellRendererToggle : public CellRenderer
   {
   public:
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
     typedef CellRendererToggle CppObjectType;
     typedef CellRendererToggle_Class CppClassType;
     typedef GtkCellRendererToggle BaseObjectType;
     typedef GtkCellRendererToggleClass BaseClassType;
-#endif
+  #endif
 
     CellRendererToggle (CellRendererToggle&& src) noexcept;
     auto
@@ -43,7 +45,7 @@ namespace Gtk
 
     ~CellRendererToggle () noexcept override;
 
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   private:
     friend GTKMM_API class CellRendererToggle_Class;
@@ -53,17 +55,17 @@ namespace Gtk
     explicit CellRendererToggle (const Glib::ConstructParams& construct_params);
     explicit CellRendererToggle (GtkCellRendererToggle* castitem);
 
-#endif
+  #endif
 
   public:
     static auto
     get_type () -> GType G_GNUC_CONST;
 
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
     static auto
     get_base_type () -> GType G_GNUC_CONST;
-#endif
+  #endif
 
     auto
     gobj () -> GtkCellRendererToggle*
@@ -84,20 +86,20 @@ namespace Gtk
     auto
     get_radio () const -> bool;
 
-    void
-    set_radio (bool radio = true);
+    auto
+    set_radio (bool radio = true) -> void;
 
     auto
     get_active () const -> bool;
 
-    void
-    set_active (bool setting = true);
+    auto
+    set_active (bool setting = true) -> void;
 
     auto
     get_activatable () const -> bool;
 
-    void
-    set_activatable (bool setting = true);
+    auto
+    set_activatable (bool setting = true) -> void;
 
     auto
     signal_toggled () -> Glib::SignalProxy<void (const Glib::ustring&)>;
@@ -138,10 +140,10 @@ namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkCellRendererToggle* object, bool take_copy = false) -> Gtk::CellRendererToggle*;
 } // namespace Glib
+
+#endif
 
 #endif

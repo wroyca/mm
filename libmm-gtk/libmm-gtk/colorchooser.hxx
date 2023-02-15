@@ -3,38 +3,40 @@
 #ifndef _GTKMM_COLORCHOOSER_H
 #define _GTKMM_COLORCHOOSER_H
 
-#include <libmm-glib/ustring.hxx>
-#include <sigc++/sigc++.h>
+#ifndef GTKMM_DISABLE_DEPRECATED
 
-#include <libmm-gdk/rgba.hxx>
-#include <libmm-glib/interface.hxx>
-#include <libmm-gtk/enums.hxx>
+  #include <libmm-glib/ustring.hxx>
+  #include <sigc++/sigc++.h>
 
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #include <libmm-gdk/rgba.hxx>
+  #include <libmm-glib/interface.hxx>
+  #include <libmm-gtk/enums.hxx>
+
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
 extern "C"
 {
   typedef struct _GtkColorChooserInterface GtkColorChooserInterface;
 }
-#endif
+  #endif
 
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
 using GtkColorChooser = struct _GtkColorChooser;
 using GtkColorChooserClass = struct _GtkColorChooserClass;
-#endif
+  #endif
 
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
   class GTKMM_API ColorChooser_Class;
 }
-#endif
+  #endif
 
 namespace Gtk
 {
 
   class GTKMM_API ColorChooser : public Glib::Interface
   {
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   public:
     using CppObjectType = ColorChooser;
@@ -50,11 +52,11 @@ namespace Gtk
     friend class ColorChooser_Class;
     static CppClassType colorchooser_class_;
 
-#endif
+  #endif
   protected:
     ColorChooser ();
 
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
     explicit ColorChooser (const Glib::Interface_Class& interface_class);
 
@@ -62,7 +64,7 @@ namespace Gtk
     explicit ColorChooser (GtkColorChooser* castitem);
 
   protected:
-#endif
+  #endif
 
   public:
     ColorChooser (ColorChooser&& src) noexcept;
@@ -71,16 +73,16 @@ namespace Gtk
 
     ~ColorChooser () noexcept override;
 
-    static void
-    add_interface (GType gtype_implementer);
+    static auto
+    add_interface (GType gtype_implementer) -> void;
 
     static auto
     get_type () -> GType G_GNUC_CONST;
 
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
     static auto
     get_base_type () -> GType G_GNUC_CONST;
-#endif
+  #endif
 
     auto
     gobj () -> GtkColorChooser*
@@ -99,19 +101,19 @@ namespace Gtk
     auto
     get_rgba () const -> Gdk::RGBA;
 
-    void
-    set_rgba (const Gdk::RGBA& color);
+    auto
+    set_rgba (const Gdk::RGBA& color) -> void;
 
     auto
     get_use_alpha () const -> bool;
 
-    void
-    set_use_alpha (bool use_alpha = true);
+    auto
+    set_use_alpha (bool use_alpha = true) -> void;
 
-    void
+    auto
     add_palette (Orientation orientation,
                  int colors_per_line,
-                 const std::vector<Gdk::RGBA>& colors);
+                 const std::vector<Gdk::RGBA>& colors) -> void;
 
     auto
     signal_color_activated () -> Glib::SignalProxy<void (const Gdk::RGBA&)>;
@@ -131,19 +133,19 @@ namespace Gtk
   public:
   public:
   protected:
-    virtual void
-    on_color_activated (const Gdk::RGBA& color);
+    virtual auto
+    on_color_activated (const Gdk::RGBA& color) -> void;
   };
 
 } // namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkColorChooser* object, bool take_copy = false) -> Glib::RefPtr<Gtk::ColorChooser>;
 
 } // namespace Glib
+
+#endif
 
 #endif

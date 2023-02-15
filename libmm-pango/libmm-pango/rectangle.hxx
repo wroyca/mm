@@ -27,26 +27,26 @@ namespace Pango
     Rectangle (int x, int y, int width, int height);
     explicit Rectangle (const PangoRectangle* src);
 
-    void
-    set_x (int x)
+    auto
+    set_x (int x) -> void
     {
       gobject_.x = x;
     }
 
-    void
-    set_y (int y)
+    auto
+    set_y (int y) -> void
     {
       gobject_.y = y;
     }
 
-    void
-    set_width (int w)
+    auto
+    set_width (int w) -> void
     {
       gobject_.width = w;
     }
 
-    void
-    set_height (int h)
+    auto
+    set_height (int h) -> void
     {
       gobject_.height = h;
     }

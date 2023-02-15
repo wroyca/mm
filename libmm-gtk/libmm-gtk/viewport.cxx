@@ -28,10 +28,10 @@ namespace Glib
 {
 
   auto
-  wrap (GtkViewport* object, const bool take_copy) -> Gtk::Viewport*
+  wrap (GtkViewport* object, bool take_copy) -> Gtk::Viewport*
   {
     return dynamic_cast<Gtk::Viewport*> (
-        wrap_auto ((GObject*) object, take_copy));
+        Glib::wrap_auto ((GObject*) (object), take_copy));
   }
 
 } // namespace Glib
@@ -40,7 +40,7 @@ namespace Gtk
 {
 
   auto
-  Viewport_Class::init () -> const Class&
+  Viewport_Class::init () -> const Glib::Class&
   {
     if (!gtype_)
     {
@@ -64,21 +64,21 @@ namespace Gtk
   auto
   Viewport_Class::wrap_new (GObject* o) -> Glib::ObjectBase*
   {
-    return manage (new Viewport ((GtkViewport*) o));
+    return manage (new Viewport ((GtkViewport*) (o)));
   }
 
   Viewport::Viewport (const Glib::ConstructParams& construct_params)
-    : Widget (construct_params)
+    : Gtk::Widget (construct_params)
   {
   }
 
   Viewport::Viewport (GtkViewport* castitem)
-    : Widget ((GtkWidget*) castitem)
+    : Gtk::Widget ((GtkWidget*) (castitem))
   {
   }
 
   Viewport::Viewport (Viewport&& src) noexcept
-    : Widget (std::move (src)),
+    : Gtk::Widget (std::move (src)),
       Scrollable (std::move (src))
   {
   }
@@ -86,7 +86,7 @@ namespace Gtk
   auto
   Viewport::operator= (Viewport&& src) noexcept -> Viewport&
   {
-    Widget::operator= (std::move (src));
+    Gtk::Widget::operator= (std::move (src));
     Scrollable::operator= (std::move (src));
     return *this;
   }
@@ -112,20 +112,21 @@ namespace Gtk
 
   Viewport::Viewport (const Glib::RefPtr<Adjustment>& hadjustment,
                       const Glib::RefPtr<Adjustment>& vadjustment)
-    : ObjectBase (nullptr),
-      Widget (Glib::ConstructParams (viewport_class_.init (),
-                                     "hadjustment",
-                                     Glib::unwrap (hadjustment),
-                                     "vadjustment",
-                                     Glib::unwrap (vadjustment),
-                                     nullptr))
+    : Glib::ObjectBase (nullptr),
+      Gtk::Widget (Glib::ConstructParams (viewport_class_.init (),
+                                          "hadjustment",
+                                          Glib::unwrap (hadjustment),
+                                          "vadjustment",
+                                          Glib::unwrap (vadjustment),
+                                          nullptr))
   {
   }
 
   auto
-  Viewport::set_scroll_to_focus (const bool scroll_to_focus) -> void
+  Viewport::set_scroll_to_focus (bool scroll_to_focus) -> void
   {
-    gtk_viewport_set_scroll_to_focus (gobj (), scroll_to_focus);
+    gtk_viewport_set_scroll_to_focus (gobj (),
+                                      static_cast<int> (scroll_to_focus));
   }
 
   auto
@@ -138,7 +139,7 @@ namespace Gtk
   auto
   Viewport::set_child (Widget& child) -> void
   {
-    gtk_viewport_set_child (gobj (), child.gobj ());
+    gtk_viewport_set_child (gobj (), (child).gobj ());
   }
 
   auto
@@ -156,25 +157,25 @@ namespace Gtk
   auto
   Viewport::property_scroll_to_focus () -> Glib::PropertyProxy<bool>
   {
-    return {this, "scroll-to-focus"};
+    return Glib::PropertyProxy<bool> (this, "scroll-to-focus");
   }
 
   auto
   Viewport::property_scroll_to_focus () const -> Glib::PropertyProxy_ReadOnly<bool>
   {
-    return {this, "scroll-to-focus"};
+    return Glib::PropertyProxy_ReadOnly<bool> (this, "scroll-to-focus");
   }
 
   auto
   Viewport::property_child () -> Glib::PropertyProxy<Widget*>
   {
-    return {this, "child"};
+    return Glib::PropertyProxy<Widget*> (this, "child");
   }
 
   auto
   Viewport::property_child () const -> Glib::PropertyProxy_ReadOnly<Widget*>
   {
-    return {this, "child"};
+    return Glib::PropertyProxy_ReadOnly<Widget*> (this, "child");
   }
 
 } // namespace Gtk

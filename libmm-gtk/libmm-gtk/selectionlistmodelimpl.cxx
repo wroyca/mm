@@ -6,27 +6,28 @@
 namespace Gtk
 {
   SelectionListModelImpl::SelectionListModelImpl (GObject* castitem)
-    : ObjectBase (nullptr),
-      Object (castitem)
+    : Glib::ObjectBase (nullptr),
+      Glib::Object (castitem)
   {
   }
 
   SelectionListModelImpl::SelectionListModelImpl (
       SelectionListModelImpl&& src) noexcept
-    : ListModel (std::move (src)),
+    : Gio::ListModel (std::move (src)),
       SelectionModel (std::move (src)),
-      Object (std::move (src))
+      Glib::Object (std::move (src))
   {
   }
 
   auto
   SelectionListModelImpl::operator= (SelectionListModelImpl&& src) noexcept -> SelectionListModelImpl&
   {
-    ListModel::operator= (std::move (src));
+    Gio::ListModel::operator= (std::move (src));
     SelectionModel::operator= (std::move (src));
-    Object::operator= (std::move (src));
+    Glib::Object::operator= (std::move (src));
     return *this;
   }
 
-  SelectionListModelImpl::~SelectionListModelImpl () noexcept = default;
+  SelectionListModelImpl::~SelectionListModelImpl () noexcept {}
+
 } // namespace Gtk

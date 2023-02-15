@@ -18,10 +18,10 @@ namespace Glib
 {
 
   auto
-  wrap (GtkProgressBar* object, const bool take_copy) -> Gtk::ProgressBar*
+  wrap (GtkProgressBar* object, bool take_copy) -> Gtk::ProgressBar*
   {
     return dynamic_cast<Gtk::ProgressBar*> (
-        wrap_auto ((GObject*) object, take_copy));
+        Glib::wrap_auto ((GObject*) (object), take_copy));
   }
 
 } // namespace Glib
@@ -30,7 +30,7 @@ namespace Gtk
 {
 
   auto
-  ProgressBar_Class::init () -> const Class&
+  ProgressBar_Class::init () -> const Glib::Class&
   {
     if (!gtype_)
     {
@@ -54,21 +54,21 @@ namespace Gtk
   auto
   ProgressBar_Class::wrap_new (GObject* o) -> Glib::ObjectBase*
   {
-    return manage (new ProgressBar ((GtkProgressBar*) o));
+    return manage (new ProgressBar ((GtkProgressBar*) (o)));
   }
 
   ProgressBar::ProgressBar (const Glib::ConstructParams& construct_params)
-    : Widget (construct_params)
+    : Gtk::Widget (construct_params)
   {
   }
 
   ProgressBar::ProgressBar (GtkProgressBar* castitem)
-    : Widget ((GtkWidget*) castitem)
+    : Gtk::Widget ((GtkWidget*) (castitem))
   {
   }
 
   ProgressBar::ProgressBar (ProgressBar&& src) noexcept
-    : Widget (std::move (src)),
+    : Gtk::Widget (std::move (src)),
       Orientable (std::move (src))
   {
   }
@@ -76,7 +76,7 @@ namespace Gtk
   auto
   ProgressBar::operator= (ProgressBar&& src) noexcept -> ProgressBar&
   {
-    Widget::operator= (std::move (src));
+    Gtk::Widget::operator= (std::move (src));
     Orientable::operator= (std::move (src));
     return *this;
   }
@@ -101,8 +101,8 @@ namespace Gtk
   }
 
   ProgressBar::ProgressBar ()
-    : ObjectBase (nullptr),
-      Widget (Glib::ConstructParams (progressbar_class_.init ()))
+    : Glib::ObjectBase (nullptr),
+      Gtk::Widget (Glib::ConstructParams (progressbar_class_.init ()))
   {
   }
 
@@ -133,7 +133,7 @@ namespace Gtk
   }
 
   auto
-  ProgressBar::set_fraction (const double fraction) -> void
+  ProgressBar::set_fraction (double fraction) -> void
   {
     gtk_progress_bar_set_fraction (gobj (), fraction);
   }
@@ -146,15 +146,15 @@ namespace Gtk
   }
 
   auto
-  ProgressBar::set_pulse_step (const double fraction) -> void
+  ProgressBar::set_pulse_step (double fraction) -> void
   {
     gtk_progress_bar_set_pulse_step (gobj (), fraction);
   }
 
   auto
-  ProgressBar::set_inverted (const bool inverted) -> void
+  ProgressBar::set_inverted (bool inverted) -> void
   {
-    gtk_progress_bar_set_inverted (gobj (), inverted);
+    gtk_progress_bar_set_inverted (gobj (), static_cast<int> (inverted));
   }
 
   auto
@@ -179,9 +179,9 @@ namespace Gtk
   }
 
   auto
-  ProgressBar::set_show_text (const bool show_text) -> void
+  ProgressBar::set_show_text (bool show_text) -> void
   {
-    gtk_progress_bar_set_show_text (gobj (), show_text);
+    gtk_progress_bar_set_show_text (gobj (), static_cast<int> (show_text));
   }
 
   auto
@@ -194,73 +194,73 @@ namespace Gtk
   auto
   ProgressBar::property_fraction () -> Glib::PropertyProxy<double>
   {
-    return {this, "fraction"};
+    return Glib::PropertyProxy<double> (this, "fraction");
   }
 
   auto
   ProgressBar::property_fraction () const -> Glib::PropertyProxy_ReadOnly<double>
   {
-    return {this, "fraction"};
+    return Glib::PropertyProxy_ReadOnly<double> (this, "fraction");
   }
 
   auto
   ProgressBar::property_pulse_step () -> Glib::PropertyProxy<double>
   {
-    return {this, "pulse-step"};
+    return Glib::PropertyProxy<double> (this, "pulse-step");
   }
 
   auto
   ProgressBar::property_pulse_step () const -> Glib::PropertyProxy_ReadOnly<double>
   {
-    return {this, "pulse-step"};
+    return Glib::PropertyProxy_ReadOnly<double> (this, "pulse-step");
   }
 
   auto
   ProgressBar::property_text () -> Glib::PropertyProxy<Glib::ustring>
   {
-    return {this, "text"};
+    return Glib::PropertyProxy<Glib::ustring> (this, "text");
   }
 
   auto
   ProgressBar::property_text () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>
   {
-    return {this, "text"};
+    return Glib::PropertyProxy_ReadOnly<Glib::ustring> (this, "text");
   }
 
   auto
   ProgressBar::property_ellipsize () -> Glib::PropertyProxy<bool>
   {
-    return {this, "ellipsize"};
+    return Glib::PropertyProxy<bool> (this, "ellipsize");
   }
 
   auto
   ProgressBar::property_ellipsize () const -> Glib::PropertyProxy_ReadOnly<bool>
   {
-    return {this, "ellipsize"};
+    return Glib::PropertyProxy_ReadOnly<bool> (this, "ellipsize");
   }
 
   auto
   ProgressBar::property_show_text () -> Glib::PropertyProxy<bool>
   {
-    return {this, "show-text"};
+    return Glib::PropertyProxy<bool> (this, "show-text");
   }
 
   auto
   ProgressBar::property_show_text () const -> Glib::PropertyProxy_ReadOnly<bool>
   {
-    return {this, "show-text"};
+    return Glib::PropertyProxy_ReadOnly<bool> (this, "show-text");
   }
 
   auto
   ProgressBar::property_inverted () -> Glib::PropertyProxy<bool>
   {
-    return {this, "inverted"};
+    return Glib::PropertyProxy<bool> (this, "inverted");
   }
 
   auto
   ProgressBar::property_inverted () const -> Glib::PropertyProxy_ReadOnly<bool>
   {
-    return {this, "inverted"};
+    return Glib::PropertyProxy_ReadOnly<bool> (this, "inverted");
   }
 
 } // namespace Gtk

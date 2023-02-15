@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: LGPL-2.1-or-later
 
 #ifndef _GIOMM_DBUSMETHODINVOCATION_H
 #define _GIOMM_DBUSMETHODINVOCATION_H
@@ -121,8 +122,8 @@ namespace Gio::DBus
     auto
     get_parameters () const -> Glib::VariantContainerBase;
 
-    void
-    return_value (const Glib::VariantContainerBase& parameters);
+    auto
+    return_value (const Glib::VariantContainerBase& parameters) -> void;
 
 #ifdef G_OS_UNIX
 
@@ -131,17 +132,17 @@ namespace Gio::DBus
                   const Glib::RefPtr<UnixFDList>& fd_list);
 #endif
 
-    void
+    auto
     return_error (const Glib::ustring& domain,
                   int code,
-                  const Glib::ustring& message);
+                  const Glib::ustring& message) -> void;
 
-    void
-    return_error (const Glib::Error& error);
+    auto
+    return_error (const Glib::Error& error) -> void;
 
-    void
+    auto
     return_dbus_error (const Glib::ustring& error_name,
-                       const Glib::ustring& error_message);
+                       const Glib::ustring& error_message) -> void;
 
   public:
   public:

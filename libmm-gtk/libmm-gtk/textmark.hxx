@@ -98,8 +98,8 @@ namespace Gtk
     create (const Glib::ustring& name, bool left_gravity = true)
         -> Glib::RefPtr<TextMark>;
 
-    void
-    set_visible (bool setting = true);
+    auto
+    set_visible (bool setting = true) -> void;
 
     auto
     get_visible () const -> bool;
@@ -139,9 +139,7 @@ namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkTextMark* object, bool take_copy = false) -> Glib::RefPtr<Gtk::TextMark>;
 } // namespace Glib
 

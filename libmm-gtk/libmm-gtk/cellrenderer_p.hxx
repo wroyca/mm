@@ -2,11 +2,12 @@
 
 #ifndef _GTKMM_CELLRENDERER_P_H
 #define _GTKMM_CELLRENDERER_P_H
+#ifndef GTKMM_DISABLE_DEPRECATED
 
-#include <gtk/gtk.h>
-#include <libmm-gtk/object_p.hxx>
+  #include <gtk/gtk.h>
+  #include <libmm-gtk/object_p.hxx>
 
-#include <libmm-glib/class.hxx>
+  #include <libmm-glib/class.hxx>
 
 namespace Gtk
 {
@@ -14,18 +15,18 @@ namespace Gtk
   class GTKMM_API CellRenderer_Class : public Glib::Class
   {
   public:
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
     using CppObjectType = CellRenderer;
     using BaseObjectType = GtkCellRenderer;
     using BaseClassType = GtkCellRendererClass;
-    using CppClassParent = Object_Class;
+    using CppClassParent = Gtk::Object_Class;
     using BaseClassParent = GObjectClass;
 
     friend class CellRenderer;
-#endif
+  #endif
 
     auto
-    init () -> const Class&;
+    init () -> const Glib::Class&;
 
     static auto
     class_init_function (void* g_class, void* class_data) -> void;
@@ -94,5 +95,7 @@ namespace Gtk
   };
 
 } // namespace Gtk
+
+#endif
 
 #endif

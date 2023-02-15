@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: LGPL-2.1-or-later
 
 #ifndef _GIOMM_APPLICATIONCOMMANDLINE_H
 #define _GIOMM_APPLICATIONCOMMANDLINE_H
@@ -120,17 +121,17 @@ namespace Gio
     get_platform_data () const
         -> Glib::Variant<std::map<Glib::ustring, Glib::VariantBase>>;
 
-    void
-    set_exit_status (int exit_status);
+    auto
+    set_exit_status (int exit_status) -> void;
 
     auto
     get_exit_status () const -> int;
 
-    void
-    print (const Glib::ustring& message);
+    auto
+    print (const Glib::ustring& message) -> void;
 
-    void
-    printerr (const Glib::ustring& message);
+    auto
+    printerr (const Glib::ustring& message) -> void;
 
     auto
     create_file_for_arg (const Glib::ustring& arg) const -> Glib::RefPtr<File>;

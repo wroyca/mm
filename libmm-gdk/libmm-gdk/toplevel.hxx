@@ -134,8 +134,8 @@ namespace Gdk
 
     ~Toplevel () noexcept override;
 
-    static void
-    add_interface (GType gtype_implementer);
+    static auto
+    add_interface (GType gtype_implementer) -> void;
 
     static auto
     get_type () -> GType G_GNUC_CONST;
@@ -179,8 +179,8 @@ namespace Gdk
       LEFT_RESIZABLE = 1 << 15
     };
 
-    void
-    present (const Glib::RefPtr<ToplevelLayout>& layout);
+    auto
+    present (const Glib::RefPtr<ToplevelLayout>& layout) -> void;
 
     auto
     minimize () -> bool;
@@ -188,59 +188,59 @@ namespace Gdk
     auto
     lower () -> bool;
 
-    void
-    focus (guint32 timestamp);
+    auto
+    focus (guint32 timestamp) -> void;
 
     auto
     get_state () const -> State;
 
-    void
-    set_title (const Glib::ustring& title);
+    auto
+    set_title (const Glib::ustring& title) -> void;
 
-    void
-    set_startup_id (const Glib::ustring& startup_id);
+    auto
+    set_startup_id (const Glib::ustring& startup_id) -> void;
 
-    void
-    set_transient_for (const Glib::RefPtr<Surface>& parent);
+    auto
+    set_transient_for (const Glib::RefPtr<Surface>& parent) -> void;
 
-    void
-    set_modal (bool modal = true);
+    auto
+    set_modal (bool modal = true) -> void;
 
-    void
-    set_icon_list (const std::vector<Glib::RefPtr<Texture>>& surfaces);
+    auto
+    set_icon_list (const std::vector<Glib::RefPtr<Texture>>& surfaces) -> void;
 
     auto
     show_window_menu (const Glib::RefPtr<Event>& event) -> bool;
 
-    void
-    set_decorated (bool decorated = true);
+    auto
+    set_decorated (bool decorated = true) -> void;
 
-    void
-    set_deletable (bool deletable = true);
+    auto
+    set_deletable (bool deletable = true) -> void;
 
     auto
     supports_edge_constraints () const -> bool;
 
-    void
-    inhibit_system_shortcuts (const Glib::RefPtr<Event>& event);
+    auto
+    inhibit_system_shortcuts (const Glib::RefPtr<Event>& event) -> void;
 
-    void
-    restore_system_shortcuts ();
+    auto
+    restore_system_shortcuts () -> void;
 
-    void
+    auto
     begin_resize (SurfaceEdge edge,
                   const Glib::RefPtr<Device>& device,
                   int button,
                   double x,
                   double y,
-                  guint32 timestamp);
+                  guint32 timestamp) -> void;
 
-    void
+    auto
     begin_move (const Glib::RefPtr<Device>& device,
                 int button,
                 double x,
                 double y,
-                guint32 timestamp);
+                guint32 timestamp) -> void;
 
     auto
     signal_compute_size () -> Glib::SignalProxy<void (ToplevelSize&)>;
@@ -372,9 +372,7 @@ namespace Glib
 
 namespace Glib
 {
-
-  GDKMM_API
-  auto
+  GDKMM_API auto
   wrap (GdkToplevel* object, bool take_copy = false) -> Glib::RefPtr<Gdk::Toplevel>;
 
 } // namespace Glib

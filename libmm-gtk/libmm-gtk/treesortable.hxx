@@ -5,40 +5,42 @@
 
 #include <libmm-gtk/mm-gtkconfig.hxx>
 
-#include <libmm-glib/ustring.hxx>
-#include <sigc++/sigc++.h>
+#ifndef GTKMM_DISABLE_DEPRECATED
 
-#include <libmm-glib/interface.hxx>
-#include <libmm-gtk/enums.hxx>
-#include <libmm-gtk/treeiter.hxx>
-#include <libmm-gtk/treemodel.hxx>
-#include <libmm-gtk/treemodelcolumn.hxx>
+  #include <libmm-glib/ustring.hxx>
+  #include <sigc++/sigc++.h>
 
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #include <libmm-glib/interface.hxx>
+  #include <libmm-gtk/enums.hxx>
+  #include <libmm-gtk/treeiter.hxx>
+  #include <libmm-gtk/treemodel.hxx>
+  #include <libmm-gtk/treemodelcolumn.hxx>
+
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
 extern "C"
 {
   typedef struct _GtkTreeSortableIface GtkTreeSortableIface;
 }
-#endif
+  #endif
 
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
 using GtkTreeSortable = struct _GtkTreeSortable;
 using GtkTreeSortableClass = struct _GtkTreeSortableClass;
-#endif
+  #endif
 
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
   class GTKMM_API TreeSortable_Class;
 }
-#endif
+  #endif
 
 namespace Gtk
 {
 
   class GTKMM_API TreeSortable : public Glib::Interface
   {
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   public:
     using CppObjectType = TreeSortable;
@@ -54,11 +56,11 @@ namespace Gtk
     friend class TreeSortable_Class;
     static CppClassType treesortable_class_;
 
-#endif
+  #endif
   protected:
     TreeSortable ();
 
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
     explicit TreeSortable (const Glib::Interface_Class& interface_class);
 
@@ -66,7 +68,7 @@ namespace Gtk
     explicit TreeSortable (GtkTreeSortable* castitem);
 
   protected:
-#endif
+  #endif
 
   public:
     TreeSortable (TreeSortable&& src) noexcept;
@@ -75,16 +77,16 @@ namespace Gtk
 
     ~TreeSortable () noexcept override;
 
-    static void
-    add_interface (GType gtype_implementer);
+    static auto
+    add_interface (GType gtype_implementer) -> void;
 
     static auto
     get_type () -> GType G_GNUC_CONST;
 
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
     static auto
     get_base_type () -> GType G_GNUC_CONST;
-#endif
+  #endif
 
     auto
     gobj () -> GtkTreeSortable*
@@ -109,34 +111,35 @@ namespace Gtk
     auto
     get_sort_column_id (int& sort_column_id, SortType& order) const -> bool;
 
-    void
-    set_sort_column (const TreeModelColumnBase& sort_column_id, SortType order);
+    auto
+    set_sort_column (const TreeModelColumnBase& sort_column_id, SortType order)
+        -> void;
 
-    void
-    set_sort_column (int sort_column_id, SortType order);
+    auto
+    set_sort_column (int sort_column_id, SortType order) -> void;
 
     typedef sigc::slot<int (const Gtk::TreeModel::const_iterator&,
                             const Gtk::TreeModel::const_iterator&)>
         SlotCompare;
 
-    void
+    auto
     set_sort_func (const TreeModelColumnBase& sort_column,
-                   const SlotCompare& slot);
+                   const SlotCompare& slot) -> void;
 
-    void
-    set_sort_func (int sort_column_id, const SlotCompare& slot);
+    auto
+    set_sort_func (int sort_column_id, const SlotCompare& slot) -> void;
 
-    void
-    set_default_sort_func (const SlotCompare& slot);
+    auto
+    set_default_sort_func (const SlotCompare& slot) -> void;
 
-    void
-    unset_default_sort_func ();
+    auto
+    unset_default_sort_func () -> void;
 
     auto
     has_default_sort_func () const -> bool;
 
-    void
-    sort_column_changed ();
+    auto
+    sort_column_changed () -> void;
 
     auto
     signal_sort_column_changed () -> Glib::SignalProxy<void ()>;
@@ -146,42 +149,42 @@ namespace Gtk
     get_sort_column_id_vfunc (int* sort_column_id, SortType* order) const
         -> bool;
 
-    virtual void
-    set_sort_column_id_vfunc (int sort_column_id, SortType order);
+    virtual auto
+    set_sort_column_id_vfunc (int sort_column_id, SortType order) -> void;
 
-    virtual void
+    virtual auto
     set_sort_func_vfunc (int sort_column_id,
                          GtkTreeIterCompareFunc func,
                          void* data,
-                         GDestroyNotify destroy);
+                         GDestroyNotify destroy) -> void;
 
-    virtual void
+    virtual auto
     set_default_sort_func_vfunc (GtkTreeIterCompareFunc func,
                                  void* data,
-                                 GDestroyNotify destroy);
+                                 GDestroyNotify destroy) -> void;
 
     virtual auto
     has_default_sort_func_vfunc () const -> bool;
 
-    virtual void
-    sort_column_changed_vfunc () const;
+    virtual auto
+    sort_column_changed_vfunc () const -> void;
 
   public:
   public:
   protected:
-    virtual void
-    on_sort_column_changed ();
+    virtual auto
+    on_sort_column_changed () -> void;
   };
 
 } // namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkTreeSortable* object, bool take_copy = false) -> Glib::RefPtr<Gtk::TreeSortable>;
 
 } // namespace Glib
+
+#endif
 
 #endif

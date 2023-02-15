@@ -16,12 +16,12 @@ namespace Gtk
     using CppObjectType = PrintOperationPreview;
     using BaseObjectType = GtkPrintOperationPreview;
     using BaseClassType = GtkPrintOperationPreviewIface;
-    using CppClassParent = Interface_Class;
+    using CppClassParent = Glib::Interface_Class;
 
     friend class PrintOperationPreview;
 
     auto
-    init () -> const Interface_Class&;
+    init () -> const Glib::Interface_Class&;
 
     static auto
     iface_init_function (void* g_iface, void* iface_data) -> void;

@@ -13,14 +13,14 @@ namespace Gtk
 {
 
   Scrollbar::Scrollbar (const Glib::RefPtr<Adjustment>& adjustment,
-                        const Orientation orientation)
-    : ObjectBase (nullptr),
-      Widget (Glib::ConstructParams (scrollbar_class_.init (),
-                                     "adjustment",
-                                     Glib::unwrap (adjustment),
-                                     "orientation",
-                                     orientation,
-                                     nullptr))
+                        Orientation orientation)
+    : Glib::ObjectBase (nullptr),
+      Gtk::Widget (Glib::ConstructParams (scrollbar_class_.init (),
+                                          "adjustment",
+                                          Glib::unwrap (adjustment),
+                                          "orientation",
+                                          (GtkOrientation) orientation,
+                                          nullptr))
   {
   }
 
@@ -40,10 +40,10 @@ namespace Glib
 {
 
   auto
-  wrap (GtkScrollbar* object, const bool take_copy) -> Gtk::Scrollbar*
+  wrap (GtkScrollbar* object, bool take_copy) -> Gtk::Scrollbar*
   {
     return dynamic_cast<Gtk::Scrollbar*> (
-        wrap_auto ((GObject*) object, take_copy));
+        Glib::wrap_auto ((GObject*) (object), take_copy));
   }
 
 } // namespace Glib
@@ -52,7 +52,7 @@ namespace Gtk
 {
 
   auto
-  Scrollbar_Class::init () -> const Class&
+  Scrollbar_Class::init () -> const Glib::Class&
   {
     if (!gtype_)
     {
@@ -76,21 +76,21 @@ namespace Gtk
   auto
   Scrollbar_Class::wrap_new (GObject* o) -> Glib::ObjectBase*
   {
-    return manage (new Scrollbar ((GtkScrollbar*) o));
+    return manage (new Scrollbar ((GtkScrollbar*) (o)));
   }
 
   Scrollbar::Scrollbar (const Glib::ConstructParams& construct_params)
-    : Widget (construct_params)
+    : Gtk::Widget (construct_params)
   {
   }
 
   Scrollbar::Scrollbar (GtkScrollbar* castitem)
-    : Widget ((GtkWidget*) castitem)
+    : Gtk::Widget ((GtkWidget*) (castitem))
   {
   }
 
   Scrollbar::Scrollbar (Scrollbar&& src) noexcept
-    : Widget (std::move (src)),
+    : Gtk::Widget (std::move (src)),
       Orientable (std::move (src))
   {
   }
@@ -98,7 +98,7 @@ namespace Gtk
   auto
   Scrollbar::operator= (Scrollbar&& src) noexcept -> Scrollbar&
   {
-    Widget::operator= (std::move (src));
+    Gtk::Widget::operator= (std::move (src));
     Orientable::operator= (std::move (src));
     return *this;
   }
@@ -123,8 +123,8 @@ namespace Gtk
   }
 
   Scrollbar::Scrollbar ()
-    : ObjectBase (nullptr),
-      Widget (Glib::ConstructParams (scrollbar_class_.init ()))
+    : Glib::ObjectBase (nullptr),
+      Gtk::Widget (Glib::ConstructParams (scrollbar_class_.init ()))
   {
   }
 
@@ -158,13 +158,15 @@ namespace Gtk
   auto
   Scrollbar::property_adjustment () -> Glib::PropertyProxy<Glib::RefPtr<Adjustment>>
   {
-    return {this, "adjustment"};
+    return Glib::PropertyProxy<Glib::RefPtr<Adjustment>> (this, "adjustment");
   }
 
   auto
   Scrollbar::property_adjustment () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Adjustment>>
   {
-    return {this, "adjustment"};
+    return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Adjustment>> (
+        this,
+        "adjustment");
   }
 
 } // namespace Gtk

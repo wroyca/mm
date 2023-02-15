@@ -96,9 +96,7 @@ namespace Gdk
 
 namespace Glib
 {
-
-  GDKMM_API
-  auto
+  GDKMM_API auto
   wrap (GdkCairoContext* object, bool take_copy = false) -> Glib::RefPtr<Gdk::CairoContext>;
 } // namespace Glib
 

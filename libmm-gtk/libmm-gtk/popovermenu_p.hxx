@@ -17,14 +17,14 @@ namespace Gtk
     using CppObjectType = PopoverMenu;
     using BaseObjectType = GtkPopoverMenu;
     using BaseClassType = GtkPopoverMenuClass;
-    using CppClassParent = Popover_Class;
+    using CppClassParent = Gtk::Popover_Class;
     using BaseClassParent = GtkPopoverClass;
 
     friend class PopoverMenu;
 #endif
 
     auto
-    init () -> const Class&;
+    init () -> const Glib::Class&;
 
     static auto
     class_init_function (void* g_class, void* class_data) -> void;

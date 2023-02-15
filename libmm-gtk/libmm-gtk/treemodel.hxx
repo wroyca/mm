@@ -3,27 +3,29 @@
 #ifndef _GTKMM_TREEMODEL_H
 #define _GTKMM_TREEMODEL_H
 
-#include <libmm-glib/ustring.hxx>
-#include <sigc++/sigc++.h>
+#ifndef GTKMM_DISABLE_DEPRECATED
 
-#include <vector>
+  #include <libmm-glib/ustring.hxx>
+  #include <sigc++/sigc++.h>
 
-#include <gtk/gtk.h>
-#include <libmm-glib/interface.hxx>
-#include <libmm-gtk/treeiter.hxx>
-#include <libmm-gtk/treemodelcolumn.hxx>
+  #include <vector>
 
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #include <gtk/gtk.h>
+  #include <libmm-glib/interface.hxx>
+  #include <libmm-gtk/treeiter.hxx>
+  #include <libmm-gtk/treemodelcolumn.hxx>
+
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
 using GtkTreeModel = struct _GtkTreeModel;
 using GtkTreeModelClass = struct _GtkTreeModelClass;
-#endif
+  #endif
 
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
   class GTKMM_API TreeModel_Class;
 }
-#endif
+  #endif
 
 namespace Gtk
 {
@@ -35,7 +37,7 @@ namespace Gtk
 
   class GTKMM_API TreeModel : public Glib::Interface
   {
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   public:
     using CppObjectType = TreeModel;
@@ -51,11 +53,11 @@ namespace Gtk
     friend class TreeModel_Class;
     static CppClassType treemodel_class_;
 
-#endif
+  #endif
   protected:
     TreeModel ();
 
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
     explicit TreeModel (const Glib::Interface_Class& interface_class);
 
@@ -63,7 +65,7 @@ namespace Gtk
     explicit TreeModel (GtkTreeModel* castitem);
 
   protected:
-#endif
+  #endif
 
   public:
     TreeModel (TreeModel&& src) noexcept;
@@ -72,16 +74,16 @@ namespace Gtk
 
     ~TreeModel () noexcept override;
 
-    static void
-    add_interface (GType gtype_implementer);
+    static auto
+    add_interface (GType gtype_implementer) -> void;
 
     static auto
     get_type () -> GType G_GNUC_CONST;
 
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
     static auto
     get_base_type () -> GType G_GNUC_CONST;
-#endif
+  #endif
 
     auto
     gobj () -> GtkTreeModel*
@@ -135,19 +137,19 @@ namespace Gtk
 
     typedef sigc::slot<bool (const TreeModel::iterator&)> SlotForeachIter;
 
-    void
-    foreach_iter (const SlotForeachIter& slot);
+    auto
+    foreach_iter (const SlotForeachIter& slot) -> void;
 
     typedef sigc::slot<bool (const TreeModel::Path&)> SlotForeachPath;
 
-    void
-    foreach_path (const SlotForeachPath& slot);
+    auto
+    foreach_path (const SlotForeachPath& slot) -> void;
 
     typedef sigc::slot<bool (const TreeModel::Path&,
                              const TreeModel::iterator&)>
         SlotForeachPathAndIter;
 
-    void foreach (const SlotForeachPathAndIter& slot);
+    auto foreach (const SlotForeachPathAndIter& slot) -> void;
 
     auto
     get_flags () const -> Flags;
@@ -161,30 +163,32 @@ namespace Gtk
     auto
     get_path (const const_iterator& iter) const -> TreeModel::Path;
 
-    void
-    row_changed (const Path& path, const const_iterator& iter);
+    auto
+    row_changed (const Path& path, const const_iterator& iter) -> void;
 
-    void
-    row_inserted (const Path& path, const const_iterator& iter);
+    auto
+    row_inserted (const Path& path, const const_iterator& iter) -> void;
 
-    void
-    row_has_child_toggled (const Path& path, const const_iterator& iter);
+    auto
+    row_has_child_toggled (const Path& path, const const_iterator& iter)
+        -> void;
 
-    void
-    row_deleted (const Path& path);
+    auto
+    row_deleted (const Path& path) -> void;
 
-    void
+    auto
     rows_reordered (const Path& path,
                     const const_iterator& iter,
-                    const std::vector<int>& new_order);
+                    const std::vector<int>& new_order) -> void;
 
-    void
-    rows_reordered (const Path& path, const std::vector<int>& new_order);
+    auto
+    rows_reordered (const Path& path, const std::vector<int>& new_order)
+        -> void;
 
-    void
+    auto
     rows_reordered (const Path& path,
                     const const_iterator& iter,
-                    int* new_order);
+                    int* new_order) -> void;
 
     auto
     get_string (const const_iterator& iter) const -> Glib::ustring;
@@ -249,29 +253,29 @@ namespace Gtk
     virtual auto
     iter_n_root_children_vfunc () const -> int;
 
-    virtual void
-    ref_node_vfunc (const iterator& iter) const;
+    virtual auto
+    ref_node_vfunc (const iterator& iter) const -> void;
 
-    virtual void
-    unref_node_vfunc (const iterator& iter) const;
+    virtual auto
+    unref_node_vfunc (const iterator& iter) const -> void;
 
     virtual auto
     get_path_vfunc (const const_iterator& iter) const -> TreeModel::Path;
 
-    virtual void
+    virtual auto
     get_value_vfunc (const const_iterator& iter,
                      int column,
-                     Glib::ValueBase& value) const;
+                     Glib::ValueBase& value) const -> void;
 
-    virtual void
+    virtual auto
     set_value_impl (const iterator& iter,
                     int column,
-                    const Glib::ValueBase& value);
+                    const Glib::ValueBase& value) -> void;
 
-    virtual void
+    virtual auto
     get_value_impl (const const_iterator& iter,
                     int column,
-                    Glib::ValueBase& value) const;
+                    Glib::ValueBase& value) const -> void;
 
     friend GTKMM_API class Gtk::TreeModelFilter;
     friend GTKMM_API class Gtk::TreeModelSort;
@@ -281,25 +285,25 @@ namespace Gtk
   public:
   public:
   protected:
-    virtual void
+    virtual auto
     on_row_changed (const TreeModel::Path& path,
-                    const TreeModel::iterator& iter);
+                    const TreeModel::iterator& iter) -> void;
 
-    virtual void
+    virtual auto
     on_row_inserted (const TreeModel::Path& path,
-                     const TreeModel::iterator& iter);
+                     const TreeModel::iterator& iter) -> void;
 
-    virtual void
+    virtual auto
     on_row_has_child_toggled (const TreeModel::Path& path,
-                              const TreeModel::iterator& iter);
+                              const TreeModel::iterator& iter) -> void;
 
-    virtual void
-    on_row_deleted (const TreeModel::Path& path);
+    virtual auto
+    on_row_deleted (const TreeModel::Path& path) -> void;
 
-    virtual void
+    virtual auto
     on_rows_reordered (const TreeModel::Path& path,
                        const TreeModel::iterator& iter,
-                       int* new_order);
+                       int* new_order) -> void;
   };
 
 } // namespace Gtk
@@ -356,7 +360,7 @@ namespace Gtk
   }
 } // namespace Gtk
 
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Glib
 {
 
@@ -370,15 +374,15 @@ namespace Glib
   };
 
 } // namespace Glib
-#endif
+  #endif
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkTreeModel* object, bool take_copy = false) -> Glib::RefPtr<Gtk::TreeModel>;
 
 } // namespace Glib
+
+#endif
 
 #endif

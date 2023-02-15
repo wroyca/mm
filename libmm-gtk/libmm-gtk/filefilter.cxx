@@ -15,11 +15,11 @@ namespace Glib
 {
 
   auto
-  wrap (GtkFileFilter* object, const bool take_copy) -> RefPtr<Gtk::FileFilter>
+  wrap (GtkFileFilter* object, bool take_copy) -> Glib::RefPtr<Gtk::FileFilter>
   {
     return Glib::make_refptr_for_instance<Gtk::FileFilter> (
         dynamic_cast<Gtk::FileFilter*> (
-            wrap_auto ((GObject*) object, take_copy)));
+            Glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
 } // namespace Glib
@@ -28,7 +28,7 @@ namespace Gtk
 {
 
   auto
-  FileFilter_Class::init () -> const Class&
+  FileFilter_Class::init () -> const Glib::Class&
   {
     if (!gtype_)
     {
@@ -63,17 +63,17 @@ namespace Gtk
   }
 
   FileFilter::FileFilter (const Glib::ConstructParams& construct_params)
-    : Filter (construct_params)
+    : Gtk::Filter (construct_params)
   {
   }
 
   FileFilter::FileFilter (GtkFileFilter* castitem)
-    : Filter ((GtkFilter*) castitem)
+    : Gtk::Filter ((GtkFilter*) (castitem))
   {
   }
 
   FileFilter::FileFilter (FileFilter&& src) noexcept
-    : Filter (std::move (src)),
+    : Gtk::Filter (std::move (src)),
       Buildable (std::move (src))
   {
   }
@@ -81,12 +81,12 @@ namespace Gtk
   auto
   FileFilter::operator= (FileFilter&& src) noexcept -> FileFilter&
   {
-    Filter::operator= (std::move (src));
+    Gtk::Filter::operator= (std::move (src));
     Buildable::operator= (std::move (src));
     return *this;
   }
 
-  FileFilter::~FileFilter () noexcept = default;
+  FileFilter::~FileFilter () noexcept {}
 
   FileFilter::CppClassType FileFilter::filefilter_class_;
 
@@ -103,8 +103,8 @@ namespace Gtk
   }
 
   FileFilter::FileFilter ()
-    : ObjectBase (nullptr),
-      Filter (Glib::ConstructParams (filefilter_class_.init ()))
+    : Glib::ObjectBase (nullptr),
+      Gtk::Filter (Glib::ConstructParams (filefilter_class_.init ()))
   {
   }
 
@@ -154,13 +154,13 @@ namespace Gtk
   auto
   FileFilter::property_name () -> Glib::PropertyProxy<Glib::ustring>
   {
-    return {this, "name"};
+    return Glib::PropertyProxy<Glib::ustring> (this, "name");
   }
 
   auto
   FileFilter::property_name () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>
   {
-    return {this, "name"};
+    return Glib::PropertyProxy_ReadOnly<Glib::ustring> (this, "name");
   }
 
 } // namespace Gtk

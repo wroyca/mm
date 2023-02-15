@@ -3,23 +3,25 @@
 #ifndef _GTKMM_FONTBUTTON_H
 #define _GTKMM_FONTBUTTON_H
 
-#include <libmm-glib/ustring.hxx>
-#include <sigc++/sigc++.h>
+#ifndef GTKMM_DISABLE_DEPRECATED
 
-#include <libmm-gtk/fontchooser.hxx>
-#include <libmm-gtk/widget.hxx>
+  #include <libmm-glib/ustring.hxx>
+  #include <sigc++/sigc++.h>
 
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #include <libmm-gtk/fontchooser.hxx>
+  #include <libmm-gtk/widget.hxx>
+
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
 using GtkFontButton = struct _GtkFontButton;
 using GtkFontButtonClass = struct _GtkFontButtonClass;
-#endif
+  #endif
 
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
   class GTKMM_API FontButton_Class;
 }
-#endif
+  #endif
 
 namespace Gtk
 {
@@ -28,12 +30,12 @@ namespace Gtk
                                public FontChooser
   {
   public:
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
     typedef FontButton CppObjectType;
     typedef FontButton_Class CppClassType;
     typedef GtkFontButton BaseObjectType;
     typedef GtkFontButtonClass BaseClassType;
-#endif
+  #endif
 
     FontButton (FontButton&& src) noexcept;
     auto
@@ -45,7 +47,7 @@ namespace Gtk
 
     ~FontButton () noexcept override;
 
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   private:
     friend GTKMM_API class FontButton_Class;
@@ -55,17 +57,17 @@ namespace Gtk
     explicit FontButton (const Glib::ConstructParams& construct_params);
     explicit FontButton (GtkFontButton* castitem);
 
-#endif
+  #endif
 
   public:
     static auto
     get_type () -> GType G_GNUC_CONST;
 
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
     static auto
     get_base_type () -> GType G_GNUC_CONST;
-#endif
+  #endif
 
     auto
     gobj () -> GtkFontButton*
@@ -87,26 +89,26 @@ namespace Gtk
     auto
     get_title () const -> Glib::ustring;
 
-    void
-    set_title (const Glib::ustring& title);
+    auto
+    set_title (const Glib::ustring& title) -> void;
 
     auto
     get_modal () const -> bool;
 
-    void
-    set_modal (bool modal = true);
+    auto
+    set_modal (bool modal = true) -> void;
 
     auto
     get_use_font () const -> bool;
 
-    void
-    set_use_font (bool use_font = true);
+    auto
+    set_use_font (bool use_font = true) -> void;
 
     auto
     get_use_size () const -> bool;
 
-    void
-    set_use_size (bool use_size = true);
+    auto
+    set_use_size (bool use_size = true) -> void;
 
     auto
     property_title () -> Glib::PropertyProxy<Glib::ustring>;
@@ -144,10 +146,10 @@ namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkFontButton* object, bool take_copy = false) -> Gtk::FontButton*;
 } // namespace Glib
+
+#endif
 
 #endif

@@ -244,25 +244,28 @@ namespace Gtk
     property_handle_menubar_accel () const
         -> Glib::PropertyProxy_ReadOnly<bool>;
 
+#ifndef GTKMM_DISABLE_DEPRECATED
+
     auto
     signal_keys_changed () -> Glib::SignalProxy<void ()>;
+#endif
 
     auto
     signal_close_request () -> Glib::SignalProxy<bool ()>;
 
-    void
-    set_title (const Glib::ustring& title);
+    auto
+    set_title (const Glib::ustring& title) -> void;
 
     auto
     get_title () const -> Glib::ustring;
 
-    void
-    set_startup_id (const Glib::ustring& startup_id);
+    auto
+    set_startup_id (const Glib::ustring& startup_id) -> void;
 
-    void
-    set_focus (Gtk::Widget& focus);
-    void
-    unset_focus ();
+    auto
+    set_focus (Gtk::Widget& focus) -> void;
+    auto
+    unset_focus () -> void;
 
     auto
     get_focus () -> Widget*;
@@ -270,10 +273,10 @@ namespace Gtk
     auto
     get_focus () const -> const Widget*;
 
-    void
-    set_default_widget (Gtk::Widget& default_widget);
-    void
-    unset_default_widget ();
+    auto
+    set_default_widget (Gtk::Widget& default_widget) -> void;
+    auto
+    unset_default_widget () -> void;
 
     auto
     get_default_widget () -> Widget*;
@@ -281,11 +284,11 @@ namespace Gtk
     auto
     get_default_widget () const -> const Widget*;
 
-    void
-    set_transient_for (Window& parent);
+    auto
+    set_transient_for (Window& parent) -> void;
 
-    void
-    unset_transient_for ();
+    auto
+    unset_transient_for () -> void;
 
     auto
     get_transient_for () -> Window*;
@@ -293,74 +296,74 @@ namespace Gtk
     auto
     get_transient_for () const -> const Window*;
 
-    void
-    set_destroy_with_parent (bool setting = true);
+    auto
+    set_destroy_with_parent (bool setting = true) -> void;
 
     auto
     get_destroy_with_parent () const -> bool;
 
-    void
-    destroy ();
+    auto
+    destroy () -> void;
 
-    void
-    set_hide_on_close (bool setting = true);
+    auto
+    set_hide_on_close (bool setting = true) -> void;
 
     auto
     get_hide_on_close () const -> bool;
 
-    void
-    set_mnemonics_visible (bool setting = true);
+    auto
+    set_mnemonics_visible (bool setting = true) -> void;
 
     auto
     get_mnemonics_visible () const -> bool;
 
-    void
-    set_focus_visible (bool setting = true);
+    auto
+    set_focus_visible (bool setting = true) -> void;
 
     auto
     get_focus_visible () const -> bool;
 
-    void
-    set_resizable (bool resizable = true);
+    auto
+    set_resizable (bool resizable = true) -> void;
 
     auto
     get_resizable () const -> bool;
 
-    void
-    set_display (const Glib::RefPtr<Gdk::Display>& display);
+    auto
+    set_display (const Glib::RefPtr<Gdk::Display>& display) -> void;
 
     auto
     is_active () const -> bool;
 
-    void
-    set_decorated (bool setting = true);
+    auto
+    set_decorated (bool setting = true) -> void;
 
     auto
     get_decorated () const -> bool;
 
-    void
-    set_deletable (bool setting = true);
+    auto
+    set_deletable (bool setting = true) -> void;
 
     auto
     get_deletable () const -> bool;
 
-    void
-    set_icon_name (const Glib::ustring& name);
+    auto
+    set_icon_name (const Glib::ustring& name) -> void;
 
     auto
     get_icon_name () const -> Glib::ustring;
 
-    static void
-    set_default_icon_name (const Glib::ustring& name);
+    static auto
+    set_default_icon_name (const Glib::ustring& name) -> void;
 
     static auto
     get_default_icon_name () -> Glib::ustring;
 
-    static void
-    set_auto_startup_notification (bool setting = true);
+    static auto
+    set_auto_startup_notification (bool setting = true) -> void;
 
-    void
-    set_modal (bool modal = true);
+    auto
+    set_modal (bool modal = true) -> void;
 
     auto
     get_modal () const -> bool;
@@ -371,41 +374,41 @@ namespace Gtk
     static auto
     list_toplevels () -> std::vector<Window*>;
 
-    void
-    present ();
+    auto
+    present () -> void;
 
-    void
-    present (guint32 timestamp);
+    auto
+    present (guint32 timestamp) -> void;
 
-    void
-    minimize ();
+    auto
+    minimize () -> void;
 
-    void
-    unminimize ();
+    auto
+    unminimize () -> void;
 
-    void
-    maximize ();
+    auto
+    maximize () -> void;
 
-    void
-    unmaximize ();
+    auto
+    unmaximize () -> void;
 
-    void
-    fullscreen ();
+    auto
+    fullscreen () -> void;
 
-    void
-    unfullscreen ();
+    auto
+    unfullscreen () -> void;
 
-    void
-    fullscreen_on_monitor (const Glib::RefPtr<Gdk::Monitor>& monitor);
+    auto
+    fullscreen_on_monitor (const Glib::RefPtr<Gdk::Monitor>& monitor) -> void;
 
-    void
-    close ();
+    auto
+    close () -> void;
 
-    void
-    set_default_size (int width, int height);
+    auto
+    set_default_size (int width, int height) -> void;
 
-    void
-    get_default_size (int& width, int& height) const;
+    auto
+    get_default_size (int& width, int& height) const -> void;
 
     auto
     get_group () -> Glib::RefPtr<WindowGroup>;
@@ -422,16 +425,16 @@ namespace Gtk
     auto
     get_application () const -> Glib::RefPtr<const Application>;
 
-    void
-    set_application (const Glib::RefPtr<Application>& application);
+    auto
+    set_application (const Glib::RefPtr<Application>& application) -> void;
 
-    void
-    unset_application ();
+    auto
+    unset_application () -> void;
 
-    void
-    set_child (Widget& child);
-    void
-    unset_child ();
+    auto
+    set_child (Widget& child) -> void;
+    auto
+    unset_child () -> void;
 
     auto
     get_child () -> Widget*;
@@ -439,11 +442,11 @@ namespace Gtk
     auto
     get_child () const -> const Widget*;
 
-    void
-    set_titlebar (Widget& titlebar);
+    auto
+    set_titlebar (Widget& titlebar) -> void;
 
-    void
-    unset_titlebar ();
+    auto
+    unset_titlebar () -> void;
 
     auto
     get_titlebar () -> Widget*;
@@ -457,29 +460,29 @@ namespace Gtk
     auto
     is_fullscreen () const -> bool;
 
-    void
-    set_handle_menubar_accel (bool handle_menubar_accel);
+    auto
+    set_handle_menubar_accel (bool handle_menubar_accel) -> void;
 
     auto
     get_handle_menubar_accel () const -> bool;
 
-    void
-    set_manage () override;
+    auto
+    set_manage () -> void override;
 
   protected:
-    void
-    on_window_hide ();
+    auto
+    on_window_hide () -> void;
 
-    void
-    destroy_ ();
-    void
-    _release_c_instance ();
+    auto
+    destroy_ () -> void;
+    auto
+    _release_c_instance () -> void;
 
   public:
   public:
   protected:
-    virtual void
-    on_keys_changed ();
+    virtual auto
+    on_keys_changed () -> void;
 
     virtual auto
     on_close_request () -> bool;
@@ -489,9 +492,7 @@ namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkWindow* object, bool take_copy = false) -> Gtk::Window*;
 } // namespace Glib
 

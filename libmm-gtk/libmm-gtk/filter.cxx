@@ -13,7 +13,7 @@ using Match = Gtk::Filter::Match;
 namespace
 {
 
-  auto
+  static auto
   Filter_signal_changed_callback (GtkFilter* self,
                                   GtkFilterChange p0,
                                   void* data) -> void
@@ -21,7 +21,7 @@ namespace
     using namespace Gtk;
     using SlotType = sigc::slot<void (Change)>;
 
-    const auto obj = dynamic_cast<Filter*> (
+    auto obj = dynamic_cast<Filter*> (
         Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
@@ -38,7 +38,7 @@ namespace
     }
   }
 
-  const Glib::SignalProxyInfo Filter_signal_changed_info = {
+  static const Glib::SignalProxyInfo Filter_signal_changed_info = {
       "changed",
       (GCallback) &Filter_signal_changed_callback,
       (GCallback) &Filter_signal_changed_callback};
@@ -61,10 +61,11 @@ namespace Glib
 {
 
   auto
-  wrap (GtkFilter* object, const bool take_copy) -> RefPtr<Gtk::Filter>
+  wrap (GtkFilter* object, bool take_copy) -> Glib::RefPtr<Gtk::Filter>
   {
     return Glib::make_refptr_for_instance<Gtk::Filter> (
-        dynamic_cast<Gtk::Filter*> (wrap_auto ((GObject*) object, take_copy)));
+        dynamic_cast<Gtk::Filter*> (
+            Glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
 } // namespace Glib
@@ -73,7 +74,7 @@ namespace Gtk
 {
 
   auto
-  Filter_Class::init () -> const Class&
+  Filter_Class::init () -> const Glib::Class&
   {
     if (!gtype_)
     {
@@ -96,10 +97,10 @@ namespace Gtk
   }
 
   auto
-  Filter_Class::match_vfunc_callback (GtkFilter* self, const gpointer item) -> gboolean
+  Filter_Class::match_vfunc_callback (GtkFilter* self, gpointer item) -> gboolean
   {
-    const auto obj_base =
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self);
+    const auto obj_base = static_cast<Glib::ObjectBase*> (
+        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -108,7 +109,8 @@ namespace Gtk
       {
         try
         {
-          return obj->match_vfunc (Glib::wrap (G_OBJECT (item), true));
+          return static_cast<int> (
+              obj->match_vfunc (Glib::wrap (G_OBJECT (item), true)));
         }
         catch (...)
         {
@@ -117,7 +119,7 @@ namespace Gtk
       }
     }
 
-    const BaseClassType* const base = static_cast<BaseClassType*> (
+    BaseClassType* const base = static_cast<BaseClassType*> (
         g_type_class_peek_parent (G_OBJECT_GET_CLASS (self)));
 
     if (base && base->match)
@@ -130,8 +132,8 @@ namespace Gtk
   auto
   Filter_Class::get_strictness_vfunc_callback (GtkFilter* self) -> GtkFilterMatch
   {
-    const auto obj_base =
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self);
+    const auto obj_base = static_cast<Glib::ObjectBase*> (
+        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -149,7 +151,7 @@ namespace Gtk
       }
     }
 
-    const BaseClassType* const base = static_cast<BaseClassType*> (
+    BaseClassType* const base = static_cast<BaseClassType*> (
         g_type_class_peek_parent (G_OBJECT_GET_CLASS (self)));
 
     if (base && base->get_strictness)
@@ -173,28 +175,28 @@ namespace Gtk
   }
 
   Filter::Filter (const Glib::ConstructParams& construct_params)
-    : Object (construct_params)
+    : Glib::Object (construct_params)
   {
   }
 
   Filter::Filter (GtkFilter* castitem)
-    : Object ((GObject*) castitem)
+    : Glib::Object ((GObject*) (castitem))
   {
   }
 
   Filter::Filter (Filter&& src) noexcept
-    : Object (std::move (src))
+    : Glib::Object (std::move (src))
   {
   }
 
   auto
   Filter::operator= (Filter&& src) noexcept -> Filter&
   {
-    Object::operator= (std::move (src));
+    Glib::Object::operator= (std::move (src));
     return *this;
   }
 
-  Filter::~Filter () noexcept = default;
+  Filter::~Filter () noexcept {}
 
   Filter::CppClassType Filter::filter_class_;
 
@@ -211,15 +213,15 @@ namespace Gtk
   }
 
   Filter::Filter ()
-    : ObjectBase (nullptr),
-      Object (Glib::ConstructParams (filter_class_.init ()))
+    : Glib::ObjectBase (nullptr),
+      Glib::Object (Glib::ConstructParams (filter_class_.init ()))
   {
   }
 
   auto
-  Filter::match (const Glib::RefPtr<ObjectBase>& item) -> bool
+  Filter::match (const Glib::RefPtr<Glib::ObjectBase>& item) -> bool
   {
-    return gtk_filter_match (gobj (), item->gobj ());
+    return gtk_filter_match (gobj (), (item)->gobj ());
   }
 
   auto
@@ -237,18 +239,18 @@ namespace Gtk
   auto
   Filter::signal_changed () -> Glib::SignalProxy<void (Change)>
   {
-    return {this, &Filter_signal_changed_info};
+    return Glib::SignalProxy<void (Change)> (this, &Filter_signal_changed_info);
   }
 
   auto
-  Filter::match_vfunc (const Glib::RefPtr<ObjectBase>& item) -> bool
+  Gtk::Filter::match_vfunc (const Glib::RefPtr<Glib::ObjectBase>& item) -> bool
   {
     const auto base = static_cast<BaseClassType*> (
         g_type_class_peek_parent (G_OBJECT_GET_CLASS (gobject_)));
 
     if (base && base->match)
     {
-      const bool retval ((*base->match) (gobj (), item->gobj ()));
+      bool retval ((*base->match) (gobj (), (item)->gobj ()));
       return retval;
     }
 
@@ -257,15 +259,14 @@ namespace Gtk
   }
 
   auto
-  Filter::get_strictness_vfunc () -> Match
+  Gtk::Filter::get_strictness_vfunc () -> Match
   {
     const auto base = static_cast<BaseClassType*> (
         g_type_class_peek_parent (G_OBJECT_GET_CLASS (gobject_)));
 
     if (base && base->get_strictness)
     {
-      const Match retval (
-          static_cast<Match> ((*base->get_strictness) (gobj ())));
+      Match retval (static_cast<Match> ((*base->get_strictness) (gobj ())));
       return retval;
     }
 

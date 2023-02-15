@@ -131,9 +131,12 @@ namespace Gtk
     get_sequence_state (Gdk::EventSequence* sequence) const
         -> EventSequenceState;
 
+#ifndef GTKMM_DISABLE_DEPRECATED
+
     auto
     set_sequence_state (Gdk::EventSequence* sequence, EventSequenceState state)
         -> bool;
+#endif
 
     auto
     get_sequences () const -> std::vector<const Gdk::EventSequence*>;
@@ -170,11 +173,11 @@ namespace Gtk
     auto
     is_recognized () const -> bool;
 
-    void
-    group (const Glib::RefPtr<Gesture>& group_gesture);
+    auto
+    group (const Glib::RefPtr<Gesture>& group_gesture) -> void;
 
-    void
-    ungroup ();
+    auto
+    ungroup () -> void;
 
     auto
     get_group () -> std::vector<Glib::RefPtr<Gesture>>;
@@ -213,9 +216,7 @@ namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkGesture* object, bool take_copy = false) -> Glib::RefPtr<Gtk::Gesture>;
 } // namespace Glib
 

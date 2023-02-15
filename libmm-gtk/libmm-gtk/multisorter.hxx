@@ -88,11 +88,11 @@ namespace Gtk
     static auto
     create () -> Glib::RefPtr<MultiSorter>;
 
-    void
-    append (const Glib::RefPtr<Sorter>& sorter);
+    auto
+    append (const Glib::RefPtr<Sorter>& sorter) -> void;
 
-    void
-    remove (guint position);
+    auto
+    remove (guint position) -> void;
 
     auto
     property_item_type () const -> Glib::PropertyProxy_ReadOnly<GType>;
@@ -109,9 +109,7 @@ namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkMultiSorter* object, bool take_copy = false) -> Glib::RefPtr<Gtk::MultiSorter>;
 } // namespace Glib
 

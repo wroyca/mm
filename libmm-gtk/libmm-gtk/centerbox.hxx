@@ -84,8 +84,8 @@ namespace Gtk
   public:
     CenterBox ();
 
-    void
-    set_start_widget (Widget& child);
+    auto
+    set_start_widget (Widget& child) -> void;
 
     auto
     get_start_widget () -> Widget*;
@@ -93,11 +93,11 @@ namespace Gtk
     auto
     get_start_widget () const -> const Widget*;
 
-    void
-    unset_start_widget ();
+    auto
+    unset_start_widget () -> void;
 
-    void
-    set_center_widget (Widget& child);
+    auto
+    set_center_widget (Widget& child) -> void;
 
     auto
     get_center_widget () -> Widget*;
@@ -105,11 +105,11 @@ namespace Gtk
     auto
     get_center_widget () const -> const Widget*;
 
-    void
-    unset_center_widget ();
+    auto
+    unset_center_widget () -> void;
 
-    void
-    set_end_widget (Widget& child);
+    auto
+    set_end_widget (Widget& child) -> void;
 
     auto
     get_end_widget () -> Widget*;
@@ -117,14 +117,32 @@ namespace Gtk
     auto
     get_end_widget () const -> const Widget*;
 
-    void
-    unset_end_widget ();
+    auto
+    unset_end_widget () -> void;
 
-    void
-    set_baseline_position (BaselinePosition position);
+    auto
+    set_baseline_position (BaselinePosition position) -> void;
 
     auto
     get_baseline_position () -> BaselinePosition;
+
+    auto
+    property_start_widget () -> Glib::PropertyProxy<Widget*>;
+
+    auto
+    property_start_widget () const -> Glib::PropertyProxy_ReadOnly<Widget*>;
+
+    auto
+    property_center_widget () -> Glib::PropertyProxy<Widget*>;
+
+    auto
+    property_center_widget () const -> Glib::PropertyProxy_ReadOnly<Widget*>;
+
+    auto
+    property_end_widget () -> Glib::PropertyProxy<Widget*>;
+
+    auto
+    property_end_widget () const -> Glib::PropertyProxy_ReadOnly<Widget*>;
 
     auto
     property_baseline_position () -> Glib::PropertyProxy<BaselinePosition>;
@@ -142,9 +160,7 @@ namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkCenterBox* object, bool take_copy = false) -> Gtk::CenterBox*;
 } // namespace Glib
 

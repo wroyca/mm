@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: LGPL-2.1-or-later
 
 #ifndef _GIOMM_SOCKETCONNECTION_H
 #define _GIOMM_SOCKETCONNECTION_H
@@ -89,14 +90,14 @@ namespace Gio
     auto
     connect (const Glib::RefPtr<SocketAddress>& address) -> bool;
 
-    void
+    auto
     connect_async (const Glib::RefPtr<SocketAddress>& address,
                    const SlotAsyncReady& slot,
-                   const Glib::RefPtr<Cancellable>& cancellable);
+                   const Glib::RefPtr<Cancellable>& cancellable) -> void;
 
-    void
+    auto
     connect_async (const Glib::RefPtr<SocketAddress>& address,
-                   const SlotAsyncReady& slot);
+                   const SlotAsyncReady& slot) -> void;
 
     auto
     connect_finish (const Glib::RefPtr<AsyncResult>& result) -> bool;

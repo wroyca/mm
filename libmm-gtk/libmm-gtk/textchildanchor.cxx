@@ -46,11 +46,11 @@ namespace Glib
 {
 
   auto
-  wrap (GtkTextChildAnchor* object, const bool take_copy) -> RefPtr<Gtk::TextChildAnchor>
+  wrap (GtkTextChildAnchor* object, bool take_copy) -> Glib::RefPtr<Gtk::TextChildAnchor>
   {
     return Glib::make_refptr_for_instance<Gtk::TextChildAnchor> (
         dynamic_cast<Gtk::TextChildAnchor*> (
-            wrap_auto ((GObject*) object, take_copy)));
+            Glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
 } // namespace Glib
@@ -59,7 +59,7 @@ namespace Gtk
 {
 
   auto
-  TextChildAnchor_Class::init () -> const Class&
+  TextChildAnchor_Class::init () -> const Glib::Class&
   {
     if (!gtype_)
     {
@@ -93,28 +93,28 @@ namespace Gtk
 
   TextChildAnchor::TextChildAnchor (
       const Glib::ConstructParams& construct_params)
-    : Object (construct_params)
+    : Glib::Object (construct_params)
   {
   }
 
   TextChildAnchor::TextChildAnchor (GtkTextChildAnchor* castitem)
-    : Object ((GObject*) castitem)
+    : Glib::Object ((GObject*) (castitem))
   {
   }
 
   TextChildAnchor::TextChildAnchor (TextChildAnchor&& src) noexcept
-    : Object (std::move (src))
+    : Glib::Object (std::move (src))
   {
   }
 
   auto
   TextChildAnchor::operator= (TextChildAnchor&& src) noexcept -> TextChildAnchor&
   {
-    Object::operator= (std::move (src));
+    Glib::Object::operator= (std::move (src));
     return *this;
   }
 
-  TextChildAnchor::~TextChildAnchor () noexcept = default;
+  TextChildAnchor::~TextChildAnchor () noexcept {}
 
   TextChildAnchor::CppClassType TextChildAnchor::textchildanchor_class_;
 
@@ -131,8 +131,8 @@ namespace Gtk
   }
 
   TextChildAnchor::TextChildAnchor ()
-    : ObjectBase (nullptr),
-      Object (Glib::ConstructParams (textchildanchor_class_.init ()))
+    : Glib::ObjectBase (nullptr),
+      Glib::Object (Glib::ConstructParams (textchildanchor_class_.init ()))
   {
   }
 

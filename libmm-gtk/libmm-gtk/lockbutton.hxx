@@ -3,23 +3,25 @@
 #ifndef _GTKMM_LOCKBUTTON_H
 #define _GTKMM_LOCKBUTTON_H
 
-#include <libmm-glib/ustring.hxx>
-#include <sigc++/sigc++.h>
+#ifndef GTKMM_DISABLE_DEPRECATED
 
-#include <libmm-gio/permission.hxx>
-#include <libmm-gtk/button.hxx>
+  #include <libmm-glib/ustring.hxx>
+  #include <sigc++/sigc++.h>
 
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #include <libmm-gio/permission.hxx>
+  #include <libmm-gtk/button.hxx>
+
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
 using GtkLockButton = struct _GtkLockButton;
 using GtkLockButtonClass = struct _GtkLockButtonClass;
-#endif
+  #endif
 
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
   class GTKMM_API LockButton_Class;
 }
-#endif
+  #endif
 
 namespace Gtk
 {
@@ -27,12 +29,12 @@ namespace Gtk
   class GTKMM_API LockButton : public Button
   {
   public:
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
     typedef LockButton CppObjectType;
     typedef LockButton_Class CppClassType;
     typedef GtkLockButton BaseObjectType;
     typedef GtkLockButtonClass BaseClassType;
-#endif
+  #endif
 
     LockButton (LockButton&& src) noexcept;
     auto
@@ -44,7 +46,7 @@ namespace Gtk
 
     ~LockButton () noexcept override;
 
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   private:
     friend GTKMM_API class LockButton_Class;
@@ -54,17 +56,17 @@ namespace Gtk
     explicit LockButton (const Glib::ConstructParams& construct_params);
     explicit LockButton (GtkLockButton* castitem);
 
-#endif
+  #endif
 
   public:
     static auto
     get_type () -> GType G_GNUC_CONST;
 
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
     static auto
     get_base_type () -> GType G_GNUC_CONST;
-#endif
+  #endif
 
     auto
     gobj () -> GtkLockButton*
@@ -90,11 +92,12 @@ namespace Gtk
     auto
     get_permission () const -> Glib::RefPtr<const Gio::Permission>;
 
-    void
-    set_permission (const Glib::RefPtr<const Gio::Permission>& permission);
+    auto
+    set_permission (const Glib::RefPtr<const Gio::Permission>& permission)
+        -> void;
 
-    void
-    unset_permission ();
+    auto
+    unset_permission () -> void;
 
     auto
     property_permission ()
@@ -147,10 +150,10 @@ namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkLockButton* object, bool take_copy = false) -> Gtk::LockButton*;
 } // namespace Glib
+
+#endif
 
 #endif

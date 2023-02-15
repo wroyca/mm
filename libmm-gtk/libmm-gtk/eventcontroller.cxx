@@ -27,11 +27,11 @@ namespace Glib
 {
 
   auto
-  wrap (GtkEventController* object, const bool take_copy) -> RefPtr<Gtk::EventController>
+  wrap (GtkEventController* object, bool take_copy) -> Glib::RefPtr<Gtk::EventController>
   {
     return Glib::make_refptr_for_instance<Gtk::EventController> (
         dynamic_cast<Gtk::EventController*> (
-            wrap_auto ((GObject*) object, take_copy)));
+            Glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
 } // namespace Glib
@@ -40,7 +40,7 @@ namespace Gtk
 {
 
   auto
-  EventController_Class::init () -> const Class&
+  EventController_Class::init () -> const Glib::Class&
   {
     if (!gtype_)
     {
@@ -74,28 +74,28 @@ namespace Gtk
 
   EventController::EventController (
       const Glib::ConstructParams& construct_params)
-    : Object (construct_params)
+    : Glib::Object (construct_params)
   {
   }
 
   EventController::EventController (GtkEventController* castitem)
-    : Object ((GObject*) castitem)
+    : Glib::Object ((GObject*) (castitem))
   {
   }
 
   EventController::EventController (EventController&& src) noexcept
-    : Object (std::move (src))
+    : Glib::Object (std::move (src))
   {
   }
 
   auto
   EventController::operator= (EventController&& src) noexcept -> EventController&
   {
-    Object::operator= (std::move (src));
+    Glib::Object::operator= (std::move (src));
     return *this;
   }
 
-  EventController::~EventController () noexcept = default;
+  EventController::~EventController () noexcept {}
 
   EventController::CppClassType EventController::eventcontroller_class_;
 
@@ -112,8 +112,8 @@ namespace Gtk
   }
 
   EventController::EventController ()
-    : ObjectBase (nullptr),
-      Object (Glib::ConstructParams (eventcontroller_class_.init ()))
+    : Glib::ObjectBase (nullptr),
+      Glib::Object (Glib::ConstructParams (eventcontroller_class_.init ()))
   {
   }
 
@@ -225,7 +225,7 @@ namespace Gtk
   auto
   EventController::property_widget () const -> Glib::PropertyProxy_ReadOnly<Widget*>
   {
-    return {this, "widget"};
+    return Glib::PropertyProxy_ReadOnly<Widget*> (this, "widget");
   }
 
   static_assert (
@@ -236,13 +236,14 @@ namespace Gtk
   auto
   EventController::property_propagation_phase () -> Glib::PropertyProxy<PropagationPhase>
   {
-    return {this, "propagation-phase"};
+    return Glib::PropertyProxy<PropagationPhase> (this, "propagation-phase");
   }
 
   auto
   EventController::property_propagation_phase () const -> Glib::PropertyProxy_ReadOnly<PropagationPhase>
   {
-    return {this, "propagation-phase"};
+    return Glib::PropertyProxy_ReadOnly<PropagationPhase> (this,
+                                                           "propagation-phase");
   }
 
   static_assert (
@@ -253,25 +254,26 @@ namespace Gtk
   auto
   EventController::property_propagation_limit () -> Glib::PropertyProxy<PropagationLimit>
   {
-    return {this, "propagation-limit"};
+    return Glib::PropertyProxy<PropagationLimit> (this, "propagation-limit");
   }
 
   auto
   EventController::property_propagation_limit () const -> Glib::PropertyProxy_ReadOnly<PropagationLimit>
   {
-    return {this, "propagation-limit"};
+    return Glib::PropertyProxy_ReadOnly<PropagationLimit> (this,
+                                                           "propagation-limit");
   }
 
   auto
   EventController::property_name () -> Glib::PropertyProxy<Glib::ustring>
   {
-    return {this, "name"};
+    return Glib::PropertyProxy<Glib::ustring> (this, "name");
   }
 
   auto
   EventController::property_name () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>
   {
-    return {this, "name"};
+    return Glib::PropertyProxy_ReadOnly<Glib::ustring> (this, "name");
   }
 
 } // namespace Gtk

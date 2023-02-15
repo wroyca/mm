@@ -25,8 +25,8 @@ namespace Glib
     auto
     operator= (const Rand&) -> Rand& = delete;
 
-    void
-    set_seed (guint32 seed);
+    auto
+    set_seed (guint32 seed) -> void;
 
     auto
     get_bool () -> bool;

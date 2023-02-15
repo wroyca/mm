@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: LGPL-2.1-or-later
 
 #ifndef _GIOMM_TLSDATABASE_H
 #define _GIOMM_TLSDATABASE_H
@@ -167,65 +168,65 @@ namespace Gio
                   VerifyFlags flags = VerifyFlags::NONE) const
         -> TlsCertificateFlags;
 
-    void
+    auto
     verify_chain_async (const Glib::RefPtr<TlsCertificate>& chain,
                         const Glib::ustring& purpose,
                         const Glib::RefPtr<const SocketConnectable>& identity,
                         const Glib::RefPtr<TlsInteraction>& interaction,
                         const SlotAsyncReady& slot,
                         const Glib::RefPtr<Cancellable>& cancellable,
-                        VerifyFlags flags = VerifyFlags::NONE) const;
+                        VerifyFlags flags = VerifyFlags::NONE) const -> void;
 
-    void
+    auto
     verify_chain_async (const Glib::RefPtr<TlsCertificate>& chain,
                         const Glib::ustring& purpose,
                         const Glib::RefPtr<const SocketConnectable>& identity,
                         const Glib::RefPtr<TlsInteraction>& interaction,
                         const SlotAsyncReady& slot,
-                        VerifyFlags flags = VerifyFlags::NONE) const;
+                        VerifyFlags flags = VerifyFlags::NONE) const -> void;
 
-    void
+    auto
     verify_chain_async (const Glib::RefPtr<TlsCertificate>& chain,
                         const Glib::ustring& purpose,
                         const Glib::RefPtr<const SocketConnectable>& identity,
                         const SlotAsyncReady& slot,
                         const Glib::RefPtr<Cancellable>& cancellable,
-                        VerifyFlags flags = VerifyFlags::NONE) const;
+                        VerifyFlags flags = VerifyFlags::NONE) const -> void;
 
-    void
+    auto
     verify_chain_async (const Glib::RefPtr<TlsCertificate>& chain,
                         const Glib::ustring& purpose,
                         const Glib::RefPtr<const SocketConnectable>& identity,
                         const SlotAsyncReady& slot,
-                        VerifyFlags flags = VerifyFlags::NONE) const;
+                        VerifyFlags flags = VerifyFlags::NONE) const -> void;
 
-    void
+    auto
     verify_chain_async (const Glib::RefPtr<TlsCertificate>& chain,
                         const Glib::ustring& purpose,
                         const Glib::RefPtr<TlsInteraction>& interaction,
                         const SlotAsyncReady& slot,
                         const Glib::RefPtr<Cancellable>& cancellable,
-                        VerifyFlags flags = VerifyFlags::NONE) const;
+                        VerifyFlags flags = VerifyFlags::NONE) const -> void;
 
-    void
+    auto
     verify_chain_async (const Glib::RefPtr<TlsCertificate>& chain,
                         const Glib::ustring& purpose,
                         const Glib::RefPtr<TlsInteraction>& interaction,
                         const SlotAsyncReady& slot,
-                        VerifyFlags flags = VerifyFlags::NONE) const;
+                        VerifyFlags flags = VerifyFlags::NONE) const -> void;
 
-    void
+    auto
     verify_chain_async (const Glib::RefPtr<TlsCertificate>& chain,
                         const Glib::ustring& purpose,
                         const SlotAsyncReady& slot,
                         const Glib::RefPtr<Cancellable>& cancellable,
-                        VerifyFlags flags = VerifyFlags::NONE) const;
+                        VerifyFlags flags = VerifyFlags::NONE) const -> void;
 
-    void
+    auto
     verify_chain_async (const Glib::RefPtr<TlsCertificate>& chain,
                         const Glib::ustring& purpose,
                         const SlotAsyncReady& slot,
-                        VerifyFlags flags = VerifyFlags::NONE) const;
+                        VerifyFlags flags = VerifyFlags::NONE) const -> void;
 
     auto
     verify_chain_finish (const Glib::RefPtr<AsyncResult>& result)
@@ -283,33 +284,33 @@ namespace Gio
         LookupFlags flags = LookupFlags::NONE) const
         -> Glib::RefPtr<const TlsCertificate>;
 
-    void
+    auto
     lookup_certificate_issuer_async (
         const Glib::RefPtr<const TlsCertificate>& certificate,
         const Glib::RefPtr<TlsInteraction>& interaction,
         const SlotAsyncReady& slot,
         const Glib::RefPtr<Cancellable>& cancellable,
-        LookupFlags flags = LookupFlags::NONE);
+        LookupFlags flags = LookupFlags::NONE) -> void;
 
-    void
+    auto
     lookup_certificate_issuer_async (
         const Glib::RefPtr<const TlsCertificate>& certificate,
         const Glib::RefPtr<TlsInteraction>& interaction,
         const SlotAsyncReady& slot,
-        LookupFlags flags = LookupFlags::NONE);
+        LookupFlags flags = LookupFlags::NONE) -> void;
 
-    void
+    auto
     lookup_certificate_issuer_async (
         const Glib::RefPtr<const TlsCertificate>& certificate,
         const SlotAsyncReady& slot,
         const Glib::RefPtr<Cancellable>& cancellable,
-        LookupFlags flags = LookupFlags::NONE);
+        LookupFlags flags = LookupFlags::NONE) -> void;
 
-    void
+    auto
     lookup_certificate_issuer_async (
         const Glib::RefPtr<const TlsCertificate>& certificate,
         const SlotAsyncReady& slot,
-        LookupFlags flags = LookupFlags::NONE);
+        LookupFlags flags = LookupFlags::NONE) -> void;
 
     auto
     lookup_certificate_issuer_finish (const Glib::RefPtr<AsyncResult>& result)
@@ -371,33 +372,33 @@ namespace Gio
         LookupFlags flags = LookupFlags::NONE) const
         -> std::vector<Glib::RefPtr<const TlsCertificate>>;
 
-    void
+    auto
     lookup_certificates_issued_by_async (
         const Glib::RefPtr<Glib::ByteArray>& issuer_raw_dn,
         const Glib::RefPtr<TlsInteraction>& interaction,
         const SlotAsyncReady& slot,
         const Glib::RefPtr<Cancellable>& cancellable,
-        LookupFlags flags = LookupFlags::NONE);
+        LookupFlags flags = LookupFlags::NONE) -> void;
 
-    void
+    auto
     lookup_certificates_issued_by_async (
         const Glib::RefPtr<Glib::ByteArray>& issuer_raw_dn,
         const Glib::RefPtr<TlsInteraction>& interaction,
         const SlotAsyncReady& slot,
-        LookupFlags flags = LookupFlags::NONE);
+        LookupFlags flags = LookupFlags::NONE) -> void;
 
-    void
+    auto
     lookup_certificates_issued_by_async (
         const Glib::RefPtr<Glib::ByteArray>& issuer_raw_dn,
         const SlotAsyncReady& slot,
         const Glib::RefPtr<Cancellable>& cancellable,
-        LookupFlags flags = LookupFlags::NONE);
+        LookupFlags flags = LookupFlags::NONE) -> void;
 
-    void
+    auto
     lookup_certificates_issued_by_async (
         const Glib::RefPtr<Glib::ByteArray>& issuer_raw_dn,
         const SlotAsyncReady& slot,
-        LookupFlags flags = LookupFlags::NONE);
+        LookupFlags flags = LookupFlags::NONE) -> void;
 
     auto
     lookup_certificates_issued_by_finish (
@@ -459,32 +460,33 @@ namespace Gio
                                    LookupFlags flags = LookupFlags::NONE) const
         -> Glib::RefPtr<const TlsCertificate>;
 
-    void
+    auto
     lookup_certificate_for_handle_async (
         const Glib::ustring& handle,
         const Glib::RefPtr<TlsInteraction>& interaction,
         const SlotAsyncReady& slot,
         const Glib::RefPtr<Cancellable>& cancellable,
-        LookupFlags flags = LookupFlags::NONE);
+        LookupFlags flags = LookupFlags::NONE) -> void;
 
-    void
+    auto
     lookup_certificate_for_handle_async (
         const Glib::ustring& handle,
         const Glib::RefPtr<TlsInteraction>& interaction,
         const SlotAsyncReady& slot,
-        LookupFlags flags = LookupFlags::NONE);
+        LookupFlags flags = LookupFlags::NONE) -> void;
 
-    void
+    auto
     lookup_certificate_for_handle_async (
         const Glib::ustring& handle,
         const SlotAsyncReady& slot,
         const Glib::RefPtr<Cancellable>& cancellable,
-        LookupFlags flags = LookupFlags::NONE);
+        LookupFlags flags = LookupFlags::NONE) -> void;
 
-    void
+    auto
     lookup_certificate_for_handle_async (const Glib::ustring& handle,
                                          const SlotAsyncReady& slot,
-                                         LookupFlags flags = LookupFlags::NONE);
+                                         LookupFlags flags = LookupFlags::NONE)
+        -> void;
 
     auto
     lookup_certificate_for_handle_finish (
@@ -500,7 +502,7 @@ namespace Gio
                         const Glib::RefPtr<Cancellable>& cancellable,
                         VerifyFlags flags) const -> TlsCertificateFlags;
 
-    virtual void
+    virtual auto
     verify_chain_async_vfunc (
         const Glib::RefPtr<TlsCertificate>& chain,
         const Glib::ustring& purpose,
@@ -508,7 +510,7 @@ namespace Gio
         const Glib::RefPtr<TlsInteraction>& interaction,
         const SlotAsyncReady& slot,
         const Glib::RefPtr<Cancellable>& cancellable,
-        VerifyFlags flags) const;
+        VerifyFlags flags) const -> void;
 
     virtual auto
     verify_chain_finish_vfunc (const Glib::RefPtr<AsyncResult>& result)
@@ -526,13 +528,13 @@ namespace Gio
         const Glib::RefPtr<Cancellable>& cancellable,
         LookupFlags flags) -> Glib::RefPtr<TlsCertificate>;
 
-    virtual void
+    virtual auto
     lookup_certificate_for_handle_async_vfunc (
         const Glib::ustring& handle,
         const Glib::RefPtr<TlsInteraction>& interaction,
         const SlotAsyncReady& slot,
         const Glib::RefPtr<Cancellable>& cancellable,
-        LookupFlags flags);
+        LookupFlags flags) -> void;
 
     virtual auto
     lookup_certificate_for_handle_finish_vfunc (
@@ -546,13 +548,13 @@ namespace Gio
         const Glib::RefPtr<Cancellable>& cancellable,
         LookupFlags flags) -> Glib::RefPtr<TlsCertificate>;
 
-    virtual void
+    virtual auto
     lookup_certificate_issuer_async_vfunc (
         const Glib::RefPtr<TlsCertificate>& certificate,
         const Glib::RefPtr<TlsInteraction>& interaction,
         const SlotAsyncReady& slot,
         const Glib::RefPtr<Cancellable>& cancellable,
-        LookupFlags flags);
+        LookupFlags flags) -> void;
 
     virtual auto
     lookup_certificate_issuer_finish_vfunc (
@@ -566,13 +568,13 @@ namespace Gio
         const Glib::RefPtr<Cancellable>& cancellable,
         LookupFlags flags) -> std::vector<Glib::RefPtr<TlsCertificate>>;
 
-    virtual void
+    virtual auto
     lookup_certificates_issued_by_async_vfunc (
         const Glib::RefPtr<Glib::ByteArray>& issuer_raw_dn,
         const Glib::RefPtr<TlsInteraction>& interaction,
         const SlotAsyncReady& slot,
         const Glib::RefPtr<Cancellable>& cancellable,
-        LookupFlags flags);
+        LookupFlags flags) -> void;
 
     virtual auto
     lookup_certificates_issued_by_finish_vfunc (

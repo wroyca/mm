@@ -3,27 +3,29 @@
 #ifndef _GTKMM_TREEMODELSORT_H
 #define _GTKMM_TREEMODELSORT_H
 
-#include <libmm-glib/ustring.hxx>
-#include <sigc++/sigc++.h>
+#ifndef GTKMM_DISABLE_DEPRECATED
 
-#include <libmm-gtk/treedragsource.hxx>
-#include <libmm-gtk/treeiter.hxx>
-#include <libmm-gtk/treemodel.hxx>
-#include <libmm-gtk/treesortable.hxx>
+  #include <libmm-glib/ustring.hxx>
+  #include <sigc++/sigc++.h>
 
-#include <libmm-gtk/treepath.hxx>
+  #include <libmm-gtk/treedragsource.hxx>
+  #include <libmm-gtk/treeiter.hxx>
+  #include <libmm-gtk/treemodel.hxx>
+  #include <libmm-gtk/treesortable.hxx>
 
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #include <libmm-gtk/treepath.hxx>
+
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
 using GtkTreeModelSort = struct _GtkTreeModelSort;
 using GtkTreeModelSortClass = struct _GtkTreeModelSortClass;
-#endif
+  #endif
 
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Gtk
 {
   class GTKMM_API TreeModelSort_Class;
 }
-#endif
+  #endif
 
 namespace Gtk
 {
@@ -33,7 +35,7 @@ namespace Gtk
                                   public TreeSortable,
                                   public TreeDragSource
   {
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   public:
     using CppObjectType = TreeModelSort;
@@ -53,7 +55,7 @@ namespace Gtk
     explicit TreeModelSort (const Glib::ConstructParams& construct_params);
     explicit TreeModelSort (GtkTreeModelSort* castitem);
 
-#endif
+  #endif
 
   public:
     TreeModelSort (TreeModelSort&& src) noexcept;
@@ -65,11 +67,11 @@ namespace Gtk
     static auto
     get_type () -> GType G_GNUC_CONST;
 
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
     static auto
     get_base_type () -> GType G_GNUC_CONST;
-#endif
+  #endif
 
     auto
     gobj () -> GtkTreeModelSort*
@@ -121,11 +123,11 @@ namespace Gtk
     convert_iter_to_child_iter (const const_iterator& sorted_iter) const
         -> const_iterator;
 
-    void
-    reset_default_sort_func ();
+    auto
+    reset_default_sort_func () -> void;
 
-    void
-    clear_cache ();
+    auto
+    clear_cache () -> void;
 
     auto
     iter_is_valid (const const_iterator& iter) const -> bool;
@@ -135,10 +137,10 @@ namespace Gtk
         -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<TreeModel>>;
 
   protected:
-    void
+    auto
     set_value_impl (const iterator& row,
                     int column,
-                    const Glib::ValueBase& value) override;
+                    const Glib::ValueBase& value) -> void override;
 
   public:
   public:
@@ -149,10 +151,10 @@ namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkTreeModelSort* object, bool take_copy = false) -> Glib::RefPtr<Gtk::TreeModelSort>;
 } // namespace Glib
+
+#endif
 
 #endif

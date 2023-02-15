@@ -10,4 +10,9 @@ email: you@example.org
 #build-error-email: you@example.org
 depends: * build2 >= 0.15.0
 depends: * bpkg >= 0.15.0
-#depends: libhello ^1.0.0
+depends: libmm-gtk
+depends: libmm-glib
+depends: libmm-gio
+depends: libmm-gdk
+depends: libmm-cairo
+depends: libmm-pango

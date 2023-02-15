@@ -44,8 +44,8 @@ namespace Gdk
 
     ~RGBA () noexcept;
 
-    void
-    swap (RGBA& other) noexcept;
+    auto
+    swap (RGBA& other) noexcept -> void;
 
     auto
     gobj () -> GdkRGBA*
@@ -73,26 +73,27 @@ namespace Gdk
 
     RGBA (float red_, float green_, float blue_, float alpha_ = 1.0);
 
-    void
-    set_grey_u (gushort value, gushort alpha = 65535);
+    auto
+    set_grey_u (gushort value, gushort alpha = 65535) -> void;
 
-    void
-    set_grey (float g, float alpha = 1.0);
+    auto
+    set_grey (float g, float alpha = 1.0) -> void;
 
-    void
+    auto
     set_rgba_u (gushort red_,
                 gushort green_,
                 gushort blue_,
-                gushort alpha_ = 65535);
+                gushort alpha_ = 65535) -> void;
 
-    void
-    set_rgba (float red_, float green_, float blue_, float alpha_ = 1.0);
+    auto
+    set_rgba (float red_, float green_, float blue_, float alpha_ = 1.0)
+        -> void;
 
-    void
-    set_hsv (float h, float s, float v, float alpha = 1.0);
+    auto
+    set_hsv (float h, float s, float v, float alpha = 1.0) -> void;
 
-    void
-    set_hsl (float h, float s, float l, float alpha = 1.0);
+    auto
+    set_hsl (float h, float s, float l, float alpha = 1.0) -> void;
 
     auto
     set (const Glib::ustring& spec) -> bool;
@@ -109,17 +110,17 @@ namespace Gdk
     auto
     get_alpha_u () const -> gushort;
 
-    void
-    set_red_u (gushort value);
+    auto
+    set_red_u (gushort value) -> void;
 
-    void
-    set_green_u (gushort value);
+    auto
+    set_green_u (gushort value) -> void;
 
-    void
-    set_blue_u (gushort value);
+    auto
+    set_blue_u (gushort value) -> void;
 
-    void
-    set_alpha_u (gushort value);
+    auto
+    set_alpha_u (gushort value) -> void;
 
     auto
     get_red () const -> float;
@@ -133,17 +134,17 @@ namespace Gdk
     auto
     get_alpha () const -> float;
 
-    void
-    set_red (float value);
+    auto
+    set_red (float value) -> void;
 
-    void
-    set_green (float value);
+    auto
+    set_green (float value) -> void;
 
-    void
-    set_blue (float value);
+    auto
+    set_blue (float value) -> void;
 
-    void
-    set_alpha (float value);
+    auto
+    set_alpha (float value) -> void;
 
     auto
     to_string () const -> Glib::ustring;
@@ -181,8 +182,8 @@ namespace Gdk
       return CppType (const_cast<CType*> (&obj), true);
     }
 
-    static void
-    release_c_type (const CType&)
+    static auto
+    release_c_type (const CType&) -> void
     {
     }
   };
@@ -192,13 +193,10 @@ namespace Gdk
 
 namespace Gdk
 {
-
-  GDKMM_API
-  auto
+  GDKMM_API auto
   operator== (const RGBA& lhs, const RGBA& rhs) -> bool;
 
-  GDKMM_API
-  auto
+  GDKMM_API auto
   operator!= (const RGBA& lhs, const RGBA& rhs) -> bool;
 
 } // namespace Gdk
@@ -206,8 +204,8 @@ namespace Gdk
 namespace Gdk
 {
 
-  inline void
-  swap (RGBA& lhs, RGBA& rhs) noexcept
+  inline auto
+  swap (RGBA& lhs, RGBA& rhs) noexcept -> void
   {
     lhs.swap (rhs);
   }
@@ -216,9 +214,7 @@ namespace Gdk
 
 namespace Glib
 {
-
-  GDKMM_API
-  auto
+  GDKMM_API auto
   wrap (GdkRGBA* object, bool take_copy = false) -> Gdk::RGBA;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

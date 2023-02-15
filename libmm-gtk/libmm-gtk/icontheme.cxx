@@ -11,34 +11,34 @@
 namespace
 {
 
-  const Glib::SignalProxyInfo IconTheme_signal_changed_info = {
+  static const Glib::SignalProxyInfo IconTheme_signal_changed_info = {
       "changed",
       (GCallback) &Glib::SignalProxyNormal::slot0_void_callback,
       (GCallback) &Glib::SignalProxyNormal::slot0_void_callback};
 
 }
 
-Gtk::IconThemeError::IconThemeError (const Code error_code,
+Gtk::IconThemeError::IconThemeError (Gtk::IconThemeError::Code error_code,
                                      const Glib::ustring& error_message)
-  : Error (GTK_ICON_THEME_ERROR, error_code, error_message)
+  : Glib::Error (GTK_ICON_THEME_ERROR, error_code, error_message)
 {
 }
 
 Gtk::IconThemeError::IconThemeError (GError* gobject)
-  : Error (gobject)
+  : Glib::Error (gobject)
 {
 }
 
 auto
-Gtk::IconThemeError::code () const -> Code
+Gtk::IconThemeError::code () const -> Gtk::IconThemeError::Code
 {
-  return static_cast<Code> (Error::code ());
+  return static_cast<Code> (Glib::Error::code ());
 }
 
 auto
 Gtk::IconThemeError::throw_func (GError* gobject) -> void
 {
-  throw IconThemeError (gobject);
+  throw Gtk::IconThemeError (gobject);
 }
 
 auto
@@ -51,11 +51,11 @@ namespace Glib
 {
 
   auto
-  wrap (GtkIconTheme* object, const bool take_copy) -> RefPtr<Gtk::IconTheme>
+  wrap (GtkIconTheme* object, bool take_copy) -> Glib::RefPtr<Gtk::IconTheme>
   {
     return Glib::make_refptr_for_instance<Gtk::IconTheme> (
         dynamic_cast<Gtk::IconTheme*> (
-            wrap_auto ((GObject*) object, take_copy)));
+            Glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
 } // namespace Glib
@@ -64,7 +64,7 @@ namespace Gtk
 {
 
   auto
-  IconTheme_Class::init () -> const Class&
+  IconTheme_Class::init () -> const Glib::Class&
   {
     if (!gtype_)
     {
@@ -97,28 +97,28 @@ namespace Gtk
   }
 
   IconTheme::IconTheme (const Glib::ConstructParams& construct_params)
-    : Object (construct_params)
+    : Glib::Object (construct_params)
   {
   }
 
   IconTheme::IconTheme (GtkIconTheme* castitem)
-    : Object ((GObject*) castitem)
+    : Glib::Object ((GObject*) (castitem))
   {
   }
 
   IconTheme::IconTheme (IconTheme&& src) noexcept
-    : Object (std::move (src))
+    : Glib::Object (std::move (src))
   {
   }
 
   auto
   IconTheme::operator= (IconTheme&& src) noexcept -> IconTheme&
   {
-    Object::operator= (std::move (src));
+    Glib::Object::operator= (std::move (src));
     return *this;
   }
 
-  IconTheme::~IconTheme () noexcept = default;
+  IconTheme::~IconTheme () noexcept {}
 
   IconTheme::CppClassType IconTheme::icontheme_class_;
 
@@ -135,8 +135,8 @@ namespace Gtk
   }
 
   IconTheme::IconTheme ()
-    : ObjectBase (nullptr),
-      Object (Glib::ConstructParams (icontheme_class_.init ()))
+    : Glib::ObjectBase (nullptr),
+      Glib::Object (Glib::ConstructParams (icontheme_class_.init ()))
   {
   }
 
@@ -255,15 +255,17 @@ namespace Gtk
   auto
   IconTheme::lookup_icon (const Glib::ustring& icon_name,
                           const std::vector<Glib::ustring>& fallbacks,
-                          const int size,
-                          const int scale,
+                          int size,
+                          int scale,
                           TextDirection direction,
                           IconLookupFlags flags) -> Glib::RefPtr<IconPaintable>
   {
     return Glib::wrap (gtk_icon_theme_lookup_icon (
         gobj (),
         icon_name.c_str (),
-        Glib::ArrayHandler<Glib::ustring>::vector_to_array (fallbacks).data (),
+        const_cast<const char**> (
+            Glib::ArrayHandler<Glib::ustring>::vector_to_array (fallbacks)
+                .data ()),
         size,
         scale,
         static_cast<GtkTextDirection> (direction),
@@ -272,8 +274,8 @@ namespace Gtk
 
   auto
   IconTheme::lookup_icon (const Glib::ustring& icon_name,
-                          const int size,
-                          const int scale,
+                          int size,
+                          int scale,
                           TextDirection direction,
                           IconLookupFlags flags) -> Glib::RefPtr<IconPaintable>
   {
@@ -290,10 +292,10 @@ namespace Gtk
   auto
   IconTheme::lookup_icon (const Glib::ustring& icon_name,
                           const std::vector<Glib::ustring>& fallbacks,
-                          const int size,
-                          const int scale,
-                          const TextDirection direction,
-                          const IconLookupFlags flags) const -> Glib::RefPtr<const IconPaintable>
+                          int size,
+                          int scale,
+                          TextDirection direction,
+                          IconLookupFlags flags) const -> Glib::RefPtr<const IconPaintable>
   {
     return const_cast<IconTheme*> (this)
         ->lookup_icon (icon_name, fallbacks, size, scale, direction, flags);
@@ -301,10 +303,10 @@ namespace Gtk
 
   auto
   IconTheme::lookup_icon (const Glib::ustring& icon_name,
-                          const int size,
-                          const int scale,
-                          const TextDirection direction,
-                          const IconLookupFlags flags) const -> Glib::RefPtr<const IconPaintable>
+                          int size,
+                          int scale,
+                          TextDirection direction,
+                          IconLookupFlags flags) const -> Glib::RefPtr<const IconPaintable>
   {
     return const_cast<IconTheme*> (this)->lookup_icon (icon_name,
                                                        size,
@@ -315,8 +317,8 @@ namespace Gtk
 
   auto
   IconTheme::lookup_icon (const Glib::RefPtr<const Gio::Icon>& icon,
-                          const int size,
-                          const int scale,
+                          int size,
+                          int scale,
                           TextDirection direction,
                           IconLookupFlags flags) -> Glib::RefPtr<IconPaintable>
   {
@@ -331,10 +333,10 @@ namespace Gtk
 
   auto
   IconTheme::lookup_icon (const Glib::RefPtr<const Gio::Icon>& icon,
-                          const int size,
-                          const int scale,
-                          const TextDirection direction,
-                          const IconLookupFlags flags) const -> Glib::RefPtr<const IconPaintable>
+                          int size,
+                          int scale,
+                          TextDirection direction,
+                          IconLookupFlags flags) const -> Glib::RefPtr<const IconPaintable>
   {
     return const_cast<IconTheme*> (this)->lookup_icon (icon,
                                                        size,
@@ -354,7 +356,7 @@ namespace Gtk
   auto
   IconTheme::signal_changed () -> Glib::SignalProxy<void ()>
   {
-    return {this, &IconTheme_signal_changed_info};
+    return Glib::SignalProxy<void ()> (this, &IconTheme_signal_changed_info);
   }
 
   static_assert (
@@ -366,13 +368,14 @@ namespace Gtk
   auto
   IconTheme::property_display () -> Glib::PropertyProxy<Glib::RefPtr<Gdk::Display>>
   {
-    return {this, "display"};
+    return Glib::PropertyProxy<Glib::RefPtr<Gdk::Display>> (this, "display");
   }
 
   auto
   IconTheme::property_display () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gdk::Display>>
   {
-    return {this, "display"};
+    return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gdk::Display>> (this,
+                                                                     "display");
   }
 
   static_assert (
@@ -384,7 +387,9 @@ namespace Gtk
   auto
   IconTheme::property_icon_names () const -> Glib::PropertyProxy_ReadOnly<std::vector<Glib::ustring>>
   {
-    return {this, "icon-names"};
+    return Glib::PropertyProxy_ReadOnly<std::vector<Glib::ustring>> (
+        this,
+        "icon-names");
   }
 
   static_assert (
@@ -396,13 +401,15 @@ namespace Gtk
   auto
   IconTheme::property_search_path () -> Glib::PropertyProxy<std::vector<std::string>>
   {
-    return {this, "search-path"};
+    return Glib::PropertyProxy<std::vector<std::string>> (this, "search-path");
   }
 
   auto
   IconTheme::property_search_path () const -> Glib::PropertyProxy_ReadOnly<std::vector<std::string>>
   {
-    return {this, "search-path"};
+    return Glib::PropertyProxy_ReadOnly<std::vector<std::string>> (
+        this,
+        "search-path");
   }
 
   static_assert (
@@ -414,25 +421,28 @@ namespace Gtk
   auto
   IconTheme::property_resource_path () -> Glib::PropertyProxy<std::vector<std::string>>
   {
-    return {this, "resource-path"};
+    return Glib::PropertyProxy<std::vector<std::string>> (this,
+                                                          "resource-path");
   }
 
   auto
   IconTheme::property_resource_path () const -> Glib::PropertyProxy_ReadOnly<std::vector<std::string>>
   {
-    return {this, "resource-path"};
+    return Glib::PropertyProxy_ReadOnly<std::vector<std::string>> (
+        this,
+        "resource-path");
   }
 
   auto
   IconTheme::property_theme_name () -> Glib::PropertyProxy<Glib::ustring>
   {
-    return {this, "theme-name"};
+    return Glib::PropertyProxy<Glib::ustring> (this, "theme-name");
   }
 
   auto
   IconTheme::property_theme_name () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>
   {
-    return {this, "theme-name"};
+    return Glib::PropertyProxy_ReadOnly<Glib::ustring> (this, "theme-name");
   }
 
 } // namespace Gtk

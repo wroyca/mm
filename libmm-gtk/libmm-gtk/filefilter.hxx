@@ -89,23 +89,23 @@ namespace Gtk
     static auto
     create () -> Glib::RefPtr<FileFilter>;
 
-    void
-    set_name (const Glib::ustring& name);
+    auto
+    set_name (const Glib::ustring& name) -> void;
 
     auto
     get_name () const -> Glib::ustring;
 
-    void
-    add_mime_type (const Glib::ustring& mime_type);
+    auto
+    add_mime_type (const Glib::ustring& mime_type) -> void;
 
-    void
-    add_pattern (const Glib::ustring& pattern);
+    auto
+    add_pattern (const Glib::ustring& pattern) -> void;
 
-    void
-    add_suffix (const std::string& suffix);
+    auto
+    add_suffix (const std::string& suffix) -> void;
 
-    void
-    add_pixbuf_formats ();
+    auto
+    add_pixbuf_formats () -> void;
 
     auto
     property_name () -> Glib::PropertyProxy<Glib::ustring>;
@@ -122,9 +122,7 @@ namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkFileFilter* object, bool take_copy = false) -> Glib::RefPtr<Gtk::FileFilter>;
 } // namespace Glib
 

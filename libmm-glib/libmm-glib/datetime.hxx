@@ -50,8 +50,8 @@ namespace Glib
 
     ~DateTime () noexcept;
 
-    void
-    swap (DateTime& other) noexcept;
+    auto
+    swap (DateTime& other) noexcept -> void;
 
     auto
     gobj () -> GDateTime*
@@ -166,8 +166,8 @@ namespace Glib
     auto
     equal (const DateTime& other) const -> bool;
 
-    void
-    get_ymd (int& year, int& month, int& day) const;
+    auto
+    get_ymd (int& year, int& month, int& day) const -> void;
 
     auto
     get_year () const -> int;
@@ -241,8 +241,8 @@ namespace Glib
 namespace Glib
 {
 
-  inline void
-  swap (DateTime& lhs, DateTime& rhs) noexcept
+  inline auto
+  swap (DateTime& lhs, DateTime& rhs) noexcept -> void
   {
     lhs.swap (rhs);
   }

@@ -43,8 +43,8 @@ namespace Gdk
 
     ~PixbufFormat () noexcept;
 
-    void
-    swap (PixbufFormat& other) noexcept;
+    auto
+    swap (PixbufFormat& other) noexcept -> void;
 
     auto
     gobj () -> GdkPixbufFormat*
@@ -92,8 +92,8 @@ namespace Gdk
     auto
     is_disabled () const -> bool;
 
-    void
-    set_disabled (bool disabled = true);
+    auto
+    set_disabled (bool disabled = true) -> void;
 
     auto
     get_license () const -> Glib::ustring;
@@ -124,8 +124,8 @@ namespace Gdk
       return PixbufFormat (const_cast<GdkPixbufFormat*> (ptr), true);
     }
 
-    static void
-    release_c_type (CType)
+    static auto
+    release_c_type (CType) -> void
     {
     }
   };
@@ -136,8 +136,8 @@ namespace Gdk
 namespace Gdk
 {
 
-  inline void
-  swap (PixbufFormat& lhs, PixbufFormat& rhs) noexcept
+  inline auto
+  swap (PixbufFormat& lhs, PixbufFormat& rhs) noexcept -> void
   {
     lhs.swap (rhs);
   }
@@ -146,9 +146,7 @@ namespace Gdk
 
 namespace Glib
 {
-
-  GDKMM_API
-  auto
+  GDKMM_API auto
   wrap (GdkPixbufFormat* object, bool take_copy = false) -> Gdk::PixbufFormat;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

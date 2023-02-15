@@ -10,16 +10,16 @@
 namespace
 {
 
-  auto
+  static auto
   EventControllerMotion_signal_enter_callback (GtkEventControllerMotion* self,
-                                               const gdouble p0,
-                                               const gdouble p1,
+                                               gdouble p0,
+                                               gdouble p1,
                                                void* data) -> void
   {
     using namespace Gtk;
     using SlotType = sigc::slot<void (double, double)>;
 
-    const auto obj = dynamic_cast<EventControllerMotion*> (
+    auto obj = dynamic_cast<EventControllerMotion*> (
         Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
@@ -36,26 +36,26 @@ namespace
     }
   }
 
-  const Glib::SignalProxyInfo EventControllerMotion_signal_enter_info = {
+  static const Glib::SignalProxyInfo EventControllerMotion_signal_enter_info = {
       "enter",
       (GCallback) &EventControllerMotion_signal_enter_callback,
       (GCallback) &EventControllerMotion_signal_enter_callback};
 
-  const Glib::SignalProxyInfo EventControllerMotion_signal_leave_info = {
+  static const Glib::SignalProxyInfo EventControllerMotion_signal_leave_info = {
       "leave",
       (GCallback) &Glib::SignalProxyNormal::slot0_void_callback,
       (GCallback) &Glib::SignalProxyNormal::slot0_void_callback};
 
-  auto
+  static auto
   EventControllerMotion_signal_motion_callback (GtkEventControllerMotion* self,
-                                                const gdouble p0,
-                                                const gdouble p1,
+                                                gdouble p0,
+                                                gdouble p1,
                                                 void* data) -> void
   {
     using namespace Gtk;
     using SlotType = sigc::slot<void (double, double)>;
 
-    const auto obj = dynamic_cast<EventControllerMotion*> (
+    auto obj = dynamic_cast<EventControllerMotion*> (
         Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
@@ -72,10 +72,10 @@ namespace
     }
   }
 
-  const Glib::SignalProxyInfo EventControllerMotion_signal_motion_info = {
-      "motion",
-      (GCallback) &EventControllerMotion_signal_motion_callback,
-      (GCallback) &EventControllerMotion_signal_motion_callback};
+  static const Glib::SignalProxyInfo EventControllerMotion_signal_motion_info =
+      {"motion",
+       (GCallback) &EventControllerMotion_signal_motion_callback,
+       (GCallback) &EventControllerMotion_signal_motion_callback};
 
 } // namespace
 
@@ -83,11 +83,11 @@ namespace Glib
 {
 
   auto
-  wrap (GtkEventControllerMotion* object, const bool take_copy) -> RefPtr<Gtk::EventControllerMotion>
+  wrap (GtkEventControllerMotion* object, bool take_copy) -> Glib::RefPtr<Gtk::EventControllerMotion>
   {
     return Glib::make_refptr_for_instance<Gtk::EventControllerMotion> (
         dynamic_cast<Gtk::EventControllerMotion*> (
-            wrap_auto ((GObject*) object, take_copy)));
+            Glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
 } // namespace Glib
@@ -96,7 +96,7 @@ namespace Gtk
 {
 
   auto
-  EventControllerMotion_Class::init () -> const Class&
+  EventControllerMotion_Class::init () -> const Glib::Class&
   {
     if (!gtype_)
     {
@@ -137,7 +137,7 @@ namespace Gtk
 
   EventControllerMotion::EventControllerMotion (
       GtkEventControllerMotion* castitem)
-    : EventController ((GtkEventController*) castitem)
+    : EventController ((GtkEventController*) (castitem))
   {
   }
 
@@ -154,7 +154,7 @@ namespace Gtk
     return *this;
   }
 
-  EventControllerMotion::~EventControllerMotion () noexcept = default;
+  EventControllerMotion::~EventControllerMotion () noexcept {}
 
   EventControllerMotion::CppClassType
       EventControllerMotion::eventcontrollermotion_class_;
@@ -172,7 +172,7 @@ namespace Gtk
   }
 
   EventControllerMotion::EventControllerMotion ()
-    : ObjectBase (nullptr),
+    : Glib::ObjectBase (nullptr),
       EventController (
           Glib::ConstructParams (eventcontrollermotion_class_.init ()))
   {
@@ -202,31 +202,37 @@ namespace Gtk
   auto
   EventControllerMotion::signal_enter () -> Glib::SignalProxy<void (double, double)>
   {
-    return {this, &EventControllerMotion_signal_enter_info};
+    return Glib::SignalProxy<void (double, double)> (
+        this,
+        &EventControllerMotion_signal_enter_info);
   }
 
   auto
   EventControllerMotion::signal_leave () -> Glib::SignalProxy<void ()>
   {
-    return {this, &EventControllerMotion_signal_leave_info};
+    return Glib::SignalProxy<void ()> (
+        this,
+        &EventControllerMotion_signal_leave_info);
   }
 
   auto
   EventControllerMotion::signal_motion () -> Glib::SignalProxy<void (double, double)>
   {
-    return {this, &EventControllerMotion_signal_motion_info};
+    return Glib::SignalProxy<void (double, double)> (
+        this,
+        &EventControllerMotion_signal_motion_info);
   }
 
   auto
   EventControllerMotion::property_is_pointer () const -> Glib::PropertyProxy_ReadOnly<bool>
   {
-    return {this, "is-pointer"};
+    return Glib::PropertyProxy_ReadOnly<bool> (this, "is-pointer");
   }
 
   auto
   EventControllerMotion::property_contains_pointer () const -> Glib::PropertyProxy_ReadOnly<bool>
   {
-    return {this, "contains-pointer"};
+    return Glib::PropertyProxy_ReadOnly<bool> (this, "contains-pointer");
   }
 
 } // namespace Gtk

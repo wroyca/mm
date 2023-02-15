@@ -109,24 +109,24 @@ namespace Gdk
     auto
     get_display () const -> Glib::RefPtr<const Display>;
 
-    void
-    hide ();
+    auto
+    hide () -> void;
 
-    void
-    set_input_region (const ::Cairo::RefPtr<::Cairo::Region>& region);
+    auto
+    set_input_region (const ::Cairo::RefPtr<::Cairo::Region>& region) -> void;
 
     auto
     get_mapped () const -> bool;
 
-    void
-    set_cursor (const Glib::RefPtr<Cursor>& cursor);
+    auto
+    set_cursor (const Glib::RefPtr<Cursor>& cursor) -> void;
 
-    void
-    set_cursor ();
+    auto
+    set_cursor () -> void;
 
-    void
+    auto
     set_device_cursor (const Glib::RefPtr<Device>& device,
-                       const Glib::RefPtr<Cursor>& cursor);
+                       const Glib::RefPtr<Cursor>& cursor) -> void;
 
     auto
     get_device_cursor (const Glib::RefPtr<Device>& device)
@@ -161,8 +161,8 @@ namespace Gdk
     create_similar_surface (::Cairo::Content content, int width, int height)
         -> ::Cairo::RefPtr<::Cairo::Surface>;
 
-    void
-    beep ();
+    auto
+    beep () -> void;
 
     auto
     drag_begin_from_point (const Glib::RefPtr<Device>& device,
@@ -171,11 +171,11 @@ namespace Gdk
                            double dx,
                            double dy) -> Glib::RefPtr<Drag>;
 
-    void
-    queue_render ();
+    auto
+    queue_render () -> void;
 
-    void
-    request_layout ();
+    auto
+    request_layout () -> void;
 
     auto
     get_frame_clock () -> Glib::RefPtr<FrameClock>;
@@ -183,8 +183,9 @@ namespace Gdk
     auto
     get_frame_clock () const -> Glib::RefPtr<const FrameClock>;
 
-    void
-    set_opaque_region (const ::Cairo::RefPtr<const ::Cairo::Region>& region);
+    auto
+    set_opaque_region (const ::Cairo::RefPtr<const ::Cairo::Region>& region)
+        -> void;
 
     auto
     create_gl_context () -> Glib::RefPtr<Gdk::GLContext>;
@@ -247,9 +248,7 @@ namespace Gdk
 
 namespace Glib
 {
-
-  GDKMM_API
-  auto
+  GDKMM_API auto
   wrap (GdkSurface* object, bool take_copy = false) -> Glib::RefPtr<Gdk::Surface>;
 } // namespace Glib
 

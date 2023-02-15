@@ -43,14 +43,14 @@ namespace Cairo
           const_cast<cairo_scaled_font_t*> (cobj ()));
     }
 
-    void
-    reference () const
+    auto
+    reference () const -> void
     {
       cairo_scaled_font_reference (m_cobject);
     }
 
-    void
-    unreference () const
+    auto
+    unreference () const -> void
     {
       cairo_scaled_font_destroy (m_cobject);
     }
@@ -70,40 +70,42 @@ namespace Cairo
             const Matrix& ctm,
             const FontOptions& options = FontOptions ()) -> RefPtr<ScaledFont>;
 
-    void
-    get_extents (FontExtents& extents) const;
+    auto
+    get_extents (FontExtents& extents) const -> void;
 
-    void
-    get_text_extents (const std::string& utf8, TextExtents& extents) const;
+    auto
+    get_text_extents (const std::string& utf8, TextExtents& extents) const
+        -> void;
 
-    void
-    get_glyph_extents (const std::vector<Glyph>& glyphs, TextExtents& extents);
+    auto
+    get_glyph_extents (const std::vector<Glyph>& glyphs, TextExtents& extents)
+        -> void;
 
     auto
     get_font_face () const -> RefPtr<FontFace>;
 
-    void
-    get_font_options (FontOptions& options) const;
+    auto
+    get_font_options (FontOptions& options) const -> void;
 
-    void
-    get_font_matrix (Matrix& font_matrix) const;
+    auto
+    get_font_matrix (Matrix& font_matrix) const -> void;
 
-    void
-    get_ctm (Matrix& ctm) const;
+    auto
+    get_ctm (Matrix& ctm) const -> void;
 
     auto
     get_type () const -> FontType;
 
-    void
+    auto
     text_to_glyphs (double x,
                     double y,
                     const std::string& utf8,
                     std::vector<Glyph>& glyphs,
                     std::vector<TextCluster>& clusters,
-                    TextClusterFlags& cluster_flags);
+                    TextClusterFlags& cluster_flags) -> void;
 
-    void
-    get_scale_matrix (Matrix& scale_matrix) const;
+    auto
+    get_scale_matrix (Matrix& scale_matrix) const -> void;
 
   protected:
     ScaledFont (const RefPtr<FontFace>& font_face,
@@ -129,8 +131,8 @@ namespace Cairo
     auto
     lock_face () -> FT_Face;
 
-    void
-    unlock_face ();
+    auto
+    unlock_face () -> void;
 
   protected:
     FtScaledFont (const RefPtr<FtFontFace>& font_face,

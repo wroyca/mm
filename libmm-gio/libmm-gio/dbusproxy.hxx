@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: LGPL-2.1-or-later
 
 #ifndef _GIOMM_DBUSPROXY_H
 #define _GIOMM_DBUSPROXY_H
@@ -233,7 +234,7 @@ namespace Gio::DBus
            ProxyFlags flags = ProxyFlags::NONE);
 
   public:
-    static void
+    static auto
     create (const Glib::RefPtr<Connection>& connection,
             const Glib::ustring& name,
             const Glib::ustring& object_path,
@@ -241,16 +242,16 @@ namespace Gio::DBus
             const SlotAsyncReady& slot,
             const Glib::RefPtr<Cancellable>& cancellable,
             const Glib::RefPtr<InterfaceInfo>& info = {},
-            ProxyFlags flags = ProxyFlags::NONE);
+            ProxyFlags flags = ProxyFlags::NONE) -> void;
 
-    static void
+    static auto
     create (const Glib::RefPtr<Connection>& connection,
             const Glib::ustring& name,
             const Glib::ustring& object_path,
             const Glib::ustring& interface_name,
             const SlotAsyncReady& slot,
             const Glib::RefPtr<InterfaceInfo>& info = {},
-            ProxyFlags flags = ProxyFlags::NONE);
+            ProxyFlags flags = ProxyFlags::NONE) -> void;
 
     static auto
     create_finish (const Glib::RefPtr<AsyncResult>& res)
@@ -273,7 +274,7 @@ namespace Gio::DBus
                  const Glib::RefPtr<InterfaceInfo>& info = {},
                  ProxyFlags flags = ProxyFlags::NONE) -> Glib::RefPtr<Proxy>;
 
-    static void
+    static auto
     create_for_bus (BusType bus_type,
                     const Glib::ustring& name,
                     const Glib::ustring& object_path,
@@ -281,16 +282,16 @@ namespace Gio::DBus
                     const SlotAsyncReady& slot,
                     const Glib::RefPtr<Cancellable>& cancellable,
                     const Glib::RefPtr<InterfaceInfo>& info = {},
-                    ProxyFlags flags = ProxyFlags::NONE);
+                    ProxyFlags flags = ProxyFlags::NONE) -> void;
 
-    static void
+    static auto
     create_for_bus (BusType bus_type,
                     const Glib::ustring& name,
                     const Glib::ustring& object_path,
                     const Glib::ustring& interface_name,
                     const SlotAsyncReady& slot,
                     const Glib::RefPtr<InterfaceInfo>& info = {},
-                    ProxyFlags flags = ProxyFlags::NONE);
+                    ProxyFlags flags = ProxyFlags::NONE) -> void;
 
     static auto
     create_for_bus_finish (const Glib::RefPtr<AsyncResult>& res)
@@ -339,22 +340,22 @@ namespace Gio::DBus
     auto
     get_default_timeout () const -> int;
 
-    void
-    set_default_timeout (int timeout_msec = -1);
+    auto
+    set_default_timeout (int timeout_msec = -1) -> void;
 
-    void
+    auto
     get_cached_property (Glib::VariantBase& property,
-                         const Glib::ustring& property_name) const;
+                         const Glib::ustring& property_name) const -> void;
 
-    void
+    auto
     set_cached_property (const Glib::ustring& property_name,
-                         const Glib::VariantBase& value);
+                         const Glib::VariantBase& value) -> void;
 
     auto
     get_cached_property_names () const -> std::vector<Glib::ustring>;
 
-    void
-    set_interface_info (const Glib::RefPtr<InterfaceInfo>& info);
+    auto
+    set_interface_info (const Glib::RefPtr<InterfaceInfo>& info) -> void;
 
     auto
     get_interface_info () -> Glib::RefPtr<InterfaceInfo>;
@@ -362,33 +363,33 @@ namespace Gio::DBus
     auto
     get_interface_info () const -> Glib::RefPtr<const InterfaceInfo>;
 
-    void
+    auto
     call (const Glib::ustring& method_name,
           const SlotAsyncReady& slot,
           const Glib::RefPtr<Cancellable>& cancellable,
           const Glib::VariantContainerBase& parameters = {},
           int timeout_msec = -1,
-          CallFlags flags = Gio::DBus::CallFlags::NONE);
+          CallFlags flags = Gio::DBus::CallFlags::NONE) -> void;
 
-    void
+    auto
     call (const Glib::ustring& method_name,
           const SlotAsyncReady& slot,
           const Glib::VariantContainerBase& parameters = {},
           int timeout_msec = -1,
-          CallFlags flags = Gio::DBus::CallFlags::NONE);
+          CallFlags flags = Gio::DBus::CallFlags::NONE) -> void;
 
-    void
+    auto
     call (const Glib::ustring& method_name,
           const Glib::RefPtr<Cancellable>& cancellable,
           const Glib::VariantContainerBase& parameters = {},
           int timeout_msec = -1,
-          CallFlags flags = Gio::DBus::CallFlags::NONE);
+          CallFlags flags = Gio::DBus::CallFlags::NONE) -> void;
 
-    void
+    auto
     call (const Glib::ustring& method_name,
           const Glib::VariantContainerBase& parameters = {},
           int timeout_msec = -1,
-          CallFlags flags = Gio::DBus::CallFlags::NONE);
+          CallFlags flags = Gio::DBus::CallFlags::NONE) -> void;
 
     auto
     call_finish (const Glib::RefPtr<AsyncResult>& res)
@@ -544,15 +545,15 @@ namespace Gio::DBus
   public:
   public:
   protected:
-    virtual void
+    virtual auto
     on_properties_changed (
         const MapChangedProperties& changed_properties,
-        const std::vector<Glib::ustring>& invalidated_properties);
+        const std::vector<Glib::ustring>& invalidated_properties) -> void;
 
-    virtual void
+    virtual auto
     on_signal (const Glib::ustring& sender_name,
                const Glib::ustring& signal_name,
-               const Glib::VariantContainerBase& parameters);
+               const Glib::VariantContainerBase& parameters) -> void;
   };
 
 } // namespace Gio::DBus

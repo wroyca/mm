@@ -18,19 +18,17 @@ namespace Glib
   {
   #endif
 
-    GLIBMM_API
-    void
+    GLIBMM_API auto
     custom_get_property_callback (GObject* object,
                                   unsigned int property_id,
                                   GValue* value,
-                                  GParamSpec* param_spec);
+                                  GParamSpec* param_spec) -> void;
 
-    GLIBMM_API
-    void
+    GLIBMM_API auto
     custom_set_property_callback (GObject* object,
                                   unsigned int property_id,
                                   const GValue* value,
-                                  GParamSpec* param_spec);
+                                  GParamSpec* param_spec) -> void;
 
   #ifdef GLIBMM_CXX_CAN_USE_NAMESPACES_INSIDE_EXTERNC
   }
@@ -54,8 +52,8 @@ namespace Glib
     auto
     get_blurb () const -> Glib::ustring;
 
-    void
-    notify ();
+    auto
+    notify () -> void;
 
   protected:
     Glib::Object* object_;
@@ -68,8 +66,8 @@ namespace Glib
     auto
     lookup_property (const Glib::ustring& name) -> bool;
 
-    void
-    install_property (GParamSpec* param_spec);
+    auto
+    install_property (GParamSpec* param_spec) -> void;
 
     auto
     get_name_internal () const -> const char*;
@@ -77,17 +75,17 @@ namespace Glib
   private:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
-    friend void
+    friend auto
     Glib::custom_get_property_callback (GObject* object,
                                         unsigned int property_id,
                                         GValue* value,
-                                        GParamSpec* param_spec);
+                                        GParamSpec* param_spec) -> void;
 
-    friend void
+    friend auto
     Glib::custom_set_property_callback (GObject* object,
                                         unsigned int property_id,
                                         const GValue* value,
-                                        GParamSpec* param_spec);
+                                        GParamSpec* param_spec) -> void;
 
 #endif
   };
@@ -118,8 +116,8 @@ namespace Glib
               const Glib::ustring& blurb,
               Glib::ParamFlags flags);
 
-    inline void
-    set_value (const PropertyType& data);
+    inline auto
+    set_value (const PropertyType& data) -> void;
 
     inline auto
     get_value () const -> PropertyType;
@@ -197,8 +195,8 @@ namespace Glib
                         const Glib::ustring& blurb,
                         Glib::ParamFlags flags);
 
-    inline void
-    set_value (const PropertyType& data);
+    inline auto
+    set_value (const PropertyType& data) -> void;
 
     inline auto
     operator= (const PropertyType& data) -> Property_WriteOnly<T>&;
@@ -267,8 +265,8 @@ namespace Glib
   }
 
   template <class T>
-  inline void
-  Property<T>::set_value (const typename Property<T>::PropertyType& data)
+  inline auto
+  Property<T>::set_value (const typename Property<T>::PropertyType& data) -> void
   {
     static_cast<ValueType&> (value_).set (data);
     this->notify ();
@@ -452,9 +450,9 @@ namespace Glib
   }
 
   template <class T>
-  inline void
+  inline auto
   Property_WriteOnly<T>::set_value (
-      const typename Property_WriteOnly<T>::PropertyType& data)
+      const typename Property_WriteOnly<T>::PropertyType& data) -> void
   {
     static_cast<ValueType&> (value_).set (data);
     this->notify ();

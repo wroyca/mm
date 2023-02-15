@@ -86,8 +86,8 @@ namespace Gtk
                                   const Glib::ustring& title);
     explicit PageSetupUnixDialog (const Glib::ustring& title);
 
-    void
-    set_page_setup (const Glib::RefPtr<PageSetup>& page_setup);
+    auto
+    set_page_setup (const Glib::RefPtr<PageSetup>& page_setup) -> void;
 
     auto
     get_page_setup () -> Glib::RefPtr<PageSetup>;
@@ -95,8 +95,9 @@ namespace Gtk
     auto
     get_page_setup () const -> Glib::RefPtr<const PageSetup>;
 
-    void
-    set_print_settings (const Glib::RefPtr<PrintSettings>& print_settings);
+    auto
+    set_print_settings (const Glib::RefPtr<PrintSettings>& print_settings)
+        -> void;
 
     auto
     get_print_settings () -> Glib::RefPtr<PrintSettings>;
@@ -113,9 +114,7 @@ namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkPageSetupUnixDialog* object, bool take_copy = false) -> Gtk::PageSetupUnixDialog*;
 } // namespace Glib
 

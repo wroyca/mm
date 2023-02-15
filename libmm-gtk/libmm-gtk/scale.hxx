@@ -86,26 +86,26 @@ namespace Gtk
     explicit Scale (const Glib::RefPtr<Adjustment>& adjustment,
                     Orientation orientation = Orientation::HORIZONTAL);
 
-    void
-    set_digits (int digits);
+    auto
+    set_digits (int digits) -> void;
 
     auto
     get_digits () const -> int;
 
-    void
-    set_draw_value (bool draw_value = true);
+    auto
+    set_draw_value (bool draw_value = true) -> void;
 
     auto
     get_draw_value () const -> bool;
 
-    void
-    set_value_pos (PositionType pos);
+    auto
+    set_value_pos (PositionType pos) -> void;
 
     auto
     get_value_pos () const -> PositionType;
 
-    void
-    set_has_origin (bool has_origin = true);
+    auto
+    set_has_origin (bool has_origin = true) -> void;
 
     auto
     get_has_origin () const -> bool;
@@ -116,22 +116,23 @@ namespace Gtk
     auto
     get_layout () const -> Glib::RefPtr<const Pango::Layout>;
 
-    void
-    get_layout_offsets (int& x, int& y) const;
+    auto
+    get_layout_offsets (int& x, int& y) const -> void;
 
-    void
-    add_mark (double value, PositionType position, const Glib::ustring& markup);
+    auto
+    add_mark (double value, PositionType position, const Glib::ustring& markup)
+        -> void;
 
-    void
-    clear_marks ();
+    auto
+    clear_marks () -> void;
 
     using SlotFormatValue = sigc::slot<Glib::ustring (double)>;
 
-    void
-    set_format_value_func (const SlotFormatValue& slot);
+    auto
+    set_format_value_func (const SlotFormatValue& slot) -> void;
 
-    void
-    unset_format_value_func ();
+    auto
+    unset_format_value_func () -> void;
 
     auto
     property_digits () -> Glib::PropertyProxy<int>;
@@ -166,9 +167,7 @@ namespace Gtk
 
 namespace Glib
 {
-
-  GTKMM_API
-  auto
+  GTKMM_API auto
   wrap (GtkScale* object, bool take_copy = false) -> Gtk::Scale*;
 } // namespace Glib
 
