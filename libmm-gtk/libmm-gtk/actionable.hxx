@@ -140,8 +140,8 @@ namespace Gtk
     get_action_target_value_vfunc () const -> Glib::VariantBase;
 
     virtual auto
-    set_action_target_value_vfunc (const Glib::VariantBase& action_target_value)
-        -> void;
+    set_action_target_value_vfunc (
+        const Glib::VariantBase& action_target_value) -> void;
 
   public:
   public:

@@ -1,0 +1,35 @@
+# Interface dependencies.
+#
+import intf_libs = libmm-adw%lib{mm-adw}
+
+# Implementation dependencies.
+#
+impl_libs =
+
+lib{mm}: {hxx ixx txx}{** -version} \
+         {hxx}{version}             \
+         $intf_libs
+
+hxx{version}: in{version} $src_root/manifest
+
+# Build options.
+#
+cxx.poptions =+ "-I$out_root" "-I$src_root"
+cxx.loptions =+ "/LIBPATH:C:/gnome/lib"
+
+# Export options.
+#
+lib{mm}:
+{
+  cxx.export.poptions = "-I$out_root" "-I$src_root"
+  cxx.export.libs = $intf_libs
+}
+
+# Install into the libmm/ subdirectory of, say, /usr/include/
+# recreating subdirectories.
+#
+{hxx ixx txx}{*}:
+{
+  install         = include/libmm/
+  install.subdirs = true
+}

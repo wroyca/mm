@@ -1,12 +1,13 @@
-intf_libs = # Interface dependencies.
-impl_libs = # Implementation dependencies.
-import impl_libs =+ glib-2.0%lib{glib-2.0}
-import impl_libs =+ sigc++%lib{sigc++-3.0}
-import impl_libs =+ gtk4%lib{gtk4}
-import impl_libs =+ libadwaita-1%lib{adwaita-1}
-import impl_libs =+ gmodule-2.0%lib{gmodule-2.0}
-import impl_libs =+ gio-2.0%lib{gio-2.0}
-import impl_libs =+ gobject-2.0%lib{gobject-2.0}
+# Interface dependencies.
+#
+import intf_libs = glib-2.0%lib{glib-2.0}       \
+                   sigc++%lib{sigc++-3.0}       \
+                   gmodule-2.0%lib{gmodule-2.0} \
+                   gobject-2.0%lib{gobject-2.0} \
+
+# Implementation dependencies.
+#
+impl_libs =
 
 lib{mm-glib}: {hxx ixx txx cxx}{** -version} hxx{version} $impl_libs $intf_libs
 
@@ -18,7 +19,6 @@ hxx{export}@./: cxx.importable = false
 #
 cxx.poptions =+ "-I$out_root" "-I$src_root"
 cxx.loptions =+ "/LIBPATH:C:/gnome/lib"
-cxx.poptions =+ "-DGLIBMM_DISABLE_DEPRECATED" "-DGLIBMM_BUILD" "-DGLIBMM_STATIC_LIB"
 
 {hbmia obja}{*}: cxx.poptions += -DLIBMM_GLIB_STATIC_BUILD
 {hbmis objs}{*}: cxx.poptions += -DLIBMM_GLIB_SHARED_BUILD

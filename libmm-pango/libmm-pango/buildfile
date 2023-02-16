@@ -1,16 +1,10 @@
-intf_libs = # Interface dependencies.
-impl_libs = # Implementation dependencies.
+# Interface dependencies.
+#
+import intf_libs = libmm-cairo%lib{mm-cairo}
 
-
-
-import impl_libs += libmm-glib%lib{mm-glib}
-import impl_libs += libmm-gio%lib{mm-gio}
-import impl_libs += libmm-cairo%lib{mm-cairo}
-
-import impl_libs += glib-2.0%lib{glib-2.0}
-import impl_libs += pango%lib{pango}
-import impl_libs += pangocairo%lib{pangocairo}
-import impl_libs += sigc++%lib{sigc++-3.0}
+# Implementation dependencies.
+#
+import impl_libs = libmm-glib%lib{mm-glib}
 
 lib{mm-pango}: {hxx ixx txx cxx}{** -version} hxx{version} $impl_libs $intf_libs
 
@@ -22,7 +16,6 @@ hxx{export}@./: cxx.importable = false
 #
 cxx.poptions =+ "-I$out_root" "-I$src_root"
 cxx.loptions =+ "/LIBPATH:C:/gnome/lib"
-cxx.poptions =+ "-DPANGOMM_DISABLE_DEPRECATED" "-DPANGOMM_BUILD" "-DPANGO_STATIC_LIB"
 
 {hbmia obja}{*}: cxx.poptions += -DLIBMM_PANGO_STATIC_BUILD
 {hbmis objs}{*}: cxx.poptions += -DLIBMM_PANGO_SHARED_BUILD

@@ -1,15 +1,12 @@
-intf_libs = # Interface dependencies.
-impl_libs = # Implementation dependencies.
+# Interface dependencies.
+#
+import intf_libs = libadwaita-1.0%lib{adwaita-1} \
+                   libmm-gtk%lib{mm-gtk}         \
+                   libmm-glib%lib{mm-glib}       \
 
-import impl_libs += libmm-pango%lib{mm-pango}
-import impl_libs += libmm-gtk%lib{mm-gtk}
-import impl_libs += libmm-glib%lib{mm-glib}
-import impl_libs += libmm-gio%lib{mm-gio}
-import impl_libs += libmm-gdk%lib{mm-gdk}
-import impl_libs += libmm-cairo%lib{mm-cairo}
-import impl_libs += sigc++%lib{sigc++-3.0}
-import impl_libs += glib-2.0%lib{glib-2.0}
-import impl_libs += libadwaita-1.0%lib{adwaita-1}
+# Implementation dependencies.
+#
+impl_libs =
 
 lib{mm-adw}: {hxx ixx txx cxx}{** -version} hxx{version} $impl_libs $intf_libs
 

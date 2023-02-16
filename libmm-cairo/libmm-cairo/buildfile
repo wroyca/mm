@@ -1,9 +1,8 @@
-intf_libs = # Interface dependencies.
-impl_libs = # Implementation dependencies.
-import impl_libs += sigc++%lib{sigc++-3.0}
-import impl_libs += glib-2.0%lib{glib-2.0}
-import impl_libs += freetype2%lib{freetype2}
-import impl_libs += cairo%lib{cairo}
+# Interface dependencies.
+import intf_libs = libmm-gio%lib{mm-gio}
+
+# Implementation dependencies.
+import impl_libs = libmm-glib%lib{mm-glib}
 
 lib{mm-cairo}: {hxx ixx txx cxx}{** -version} hxx{version} $impl_libs $intf_libs
 

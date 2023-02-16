@@ -1,15 +1,14 @@
 : 1
-name: libmm-gdk
+name: libmm
 version: 0.1.0-a.0.z
 project: mm
-summary: mm-gdk C++ library
+summary: mm C++ library
 license: other: proprietary ; Not free/open source.
 description-file: README.md
 url: https://example.org/mm
-email: you@example.org
-#build-error-email: you@example.org
+email: wroy@proton.me
+#build-error-email: wroy@proton.me
 depends: * build2 >= 0.15.0
 depends: * bpkg >= 0.15.0
 #depends: libhello ^1.0.0
-depends: libmm-glib
-depends: libmm-pango
+depends: libmm-adw

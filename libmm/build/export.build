@@ -1,0 +1,6 @@
+$out_root/
+{
+  include libmm/
+}
+
+export $out_root/libmm/$import.target
