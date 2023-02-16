@@ -1,7 +1,9 @@
 # Interface dependencies.
-import intf_libs = libmm-gio%lib{mm-gio}
+#
+intf_libs = cairo%lib{cairo}
 
 # Implementation dependencies.
+#
 import impl_libs = libmm-glib%lib{mm-glib}
 
 lib{mm-cairo}: {hxx ixx txx cxx}{** -version} hxx{version} $impl_libs $intf_libs

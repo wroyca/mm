@@ -1,10 +1,14 @@
 # Interface dependencies.
 #
-import intf_libs = libmm-gdk%lib{mm-gdk}
+import intf_libs =+ gtk4%lib{gtk4}
 
 # Implementation dependencies.
 #
-import impl_libs = libmm-glib%lib{mm-glib}   \
+import impl_libs = libmm-gdk%lib{mm-gdk}     \
+                   libmm-glib%lib{mm-glib}   \
+                   libmm-gio%lib{mm-gio}     \
+                   libmm-pango%lib{mm-pango} \
+                   libmm-cairo%lib{mm-cairo} \
 
 lib{mm-gtk}: {hxx ixx txx cxx}{** -version -printunixdialog -pagesetupunixdialog -printer -printjob} hxx{version} $impl_libs $intf_libs
 

@@ -1,3 +1,6 @@
-import libs = libmm-pango%lib{mm-pango}
+import libs = libmm-pango%lib{mm-pango} \
+              libmm-glib%lib{mm-glib}   \
+              libmm-gio%lib{mm-gio}     \
+              libmm-cairo%lib{mm-cairo}
 
 exe{driver}: {hxx ixx txx cxx}{**} $libs testscript{**}

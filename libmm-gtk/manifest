@@ -13,3 +13,6 @@ depends: * bpkg >= 0.15.0
 #depends: libhello ^1.0.0
 depends: libmm-glib
 depends: libmm-gdk
+depends: libmm-gio
+depends: libmm-pango
+depends: libmm-cairo

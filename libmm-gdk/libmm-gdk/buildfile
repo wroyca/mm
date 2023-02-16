@@ -1,12 +1,14 @@
 # Interface dependencies.
 #
-import intf_libs = libmm-pango%lib{mm-pango}          \
-                   gtk4%lib{gtk4}                     \
-                   gdk-pixbuf-2.0%lib{gdk-pixbuf-2.0} \
+import intf_libs = gdk-pixbuf-2.0%lib{gdk-pixbuf-2.0} \
+                   gtk4%lib{gtk4}
 
 # Implementation dependencies.
 #
-import impl_libs = libmm-glib%lib{mm-glib}
+import impl_libs = libmm-glib%lib{mm-glib}   \
+                   libmm-gio%lib{mm-gio}     \
+                   libmm-pango%lib{mm-pango} \
+                   libmm-cairo%lib{mm-cairo}
 
 lib{mm-gdk}: {hxx ixx txx cxx}{** -version} hxx{version} $impl_libs $intf_libs
 

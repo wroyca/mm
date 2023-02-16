@@ -1,3 +1,4 @@
-import libs = libmm-cairo%lib{mm-cairo}
+import libs = libmm-cairo%lib{mm-cairo} \
+              libmm-glib%lib{mm-glib}
 
 exe{driver}: {hxx ixx txx cxx}{**} $libs testscript{**}

@@ -1,3 +1,4 @@
-import libs = libmm-gio%lib{mm-gio}
+import libs = libmm-gio%lib{mm-gio}   \
+              libmm-glib%lib{mm-glib}
 
 exe{driver}: {hxx ixx txx cxx}{**} $libs testscript{**}

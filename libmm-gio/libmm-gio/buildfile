@@ -1,15 +1,12 @@
 # Interface dependencies.
 #
-import intf_libs = gio-2.0%lib{gio-2.0}       \
-                   cairo%lib{cairo}           \
-                   pango%lib{pango}           \
-                   pangocairo%lib{pangocairo}
+import intf_libs = gio-2.0%lib{gio-2.0}
 
 # Implementation dependencies.
 #
 import impl_libs = libmm-glib%lib{mm-glib}
 
-lib{mm-gio}: {hxx ixx txx cxx}{** -version -unixfdlist -unixcredentialsmessage -unixfdmessage_p -unixfdmessage -desktopappinfo -desktopappinfo_p} hxx{version} $impl_libs $intf_libs
+lib{mm-gio}: {hxx ixx txx cxx}{** -version -unixfdlist -unixcredentialsmessage -unixfdmessage_p -unixfdmessage -desktopappinfo  -desktopappinfo_p} hxx{version} $impl_libs $intf_libs
 
 hxx{version}: in{version} $src_root/manifest
 

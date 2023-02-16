@@ -12,3 +12,6 @@ depends: * build2 >= 0.15.0
 depends: * bpkg >= 0.15.0
 depends: libmm-gtk
 depends: libmm-glib
+depends: libmm-gio
+depends: libmm-gdk
+depends: libmm-cairo
