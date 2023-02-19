@@ -11,7 +11,7 @@
 #include <libmm-gtk/printer.hxx>
 #include <libmm-gtk/printoperation.hxx>
 #include <libmm-gtk/printsettings.hxx>
-#include <libmm-pango/surface.hxx>
+#include <libmm-cairo/surface.hxx>
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 using GtkPrintJob = struct _GtkPrintJob;

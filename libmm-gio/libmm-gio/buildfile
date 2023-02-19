@@ -1,12 +1,62 @@
 # Interface dependencies.
 #
-import intf_libs = gio-2.0%lib{gio-2.0}
+import intf_libs =  gio-2.0%lib{gio-2.0}
+if ($cxx.target.class != 'windows')
+import intf_libs =+ gio-unix-2.0%lib{gio-unix-2.0}
 
 # Implementation dependencies.
 #
 import impl_libs = libmm-glib%lib{mm-glib}
 
-lib{mm-gio}: {hxx ixx txx cxx}{** -version -unixfdlist -unixcredentialsmessage -unixfdmessage_p -unixfdmessage -desktopappinfo  -desktopappinfo_p} hxx{version} $impl_libs $intf_libs
+# This block specifies the sources and headers used by the mm-gio library.
+#
+# While most of gio is available on Windows, these specific sources and headers are not:
+#   - unixfdlist
+#   - unixcredentialsmessage
+#   - unixfdmessage
+#   - desktopappinfo
+#   - unixfdmessage_p
+#   - desktopappinfo_p
+#
+# These sources and headers define functions and classes that are only available on Unix-like systems.
+# Specifically, unixfdmessage_p provides a private implementation of the Unix file descriptor message
+# protocol, and desktopappinfo_p provides access to information about desktop applications.
+#
+# The library is built with different options depending on the platform. On Windows, the sources that
+# are not available are excluded, whereas they are included for Unix-like systems.
+#
+lib{mm-gio}:              {hxx ixx txx cxx}\
+{                                          \
+  **                                       \
+  -version                                 \
+  -unixfdlist                              \
+  -unixcredentialsmessage                  \
+  -unixfdmessage_p                         \
+  -unixfdmessage                           \
+  -desktopappinfo                          \
+  -desktopappinfo_p                        \
+}                                          \
+                                        hxx\
+{                                          \
+  version                                  \
+}                                          \
+$impl_libs $intf_libs
+
+lib{mm-gio}:                            cxx\
+{                                          \
+  unixfdlist                               \
+  unixcredentialsmessage                   \
+  unixfdmessage                            \
+  desktopappinfo                           \
+}:                                         \
+include = ($cxx.target.class != 'windows')
+
+lib{mm-gio}:                            hxx\
+{                                          \
+  unixfdmessage_p                          \
+  desktopappinfo_p                         \
+}:                                         \
+include = ($cxx.target.class != 'windows')
 
 hxx{version}: in{version} $src_root/manifest
 

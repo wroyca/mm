@@ -51,9 +51,9 @@
 #include <libmm-gio/dbussubtreevtable.hxx>
 #include <libmm-gio/dbusutils.hxx>
 #include <libmm-gio/dbuswatchname.hxx>
-// #if !defined(G_OS_WIN32) && !defined(GLIBMM_OS_COCOA)
-//   #include <libmm-gio/desktopappinfo.hxx>
-// #endif
+#if !defined(G_OS_WIN32) && !defined(GLIBMM_OS_COCOA)
+#include <libmm-gio/desktopappinfo.hxx>
+#endif
 #include <libmm-gio/drive.hxx>
 #include <libmm-gio/emblem.hxx>
 #include <libmm-gio/emblemedicon.hxx>
@@ -63,7 +63,7 @@
 #include <libmm-gio/fileattributeinfo.hxx>
 #include <libmm-gio/fileattributeinfolist.hxx>
 #ifndef G_OS_WIN32
-  #include <libmm-gio/filedescriptorbased.hxx>
+#include <libmm-gio/filedescriptorbased.hxx>
 #endif
 #include <libmm-gio/fileenumerator.hxx>
 #include <libmm-gio/fileicon.hxx>
