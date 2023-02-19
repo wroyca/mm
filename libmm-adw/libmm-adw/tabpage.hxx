@@ -19,14 +19,14 @@
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Adw
 {
-  class TabPage_Class;
+  class LIBMM_ADW_SYMEXPORT TabPage_Class;
 }
 #endif
 
 namespace Adw
 {
 
-  class TabPage : public Glib::Object
+  class LIBMM_ADW_SYMEXPORT TabPage : public Glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 

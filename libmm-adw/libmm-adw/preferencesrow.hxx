@@ -18,14 +18,14 @@ using AdwPreferencesRowClass = struct _AdwPreferencesRowClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Adw
 {
-  class PreferencesRow_Class;
+  class LIBMM_ADW_SYMEXPORT PreferencesRow_Class;
 }
 #endif
 
 namespace Adw
 {
 
-  class PreferencesRow : public Gtk::ListBoxRow
+  class LIBMM_ADW_SYMEXPORT PreferencesRow : public Gtk::ListBoxRow
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

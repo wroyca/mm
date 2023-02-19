@@ -20,14 +20,14 @@
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Adw
 {
-  class PreferencesWindow_Class;
+  class LIBMM_ADW_SYMEXPORT PreferencesWindow_Class;
 }
 #endif
 
 namespace Adw
 {
 
-  class PreferencesWindow : public Adw::Window
+  class LIBMM_ADW_SYMEXPORT PreferencesWindow : public Adw::Window
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

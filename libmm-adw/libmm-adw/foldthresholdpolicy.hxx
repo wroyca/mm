@@ -13,7 +13,7 @@
 namespace Adw
 {
 
-  enum class FoldThresholdPolicy
+  enum class LIBMM_ADW_SYMEXPORT FoldThresholdPolicy
   {
     MINIMUM,
     NATURAL
@@ -26,7 +26,7 @@ namespace Glib
 {
 
   template <>
-  class Value<Adw::FoldThresholdPolicy>
+  class LIBMM_ADW_SYMEXPORT Value<Adw::FoldThresholdPolicy>
     : public Glib::Value_Enum<Adw::FoldThresholdPolicy>
   {
   public:

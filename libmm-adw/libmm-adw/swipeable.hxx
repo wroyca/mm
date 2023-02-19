@@ -22,14 +22,14 @@ using AdwSwipeableClass = struct _AdwSwipeableClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Adw
 {
-  class Swipeable_Class;
+  class LIBMM_ADW_SYMEXPORT Swipeable_Class;
 }
 #endif
 
 namespace Adw
 {
 
-  class Swipeable : public Glib::Interface
+  class LIBMM_ADW_SYMEXPORT Swipeable : public Glib::Interface
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 

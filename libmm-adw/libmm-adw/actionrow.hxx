@@ -18,14 +18,14 @@
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Adw
 {
-  class ActionRow_Class;
+  class LIBMM_ADW_SYMEXPORT ActionRow_Class;
 }
 #endif
 
 namespace Adw
 {
 
-  class ActionRow : public Adw::PreferencesRow
+  class LIBMM_ADW_SYMEXPORT ActionRow : public Adw::PreferencesRow
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

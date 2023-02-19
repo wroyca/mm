@@ -19,14 +19,14 @@
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Adw
 {
-  class CarouselIndicatorDots_Class;
+  class LIBMM_ADW_SYMEXPORT CarouselIndicatorDots_Class;
 }
 #endif
 
 namespace Adw
 {
 
-  class CarouselIndicatorDots : public Gtk::Widget,
+  class LIBMM_ADW_SYMEXPORT CarouselIndicatorDots : public Gtk::Widget,
                                 public Gtk::Orientable
   {
   public:

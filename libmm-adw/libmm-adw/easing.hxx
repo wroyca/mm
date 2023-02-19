@@ -11,11 +11,12 @@
 #include <adwaita.h>
 #include <libmm-glib/mm-glib.hxx>
 #include <libmm-gtk/mm-gtk.hxx>
+#include <libmm-adw/export.hxx>
 
 namespace Adw
 {
 
-  enum class Easing
+  enum class LIBMM_ADW_SYMEXPORT Easing
   {
     LINEAR,
     EASE_IN_QUAD,
@@ -57,7 +58,7 @@ namespace Glib
 {
 
   template <>
-  class Value<Adw::Easing> : public Glib::Value_Enum<Adw::Easing>
+  class LIBMM_ADW_SYMEXPORT Value<Adw::Easing> : public Glib::Value_Enum<Adw::Easing>
   {
   public:
     static auto
@@ -70,7 +71,7 @@ namespace Glib
 namespace Adw
 {
 
-  auto
+  LIBMM_ADW_SYMEXPORT auto
   ease (Adw::Easing ease, double) -> double;
 
 }

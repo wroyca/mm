@@ -19,14 +19,14 @@
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Adw
 {
-  class TabBar_Class;
+  class LIBMM_ADW_SYMEXPORT TabBar_Class;
 }
 #endif
 
 namespace Adw
 {
 
-  class TabBar : public Gtk::Widget
+  class LIBMM_ADW_SYMEXPORT TabBar : public Gtk::Widget
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

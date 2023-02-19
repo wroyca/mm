@@ -19,14 +19,14 @@ using AdwApplicationClass = struct _AdwApplicationClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Adw
 {
-  class Application_Class;
+  class LIBMM_ADW_SYMEXPORT Application_Class;
 }
 #endif
 
 namespace Adw
 {
 
-  class Application : public Gtk::Application
+  class LIBMM_ADW_SYMEXPORT Application : public Gtk::Application
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 

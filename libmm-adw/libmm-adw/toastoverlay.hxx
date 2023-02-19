@@ -19,14 +19,14 @@
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Adw
 {
-  class ToastOverlay_Class;
+  class LIBMM_ADW_SYMEXPORT ToastOverlay_Class;
 }
 #endif
 
 namespace Adw
 {
 
-  class ToastOverlay : public Gtk::Widget
+  class LIBMM_ADW_SYMEXPORT ToastOverlay : public Gtk::Widget
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

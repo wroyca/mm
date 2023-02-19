@@ -19,14 +19,14 @@
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Adw
 {
-  class EnumListModel_Class;
+  class LIBMM_ADW_SYMEXPORT EnumListModel_Class;
 }
 #endif
 
 namespace Adw
 {
 
-  class EnumListModel : public Glib::Object,
+  class LIBMM_ADW_SYMEXPORT EnumListModel : public Glib::Object,
                         public Gio::ListModel
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

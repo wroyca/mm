@@ -19,14 +19,14 @@
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Adw
 {
-  class PasswordEntryRow_Class;
+  class LIBMM_ADW_SYMEXPORT PasswordEntryRow_Class;
 }
 #endif
 
 namespace Adw
 {
 
-  class PasswordEntryRow : public Adw::EntryRow
+  class LIBMM_ADW_SYMEXPORT PasswordEntryRow : public Adw::EntryRow
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

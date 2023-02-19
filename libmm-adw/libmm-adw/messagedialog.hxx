@@ -18,14 +18,14 @@ using AdwMessageDialogClass = struct _AdwMessageDialogClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Adw
 {
-  class MessageDialog_Class;
+  class LIBMM_ADW_SYMEXPORT MessageDialog_Class;
 }
 #endif
 
 namespace Adw
 {
 
-  enum class ResponseAppearance
+  enum class LIBMM_ADW_SYMEXPORT ResponseAppearance
   {
     DEFAULT,
     SUGGESTED,
@@ -39,7 +39,7 @@ namespace Glib
 {
 
   template <>
-  class Value<Adw::ResponseAppearance>
+  class LIBMM_ADW_SYMEXPORT Value<Adw::ResponseAppearance>
     : public Glib::Value_Enum<Adw::ResponseAppearance>
   {
   public:
@@ -53,7 +53,7 @@ namespace Glib
 namespace Adw
 {
 
-  class MessageDialog : public Gtk::Window
+  class LIBMM_ADW_SYMEXPORT MessageDialog : public Gtk::Window
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

@@ -10,7 +10,7 @@
 namespace Adw
 {
 
-  class CarouselIndicatorLines_Class : public Glib::Class
+  class LIBMM_ADW_SYMEXPORT CarouselIndicatorLines_Class : public Glib::Class
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

@@ -18,14 +18,14 @@
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Adw
 {
-  class ButtonContent_Class;
+  class LIBMM_ADW_SYMEXPORT ButtonContent_Class;
 }
 #endif
 
 namespace Adw
 {
 
-  class ButtonContent : public Gtk::Widget
+  class LIBMM_ADW_SYMEXPORT ButtonContent : public Gtk::Widget
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

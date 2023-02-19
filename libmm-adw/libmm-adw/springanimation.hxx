@@ -22,14 +22,14 @@ using AdwSpringAnimationClass = struct _AdwSpringAnimationClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Adw
 {
-  class SpringAnimation_Class;
+  class LIBMM_ADW_SYMEXPORT SpringAnimation_Class;
 }
 #endif
 
 namespace Adw
 {
 
-  class SpringAnimation : public Animation
+  class LIBMM_ADW_SYMEXPORT SpringAnimation : public Animation
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 

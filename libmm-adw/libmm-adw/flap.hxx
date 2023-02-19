@@ -21,14 +21,14 @@
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Adw
 {
-  class Flap_Class;
+  class LIBMM_ADW_SYMEXPORT Flap_Class;
 }
 #endif
 
 namespace Adw
 {
 
-  enum class FlapFoldPolicy
+  enum class LIBMM_ADW_SYMEXPORT FlapFoldPolicy
   {
     NEVER,
     ALWAYS,
@@ -42,7 +42,7 @@ namespace Glib
 {
 
   template <>
-  class Value<Adw::FlapFoldPolicy>
+  class LIBMM_ADW_SYMEXPORT Value<Adw::FlapFoldPolicy>
     : public Glib::Value_Enum<Adw::FlapFoldPolicy>
   {
   public:
@@ -56,7 +56,7 @@ namespace Glib
 namespace Adw
 {
 
-  enum class FlapTransitionType
+  enum class LIBMM_ADW_SYMEXPORT FlapTransitionType
   {
     OVER,
     UNDER,
@@ -70,7 +70,7 @@ namespace Glib
 {
 
   template <>
-  class Value<Adw::FlapTransitionType>
+  class LIBMM_ADW_SYMEXPORT Value<Adw::FlapTransitionType>
     : public Glib::Value_Enum<Adw::FlapTransitionType>
   {
   public:
@@ -84,7 +84,7 @@ namespace Glib
 namespace Adw
 {
 
-  class Flap : public Gtk::Widget,
+  class LIBMM_ADW_SYMEXPORT Flap : public Gtk::Widget,
                Gtk::Orientable,
                Adw::Swipeable
   {

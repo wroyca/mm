@@ -18,14 +18,14 @@
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Adw
 {
-  class StatusPage_Class;
+  class LIBMM_ADW_SYMEXPORT StatusPage_Class;
 }
 #endif
 
 namespace Adw
 {
 
-  class StatusPage : public Gtk::Widget
+  class LIBMM_ADW_SYMEXPORT StatusPage : public Gtk::Widget
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

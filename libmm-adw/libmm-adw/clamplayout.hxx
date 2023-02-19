@@ -18,14 +18,14 @@
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Adw
 {
-  class ClampLayout_Class;
+  class LIBMM_ADW_SYMEXPORT ClampLayout_Class;
 }
 #endif
 
 namespace Adw
 {
 
-  class ClampLayout : public Gtk::LayoutManager,
+  class LIBMM_ADW_SYMEXPORT ClampLayout : public Gtk::LayoutManager,
                       public Gtk::Orientable
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

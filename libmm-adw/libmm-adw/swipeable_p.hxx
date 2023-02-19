@@ -10,7 +10,7 @@
 namespace Adw
 {
 
-  class Swipeable_Class : public Glib::Interface_Class
+  class LIBMM_ADW_SYMEXPORT Swipeable_Class : public Glib::Interface_Class
   {
   public:
     using CppObjectType = Swipeable;

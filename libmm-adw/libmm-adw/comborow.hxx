@@ -18,14 +18,14 @@
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Adw
 {
-  class ComboRow_Class;
+  class LIBMM_ADW_SYMEXPORT ComboRow_Class;
 }
 #endif
 
 namespace Adw
 {
 
-  class ComboRow : public Adw::ActionRow
+  class LIBMM_ADW_SYMEXPORT ComboRow : public Adw::ActionRow
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

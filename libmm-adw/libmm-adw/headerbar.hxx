@@ -18,14 +18,14 @@
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Adw
 {
-  class HeaderBar_Class;
+  class LIBMM_ADW_SYMEXPORT HeaderBar_Class;
 }
 #endif
 
 namespace Adw
 {
 
-  enum class CenteringPolicy
+  enum class LIBMM_ADW_SYMEXPORT CenteringPolicy
   {
     LOOSE,
     STRICT
@@ -38,7 +38,7 @@ namespace Glib
 {
 
   template <>
-  class Value<Adw::CenteringPolicy>
+  class LIBMM_ADW_SYMEXPORT Value<Adw::CenteringPolicy>
     : public Glib::Value_Enum<Adw::CenteringPolicy>
   {
   public:
@@ -52,7 +52,7 @@ namespace Glib
 namespace Adw
 {
 
-  class HeaderBar : public Gtk::Widget
+  class LIBMM_ADW_SYMEXPORT HeaderBar : public Gtk::Widget
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

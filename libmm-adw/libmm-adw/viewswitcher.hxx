@@ -19,14 +19,14 @@
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Adw
 {
-  class ViewSwitcher_Class;
+  class LIBMM_ADW_SYMEXPORT ViewSwitcher_Class;
 }
 #endif
 
 namespace Adw
 {
 
-  enum class ViewSwitcherPolicy
+  enum class LIBMM_ADW_SYMEXPORT ViewSwitcherPolicy
   {
     NARROW,
     WIDE
@@ -39,7 +39,7 @@ namespace Glib
 {
 
   template <>
-  class Value<Adw::ViewSwitcherPolicy>
+  class LIBMM_ADW_SYMEXPORT Value<Adw::ViewSwitcherPolicy>
     : public Glib::Value_Enum<Adw::ViewSwitcherPolicy>
   {
   public:
@@ -53,7 +53,7 @@ namespace Glib
 namespace Adw
 {
 
-  class ViewSwitcher : public Gtk::Widget
+  class LIBMM_ADW_SYMEXPORT ViewSwitcher : public Gtk::Widget
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

@@ -18,14 +18,14 @@
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Adw
 {
-  class PreferencesGroup_Class;
+  class LIBMM_ADW_SYMEXPORT PreferencesGroup_Class;
 }
 #endif
 
 namespace Adw
 {
 
-  class PreferencesGroup : public Gtk::Widget
+  class LIBMM_ADW_SYMEXPORT PreferencesGroup : public Gtk::Widget
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

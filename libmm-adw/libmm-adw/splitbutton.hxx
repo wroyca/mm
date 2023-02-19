@@ -18,14 +18,14 @@
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Adw
 {
-  class SplitButton_Class;
+  class LIBMM_ADW_SYMEXPORT SplitButton_Class;
 }
 #endif
 
 namespace Adw
 {
 
-  class SplitButton : public Gtk::Widget,
+  class LIBMM_ADW_SYMEXPORT SplitButton : public Gtk::Widget,
                       public Gtk::Actionable
   {
   public:

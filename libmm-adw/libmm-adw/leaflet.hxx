@@ -24,14 +24,14 @@
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Adw
 {
-  class Leaflet_Class;
+  class LIBMM_ADW_SYMEXPORT Leaflet_Class;
 }
 #endif
 
 namespace Adw
 {
 
-  enum class LeafletTransitionType
+  enum class LIBMM_ADW_SYMEXPORT LeafletTransitionType
   {
     OVER,
     UNDER,
@@ -45,7 +45,7 @@ namespace Glib
 {
 
   template <>
-  class Value<Adw::LeafletTransitionType>
+  class LIBMM_ADW_SYMEXPORT Value<Adw::LeafletTransitionType>
     : public Glib::Value_Enum<Adw::LeafletTransitionType>
   {
   public:
@@ -59,7 +59,7 @@ namespace Glib
 namespace Adw
 {
 
-  class Leaflet : public Gtk::Widget,
+  class LIBMM_ADW_SYMEXPORT Leaflet : public Gtk::Widget,
                   public Gtk::Orientable,
                   public Adw::Swipeable
   {

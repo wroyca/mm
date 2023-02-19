@@ -18,14 +18,14 @@
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Adw
 {
-  class WindowTitle_Class;
+  class LIBMM_ADW_SYMEXPORT WindowTitle_Class;
 }
 #endif
 
 namespace Adw
 {
 
-  class WindowTitle : public Gtk::Widget
+  class LIBMM_ADW_SYMEXPORT WindowTitle : public Gtk::Widget
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

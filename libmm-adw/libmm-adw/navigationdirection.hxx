@@ -13,7 +13,7 @@
 namespace Adw
 {
 
-  enum class NavigationDirection
+  enum class LIBMM_ADW_SYMEXPORT NavigationDirection
   {
     BACK,
     FORWARD
@@ -26,7 +26,7 @@ namespace Glib
 {
 
   template <>
-  class Value<Adw::NavigationDirection>
+  class LIBMM_ADW_SYMEXPORT Value<Adw::NavigationDirection>
     : public Glib::Value_Enum<Adw::NavigationDirection>
   {
   public:

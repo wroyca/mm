@@ -6,4 +6,4 @@ import libs = libmm-adw%lib{mm-adw}     \
               libmm-cairo%lib{mm-cairo} \
               libmm-pango%lib{mm-pango} \
 
-exe{driver}: {hxx ixx txx cxx}{**} $libs testscript{**}
+exe{test-tab-view}: {hxx ixx txx cxx}{**} $libs testscript{**}

@@ -176,364 +176,364 @@ extern "C"
 namespace Adw
 {
 
-  class AboutWindow_Class
+  class LIBMM_ADW_SYMEXPORT AboutWindow_Class
   {
   public:
     static auto
     wrap_new (GObject*) -> Glib::ObjectBase*;
   };
 
-  class ActionRow_Class
+  class LIBMM_ADW_SYMEXPORT ActionRow_Class
   {
   public:
     static auto
     wrap_new (GObject*) -> Glib::ObjectBase*;
   };
 
-  class Animation_Class
+  class LIBMM_ADW_SYMEXPORT Animation_Class
   {
   public:
     static auto
     wrap_new (GObject*) -> Glib::ObjectBase*;
   };
 
-  class AnimationTarget_Class
+  class LIBMM_ADW_SYMEXPORT AnimationTarget_Class
   {
   public:
     static auto
     wrap_new (GObject*) -> Glib::ObjectBase*;
   };
 
-  class Application_Class
+  class LIBMM_ADW_SYMEXPORT Application_Class
   {
   public:
     static auto
     wrap_new (GObject*) -> Glib::ObjectBase*;
   };
 
-  class ApplicationWindow_Class
+  class LIBMM_ADW_SYMEXPORT ApplicationWindow_Class
   {
   public:
     static auto
     wrap_new (GObject*) -> Glib::ObjectBase*;
   };
 
-  class Avatar_Class
+  class LIBMM_ADW_SYMEXPORT Avatar_Class
   {
   public:
     static auto
     wrap_new (GObject*) -> Glib::ObjectBase*;
   };
 
-  class Bin_Class
+  class LIBMM_ADW_SYMEXPORT Bin_Class
   {
   public:
     static auto
     wrap_new (GObject*) -> Glib::ObjectBase*;
   };
 
-  class ButtonContent_Class
+  class LIBMM_ADW_SYMEXPORT ButtonContent_Class
   {
   public:
     static auto
     wrap_new (GObject*) -> Glib::ObjectBase*;
   };
 
-  class CallbackAnimationTarget_Class
+  class LIBMM_ADW_SYMEXPORT CallbackAnimationTarget_Class
   {
   public:
     static auto
     wrap_new (GObject*) -> Glib::ObjectBase*;
   };
 
-  class Carousel_Class
+  class LIBMM_ADW_SYMEXPORT Carousel_Class
   {
   public:
     static auto
     wrap_new (GObject*) -> Glib::ObjectBase*;
   };
 
-  class CarouselIndicatorDots_Class
+  class LIBMM_ADW_SYMEXPORT CarouselIndicatorDots_Class
   {
   public:
     static auto
     wrap_new (GObject*) -> Glib::ObjectBase*;
   };
 
-  class CarouselIndicatorLines_Class
+  class LIBMM_ADW_SYMEXPORT CarouselIndicatorLines_Class
   {
   public:
     static auto
     wrap_new (GObject*) -> Glib::ObjectBase*;
   };
 
-  class Clamp_Class
+  class LIBMM_ADW_SYMEXPORT Clamp_Class
   {
   public:
     static auto
     wrap_new (GObject*) -> Glib::ObjectBase*;
   };
 
-  class ClampLayout_Class
+  class LIBMM_ADW_SYMEXPORT ClampLayout_Class
   {
   public:
     static auto
     wrap_new (GObject*) -> Glib::ObjectBase*;
   };
 
-  class ClampScrollable_Class
+  class LIBMM_ADW_SYMEXPORT ClampScrollable_Class
   {
   public:
     static auto
     wrap_new (GObject*) -> Glib::ObjectBase*;
   };
 
-  class ComboRow_Class
+  class LIBMM_ADW_SYMEXPORT ComboRow_Class
   {
   public:
     static auto
     wrap_new (GObject*) -> Glib::ObjectBase*;
   };
 
-  class EntryRow_Class
+  class LIBMM_ADW_SYMEXPORT EntryRow_Class
   {
   public:
     static auto
     wrap_new (GObject*) -> Glib::ObjectBase*;
   };
 
-  class EnumListItem_Class
+  class LIBMM_ADW_SYMEXPORT EnumListItem_Class
   {
   public:
     static auto
     wrap_new (GObject*) -> Glib::ObjectBase*;
   };
 
-  class EnumListModel_Class
+  class LIBMM_ADW_SYMEXPORT EnumListModel_Class
   {
   public:
     static auto
     wrap_new (GObject*) -> Glib::ObjectBase*;
   };
 
-  class ExpanderRow_Class
+  class LIBMM_ADW_SYMEXPORT ExpanderRow_Class
   {
   public:
     static auto
     wrap_new (GObject*) -> Glib::ObjectBase*;
   };
 
-  class Flap_Class
+  class LIBMM_ADW_SYMEXPORT Flap_Class
   {
   public:
     static auto
     wrap_new (GObject*) -> Glib::ObjectBase*;
   };
 
-  class HeaderBar_Class
+  class LIBMM_ADW_SYMEXPORT HeaderBar_Class
   {
   public:
     static auto
     wrap_new (GObject*) -> Glib::ObjectBase*;
   };
 
-  class Leaflet_Class
+  class LIBMM_ADW_SYMEXPORT Leaflet_Class
   {
   public:
     static auto
     wrap_new (GObject*) -> Glib::ObjectBase*;
   };
 
-  class LeafletPage_Class
+  class LIBMM_ADW_SYMEXPORT LeafletPage_Class
   {
   public:
     static auto
     wrap_new (GObject*) -> Glib::ObjectBase*;
   };
 
-  class MessageDialog_Class
+  class LIBMM_ADW_SYMEXPORT MessageDialog_Class
   {
   public:
     static auto
     wrap_new (GObject*) -> Glib::ObjectBase*;
   };
 
-  class PasswordEntryRow_Class
+  class LIBMM_ADW_SYMEXPORT PasswordEntryRow_Class
   {
   public:
     static auto
     wrap_new (GObject*) -> Glib::ObjectBase*;
   };
 
-  class PreferencesGroup_Class
+  class LIBMM_ADW_SYMEXPORT PreferencesGroup_Class
   {
   public:
     static auto
     wrap_new (GObject*) -> Glib::ObjectBase*;
   };
 
-  class PreferencesPage_Class
+  class LIBMM_ADW_SYMEXPORT PreferencesPage_Class
   {
   public:
     static auto
     wrap_new (GObject*) -> Glib::ObjectBase*;
   };
 
-  class PreferencesRow_Class
+  class LIBMM_ADW_SYMEXPORT PreferencesRow_Class
   {
   public:
     static auto
     wrap_new (GObject*) -> Glib::ObjectBase*;
   };
 
-  class PreferencesWindow_Class
+  class LIBMM_ADW_SYMEXPORT PreferencesWindow_Class
   {
   public:
     static auto
     wrap_new (GObject*) -> Glib::ObjectBase*;
   };
 
-  class PropertyAnimationTarget_Class
+  class LIBMM_ADW_SYMEXPORT PropertyAnimationTarget_Class
   {
   public:
     static auto
     wrap_new (GObject*) -> Glib::ObjectBase*;
   };
 
-  class SplitButton_Class
+  class LIBMM_ADW_SYMEXPORT SplitButton_Class
   {
   public:
     static auto
     wrap_new (GObject*) -> Glib::ObjectBase*;
   };
 
-  class SpringAnimation_Class
+  class LIBMM_ADW_SYMEXPORT SpringAnimation_Class
   {
   public:
     static auto
     wrap_new (GObject*) -> Glib::ObjectBase*;
   };
 
-  class Squeezer_Class
+  class LIBMM_ADW_SYMEXPORT Squeezer_Class
   {
   public:
     static auto
     wrap_new (GObject*) -> Glib::ObjectBase*;
   };
 
-  class SqueezerPage_Class
+  class LIBMM_ADW_SYMEXPORT SqueezerPage_Class
   {
   public:
     static auto
     wrap_new (GObject*) -> Glib::ObjectBase*;
   };
 
-  class StatusPage_Class
+  class LIBMM_ADW_SYMEXPORT StatusPage_Class
   {
   public:
     static auto
     wrap_new (GObject*) -> Glib::ObjectBase*;
   };
 
-  class StyleManager_Class
+  class LIBMM_ADW_SYMEXPORT StyleManager_Class
   {
   public:
     static auto
     wrap_new (GObject*) -> Glib::ObjectBase*;
   };
 
-  class SwipeTracker_Class
+  class LIBMM_ADW_SYMEXPORT SwipeTracker_Class
   {
   public:
     static auto
     wrap_new (GObject*) -> Glib::ObjectBase*;
   };
 
-  class TabBar_Class
+  class LIBMM_ADW_SYMEXPORT TabBar_Class
   {
   public:
     static auto
     wrap_new (GObject*) -> Glib::ObjectBase*;
   };
 
-  class TabPage_Class
+  class LIBMM_ADW_SYMEXPORT TabPage_Class
   {
   public:
     static auto
     wrap_new (GObject*) -> Glib::ObjectBase*;
   };
 
-  class TabView_Class
+  class LIBMM_ADW_SYMEXPORT TabView_Class
   {
   public:
     static auto
     wrap_new (GObject*) -> Glib::ObjectBase*;
   };
 
-  class TimedAnimation_Class
+  class LIBMM_ADW_SYMEXPORT TimedAnimation_Class
   {
   public:
     static auto
     wrap_new (GObject*) -> Glib::ObjectBase*;
   };
 
-  class Toast_Class
+  class LIBMM_ADW_SYMEXPORT Toast_Class
   {
   public:
     static auto
     wrap_new (GObject*) -> Glib::ObjectBase*;
   };
 
-  class ToastOverlay_Class
+  class LIBMM_ADW_SYMEXPORT ToastOverlay_Class
   {
   public:
     static auto
     wrap_new (GObject*) -> Glib::ObjectBase*;
   };
 
-  class ViewStack_Class
+  class LIBMM_ADW_SYMEXPORT ViewStack_Class
   {
   public:
     static auto
     wrap_new (GObject*) -> Glib::ObjectBase*;
   };
 
-  class ViewStackPage_Class
+  class LIBMM_ADW_SYMEXPORT ViewStackPage_Class
   {
   public:
     static auto
     wrap_new (GObject*) -> Glib::ObjectBase*;
   };
 
-  class ViewSwitcher_Class
+  class LIBMM_ADW_SYMEXPORT ViewSwitcher_Class
   {
   public:
     static auto
     wrap_new (GObject*) -> Glib::ObjectBase*;
   };
 
-  class ViewSwitcherBar_Class
+  class LIBMM_ADW_SYMEXPORT ViewSwitcherBar_Class
   {
   public:
     static auto
     wrap_new (GObject*) -> Glib::ObjectBase*;
   };
 
-  class ViewSwitcherTitle_Class
+  class LIBMM_ADW_SYMEXPORT ViewSwitcherTitle_Class
   {
   public:
     static auto
     wrap_new (GObject*) -> Glib::ObjectBase*;
   };
 
-  class Window_Class
+  class LIBMM_ADW_SYMEXPORT Window_Class
   {
   public:
     static auto
     wrap_new (GObject*) -> Glib::ObjectBase*;
   };
 
-  class WindowTitle_Class
+  class LIBMM_ADW_SYMEXPORT WindowTitle_Class
   {
   public:
     static auto

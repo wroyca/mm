@@ -18,14 +18,14 @@
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Adw
 {
-  class ClampScrollable_Class;
+  class LIBMM_ADW_SYMEXPORT ClampScrollable_Class;
 }
 #endif
 
 namespace Adw
 {
 
-  class ClampScrollable : public Gtk::Widget,
+  class LIBMM_ADW_SYMEXPORT ClampScrollable : public Gtk::Widget,
                           public Gtk::Orientable,
                           public Gtk::Scrollable
   {

@@ -18,14 +18,14 @@ using AdwAnimationTargetClass = struct _AdwAnimationTargetClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Adw
 {
-  class AnimationTarget_Class;
+  class LIBMM_ADW_SYMEXPORT AnimationTarget_Class;
 }
 #endif
 
 namespace Adw
 {
 
-  class AnimationTarget : public Glib::Object
+  class LIBMM_ADW_SYMEXPORT AnimationTarget : public Glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 

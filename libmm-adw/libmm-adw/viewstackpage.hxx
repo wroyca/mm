@@ -19,14 +19,14 @@
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Adw
 {
-  class ViewStackPage_Class;
+  class LIBMM_ADW_SYMEXPORT ViewStackPage_Class;
 }
 #endif
 
 namespace Adw
 {
 
-  class ViewStackPage : public Glib::Object
+  class LIBMM_ADW_SYMEXPORT ViewStackPage : public Glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 

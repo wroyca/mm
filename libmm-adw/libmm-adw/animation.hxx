@@ -20,14 +20,14 @@ using AdwAnimationClass = struct _AdwAnimationClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Adw
 {
-  class Animation_Class;
+  class LIBMM_ADW_SYMEXPORT Animation_Class;
 }
 #endif
 
 namespace Adw
 {
 
-  enum class AnimationState
+  enum class LIBMM_ADW_SYMEXPORT AnimationState
   {
     IDLE,
     PAUSED,
@@ -42,7 +42,7 @@ namespace Glib
 {
 
   template <>
-  class Value<Adw::AnimationState>
+  class LIBMM_ADW_SYMEXPORT Value<Adw::AnimationState>
     : public Glib::Value_Enum<Adw::AnimationState>
   {
   public:
@@ -56,7 +56,7 @@ namespace Glib
 namespace Adw
 {
 
-  class Animation : public Glib::Object
+  class LIBMM_ADW_SYMEXPORT Animation : public Glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 

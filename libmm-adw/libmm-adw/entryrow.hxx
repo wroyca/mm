@@ -18,14 +18,14 @@
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Adw
 {
-  class EntryRow_Class;
+  class LIBMM_ADW_SYMEXPORT EntryRow_Class;
 }
 #endif
 
 namespace Adw
 {
 
-  class EntryRow : public Adw::PreferencesRow,
+  class LIBMM_ADW_SYMEXPORT EntryRow : public Adw::PreferencesRow,
                    public Gtk::Editable
   {
   public:

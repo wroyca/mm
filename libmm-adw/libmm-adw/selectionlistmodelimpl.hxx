@@ -3,12 +3,13 @@
 #ifndef _ADW_SELECTIONLISTMODELIMPL_H
 #define _ADW_SELECTIONLISTMODELIMPL_H
 
+#include <libmm-adw/export.hxx>
 #include <libmm-gtk/mm-gtk.hxx>
 
 namespace Adw
 {
 
-  class SelectionListModelImpl : public Gio::ListModel,
+  class LIBMM_ADW_SYMEXPORT SelectionListModelImpl : public Gio::ListModel,
                                  public Gtk::SelectionModel,
                                  public Glib::Object
   {

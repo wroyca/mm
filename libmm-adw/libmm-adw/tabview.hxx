@@ -19,14 +19,14 @@
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Adw
 {
-  class TabView_Class;
+  class LIBMM_ADW_SYMEXPORT TabView_Class;
 }
 #endif
 
 namespace Adw
 {
 
-  enum class TabViewShortcuts
+  enum class LIBMM_ADW_SYMEXPORT TabViewShortcuts
   {
     NONE = 0x0,
     CONTROL_TAB = 1 << 0,
@@ -99,7 +99,7 @@ namespace Glib
 {
 
   template <>
-  class Value<Adw::TabViewShortcuts>
+  class LIBMM_ADW_SYMEXPORT Value<Adw::TabViewShortcuts>
     : public Glib::Value_Flags<Adw::TabViewShortcuts>
   {
   public:
@@ -113,7 +113,7 @@ namespace Glib
 namespace Adw
 {
 
-  class TabView : public Gtk::Widget
+  class LIBMM_ADW_SYMEXPORT TabView : public Gtk::Widget
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

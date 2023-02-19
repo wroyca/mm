@@ -10,7 +10,7 @@
 namespace Adw
 {
 
-  class Clamp_Class : public Glib::Class
+  class LIBMM_ADW_SYMEXPORT Clamp_Class : public Glib::Class
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

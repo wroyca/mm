@@ -19,14 +19,14 @@
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Adw
 {
-  class ViewSwitcherTitle_Class;
+  class LIBMM_ADW_SYMEXPORT ViewSwitcherTitle_Class;
 }
 #endif
 
 namespace Adw
 {
 
-  class ViewSwitcherTitle : public Gtk::Widget
+  class LIBMM_ADW_SYMEXPORT ViewSwitcherTitle : public Gtk::Widget
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

@@ -19,14 +19,14 @@
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Adw
 {
-  class SqueezerPage_Class;
+  class LIBMM_ADW_SYMEXPORT SqueezerPage_Class;
 }
 #endif
 
 namespace Adw
 {
 
-  class SqueezerPage : public Glib::Object
+  class LIBMM_ADW_SYMEXPORT SqueezerPage : public Glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 

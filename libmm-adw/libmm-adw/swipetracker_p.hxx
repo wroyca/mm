@@ -10,7 +10,7 @@
 namespace Adw
 {
 
-  class SwipeTracker_Class : public Glib::Class
+  class LIBMM_ADW_SYMEXPORT SwipeTracker_Class : public Glib::Class
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

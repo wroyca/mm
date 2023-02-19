@@ -19,14 +19,14 @@ using AdwCallbackAnimationTargetClass = struct _AdwCallbackAnimationTargetClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Adw
 {
-  class CallbackAnimationTarget_Class;
+  class LIBMM_ADW_SYMEXPORT CallbackAnimationTarget_Class;
 }
 #endif
 
 namespace Adw
 {
 
-  class CallbackAnimationTarget : public Adw::AnimationTarget
+  class LIBMM_ADW_SYMEXPORT CallbackAnimationTarget : public Adw::AnimationTarget
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 

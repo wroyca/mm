@@ -18,14 +18,14 @@ using AdwApplicationWindowClass = struct _AdwApplicationWindowClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Adw
 {
-  class ApplicationWindow_Class;
+  class LIBMM_ADW_SYMEXPORT ApplicationWindow_Class;
 }
 #endif
 
 namespace Adw
 {
 
-  class ApplicationWindow : public Gtk::ApplicationWindow
+  class LIBMM_ADW_SYMEXPORT ApplicationWindow : public Gtk::ApplicationWindow
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

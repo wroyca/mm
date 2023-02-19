@@ -18,14 +18,14 @@
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Adw
 {
-  class Avatar_Class;
+  class LIBMM_ADW_SYMEXPORT Avatar_Class;
 }
 #endif
 
 namespace Adw
 {
 
-  class Avatar : public Gtk::Widget
+  class LIBMM_ADW_SYMEXPORT Avatar : public Gtk::Widget
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

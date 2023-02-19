@@ -18,14 +18,14 @@ using AdwPropertyAnimationTargetClass = struct _AdwPropertyAnimationTargetClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Adw
 {
-  class PropertyAnimationTarget_Class;
+  class LIBMM_ADW_SYMEXPORT PropertyAnimationTarget_Class;
 }
 #endif
 
 namespace Adw
 {
 
-  class PropertyAnimationTarget : public AnimationTarget
+  class LIBMM_ADW_SYMEXPORT PropertyAnimationTarget : public AnimationTarget
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 

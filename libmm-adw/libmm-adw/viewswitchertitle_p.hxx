@@ -10,7 +10,7 @@
 namespace Adw
 {
 
-  class ViewSwitcherTitle_Class : public Glib::Class
+  class LIBMM_ADW_SYMEXPORT ViewSwitcherTitle_Class : public Glib::Class
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

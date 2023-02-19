@@ -19,14 +19,14 @@
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Adw
 {
-  class LeafletPage_Class;
+  class LIBMM_ADW_SYMEXPORT LeafletPage_Class;
 }
 #endif
 
 namespace Adw
 {
 
-  class LeafletPage : public Glib::Object
+  class LIBMM_ADW_SYMEXPORT LeafletPage : public Glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 

@@ -10,7 +10,7 @@
 namespace Adw
 {
 
-  class Bin_Class : public Glib::Class
+  class LIBMM_ADW_SYMEXPORT Bin_Class : public Glib::Class
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

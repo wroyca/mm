@@ -20,14 +20,14 @@
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Adw
 {
-  class SwipeTracker_Class;
+  class LIBMM_ADW_SYMEXPORT SwipeTracker_Class;
 }
 #endif
 
 namespace Adw
 {
 
-  class SwipeTracker : public Glib::Object,
+  class LIBMM_ADW_SYMEXPORT SwipeTracker : public Glib::Object,
                        public Gtk::Orientable
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

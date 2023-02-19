@@ -19,14 +19,14 @@
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Adw
 {
-  class StyleManager_Class;
+  class LIBMM_ADW_SYMEXPORT StyleManager_Class;
 }
 #endif
 
 namespace Adw
 {
 
-  enum class ColorScheme
+  enum class LIBMM_ADW_SYMEXPORT ColorScheme
   {
     DEFAULT,
     FORCE_LIGHT,
@@ -42,7 +42,7 @@ namespace Glib
 {
 
   template <>
-  class Value<Adw::ColorScheme> : public Glib::Value_Enum<Adw::ColorScheme>
+  class LIBMM_ADW_SYMEXPORT Value<Adw::ColorScheme> : public Glib::Value_Enum<Adw::ColorScheme>
   {
   public:
     static auto
@@ -55,7 +55,7 @@ namespace Glib
 namespace Adw
 {
 
-  class StyleManager : public Glib::Object
+  class LIBMM_ADW_SYMEXPORT StyleManager : public Glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 

@@ -19,14 +19,14 @@
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Adw
 {
-  class Toast_Class;
+  class LIBMM_ADW_SYMEXPORT Toast_Class;
 }
 #endif
 
 namespace Adw
 {
 
-  enum class ToastPriority
+  enum class LIBMM_ADW_SYMEXPORT ToastPriority
   {
     NORMAL,
     HIGH
@@ -39,7 +39,7 @@ namespace Glib
 {
 
   template <>
-  class Value<Adw::ToastPriority> : public Glib::Value_Enum<Adw::ToastPriority>
+  class LIBMM_ADW_SYMEXPORT Value<Adw::ToastPriority> : public Glib::Value_Enum<Adw::ToastPriority>
   {
   public:
     static auto
@@ -52,7 +52,7 @@ namespace Glib
 namespace Adw
 {
 
-  class Toast : public Glib::Object
+  class LIBMM_ADW_SYMEXPORT Toast : public Glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 

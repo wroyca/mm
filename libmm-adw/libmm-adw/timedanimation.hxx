@@ -23,14 +23,14 @@ using AdwTimedAnimationClass = struct _AdwTimedAnimationClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Adw
 {
-  class TimedAnimation_Class;
+  class LIBMM_ADW_SYMEXPORT TimedAnimation_Class;
 }
 #endif
 
 namespace Adw
 {
 
-  class TimedAnimation : public Animation
+  class LIBMM_ADW_SYMEXPORT TimedAnimation : public Animation
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 

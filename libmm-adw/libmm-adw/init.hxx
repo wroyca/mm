@@ -3,9 +3,11 @@
 #ifndef LIBADWAITAMM_INIT_H
 #define LIBADWAITAMM_INIT_H
 
+#include <libmm-adw/export.hxx>
+
 namespace Adw
 {
-  auto
+  LIBMM_ADW_SYMEXPORT auto
   init () -> void;
 }
 

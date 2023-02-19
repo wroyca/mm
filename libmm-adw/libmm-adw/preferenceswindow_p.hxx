@@ -10,7 +10,7 @@
 namespace Adw
 {
 
-  class PreferencesWindow_Class : public Glib::Class
+  class LIBMM_ADW_SYMEXPORT PreferencesWindow_Class : public Glib::Class
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

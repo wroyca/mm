@@ -25,7 +25,7 @@ namespace Adw
     double damping;
   };
 
-  class SpringParams
+  class LIBMM_ADW_SYMEXPORT SpringParams
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -87,7 +87,7 @@ namespace Glib
 {
 
   template <>
-  class Value<Glib::RefPtr<Adw::SpringParams>> : public ValueBase_Boxed
+  class LIBMM_ADW_SYMEXPORT Value<Glib::RefPtr<Adw::SpringParams>> : public ValueBase_Boxed
   {
   public:
     typedef Glib::RefPtr<Adw::SpringParams> CppType;

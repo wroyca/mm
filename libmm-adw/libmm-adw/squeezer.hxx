@@ -20,14 +20,14 @@
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Adw
 {
-  class Squeezer_Class;
+  class LIBMM_ADW_SYMEXPORT Squeezer_Class;
 }
 #endif
 
 namespace Adw
 {
 
-  enum class SqueezerTransitionType
+  enum class LIBMM_ADW_SYMEXPORT SqueezerTransitionType
   {
     NONE,
     CROSSFADE
@@ -40,7 +40,7 @@ namespace Glib
 {
 
   template <>
-  class Value<Adw::SqueezerTransitionType>
+  class LIBMM_ADW_SYMEXPORT Value<Adw::SqueezerTransitionType>
     : public Glib::Value_Enum<Adw::SqueezerTransitionType>
   {
   public:
@@ -54,7 +54,7 @@ namespace Glib
 namespace Adw
 {
 
-  class Squeezer : public Gtk::Widget,
+  class LIBMM_ADW_SYMEXPORT Squeezer : public Gtk::Widget,
                    public Gtk::Orientable
   {
   public:

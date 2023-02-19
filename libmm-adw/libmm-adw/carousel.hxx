@@ -20,14 +20,14 @@
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Adw
 {
-  class Carousel_Class;
+  class LIBMM_ADW_SYMEXPORT Carousel_Class;
 }
 #endif
 
 namespace Adw
 {
 
-  class Carousel : public Gtk::Widget,
+  class LIBMM_ADW_SYMEXPORT Carousel : public Gtk::Widget,
                    public Gtk::Orientable,
                    public Adw::Swipeable
   {

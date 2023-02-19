@@ -19,14 +19,14 @@
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace Adw
 {
-  class ViewStack_Class;
+  class LIBMM_ADW_SYMEXPORT ViewStack_Class;
 }
 #endif
 
 namespace Adw
 {
 
-  class ViewStack : public Gtk::Widget
+  class LIBMM_ADW_SYMEXPORT ViewStack : public Gtk::Widget
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
