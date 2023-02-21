@@ -1,6 +1,12 @@
 # Interface dependencies.
 #
-import intf_libs = libmm-adw%lib{mm-adw}
+import intf_libs = libmm-adw%lib{mm-adw}      \
+                   libmm-cairo%lib{mm-cairo}  \
+                   libmm-gdk%lib{mm-gdk}      \
+                   libmm-gio%lib{mm-gio}      \
+                   libmm-glib%lib{mm-glib}    \
+                   libmm-gtk%lib{mm-gtk}      \
+                   libmm-pango%lib{mm-pango}
 
 # Implementation dependencies.
 #
