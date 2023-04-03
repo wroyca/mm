@@ -1,8 +1,10 @@
-import libs = libmm-gtk%lib{mm-gtk}     \
-              libmm-gdk%lib{mm-gdk}     \
-              libmm-glib%lib{mm-glib}   \
-              libmm-gio%lib{mm-gio}     \
-              libmm-pango%lib{mm-pango} \
-              libmm-cairo%lib{mm-cairo} \
+libs =
+
+import libs += libmm-gtk%lib{mm-gtk}
+import libs += libmm-gdk%lib{mm-gdk}
+import libs += libmm-glib%lib{mm-glib}
+import libs += libmm-gio%lib{mm-gio}
+import libs += libmm-pango%lib{mm-pango}
+import libs += libmm-cairo%lib{mm-cairo}
 
 exe{tree_model_iterator}: {hxx ixx txx cxx}{**} $libs testscript{**}

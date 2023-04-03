@@ -1,6 +1,6 @@
 $out_root/
 {
-  include libmm-gio/
+  include libmm/gio/
 }
 
-export $out_root/libmm-gio/$import.target
+export $out_root/libmm/gio/$import.target

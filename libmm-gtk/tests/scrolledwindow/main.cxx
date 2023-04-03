@@ -1,4 +1,4 @@
-#include <libmm-gtk/mm-gtk.hxx>
+#include <libmm/gtk/mm-gtk.hxx>
 #include <gtk/gtk.h>
 #include <stdio.h>
 

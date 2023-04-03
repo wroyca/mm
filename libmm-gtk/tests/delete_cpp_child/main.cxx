@@ -1,8 +1,8 @@
-#include <libmm-gtk/application.hxx>
-#include <libmm-gtk/box.hxx>
-#include <libmm-gtk/button.hxx>
-#include <libmm-gtk/label.hxx>
-#include <libmm-gtk/window.hxx>
+#include <libmm/gtk/application.hxx>
+#include <libmm/gtk/box.hxx>
+#include <libmm/gtk/button.hxx>
+#include <libmm/gtk/label.hxx>
+#include <libmm/gtk/window.hxx>
 
 class AppWindow
     : public Gtk::Window

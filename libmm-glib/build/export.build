@@ -1,6 +1,6 @@
 $out_root/
 {
-  include libmm-glib/
+  include libmm/glib/
 }
 
-export $out_root/libmm-glib/$import.target
+export $out_root/libmm/glib/$import.target

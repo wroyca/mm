@@ -1,5 +1,5 @@
-#include <libmm-gtk/mm-gtk.hxx>
-#include <libmm-gtk/init.hxx>
+#include <libmm/gtk/mm-gtk.hxx>
+#include <libmm/gtk/init.hxx>
 #include <gtk/gtk.h>
 #include <iostream>
 #include <stdlib.h>

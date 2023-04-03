@@ -6,8 +6,8 @@
  * Author: Alexander Mikhaylenko <alexander.mikhaylenko@puri.sm>
  */
 
-#include <libmm-adw/init.hxx> // Adw::init
-#include <libmm-adw/mm-adw.hxx>
+#include <libmm/adw/init.hxx> // Adw::init
+#include <libmm/adw/mm-adw.hxx>
 #include <vector>
 
 static void

@@ -1,4 +1,4 @@
-#include <libmm-gtk/mm-gtk.hxx>
+#include <libmm/gtk/mm-gtk.hxx>
 
 class MyWindow : public Gtk::Window
 {

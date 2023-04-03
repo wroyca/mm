@@ -1,9 +1,11 @@
-import libs = libmm-adw%lib{mm-adw}     \
-              libmm-gtk%lib{mm-gtk}     \
-              libmm-gdk%lib{mm-gdk}     \
-              libmm-gio%lib{mm-gio}     \
-              libmm-glib%lib{mm-glib}   \
-              libmm-cairo%lib{mm-cairo} \
-              libmm-pango%lib{mm-pango} \
+libs =
+
+import libs += libmm-adw%lib{mm-adw}
+import libs += libmm-gtk%lib{mm-gtk}
+import libs += libmm-gdk%lib{mm-gdk}
+import libs += libmm-gio%lib{mm-gio}
+import libs += libmm-glib%lib{mm-glib}
+import libs += libmm-cairo%lib{mm-cairo}
+import libs += libmm-pango%lib{mm-pango}
 
 exe{test-button-content}: {hxx ixx txx cxx}{**} $libs testscript{**}

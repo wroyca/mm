@@ -1,0 +1,12 @@
+#ifndef PANGOMM_PANGOMMCONFIG_H_INCLUDED
+#define PANGOMM_PANGOMMCONFIG_H_INCLUDED
+
+#include <libmm/pango/export.hxx>
+
+#define PANGOMM_MAJOR_VERSION 2
+
+#define PANGOMM_MINOR_VERSION 50
+
+#define PANGOMM_MICRO_VERSION 1
+
+#endif

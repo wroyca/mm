@@ -14,7 +14,7 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-#include <libmm-gtk/application.hxx>
+#include <libmm/gtk/application.hxx>
 #include "testwindow.hxx"
 
 int main(int argc, char* argv[])

@@ -2,8 +2,8 @@
 // The recommended replacement is Gio::ListModel which requires no test here.
 #undef GTKMM_DISABLE_DEPRECATED
 
-#include <libmm-gtk/mm-gtk.hxx>
-#include <libmm-gtk/init.hxx>
+#include <libmm/gtk/mm-gtk.hxx>
+#include <libmm/gtk/init.hxx>
 #include <iostream>
 #include <cassert>
 #include <cstdlib>

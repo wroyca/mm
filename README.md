@@ -20,11 +20,13 @@ To build the packages, simply run the following command:
 
 You can choose a different compiler using the config.cxx option:
 
-* `bdep init -C @build cc config.cxx=cl && b`
+* `bdep init -C @msvc cc config.cxx=cl && b`
+* `bdep init -C @gcc cc config.cxx=g++ && b`
 
 To build with debugging symbols, add the appropriate flags:
 
-* `bdep init -C @build cc config.cxx=cl config.cc.coptions="/Od /MDd /Zi" config.cc.loptions=/DEBUG && b`
+* `bdep init -C @mscv cc config.cxx=cl config.cc.coptions="/Od /MDd /Zi" config.cc.loptions=/DEBUG && b`
+* `bdep init -C @gcc cc config.cxx=g++ config.cc.coptions="-g" && b`
 
 ###### For instructions on installing the build2 toolchain and setting up your environment, please refer to the build2 documentation.
 
@@ -36,15 +38,32 @@ To install the packages, use the following command:
 
 This will install the packages to the default prefix of the build2 build system (usually /usr/local). You can specify a different prefix using the config.install.root or !config.install.root option:
 
-`b install config.install.root=/mm/`
+`b install !config.install.root=/libmm/`
 
-## Documentation
+## Credits
+The libraries in this repository are based on the work of the GNOME project, which provides C++ bindings for many of its core libraries. These bindings have been modified and packaged for use in build2 projects by the contributors of this repository.
 
-We made the difficult decision to strip all comments from our source files. Why, you ask? Well, it turns out that our beloved Doxygen was tripping over these comments and refusing to generate proper documentation. We know, we know - this is not an ideal solution by any stretch of the imagination. But trust us, going through and manually fixing each and every one would have taken longer than it does to get through a season of Game of Thrones. In the end, we made the tough call to sacrifice our comments to ensure that we could all sleep soundly at night.
+Special thanks to the following individuals for their contributions to this repository:
 
-Now, we can hear you groaning already - "But what about all of our precious comments?!" Fear not, dear reader, for we have a plan. We still have access to the comments from an older commit, and we will be selectively adding back the most important ones. And, in case you were worried, we promise that we will eventually provide proper documentation for every function. We know that documentation is crucial to the success of any project, and we take it seriously—sort of.
+Kjell Ahlstedt
+Murray Cumming
+Daniel Elstner
+Karl Nelson
+Tero Pulkkinen
+Elliot Lee
+Phil Dawes
+Erik Andersen
+Bibek Sahu
+Mirko Streckenbach
+Havoc Pennington
+Guillaume Laurent
+Todd Dukes
+Peter Lerner
+Herbert Valerio Riedel
 
-We understand that this was a very aggressive cleanup, and it may not seem like it's making our lives easier in the short term. But this is going to be a huge help in the long run. And who knows, maybe we'll look back on this in a few months and have a good laugh about how we had to strip out all of our comments just to get our documentation to work. Hey, a little humor goes a long way in the world of software development!
+And many others who have contributed in various ways to make GTKMM a robust and powerful GUI programming library for C++.
+
+We also want to thank the GNOME community for their continued development and support of these essential libraries. Without their hard work and dedication, this project would not be possible.
 
 ## License
 

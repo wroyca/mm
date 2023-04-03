@@ -4,8 +4,8 @@
  * SPDX-License-Identifier: LGPL-2.1-or-later
  */
 
-#include <libmm-adw/init.hxx> // Adw::init
-#include <libmm-adw/mm-adw.hxx>
+#include <libmm/adw/init.hxx> // Adw::init
+#include <libmm/adw/mm-adw.hxx>
 
 static void
 test_adw_header_bar_pack (void)

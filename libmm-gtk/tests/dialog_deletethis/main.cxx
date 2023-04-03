@@ -1,4 +1,4 @@
-#include <libmm-gtk/mm-gtk.hxx>
+#include <libmm/gtk/mm-gtk.hxx>
 #include <iostream>
 
 Glib::RefPtr<Gtk::Application> app;

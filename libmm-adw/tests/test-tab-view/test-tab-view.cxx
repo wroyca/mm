@@ -6,11 +6,11 @@
  * Author: Alexander Mikhaylenko <alexander.mikhaylenko@puri.sm>
  */
 
-#include <libmm-adw/init.hxx> // Adw::init
-#include <libmm-adw/mm-adw.hxx>
+#include <libmm/adw/init.hxx> // Adw::init
+#include <libmm/adw/mm-adw.hxx>
 
-#include <libmm-gio/themedicon.hxx>
-#include <libmm-gio/themedicon_p.hxx>
+#include <libmm/gio/themedicon.hxx>
+#include <libmm/gio/themedicon_p.hxx>
 
 #include <gio/gio.h>
 

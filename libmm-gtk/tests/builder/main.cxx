@@ -19,7 +19,7 @@
 
 #include <iostream>
 #include <cstring>
-#include <libmm-gtk/mm-gtk.hxx>
+#include <libmm/gtk/mm-gtk.hxx>
 
 namespace
 {

@@ -1,6 +1,6 @@
 $out_root/
 {
-  include libmm-pango/
+  include libmm/pango/
 }
 
-export $out_root/libmm-pango/$import.target
+export $out_root/libmm/pango/$import.target

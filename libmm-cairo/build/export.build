@@ -1,6 +1,6 @@
 $out_root/
 {
-  include libmm-cairo/
+  include libmm/cairo/
 }
 
-export $out_root/libmm-cairo/$import.target
+export $out_root/libmm/cairo/$import.target

@@ -1,4 +1,4 @@
-#include <libmm-gtk/mm-gtk.hxx>
+#include <libmm/gtk/mm-gtk.hxx>
 #include <iostream>
 
 void on_property_text_changed()

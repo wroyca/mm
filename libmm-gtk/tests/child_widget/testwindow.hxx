@@ -19,8 +19,8 @@
 #ifndef GTKMM_TESTWINDOW_H
 #define GTKMM_TESTWINDOW_H
 
-#include <libmm-gtk/window.hxx>
-#include <libmm-gtk/button.hxx>
+#include <libmm/gtk/window.hxx>
+#include <libmm/gtk/button.hxx>
 
 class TestWindow : public Gtk::Window
 {

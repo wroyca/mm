@@ -6,8 +6,8 @@
  * Author: Alexander Mikhaylenko <alexander.mikhaylenko@puri.sm>
  */
 
-#include <libmm-adw/init.hxx> // Adw::init
-#include <libmm-adw/mm-adw.hxx>
+#include <libmm/adw/init.hxx> // Adw::init
+#include <libmm/adw/mm-adw.hxx>
 
 static double last_value;
 static int done_count;

@@ -6,8 +6,8 @@
  * Author: Alexander Mikhaylenko <alexander.mikhaylenko@puri.sm>
  */
 
-#include <libmm-adw/init.hxx> // Adw::init
-#include <libmm-adw/mm-adw.hxx>
+#include <libmm/adw/init.hxx> // Adw::init
+#include <libmm/adw/mm-adw.hxx>
 
 static void
 test_adw_password_entry_row_new (void)

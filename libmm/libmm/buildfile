@@ -1,16 +1,13 @@
-# Interface dependencies.
-#
-import intf_libs = libmm-adw%lib{mm-adw}      \
-                   libmm-cairo%lib{mm-cairo}  \
-                   libmm-gdk%lib{mm-gdk}      \
-                   libmm-gio%lib{mm-gio}      \
-                   libmm-glib%lib{mm-glib}    \
-                   libmm-gtk%lib{mm-gtk}      \
-                   libmm-pango%lib{mm-pango}
+intf_libs = # Interface dependencies.
+impl_libs = # Implementation dependencies.
 
-# Implementation dependencies.
-#
-impl_libs =
+import intf_libs += libmm-adw%lib{mm-adw}
+import intf_libs += libmm-cairo%lib{mm-cairo}
+import intf_libs += libmm-gdk%lib{mm-gdk}
+import intf_libs += libmm-gio%lib{mm-gio}
+import intf_libs += libmm-glib%lib{mm-glib}
+import intf_libs += libmm-gtk%lib{mm-gtk}
+import intf_libs += libmm-pango%lib{mm-pango}
 
 lib{mm}: {hxx ixx txx}{** -version} \
          {hxx}{version}             \
@@ -21,7 +18,7 @@ hxx{version}: in{version} $src_root/manifest
 # Build options.
 #
 cxx.poptions =+ "-I$out_root" "-I$src_root"
-cxx.loptions =+ "/LIBPATH:C:/gnome/lib"
+cxx.loptions =+ "/LIBPATH:C:/Users/wroy/Documents/Gnome/lib"
 
 # Export options.
 #

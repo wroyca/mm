@@ -1,0 +1,14 @@
+
+#ifndef LIBADWAITAMMCONFIG_H_INCLUDED
+#define LIBADWAITAMMCONFIG_H_INCLUDED
+
+#include <libmm/adw/export.hxx>
+
+#define MM_ADW_MAJOR_VERSION 1
+
+#define MM_ADW_MINOR_VERSION 2
+
+#define MM_ADW_MICRO_VERSION 0
+
+
+#endif
