@@ -14,6 +14,21 @@ This repository uses [Semantic Versioning](https://semver.org/) for its releases
 
 ## Building
 
+> **Note**
+> Libmm is designed as a wrapper library, which means that it is assumed that the required GNOME libraries have been installed. These libraries include:
+>
+> * cairo
+> * gdk-pixbuf-2.0
+> * gio-2.0
+> * gio-unix-2.0
+> * glib-2.0
+> * gmodule-2.0
+> * gobject-2.0
+> * gtk4
+> * pango
+> * pangocairo
+> * sigc++-3.0
+
 To build the packages, simply run the following command:
 
 * `bdep init -C @build cc && b`
@@ -25,8 +40,11 @@ You can choose a different compiler using the config.cxx option:
 
 To build with debugging symbols, add the appropriate flags:
 
-* `bdep init -C @mscv cc config.cxx=cl config.cc.coptions="/Od /MDd /Zi" config.cc.loptions=/DEBUG && b`
-* `bdep init -C @gcc cc config.cxx=g++ config.cc.coptions="-g" && b`
+MSVC:
+* `b config.cc.coptions="/Od /MDd /Zi" config.cc.loptions=/DEBUG`
+
+GCC / CLANG:
+* `b config.cc.coptions=-g`
 
 ###### For instructions on installing the build2 toolchain and setting up your environment, please refer to the build2 documentation.
 
@@ -45,21 +63,22 @@ The libraries in this repository are based on the work of the GNOME project, whi
 
 Special thanks to the following individuals for their contributions to this repository:
 
-Kjell Ahlstedt
-Murray Cumming
-Daniel Elstner
-Karl Nelson
-Tero Pulkkinen
-Elliot Lee
-Phil Dawes
-Erik Andersen
-Bibek Sahu
-Mirko Streckenbach
-Havoc Pennington
-Guillaume Laurent
-Todd Dukes
-Peter Lerner
-Herbert Valerio Riedel
+* Kjell Ahlstedt
+* Roger Ferrer Ibáñez
+* Murray Cumming
+* Daniel Elstner
+* Karl Nelson
+* Tero Pulkkinen
+* Elliot Lee
+* Phil Dawes
+* Erik Andersen
+* Bibek Sahu
+* Mirko Streckenbach
+* Havoc Pennington
+* Guillaume Laurent
+* Todd Dukes
+* Peter Lerner
+* Herbert Valerio Riedel
 
 And many others who have contributed in various ways to make GTKMM a robust and powerful GUI programming library for C++.
 
