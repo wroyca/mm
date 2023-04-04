@@ -9,6 +9,7 @@
 #include <libmm/gtk/dialog.hxx>
 #include <libmm/gtk/pagesetup.hxx>
 #include <libmm/gtk/printsettings.hxx>
+#include <libmm/gtk/export.hxx>
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 using GtkPageSetupUnixDialog = struct _GtkPageSetupUnixDialog;

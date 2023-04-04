@@ -6,6 +6,7 @@
 #include <libmm/glib/object_p.hxx>
 
 #include <libmm/glib/class.hxx>
+#include <libmm/gtk/export.hxx>
 
 namespace Gtk
 {

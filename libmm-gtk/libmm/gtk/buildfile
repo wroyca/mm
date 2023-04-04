@@ -8,7 +8,29 @@ import impl_libs += libmm-gio%lib{mm-gio}
 import impl_libs += libmm-pango%lib{mm-pango}
 import impl_libs += libmm-cairo%lib{mm-cairo}
 
-lib{mm-gtk}: {hxx ixx txx cxx}{** -version -printunixdialog -pagesetupunixdialog -printer -printjob} hxx{version} $impl_libs $intf_libs
+lib{mm-gtk}:              {hxx ixx txx cxx}\
+{                                          \
+  **                                       \
+  -version                                 \
+  -printunixdialog                         \
+  -pagesetupunixdialog                     \
+  -printer                                 \
+  -printjob                                \
+}                                          \
+                                        hxx\
+{                                          \
+  version                                  \
+}                                          \
+                                           \
+$impl_libs $intf_libs
+
+lib{mm-gtk}:                      {cxx hxx}\
+{                                          \
+  printunixdialog                          \
+  pagesetupunixdialog                      \
+  printer                                  \
+  printjob                                 \
+}: include = ($cxx.target.class != 'windows')
 
 hxx{version}: in{version} $src_root/manifest
 
@@ -17,7 +39,10 @@ hxx{export}@./: cxx.importable = false
 # Build options.
 #
 cxx.poptions =+ "-I$out_root" "-I$src_root"
-cxx.loptions =+ "/LIBPATH:C:/Users/wroy/Documents/Gnome/lib"
+if ($cxx.target.class == 'windows')
+  cxx.loptions =+ "/LIBPATH:C:/gnome/lib"
+if ($cxx.target.class == 'linux')
+  cxx.poptions =+ "-I/usr/include/gtk-4.0/unix-print"
 
 {hbmia obja}{*}: cxx.poptions += -DLIBMM_GTK_STATIC_BUILD
 {hbmis objs}{*}: cxx.poptions += -DLIBMM_GTK_SHARED_BUILD

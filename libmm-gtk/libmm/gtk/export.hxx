@@ -19,7 +19,5 @@
     #define LIBMM_GTK_SYMEXPORT
   #endif
 #else
-
   #define LIBMM_GTK_SYMEXPORT
-
 #endif

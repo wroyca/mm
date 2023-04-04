@@ -5,7 +5,7 @@
 #include <libmm/gtk/pagesetupunixdialog.hxx>
 #include <libmm/gtk/pagesetupunixdialog_p.hxx>
 
-#include <gtk/gtkunixprint.hxx>
+#include <gtk/gtkunixprint.h>
 
 namespace Gtk
 {

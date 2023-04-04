@@ -6,6 +6,7 @@
 #include <libmm/gtk/dialog_p.hxx>
 
 #include <libmm/glib/class.hxx>
+#include <libmm/gtk/export.hxx>
 
 namespace Gtk
 {

@@ -5,7 +5,7 @@
 #include <libmm/gtk/printunixdialog.hxx>
 #include <libmm/gtk/printunixdialog_p.hxx>
 
-#include <gtk/gtkunixprint.hxx>
+#include <gtk/gtkunixprint.h>
 #include <libmm/gtk/label.hxx>
 
 namespace Gtk

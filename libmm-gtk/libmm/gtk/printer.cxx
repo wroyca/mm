@@ -8,7 +8,7 @@
 #include <libmm/glib/vectorutils.hxx>
 #include <libmm/gtk/papersize.hxx>
 
-#include <gtk/gtkunixprint.hxx>
+#include <gtk/gtkunixprint.h>
 
 static auto
 SignalProxy_Custom_gtk_callback (GtkPrinter* gtk_printer, gpointer data)

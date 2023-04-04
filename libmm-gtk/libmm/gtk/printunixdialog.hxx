@@ -11,6 +11,7 @@
 #include <libmm/gtk/printer.hxx>
 #include <libmm/gtk/printjob.hxx>
 #include <libmm/gtk/printsettings.hxx>
+#include <libmm/gtk/export.hxx>
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 using GtkPrintUnixDialog = struct _GtkPrintUnixDialog;

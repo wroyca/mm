@@ -5,7 +5,7 @@
 #include <libmm/gtk/printjob.hxx>
 #include <libmm/gtk/printjob_p.hxx>
 
-#include <gtk/gtkunixprint.hxx>
+#include <gtk/gtkunixprint.h>
 #include <libmm/gdk/cairoutils.hxx>
 
 static auto

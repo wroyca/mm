@@ -2,12 +2,13 @@
 name: libmm-glib
 version: 0.1.0-a.0.z
 project: mm
-summary: mm-glib C++ library
-license: other: proprietary ; Not free/open source.
+summary: C++ binding library for GLIB
+license: LGPL-2.1-or-later ; GNU Lesser General Public License v2.1 or later.
 description-file: README.md
-url: https://example.org/mm
-email: you@example.org
-#build-error-email: you@example.org
-depends: * build2 >= 0.15.0
-depends: * bpkg >= 0.15.0
-#depends: libhello ^1.0.0
+url: https://github.com/wroyca/mm/tree/main/libmm-glib
+src-url: https://github.com/wroyca/mm.git
+email: wroy@proton.me
+requires: c++20
+depends: * build2 >= 0.16.0-
+depends: * bpkg >= 0.16.0-
+

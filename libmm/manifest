@@ -2,19 +2,19 @@
 name: libmm
 version: 0.1.0-a.0.z
 project: mm
-summary: mm C++ library
-license: other: proprietary ; Not free/open source.
+summary: C++ binding libraries for the GNOME ecosystem
+license: LGPL-3.0-or-later ; GNU Lesser General Public License v3.0 or later.
 description-file: README.md
-url: https://example.org/mm
+url: https://github.com/wroyca/mm
+src-url: https://github.com/wroyca/mm.git
 email: wroy@proton.me
-#build-error-email: wroy@proton.me
-depends: * build2 >= 0.15.0
-depends: * bpkg >= 0.15.0
-#depends: libhello ^1.0.0
-depends: libmm-adw
-depends: libmm-cairo
-depends: libmm-gdk
-depends: libmm-gio
-depends: libmm-glib
-depends: libmm-gtk
-depends: libmm-pango
+requires: c++20
+depends: * build2 >= 0.16.0-
+depends: * bpkg >= 0.16.0-
+depends: libmm-adw == $
+depends: libmm-cairo == $
+depends: libmm-gdk == $
+depends: libmm-gio == $
+depends: libmm-glib == $
+depends: libmm-gtk == $
+depends: libmm-pango == $

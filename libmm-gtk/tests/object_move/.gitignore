@@ -1,0 +1,9 @@
+*
+!.gitignore
+
+!*.cxx
+!*.hxx
+!*.ixx
+!*.txx
+
+!buildfile
