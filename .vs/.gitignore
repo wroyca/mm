@@ -1,0 +1,7 @@
+*
+!.gitignore
+
+# Local project files.
+#
+!launch.vs.json
+!tasks.vs.json

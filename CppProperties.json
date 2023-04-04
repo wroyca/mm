@@ -8,8 +8,9 @@
       "includePath": [
         "${env.INCLUDE}",
         "${workspaceRoot}\\**",
-        "C:\\gnome\\lib\\**",
-        "C:\\gnome\\include\\**"
+        "${workspaceRoot}\\..\\**",
+        "C:\\Gnome\\lib\\**",
+        "C:\\Gnome\\include\\**"
       ],
       "defines": [
         "WIN32",
@@ -24,7 +25,36 @@
         "LIBMM_GTK_SHARED_BUILD",
         "LIBMM_PANGO_SHARED_BUILD"
       ],
-      "intelliSenseMode": "windows-msvc-x64"
+      "intelliSenseMode": "windows-msvc-x64",
+      "compilerSwitches": "/std:c++latest"
+    },
+    {
+      "inheritEnvironments": [
+        "msvc_x64"
+      ],
+      "name": "x64-Release",
+      "includePath": [
+        "${env.INCLUDE}",
+        "${workspaceRoot}\\**",
+        "${workspaceRoot}\\..\\**",
+        "C:\\Gnome\\lib\\**",
+        "C:\\Gnome\\include\\**"
+      ],
+      "defines": [
+        "WIN32",
+        "NDEBUG",
+        "UNICODE",
+        "_UNICODE",
+        "LIBMM_ADW_SHARED_BUILD",
+        "LIBMM_CAIRO_SHARED_BUILD",
+        "LIBMM_GDK_SHARED_BUILD",
+        "LIBMM_GIO_SHARED_BUILD",
+        "LIBMM_GLIB_SHARED_BUILD",
+        "LIBMM_GTK_SHARED_BUILD",
+        "LIBMM_PANGO_SHARED_BUILD"
+      ],
+      "intelliSenseMode": "windows-msvc-x64",
+      "compilerSwitches": "/std:c++latest"
     }
   ]
 }
