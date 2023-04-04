@@ -1,6 +1,6 @@
 : 1
 name: libmm-pango
-version: 0.1.0-a.0.z
+version: 0.1.0
 project: mm
 summary: C++ binding library for Pango
 license: GNU Library General Public License v2 or later ; LGPL-2.0-or-later

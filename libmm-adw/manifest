@@ -1,6 +1,6 @@
 : 1
 name: libmm-adw
-version: 0.1.0-a.0.z
+version: 0.1.0
 project: mm
 summary: C++ binding library for Libadwaita
 license: LGPL-3.0-or-later ; GNU Lesser General Public License v3.0 or later.

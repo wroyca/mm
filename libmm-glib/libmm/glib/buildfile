@@ -15,7 +15,8 @@ hxx{export}@./: cxx.importable = false
 # Build options.
 #
 cxx.poptions =+ "-I$out_root" "-I$src_root"
-cxx.loptions =+ "/LIBPATH:C:/Users/wroy/Documents/Gnome/lib"
+if ($cxx.target.class == 'windows')
+  cxx.loptions =+ "/LIBPATH:C:/gnome/lib"
 
 {hbmia obja}{*}: cxx.poptions += -DLIBMM_GLIB_STATIC_BUILD
 {hbmis objs}{*}: cxx.poptions += -DLIBMM_GLIB_SHARED_BUILD
