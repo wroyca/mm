@@ -16,17 +16,17 @@
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Adw
+namespace adw
 {
   class LIBMM_ADW_SYMEXPORT SplitButton_Class;
 }
 #endif
 
-namespace Adw
+namespace adw
 {
 
-  class LIBMM_ADW_SYMEXPORT SplitButton : public Gtk::Widget,
-                      public Gtk::Actionable
+  class LIBMM_ADW_SYMEXPORT SplitButton : public gtk::Widget,
+                      public gtk::Actionable
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -53,7 +53,7 @@ namespace Adw
     static CppClassType splitbutton_class_;
 
   protected:
-    explicit SplitButton (const Glib::ConstructParams& construct_params);
+    explicit SplitButton (const glib::ConstructParams& construct_params);
     explicit SplitButton (AdwSplitButton* castitem);
 
 #endif
@@ -85,25 +85,25 @@ namespace Adw
     SplitButton ();
 
     auto
-    get_child () const -> Gtk::Widget*;
+    get_child () const -> gtk::Widget*;
 
     auto
-    get_direction () const -> Gtk::ArrowType;
+    get_direction () const -> gtk::ArrowType;
 
     auto
-    get_dropdown_tooltip () const -> Glib::ustring;
+    get_dropdown_tooltip () const -> glib::ustring;
 
     auto
-    get_icon_name () const -> Glib::ustring;
+    get_icon_name () const -> glib::ustring;
 
     auto
-    get_label () const -> Glib::ustring;
+    get_label () const -> glib::ustring;
 
     auto
-    get_menu_model () const -> Glib::RefPtr<Gio::MenuModel>;
+    get_menu_model () const -> glib::RefPtr<gio::MenuModel>;
 
     auto
-    get_popover () const -> Gtk::Popover*;
+    get_popover () const -> gtk::Popover*;
 
     auto
     get_use_underline () const -> bool;
@@ -115,97 +115,97 @@ namespace Adw
     popup () -> void;
 
     auto
-    set_child (Gtk::Widget* child) -> void;
+    set_child (gtk::Widget* child) -> void;
 
     auto
-    set_direction (Gtk::ArrowType direction) -> void;
+    set_direction (gtk::ArrowType direction) -> void;
 
     auto
-    set_dropdown_tooltip (const Glib::ustring& dropdown_tooltip) -> void;
+    set_dropdown_tooltip (const glib::ustring& dropdown_tooltip) -> void;
 
     auto
-    set_icon_name (const Glib::ustring& icon_name) -> void;
+    set_icon_name (const glib::ustring& icon_name) -> void;
 
     auto
-    set_label (const Glib::ustring& label) -> void;
+    set_label (const glib::ustring& label) -> void;
 
     auto
-    set_menu_model (const Glib::RefPtr<Gio::MenuModel>& menu_model) -> void;
+    set_menu_model (const glib::RefPtr<gio::MenuModel>& menu_model) -> void;
 
     auto
-    set_popover (Gtk::Popover* popover) -> void;
+    set_popover (gtk::Popover* popover) -> void;
 
     auto
     set_use_underline (bool use_underline) -> void;
 
     auto
-    property_child () -> Glib::PropertyProxy<Gtk::Widget*>;
+    property_child () -> glib::PropertyProxy<gtk::Widget*>;
 
     auto
-    property_child () const -> Glib::PropertyProxy_ReadOnly<Gtk::Widget*>;
+    property_child () const -> glib::PropertyProxy_ReadOnly<gtk::Widget*>;
 
     auto
-    property_direction () -> Glib::PropertyProxy<Gtk::ArrowType>;
+    property_direction () -> glib::PropertyProxy<gtk::ArrowType>;
 
     auto
-    property_direction () const -> Glib::PropertyProxy_ReadOnly<Gtk::ArrowType>;
+    property_direction () const -> glib::PropertyProxy_ReadOnly<gtk::ArrowType>;
 
     auto
-    property_dropdown_tooltip () -> Glib::PropertyProxy<Glib::ustring>;
+    property_dropdown_tooltip () -> glib::PropertyProxy<glib::ustring>;
 
     auto
     property_dropdown_tooltip () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+        -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
     auto
-    property_icon_name () -> Glib::PropertyProxy<Glib::ustring>;
+    property_icon_name () -> glib::PropertyProxy<glib::ustring>;
 
     auto
-    property_icon_name () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+    property_icon_name () const -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
     auto
-    property_label () -> Glib::PropertyProxy<Glib::ustring>;
+    property_label () -> glib::PropertyProxy<glib::ustring>;
 
     auto
-    property_label () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+    property_label () const -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
     auto
-    property_menu_model () -> Glib::PropertyProxy<Glib::RefPtr<Gio::MenuModel>>;
+    property_menu_model () -> glib::PropertyProxy<glib::RefPtr<gio::MenuModel>>;
 
     auto
     property_menu_model () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gio::MenuModel>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<gio::MenuModel>>;
 
     auto
-    property_popover () -> Glib::PropertyProxy<Gtk::Popover*>;
+    property_popover () -> glib::PropertyProxy<gtk::Popover*>;
 
     auto
-    property_popover () const -> Glib::PropertyProxy_ReadOnly<Gtk::Popover*>;
+    property_popover () const -> glib::PropertyProxy_ReadOnly<gtk::Popover*>;
 
     auto
-    property_use_underline () -> Glib::PropertyProxy<bool>;
+    property_use_underline () -> glib::PropertyProxy<bool>;
 
     auto
-    property_use_underline () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_use_underline () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    signal_activate () -> Glib::SignalProxy<void ()>;
+    signal_activate () -> glib::SignalProxy<void ()>;
 
     auto
-    signal_clicked () -> Glib::SignalProxy<void ()>;
+    signal_clicked () -> glib::SignalProxy<void ()>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Adw
+} // namespace adw
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (AdwSplitButton* object, bool take_copy = false) -> Adw::SplitButton*;
+  wrap (AdwSplitButton* object, bool take_copy = false) -> adw::SplitButton*;
 }
 
 #endif

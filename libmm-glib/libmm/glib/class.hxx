@@ -11,7 +11,7 @@
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
-namespace Glib
+namespace glib
 {
   class LIBMM_GLIB_SYMEXPORT Interface_Class;
 
@@ -63,7 +63,7 @@ namespace Glib
     return gtype_;
   }
 
-} // namespace Glib
+} // namespace glib
 
 #endif
 

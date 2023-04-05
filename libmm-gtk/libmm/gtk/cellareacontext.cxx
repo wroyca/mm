@@ -14,7 +14,7 @@
   #include <gtk/gtk.h>
   #include <libmm/gtk/cellarea.hxx>
 
-namespace Gtk
+namespace gtk
 {
 
 }
@@ -23,24 +23,24 @@ namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GtkCellAreaContext* object, bool take_copy) -> Glib::RefPtr<Gtk::CellAreaContext>
+  wrap (GtkCellAreaContext* object, bool take_copy) -> glib::RefPtr<gtk::CellAreaContext>
   {
-    return Glib::make_refptr_for_instance<Gtk::CellAreaContext> (
-        dynamic_cast<Gtk::CellAreaContext*> (
-            Glib::wrap_auto ((GObject*) (object), take_copy)));
+    return glib::make_refptr_for_instance<gtk::CellAreaContext> (
+        dynamic_cast<gtk::CellAreaContext*> (
+            glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gtk
+namespace gtk
 {
 
   auto
-  CellAreaContext_Class::init () -> const Glib::Class&
+  CellAreaContext_Class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -60,7 +60,7 @@ namespace Gtk
   }
 
   auto
-  CellAreaContext_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  CellAreaContext_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new CellAreaContext ((GtkCellAreaContext*) object);
   }
@@ -73,25 +73,25 @@ namespace Gtk
   }
 
   CellAreaContext::CellAreaContext (
-      const Glib::ConstructParams& construct_params)
-    : Glib::Object (construct_params)
+      const glib::ConstructParams& construct_params)
+    : glib::Object (construct_params)
   {
   }
 
   CellAreaContext::CellAreaContext (GtkCellAreaContext* castitem)
-    : Glib::Object ((GObject*) (castitem))
+    : glib::Object ((GObject*) (castitem))
   {
   }
 
   CellAreaContext::CellAreaContext (CellAreaContext&& src) noexcept
-    : Glib::Object (std::move (src))
+    : glib::Object (std::move (src))
   {
   }
 
   auto
   CellAreaContext::operator= (CellAreaContext&& src) noexcept -> CellAreaContext&
   {
-    Glib::Object::operator= (std::move (src));
+    glib::Object::operator= (std::move (src));
     return *this;
   }
 
@@ -112,16 +112,16 @@ namespace Gtk
   }
 
   auto
-  CellAreaContext::get_area () -> Glib::RefPtr<CellArea>
+  CellAreaContext::get_area () -> glib::RefPtr<CellArea>
   {
-    auto retvalue = Glib::wrap (gtk_cell_area_context_get_area (gobj ()));
+    auto retvalue = glib::wrap (gtk_cell_area_context_get_area (gobj ()));
     if (retvalue)
       retvalue->reference ();
     return retvalue;
   }
 
   auto
-  CellAreaContext::get_area () const -> Glib::RefPtr<const CellArea>
+  CellAreaContext::get_area () const -> glib::RefPtr<const CellArea>
   {
     return const_cast<CellAreaContext*> (this)->get_area ();
   }
@@ -209,40 +209,40 @@ namespace Gtk
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<CellArea*>::value,
+      glib::Traits::ValueCompatibleWithWrapProperty<CellArea*>::value,
       "Type CellArea* cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  CellAreaContext::property_area () const -> Glib::PropertyProxy_ReadOnly<CellArea*>
+  CellAreaContext::property_area () const -> glib::PropertyProxy_ReadOnly<CellArea*>
   {
-    return Glib::PropertyProxy_ReadOnly<CellArea*> (this, "area");
+    return glib::PropertyProxy_ReadOnly<CellArea*> (this, "area");
   }
 
   auto
-  CellAreaContext::property_minimum_width () const -> Glib::PropertyProxy_ReadOnly<int>
+  CellAreaContext::property_minimum_width () const -> glib::PropertyProxy_ReadOnly<int>
   {
-    return Glib::PropertyProxy_ReadOnly<int> (this, "minimum-width");
+    return glib::PropertyProxy_ReadOnly<int> (this, "minimum-width");
   }
 
   auto
-  CellAreaContext::property_natural_width () const -> Glib::PropertyProxy_ReadOnly<int>
+  CellAreaContext::property_natural_width () const -> glib::PropertyProxy_ReadOnly<int>
   {
-    return Glib::PropertyProxy_ReadOnly<int> (this, "natural-width");
+    return glib::PropertyProxy_ReadOnly<int> (this, "natural-width");
   }
 
   auto
-  CellAreaContext::property_minimum_height () const -> Glib::PropertyProxy_ReadOnly<int>
+  CellAreaContext::property_minimum_height () const -> glib::PropertyProxy_ReadOnly<int>
   {
-    return Glib::PropertyProxy_ReadOnly<int> (this, "minimum-height");
+    return glib::PropertyProxy_ReadOnly<int> (this, "minimum-height");
   }
 
   auto
-  CellAreaContext::property_natural_height () const -> Glib::PropertyProxy_ReadOnly<int>
+  CellAreaContext::property_natural_height () const -> glib::PropertyProxy_ReadOnly<int>
   {
-    return Glib::PropertyProxy_ReadOnly<int> (this, "natural-height");
+    return glib::PropertyProxy_ReadOnly<int> (this, "natural-height");
   }
 
-} // namespace Gtk
+} // namespace gtk
 
 #endif

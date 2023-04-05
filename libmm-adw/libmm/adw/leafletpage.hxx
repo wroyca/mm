@@ -17,16 +17,16 @@
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Adw
+namespace adw
 {
   class LIBMM_ADW_SYMEXPORT LeafletPage_Class;
 }
 #endif
 
-namespace Adw
+namespace adw
 {
 
-  class LIBMM_ADW_SYMEXPORT LeafletPage : public Glib::Object
+  class LIBMM_ADW_SYMEXPORT LeafletPage : public glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -45,7 +45,7 @@ namespace Adw
     static CppClassType leafletpage_class_;
 
   protected:
-    explicit LeafletPage (const Glib::ConstructParams& construct_params);
+    explicit LeafletPage (const glib::ConstructParams& construct_params);
     explicit LeafletPage (AdwLeafletPage* castitem);
 
 #endif
@@ -87,50 +87,50 @@ namespace Adw
 
   public:
     static auto
-    create () -> Glib::RefPtr<LeafletPage>;
+    create () -> glib::RefPtr<LeafletPage>;
 
     auto
-    get_child () const -> Gtk::Widget*;
+    get_child () const -> gtk::Widget*;
 
     auto
-    get_name () const -> Glib::ustring;
+    get_name () const -> glib::ustring;
 
     auto
     get_navigatable () const -> bool;
 
     auto
-    set_name (const Glib::ustring& name) -> void;
+    set_name (const glib::ustring& name) -> void;
 
     auto
     set_navigatable (bool navigatable) -> void;
 
     auto
-    property_child () const -> Glib::PropertyProxy_ReadOnly<Gtk::Widget*>;
+    property_child () const -> glib::PropertyProxy_ReadOnly<gtk::Widget*>;
 
     auto
-    property_name () -> Glib::PropertyProxy<Glib::ustring>;
+    property_name () -> glib::PropertyProxy<glib::ustring>;
 
     auto
-    property_name () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+    property_name () const -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
     auto
-    property_navigatable () -> Glib::PropertyProxy<bool>;
+    property_navigatable () -> glib::PropertyProxy<bool>;
 
     auto
-    property_navigatable () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_navigatable () const -> glib::PropertyProxy_ReadOnly<bool>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Adw
+} // namespace adw
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (AdwLeafletPage* object, bool take_copy = false) -> Glib::RefPtr<Adw::LeafletPage>;
+  wrap (AdwLeafletPage* object, bool take_copy = false) -> glib::RefPtr<adw::LeafletPage>;
 }
 
 #endif

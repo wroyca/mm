@@ -9,21 +9,21 @@
 #include <libmm/adw/init.hxx>
 #include <libmm/gtk/mm-gtk.hxx>
 
-namespace Adw
+namespace adw
 {
 
   auto
-  Application::custom_class_init () -> const Glib::Class&
+  Application::custom_class_init () -> const glib::Class&
   {
-    Adw::init ();
+    adw::init ();
     return application_class_.init ();
   }
 
-  Application::Application (const Glib::ustring& application_id,
-                            Gio::Application::Flags flags)
-    : Glib::ObjectBase (nullptr),
-      Gtk::Application (
-          Glib::ConstructParams (custom_class_init (),
+  Application::Application (const glib::ustring& application_id,
+                            gio::Application::Flags flags)
+    : glib::ObjectBase (nullptr),
+      gtk::Application (
+          glib::ConstructParams (custom_class_init (),
                                  "application_id",
                                  application_id.c_str (),
                                  "flags",
@@ -34,30 +34,30 @@ namespace Adw
 
   Application::~Application () {}
 
-} // namespace Adw
+} // namespace adw
 
 namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (AdwApplication* object, bool take_copy) -> Glib::RefPtr<Adw::Application>
+  wrap (AdwApplication* object, bool take_copy) -> glib::RefPtr<adw::Application>
   {
-    return Glib::make_refptr_for_instance<Adw::Application> (
-        dynamic_cast<Adw::Application*> (
-            Glib::wrap_auto ((GObject*) (object), take_copy)));
+    return glib::make_refptr_for_instance<adw::Application> (
+        dynamic_cast<adw::Application*> (
+            glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Adw
+namespace adw
 {
 
   auto
-  Application_Class::init () -> const Glib::Class&
+  Application_Class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -77,7 +77,7 @@ namespace Adw
   }
 
   auto
-  Application_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  Application_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new Application ((AdwApplication*) object);
   }
@@ -89,25 +89,25 @@ namespace Adw
     return gobj ();
   }
 
-  Application::Application (const Glib::ConstructParams& construct_params)
-    : Gtk::Application (construct_params)
+  Application::Application (const glib::ConstructParams& construct_params)
+    : gtk::Application (construct_params)
   {
   }
 
   Application::Application (AdwApplication* castitem)
-    : Gtk::Application ((GtkApplication*) (castitem))
+    : gtk::Application ((GtkApplication*) (castitem))
   {
   }
 
   Application::Application (Application&& src) noexcept
-    : Gtk::Application (std::move (src))
+    : gtk::Application (std::move (src))
   {
   }
 
   auto
   Application::operator= (Application&& src) noexcept -> Application&
   {
-    Gtk::Application::operator= (std::move (src));
+    gtk::Application::operator= (std::move (src));
     return *this;
   }
 
@@ -126,17 +126,17 @@ namespace Adw
   }
 
   auto
-  Application::create (const Glib::ustring& application_id,
-                       Gio::Application::Flags flags) -> Glib::RefPtr<Application>
+  Application::create (const glib::ustring& application_id,
+                       gio::Application::Flags flags) -> glib::RefPtr<Application>
   {
-    return Glib::make_refptr_for_instance<Application> (
+    return glib::make_refptr_for_instance<Application> (
         new Application (application_id, flags));
   }
 
   auto
-  Application::get_style_manager () const -> Glib::RefPtr<StyleManager>
+  Application::get_style_manager () const -> glib::RefPtr<StyleManager>
   {
-    auto retvalue = Glib::wrap (adw_application_get_style_manager (
+    auto retvalue = glib::wrap (adw_application_get_style_manager (
         const_cast<AdwApplication*> (gobj ())));
     if (retvalue)
       retvalue->reference ();
@@ -144,17 +144,17 @@ namespace Adw
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<
-          Glib::RefPtr<StyleManager>>::value,
-      "Type Glib::RefPtr<StyleManager> cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      glib::Traits::ValueCompatibleWithWrapProperty<
+          glib::RefPtr<StyleManager>>::value,
+      "Type glib::RefPtr<StyleManager> cannot be used in _WRAP_PROPERTY. "
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  Application::property_style_manager () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<StyleManager>>
+  Application::property_style_manager () const -> glib::PropertyProxy_ReadOnly<glib::RefPtr<StyleManager>>
   {
-    return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<StyleManager>> (
+    return glib::PropertyProxy_ReadOnly<glib::RefPtr<StyleManager>> (
         this,
         "style-manager");
   }
 
-} // namespace Adw
+} // namespace adw

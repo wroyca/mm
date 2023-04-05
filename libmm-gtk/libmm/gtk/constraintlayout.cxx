@@ -7,31 +7,31 @@
 
 #include <gtk/gtk.h>
 
-namespace Gtk
+namespace gtk
 {
 
   auto
-  ConstraintLayout::add_constraint (const Glib::RefPtr<Constraint>& constraint) -> void
+  ConstraintLayout::add_constraint (const glib::RefPtr<Constraint>& constraint) -> void
   {
     if (constraint)
       constraint->reference ();
-    gtk_constraint_layout_add_constraint (gobj (), Glib::unwrap (constraint));
+    gtk_constraint_layout_add_constraint (gobj (), glib::unwrap (constraint));
   }
 
   auto
-  ConstraintLayout::add_guide (const Glib::RefPtr<ConstraintGuide>& guide) -> void
+  ConstraintLayout::add_guide (const glib::RefPtr<ConstraintGuide>& guide) -> void
   {
     if (guide)
       guide->reference ();
-    gtk_constraint_layout_add_guide (gobj (), Glib::unwrap (guide));
+    gtk_constraint_layout_add_guide (gobj (), glib::unwrap (guide));
   }
 
   auto
   ConstraintLayout::add_constraints_from_description (
-      const std::vector<Glib::ustring>& lines,
+      const std::vector<glib::ustring>& lines,
       int hspacing,
       int vspacing,
-      const VFLmap& views) -> std::vector<Glib::RefPtr<Constraint>>
+      const VFLmap& views) -> std::vector<glib::RefPtr<Constraint>>
   {
     GHashTable* hash_table_views = g_hash_table_new (g_str_hash, g_str_equal);
     for (const auto& it : views)
@@ -43,7 +43,7 @@ namespace Gtk
     GList* constraints =
         gtk_constraint_layout_add_constraints_from_descriptionv (
             gobj (),
-            Glib::ArrayHandler<Glib::ustring>::vector_to_array (lines).data (),
+            glib::ArrayHandler<glib::ustring>::vector_to_array (lines).data (),
             lines.size (),
             hspacing,
             vspacing,
@@ -55,69 +55,69 @@ namespace Gtk
     if (gerror)
     {
       g_list_free (constraints);
-      ::Glib::Error::throw_exception (gerror);
+      ::glib::Error::throw_exception (gerror);
     }
 
-    return Glib::ListHandler<Glib::RefPtr<Constraint>>::list_to_vector (
+    return glib::ListHandler<glib::RefPtr<Constraint>>::list_to_vector (
         constraints,
-        Glib::OWNERSHIP_SHALLOW);
+        glib::OWNERSHIP_SHALLOW);
   }
 
-} // namespace Gtk
+} // namespace gtk
 
 namespace
 {
 }
 
-Gtk::ConstraintVflParserError::ConstraintVflParserError (
-    Gtk::ConstraintVflParserError::Code error_code,
-    const Glib::ustring& error_message)
-  : Glib::Error (GTK_CONSTRAINT_VFL_PARSER_ERROR, error_code, error_message)
+gtk::ConstraintVflParserError::ConstraintVflParserError (
+    gtk::ConstraintVflParserError::Code error_code,
+    const glib::ustring& error_message)
+  : glib::Error (GTK_CONSTRAINT_VFL_PARSER_ERROR, error_code, error_message)
 {
 }
 
-Gtk::ConstraintVflParserError::ConstraintVflParserError (GError* gobject)
-  : Glib::Error (gobject)
+gtk::ConstraintVflParserError::ConstraintVflParserError (GError* gobject)
+  : glib::Error (gobject)
 {
 }
 
 auto
-Gtk::ConstraintVflParserError::code () const
-    -> Gtk::ConstraintVflParserError::Code
+gtk::ConstraintVflParserError::code () const
+    -> gtk::ConstraintVflParserError::Code
 {
-  return static_cast<Code> (Glib::Error::code ());
+  return static_cast<Code> (glib::Error::code ());
 }
 
 auto
-Gtk::ConstraintVflParserError::throw_func (GError* gobject) -> void
+gtk::ConstraintVflParserError::throw_func (GError* gobject) -> void
 {
-  throw Gtk::ConstraintVflParserError (gobject);
+  throw gtk::ConstraintVflParserError (gobject);
 }
 
 auto
-Glib::Value<Gtk::ConstraintVflParserError::Code>::value_type () -> GType
+glib::Value<gtk::ConstraintVflParserError::Code>::value_type () -> GType
 {
   return gtk_constraint_vfl_parser_error_get_type ();
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GtkConstraintLayout* object, bool take_copy) -> Glib::RefPtr<Gtk::ConstraintLayout>
+  wrap (GtkConstraintLayout* object, bool take_copy) -> glib::RefPtr<gtk::ConstraintLayout>
   {
-    return Glib::make_refptr_for_instance<Gtk::ConstraintLayout> (
-        dynamic_cast<Gtk::ConstraintLayout*> (
-            Glib::wrap_auto ((GObject*) (object), take_copy)));
+    return glib::make_refptr_for_instance<gtk::ConstraintLayout> (
+        dynamic_cast<gtk::ConstraintLayout*> (
+            glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gtk
+namespace gtk
 {
 
   auto
-  ConstraintLayout_Class::init () -> const Glib::Class&
+  ConstraintLayout_Class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -137,7 +137,7 @@ namespace Gtk
   }
 
   auto
-  ConstraintLayout_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  ConstraintLayout_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new ConstraintLayout ((GtkConstraintLayout*) object);
   }
@@ -150,7 +150,7 @@ namespace Gtk
   }
 
   ConstraintLayout::ConstraintLayout (
-      const Glib::ConstructParams& construct_params)
+      const glib::ConstructParams& construct_params)
     : LayoutManager (construct_params)
   {
   }
@@ -191,24 +191,24 @@ namespace Gtk
   }
 
   ConstraintLayout::ConstraintLayout ()
-    : Glib::ObjectBase (nullptr),
-      LayoutManager (Glib::ConstructParams (constraintlayout_class_.init ()))
+    : glib::ObjectBase (nullptr),
+      LayoutManager (glib::ConstructParams (constraintlayout_class_.init ()))
   {
   }
 
   auto
-  ConstraintLayout::create () -> Glib::RefPtr<ConstraintLayout>
+  ConstraintLayout::create () -> glib::RefPtr<ConstraintLayout>
   {
-    return Glib::make_refptr_for_instance<ConstraintLayout> (
+    return glib::make_refptr_for_instance<ConstraintLayout> (
         new ConstraintLayout ());
   }
 
   auto
   ConstraintLayout::remove_constraint (
-      const Glib::RefPtr<Constraint>& constraint) -> void
+      const glib::RefPtr<Constraint>& constraint) -> void
   {
     gtk_constraint_layout_remove_constraint (gobj (),
-                                             Glib::unwrap (constraint));
+                                             glib::unwrap (constraint));
   }
 
   auto
@@ -218,33 +218,33 @@ namespace Gtk
   }
 
   auto
-  ConstraintLayout::remove_guide (const Glib::RefPtr<ConstraintGuide>& guide) -> void
+  ConstraintLayout::remove_guide (const glib::RefPtr<ConstraintGuide>& guide) -> void
   {
-    gtk_constraint_layout_remove_guide (gobj (), Glib::unwrap (guide));
+    gtk_constraint_layout_remove_guide (gobj (), glib::unwrap (guide));
   }
 
   auto
-  ConstraintLayout::observe_constraints () -> Glib::RefPtr<Gio::ListModel>
+  ConstraintLayout::observe_constraints () -> glib::RefPtr<gio::ListModel>
   {
-    return Glib::wrap (gtk_constraint_layout_observe_constraints (gobj ()));
+    return glib::wrap (gtk_constraint_layout_observe_constraints (gobj ()));
   }
 
   auto
-  ConstraintLayout::observe_constraints () const -> Glib::RefPtr<const Gio::ListModel>
+  ConstraintLayout::observe_constraints () const -> glib::RefPtr<const gio::ListModel>
   {
     return const_cast<ConstraintLayout*> (this)->observe_constraints ();
   }
 
   auto
-  ConstraintLayout::observe_guides () -> Glib::RefPtr<Gio::ListModel>
+  ConstraintLayout::observe_guides () -> glib::RefPtr<gio::ListModel>
   {
-    return Glib::wrap (gtk_constraint_layout_observe_guides (gobj ()));
+    return glib::wrap (gtk_constraint_layout_observe_guides (gobj ()));
   }
 
   auto
-  ConstraintLayout::observe_guides () const -> Glib::RefPtr<const Gio::ListModel>
+  ConstraintLayout::observe_guides () const -> glib::RefPtr<const gio::ListModel>
   {
     return const_cast<ConstraintLayout*> (this)->observe_guides ();
   }
 
-} // namespace Gtk
+} // namespace gtk

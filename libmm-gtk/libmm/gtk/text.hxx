@@ -19,13 +19,13 @@ using GtkTextClass = struct _GtkTextClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT Text_Class;
 }
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
   class LIBMM_GTK_SYMEXPORT Text : public Widget,
@@ -56,7 +56,7 @@ namespace Gtk
     static CppClassType text_class_;
 
   protected:
-    explicit Text (const Glib::ConstructParams& construct_params);
+    explicit Text (const glib::ConstructParams& construct_params);
     explicit Text (GtkText* castitem);
 
 #endif
@@ -86,16 +86,16 @@ namespace Gtk
   private:
   public:
     Text ();
-    explicit Text (const Glib::RefPtr<EntryBuffer>& buffer);
+    explicit Text (const glib::RefPtr<EntryBuffer>& buffer);
 
     auto
-    get_buffer () -> Glib::RefPtr<EntryBuffer>;
+    get_buffer () -> glib::RefPtr<EntryBuffer>;
 
     auto
-    get_buffer () const -> Glib::RefPtr<const EntryBuffer>;
+    get_buffer () const -> glib::RefPtr<const EntryBuffer>;
 
     auto
-    set_buffer (const Glib::RefPtr<EntryBuffer>& buffer) -> void;
+    set_buffer (const glib::RefPtr<EntryBuffer>& buffer) -> void;
 
     auto
     set_visibility (bool visible = true) -> void;
@@ -134,10 +134,10 @@ namespace Gtk
     get_activates_default () const -> bool;
 
     auto
-    get_placeholder_text () const -> Glib::ustring;
+    get_placeholder_text () const -> glib::ustring;
 
     auto
-    set_placeholder_text (const Glib::ustring& text) -> void;
+    set_placeholder_text (const glib::ustring& text) -> void;
 
     auto
     set_input_purpose (InputPurpose purpose) -> void;
@@ -152,28 +152,28 @@ namespace Gtk
     get_input_hints () const -> InputHints;
 
     auto
-    set_attributes (Pango::AttrList& attrs) -> void;
+    set_attributes (pango::AttrList& attrs) -> void;
 
     auto
-    get_attributes () const -> Pango::AttrList;
+    get_attributes () const -> pango::AttrList;
 
     auto
-    set_tabs (const Pango::TabArray& tabs) -> void;
+    set_tabs (const pango::TabArray& tabs) -> void;
 
     auto
-    get_tabs () const -> Pango::TabArray;
+    get_tabs () const -> pango::TabArray;
 
     auto
     grab_focus_without_selecting () -> bool;
 
     auto
-    set_extra_menu (const Glib::RefPtr<Gio::MenuModel>& model) -> void;
+    set_extra_menu (const glib::RefPtr<gio::MenuModel>& model) -> void;
 
     auto
-    get_extra_menu () -> Glib::RefPtr<Gio::MenuModel>;
+    get_extra_menu () -> glib::RefPtr<gio::MenuModel>;
 
     auto
-    get_extra_menu () const -> Glib::RefPtr<const Gio::MenuModel>;
+    get_extra_menu () const -> glib::RefPtr<const gio::MenuModel>;
 
     auto
     set_enable_emoji_completion (bool enable_emoji_completion = true) -> void;
@@ -194,128 +194,128 @@ namespace Gtk
     get_truncate_multiline () const -> bool;
 
     auto
-    property_buffer () -> Glib::PropertyProxy<Glib::RefPtr<EntryBuffer>>;
+    property_buffer () -> glib::PropertyProxy<glib::RefPtr<EntryBuffer>>;
 
     auto
     property_buffer () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<EntryBuffer>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<EntryBuffer>>;
 
     auto
-    property_max_length () -> Glib::PropertyProxy<int>;
+    property_max_length () -> glib::PropertyProxy<int>;
 
     auto
-    property_max_length () const -> Glib::PropertyProxy_ReadOnly<int>;
+    property_max_length () const -> glib::PropertyProxy_ReadOnly<int>;
 
     auto
-    property_visibility () -> Glib::PropertyProxy<bool>;
+    property_visibility () -> glib::PropertyProxy<bool>;
 
     auto
-    property_visibility () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_visibility () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_invisible_char () -> Glib::PropertyProxy<gunichar>;
+    property_invisible_char () -> glib::PropertyProxy<gunichar>;
 
     auto
-    property_invisible_char () const -> Glib::PropertyProxy_ReadOnly<gunichar>;
+    property_invisible_char () const -> glib::PropertyProxy_ReadOnly<gunichar>;
 
     auto
-    property_invisible_char_set () -> Glib::PropertyProxy<bool>;
+    property_invisible_char_set () -> glib::PropertyProxy<bool>;
 
     auto
-    property_invisible_char_set () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_invisible_char_set () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_activates_default () -> Glib::PropertyProxy<bool>;
+    property_activates_default () -> glib::PropertyProxy<bool>;
 
     auto
-    property_activates_default () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_activates_default () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_scroll_offset () const -> Glib::PropertyProxy_ReadOnly<int>;
+    property_scroll_offset () const -> glib::PropertyProxy_ReadOnly<int>;
 
     auto
-    property_truncate_multiline () -> Glib::PropertyProxy<bool>;
+    property_truncate_multiline () -> glib::PropertyProxy<bool>;
 
     auto
-    property_truncate_multiline () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_truncate_multiline () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_overwrite_mode () -> Glib::PropertyProxy<bool>;
+    property_overwrite_mode () -> glib::PropertyProxy<bool>;
 
     auto
-    property_overwrite_mode () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_overwrite_mode () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_im_module () -> Glib::PropertyProxy<Glib::ustring>;
+    property_im_module () -> glib::PropertyProxy<glib::ustring>;
 
     auto
-    property_im_module () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+    property_im_module () const -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
     auto
-    property_placeholder_text () -> Glib::PropertyProxy<Glib::ustring>;
+    property_placeholder_text () -> glib::PropertyProxy<glib::ustring>;
 
     auto
     property_placeholder_text () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+        -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
     auto
-    property_input_purpose () -> Glib::PropertyProxy<InputPurpose>;
+    property_input_purpose () -> glib::PropertyProxy<InputPurpose>;
 
     auto
     property_input_purpose () const
-        -> Glib::PropertyProxy_ReadOnly<InputPurpose>;
+        -> glib::PropertyProxy_ReadOnly<InputPurpose>;
 
     auto
-    property_input_hints () -> Glib::PropertyProxy<InputHints>;
+    property_input_hints () -> glib::PropertyProxy<InputHints>;
 
     auto
-    property_input_hints () const -> Glib::PropertyProxy_ReadOnly<InputHints>;
+    property_input_hints () const -> glib::PropertyProxy_ReadOnly<InputHints>;
 
     auto
-    property_attributes () -> Glib::PropertyProxy<Pango::AttrList>;
+    property_attributes () -> glib::PropertyProxy<pango::AttrList>;
 
     auto
     property_attributes () const
-        -> Glib::PropertyProxy_ReadOnly<Pango::AttrList>;
+        -> glib::PropertyProxy_ReadOnly<pango::AttrList>;
 
     auto
-    property_tabs () -> Glib::PropertyProxy<Pango::TabArray>;
+    property_tabs () -> glib::PropertyProxy<pango::TabArray>;
 
     auto
-    property_tabs () const -> Glib::PropertyProxy_ReadOnly<Pango::TabArray>;
+    property_tabs () const -> glib::PropertyProxy_ReadOnly<pango::TabArray>;
 
     auto
-    property_enable_emoji_completion () -> Glib::PropertyProxy<bool>;
+    property_enable_emoji_completion () -> glib::PropertyProxy<bool>;
 
     auto
     property_enable_emoji_completion () const
-        -> Glib::PropertyProxy_ReadOnly<bool>;
+        -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_propagate_text_width () -> Glib::PropertyProxy<bool>;
+    property_propagate_text_width () -> glib::PropertyProxy<bool>;
 
     auto
     property_propagate_text_width () const
-        -> Glib::PropertyProxy_ReadOnly<bool>;
+        -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_extra_menu () -> Glib::PropertyProxy<Glib::RefPtr<Gio::MenuModel>>;
+    property_extra_menu () -> glib::PropertyProxy<glib::RefPtr<gio::MenuModel>>;
 
     auto
     property_extra_menu () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gio::MenuModel>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<gio::MenuModel>>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkText* object, bool take_copy = false) -> Gtk::Text*;
-} // namespace Glib
+  wrap (GtkText* object, bool take_copy = false) -> gtk::Text*;
+} // namespace glib
 
 #endif

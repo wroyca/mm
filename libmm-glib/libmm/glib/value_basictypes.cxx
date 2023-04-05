@@ -5,7 +5,7 @@
 
 #include <libmm/glib/value.hxx>
 
-namespace Glib
+namespace glib
 {
 
   G_GNUC_EXTENSION typedef long long long_long;
@@ -402,4 +402,4 @@ namespace Glib
                                  static_cast<GParamFlags> (flags));
   }
 
-} // namespace Glib
+} // namespace glib

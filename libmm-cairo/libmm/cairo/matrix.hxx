@@ -7,7 +7,7 @@
 
 #include <cairo.h>
 
-namespace Cairo
+namespace cairo
 {
 
   class LIBMM_CAIRO_SYMEXPORT Matrix : public cairo_matrix_t
@@ -59,6 +59,6 @@ namespace Cairo
   auto
   operator* (const Matrix& a, const Matrix& b) -> Matrix;
 
-} // namespace Cairo
+} // namespace cairo
 
 #endif

@@ -8,47 +8,47 @@
 #include <libmm/adw/selectionlistmodelimpl.hxx>
 #include <libmm/gtk/mm-gtk.hxx>
 
-namespace Adw
+namespace adw
 {
 
   auto
-  ViewStack::get_pages () const -> Glib::RefPtr<Gtk::SelectionModel>
+  ViewStack::get_pages () const -> glib::RefPtr<gtk::SelectionModel>
   {
     GtkSelectionModel* pages =
         adw_view_stack_get_pages (const_cast<AdwViewStack*> (gobj ()));
     g_assert (G_IS_LIST_MODEL (pages));
 
-    Glib::ObjectBase* pCppObject =
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) pages);
+    glib::ObjectBase* pCppObject =
+        glib::ObjectBase::_get_current_wrapper ((GObject*) pages);
     if (!pCppObject)
-      pCppObject = new Adw::SelectionListModelImpl ((GObject*) pages);
-    return Glib::make_refptr_for_instance<Gtk::SelectionModel> (
-        dynamic_cast<Gtk::SelectionModel*> (pCppObject));
+      pCppObject = new adw::SelectionListModelImpl ((GObject*) pages);
+    return glib::make_refptr_for_instance<gtk::SelectionModel> (
+        dynamic_cast<gtk::SelectionModel*> (pCppObject));
   }
 
-} // namespace Adw
+} // namespace adw
 
 namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (AdwViewStack* object, bool take_copy) -> Adw::ViewStack*
+  wrap (AdwViewStack* object, bool take_copy) -> adw::ViewStack*
   {
-    return dynamic_cast<Adw::ViewStack*> (
-        Glib::wrap_auto ((GObject*) (object), take_copy));
+    return dynamic_cast<adw::ViewStack*> (
+        glib::wrap_auto ((GObject*) (object), take_copy));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Adw
+namespace adw
 {
 
   auto
-  ViewStack_Class::init () -> const Glib::Class&
+  ViewStack_Class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -59,30 +59,30 @@ namespace Adw
   }
 
   auto
-  ViewStack_Class::wrap_new (GObject* o) -> Glib::ObjectBase*
+  ViewStack_Class::wrap_new (GObject* o) -> glib::ObjectBase*
   {
     return manage (new ViewStack ((AdwViewStack*) (o)));
   }
 
-  ViewStack::ViewStack (const Glib::ConstructParams& construct_params)
-    : Gtk::Widget (construct_params)
+  ViewStack::ViewStack (const glib::ConstructParams& construct_params)
+    : gtk::Widget (construct_params)
   {
   }
 
   ViewStack::ViewStack (AdwViewStack* castitem)
-    : Gtk::Widget ((GtkWidget*) (castitem))
+    : gtk::Widget ((GtkWidget*) (castitem))
   {
   }
 
   ViewStack::ViewStack (ViewStack&& src) noexcept
-    : Gtk::Widget (std::move (src))
+    : gtk::Widget (std::move (src))
   {
   }
 
   auto
   ViewStack::operator= (ViewStack&& src) noexcept -> ViewStack&
   {
-    Gtk::Widget::operator= (std::move (src));
+    gtk::Widget::operator= (std::move (src));
     return *this;
   }
 
@@ -106,27 +106,27 @@ namespace Adw
   }
 
   ViewStack::ViewStack ()
-    : Glib::ObjectBase (nullptr),
-      Gtk::Widget (Glib::ConstructParams (viewstack_class_.init ()))
+    : glib::ObjectBase (nullptr),
+      gtk::Widget (glib::ConstructParams (viewstack_class_.init ()))
   {
   }
 
   auto
-  ViewStack::add (Gtk::Widget* child) -> Glib::RefPtr<ViewStackPage>
+  ViewStack::add (gtk::Widget* child) -> glib::RefPtr<ViewStackPage>
   {
-    auto retvalue = Glib::wrap (
-        adw_view_stack_add (gobj (), (GtkWidget*) Glib::unwrap (child)));
+    auto retvalue = glib::wrap (
+        adw_view_stack_add (gobj (), (GtkWidget*) glib::unwrap (child)));
     if (retvalue)
       retvalue->reference ();
     return retvalue;
   }
 
   auto
-  ViewStack::add_named (Gtk::Widget* child, const Glib::ustring& name) -> Glib::RefPtr<ViewStackPage>
+  ViewStack::add_named (gtk::Widget* child, const glib::ustring& name) -> glib::RefPtr<ViewStackPage>
   {
     auto retvalue =
-        Glib::wrap (adw_view_stack_add_named (gobj (),
-                                              (GtkWidget*) Glib::unwrap (child),
+        glib::wrap (adw_view_stack_add_named (gobj (),
+                                              (GtkWidget*) glib::unwrap (child),
                                               name.c_str ()));
     if (retvalue)
       retvalue->reference ();
@@ -134,13 +134,13 @@ namespace Adw
   }
 
   auto
-  ViewStack::add_titled (Gtk::Widget* child,
-                         const Glib::ustring& name,
-                         const Glib::ustring& title) -> Glib::RefPtr<ViewStackPage>
+  ViewStack::add_titled (gtk::Widget* child,
+                         const glib::ustring& name,
+                         const glib::ustring& title) -> glib::RefPtr<ViewStackPage>
   {
-    auto retvalue = Glib::wrap (
+    auto retvalue = glib::wrap (
         adw_view_stack_add_titled (gobj (),
-                                   (GtkWidget*) Glib::unwrap (child),
+                                   (GtkWidget*) glib::unwrap (child),
                                    name.c_str (),
                                    title.c_str ()));
     if (retvalue)
@@ -149,14 +149,14 @@ namespace Adw
   }
 
   auto
-  ViewStack::add_titled_with_icon (Gtk::Widget* child,
-                                   const Glib::ustring& name,
-                                   const Glib::ustring& title,
-                                   const Glib::ustring& icon_name) -> Glib::RefPtr<ViewStackPage>
+  ViewStack::add_titled_with_icon (gtk::Widget* child,
+                                   const glib::ustring& name,
+                                   const glib::ustring& title,
+                                   const glib::ustring& icon_name) -> glib::RefPtr<ViewStackPage>
   {
-    auto retvalue = Glib::wrap (
+    auto retvalue = glib::wrap (
         adw_view_stack_add_titled_with_icon (gobj (),
-                                             (GtkWidget*) Glib::unwrap (child),
+                                             (GtkWidget*) glib::unwrap (child),
                                              name.c_str (),
                                              title.c_str (),
                                              icon_name.c_str ()));
@@ -166,9 +166,9 @@ namespace Adw
   }
 
   auto
-  ViewStack::get_child_by_name (const Glib::ustring& name) const -> Gtk::Widget*
+  ViewStack::get_child_by_name (const glib::ustring& name) const -> gtk::Widget*
   {
-    return Glib::wrap (
+    return glib::wrap (
         adw_view_stack_get_child_by_name (const_cast<AdwViewStack*> (gobj ()),
                                           name.c_str ()));
   }
@@ -181,11 +181,11 @@ namespace Adw
   }
 
   auto
-  ViewStack::get_page (Gtk::Widget* child) const -> Glib::RefPtr<ViewStackPage>
+  ViewStack::get_page (gtk::Widget* child) const -> glib::RefPtr<ViewStackPage>
   {
-    auto retvalue = Glib::wrap (
+    auto retvalue = glib::wrap (
         adw_view_stack_get_page (const_cast<AdwViewStack*> (gobj ()),
-                                 (GtkWidget*) Glib::unwrap (child)));
+                                 (GtkWidget*) glib::unwrap (child)));
     if (retvalue)
       retvalue->reference ();
     return retvalue;
@@ -199,24 +199,24 @@ namespace Adw
   }
 
   auto
-  ViewStack::get_visible_child () const -> Gtk::Widget*
+  ViewStack::get_visible_child () const -> gtk::Widget*
   {
-    return Glib::wrap (
+    return glib::wrap (
         adw_view_stack_get_visible_child (const_cast<AdwViewStack*> (gobj ())));
   }
 
   auto
-  ViewStack::get_visible_child_name () const -> Glib::ustring
+  ViewStack::get_visible_child_name () const -> glib::ustring
   {
-    return Glib::convert_const_gchar_ptr_to_ustring (
+    return glib::convert_const_gchar_ptr_to_ustring (
         adw_view_stack_get_visible_child_name (
             const_cast<AdwViewStack*> (gobj ())));
   }
 
   auto
-  ViewStack::remove (Gtk::Widget* widget) -> void
+  ViewStack::remove (gtk::Widget* widget) -> void
   {
-    adw_view_stack_remove (gobj (), (GtkWidget*) Glib::unwrap (widget));
+    adw_view_stack_remove (gobj (), (GtkWidget*) glib::unwrap (widget));
   }
 
   auto
@@ -232,80 +232,80 @@ namespace Adw
   }
 
   auto
-  ViewStack::set_visible_child (Gtk::Widget* child) -> void
+  ViewStack::set_visible_child (gtk::Widget* child) -> void
   {
     adw_view_stack_set_visible_child (gobj (),
-                                      (GtkWidget*) Glib::unwrap (child));
+                                      (GtkWidget*) glib::unwrap (child));
   }
 
   auto
-  ViewStack::set_visible_child_name (const Glib::ustring& name) -> void
+  ViewStack::set_visible_child_name (const glib::ustring& name) -> void
   {
     adw_view_stack_set_visible_child_name (gobj (), name.c_str ());
   }
 
   auto
-  ViewStack::property_hhomogeneous () -> Glib::PropertyProxy<bool>
+  ViewStack::property_hhomogeneous () -> glib::PropertyProxy<bool>
   {
-    return Glib::PropertyProxy<bool> (this, "hhomogeneous");
+    return glib::PropertyProxy<bool> (this, "hhomogeneous");
   }
 
   auto
-  ViewStack::property_hhomogeneous () const -> Glib::PropertyProxy_ReadOnly<bool>
+  ViewStack::property_hhomogeneous () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "hhomogeneous");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "hhomogeneous");
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<
-          Glib::RefPtr<Gtk::SelectionModel>>::value,
-      "Type Glib::RefPtr<Gtk::SelectionModel> cannot be used in "
+      glib::Traits::ValueCompatibleWithWrapProperty<
+          glib::RefPtr<gtk::SelectionModel>>::value,
+      "Type glib::RefPtr<gtk::SelectionModel> cannot be used in "
       "_WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  ViewStack::property_pages () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gtk::SelectionModel>>
+  ViewStack::property_pages () const -> glib::PropertyProxy_ReadOnly<glib::RefPtr<gtk::SelectionModel>>
   {
-    return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gtk::SelectionModel>> (
+    return glib::PropertyProxy_ReadOnly<glib::RefPtr<gtk::SelectionModel>> (
         this,
         "pages");
   }
 
   auto
-  ViewStack::property_vhomogeneous () -> Glib::PropertyProxy<bool>
+  ViewStack::property_vhomogeneous () -> glib::PropertyProxy<bool>
   {
-    return Glib::PropertyProxy<bool> (this, "vhomogeneous");
+    return glib::PropertyProxy<bool> (this, "vhomogeneous");
   }
 
   auto
-  ViewStack::property_vhomogeneous () const -> Glib::PropertyProxy_ReadOnly<bool>
+  ViewStack::property_vhomogeneous () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "vhomogeneous");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "vhomogeneous");
   }
 
   auto
-  ViewStack::property_visible_child () -> Glib::PropertyProxy<Gtk::Widget*>
+  ViewStack::property_visible_child () -> glib::PropertyProxy<gtk::Widget*>
   {
-    return Glib::PropertyProxy<Gtk::Widget*> (this, "visible-child");
+    return glib::PropertyProxy<gtk::Widget*> (this, "visible-child");
   }
 
   auto
-  ViewStack::property_visible_child () const -> Glib::PropertyProxy_ReadOnly<Gtk::Widget*>
+  ViewStack::property_visible_child () const -> glib::PropertyProxy_ReadOnly<gtk::Widget*>
   {
-    return Glib::PropertyProxy_ReadOnly<Gtk::Widget*> (this, "visible-child");
+    return glib::PropertyProxy_ReadOnly<gtk::Widget*> (this, "visible-child");
   }
 
   auto
-  ViewStack::property_visible_child_name () -> Glib::PropertyProxy<Glib::ustring>
+  ViewStack::property_visible_child_name () -> glib::PropertyProxy<glib::ustring>
   {
-    return Glib::PropertyProxy<Glib::ustring> (this, "visible-child-name");
+    return glib::PropertyProxy<glib::ustring> (this, "visible-child-name");
   }
 
   auto
-  ViewStack::property_visible_child_name () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>
+  ViewStack::property_visible_child_name () const -> glib::PropertyProxy_ReadOnly<glib::ustring>
   {
-    return Glib::PropertyProxy_ReadOnly<Glib::ustring> (this,
+    return glib::PropertyProxy_ReadOnly<glib::ustring> (this,
                                                         "visible-child-name");
   }
 
-} // namespace Adw
+} // namespace adw

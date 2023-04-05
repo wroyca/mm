@@ -14,7 +14,7 @@ namespace
 
   struct SrvTargetListTraits
   {
-    using CppType = Gio::SrvTarget;
+    using CppType = gio::SrvTarget;
     using CType = const GSrvTarget*;
     using CTypeNonConst = GSrvTarget*;
 
@@ -45,37 +45,37 @@ namespace
 
 } // namespace
 
-namespace Gio
+namespace gio
 {
 
   auto
-  Resolver::get_default () -> Glib::RefPtr<Resolver>
+  Resolver::get_default () -> glib::RefPtr<Resolver>
   {
-    return Glib::wrap (g_resolver_get_default ());
+    return glib::wrap (g_resolver_get_default ());
   }
 
   auto
-  Resolver::set_default (const Glib::RefPtr<Resolver>& resolver) -> void
+  Resolver::set_default (const glib::RefPtr<Resolver>& resolver) -> void
   {
-    g_resolver_set_default (Glib::unwrap (resolver));
+    g_resolver_set_default (glib::unwrap (resolver));
   }
 
   auto
-  Resolver::lookup_by_name_async (const Glib::ustring& hostname,
+  Resolver::lookup_by_name_async (const glib::ustring& hostname,
                                   const SlotAsyncReady& slot,
-                                  const Glib::RefPtr<Cancellable>& cancellable) -> void
+                                  const glib::RefPtr<Cancellable>& cancellable) -> void
   {
     const auto slot_copy = new SlotAsyncReady (slot);
 
     g_resolver_lookup_by_name_async (gobj (),
                                      hostname.c_str (),
-                                     Glib::unwrap (cancellable),
+                                     glib::unwrap (cancellable),
                                      &SignalProxy_async_callback,
                                      slot_copy);
   }
 
   auto
-  Resolver::lookup_by_name_async (const Glib::ustring& hostname,
+  Resolver::lookup_by_name_async (const glib::ustring& hostname,
                                   const SlotAsyncReady& slot) -> void
   {
     const auto slot_copy = new SlotAsyncReady (slot);
@@ -89,38 +89,38 @@ namespace Gio
 
   auto
   Resolver::lookup_by_address_async (
-      const Glib::RefPtr<InetAddress>& address,
+      const glib::RefPtr<InetAddress>& address,
       const SlotAsyncReady& slot,
-      const Glib::RefPtr<Cancellable>& cancellable) -> void
+      const glib::RefPtr<Cancellable>& cancellable) -> void
   {
     const auto slot_copy = new SlotAsyncReady (slot);
 
     g_resolver_lookup_by_address_async (gobj (),
-                                        Glib::unwrap (address),
-                                        Glib::unwrap (cancellable),
+                                        glib::unwrap (address),
+                                        glib::unwrap (cancellable),
                                         &SignalProxy_async_callback,
                                         slot_copy);
   }
 
   auto
-  Resolver::lookup_by_address_async (const Glib::RefPtr<InetAddress>& address,
+  Resolver::lookup_by_address_async (const glib::RefPtr<InetAddress>& address,
                                      const SlotAsyncReady& slot) -> void
   {
     const auto slot_copy = new SlotAsyncReady (slot);
 
     g_resolver_lookup_by_address_async (gobj (),
-                                        Glib::unwrap (address),
+                                        glib::unwrap (address),
                                         nullptr,
                                         &SignalProxy_async_callback,
                                         slot_copy);
   }
 
   auto
-  Resolver::lookup_service_async (const Glib::ustring& service,
-                                  const Glib::ustring& protocol,
-                                  const Glib::ustring& domain,
+  Resolver::lookup_service_async (const glib::ustring& service,
+                                  const glib::ustring& protocol,
+                                  const glib::ustring& domain,
                                   const SlotAsyncReady& slot,
-                                  const Glib::RefPtr<Cancellable>& cancellable) -> void
+                                  const glib::RefPtr<Cancellable>& cancellable) -> void
   {
     const auto slot_copy = new SlotAsyncReady (slot);
 
@@ -128,15 +128,15 @@ namespace Gio
                                      service.c_str (),
                                      protocol.c_str (),
                                      domain.c_str (),
-                                     Glib::unwrap (cancellable),
+                                     glib::unwrap (cancellable),
                                      &SignalProxy_async_callback,
                                      slot_copy);
   }
 
   auto
-  Resolver::lookup_service_async (const Glib::ustring& service,
-                                  const Glib::ustring& protocol,
-                                  const Glib::ustring& domain,
+  Resolver::lookup_service_async (const glib::ustring& service,
+                                  const glib::ustring& protocol,
+                                  const glib::ustring& domain,
                                   const SlotAsyncReady& slot) -> void
   {
     const auto slot_copy = new SlotAsyncReady (slot);
@@ -151,10 +151,10 @@ namespace Gio
   }
 
   auto
-  Resolver::lookup_records_async (const Glib::ustring& rrname,
+  Resolver::lookup_records_async (const glib::ustring& rrname,
                                   RecordType record_type,
                                   const SlotAsyncReady& slot,
-                                  const Glib::RefPtr<Cancellable>& cancellable) -> void
+                                  const glib::RefPtr<Cancellable>& cancellable) -> void
   {
     const auto slot_copy = new SlotAsyncReady (slot);
 
@@ -162,13 +162,13 @@ namespace Gio
         gobj (),
         c_str_or_nullptr (rrname),
         static_cast<GResolverRecordType> (record_type),
-        Glib::unwrap (cancellable),
+        glib::unwrap (cancellable),
         &SignalProxy_async_callback,
         slot_copy);
   }
 
   auto
-  Resolver::lookup_records_async (const Glib::ustring& rrname,
+  Resolver::lookup_records_async (const glib::ustring& rrname,
                                   RecordType record_type,
                                   const SlotAsyncReady& slot) -> void
   {
@@ -184,75 +184,75 @@ namespace Gio
   }
 
   auto
-  hostname_to_ascii (const Glib::ustring& hostname) -> std::string
+  hostname_to_ascii (const glib::ustring& hostname) -> std::string
   {
-    return Glib::convert_return_gchar_ptr_to_stdstring (
+    return glib::convert_return_gchar_ptr_to_stdstring (
         g_hostname_to_ascii (hostname.c_str ()));
   }
 
   auto
-  hostname_to_unicode (const Glib::ustring& hostname) -> Glib::ustring
+  hostname_to_unicode (const glib::ustring& hostname) -> glib::ustring
   {
-    return Glib::convert_return_gchar_ptr_to_ustring (
+    return glib::convert_return_gchar_ptr_to_ustring (
         g_hostname_to_unicode (hostname.c_str ()));
   }
 
   auto
-  hostname_is_non_ascii (const Glib::ustring& hostname) -> bool
+  hostname_is_non_ascii (const glib::ustring& hostname) -> bool
   {
     return g_hostname_is_non_ascii (hostname.c_str ());
   }
 
   auto
-  hostname_is_ascii_encoded (const Glib::ustring& hostname) -> bool
+  hostname_is_ascii_encoded (const glib::ustring& hostname) -> bool
   {
     return g_hostname_is_ascii_encoded (hostname.c_str ());
   }
 
   auto
-  hostname_is_ip_address (const Glib::ustring& hostname) -> bool
+  hostname_is_ip_address (const glib::ustring& hostname) -> bool
   {
     return g_hostname_is_ip_address (hostname.c_str ());
   }
 
-} // namespace Gio
+} // namespace gio
 
 namespace
 {
 
-  const Glib::SignalProxyInfo Resolver_signal_reload_info = {
+  const glib::SignalProxyInfo Resolver_signal_reload_info = {
       "reload",
-      (GCallback) &Glib::SignalProxyNormal::slot0_void_callback,
-      (GCallback) &Glib::SignalProxyNormal::slot0_void_callback};
+      (GCallback) &glib::SignalProxyNormal::slot0_void_callback,
+      (GCallback) &glib::SignalProxyNormal::slot0_void_callback};
 
 }
 
 auto
-Glib::Value<Gio::Resolver::RecordType>::value_type () -> GType
+glib::Value<gio::Resolver::RecordType>::value_type () -> GType
 {
   return g_resolver_record_type_get_type ();
 }
 
 auto
-Glib::Value<Gio::Resolver::NameLookupFlags>::value_type () -> GType
+glib::Value<gio::Resolver::NameLookupFlags>::value_type () -> GType
 {
   return g_resolver_name_lookup_flags_get_type ();
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GResolver* object, const bool take_copy) -> RefPtr<Gio::Resolver>
+  wrap (GResolver* object, const bool take_copy) -> RefPtr<gio::Resolver>
   {
-    return Glib::make_refptr_for_instance<Gio::Resolver> (
-        dynamic_cast<Gio::Resolver*> (
+    return glib::make_refptr_for_instance<gio::Resolver> (
+        dynamic_cast<gio::Resolver*> (
             wrap_auto ((GObject*) object, take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gio
+namespace gio
 {
 
   auto
@@ -281,7 +281,7 @@ namespace Gio
   Resolver_Class::reload_callback (GResolver* self) -> void
   {
     const auto obj_base =
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self);
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self);
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -295,7 +295,7 @@ namespace Gio
         }
         catch (...)
         {
-          Glib::exception_handlers_invoke ();
+          glib::exception_handlers_invoke ();
         }
       }
     }
@@ -308,7 +308,7 @@ namespace Gio
   }
 
   auto
-  Resolver_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  Resolver_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new Resolver ((GResolver*) object);
   }
@@ -320,7 +320,7 @@ namespace Gio
     return gobj ();
   }
 
-  Resolver::Resolver (const Glib::ConstructParams& construct_params)
+  Resolver::Resolver (const glib::ConstructParams& construct_params)
     : Object (construct_params)
   {
   }
@@ -359,80 +359,80 @@ namespace Gio
   }
 
   auto
-  Resolver::lookup_by_name (const Glib::ustring& hostname,
-                            const Glib::RefPtr<Cancellable>& cancellable) -> std::vector<Glib::RefPtr<InetAddress>>
+  Resolver::lookup_by_name (const glib::ustring& hostname,
+                            const glib::RefPtr<Cancellable>& cancellable) -> std::vector<glib::RefPtr<InetAddress>>
   {
     GError* gerror = nullptr;
     auto retvalue =
-        Glib::ListHandler<Glib::RefPtr<InetAddress>>::list_to_vector (
+        glib::ListHandler<glib::RefPtr<InetAddress>>::list_to_vector (
             g_resolver_lookup_by_name (gobj (),
                                        hostname.c_str (),
-                                       Glib::unwrap (cancellable),
+                                       glib::unwrap (cancellable),
                                        &gerror),
-            Glib::OWNERSHIP_DEEP);
+            glib::OWNERSHIP_DEEP);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
   auto
-  Resolver::lookup_by_name (const Glib::ustring& hostname) -> std::vector<Glib::RefPtr<InetAddress>>
+  Resolver::lookup_by_name (const glib::ustring& hostname) -> std::vector<glib::RefPtr<InetAddress>>
   {
     GError* gerror = nullptr;
     auto retvalue =
-        Glib::ListHandler<Glib::RefPtr<InetAddress>>::list_to_vector (
+        glib::ListHandler<glib::RefPtr<InetAddress>>::list_to_vector (
             g_resolver_lookup_by_name (gobj (),
                                        hostname.c_str (),
                                        nullptr,
                                        &gerror),
-            Glib::OWNERSHIP_DEEP);
+            glib::OWNERSHIP_DEEP);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
   auto
-  Resolver::lookup_by_name_finish (const Glib::RefPtr<AsyncResult>& result) -> std::vector<Glib::RefPtr<InetAddress>>
+  Resolver::lookup_by_name_finish (const glib::RefPtr<AsyncResult>& result) -> std::vector<glib::RefPtr<InetAddress>>
   {
     GError* gerror = nullptr;
     auto retvalue =
-        Glib::ListHandler<Glib::RefPtr<InetAddress>>::list_to_vector (
+        glib::ListHandler<glib::RefPtr<InetAddress>>::list_to_vector (
             g_resolver_lookup_by_name_finish (gobj (),
-                                              Glib::unwrap (result),
+                                              glib::unwrap (result),
                                               &gerror),
-            Glib::OWNERSHIP_DEEP);
+            glib::OWNERSHIP_DEEP);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
   auto
   Resolver::lookup_by_name_with_flags (
-      const Glib::ustring& hostname,
+      const glib::ustring& hostname,
       NameLookupFlags flags,
-      const Glib::RefPtr<Cancellable>& cancellable) -> std::vector<Glib::RefPtr<InetAddress>>
+      const glib::RefPtr<Cancellable>& cancellable) -> std::vector<glib::RefPtr<InetAddress>>
   {
     GError* gerror = nullptr;
     auto retvalue =
-        Glib::ListHandler<Glib::RefPtr<InetAddress>>::list_to_vector (
+        glib::ListHandler<glib::RefPtr<InetAddress>>::list_to_vector (
             g_resolver_lookup_by_name_with_flags (
                 gobj (),
                 hostname.c_str (),
                 static_cast<GResolverNameLookupFlags> (flags),
-                Glib::unwrap (cancellable),
+                glib::unwrap (cancellable),
                 &gerror),
-            Glib::OWNERSHIP_DEEP);
+            glib::OWNERSHIP_DEEP);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
   auto
   Resolver::lookup_by_name_with_flags_async (
-      const Glib::ustring& hostname,
+      const glib::ustring& hostname,
       NameLookupFlags flags,
       const SlotAsyncReady& slot,
-      const Glib::RefPtr<Cancellable>& cancellable) -> void
+      const glib::RefPtr<Cancellable>& cancellable) -> void
   {
     const auto slot_copy = new SlotAsyncReady (slot);
 
@@ -440,180 +440,180 @@ namespace Gio
         gobj (),
         hostname.c_str (),
         static_cast<GResolverNameLookupFlags> (flags),
-        Glib::unwrap (cancellable),
+        glib::unwrap (cancellable),
         &SignalProxy_async_callback,
         slot_copy);
   }
 
   auto
   Resolver::lookup_by_name_with_flags_finish (
-      const Glib::RefPtr<AsyncResult>& result) -> std::vector<Glib::RefPtr<InetAddress>>
+      const glib::RefPtr<AsyncResult>& result) -> std::vector<glib::RefPtr<InetAddress>>
   {
     GError* gerror = nullptr;
     auto retvalue =
-        Glib::ListHandler<Glib::RefPtr<InetAddress>>::list_to_vector (
+        glib::ListHandler<glib::RefPtr<InetAddress>>::list_to_vector (
             g_resolver_lookup_by_name_with_flags_finish (gobj (),
-                                                         Glib::unwrap (result),
+                                                         glib::unwrap (result),
                                                          &gerror),
-            Glib::OWNERSHIP_DEEP);
+            glib::OWNERSHIP_DEEP);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
   auto
-  Resolver::lookup_by_address (const Glib::RefPtr<InetAddress>& address,
-                               const Glib::RefPtr<Cancellable>& cancellable) -> Glib::ustring
+  Resolver::lookup_by_address (const glib::RefPtr<InetAddress>& address,
+                               const glib::RefPtr<Cancellable>& cancellable) -> glib::ustring
   {
     GError* gerror = nullptr;
-    auto retvalue = Glib::convert_return_gchar_ptr_to_ustring (
+    auto retvalue = glib::convert_return_gchar_ptr_to_ustring (
         g_resolver_lookup_by_address (gobj (),
-                                      Glib::unwrap (address),
-                                      Glib::unwrap (cancellable),
+                                      glib::unwrap (address),
+                                      glib::unwrap (cancellable),
                                       &gerror));
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
   auto
-  Resolver::lookup_by_address (const Glib::RefPtr<InetAddress>& address) -> Glib::ustring
+  Resolver::lookup_by_address (const glib::RefPtr<InetAddress>& address) -> glib::ustring
   {
     GError* gerror = nullptr;
-    auto retvalue = Glib::convert_return_gchar_ptr_to_ustring (
+    auto retvalue = glib::convert_return_gchar_ptr_to_ustring (
         g_resolver_lookup_by_address (gobj (),
-                                      Glib::unwrap (address),
+                                      glib::unwrap (address),
                                       nullptr,
                                       &gerror));
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
   auto
-  Resolver::lookup_by_address_finish (const Glib::RefPtr<AsyncResult>& result) -> Glib::ustring
+  Resolver::lookup_by_address_finish (const glib::RefPtr<AsyncResult>& result) -> glib::ustring
   {
     GError* gerror = nullptr;
-    auto retvalue = Glib::convert_return_gchar_ptr_to_ustring (
+    auto retvalue = glib::convert_return_gchar_ptr_to_ustring (
         g_resolver_lookup_by_address_finish (gobj (),
-                                             Glib::unwrap (result),
+                                             glib::unwrap (result),
                                              &gerror));
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
   auto
-  Resolver::lookup_service (const Glib::ustring& service,
-                            const Glib::ustring& protocol,
-                            const Glib::ustring& domain,
-                            const Glib::RefPtr<Cancellable>& cancellable) -> std::vector<SrvTarget>
+  Resolver::lookup_service (const glib::ustring& service,
+                            const glib::ustring& protocol,
+                            const glib::ustring& domain,
+                            const glib::RefPtr<Cancellable>& cancellable) -> std::vector<SrvTarget>
   {
     GError* gerror = nullptr;
     auto retvalue =
-        Glib::ListHandler<SrvTarget, SrvTargetListTraits>::list_to_vector (
+        glib::ListHandler<SrvTarget, SrvTargetListTraits>::list_to_vector (
             g_resolver_lookup_service (gobj (),
                                        service.c_str (),
                                        protocol.c_str (),
                                        domain.c_str (),
-                                       Glib::unwrap (cancellable),
+                                       glib::unwrap (cancellable),
                                        &gerror),
-            Glib::OWNERSHIP_DEEP);
+            glib::OWNERSHIP_DEEP);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
   auto
-  Resolver::lookup_service (const Glib::ustring& service,
-                            const Glib::ustring& protocol,
-                            const Glib::ustring& domain) -> std::vector<SrvTarget>
+  Resolver::lookup_service (const glib::ustring& service,
+                            const glib::ustring& protocol,
+                            const glib::ustring& domain) -> std::vector<SrvTarget>
   {
     GError* gerror = nullptr;
     auto retvalue =
-        Glib::ListHandler<SrvTarget, SrvTargetListTraits>::list_to_vector (
+        glib::ListHandler<SrvTarget, SrvTargetListTraits>::list_to_vector (
             g_resolver_lookup_service (gobj (),
                                        service.c_str (),
                                        protocol.c_str (),
                                        domain.c_str (),
                                        nullptr,
                                        &gerror),
-            Glib::OWNERSHIP_DEEP);
+            glib::OWNERSHIP_DEEP);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
   auto
-  Resolver::lookup_service_finish (const Glib::RefPtr<AsyncResult>& result) -> std::vector<SrvTarget>
+  Resolver::lookup_service_finish (const glib::RefPtr<AsyncResult>& result) -> std::vector<SrvTarget>
   {
     GError* gerror = nullptr;
     auto retvalue =
-        Glib::ListHandler<SrvTarget, SrvTargetListTraits>::list_to_vector (
+        glib::ListHandler<SrvTarget, SrvTargetListTraits>::list_to_vector (
             g_resolver_lookup_service_finish (gobj (),
-                                              Glib::unwrap (result),
+                                              glib::unwrap (result),
                                               &gerror),
-            Glib::OWNERSHIP_DEEP);
+            glib::OWNERSHIP_DEEP);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
   auto
-  Resolver::lookup_records (const Glib::ustring& rrname,
+  Resolver::lookup_records (const glib::ustring& rrname,
                             RecordType record_type,
-                            const Glib::RefPtr<Cancellable>& cancellable) -> std::vector<Glib::VariantContainerBase>
+                            const glib::RefPtr<Cancellable>& cancellable) -> std::vector<glib::VariantContainerBase>
   {
     GError* gerror = nullptr;
     auto retvalue =
-        Glib::ListHandler<Glib::VariantContainerBase>::list_to_vector (
+        glib::ListHandler<glib::VariantContainerBase>::list_to_vector (
             g_resolver_lookup_records (
                 gobj (),
                 rrname.c_str (),
                 static_cast<GResolverRecordType> (record_type),
-                Glib::unwrap (cancellable),
+                glib::unwrap (cancellable),
                 &gerror),
-            Glib::OWNERSHIP_DEEP);
+            glib::OWNERSHIP_DEEP);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
   auto
-  Resolver::lookup_records (const Glib::ustring& rrname, RecordType record_type) -> std::vector<Glib::VariantContainerBase>
+  Resolver::lookup_records (const glib::ustring& rrname, RecordType record_type) -> std::vector<glib::VariantContainerBase>
   {
     GError* gerror = nullptr;
     auto retvalue =
-        Glib::ListHandler<Glib::VariantContainerBase>::list_to_vector (
+        glib::ListHandler<glib::VariantContainerBase>::list_to_vector (
             g_resolver_lookup_records (
                 gobj (),
                 rrname.c_str (),
                 static_cast<GResolverRecordType> (record_type),
                 nullptr,
                 &gerror),
-            Glib::OWNERSHIP_DEEP);
+            glib::OWNERSHIP_DEEP);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
   auto
-  Resolver::lookup_records_finish (const Glib::RefPtr<AsyncResult>& result) -> std::vector<Glib::VariantContainerBase>
+  Resolver::lookup_records_finish (const glib::RefPtr<AsyncResult>& result) -> std::vector<glib::VariantContainerBase>
   {
     GError* gerror = nullptr;
     auto retvalue =
-        Glib::ListHandler<Glib::VariantContainerBase>::list_to_vector (
+        glib::ListHandler<glib::VariantContainerBase>::list_to_vector (
             g_resolver_lookup_records_finish (gobj (),
-                                              Glib::unwrap (result),
+                                              glib::unwrap (result),
                                               &gerror),
-            Glib::OWNERSHIP_DEEP);
+            glib::OWNERSHIP_DEEP);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
   auto
-  Resolver::signal_reload () -> Glib::SignalProxy<void ()>
+  Resolver::signal_reload () -> glib::SignalProxy<void ()>
   {
     return {this, &Resolver_signal_reload_info};
   }
@@ -628,4 +628,4 @@ namespace Gio
       (*base->reload) (gobj ());
   }
 
-} // namespace Gio
+} // namespace gio

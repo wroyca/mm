@@ -20,16 +20,16 @@ using AdwSwipeableClass = struct _AdwSwipeableClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Adw
+namespace adw
 {
   class LIBMM_ADW_SYMEXPORT Swipeable_Class;
 }
 #endif
 
-namespace Adw
+namespace adw
 {
 
-  class LIBMM_ADW_SYMEXPORT Swipeable : public Glib::Interface
+  class LIBMM_ADW_SYMEXPORT Swipeable : public glib::Interface
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -53,7 +53,7 @@ namespace Adw
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
-    explicit Swipeable (const Glib::Interface_Class& interface_class);
+    explicit Swipeable (const glib::Interface_Class& interface_class);
 
   public:
     explicit Swipeable (AdwSwipeable* castitem);
@@ -110,10 +110,10 @@ namespace Adw
           const_cast<AdwSwipeable*> (gobj ()),
           &snap_points);
       if (p)
-        return Glib::ArrayHandler<double>::array_to_vector (
+        return glib::ArrayHandler<double>::array_to_vector (
             p,
             (size_t) snap_points,
-            Glib::OWNERSHIP_DEEP);
+            glib::OWNERSHIP_DEEP);
       else
         return {};
     }
@@ -121,20 +121,20 @@ namespace Adw
     auto
     get_swipe_area (NavigationDirection navigation_direction,
                     bool is_drag,
-                    Gdk::Rectangle& rect) const -> void;
+                    gdk::Rectangle& rect) const -> void;
 
   public:
   public:
   protected:
   };
 
-} // namespace Adw
+} // namespace adw
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (AdwSwipeable* object, bool take_copy = false) -> Glib::RefPtr<Adw::Swipeable>;
+  wrap (AdwSwipeable* object, bool take_copy = false) -> glib::RefPtr<adw::Swipeable>;
 
 }
 

@@ -10,10 +10,10 @@
 
 #include <libmm/glib/error.hxx>
 
-namespace Gio::DBus
+namespace gio::DBus
 {
 
-  class Error : public Glib::Error
+  class Error : public glib::Error
   {
   public:
     enum Code
@@ -66,7 +66,7 @@ namespace Gio::DBus
     };
 
     LIBMM_GIO_SYMEXPORT
-    Error (Code error_code, const Glib::ustring& error_message);
+    Error (Code error_code, const glib::ustring& error_message);
     LIBMM_GIO_SYMEXPORT explicit Error (GError* gobject);
     LIBMM_GIO_SYMEXPORT auto
     code () const -> Code;
@@ -82,6 +82,6 @@ namespace Gio::DBus
 #endif
   };
 
-} // namespace Gio::DBus
+} // namespace gio::DBus
 
 #endif

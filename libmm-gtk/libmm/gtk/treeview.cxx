@@ -24,22 +24,22 @@
   #include <libmm/gtk/treeview_private.hxx>
   #include <libmm/gtk/treeviewcolumn.hxx>
 
-using GridLines = Gtk::TreeView::GridLines;
+using GridLines = gtk::TreeView::GridLines;
 
 static auto
 SignalProxy_Mapping_gtk_callback (GtkTreeView* tree_view,
                                   GtkTreePath* path,
                                   void* data) -> void
 {
-  auto the_slot = static_cast<Gtk::TreeView::SlotMapping*> (data);
+  auto the_slot = static_cast<gtk::TreeView::SlotMapping*> (data);
 
   try
   {
-    (*the_slot) (Glib::wrap (tree_view), Gtk::TreePath (path, true));
+    (*the_slot) (glib::wrap (tree_view), gtk::TreePath (path, true));
   }
   catch (...)
   {
-    Glib::exception_handlers_invoke ();
+    glib::exception_handlers_invoke ();
   }
 }
 
@@ -50,18 +50,18 @@ SignalProxy_SearchEqual_gtk_callback (GtkTreeModel* model,
                                       GtkTreeIter* iter,
                                       void* data) -> gboolean
 {
-  auto the_slot = static_cast<Gtk::TreeView::SlotSearchEqual*> (data);
+  auto the_slot = static_cast<gtk::TreeView::SlotSearchEqual*> (data);
 
   try
   {
-    return (*the_slot) (Glib::wrap (model, true),
+    return (*the_slot) (glib::wrap (model, true),
                         column,
                         key,
-                        Gtk::TreeModel::const_iterator (model, iter));
+                        gtk::TreeModel::const_iterator (model, iter));
   }
   catch (...)
   {
-    Glib::exception_handlers_invoke ();
+    glib::exception_handlers_invoke ();
   }
 
   return 0;
@@ -70,7 +70,7 @@ SignalProxy_SearchEqual_gtk_callback (GtkTreeModel* model,
 static auto
 SignalProxy_SearchEqual_gtk_callback_destroy (void* data) -> void
 {
-  delete static_cast<Gtk::TreeView::SlotSearchEqual*> (data);
+  delete static_cast<gtk::TreeView::SlotSearchEqual*> (data);
 }
 
 static auto
@@ -80,18 +80,18 @@ SignalProxy_ColumnDrop_gtk_callback (GtkTreeView* tree_view,
                                      GtkTreeViewColumn* next_column,
                                      void* data) -> gboolean
 {
-  auto the_slot = static_cast<Gtk::TreeView::SlotColumnDrop*> (data);
+  auto the_slot = static_cast<gtk::TreeView::SlotColumnDrop*> (data);
 
   try
   {
-    return (*the_slot) (Glib::wrap (tree_view),
-                        Glib::wrap (column),
-                        Glib::wrap (prev_column),
-                        Glib::wrap (next_column));
+    return (*the_slot) (glib::wrap (tree_view),
+                        glib::wrap (column),
+                        glib::wrap (prev_column),
+                        glib::wrap (next_column));
   }
   catch (...)
   {
-    Glib::exception_handlers_invoke ();
+    glib::exception_handlers_invoke ();
   }
 
   return 0;
@@ -100,15 +100,15 @@ SignalProxy_ColumnDrop_gtk_callback (GtkTreeView* tree_view,
 static auto
 SignalProxy_ColumnDrop_gtk_callback_destroy (void* data) -> void
 {
-  delete static_cast<Gtk::TreeView::SlotColumnDrop*> (data);
+  delete static_cast<gtk::TreeView::SlotColumnDrop*> (data);
 }
 
-namespace Gtk
+namespace gtk
 {
 
   auto
   TreeView::insert_column_with_data_func (int position,
-                                          const Glib::ustring& title,
+                                          const glib::ustring& title,
                                           CellRenderer& cell,
                                           const SlotTreeCellData& slot) -> int
   {
@@ -141,24 +141,24 @@ namespace Gtk
     gtk_tree_view_get_cursor (gobj (), &pTreePath, &pTreeViewColumn);
 
     path = TreeModel::Path (pTreePath, false);
-    focus_column = Glib::wrap (pTreeViewColumn);
+    focus_column = glib::wrap (pTreeViewColumn);
   }
 
   auto
-  TreeView::enable_model_drag_source (Gdk::ModifierType start_button_mask,
-                                      Gdk::DragAction actions) -> void
+  TreeView::enable_model_drag_source (gdk::ModifierType start_button_mask,
+                                      gdk::DragAction actions) -> void
   {
     enable_model_drag_source (
-        Gdk::ContentFormats::create (GTK_TYPE_TREE_ROW_DATA),
+        gdk::ContentFormats::create (GTK_TYPE_TREE_ROW_DATA),
         start_button_mask,
         actions);
   }
 
   auto
-  TreeView::enable_model_drag_dest (Gdk::DragAction actions) -> void
+  TreeView::enable_model_drag_dest (gdk::DragAction actions) -> void
   {
     enable_model_drag_dest (
-        Gdk::ContentFormats::create (GTK_TYPE_TREE_ROW_DATA),
+        gdk::ContentFormats::create (GTK_TYPE_TREE_ROW_DATA),
         actions);
   }
 
@@ -182,7 +182,7 @@ namespace Gtk
         &cell_y);
 
     path = TreeModel::Path (pTreePath, false);
-    column = Glib::wrap (pTreeViewColumn);
+    column = glib::wrap (pTreeViewColumn);
     return result;
   }
 
@@ -204,7 +204,7 @@ namespace Gtk
   }
 
   auto
-  TreeView::insert_column (const Glib::ustring& title,
+  TreeView::insert_column (const glib::ustring& title,
                            CellRenderer& cell,
                            int position) -> int
   {
@@ -217,7 +217,7 @@ namespace Gtk
   }
 
   auto
-  TreeView::append_column (const Glib::ustring& title, CellRenderer& cell) -> int
+  TreeView::append_column (const glib::ustring& title, CellRenderer& cell) -> int
   {
     return insert_column (title, cell, -1);
   }
@@ -360,15 +360,15 @@ namespace Gtk
   auto
   TreeView::remove_all_columns () -> void
   {
-    std::vector<Gtk::TreeView::Column*> vecViewColumns (get_columns ());
+    std::vector<gtk::TreeView::Column*> vecViewColumns (get_columns ());
 
-    for (std::vector<Gtk::TreeView::Column*>::iterator
+    for (std::vector<gtk::TreeView::Column*>::iterator
              iter (vecViewColumns.begin ()),
          columns_end (vecViewColumns.end ());
          iter != columns_end;
          ++iter)
     {
-      Gtk::TreeView::Column* pViewColumn (*iter);
+      gtk::TreeView::Column* pViewColumn (*iter);
 
       if (pViewColumn)
       {
@@ -402,11 +402,11 @@ namespace Gtk
 
   auto
   TreeView::_auto_store_on_cellrenderer_toggle_edited_with_model (
-      const Glib::ustring& path_string,
+      const glib::ustring& path_string,
       int model_column,
-      const Glib::RefPtr<Gtk::TreeModel>& model) -> void
+      const glib::RefPtr<gtk::TreeModel>& model) -> void
   {
-    Gtk::TreePath path (path_string);
+    gtk::TreePath path (path_string);
 
     if (model)
     {
@@ -480,7 +480,7 @@ namespace Gtk
                                                          &cpath,
                                                          nullptr);
 
-    path = Glib::wrap (cpath, false);
+    path = glib::wrap (cpath, false);
 
     return result;
   }
@@ -489,7 +489,7 @@ namespace Gtk
   TreeView::get_tooltip_context_iter (int x,
                                       int y,
                                       bool keyboard_tip,
-                                      Gtk::TreeModel::iterator& iter) -> bool
+                                      gtk::TreeModel::iterator& iter) -> bool
   {
     GtkTreeIter src_iter;
 
@@ -527,7 +527,7 @@ namespace Gtk
         &(cell_y));
 
     path = TreePath (cpath, false);
-    column = Glib::wrap (pcolumn);
+    column = glib::wrap (pcolumn);
     return result;
   }
 
@@ -563,21 +563,21 @@ namespace Gtk
     template <>
     auto
     _connect_auto_store_editable_signal_handler<bool> (
-        Gtk::TreeView* this_p,
-        Gtk::CellRenderer* pCellRenderer,
-        const Gtk::TreeModelColumn<bool>& model_column) -> void
+        gtk::TreeView* this_p,
+        gtk::CellRenderer* pCellRenderer,
+        const gtk::TreeModelColumn<bool>& model_column) -> void
     {
-      Gtk::CellRendererToggle* pCellToggle =
-          dynamic_cast<Gtk::CellRendererToggle*> (pCellRenderer);
+      gtk::CellRendererToggle* pCellToggle =
+          dynamic_cast<gtk::CellRendererToggle*> (pCellRenderer);
       if (pCellToggle)
       {
         pCellToggle->property_activatable () = true;
 
-        sigc::slot<void (const Glib::ustring&, int)> slot_temp =
+        sigc::slot<void (const glib::ustring&, int)> slot_temp =
             sigc::bind<-1> (
                 sigc::mem_fun (
                     *this_p,
-                    &Gtk::TreeView::
+                    &gtk::TreeView::
                         _auto_store_on_cellrenderer_toggle_edited_with_model),
                 this_p->get_model ());
 
@@ -589,9 +589,9 @@ namespace Gtk
     template <>
     auto
     _connect_auto_store_editable_signal_handler<int> (
-        Gtk::TreeView* this_p,
-        Gtk::CellRenderer* pCellRenderer,
-        const Gtk::TreeModelColumn<int>& model_column) -> void
+        gtk::TreeView* this_p,
+        gtk::CellRenderer* pCellRenderer,
+        const gtk::TreeModelColumn<int>& model_column) -> void
     {
       _connect_auto_store_numeric_editable_signal_handler<int> (this_p,
                                                                 pCellRenderer,
@@ -601,9 +601,9 @@ namespace Gtk
     template <>
     auto
     _connect_auto_store_editable_signal_handler<unsigned int> (
-        Gtk::TreeView* this_p,
-        Gtk::CellRenderer* pCellRenderer,
-        const Gtk::TreeModelColumn<unsigned int>& model_column) -> void
+        gtk::TreeView* this_p,
+        gtk::CellRenderer* pCellRenderer,
+        const gtk::TreeModelColumn<unsigned int>& model_column) -> void
     {
       _connect_auto_store_numeric_editable_signal_handler<unsigned int> (
           this_p,
@@ -614,9 +614,9 @@ namespace Gtk
     template <>
     auto
     _connect_auto_store_editable_signal_handler<long> (
-        Gtk::TreeView* this_p,
-        Gtk::CellRenderer* pCellRenderer,
-        const Gtk::TreeModelColumn<long>& model_column) -> void
+        gtk::TreeView* this_p,
+        gtk::CellRenderer* pCellRenderer,
+        const gtk::TreeModelColumn<long>& model_column) -> void
     {
       _connect_auto_store_numeric_editable_signal_handler<long> (this_p,
                                                                  pCellRenderer,
@@ -626,9 +626,9 @@ namespace Gtk
     template <>
     auto
     _connect_auto_store_editable_signal_handler<unsigned long> (
-        Gtk::TreeView* this_p,
-        Gtk::CellRenderer* pCellRenderer,
-        const Gtk::TreeModelColumn<unsigned long>& model_column) -> void
+        gtk::TreeView* this_p,
+        gtk::CellRenderer* pCellRenderer,
+        const gtk::TreeModelColumn<unsigned long>& model_column) -> void
     {
       _connect_auto_store_numeric_editable_signal_handler<unsigned long> (
           this_p,
@@ -639,9 +639,9 @@ namespace Gtk
     template <>
     auto
     _connect_auto_store_editable_signal_handler<float> (
-        Gtk::TreeView* this_p,
-        Gtk::CellRenderer* pCellRenderer,
-        const Gtk::TreeModelColumn<float>& model_column) -> void
+        gtk::TreeView* this_p,
+        gtk::CellRenderer* pCellRenderer,
+        const gtk::TreeModelColumn<float>& model_column) -> void
     {
       _connect_auto_store_numeric_editable_signal_handler<float> (this_p,
                                                                   pCellRenderer,
@@ -651,9 +651,9 @@ namespace Gtk
     template <>
     auto
     _connect_auto_store_editable_signal_handler<double> (
-        Gtk::TreeView* this_p,
-        Gtk::CellRenderer* pCellRenderer,
-        const Gtk::TreeModelColumn<double>& model_column) -> void
+        gtk::TreeView* this_p,
+        gtk::CellRenderer* pCellRenderer,
+        const gtk::TreeModelColumn<double>& model_column) -> void
     {
       _connect_auto_store_numeric_editable_signal_handler<double> (
           this_p,
@@ -663,7 +663,7 @@ namespace Gtk
 
     template <>
     auto
-    _convert_from_ustring_to_numeric_type<float> (const Glib::ustring& text)
+    _convert_from_ustring_to_numeric_type<float> (const glib::ustring& text)
         -> float
     {
       return std::strtof (text.c_str (), nullptr);
@@ -672,14 +672,14 @@ namespace Gtk
     template <>
     auto
     _convert_from_ustring_to_numeric_type<long double> (
-        const Glib::ustring& text) -> long double
+        const glib::ustring& text) -> long double
     {
       return std::strtold (text.c_str (), nullptr);
     }
 
     template <>
     auto
-    _convert_from_ustring_to_numeric_type<short> (const Glib::ustring& text)
+    _convert_from_ustring_to_numeric_type<short> (const glib::ustring& text)
         -> short
     {
       const auto result = std::strtol (text.c_str (), nullptr, 0);
@@ -691,7 +691,7 @@ namespace Gtk
     template <>
     auto
     _convert_from_ustring_to_numeric_type<unsigned short> (
-        const Glib::ustring& text) -> unsigned short
+        const glib::ustring& text) -> unsigned short
     {
       const auto result = std::strtoul (text.c_str (), nullptr, 0);
       return (result > USHRT_MAX) ? USHRT_MAX :
@@ -700,7 +700,7 @@ namespace Gtk
 
     template <>
     auto
-    _convert_from_ustring_to_numeric_type<int> (const Glib::ustring& text)
+    _convert_from_ustring_to_numeric_type<int> (const glib::ustring& text)
         -> int
     {
       const auto result = std::strtol (text.c_str (), nullptr, 0);
@@ -712,7 +712,7 @@ namespace Gtk
     template <>
     auto
     _convert_from_ustring_to_numeric_type<unsigned int> (
-        const Glib::ustring& text) -> unsigned int
+        const glib::ustring& text) -> unsigned int
     {
       const auto result = std::strtoul (text.c_str (), nullptr, 0);
       return (result > UINT_MAX) ? UINT_MAX :
@@ -721,7 +721,7 @@ namespace Gtk
 
     template <>
     auto
-    _convert_from_ustring_to_numeric_type<long> (const Glib::ustring& text)
+    _convert_from_ustring_to_numeric_type<long> (const glib::ustring& text)
         -> long
     {
       return std::strtol (text.c_str (), nullptr, 0);
@@ -730,14 +730,14 @@ namespace Gtk
     template <>
     auto
     _convert_from_ustring_to_numeric_type<unsigned long> (
-        const Glib::ustring& text) -> unsigned long
+        const glib::ustring& text) -> unsigned long
     {
       return std::strtoul (text.c_str (), nullptr, 0);
     }
 
     template <>
     auto
-    _convert_from_ustring_to_numeric_type<long long> (const Glib::ustring& text)
+    _convert_from_ustring_to_numeric_type<long long> (const glib::ustring& text)
         -> long long
     {
       return std::strtoll (text.c_str (), nullptr, 0);
@@ -746,14 +746,14 @@ namespace Gtk
     template <>
     auto
     _convert_from_ustring_to_numeric_type<unsigned long long> (
-        const Glib::ustring& text) -> unsigned long long
+        const glib::ustring& text) -> unsigned long long
     {
       return std::strtoull (text.c_str (), nullptr, 0);
     }
 
   } // namespace TreeView_Private
 
-} // namespace Gtk
+} // namespace gtk
 
 namespace
 {
@@ -764,28 +764,28 @@ namespace
                                           GtkTreeViewColumn* p1,
                                           void* data) -> void
   {
-    using namespace Gtk;
+    using namespace gtk;
     using SlotType = sigc::slot<void (const TreeModel::Path&, TreeViewColumn*)>;
 
     auto obj = dynamic_cast<TreeView*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
     {
       try
       {
-        if (const auto slot = Glib::SignalProxyNormal::data_to_slot (data))
-          (*static_cast<SlotType*> (slot)) (Gtk::TreePath (p0, true),
-                                            Glib::wrap (p1));
+        if (const auto slot = glib::SignalProxyNormal::data_to_slot (data))
+          (*static_cast<SlotType*> (slot)) (gtk::TreePath (p0, true),
+                                            glib::wrap (p1));
       }
       catch (...)
       {
-        Glib::exception_handlers_invoke ();
+        glib::exception_handlers_invoke ();
       }
     }
   }
 
-  static const Glib::SignalProxyInfo TreeView_signal_row_activated_info = {
+  static const glib::SignalProxyInfo TreeView_signal_row_activated_info = {
       "row-activated",
       (GCallback) &TreeView_signal_row_activated_callback,
       (GCallback) &TreeView_signal_row_activated_callback};
@@ -796,25 +796,25 @@ namespace
                                             GtkTreePath* p1,
                                             void* data) -> gboolean
   {
-    using namespace Gtk;
+    using namespace gtk;
     using SlotType =
         sigc::slot<bool (const TreeModel::iterator&, const TreeModel::Path&)>;
 
     auto obj = dynamic_cast<TreeView*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
     {
       try
       {
-        if (const auto slot = Glib::SignalProxyNormal::data_to_slot (data))
+        if (const auto slot = glib::SignalProxyNormal::data_to_slot (data))
           return static_cast<int> ((*static_cast<SlotType*> (slot)) (
               TreeModel::iterator (gtk_tree_view_get_model (self), p0),
-              Gtk::TreePath (p1, true)));
+              gtk::TreePath (p1, true)));
       }
       catch (...)
       {
-        Glib::exception_handlers_invoke ();
+        glib::exception_handlers_invoke ();
       }
     }
 
@@ -828,25 +828,25 @@ namespace
                                                    GtkTreePath* p1,
                                                    void* data) -> gboolean
   {
-    using namespace Gtk;
+    using namespace gtk;
     using SlotType =
         sigc::slot<void (const TreeModel::iterator&, const TreeModel::Path&)>;
 
     auto obj = dynamic_cast<TreeView*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
     {
       try
       {
-        if (const auto slot = Glib::SignalProxyNormal::data_to_slot (data))
+        if (const auto slot = glib::SignalProxyNormal::data_to_slot (data))
           (*static_cast<SlotType*> (slot)) (
               TreeModel::iterator (gtk_tree_view_get_model (self), p0),
-              Gtk::TreePath (p1, true));
+              gtk::TreePath (p1, true));
       }
       catch (...)
       {
-        Glib::exception_handlers_invoke ();
+        glib::exception_handlers_invoke ();
       }
     }
 
@@ -854,7 +854,7 @@ namespace
     return RType ();
   }
 
-  static const Glib::SignalProxyInfo TreeView_signal_test_expand_row_info = {
+  static const glib::SignalProxyInfo TreeView_signal_test_expand_row_info = {
       "test-expand-row",
       (GCallback) &TreeView_signal_test_expand_row_callback,
       (GCallback) &TreeView_signal_test_expand_row_notify_callback};
@@ -865,25 +865,25 @@ namespace
                                               GtkTreePath* p1,
                                               void* data) -> gboolean
   {
-    using namespace Gtk;
+    using namespace gtk;
     using SlotType =
         sigc::slot<bool (const TreeModel::iterator&, const TreeModel::Path&)>;
 
     auto obj = dynamic_cast<TreeView*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
     {
       try
       {
-        if (const auto slot = Glib::SignalProxyNormal::data_to_slot (data))
+        if (const auto slot = glib::SignalProxyNormal::data_to_slot (data))
           return static_cast<int> ((*static_cast<SlotType*> (slot)) (
               TreeModel::iterator (gtk_tree_view_get_model (self), p0),
-              Gtk::TreePath (p1, true)));
+              gtk::TreePath (p1, true)));
       }
       catch (...)
       {
-        Glib::exception_handlers_invoke ();
+        glib::exception_handlers_invoke ();
       }
     }
 
@@ -897,25 +897,25 @@ namespace
                                                      GtkTreePath* p1,
                                                      void* data) -> gboolean
   {
-    using namespace Gtk;
+    using namespace gtk;
     using SlotType =
         sigc::slot<void (const TreeModel::iterator&, const TreeModel::Path&)>;
 
     auto obj = dynamic_cast<TreeView*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
     {
       try
       {
-        if (const auto slot = Glib::SignalProxyNormal::data_to_slot (data))
+        if (const auto slot = glib::SignalProxyNormal::data_to_slot (data))
           (*static_cast<SlotType*> (slot)) (
               TreeModel::iterator (gtk_tree_view_get_model (self), p0),
-              Gtk::TreePath (p1, true));
+              gtk::TreePath (p1, true));
       }
       catch (...)
       {
-        Glib::exception_handlers_invoke ();
+        glib::exception_handlers_invoke ();
       }
     }
 
@@ -923,7 +923,7 @@ namespace
     return RType ();
   }
 
-  static const Glib::SignalProxyInfo TreeView_signal_test_collapse_row_info = {
+  static const glib::SignalProxyInfo TreeView_signal_test_collapse_row_info = {
       "test-collapse-row",
       (GCallback) &TreeView_signal_test_collapse_row_callback,
       (GCallback) &TreeView_signal_test_collapse_row_notify_callback};
@@ -934,30 +934,30 @@ namespace
                                          GtkTreePath* p1,
                                          void* data) -> void
   {
-    using namespace Gtk;
+    using namespace gtk;
     using SlotType =
         sigc::slot<void (const TreeModel::iterator&, const TreeModel::Path&)>;
 
     auto obj = dynamic_cast<TreeView*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
     {
       try
       {
-        if (const auto slot = Glib::SignalProxyNormal::data_to_slot (data))
+        if (const auto slot = glib::SignalProxyNormal::data_to_slot (data))
           (*static_cast<SlotType*> (slot)) (
               TreeModel::iterator (gtk_tree_view_get_model (self), p0),
-              Gtk::TreePath (p1, true));
+              gtk::TreePath (p1, true));
       }
       catch (...)
       {
-        Glib::exception_handlers_invoke ();
+        glib::exception_handlers_invoke ();
       }
     }
   }
 
-  static const Glib::SignalProxyInfo TreeView_signal_row_expanded_info = {
+  static const glib::SignalProxyInfo TreeView_signal_row_expanded_info = {
       "row-expanded",
       (GCallback) &TreeView_signal_row_expanded_callback,
       (GCallback) &TreeView_signal_row_expanded_callback};
@@ -968,75 +968,75 @@ namespace
                                           GtkTreePath* p1,
                                           void* data) -> void
   {
-    using namespace Gtk;
+    using namespace gtk;
     using SlotType =
         sigc::slot<void (const TreeModel::iterator&, const TreeModel::Path&)>;
 
     auto obj = dynamic_cast<TreeView*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
     {
       try
       {
-        if (const auto slot = Glib::SignalProxyNormal::data_to_slot (data))
+        if (const auto slot = glib::SignalProxyNormal::data_to_slot (data))
           (*static_cast<SlotType*> (slot)) (
               TreeModel::iterator (gtk_tree_view_get_model (self), p0),
-              Gtk::TreePath (p1, true));
+              gtk::TreePath (p1, true));
       }
       catch (...)
       {
-        Glib::exception_handlers_invoke ();
+        glib::exception_handlers_invoke ();
       }
     }
   }
 
-  static const Glib::SignalProxyInfo TreeView_signal_row_collapsed_info = {
+  static const glib::SignalProxyInfo TreeView_signal_row_collapsed_info = {
       "row-collapsed",
       (GCallback) &TreeView_signal_row_collapsed_callback,
       (GCallback) &TreeView_signal_row_collapsed_callback};
 
-  static const Glib::SignalProxyInfo TreeView_signal_cursor_changed_info = {
+  static const glib::SignalProxyInfo TreeView_signal_cursor_changed_info = {
       "cursor-changed",
-      (GCallback) &Glib::SignalProxyNormal::slot0_void_callback,
-      (GCallback) &Glib::SignalProxyNormal::slot0_void_callback};
+      (GCallback) &glib::SignalProxyNormal::slot0_void_callback,
+      (GCallback) &glib::SignalProxyNormal::slot0_void_callback};
 
-  static const Glib::SignalProxyInfo TreeView_signal_columns_changed_info = {
+  static const glib::SignalProxyInfo TreeView_signal_columns_changed_info = {
       "columns-changed",
-      (GCallback) &Glib::SignalProxyNormal::slot0_void_callback,
-      (GCallback) &Glib::SignalProxyNormal::slot0_void_callback};
+      (GCallback) &glib::SignalProxyNormal::slot0_void_callback,
+      (GCallback) &glib::SignalProxyNormal::slot0_void_callback};
 
 } // namespace
 
 auto
-Glib::Value<Gtk::TreeView::DropPosition>::value_type () -> GType
+glib::Value<gtk::TreeView::DropPosition>::value_type () -> GType
 {
   return gtk_tree_view_drop_position_get_type ();
 }
 
 auto
-Glib::Value<Gtk::TreeView::GridLines>::value_type () -> GType
+glib::Value<gtk::TreeView::GridLines>::value_type () -> GType
 {
   return gtk_tree_view_grid_lines_get_type ();
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GtkTreeView* object, bool take_copy) -> Gtk::TreeView*
+  wrap (GtkTreeView* object, bool take_copy) -> gtk::TreeView*
   {
-    return dynamic_cast<Gtk::TreeView*> (
-        Glib::wrap_auto ((GObject*) (object), take_copy));
+    return dynamic_cast<gtk::TreeView*> (
+        glib::wrap_auto ((GObject*) (object), take_copy));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gtk
+namespace gtk
 {
 
   auto
-  TreeView_Class::init () -> const Glib::Class&
+  TreeView_Class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -1058,23 +1058,23 @@ namespace Gtk
   }
 
   auto
-  TreeView_Class::wrap_new (GObject* o) -> Glib::ObjectBase*
+  TreeView_Class::wrap_new (GObject* o) -> glib::ObjectBase*
   {
     return manage (new TreeView ((GtkTreeView*) (o)));
   }
 
-  TreeView::TreeView (const Glib::ConstructParams& construct_params)
-    : Gtk::Widget (construct_params)
+  TreeView::TreeView (const glib::ConstructParams& construct_params)
+    : gtk::Widget (construct_params)
   {
   }
 
   TreeView::TreeView (GtkTreeView* castitem)
-    : Gtk::Widget ((GtkWidget*) (castitem))
+    : gtk::Widget ((GtkWidget*) (castitem))
   {
   }
 
   TreeView::TreeView (TreeView&& src) noexcept
-    : Gtk::Widget (std::move (src)),
+    : gtk::Widget (std::move (src)),
       Scrollable (std::move (src))
   {
   }
@@ -1082,7 +1082,7 @@ namespace Gtk
   auto
   TreeView::operator= (TreeView&& src) noexcept -> TreeView&
   {
-    Gtk::Widget::operator= (std::move (src));
+    gtk::Widget::operator= (std::move (src));
     Scrollable::operator= (std::move (src));
     return *this;
   }
@@ -1107,33 +1107,33 @@ namespace Gtk
   }
 
   TreeView::TreeView ()
-    : Glib::ObjectBase (nullptr),
-      Gtk::Widget (Glib::ConstructParams (treeview_class_.init ()))
+    : glib::ObjectBase (nullptr),
+      gtk::Widget (glib::ConstructParams (treeview_class_.init ()))
   {
   }
 
-  TreeView::TreeView (const Glib::RefPtr<TreeModel>& model)
-    : Glib::ObjectBase (nullptr),
-      Gtk::Widget (Glib::ConstructParams (treeview_class_.init (),
+  TreeView::TreeView (const glib::RefPtr<TreeModel>& model)
+    : glib::ObjectBase (nullptr),
+      gtk::Widget (glib::ConstructParams (treeview_class_.init (),
                                           "model",
-                                          Glib::unwrap (model),
+                                          glib::unwrap (model),
                                           nullptr))
   {
   }
 
   auto
-  TreeView::get_model () -> Glib::RefPtr<TreeModel>
+  TreeView::get_model () -> glib::RefPtr<TreeModel>
   {
-    auto retvalue = Glib::wrap (gtk_tree_view_get_model (gobj ()));
+    auto retvalue = glib::wrap (gtk_tree_view_get_model (gobj ()));
     if (retvalue)
       retvalue->reference ();
     return retvalue;
   }
 
   auto
-  TreeView::get_model () const -> Glib::RefPtr<const TreeModel>
+  TreeView::get_model () const -> glib::RefPtr<const TreeModel>
   {
-    auto retvalue = Glib::wrap (
+    auto retvalue = glib::wrap (
         gtk_tree_view_get_model (const_cast<GtkTreeView*> (gobj ())));
     if (retvalue)
       retvalue->reference ();
@@ -1141,22 +1141,22 @@ namespace Gtk
   }
 
   auto
-  TreeView::set_model (const Glib::RefPtr<TreeModel>& model) -> void
+  TreeView::set_model (const glib::RefPtr<TreeModel>& model) -> void
   {
-    gtk_tree_view_set_model (gobj (), Glib::unwrap (model));
+    gtk_tree_view_set_model (gobj (), glib::unwrap (model));
   }
 
   auto
-  TreeView::get_selection () -> Glib::RefPtr<TreeSelection>
+  TreeView::get_selection () -> glib::RefPtr<TreeSelection>
   {
-    auto retvalue = Glib::wrap (gtk_tree_view_get_selection (gobj ()));
+    auto retvalue = glib::wrap (gtk_tree_view_get_selection (gobj ()));
     if (retvalue)
       retvalue->reference ();
     return retvalue;
   }
 
   auto
-  TreeView::get_selection () const -> Glib::RefPtr<const TreeSelection>
+  TreeView::get_selection () const -> glib::RefPtr<const TreeSelection>
   {
     return const_cast<TreeView*> (this)->get_selection ();
   }
@@ -1235,7 +1235,7 @@ namespace Gtk
   auto
   TreeView::get_column (int n) -> TreeViewColumn*
   {
-    return Glib::wrap (gtk_tree_view_get_column (gobj (), n));
+    return glib::wrap (gtk_tree_view_get_column (gobj (), n));
   }
 
   auto
@@ -1247,17 +1247,17 @@ namespace Gtk
   auto
   TreeView::get_columns () -> std::vector<TreeViewColumn*>
   {
-    return Glib::ListHandler<TreeViewColumn*>::list_to_vector (
+    return glib::ListHandler<TreeViewColumn*>::list_to_vector (
         gtk_tree_view_get_columns (gobj ()),
-        Glib::OWNERSHIP_SHALLOW);
+        glib::OWNERSHIP_SHALLOW);
   }
 
   auto
   TreeView::get_columns () const -> std::vector<const TreeViewColumn*>
   {
-    return Glib::ListHandler<const TreeViewColumn*>::list_to_vector (
+    return glib::ListHandler<const TreeViewColumn*>::list_to_vector (
         gtk_tree_view_get_columns (const_cast<GtkTreeView*> (gobj ())),
-        Glib::OWNERSHIP_SHALLOW);
+        glib::OWNERSHIP_SHALLOW);
   }
 
   auto
@@ -1278,7 +1278,7 @@ namespace Gtk
   auto
   TreeView::get_expander_column () -> TreeViewColumn*
   {
-    return Glib::wrap (gtk_tree_view_get_expander_column (gobj ()));
+    return glib::wrap (gtk_tree_view_get_expander_column (gobj ()));
   }
 
   auto
@@ -1383,7 +1383,7 @@ namespace Gtk
   auto
   TreeView::get_cell_area (const TreeModel::Path& path,
                            TreeViewColumn& column,
-                           Gdk::Rectangle& rect) const -> void
+                           gdk::Rectangle& rect) const -> void
   {
     gtk_tree_view_get_cell_area (const_cast<GtkTreeView*> (gobj ()),
                                  const_cast<GtkTreePath*> ((path).gobj ()),
@@ -1394,7 +1394,7 @@ namespace Gtk
   auto
   TreeView::get_background_area (const TreeModel::Path& path,
                                  TreeViewColumn& column,
-                                 Gdk::Rectangle& rect) const -> void
+                                 gdk::Rectangle& rect) const -> void
   {
     gtk_tree_view_get_background_area (
         const_cast<GtkTreeView*> (gobj ()),
@@ -1404,7 +1404,7 @@ namespace Gtk
   }
 
   auto
-  TreeView::get_visible_rect (Gdk::Rectangle& visible_rect) const -> void
+  TreeView::get_visible_rect (gdk::Rectangle& visible_rect) const -> void
   {
     gtk_tree_view_get_visible_rect (const_cast<GtkTreeView*> (gobj ()),
                                     (visible_rect).gobj ());
@@ -1412,25 +1412,25 @@ namespace Gtk
 
   auto
   TreeView::enable_model_drag_source (
-      const Glib::RefPtr<const Gdk::ContentFormats>& formats,
-      Gdk::ModifierType start_button_mask,
-      Gdk::DragAction actions) -> void
+      const glib::RefPtr<const gdk::ContentFormats>& formats,
+      gdk::ModifierType start_button_mask,
+      gdk::DragAction actions) -> void
   {
     gtk_tree_view_enable_model_drag_source (
         gobj (),
         static_cast<GdkModifierType> (start_button_mask),
-        const_cast<GdkContentFormats*> (Glib::unwrap (formats)),
+        const_cast<GdkContentFormats*> (glib::unwrap (formats)),
         static_cast<GdkDragAction> (actions));
   }
 
   auto
   TreeView::enable_model_drag_dest (
-      const Glib::RefPtr<const Gdk::ContentFormats>& formats,
-      Gdk::DragAction actions) -> void
+      const glib::RefPtr<const gdk::ContentFormats>& formats,
+      gdk::DragAction actions) -> void
   {
     gtk_tree_view_enable_model_drag_dest (
         gobj (),
-        const_cast<GdkContentFormats*> (Glib::unwrap (formats)),
+        const_cast<GdkContentFormats*> (glib::unwrap (formats)),
         static_cast<GdkDragAction> (actions));
   }
 
@@ -1456,9 +1456,9 @@ namespace Gtk
   }
 
   auto
-  TreeView::create_row_drag_icon (const TreeModel::Path& path) const -> Glib::RefPtr<Gdk::Paintable>
+  TreeView::create_row_drag_icon (const TreeModel::Path& path) const -> glib::RefPtr<gdk::Paintable>
   {
-    return Glib::wrap (gtk_tree_view_create_row_drag_icon (
+    return glib::wrap (gtk_tree_view_create_row_drag_icon (
         const_cast<GtkTreeView*> (gobj ()),
         const_cast<GtkTreePath*> ((path).gobj ())));
   }
@@ -1497,7 +1497,7 @@ namespace Gtk
   TreeView::get_search_entry () -> Editable*
   {
     return dynamic_cast<Editable*> (
-        Glib::wrap_auto ((GObject*) (gtk_tree_view_get_search_entry (gobj ())),
+        glib::wrap_auto ((GObject*) (gtk_tree_view_get_search_entry (gobj ())),
                          false));
   }
 
@@ -1710,26 +1710,26 @@ namespace Gtk
   }
 
   auto
-  TreeView::set_tooltip_row (const Glib::RefPtr<Tooltip>& tooltip,
+  TreeView::set_tooltip_row (const glib::RefPtr<Tooltip>& tooltip,
                              const TreePath& path) -> void
   {
     gtk_tree_view_set_tooltip_row (gobj (),
-                                   Glib::unwrap (tooltip),
+                                   glib::unwrap (tooltip),
                                    const_cast<GtkTreePath*> ((path).gobj ()));
   }
 
   auto
-  TreeView::set_tooltip_cell (const Glib::RefPtr<Tooltip>& tooltip,
+  TreeView::set_tooltip_cell (const glib::RefPtr<Tooltip>& tooltip,
                               const TreeModel::Path* path,
                               TreeViewColumn* column,
                               CellRenderer* cell) -> void
   {
     gtk_tree_view_set_tooltip_cell (
         gobj (),
-        Glib::unwrap (tooltip),
+        glib::unwrap (tooltip),
         ((path) ? const_cast<GtkTreePath*> ((path)->gobj ()) : nullptr),
-        (GtkTreeViewColumn*) Glib::unwrap (column),
-        (GtkCellRenderer*) Glib::unwrap (cell));
+        (GtkTreeViewColumn*) glib::unwrap (column),
+        (GtkCellRenderer*) glib::unwrap (cell));
   }
 
   auto
@@ -1746,285 +1746,285 @@ namespace Gtk
   }
 
   auto
-  TreeView::signal_row_activated () -> Glib::SignalProxy<void (const TreeModel::Path&, TreeViewColumn*)>
+  TreeView::signal_row_activated () -> glib::SignalProxy<void (const TreeModel::Path&, TreeViewColumn*)>
   {
-    return Glib::SignalProxy<void (const TreeModel::Path&, TreeViewColumn*)> (
+    return glib::SignalProxy<void (const TreeModel::Path&, TreeViewColumn*)> (
         this,
         &TreeView_signal_row_activated_info);
   }
 
   auto
-  TreeView::signal_test_expand_row () -> Glib::SignalProxy<bool (const TreeModel::iterator&,
+  TreeView::signal_test_expand_row () -> glib::SignalProxy<bool (const TreeModel::iterator&,
                                  const TreeModel::Path&)>
   {
-    return Glib::SignalProxy<bool (const TreeModel::iterator&,
+    return glib::SignalProxy<bool (const TreeModel::iterator&,
                                    const TreeModel::Path&)> (
         this,
         &TreeView_signal_test_expand_row_info);
   }
 
   auto
-  TreeView::signal_test_collapse_row () -> Glib::SignalProxy<bool (const TreeModel::iterator&,
+  TreeView::signal_test_collapse_row () -> glib::SignalProxy<bool (const TreeModel::iterator&,
                                  const TreeModel::Path&)>
   {
-    return Glib::SignalProxy<bool (const TreeModel::iterator&,
+    return glib::SignalProxy<bool (const TreeModel::iterator&,
                                    const TreeModel::Path&)> (
         this,
         &TreeView_signal_test_collapse_row_info);
   }
 
   auto
-  TreeView::signal_row_expanded () -> Glib::SignalProxy<void (const TreeModel::iterator&,
+  TreeView::signal_row_expanded () -> glib::SignalProxy<void (const TreeModel::iterator&,
                                  const TreeModel::Path&)>
   {
-    return Glib::SignalProxy<void (const TreeModel::iterator&,
+    return glib::SignalProxy<void (const TreeModel::iterator&,
                                    const TreeModel::Path&)> (
         this,
         &TreeView_signal_row_expanded_info);
   }
 
   auto
-  TreeView::signal_row_collapsed () -> Glib::SignalProxy<void (const TreeModel::iterator&,
+  TreeView::signal_row_collapsed () -> glib::SignalProxy<void (const TreeModel::iterator&,
                                  const TreeModel::Path&)>
   {
-    return Glib::SignalProxy<void (const TreeModel::iterator&,
+    return glib::SignalProxy<void (const TreeModel::iterator&,
                                    const TreeModel::Path&)> (
         this,
         &TreeView_signal_row_collapsed_info);
   }
 
   auto
-  TreeView::signal_cursor_changed () -> Glib::SignalProxy<void ()>
+  TreeView::signal_cursor_changed () -> glib::SignalProxy<void ()>
   {
-    return Glib::SignalProxy<void ()> (this,
+    return glib::SignalProxy<void ()> (this,
                                        &TreeView_signal_cursor_changed_info);
   }
 
   auto
-  TreeView::signal_columns_changed () -> Glib::SignalProxy<void ()>
+  TreeView::signal_columns_changed () -> glib::SignalProxy<void ()>
   {
-    return Glib::SignalProxy<void ()> (this,
+    return glib::SignalProxy<void ()> (this,
                                        &TreeView_signal_columns_changed_info);
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<
-          Glib::RefPtr<TreeModel>>::value,
-      "Type Glib::RefPtr<TreeModel> cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      glib::Traits::ValueCompatibleWithWrapProperty<
+          glib::RefPtr<TreeModel>>::value,
+      "Type glib::RefPtr<TreeModel> cannot be used in _WRAP_PROPERTY. "
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  TreeView::property_model () -> Glib::PropertyProxy<Glib::RefPtr<TreeModel>>
+  TreeView::property_model () -> glib::PropertyProxy<glib::RefPtr<TreeModel>>
   {
-    return Glib::PropertyProxy<Glib::RefPtr<TreeModel>> (this, "model");
+    return glib::PropertyProxy<glib::RefPtr<TreeModel>> (this, "model");
   }
 
   auto
-  TreeView::property_model () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<TreeModel>>
+  TreeView::property_model () const -> glib::PropertyProxy_ReadOnly<glib::RefPtr<TreeModel>>
   {
-    return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<TreeModel>> (this,
+    return glib::PropertyProxy_ReadOnly<glib::RefPtr<TreeModel>> (this,
                                                                   "model");
   }
 
   auto
-  TreeView::property_headers_visible () -> Glib::PropertyProxy<bool>
+  TreeView::property_headers_visible () -> glib::PropertyProxy<bool>
   {
-    return Glib::PropertyProxy<bool> (this, "headers-visible");
+    return glib::PropertyProxy<bool> (this, "headers-visible");
   }
 
   auto
-  TreeView::property_headers_visible () const -> Glib::PropertyProxy_ReadOnly<bool>
+  TreeView::property_headers_visible () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "headers-visible");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "headers-visible");
   }
 
   auto
-  TreeView::property_headers_clickable () -> Glib::PropertyProxy<bool>
+  TreeView::property_headers_clickable () -> glib::PropertyProxy<bool>
   {
-    return Glib::PropertyProxy<bool> (this, "headers-clickable");
+    return glib::PropertyProxy<bool> (this, "headers-clickable");
   }
 
   auto
-  TreeView::property_headers_clickable () const -> Glib::PropertyProxy_ReadOnly<bool>
+  TreeView::property_headers_clickable () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "headers-clickable");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "headers-clickable");
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<TreeViewColumn*>::value,
+      glib::Traits::ValueCompatibleWithWrapProperty<TreeViewColumn*>::value,
       "Type TreeViewColumn* cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  TreeView::property_expander_column () -> Glib::PropertyProxy<TreeViewColumn*>
+  TreeView::property_expander_column () -> glib::PropertyProxy<TreeViewColumn*>
   {
-    return Glib::PropertyProxy<TreeViewColumn*> (this, "expander-column");
+    return glib::PropertyProxy<TreeViewColumn*> (this, "expander-column");
   }
 
   auto
-  TreeView::property_expander_column () const -> Glib::PropertyProxy_ReadOnly<TreeViewColumn*>
+  TreeView::property_expander_column () const -> glib::PropertyProxy_ReadOnly<TreeViewColumn*>
   {
-    return Glib::PropertyProxy_ReadOnly<TreeViewColumn*> (this,
+    return glib::PropertyProxy_ReadOnly<TreeViewColumn*> (this,
                                                           "expander-column");
   }
 
   auto
-  TreeView::property_reorderable () -> Glib::PropertyProxy<bool>
+  TreeView::property_reorderable () -> glib::PropertyProxy<bool>
   {
-    return Glib::PropertyProxy<bool> (this, "reorderable");
+    return glib::PropertyProxy<bool> (this, "reorderable");
   }
 
   auto
-  TreeView::property_reorderable () const -> Glib::PropertyProxy_ReadOnly<bool>
+  TreeView::property_reorderable () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "reorderable");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "reorderable");
   }
 
   auto
-  TreeView::property_enable_search () -> Glib::PropertyProxy<bool>
+  TreeView::property_enable_search () -> glib::PropertyProxy<bool>
   {
-    return Glib::PropertyProxy<bool> (this, "enable-search");
+    return glib::PropertyProxy<bool> (this, "enable-search");
   }
 
   auto
-  TreeView::property_enable_search () const -> Glib::PropertyProxy_ReadOnly<bool>
+  TreeView::property_enable_search () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "enable-search");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "enable-search");
   }
 
   auto
-  TreeView::property_search_column () -> Glib::PropertyProxy<int>
+  TreeView::property_search_column () -> glib::PropertyProxy<int>
   {
-    return Glib::PropertyProxy<int> (this, "search-column");
+    return glib::PropertyProxy<int> (this, "search-column");
   }
 
   auto
-  TreeView::property_search_column () const -> Glib::PropertyProxy_ReadOnly<int>
+  TreeView::property_search_column () const -> glib::PropertyProxy_ReadOnly<int>
   {
-    return Glib::PropertyProxy_ReadOnly<int> (this, "search-column");
+    return glib::PropertyProxy_ReadOnly<int> (this, "search-column");
   }
 
   auto
-  TreeView::property_fixed_height_mode () -> Glib::PropertyProxy<bool>
+  TreeView::property_fixed_height_mode () -> glib::PropertyProxy<bool>
   {
-    return Glib::PropertyProxy<bool> (this, "fixed-height-mode");
+    return glib::PropertyProxy<bool> (this, "fixed-height-mode");
   }
 
   auto
-  TreeView::property_fixed_height_mode () const -> Glib::PropertyProxy_ReadOnly<bool>
+  TreeView::property_fixed_height_mode () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "fixed-height-mode");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "fixed-height-mode");
   }
 
   auto
-  TreeView::property_hover_selection () -> Glib::PropertyProxy<bool>
+  TreeView::property_hover_selection () -> glib::PropertyProxy<bool>
   {
-    return Glib::PropertyProxy<bool> (this, "hover-selection");
+    return glib::PropertyProxy<bool> (this, "hover-selection");
   }
 
   auto
-  TreeView::property_hover_selection () const -> Glib::PropertyProxy_ReadOnly<bool>
+  TreeView::property_hover_selection () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "hover-selection");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "hover-selection");
   }
 
   auto
-  TreeView::property_hover_expand () -> Glib::PropertyProxy<bool>
+  TreeView::property_hover_expand () -> glib::PropertyProxy<bool>
   {
-    return Glib::PropertyProxy<bool> (this, "hover-expand");
+    return glib::PropertyProxy<bool> (this, "hover-expand");
   }
 
   auto
-  TreeView::property_hover_expand () const -> Glib::PropertyProxy_ReadOnly<bool>
+  TreeView::property_hover_expand () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "hover-expand");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "hover-expand");
   }
 
   auto
-  TreeView::property_show_expanders () -> Glib::PropertyProxy<bool>
+  TreeView::property_show_expanders () -> glib::PropertyProxy<bool>
   {
-    return Glib::PropertyProxy<bool> (this, "show-expanders");
+    return glib::PropertyProxy<bool> (this, "show-expanders");
   }
 
   auto
-  TreeView::property_show_expanders () const -> Glib::PropertyProxy_ReadOnly<bool>
+  TreeView::property_show_expanders () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "show-expanders");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "show-expanders");
   }
 
   auto
-  TreeView::property_level_indentation () -> Glib::PropertyProxy<bool>
+  TreeView::property_level_indentation () -> glib::PropertyProxy<bool>
   {
-    return Glib::PropertyProxy<bool> (this, "level-indentation");
+    return glib::PropertyProxy<bool> (this, "level-indentation");
   }
 
   auto
-  TreeView::property_level_indentation () const -> Glib::PropertyProxy_ReadOnly<bool>
+  TreeView::property_level_indentation () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "level-indentation");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "level-indentation");
   }
 
   auto
-  TreeView::property_rubber_banding () -> Glib::PropertyProxy<bool>
+  TreeView::property_rubber_banding () -> glib::PropertyProxy<bool>
   {
-    return Glib::PropertyProxy<bool> (this, "rubber-banding");
+    return glib::PropertyProxy<bool> (this, "rubber-banding");
   }
 
   auto
-  TreeView::property_rubber_banding () const -> Glib::PropertyProxy_ReadOnly<bool>
+  TreeView::property_rubber_banding () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "rubber-banding");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "rubber-banding");
   }
 
   auto
-  TreeView::property_enable_grid_lines () -> Glib::PropertyProxy<bool>
+  TreeView::property_enable_grid_lines () -> glib::PropertyProxy<bool>
   {
-    return Glib::PropertyProxy<bool> (this, "enable-grid-lines");
+    return glib::PropertyProxy<bool> (this, "enable-grid-lines");
   }
 
   auto
-  TreeView::property_enable_grid_lines () const -> Glib::PropertyProxy_ReadOnly<bool>
+  TreeView::property_enable_grid_lines () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "enable-grid-lines");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "enable-grid-lines");
   }
 
   auto
-  TreeView::property_enable_tree_lines () -> Glib::PropertyProxy<bool>
+  TreeView::property_enable_tree_lines () -> glib::PropertyProxy<bool>
   {
-    return Glib::PropertyProxy<bool> (this, "enable-tree-lines");
+    return glib::PropertyProxy<bool> (this, "enable-tree-lines");
   }
 
   auto
-  TreeView::property_enable_tree_lines () const -> Glib::PropertyProxy_ReadOnly<bool>
+  TreeView::property_enable_tree_lines () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "enable-tree-lines");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "enable-tree-lines");
   }
 
   auto
-  TreeView::property_tooltip_column () -> Glib::PropertyProxy<int>
+  TreeView::property_tooltip_column () -> glib::PropertyProxy<int>
   {
-    return Glib::PropertyProxy<int> (this, "tooltip-column");
+    return glib::PropertyProxy<int> (this, "tooltip-column");
   }
 
   auto
-  TreeView::property_tooltip_column () const -> Glib::PropertyProxy_ReadOnly<int>
+  TreeView::property_tooltip_column () const -> glib::PropertyProxy_ReadOnly<int>
   {
-    return Glib::PropertyProxy_ReadOnly<int> (this, "tooltip-column");
+    return glib::PropertyProxy_ReadOnly<int> (this, "tooltip-column");
   }
 
   auto
-  TreeView::property_activate_on_single_click () -> Glib::PropertyProxy<bool>
+  TreeView::property_activate_on_single_click () -> glib::PropertyProxy<bool>
   {
-    return Glib::PropertyProxy<bool> (this, "activate-on-single-click");
+    return glib::PropertyProxy<bool> (this, "activate-on-single-click");
   }
 
   auto
-  TreeView::property_activate_on_single_click () const -> Glib::PropertyProxy_ReadOnly<bool>
+  TreeView::property_activate_on_single_click () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this,
+    return glib::PropertyProxy_ReadOnly<bool> (this,
                                                "activate-on-single-click");
   }
 
-} // namespace Gtk
+} // namespace gtk
 
 #endif

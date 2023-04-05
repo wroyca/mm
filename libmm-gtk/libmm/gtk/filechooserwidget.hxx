@@ -17,13 +17,13 @@ using GtkFileChooserWidgetClass = struct _GtkFileChooserWidgetClass;
   #endif
 
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT FileChooserWidget_Class;
 }
   #endif
 
-namespace Gtk
+namespace gtk
 {
 
   class LIBMM_GTK_SYMEXPORT FileChooserWidget : public Widget,
@@ -54,7 +54,7 @@ namespace Gtk
     static CppClassType filechooserwidget_class_;
 
   protected:
-    explicit FileChooserWidget (const Glib::ConstructParams& construct_params);
+    explicit FileChooserWidget (const glib::ConstructParams& construct_params);
     explicit FileChooserWidget (GtkFileChooserWidget* castitem);
 
   #endif
@@ -92,13 +92,13 @@ namespace Gtk
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkFileChooserWidget* object, bool take_copy = false) -> Gtk::FileChooserWidget*;
-} // namespace Glib
+  wrap (GtkFileChooserWidget* object, bool take_copy = false) -> gtk::FileChooserWidget*;
+} // namespace glib
 
 #endif
 

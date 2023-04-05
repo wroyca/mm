@@ -5,17 +5,17 @@
 #include <libmm/gtk/object.hxx>
 #include <libmm/gtk/object_p.hxx>
 
-namespace Gtk
+namespace gtk
 {
 
-  Object::Object (const Glib::ConstructParams& construct_params)
-    : Glib::Object (construct_params)
+  Object::Object (const glib::ConstructParams& construct_params)
+    : glib::Object (construct_params)
   {
     _init_unmanage ();
   }
 
   Object::Object (GObject* castitem)
-    : Glib::Object (castitem)
+    : glib::Object (castitem)
   {
     _init_unmanage ();
   }
@@ -34,7 +34,7 @@ namespace Gtk
 #ifdef GLIBMM_DEBUG_REFCOUNTING
         g_warning (
             "gtkmm after sink: C++ instance: %p, C instance: %p, refcount=%d\n",
-            (void*) (Glib::ObjectBase*) this,
+            (void*) (glib::ObjectBase*) this,
             (void*) gobject_,
             G_OBJECT (gobject_)->ref_count);
         g_warning ("    c instance gtype: %s\n", G_OBJECT_TYPE_NAME (gobject_));
@@ -56,8 +56,8 @@ namespace Gtk
   Object::_release_c_instance () -> void
   {
 #ifdef GLIBMM_DEBUG_REFCOUNTING
-    g_warning ("Gtk::Object::_release_c_instance() this=%p, gobject_=%p\n",
-               (void*) (Glib::ObjectBase*) this,
+    g_warning ("gtk::Object::_release_c_instance() this=%p, gobject_=%p\n",
+               (void*) (glib::ObjectBase*) this,
                (void*) gobject_);
     if (gobject_)
       g_warning ("  gtypename: %s\n", G_OBJECT_TYPE_NAME (gobject_));
@@ -94,7 +94,7 @@ namespace Gtk
         if (gobject_)
         {
 #ifdef GLIBMM_DEBUG_REFCOUNTING
-          g_warning ("Gtk::Object::_release_c_instance(): Calling "
+          g_warning ("gtk::Object::_release_c_instance(): Calling "
                      "g_object_run_dispose(): "
                      "gobject_=%p, gtypename=%s\n",
                      (void*) object,
@@ -113,7 +113,7 @@ namespace Gtk
       else
       {
 #ifdef GLIBMM_DEBUG_REFCOUNTING
-        g_warning ("Gtk::Object::_release_c_instance(): Calling "
+        g_warning ("gtk::Object::_release_c_instance(): Calling "
                    "g_object_run_dispose(): gobject_=%p\n",
                    (void*) gobject_);
 #endif
@@ -131,7 +131,7 @@ namespace Gtk
   }
 
   Object::Object (Object&& src) noexcept
-    : Glib::Object (std::move (src)),
+    : glib::Object (std::move (src)),
       referenced_ (std::move (src.referenced_))
   {
   }
@@ -139,7 +139,7 @@ namespace Gtk
   auto
   Object::operator= (Object&& src) noexcept -> Object&
   {
-    Glib::Object::operator= (std::move (src));
+    glib::Object::operator= (std::move (src));
     referenced_ = std::move (src.referenced_);
     return *this;
   }
@@ -147,7 +147,7 @@ namespace Gtk
   Object::~Object () noexcept
   {
 #ifdef GLIBMM_DEBUG_REFCOUNTING
-    g_warning ("Gtk::Object::~Object() gobject_=%p\n", (void*) gobject_);
+    g_warning ("gtk::Object::~Object() gobject_=%p\n", (void*) gobject_);
 #endif
 
     _release_c_instance ();
@@ -157,8 +157,8 @@ namespace Gtk
   Object::disconnect_cpp_wrapper (bool prevent_creation_of_another_wrapper) -> void
   {
 #ifdef GLIBMM_DEBUG_REFCOUNTING
-    g_warning ("Gtk::Object::disconnect_cpp_wrapper() this=%p, gobject_=%p\n",
-               (void*) (Glib::ObjectBase*) this,
+    g_warning ("gtk::Object::disconnect_cpp_wrapper() this=%p, gobject_=%p\n",
+               (void*) (glib::ObjectBase*) this,
                (void*) gobject_);
     if (gobject_)
       g_warning ("  gtypename: %s\n", G_OBJECT_TYPE_NAME (gobject_));
@@ -166,12 +166,12 @@ namespace Gtk
 
     if (gobj ())
     {
-      g_object_steal_qdata ((GObject*) gobj (), Glib::quark_);
+      g_object_steal_qdata ((GObject*) gobj (), glib::quark_);
 
       if (prevent_creation_of_another_wrapper)
 
         g_object_set_qdata ((GObject*) gobj (),
-                            Glib::quark_cpp_wrapper_deleted_,
+                            glib::quark_cpp_wrapper_deleted_,
                             (gpointer) true);
 
       gobject_ = nullptr;
@@ -182,8 +182,8 @@ namespace Gtk
   Object::destroy_notify_ () -> void
   {
 #ifdef GLIBMM_DEBUG_REFCOUNTING
-    g_warning ("Gtk::Object::destroy_notify_: this=%p, gobject_=%p\n",
-               (void*) (Glib::ObjectBase*) this,
+    g_warning ("gtk::Object::destroy_notify_: this=%p, gobject_=%p\n",
+               (void*) (glib::ObjectBase*) this,
                (void*) gobject_);
     if (gobject_)
       g_warning ("  gtypename=%s\n", G_OBJECT_TYPE_NAME (gobject_));
@@ -197,14 +197,14 @@ namespace Gtk
       if (!referenced_)
       {
 #ifdef GLIBMM_DEBUG_REFCOUNTING
-        g_warning ("Gtk::Object::destroy_notify_: before delete this.\n");
+        g_warning ("gtk::Object::destroy_notify_: before delete this.\n");
 #endif
         delete this;
       }
       else
       {
 #ifdef GLIBMM_DEBUG_REFCOUNTING
-        g_warning ("Gtk::Object::destroy_notify_: setting gobject_ to 0\n");
+        g_warning ("gtk::Object::destroy_notify_: setting gobject_ to 0\n");
 #endif
       }
     }
@@ -214,7 +214,7 @@ namespace Gtk
   Object::destroy_ () -> void
   {
 #ifdef GLIBMM_DEBUG_REFCOUNTING
-    g_warning ("Gtk::Object::destroy_(): gobject_: %p\n", (void*) gobject_);
+    g_warning ("gtk::Object::destroy_(): gobject_: %p\n", (void*) gobject_);
     if (gobject_)
       g_warning ("  gtypename: %s\n", G_OBJECT_TYPE_NAME (gobject_));
 #endif
@@ -259,13 +259,13 @@ namespace Gtk
     return !referenced_;
   }
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Gtk
+namespace gtk
 {
 
   auto
-  Object_Class::init () -> const Glib::Class&
+  Object_Class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -285,7 +285,7 @@ namespace Gtk
   }
 
   auto
-  Object_Class::wrap_new (GObject* o) -> Glib::ObjectBase*
+  Object_Class::wrap_new (GObject* o) -> glib::ObjectBase*
   {
     return manage (new Object ((GObject*) (o)));
   }
@@ -304,4 +304,4 @@ namespace Gtk
     return g_object_get_type ();
   }
 
-} // namespace Gtk
+} // namespace gtk

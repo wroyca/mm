@@ -26,7 +26,7 @@
   #define EINTR 0
 #endif
 
-namespace Glib
+namespace glib
 {
   class DispatchNotifier;
 }
@@ -36,8 +36,8 @@ namespace
 
   struct DispatchNotifyData
   {
-    Glib::Dispatcher::Impl* dispatcher_impl;
-    Glib::DispatchNotifier* notifier;
+    glib::Dispatcher::Impl* dispatcher_impl;
+    glib::DispatchNotifier* notifier;
 
     DispatchNotifyData ()
       : dispatcher_impl (nullptr),
@@ -45,7 +45,7 @@ namespace
     {
     }
 
-    DispatchNotifyData (Glib::Dispatcher::Impl* d, Glib::DispatchNotifier* n)
+    DispatchNotifyData (glib::Dispatcher::Impl* d, glib::DispatchNotifier* n)
       : dispatcher_impl (d),
         notifier (n)
     {
@@ -117,7 +117,7 @@ namespace
 
 } // namespace
 
-namespace Glib
+namespace glib
 {
 
   struct Dispatcher::Impl
@@ -257,7 +257,7 @@ namespace Glib
           g_file_error_from_errno (errno),
           "Failed to create pipe for inter-thread communication: %s",
           g_strerror (errno));
-      throw Glib::FileError (error);
+      throw glib::FileError (error);
     }
 
     fd_set_close_on_exec (filedes[0]);
@@ -358,11 +358,11 @@ namespace Glib
 #ifdef G_OS_WIN32
     return notify_queue_.empty ();
 #else
-    PollFD poll_fd (fd_receiver_, Glib::IOCondition::IO_IN);
+    PollFD poll_fd (fd_receiver_, glib::IOCondition::IO_IN);
 
     g_poll (poll_fd.gobj (), 1, 0);
     return static_cast<int> (poll_fd.get_revents () &
-                             Glib::IOCondition::IO_IN) == 0;
+                             glib::IOCondition::IO_IN) == 0;
 #endif
   }
 
@@ -471,4 +471,4 @@ namespace Glib
     return impl_->signal_.connect (std::move (slot));
   }
 
-} // namespace Glib
+} // namespace glib

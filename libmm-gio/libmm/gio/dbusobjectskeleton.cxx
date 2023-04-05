@@ -16,24 +16,24 @@ namespace
                                                    GDBusMethodInvocation* p1,
                                                    void* data) -> gboolean
   {
-    using namespace Gio::DBus;
-    using SlotType = sigc::slot<bool (const Glib::RefPtr<InterfaceSkeleton>&,
-                                      const Glib::RefPtr<MethodInvocation>&)>;
+    using namespace gio::DBus;
+    using SlotType = sigc::slot<bool (const glib::RefPtr<InterfaceSkeleton>&,
+                                      const glib::RefPtr<MethodInvocation>&)>;
 
     const auto obj = dynamic_cast<ObjectSkeleton*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
     {
       try
       {
-        if (const auto slot = Glib::SignalProxyNormal::data_to_slot (data))
-          return (*static_cast<SlotType*> (slot)) (Glib::wrap (p0, true),
-                                                   Glib::wrap (p1, true));
+        if (const auto slot = glib::SignalProxyNormal::data_to_slot (data))
+          return (*static_cast<SlotType*> (slot)) (glib::wrap (p0, true),
+                                                   glib::wrap (p1, true));
       }
       catch (...)
       {
-        Glib::exception_handlers_invoke ();
+        glib::exception_handlers_invoke ();
       }
     }
 
@@ -48,24 +48,24 @@ namespace
       GDBusMethodInvocation* p1,
       void* data) -> gboolean
   {
-    using namespace Gio::DBus;
-    using SlotType = sigc::slot<void (const Glib::RefPtr<InterfaceSkeleton>&,
-                                      const Glib::RefPtr<MethodInvocation>&)>;
+    using namespace gio::DBus;
+    using SlotType = sigc::slot<void (const glib::RefPtr<InterfaceSkeleton>&,
+                                      const glib::RefPtr<MethodInvocation>&)>;
 
     const auto obj = dynamic_cast<ObjectSkeleton*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
     {
       try
       {
-        if (const auto slot = Glib::SignalProxyNormal::data_to_slot (data))
-          (*static_cast<SlotType*> (slot)) (Glib::wrap (p0, true),
-                                            Glib::wrap (p1, true));
+        if (const auto slot = glib::SignalProxyNormal::data_to_slot (data))
+          (*static_cast<SlotType*> (slot)) (glib::wrap (p0, true),
+                                            glib::wrap (p1, true));
       }
       catch (...)
       {
-        Glib::exception_handlers_invoke ();
+        glib::exception_handlers_invoke ();
       }
     }
 
@@ -73,27 +73,27 @@ namespace
     return RType ();
   }
 
-  const Glib::SignalProxyInfo ObjectSkeleton_signal_authorize_method_info = {
+  const glib::SignalProxyInfo ObjectSkeleton_signal_authorize_method_info = {
       "authorize-method",
       (GCallback) &ObjectSkeleton_signal_authorize_method_callback,
       (GCallback) &ObjectSkeleton_signal_authorize_method_notify_callback};
 
 } // namespace
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GDBusObjectSkeleton* object, const bool take_copy) -> RefPtr<Gio::DBus::ObjectSkeleton>
+  wrap (GDBusObjectSkeleton* object, const bool take_copy) -> RefPtr<gio::DBus::ObjectSkeleton>
   {
-    return Glib::make_refptr_for_instance<Gio::DBus::ObjectSkeleton> (
-        dynamic_cast<Gio::DBus::ObjectSkeleton*> (
+    return glib::make_refptr_for_instance<gio::DBus::ObjectSkeleton> (
+        dynamic_cast<gio::DBus::ObjectSkeleton*> (
             wrap_auto ((GObject*) object, take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gio::DBus
+namespace gio::DBus
 {
 
   auto
@@ -126,7 +126,7 @@ namespace Gio::DBus
                                                    GDBusMethodInvocation* p1) -> gboolean
   {
     const auto obj_base =
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self);
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self);
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -135,12 +135,12 @@ namespace Gio::DBus
       {
         try
         {
-          return obj->on_authorize_method (Glib::wrap (p0, true),
-                                           Glib::wrap (p1, true));
+          return obj->on_authorize_method (glib::wrap (p0, true),
+                                           glib::wrap (p1, true));
         }
         catch (...)
         {
-          Glib::exception_handlers_invoke ();
+          glib::exception_handlers_invoke ();
         }
       }
     }
@@ -156,7 +156,7 @@ namespace Gio::DBus
   }
 
   auto
-  ObjectSkeleton_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  ObjectSkeleton_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new ObjectSkeleton ((GDBusObjectSkeleton*) object);
   }
@@ -168,18 +168,18 @@ namespace Gio::DBus
     return gobj ();
   }
 
-  ObjectSkeleton::ObjectSkeleton (const Glib::ConstructParams& construct_params)
-    : Glib::Object (construct_params)
+  ObjectSkeleton::ObjectSkeleton (const glib::ConstructParams& construct_params)
+    : glib::Object (construct_params)
   {
   }
 
   ObjectSkeleton::ObjectSkeleton (GDBusObjectSkeleton* castitem)
-    : Glib::Object ((GObject*) castitem)
+    : glib::Object ((GObject*) castitem)
   {
   }
 
   ObjectSkeleton::ObjectSkeleton (ObjectSkeleton&& src) noexcept
-    : Glib::Object (std::move (src)),
+    : glib::Object (std::move (src)),
       DBus::Object (std::move (src))
   {
   }
@@ -187,7 +187,7 @@ namespace Gio::DBus
   auto
   ObjectSkeleton::operator= (ObjectSkeleton&& src) noexcept -> ObjectSkeleton&
   {
-    Glib::Object::operator= (std::move (src));
+    glib::Object::operator= (std::move (src));
     DBus::Object::operator= (std::move (src));
     return *this;
   }
@@ -208,9 +208,9 @@ namespace Gio::DBus
     return g_dbus_object_skeleton_get_type ();
   }
 
-  ObjectSkeleton::ObjectSkeleton (const Glib::ustring& object_path)
+  ObjectSkeleton::ObjectSkeleton (const glib::ustring& object_path)
     : ObjectBase (nullptr),
-      Glib::Object (Glib::ConstructParams (objectskeleton_class_.init (),
+      glib::Object (glib::ConstructParams (objectskeleton_class_.init (),
                                            "object_path",
                                            object_path.c_str (),
                                            nullptr))
@@ -218,9 +218,9 @@ namespace Gio::DBus
   }
 
   auto
-  ObjectSkeleton::create (const Glib::ustring& object_path) -> Glib::RefPtr<ObjectSkeleton>
+  ObjectSkeleton::create (const glib::ustring& object_path) -> glib::RefPtr<ObjectSkeleton>
   {
-    return Glib::make_refptr_for_instance<ObjectSkeleton> (
+    return glib::make_refptr_for_instance<ObjectSkeleton> (
         new ObjectSkeleton (object_path));
   }
 
@@ -231,65 +231,65 @@ namespace Gio::DBus
   }
 
   auto
-  ObjectSkeleton::add_interface (const Glib::RefPtr<InterfaceSkeleton>& iface) -> void
+  ObjectSkeleton::add_interface (const glib::RefPtr<InterfaceSkeleton>& iface) -> void
   {
-    g_dbus_object_skeleton_add_interface (gobj (), Glib::unwrap (iface));
+    g_dbus_object_skeleton_add_interface (gobj (), glib::unwrap (iface));
   }
 
   auto
   ObjectSkeleton::remove_interface (
-      const Glib::RefPtr<InterfaceSkeleton>& iface) -> void
+      const glib::RefPtr<InterfaceSkeleton>& iface) -> void
   {
-    g_dbus_object_skeleton_remove_interface (gobj (), Glib::unwrap (iface));
+    g_dbus_object_skeleton_remove_interface (gobj (), glib::unwrap (iface));
   }
 
   auto
-  ObjectSkeleton::remove_interface (const Glib::ustring& interface_name) -> void
+  ObjectSkeleton::remove_interface (const glib::ustring& interface_name) -> void
   {
     g_dbus_object_skeleton_remove_interface_by_name (gobj (),
                                                      interface_name.c_str ());
   }
 
   auto
-  ObjectSkeleton::set_object_path (const Glib::ustring& object_path) -> void
+  ObjectSkeleton::set_object_path (const glib::ustring& object_path) -> void
   {
     g_dbus_object_skeleton_set_object_path (gobj (), object_path.c_str ());
   }
 
   auto
-  ObjectSkeleton::signal_authorize_method () -> Glib::SignalProxy<bool (const Glib::RefPtr<InterfaceSkeleton>&,
-                                 const Glib::RefPtr<MethodInvocation>&)>
+  ObjectSkeleton::signal_authorize_method () -> glib::SignalProxy<bool (const glib::RefPtr<InterfaceSkeleton>&,
+                                 const glib::RefPtr<MethodInvocation>&)>
   {
     return {this, &ObjectSkeleton_signal_authorize_method_info};
   }
 
   auto
-  ObjectSkeleton::property_g_object_path () -> Glib::PropertyProxy<Glib::ustring>
+  ObjectSkeleton::property_g_object_path () -> glib::PropertyProxy<glib::ustring>
   {
     return {this, "g-object-path"};
   }
 
   auto
-  ObjectSkeleton::property_g_object_path () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>
+  ObjectSkeleton::property_g_object_path () const -> glib::PropertyProxy_ReadOnly<glib::ustring>
   {
     return {this, "g-object-path"};
   }
 
   auto
   ObjectSkeleton::on_authorize_method (
-      const Glib::RefPtr<InterfaceSkeleton>& iface,
-      const Glib::RefPtr<MethodInvocation>& invocation) -> bool
+      const glib::RefPtr<InterfaceSkeleton>& iface,
+      const glib::RefPtr<MethodInvocation>& invocation) -> bool
   {
     const auto base = static_cast<BaseClassType*> (
         g_type_class_peek_parent (G_OBJECT_GET_CLASS (gobject_)));
 
     if (base && base->authorize_method)
       return (*base->authorize_method) (gobj (),
-                                        Glib::unwrap (iface),
-                                        Glib::unwrap (invocation));
+                                        glib::unwrap (iface),
+                                        glib::unwrap (invocation));
 
     using RType = bool;
     return RType ();
   }
 
-} // namespace Gio::DBus
+} // namespace gio::DBus

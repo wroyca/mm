@@ -6,7 +6,7 @@
 #ifdef CAIRO_HAS_WIN32_FONT
   #include <libmm/cairo/private.hxx>
 
-namespace Cairo
+namespace cairo
 {
 
   Win32FontFace::Win32FontFace (LOGFONTW* logfont)
@@ -109,6 +109,6 @@ namespace Cairo
     check_object_status_and_throw_exception (*this);
   }
 
-} // namespace Cairo
+} // namespace cairo
 
 #endif

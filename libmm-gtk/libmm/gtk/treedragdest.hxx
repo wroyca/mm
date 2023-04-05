@@ -25,16 +25,16 @@ using GtkTreeDragDestClass = struct _GtkTreeDragDestClass;
   #endif
 
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT TreeDragDest_Class;
 }
   #endif
 
-namespace Gtk
+namespace gtk
 {
 
-  class LIBMM_GTK_SYMEXPORT TreeDragDest : public Glib::Interface
+  class LIBMM_GTK_SYMEXPORT TreeDragDest : public glib::Interface
   {
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -58,7 +58,7 @@ namespace Gtk
 
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
-    explicit TreeDragDest (const Glib::Interface_Class& interface_class);
+    explicit TreeDragDest (const glib::Interface_Class& interface_class);
 
   public:
     explicit TreeDragDest (GtkTreeDragDest* castitem);
@@ -100,34 +100,34 @@ namespace Gtk
   public:
     auto
     drag_data_received (const TreeModel::Path& dest,
-                        const Glib::ValueBase& value) -> bool;
+                        const glib::ValueBase& value) -> bool;
 
     auto
     row_drop_possible (const TreeModel::Path& dest_path,
-                       const Glib::ValueBase& value) const -> bool;
+                       const glib::ValueBase& value) const -> bool;
 
   protected:
     virtual auto
     drag_data_received_vfunc (const TreeModel::Path& dest,
-                              const Glib::ValueBase& value) -> bool;
+                              const glib::ValueBase& value) -> bool;
 
     virtual auto
     row_drop_possible_vfunc (const TreeModel::Path& dest,
-                             const Glib::ValueBase& value) const -> bool;
+                             const glib::ValueBase& value) const -> bool;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkTreeDragDest* object, bool take_copy = false) -> Glib::RefPtr<Gtk::TreeDragDest>;
+  wrap (GtkTreeDragDest* object, bool take_copy = false) -> glib::RefPtr<gtk::TreeDragDest>;
 
-} // namespace Glib
+} // namespace glib
 
 #endif
 

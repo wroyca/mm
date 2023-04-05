@@ -18,7 +18,7 @@ extern "C"
 }
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
   enum class PadActionType
@@ -28,25 +28,25 @@ namespace Gtk
     STRIP
   };
 
-} // namespace Gtk
+} // namespace gtk
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_GTK_SYMEXPORT Value<Gtk::PadActionType>
-    : public Glib::Value_Enum<Gtk::PadActionType>
+  class LIBMM_GTK_SYMEXPORT Value<gtk::PadActionType>
+    : public glib::Value_Enum<gtk::PadActionType>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
   class LIBMM_GTK_SYMEXPORT PadActionEntry
@@ -64,8 +64,8 @@ namespace Gtk
     PadActionEntry (PadActionType type,
                     int index,
                     int mode,
-                    const Glib::ustring& label,
-                    const Glib::ustring& action_name);
+                    const glib::ustring& label,
+                    const glib::ustring& action_name);
 
     PadActionEntry (const PadActionEntry& src);
     auto
@@ -93,14 +93,14 @@ namespace Gtk
     set_mode (const int& value) -> void;
 
     auto
-    get_label () const -> Glib::ustring;
+    get_label () const -> glib::ustring;
     auto
-    set_label (const Glib::ustring& value) -> void;
+    set_label (const glib::ustring& value) -> void;
 
     auto
-    get_action_name () const -> Glib::ustring;
+    get_action_name () const -> glib::ustring;
     auto
-    set_action_name (const Glib::ustring& value) -> void;
+    set_action_name (const glib::ustring& value) -> void;
 
     auto
     gobj () -> GtkPadActionEntry*
@@ -122,6 +122,6 @@ namespace Gtk
     release_gobject () noexcept -> void;
   };
 
-} // namespace Gtk
+} // namespace gtk
 
 #endif

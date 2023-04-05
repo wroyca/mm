@@ -14,13 +14,13 @@ using GtkHeaderBarClass = struct _GtkHeaderBarClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT HeaderBar_Class;
 }
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
   class LIBMM_GTK_SYMEXPORT HeaderBar : public Widget
@@ -50,7 +50,7 @@ namespace Gtk
     static CppClassType headerbar_class_;
 
   protected:
-    explicit HeaderBar (const Glib::ConstructParams& construct_params);
+    explicit HeaderBar (const glib::ConstructParams& construct_params);
     explicit HeaderBar (GtkHeaderBar* castitem);
 
 #endif
@@ -82,7 +82,7 @@ namespace Gtk
     HeaderBar ();
 
     auto
-    set_title_widget (Gtk::Widget& title_widget) -> void;
+    set_title_widget (gtk::Widget& title_widget) -> void;
 
     auto
     get_title_widget () -> Widget*;
@@ -91,13 +91,13 @@ namespace Gtk
     get_title_widget () const -> const Widget*;
 
     auto
-    pack_start (Gtk::Widget& child) -> void;
+    pack_start (gtk::Widget& child) -> void;
 
     auto
-    pack_end (Gtk::Widget& child) -> void;
+    pack_end (gtk::Widget& child) -> void;
 
     auto
-    remove (Gtk::Widget& child) -> void;
+    remove (gtk::Widget& child) -> void;
 
     auto
     set_show_title_buttons (bool setting = true) -> void;
@@ -106,45 +106,45 @@ namespace Gtk
     get_show_title_buttons () const -> bool;
 
     auto
-    set_decoration_layout (const Glib::ustring& layout) -> void;
+    set_decoration_layout (const glib::ustring& layout) -> void;
 
     auto
     unset_decoration_layout () -> void;
 
     auto
-    get_decoration_layout () const -> Glib::ustring;
+    get_decoration_layout () const -> glib::ustring;
 
     auto
-    property_title_widget () -> Glib::PropertyProxy<Gtk::Widget*>;
+    property_title_widget () -> glib::PropertyProxy<gtk::Widget*>;
 
     auto
     property_title_widget () const
-        -> Glib::PropertyProxy_ReadOnly<Gtk::Widget*>;
+        -> glib::PropertyProxy_ReadOnly<gtk::Widget*>;
 
     auto
-    property_show_title_buttons () -> Glib::PropertyProxy<bool>;
+    property_show_title_buttons () -> glib::PropertyProxy<bool>;
 
     auto
-    property_show_title_buttons () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_show_title_buttons () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_decoration_layout () -> Glib::PropertyProxy<Glib::ustring>;
+    property_decoration_layout () -> glib::PropertyProxy<glib::ustring>;
 
     auto
     property_decoration_layout () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+        -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkHeaderBar* object, bool take_copy = false) -> Gtk::HeaderBar*;
-} // namespace Glib
+  wrap (GtkHeaderBar* object, bool take_copy = false) -> gtk::HeaderBar*;
+} // namespace glib
 
 #endif

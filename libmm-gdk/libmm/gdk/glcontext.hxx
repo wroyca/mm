@@ -17,13 +17,13 @@ using GdkGLContextClass = struct _GdkGLContextClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gdk
+namespace gdk
 {
   class LIBMM_GDK_SYMEXPORT GLContext_Class;
 }
 #endif
 
-namespace Gdk
+namespace gdk
 {
 
 #ifdef GDKMM_BUILD
@@ -85,24 +85,24 @@ namespace Gdk
                                       static_cast<unsigned> (rhs)));
   }
 
-} // namespace Gdk
+} // namespace gdk
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_GDK_SYMEXPORT Value<Gdk::GLApi> : public Glib::Value_Flags<Gdk::GLApi>
+  class LIBMM_GDK_SYMEXPORT Value<gdk::GLApi> : public glib::Value_Flags<gdk::GLApi>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
-namespace Gdk
+namespace gdk
 {
 
 #ifndef GLAPI
@@ -166,12 +166,12 @@ namespace Gdk
 }
 
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
     #ifndef GDKMM_DISABLE_DEPRECATED
   template <>
-  class LIBMM_GDK_SYMEXPORT Value<Gdk::GLAPI> : public Glib::Value_Flags<Gdk::GLAPI>
+  class LIBMM_GDK_SYMEXPORT Value<gdk::GLAPI> : public glib::Value_Flags<gdk::GLAPI>
   {
   public:
     static auto
@@ -179,15 +179,15 @@ namespace Glib
   };
     #endif
 
-} // namespace Glib
+} // namespace glib
   #endif
 
-namespace Gdk
+namespace gdk
 {
 
 #endif
 
-  class GLError : public Glib::Error
+  class GLError : public glib::Error
   {
   public:
     enum Code
@@ -200,7 +200,7 @@ namespace Gdk
     };
 
     LIBMM_GDK_SYMEXPORT
-    GLError (Code error_code, const Glib::ustring& error_message);
+    GLError (Code error_code, const glib::ustring& error_message);
     LIBMM_GDK_SYMEXPORT explicit GLError (GError* gobject);
     LIBMM_GDK_SYMEXPORT auto
     code () const -> Code;
@@ -218,22 +218,22 @@ namespace Gdk
 }
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_GDK_SYMEXPORT Value<Gdk::GLError::Code>
-    : public Glib::Value_Enum<Gdk::GLError::Code>
+  class LIBMM_GDK_SYMEXPORT Value<gdk::GLError::Code>
+    : public glib::Value_Enum<gdk::GLError::Code>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
-namespace Gdk
+namespace gdk
 {
 
   class LIBMM_GDK_SYMEXPORT GLContext : public DrawContext
@@ -255,7 +255,7 @@ namespace Gdk
     static CppClassType glcontext_class_;
 
   protected:
-    explicit GLContext (const Glib::ConstructParams& construct_params);
+    explicit GLContext (const glib::ConstructParams& construct_params);
     explicit GLContext (GdkGLContext* castitem);
 
 #endif
@@ -297,27 +297,27 @@ namespace Gdk
 
   public:
     auto
-    get_display () -> Glib::RefPtr<Display>;
+    get_display () -> glib::RefPtr<Display>;
 
     auto
-    get_display () const -> Glib::RefPtr<const Display>;
+    get_display () const -> glib::RefPtr<const Display>;
 
     auto
-    get_surface () -> Glib::RefPtr<Surface>;
+    get_surface () -> glib::RefPtr<Surface>;
 
     auto
-    get_surface () const -> Glib::RefPtr<const Surface>;
+    get_surface () const -> glib::RefPtr<const Surface>;
 
 #ifndef GDKMM_DISABLE_DEPRECATED
 
     auto
-    get_shared_context () -> Glib::RefPtr<GLContext>;
+    get_shared_context () -> glib::RefPtr<GLContext>;
 #endif
 
 #ifndef GDKMM_DISABLE_DEPRECATED
 
     auto
-    get_shared_context () const -> Glib::RefPtr<const GLContext>;
+    get_shared_context () const -> glib::RefPtr<const GLContext>;
 #endif
 
     auto
@@ -327,7 +327,7 @@ namespace Gdk
     is_legacy () const -> bool;
 
     auto
-    is_shared (const Glib::RefPtr<const GLContext>& other) const -> bool;
+    is_shared (const glib::RefPtr<const GLContext>& other) const -> bool;
 
     auto
     get_required_version (int& major, int& minor) const -> void;
@@ -399,7 +399,7 @@ namespace Gdk
     make_current () -> void;
 
     static auto
-    get_current () -> Glib::RefPtr<GLContext>;
+    get_current () -> glib::RefPtr<GLContext>;
 
     static auto
     clear_current () -> void;
@@ -408,7 +408,7 @@ namespace Gdk
 
     auto
     property_shared_context () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<GLContext>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<GLContext>>;
 
 #endif
 
@@ -417,17 +417,17 @@ namespace Gdk
   #ifndef GDKMM_DISABLE_DEPRECATED
 
     auto
-    property_allowed_apis () -> Glib::PropertyProxy<GLAPI>;
+    property_allowed_apis () -> glib::PropertyProxy<GLAPI>;
 
     auto
-    property_allowed_apis () const -> Glib::PropertyProxy_ReadOnly<GLAPI>;
+    property_allowed_apis () const -> glib::PropertyProxy_ReadOnly<GLAPI>;
 
   #endif
 
   #ifndef GDKMM_DISABLE_DEPRECATED
 
     auto
-    property_api () const -> Glib::PropertyProxy_ReadOnly<GLAPI>;
+    property_api () const -> glib::PropertyProxy_ReadOnly<GLAPI>;
 
   #endif
 
@@ -438,12 +438,12 @@ namespace Gdk
   protected:
   };
 
-} // namespace Gdk
+} // namespace gdk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GDK_SYMEXPORT auto
-  wrap (GdkGLContext* object, bool take_copy = false) -> Glib::RefPtr<Gdk::GLContext>;
-} // namespace Glib
+  wrap (GdkGLContext* object, bool take_copy = false) -> glib::RefPtr<gdk::GLContext>;
+} // namespace glib
 
 #endif

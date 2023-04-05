@@ -8,7 +8,7 @@
 
 #include <libmm/gio/dbusconnection.hxx>
 
-namespace Gio::DBus::Address
+namespace gio::DBus::Address
 {
 
   LIBMM_GIO_SYMEXPORT
@@ -22,48 +22,48 @@ namespace Gio::DBus::Address
   LIBMM_GIO_SYMEXPORT auto
   get_stream (const std::string& address,
               const SlotAsyncReady slot,
-              const Glib::RefPtr<Cancellable>& cancellable) -> void;
+              const glib::RefPtr<Cancellable>& cancellable) -> void;
 
   LIBMM_GIO_SYMEXPORT auto
   get_stream (const std::string& address, const SlotAsyncReady slot) -> void;
 
   LIBMM_GIO_SYMEXPORT
   auto
-  get_stream_finish (const Glib::RefPtr<AsyncResult>& res,
-                     std::string& out_guid) -> Glib::RefPtr<IOStream>;
+  get_stream_finish (const glib::RefPtr<AsyncResult>& res,
+                     std::string& out_guid) -> glib::RefPtr<IOStream>;
 
   LIBMM_GIO_SYMEXPORT
   auto
-  get_stream_finish (const Glib::RefPtr<AsyncResult>& res) -> Glib::RefPtr<IOStream>;
-
-  LIBMM_GIO_SYMEXPORT
-  auto
-  get_stream_sync (const std::string& address,
-                   const Glib::RefPtr<Cancellable>& cancellable,
-                   std::string& out_guid) -> Glib::RefPtr<IOStream>;
-
-  LIBMM_GIO_SYMEXPORT
-  auto
-  get_stream_sync (const std::string& address, std::string& out_guid) -> Glib::RefPtr<IOStream>;
+  get_stream_finish (const glib::RefPtr<AsyncResult>& res) -> glib::RefPtr<IOStream>;
 
   LIBMM_GIO_SYMEXPORT
   auto
   get_stream_sync (const std::string& address,
-                   const Glib::RefPtr<Cancellable>& cancellable) -> Glib::RefPtr<IOStream>;
+                   const glib::RefPtr<Cancellable>& cancellable,
+                   std::string& out_guid) -> glib::RefPtr<IOStream>;
 
   LIBMM_GIO_SYMEXPORT
   auto
-  get_stream_sync (const std::string& address) -> Glib::RefPtr<IOStream>;
+  get_stream_sync (const std::string& address, std::string& out_guid) -> glib::RefPtr<IOStream>;
+
+  LIBMM_GIO_SYMEXPORT
+  auto
+  get_stream_sync (const std::string& address,
+                   const glib::RefPtr<Cancellable>& cancellable) -> glib::RefPtr<IOStream>;
+
+  LIBMM_GIO_SYMEXPORT
+  auto
+  get_stream_sync (const std::string& address) -> glib::RefPtr<IOStream>;
 
   LIBMM_GIO_SYMEXPORT
   auto
   get_for_bus_sync (BusType bus_type,
-                    const Glib::RefPtr<Cancellable>& cancellable) -> std::string;
+                    const glib::RefPtr<Cancellable>& cancellable) -> std::string;
 
   LIBMM_GIO_SYMEXPORT
   auto
   get_for_bus_sync (BusType bus_type) -> std::string;
 
-} // namespace Gio::DBus::Address
+} // namespace gio::DBus::Address
 
 #endif

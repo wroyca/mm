@@ -7,7 +7,7 @@
 
 #include <libmm/gtk/mm-gtk.hxx>
 
-namespace Adw
+namespace adw
 {
 
 }
@@ -21,25 +21,25 @@ namespace
                                           GValue* p1,
                                           void* data) -> gboolean
   {
-    using namespace Adw;
+    using namespace adw;
     using SlotType =
-        sigc::slot<bool (const Glib::RefPtr<TabPage>&, Glib::ValueBase&)>;
+        sigc::slot<bool (const glib::RefPtr<TabPage>&, glib::ValueBase&)>;
 
     auto obj = dynamic_cast<TabBar*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
     {
       try
       {
-        if (const auto slot = Glib::SignalProxyNormal::data_to_slot (data))
+        if (const auto slot = glib::SignalProxyNormal::data_to_slot (data))
           return static_cast<int> ((*static_cast<SlotType*> (slot)) (
-              Glib::wrap (p0, true),
-              *reinterpret_cast<Glib::ValueBase*> (p1)));
+              glib::wrap (p0, true),
+              *reinterpret_cast<glib::ValueBase*> (p1)));
       }
       catch (...)
       {
-        Glib::exception_handlers_invoke ();
+        glib::exception_handlers_invoke ();
       }
     }
 
@@ -53,25 +53,25 @@ namespace
                                                  GValue* p1,
                                                  void* data) -> gboolean
   {
-    using namespace Adw;
+    using namespace adw;
     using SlotType =
-        sigc::slot<void (const Glib::RefPtr<TabPage>&, Glib::ValueBase&)>;
+        sigc::slot<void (const glib::RefPtr<TabPage>&, glib::ValueBase&)>;
 
     auto obj = dynamic_cast<TabBar*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
     {
       try
       {
-        if (const auto slot = Glib::SignalProxyNormal::data_to_slot (data))
+        if (const auto slot = glib::SignalProxyNormal::data_to_slot (data))
           (*static_cast<SlotType*> (slot)) (
-              Glib::wrap (p0, true),
-              *reinterpret_cast<Glib::ValueBase*> (p1));
+              glib::wrap (p0, true),
+              *reinterpret_cast<glib::ValueBase*> (p1));
       }
       catch (...)
       {
-        Glib::exception_handlers_invoke ();
+        glib::exception_handlers_invoke ();
       }
     }
 
@@ -79,30 +79,30 @@ namespace
     return RType ();
   }
 
-  static const Glib::SignalProxyInfo TabBar_signal_extra_drag_drop_info = {
+  static const glib::SignalProxyInfo TabBar_signal_extra_drag_drop_info = {
       "extra-drag-drop",
       (GCallback) &TabBar_signal_extra_drag_drop_callback,
       (GCallback) &TabBar_signal_extra_drag_drop_notify_callback};
 
 } // namespace
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (AdwTabBar* object, bool take_copy) -> Adw::TabBar*
+  wrap (AdwTabBar* object, bool take_copy) -> adw::TabBar*
   {
-    return dynamic_cast<Adw::TabBar*> (
-        Glib::wrap_auto ((GObject*) (object), take_copy));
+    return dynamic_cast<adw::TabBar*> (
+        glib::wrap_auto ((GObject*) (object), take_copy));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Adw
+namespace adw
 {
 
   auto
-  TabBar_Class::init () -> const Glib::Class&
+  TabBar_Class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -113,30 +113,30 @@ namespace Adw
   }
 
   auto
-  TabBar_Class::wrap_new (GObject* o) -> Glib::ObjectBase*
+  TabBar_Class::wrap_new (GObject* o) -> glib::ObjectBase*
   {
     return manage (new TabBar ((AdwTabBar*) (o)));
   }
 
-  TabBar::TabBar (const Glib::ConstructParams& construct_params)
-    : Gtk::Widget (construct_params)
+  TabBar::TabBar (const glib::ConstructParams& construct_params)
+    : gtk::Widget (construct_params)
   {
   }
 
   TabBar::TabBar (AdwTabBar* castitem)
-    : Gtk::Widget ((GtkWidget*) (castitem))
+    : gtk::Widget ((GtkWidget*) (castitem))
   {
   }
 
   TabBar::TabBar (TabBar&& src) noexcept
-    : Gtk::Widget (std::move (src))
+    : gtk::Widget (std::move (src))
   {
   }
 
   auto
   TabBar::operator= (TabBar&& src) noexcept -> TabBar&
   {
-    Gtk::Widget::operator= (std::move (src));
+    gtk::Widget::operator= (std::move (src));
     return *this;
   }
 
@@ -160,8 +160,8 @@ namespace Adw
   }
 
   TabBar::TabBar ()
-    : Glib::ObjectBase (nullptr),
-      Gtk::Widget (Glib::ConstructParams (tabbar_class_.init ()))
+    : glib::ObjectBase (nullptr),
+      gtk::Widget (glib::ConstructParams (tabbar_class_.init ()))
   {
   }
 
@@ -172,9 +172,9 @@ namespace Adw
   }
 
   auto
-  TabBar::get_end_action_widget () const -> Gtk::Widget*
+  TabBar::get_end_action_widget () const -> gtk::Widget*
   {
-    return Glib::wrap (
+    return glib::wrap (
         adw_tab_bar_get_end_action_widget (const_cast<AdwTabBar*> (gobj ())));
   }
 
@@ -197,9 +197,9 @@ namespace Adw
   }
 
   auto
-  TabBar::get_start_action_widget () const -> Gtk::Widget*
+  TabBar::get_start_action_widget () const -> gtk::Widget*
   {
-    return Glib::wrap (
+    return glib::wrap (
         adw_tab_bar_get_start_action_widget (const_cast<AdwTabBar*> (gobj ())));
   }
 
@@ -212,7 +212,7 @@ namespace Adw
   auto
   TabBar::get_view () const -> TabView*
   {
-    return Glib::wrap (adw_tab_bar_get_view (const_cast<AdwTabBar*> (gobj ())));
+    return glib::wrap (adw_tab_bar_get_view (const_cast<AdwTabBar*> (gobj ())));
   }
 
   auto
@@ -222,10 +222,10 @@ namespace Adw
   }
 
   auto
-  TabBar::set_end_action_widget (Gtk::Widget* widget) -> void
+  TabBar::set_end_action_widget (gtk::Widget* widget) -> void
   {
     adw_tab_bar_set_end_action_widget (gobj (),
-                                       (GtkWidget*) Glib::unwrap (widget));
+                                       (GtkWidget*) glib::unwrap (widget));
   }
 
   auto
@@ -241,117 +241,117 @@ namespace Adw
   }
 
   auto
-  TabBar::set_start_action_widget (Gtk::Widget* widget) -> void
+  TabBar::set_start_action_widget (gtk::Widget* widget) -> void
   {
     adw_tab_bar_set_start_action_widget (gobj (),
-                                         (GtkWidget*) Glib::unwrap (widget));
+                                         (GtkWidget*) glib::unwrap (widget));
   }
 
   auto
   TabBar::set_view (TabView* view) -> void
   {
-    adw_tab_bar_set_view (gobj (), (AdwTabView*) Glib::unwrap (view));
+    adw_tab_bar_set_view (gobj (), (AdwTabView*) glib::unwrap (view));
   }
 
   auto
-  TabBar::signal_extra_drag_drop () -> Glib::SignalProxy<bool (const Glib::RefPtr<TabPage>&,
-                                 Glib::ValueBase&)>
+  TabBar::signal_extra_drag_drop () -> glib::SignalProxy<bool (const glib::RefPtr<TabPage>&,
+                                 glib::ValueBase&)>
   {
-    return Glib::SignalProxy<bool (const Glib::RefPtr<TabPage>&,
-                                   Glib::ValueBase&)> (
+    return glib::SignalProxy<bool (const glib::RefPtr<TabPage>&,
+                                   glib::ValueBase&)> (
         this,
         &TabBar_signal_extra_drag_drop_info);
   }
 
   auto
-  TabBar::property_autohide () -> Glib::PropertyProxy<bool>
+  TabBar::property_autohide () -> glib::PropertyProxy<bool>
   {
-    return Glib::PropertyProxy<bool> (this, "autohide");
+    return glib::PropertyProxy<bool> (this, "autohide");
   }
 
   auto
-  TabBar::property_autohide () const -> Glib::PropertyProxy_ReadOnly<bool>
+  TabBar::property_autohide () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "autohide");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "autohide");
   }
 
   auto
-  TabBar::property_end_action_widget () -> Glib::PropertyProxy<Gtk::Widget*>
+  TabBar::property_end_action_widget () -> glib::PropertyProxy<gtk::Widget*>
   {
-    return Glib::PropertyProxy<Gtk::Widget*> (this, "end-action-widget");
+    return glib::PropertyProxy<gtk::Widget*> (this, "end-action-widget");
   }
 
   auto
-  TabBar::property_end_action_widget () const -> Glib::PropertyProxy_ReadOnly<Gtk::Widget*>
+  TabBar::property_end_action_widget () const -> glib::PropertyProxy_ReadOnly<gtk::Widget*>
   {
-    return Glib::PropertyProxy_ReadOnly<Gtk::Widget*> (this,
+    return glib::PropertyProxy_ReadOnly<gtk::Widget*> (this,
                                                        "end-action-widget");
   }
 
   auto
-  TabBar::property_expand_tabs () -> Glib::PropertyProxy<bool>
+  TabBar::property_expand_tabs () -> glib::PropertyProxy<bool>
   {
-    return Glib::PropertyProxy<bool> (this, "expand-tabs");
+    return glib::PropertyProxy<bool> (this, "expand-tabs");
   }
 
   auto
-  TabBar::property_expand_tabs () const -> Glib::PropertyProxy_ReadOnly<bool>
+  TabBar::property_expand_tabs () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "expand-tabs");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "expand-tabs");
   }
 
   auto
-  TabBar::property_inverted () -> Glib::PropertyProxy<bool>
+  TabBar::property_inverted () -> glib::PropertyProxy<bool>
   {
-    return Glib::PropertyProxy<bool> (this, "inverted");
+    return glib::PropertyProxy<bool> (this, "inverted");
   }
 
   auto
-  TabBar::property_inverted () const -> Glib::PropertyProxy_ReadOnly<bool>
+  TabBar::property_inverted () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "inverted");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "inverted");
   }
 
   auto
-  TabBar::property_is_overflowing () const -> Glib::PropertyProxy_ReadOnly<bool>
+  TabBar::property_is_overflowing () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "is-overflowing");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "is-overflowing");
   }
 
   auto
-  TabBar::property_start_action_widget () -> Glib::PropertyProxy<Gtk::Widget*>
+  TabBar::property_start_action_widget () -> glib::PropertyProxy<gtk::Widget*>
   {
-    return Glib::PropertyProxy<Gtk::Widget*> (this, "start-action-widget");
+    return glib::PropertyProxy<gtk::Widget*> (this, "start-action-widget");
   }
 
   auto
-  TabBar::property_start_action_widget () const -> Glib::PropertyProxy_ReadOnly<Gtk::Widget*>
+  TabBar::property_start_action_widget () const -> glib::PropertyProxy_ReadOnly<gtk::Widget*>
   {
-    return Glib::PropertyProxy_ReadOnly<Gtk::Widget*> (this,
+    return glib::PropertyProxy_ReadOnly<gtk::Widget*> (this,
                                                        "start-action-widget");
   }
 
   auto
-  TabBar::property_tabs_revealed () const -> Glib::PropertyProxy_ReadOnly<bool>
+  TabBar::property_tabs_revealed () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "tabs-revealed");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "tabs-revealed");
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<TabView*>::value,
+      glib::Traits::ValueCompatibleWithWrapProperty<TabView*>::value,
       "Type TabView* cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  TabBar::property_view () -> Glib::PropertyProxy<TabView*>
+  TabBar::property_view () -> glib::PropertyProxy<TabView*>
   {
-    return Glib::PropertyProxy<TabView*> (this, "view");
+    return glib::PropertyProxy<TabView*> (this, "view");
   }
 
   auto
-  TabBar::property_view () const -> Glib::PropertyProxy_ReadOnly<TabView*>
+  TabBar::property_view () const -> glib::PropertyProxy_ReadOnly<TabView*>
   {
-    return Glib::PropertyProxy_ReadOnly<TabView*> (this, "view");
+    return glib::PropertyProxy_ReadOnly<TabView*> (this, "view");
   }
 
-} // namespace Adw
+} // namespace adw

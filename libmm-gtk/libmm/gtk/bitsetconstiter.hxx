@@ -8,7 +8,7 @@
 #include <libmm/gtk/mm-gtkconfig.hxx>
 #include <memory>
 
-namespace Gtk
+namespace gtk
 {
 
   class BitsetConstIter
@@ -72,6 +72,6 @@ namespace Gtk
     return !lhs.equal (rhs);
   }
 
-} // namespace Gtk
+} // namespace gtk
 
 #endif

@@ -24,16 +24,16 @@ namespace
                                          GtkTreeIter* iter,
                                          void* data) -> void
   {
-    typedef Gtk::TreeSelection::SlotForeachIter SlotType;
+    typedef gtk::TreeSelection::SlotForeachIter SlotType;
     auto& slot = *static_cast<SlotType*> (data);
 
     try
     {
-      slot (Gtk::TreeModel::const_iterator (model, iter));
+      slot (gtk::TreeModel::const_iterator (model, iter));
     }
     catch (...)
     {
-      Glib::exception_handlers_invoke ();
+      glib::exception_handlers_invoke ();
     }
   }
 
@@ -43,16 +43,16 @@ namespace
                                          GtkTreeIter*,
                                          void* data) -> void
   {
-    typedef Gtk::TreeSelection::SlotForeachPath SlotType;
+    typedef gtk::TreeSelection::SlotForeachPath SlotType;
     auto& slot = *static_cast<SlotType*> (data);
 
     try
     {
-      slot (Gtk::TreeModel::Path (path, true));
+      slot (gtk::TreeModel::Path (path, true));
     }
     catch (...)
     {
-      Glib::exception_handlers_invoke ();
+      glib::exception_handlers_invoke ();
     }
   }
 
@@ -62,17 +62,17 @@ namespace
                                                   GtkTreeIter* iter,
                                                   void* data) -> void
   {
-    typedef Gtk::TreeSelection::SlotForeachPathAndIter SlotType;
+    typedef gtk::TreeSelection::SlotForeachPathAndIter SlotType;
     auto& slot = *static_cast<SlotType*> (data);
 
     try
     {
-      slot (Gtk::TreeModel::Path (path, true),
-            Gtk::TreeModel::const_iterator (model, iter));
+      slot (gtk::TreeModel::Path (path, true),
+            gtk::TreeModel::const_iterator (model, iter));
     }
     catch (...)
     {
-      Glib::exception_handlers_invoke ();
+      glib::exception_handlers_invoke ();
     }
   }
 
@@ -83,17 +83,17 @@ namespace
                                    gboolean path_currently_selected,
                                    void* data) -> gboolean
   {
-    const auto the_slot = static_cast<Gtk::TreeSelection::SlotSelect*> (data);
+    const auto the_slot = static_cast<gtk::TreeSelection::SlotSelect*> (data);
 
     try
     {
-      return (*the_slot) (Glib::wrap (model, true),
-                          Gtk::TreePath (path, true),
+      return (*the_slot) (glib::wrap (model, true),
+                          gtk::TreePath (path, true),
                           path_currently_selected);
     }
     catch (...)
     {
-      Glib::exception_handlers_invoke ();
+      glib::exception_handlers_invoke ();
     }
 
     return 0;
@@ -104,10 +104,10 @@ namespace
 static auto
 SignalProxy_Select_gtk_callback_destroy (void* data) -> void
 {
-  delete static_cast<Gtk::TreeSelection::SlotSelect*> (data);
+  delete static_cast<gtk::TreeSelection::SlotSelect*> (data);
 }
 
-namespace Gtk
+namespace gtk
 {
 
   auto
@@ -123,18 +123,18 @@ namespace Gtk
   }
 
   auto
-  TreeSelection::get_model () -> Glib::RefPtr<TreeModel>
+  TreeSelection::get_model () -> glib::RefPtr<TreeModel>
   {
     const auto tree_view = gtk_tree_selection_get_tree_view (gobj ());
-    return Glib::wrap (gtk_tree_view_get_model (tree_view), true);
+    return glib::wrap (gtk_tree_view_get_model (tree_view), true);
   }
 
   auto
-  TreeSelection::get_model () const -> Glib::RefPtr<const TreeModel>
+  TreeSelection::get_model () const -> glib::RefPtr<const TreeModel>
   {
     const auto tree_view = gtk_tree_selection_get_tree_view (
         const_cast<GtkTreeSelection*> (gobj ()));
-    return Glib::wrap (gtk_tree_view_get_model (tree_view), true);
+    return glib::wrap (gtk_tree_view_get_model (tree_view), true);
   }
 
   auto
@@ -156,21 +156,21 @@ namespace Gtk
   }
 
   auto
-  TreeSelection::get_selected (Glib::RefPtr<TreeModel>& model) -> TreeModel::iterator
+  TreeSelection::get_selected (glib::RefPtr<TreeModel>& model) -> TreeModel::iterator
   {
     TreeModel::iterator iter;
     GtkTreeModel* model_gobject = nullptr;
 
     gtk_tree_selection_get_selected (gobj (), &model_gobject, iter.gobj ());
 
-    model = Glib::wrap (model_gobject, true);
+    model = glib::wrap (model_gobject, true);
 
     iter.set_model_refptr (model);
     return iter;
   }
 
   auto
-  TreeSelection::get_selected (Glib::RefPtr<const TreeModel>& model) const -> TreeModel::const_iterator
+  TreeSelection::get_selected (glib::RefPtr<const TreeModel>& model) const -> TreeModel::const_iterator
   {
     TreeModel::iterator iter;
     GtkTreeModel* model_gobject = nullptr;
@@ -179,7 +179,7 @@ namespace Gtk
                                      &model_gobject,
                                      iter.gobj ());
 
-    model = Glib::wrap (model_gobject, true);
+    model = glib::wrap (model_gobject, true);
 
     iter.set_model_refptr (std::const_pointer_cast<TreeModel> (model));
     return iter;
@@ -218,59 +218,59 @@ namespace Gtk
   auto
   TreeSelection::get_selected_rows () const -> std::vector<TreeModel::Path>
   {
-    return Glib::ListHandler<TreeModel::Path, TreePathTraits>::list_to_vector (
+    return glib::ListHandler<TreeModel::Path, TreePathTraits>::list_to_vector (
         gtk_tree_selection_get_selected_rows (
             const_cast<GtkTreeSelection*> (gobj ()),
             nullptr),
-        Glib::OWNERSHIP_DEEP);
+        glib::OWNERSHIP_DEEP);
   }
 
   auto
-  TreeSelection::get_selected_rows (Glib::RefPtr<TreeModel>& model) -> std::vector<TreeModel::Path>
+  TreeSelection::get_selected_rows (glib::RefPtr<TreeModel>& model) -> std::vector<TreeModel::Path>
   {
     GtkTreeModel* model_gobject = nullptr;
 
     const std::vector<TreeModel::Path> result (
-        Glib::ListHandler<TreeModel::Path, TreePathTraits>::list_to_vector (
+        glib::ListHandler<TreeModel::Path, TreePathTraits>::list_to_vector (
             gtk_tree_selection_get_selected_rows (
                 const_cast<GtkTreeSelection*> (gobj ()),
                 &model_gobject),
-            Glib::OWNERSHIP_DEEP));
+            glib::OWNERSHIP_DEEP));
 
-    model = Glib::wrap (model_gobject, true);
+    model = glib::wrap (model_gobject, true);
     return result;
   }
 
-} // namespace Gtk
+} // namespace gtk
 
 namespace
 {
 
-  static const Glib::SignalProxyInfo TreeSelection_signal_changed_info = {
+  static const glib::SignalProxyInfo TreeSelection_signal_changed_info = {
       "changed",
-      (GCallback) &Glib::SignalProxyNormal::slot0_void_callback,
-      (GCallback) &Glib::SignalProxyNormal::slot0_void_callback};
+      (GCallback) &glib::SignalProxyNormal::slot0_void_callback,
+      (GCallback) &glib::SignalProxyNormal::slot0_void_callback};
 
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GtkTreeSelection* object, bool take_copy) -> Glib::RefPtr<Gtk::TreeSelection>
+  wrap (GtkTreeSelection* object, bool take_copy) -> glib::RefPtr<gtk::TreeSelection>
   {
-    return Glib::make_refptr_for_instance<Gtk::TreeSelection> (
-        dynamic_cast<Gtk::TreeSelection*> (
-            Glib::wrap_auto ((GObject*) (object), take_copy)));
+    return glib::make_refptr_for_instance<gtk::TreeSelection> (
+        dynamic_cast<gtk::TreeSelection*> (
+            glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gtk
+namespace gtk
 {
 
   auto
-  TreeSelection_Class::init () -> const Glib::Class&
+  TreeSelection_Class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -290,7 +290,7 @@ namespace Gtk
   }
 
   auto
-  TreeSelection_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  TreeSelection_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new TreeSelection ((GtkTreeSelection*) object);
   }
@@ -302,25 +302,25 @@ namespace Gtk
     return gobj ();
   }
 
-  TreeSelection::TreeSelection (const Glib::ConstructParams& construct_params)
-    : Glib::Object (construct_params)
+  TreeSelection::TreeSelection (const glib::ConstructParams& construct_params)
+    : glib::Object (construct_params)
   {
   }
 
   TreeSelection::TreeSelection (GtkTreeSelection* castitem)
-    : Glib::Object ((GObject*) (castitem))
+    : glib::Object ((GObject*) (castitem))
   {
   }
 
   TreeSelection::TreeSelection (TreeSelection&& src) noexcept
-    : Glib::Object (std::move (src))
+    : glib::Object (std::move (src))
   {
   }
 
   auto
   TreeSelection::operator= (TreeSelection&& src) noexcept -> TreeSelection&
   {
-    Glib::Object::operator= (std::move (src));
+    glib::Object::operator= (std::move (src));
     return *this;
   }
 
@@ -356,7 +356,7 @@ namespace Gtk
   auto
   TreeSelection::get_tree_view () -> TreeView*
   {
-    return Glib::wrap (gtk_tree_selection_get_tree_view (gobj ()));
+    return glib::wrap (gtk_tree_selection_get_tree_view (gobj ()));
   }
 
   auto
@@ -451,29 +451,29 @@ namespace Gtk
   }
 
   auto
-  TreeSelection::signal_changed () -> Glib::SignalProxy<void ()>
+  TreeSelection::signal_changed () -> glib::SignalProxy<void ()>
   {
-    return Glib::SignalProxy<void ()> (this,
+    return glib::SignalProxy<void ()> (this,
                                        &TreeSelection_signal_changed_info);
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<SelectionMode>::value,
+      glib::Traits::ValueCompatibleWithWrapProperty<SelectionMode>::value,
       "Type SelectionMode cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  TreeSelection::property_mode () -> Glib::PropertyProxy<SelectionMode>
+  TreeSelection::property_mode () -> glib::PropertyProxy<SelectionMode>
   {
-    return Glib::PropertyProxy<SelectionMode> (this, "mode");
+    return glib::PropertyProxy<SelectionMode> (this, "mode");
   }
 
   auto
-  TreeSelection::property_mode () const -> Glib::PropertyProxy_ReadOnly<SelectionMode>
+  TreeSelection::property_mode () const -> glib::PropertyProxy_ReadOnly<SelectionMode>
   {
-    return Glib::PropertyProxy_ReadOnly<SelectionMode> (this, "mode");
+    return glib::PropertyProxy_ReadOnly<SelectionMode> (this, "mode");
   }
 
-} // namespace Gtk
+} // namespace gtk
 
 #endif

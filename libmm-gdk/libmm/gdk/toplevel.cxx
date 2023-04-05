@@ -7,7 +7,7 @@
 
 #include <gdk/gdk.h>
 
-using State = Gdk::Toplevel::State;
+using State = gdk::Toplevel::State;
 
 namespace
 {
@@ -17,17 +17,17 @@ namespace
                                          GdkToplevelSize* p0,
                                          void* data) -> void
   {
-    using namespace Gdk;
+    using namespace gdk;
     using SlotType = sigc::slot<void (ToplevelSize&)>;
 
     auto obj = dynamic_cast<Toplevel*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
     {
       try
       {
-        if (const auto slot = Glib::SignalProxyNormal::data_to_slot (data))
+        if (const auto slot = glib::SignalProxyNormal::data_to_slot (data))
         {
           ToplevelSize toplevelsize (p0);
           (*static_cast<SlotType*> (slot)) (toplevelsize);
@@ -35,7 +35,7 @@ namespace
       }
       catch (...)
       {
-        Glib::exception_handlers_invoke ();
+        glib::exception_handlers_invoke ();
       }
     }
   }
@@ -45,7 +45,7 @@ namespace
 namespace
 {
 
-  static const Glib::SignalProxyInfo Toplevel_signal_compute_size_info = {
+  static const glib::SignalProxyInfo Toplevel_signal_compute_size_info = {
       "compute-size",
       (GCallback) &Toplevel_signal_compute_size_callback,
       (GCallback) &Toplevel_signal_compute_size_callback};
@@ -53,42 +53,42 @@ namespace
 }
 
 auto
-Glib::Value<Gdk::SurfaceEdge>::value_type () -> GType
+glib::Value<gdk::SurfaceEdge>::value_type () -> GType
 {
   return gdk_surface_edge_get_type ();
 }
 
 auto
-Glib::Value<Gdk::FullscreenMode>::value_type () -> GType
+glib::Value<gdk::FullscreenMode>::value_type () -> GType
 {
   return gdk_fullscreen_mode_get_type ();
 }
 
 auto
-Glib::Value<Gdk::Toplevel::State>::value_type () -> GType
+glib::Value<gdk::Toplevel::State>::value_type () -> GType
 {
   return gdk_toplevel_state_get_type ();
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GdkToplevel* object, bool take_copy) -> Glib::RefPtr<Gdk::Toplevel>
+  wrap (GdkToplevel* object, bool take_copy) -> glib::RefPtr<gdk::Toplevel>
   {
-    return Glib::make_refptr_for_instance<Gdk::Toplevel> (
-        dynamic_cast<Gdk::Toplevel*> (
-            Glib::wrap_auto_interface<Gdk::Toplevel> ((GObject*) (object),
+    return glib::make_refptr_for_instance<gdk::Toplevel> (
+        dynamic_cast<gdk::Toplevel*> (
+            glib::wrap_auto_interface<gdk::Toplevel> ((GObject*) (object),
                                                       take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gdk
+namespace gdk
 {
 
   auto
-  Toplevel_Class::init () -> const Glib::Interface_Class&
+  Toplevel_Class::init () -> const glib::Interface_Class&
   {
     if (!gtype_)
     {
@@ -109,35 +109,35 @@ namespace Gdk
   }
 
   auto
-  Toplevel_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  Toplevel_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new Toplevel ((GdkToplevel*) (object));
   }
 
   Toplevel::Toplevel ()
-    : Glib::Interface (toplevel_class_.init ())
+    : glib::Interface (toplevel_class_.init ())
   {
   }
 
   Toplevel::Toplevel (GdkToplevel* castitem)
-    : Glib::Interface ((GObject*) (castitem))
+    : glib::Interface ((GObject*) (castitem))
   {
   }
 
-  Toplevel::Toplevel (const Glib::Interface_Class& interface_class)
-    : Glib::Interface (interface_class)
+  Toplevel::Toplevel (const glib::Interface_Class& interface_class)
+    : glib::Interface (interface_class)
   {
   }
 
   Toplevel::Toplevel (Toplevel&& src) noexcept
-    : Glib::Interface (std::move (src))
+    : glib::Interface (std::move (src))
   {
   }
 
   auto
   Toplevel::operator= (Toplevel&& src) noexcept -> Toplevel&
   {
-    Glib::Interface::operator= (std::move (src));
+    glib::Interface::operator= (std::move (src));
     return *this;
   }
 
@@ -164,9 +164,9 @@ namespace Gdk
   }
 
   auto
-  Toplevel::present (const Glib::RefPtr<ToplevelLayout>& layout) -> void
+  Toplevel::present (const glib::RefPtr<ToplevelLayout>& layout) -> void
   {
-    gdk_toplevel_present (gobj (), Glib::unwrap (layout));
+    gdk_toplevel_present (gobj (), glib::unwrap (layout));
   }
 
   auto
@@ -195,21 +195,21 @@ namespace Gdk
   }
 
   auto
-  Toplevel::set_title (const Glib::ustring& title) -> void
+  Toplevel::set_title (const glib::ustring& title) -> void
   {
     gdk_toplevel_set_title (gobj (), title.c_str ());
   }
 
   auto
-  Toplevel::set_startup_id (const Glib::ustring& startup_id) -> void
+  Toplevel::set_startup_id (const glib::ustring& startup_id) -> void
   {
     gdk_toplevel_set_startup_id (gobj (), startup_id.c_str ());
   }
 
   auto
-  Toplevel::set_transient_for (const Glib::RefPtr<Surface>& parent) -> void
+  Toplevel::set_transient_for (const glib::RefPtr<Surface>& parent) -> void
   {
-    gdk_toplevel_set_transient_for (gobj (), Glib::unwrap (parent));
+    gdk_toplevel_set_transient_for (gobj (), glib::unwrap (parent));
   }
 
   auto
@@ -219,18 +219,18 @@ namespace Gdk
   }
 
   auto
-  Toplevel::set_icon_list (const std::vector<Glib::RefPtr<Texture>>& surfaces) -> void
+  Toplevel::set_icon_list (const std::vector<glib::RefPtr<Texture>>& surfaces) -> void
   {
     gdk_toplevel_set_icon_list (
         gobj (),
-        Glib::ListHandler<Glib::RefPtr<Texture>>::vector_to_list (surfaces)
+        glib::ListHandler<glib::RefPtr<Texture>>::vector_to_list (surfaces)
             .data ());
   }
 
   auto
-  Toplevel::show_window_menu (const Glib::RefPtr<Event>& event) -> bool
+  Toplevel::show_window_menu (const glib::RefPtr<Event>& event) -> bool
   {
-    return gdk_toplevel_show_window_menu (gobj (), Glib::unwrap (event));
+    return gdk_toplevel_show_window_menu (gobj (), glib::unwrap (event));
   }
 
   auto
@@ -253,9 +253,9 @@ namespace Gdk
   }
 
   auto
-  Toplevel::inhibit_system_shortcuts (const Glib::RefPtr<Event>& event) -> void
+  Toplevel::inhibit_system_shortcuts (const glib::RefPtr<Event>& event) -> void
   {
-    gdk_toplevel_inhibit_system_shortcuts (gobj (), Glib::unwrap (event));
+    gdk_toplevel_inhibit_system_shortcuts (gobj (), glib::unwrap (event));
   }
 
   auto
@@ -266,7 +266,7 @@ namespace Gdk
 
   auto
   Toplevel::begin_resize (SurfaceEdge edge,
-                          const Glib::RefPtr<Device>& device,
+                          const glib::RefPtr<Device>& device,
                           int button,
                           double x,
                           double y,
@@ -274,7 +274,7 @@ namespace Gdk
   {
     gdk_toplevel_begin_resize (gobj (),
                                static_cast<GdkSurfaceEdge> (edge),
-                               Glib::unwrap (device),
+                               glib::unwrap (device),
                                button,
                                x,
                                y,
@@ -282,14 +282,14 @@ namespace Gdk
   }
 
   auto
-  Toplevel::begin_move (const Glib::RefPtr<Device>& device,
+  Toplevel::begin_move (const glib::RefPtr<Device>& device,
                         int button,
                         double x,
                         double y,
                         guint32 timestamp) -> void
   {
     gdk_toplevel_begin_move (gobj (),
-                             Glib::unwrap (device),
+                             glib::unwrap (device),
                              button,
                              x,
                              y,
@@ -297,126 +297,126 @@ namespace Gdk
   }
 
   auto
-  Toplevel::signal_compute_size () -> Glib::SignalProxy<void (ToplevelSize&)>
+  Toplevel::signal_compute_size () -> glib::SignalProxy<void (ToplevelSize&)>
   {
-    return Glib::SignalProxy<void (ToplevelSize&)> (
+    return glib::SignalProxy<void (ToplevelSize&)> (
         this,
         &Toplevel_signal_compute_size_info);
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<State>::value,
+      glib::Traits::ValueCompatibleWithWrapProperty<State>::value,
       "Type State cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  Toplevel::property_state () const -> Glib::PropertyProxy_ReadOnly<State>
+  Toplevel::property_state () const -> glib::PropertyProxy_ReadOnly<State>
   {
-    return Glib::PropertyProxy_ReadOnly<State> (this, "state");
+    return glib::PropertyProxy_ReadOnly<State> (this, "state");
   }
 
   auto
-  Toplevel::property_title () -> Glib::PropertyProxy<Glib::ustring>
+  Toplevel::property_title () -> glib::PropertyProxy<glib::ustring>
   {
-    return Glib::PropertyProxy<Glib::ustring> (this, "title");
+    return glib::PropertyProxy<glib::ustring> (this, "title");
   }
 
   auto
-  Toplevel::property_title () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>
+  Toplevel::property_title () const -> glib::PropertyProxy_ReadOnly<glib::ustring>
   {
-    return Glib::PropertyProxy_ReadOnly<Glib::ustring> (this, "title");
+    return glib::PropertyProxy_ReadOnly<glib::ustring> (this, "title");
   }
 
   auto
-  Toplevel::property_startup_id () -> Glib::PropertyProxy<Glib::ustring>
+  Toplevel::property_startup_id () -> glib::PropertyProxy<glib::ustring>
   {
-    return Glib::PropertyProxy<Glib::ustring> (this, "startup-id");
+    return glib::PropertyProxy<glib::ustring> (this, "startup-id");
   }
 
   auto
-  Toplevel::property_startup_id () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>
+  Toplevel::property_startup_id () const -> glib::PropertyProxy_ReadOnly<glib::ustring>
   {
-    return Glib::PropertyProxy_ReadOnly<Glib::ustring> (this, "startup-id");
+    return glib::PropertyProxy_ReadOnly<glib::ustring> (this, "startup-id");
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<
-          Glib::RefPtr<Surface>>::value,
-      "Type Glib::RefPtr<Surface> cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      glib::Traits::ValueCompatibleWithWrapProperty<
+          glib::RefPtr<Surface>>::value,
+      "Type glib::RefPtr<Surface> cannot be used in _WRAP_PROPERTY. "
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  Toplevel::property_transient_for () -> Glib::PropertyProxy<Glib::RefPtr<Surface>>
+  Toplevel::property_transient_for () -> glib::PropertyProxy<glib::RefPtr<Surface>>
   {
-    return Glib::PropertyProxy<Glib::RefPtr<Surface>> (this, "transient-for");
+    return glib::PropertyProxy<glib::RefPtr<Surface>> (this, "transient-for");
   }
 
   auto
-  Toplevel::property_transient_for () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Surface>>
+  Toplevel::property_transient_for () const -> glib::PropertyProxy_ReadOnly<glib::RefPtr<Surface>>
   {
-    return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Surface>> (
+    return glib::PropertyProxy_ReadOnly<glib::RefPtr<Surface>> (
         this,
         "transient-for");
   }
 
   auto
-  Toplevel::property_modal () -> Glib::PropertyProxy<bool>
+  Toplevel::property_modal () -> glib::PropertyProxy<bool>
   {
-    return Glib::PropertyProxy<bool> (this, "modal");
+    return glib::PropertyProxy<bool> (this, "modal");
   }
 
   auto
-  Toplevel::property_modal () const -> Glib::PropertyProxy_ReadOnly<bool>
+  Toplevel::property_modal () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "modal");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "modal");
   }
 
   auto
-  Toplevel::property_decorated () -> Glib::PropertyProxy<bool>
+  Toplevel::property_decorated () -> glib::PropertyProxy<bool>
   {
-    return Glib::PropertyProxy<bool> (this, "decorated");
+    return glib::PropertyProxy<bool> (this, "decorated");
   }
 
   auto
-  Toplevel::property_decorated () const -> Glib::PropertyProxy_ReadOnly<bool>
+  Toplevel::property_decorated () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "decorated");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "decorated");
   }
 
   auto
-  Toplevel::property_deletable () -> Glib::PropertyProxy<bool>
+  Toplevel::property_deletable () -> glib::PropertyProxy<bool>
   {
-    return Glib::PropertyProxy<bool> (this, "deletable");
+    return glib::PropertyProxy<bool> (this, "deletable");
   }
 
   auto
-  Toplevel::property_deletable () const -> Glib::PropertyProxy_ReadOnly<bool>
+  Toplevel::property_deletable () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "deletable");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "deletable");
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<FullscreenMode>::value,
+      glib::Traits::ValueCompatibleWithWrapProperty<FullscreenMode>::value,
       "Type FullscreenMode cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  Toplevel::property_fullscreen_mode () -> Glib::PropertyProxy<FullscreenMode>
+  Toplevel::property_fullscreen_mode () -> glib::PropertyProxy<FullscreenMode>
   {
-    return Glib::PropertyProxy<FullscreenMode> (this, "fullscreen-mode");
+    return glib::PropertyProxy<FullscreenMode> (this, "fullscreen-mode");
   }
 
   auto
-  Toplevel::property_fullscreen_mode () const -> Glib::PropertyProxy_ReadOnly<FullscreenMode>
+  Toplevel::property_fullscreen_mode () const -> glib::PropertyProxy_ReadOnly<FullscreenMode>
   {
-    return Glib::PropertyProxy_ReadOnly<FullscreenMode> (this,
+    return glib::PropertyProxy_ReadOnly<FullscreenMode> (this,
                                                          "fullscreen-mode");
   }
 
   auto
-  Toplevel::property_shortcuts_inhibited () const -> Glib::PropertyProxy_ReadOnly<bool>
+  Toplevel::property_shortcuts_inhibited () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "shortcuts-inhibited");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "shortcuts-inhibited");
   }
 
-} // namespace Gdk
+} // namespace gdk

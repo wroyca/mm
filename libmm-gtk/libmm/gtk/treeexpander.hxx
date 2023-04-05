@@ -15,13 +15,13 @@
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT TreeExpander_Class;
 }
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
   class LIBMM_GTK_SYMEXPORT TreeExpander : public Widget
@@ -51,7 +51,7 @@ namespace Gtk
     static CppClassType treeexpander_class_;
 
   protected:
-    explicit TreeExpander (const Glib::ConstructParams& construct_params);
+    explicit TreeExpander (const glib::ConstructParams& construct_params);
     explicit TreeExpander (GtkTreeExpander* castitem);
 
 #endif
@@ -95,19 +95,19 @@ namespace Gtk
     unset_child () -> void;
 
     auto
-    get_item () -> Glib::RefPtr<Glib::ObjectBase>;
+    get_item () -> glib::RefPtr<glib::ObjectBase>;
 
     auto
-    get_item () const -> Glib::RefPtr<const Glib::ObjectBase>;
+    get_item () const -> glib::RefPtr<const glib::ObjectBase>;
 
     auto
-    get_list_row () -> Glib::RefPtr<TreeListRow>;
+    get_list_row () -> glib::RefPtr<TreeListRow>;
 
     auto
-    get_list_row () const -> Glib::RefPtr<const TreeListRow>;
+    get_list_row () const -> glib::RefPtr<const TreeListRow>;
 
     auto
-    set_list_row (const Glib::RefPtr<TreeListRow>& list_row) -> void;
+    set_list_row (const glib::RefPtr<TreeListRow>& list_row) -> void;
 
     auto
     unset_list_row () -> void;
@@ -131,51 +131,51 @@ namespace Gtk
     set_hide_expander (bool hide_expander = true) -> void;
 
     auto
-    property_child () -> Glib::PropertyProxy<Widget*>;
+    property_child () -> glib::PropertyProxy<Widget*>;
 
     auto
-    property_child () const -> Glib::PropertyProxy_ReadOnly<Widget*>;
+    property_child () const -> glib::PropertyProxy_ReadOnly<Widget*>;
 
     auto
-    property_hide_expander () -> Glib::PropertyProxy<bool>;
+    property_hide_expander () -> glib::PropertyProxy<bool>;
 
     auto
-    property_hide_expander () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_hide_expander () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_indent_for_depth () -> Glib::PropertyProxy<bool>;
+    property_indent_for_depth () -> glib::PropertyProxy<bool>;
 
     auto
-    property_indent_for_depth () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_indent_for_depth () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_indent_for_icon () -> Glib::PropertyProxy<bool>;
+    property_indent_for_icon () -> glib::PropertyProxy<bool>;
 
     auto
-    property_indent_for_icon () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_indent_for_icon () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
     property_item () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Glib::ObjectBase>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<glib::ObjectBase>>;
 
     auto
-    property_list_row () -> Glib::PropertyProxy<Glib::RefPtr<TreeListRow>>;
+    property_list_row () -> glib::PropertyProxy<glib::RefPtr<TreeListRow>>;
 
     auto
     property_list_row () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<TreeListRow>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<TreeListRow>>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkTreeExpander* object, bool take_copy = false) -> Gtk::TreeExpander*;
-} // namespace Glib
+  wrap (GtkTreeExpander* object, bool take_copy = false) -> gtk::TreeExpander*;
+} // namespace glib
 
 #endif

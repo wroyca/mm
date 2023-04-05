@@ -16,16 +16,16 @@
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Adw
+namespace adw
 {
   class LIBMM_ADW_SYMEXPORT StatusPage_Class;
 }
 #endif
 
-namespace Adw
+namespace adw
 {
 
-  class LIBMM_ADW_SYMEXPORT StatusPage : public Gtk::Widget
+  class LIBMM_ADW_SYMEXPORT StatusPage : public gtk::Widget
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -52,7 +52,7 @@ namespace Adw
     static CppClassType statuspage_class_;
 
   protected:
-    explicit StatusPage (const Glib::ConstructParams& construct_params);
+    explicit StatusPage (const glib::ConstructParams& construct_params);
     explicit StatusPage (AdwStatusPage* castitem);
 
 #endif
@@ -84,79 +84,79 @@ namespace Adw
     StatusPage ();
 
     auto
-    get_child () const -> Gtk::Widget*;
+    get_child () const -> gtk::Widget*;
 
     auto
-    get_description () const -> Glib::ustring;
+    get_description () const -> glib::ustring;
 
     auto
-    get_icon_name () const -> Glib::ustring;
+    get_icon_name () const -> glib::ustring;
 
     auto
-    get_paintable () const -> Glib::RefPtr<Gdk::Paintable>;
+    get_paintable () const -> glib::RefPtr<gdk::Paintable>;
 
     auto
-    get_title () const -> Glib::ustring;
+    get_title () const -> glib::ustring;
 
     auto
-    set_child (Gtk::Widget* child) -> void;
+    set_child (gtk::Widget* child) -> void;
 
     auto
-    set_description (const Glib::ustring& description) -> void;
+    set_description (const glib::ustring& description) -> void;
 
     auto
-    set_icon_name (const Glib::ustring& description) -> void;
+    set_icon_name (const glib::ustring& description) -> void;
 
     auto
-    set_paintable (const Glib::RefPtr<Gdk::Paintable>& paintable) -> void;
+    set_paintable (const glib::RefPtr<gdk::Paintable>& paintable) -> void;
 
     auto
-    set_title (const Glib::ustring& title) -> void;
+    set_title (const glib::ustring& title) -> void;
 
     auto
-    property_child () -> Glib::PropertyProxy<Gtk::Widget*>;
+    property_child () -> glib::PropertyProxy<gtk::Widget*>;
 
     auto
-    property_child () const -> Glib::PropertyProxy_ReadOnly<Gtk::Widget*>;
+    property_child () const -> glib::PropertyProxy_ReadOnly<gtk::Widget*>;
 
     auto
-    property_description () -> Glib::PropertyProxy<Glib::ustring>;
+    property_description () -> glib::PropertyProxy<glib::ustring>;
 
     auto
     property_description () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+        -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
     auto
-    property_icon_name () -> Glib::PropertyProxy<Glib::ustring>;
+    property_icon_name () -> glib::PropertyProxy<glib::ustring>;
 
     auto
-    property_icon_name () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+    property_icon_name () const -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
     auto
-    property_paintable () -> Glib::PropertyProxy<Glib::RefPtr<Gdk::Paintable>>;
+    property_paintable () -> glib::PropertyProxy<glib::RefPtr<gdk::Paintable>>;
 
     auto
     property_paintable () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gdk::Paintable>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<gdk::Paintable>>;
 
     auto
-    property_title () -> Glib::PropertyProxy<Glib::ustring>;
+    property_title () -> glib::PropertyProxy<glib::ustring>;
 
     auto
-    property_title () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+    property_title () const -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Adw
+} // namespace adw
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (AdwStatusPage* object, bool take_copy = false) -> Adw::StatusPage*;
+  wrap (AdwStatusPage* object, bool take_copy = false) -> adw::StatusPage*;
 }
 
 #endif

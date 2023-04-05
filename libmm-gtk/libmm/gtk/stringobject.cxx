@@ -11,24 +11,24 @@ namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GtkStringObject* object, bool take_copy) -> Glib::RefPtr<Gtk::StringObject>
+  wrap (GtkStringObject* object, bool take_copy) -> glib::RefPtr<gtk::StringObject>
   {
-    return Glib::make_refptr_for_instance<Gtk::StringObject> (
-        dynamic_cast<Gtk::StringObject*> (
-            Glib::wrap_auto ((GObject*) (object), take_copy)));
+    return glib::make_refptr_for_instance<gtk::StringObject> (
+        dynamic_cast<gtk::StringObject*> (
+            glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gtk
+namespace gtk
 {
 
   auto
-  StringObject_Class::init () -> const Glib::Class&
+  StringObject_Class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -48,7 +48,7 @@ namespace Gtk
   }
 
   auto
-  StringObject_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  StringObject_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new StringObject ((GtkStringObject*) object);
   }
@@ -60,25 +60,25 @@ namespace Gtk
     return gobj ();
   }
 
-  StringObject::StringObject (const Glib::ConstructParams& construct_params)
-    : Glib::Object (construct_params)
+  StringObject::StringObject (const glib::ConstructParams& construct_params)
+    : glib::Object (construct_params)
   {
   }
 
   StringObject::StringObject (GtkStringObject* castitem)
-    : Glib::Object ((GObject*) (castitem))
+    : glib::Object ((GObject*) (castitem))
   {
   }
 
   StringObject::StringObject (StringObject&& src) noexcept
-    : Glib::Object (std::move (src))
+    : glib::Object (std::move (src))
   {
   }
 
   auto
   StringObject::operator= (StringObject&& src) noexcept -> StringObject&
   {
-    Glib::Object::operator= (std::move (src));
+    glib::Object::operator= (std::move (src));
     return *this;
   }
 
@@ -99,22 +99,22 @@ namespace Gtk
   }
 
   auto
-  StringObject::create (const Glib::ustring& string) -> Glib::RefPtr<StringObject>
+  StringObject::create (const glib::ustring& string) -> glib::RefPtr<StringObject>
   {
-    return Glib::wrap (gtk_string_object_new (string.c_str ()));
+    return glib::wrap (gtk_string_object_new (string.c_str ()));
   }
 
   auto
-  StringObject::get_string () const -> Glib::ustring
+  StringObject::get_string () const -> glib::ustring
   {
-    return Glib::convert_const_gchar_ptr_to_ustring (
+    return glib::convert_const_gchar_ptr_to_ustring (
         gtk_string_object_get_string (const_cast<GtkStringObject*> (gobj ())));
   }
 
   auto
-  StringObject::property_string () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>
+  StringObject::property_string () const -> glib::PropertyProxy_ReadOnly<glib::ustring>
   {
-    return Glib::PropertyProxy_ReadOnly<Glib::ustring> (this, "string");
+    return glib::PropertyProxy_ReadOnly<glib::ustring> (this, "string");
   }
 
-} // namespace Gtk
+} // namespace gtk

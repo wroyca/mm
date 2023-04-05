@@ -21,13 +21,13 @@ using PangoFontClass = struct _PangoFontClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Pango
+namespace pango
 {
   class LIBMM_PANGO_SYMEXPORT Font_Class;
 }
 #endif
 
-namespace Pango
+namespace pango
 {
 
   const int SCALE = 1024;
@@ -44,7 +44,7 @@ namespace Pango
   class LIBMM_PANGO_SYMEXPORT FontMap;
 #endif
 
-  class LIBMM_PANGO_SYMEXPORT Font : public Glib::Object
+  class LIBMM_PANGO_SYMEXPORT Font : public glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -63,7 +63,7 @@ namespace Pango
     static CppClassType font_class_;
 
   protected:
-    explicit Font (const Glib::ConstructParams& construct_params);
+    explicit Font (const glib::ConstructParams& construct_params);
     explicit Font (PangoFont* castitem);
 
 #endif
@@ -108,7 +108,7 @@ namespace Pango
     describe_with_absolute_size () const -> FontDescription;
 
     auto
-    get_coverage (const Language& language) const -> Glib::RefPtr<Coverage>;
+    get_coverage (const Language& language) const -> glib::RefPtr<Coverage>;
 
     auto
     get_metrics () const -> FontMetrics;
@@ -122,16 +122,16 @@ namespace Pango
                        Rectangle& logical_rect) const -> void;
 
     auto
-    get_font_map () -> Glib::RefPtr<FontMap>;
+    get_font_map () -> glib::RefPtr<FontMap>;
 
     auto
-    get_font_map () const -> Glib::RefPtr<const FontMap>;
+    get_font_map () const -> glib::RefPtr<const FontMap>;
 
     auto
-    get_face () -> Glib::RefPtr<FontFace>;
+    get_face () -> glib::RefPtr<FontFace>;
 
     auto
-    get_face () const -> Glib::RefPtr<const FontFace>;
+    get_face () const -> glib::RefPtr<const FontFace>;
 
     auto
     has_char (gunichar wc) const -> bool;
@@ -147,14 +147,14 @@ namespace Pango
   protected:
   };
 
-} // namespace Pango
+} // namespace pango
 
-namespace Glib
+namespace glib
 {
 
   LIBMM_PANGO_SYMEXPORT
   auto
-  wrap (PangoFont* object, bool take_copy = false) -> Glib::RefPtr<Pango::Font>;
-} // namespace Glib
+  wrap (PangoFont* object, bool take_copy = false) -> glib::RefPtr<pango::Font>;
+} // namespace glib
 
 #endif

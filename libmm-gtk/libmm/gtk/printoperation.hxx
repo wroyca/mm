@@ -20,13 +20,13 @@ using GtkPrintOperationClass = struct _GtkPrintOperationClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT PrintOperation_Class;
 }
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
   enum class PrintStatus
@@ -42,28 +42,28 @@ namespace Gtk
     FINISHED_ABORTED
   };
 
-} // namespace Gtk
+} // namespace gtk
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_GTK_SYMEXPORT Value<Gtk::PrintStatus>
-    : public Glib::Value_Enum<Gtk::PrintStatus>
+  class LIBMM_GTK_SYMEXPORT Value<gtk::PrintStatus>
+    : public glib::Value_Enum<gtk::PrintStatus>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
-  class PrintError : public Glib::Error
+  class PrintError : public glib::Error
   {
   public:
     enum Code
@@ -75,7 +75,7 @@ namespace Gtk
     };
 
     LIBMM_GTK_SYMEXPORT
-    PrintError (Code error_code, const Glib::ustring& error_message);
+    PrintError (Code error_code, const glib::ustring& error_message);
     LIBMM_GTK_SYMEXPORT explicit PrintError (GError* gobject);
     LIBMM_GTK_SYMEXPORT auto
     code () const -> Code;
@@ -91,28 +91,28 @@ namespace Gtk
 #endif
   };
 
-} // namespace Gtk
+} // namespace gtk
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_GTK_SYMEXPORT Value<Gtk::PrintError::Code>
-    : public Glib::Value_Enum<Gtk::PrintError::Code>
+  class LIBMM_GTK_SYMEXPORT Value<gtk::PrintError::Code>
+    : public glib::Value_Enum<gtk::PrintError::Code>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
-  class LIBMM_GTK_SYMEXPORT PrintOperation : public Glib::Object,
+  class LIBMM_GTK_SYMEXPORT PrintOperation : public glib::Object,
                                    public PrintOperationPreview
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -132,7 +132,7 @@ namespace Gtk
     static CppClassType printoperation_class_;
 
   protected:
-    explicit PrintOperation (const Glib::ConstructParams& construct_params);
+    explicit PrintOperation (const glib::ConstructParams& construct_params);
     explicit PrintOperation (GtkPrintOperation* castitem);
 
 #endif
@@ -190,30 +190,30 @@ namespace Gtk
     };
 
     static auto
-    create () -> Glib::RefPtr<PrintOperation>;
+    create () -> glib::RefPtr<PrintOperation>;
 
     auto
-    set_default_page_setup (const Glib::RefPtr<PageSetup>& default_page_setup)
+    set_default_page_setup (const glib::RefPtr<PageSetup>& default_page_setup)
         -> void;
 
     auto
-    get_default_page_setup () -> Glib::RefPtr<PageSetup>;
+    get_default_page_setup () -> glib::RefPtr<PageSetup>;
 
     auto
-    get_default_page_setup () const -> Glib::RefPtr<const PageSetup>;
+    get_default_page_setup () const -> glib::RefPtr<const PageSetup>;
 
     auto
-    set_print_settings (const Glib::RefPtr<PrintSettings>& print_settings)
+    set_print_settings (const glib::RefPtr<PrintSettings>& print_settings)
         -> void;
 
     auto
-    get_print_settings () -> Glib::RefPtr<PrintSettings>;
+    get_print_settings () -> glib::RefPtr<PrintSettings>;
 
     auto
-    get_print_settings () const -> Glib::RefPtr<const PrintSettings>;
+    get_print_settings () const -> glib::RefPtr<const PrintSettings>;
 
     auto
-    set_job_name (const Glib::ustring& job_name) -> void;
+    set_job_name (const glib::ustring& job_name) -> void;
 
     auto
     set_n_pages (int n_pages) -> void;
@@ -240,7 +240,7 @@ namespace Gtk
     set_allow_async (bool allow_async = true) -> void;
 
     auto
-    set_custom_tab_label (const Glib::ustring& label) -> void;
+    set_custom_tab_label (const glib::ustring& label) -> void;
 
     auto
     run (Action action = Action::PRINT_DIALOG) -> Result;
@@ -252,7 +252,7 @@ namespace Gtk
     get_status () const -> PrintStatus;
 
     auto
-    get_status_string () const -> Glib::ustring;
+    get_status_string () const -> glib::ustring;
 
     auto
     cancel () -> void;
@@ -288,156 +288,156 @@ namespace Gtk
     get_n_pages_to_print () const -> int;
 
     auto
-    signal_done () -> Glib::SignalProxy<void (Result)>;
+    signal_done () -> glib::SignalProxy<void (Result)>;
 
     auto
     signal_begin_print ()
-        -> Glib::SignalProxy<void (const Glib::RefPtr<PrintContext>&)>;
+        -> glib::SignalProxy<void (const glib::RefPtr<PrintContext>&)>;
 
     auto
     signal_paginate ()
-        -> Glib::SignalProxy<bool (const Glib::RefPtr<PrintContext>&)>;
+        -> glib::SignalProxy<bool (const glib::RefPtr<PrintContext>&)>;
 
     auto
     signal_request_page_setup ()
-        -> Glib::SignalProxy<void (const Glib::RefPtr<PrintContext>&,
+        -> glib::SignalProxy<void (const glib::RefPtr<PrintContext>&,
                                    int,
-                                   const Glib::RefPtr<PageSetup>&)>;
+                                   const glib::RefPtr<PageSetup>&)>;
 
     auto
     signal_draw_page ()
-        -> Glib::SignalProxy<void (const Glib::RefPtr<PrintContext>&, int)>;
+        -> glib::SignalProxy<void (const glib::RefPtr<PrintContext>&, int)>;
 
     auto
     signal_end_print ()
-        -> Glib::SignalProxy<void (const Glib::RefPtr<PrintContext>&)>;
+        -> glib::SignalProxy<void (const glib::RefPtr<PrintContext>&)>;
 
     auto
-    signal_status_changed () -> Glib::SignalProxy<void ()>;
+    signal_status_changed () -> glib::SignalProxy<void ()>;
 
     auto
-    signal_create_custom_widget () -> Glib::SignalProxy<Widget*()>;
+    signal_create_custom_widget () -> glib::SignalProxy<Widget*()>;
 
     auto
-    signal_custom_widget_apply () -> Glib::SignalProxy<void (Widget*)>;
+    signal_custom_widget_apply () -> glib::SignalProxy<void (Widget*)>;
 
     auto
     signal_preview ()
-        -> Glib::SignalProxy<bool (const Glib::RefPtr<PrintOperationPreview>&,
-                                   const Glib::RefPtr<PrintContext>&,
+        -> glib::SignalProxy<bool (const glib::RefPtr<PrintOperationPreview>&,
+                                   const glib::RefPtr<PrintContext>&,
                                    Window*)>;
 
     auto
     signal_update_custom_widget ()
-        -> Glib::SignalProxy<void (Widget*,
-                                   const Glib::RefPtr<PageSetup>&,
-                                   const Glib::RefPtr<PrintSettings>&)>;
+        -> glib::SignalProxy<void (Widget*,
+                                   const glib::RefPtr<PageSetup>&,
+                                   const glib::RefPtr<PrintSettings>&)>;
 
     auto
     property_default_page_setup ()
-        -> Glib::PropertyProxy<Glib::RefPtr<PageSetup>>;
+        -> glib::PropertyProxy<glib::RefPtr<PageSetup>>;
 
     auto
     property_default_page_setup () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<PageSetup>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<PageSetup>>;
 
     auto
     property_print_settings ()
-        -> Glib::PropertyProxy<Glib::RefPtr<PrintSettings>>;
+        -> glib::PropertyProxy<glib::RefPtr<PrintSettings>>;
 
     auto
     property_print_settings () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<PrintSettings>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<PrintSettings>>;
 
     auto
-    property_job_name () -> Glib::PropertyProxy<Glib::ustring>;
+    property_job_name () -> glib::PropertyProxy<glib::ustring>;
 
     auto
-    property_job_name () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+    property_job_name () const -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
     auto
-    property_n_pages () -> Glib::PropertyProxy<int>;
+    property_n_pages () -> glib::PropertyProxy<int>;
 
     auto
-    property_n_pages () const -> Glib::PropertyProxy_ReadOnly<int>;
+    property_n_pages () const -> glib::PropertyProxy_ReadOnly<int>;
 
     auto
-    property_current_page () -> Glib::PropertyProxy<int>;
+    property_current_page () -> glib::PropertyProxy<int>;
 
     auto
-    property_current_page () const -> Glib::PropertyProxy_ReadOnly<int>;
+    property_current_page () const -> glib::PropertyProxy_ReadOnly<int>;
 
     auto
-    property_use_full_page () -> Glib::PropertyProxy<bool>;
+    property_use_full_page () -> glib::PropertyProxy<bool>;
 
     auto
-    property_use_full_page () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_use_full_page () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_track_print_status () -> Glib::PropertyProxy<bool>;
+    property_track_print_status () -> glib::PropertyProxy<bool>;
 
     auto
-    property_track_print_status () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_track_print_status () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_unit () -> Glib::PropertyProxy<Unit>;
+    property_unit () -> glib::PropertyProxy<Unit>;
 
     auto
-    property_unit () const -> Glib::PropertyProxy_ReadOnly<Unit>;
+    property_unit () const -> glib::PropertyProxy_ReadOnly<Unit>;
 
     auto
-    property_show_progress () -> Glib::PropertyProxy<bool>;
+    property_show_progress () -> glib::PropertyProxy<bool>;
 
     auto
-    property_show_progress () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_show_progress () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_allow_async () -> Glib::PropertyProxy<bool>;
+    property_allow_async () -> glib::PropertyProxy<bool>;
 
     auto
-    property_allow_async () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_allow_async () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_export_filename () -> Glib::PropertyProxy<std::string>;
+    property_export_filename () -> glib::PropertyProxy<std::string>;
 
     auto
     property_export_filename () const
-        -> Glib::PropertyProxy_ReadOnly<std::string>;
+        -> glib::PropertyProxy_ReadOnly<std::string>;
 
     auto
-    property_status () const -> Glib::PropertyProxy_ReadOnly<PrintStatus>;
+    property_status () const -> glib::PropertyProxy_ReadOnly<PrintStatus>;
 
     auto
     property_status_string () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+        -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
     auto
-    property_custom_tab_label () -> Glib::PropertyProxy<Glib::ustring>;
+    property_custom_tab_label () -> glib::PropertyProxy<glib::ustring>;
 
     auto
     property_custom_tab_label () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+        -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
     auto
-    property_support_selection () -> Glib::PropertyProxy<bool>;
+    property_support_selection () -> glib::PropertyProxy<bool>;
 
     auto
-    property_support_selection () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_support_selection () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_has_selection () -> Glib::PropertyProxy<bool>;
+    property_has_selection () -> glib::PropertyProxy<bool>;
 
     auto
-    property_has_selection () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_has_selection () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_embed_page_setup () -> Glib::PropertyProxy<bool>;
+    property_embed_page_setup () -> glib::PropertyProxy<bool>;
 
     auto
-    property_embed_page_setup () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_embed_page_setup () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_n_pages_to_print () const -> Glib::PropertyProxy_ReadOnly<int>;
+    property_n_pages_to_print () const -> glib::PropertyProxy_ReadOnly<int>;
 
   public:
   public:
@@ -446,22 +446,22 @@ namespace Gtk
     on_done (Result result) -> void;
 
     virtual auto
-    on_begin_print (const Glib::RefPtr<PrintContext>& context) -> void;
+    on_begin_print (const glib::RefPtr<PrintContext>& context) -> void;
 
     virtual auto
-    on_paginate (const Glib::RefPtr<PrintContext>& context) -> bool;
+    on_paginate (const glib::RefPtr<PrintContext>& context) -> bool;
 
     virtual auto
-    on_request_page_setup (const Glib::RefPtr<PrintContext>& context,
+    on_request_page_setup (const glib::RefPtr<PrintContext>& context,
                            int page_no,
-                           const Glib::RefPtr<PageSetup>& setup) -> void;
+                           const glib::RefPtr<PageSetup>& setup) -> void;
 
     virtual auto
-    on_draw_page (const Glib::RefPtr<PrintContext>& context, int page_nr)
+    on_draw_page (const glib::RefPtr<PrintContext>& context, int page_nr)
         -> void;
 
     virtual auto
-    on_end_print (const Glib::RefPtr<PrintContext>& context) -> void;
+    on_end_print (const glib::RefPtr<PrintContext>& context) -> void;
 
     virtual auto
     on_status_changed () -> void;
@@ -473,81 +473,81 @@ namespace Gtk
     on_custom_widget_apply (Widget* widget) -> void;
 
     virtual auto
-    on_preview (const Glib::RefPtr<PrintOperationPreview>& preview,
-                const Glib::RefPtr<PrintContext>& context,
+    on_preview (const glib::RefPtr<PrintOperationPreview>& preview,
+                const glib::RefPtr<PrintContext>& context,
                 Window* parent) -> bool;
 
     virtual auto
     on_update_custom_widget (Widget* widget,
-                             const Glib::RefPtr<PageSetup>& setup,
-                             const Glib::RefPtr<PrintSettings>& settings)
+                             const glib::RefPtr<PageSetup>& setup,
+                             const glib::RefPtr<PrintSettings>& settings)
         -> void;
   };
 
   LIBMM_GTK_SYMEXPORT auto
   run_page_setup_dialog (
       Window& parent,
-      const Glib::RefPtr<const PageSetup>& page_setup,
-      const Glib::RefPtr<const PrintSettings>& print_settings) -> Glib::RefPtr<PageSetup>;
+      const glib::RefPtr<const PageSetup>& page_setup,
+      const glib::RefPtr<const PrintSettings>& print_settings) -> glib::RefPtr<PageSetup>;
 
   LIBMM_GTK_SYMEXPORT auto
   run_page_setup_dialog (
       Window& parent,
-      const Glib::RefPtr<const PrintSettings>& print_settings) -> Glib::RefPtr<PageSetup>;
+      const glib::RefPtr<const PrintSettings>& print_settings) -> glib::RefPtr<PageSetup>;
 
-  typedef sigc::slot<void (const Glib::RefPtr<PageSetup>&)> SlotPrintSetupDone;
+  typedef sigc::slot<void (const glib::RefPtr<PageSetup>&)> SlotPrintSetupDone;
 
   LIBMM_GTK_SYMEXPORT auto
   run_page_setup_dialog_async (
       Window& parent,
-      const Glib::RefPtr<const PageSetup>& page_setup,
-      const Glib::RefPtr<const PrintSettings>& print_settings,
+      const glib::RefPtr<const PageSetup>& page_setup,
+      const glib::RefPtr<const PrintSettings>& print_settings,
       const SlotPrintSetupDone& slot) -> void;
 
   LIBMM_GTK_SYMEXPORT auto
   run_page_setup_dialog_async (
       Window& parent,
-      const Glib::RefPtr<const PrintSettings>& print_settings,
+      const glib::RefPtr<const PrintSettings>& print_settings,
       const SlotPrintSetupDone& slot) -> void;
 
-} // namespace Gtk
+} // namespace gtk
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_GTK_SYMEXPORT Value<Gtk::PrintOperation::Result>
-    : public Glib::Value_Enum<Gtk::PrintOperation::Result>
+  class LIBMM_GTK_SYMEXPORT Value<gtk::PrintOperation::Result>
+    : public glib::Value_Enum<gtk::PrintOperation::Result>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_GTK_SYMEXPORT Value<Gtk::PrintOperation::Action>
-    : public Glib::Value_Enum<Gtk::PrintOperation::Action>
+  class LIBMM_GTK_SYMEXPORT Value<gtk::PrintOperation::Action>
+    : public glib::Value_Enum<gtk::PrintOperation::Action>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkPrintOperation* object, bool take_copy = false) -> Glib::RefPtr<Gtk::PrintOperation>;
-} // namespace Glib
+  wrap (GtkPrintOperation* object, bool take_copy = false) -> glib::RefPtr<gtk::PrintOperation>;
+} // namespace glib
 
 #endif

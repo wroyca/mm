@@ -7,7 +7,7 @@
 
 #include <cstring>
 
-namespace Gtk
+namespace gtk
 {
 
   Requisition::Requisition (int width, int height)
@@ -16,30 +16,30 @@ namespace Gtk
     gobject_.height = height;
   }
 
-} // namespace Gtk
+} // namespace gtk
 
 namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GtkRequisition* object) -> Gtk::Requisition&
+  wrap (GtkRequisition* object) -> gtk::Requisition&
   {
-    return *reinterpret_cast<Gtk::Requisition*> (object);
+    return *reinterpret_cast<gtk::Requisition*> (object);
   }
 
   auto
-  wrap (const GtkRequisition* object) -> const Gtk::Requisition&
+  wrap (const GtkRequisition* object) -> const gtk::Requisition&
   {
-    return *reinterpret_cast<const Gtk::Requisition*> (object);
+    return *reinterpret_cast<const gtk::Requisition*> (object);
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gtk
+namespace gtk
 {
 
   Requisition::Requisition (const Requisition& other) noexcept
@@ -109,4 +109,4 @@ namespace Gtk
     gobj ()->height = value;
   }
 
-} // namespace Gtk
+} // namespace gtk

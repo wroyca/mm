@@ -16,16 +16,16 @@ using GUnixFDListClass = struct _GUnixFDListClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gio
+namespace gio
 {
   class LIBMM_GIO_SYMEXPORT UnixFDList_Class;
 }
 #endif
 
-namespace Gio
+namespace gio
 {
 
-  class LIBMM_GIO_SYMEXPORT UnixFDList : public Glib::Object
+  class LIBMM_GIO_SYMEXPORT UnixFDList : public glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -44,7 +44,7 @@ namespace Gio
     static CppClassType unixfdlist_class_;
 
   protected:
-    explicit UnixFDList (const Glib::ConstructParams& construct_params);
+    explicit UnixFDList (const glib::ConstructParams& construct_params);
     explicit UnixFDList (GUnixFDList* castitem);
 
 #endif
@@ -90,13 +90,13 @@ namespace Gio
 
   public:
     static auto
-    create () -> Glib::RefPtr<UnixFDList>;
+    create () -> glib::RefPtr<UnixFDList>;
 
     static auto
-    create (const std::vector<int>& fds) -> Glib::RefPtr<UnixFDList>;
+    create (const std::vector<int>& fds) -> glib::RefPtr<UnixFDList>;
 
     static auto
-    create (const std::vector<int>& fds, int n_fds) -> Glib::RefPtr<UnixFDList>;
+    create (const std::vector<int>& fds, int n_fds) -> glib::RefPtr<UnixFDList>;
 
     auto
     get_length () const -> int;
@@ -118,14 +118,14 @@ namespace Gio
   protected:
   };
 
-} // namespace Gio
+} // namespace gio
 
-namespace Glib
+namespace glib
 {
 
   LIBMM_GIO_SYMEXPORT
   auto
-  wrap (GUnixFDList* object, bool take_copy = false) -> Glib::RefPtr<Gio::UnixFDList>;
-} // namespace Glib
+  wrap (GUnixFDList* object, bool take_copy = false) -> glib::RefPtr<gio::UnixFDList>;
+} // namespace glib
 
 #endif

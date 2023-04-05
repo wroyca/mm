@@ -16,23 +16,23 @@ namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GtkCellRendererSpinner* object, bool take_copy) -> Gtk::CellRendererSpinner*
+  wrap (GtkCellRendererSpinner* object, bool take_copy) -> gtk::CellRendererSpinner*
   {
-    return dynamic_cast<Gtk::CellRendererSpinner*> (
-        Glib::wrap_auto ((GObject*) (object), take_copy));
+    return dynamic_cast<gtk::CellRendererSpinner*> (
+        glib::wrap_auto ((GObject*) (object), take_copy));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gtk
+namespace gtk
 {
 
   auto
-  CellRendererSpinner_Class::init () -> const Glib::Class&
+  CellRendererSpinner_Class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -53,31 +53,31 @@ namespace Gtk
   }
 
   auto
-  CellRendererSpinner_Class::wrap_new (GObject* o) -> Glib::ObjectBase*
+  CellRendererSpinner_Class::wrap_new (GObject* o) -> glib::ObjectBase*
   {
     return manage (new CellRendererSpinner ((GtkCellRendererSpinner*) (o)));
   }
 
   CellRendererSpinner::CellRendererSpinner (
-      const Glib::ConstructParams& construct_params)
-    : Gtk::CellRenderer (construct_params)
+      const glib::ConstructParams& construct_params)
+    : gtk::CellRenderer (construct_params)
   {
   }
 
   CellRendererSpinner::CellRendererSpinner (GtkCellRendererSpinner* castitem)
-    : Gtk::CellRenderer ((GtkCellRenderer*) (castitem))
+    : gtk::CellRenderer ((GtkCellRenderer*) (castitem))
   {
   }
 
   CellRendererSpinner::CellRendererSpinner (CellRendererSpinner&& src) noexcept
-    : Gtk::CellRenderer (std::move (src))
+    : gtk::CellRenderer (std::move (src))
   {
   }
 
   auto
   CellRendererSpinner::operator= (CellRendererSpinner&& src) noexcept -> CellRendererSpinner&
   {
-    Gtk::CellRenderer::operator= (std::move (src));
+    gtk::CellRenderer::operator= (std::move (src));
     return *this;
   }
 
@@ -102,53 +102,53 @@ namespace Gtk
   }
 
   CellRendererSpinner::CellRendererSpinner ()
-    : Glib::ObjectBase (nullptr),
-      Gtk::CellRenderer (
-          Glib::ConstructParams (cellrendererspinner_class_.init ()))
+    : glib::ObjectBase (nullptr),
+      gtk::CellRenderer (
+          glib::ConstructParams (cellrendererspinner_class_.init ()))
   {
   }
 
   auto
-  CellRendererSpinner::property_active () -> Glib::PropertyProxy<bool>
+  CellRendererSpinner::property_active () -> glib::PropertyProxy<bool>
   {
-    return Glib::PropertyProxy<bool> (this, "active");
+    return glib::PropertyProxy<bool> (this, "active");
   }
 
   auto
-  CellRendererSpinner::property_active () const -> Glib::PropertyProxy_ReadOnly<bool>
+  CellRendererSpinner::property_active () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "active");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "active");
   }
 
   auto
-  CellRendererSpinner::property_pulse () -> Glib::PropertyProxy<guint>
+  CellRendererSpinner::property_pulse () -> glib::PropertyProxy<guint>
   {
-    return Glib::PropertyProxy<guint> (this, "pulse");
+    return glib::PropertyProxy<guint> (this, "pulse");
   }
 
   auto
-  CellRendererSpinner::property_pulse () const -> Glib::PropertyProxy_ReadOnly<guint>
+  CellRendererSpinner::property_pulse () const -> glib::PropertyProxy_ReadOnly<guint>
   {
-    return Glib::PropertyProxy_ReadOnly<guint> (this, "pulse");
+    return glib::PropertyProxy_ReadOnly<guint> (this, "pulse");
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<Gtk::IconSize>::value,
-      "Type Gtk::IconSize cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      glib::Traits::ValueCompatibleWithWrapProperty<gtk::IconSize>::value,
+      "Type gtk::IconSize cannot be used in _WRAP_PROPERTY. "
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  CellRendererSpinner::property_size () -> Glib::PropertyProxy<Gtk::IconSize>
+  CellRendererSpinner::property_size () -> glib::PropertyProxy<gtk::IconSize>
   {
-    return Glib::PropertyProxy<Gtk::IconSize> (this, "size");
+    return glib::PropertyProxy<gtk::IconSize> (this, "size");
   }
 
   auto
-  CellRendererSpinner::property_size () const -> Glib::PropertyProxy_ReadOnly<Gtk::IconSize>
+  CellRendererSpinner::property_size () const -> glib::PropertyProxy_ReadOnly<gtk::IconSize>
   {
-    return Glib::PropertyProxy_ReadOnly<Gtk::IconSize> (this, "size");
+    return glib::PropertyProxy_ReadOnly<gtk::IconSize> (this, "size");
   }
 
-} // namespace Gtk
+} // namespace gtk
 
 #endif

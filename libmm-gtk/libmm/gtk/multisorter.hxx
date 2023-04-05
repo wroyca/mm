@@ -14,17 +14,17 @@
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT MultiSorter_Class;
 }
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
   class LIBMM_GTK_SYMEXPORT MultiSorter : public Sorter,
-                                public Gio::ListModel,
+                                public gio::ListModel,
                                 public Buildable
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -44,7 +44,7 @@ namespace Gtk
     static CppClassType multisorter_class_;
 
   protected:
-    explicit MultiSorter (const Glib::ConstructParams& construct_params);
+    explicit MultiSorter (const glib::ConstructParams& construct_params);
     explicit MultiSorter (GtkMultiSorter* castitem);
 
 #endif
@@ -86,31 +86,31 @@ namespace Gtk
 
   public:
     static auto
-    create () -> Glib::RefPtr<MultiSorter>;
+    create () -> glib::RefPtr<MultiSorter>;
 
     auto
-    append (const Glib::RefPtr<Sorter>& sorter) -> void;
+    append (const glib::RefPtr<Sorter>& sorter) -> void;
 
     auto
     remove (guint position) -> void;
 
     auto
-    property_item_type () const -> Glib::PropertyProxy_ReadOnly<GType>;
+    property_item_type () const -> glib::PropertyProxy_ReadOnly<GType>;
 
     auto
-    property_n_items () const -> Glib::PropertyProxy_ReadOnly<unsigned int>;
+    property_n_items () const -> glib::PropertyProxy_ReadOnly<unsigned int>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkMultiSorter* object, bool take_copy = false) -> Glib::RefPtr<Gtk::MultiSorter>;
-} // namespace Glib
+  wrap (GtkMultiSorter* object, bool take_copy = false) -> glib::RefPtr<gtk::MultiSorter>;
+} // namespace glib
 
 #endif

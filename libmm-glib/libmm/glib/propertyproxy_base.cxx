@@ -7,7 +7,7 @@
 #include <libmm/glib/signalproxy_connectionnode.hxx>
 #include <utility>
 
-namespace Glib
+namespace glib
 {
 
   PropertyProxyConnectionNode::PropertyProxyConnectionNode (
@@ -131,4 +131,4 @@ namespace Glib
     g_object_set_property (obj_->gobj (), property_name_, value.gobj ());
   }
 
-} // namespace Glib
+} // namespace glib

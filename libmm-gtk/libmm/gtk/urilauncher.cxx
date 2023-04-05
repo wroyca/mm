@@ -8,42 +8,42 @@
 #include <libmm/gio/slot_async.hxx>
 #include <libmm/gtk/window.hxx>
 
-namespace Gtk
+namespace gtk
 {
 
-  UriLauncher::UriLauncher (const Glib::ustring& uri)
-    : Glib::ObjectBase (nullptr),
-      Glib::Object (Glib::ConstructParams (urilauncher_class_.init (),
+  UriLauncher::UriLauncher (const glib::ustring& uri)
+    : glib::ObjectBase (nullptr),
+      glib::Object (glib::ConstructParams (urilauncher_class_.init (),
                                            "uri",
-                                           Glib::c_str_or_nullptr (uri),
+                                           glib::c_str_or_nullptr (uri),
                                            nullptr))
   {
   }
 
-} // namespace Gtk
+} // namespace gtk
 
 namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GtkUriLauncher* object, bool take_copy) -> Glib::RefPtr<Gtk::UriLauncher>
+  wrap (GtkUriLauncher* object, bool take_copy) -> glib::RefPtr<gtk::UriLauncher>
   {
-    return Glib::make_refptr_for_instance<Gtk::UriLauncher> (
-        dynamic_cast<Gtk::UriLauncher*> (
-            Glib::wrap_auto ((GObject*) (object), take_copy)));
+    return glib::make_refptr_for_instance<gtk::UriLauncher> (
+        dynamic_cast<gtk::UriLauncher*> (
+            glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gtk
+namespace gtk
 {
 
   auto
-  UriLauncher_Class::init () -> const Glib::Class&
+  UriLauncher_Class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -54,7 +54,7 @@ namespace Gtk
   }
 
   auto
-  UriLauncher_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  UriLauncher_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new UriLauncher ((GtkUriLauncher*) object);
   }
@@ -66,25 +66,25 @@ namespace Gtk
     return gobj ();
   }
 
-  UriLauncher::UriLauncher (const Glib::ConstructParams& construct_params)
-    : Glib::Object (construct_params)
+  UriLauncher::UriLauncher (const glib::ConstructParams& construct_params)
+    : glib::Object (construct_params)
   {
   }
 
   UriLauncher::UriLauncher (GtkUriLauncher* castitem)
-    : Glib::Object ((GObject*) (castitem))
+    : glib::Object ((GObject*) (castitem))
   {
   }
 
   UriLauncher::UriLauncher (UriLauncher&& src) noexcept
-    : Glib::Object (std::move (src))
+    : glib::Object (std::move (src))
   {
   }
 
   auto
   UriLauncher::operator= (UriLauncher&& src) noexcept -> UriLauncher&
   {
-    Glib::Object::operator= (std::move (src));
+    glib::Object::operator= (std::move (src));
     return *this;
   }
 
@@ -105,77 +105,77 @@ namespace Gtk
   }
 
   auto
-  UriLauncher::create (const Glib::ustring& uri) -> Glib::RefPtr<UriLauncher>
+  UriLauncher::create (const glib::ustring& uri) -> glib::RefPtr<UriLauncher>
   {
-    return Glib::make_refptr_for_instance<UriLauncher> (new UriLauncher (uri));
+    return glib::make_refptr_for_instance<UriLauncher> (new UriLauncher (uri));
   }
 
   auto
-  UriLauncher::get_uri () const -> Glib::ustring
+  UriLauncher::get_uri () const -> glib::ustring
   {
-    return Glib::convert_const_gchar_ptr_to_ustring (
+    return glib::convert_const_gchar_ptr_to_ustring (
         gtk_uri_launcher_get_uri (const_cast<GtkUriLauncher*> (gobj ())));
   }
 
   auto
-  UriLauncher::set_uri (const Glib::ustring& uri) -> void
+  UriLauncher::set_uri (const glib::ustring& uri) -> void
   {
     gtk_uri_launcher_set_uri (gobj (), uri.empty () ? nullptr : uri.c_str ());
   }
 
   auto
   UriLauncher::launch (Window& parent,
-                       const Gio::SlotAsyncReady& slot,
-                       const Glib::RefPtr<Gio::Cancellable>& cancellable) const -> void
+                       const gio::SlotAsyncReady& slot,
+                       const glib::RefPtr<gio::Cancellable>& cancellable) const -> void
   {
-    auto slot_copy = new Gio::SlotAsyncReady (slot);
+    auto slot_copy = new gio::SlotAsyncReady (slot);
 
     gtk_uri_launcher_launch (
         const_cast<GtkUriLauncher*> (gobj ()),
         (parent).gobj (),
-        const_cast<GCancellable*> (Glib::unwrap (cancellable)),
-        &Gio::SignalProxy_async_callback,
+        const_cast<GCancellable*> (glib::unwrap (cancellable)),
+        &gio::SignalProxy_async_callback,
         slot_copy);
   }
 
   auto
-  UriLauncher::launch (const Gio::SlotAsyncReady& slot,
-                       const Glib::RefPtr<Gio::Cancellable>& cancellable) const -> void
+  UriLauncher::launch (const gio::SlotAsyncReady& slot,
+                       const glib::RefPtr<gio::Cancellable>& cancellable) const -> void
   {
-    auto slot_copy = new Gio::SlotAsyncReady (slot);
+    auto slot_copy = new gio::SlotAsyncReady (slot);
 
     gtk_uri_launcher_launch (
         const_cast<GtkUriLauncher*> (gobj ()),
         nullptr,
-        const_cast<GCancellable*> (Glib::unwrap (cancellable)),
-        &Gio::SignalProxy_async_callback,
+        const_cast<GCancellable*> (glib::unwrap (cancellable)),
+        &gio::SignalProxy_async_callback,
         slot_copy);
   }
 
   auto
   UriLauncher::launch_finish (
-      const Glib::RefPtr<Gio::AsyncResult>& result) const -> bool
+      const glib::RefPtr<gio::AsyncResult>& result) const -> bool
   {
     GError* gerror = nullptr;
     auto retvalue = gtk_uri_launcher_launch_finish (
         const_cast<GtkUriLauncher*> (gobj ()),
-        Glib::unwrap (result),
+        glib::unwrap (result),
         &(gerror));
     if (gerror)
-      ::Glib::Error::throw_exception (gerror);
+      ::glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
   auto
-  UriLauncher::property_uri () -> Glib::PropertyProxy<Glib::ustring>
+  UriLauncher::property_uri () -> glib::PropertyProxy<glib::ustring>
   {
-    return Glib::PropertyProxy<Glib::ustring> (this, "uri");
+    return glib::PropertyProxy<glib::ustring> (this, "uri");
   }
 
   auto
-  UriLauncher::property_uri () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>
+  UriLauncher::property_uri () const -> glib::PropertyProxy_ReadOnly<glib::ustring>
   {
-    return Glib::PropertyProxy_ReadOnly<Glib::ustring> (this, "uri");
+    return glib::PropertyProxy_ReadOnly<glib::ustring> (this, "uri");
   }
 
-} // namespace Gtk
+} // namespace gtk

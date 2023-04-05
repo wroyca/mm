@@ -15,13 +15,13 @@ using GtkViewportClass = struct _GtkViewportClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT Viewport_Class;
 }
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
   class LIBMM_GTK_SYMEXPORT Viewport : public Widget,
@@ -52,7 +52,7 @@ namespace Gtk
     static CppClassType viewport_class_;
 
   protected:
-    explicit Viewport (const Glib::ConstructParams& construct_params);
+    explicit Viewport (const glib::ConstructParams& construct_params);
     explicit Viewport (GtkViewport* castitem);
 
 #endif
@@ -81,8 +81,8 @@ namespace Gtk
 
   private:
   public:
-    explicit Viewport (const Glib::RefPtr<Adjustment>& hadjustment,
-                       const Glib::RefPtr<Adjustment>& vadjustment);
+    explicit Viewport (const glib::RefPtr<Adjustment>& hadjustment,
+                       const glib::RefPtr<Adjustment>& vadjustment);
 
     auto
     set_scroll_to_focus (bool scroll_to_focus = true) -> void;
@@ -102,28 +102,28 @@ namespace Gtk
     get_child () const -> const Widget*;
 
     auto
-    property_scroll_to_focus () -> Glib::PropertyProxy<bool>;
+    property_scroll_to_focus () -> glib::PropertyProxy<bool>;
 
     auto
-    property_scroll_to_focus () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_scroll_to_focus () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_child () -> Glib::PropertyProxy<Widget*>;
+    property_child () -> glib::PropertyProxy<Widget*>;
 
     auto
-    property_child () const -> Glib::PropertyProxy_ReadOnly<Widget*>;
+    property_child () const -> glib::PropertyProxy_ReadOnly<Widget*>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkViewport* object, bool take_copy = false) -> Gtk::Viewport*;
-} // namespace Glib
+  wrap (GtkViewport* object, bool take_copy = false) -> gtk::Viewport*;
+} // namespace glib
 
 #endif

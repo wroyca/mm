@@ -119,231 +119,231 @@ extern "C"
   #pragma warning(pop)
 #endif
 
-namespace Gdk
+namespace gdk
 {
 
   class AppLaunchContext_Class
   {
   public:
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
   class CairoContext_Class
   {
   public:
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
   class Clipboard_Class
   {
   public:
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
   class ContentProvider_Class
   {
   public:
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
   class Cursor_Class
   {
   public:
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
   class Device_Class
   {
   public:
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
   class DeviceTool_Class
   {
   public:
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
   class Display_Class
   {
   public:
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
   class DisplayManager_Class
   {
   public:
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
   class Drag_Class
   {
   public:
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
   class DrawContext_Class
   {
   public:
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
   class Drop_Class
   {
   public:
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
   class FrameClock_Class
   {
   public:
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
   class GLContext_Class
   {
   public:
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
   class GLTexture_Class
   {
   public:
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
   class MemoryTexture_Class
   {
   public:
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
   class Monitor_Class
   {
   public:
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
   class Pixbuf_Class
   {
   public:
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
   class PixbufAnimation_Class
   {
   public:
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
   class PixbufAnimationIter_Class
   {
   public:
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
   class PixbufLoader_Class
   {
   public:
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
   class Seat_Class
   {
   public:
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
   class Snapshot_Class
   {
   public:
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
   class Surface_Class
   {
   public:
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
   class Texture_Class
   {
   public:
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
   auto
   wrap_init () -> void
   {
-    Glib::Error::register_domain (gdk_gl_error_quark (), &GLError::throw_func);
-    Glib::Error::register_domain (gdk_pixbuf_error_quark (),
+    glib::Error::register_domain (gdk_gl_error_quark (), &GLError::throw_func);
+    glib::Error::register_domain (gdk_pixbuf_error_quark (),
                                   &PixbufError::throw_func);
-    Glib::Error::register_domain (gdk_texture_error_quark (),
+    glib::Error::register_domain (gdk_texture_error_quark (),
                                   &TextureError::throw_func);
 
-    Glib::wrap_register (gdk_app_launch_context_get_type (),
+    glib::wrap_register (gdk_app_launch_context_get_type (),
                          &AppLaunchContext_Class::wrap_new);
-    Glib::wrap_register (gdk_cairo_context_get_type (),
+    glib::wrap_register (gdk_cairo_context_get_type (),
                          &CairoContext_Class::wrap_new);
-    Glib::wrap_register (gdk_clipboard_get_type (), &Clipboard_Class::wrap_new);
-    Glib::wrap_register (gdk_content_provider_get_type (),
+    glib::wrap_register (gdk_clipboard_get_type (), &Clipboard_Class::wrap_new);
+    glib::wrap_register (gdk_content_provider_get_type (),
                          &ContentProvider_Class::wrap_new);
-    Glib::wrap_register (gdk_cursor_get_type (), &Cursor_Class::wrap_new);
-    Glib::wrap_register (gdk_device_get_type (), &Device_Class::wrap_new);
-    Glib::wrap_register (gdk_device_tool_get_type (),
+    glib::wrap_register (gdk_cursor_get_type (), &Cursor_Class::wrap_new);
+    glib::wrap_register (gdk_device_get_type (), &Device_Class::wrap_new);
+    glib::wrap_register (gdk_device_tool_get_type (),
                          &DeviceTool_Class::wrap_new);
-    Glib::wrap_register (gdk_display_get_type (), &Display_Class::wrap_new);
-    Glib::wrap_register (gdk_display_manager_get_type (),
+    glib::wrap_register (gdk_display_get_type (), &Display_Class::wrap_new);
+    glib::wrap_register (gdk_display_manager_get_type (),
                          &DisplayManager_Class::wrap_new);
-    Glib::wrap_register (gdk_drag_get_type (), &Drag_Class::wrap_new);
-    Glib::wrap_register (gdk_draw_context_get_type (),
+    glib::wrap_register (gdk_drag_get_type (), &Drag_Class::wrap_new);
+    glib::wrap_register (gdk_draw_context_get_type (),
                          &DrawContext_Class::wrap_new);
-    Glib::wrap_register (gdk_drop_get_type (), &Drop_Class::wrap_new);
-    Glib::wrap_register (gdk_frame_clock_get_type (),
+    glib::wrap_register (gdk_drop_get_type (), &Drop_Class::wrap_new);
+    glib::wrap_register (gdk_frame_clock_get_type (),
                          &FrameClock_Class::wrap_new);
-    Glib::wrap_register (gdk_gl_context_get_type (),
+    glib::wrap_register (gdk_gl_context_get_type (),
                          &GLContext_Class::wrap_new);
-    Glib::wrap_register (gdk_gl_texture_get_type (),
+    glib::wrap_register (gdk_gl_texture_get_type (),
                          &GLTexture_Class::wrap_new);
-    Glib::wrap_register (gdk_memory_texture_get_type (),
+    glib::wrap_register (gdk_memory_texture_get_type (),
                          &MemoryTexture_Class::wrap_new);
-    Glib::wrap_register (gdk_monitor_get_type (), &Monitor_Class::wrap_new);
-    Glib::wrap_register (gdk_pixbuf_get_type (), &Pixbuf_Class::wrap_new);
-    Glib::wrap_register (gdk_pixbuf_animation_get_type (),
+    glib::wrap_register (gdk_monitor_get_type (), &Monitor_Class::wrap_new);
+    glib::wrap_register (gdk_pixbuf_get_type (), &Pixbuf_Class::wrap_new);
+    glib::wrap_register (gdk_pixbuf_animation_get_type (),
                          &PixbufAnimation_Class::wrap_new);
-    Glib::wrap_register (gdk_pixbuf_animation_iter_get_type (),
+    glib::wrap_register (gdk_pixbuf_animation_iter_get_type (),
                          &PixbufAnimationIter_Class::wrap_new);
-    Glib::wrap_register (gdk_pixbuf_loader_get_type (),
+    glib::wrap_register (gdk_pixbuf_loader_get_type (),
                          &PixbufLoader_Class::wrap_new);
-    Glib::wrap_register (gdk_seat_get_type (), &Seat_Class::wrap_new);
-    Glib::wrap_register (gdk_snapshot_get_type (), &Snapshot_Class::wrap_new);
-    Glib::wrap_register (gdk_surface_get_type (), &Surface_Class::wrap_new);
-    Glib::wrap_register (gdk_texture_get_type (), &Texture_Class::wrap_new);
+    glib::wrap_register (gdk_seat_get_type (), &Seat_Class::wrap_new);
+    glib::wrap_register (gdk_snapshot_get_type (), &Snapshot_Class::wrap_new);
+    glib::wrap_register (gdk_surface_get_type (), &Surface_Class::wrap_new);
+    glib::wrap_register (gdk_texture_get_type (), &Texture_Class::wrap_new);
 
     g_type_ensure (AppLaunchContext::get_type ());
     g_type_ensure (CairoContext::get_type ());
@@ -372,4 +372,4 @@ namespace Gdk
     g_type_ensure (Texture::get_type ());
   }
 
-} // namespace Gdk
+} // namespace gdk

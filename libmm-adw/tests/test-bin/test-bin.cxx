@@ -6,7 +6,7 @@
  * Author: Alexander Mikhaylenko <alexander.mikhaylenko@puri.sm>
  */
 
-#include <libmm/adw/init.hxx> // Adw::init
+#include <libmm/adw/init.hxx> // adw::init
 #include <libmm/adw/mm-adw.hxx>
 
 int notified;
@@ -20,23 +20,23 @@ notify_cb (void)
 static void
 test_adw_bin_child (void)
 {
-  Adw::Bin bin;
+  adw::Bin bin;
 
   notified = 0;
   bin.property_child ().signal_changed ().connect (sigc::ptr_fun (notify_cb));
 
-  Gtk::Widget* widget = bin.get_property<Gtk::Widget*> ("child");
+  gtk::Widget* widget = bin.get_property<gtk::Widget*> ("child");
   g_assert_null (widget);
 
   bin.set_child (nullptr);
   g_assert_true (notified == 0);
 
-  widget = Gtk::make_managed<Gtk::Button> ();
+  widget = gtk::make_managed<gtk::Button> ();
   bin.set_child (widget);
   g_assert_true (bin.get_child () == widget);
   g_assert_true (notified == 1);
 
-  bin.set_property<Gtk::Widget*> ("child", nullptr);
+  bin.set_property<gtk::Widget*> ("child", nullptr);
   g_assert_true (notified == 2);
 }
 
@@ -44,7 +44,7 @@ int
 main (int argc, char* argv[])
 {
   gtk_test_init (&argc, &argv, NULL);
-  Adw::init ();
+  adw::init ();
 
   g_test_add_func ("/Adwaita/Bin/child", test_adw_bin_child);
 

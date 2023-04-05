@@ -6,7 +6,7 @@
  * Author: Alexander Mikhaylenko <alexander.mikhaylenko@puri.sm>
  */
 
-#include <libmm/adw/init.hxx> // Adw::init
+#include <libmm/adw/init.hxx> // adw::init
 #include <libmm/adw/mm-adw.hxx>
 
 int notified;
@@ -20,15 +20,15 @@ notify_cb ()
 static void
 test_adw_button_content_icon_name (void)
 {
-  Adw::ButtonContent content;
+  adw::ButtonContent content;
 
   notified = 0;
   content.property_icon_name ().signal_changed ().connect (
       sigc::ptr_fun (notify_cb));
 
-  Glib::ustring icon_name;
+  glib::ustring icon_name;
 
-  icon_name = content.get_property<Glib::ustring> ("icon-name");
+  icon_name = content.get_property<glib::ustring> ("icon-name");
   g_assert_true (icon_name == "");
 
   content.set_icon_name ("");
@@ -38,7 +38,7 @@ test_adw_button_content_icon_name (void)
   g_assert_true (content.get_icon_name () == "document-open-symbolic");
   g_assert_true (notified == 1);
 
-  content.set_property<Glib::ustring> ("icon-name", "");
+  content.set_property<glib::ustring> ("icon-name", "");
   g_assert_true (content.get_icon_name () == "");
   g_assert_true (notified == 2);
 }
@@ -46,15 +46,15 @@ test_adw_button_content_icon_name (void)
 static void
 test_adw_button_content_label (void)
 {
-  Adw::ButtonContent content;
+  adw::ButtonContent content;
 
   notified = 0;
   content.property_label ().signal_changed ().connect (
       sigc::ptr_fun (notify_cb));
 
-  Glib::ustring label;
+  glib::ustring label;
 
-  label = content.get_property<Glib::ustring> ("label");
+  label = content.get_property<glib::ustring> ("label");
   g_assert_true (label == "");
 
   content.set_label ("");
@@ -64,7 +64,7 @@ test_adw_button_content_label (void)
   g_assert_true (content.get_label () == "Open");
   g_assert_true (notified == 1);
 
-  content.set_property<Glib::ustring> ("label", "");
+  content.set_property<glib::ustring> ("label", "");
   g_assert_true (content.get_label () == "");
   g_assert_true (notified == 2);
 }
@@ -72,7 +72,7 @@ test_adw_button_content_label (void)
 static void
 test_adw_button_content_use_underline (void)
 {
-  Adw::ButtonContent content;
+  adw::ButtonContent content;
   bool use_underline;
 
   notified = 0;
@@ -97,9 +97,9 @@ test_adw_button_content_use_underline (void)
 static void
 test_adw_button_content_style_class_button (void)
 {
-  Gtk::Window window;
-  Gtk::Button button;
-  Adw::ButtonContent content;
+  gtk::Window window;
+  gtk::Button button;
+  adw::ButtonContent content;
 
   window.set_child (button);
   window.present ();
@@ -114,9 +114,9 @@ test_adw_button_content_style_class_button (void)
 static void
 test_adw_button_content_style_class_split_button (void)
 {
-  Gtk::Window window;
-  Adw::SplitButton button;
-  Adw::ButtonContent content;
+  gtk::Window window;
+  adw::SplitButton button;
+  adw::ButtonContent content;
 
   window.set_child (button);
   window.present ();
@@ -132,7 +132,7 @@ int
 main (int argc, char* argv[])
 {
   gtk_test_init (&argc, &argv, NULL);
-  Adw::init ();
+  adw::init ();
 
   g_test_add_func ("/Adwaita/ButtonContent/icon_name",
                    test_adw_button_content_icon_name);

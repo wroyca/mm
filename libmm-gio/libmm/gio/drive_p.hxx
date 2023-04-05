@@ -7,10 +7,10 @@
 
 #include <libmm/glib/interface_p.hxx>
 
-namespace Gio
+namespace gio
 {
 
-  class LIBMM_GIO_SYMEXPORT Drive_Class : public Glib::Interface_Class
+  class LIBMM_GIO_SYMEXPORT Drive_Class : public glib::Interface_Class
   {
   public:
     using CppObjectType = Drive;
@@ -27,7 +27,7 @@ namespace Gio
     iface_init_function (void* g_iface, void* iface_data) -> void;
 
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
 
   protected:
     static auto
@@ -40,6 +40,6 @@ namespace Gio
     stop_button_callback (GDrive* self) -> void;
   };
 
-} // namespace Gio
+} // namespace gio
 
 #endif

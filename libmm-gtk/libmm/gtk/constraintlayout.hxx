@@ -18,15 +18,15 @@
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT ConstraintLayout_Class;
 }
 #endif
 
-namespace Gtk
+namespace gtk
 {
-  class ConstraintVflParserError : public Glib::Error
+  class ConstraintVflParserError : public glib::Error
   {
   public:
     enum Code
@@ -41,7 +41,7 @@ namespace Gtk
 
     LIBMM_GTK_SYMEXPORT
     ConstraintVflParserError (Code error_code,
-                              const Glib::ustring& error_message);
+                              const glib::ustring& error_message);
     LIBMM_GTK_SYMEXPORT explicit ConstraintVflParserError (GError* gobject);
     LIBMM_GTK_SYMEXPORT auto
     code () const -> Code;
@@ -57,25 +57,25 @@ namespace Gtk
 #endif
   };
 
-} // namespace Gtk
+} // namespace gtk
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_GTK_SYMEXPORT Value<Gtk::ConstraintVflParserError::Code>
-    : public Glib::Value_Enum<Gtk::ConstraintVflParserError::Code>
+  class LIBMM_GTK_SYMEXPORT Value<gtk::ConstraintVflParserError::Code>
+    : public glib::Value_Enum<gtk::ConstraintVflParserError::Code>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
   class LIBMM_GTK_SYMEXPORT ConstraintLayout : public LayoutManager,
@@ -98,7 +98,7 @@ namespace Gtk
     static CppClassType constraintlayout_class_;
 
   protected:
-    explicit ConstraintLayout (const Glib::ConstructParams& construct_params);
+    explicit ConstraintLayout (const glib::ConstructParams& construct_params);
     explicit ConstraintLayout (GtkConstraintLayout* castitem);
 
 #endif
@@ -140,55 +140,55 @@ namespace Gtk
 
   public:
     static auto
-    create () -> Glib::RefPtr<ConstraintLayout>;
+    create () -> glib::RefPtr<ConstraintLayout>;
 
     auto
-    add_constraint (const Glib::RefPtr<Constraint>& constraint) -> void;
+    add_constraint (const glib::RefPtr<Constraint>& constraint) -> void;
 
     auto
-    remove_constraint (const Glib::RefPtr<Constraint>& constraint) -> void;
+    remove_constraint (const glib::RefPtr<Constraint>& constraint) -> void;
 
     auto
     remove_all_constraints () -> void;
 
     auto
-    add_guide (const Glib::RefPtr<ConstraintGuide>& guide) -> void;
+    add_guide (const glib::RefPtr<ConstraintGuide>& guide) -> void;
 
     auto
-    remove_guide (const Glib::RefPtr<ConstraintGuide>& guide) -> void;
+    remove_guide (const glib::RefPtr<ConstraintGuide>& guide) -> void;
 
-    using VFLmap = std::map<Glib::ustring, Glib::RefPtr<ConstraintTarget>>;
+    using VFLmap = std::map<glib::ustring, glib::RefPtr<ConstraintTarget>>;
 
     auto
-    add_constraints_from_description (const std::vector<Glib::ustring>& lines,
+    add_constraints_from_description (const std::vector<glib::ustring>& lines,
                                       int hspacing,
                                       int vspacing,
                                       const VFLmap& views)
-        -> std::vector<Glib::RefPtr<Constraint>>;
+        -> std::vector<glib::RefPtr<Constraint>>;
 
     auto
-    observe_constraints () -> Glib::RefPtr<Gio::ListModel>;
+    observe_constraints () -> glib::RefPtr<gio::ListModel>;
 
     auto
-    observe_constraints () const -> Glib::RefPtr<const Gio::ListModel>;
+    observe_constraints () const -> glib::RefPtr<const gio::ListModel>;
 
     auto
-    observe_guides () -> Glib::RefPtr<Gio::ListModel>;
+    observe_guides () -> glib::RefPtr<gio::ListModel>;
 
     auto
-    observe_guides () const -> Glib::RefPtr<const Gio::ListModel>;
+    observe_guides () const -> glib::RefPtr<const gio::ListModel>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkConstraintLayout* object, bool take_copy = false) -> Glib::RefPtr<Gtk::ConstraintLayout>;
-} // namespace Glib
+  wrap (GtkConstraintLayout* object, bool take_copy = false) -> glib::RefPtr<gtk::ConstraintLayout>;
+} // namespace glib
 
 #endif

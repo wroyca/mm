@@ -15,31 +15,31 @@ namespace
 }
 
 auto
-Glib::Value<Gio::TlsInteractionResult>::value_type () -> GType
+glib::Value<gio::TlsInteractionResult>::value_type () -> GType
 {
   return g_tls_interaction_result_get_type ();
 }
 
 auto
-Glib::Value<Gio::TlsCertificateRequestFlags>::value_type () -> GType
+glib::Value<gio::TlsCertificateRequestFlags>::value_type () -> GType
 {
   return g_tls_certificate_request_flags_get_type ();
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GTlsInteraction* object, const bool take_copy) -> RefPtr<Gio::TlsInteraction>
+  wrap (GTlsInteraction* object, const bool take_copy) -> RefPtr<gio::TlsInteraction>
   {
-    return Glib::make_refptr_for_instance<Gio::TlsInteraction> (
-        dynamic_cast<Gio::TlsInteraction*> (
+    return glib::make_refptr_for_instance<gio::TlsInteraction> (
+        dynamic_cast<gio::TlsInteraction*> (
             wrap_auto ((GObject*) object, take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gio
+namespace gio
 {
 
   auto
@@ -73,7 +73,7 @@ namespace Gio
                                                      GError** error) -> GTlsInteractionResult
   {
     const auto obj_base =
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self);
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self);
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -83,10 +83,10 @@ namespace Gio
         try
         {
           return static_cast<GTlsInteractionResult> (
-              obj->ask_password_vfunc (Glib::wrap (password, true),
-                                       Glib::wrap (cancellable)));
+              obj->ask_password_vfunc (glib::wrap (password, true),
+                                       glib::wrap (cancellable)));
         }
-        catch (Glib::Error& errormm)
+        catch (glib::Error& errormm)
         {
           errormm.propagate (error);
           using RType = GTlsInteractionResult;
@@ -94,7 +94,7 @@ namespace Gio
         }
         catch (...)
         {
-          Glib::exception_handlers_invoke ();
+          glib::exception_handlers_invoke ();
         }
       }
     }
@@ -120,7 +120,7 @@ namespace Gio
     const auto slot = static_cast<SlotAsyncReady*> (user_data);
 
     const auto obj_base =
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self);
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self);
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -129,14 +129,14 @@ namespace Gio
       {
         try
         {
-          obj->ask_password_async_vfunc (Glib::wrap (password, true),
+          obj->ask_password_async_vfunc (glib::wrap (password, true),
                                          *slot,
-                                         Glib::wrap (cancellable));
+                                         glib::wrap (cancellable));
           return;
         }
         catch (...)
         {
-          Glib::exception_handlers_invoke ();
+          glib::exception_handlers_invoke ();
         }
       }
     }
@@ -159,7 +159,7 @@ namespace Gio
       GError** error) -> GTlsInteractionResult
   {
     const auto obj_base =
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self);
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self);
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -169,9 +169,9 @@ namespace Gio
         try
         {
           return static_cast<GTlsInteractionResult> (
-              obj->ask_password_finish_vfunc (Glib::wrap (result, true)));
+              obj->ask_password_finish_vfunc (glib::wrap (result, true)));
         }
-        catch (Glib::Error& errormm)
+        catch (glib::Error& errormm)
         {
           errormm.propagate (error);
           using RType = GTlsInteractionResult;
@@ -179,7 +179,7 @@ namespace Gio
         }
         catch (...)
         {
-          Glib::exception_handlers_invoke ();
+          glib::exception_handlers_invoke ();
         }
       }
     }
@@ -195,7 +195,7 @@ namespace Gio
   }
 
   auto
-  TlsInteraction_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  TlsInteraction_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new TlsInteraction ((GTlsInteraction*) object);
   }
@@ -207,7 +207,7 @@ namespace Gio
     return gobj ();
   }
 
-  TlsInteraction::TlsInteraction (const Glib::ConstructParams& construct_params)
+  TlsInteraction::TlsInteraction (const glib::ConstructParams& construct_params)
     : Object (construct_params)
   {
   }
@@ -247,62 +247,62 @@ namespace Gio
 
   TlsInteraction::TlsInteraction ()
     : ObjectBase (nullptr),
-      Object (Glib::ConstructParams (tlsinteraction_class_.init ()))
+      Object (glib::ConstructParams (tlsinteraction_class_.init ()))
   {
   }
 
   auto
-  TlsInteraction::ask_password (const Glib::RefPtr<TlsPassword>& password,
-                                const Glib::RefPtr<Cancellable>& cancellable) -> TlsInteractionResult
+  TlsInteraction::ask_password (const glib::RefPtr<TlsPassword>& password,
+                                const glib::RefPtr<Cancellable>& cancellable) -> TlsInteractionResult
   {
     GError* gerror = nullptr;
     const auto retvalue = static_cast<TlsInteractionResult> (
         g_tls_interaction_ask_password (gobj (),
-                                        Glib::unwrap (password),
-                                        Glib::unwrap (cancellable),
+                                        glib::unwrap (password),
+                                        glib::unwrap (cancellable),
                                         &gerror));
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
   auto
-  TlsInteraction::ask_password (const Glib::RefPtr<TlsPassword>& password) -> TlsInteractionResult
+  TlsInteraction::ask_password (const glib::RefPtr<TlsPassword>& password) -> TlsInteractionResult
   {
     GError* gerror = nullptr;
     const auto retvalue = static_cast<TlsInteractionResult> (
         g_tls_interaction_ask_password (gobj (),
-                                        Glib::unwrap (password),
+                                        glib::unwrap (password),
                                         nullptr,
                                         &gerror));
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
   auto
   TlsInteraction::ask_password_async (
-      const Glib::RefPtr<TlsPassword>& password,
+      const glib::RefPtr<TlsPassword>& password,
       const SlotAsyncReady& slot,
-      const Glib::RefPtr<Cancellable>& cancellable) -> void
+      const glib::RefPtr<Cancellable>& cancellable) -> void
   {
     const auto slot_copy = new SlotAsyncReady (slot);
 
     g_tls_interaction_ask_password_async (gobj (),
-                                          Glib::unwrap (password),
-                                          Glib::unwrap (cancellable),
+                                          glib::unwrap (password),
+                                          glib::unwrap (cancellable),
                                           &SignalProxy_async_callback,
                                           slot_copy);
   }
 
   auto
-  TlsInteraction::ask_password_async (const Glib::RefPtr<TlsPassword>& password,
+  TlsInteraction::ask_password_async (const glib::RefPtr<TlsPassword>& password,
                                       const SlotAsyncReady& slot) -> void
   {
     const auto slot_copy = new SlotAsyncReady (slot);
 
     g_tls_interaction_ask_password_async (gobj (),
-                                          Glib::unwrap (password),
+                                          glib::unwrap (password),
                                           nullptr,
                                           &SignalProxy_async_callback,
                                           slot_copy);
@@ -310,165 +310,165 @@ namespace Gio
 
   auto
   TlsInteraction::ask_password_async (
-      const Glib::RefPtr<TlsPassword>& password,
-      const Glib::RefPtr<Cancellable>& cancellable) -> void
+      const glib::RefPtr<TlsPassword>& password,
+      const glib::RefPtr<Cancellable>& cancellable) -> void
   {
     g_tls_interaction_ask_password_async (gobj (),
-                                          Glib::unwrap (password),
-                                          Glib::unwrap (cancellable),
+                                          glib::unwrap (password),
+                                          glib::unwrap (cancellable),
                                           nullptr,
                                           nullptr);
   }
 
   auto
-  TlsInteraction::ask_password_async (const Glib::RefPtr<TlsPassword>& password) -> void
+  TlsInteraction::ask_password_async (const glib::RefPtr<TlsPassword>& password) -> void
   {
     g_tls_interaction_ask_password_async (gobj (),
-                                          Glib::unwrap (password),
+                                          glib::unwrap (password),
                                           nullptr,
                                           nullptr,
                                           nullptr);
   }
 
   auto
-  TlsInteraction::ask_password_finish (const Glib::RefPtr<AsyncResult>& result) -> TlsInteractionResult
+  TlsInteraction::ask_password_finish (const glib::RefPtr<AsyncResult>& result) -> TlsInteractionResult
   {
     GError* gerror = nullptr;
     const auto retvalue = static_cast<TlsInteractionResult> (
         g_tls_interaction_ask_password_finish (gobj (),
-                                               Glib::unwrap (result),
+                                               glib::unwrap (result),
                                                &gerror));
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
   auto
   TlsInteraction::invoke_ask_password (
-      const Glib::RefPtr<TlsPassword>& password,
-      const Glib::RefPtr<Cancellable>& cancellable) -> TlsInteractionResult
+      const glib::RefPtr<TlsPassword>& password,
+      const glib::RefPtr<Cancellable>& cancellable) -> TlsInteractionResult
   {
     GError* gerror = nullptr;
     const auto retvalue = static_cast<TlsInteractionResult> (
         g_tls_interaction_invoke_ask_password (gobj (),
-                                               Glib::unwrap (password),
-                                               Glib::unwrap (cancellable),
+                                               glib::unwrap (password),
+                                               glib::unwrap (cancellable),
                                                &gerror));
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
   auto
   TlsInteraction::invoke_ask_password (
-      const Glib::RefPtr<TlsPassword>& password) -> TlsInteractionResult
+      const glib::RefPtr<TlsPassword>& password) -> TlsInteractionResult
   {
     GError* gerror = nullptr;
     const auto retvalue = static_cast<TlsInteractionResult> (
         g_tls_interaction_invoke_ask_password (gobj (),
-                                               Glib::unwrap (password),
+                                               glib::unwrap (password),
                                                nullptr,
                                                &gerror));
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
   auto
   TlsInteraction::invoke_request_certificate (
-      const Glib::RefPtr<TlsConnection>& connection,
+      const glib::RefPtr<TlsConnection>& connection,
       TlsCertificateRequestFlags flags,
-      const Glib::RefPtr<Cancellable>& cancellable) -> TlsInteractionResult
+      const glib::RefPtr<Cancellable>& cancellable) -> TlsInteractionResult
   {
     GError* gerror = nullptr;
     const auto retvalue = static_cast<TlsInteractionResult> (
         g_tls_interaction_invoke_request_certificate (
             gobj (),
-            Glib::unwrap (connection),
+            glib::unwrap (connection),
             static_cast<GTlsCertificateRequestFlags> (flags),
-            Glib::unwrap (cancellable),
+            glib::unwrap (cancellable),
             &gerror));
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
   auto
   TlsInteraction::invoke_request_certificate (
-      const Glib::RefPtr<TlsConnection>& connection,
+      const glib::RefPtr<TlsConnection>& connection,
       TlsCertificateRequestFlags flags) -> TlsInteractionResult
   {
     GError* gerror = nullptr;
     const auto retvalue = static_cast<TlsInteractionResult> (
         g_tls_interaction_invoke_request_certificate (
             gobj (),
-            Glib::unwrap (connection),
+            glib::unwrap (connection),
             static_cast<GTlsCertificateRequestFlags> (flags),
             nullptr,
             &gerror));
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
   auto
   TlsInteraction::request_certificate (
-      const Glib::RefPtr<TlsConnection>& connection,
+      const glib::RefPtr<TlsConnection>& connection,
       TlsCertificateRequestFlags flags,
-      const Glib::RefPtr<Cancellable>& cancellable) -> TlsInteractionResult
+      const glib::RefPtr<Cancellable>& cancellable) -> TlsInteractionResult
   {
     GError* gerror = nullptr;
     const auto retvalue = static_cast<TlsInteractionResult> (
         g_tls_interaction_request_certificate (
             gobj (),
-            Glib::unwrap (connection),
+            glib::unwrap (connection),
             static_cast<GTlsCertificateRequestFlags> (flags),
-            Glib::unwrap (cancellable),
+            glib::unwrap (cancellable),
             &gerror));
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
   auto
   TlsInteraction::request_certificate (
-      const Glib::RefPtr<TlsConnection>& connection,
+      const glib::RefPtr<TlsConnection>& connection,
       TlsCertificateRequestFlags flags) -> TlsInteractionResult
   {
     GError* gerror = nullptr;
     const auto retvalue = static_cast<TlsInteractionResult> (
         g_tls_interaction_request_certificate (
             gobj (),
-            Glib::unwrap (connection),
+            glib::unwrap (connection),
             static_cast<GTlsCertificateRequestFlags> (flags),
             nullptr,
             &gerror));
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
   auto
   TlsInteraction::request_certificate_async (
-      const Glib::RefPtr<TlsConnection>& connection,
+      const glib::RefPtr<TlsConnection>& connection,
       TlsCertificateRequestFlags flags,
       const SlotAsyncReady& slot,
-      const Glib::RefPtr<Cancellable>& cancellable) -> void
+      const glib::RefPtr<Cancellable>& cancellable) -> void
   {
     const auto slot_copy = new SlotAsyncReady (slot);
 
     g_tls_interaction_request_certificate_async (
         gobj (),
-        Glib::unwrap (connection),
+        glib::unwrap (connection),
         static_cast<GTlsCertificateRequestFlags> (flags),
-        Glib::unwrap (cancellable),
+        glib::unwrap (cancellable),
         &SignalProxy_async_callback,
         slot_copy);
   }
 
   auto
   TlsInteraction::request_certificate_async (
-      const Glib::RefPtr<TlsConnection>& connection,
+      const glib::RefPtr<TlsConnection>& connection,
       TlsCertificateRequestFlags flags,
       const SlotAsyncReady& slot) -> void
   {
@@ -476,7 +476,7 @@ namespace Gio
 
     g_tls_interaction_request_certificate_async (
         gobj (),
-        Glib::unwrap (connection),
+        glib::unwrap (connection),
         static_cast<GTlsCertificateRequestFlags> (flags),
         nullptr,
         &SignalProxy_async_callback,
@@ -485,27 +485,27 @@ namespace Gio
 
   auto
   TlsInteraction::request_certificate_async (
-      const Glib::RefPtr<TlsConnection>& connection,
+      const glib::RefPtr<TlsConnection>& connection,
       TlsCertificateRequestFlags flags,
-      const Glib::RefPtr<Cancellable>& cancellable) -> void
+      const glib::RefPtr<Cancellable>& cancellable) -> void
   {
     g_tls_interaction_request_certificate_async (
         gobj (),
-        Glib::unwrap (connection),
+        glib::unwrap (connection),
         static_cast<GTlsCertificateRequestFlags> (flags),
-        Glib::unwrap (cancellable),
+        glib::unwrap (cancellable),
         nullptr,
         nullptr);
   }
 
   auto
   TlsInteraction::request_certificate_async (
-      const Glib::RefPtr<TlsConnection>& connection,
+      const glib::RefPtr<TlsConnection>& connection,
       TlsCertificateRequestFlags flags) -> void
   {
     g_tls_interaction_request_certificate_async (
         gobj (),
-        Glib::unwrap (connection),
+        glib::unwrap (connection),
         static_cast<GTlsCertificateRequestFlags> (flags),
         nullptr,
         nullptr,
@@ -514,22 +514,22 @@ namespace Gio
 
   auto
   TlsInteraction::request_certificate_finish (
-      const Glib::RefPtr<AsyncResult>& result) -> TlsInteractionResult
+      const glib::RefPtr<AsyncResult>& result) -> TlsInteractionResult
   {
     GError* gerror = nullptr;
     const auto retvalue = static_cast<TlsInteractionResult> (
         g_tls_interaction_request_certificate_finish (gobj (),
-                                                      Glib::unwrap (result),
+                                                      glib::unwrap (result),
                                                       &gerror));
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
   auto
   TlsInteraction::ask_password_vfunc (
-      const Glib::RefPtr<TlsPassword>& password,
-      const Glib::RefPtr<Cancellable>& cancellable) -> TlsInteractionResult
+      const glib::RefPtr<TlsPassword>& password,
+      const glib::RefPtr<Cancellable>& cancellable) -> TlsInteractionResult
   {
     const auto base = static_cast<BaseClassType*> (
         g_type_class_peek_parent (G_OBJECT_GET_CLASS (gobject_)));
@@ -539,11 +539,11 @@ namespace Gio
       GError* gerror = nullptr;
       const TlsInteractionResult retval (static_cast<TlsInteractionResult> (
           (*base->ask_password) (gobj (),
-                                 Glib::unwrap (password),
-                                 Glib::unwrap (cancellable),
+                                 glib::unwrap (password),
+                                 glib::unwrap (cancellable),
                                  &gerror)));
       if (gerror)
-        Glib::Error::throw_exception (gerror);
+        glib::Error::throw_exception (gerror);
       return retval;
     }
 
@@ -553,9 +553,9 @@ namespace Gio
 
   auto
   TlsInteraction::ask_password_async_vfunc (
-      const Glib::RefPtr<TlsPassword>& password,
+      const glib::RefPtr<TlsPassword>& password,
       const SlotAsyncReady& slot,
-      const Glib::RefPtr<Cancellable>& cancellable) -> void
+      const glib::RefPtr<Cancellable>& cancellable) -> void
   {
     const auto slot_copy = new SlotAsyncReady (slot);
 
@@ -565,8 +565,8 @@ namespace Gio
     if (base && base->ask_password_async)
     {
       (*base->ask_password_async) (gobj (),
-                                   Glib::unwrap (password),
-                                   Glib::unwrap (cancellable),
+                                   glib::unwrap (password),
+                                   glib::unwrap (cancellable),
                                    &SignalProxy_async_callback,
                                    slot_copy);
     }
@@ -574,7 +574,7 @@ namespace Gio
 
   auto
   TlsInteraction::ask_password_finish_vfunc (
-      const Glib::RefPtr<AsyncResult>& result) -> TlsInteractionResult
+      const glib::RefPtr<AsyncResult>& result) -> TlsInteractionResult
   {
     const auto base = static_cast<BaseClassType*> (
         g_type_class_peek_parent (G_OBJECT_GET_CLASS (gobject_)));
@@ -584,10 +584,10 @@ namespace Gio
       GError* gerror = nullptr;
       const TlsInteractionResult retval (static_cast<TlsInteractionResult> (
           (*base->ask_password_finish) (gobj (),
-                                        Glib::unwrap (result),
+                                        glib::unwrap (result),
                                         &gerror)));
       if (gerror)
-        Glib::Error::throw_exception (gerror);
+        glib::Error::throw_exception (gerror);
       return retval;
     }
 
@@ -595,4 +595,4 @@ namespace Gio
     return RType ();
   }
 
-} // namespace Gio
+} // namespace gio

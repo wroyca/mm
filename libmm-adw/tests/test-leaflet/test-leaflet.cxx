@@ -4,22 +4,22 @@
  * SPDX-License-Identifier: LGPL-2.1-or-later
  */
 
-#include <libmm/adw/init.hxx> // Adw::init
+#include <libmm/adw/init.hxx> // adw::init
 #include <libmm/adw/mm-adw.hxx>
 
 #include <array>
 
 static void
-assert_page_position (Glib::RefPtr<Gtk::SelectionModel> pages,
-                      Gtk::Widget* widget,
+assert_page_position (glib::RefPtr<gtk::SelectionModel> pages,
+                      gtk::Widget* widget,
                       int position)
 {
-  Glib::RefPtr<Gio::ListModel> list_model =
-      std::dynamic_pointer_cast<Gio::ListModel> (pages);
+  glib::RefPtr<gio::ListModel> list_model =
+      std::dynamic_pointer_cast<gio::ListModel> (pages);
   g_assert_true (list_model != nullptr);
 
-  Glib::RefPtr<Adw::LeafletPage> page =
-      std::dynamic_pointer_cast<Adw::LeafletPage> (
+  glib::RefPtr<adw::LeafletPage> page =
+      std::dynamic_pointer_cast<adw::LeafletPage> (
           list_model->get_object (position));
   g_assert_true (page != nullptr);
 
@@ -29,14 +29,14 @@ assert_page_position (Glib::RefPtr<Gtk::SelectionModel> pages,
 static void
 test_adw_leaflet_adjacent_child (void)
 {
-  Adw::Leaflet leaflet;
-  std::array<Gtk::Widget*, 3> children;
+  adw::Leaflet leaflet;
+  std::array<gtk::Widget*, 3> children;
 
   for (int i = 0; i < 3; i++)
   {
-    children[i] = Gtk::make_managed<Gtk::Button> ();
+    children[i] = gtk::make_managed<gtk::Button> ();
 
-    Glib::RefPtr<Adw::LeafletPage> page = leaflet.append (children[i]);
+    glib::RefPtr<adw::LeafletPage> page = leaflet.append (children[i]);
 
     if (i == 1)
       page->set_navigatable (false);
@@ -44,47 +44,47 @@ test_adw_leaflet_adjacent_child (void)
 
   leaflet.set_visible_child (children[0]);
 
-  Gtk::Widget* result =
-      leaflet.get_adjacent_child (Adw::NavigationDirection::BACK);
+  gtk::Widget* result =
+      leaflet.get_adjacent_child (adw::NavigationDirection::BACK);
   g_assert_null (result);
 
-  result = leaflet.get_adjacent_child (Adw::NavigationDirection::FORWARD);
+  result = leaflet.get_adjacent_child (adw::NavigationDirection::FORWARD);
   g_assert_true (result->gobj () == children[2]->gobj ());
 
   leaflet.set_visible_child (children[1]);
 
-  result = leaflet.get_adjacent_child (Adw::NavigationDirection::BACK);
+  result = leaflet.get_adjacent_child (adw::NavigationDirection::BACK);
   g_assert_true (result->gobj () == children[0]->gobj ());
 
-  result = leaflet.get_adjacent_child (Adw::NavigationDirection::FORWARD);
+  result = leaflet.get_adjacent_child (adw::NavigationDirection::FORWARD);
   g_assert_true (result->gobj () == children[2]->gobj ());
 
   leaflet.set_visible_child (children[2]);
 
-  result = leaflet.get_adjacent_child (Adw::NavigationDirection::BACK);
+  result = leaflet.get_adjacent_child (adw::NavigationDirection::BACK);
   g_assert_true (result->gobj () == children[0]->gobj ());
 
-  result = leaflet.get_adjacent_child (Adw::NavigationDirection::FORWARD);
+  result = leaflet.get_adjacent_child (adw::NavigationDirection::FORWARD);
   g_assert_null (result);
 }
 
 static void
 test_adw_leaflet_navigate (void)
 {
-  Adw::Leaflet leaflet;
-  std::array<Gtk::Widget*, 3> children;
+  adw::Leaflet leaflet;
+  std::array<gtk::Widget*, 3> children;
 
-  bool result = leaflet.navigate (Adw::NavigationDirection::BACK);
+  bool result = leaflet.navigate (adw::NavigationDirection::BACK);
   g_assert_false (result);
 
-  result = leaflet.navigate (Adw::NavigationDirection::FORWARD);
+  result = leaflet.navigate (adw::NavigationDirection::FORWARD);
   g_assert_false (result);
 
   for (int i = 0; i < 3; i++)
   {
-    children[i] = Gtk::make_managed<Gtk::Label> ("");
+    children[i] = gtk::make_managed<gtk::Label> ("");
 
-    Glib::RefPtr<Adw::LeafletPage> page = leaflet.append (children[i]);
+    glib::RefPtr<adw::LeafletPage> page = leaflet.append (children[i]);
 
     if (i == 1)
       page->set_navigatable (false);
@@ -92,17 +92,17 @@ test_adw_leaflet_navigate (void)
 
   leaflet.set_visible_child (children[0]);
 
-  result = leaflet.navigate (Adw::NavigationDirection::BACK);
+  result = leaflet.navigate (adw::NavigationDirection::BACK);
   g_assert_false (result);
 
-  result = leaflet.navigate (Adw::NavigationDirection::FORWARD);
+  result = leaflet.navigate (adw::NavigationDirection::FORWARD);
   g_assert_true (result);
   g_assert_true (leaflet.get_visible_child ()->gobj () == children[2]->gobj ());
 
-  result = leaflet.navigate (Adw::NavigationDirection::FORWARD);
+  result = leaflet.navigate (adw::NavigationDirection::FORWARD);
   g_assert_false (result);
 
-  result = leaflet.navigate (Adw::NavigationDirection::BACK);
+  result = leaflet.navigate (adw::NavigationDirection::BACK);
   g_assert_true (result);
   g_assert_true (leaflet.get_visible_child ()->gobj () == children[0]->gobj ());
 }
@@ -110,15 +110,15 @@ test_adw_leaflet_navigate (void)
 static void
 test_adw_leaflet_prepend (void)
 {
-  Adw::Leaflet leaflet;
-  std::array<Gtk::Widget*, 2> labels;
+  adw::Leaflet leaflet;
+  std::array<gtk::Widget*, 2> labels;
 
   for (int i = 0; i < 2; i++)
   {
-    labels[i] = Gtk::make_managed<Gtk::Label> ("");
+    labels[i] = gtk::make_managed<gtk::Label> ("");
   }
 
-  Glib::RefPtr<Gtk::SelectionModel> pages = leaflet.get_pages ();
+  glib::RefPtr<gtk::SelectionModel> pages = leaflet.get_pages ();
 
   leaflet.prepend (labels[1]);
   assert_page_position (pages, labels[1], 0);
@@ -131,15 +131,15 @@ test_adw_leaflet_prepend (void)
 static void
 test_adw_leaflet_insert_child_after (void)
 {
-  Adw::Leaflet leaflet;
-  std::array<Gtk::Widget*, 3> labels;
+  adw::Leaflet leaflet;
+  std::array<gtk::Widget*, 3> labels;
 
   for (int i = 0; i < 3; i++)
   {
-    labels[i] = Gtk::make_managed<Gtk::Label> ("");
+    labels[i] = gtk::make_managed<gtk::Label> ("");
   }
 
-  Glib::RefPtr<Gtk::SelectionModel> pages = leaflet.get_pages ();
+  glib::RefPtr<gtk::SelectionModel> pages = leaflet.get_pages ();
 
   leaflet.append (labels[2]);
 
@@ -158,17 +158,17 @@ test_adw_leaflet_insert_child_after (void)
 static void
 test_adw_leaflet_reorder_child_after (void)
 {
-  Adw::Leaflet leaflet;
-  std::array<Gtk::Widget*, 3> labels;
+  adw::Leaflet leaflet;
+  std::array<gtk::Widget*, 3> labels;
 
   for (int i = 0; i < 3; i++)
   {
-    labels[i] = Gtk::make_managed<Gtk::Label> ("");
+    labels[i] = gtk::make_managed<gtk::Label> ("");
 
     leaflet.append (labels[i]);
   }
 
-  Glib::RefPtr<Gtk::SelectionModel> pages = leaflet.get_pages ();
+  glib::RefPtr<gtk::SelectionModel> pages = leaflet.get_pages ();
 
   assert_page_position (pages, labels[0], 0);
   assert_page_position (pages, labels[1], 1);
@@ -189,7 +189,7 @@ int
 main (int argc, char* argv[])
 {
   gtk_test_init (&argc, &argv, NULL);
-  Adw::init ();
+  adw::init ();
 
   g_test_add_func ("/Adwaita/Leaflet/adjacent_child",
                    test_adw_leaflet_adjacent_child);

@@ -20,16 +20,16 @@ using GRemoteActionGroupClass = struct _GRemoteActionGroupClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gio
+namespace gio
 {
   class LIBMM_GIO_SYMEXPORT RemoteActionGroup_Class;
 }
 #endif
 
-namespace Gio
+namespace gio
 {
 
-  class LIBMM_GIO_SYMEXPORT RemoteActionGroup : public Glib::Interface
+  class LIBMM_GIO_SYMEXPORT RemoteActionGroup : public glib::Interface
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -53,7 +53,7 @@ namespace Gio
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
-    explicit RemoteActionGroup (const Glib::Interface_Class& interface_class);
+    explicit RemoteActionGroup (const glib::Interface_Class& interface_class);
 
   public:
     explicit RemoteActionGroup (GRemoteActionGroup* castitem);
@@ -94,25 +94,25 @@ namespace Gio
   private:
   public:
     auto
-    activate_action (const Glib::ustring& action_name,
-                     const Glib::VariantBase& parameter,
-                     const Glib::VariantBase& platform_data) -> void;
+    activate_action (const glib::ustring& action_name,
+                     const glib::VariantBase& parameter,
+                     const glib::VariantBase& platform_data) -> void;
 
     auto
-    change_action_state (const Glib::ustring& action_name,
-                         const Glib::VariantBase& value,
-                         const Glib::VariantBase& platform_data) -> void;
+    change_action_state (const glib::ustring& action_name,
+                         const glib::VariantBase& value,
+                         const glib::VariantBase& platform_data) -> void;
 
   protected:
     virtual auto
-    activate_action_full_vfunc (const Glib::ustring& action_name,
-                                const Glib::VariantBase& parameter,
-                                const Glib::VariantBase& platform_data) -> void;
+    activate_action_full_vfunc (const glib::ustring& action_name,
+                                const glib::VariantBase& parameter,
+                                const glib::VariantBase& platform_data) -> void;
 
     virtual auto
-    change_action_state_full_vfunc (const Glib::ustring& action_name,
-                                    const Glib::VariantBase& value,
-                                    const Glib::VariantBase& platform_data)
+    change_action_state_full_vfunc (const glib::ustring& action_name,
+                                    const glib::VariantBase& value,
+                                    const glib::VariantBase& platform_data)
         -> void;
 
   public:
@@ -120,15 +120,15 @@ namespace Gio
   protected:
   };
 
-} // namespace Gio
+} // namespace gio
 
-namespace Glib
+namespace glib
 {
 
   LIBMM_GIO_SYMEXPORT
   auto
-  wrap (GRemoteActionGroup* object, bool take_copy = false) -> Glib::RefPtr<Gio::RemoteActionGroup>;
+  wrap (GRemoteActionGroup* object, bool take_copy = false) -> glib::RefPtr<gio::RemoteActionGroup>;
 
-} // namespace Glib
+} // namespace glib
 
 #endif

@@ -9,7 +9,7 @@
 #include <libmm/gio/converter.hxx>
 #include <libmm/gio/outputstream.hxx>
 
-namespace Gio
+namespace gio
 {
 
 }
@@ -18,20 +18,20 @@ namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GConverterOutputStream* object, const bool take_copy) -> RefPtr<Gio::ConverterOutputStream>
+  wrap (GConverterOutputStream* object, const bool take_copy) -> RefPtr<gio::ConverterOutputStream>
   {
-    return Glib::make_refptr_for_instance<Gio::ConverterOutputStream> (
-        dynamic_cast<Gio::ConverterOutputStream*> (
+    return glib::make_refptr_for_instance<gio::ConverterOutputStream> (
+        dynamic_cast<gio::ConverterOutputStream*> (
             wrap_auto ((GObject*) object, take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gio
+namespace gio
 {
 
   auto
@@ -58,7 +58,7 @@ namespace Gio
   }
 
   auto
-  ConverterOutputStream_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  ConverterOutputStream_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new ConverterOutputStream ((GConverterOutputStream*) object);
   }
@@ -71,7 +71,7 @@ namespace Gio
   }
 
   ConverterOutputStream::ConverterOutputStream (
-      const Glib::ConstructParams& construct_params)
+      const glib::ConstructParams& construct_params)
     : FilterOutputStream (construct_params)
   {
   }
@@ -115,53 +115,53 @@ namespace Gio
   }
 
   ConverterOutputStream::ConverterOutputStream (
-      const Glib::RefPtr<OutputStream>& base_stream,
-      const Glib::RefPtr<Converter>& converter)
+      const glib::RefPtr<OutputStream>& base_stream,
+      const glib::RefPtr<Converter>& converter)
     : ObjectBase (nullptr),
       FilterOutputStream (
-          Glib::ConstructParams (converteroutputstream_class_.init (),
+          glib::ConstructParams (converteroutputstream_class_.init (),
                                  "base_stream",
-                                 Glib::unwrap (base_stream),
+                                 glib::unwrap (base_stream),
                                  "converter",
-                                 Glib::unwrap (converter),
+                                 glib::unwrap (converter),
                                  nullptr))
   {
   }
 
   auto
-  ConverterOutputStream::create (const Glib::RefPtr<OutputStream>& base_stream,
-                                 const Glib::RefPtr<Converter>& converter) -> Glib::RefPtr<ConverterOutputStream>
+  ConverterOutputStream::create (const glib::RefPtr<OutputStream>& base_stream,
+                                 const glib::RefPtr<Converter>& converter) -> glib::RefPtr<ConverterOutputStream>
   {
-    return Glib::make_refptr_for_instance<ConverterOutputStream> (
+    return glib::make_refptr_for_instance<ConverterOutputStream> (
         new ConverterOutputStream (base_stream, converter));
   }
 
   auto
-  ConverterOutputStream::get_converter () -> Glib::RefPtr<Converter>
+  ConverterOutputStream::get_converter () -> glib::RefPtr<Converter>
   {
     auto retvalue =
-        Glib::wrap (g_converter_output_stream_get_converter (gobj ()));
+        glib::wrap (g_converter_output_stream_get_converter (gobj ()));
     if (retvalue)
       retvalue->reference ();
     return retvalue;
   }
 
   auto
-  ConverterOutputStream::get_converter () const -> Glib::RefPtr<const Converter>
+  ConverterOutputStream::get_converter () const -> glib::RefPtr<const Converter>
   {
     return const_cast<ConverterOutputStream*> (this)->get_converter ();
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<
-          Glib::RefPtr<Converter>>::value,
-      "Type Glib::RefPtr<Converter> cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      glib::Traits::ValueCompatibleWithWrapProperty<
+          glib::RefPtr<Converter>>::value,
+      "Type glib::RefPtr<Converter> cannot be used in _WRAP_PROPERTY. "
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  ConverterOutputStream::property_converter () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Converter>>
+  ConverterOutputStream::property_converter () const -> glib::PropertyProxy_ReadOnly<glib::RefPtr<Converter>>
   {
     return {this, "converter"};
   }
 
-} // namespace Gio
+} // namespace gio

@@ -9,7 +9,7 @@
 
 #include <libmm/glib/utility.hxx>
 
-namespace Glib
+namespace glib
 {
 
   IConv::IConv (const std::string& to_codeset, const std::string& from_codeset)
@@ -316,31 +316,31 @@ namespace Glib
     return {make_unique_ptr_gfree (buf).get ()};
   }
 
-} // namespace Glib
+} // namespace glib
 
 namespace
 {
 }
 
-Glib::ConvertError::ConvertError (const Code error_code,
+glib::ConvertError::ConvertError (const Code error_code,
                                   const ustring& error_message)
   : Error (G_CONVERT_ERROR, error_code, error_message)
 {
 }
 
-Glib::ConvertError::ConvertError (GError* gobject)
+glib::ConvertError::ConvertError (GError* gobject)
   : Error (gobject)
 {
 }
 
 auto
-Glib::ConvertError::code () const -> Code
+glib::ConvertError::code () const -> Code
 {
   return static_cast<Code> (Error::code ());
 }
 
 auto
-Glib::ConvertError::throw_func (GError* gobject) -> void
+glib::ConvertError::throw_func (GError* gobject) -> void
 {
   throw ConvertError (gobject);
 }

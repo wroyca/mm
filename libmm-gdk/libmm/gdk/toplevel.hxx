@@ -26,13 +26,13 @@ using GdkToplevelClass = struct _GdkToplevelClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gdk
+namespace gdk
 {
   class LIBMM_GDK_SYMEXPORT Toplevel_Class;
 }
 #endif
 
-namespace Gdk
+namespace gdk
 {
 
   enum class SurfaceEdge
@@ -47,25 +47,25 @@ namespace Gdk
     SOUTH_EAST
   };
 
-} // namespace Gdk
+} // namespace gdk
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_GDK_SYMEXPORT Value<Gdk::SurfaceEdge>
-    : public Glib::Value_Enum<Gdk::SurfaceEdge>
+  class LIBMM_GDK_SYMEXPORT Value<gdk::SurfaceEdge>
+    : public glib::Value_Enum<gdk::SurfaceEdge>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
-namespace Gdk
+namespace gdk
 {
 
   enum class FullscreenMode
@@ -74,28 +74,28 @@ namespace Gdk
     ON_ALL_MONITORS
   };
 
-} // namespace Gdk
+} // namespace gdk
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_GDK_SYMEXPORT Value<Gdk::FullscreenMode>
-    : public Glib::Value_Enum<Gdk::FullscreenMode>
+  class LIBMM_GDK_SYMEXPORT Value<gdk::FullscreenMode>
+    : public glib::Value_Enum<gdk::FullscreenMode>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
-namespace Gdk
+namespace gdk
 {
 
-  class LIBMM_GDK_SYMEXPORT Toplevel : public Glib::Interface
+  class LIBMM_GDK_SYMEXPORT Toplevel : public glib::Interface
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -119,7 +119,7 @@ namespace Gdk
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
-    explicit Toplevel (const Glib::Interface_Class& interface_class);
+    explicit Toplevel (const glib::Interface_Class& interface_class);
 
   public:
     explicit Toplevel (GdkToplevel* castitem);
@@ -180,7 +180,7 @@ namespace Gdk
     };
 
     auto
-    present (const Glib::RefPtr<ToplevelLayout>& layout) -> void;
+    present (const glib::RefPtr<ToplevelLayout>& layout) -> void;
 
     auto
     minimize () -> bool;
@@ -195,22 +195,22 @@ namespace Gdk
     get_state () const -> State;
 
     auto
-    set_title (const Glib::ustring& title) -> void;
+    set_title (const glib::ustring& title) -> void;
 
     auto
-    set_startup_id (const Glib::ustring& startup_id) -> void;
+    set_startup_id (const glib::ustring& startup_id) -> void;
 
     auto
-    set_transient_for (const Glib::RefPtr<Surface>& parent) -> void;
+    set_transient_for (const glib::RefPtr<Surface>& parent) -> void;
 
     auto
     set_modal (bool modal = true) -> void;
 
     auto
-    set_icon_list (const std::vector<Glib::RefPtr<Texture>>& surfaces) -> void;
+    set_icon_list (const std::vector<glib::RefPtr<Texture>>& surfaces) -> void;
 
     auto
-    show_window_menu (const Glib::RefPtr<Event>& event) -> bool;
+    show_window_menu (const glib::RefPtr<Event>& event) -> bool;
 
     auto
     set_decorated (bool decorated = true) -> void;
@@ -222,87 +222,87 @@ namespace Gdk
     supports_edge_constraints () const -> bool;
 
     auto
-    inhibit_system_shortcuts (const Glib::RefPtr<Event>& event) -> void;
+    inhibit_system_shortcuts (const glib::RefPtr<Event>& event) -> void;
 
     auto
     restore_system_shortcuts () -> void;
 
     auto
     begin_resize (SurfaceEdge edge,
-                  const Glib::RefPtr<Device>& device,
+                  const glib::RefPtr<Device>& device,
                   int button,
                   double x,
                   double y,
                   guint32 timestamp) -> void;
 
     auto
-    begin_move (const Glib::RefPtr<Device>& device,
+    begin_move (const glib::RefPtr<Device>& device,
                 int button,
                 double x,
                 double y,
                 guint32 timestamp) -> void;
 
     auto
-    signal_compute_size () -> Glib::SignalProxy<void (ToplevelSize&)>;
+    signal_compute_size () -> glib::SignalProxy<void (ToplevelSize&)>;
 
     auto
-    property_state () const -> Glib::PropertyProxy_ReadOnly<State>;
+    property_state () const -> glib::PropertyProxy_ReadOnly<State>;
 
     auto
-    property_title () -> Glib::PropertyProxy<Glib::ustring>;
+    property_title () -> glib::PropertyProxy<glib::ustring>;
 
     auto
-    property_title () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+    property_title () const -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
     auto
-    property_startup_id () -> Glib::PropertyProxy<Glib::ustring>;
+    property_startup_id () -> glib::PropertyProxy<glib::ustring>;
 
     auto
-    property_startup_id () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+    property_startup_id () const -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
     auto
-    property_transient_for () -> Glib::PropertyProxy<Glib::RefPtr<Surface>>;
+    property_transient_for () -> glib::PropertyProxy<glib::RefPtr<Surface>>;
 
     auto
     property_transient_for () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Surface>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<Surface>>;
 
     auto
-    property_modal () -> Glib::PropertyProxy<bool>;
+    property_modal () -> glib::PropertyProxy<bool>;
 
     auto
-    property_modal () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_modal () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_decorated () -> Glib::PropertyProxy<bool>;
+    property_decorated () -> glib::PropertyProxy<bool>;
 
     auto
-    property_decorated () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_decorated () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_deletable () -> Glib::PropertyProxy<bool>;
+    property_deletable () -> glib::PropertyProxy<bool>;
 
     auto
-    property_deletable () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_deletable () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_fullscreen_mode () -> Glib::PropertyProxy<FullscreenMode>;
+    property_fullscreen_mode () -> glib::PropertyProxy<FullscreenMode>;
 
     auto
     property_fullscreen_mode () const
-        -> Glib::PropertyProxy_ReadOnly<FullscreenMode>;
+        -> glib::PropertyProxy_ReadOnly<FullscreenMode>;
 
     auto
-    property_shortcuts_inhibited () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_shortcuts_inhibited () const -> glib::PropertyProxy_ReadOnly<bool>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gdk
+} // namespace gdk
 
-namespace Gdk
+namespace gdk
 {
 
   inline auto
@@ -352,29 +352,29 @@ namespace Gdk
     return (lhs = static_cast<Toplevel::State> (static_cast<unsigned> (lhs) ^
                                                 static_cast<unsigned> (rhs)));
   }
-} // namespace Gdk
+} // namespace gdk
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_GDK_SYMEXPORT Value<Gdk::Toplevel::State>
-    : public Glib::Value_Flags<Gdk::Toplevel::State>
+  class LIBMM_GDK_SYMEXPORT Value<gdk::Toplevel::State>
+    : public glib::Value_Flags<gdk::Toplevel::State>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
-namespace Glib
+namespace glib
 {
   LIBMM_GDK_SYMEXPORT auto
-  wrap (GdkToplevel* object, bool take_copy = false) -> Glib::RefPtr<Gdk::Toplevel>;
+  wrap (GdkToplevel* object, bool take_copy = false) -> glib::RefPtr<gdk::Toplevel>;
 
-} // namespace Glib
+} // namespace glib
 
 #endif

@@ -12,7 +12,7 @@ namespace
 
 }
 
-namespace Glib
+namespace glib
 {
   auto
   set_init_to_users_preferred_locale (const bool state) -> void
@@ -68,4 +68,4 @@ namespace Glib
     is_initialized = true;
   }
 
-} // namespace Glib
+} // namespace glib

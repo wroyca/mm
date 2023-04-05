@@ -5,8 +5,8 @@
 #include <libmm/gtk/init.hxx>
 
 auto
-Adw::init () -> void
+adw::init () -> void
 {
-  Gtk::init_gtkmm_internals ();
+  gtk::init_gtkmm_internals ();
   wrap_init ();
 }

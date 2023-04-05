@@ -18,7 +18,7 @@
   #include <libmm/gtk/treeiter.hxx>
   #include <libmm/gtk/treepath.hxx>
 
-using Flags = Gtk::TreeModel::Flags;
+using Flags = gtk::TreeModel::Flags;
 
 namespace
 {
@@ -29,16 +29,16 @@ namespace
                                GtkTreeIter* iter,
                                void* data) -> gboolean
   {
-    typedef Gtk::TreeModel::SlotForeachIter SlotType;
+    typedef gtk::TreeModel::SlotForeachIter SlotType;
     auto& slot = *static_cast<SlotType*> (data);
 
     try
     {
-      return slot (Gtk::TreeModel::iterator (model, iter));
+      return slot (gtk::TreeModel::iterator (model, iter));
     }
     catch (...)
     {
-      Glib::exception_handlers_invoke ();
+      glib::exception_handlers_invoke ();
     }
 
     return 1;
@@ -50,16 +50,16 @@ namespace
                                GtkTreeIter*,
                                void* data) -> gboolean
   {
-    typedef Gtk::TreeModel::SlotForeachPath SlotType;
+    typedef gtk::TreeModel::SlotForeachPath SlotType;
     auto& slot = *static_cast<SlotType*> (data);
 
     try
     {
-      return slot (Gtk::TreeModel::Path (path, true));
+      return slot (gtk::TreeModel::Path (path, true));
     }
     catch (...)
     {
-      Glib::exception_handlers_invoke ();
+      glib::exception_handlers_invoke ();
     }
 
     return 1;
@@ -71,17 +71,17 @@ namespace
                                         GtkTreeIter* iter,
                                         void* data) -> gboolean
   {
-    typedef Gtk::TreeModel::SlotForeachPathAndIter SlotType;
+    typedef gtk::TreeModel::SlotForeachPathAndIter SlotType;
     auto& slot = *static_cast<SlotType*> (data);
 
     try
     {
-      return slot (Gtk::TreeModel::Path (path, true),
-                   Gtk::TreeModel::iterator (model, iter));
+      return slot (gtk::TreeModel::Path (path, true),
+                   gtk::TreeModel::iterator (model, iter));
     }
     catch (...)
     {
-      Glib::exception_handlers_invoke ();
+      glib::exception_handlers_invoke ();
     }
 
     return 1;
@@ -89,15 +89,15 @@ namespace
 
 } // namespace
 
-typedef Gtk::TreeModel::iterator iterator;
+typedef gtk::TreeModel::iterator iterator;
 
-namespace Gtk
+namespace gtk
 {
 
   auto
   TreeModel::get_iter (const Path& path) -> TreeModel::iterator
   {
-    Gtk::TreeModel::iterator iter (this);
+    gtk::TreeModel::iterator iter (this);
     gtk_tree_model_get_iter (gobj (),
                              iter.gobj (),
                              const_cast<GtkTreePath*> (path.gobj ()));
@@ -111,9 +111,9 @@ namespace Gtk
   }
 
   auto
-  TreeModel::get_iter (const Glib::ustring& path_string) -> TreeModel::iterator
+  TreeModel::get_iter (const glib::ustring& path_string) -> TreeModel::iterator
   {
-    Gtk::TreeModel::iterator iter (this);
+    gtk::TreeModel::iterator iter (this);
     gtk_tree_model_get_iter_from_string (gobj (),
                                          iter.gobj (),
                                          path_string.c_str ());
@@ -121,7 +121,7 @@ namespace Gtk
   }
 
   auto
-  TreeModel::get_iter (const Glib::ustring& path_string) const -> TreeModel::const_iterator
+  TreeModel::get_iter (const glib::ustring& path_string) const -> TreeModel::const_iterator
   {
     return const_cast<TreeModel*> (this)->get_iter (path_string);
   }
@@ -139,7 +139,7 @@ namespace Gtk
   }
 
   auto
-  TreeModel::set_value_impl (const iterator&, int, const Glib::ValueBase&) -> void
+  TreeModel::set_value_impl (const iterator&, int, const glib::ValueBase&) -> void
   {
     g_assert_not_reached ();
   }
@@ -147,7 +147,7 @@ namespace Gtk
   auto
   TreeModel::get_value_impl (const const_iterator& iter,
                              int column,
-                             Glib::ValueBase& value) const -> void
+                             glib::ValueBase& value) const -> void
   {
     gtk_tree_model_get_value (const_cast<GtkTreeModel*> (gobj ()),
                               const_cast<GtkTreeIter*> (iter.gobj ()),
@@ -183,7 +183,7 @@ namespace Gtk
                                              GtkTreeIter* iter) -> gboolean
   {
     const auto obj = dynamic_cast<CppObjectType*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj && obj->is_derived_ ())
     {
@@ -200,7 +200,7 @@ namespace Gtk
       }
       catch (...)
       {
-        Glib::exception_handlers_invoke ();
+        glib::exception_handlers_invoke ();
       }
     }
     else
@@ -246,14 +246,14 @@ namespace Gtk
                                             GtkTreePath* path) -> gboolean
   {
     const auto obj = dynamic_cast<CppObjectType*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj && obj->is_derived_ ())
     {
       try
       {
-        Gtk::TreeModel::iterator iter_out (self, iter);
-        gboolean test = obj->get_iter_vfunc (Gtk::TreePath (path, true),
+        gtk::TreeModel::iterator iter_out (self, iter);
+        gboolean test = obj->get_iter_vfunc (gtk::TreePath (path, true),
                                              iter_out);
 
         if (test)
@@ -263,7 +263,7 @@ namespace Gtk
       }
       catch (...)
       {
-        Glib::exception_handlers_invoke ();
+        glib::exception_handlers_invoke ();
       }
     }
     else
@@ -305,13 +305,13 @@ namespace Gtk
                                                  GtkTreeIter* parent) -> gboolean
   {
     const auto obj = dynamic_cast<CppObjectType*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj && obj->is_derived_ ())
     {
       try
       {
-        Gtk::TreeModel::iterator iter_out (self, iter);
+        gtk::TreeModel::iterator iter_out (self, iter);
 
         gboolean test = false;
         if (!parent)
@@ -320,7 +320,7 @@ namespace Gtk
         }
         else
         {
-          Gtk::TreeModel::iterator parent_cpp (self, parent);
+          gtk::TreeModel::iterator parent_cpp (self, parent);
           test = obj->iter_children_vfunc (parent_cpp, iter_out);
         }
 
@@ -331,7 +331,7 @@ namespace Gtk
       }
       catch (...)
       {
-        Glib::exception_handlers_invoke ();
+        glib::exception_handlers_invoke ();
       }
     }
     else
@@ -373,14 +373,14 @@ namespace Gtk
                                                GtkTreeIter* child) -> gboolean
   {
     const auto obj = dynamic_cast<CppObjectType*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj && obj->is_derived_ ())
     {
       try
       {
-        Gtk::TreeModel::iterator iter_out (self, iter);
-        Gtk::TreeModel::iterator child_cpp (self, child);
+        gtk::TreeModel::iterator iter_out (self, iter);
+        gtk::TreeModel::iterator child_cpp (self, child);
         gboolean test = obj->iter_parent_vfunc (child_cpp, iter_out);
 
         if (test)
@@ -390,7 +390,7 @@ namespace Gtk
       }
       catch (...)
       {
-        Glib::exception_handlers_invoke ();
+        glib::exception_handlers_invoke ();
       }
     }
     else
@@ -433,13 +433,13 @@ namespace Gtk
                                                   int n) -> gboolean
   {
     const auto obj = dynamic_cast<CppObjectType*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj && obj->is_derived_ ())
     {
       try
       {
-        Gtk::TreeModel::iterator iter_out (self, iter);
+        gtk::TreeModel::iterator iter_out (self, iter);
 
         gboolean test = false;
         if (!parent)
@@ -448,7 +448,7 @@ namespace Gtk
         }
         else
         {
-          Gtk::TreeModel::iterator parent_cpp (self, parent);
+          gtk::TreeModel::iterator parent_cpp (self, parent);
           test = obj->iter_nth_child_vfunc (parent_cpp, n, iter_out);
         }
 
@@ -459,7 +459,7 @@ namespace Gtk
       }
       catch (...)
       {
-        Glib::exception_handlers_invoke ();
+        glib::exception_handlers_invoke ();
       }
     }
     else
@@ -522,7 +522,7 @@ namespace Gtk
                                                    GtkTreeIter* iter) -> gboolean
   {
     const auto obj = dynamic_cast<CppObjectType*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj && obj->is_derived_ ())
     {
@@ -530,13 +530,13 @@ namespace Gtk
       {
         if (iter)
           return obj->iter_n_children_vfunc (
-              Gtk::TreeModel::iterator (self, iter));
+              gtk::TreeModel::iterator (self, iter));
         else
           return obj->iter_n_root_children_vfunc ();
       }
       catch (...)
       {
-        Glib::exception_handlers_invoke ();
+        glib::exception_handlers_invoke ();
       }
     }
     else
@@ -597,7 +597,7 @@ namespace Gtk
         const_cast<GtkTreePath*> ((path).gobj ()),
         const_cast<GtkTreeIter*> ((iter).gobj ()),
         const_cast<int*> (
-            Glib::ArrayHandler<int>::vector_to_array (new_order).data ()));
+            glib::ArrayHandler<int>::vector_to_array (new_order).data ()));
   }
 
   auto
@@ -609,10 +609,10 @@ namespace Gtk
         const_cast<GtkTreePath*> ((path).gobj ()),
         nullptr,
         const_cast<int*> (
-            Glib::ArrayHandler<int>::vector_to_array (new_order).data ()));
+            glib::ArrayHandler<int>::vector_to_array (new_order).data ()));
   }
 
-} // namespace Gtk
+} // namespace gtk
 
 namespace
 {
@@ -623,30 +623,30 @@ namespace
                                          GtkTreeIter* p1,
                                          void* data) -> void
   {
-    using namespace Gtk;
+    using namespace gtk;
     using SlotType =
         sigc::slot<void (const TreeModel::Path&, const TreeModel::iterator&)>;
 
     auto obj = dynamic_cast<TreeModel*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
     {
       try
       {
-        if (const auto slot = Glib::SignalProxyNormal::data_to_slot (data))
+        if (const auto slot = glib::SignalProxyNormal::data_to_slot (data))
           (*static_cast<SlotType*> (slot)) (
-              Gtk::TreePath (p0, true),
-              Gtk::TreeModel::iterator (self, p1));
+              gtk::TreePath (p0, true),
+              gtk::TreeModel::iterator (self, p1));
       }
       catch (...)
       {
-        Glib::exception_handlers_invoke ();
+        glib::exception_handlers_invoke ();
       }
     }
   }
 
-  static const Glib::SignalProxyInfo TreeModel_signal_row_changed_info = {
+  static const glib::SignalProxyInfo TreeModel_signal_row_changed_info = {
       "row_changed",
       (GCallback) &TreeModel_signal_row_changed_callback,
       (GCallback) &TreeModel_signal_row_changed_callback};
@@ -657,30 +657,30 @@ namespace
                                           GtkTreeIter* p1,
                                           void* data) -> void
   {
-    using namespace Gtk;
+    using namespace gtk;
     using SlotType =
         sigc::slot<void (const TreeModel::Path&, const TreeModel::iterator&)>;
 
     auto obj = dynamic_cast<TreeModel*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
     {
       try
       {
-        if (const auto slot = Glib::SignalProxyNormal::data_to_slot (data))
+        if (const auto slot = glib::SignalProxyNormal::data_to_slot (data))
           (*static_cast<SlotType*> (slot)) (
-              Gtk::TreePath (p0, true),
-              Gtk::TreeModel::iterator (self, p1));
+              gtk::TreePath (p0, true),
+              gtk::TreeModel::iterator (self, p1));
       }
       catch (...)
       {
-        Glib::exception_handlers_invoke ();
+        glib::exception_handlers_invoke ();
       }
     }
   }
 
-  static const Glib::SignalProxyInfo TreeModel_signal_row_inserted_info = {
+  static const glib::SignalProxyInfo TreeModel_signal_row_inserted_info = {
       "row_inserted",
       (GCallback) &TreeModel_signal_row_inserted_callback,
       (GCallback) &TreeModel_signal_row_inserted_callback};
@@ -691,30 +691,30 @@ namespace
                                                    GtkTreeIter* p1,
                                                    void* data) -> void
   {
-    using namespace Gtk;
+    using namespace gtk;
     using SlotType =
         sigc::slot<void (const TreeModel::Path&, const TreeModel::iterator&)>;
 
     auto obj = dynamic_cast<TreeModel*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
     {
       try
       {
-        if (const auto slot = Glib::SignalProxyNormal::data_to_slot (data))
+        if (const auto slot = glib::SignalProxyNormal::data_to_slot (data))
           (*static_cast<SlotType*> (slot)) (
-              Gtk::TreePath (p0, true),
-              Gtk::TreeModel::iterator (self, p1));
+              gtk::TreePath (p0, true),
+              gtk::TreeModel::iterator (self, p1));
       }
       catch (...)
       {
-        Glib::exception_handlers_invoke ();
+        glib::exception_handlers_invoke ();
       }
     }
   }
 
-  static const Glib::SignalProxyInfo
+  static const glib::SignalProxyInfo
       TreeModel_signal_row_has_child_toggled_info = {
           "row_has_child_toggled",
           (GCallback) &TreeModel_signal_row_has_child_toggled_callback,
@@ -725,27 +725,27 @@ namespace
                                          GtkTreePath* p0,
                                          void* data) -> void
   {
-    using namespace Gtk;
+    using namespace gtk;
     using SlotType = sigc::slot<void (const TreeModel::Path&)>;
 
     auto obj = dynamic_cast<TreeModel*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
     {
       try
       {
-        if (const auto slot = Glib::SignalProxyNormal::data_to_slot (data))
-          (*static_cast<SlotType*> (slot)) (Gtk::TreePath (p0, true));
+        if (const auto slot = glib::SignalProxyNormal::data_to_slot (data))
+          (*static_cast<SlotType*> (slot)) (gtk::TreePath (p0, true));
       }
       catch (...)
       {
-        Glib::exception_handlers_invoke ();
+        glib::exception_handlers_invoke ();
       }
     }
   }
 
-  static const Glib::SignalProxyInfo TreeModel_signal_row_deleted_info = {
+  static const glib::SignalProxyInfo TreeModel_signal_row_deleted_info = {
       "row_deleted",
       (GCallback) &TreeModel_signal_row_deleted_callback,
       (GCallback) &TreeModel_signal_row_deleted_callback};
@@ -757,30 +757,30 @@ namespace
                                             gint* p2,
                                             void* data) -> void
   {
-    using namespace Gtk;
+    using namespace gtk;
     using SlotType = sigc::slot<
         void (const TreeModel::Path&, const TreeModel::iterator&, int*)>;
 
     auto obj = dynamic_cast<TreeModel*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
     {
       try
       {
-        if (const auto slot = Glib::SignalProxyNormal::data_to_slot (data))
-          (*static_cast<SlotType*> (slot)) (Gtk::TreePath (p0, true),
-                                            Gtk::TreeModel::iterator (self, p1),
+        if (const auto slot = glib::SignalProxyNormal::data_to_slot (data))
+          (*static_cast<SlotType*> (slot)) (gtk::TreePath (p0, true),
+                                            gtk::TreeModel::iterator (self, p1),
                                             p2);
       }
       catch (...)
       {
-        Glib::exception_handlers_invoke ();
+        glib::exception_handlers_invoke ();
       }
     }
   }
 
-  static const Glib::SignalProxyInfo TreeModel_signal_rows_reordered_info = {
+  static const glib::SignalProxyInfo TreeModel_signal_rows_reordered_info = {
       "rows_reordered",
       (GCallback) &TreeModel_signal_rows_reordered_callback,
       (GCallback) &TreeModel_signal_rows_reordered_callback};
@@ -788,30 +788,30 @@ namespace
 } // namespace
 
 auto
-Glib::Value<Gtk::TreeModel::Flags>::value_type () -> GType
+glib::Value<gtk::TreeModel::Flags>::value_type () -> GType
 {
   return gtk_tree_model_flags_get_type ();
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GtkTreeModel* object, bool take_copy) -> Glib::RefPtr<Gtk::TreeModel>
+  wrap (GtkTreeModel* object, bool take_copy) -> glib::RefPtr<gtk::TreeModel>
   {
-    return Glib::make_refptr_for_instance<Gtk::TreeModel> (
-        dynamic_cast<Gtk::TreeModel*> (
-            Glib::wrap_auto_interface<Gtk::TreeModel> ((GObject*) (object),
+    return glib::make_refptr_for_instance<gtk::TreeModel> (
+        dynamic_cast<gtk::TreeModel*> (
+            glib::wrap_auto_interface<gtk::TreeModel> ((GObject*) (object),
                                                        take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gtk
+namespace gtk
 {
 
   auto
-  TreeModel_Class::init () -> const Glib::Interface_Class&
+  TreeModel_Class::init () -> const glib::Interface_Class&
   {
     if (!gtype_)
     {
@@ -855,8 +855,8 @@ namespace Gtk
   auto
   TreeModel_Class::get_flags_vfunc_callback (GtkTreeModel* self) -> GtkTreeModelFlags
   {
-    const auto obj_base = static_cast<Glib::ObjectBase*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+    const auto obj_base = static_cast<glib::ObjectBase*> (
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -869,7 +869,7 @@ namespace Gtk
         }
         catch (...)
         {
-          Glib::exception_handlers_invoke ();
+          glib::exception_handlers_invoke ();
         }
       }
     }
@@ -889,8 +889,8 @@ namespace Gtk
   auto
   TreeModel_Class::get_n_columns_vfunc_callback (GtkTreeModel* self) -> gint
   {
-    const auto obj_base = static_cast<Glib::ObjectBase*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+    const auto obj_base = static_cast<glib::ObjectBase*> (
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -903,7 +903,7 @@ namespace Gtk
         }
         catch (...)
         {
-          Glib::exception_handlers_invoke ();
+          glib::exception_handlers_invoke ();
         }
       }
     }
@@ -924,8 +924,8 @@ namespace Gtk
   TreeModel_Class::get_column_type_vfunc_callback (GtkTreeModel* self,
                                                    gint index) -> GType
   {
-    const auto obj_base = static_cast<Glib::ObjectBase*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+    const auto obj_base = static_cast<glib::ObjectBase*> (
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -938,7 +938,7 @@ namespace Gtk
         }
         catch (...)
         {
-          Glib::exception_handlers_invoke ();
+          glib::exception_handlers_invoke ();
         }
       }
     }
@@ -959,8 +959,8 @@ namespace Gtk
   TreeModel_Class::iter_has_child_vfunc_callback (GtkTreeModel* self,
                                                   GtkTreeIter* iter) -> gboolean
   {
-    const auto obj_base = static_cast<Glib::ObjectBase*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+    const auto obj_base = static_cast<glib::ObjectBase*> (
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -970,11 +970,11 @@ namespace Gtk
         try
         {
           return static_cast<int> (obj->iter_has_child_vfunc (
-              Gtk::TreeModel::const_iterator (self, iter)));
+              gtk::TreeModel::const_iterator (self, iter)));
         }
         catch (...)
         {
-          Glib::exception_handlers_invoke ();
+          glib::exception_handlers_invoke ();
         }
       }
     }
@@ -995,8 +995,8 @@ namespace Gtk
   TreeModel_Class::ref_node_vfunc_callback (GtkTreeModel* self,
                                             GtkTreeIter* iter) -> void
   {
-    const auto obj_base = static_cast<Glib::ObjectBase*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+    const auto obj_base = static_cast<glib::ObjectBase*> (
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -1005,12 +1005,12 @@ namespace Gtk
       {
         try
         {
-          obj->ref_node_vfunc (Gtk::TreeModel::iterator (self, iter));
+          obj->ref_node_vfunc (gtk::TreeModel::iterator (self, iter));
           return;
         }
         catch (...)
         {
-          Glib::exception_handlers_invoke ();
+          glib::exception_handlers_invoke ();
         }
       }
     }
@@ -1028,8 +1028,8 @@ namespace Gtk
   TreeModel_Class::unref_node_vfunc_callback (GtkTreeModel* self,
                                               GtkTreeIter* iter) -> void
   {
-    const auto obj_base = static_cast<Glib::ObjectBase*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+    const auto obj_base = static_cast<glib::ObjectBase*> (
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -1038,12 +1038,12 @@ namespace Gtk
       {
         try
         {
-          obj->unref_node_vfunc (Gtk::TreeModel::iterator (self, iter));
+          obj->unref_node_vfunc (gtk::TreeModel::iterator (self, iter));
           return;
         }
         catch (...)
         {
-          Glib::exception_handlers_invoke ();
+          glib::exception_handlers_invoke ();
         }
       }
     }
@@ -1061,8 +1061,8 @@ namespace Gtk
   TreeModel_Class::get_path_vfunc_callback (GtkTreeModel* self,
                                             GtkTreeIter* iter) -> GtkTreePath*
   {
-    const auto obj_base = static_cast<Glib::ObjectBase*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+    const auto obj_base = static_cast<glib::ObjectBase*> (
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -1072,12 +1072,12 @@ namespace Gtk
         try
         {
           return (obj->get_path_vfunc (
-                      Gtk::TreeModel::const_iterator (self, iter)))
+                      gtk::TreeModel::const_iterator (self, iter)))
               .gobj_copy ();
         }
         catch (...)
         {
-          Glib::exception_handlers_invoke ();
+          glib::exception_handlers_invoke ();
         }
       }
     }
@@ -1100,8 +1100,8 @@ namespace Gtk
                                              gint column,
                                              GValue* value) -> void
   {
-    const auto obj_base = static_cast<Glib::ObjectBase*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+    const auto obj_base = static_cast<glib::ObjectBase*> (
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -1110,14 +1110,14 @@ namespace Gtk
       {
         try
         {
-          obj->get_value_vfunc (Gtk::TreeModel::const_iterator (self, iter),
+          obj->get_value_vfunc (gtk::TreeModel::const_iterator (self, iter),
                                 column,
-                                *reinterpret_cast<Glib::ValueBase*> (value));
+                                *reinterpret_cast<glib::ValueBase*> (value));
           return;
         }
         catch (...)
         {
-          Glib::exception_handlers_invoke ();
+          glib::exception_handlers_invoke ();
         }
       }
     }
@@ -1136,8 +1136,8 @@ namespace Gtk
                                          GtkTreePath* p0,
                                          GtkTreeIter* p1) -> void
   {
-    const auto obj_base = static_cast<Glib::ObjectBase*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+    const auto obj_base = static_cast<glib::ObjectBase*> (
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -1146,13 +1146,13 @@ namespace Gtk
       {
         try
         {
-          obj->on_row_changed (Gtk::TreePath (p0, true),
-                               Gtk::TreeModel::iterator (self, p1));
+          obj->on_row_changed (gtk::TreePath (p0, true),
+                               gtk::TreeModel::iterator (self, p1));
           return;
         }
         catch (...)
         {
-          Glib::exception_handlers_invoke ();
+          glib::exception_handlers_invoke ();
         }
       }
     }
@@ -1171,8 +1171,8 @@ namespace Gtk
                                           GtkTreePath* p0,
                                           GtkTreeIter* p1) -> void
   {
-    const auto obj_base = static_cast<Glib::ObjectBase*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+    const auto obj_base = static_cast<glib::ObjectBase*> (
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -1181,13 +1181,13 @@ namespace Gtk
       {
         try
         {
-          obj->on_row_inserted (Gtk::TreePath (p0, true),
-                                Gtk::TreeModel::iterator (self, p1));
+          obj->on_row_inserted (gtk::TreePath (p0, true),
+                                gtk::TreeModel::iterator (self, p1));
           return;
         }
         catch (...)
         {
-          Glib::exception_handlers_invoke ();
+          glib::exception_handlers_invoke ();
         }
       }
     }
@@ -1206,8 +1206,8 @@ namespace Gtk
                                                    GtkTreePath* p0,
                                                    GtkTreeIter* p1) -> void
   {
-    const auto obj_base = static_cast<Glib::ObjectBase*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+    const auto obj_base = static_cast<glib::ObjectBase*> (
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -1216,13 +1216,13 @@ namespace Gtk
       {
         try
         {
-          obj->on_row_has_child_toggled (Gtk::TreePath (p0, true),
-                                         Gtk::TreeModel::iterator (self, p1));
+          obj->on_row_has_child_toggled (gtk::TreePath (p0, true),
+                                         gtk::TreeModel::iterator (self, p1));
           return;
         }
         catch (...)
         {
-          Glib::exception_handlers_invoke ();
+          glib::exception_handlers_invoke ();
         }
       }
     }
@@ -1239,8 +1239,8 @@ namespace Gtk
   auto
   TreeModel_Class::row_deleted_callback (GtkTreeModel* self, GtkTreePath* p0) -> void
   {
-    const auto obj_base = static_cast<Glib::ObjectBase*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+    const auto obj_base = static_cast<glib::ObjectBase*> (
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -1249,12 +1249,12 @@ namespace Gtk
       {
         try
         {
-          obj->on_row_deleted (Gtk::TreePath (p0, true));
+          obj->on_row_deleted (gtk::TreePath (p0, true));
           return;
         }
         catch (...)
         {
-          Glib::exception_handlers_invoke ();
+          glib::exception_handlers_invoke ();
         }
       }
     }
@@ -1274,8 +1274,8 @@ namespace Gtk
                                             GtkTreeIter* p1,
                                             gint* p2) -> void
   {
-    const auto obj_base = static_cast<Glib::ObjectBase*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+    const auto obj_base = static_cast<glib::ObjectBase*> (
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -1284,14 +1284,14 @@ namespace Gtk
       {
         try
         {
-          obj->on_rows_reordered (Gtk::TreePath (p0, true),
-                                  Gtk::TreeModel::iterator (self, p1),
+          obj->on_rows_reordered (gtk::TreePath (p0, true),
+                                  gtk::TreeModel::iterator (self, p1),
                                   p2);
           return;
         }
         catch (...)
         {
-          Glib::exception_handlers_invoke ();
+          glib::exception_handlers_invoke ();
         }
       }
     }
@@ -1306,35 +1306,35 @@ namespace Gtk
   }
 
   auto
-  TreeModel_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  TreeModel_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new TreeModel ((GtkTreeModel*) (object));
   }
 
   TreeModel::TreeModel ()
-    : Glib::Interface (treemodel_class_.init ())
+    : glib::Interface (treemodel_class_.init ())
   {
   }
 
   TreeModel::TreeModel (GtkTreeModel* castitem)
-    : Glib::Interface ((GObject*) (castitem))
+    : glib::Interface ((GObject*) (castitem))
   {
   }
 
-  TreeModel::TreeModel (const Glib::Interface_Class& interface_class)
-    : Glib::Interface (interface_class)
+  TreeModel::TreeModel (const glib::Interface_Class& interface_class)
+    : glib::Interface (interface_class)
   {
   }
 
   TreeModel::TreeModel (TreeModel&& src) noexcept
-    : Glib::Interface (std::move (src))
+    : glib::Interface (std::move (src))
   {
   }
 
   auto
   TreeModel::operator= (TreeModel&& src) noexcept -> TreeModel&
   {
-    Glib::Interface::operator= (std::move (src));
+    glib::Interface::operator= (std::move (src));
     return *this;
   }
 
@@ -1383,7 +1383,7 @@ namespace Gtk
   auto
   TreeModel::get_path (const const_iterator& iter) const -> TreeModel::Path
   {
-    return Gtk::TreePath (
+    return gtk::TreePath (
         gtk_tree_model_get_path (const_cast<GtkTreeModel*> (gobj ()),
                                  const_cast<GtkTreeIter*> ((iter).gobj ())),
         false);
@@ -1434,64 +1434,64 @@ namespace Gtk
   }
 
   auto
-  TreeModel::get_string (const const_iterator& iter) const -> Glib::ustring
+  TreeModel::get_string (const const_iterator& iter) const -> glib::ustring
   {
-    return Glib::convert_return_gchar_ptr_to_ustring (
+    return glib::convert_return_gchar_ptr_to_ustring (
         gtk_tree_model_get_string_from_iter (
             const_cast<GtkTreeModel*> (gobj ()),
             const_cast<GtkTreeIter*> ((iter).gobj ())));
   }
 
   auto
-  TreeModel::signal_row_changed () -> Glib::SignalProxy<void (const TreeModel::Path&,
+  TreeModel::signal_row_changed () -> glib::SignalProxy<void (const TreeModel::Path&,
                                  const TreeModel::iterator&)>
   {
-    return Glib::SignalProxy<void (const TreeModel::Path&,
+    return glib::SignalProxy<void (const TreeModel::Path&,
                                    const TreeModel::iterator&)> (
         this,
         &TreeModel_signal_row_changed_info);
   }
 
   auto
-  TreeModel::signal_row_inserted () -> Glib::SignalProxy<void (const TreeModel::Path&,
+  TreeModel::signal_row_inserted () -> glib::SignalProxy<void (const TreeModel::Path&,
                                  const TreeModel::iterator&)>
   {
-    return Glib::SignalProxy<void (const TreeModel::Path&,
+    return glib::SignalProxy<void (const TreeModel::Path&,
                                    const TreeModel::iterator&)> (
         this,
         &TreeModel_signal_row_inserted_info);
   }
 
   auto
-  TreeModel::signal_row_has_child_toggled () -> Glib::SignalProxy<void (const TreeModel::Path&,
+  TreeModel::signal_row_has_child_toggled () -> glib::SignalProxy<void (const TreeModel::Path&,
                                  const TreeModel::iterator&)>
   {
-    return Glib::SignalProxy<void (const TreeModel::Path&,
+    return glib::SignalProxy<void (const TreeModel::Path&,
                                    const TreeModel::iterator&)> (
         this,
         &TreeModel_signal_row_has_child_toggled_info);
   }
 
   auto
-  TreeModel::signal_row_deleted () -> Glib::SignalProxy<void (const TreeModel::Path&)>
+  TreeModel::signal_row_deleted () -> glib::SignalProxy<void (const TreeModel::Path&)>
   {
-    return Glib::SignalProxy<void (const TreeModel::Path&)> (
+    return glib::SignalProxy<void (const TreeModel::Path&)> (
         this,
         &TreeModel_signal_row_deleted_info);
   }
 
   auto
-  TreeModel::signal_rows_reordered () -> Glib::SignalProxy<
+  TreeModel::signal_rows_reordered () -> glib::SignalProxy<
       void (const TreeModel::Path&, const TreeModel::iterator&, int*)>
   {
-    return Glib::SignalProxy<
+    return glib::SignalProxy<
         void (const TreeModel::Path&, const TreeModel::iterator&, int*)> (
         this,
         &TreeModel_signal_rows_reordered_info);
   }
 
   auto
-  Gtk::TreeModel::on_row_changed (const TreeModel::Path& path,
+  gtk::TreeModel::on_row_changed (const TreeModel::Path& path,
                                   const TreeModel::iterator& iter) -> void
   {
     const auto base =
@@ -1506,7 +1506,7 @@ namespace Gtk
   }
 
   auto
-  Gtk::TreeModel::on_row_inserted (const TreeModel::Path& path,
+  gtk::TreeModel::on_row_inserted (const TreeModel::Path& path,
                                    const TreeModel::iterator& iter) -> void
   {
     const auto base =
@@ -1521,7 +1521,7 @@ namespace Gtk
   }
 
   auto
-  Gtk::TreeModel::on_row_has_child_toggled (const TreeModel::Path& path,
+  gtk::TreeModel::on_row_has_child_toggled (const TreeModel::Path& path,
                                             const TreeModel::iterator& iter) -> void
   {
     const auto base =
@@ -1537,7 +1537,7 @@ namespace Gtk
   }
 
   auto
-  Gtk::TreeModel::on_row_deleted (const TreeModel::Path& path) -> void
+  gtk::TreeModel::on_row_deleted (const TreeModel::Path& path) -> void
   {
     const auto base =
         static_cast<BaseClassType*> (g_type_interface_peek_parent (
@@ -1549,7 +1549,7 @@ namespace Gtk
   }
 
   auto
-  Gtk::TreeModel::on_rows_reordered (const TreeModel::Path& path,
+  gtk::TreeModel::on_rows_reordered (const TreeModel::Path& path,
                                      const TreeModel::iterator& iter,
                                      int* new_order) -> void
   {
@@ -1566,7 +1566,7 @@ namespace Gtk
   }
 
   auto
-  Gtk::TreeModel::get_flags_vfunc () const -> Flags
+  gtk::TreeModel::get_flags_vfunc () const -> Flags
   {
     const auto base =
         static_cast<BaseClassType*> (g_type_interface_peek_parent (
@@ -1585,7 +1585,7 @@ namespace Gtk
   }
 
   auto
-  Gtk::TreeModel::get_n_columns_vfunc () const -> int
+  gtk::TreeModel::get_n_columns_vfunc () const -> int
   {
     const auto base =
         static_cast<BaseClassType*> (g_type_interface_peek_parent (
@@ -1603,7 +1603,7 @@ namespace Gtk
   }
 
   auto
-  Gtk::TreeModel::get_column_type_vfunc (int index) const -> GType
+  gtk::TreeModel::get_column_type_vfunc (int index) const -> GType
   {
     const auto base =
         static_cast<BaseClassType*> (g_type_interface_peek_parent (
@@ -1622,7 +1622,7 @@ namespace Gtk
   }
 
   auto
-  Gtk::TreeModel::iter_has_child_vfunc (const const_iterator& iter) const -> bool
+  gtk::TreeModel::iter_has_child_vfunc (const const_iterator& iter) const -> bool
   {
     const auto base =
         static_cast<BaseClassType*> (g_type_interface_peek_parent (
@@ -1642,7 +1642,7 @@ namespace Gtk
   }
 
   auto
-  Gtk::TreeModel::ref_node_vfunc (const iterator& iter) const -> void
+  gtk::TreeModel::ref_node_vfunc (const iterator& iter) const -> void
   {
     const auto base =
         static_cast<BaseClassType*> (g_type_interface_peek_parent (
@@ -1657,7 +1657,7 @@ namespace Gtk
   }
 
   auto
-  Gtk::TreeModel::unref_node_vfunc (const iterator& iter) const -> void
+  gtk::TreeModel::unref_node_vfunc (const iterator& iter) const -> void
   {
     const auto base =
         static_cast<BaseClassType*> (g_type_interface_peek_parent (
@@ -1672,7 +1672,7 @@ namespace Gtk
   }
 
   auto
-  Gtk::TreeModel::get_path_vfunc (const const_iterator& iter) const -> TreeModel::Path
+  gtk::TreeModel::get_path_vfunc (const const_iterator& iter) const -> TreeModel::Path
   {
     const auto base =
         static_cast<BaseClassType*> (g_type_interface_peek_parent (
@@ -1681,7 +1681,7 @@ namespace Gtk
 
     if (base && base->get_path)
     {
-      TreeModel::Path retval (Gtk::TreePath (
+      TreeModel::Path retval (gtk::TreePath (
           (*base->get_path) (const_cast<GtkTreeModel*> (gobj ()),
                              const_cast<GtkTreeIter*> ((iter).gobj ())),
           false));
@@ -1693,9 +1693,9 @@ namespace Gtk
   }
 
   auto
-  Gtk::TreeModel::get_value_vfunc (const const_iterator& iter,
+  gtk::TreeModel::get_value_vfunc (const const_iterator& iter,
                                    int column,
-                                   Glib::ValueBase& value) const -> void
+                                   glib::ValueBase& value) const -> void
   {
     const auto base =
         static_cast<BaseClassType*> (g_type_interface_peek_parent (
@@ -1711,6 +1711,6 @@ namespace Gtk
     }
   }
 
-} // namespace Gtk
+} // namespace gtk
 
 #endif

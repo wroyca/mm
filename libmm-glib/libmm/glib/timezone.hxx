@@ -19,7 +19,7 @@ extern "C"
 }
 #endif
 
-namespace Glib
+namespace glib
 {
 
   enum class TimeType
@@ -80,11 +80,11 @@ namespace Glib
 #ifndef GLIBMM_DISABLE_DEPRECATED
 
     static auto
-    create (const Glib::ustring& identifier) -> TimeZone;
+    create (const glib::ustring& identifier) -> TimeZone;
 #endif
 
     static auto
-    create_identifier (const Glib::ustring& identifier) -> TimeZone;
+    create_identifier (const glib::ustring& identifier) -> TimeZone;
 
     static auto
     create_local () -> TimeZone;
@@ -101,7 +101,7 @@ namespace Glib
     adjust_time (TimeType type, gint64& time) const -> int;
 
     auto
-    get_abbreviation (int interval) const -> Glib::ustring;
+    get_abbreviation (int interval) const -> glib::ustring;
 
     auto
     get_offset (int interval) const -> gint32;
@@ -110,12 +110,12 @@ namespace Glib
     is_dst (int interval) const -> bool;
 
     auto
-    get_identifier () const -> Glib::ustring;
+    get_identifier () const -> glib::ustring;
   };
 
-} // namespace Glib
+} // namespace glib
 
-namespace Glib
+namespace glib
 {
 
   inline auto
@@ -124,23 +124,23 @@ namespace Glib
     lhs.swap (rhs);
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Glib
+namespace glib
 {
 
   LIBMM_GLIB_SYMEXPORT
   auto
-  wrap (GTimeZone* object, bool take_copy = false) -> Glib::TimeZone;
+  wrap (GTimeZone* object, bool take_copy = false) -> glib::TimeZone;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
   template <>
-  class LIBMM_GLIB_SYMEXPORT Value<Glib::TimeZone>
-    : public Glib::Value_Boxed<Glib::TimeZone>
+  class LIBMM_GLIB_SYMEXPORT Value<glib::TimeZone>
+    : public glib::Value_Boxed<glib::TimeZone>
   {
   };
 #endif
 
-} // namespace Glib
+} // namespace glib
 
 #endif

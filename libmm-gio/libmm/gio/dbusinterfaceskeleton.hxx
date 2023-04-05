@@ -15,20 +15,20 @@ using GDBusInterfaceSkeletonClass = struct _GDBusInterfaceSkeletonClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gio::DBus
+namespace gio::DBus
 {
   class LIBMM_GIO_SYMEXPORT InterfaceSkeleton_Class;
 }
 #endif
 
-namespace Gio::DBus
+namespace gio::DBus
 {
 
   class LIBMM_GIO_SYMEXPORT InterfaceInfo;
   class LIBMM_GIO_SYMEXPORT Connection;
   class LIBMM_GIO_SYMEXPORT MethodInvocation;
 
-  class LIBMM_GIO_SYMEXPORT InterfaceSkeleton : public Glib::Object,
+  class LIBMM_GIO_SYMEXPORT InterfaceSkeleton : public glib::Object,
                                       public Interface
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -48,7 +48,7 @@ namespace Gio::DBus
     static CppClassType interfaceskeleton_class_;
 
   protected:
-    explicit InterfaceSkeleton (const Glib::ConstructParams& construct_params);
+    explicit InterfaceSkeleton (const glib::ConstructParams& construct_params);
     explicit InterfaceSkeleton (GDBusInterfaceSkeleton* castitem);
 
 #endif
@@ -96,43 +96,43 @@ namespace Gio::DBus
     flush () -> void;
 
     auto
-    get_info () -> Glib::RefPtr<InterfaceInfo>;
+    get_info () -> glib::RefPtr<InterfaceInfo>;
 
     auto
-    get_info () const -> Glib::RefPtr<const InterfaceInfo>;
+    get_info () const -> glib::RefPtr<const InterfaceInfo>;
 
     auto
-    get_properties () const -> Glib::VariantBase;
+    get_properties () const -> glib::VariantBase;
 
     auto
-    export_interface_skeleton (const Glib::RefPtr<Connection>& connection,
-                               const Glib::ustring& object_path) -> void;
+    export_interface_skeleton (const glib::RefPtr<Connection>& connection,
+                               const glib::ustring& object_path) -> void;
 
     auto
     unexport () -> void;
 
     auto
-    unexport_from_connection (const Glib::RefPtr<Connection>& connection)
+    unexport_from_connection (const glib::RefPtr<Connection>& connection)
         -> void;
 
     auto
-    get_connection () -> Glib::RefPtr<Connection>;
+    get_connection () -> glib::RefPtr<Connection>;
 
     auto
-    get_connection () const -> Glib::RefPtr<const Connection>;
+    get_connection () const -> glib::RefPtr<const Connection>;
 
     auto
-    get_connections () -> std::vector<Glib::RefPtr<Connection>>;
+    get_connections () -> std::vector<glib::RefPtr<Connection>>;
 
     auto
-    get_connections () const -> std::vector<Glib::RefPtr<const Connection>>;
+    get_connections () const -> std::vector<glib::RefPtr<const Connection>>;
 
     auto
-    has_connection (const Glib::RefPtr<const Connection>& connection) const
+    has_connection (const glib::RefPtr<const Connection>& connection) const
         -> bool;
 
     auto
-    get_object_path () const -> Glib::ustring;
+    get_object_path () const -> glib::ustring;
 
     auto
     get_flags () const -> Flags;
@@ -141,26 +141,26 @@ namespace Gio::DBus
     set_flags (Flags flags) -> void;
 
     auto
-    property_g_flags () -> Glib::PropertyProxy<Flags>;
+    property_g_flags () -> glib::PropertyProxy<Flags>;
 
     auto
-    property_g_flags () const -> Glib::PropertyProxy_ReadOnly<Flags>;
+    property_g_flags () const -> glib::PropertyProxy_ReadOnly<Flags>;
 
     auto
     signal_authorize_method ()
-        -> Glib::SignalProxy<bool (const Glib::RefPtr<MethodInvocation>&)>;
+        -> glib::SignalProxy<bool (const glib::RefPtr<MethodInvocation>&)>;
 
   public:
   public:
   protected:
     virtual auto
-    on_authorize_method (const Glib::RefPtr<MethodInvocation>& invocation)
+    on_authorize_method (const glib::RefPtr<MethodInvocation>& invocation)
         -> bool;
   };
 
-} // namespace Gio::DBus
+} // namespace gio::DBus
 
-namespace Gio::DBus
+namespace gio::DBus
 {
 
   inline auto
@@ -211,30 +211,30 @@ namespace Gio::DBus
     return (lhs = static_cast<InterfaceSkeleton::Flags> (
                 static_cast<unsigned> (lhs) ^ static_cast<unsigned> (rhs)));
   }
-} // namespace Gio::DBus
+} // namespace gio::DBus
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_GIO_SYMEXPORT Value<Gio::DBus::InterfaceSkeleton::Flags>
-    : public Glib::Value_Flags<Gio::DBus::InterfaceSkeleton::Flags>
+  class LIBMM_GIO_SYMEXPORT Value<gio::DBus::InterfaceSkeleton::Flags>
+    : public glib::Value_Flags<gio::DBus::InterfaceSkeleton::Flags>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
-namespace Glib
+namespace glib
 {
 
   LIBMM_GIO_SYMEXPORT
   auto
-  wrap (GDBusInterfaceSkeleton* object, bool take_copy = false) -> Glib::RefPtr<Gio::DBus::InterfaceSkeleton>;
-} // namespace Glib
+  wrap (GDBusInterfaceSkeleton* object, bool take_copy = false) -> glib::RefPtr<gio::DBus::InterfaceSkeleton>;
+} // namespace glib
 
 #endif

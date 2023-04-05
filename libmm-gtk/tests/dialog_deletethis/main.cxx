@@ -1,7 +1,7 @@
 #include <libmm/gtk/mm-gtk.hxx>
 #include <iostream>
 
-Glib::RefPtr<Gtk::Application> app;
+glib::RefPtr<gtk::Application> app;
 
 //This is _not_ a good example of coding with gtkmm.
 class Dlg : public sigc::trackable
@@ -9,22 +9,22 @@ class Dlg : public sigc::trackable
   public:
     Dlg()
     {
-      // Gtk::Dialog is deprecated since 4.10.
-      // A class that derives from Gtk::Window can act as a dialog.
-      dlg_ = new Gtk::Window();
+      // gtk::Dialog is deprecated since 4.10.
+      // A class that derives from gtk::Window can act as a dialog.
+      dlg_ = new gtk::Window();
       dlg_->set_title("Test Dialog");
       dlg_->set_hide_on_close();
-      auto vBox = Gtk::make_managed<Gtk::Box>(Gtk::Orientation::VERTICAL);
+      auto vBox = gtk::make_managed<gtk::Box>(gtk::Orientation::VERTICAL);
       dlg_->set_child(*vBox);
-      auto btn = Gtk::make_managed<Gtk::Button>("ClickMe");
+      auto btn = gtk::make_managed<gtk::Button>("ClickMe");
       btn->signal_clicked().connect(sigc::mem_fun(*this, &Dlg::on_button_clicked));
       btn->set_expand(true);
       vBox->append(*btn);
-      vBox->append(*Gtk::make_managed<Gtk::Separator>(Gtk::Orientation::HORIZONTAL));
-      auto hBox = Gtk::make_managed<Gtk::Box>(Gtk::Orientation::HORIZONTAL);
-      hBox->set_halign(Gtk::Align::END);
+      vBox->append(*gtk::make_managed<gtk::Separator>(gtk::Orientation::HORIZONTAL));
+      auto hBox = gtk::make_managed<gtk::Box>(gtk::Orientation::HORIZONTAL);
+      hBox->set_halign(gtk::Align::END);
       vBox->append(*hBox);
-      btn = Gtk::make_managed<Gtk::Button>("OK");
+      btn = gtk::make_managed<gtk::Button>("OK");
       hBox->append(*btn);
       btn->signal_clicked().connect(sigc::mem_fun(*this, &Dlg::on_response));
       dlg_->signal_hide().connect(sigc::mem_fun(*this, &Dlg::on_response));
@@ -48,15 +48,15 @@ class Dlg : public sigc::trackable
     }
 
   private:
-    Gtk::Window* dlg_;
+    gtk::Window* dlg_;
 };
 
 int main (int argc, char** argv)
 {
-  app = Gtk::Application::create();
+  app = gtk::Application::create();
   app->register_application();
 
-  new Dlg(); //Not a Gtk::Window - it creates one in its constructor.
+  new Dlg(); //Not a gtk::Window - it creates one in its constructor.
 
   app->hold();
   return app->run(argc, argv);

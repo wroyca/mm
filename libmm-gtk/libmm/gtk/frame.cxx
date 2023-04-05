@@ -7,7 +7,7 @@
 
 #include <gtk/gtk.h>
 
-namespace Gtk
+namespace gtk
 {
 
   auto
@@ -22,29 +22,29 @@ namespace Gtk
     gtk_frame_set_child (gobj (), nullptr);
   }
 
-} // namespace Gtk
+} // namespace gtk
 
 namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GtkFrame* object, bool take_copy) -> Gtk::Frame*
+  wrap (GtkFrame* object, bool take_copy) -> gtk::Frame*
   {
-    return dynamic_cast<Gtk::Frame*> (
-        Glib::wrap_auto ((GObject*) (object), take_copy));
+    return dynamic_cast<gtk::Frame*> (
+        glib::wrap_auto ((GObject*) (object), take_copy));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gtk
+namespace gtk
 {
 
   auto
-  Frame_Class::init () -> const Glib::Class&
+  Frame_Class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -70,8 +70,8 @@ namespace Gtk
       GtkFrame* self,
       GtkAllocation* allocation) -> void
   {
-    const auto obj_base = static_cast<Glib::ObjectBase*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+    const auto obj_base = static_cast<glib::ObjectBase*> (
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -81,12 +81,12 @@ namespace Gtk
         try
         {
           obj->compute_child_allocation_vfunc (
-              (Allocation&) (Glib::wrap (allocation)));
+              (Allocation&) (glib::wrap (allocation)));
           return;
         }
         catch (...)
         {
-          Glib::exception_handlers_invoke ();
+          glib::exception_handlers_invoke ();
         }
       }
     }
@@ -99,30 +99,30 @@ namespace Gtk
   }
 
   auto
-  Frame_Class::wrap_new (GObject* o) -> Glib::ObjectBase*
+  Frame_Class::wrap_new (GObject* o) -> glib::ObjectBase*
   {
     return manage (new Frame ((GtkFrame*) (o)));
   }
 
-  Frame::Frame (const Glib::ConstructParams& construct_params)
-    : Gtk::Widget (construct_params)
+  Frame::Frame (const glib::ConstructParams& construct_params)
+    : gtk::Widget (construct_params)
   {
   }
 
   Frame::Frame (GtkFrame* castitem)
-    : Gtk::Widget ((GtkWidget*) (castitem))
+    : gtk::Widget ((GtkWidget*) (castitem))
   {
   }
 
   Frame::Frame (Frame&& src) noexcept
-    : Gtk::Widget (std::move (src))
+    : gtk::Widget (std::move (src))
   {
   }
 
   auto
   Frame::operator= (Frame&& src) noexcept -> Frame&
   {
-    Gtk::Widget::operator= (std::move (src));
+    gtk::Widget::operator= (std::move (src));
     return *this;
   }
 
@@ -146,14 +146,14 @@ namespace Gtk
   }
 
   Frame::Frame ()
-    : Glib::ObjectBase (nullptr),
-      Gtk::Widget (Glib::ConstructParams (frame_class_.init ()))
+    : glib::ObjectBase (nullptr),
+      gtk::Widget (glib::ConstructParams (frame_class_.init ()))
   {
   }
 
-  Frame::Frame (const Glib::ustring& label)
-    : Glib::ObjectBase (nullptr),
-      Gtk::Widget (Glib::ConstructParams (frame_class_.init (),
+  Frame::Frame (const glib::ustring& label)
+    : glib::ObjectBase (nullptr),
+      gtk::Widget (glib::ConstructParams (frame_class_.init (),
                                           "label",
                                           label.c_str (),
                                           nullptr))
@@ -161,15 +161,15 @@ namespace Gtk
   }
 
   auto
-  Frame::set_label (const Glib::ustring& label) -> void
+  Frame::set_label (const glib::ustring& label) -> void
   {
     gtk_frame_set_label (gobj (), label.c_str ());
   }
 
   auto
-  Frame::get_label () const -> Glib::ustring
+  Frame::get_label () const -> glib::ustring
   {
-    return Glib::convert_const_gchar_ptr_to_ustring (
+    return glib::convert_const_gchar_ptr_to_ustring (
         gtk_frame_get_label (const_cast<GtkFrame*> (gobj ())));
   }
 
@@ -182,7 +182,7 @@ namespace Gtk
   auto
   Frame::get_label_widget () -> Widget*
   {
-    return Glib::wrap (gtk_frame_get_label_widget (gobj ()));
+    return glib::wrap (gtk_frame_get_label_widget (gobj ()));
   }
 
   auto
@@ -218,7 +218,7 @@ namespace Gtk
   auto
   Frame::get_child () -> Widget*
   {
-    return Glib::wrap (gtk_frame_get_child (gobj ()));
+    return glib::wrap (gtk_frame_get_child (gobj ()));
   }
 
   auto
@@ -228,55 +228,55 @@ namespace Gtk
   }
 
   auto
-  Frame::property_label () -> Glib::PropertyProxy<Glib::ustring>
+  Frame::property_label () -> glib::PropertyProxy<glib::ustring>
   {
-    return Glib::PropertyProxy<Glib::ustring> (this, "label");
+    return glib::PropertyProxy<glib::ustring> (this, "label");
   }
 
   auto
-  Frame::property_label () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>
+  Frame::property_label () const -> glib::PropertyProxy_ReadOnly<glib::ustring>
   {
-    return Glib::PropertyProxy_ReadOnly<Glib::ustring> (this, "label");
+    return glib::PropertyProxy_ReadOnly<glib::ustring> (this, "label");
   }
 
   auto
-  Frame::property_label_xalign () -> Glib::PropertyProxy<double>
+  Frame::property_label_xalign () -> glib::PropertyProxy<double>
   {
-    return Glib::PropertyProxy<double> (this, "label-xalign");
+    return glib::PropertyProxy<double> (this, "label-xalign");
   }
 
   auto
-  Frame::property_label_xalign () const -> Glib::PropertyProxy_ReadOnly<double>
+  Frame::property_label_xalign () const -> glib::PropertyProxy_ReadOnly<double>
   {
-    return Glib::PropertyProxy_ReadOnly<double> (this, "label-xalign");
+    return glib::PropertyProxy_ReadOnly<double> (this, "label-xalign");
   }
 
   auto
-  Frame::property_label_widget () -> Glib::PropertyProxy<Widget*>
+  Frame::property_label_widget () -> glib::PropertyProxy<Widget*>
   {
-    return Glib::PropertyProxy<Widget*> (this, "label-widget");
+    return glib::PropertyProxy<Widget*> (this, "label-widget");
   }
 
   auto
-  Frame::property_label_widget () const -> Glib::PropertyProxy_ReadOnly<Widget*>
+  Frame::property_label_widget () const -> glib::PropertyProxy_ReadOnly<Widget*>
   {
-    return Glib::PropertyProxy_ReadOnly<Widget*> (this, "label-widget");
+    return glib::PropertyProxy_ReadOnly<Widget*> (this, "label-widget");
   }
 
   auto
-  Frame::property_child () -> Glib::PropertyProxy<Widget*>
+  Frame::property_child () -> glib::PropertyProxy<Widget*>
   {
-    return Glib::PropertyProxy<Widget*> (this, "child");
+    return glib::PropertyProxy<Widget*> (this, "child");
   }
 
   auto
-  Frame::property_child () const -> Glib::PropertyProxy_ReadOnly<Widget*>
+  Frame::property_child () const -> glib::PropertyProxy_ReadOnly<Widget*>
   {
-    return Glib::PropertyProxy_ReadOnly<Widget*> (this, "child");
+    return glib::PropertyProxy_ReadOnly<Widget*> (this, "child");
   }
 
   auto
-  Gtk::Frame::compute_child_allocation_vfunc (Allocation& allocation) -> void
+  gtk::Frame::compute_child_allocation_vfunc (Allocation& allocation) -> void
   {
     const auto base = static_cast<BaseClassType*> (
         g_type_class_peek_parent (G_OBJECT_GET_CLASS (gobject_)));
@@ -288,4 +288,4 @@ namespace Gtk
     }
   }
 
-} // namespace Gtk
+} // namespace gtk

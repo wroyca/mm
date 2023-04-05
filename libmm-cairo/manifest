@@ -4,11 +4,6 @@ version: 0.1.0
 project: mm
 summary: C++ binding library for Cairo
 license: LGPL-2.0-or-later ; GNU Library General Public License v2 or later.
-description-file: README.md
-url: https://github.com/wroyca/mm/tree/main/libmm-cairo
-src-url: https://github.com/wroyca/mm.git
-email: wroy@proton.me
-requires: c++20
 depends: * build2 >= 0.16.0-
 depends: * bpkg >= 0.16.0-
 depends: libmm-gio == $

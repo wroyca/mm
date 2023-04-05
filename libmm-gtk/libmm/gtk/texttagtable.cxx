@@ -11,14 +11,14 @@
 static auto
 SignalProxy_ForEach_gtk_callback (GtkTextTag* texttag, gpointer data) -> void
 {
-  auto the_slot = static_cast<Gtk::TextTagTable::SlotForEach*> (data);
+  auto the_slot = static_cast<gtk::TextTagTable::SlotForEach*> (data);
   if (the_slot)
   {
-    (*the_slot) (Glib::wrap (texttag, true));
+    (*the_slot) (glib::wrap (texttag, true));
   }
 }
 
-namespace Gtk
+namespace gtk
 {
 
   auto
@@ -29,7 +29,7 @@ namespace Gtk
                                 (gpointer) &slot);
   }
 
-} // namespace Gtk
+} // namespace gtk
 
 namespace
 {
@@ -40,27 +40,27 @@ namespace
                                             gboolean p1,
                                             void* data) -> void
   {
-    using namespace Gtk;
-    using SlotType = sigc::slot<void (const Glib::RefPtr<TextTag>&, bool)>;
+    using namespace gtk;
+    using SlotType = sigc::slot<void (const glib::RefPtr<TextTag>&, bool)>;
 
     auto obj = dynamic_cast<TextTagTable*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
     {
       try
       {
-        if (const auto slot = Glib::SignalProxyNormal::data_to_slot (data))
-          (*static_cast<SlotType*> (slot)) (Glib::wrap (p0, true), p1);
+        if (const auto slot = glib::SignalProxyNormal::data_to_slot (data))
+          (*static_cast<SlotType*> (slot)) (glib::wrap (p0, true), p1);
       }
       catch (...)
       {
-        Glib::exception_handlers_invoke ();
+        glib::exception_handlers_invoke ();
       }
     }
   }
 
-  static const Glib::SignalProxyInfo TextTagTable_signal_tag_changed_info = {
+  static const glib::SignalProxyInfo TextTagTable_signal_tag_changed_info = {
       "tag_changed",
       (GCallback) &TextTagTable_signal_tag_changed_callback,
       (GCallback) &TextTagTable_signal_tag_changed_callback};
@@ -70,27 +70,27 @@ namespace
                                           GtkTextTag* p0,
                                           void* data) -> void
   {
-    using namespace Gtk;
-    using SlotType = sigc::slot<void (const Glib::RefPtr<TextTag>&)>;
+    using namespace gtk;
+    using SlotType = sigc::slot<void (const glib::RefPtr<TextTag>&)>;
 
     auto obj = dynamic_cast<TextTagTable*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
     {
       try
       {
-        if (const auto slot = Glib::SignalProxyNormal::data_to_slot (data))
-          (*static_cast<SlotType*> (slot)) (Glib::wrap (p0, true));
+        if (const auto slot = glib::SignalProxyNormal::data_to_slot (data))
+          (*static_cast<SlotType*> (slot)) (glib::wrap (p0, true));
       }
       catch (...)
       {
-        Glib::exception_handlers_invoke ();
+        glib::exception_handlers_invoke ();
       }
     }
   }
 
-  static const Glib::SignalProxyInfo TextTagTable_signal_tag_added_info = {
+  static const glib::SignalProxyInfo TextTagTable_signal_tag_added_info = {
       "tag_added",
       (GCallback) &TextTagTable_signal_tag_added_callback,
       (GCallback) &TextTagTable_signal_tag_added_callback};
@@ -100,51 +100,51 @@ namespace
                                             GtkTextTag* p0,
                                             void* data) -> void
   {
-    using namespace Gtk;
-    using SlotType = sigc::slot<void (const Glib::RefPtr<TextTag>&)>;
+    using namespace gtk;
+    using SlotType = sigc::slot<void (const glib::RefPtr<TextTag>&)>;
 
     auto obj = dynamic_cast<TextTagTable*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
     {
       try
       {
-        if (const auto slot = Glib::SignalProxyNormal::data_to_slot (data))
-          (*static_cast<SlotType*> (slot)) (Glib::wrap (p0, true));
+        if (const auto slot = glib::SignalProxyNormal::data_to_slot (data))
+          (*static_cast<SlotType*> (slot)) (glib::wrap (p0, true));
       }
       catch (...)
       {
-        Glib::exception_handlers_invoke ();
+        glib::exception_handlers_invoke ();
       }
     }
   }
 
-  static const Glib::SignalProxyInfo TextTagTable_signal_tag_removed_info = {
+  static const glib::SignalProxyInfo TextTagTable_signal_tag_removed_info = {
       "tag_removed",
       (GCallback) &TextTagTable_signal_tag_removed_callback,
       (GCallback) &TextTagTable_signal_tag_removed_callback};
 
 } // namespace
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GtkTextTagTable* object, bool take_copy) -> Glib::RefPtr<Gtk::TextTagTable>
+  wrap (GtkTextTagTable* object, bool take_copy) -> glib::RefPtr<gtk::TextTagTable>
   {
-    return Glib::make_refptr_for_instance<Gtk::TextTagTable> (
-        dynamic_cast<Gtk::TextTagTable*> (
-            Glib::wrap_auto ((GObject*) (object), take_copy)));
+    return glib::make_refptr_for_instance<gtk::TextTagTable> (
+        dynamic_cast<gtk::TextTagTable*> (
+            glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gtk
+namespace gtk
 {
 
   auto
-  TextTagTable_Class::init () -> const Glib::Class&
+  TextTagTable_Class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -166,7 +166,7 @@ namespace Gtk
   }
 
   auto
-  TextTagTable_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  TextTagTable_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new TextTagTable ((GtkTextTagTable*) object);
   }
@@ -178,18 +178,18 @@ namespace Gtk
     return gobj ();
   }
 
-  TextTagTable::TextTagTable (const Glib::ConstructParams& construct_params)
-    : Glib::Object (construct_params)
+  TextTagTable::TextTagTable (const glib::ConstructParams& construct_params)
+    : glib::Object (construct_params)
   {
   }
 
   TextTagTable::TextTagTable (GtkTextTagTable* castitem)
-    : Glib::Object ((GObject*) (castitem))
+    : glib::Object ((GObject*) (castitem))
   {
   }
 
   TextTagTable::TextTagTable (TextTagTable&& src) noexcept
-    : Glib::Object (std::move (src)),
+    : glib::Object (std::move (src)),
       Buildable (std::move (src))
   {
   }
@@ -197,7 +197,7 @@ namespace Gtk
   auto
   TextTagTable::operator= (TextTagTable&& src) noexcept -> TextTagTable&
   {
-    Glib::Object::operator= (std::move (src));
+    glib::Object::operator= (std::move (src));
     Buildable::operator= (std::move (src));
     return *this;
   }
@@ -219,41 +219,41 @@ namespace Gtk
   }
 
   TextTagTable::TextTagTable ()
-    : Glib::ObjectBase (nullptr),
-      Glib::Object (Glib::ConstructParams (texttagtable_class_.init ()))
+    : glib::ObjectBase (nullptr),
+      glib::Object (glib::ConstructParams (texttagtable_class_.init ()))
   {
   }
 
   auto
-  TextTagTable::create () -> Glib::RefPtr<TextTagTable>
+  TextTagTable::create () -> glib::RefPtr<TextTagTable>
   {
-    return Glib::make_refptr_for_instance<TextTagTable> (new TextTagTable ());
+    return glib::make_refptr_for_instance<TextTagTable> (new TextTagTable ());
   }
 
   auto
-  TextTagTable::add (const Glib::RefPtr<TextTag>& tag) -> bool
+  TextTagTable::add (const glib::RefPtr<TextTag>& tag) -> bool
   {
-    return gtk_text_tag_table_add (gobj (), Glib::unwrap (tag));
+    return gtk_text_tag_table_add (gobj (), glib::unwrap (tag));
   }
 
   auto
-  TextTagTable::remove (const Glib::RefPtr<TextTag>& tag) -> void
+  TextTagTable::remove (const glib::RefPtr<TextTag>& tag) -> void
   {
-    gtk_text_tag_table_remove (gobj (), Glib::unwrap (tag));
+    gtk_text_tag_table_remove (gobj (), glib::unwrap (tag));
   }
 
   auto
-  TextTagTable::lookup (const Glib::ustring& name) -> Glib::RefPtr<TextTag>
+  TextTagTable::lookup (const glib::ustring& name) -> glib::RefPtr<TextTag>
   {
     auto retvalue =
-        Glib::wrap (gtk_text_tag_table_lookup (gobj (), name.c_str ()));
+        glib::wrap (gtk_text_tag_table_lookup (gobj (), name.c_str ()));
     if (retvalue)
       retvalue->reference ();
     return retvalue;
   }
 
   auto
-  TextTagTable::lookup (const Glib::ustring& name) const -> Glib::RefPtr<const TextTag>
+  TextTagTable::lookup (const glib::ustring& name) const -> glib::RefPtr<const TextTag>
   {
     return const_cast<TextTagTable*> (this)->lookup (name);
   }
@@ -265,27 +265,27 @@ namespace Gtk
   }
 
   auto
-  TextTagTable::signal_tag_changed () -> Glib::SignalProxy<void (const Glib::RefPtr<TextTag>&, bool)>
+  TextTagTable::signal_tag_changed () -> glib::SignalProxy<void (const glib::RefPtr<TextTag>&, bool)>
   {
-    return Glib::SignalProxy<void (const Glib::RefPtr<TextTag>&, bool)> (
+    return glib::SignalProxy<void (const glib::RefPtr<TextTag>&, bool)> (
         this,
         &TextTagTable_signal_tag_changed_info);
   }
 
   auto
-  TextTagTable::signal_tag_added () -> Glib::SignalProxy<void (const Glib::RefPtr<TextTag>&)>
+  TextTagTable::signal_tag_added () -> glib::SignalProxy<void (const glib::RefPtr<TextTag>&)>
   {
-    return Glib::SignalProxy<void (const Glib::RefPtr<TextTag>&)> (
+    return glib::SignalProxy<void (const glib::RefPtr<TextTag>&)> (
         this,
         &TextTagTable_signal_tag_added_info);
   }
 
   auto
-  TextTagTable::signal_tag_removed () -> Glib::SignalProxy<void (const Glib::RefPtr<TextTag>&)>
+  TextTagTable::signal_tag_removed () -> glib::SignalProxy<void (const glib::RefPtr<TextTag>&)>
   {
-    return Glib::SignalProxy<void (const Glib::RefPtr<TextTag>&)> (
+    return glib::SignalProxy<void (const glib::RefPtr<TextTag>&)> (
         this,
         &TextTagTable_signal_tag_removed_info);
   }
 
-} // namespace Gtk
+} // namespace gtk

@@ -18,16 +18,16 @@ using GdkPixbufAnimationClass = struct _GdkPixbufAnimationClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gdk
+namespace gdk
 {
   class LIBMM_GDK_SYMEXPORT PixbufAnimation_Class;
 }
 #endif
 
-namespace Gdk
+namespace gdk
 {
 
-  class LIBMM_GDK_SYMEXPORT PixbufAnimation : public Glib::Object
+  class LIBMM_GDK_SYMEXPORT PixbufAnimation : public glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -46,7 +46,7 @@ namespace Gdk
     static CppClassType pixbufanimation_class_;
 
   protected:
-    explicit PixbufAnimation (const Glib::ConstructParams& construct_params);
+    explicit PixbufAnimation (const glib::ConstructParams& construct_params);
     explicit PixbufAnimation (GdkPixbufAnimation* castitem);
 
 #endif
@@ -87,26 +87,26 @@ namespace Gdk
   public:
     static auto
     create_from_file (const std::string& filename)
-        -> Glib::RefPtr<PixbufAnimation>;
+        -> glib::RefPtr<PixbufAnimation>;
 
     static auto
-    create_from_stream (const Glib::RefPtr<Gio::InputStream>& stream,
-                        const Glib::RefPtr<Gio::Cancellable>& cancellable = {})
-        -> Glib::RefPtr<PixbufAnimation>;
+    create_from_stream (const glib::RefPtr<gio::InputStream>& stream,
+                        const glib::RefPtr<gio::Cancellable>& cancellable = {})
+        -> glib::RefPtr<PixbufAnimation>;
 
     static auto
     create_from_stream_async (
-        const Glib::RefPtr<Gio::InputStream>& stream,
-        const Gio::SlotAsyncReady& slot,
-        const Glib::RefPtr<Gio::Cancellable>& cancellable = {}) -> void;
+        const glib::RefPtr<gio::InputStream>& stream,
+        const gio::SlotAsyncReady& slot,
+        const glib::RefPtr<gio::Cancellable>& cancellable = {}) -> void;
 
     static auto
-    create_from_stream_finish (const Glib::RefPtr<Gio::AsyncResult>& result)
-        -> Glib::RefPtr<PixbufAnimation>;
+    create_from_stream_finish (const glib::RefPtr<gio::AsyncResult>& result)
+        -> glib::RefPtr<PixbufAnimation>;
 
     static auto
     create_from_resource (const std::string& resource_path)
-        -> Glib::RefPtr<PixbufAnimation>;
+        -> glib::RefPtr<PixbufAnimation>;
 
     auto
     get_width () const -> int;
@@ -118,23 +118,23 @@ namespace Gdk
     is_static_image () const -> bool;
 
     auto
-    get_static_image () -> Glib::RefPtr<Pixbuf>;
+    get_static_image () -> glib::RefPtr<Pixbuf>;
 
     auto
     get_iter (gint64 start_time = g_get_real_time ())
-        -> Glib::RefPtr<PixbufAnimationIter>;
+        -> glib::RefPtr<PixbufAnimationIter>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gdk
+} // namespace gdk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GDK_SYMEXPORT auto
-  wrap (GdkPixbufAnimation* object, bool take_copy = false) -> Glib::RefPtr<Gdk::PixbufAnimation>;
-} // namespace Glib
+  wrap (GdkPixbufAnimation* object, bool take_copy = false) -> glib::RefPtr<gdk::PixbufAnimation>;
+} // namespace glib
 
 #endif

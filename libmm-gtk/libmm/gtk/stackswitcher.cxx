@@ -7,7 +7,7 @@
 
 #include <gtk/gtk.h>
 
-namespace Gtk
+namespace gtk
 {
 
   auto
@@ -16,29 +16,29 @@ namespace Gtk
     gtk_stack_switcher_set_stack (gobj (), nullptr);
   }
 
-} // namespace Gtk
+} // namespace gtk
 
 namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GtkStackSwitcher* object, bool take_copy) -> Gtk::StackSwitcher*
+  wrap (GtkStackSwitcher* object, bool take_copy) -> gtk::StackSwitcher*
   {
-    return dynamic_cast<Gtk::StackSwitcher*> (
-        Glib::wrap_auto ((GObject*) (object), take_copy));
+    return dynamic_cast<gtk::StackSwitcher*> (
+        glib::wrap_auto ((GObject*) (object), take_copy));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gtk
+namespace gtk
 {
 
   auto
-  StackSwitcher_Class::init () -> const Glib::Class&
+  StackSwitcher_Class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -58,30 +58,30 @@ namespace Gtk
   }
 
   auto
-  StackSwitcher_Class::wrap_new (GObject* o) -> Glib::ObjectBase*
+  StackSwitcher_Class::wrap_new (GObject* o) -> glib::ObjectBase*
   {
     return manage (new StackSwitcher ((GtkStackSwitcher*) (o)));
   }
 
-  StackSwitcher::StackSwitcher (const Glib::ConstructParams& construct_params)
-    : Gtk::Widget (construct_params)
+  StackSwitcher::StackSwitcher (const glib::ConstructParams& construct_params)
+    : gtk::Widget (construct_params)
   {
   }
 
   StackSwitcher::StackSwitcher (GtkStackSwitcher* castitem)
-    : Gtk::Widget ((GtkWidget*) (castitem))
+    : gtk::Widget ((GtkWidget*) (castitem))
   {
   }
 
   StackSwitcher::StackSwitcher (StackSwitcher&& src) noexcept
-    : Gtk::Widget (std::move (src))
+    : gtk::Widget (std::move (src))
   {
   }
 
   auto
   StackSwitcher::operator= (StackSwitcher&& src) noexcept -> StackSwitcher&
   {
-    Gtk::Widget::operator= (std::move (src));
+    gtk::Widget::operator= (std::move (src));
     return *this;
   }
 
@@ -105,8 +105,8 @@ namespace Gtk
   }
 
   StackSwitcher::StackSwitcher ()
-    : Glib::ObjectBase (nullptr),
-      Gtk::Widget (Glib::ConstructParams (stackswitcher_class_.init ()))
+    : glib::ObjectBase (nullptr),
+      gtk::Widget (glib::ConstructParams (stackswitcher_class_.init ()))
   {
   }
 
@@ -119,7 +119,7 @@ namespace Gtk
   auto
   StackSwitcher::get_stack () -> Stack*
   {
-    return Glib::wrap (gtk_stack_switcher_get_stack (gobj ()));
+    return glib::wrap (gtk_stack_switcher_get_stack (gobj ()));
   }
 
   auto
@@ -129,20 +129,20 @@ namespace Gtk
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<Stack*>::value,
+      glib::Traits::ValueCompatibleWithWrapProperty<Stack*>::value,
       "Type Stack* cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  StackSwitcher::property_stack () -> Glib::PropertyProxy<Stack*>
+  StackSwitcher::property_stack () -> glib::PropertyProxy<Stack*>
   {
-    return Glib::PropertyProxy<Stack*> (this, "stack");
+    return glib::PropertyProxy<Stack*> (this, "stack");
   }
 
   auto
-  StackSwitcher::property_stack () const -> Glib::PropertyProxy_ReadOnly<Stack*>
+  StackSwitcher::property_stack () const -> glib::PropertyProxy_ReadOnly<Stack*>
   {
-    return Glib::PropertyProxy_ReadOnly<Stack*> (this, "stack");
+    return glib::PropertyProxy_ReadOnly<Stack*> (this, "stack");
   }
 
-} // namespace Gtk
+} // namespace gtk

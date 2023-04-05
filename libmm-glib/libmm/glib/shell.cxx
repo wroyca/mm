@@ -7,7 +7,7 @@
 
 #include <libmm/glib/utility.hxx>
 
-namespace Glib
+namespace glib
 {
 
   auto
@@ -47,31 +47,31 @@ namespace Glib
     return std::string (make_unique_ptr_gfree (buf).get ());
   }
 
-} // namespace Glib
+} // namespace glib
 
 namespace
 {
 }
 
-Glib::ShellError::ShellError (const Code error_code,
+glib::ShellError::ShellError (const Code error_code,
                               const ustring& error_message)
   : Error (G_SHELL_ERROR, error_code, error_message)
 {
 }
 
-Glib::ShellError::ShellError (GError* gobject)
+glib::ShellError::ShellError (GError* gobject)
   : Error (gobject)
 {
 }
 
 auto
-Glib::ShellError::code () const -> Code
+glib::ShellError::code () const -> Code
 {
   return static_cast<Code> (Error::code ());
 }
 
 auto
-Glib::ShellError::throw_func (GError* gobject) -> void
+glib::ShellError::throw_func (GError* gobject) -> void
 {
   throw ShellError (gobject);
 }

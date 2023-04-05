@@ -12,7 +12,7 @@
   #include <cairo-script.h>
 #endif
 
-namespace Cairo
+namespace cairo
 {
 
 #ifdef CAIRO_HAS_SCRIPT_SURFACE
@@ -55,6 +55,6 @@ namespace Cairo
 
 #endif
 
-} // namespace Cairo
+} // namespace cairo
 
 #endif

@@ -22,7 +22,7 @@
 #include <libmm/gtk/window.hxx>
 #include <libmm/gtk/button.hxx>
 
-class TestWindow : public Gtk::Window
+class TestWindow : public gtk::Window
 {
 public:
   TestWindow();
@@ -33,7 +33,7 @@ protected:
   //Child widgets:
 
   //For the test, we allocate it dynamically, so that we can delete it whenever we want, and see the results
-  Gtk::Button m_Button;
+  gtk::Button m_Button;
 };
 
 #endif //GTKMM_TESTWINDOW_H

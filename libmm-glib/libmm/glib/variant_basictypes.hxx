@@ -6,7 +6,7 @@
   #endif
 #endif
 
-namespace Glib
+namespace glib
 {
 
   template <>
@@ -246,4 +246,4 @@ namespace Glib
     get () const -> double;
   };
 
-} // namespace Glib
+} // namespace glib

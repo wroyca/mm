@@ -12,7 +12,7 @@ extern "C"
 }
 #endif
 
-namespace Glib
+namespace glib
 {
 
   class LIBMM_GLIB_SYMEXPORT OptionEntry
@@ -50,9 +50,9 @@ namespace Glib
     operator= (const OptionEntry& src) -> OptionEntry&;
 
     auto
-    get_long_name () const -> Glib::ustring;
+    get_long_name () const -> glib::ustring;
     auto
-    set_long_name (const Glib::ustring& value) -> void;
+    set_long_name (const glib::ustring& value) -> void;
 
     auto
     get_short_name () const -> gchar;
@@ -66,14 +66,14 @@ namespace Glib
     set_flags (const Flags& value) -> void;
 
     auto
-    get_description () const -> Glib::ustring;
+    get_description () const -> glib::ustring;
     auto
-    set_description (const Glib::ustring& value) -> void;
+    set_description (const glib::ustring& value) -> void;
 
     auto
-    get_arg_description () const -> Glib::ustring;
+    get_arg_description () const -> glib::ustring;
     auto
-    set_arg_description (const Glib::ustring& value) -> void;
+    set_arg_description (const glib::ustring& value) -> void;
 
     auto
     gobj () -> GOptionEntry*
@@ -95,9 +95,9 @@ namespace Glib
     GOptionEntry* gobject_;
   };
 
-} // namespace Glib
+} // namespace glib
 
-namespace Glib
+namespace glib
 {
 
   inline auto
@@ -147,6 +147,6 @@ namespace Glib
     return (lhs = static_cast<OptionEntry::Flags> (
                 static_cast<unsigned> (lhs) ^ static_cast<unsigned> (rhs)));
   }
-} // namespace Glib
+} // namespace glib
 
 #endif

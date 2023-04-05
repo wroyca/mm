@@ -15,16 +15,16 @@ using GdkDeviceToolClass = struct _GdkDeviceToolClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gdk
+namespace gdk
 {
   class LIBMM_GDK_SYMEXPORT DeviceTool_Class;
 }
 #endif
 
-namespace Gdk
+namespace gdk
 {
 
-  class LIBMM_GDK_SYMEXPORT DeviceTool : public Glib::Object
+  class LIBMM_GDK_SYMEXPORT DeviceTool : public glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -43,7 +43,7 @@ namespace Gdk
     static CppClassType devicetool_class_;
 
   protected:
-    explicit DeviceTool (const Glib::ConstructParams& construct_params);
+    explicit DeviceTool (const glib::ConstructParams& construct_params);
     explicit DeviceTool (GdkDeviceTool* castitem);
 
 #endif
@@ -106,44 +106,44 @@ namespace Gdk
     get_axes () const -> AxisFlags;
 
     auto
-    property_serial () const -> Glib::PropertyProxy_ReadOnly<guint64>;
+    property_serial () const -> glib::PropertyProxy_ReadOnly<guint64>;
 
     auto
-    property_tool_type () const -> Glib::PropertyProxy_ReadOnly<Type>;
+    property_tool_type () const -> glib::PropertyProxy_ReadOnly<Type>;
 
     auto
-    property_axes () const -> Glib::PropertyProxy_ReadOnly<AxisFlags>;
+    property_axes () const -> glib::PropertyProxy_ReadOnly<AxisFlags>;
 
     auto
-    property_hardware_id () const -> Glib::PropertyProxy_ReadOnly<guint64>;
+    property_hardware_id () const -> glib::PropertyProxy_ReadOnly<guint64>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gdk
+} // namespace gdk
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_GDK_SYMEXPORT Value<Gdk::DeviceTool::Type>
-    : public Glib::Value_Enum<Gdk::DeviceTool::Type>
+  class LIBMM_GDK_SYMEXPORT Value<gdk::DeviceTool::Type>
+    : public glib::Value_Enum<gdk::DeviceTool::Type>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
-namespace Glib
+namespace glib
 {
   LIBMM_GDK_SYMEXPORT auto
-  wrap (GdkDeviceTool* object, bool take_copy = false) -> Glib::RefPtr<Gdk::DeviceTool>;
-} // namespace Glib
+  wrap (GdkDeviceTool* object, bool take_copy = false) -> glib::RefPtr<gdk::DeviceTool>;
+} // namespace glib
 
 #endif

@@ -7,18 +7,18 @@
 
 #include <gtk/gtk.h>
 
-namespace Gtk
+namespace gtk
 {
 
   Label::Label ()
-    : Glib::ObjectBase (nullptr),
-      Gtk::Widget (Glib::ConstructParams (label_class_.init ()))
+    : glib::ObjectBase (nullptr),
+      gtk::Widget (glib::ConstructParams (label_class_.init ()))
   {
   }
 
-  Label::Label (const Glib::ustring& label, bool mnemonic)
-    : Glib::ObjectBase (nullptr),
-      Gtk::Widget (Glib::ConstructParams (label_class_.init (),
+  Label::Label (const glib::ustring& label, bool mnemonic)
+    : glib::ObjectBase (nullptr),
+      gtk::Widget (glib::ConstructParams (label_class_.init (),
                                           "label",
                                           label.c_str (),
                                           "use_underline",
@@ -27,12 +27,12 @@ namespace Gtk
   {
   }
 
-  Label::Label (const Glib::ustring& label,
+  Label::Label (const glib::ustring& label,
                 Align halign,
                 Align valign,
                 bool mnemonic)
-    : Glib::ObjectBase (nullptr),
-      Gtk::Widget (Glib::ConstructParams (label_class_.init (),
+    : glib::ObjectBase (nullptr),
+      gtk::Widget (glib::ConstructParams (label_class_.init (),
                                           "label",
                                           label.c_str (),
                                           "use_underline",
@@ -49,7 +49,7 @@ namespace Gtk
     gtk_label_select_region (gobj (), start_offset, -1);
   }
 
-} // namespace Gtk
+} // namespace gtk
 
 namespace
 {
@@ -59,23 +59,23 @@ namespace
                                        const gchar* p0,
                                        void* data) -> gboolean
   {
-    using namespace Gtk;
-    using SlotType = sigc::slot<bool (const Glib::ustring&)>;
+    using namespace gtk;
+    using SlotType = sigc::slot<bool (const glib::ustring&)>;
 
     auto obj = dynamic_cast<Label*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
     {
       try
       {
-        if (const auto slot = Glib::SignalProxyNormal::data_to_slot (data))
+        if (const auto slot = glib::SignalProxyNormal::data_to_slot (data))
           return static_cast<int> ((*static_cast<SlotType*> (slot)) (
-              Glib::convert_const_gchar_ptr_to_ustring (p0)));
+              glib::convert_const_gchar_ptr_to_ustring (p0)));
       }
       catch (...)
       {
-        Glib::exception_handlers_invoke ();
+        glib::exception_handlers_invoke ();
       }
     }
 
@@ -88,23 +88,23 @@ namespace
                                               const gchar* p0,
                                               void* data) -> gboolean
   {
-    using namespace Gtk;
-    using SlotType = sigc::slot<void (const Glib::ustring&)>;
+    using namespace gtk;
+    using SlotType = sigc::slot<void (const glib::ustring&)>;
 
     auto obj = dynamic_cast<Label*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
     {
       try
       {
-        if (const auto slot = Glib::SignalProxyNormal::data_to_slot (data))
+        if (const auto slot = glib::SignalProxyNormal::data_to_slot (data))
           (*static_cast<SlotType*> (slot)) (
-              Glib::convert_const_gchar_ptr_to_ustring (p0));
+              glib::convert_const_gchar_ptr_to_ustring (p0));
       }
       catch (...)
       {
-        Glib::exception_handlers_invoke ();
+        glib::exception_handlers_invoke ();
       }
     }
 
@@ -112,30 +112,30 @@ namespace
     return RType ();
   }
 
-  static const Glib::SignalProxyInfo Label_signal_activate_link_info = {
+  static const glib::SignalProxyInfo Label_signal_activate_link_info = {
       "activate-link",
       (GCallback) &Label_signal_activate_link_callback,
       (GCallback) &Label_signal_activate_link_notify_callback};
 
 } // namespace
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GtkLabel* object, bool take_copy) -> Gtk::Label*
+  wrap (GtkLabel* object, bool take_copy) -> gtk::Label*
   {
-    return dynamic_cast<Gtk::Label*> (
-        Glib::wrap_auto ((GObject*) (object), take_copy));
+    return dynamic_cast<gtk::Label*> (
+        glib::wrap_auto ((GObject*) (object), take_copy));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gtk
+namespace gtk
 {
 
   auto
-  Label_Class::init () -> const Glib::Class&
+  Label_Class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -155,30 +155,30 @@ namespace Gtk
   }
 
   auto
-  Label_Class::wrap_new (GObject* o) -> Glib::ObjectBase*
+  Label_Class::wrap_new (GObject* o) -> glib::ObjectBase*
   {
     return manage (new Label ((GtkLabel*) (o)));
   }
 
-  Label::Label (const Glib::ConstructParams& construct_params)
-    : Gtk::Widget (construct_params)
+  Label::Label (const glib::ConstructParams& construct_params)
+    : gtk::Widget (construct_params)
   {
   }
 
   Label::Label (GtkLabel* castitem)
-    : Gtk::Widget ((GtkWidget*) (castitem))
+    : gtk::Widget ((GtkWidget*) (castitem))
   {
   }
 
   Label::Label (Label&& src) noexcept
-    : Gtk::Widget (std::move (src))
+    : gtk::Widget (std::move (src))
   {
   }
 
   auto
   Label::operator= (Label&& src) noexcept -> Label&
   {
-    Gtk::Widget::operator= (std::move (src));
+    gtk::Widget::operator= (std::move (src));
     return *this;
   }
 
@@ -202,46 +202,46 @@ namespace Gtk
   }
 
   auto
-  Label::set_text (const Glib::ustring& str) -> void
+  Label::set_text (const glib::ustring& str) -> void
   {
     gtk_label_set_text (gobj (), str.c_str ());
   }
 
   auto
-  Label::get_text () const -> Glib::ustring
+  Label::get_text () const -> glib::ustring
   {
-    return Glib::convert_const_gchar_ptr_to_ustring (
+    return glib::convert_const_gchar_ptr_to_ustring (
         gtk_label_get_text (const_cast<GtkLabel*> (gobj ())));
   }
 
   auto
-  Label::set_attributes (Pango::AttrList& attrs) -> void
+  Label::set_attributes (pango::AttrList& attrs) -> void
   {
     gtk_label_set_attributes (gobj (), (attrs).gobj ());
   }
 
   auto
-  Label::get_attributes () const -> Pango::AttrList
+  Label::get_attributes () const -> pango::AttrList
   {
-    return Pango::AttrList (
+    return pango::AttrList (
         (gtk_label_get_attributes (const_cast<GtkLabel*> (gobj ()))));
   }
 
   auto
-  Label::set_label (const Glib::ustring& str) -> void
+  Label::set_label (const glib::ustring& str) -> void
   {
     gtk_label_set_label (gobj (), str.c_str ());
   }
 
   auto
-  Label::get_label () const -> Glib::ustring
+  Label::get_label () const -> glib::ustring
   {
-    return Glib::convert_const_gchar_ptr_to_ustring (
+    return glib::convert_const_gchar_ptr_to_ustring (
         gtk_label_get_label (const_cast<GtkLabel*> (gobj ())));
   }
 
   auto
-  Label::set_markup (const Glib::ustring& str) -> void
+  Label::set_markup (const glib::ustring& str) -> void
   {
     gtk_label_set_markup (gobj (), str.c_str ());
   }
@@ -271,7 +271,7 @@ namespace Gtk
   }
 
   auto
-  Label::set_markup_with_mnemonic (const Glib::ustring& str) -> void
+  Label::set_markup_with_mnemonic (const glib::ustring& str) -> void
   {
     gtk_label_set_markup_with_mnemonic (gobj (), str.c_str ());
   }
@@ -291,18 +291,18 @@ namespace Gtk
   auto
   Label::get_mnemonic_widget () -> Widget*
   {
-    return Glib::wrap (gtk_label_get_mnemonic_widget (gobj ()));
+    return glib::wrap (gtk_label_get_mnemonic_widget (gobj ()));
   }
 
   auto
   Label::get_mnemonic_widget () const -> const Widget*
   {
-    return Glib::wrap (
+    return glib::wrap (
         gtk_label_get_mnemonic_widget (const_cast<GtkLabel*> (gobj ())));
   }
 
   auto
-  Label::set_text_with_mnemonic (const Glib::ustring& str) -> void
+  Label::set_text_with_mnemonic (const glib::ustring& str) -> void
   {
     gtk_label_set_text_with_mnemonic (gobj (), str.c_str ());
   }
@@ -321,15 +321,15 @@ namespace Gtk
   }
 
   auto
-  Label::set_ellipsize (Pango::EllipsizeMode mode) -> void
+  Label::set_ellipsize (pango::EllipsizeMode mode) -> void
   {
     gtk_label_set_ellipsize (gobj (), static_cast<PangoEllipsizeMode> (mode));
   }
 
   auto
-  Label::get_ellipsize () const -> Pango::EllipsizeMode
+  Label::get_ellipsize () const -> pango::EllipsizeMode
   {
-    return static_cast<Pango::EllipsizeMode> (
+    return static_cast<pango::EllipsizeMode> (
         gtk_label_get_ellipsize (const_cast<GtkLabel*> (gobj ())));
   }
 
@@ -382,15 +382,15 @@ namespace Gtk
   }
 
   auto
-  Label::set_wrap_mode (Pango::WrapMode wrap_mode) -> void
+  Label::set_wrap_mode (pango::WrapMode wrap_mode) -> void
   {
     gtk_label_set_wrap_mode (gobj (), static_cast<PangoWrapMode> (wrap_mode));
   }
 
   auto
-  Label::get_wrap_mode () const -> Pango::WrapMode
+  Label::get_wrap_mode () const -> pango::WrapMode
   {
-    return static_cast<Pango::WrapMode> (
+    return static_cast<pango::WrapMode> (
         gtk_label_get_wrap_mode (const_cast<GtkLabel*> (gobj ())));
   }
 
@@ -436,16 +436,16 @@ namespace Gtk
   }
 
   auto
-  Label::get_layout () -> Glib::RefPtr<Pango::Layout>
+  Label::get_layout () -> glib::RefPtr<pango::Layout>
   {
-    auto retvalue = Glib::wrap (gtk_label_get_layout (gobj ()));
+    auto retvalue = glib::wrap (gtk_label_get_layout (gobj ()));
     if (retvalue)
       retvalue->reference ();
     return retvalue;
   }
 
   auto
-  Label::get_layout () const -> Glib::RefPtr<const Pango::Layout>
+  Label::get_layout () const -> glib::RefPtr<const pango::Layout>
   {
     return const_cast<Label*> (this)->get_layout ();
   }
@@ -470,9 +470,9 @@ namespace Gtk
   }
 
   auto
-  Label::get_current_uri () const -> Glib::ustring
+  Label::get_current_uri () const -> glib::ustring
   {
-    return Glib::convert_const_gchar_ptr_to_ustring (
+    return glib::convert_const_gchar_ptr_to_ustring (
         gtk_label_get_current_uri (const_cast<GtkLabel*> (gobj ())));
   }
 
@@ -501,322 +501,322 @@ namespace Gtk
   }
 
   auto
-  Label::set_extra_menu (const Glib::RefPtr<Gio::MenuModel>& model) -> void
+  Label::set_extra_menu (const glib::RefPtr<gio::MenuModel>& model) -> void
   {
-    gtk_label_set_extra_menu (gobj (), Glib::unwrap (model));
+    gtk_label_set_extra_menu (gobj (), glib::unwrap (model));
   }
 
   auto
-  Label::get_extra_menu () -> Glib::RefPtr<Gio::MenuModel>
+  Label::get_extra_menu () -> glib::RefPtr<gio::MenuModel>
   {
-    auto retvalue = Glib::wrap (gtk_label_get_extra_menu (gobj ()));
+    auto retvalue = glib::wrap (gtk_label_get_extra_menu (gobj ()));
     if (retvalue)
       retvalue->reference ();
     return retvalue;
   }
 
   auto
-  Label::get_extra_menu () const -> Glib::RefPtr<const Gio::MenuModel>
+  Label::get_extra_menu () const -> glib::RefPtr<const gio::MenuModel>
   {
     return const_cast<Label*> (this)->get_extra_menu ();
   }
 
   auto
-  Label::set_tabs (const Pango::TabArray& tabs) -> void
+  Label::set_tabs (const pango::TabArray& tabs) -> void
   {
-    gtk_label_set_tabs (gobj (), const_cast<Pango::TabArray&> (tabs).gobj ());
+    gtk_label_set_tabs (gobj (), const_cast<pango::TabArray&> (tabs).gobj ());
   }
 
   auto
-  Label::get_tabs () const -> Pango::TabArray
+  Label::get_tabs () const -> pango::TabArray
   {
-    return Pango::TabArray (
+    return pango::TabArray (
         (gtk_label_get_tabs (const_cast<GtkLabel*> (gobj ()))),
         false);
   }
 
   auto
-  Label::signal_activate_link () -> Glib::SignalProxy<bool (const Glib::ustring&)>
+  Label::signal_activate_link () -> glib::SignalProxy<bool (const glib::ustring&)>
   {
-    return Glib::SignalProxy<bool (const Glib::ustring&)> (
+    return glib::SignalProxy<bool (const glib::ustring&)> (
         this,
         &Label_signal_activate_link_info);
   }
 
   auto
-  Label::property_label () -> Glib::PropertyProxy<Glib::ustring>
+  Label::property_label () -> glib::PropertyProxy<glib::ustring>
   {
-    return Glib::PropertyProxy<Glib::ustring> (this, "label");
+    return glib::PropertyProxy<glib::ustring> (this, "label");
   }
 
   auto
-  Label::property_label () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>
+  Label::property_label () const -> glib::PropertyProxy_ReadOnly<glib::ustring>
   {
-    return Glib::PropertyProxy_ReadOnly<Glib::ustring> (this, "label");
+    return glib::PropertyProxy_ReadOnly<glib::ustring> (this, "label");
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<Pango::AttrList>::value,
-      "Type Pango::AttrList cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      glib::Traits::ValueCompatibleWithWrapProperty<pango::AttrList>::value,
+      "Type pango::AttrList cannot be used in _WRAP_PROPERTY. "
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  Label::property_attributes () -> Glib::PropertyProxy<Pango::AttrList>
+  Label::property_attributes () -> glib::PropertyProxy<pango::AttrList>
   {
-    return Glib::PropertyProxy<Pango::AttrList> (this, "attributes");
+    return glib::PropertyProxy<pango::AttrList> (this, "attributes");
   }
 
   auto
-  Label::property_attributes () const -> Glib::PropertyProxy_ReadOnly<Pango::AttrList>
+  Label::property_attributes () const -> glib::PropertyProxy_ReadOnly<pango::AttrList>
   {
-    return Glib::PropertyProxy_ReadOnly<Pango::AttrList> (this, "attributes");
+    return glib::PropertyProxy_ReadOnly<pango::AttrList> (this, "attributes");
   }
 
   auto
-  Label::property_use_markup () -> Glib::PropertyProxy<bool>
+  Label::property_use_markup () -> glib::PropertyProxy<bool>
   {
-    return Glib::PropertyProxy<bool> (this, "use-markup");
+    return glib::PropertyProxy<bool> (this, "use-markup");
   }
 
   auto
-  Label::property_use_markup () const -> Glib::PropertyProxy_ReadOnly<bool>
+  Label::property_use_markup () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "use-markup");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "use-markup");
   }
 
   auto
-  Label::property_use_underline () -> Glib::PropertyProxy<bool>
+  Label::property_use_underline () -> glib::PropertyProxy<bool>
   {
-    return Glib::PropertyProxy<bool> (this, "use-underline");
+    return glib::PropertyProxy<bool> (this, "use-underline");
   }
 
   auto
-  Label::property_use_underline () const -> Glib::PropertyProxy_ReadOnly<bool>
+  Label::property_use_underline () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "use-underline");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "use-underline");
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<Justification>::value,
+      glib::Traits::ValueCompatibleWithWrapProperty<Justification>::value,
       "Type Justification cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  Label::property_justify () -> Glib::PropertyProxy<Justification>
+  Label::property_justify () -> glib::PropertyProxy<Justification>
   {
-    return Glib::PropertyProxy<Justification> (this, "justify");
+    return glib::PropertyProxy<Justification> (this, "justify");
   }
 
   auto
-  Label::property_justify () const -> Glib::PropertyProxy_ReadOnly<Justification>
+  Label::property_justify () const -> glib::PropertyProxy_ReadOnly<Justification>
   {
-    return Glib::PropertyProxy_ReadOnly<Justification> (this, "justify");
+    return glib::PropertyProxy_ReadOnly<Justification> (this, "justify");
   }
 
   auto
-  Label::property_wrap () -> Glib::PropertyProxy<bool>
+  Label::property_wrap () -> glib::PropertyProxy<bool>
   {
-    return Glib::PropertyProxy<bool> (this, "wrap");
+    return glib::PropertyProxy<bool> (this, "wrap");
   }
 
   auto
-  Label::property_wrap () const -> Glib::PropertyProxy_ReadOnly<bool>
+  Label::property_wrap () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "wrap");
-  }
-
-  static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<Pango::WrapMode>::value,
-      "Type Pango::WrapMode cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
-
-  auto
-  Label::property_wrap_mode () -> Glib::PropertyProxy<Pango::WrapMode>
-  {
-    return Glib::PropertyProxy<Pango::WrapMode> (this, "wrap-mode");
-  }
-
-  auto
-  Label::property_wrap_mode () const -> Glib::PropertyProxy_ReadOnly<Pango::WrapMode>
-  {
-    return Glib::PropertyProxy_ReadOnly<Pango::WrapMode> (this, "wrap-mode");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "wrap");
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<NaturalWrapMode>::value,
+      glib::Traits::ValueCompatibleWithWrapProperty<pango::WrapMode>::value,
+      "Type pango::WrapMode cannot be used in _WRAP_PROPERTY. "
+      "There is no suitable template specialization of glib::Value<>.");
+
+  auto
+  Label::property_wrap_mode () -> glib::PropertyProxy<pango::WrapMode>
+  {
+    return glib::PropertyProxy<pango::WrapMode> (this, "wrap-mode");
+  }
+
+  auto
+  Label::property_wrap_mode () const -> glib::PropertyProxy_ReadOnly<pango::WrapMode>
+  {
+    return glib::PropertyProxy_ReadOnly<pango::WrapMode> (this, "wrap-mode");
+  }
+
+  static_assert (
+      glib::Traits::ValueCompatibleWithWrapProperty<NaturalWrapMode>::value,
       "Type NaturalWrapMode cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  Label::property_natural_wrap_mode () -> Glib::PropertyProxy<NaturalWrapMode>
+  Label::property_natural_wrap_mode () -> glib::PropertyProxy<NaturalWrapMode>
   {
-    return Glib::PropertyProxy<NaturalWrapMode> (this, "natural-wrap-mode");
+    return glib::PropertyProxy<NaturalWrapMode> (this, "natural-wrap-mode");
   }
 
   auto
-  Label::property_natural_wrap_mode () const -> Glib::PropertyProxy_ReadOnly<NaturalWrapMode>
+  Label::property_natural_wrap_mode () const -> glib::PropertyProxy_ReadOnly<NaturalWrapMode>
   {
-    return Glib::PropertyProxy_ReadOnly<NaturalWrapMode> (this,
+    return glib::PropertyProxy_ReadOnly<NaturalWrapMode> (this,
                                                           "natural-wrap-mode");
   }
 
   auto
-  Label::property_selectable () -> Glib::PropertyProxy<bool>
+  Label::property_selectable () -> glib::PropertyProxy<bool>
   {
-    return Glib::PropertyProxy<bool> (this, "selectable");
+    return glib::PropertyProxy<bool> (this, "selectable");
   }
 
   auto
-  Label::property_selectable () const -> Glib::PropertyProxy_ReadOnly<bool>
+  Label::property_selectable () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "selectable");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "selectable");
   }
 
   auto
-  Label::property_mnemonic_keyval () const -> Glib::PropertyProxy_ReadOnly<guint>
+  Label::property_mnemonic_keyval () const -> glib::PropertyProxy_ReadOnly<guint>
   {
-    return Glib::PropertyProxy_ReadOnly<guint> (this, "mnemonic-keyval");
+    return glib::PropertyProxy_ReadOnly<guint> (this, "mnemonic-keyval");
   }
 
   auto
-  Label::property_mnemonic_widget () -> Glib::PropertyProxy<Widget*>
+  Label::property_mnemonic_widget () -> glib::PropertyProxy<Widget*>
   {
-    return Glib::PropertyProxy<Widget*> (this, "mnemonic-widget");
+    return glib::PropertyProxy<Widget*> (this, "mnemonic-widget");
   }
 
   auto
-  Label::property_mnemonic_widget () const -> Glib::PropertyProxy_ReadOnly<Widget*>
+  Label::property_mnemonic_widget () const -> glib::PropertyProxy_ReadOnly<Widget*>
   {
-    return Glib::PropertyProxy_ReadOnly<Widget*> (this, "mnemonic-widget");
+    return glib::PropertyProxy_ReadOnly<Widget*> (this, "mnemonic-widget");
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<
-          Pango::EllipsizeMode>::value,
-      "Type Pango::EllipsizeMode cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      glib::Traits::ValueCompatibleWithWrapProperty<
+          pango::EllipsizeMode>::value,
+      "Type pango::EllipsizeMode cannot be used in _WRAP_PROPERTY. "
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  Label::property_ellipsize () -> Glib::PropertyProxy<Pango::EllipsizeMode>
+  Label::property_ellipsize () -> glib::PropertyProxy<pango::EllipsizeMode>
   {
-    return Glib::PropertyProxy<Pango::EllipsizeMode> (this, "ellipsize");
+    return glib::PropertyProxy<pango::EllipsizeMode> (this, "ellipsize");
   }
 
   auto
-  Label::property_ellipsize () const -> Glib::PropertyProxy_ReadOnly<Pango::EllipsizeMode>
+  Label::property_ellipsize () const -> glib::PropertyProxy_ReadOnly<pango::EllipsizeMode>
   {
-    return Glib::PropertyProxy_ReadOnly<Pango::EllipsizeMode> (this,
+    return glib::PropertyProxy_ReadOnly<pango::EllipsizeMode> (this,
                                                                "ellipsize");
   }
 
   auto
-  Label::property_width_chars () -> Glib::PropertyProxy<int>
+  Label::property_width_chars () -> glib::PropertyProxy<int>
   {
-    return Glib::PropertyProxy<int> (this, "width-chars");
+    return glib::PropertyProxy<int> (this, "width-chars");
   }
 
   auto
-  Label::property_width_chars () const -> Glib::PropertyProxy_ReadOnly<int>
+  Label::property_width_chars () const -> glib::PropertyProxy_ReadOnly<int>
   {
-    return Glib::PropertyProxy_ReadOnly<int> (this, "width-chars");
+    return glib::PropertyProxy_ReadOnly<int> (this, "width-chars");
   }
 
   auto
-  Label::property_single_line_mode () -> Glib::PropertyProxy<bool>
+  Label::property_single_line_mode () -> glib::PropertyProxy<bool>
   {
-    return Glib::PropertyProxy<bool> (this, "single-line-mode");
+    return glib::PropertyProxy<bool> (this, "single-line-mode");
   }
 
   auto
-  Label::property_single_line_mode () const -> Glib::PropertyProxy_ReadOnly<bool>
+  Label::property_single_line_mode () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "single-line-mode");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "single-line-mode");
   }
 
   auto
-  Label::property_max_width_chars () -> Glib::PropertyProxy<int>
+  Label::property_max_width_chars () -> glib::PropertyProxy<int>
   {
-    return Glib::PropertyProxy<int> (this, "max-width-chars");
+    return glib::PropertyProxy<int> (this, "max-width-chars");
   }
 
   auto
-  Label::property_max_width_chars () const -> Glib::PropertyProxy_ReadOnly<int>
+  Label::property_max_width_chars () const -> glib::PropertyProxy_ReadOnly<int>
   {
-    return Glib::PropertyProxy_ReadOnly<int> (this, "max-width-chars");
+    return glib::PropertyProxy_ReadOnly<int> (this, "max-width-chars");
   }
 
   auto
-  Label::property_lines () -> Glib::PropertyProxy<int>
+  Label::property_lines () -> glib::PropertyProxy<int>
   {
-    return Glib::PropertyProxy<int> (this, "lines");
+    return glib::PropertyProxy<int> (this, "lines");
   }
 
   auto
-  Label::property_lines () const -> Glib::PropertyProxy_ReadOnly<int>
+  Label::property_lines () const -> glib::PropertyProxy_ReadOnly<int>
   {
-    return Glib::PropertyProxy_ReadOnly<int> (this, "lines");
+    return glib::PropertyProxy_ReadOnly<int> (this, "lines");
   }
 
   auto
-  Label::property_xalign () -> Glib::PropertyProxy<float>
+  Label::property_xalign () -> glib::PropertyProxy<float>
   {
-    return Glib::PropertyProxy<float> (this, "xalign");
+    return glib::PropertyProxy<float> (this, "xalign");
   }
 
   auto
-  Label::property_xalign () const -> Glib::PropertyProxy_ReadOnly<float>
+  Label::property_xalign () const -> glib::PropertyProxy_ReadOnly<float>
   {
-    return Glib::PropertyProxy_ReadOnly<float> (this, "xalign");
+    return glib::PropertyProxy_ReadOnly<float> (this, "xalign");
   }
 
   auto
-  Label::property_yalign () -> Glib::PropertyProxy<float>
+  Label::property_yalign () -> glib::PropertyProxy<float>
   {
-    return Glib::PropertyProxy<float> (this, "yalign");
+    return glib::PropertyProxy<float> (this, "yalign");
   }
 
   auto
-  Label::property_yalign () const -> Glib::PropertyProxy_ReadOnly<float>
+  Label::property_yalign () const -> glib::PropertyProxy_ReadOnly<float>
   {
-    return Glib::PropertyProxy_ReadOnly<float> (this, "yalign");
+    return glib::PropertyProxy_ReadOnly<float> (this, "yalign");
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<
-          Glib::RefPtr<Gio::MenuModel>>::value,
-      "Type Glib::RefPtr<Gio::MenuModel> cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      glib::Traits::ValueCompatibleWithWrapProperty<
+          glib::RefPtr<gio::MenuModel>>::value,
+      "Type glib::RefPtr<gio::MenuModel> cannot be used in _WRAP_PROPERTY. "
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  Label::property_extra_menu () -> Glib::PropertyProxy<Glib::RefPtr<Gio::MenuModel>>
+  Label::property_extra_menu () -> glib::PropertyProxy<glib::RefPtr<gio::MenuModel>>
   {
-    return Glib::PropertyProxy<Glib::RefPtr<Gio::MenuModel>> (this,
+    return glib::PropertyProxy<glib::RefPtr<gio::MenuModel>> (this,
                                                               "extra-menu");
   }
 
   auto
-  Label::property_extra_menu () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gio::MenuModel>>
+  Label::property_extra_menu () const -> glib::PropertyProxy_ReadOnly<glib::RefPtr<gio::MenuModel>>
   {
-    return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gio::MenuModel>> (
+    return glib::PropertyProxy_ReadOnly<glib::RefPtr<gio::MenuModel>> (
         this,
         "extra-menu");
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<Pango::TabArray>::value,
-      "Type Pango::TabArray cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      glib::Traits::ValueCompatibleWithWrapProperty<pango::TabArray>::value,
+      "Type pango::TabArray cannot be used in _WRAP_PROPERTY. "
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  Label::property_tabs () -> Glib::PropertyProxy<Pango::TabArray>
+  Label::property_tabs () -> glib::PropertyProxy<pango::TabArray>
   {
-    return Glib::PropertyProxy<Pango::TabArray> (this, "tabs");
+    return glib::PropertyProxy<pango::TabArray> (this, "tabs");
   }
 
   auto
-  Label::property_tabs () const -> Glib::PropertyProxy_ReadOnly<Pango::TabArray>
+  Label::property_tabs () const -> glib::PropertyProxy_ReadOnly<pango::TabArray>
   {
-    return Glib::PropertyProxy_ReadOnly<Pango::TabArray> (this, "tabs");
+    return glib::PropertyProxy_ReadOnly<pango::TabArray> (this, "tabs");
   }
 
-} // namespace Gtk
+} // namespace gtk

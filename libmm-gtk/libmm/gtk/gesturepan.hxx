@@ -15,13 +15,13 @@ using GtkGesturePanClass = struct _GtkGesturePanClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT GesturePan_Class;
 }
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
   enum class PanDirection
@@ -32,25 +32,25 @@ namespace Gtk
     DOWN
   };
 
-} // namespace Gtk
+} // namespace gtk
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_GTK_SYMEXPORT Value<Gtk::PanDirection>
-    : public Glib::Value_Enum<Gtk::PanDirection>
+  class LIBMM_GTK_SYMEXPORT Value<gtk::PanDirection>
+    : public glib::Value_Enum<gtk::PanDirection>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
   class LIBMM_GTK_SYMEXPORT GesturePan : public GestureDrag
@@ -72,7 +72,7 @@ namespace Gtk
     static CppClassType gesturepan_class_;
 
   protected:
-    explicit GesturePan (const Glib::ConstructParams& construct_params);
+    explicit GesturePan (const glib::ConstructParams& construct_params);
     explicit GesturePan (GtkGesturePan* castitem);
 
 #endif
@@ -116,7 +116,7 @@ namespace Gtk
 
   public:
     static auto
-    create (Orientation orientation) -> Glib::RefPtr<GesturePan>;
+    create (Orientation orientation) -> glib::RefPtr<GesturePan>;
 
     auto
     get_orientation () const -> Orientation;
@@ -125,25 +125,25 @@ namespace Gtk
     set_orientation (Orientation orientation) -> void;
 
     auto
-    signal_pan () -> Glib::SignalProxy<void (PanDirection, double)>;
+    signal_pan () -> glib::SignalProxy<void (PanDirection, double)>;
 
     auto
-    property_orientation () -> Glib::PropertyProxy<Orientation>;
+    property_orientation () -> glib::PropertyProxy<Orientation>;
 
     auto
-    property_orientation () const -> Glib::PropertyProxy_ReadOnly<Orientation>;
+    property_orientation () const -> glib::PropertyProxy_ReadOnly<Orientation>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkGesturePan* object, bool take_copy = false) -> Glib::RefPtr<Gtk::GesturePan>;
-} // namespace Glib
+  wrap (GtkGesturePan* object, bool take_copy = false) -> glib::RefPtr<gtk::GesturePan>;
+} // namespace glib
 
 #endif

@@ -10,5 +10,5 @@ auto
 main () -> int
 {
   using namespace std;
-  using namespace Gio;
+  using namespace gio;
 }

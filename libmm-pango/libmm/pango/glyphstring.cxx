@@ -8,17 +8,17 @@
 #include <libmm/glib/utility.hxx>
 #include <pango/pangocairo.h>
 
-namespace Pango
+namespace pango
 {
 
-  GlyphString::GlyphString (const Glib::ustring& text, const Analysis& analysis)
+  GlyphString::GlyphString (const glib::ustring& text, const Analysis& analysis)
     : gobject_ (pango_glyph_string_new ())
   {
     pango_shape (text.c_str (), text.bytes (), analysis.gobj (), gobj ());
   }
 
-  GlyphString::GlyphString (const Glib::ustring& item_text,
-                            const Glib::ustring& paragraph_text,
+  GlyphString::GlyphString (const glib::ustring& item_text,
+                            const glib::ustring& paragraph_text,
                             const Analysis& analysis,
                             ShapeFlags flags)
     : gobject_ (pango_glyph_string_new ())
@@ -33,7 +33,7 @@ namespace Pango
   }
 
   auto
-  GlyphString::get_ink_extents (const Glib::RefPtr<const Font>& font) const -> Rectangle
+  GlyphString::get_ink_extents (const glib::RefPtr<const Font>& font) const -> Rectangle
   {
     Rectangle ink_rect;
     pango_glyph_string_extents (const_cast<PangoGlyphString*> (gobj ()),
@@ -46,7 +46,7 @@ namespace Pango
   auto
   GlyphString::get_ink_extents (const int start,
                                 const int end,
-                                const Glib::RefPtr<const Font>& font) const -> Rectangle
+                                const glib::RefPtr<const Font>& font) const -> Rectangle
   {
     Rectangle ink_rect;
     pango_glyph_string_extents_range (const_cast<PangoGlyphString*> (gobj ()),
@@ -59,7 +59,7 @@ namespace Pango
   }
 
   auto
-  GlyphString::get_logical_extents (const Glib::RefPtr<const Font>& font) const -> Rectangle
+  GlyphString::get_logical_extents (const glib::RefPtr<const Font>& font) const -> Rectangle
   {
     Rectangle logical_rect;
     pango_glyph_string_extents (const_cast<PangoGlyphString*> (gobj ()),
@@ -72,7 +72,7 @@ namespace Pango
   auto
   GlyphString::get_logical_extents (const int start,
                                     const int end,
-                                    const Glib::RefPtr<const Font>& font) const -> Rectangle
+                                    const glib::RefPtr<const Font>& font) const -> Rectangle
   {
     Rectangle logical_rect;
     pango_glyph_string_extents_range (const_cast<PangoGlyphString*> (gobj ()),
@@ -85,7 +85,7 @@ namespace Pango
   }
 
   auto
-  GlyphString::get_logical_widths (const Glib::ustring& text,
+  GlyphString::get_logical_widths (const glib::ustring& text,
                                    const int embedding_level) const -> std::vector<int>
   {
     int* logical_widths = g_new (int, text.length ());
@@ -95,13 +95,13 @@ namespace Pango
         text.bytes (),
         embedding_level,
         logical_widths);
-    return Glib::ArrayHandler<int>::array_to_vector (logical_widths,
+    return glib::ArrayHandler<int>::array_to_vector (logical_widths,
                                                      text.length (),
-                                                     Glib::OWNERSHIP_SHALLOW);
+                                                     glib::OWNERSHIP_SHALLOW);
   }
 
   auto
-  GlyphString::index_to_x (const Glib::ustring& text,
+  GlyphString::index_to_x (const glib::ustring& text,
                            const Analysis& analysis,
                            const int index,
                            const bool trailing) const -> int
@@ -119,7 +119,7 @@ namespace Pango
   }
 
   auto
-  GlyphString::x_to_index (const Glib::ustring& text,
+  GlyphString::x_to_index (const glib::ustring& text,
                            const Analysis& analysis,
                            const int x_pos,
                            int& index,
@@ -140,30 +140,30 @@ namespace Pango
   auto
   GlyphString::get_glyphs () const -> std::vector<GlyphInfo>
   {
-    return Glib::ArrayHandler<GlyphInfo>::array_to_vector (
+    return glib::ArrayHandler<GlyphInfo>::array_to_vector (
         reinterpret_cast<GlyphInfo*> (gobj ()->glyphs),
         gobj ()->num_glyphs,
-        Glib::OWNERSHIP_NONE);
+        glib::OWNERSHIP_NONE);
   }
 
-} // namespace Pango
+} // namespace pango
 
 namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (PangoGlyphString* object, const bool take_copy) -> Pango::GlyphString
+  wrap (PangoGlyphString* object, const bool take_copy) -> pango::GlyphString
   {
-    return Pango::GlyphString (object, take_copy);
+    return pango::GlyphString (object, take_copy);
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Pango
+namespace pango
 {
 
   auto
@@ -236,13 +236,13 @@ namespace Pango
   }
 
   auto
-  GlyphString::get_extents (const Glib::RefPtr<const Font>& font,
+  GlyphString::get_extents (const glib::RefPtr<const Font>& font,
                             Rectangle& ink_rect,
                             Rectangle& logical_rect) const -> void
   {
     pango_glyph_string_extents (
         const_cast<PangoGlyphString*> (gobj ()),
-        const_cast<PangoFont*> (Glib::unwrap<Font> (font)),
+        const_cast<PangoFont*> (glib::unwrap<Font> (font)),
         ink_rect.gobj (),
         logical_rect.gobj ());
   }
@@ -250,7 +250,7 @@ namespace Pango
   auto
   GlyphString::get_extents (const int start,
                             const int end,
-                            const Glib::RefPtr<const Font>& font,
+                            const glib::RefPtr<const Font>& font,
                             Rectangle& ink_rect,
                             Rectangle& logical_rect) const -> void
   {
@@ -258,7 +258,7 @@ namespace Pango
         const_cast<PangoGlyphString*> (gobj ()),
         start,
         end,
-        const_cast<PangoFont*> (Glib::unwrap<Font> (font)),
+        const_cast<PangoFont*> (glib::unwrap<Font> (font)),
         ink_rect.gobj (),
         logical_rect.gobj ());
   }
@@ -270,4 +270,4 @@ namespace Pango
         const_cast<PangoGlyphString*> (gobj ()));
   }
 
-} // namespace Pango
+} // namespace pango

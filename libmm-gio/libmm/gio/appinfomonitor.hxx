@@ -16,16 +16,16 @@ using GAppInfoMonitorClass = struct _GAppInfoMonitorClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gio
+namespace gio
 {
   class LIBMM_GIO_SYMEXPORT AppInfoMonitor_Class;
 }
 #endif
 
-namespace Gio
+namespace gio
 {
 
-  class LIBMM_GIO_SYMEXPORT AppInfoMonitor : public Glib::Object
+  class LIBMM_GIO_SYMEXPORT AppInfoMonitor : public glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -44,7 +44,7 @@ namespace Gio
     static CppClassType appinfomonitor_class_;
 
   protected:
-    explicit AppInfoMonitor (const Glib::ConstructParams& construct_params);
+    explicit AppInfoMonitor (const glib::ConstructParams& construct_params);
     explicit AppInfoMonitor (GAppInfoMonitor* castitem);
 
 #endif
@@ -83,24 +83,24 @@ namespace Gio
   private:
   public:
     static auto
-    get () -> Glib::RefPtr<AppInfoMonitor>;
+    get () -> glib::RefPtr<AppInfoMonitor>;
 
     auto
-    signal_changed () -> Glib::SignalProxy<void ()>;
+    signal_changed () -> glib::SignalProxy<void ()>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gio
+} // namespace gio
 
-namespace Glib
+namespace glib
 {
 
   LIBMM_GIO_SYMEXPORT
   auto
-  wrap (GAppInfoMonitor* object, bool take_copy = false) -> Glib::RefPtr<Gio::AppInfoMonitor>;
-} // namespace Glib
+  wrap (GAppInfoMonitor* object, bool take_copy = false) -> glib::RefPtr<gio::AppInfoMonitor>;
+} // namespace glib
 
 #endif

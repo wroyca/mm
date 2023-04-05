@@ -3,31 +3,31 @@
 #include <libmm/gtk/selectionlistmodelimpl.hxx>
 #include <utility>
 
-namespace Gtk
+namespace gtk
 {
   SelectionListModelImpl::SelectionListModelImpl (GObject* castitem)
-    : Glib::ObjectBase (nullptr),
-      Glib::Object (castitem)
+    : glib::ObjectBase (nullptr),
+      glib::Object (castitem)
   {
   }
 
   SelectionListModelImpl::SelectionListModelImpl (
       SelectionListModelImpl&& src) noexcept
-    : Gio::ListModel (std::move (src)),
+    : gio::ListModel (std::move (src)),
       SelectionModel (std::move (src)),
-      Glib::Object (std::move (src))
+      glib::Object (std::move (src))
   {
   }
 
   auto
   SelectionListModelImpl::operator= (SelectionListModelImpl&& src) noexcept -> SelectionListModelImpl&
   {
-    Gio::ListModel::operator= (std::move (src));
+    gio::ListModel::operator= (std::move (src));
     SelectionModel::operator= (std::move (src));
-    Glib::Object::operator= (std::move (src));
+    glib::Object::operator= (std::move (src));
     return *this;
   }
 
   SelectionListModelImpl::~SelectionListModelImpl () noexcept {}
 
-} // namespace Gtk
+} // namespace gtk

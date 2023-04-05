@@ -8,13 +8,13 @@
 #include <gio/gio.h>
 #include <libmm/glib/utility.hxx>
 
-namespace Gio::DBus
+namespace gio::DBus
 {
 
   auto
   generate_guid () -> std::string
   {
-    return Glib::convert_const_gchar_ptr_to_stdstring (g_dbus_generate_guid ());
+    return glib::convert_const_gchar_ptr_to_stdstring (g_dbus_generate_guid ());
   }
 
   auto
@@ -24,30 +24,30 @@ namespace Gio::DBus
   }
 
   auto
-  is_name (const Glib::ustring& string) -> bool
+  is_name (const glib::ustring& string) -> bool
   {
     return static_cast<bool> (g_dbus_is_name (string.c_str ()));
   }
 
   auto
-  is_unique_name (const Glib::ustring& string) -> bool
+  is_unique_name (const glib::ustring& string) -> bool
   {
     return static_cast<bool> (g_dbus_is_unique_name (string.c_str ()));
   }
 
   auto
-  is_member_name (const Glib::ustring& string) -> bool
+  is_member_name (const glib::ustring& string) -> bool
   {
     return static_cast<bool> (g_dbus_is_member_name (string.c_str ()));
   }
 
   auto
-  is_interface_name (const Glib::ustring& string) -> bool
+  is_interface_name (const glib::ustring& string) -> bool
   {
     return static_cast<bool> (g_dbus_is_interface_name (string.c_str ()));
   }
 
-} // namespace Gio::DBus
+} // namespace gio::DBus
 
 namespace
 {

@@ -6,12 +6,12 @@
 #include <libmm/adw/export.hxx>
 #include <libmm/gtk/mm-gtk.hxx>
 
-namespace Adw
+namespace adw
 {
 
-  class LIBMM_ADW_SYMEXPORT SelectionListModelImpl : public Gio::ListModel,
-                                 public Gtk::SelectionModel,
-                                 public Glib::Object
+  class LIBMM_ADW_SYMEXPORT SelectionListModelImpl : public gio::ListModel,
+                                 public gtk::SelectionModel,
+                                 public glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
   public:
@@ -38,6 +38,6 @@ namespace Adw
     ~SelectionListModelImpl () noexcept override;
   };
 
-} // namespace Adw
+} // namespace adw
 
 #endif

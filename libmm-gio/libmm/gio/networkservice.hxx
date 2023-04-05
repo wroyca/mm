@@ -15,16 +15,16 @@ using GNetworkServiceClass = struct _GNetworkServiceClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gio
+namespace gio
 {
   class LIBMM_GIO_SYMEXPORT NetworkService_Class;
 }
 #endif
 
-namespace Gio
+namespace gio
 {
 
-  class LIBMM_GIO_SYMEXPORT NetworkService : public Glib::Object,
+  class LIBMM_GIO_SYMEXPORT NetworkService : public glib::Object,
                                    public SocketConnectable
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -44,7 +44,7 @@ namespace Gio
     static CppClassType networkservice_class_;
 
   protected:
-    explicit NetworkService (const Glib::ConstructParams& construct_params);
+    explicit NetworkService (const glib::ConstructParams& construct_params);
     explicit NetworkService (GNetworkService* castitem);
 
 #endif
@@ -81,59 +81,59 @@ namespace Gio
     gobj_copy () -> GNetworkService*;
 
   private:
-    explicit NetworkService (const Glib::ustring& service,
-                             const Glib::ustring& protocol,
-                             const Glib::ustring& domain);
+    explicit NetworkService (const glib::ustring& service,
+                             const glib::ustring& protocol,
+                             const glib::ustring& domain);
 
   public:
     static auto
-    create (const Glib::ustring& service,
-            const Glib::ustring& protocol,
-            const Glib::ustring& domain) -> Glib::RefPtr<NetworkService>;
+    create (const glib::ustring& service,
+            const glib::ustring& protocol,
+            const glib::ustring& domain) -> glib::RefPtr<NetworkService>;
 
     auto
-    get_service () const -> Glib::ustring;
+    get_service () const -> glib::ustring;
 
     auto
-    get_protocol () const -> Glib::ustring;
+    get_protocol () const -> glib::ustring;
 
     auto
-    get_domain () const -> Glib::ustring;
+    get_domain () const -> glib::ustring;
 
     auto
-    get_scheme () const -> Glib::ustring;
+    get_scheme () const -> glib::ustring;
 
     auto
-    set_scheme (const Glib::ustring& scheme) -> void;
+    set_scheme (const glib::ustring& scheme) -> void;
 
     auto
-    property_domain () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+    property_domain () const -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
     auto
-    property_protocol () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+    property_protocol () const -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
     auto
-    property_scheme () -> Glib::PropertyProxy<Glib::ustring>;
+    property_scheme () -> glib::PropertyProxy<glib::ustring>;
 
     auto
-    property_scheme () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+    property_scheme () const -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
     auto
-    property_service () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+    property_service () const -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gio
+} // namespace gio
 
-namespace Glib
+namespace glib
 {
 
   LIBMM_GIO_SYMEXPORT
   auto
-  wrap (GNetworkService* object, bool take_copy = false) -> Glib::RefPtr<Gio::NetworkService>;
-} // namespace Glib
+  wrap (GNetworkService* object, bool take_copy = false) -> glib::RefPtr<gio::NetworkService>;
+} // namespace glib
 
 #endif

@@ -10,7 +10,7 @@
 
 #include <pango/pango.h>
 
-namespace Pango
+namespace pango
 {
 
   class LIBMM_PANGO_SYMEXPORT GlyphInfo;
@@ -97,27 +97,27 @@ namespace Pango
     PangoGlyphGeometry gobject_;
   };
 
-} // namespace Pango
+} // namespace pango
 
-namespace Glib
+namespace glib
 {
 
   LIBMM_PANGO_SYMEXPORT
   auto
-  wrap (PangoGlyphInfo* object) -> Pango::GlyphInfo&;
+  wrap (PangoGlyphInfo* object) -> pango::GlyphInfo&;
 
   LIBMM_PANGO_SYMEXPORT
   auto
-  wrap (const PangoGlyphInfo* object) -> const Pango::GlyphInfo&;
+  wrap (const PangoGlyphInfo* object) -> const pango::GlyphInfo&;
 
   LIBMM_PANGO_SYMEXPORT
   auto
-  wrap (PangoGlyphGeometry* object) -> Pango::GlyphGeometry&;
+  wrap (PangoGlyphGeometry* object) -> pango::GlyphGeometry&;
 
   LIBMM_PANGO_SYMEXPORT
   auto
-  wrap (const PangoGlyphGeometry* object) -> const Pango::GlyphGeometry&;
+  wrap (const PangoGlyphGeometry* object) -> const pango::GlyphGeometry&;
 
-} // namespace Glib
+} // namespace glib
 
 #endif

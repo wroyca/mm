@@ -13,13 +13,13 @@
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT WindowControls_Class;
 }
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
   class LIBMM_GTK_SYMEXPORT WindowControls : public Widget
@@ -49,7 +49,7 @@ namespace Gtk
     static CppClassType windowcontrols_class_;
 
   protected:
-    explicit WindowControls (const Glib::ConstructParams& construct_params);
+    explicit WindowControls (const glib::ConstructParams& construct_params);
     explicit WindowControls (GtkWindowControls* castitem);
 
 #endif
@@ -87,44 +87,44 @@ namespace Gtk
     get_side () const -> PackType;
 
     auto
-    set_decoration_layout (const Glib::ustring& layout) -> void;
+    set_decoration_layout (const glib::ustring& layout) -> void;
 
     auto
     unset_decoration_layout () -> void;
 
     auto
-    get_decoration_layout () const -> Glib::ustring;
+    get_decoration_layout () const -> glib::ustring;
 
     auto
     get_empty () const -> bool;
 
     auto
-    property_side () -> Glib::PropertyProxy<PackType>;
+    property_side () -> glib::PropertyProxy<PackType>;
 
     auto
-    property_side () const -> Glib::PropertyProxy_ReadOnly<PackType>;
+    property_side () const -> glib::PropertyProxy_ReadOnly<PackType>;
 
     auto
-    property_decoration_layout () -> Glib::PropertyProxy<Glib::ustring>;
+    property_decoration_layout () -> glib::PropertyProxy<glib::ustring>;
 
     auto
     property_decoration_layout () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+        -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
     auto
-    property_empty () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_empty () const -> glib::PropertyProxy_ReadOnly<bool>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkWindowControls* object, bool take_copy = false) -> Gtk::WindowControls*;
-} // namespace Glib
+  wrap (GtkWindowControls* object, bool take_copy = false) -> gtk::WindowControls*;
+} // namespace glib
 
 #endif

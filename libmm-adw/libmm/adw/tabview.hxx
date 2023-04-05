@@ -17,13 +17,13 @@
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Adw
+namespace adw
 {
   class LIBMM_ADW_SYMEXPORT TabView_Class;
 }
 #endif
 
-namespace Adw
+namespace adw
 {
 
   enum class LIBMM_ADW_SYMEXPORT TabViewShortcuts
@@ -92,28 +92,28 @@ namespace Adw
                                                  static_cast<unsigned> (rhs)));
   }
 
-} // namespace Adw
+} // namespace adw
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_ADW_SYMEXPORT Value<Adw::TabViewShortcuts>
-    : public Glib::Value_Flags<Adw::TabViewShortcuts>
+  class LIBMM_ADW_SYMEXPORT Value<adw::TabViewShortcuts>
+    : public glib::Value_Flags<adw::TabViewShortcuts>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
-namespace Adw
+namespace adw
 {
 
-  class LIBMM_ADW_SYMEXPORT TabView : public Gtk::Widget
+  class LIBMM_ADW_SYMEXPORT TabView : public gtk::Widget
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -140,7 +140,7 @@ namespace Adw
     static CppClassType tabview_class_;
 
   protected:
-    explicit TabView (const Glib::ConstructParams& construct_params);
+    explicit TabView (const glib::ConstructParams& construct_params);
     explicit TabView (AdwTabView* castitem);
 
 #endif
@@ -172,44 +172,44 @@ namespace Adw
     TabView ();
 
     auto
-    add_page (Gtk::Widget* child, const Glib::RefPtr<TabPage>& parent)
-        -> Glib::RefPtr<TabPage>;
+    add_page (gtk::Widget* child, const glib::RefPtr<TabPage>& parent)
+        -> glib::RefPtr<TabPage>;
 
     auto
-    add_page (Gtk::Widget* child) -> Glib::RefPtr<TabPage>;
+    add_page (gtk::Widget* child) -> glib::RefPtr<TabPage>;
 
     auto
     add_shortcuts (TabViewShortcuts shortcuts) -> void;
 
     auto
-    append (Gtk::Widget* child) -> Glib::RefPtr<TabPage>;
+    append (gtk::Widget* child) -> glib::RefPtr<TabPage>;
 
     auto
-    append_pinned (Gtk::Widget* child) -> Glib::RefPtr<TabPage>;
+    append_pinned (gtk::Widget* child) -> glib::RefPtr<TabPage>;
 
     auto
-    close_other_pages (const Glib::RefPtr<TabPage>& page) -> void;
+    close_other_pages (const glib::RefPtr<TabPage>& page) -> void;
 
     auto
-    close_page (const Glib::RefPtr<TabPage>& page) -> void;
+    close_page (const glib::RefPtr<TabPage>& page) -> void;
 
     auto
-    close_page_finish (const Glib::RefPtr<TabPage>& page, bool confirm) -> void;
+    close_page_finish (const glib::RefPtr<TabPage>& page, bool confirm) -> void;
 
     auto
-    close_pages_after (const Glib::RefPtr<TabPage>& page) -> void;
+    close_pages_after (const glib::RefPtr<TabPage>& page) -> void;
 
     auto
-    close_pages_before (const Glib::RefPtr<TabPage>& page) -> void;
+    close_pages_before (const glib::RefPtr<TabPage>& page) -> void;
 
     auto
-    get_default_icon () const -> Glib::RefPtr<Gio::Icon>;
+    get_default_icon () const -> glib::RefPtr<gio::Icon>;
 
     auto
     get_is_transferring_page () const -> bool;
 
     auto
-    get_menu_model () const -> Glib::RefPtr<Gio::MenuModel>;
+    get_menu_model () const -> glib::RefPtr<gio::MenuModel>;
 
     auto
     get_n_pages () const -> int;
@@ -218,52 +218,52 @@ namespace Adw
     get_n_pinned_pages () const -> int;
 
     auto
-    get_nth_page (int position) const -> Glib::RefPtr<TabPage>;
+    get_nth_page (int position) const -> glib::RefPtr<TabPage>;
 
     auto
-    get_page (Gtk::Widget* child) const -> Glib::RefPtr<TabPage>;
+    get_page (gtk::Widget* child) const -> glib::RefPtr<TabPage>;
 
     auto
-    get_page_position (const Glib::RefPtr<TabPage>& page) const -> int;
+    get_page_position (const glib::RefPtr<TabPage>& page) const -> int;
 
     auto
-    get_pages () const -> Glib::RefPtr<Gtk::SelectionModel>;
+    get_pages () const -> glib::RefPtr<gtk::SelectionModel>;
 
     auto
-    get_selected_page () const -> Glib::RefPtr<TabPage>;
+    get_selected_page () const -> glib::RefPtr<TabPage>;
 
     auto
     get_shortcuts () const -> TabViewShortcuts;
 
     auto
-    insert (Gtk::Widget* child, int position) -> Glib::RefPtr<TabPage>;
+    insert (gtk::Widget* child, int position) -> glib::RefPtr<TabPage>;
 
     auto
-    insert_pinned (Gtk::Widget* child, int position) -> Glib::RefPtr<TabPage>;
+    insert_pinned (gtk::Widget* child, int position) -> glib::RefPtr<TabPage>;
 
     auto
-    prepend (Gtk::Widget* child) -> Glib::RefPtr<TabPage>;
+    prepend (gtk::Widget* child) -> glib::RefPtr<TabPage>;
 
     auto
-    prepend_pinned (Gtk::Widget* child) -> Glib::RefPtr<TabPage>;
+    prepend_pinned (gtk::Widget* child) -> glib::RefPtr<TabPage>;
 
     auto
     remove_shortcuts (TabViewShortcuts shortcuts) -> void;
 
     auto
-    reorder_backward (const Glib::RefPtr<TabPage>& page) -> bool;
+    reorder_backward (const glib::RefPtr<TabPage>& page) -> bool;
 
     auto
-    reorder_first (const Glib::RefPtr<TabPage>& page) -> bool;
+    reorder_first (const glib::RefPtr<TabPage>& page) -> bool;
 
     auto
-    reorder_forward (const Glib::RefPtr<TabPage>& page) -> bool;
+    reorder_forward (const glib::RefPtr<TabPage>& page) -> bool;
 
     auto
-    reorder_last (const Glib::RefPtr<TabPage>& page) -> bool;
+    reorder_last (const glib::RefPtr<TabPage>& page) -> bool;
 
     auto
-    reorder_page (const Glib::RefPtr<TabPage>& page, int position) -> bool;
+    reorder_page (const glib::RefPtr<TabPage>& page, int position) -> bool;
 
     auto
     select_next_page () -> bool;
@@ -272,106 +272,106 @@ namespace Adw
     select_previous_page () -> bool;
 
     auto
-    set_default_icon (const Glib::RefPtr<Gio::Icon>& default_icon) -> void;
+    set_default_icon (const glib::RefPtr<gio::Icon>& default_icon) -> void;
 
     auto
-    set_menu_model (const Glib::RefPtr<Gio::MenuModel>& menu_model) -> void;
+    set_menu_model (const glib::RefPtr<gio::MenuModel>& menu_model) -> void;
 
     auto
-    set_page_pinned (const Glib::RefPtr<TabPage>& page, bool pinned) -> void;
+    set_page_pinned (const glib::RefPtr<TabPage>& page, bool pinned) -> void;
 
     auto
-    set_selected_page (const Glib::RefPtr<TabPage>& selected_page) -> void;
+    set_selected_page (const glib::RefPtr<TabPage>& selected_page) -> void;
 
     auto
     set_shortcuts (TabViewShortcuts shortcuts) -> void;
 
     auto
-    transfer_page (const Glib::RefPtr<TabPage>& page,
+    transfer_page (const glib::RefPtr<TabPage>& page,
                    TabView* other_view,
                    int position) -> void;
 
     auto
-    property_default_icon () -> Glib::PropertyProxy<Glib::RefPtr<Gio::Icon>>;
+    property_default_icon () -> glib::PropertyProxy<glib::RefPtr<gio::Icon>>;
 
     auto
     property_default_icon () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gio::Icon>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<gio::Icon>>;
 
     auto
     property_is_transferring_page () const
-        -> Glib::PropertyProxy_ReadOnly<bool>;
+        -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_menu_model () -> Glib::PropertyProxy<Glib::RefPtr<Gio::MenuModel>>;
+    property_menu_model () -> glib::PropertyProxy<glib::RefPtr<gio::MenuModel>>;
 
     auto
     property_menu_model () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gio::MenuModel>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<gio::MenuModel>>;
 
     auto
-    property_n_pages () const -> Glib::PropertyProxy_ReadOnly<int>;
+    property_n_pages () const -> glib::PropertyProxy_ReadOnly<int>;
 
     auto
-    property_n_pinned_pages () const -> Glib::PropertyProxy_ReadOnly<int>;
+    property_n_pinned_pages () const -> glib::PropertyProxy_ReadOnly<int>;
 
     auto
     property_pages () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gtk::SelectionModel>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<gtk::SelectionModel>>;
 
     auto
-    property_selected_page () -> Glib::PropertyProxy<Glib::RefPtr<TabPage>>;
+    property_selected_page () -> glib::PropertyProxy<glib::RefPtr<TabPage>>;
 
     auto
     property_selected_page () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<TabPage>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<TabPage>>;
 
     auto
-    property_shortcuts () -> Glib::PropertyProxy<TabViewShortcuts>;
+    property_shortcuts () -> glib::PropertyProxy<TabViewShortcuts>;
 
     auto
     property_shortcuts () const
-        -> Glib::PropertyProxy_ReadOnly<TabViewShortcuts>;
+        -> glib::PropertyProxy_ReadOnly<TabViewShortcuts>;
 
     auto
     signal_close_page ()
-        -> Glib::SignalProxy<bool (const Glib::RefPtr<TabPage>&)>;
+        -> glib::SignalProxy<bool (const glib::RefPtr<TabPage>&)>;
 
     auto
-    signal_create_window () -> Glib::SignalProxy<TabView*()>;
+    signal_create_window () -> glib::SignalProxy<TabView*()>;
 
     auto
     signal_indicator_activated ()
-        -> Glib::SignalProxy<void (const Glib::RefPtr<TabPage>&)>;
+        -> glib::SignalProxy<void (const glib::RefPtr<TabPage>&)>;
 
     auto
     signal_page_attached ()
-        -> Glib::SignalProxy<void (const Glib::RefPtr<TabPage>&, int)>;
+        -> glib::SignalProxy<void (const glib::RefPtr<TabPage>&, int)>;
 
     auto
     signal_page_detached ()
-        -> Glib::SignalProxy<void (const Glib::RefPtr<TabPage>&, int)>;
+        -> glib::SignalProxy<void (const glib::RefPtr<TabPage>&, int)>;
 
     auto
     signal_page_reordered ()
-        -> Glib::SignalProxy<void (const Glib::RefPtr<TabPage>&, int)>;
+        -> glib::SignalProxy<void (const glib::RefPtr<TabPage>&, int)>;
 
     auto
     signal_setup_menu ()
-        -> Glib::SignalProxy<void (const Glib::RefPtr<TabPage>&)>;
+        -> glib::SignalProxy<void (const glib::RefPtr<TabPage>&)>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Adw
+} // namespace adw
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (AdwTabView* object, bool take_copy = false) -> Adw::TabView*;
+  wrap (AdwTabView* object, bool take_copy = false) -> adw::TabView*;
 }
 
 #endif

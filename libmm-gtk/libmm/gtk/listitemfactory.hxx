@@ -16,16 +16,16 @@ using GtkListItemFactoryClass = struct _GtkListItemFactoryClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT ListItemFactory_Class;
 }
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
-  class LIBMM_GTK_SYMEXPORT ListItemFactory : public Glib::Object
+  class LIBMM_GTK_SYMEXPORT ListItemFactory : public glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -44,7 +44,7 @@ namespace Gtk
     static CppClassType listitemfactory_class_;
 
   protected:
-    explicit ListItemFactory (const Glib::ConstructParams& construct_params);
+    explicit ListItemFactory (const glib::ConstructParams& construct_params);
     explicit ListItemFactory (GtkListItemFactory* castitem);
 
 #endif
@@ -86,12 +86,12 @@ namespace Gtk
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkListItemFactory* object, bool take_copy = false) -> Glib::RefPtr<Gtk::ListItemFactory>;
-} // namespace Glib
+  wrap (GtkListItemFactory* object, bool take_copy = false) -> glib::RefPtr<gtk::ListItemFactory>;
+} // namespace glib
 
 #endif

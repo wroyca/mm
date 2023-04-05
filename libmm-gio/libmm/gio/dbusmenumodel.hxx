@@ -14,18 +14,18 @@ using GDBusMenuModelClass = struct _GDBusMenuModelClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gio::DBus
+namespace gio::DBus
 {
   class LIBMM_GIO_SYMEXPORT MenuModel_Class;
 }
 #endif
 
-namespace Gio::DBus
+namespace gio::DBus
 {
 
   class LIBMM_GIO_SYMEXPORT Connection;
 
-  class LIBMM_GIO_SYMEXPORT MenuModel : public ::Gio::MenuModel
+  class LIBMM_GIO_SYMEXPORT MenuModel : public ::gio::MenuModel
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -44,7 +44,7 @@ namespace Gio::DBus
     static CppClassType menumodel_class_;
 
   protected:
-    explicit MenuModel (const Glib::ConstructParams& construct_params);
+    explicit MenuModel (const glib::ConstructParams& construct_params);
     explicit MenuModel (GDBusMenuModel* castitem);
 
 #endif
@@ -86,23 +86,23 @@ namespace Gio::DBus
 
   public:
     static auto
-    get (const Glib::RefPtr<Connection>& connection,
-         const Glib::ustring& bus_name,
-         const Glib::ustring& object_path) -> Glib::RefPtr<MenuModel>;
+    get (const glib::RefPtr<Connection>& connection,
+         const glib::ustring& bus_name,
+         const glib::ustring& object_path) -> glib::RefPtr<MenuModel>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gio::DBus
+} // namespace gio::DBus
 
-namespace Glib
+namespace glib
 {
 
   LIBMM_GIO_SYMEXPORT
   auto
-  wrap (GDBusMenuModel* object, bool take_copy = false) -> Glib::RefPtr<Gio::DBus::MenuModel>;
-} // namespace Glib
+  wrap (GDBusMenuModel* object, bool take_copy = false) -> glib::RefPtr<gio::DBus::MenuModel>;
+} // namespace glib
 
 #endif

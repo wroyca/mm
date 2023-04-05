@@ -14,13 +14,13 @@ using GtkGestureSingleClass = struct _GtkGestureSingleClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT GestureSingle_Class;
 }
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
   class LIBMM_GTK_SYMEXPORT GestureSingle : public Gesture
@@ -42,7 +42,7 @@ namespace Gtk
     static CppClassType gesturesingle_class_;
 
   protected:
-    explicit GestureSingle (const Glib::ConstructParams& construct_params);
+    explicit GestureSingle (const glib::ConstructParams& construct_params);
     explicit GestureSingle (GtkGestureSingle* castitem);
 
 #endif
@@ -105,40 +105,40 @@ namespace Gtk
     get_current_button () const -> unsigned int;
 
     auto
-    get_current_sequence () -> Gdk::EventSequence*;
+    get_current_sequence () -> gdk::EventSequence*;
 
     auto
-    get_current_sequence () const -> const Gdk::EventSequence*;
+    get_current_sequence () const -> const gdk::EventSequence*;
 
     auto
-    property_touch_only () -> Glib::PropertyProxy<bool>;
+    property_touch_only () -> glib::PropertyProxy<bool>;
 
     auto
-    property_touch_only () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_touch_only () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_exclusive () -> Glib::PropertyProxy<bool>;
+    property_exclusive () -> glib::PropertyProxy<bool>;
 
     auto
-    property_exclusive () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_exclusive () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_button () -> Glib::PropertyProxy<unsigned int>;
+    property_button () -> glib::PropertyProxy<unsigned int>;
 
     auto
-    property_button () const -> Glib::PropertyProxy_ReadOnly<unsigned int>;
+    property_button () const -> glib::PropertyProxy_ReadOnly<unsigned int>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkGestureSingle* object, bool take_copy = false) -> Glib::RefPtr<Gtk::GestureSingle>;
-} // namespace Glib
+  wrap (GtkGestureSingle* object, bool take_copy = false) -> glib::RefPtr<gtk::GestureSingle>;
+} // namespace glib
 
 #endif

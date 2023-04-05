@@ -7,34 +7,34 @@
 
 #include <libmm/glib/class.hxx>
 
-namespace Gtk
+namespace gtk
 {
 
-  class LIBMM_GTK_SYMEXPORT Separator_Class : public Glib::Class
+  class LIBMM_GTK_SYMEXPORT Separator_Class : public glib::Class
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
     using CppObjectType = Separator;
     using BaseObjectType = GtkSeparator;
     using BaseClassType = GtkSeparatorClass;
-    using CppClassParent = Gtk::Widget_Class;
+    using CppClassParent = gtk::Widget_Class;
     using BaseClassParent = GtkWidgetClass;
 
     friend class Separator;
 #endif
 
     auto
-    init () -> const Glib::Class&;
+    init () -> const glib::Class&;
 
     static auto
     class_init_function (void* g_class, void* class_data) -> void;
 
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
 
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
 #endif

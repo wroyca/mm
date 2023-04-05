@@ -11,24 +11,24 @@ namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GtkGridLayoutChild* object, bool take_copy) -> Glib::RefPtr<Gtk::GridLayoutChild>
+  wrap (GtkGridLayoutChild* object, bool take_copy) -> glib::RefPtr<gtk::GridLayoutChild>
   {
-    return Glib::make_refptr_for_instance<Gtk::GridLayoutChild> (
-        dynamic_cast<Gtk::GridLayoutChild*> (
-            Glib::wrap_auto ((GObject*) (object), take_copy)));
+    return glib::make_refptr_for_instance<gtk::GridLayoutChild> (
+        dynamic_cast<gtk::GridLayoutChild*> (
+            glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gtk
+namespace gtk
 {
 
   auto
-  GridLayoutChild_Class::init () -> const Glib::Class&
+  GridLayoutChild_Class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -48,7 +48,7 @@ namespace Gtk
   }
 
   auto
-  GridLayoutChild_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  GridLayoutChild_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new GridLayoutChild ((GtkGridLayoutChild*) object);
   }
@@ -61,7 +61,7 @@ namespace Gtk
   }
 
   GridLayoutChild::GridLayoutChild (
-      const Glib::ConstructParams& construct_params)
+      const glib::ConstructParams& construct_params)
     : LayoutChild (construct_params)
   {
   }
@@ -100,8 +100,8 @@ namespace Gtk
   }
 
   GridLayoutChild::GridLayoutChild ()
-    : Glib::ObjectBase (nullptr),
-      LayoutChild (Glib::ConstructParams (gridlayoutchild_class_.init ()))
+    : glib::ObjectBase (nullptr),
+      LayoutChild (glib::ConstructParams (gridlayoutchild_class_.init ()))
   {
   }
 
@@ -158,51 +158,51 @@ namespace Gtk
   }
 
   auto
-  GridLayoutChild::property_column () -> Glib::PropertyProxy<int>
+  GridLayoutChild::property_column () -> glib::PropertyProxy<int>
   {
-    return Glib::PropertyProxy<int> (this, "column");
+    return glib::PropertyProxy<int> (this, "column");
   }
 
   auto
-  GridLayoutChild::property_column () const -> Glib::PropertyProxy_ReadOnly<int>
+  GridLayoutChild::property_column () const -> glib::PropertyProxy_ReadOnly<int>
   {
-    return Glib::PropertyProxy_ReadOnly<int> (this, "column");
+    return glib::PropertyProxy_ReadOnly<int> (this, "column");
   }
 
   auto
-  GridLayoutChild::property_row () -> Glib::PropertyProxy<int>
+  GridLayoutChild::property_row () -> glib::PropertyProxy<int>
   {
-    return Glib::PropertyProxy<int> (this, "row");
+    return glib::PropertyProxy<int> (this, "row");
   }
 
   auto
-  GridLayoutChild::property_row () const -> Glib::PropertyProxy_ReadOnly<int>
+  GridLayoutChild::property_row () const -> glib::PropertyProxy_ReadOnly<int>
   {
-    return Glib::PropertyProxy_ReadOnly<int> (this, "row");
+    return glib::PropertyProxy_ReadOnly<int> (this, "row");
   }
 
   auto
-  GridLayoutChild::property_column_span () -> Glib::PropertyProxy<int>
+  GridLayoutChild::property_column_span () -> glib::PropertyProxy<int>
   {
-    return Glib::PropertyProxy<int> (this, "column-span");
+    return glib::PropertyProxy<int> (this, "column-span");
   }
 
   auto
-  GridLayoutChild::property_column_span () const -> Glib::PropertyProxy_ReadOnly<int>
+  GridLayoutChild::property_column_span () const -> glib::PropertyProxy_ReadOnly<int>
   {
-    return Glib::PropertyProxy_ReadOnly<int> (this, "column-span");
+    return glib::PropertyProxy_ReadOnly<int> (this, "column-span");
   }
 
   auto
-  GridLayoutChild::property_row_span () -> Glib::PropertyProxy<int>
+  GridLayoutChild::property_row_span () -> glib::PropertyProxy<int>
   {
-    return Glib::PropertyProxy<int> (this, "row-span");
+    return glib::PropertyProxy<int> (this, "row-span");
   }
 
   auto
-  GridLayoutChild::property_row_span () const -> Glib::PropertyProxy_ReadOnly<int>
+  GridLayoutChild::property_row_span () const -> glib::PropertyProxy_ReadOnly<int>
   {
-    return Glib::PropertyProxy_ReadOnly<int> (this, "row-span");
+    return glib::PropertyProxy_ReadOnly<int> (this, "row-span");
   }
 
-} // namespace Gtk
+} // namespace gtk

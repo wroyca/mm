@@ -5,7 +5,7 @@
 #include <libmm/gtk/csslocation.hxx>
 #include <libmm/gtk/csslocation_p.hxx>
 
-namespace Gtk
+namespace gtk
 {
 
   CssLocation::CssLocation ()
@@ -31,24 +31,24 @@ namespace Gtk
     gobject_.line_chars = line_chars;
   }
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (const GtkCssLocation* object) -> Gtk::CssLocation
+  wrap (const GtkCssLocation* object) -> gtk::CssLocation
   {
-    return Gtk::CssLocation (object);
+    return gtk::CssLocation (object);
   }
 
-} // namespace Glib
+} // namespace glib
 
 namespace
 {
 }
 
-namespace Gtk
+namespace gtk
 {
 
   auto
@@ -111,4 +111,4 @@ namespace Gtk
     gobj ()->line_chars = value;
   }
 
-} // namespace Gtk
+} // namespace gtk

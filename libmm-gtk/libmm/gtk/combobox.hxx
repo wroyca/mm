@@ -22,18 +22,18 @@ using GtkComboBoxClass = struct _GtkComboBoxClass;
   #endif
 
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT ComboBox_Class;
 }
   #endif
 
-namespace Gdk
+namespace gdk
 {
   class LIBMM_GTK_SYMEXPORT Device;
 }
 
-namespace Gtk
+namespace gtk
 {
 
   class LIBMM_GTK_SYMEXPORT ComboBox : public Widget,
@@ -65,7 +65,7 @@ namespace Gtk
     static CppClassType combobox_class_;
 
   protected:
-    explicit ComboBox (const Glib::ConstructParams& construct_params);
+    explicit ComboBox (const glib::ConstructParams& construct_params);
     explicit ComboBox (GtkComboBox* castitem);
 
   #endif
@@ -96,7 +96,7 @@ namespace Gtk
   public:
     explicit ComboBox (bool has_entry = false);
 
-    explicit ComboBox (const Glib::RefPtr<TreeModel>& model,
+    explicit ComboBox (const glib::RefPtr<TreeModel>& model,
                        bool has_entry = false);
 
     auto
@@ -115,19 +115,19 @@ namespace Gtk
     set_active (const TreeModel::const_iterator& iter) -> void;
 
     auto
-    get_entry_text () const -> Glib::ustring;
+    get_entry_text () const -> glib::ustring;
 
     auto
     unset_active () -> void;
 
     auto
-    get_model () -> Glib::RefPtr<TreeModel>;
+    get_model () -> glib::RefPtr<TreeModel>;
 
     auto
-    get_model () const -> Glib::RefPtr<const TreeModel>;
+    get_model () const -> glib::RefPtr<const TreeModel>;
 
     auto
-    set_model (const Glib::RefPtr<TreeModel>& model) -> void;
+    set_model (const glib::RefPtr<TreeModel>& model) -> void;
 
     auto
     unset_model () -> void;
@@ -169,7 +169,7 @@ namespace Gtk
     popup () -> void;
 
     auto
-    popup (const Glib::RefPtr<Gdk::Device>& device) -> void;
+    popup (const glib::RefPtr<gdk::Device>& device) -> void;
 
     auto
     popdown () -> void;
@@ -181,10 +181,10 @@ namespace Gtk
     set_id_column (int id_column) -> void;
 
     auto
-    get_active_id () const -> Glib::ustring;
+    get_active_id () const -> glib::ustring;
 
     auto
-    set_active_id (const Glib::ustring& active_id) -> bool;
+    set_active_id (const glib::ustring& active_id) -> bool;
 
     auto
     set_child (Widget& child) -> void;
@@ -204,73 +204,73 @@ namespace Gtk
     get_entry () const -> const Entry*;
 
     auto
-    property_model () -> Glib::PropertyProxy<Glib::RefPtr<TreeModel>>;
+    property_model () -> glib::PropertyProxy<glib::RefPtr<TreeModel>>;
 
     auto
     property_model () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<TreeModel>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<TreeModel>>;
 
     auto
-    property_active () -> Glib::PropertyProxy<int>;
+    property_active () -> glib::PropertyProxy<int>;
 
     auto
-    property_active () const -> Glib::PropertyProxy_ReadOnly<int>;
+    property_active () const -> glib::PropertyProxy_ReadOnly<int>;
 
     auto
-    property_has_frame () -> Glib::PropertyProxy<bool>;
+    property_has_frame () -> glib::PropertyProxy<bool>;
 
     auto
-    property_has_frame () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_has_frame () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_popup_shown () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_popup_shown () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_button_sensitivity () -> Glib::PropertyProxy<SensitivityType>;
+    property_button_sensitivity () -> glib::PropertyProxy<SensitivityType>;
 
     auto
     property_button_sensitivity () const
-        -> Glib::PropertyProxy_ReadOnly<SensitivityType>;
+        -> glib::PropertyProxy_ReadOnly<SensitivityType>;
 
     auto
-    property_popup_fixed_width () -> Glib::PropertyProxy<bool>;
+    property_popup_fixed_width () -> glib::PropertyProxy<bool>;
 
     auto
-    property_popup_fixed_width () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_popup_fixed_width () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_has_entry () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_has_entry () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_entry_text_column () -> Glib::PropertyProxy<int>;
+    property_entry_text_column () -> glib::PropertyProxy<int>;
 
     auto
-    property_entry_text_column () const -> Glib::PropertyProxy_ReadOnly<int>;
+    property_entry_text_column () const -> glib::PropertyProxy_ReadOnly<int>;
 
     auto
-    property_id_column () -> Glib::PropertyProxy<int>;
+    property_id_column () -> glib::PropertyProxy<int>;
 
     auto
-    property_id_column () const -> Glib::PropertyProxy_ReadOnly<int>;
+    property_id_column () const -> glib::PropertyProxy_ReadOnly<int>;
 
     auto
-    property_active_id () -> Glib::PropertyProxy<Glib::ustring>;
+    property_active_id () -> glib::PropertyProxy<glib::ustring>;
 
     auto
-    property_active_id () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+    property_active_id () const -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
     auto
-    property_child () -> Glib::PropertyProxy<Widget*>;
+    property_child () -> glib::PropertyProxy<Widget*>;
 
     auto
-    property_child () const -> Glib::PropertyProxy_ReadOnly<Widget*>;
+    property_child () const -> glib::PropertyProxy_ReadOnly<Widget*>;
 
     auto
-    signal_changed () -> Glib::SignalProxy<void ()>;
+    signal_changed () -> glib::SignalProxy<void ()>;
 
     auto
     signal_format_entry_text ()
-        -> Glib::SignalProxy<Glib::ustring (const TreeModel::Path&)>;
+        -> glib::SignalProxy<glib::ustring (const TreeModel::Path&)>;
 
   public:
   public:
@@ -279,16 +279,16 @@ namespace Gtk
     on_changed () -> void;
 
     virtual auto
-    on_format_entry_text (const TreeModel::Path& path) -> Glib::ustring;
+    on_format_entry_text (const TreeModel::Path& path) -> glib::ustring;
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkComboBox* object, bool take_copy = false) -> Gtk::ComboBox*;
-} // namespace Glib
+  wrap (GtkComboBox* object, bool take_copy = false) -> gtk::ComboBox*;
+} // namespace glib
 
 #endif
 

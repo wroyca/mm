@@ -9,46 +9,46 @@
 
 #include <gtk/gtk.h>
 
-namespace Gtk
+namespace gtk
 {
 
-  Picture::Picture (const Glib::RefPtr<Gdk::Pixbuf>& pixbuf)
-    : Glib::ObjectBase (nullptr),
-      Gtk::Widget (Glib::ConstructParams (picture_class_.init ()))
+  Picture::Picture (const glib::RefPtr<gdk::Pixbuf>& pixbuf)
+    : glib::ObjectBase (nullptr),
+      gtk::Widget (glib::ConstructParams (picture_class_.init ()))
   {
-    gtk_picture_set_pixbuf (gobj (), Glib::unwrap (pixbuf));
+    gtk_picture_set_pixbuf (gobj (), glib::unwrap (pixbuf));
   }
 
   Picture::Picture (const std::string& filename)
-    : Glib::ObjectBase (nullptr),
-      Gtk::Widget (Glib::ConstructParams (picture_class_.init ()))
+    : glib::ObjectBase (nullptr),
+      gtk::Widget (glib::ConstructParams (picture_class_.init ()))
   {
-    gtk_picture_set_filename (gobj (), Glib::c_str_or_nullptr (filename));
+    gtk_picture_set_filename (gobj (), glib::c_str_or_nullptr (filename));
   }
 
-} // namespace Gtk
+} // namespace gtk
 
 namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GtkPicture* object, bool take_copy) -> Gtk::Picture*
+  wrap (GtkPicture* object, bool take_copy) -> gtk::Picture*
   {
-    return dynamic_cast<Gtk::Picture*> (
-        Glib::wrap_auto ((GObject*) (object), take_copy));
+    return dynamic_cast<gtk::Picture*> (
+        glib::wrap_auto ((GObject*) (object), take_copy));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gtk
+namespace gtk
 {
 
   auto
-  Picture_Class::init () -> const Glib::Class&
+  Picture_Class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -68,30 +68,30 @@ namespace Gtk
   }
 
   auto
-  Picture_Class::wrap_new (GObject* o) -> Glib::ObjectBase*
+  Picture_Class::wrap_new (GObject* o) -> glib::ObjectBase*
   {
     return manage (new Picture ((GtkPicture*) (o)));
   }
 
-  Picture::Picture (const Glib::ConstructParams& construct_params)
-    : Gtk::Widget (construct_params)
+  Picture::Picture (const glib::ConstructParams& construct_params)
+    : gtk::Widget (construct_params)
   {
   }
 
   Picture::Picture (GtkPicture* castitem)
-    : Gtk::Widget ((GtkWidget*) (castitem))
+    : gtk::Widget ((GtkWidget*) (castitem))
   {
   }
 
   Picture::Picture (Picture&& src) noexcept
-    : Gtk::Widget (std::move (src))
+    : gtk::Widget (std::move (src))
   {
   }
 
   auto
   Picture::operator= (Picture&& src) noexcept -> Picture&
   {
-    Gtk::Widget::operator= (std::move (src));
+    gtk::Widget::operator= (std::move (src));
     return *this;
   }
 
@@ -115,69 +115,69 @@ namespace Gtk
   }
 
   Picture::Picture ()
-    : Glib::ObjectBase (nullptr),
-      Gtk::Widget (Glib::ConstructParams (picture_class_.init ()))
+    : glib::ObjectBase (nullptr),
+      gtk::Widget (glib::ConstructParams (picture_class_.init ()))
   {
   }
 
-  Picture::Picture (const Glib::RefPtr<Gdk::Paintable>& paintable)
-    : Glib::ObjectBase (nullptr),
-      Gtk::Widget (Glib::ConstructParams (picture_class_.init (),
+  Picture::Picture (const glib::RefPtr<gdk::Paintable>& paintable)
+    : glib::ObjectBase (nullptr),
+      gtk::Widget (glib::ConstructParams (picture_class_.init (),
                                           "paintable",
-                                          Glib::unwrap (paintable),
+                                          glib::unwrap (paintable),
                                           nullptr))
   {
   }
 
-  Picture::Picture (const Glib::RefPtr<Gio::File>& file)
-    : Glib::ObjectBase (nullptr),
-      Gtk::Widget (Glib::ConstructParams (
+  Picture::Picture (const glib::RefPtr<gio::File>& file)
+    : glib::ObjectBase (nullptr),
+      gtk::Widget (glib::ConstructParams (
           picture_class_.init (),
           "file",
-          const_cast<GFile*> (Glib::unwrap<Gio::File> (file)),
+          const_cast<GFile*> (glib::unwrap<gio::File> (file)),
           nullptr))
   {
   }
 
   auto
-  Picture::set_paintable (const Glib::RefPtr<Gdk::Paintable>& paintable) -> void
+  Picture::set_paintable (const glib::RefPtr<gdk::Paintable>& paintable) -> void
   {
-    gtk_picture_set_paintable (gobj (), Glib::unwrap (paintable));
+    gtk_picture_set_paintable (gobj (), glib::unwrap (paintable));
   }
 
   auto
-  Picture::get_paintable () -> Glib::RefPtr<Gdk::Paintable>
+  Picture::get_paintable () -> glib::RefPtr<gdk::Paintable>
   {
-    auto retvalue = Glib::wrap (gtk_picture_get_paintable (gobj ()));
+    auto retvalue = glib::wrap (gtk_picture_get_paintable (gobj ()));
     if (retvalue)
       retvalue->reference ();
     return retvalue;
   }
 
   auto
-  Picture::get_paintable () const -> Glib::RefPtr<const Gdk::Paintable>
+  Picture::get_paintable () const -> glib::RefPtr<const gdk::Paintable>
   {
     return const_cast<Picture*> (this)->get_paintable ();
   }
 
   auto
-  Picture::set_file (const Glib::RefPtr<const Gio::File>& file) -> void
+  Picture::set_file (const glib::RefPtr<const gio::File>& file) -> void
   {
     gtk_picture_set_file (gobj (),
-                          const_cast<GFile*> (Glib::unwrap<Gio::File> (file)));
+                          const_cast<GFile*> (glib::unwrap<gio::File> (file)));
   }
 
   auto
-  Picture::get_file () -> Glib::RefPtr<Gio::File>
+  Picture::get_file () -> glib::RefPtr<gio::File>
   {
-    auto retvalue = Glib::wrap (gtk_picture_get_file (gobj ()));
+    auto retvalue = glib::wrap (gtk_picture_get_file (gobj ()));
     if (retvalue)
       retvalue->reference ();
     return retvalue;
   }
 
   auto
-  Picture::get_file () const -> Glib::RefPtr<const Gio::File>
+  Picture::get_file () const -> glib::RefPtr<const gio::File>
   {
     return const_cast<Picture*> (this)->get_file ();
   }
@@ -195,9 +195,9 @@ namespace Gtk
   }
 
   auto
-  Picture::set_pixbuf (const Glib::RefPtr<Gdk::Pixbuf>& pixbuf) -> void
+  Picture::set_pixbuf (const glib::RefPtr<gdk::Pixbuf>& pixbuf) -> void
   {
-    gtk_picture_set_pixbuf (gobj (), Glib::unwrap (pixbuf));
+    gtk_picture_set_pixbuf (gobj (), glib::unwrap (pixbuf));
   }
 
 #ifndef GTKMM_DISABLE_DEPRECATED
@@ -251,7 +251,7 @@ namespace Gtk
   }
 
   auto
-  Picture::set_alternative_text (const Glib::ustring& alternative_text) -> void
+  Picture::set_alternative_text (const glib::ustring& alternative_text) -> void
   {
     gtk_picture_set_alternative_text (
         gobj (),
@@ -259,109 +259,109 @@ namespace Gtk
   }
 
   auto
-  Picture::get_alternative_text () const -> Glib::ustring
+  Picture::get_alternative_text () const -> glib::ustring
   {
-    return Glib::convert_const_gchar_ptr_to_ustring (
+    return glib::convert_const_gchar_ptr_to_ustring (
         gtk_picture_get_alternative_text (const_cast<GtkPicture*> (gobj ())));
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<
-          Glib::RefPtr<Gdk::Paintable>>::value,
-      "Type Glib::RefPtr<Gdk::Paintable> cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      glib::Traits::ValueCompatibleWithWrapProperty<
+          glib::RefPtr<gdk::Paintable>>::value,
+      "Type glib::RefPtr<gdk::Paintable> cannot be used in _WRAP_PROPERTY. "
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  Picture::property_paintable () -> Glib::PropertyProxy<Glib::RefPtr<Gdk::Paintable>>
+  Picture::property_paintable () -> glib::PropertyProxy<glib::RefPtr<gdk::Paintable>>
   {
-    return Glib::PropertyProxy<Glib::RefPtr<Gdk::Paintable>> (this,
+    return glib::PropertyProxy<glib::RefPtr<gdk::Paintable>> (this,
                                                               "paintable");
   }
 
   auto
-  Picture::property_paintable () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gdk::Paintable>>
+  Picture::property_paintable () const -> glib::PropertyProxy_ReadOnly<glib::RefPtr<gdk::Paintable>>
   {
-    return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gdk::Paintable>> (
+    return glib::PropertyProxy_ReadOnly<glib::RefPtr<gdk::Paintable>> (
         this,
         "paintable");
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<
-          Glib::RefPtr<Gio::File>>::value,
-      "Type Glib::RefPtr<Gio::File> cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      glib::Traits::ValueCompatibleWithWrapProperty<
+          glib::RefPtr<gio::File>>::value,
+      "Type glib::RefPtr<gio::File> cannot be used in _WRAP_PROPERTY. "
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  Picture::property_file () -> Glib::PropertyProxy<Glib::RefPtr<Gio::File>>
+  Picture::property_file () -> glib::PropertyProxy<glib::RefPtr<gio::File>>
   {
-    return Glib::PropertyProxy<Glib::RefPtr<Gio::File>> (this, "file");
+    return glib::PropertyProxy<glib::RefPtr<gio::File>> (this, "file");
   }
 
   auto
-  Picture::property_file () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gio::File>>
+  Picture::property_file () const -> glib::PropertyProxy_ReadOnly<glib::RefPtr<gio::File>>
   {
-    return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gio::File>> (this, "file");
+    return glib::PropertyProxy_ReadOnly<glib::RefPtr<gio::File>> (this, "file");
   }
 
   auto
-  Picture::property_alternative_text () -> Glib::PropertyProxy<Glib::ustring>
+  Picture::property_alternative_text () -> glib::PropertyProxy<glib::ustring>
   {
-    return Glib::PropertyProxy<Glib::ustring> (this, "alternative-text");
+    return glib::PropertyProxy<glib::ustring> (this, "alternative-text");
   }
 
   auto
-  Picture::property_alternative_text () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>
+  Picture::property_alternative_text () const -> glib::PropertyProxy_ReadOnly<glib::ustring>
   {
-    return Glib::PropertyProxy_ReadOnly<Glib::ustring> (this,
+    return glib::PropertyProxy_ReadOnly<glib::ustring> (this,
                                                         "alternative-text");
   }
 
 #ifndef GTKMM_DISABLE_DEPRECATED
 
   auto
-  Picture::property_keep_aspect_ratio () -> Glib::PropertyProxy<bool>
+  Picture::property_keep_aspect_ratio () -> glib::PropertyProxy<bool>
   {
-    return Glib::PropertyProxy<bool> (this, "keep-aspect-ratio");
+    return glib::PropertyProxy<bool> (this, "keep-aspect-ratio");
   }
 #endif
 
 #ifndef GTKMM_DISABLE_DEPRECATED
 
   auto
-  Picture::property_keep_aspect_ratio () const -> Glib::PropertyProxy_ReadOnly<bool>
+  Picture::property_keep_aspect_ratio () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "keep-aspect-ratio");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "keep-aspect-ratio");
   }
 #endif
 
   auto
-  Picture::property_can_shrink () -> Glib::PropertyProxy<bool>
+  Picture::property_can_shrink () -> glib::PropertyProxy<bool>
   {
-    return Glib::PropertyProxy<bool> (this, "can-shrink");
+    return glib::PropertyProxy<bool> (this, "can-shrink");
   }
 
   auto
-  Picture::property_can_shrink () const -> Glib::PropertyProxy_ReadOnly<bool>
+  Picture::property_can_shrink () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "can-shrink");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "can-shrink");
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<ContentFit>::value,
+      glib::Traits::ValueCompatibleWithWrapProperty<ContentFit>::value,
       "Type ContentFit cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  Picture::property_content_fit () -> Glib::PropertyProxy<ContentFit>
+  Picture::property_content_fit () -> glib::PropertyProxy<ContentFit>
   {
-    return Glib::PropertyProxy<ContentFit> (this, "content-fit");
+    return glib::PropertyProxy<ContentFit> (this, "content-fit");
   }
 
   auto
-  Picture::property_content_fit () const -> Glib::PropertyProxy_ReadOnly<ContentFit>
+  Picture::property_content_fit () const -> glib::PropertyProxy_ReadOnly<ContentFit>
   {
-    return Glib::PropertyProxy_ReadOnly<ContentFit> (this, "content-fit");
+    return glib::PropertyProxy_ReadOnly<ContentFit> (this, "content-fit");
   }
 
-} // namespace Gtk
+} // namespace gtk

@@ -7,7 +7,7 @@
 #include <libmm/gdk/mm-gdkconfig.hxx>
 #include <libmm/gdk/surface.hxx>
 
-namespace Gdk
+namespace gdk
 {
 
   class LIBMM_GDK_SYMEXPORT DragSurfaceImpl : public DragSurface,
@@ -31,6 +31,6 @@ namespace Gdk
     ~DragSurfaceImpl () noexcept override;
   };
 
-} // namespace Gdk
+} // namespace gdk
 
 #endif

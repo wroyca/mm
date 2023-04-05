@@ -9,18 +9,18 @@
 #include <gio/gunixconnection.h>
 #include <libmm/gio/slot_async.hxx>
 
-namespace Gio
+namespace gio
 {
 
   auto
   UnixConnection::receive_credentials_async (
       const SlotAsyncReady& slot,
-      const Glib::RefPtr<Cancellable>& cancellable) -> void
+      const glib::RefPtr<Cancellable>& cancellable) -> void
   {
     const auto slot_copy = new SlotAsyncReady (slot);
 
     g_unix_connection_receive_credentials_async (gobj (),
-                                                 Glib::unwrap (cancellable),
+                                                 glib::unwrap (cancellable),
                                                  &SignalProxy_async_callback,
                                                  slot_copy);
   }
@@ -39,12 +39,12 @@ namespace Gio
   auto
   UnixConnection::send_credentials_async (
       const SlotAsyncReady& slot,
-      const Glib::RefPtr<Cancellable>& cancellable) -> void
+      const glib::RefPtr<Cancellable>& cancellable) -> void
   {
     const auto slot_copy = new SlotAsyncReady (slot);
 
     g_unix_connection_send_credentials_async (gobj (),
-                                              Glib::unwrap (cancellable),
+                                              glib::unwrap (cancellable),
                                               &SignalProxy_async_callback,
                                               slot_copy);
   }
@@ -61,26 +61,26 @@ namespace Gio
                                               slot_copy);
   }
 
-} // namespace Gio
+} // namespace gio
 
 namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GUnixConnection* object, const bool take_copy) -> RefPtr<Gio::UnixConnection>
+  wrap (GUnixConnection* object, const bool take_copy) -> RefPtr<gio::UnixConnection>
   {
-    return Glib::make_refptr_for_instance<Gio::UnixConnection> (
-        dynamic_cast<Gio::UnixConnection*> (
+    return glib::make_refptr_for_instance<gio::UnixConnection> (
+        dynamic_cast<gio::UnixConnection*> (
             wrap_auto ((GObject*) object, take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gio
+namespace gio
 {
 
   auto
@@ -104,7 +104,7 @@ namespace Gio
   }
 
   auto
-  UnixConnection_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  UnixConnection_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new UnixConnection ((GUnixConnection*) object);
   }
@@ -116,7 +116,7 @@ namespace Gio
     return gobj ();
   }
 
-  UnixConnection::UnixConnection (const Glib::ConstructParams& construct_params)
+  UnixConnection::UnixConnection (const glib::ConstructParams& construct_params)
     : SocketConnection (construct_params)
   {
   }
@@ -156,15 +156,15 @@ namespace Gio
 
   auto
   UnixConnection::send_fd (const int fd,
-                           const Glib::RefPtr<Cancellable>& cancellable) -> bool
+                           const glib::RefPtr<Cancellable>& cancellable) -> bool
   {
     GError* gerror = nullptr;
     const auto retvalue = g_unix_connection_send_fd (gobj (),
                                                      fd,
-                                                     Glib::unwrap (cancellable),
+                                                     glib::unwrap (cancellable),
                                                      &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
@@ -175,20 +175,20 @@ namespace Gio
     const auto retvalue =
         g_unix_connection_send_fd (gobj (), fd, nullptr, &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
   auto
-  UnixConnection::receive_fd (const Glib::RefPtr<Cancellable>& cancellable) -> int
+  UnixConnection::receive_fd (const glib::RefPtr<Cancellable>& cancellable) -> int
   {
     GError* gerror = nullptr;
     const auto retvalue = g_unix_connection_receive_fd (
         gobj (),
-        Glib::unwrap (cancellable),
+        glib::unwrap (cancellable),
         &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
@@ -199,74 +199,74 @@ namespace Gio
     const auto retvalue =
         g_unix_connection_receive_fd (gobj (), nullptr, &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
   auto
   UnixConnection::receive_credentials (
-      const Glib::RefPtr<Cancellable>& cancellable) -> Glib::RefPtr<Credentials>
+      const glib::RefPtr<Cancellable>& cancellable) -> glib::RefPtr<Credentials>
   {
     GError* gerror = nullptr;
-    auto retvalue = Glib::wrap (
+    auto retvalue = glib::wrap (
         g_unix_connection_receive_credentials (gobj (),
-                                               Glib::unwrap (cancellable),
+                                               glib::unwrap (cancellable),
                                                &gerror));
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
   auto
-  UnixConnection::receive_credentials () -> Glib::RefPtr<Credentials>
+  UnixConnection::receive_credentials () -> glib::RefPtr<Credentials>
   {
     GError* gerror = nullptr;
-    auto retvalue = Glib::wrap (
+    auto retvalue = glib::wrap (
         g_unix_connection_receive_credentials (gobj (), nullptr, &gerror));
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
   auto
   UnixConnection::receive_credentials (
-      const Glib::RefPtr<Cancellable>& cancellable) const -> Glib::RefPtr<const Credentials>
+      const glib::RefPtr<Cancellable>& cancellable) const -> glib::RefPtr<const Credentials>
   {
     return const_cast<UnixConnection*> (this)->receive_credentials (
         cancellable);
   }
 
   auto
-  UnixConnection::receive_credentials () const -> Glib::RefPtr<const Credentials>
+  UnixConnection::receive_credentials () const -> glib::RefPtr<const Credentials>
   {
     return const_cast<UnixConnection*> (this)->receive_credentials ();
   }
 
   auto
   UnixConnection::receive_credentials_finish (
-      const Glib::RefPtr<AsyncResult>& result) -> Glib::RefPtr<Credentials>
+      const glib::RefPtr<AsyncResult>& result) -> glib::RefPtr<Credentials>
   {
     GError* gerror = nullptr;
-    auto retvalue = Glib::wrap (
+    auto retvalue = glib::wrap (
         g_unix_connection_receive_credentials_finish (gobj (),
-                                                      Glib::unwrap (result),
+                                                      glib::unwrap (result),
                                                       &gerror));
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
   auto
   UnixConnection::send_credentials (
-      const Glib::RefPtr<Cancellable>& cancellable) -> bool
+      const glib::RefPtr<Cancellable>& cancellable) -> bool
   {
     GError* gerror = nullptr;
     const auto retvalue = g_unix_connection_send_credentials (
         gobj (),
-        Glib::unwrap (cancellable),
+        glib::unwrap (cancellable),
         &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
@@ -277,22 +277,22 @@ namespace Gio
     const auto retvalue =
         g_unix_connection_send_credentials (gobj (), nullptr, &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
   auto
   UnixConnection::send_credentials_finish (
-      const Glib::RefPtr<AsyncResult>& result) -> bool
+      const glib::RefPtr<AsyncResult>& result) -> bool
   {
     GError* gerror = nullptr;
     const auto retvalue = g_unix_connection_send_credentials_finish (
         gobj (),
-        Glib::unwrap (result),
+        glib::unwrap (result),
         &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
-} // namespace Gio
+} // namespace gio

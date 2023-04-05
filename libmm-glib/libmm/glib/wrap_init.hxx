@@ -5,7 +5,7 @@
 
 #include <libmm/glib/error.hxx>
 
-namespace Glib
+namespace glib
 {
   LIBMM_GLIB_SYMEXPORT auto
   wrap_init () -> void;

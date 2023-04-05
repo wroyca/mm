@@ -7,7 +7,7 @@
 
 #include <libmm/gtk/mm-gtk.hxx>
 
-namespace Adw
+namespace adw
 {
 
 }
@@ -17,28 +17,28 @@ namespace
 }
 
 auto
-Glib::Value<Adw::ViewSwitcherPolicy>::value_type () -> GType
+glib::Value<adw::ViewSwitcherPolicy>::value_type () -> GType
 {
   return adw_view_switcher_policy_get_type ();
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (AdwViewSwitcher* object, bool take_copy) -> Adw::ViewSwitcher*
+  wrap (AdwViewSwitcher* object, bool take_copy) -> adw::ViewSwitcher*
   {
-    return dynamic_cast<Adw::ViewSwitcher*> (
-        Glib::wrap_auto ((GObject*) (object), take_copy));
+    return dynamic_cast<adw::ViewSwitcher*> (
+        glib::wrap_auto ((GObject*) (object), take_copy));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Adw
+namespace adw
 {
 
   auto
-  ViewSwitcher_Class::init () -> const Glib::Class&
+  ViewSwitcher_Class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -49,30 +49,30 @@ namespace Adw
   }
 
   auto
-  ViewSwitcher_Class::wrap_new (GObject* o) -> Glib::ObjectBase*
+  ViewSwitcher_Class::wrap_new (GObject* o) -> glib::ObjectBase*
   {
     return manage (new ViewSwitcher ((AdwViewSwitcher*) (o)));
   }
 
-  ViewSwitcher::ViewSwitcher (const Glib::ConstructParams& construct_params)
-    : Gtk::Widget (construct_params)
+  ViewSwitcher::ViewSwitcher (const glib::ConstructParams& construct_params)
+    : gtk::Widget (construct_params)
   {
   }
 
   ViewSwitcher::ViewSwitcher (AdwViewSwitcher* castitem)
-    : Gtk::Widget ((GtkWidget*) (castitem))
+    : gtk::Widget ((GtkWidget*) (castitem))
   {
   }
 
   ViewSwitcher::ViewSwitcher (ViewSwitcher&& src) noexcept
-    : Gtk::Widget (std::move (src))
+    : gtk::Widget (std::move (src))
   {
   }
 
   auto
   ViewSwitcher::operator= (ViewSwitcher&& src) noexcept -> ViewSwitcher&
   {
-    Gtk::Widget::operator= (std::move (src));
+    gtk::Widget::operator= (std::move (src));
     return *this;
   }
 
@@ -96,8 +96,8 @@ namespace Adw
   }
 
   ViewSwitcher::ViewSwitcher ()
-    : Glib::ObjectBase (nullptr),
-      Gtk::Widget (Glib::ConstructParams (viewswitcher_class_.init ()))
+    : glib::ObjectBase (nullptr),
+      gtk::Widget (glib::ConstructParams (viewswitcher_class_.init ()))
   {
   }
 
@@ -111,7 +111,7 @@ namespace Adw
   auto
   ViewSwitcher::get_stack () const -> ViewStack*
   {
-    return Glib::wrap (
+    return glib::wrap (
         adw_view_switcher_get_stack (const_cast<AdwViewSwitcher*> (gobj ())));
   }
 
@@ -125,41 +125,41 @@ namespace Adw
   auto
   ViewSwitcher::set_stack (ViewStack* stack) -> void
   {
-    adw_view_switcher_set_stack (gobj (), (AdwViewStack*) Glib::unwrap (stack));
+    adw_view_switcher_set_stack (gobj (), (AdwViewStack*) glib::unwrap (stack));
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<ViewSwitcherPolicy>::value,
+      glib::Traits::ValueCompatibleWithWrapProperty<ViewSwitcherPolicy>::value,
       "Type ViewSwitcherPolicy cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  ViewSwitcher::property_policy () -> Glib::PropertyProxy<ViewSwitcherPolicy>
+  ViewSwitcher::property_policy () -> glib::PropertyProxy<ViewSwitcherPolicy>
   {
-    return Glib::PropertyProxy<ViewSwitcherPolicy> (this, "policy");
+    return glib::PropertyProxy<ViewSwitcherPolicy> (this, "policy");
   }
 
   auto
-  ViewSwitcher::property_policy () const -> Glib::PropertyProxy_ReadOnly<ViewSwitcherPolicy>
+  ViewSwitcher::property_policy () const -> glib::PropertyProxy_ReadOnly<ViewSwitcherPolicy>
   {
-    return Glib::PropertyProxy_ReadOnly<ViewSwitcherPolicy> (this, "policy");
+    return glib::PropertyProxy_ReadOnly<ViewSwitcherPolicy> (this, "policy");
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<ViewStack*>::value,
+      glib::Traits::ValueCompatibleWithWrapProperty<ViewStack*>::value,
       "Type ViewStack* cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  ViewSwitcher::property_stack () -> Glib::PropertyProxy<ViewStack*>
+  ViewSwitcher::property_stack () -> glib::PropertyProxy<ViewStack*>
   {
-    return Glib::PropertyProxy<ViewStack*> (this, "stack");
+    return glib::PropertyProxy<ViewStack*> (this, "stack");
   }
 
   auto
-  ViewSwitcher::property_stack () const -> Glib::PropertyProxy_ReadOnly<ViewStack*>
+  ViewSwitcher::property_stack () const -> glib::PropertyProxy_ReadOnly<ViewStack*>
   {
-    return Glib::PropertyProxy_ReadOnly<ViewStack*> (this, "stack");
+    return glib::PropertyProxy_ReadOnly<ViewStack*> (this, "stack");
   }
 
-} // namespace Adw
+} // namespace adw

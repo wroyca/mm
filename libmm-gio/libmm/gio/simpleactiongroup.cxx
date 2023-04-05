@@ -8,7 +8,7 @@
 #include <gio/gio.h>
 #include <libmm/gio/action.hxx>
 
-namespace Gio
+namespace gio
 {
 
 }
@@ -17,20 +17,20 @@ namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GSimpleActionGroup* object, const bool take_copy) -> RefPtr<Gio::SimpleActionGroup>
+  wrap (GSimpleActionGroup* object, const bool take_copy) -> RefPtr<gio::SimpleActionGroup>
   {
-    return Glib::make_refptr_for_instance<Gio::SimpleActionGroup> (
-        dynamic_cast<Gio::SimpleActionGroup*> (
+    return glib::make_refptr_for_instance<gio::SimpleActionGroup> (
+        dynamic_cast<gio::SimpleActionGroup*> (
             wrap_auto ((GObject*) object, take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gio
+namespace gio
 {
 
   auto
@@ -57,7 +57,7 @@ namespace Gio
   }
 
   auto
-  SimpleActionGroup_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  SimpleActionGroup_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new SimpleActionGroup ((GSimpleActionGroup*) object);
   }
@@ -70,7 +70,7 @@ namespace Gio
   }
 
   SimpleActionGroup::SimpleActionGroup (
-      const Glib::ConstructParams& construct_params)
+      const glib::ConstructParams& construct_params)
     : Object (construct_params)
   {
   }
@@ -114,15 +114,15 @@ namespace Gio
 
   SimpleActionGroup::SimpleActionGroup ()
     : ObjectBase (nullptr),
-      Object (Glib::ConstructParams (simpleactiongroup_class_.init ()))
+      Object (glib::ConstructParams (simpleactiongroup_class_.init ()))
   {
   }
 
   auto
-  SimpleActionGroup::create () -> Glib::RefPtr<SimpleActionGroup>
+  SimpleActionGroup::create () -> glib::RefPtr<SimpleActionGroup>
   {
-    return Glib::make_refptr_for_instance<SimpleActionGroup> (
+    return glib::make_refptr_for_instance<SimpleActionGroup> (
         new SimpleActionGroup ());
   }
 
-} // namespace Gio
+} // namespace gio

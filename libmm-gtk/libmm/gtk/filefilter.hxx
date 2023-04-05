@@ -16,16 +16,16 @@ using GtkFileFilterClass = struct _GtkFileFilterClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT FileFilter_Class;
 }
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
-  class LIBMM_GTK_SYMEXPORT FileFilter : public Gtk::Filter,
+  class LIBMM_GTK_SYMEXPORT FileFilter : public gtk::Filter,
                                public Buildable
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -45,7 +45,7 @@ namespace Gtk
     static CppClassType filefilter_class_;
 
   protected:
-    explicit FileFilter (const Glib::ConstructParams& construct_params);
+    explicit FileFilter (const glib::ConstructParams& construct_params);
     explicit FileFilter (GtkFileFilter* castitem);
 
 #endif
@@ -87,19 +87,19 @@ namespace Gtk
 
   public:
     static auto
-    create () -> Glib::RefPtr<FileFilter>;
+    create () -> glib::RefPtr<FileFilter>;
 
     auto
-    set_name (const Glib::ustring& name) -> void;
+    set_name (const glib::ustring& name) -> void;
 
     auto
-    get_name () const -> Glib::ustring;
+    get_name () const -> glib::ustring;
 
     auto
-    add_mime_type (const Glib::ustring& mime_type) -> void;
+    add_mime_type (const glib::ustring& mime_type) -> void;
 
     auto
-    add_pattern (const Glib::ustring& pattern) -> void;
+    add_pattern (const glib::ustring& pattern) -> void;
 
     auto
     add_suffix (const std::string& suffix) -> void;
@@ -108,22 +108,22 @@ namespace Gtk
     add_pixbuf_formats () -> void;
 
     auto
-    property_name () -> Glib::PropertyProxy<Glib::ustring>;
+    property_name () -> glib::PropertyProxy<glib::ustring>;
 
     auto
-    property_name () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+    property_name () const -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkFileFilter* object, bool take_copy = false) -> Glib::RefPtr<Gtk::FileFilter>;
-} // namespace Glib
+  wrap (GtkFileFilter* object, bool take_copy = false) -> glib::RefPtr<gtk::FileFilter>;
+} // namespace glib
 
 #endif

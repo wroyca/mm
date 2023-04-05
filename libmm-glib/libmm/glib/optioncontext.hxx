@@ -15,10 +15,10 @@ extern "C"
 }
 #endif
 
-namespace Glib
+namespace glib
 {
 
-  class OptionError : public Glib::Error
+  class OptionError : public glib::Error
   {
   public:
     enum Code
@@ -29,7 +29,7 @@ namespace Glib
     };
 
     LIBMM_GLIB_SYMEXPORT
-    OptionError (Code error_code, const Glib::ustring& error_message);
+    OptionError (Code error_code, const glib::ustring& error_message);
     LIBMM_GLIB_SYMEXPORT explicit OptionError (GError* gobject);
     LIBMM_GLIB_SYMEXPORT auto
     code () const -> Code;
@@ -55,7 +55,7 @@ namespace Glib
 
   private:
   public:
-    explicit OptionContext (const Glib::ustring& parameter_string = {});
+    explicit OptionContext (const glib::ustring& parameter_string = {});
 
     explicit OptionContext (GOptionContext* castitem,
                             bool take_ownership = false);
@@ -101,10 +101,10 @@ namespace Glib
     set_main_group (OptionGroup& group) -> void;
 
     auto
-    get_help (bool main_help, const OptionGroup& group) const -> Glib::ustring;
+    get_help (bool main_help, const OptionGroup& group) const -> glib::ustring;
 
     auto
-    get_help (bool main_help = true) const -> Glib::ustring;
+    get_help (bool main_help = true) const -> glib::ustring;
 
     auto
     gobj () -> GOptionContext*
@@ -119,21 +119,21 @@ namespace Glib
     }
 
     auto
-    set_summary (const Glib::ustring& summary) -> void;
+    set_summary (const glib::ustring& summary) -> void;
 
     auto
-    get_summary () const -> Glib::ustring;
+    get_summary () const -> glib::ustring;
 
     auto
-    set_description (const Glib::ustring& description) -> void;
+    set_description (const glib::ustring& description) -> void;
 
     auto
-    get_description () const -> Glib::ustring;
+    get_description () const -> glib::ustring;
 
     auto
-    set_translation_domain (const Glib::ustring& domain) -> void;
+    set_translation_domain (const glib::ustring& domain) -> void;
 
-    using SlotTranslate = sigc::slot<Glib::ustring (const Glib::ustring&)>;
+    using SlotTranslate = sigc::slot<glib::ustring (const glib::ustring&)>;
 
     auto
     set_translate_func (const SlotTranslate& slot) -> void;
@@ -143,6 +143,6 @@ namespace Glib
     bool has_ownership_;
   };
 
-} // namespace Glib
+} // namespace glib
 
 #endif

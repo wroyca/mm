@@ -16,17 +16,17 @@
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT TreeListModel_Class;
 }
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
-  class LIBMM_GTK_SYMEXPORT TreeListModel : public Glib::Object,
-                                  public Gio::ListModel
+  class LIBMM_GTK_SYMEXPORT TreeListModel : public glib::Object,
+                                  public gio::ListModel
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -45,7 +45,7 @@ namespace Gtk
     static CppClassType treelistmodel_class_;
 
   protected:
-    explicit TreeListModel (const Glib::ConstructParams& construct_params);
+    explicit TreeListModel (const glib::ConstructParams& construct_params);
     explicit TreeListModel (GtkTreeListModel* castitem);
 
 #endif
@@ -83,27 +83,27 @@ namespace Gtk
 
   private:
   public:
-    using SlotCreateModel = sigc::slot<Glib::RefPtr<Gio::ListModel> (
-        const Glib::RefPtr<Glib::ObjectBase>&)>;
+    using SlotCreateModel = sigc::slot<glib::RefPtr<gio::ListModel> (
+        const glib::RefPtr<glib::ObjectBase>&)>;
 
   protected:
-    TreeListModel (const Glib::RefPtr<Gio::ListModel>& root,
+    TreeListModel (const glib::RefPtr<gio::ListModel>& root,
                    const SlotCreateModel& slot_create,
                    bool passthrough = false,
                    bool autoexpand = false);
 
   public:
     static auto
-    create (const Glib::RefPtr<Gio::ListModel>& root,
+    create (const glib::RefPtr<gio::ListModel>& root,
             const SlotCreateModel& slot_create,
             bool passthrough = false,
-            bool autoexpand = false) -> Glib::RefPtr<TreeListModel>;
+            bool autoexpand = false) -> glib::RefPtr<TreeListModel>;
 
     auto
-    get_model () -> Glib::RefPtr<Gio::ListModel>;
+    get_model () -> glib::RefPtr<gio::ListModel>;
 
     auto
-    get_model () const -> Glib::RefPtr<const Gio::ListModel>;
+    get_model () const -> glib::RefPtr<const gio::ListModel>;
 
     auto
     get_passthrough () const -> bool;
@@ -115,47 +115,47 @@ namespace Gtk
     get_autoexpand () const -> bool;
 
     auto
-    get_child_row (guint position) -> Glib::RefPtr<TreeListRow>;
+    get_child_row (guint position) -> glib::RefPtr<TreeListRow>;
 
     auto
-    get_child_row (guint position) const -> Glib::RefPtr<const TreeListRow>;
+    get_child_row (guint position) const -> glib::RefPtr<const TreeListRow>;
 
     auto
-    get_row (guint position) -> Glib::RefPtr<TreeListRow>;
+    get_row (guint position) -> glib::RefPtr<TreeListRow>;
 
     auto
-    get_row (guint position) const -> Glib::RefPtr<const TreeListRow>;
+    get_row (guint position) const -> glib::RefPtr<const TreeListRow>;
 
     auto
-    property_autoexpand () -> Glib::PropertyProxy<bool>;
+    property_autoexpand () -> glib::PropertyProxy<bool>;
 
     auto
-    property_autoexpand () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_autoexpand () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_item_type () const -> Glib::PropertyProxy_ReadOnly<GType>;
+    property_item_type () const -> glib::PropertyProxy_ReadOnly<GType>;
 
     auto
     property_model () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gio::ListModel>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<gio::ListModel>>;
 
     auto
-    property_n_items () const -> Glib::PropertyProxy_ReadOnly<unsigned int>;
+    property_n_items () const -> glib::PropertyProxy_ReadOnly<unsigned int>;
 
     auto
-    property_passthrough () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_passthrough () const -> glib::PropertyProxy_ReadOnly<bool>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkTreeListModel* object, bool take_copy = false) -> Glib::RefPtr<Gtk::TreeListModel>;
-} // namespace Glib
+  wrap (GtkTreeListModel* object, bool take_copy = false) -> glib::RefPtr<gtk::TreeListModel>;
+} // namespace glib
 
 #endif

@@ -7,7 +7,7 @@
 
 #include <gio/gio.h>
 
-namespace Gio
+namespace gio
 {
 
   auto
@@ -26,7 +26,7 @@ namespace Gio
                          &file_flags,
                          &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     flags = static_cast<Flags> (file_flags);
   }
 
@@ -42,7 +42,7 @@ namespace Gio
                          nullptr,
                          &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
   }
 
   auto
@@ -72,7 +72,7 @@ namespace Gio
                           &file_flags,
                           &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     flags = static_cast<Flags> (file_flags);
   }
 
@@ -87,7 +87,7 @@ namespace Gio
                           nullptr,
                           &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
   }
 
   auto
@@ -101,63 +101,63 @@ namespace Gio
                                  nullptr);
   }
 
-} // namespace Gio
+} // namespace gio
 
 namespace
 {
 }
 
-Gio::ResourceError::ResourceError (const Code error_code,
-                                   const Glib::ustring& error_message)
+gio::ResourceError::ResourceError (const Code error_code,
+                                   const glib::ustring& error_message)
   : Error (G_RESOURCE_ERROR, error_code, error_message)
 {
 }
 
-Gio::ResourceError::ResourceError (GError* gobject)
+gio::ResourceError::ResourceError (GError* gobject)
   : Error (gobject)
 {
 }
 
 auto
-Gio::ResourceError::code () const -> Code
+gio::ResourceError::code () const -> Code
 {
   return static_cast<Code> (Error::code ());
 }
 
 auto
-Gio::ResourceError::throw_func (GError* gobject) -> void
+gio::ResourceError::throw_func (GError* gobject) -> void
 {
   throw ResourceError (gobject);
 }
 
 auto
-Glib::Value<Gio::Resource::Flags>::value_type () -> GType
+glib::Value<gio::Resource::Flags>::value_type () -> GType
 {
   return g_resource_flags_get_type ();
 }
 
 auto
-Glib::Value<Gio::Resource::LookupFlags>::value_type () -> GType
+glib::Value<gio::Resource::LookupFlags>::value_type () -> GType
 {
   return g_resource_lookup_flags_get_type ();
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GResource* object, const bool take_copy) -> RefPtr<Gio::Resource>
+  wrap (GResource* object, const bool take_copy) -> RefPtr<gio::Resource>
   {
     if (take_copy && object)
       g_resource_ref (object);
 
-    return Glib::make_refptr_for_instance<Gio::Resource> (
-        reinterpret_cast<Gio::Resource*> (object));
+    return glib::make_refptr_for_instance<gio::Resource> (
+        reinterpret_cast<gio::Resource*> (object));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gio
+namespace gio
 {
 
   auto
@@ -196,54 +196,54 @@ namespace Gio
   }
 
   auto
-  Resource::create_from_data (const Glib::RefPtr<const Glib::Bytes>& data) -> Glib::RefPtr<Resource>
+  Resource::create_from_data (const glib::RefPtr<const glib::Bytes>& data) -> glib::RefPtr<Resource>
   {
     GError* gerror = nullptr;
-    auto retvalue = Glib::wrap (g_resource_new_from_data (
-        const_cast<GBytes*> (Glib::unwrap<Glib::Bytes> (data)),
+    auto retvalue = glib::wrap (g_resource_new_from_data (
+        const_cast<GBytes*> (glib::unwrap<glib::Bytes> (data)),
         &gerror));
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
   auto
-  Resource::create_from_file (const std::string& filename) -> Glib::RefPtr<Resource>
+  Resource::create_from_file (const std::string& filename) -> glib::RefPtr<Resource>
   {
     GError* gerror = nullptr;
-    auto retvalue = Glib::wrap (g_resource_load (filename.c_str (), &gerror));
+    auto retvalue = glib::wrap (g_resource_load (filename.c_str (), &gerror));
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
   auto
   Resource::open_stream (const std::string& path,
-                         LookupFlags lookup_flags) const -> Glib::RefPtr<InputStream>
+                         LookupFlags lookup_flags) const -> glib::RefPtr<InputStream>
   {
     GError* gerror = nullptr;
-    auto retvalue = Glib::wrap (g_resource_open_stream (
+    auto retvalue = glib::wrap (g_resource_open_stream (
         const_cast<GResource*> (gobj ()),
         path.c_str (),
         static_cast<GResourceLookupFlags> (lookup_flags),
         &gerror));
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
   auto
   Resource::lookup_data (const std::string& path,
-                         LookupFlags lookup_flags) const -> Glib::RefPtr<const Glib::Bytes>
+                         LookupFlags lookup_flags) const -> glib::RefPtr<const glib::Bytes>
   {
     GError* gerror = nullptr;
-    auto retvalue = Glib::wrap (g_resource_lookup_data (
+    auto retvalue = glib::wrap (g_resource_lookup_data (
         const_cast<GResource*> (gobj ()),
         path.c_str (),
         static_cast<GResourceLookupFlags> (lookup_flags),
         &gerror));
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
@@ -252,15 +252,15 @@ namespace Gio
                                 LookupFlags lookup_flags) const -> std::vector<std::string>
   {
     GError* gerror = nullptr;
-    auto retvalue = Glib::ArrayHandler<std::string>::array_to_vector (
+    auto retvalue = glib::ArrayHandler<std::string>::array_to_vector (
         g_resource_enumerate_children (
             const_cast<GResource*> (gobj ()),
             path.c_str (),
             static_cast<GResourceLookupFlags> (lookup_flags),
             &gerror),
-        Glib::OWNERSHIP_DEEP);
+        glib::OWNERSHIP_DEEP);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
@@ -278,29 +278,29 @@ namespace Gio
 
   auto
   Resource::open_stream_global (const std::string& path,
-                                LookupFlags lookup_flags) -> Glib::RefPtr<InputStream>
+                                LookupFlags lookup_flags) -> glib::RefPtr<InputStream>
   {
     GError* gerror = nullptr;
-    auto retvalue = Glib::wrap (g_resources_open_stream (
+    auto retvalue = glib::wrap (g_resources_open_stream (
         path.c_str (),
         static_cast<GResourceLookupFlags> (lookup_flags),
         &gerror));
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
   auto
   Resource::lookup_data_global (const std::string& path,
-                                LookupFlags lookup_flags) -> Glib::RefPtr<const Glib::Bytes>
+                                LookupFlags lookup_flags) -> glib::RefPtr<const glib::Bytes>
   {
     GError* gerror = nullptr;
-    auto retvalue = Glib::wrap (g_resources_lookup_data (
+    auto retvalue = glib::wrap (g_resources_lookup_data (
         path.c_str (),
         static_cast<GResourceLookupFlags> (lookup_flags),
         &gerror));
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
@@ -309,15 +309,15 @@ namespace Gio
                                        LookupFlags lookup_flags) -> std::vector<std::string>
   {
     GError* gerror = nullptr;
-    auto retvalue = Glib::ArrayHandler<std::string>::array_to_vector (
+    auto retvalue = glib::ArrayHandler<std::string>::array_to_vector (
         g_resources_enumerate_children (
             path.c_str (),
             static_cast<GResourceLookupFlags> (lookup_flags),
             &gerror),
-        Glib::OWNERSHIP_DEEP);
+        glib::OWNERSHIP_DEEP);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
-} // namespace Gio
+} // namespace gio

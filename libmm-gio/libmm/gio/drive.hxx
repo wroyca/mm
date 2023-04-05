@@ -19,16 +19,16 @@ using GDriveClass = struct _GDriveClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gio
+namespace gio
 {
   class LIBMM_GIO_SYMEXPORT Drive_Class;
 }
 #endif
 
-namespace Gio
+namespace gio
 {
 
-  class LIBMM_GIO_SYMEXPORT Drive : public Glib::Interface
+  class LIBMM_GIO_SYMEXPORT Drive : public glib::Interface
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -52,7 +52,7 @@ namespace Gio
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
-    explicit Drive (const Glib::Interface_Class& interface_class);
+    explicit Drive (const glib::Interface_Class& interface_class);
 
   public:
     explicit Drive (GDrive* castitem);
@@ -107,25 +107,25 @@ namespace Gio
     };
 
     auto
-    get_name () const -> Glib::ustring;
+    get_name () const -> glib::ustring;
 
     auto
-    get_icon () -> Glib::RefPtr<Icon>;
+    get_icon () -> glib::RefPtr<Icon>;
 
     auto
-    get_icon () const -> Glib::RefPtr<const Icon>;
+    get_icon () const -> glib::RefPtr<const Icon>;
 
     auto
-    get_symbolic_icon () -> Glib::RefPtr<Icon>;
+    get_symbolic_icon () -> glib::RefPtr<Icon>;
 
     auto
-    get_symbolic_icon () const -> Glib::RefPtr<const Icon>;
+    get_symbolic_icon () const -> glib::RefPtr<const Icon>;
 
     auto
     has_volumes () const -> bool;
 
     auto
-    get_volumes () -> std::vector<Glib::RefPtr<Volume>>;
+    get_volumes () -> std::vector<glib::RefPtr<Volume>>;
 
     auto
     is_media_removable () const -> bool;
@@ -147,34 +147,34 @@ namespace Gio
 
     auto
     eject (const SlotAsyncReady& slot,
-           const Glib::RefPtr<Cancellable>& cancellable,
+           const glib::RefPtr<Cancellable>& cancellable,
            Mount::UnmountFlags flags = Mount::UnmountFlags::NONE) -> void;
 
     auto
     eject (const SlotAsyncReady& slot,
            Mount::UnmountFlags flags = Mount::UnmountFlags::NONE) -> void;
     auto
-    eject (const Glib::RefPtr<MountOperation>& mount_operation,
+    eject (const glib::RefPtr<MountOperation>& mount_operation,
            const SlotAsyncReady& slot,
-           const Glib::RefPtr<Cancellable>& cancellable,
+           const glib::RefPtr<Cancellable>& cancellable,
            Mount::UnmountFlags flags = Mount::UnmountFlags::NONE) -> void;
     auto
-    eject (const Glib::RefPtr<MountOperation>& mount_operation,
+    eject (const glib::RefPtr<MountOperation>& mount_operation,
            const SlotAsyncReady& slot,
            Mount::UnmountFlags flags = Mount::UnmountFlags::NONE) -> void;
 
     auto
     eject (Mount::UnmountFlags flags = Mount::UnmountFlags::NONE) -> void;
     auto
-    eject (const Glib::RefPtr<MountOperation>& mount_operation,
+    eject (const glib::RefPtr<MountOperation>& mount_operation,
            Mount::UnmountFlags flags = Mount::UnmountFlags::NONE) -> void;
 
     auto
-    eject_finish (const Glib::RefPtr<AsyncResult>& result) -> bool;
+    eject_finish (const glib::RefPtr<AsyncResult>& result) -> bool;
 
     auto
     poll_for_media (const SlotAsyncReady& slot,
-                    const Glib::RefPtr<Cancellable>& cancellable) -> void;
+                    const glib::RefPtr<Cancellable>& cancellable) -> void;
 
     auto
     poll_for_media (const SlotAsyncReady& slot) -> void;
@@ -183,27 +183,27 @@ namespace Gio
     poll_for_media () -> void;
 
     auto
-    poll_for_media_finish (const Glib::RefPtr<AsyncResult>& result) -> bool;
+    poll_for_media_finish (const glib::RefPtr<AsyncResult>& result) -> bool;
 
     auto
     get_identifier (const std::string& kind) const -> std::string;
 
     auto
-    enumerate_identifiers () const -> std::vector<Glib::ustring>;
+    enumerate_identifiers () const -> std::vector<glib::ustring>;
 
     auto
-    start (const Glib::RefPtr<MountOperation>& mount_operation,
-           const Glib::RefPtr<Cancellable>& cancellable,
+    start (const glib::RefPtr<MountOperation>& mount_operation,
+           const glib::RefPtr<Cancellable>& cancellable,
            const SlotAsyncReady& slot,
            StartFlags flags = StartFlags::NONE) -> void;
 
     auto
-    start (const Glib::RefPtr<MountOperation>& mount_operation,
+    start (const glib::RefPtr<MountOperation>& mount_operation,
            const SlotAsyncReady& slot,
            StartFlags flags = StartFlags::NONE) -> void;
 
     auto
-    start_finish (const Glib::RefPtr<AsyncResult>& result) -> bool;
+    start_finish (const glib::RefPtr<AsyncResult>& result) -> bool;
 
     auto
     can_start () const -> bool;
@@ -212,18 +212,18 @@ namespace Gio
     can_start_degraded () const -> bool;
 
     auto
-    stop (const Glib::RefPtr<MountOperation>& mount_operation,
-          const Glib::RefPtr<Cancellable>& cancellable,
+    stop (const glib::RefPtr<MountOperation>& mount_operation,
+          const glib::RefPtr<Cancellable>& cancellable,
           const SlotAsyncReady& slot,
           Mount::UnmountFlags flags = Mount::UnmountFlags::NONE) -> void;
 
     auto
-    stop (const Glib::RefPtr<MountOperation>& mount_operation,
+    stop (const glib::RefPtr<MountOperation>& mount_operation,
           const SlotAsyncReady& slot,
           Mount::UnmountFlags flags = Mount::UnmountFlags::NONE) -> void;
 
     auto
-    stop_finish (const Glib::RefPtr<AsyncResult>& result) -> bool;
+    stop_finish (const glib::RefPtr<AsyncResult>& result) -> bool;
 
     auto
     can_stop () const -> bool;
@@ -232,19 +232,19 @@ namespace Gio
     get_start_stop_type () const -> StartStopType;
 
     auto
-    get_sort_key () const -> Glib::ustring;
+    get_sort_key () const -> glib::ustring;
 
     auto
-    signal_changed () -> Glib::SignalProxy<void ()>;
+    signal_changed () -> glib::SignalProxy<void ()>;
 
     auto
-    signal_disconnected () -> Glib::SignalProxy<void ()>;
+    signal_disconnected () -> glib::SignalProxy<void ()>;
 
     auto
-    signal_eject_button () -> Glib::SignalProxy<void ()>;
+    signal_eject_button () -> glib::SignalProxy<void ()>;
 
     auto
-    signal_stop_button () -> Glib::SignalProxy<void ()>;
+    signal_stop_button () -> glib::SignalProxy<void ()>;
 
   protected:
   public:
@@ -263,35 +263,35 @@ namespace Gio
     on_stop_button () -> void;
   };
 
-} // namespace Gio
+} // namespace gio
 
-namespace Glib
+namespace glib
 {
 
   LIBMM_GIO_SYMEXPORT
   auto
-  wrap (GDrive* object, bool take_copy) -> Glib::RefPtr<Gio::Drive>;
+  wrap (GDrive* object, bool take_copy) -> glib::RefPtr<gio::Drive>;
 
   namespace Container_Helpers
   {
 
     template <>
-    struct TypeTraits<Glib::RefPtr<Gio::Drive>>
+    struct TypeTraits<glib::RefPtr<gio::Drive>>
     {
-      using CppType = Glib::RefPtr<Gio::Drive>;
+      using CppType = glib::RefPtr<gio::Drive>;
       using CType = GDrive*;
       using CTypeNonConst = GDrive*;
 
       static auto
       to_c_type (const CppType& item) -> CType
       {
-        return Glib::unwrap (item);
+        return glib::unwrap (item);
       }
 
       static auto
       to_cpp_type (const CType& item) -> CppType
       {
-        return Glib::wrap (item, true);
+        return glib::wrap (item, true);
       }
 
       static auto
@@ -303,9 +303,9 @@ namespace Glib
     };
 
   } // namespace Container_Helpers
-} // namespace Glib
+} // namespace glib
 
-namespace Gio
+namespace gio
 {
 
   inline auto
@@ -355,47 +355,47 @@ namespace Gio
     return (lhs = static_cast<Drive::StartFlags> (static_cast<unsigned> (lhs) ^
                                                   static_cast<unsigned> (rhs)));
   }
-} // namespace Gio
+} // namespace gio
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_GIO_SYMEXPORT Value<Gio::Drive::StartFlags>
-    : public Glib::Value_Flags<Gio::Drive::StartFlags>
+  class LIBMM_GIO_SYMEXPORT Value<gio::Drive::StartFlags>
+    : public glib::Value_Flags<gio::Drive::StartFlags>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_GIO_SYMEXPORT Value<Gio::Drive::StartStopType>
-    : public Glib::Value_Enum<Gio::Drive::StartStopType>
+  class LIBMM_GIO_SYMEXPORT Value<gio::Drive::StartStopType>
+    : public glib::Value_Enum<gio::Drive::StartStopType>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
-namespace Glib
+namespace glib
 {
 
   LIBMM_GIO_SYMEXPORT
   auto
-  wrap (GDrive* object, bool take_copy = false) -> Glib::RefPtr<Gio::Drive>;
+  wrap (GDrive* object, bool take_copy = false) -> glib::RefPtr<gio::Drive>;
 
-} // namespace Glib
+} // namespace glib
 
 #endif

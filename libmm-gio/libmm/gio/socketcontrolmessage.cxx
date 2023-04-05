@@ -8,7 +8,7 @@
 #include <gio/gio.h>
 #include <libmm/glib/exceptionhandler.hxx>
 
-namespace Gio
+namespace gio
 {
 
   std::set<SocketControlMessage::DeserializeFunc>
@@ -24,7 +24,7 @@ namespace Gio
     {
       try
       {
-        Glib::RefPtr<SocketControlMessage> msg =
+        glib::RefPtr<SocketControlMessage> msg =
             deserialize_func (level, type, size, data);
         if (msg)
         {
@@ -34,7 +34,7 @@ namespace Gio
       }
       catch (...)
       {
-        Glib::exception_handlers_invoke ();
+        glib::exception_handlers_invoke ();
       }
     }
 
@@ -47,26 +47,26 @@ namespace Gio
     m_deserialize_funcs.insert (func);
   }
 
-} // namespace Gio
+} // namespace gio
 
 namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GSocketControlMessage* object, const bool take_copy) -> RefPtr<Gio::SocketControlMessage>
+  wrap (GSocketControlMessage* object, const bool take_copy) -> RefPtr<gio::SocketControlMessage>
   {
-    return Glib::make_refptr_for_instance<Gio::SocketControlMessage> (
-        dynamic_cast<Gio::SocketControlMessage*> (
+    return glib::make_refptr_for_instance<gio::SocketControlMessage> (
+        dynamic_cast<gio::SocketControlMessage*> (
             wrap_auto ((GObject*) object, take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gio
+namespace gio
 {
 
   auto
@@ -101,7 +101,7 @@ namespace Gio
       GSocketControlMessage* self) -> gsize
   {
     const auto obj_base =
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self);
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self);
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -114,7 +114,7 @@ namespace Gio
         }
         catch (...)
         {
-          Glib::exception_handlers_invoke ();
+          glib::exception_handlers_invoke ();
         }
       }
     }
@@ -134,7 +134,7 @@ namespace Gio
       GSocketControlMessage* self) -> int
   {
     const auto obj_base =
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self);
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self);
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -147,7 +147,7 @@ namespace Gio
         }
         catch (...)
         {
-          Glib::exception_handlers_invoke ();
+          glib::exception_handlers_invoke ();
         }
       }
     }
@@ -167,7 +167,7 @@ namespace Gio
       GSocketControlMessage* self) -> int
   {
     const auto obj_base =
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self);
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self);
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -180,7 +180,7 @@ namespace Gio
         }
         catch (...)
         {
-          Glib::exception_handlers_invoke ();
+          glib::exception_handlers_invoke ();
         }
       }
     }
@@ -201,7 +201,7 @@ namespace Gio
       const gpointer data) -> void
   {
     const auto obj_base =
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self);
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self);
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -215,7 +215,7 @@ namespace Gio
         }
         catch (...)
         {
-          Glib::exception_handlers_invoke ();
+          glib::exception_handlers_invoke ();
         }
       }
     }
@@ -228,7 +228,7 @@ namespace Gio
   }
 
   auto
-  SocketControlMessage_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  SocketControlMessage_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new SocketControlMessage ((GSocketControlMessage*) object);
   }
@@ -241,7 +241,7 @@ namespace Gio
   }
 
   SocketControlMessage::SocketControlMessage (
-      const Glib::ConstructParams& construct_params)
+      const glib::ConstructParams& construct_params)
     : Object (construct_params)
   {
   }
@@ -283,7 +283,7 @@ namespace Gio
 
   SocketControlMessage::SocketControlMessage ()
     : ObjectBase (nullptr),
-      Object (Glib::ConstructParams (socketcontrolmessage_class_.init ()))
+      Object (glib::ConstructParams (socketcontrolmessage_class_.init ()))
   {
   }
 
@@ -291,9 +291,9 @@ namespace Gio
   SocketControlMessage::deserialize (const int level,
                                      const int type,
                                      const gsize size,
-                                     const gpointer data) -> Glib::RefPtr<SocketControlMessage>
+                                     const gpointer data) -> glib::RefPtr<SocketControlMessage>
   {
-    return Glib::wrap (
+    return glib::wrap (
         g_socket_control_message_deserialize (level, type, size, data));
   }
 
@@ -387,4 +387,4 @@ namespace Gio
     }
   }
 
-} // namespace Gio
+} // namespace gio

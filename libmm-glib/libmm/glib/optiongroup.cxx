@@ -12,7 +12,7 @@
 #include <libmm/glib/optionentry.hxx>
 #include <libmm/glib/utility.hxx>
 
-namespace Glib
+namespace glib
 {
 
   namespace
@@ -81,7 +81,7 @@ namespace Glib
         if (!option_group)
         {
           OptionError (OptionError::FAILED,
-                       "Glib::OptionGroup: g_callback_pre_parse(): "
+                       "glib::OptionGroup: g_callback_pre_parse(): "
                        "No OptionGroup pointer available")
               .propagate (error);
           return false;
@@ -165,7 +165,7 @@ namespace Glib
     if (!option_group)
     {
       OptionError (OptionError::FAILED,
-                   "Glib::OptionGroup::post_parse_callback(): "
+                   "glib::OptionGroup::post_parse_callback(): "
                    "No OptionGroup pointer available")
           .propagate (error);
       return false;
@@ -204,7 +204,7 @@ namespace Glib
     if (!option_group)
     {
       OptionError (OptionError::FAILED,
-                   "Glib::OptionGroup::option_arg_callback(): "
+                   "glib::OptionGroup::option_arg_callback(): "
                    "No OptionGroup pointer available for option " +
                        cpp_option_name)
           .propagate (error);
@@ -235,7 +235,7 @@ namespace Glib
     if (iterFind == option_group->map_entries_.end ())
     {
       OptionError (OptionError::UNKNOWN_OPTION,
-                   "Glib::OptionGroup::option_arg_callback(): "
+                   "glib::OptionGroup::option_arg_callback(): "
                    "Unknown option " +
                        cpp_option_name)
           .propagate (error);
@@ -246,7 +246,7 @@ namespace Glib
     if (cppOptionEntry.carg_type_ != G_OPTION_ARG_CALLBACK)
     {
       OptionError (OptionError::FAILED,
-                   "Glib::OptionGroup::option_arg_callback() "
+                   "glib::OptionGroup::option_arg_callback() "
                    "called for non-callback option " +
                        cpp_option_name)
           .propagate (error);
@@ -758,13 +758,13 @@ namespace Glib
     return g_option_group_ref (gobject_);
   }
 
-} // namespace Glib
+} // namespace glib
 
 namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
@@ -773,4 +773,4 @@ namespace Glib
     g_option_group_set_translation_domain (gobj (), domain.c_str ());
   }
 
-} // namespace Glib
+} // namespace glib

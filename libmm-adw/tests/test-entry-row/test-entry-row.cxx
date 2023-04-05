@@ -6,7 +6,7 @@
  * Author: Alexander Mikhaylenko <alexander.mikhaylenko@puri.sm>
  */
 
-#include <libmm/adw/init.hxx> // Adw::init
+#include <libmm/adw/init.hxx> // adw::init
 #include <libmm/adw/mm-adw.hxx>
 
 int notified;
@@ -20,9 +20,9 @@ notify_cb ()
 static void
 test_adw_entry_row_add_remove (void)
 {
-  Adw::EntryRow row;
+  adw::EntryRow row;
 
-  Gtk::Button prefix, suffix;
+  gtk::Button prefix, suffix;
 
   row.add_prefix (&prefix);
   row.add_suffix (&suffix);
@@ -34,7 +34,7 @@ test_adw_entry_row_add_remove (void)
 static void
 test_adw_entry_row_show_apply_button (void)
 {
-  Adw::EntryRow row;
+  adw::EntryRow row;
 
   notified = 0;
   row.property_show_apply_button ().signal_changed ().connect (
@@ -59,7 +59,7 @@ int
 main (int argc, char* argv[])
 {
   gtk_test_init (&argc, &argv, NULL);
-  Adw::init ();
+  adw::init ();
 
   g_test_add_func ("/Adwaita/EntryRow/add_remove",
                    test_adw_entry_row_add_remove);

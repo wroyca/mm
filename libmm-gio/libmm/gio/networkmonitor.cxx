@@ -9,25 +9,25 @@
 #include <libmm/gio/slot_async.hxx>
 #include <libmm/glib/exceptionhandler.hxx>
 
-namespace Gio
+namespace gio
 {
 
   auto
   NetworkMonitor::can_reach_async (
-      const Glib::RefPtr<SocketConnectable>& connectable,
+      const glib::RefPtr<SocketConnectable>& connectable,
       const SlotAsyncReady& slot,
-      const Glib::RefPtr<Cancellable>& cancellable) -> void
+      const glib::RefPtr<Cancellable>& cancellable) -> void
   {
     const auto slot_copy = new SlotAsyncReady (slot);
 
     g_network_monitor_can_reach_async (gobj (),
-                                       Glib::unwrap (connectable),
-                                       Glib::unwrap (cancellable),
+                                       glib::unwrap (connectable),
+                                       glib::unwrap (cancellable),
                                        &SignalProxy_async_callback,
                                        slot_copy);
   }
 
-} // namespace Gio
+} // namespace gio
 
 namespace
 {
@@ -37,27 +37,27 @@ namespace
                                                   const gboolean p0,
                                                   void* data) -> void
   {
-    using namespace Gio;
+    using namespace gio;
     using SlotType = sigc::slot<void (bool)>;
 
     const auto obj = dynamic_cast<NetworkMonitor*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
     {
       try
       {
-        if (const auto slot = Glib::SignalProxyNormal::data_to_slot (data))
+        if (const auto slot = glib::SignalProxyNormal::data_to_slot (data))
           (*static_cast<SlotType*> (slot)) (p0);
       }
       catch (...)
       {
-        Glib::exception_handlers_invoke ();
+        glib::exception_handlers_invoke ();
       }
     }
   }
 
-  const Glib::SignalProxyInfo NetworkMonitor_signal_network_changed_info = {
+  const glib::SignalProxyInfo NetworkMonitor_signal_network_changed_info = {
       "network-changed",
       (GCallback) &NetworkMonitor_signal_network_changed_callback,
       (GCallback) &NetworkMonitor_signal_network_changed_callback};
@@ -65,25 +65,25 @@ namespace
 } // namespace
 
 auto
-Glib::Value<Gio::NetworkConnectivity>::value_type () -> GType
+glib::Value<gio::NetworkConnectivity>::value_type () -> GType
 {
   return g_network_connectivity_get_type ();
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GNetworkMonitor* object, const bool take_copy) -> RefPtr<Gio::NetworkMonitor>
+  wrap (GNetworkMonitor* object, const bool take_copy) -> RefPtr<gio::NetworkMonitor>
   {
-    return Glib::make_refptr_for_instance<Gio::NetworkMonitor> (
-        Glib::wrap_auto_interface<Gio::NetworkMonitor> ((GObject*) object,
+    return glib::make_refptr_for_instance<gio::NetworkMonitor> (
+        glib::wrap_auto_interface<gio::NetworkMonitor> ((GObject*) object,
                                                         take_copy));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gio
+namespace gio
 {
 
   auto
@@ -114,7 +114,7 @@ namespace Gio
                                                   const gboolean p0) -> void
   {
     const auto obj_base =
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self);
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self);
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -128,7 +128,7 @@ namespace Gio
         }
         catch (...)
         {
-          Glib::exception_handlers_invoke ();
+          glib::exception_handlers_invoke ();
         }
       }
     }
@@ -143,7 +143,7 @@ namespace Gio
   }
 
   auto
-  NetworkMonitor_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  NetworkMonitor_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new NetworkMonitor ((GNetworkMonitor*) object);
   }
@@ -158,7 +158,7 @@ namespace Gio
   {
   }
 
-  NetworkMonitor::NetworkMonitor (const Glib::Interface_Class& interface_class)
+  NetworkMonitor::NetworkMonitor (const glib::Interface_Class& interface_class)
     : Interface (interface_class)
   {
   }
@@ -198,9 +198,9 @@ namespace Gio
   }
 
   auto
-  NetworkMonitor::get_default () -> Glib::RefPtr<NetworkMonitor>
+  NetworkMonitor::get_default () -> glib::RefPtr<NetworkMonitor>
   {
-    return Glib::wrap (g_network_monitor_get_default ());
+    return glib::wrap (g_network_monitor_get_default ());
   }
 
   auto
@@ -226,72 +226,72 @@ namespace Gio
   }
 
   auto
-  NetworkMonitor::can_reach (const Glib::RefPtr<SocketConnectable>& connectable,
-                             const Glib::RefPtr<Cancellable>& cancellable) -> bool
+  NetworkMonitor::can_reach (const glib::RefPtr<SocketConnectable>& connectable,
+                             const glib::RefPtr<Cancellable>& cancellable) -> bool
   {
     GError* gerror = nullptr;
     const auto retvalue = g_network_monitor_can_reach (
         gobj (),
-        Glib::unwrap (connectable),
-        Glib::unwrap (cancellable),
+        glib::unwrap (connectable),
+        glib::unwrap (cancellable),
         &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
   auto
-  NetworkMonitor::can_reach (const Glib::RefPtr<SocketConnectable>& connectable) -> bool
+  NetworkMonitor::can_reach (const glib::RefPtr<SocketConnectable>& connectable) -> bool
   {
     GError* gerror = nullptr;
     const auto retvalue = g_network_monitor_can_reach (
         gobj (),
-        Glib::unwrap (connectable),
+        glib::unwrap (connectable),
         nullptr,
         &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
   auto
-  NetworkMonitor::can_reach_finish (const Glib::RefPtr<AsyncResult>& result) -> bool
+  NetworkMonitor::can_reach_finish (const glib::RefPtr<AsyncResult>& result) -> bool
   {
     GError* gerror = nullptr;
     const auto retvalue = g_network_monitor_can_reach_finish (
         gobj (),
-        Glib::unwrap (result),
+        glib::unwrap (result),
         &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
   auto
-  NetworkMonitor::signal_network_changed () -> Glib::SignalProxy<void (bool)>
+  NetworkMonitor::signal_network_changed () -> glib::SignalProxy<void (bool)>
   {
     return {this, &NetworkMonitor_signal_network_changed_info};
   }
 
   auto
-  NetworkMonitor::property_network_available () const -> Glib::PropertyProxy_ReadOnly<bool>
+  NetworkMonitor::property_network_available () const -> glib::PropertyProxy_ReadOnly<bool>
   {
     return {this, "network-available"};
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<NetworkConnectivity>::value,
+      glib::Traits::ValueCompatibleWithWrapProperty<NetworkConnectivity>::value,
       "Type NetworkConnectivity cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  NetworkMonitor::property_connectivity () const -> Glib::PropertyProxy_ReadOnly<NetworkConnectivity>
+  NetworkMonitor::property_connectivity () const -> glib::PropertyProxy_ReadOnly<NetworkConnectivity>
   {
     return {this, "connectivity"};
   }
 
   auto
-  NetworkMonitor::property_network_metered () const -> Glib::PropertyProxy_ReadOnly<bool>
+  NetworkMonitor::property_network_metered () const -> glib::PropertyProxy_ReadOnly<bool>
   {
     return {this, "network-metered"};
   }
@@ -308,4 +308,4 @@ namespace Gio
       (*base->network_changed) (gobj (), static_cast<int> (available));
   }
 
-} // namespace Gio
+} // namespace gio

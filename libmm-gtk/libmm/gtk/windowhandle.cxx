@@ -7,7 +7,7 @@
 
 #include <gtk/gtk.h>
 
-namespace Gtk
+namespace gtk
 {
 
   auto
@@ -16,29 +16,29 @@ namespace Gtk
     gtk_window_handle_set_child (gobj (), nullptr);
   }
 
-} // namespace Gtk
+} // namespace gtk
 
 namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GtkWindowHandle* object, bool take_copy) -> Gtk::WindowHandle*
+  wrap (GtkWindowHandle* object, bool take_copy) -> gtk::WindowHandle*
   {
-    return dynamic_cast<Gtk::WindowHandle*> (
-        Glib::wrap_auto ((GObject*) (object), take_copy));
+    return dynamic_cast<gtk::WindowHandle*> (
+        glib::wrap_auto ((GObject*) (object), take_copy));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gtk
+namespace gtk
 {
 
   auto
-  WindowHandle_Class::init () -> const Glib::Class&
+  WindowHandle_Class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -58,30 +58,30 @@ namespace Gtk
   }
 
   auto
-  WindowHandle_Class::wrap_new (GObject* o) -> Glib::ObjectBase*
+  WindowHandle_Class::wrap_new (GObject* o) -> glib::ObjectBase*
   {
     return manage (new WindowHandle ((GtkWindowHandle*) (o)));
   }
 
-  WindowHandle::WindowHandle (const Glib::ConstructParams& construct_params)
-    : Gtk::Widget (construct_params)
+  WindowHandle::WindowHandle (const glib::ConstructParams& construct_params)
+    : gtk::Widget (construct_params)
   {
   }
 
   WindowHandle::WindowHandle (GtkWindowHandle* castitem)
-    : Gtk::Widget ((GtkWidget*) (castitem))
+    : gtk::Widget ((GtkWidget*) (castitem))
   {
   }
 
   WindowHandle::WindowHandle (WindowHandle&& src) noexcept
-    : Gtk::Widget (std::move (src))
+    : gtk::Widget (std::move (src))
   {
   }
 
   auto
   WindowHandle::operator= (WindowHandle&& src) noexcept -> WindowHandle&
   {
-    Gtk::Widget::operator= (std::move (src));
+    gtk::Widget::operator= (std::move (src));
     return *this;
   }
 
@@ -105,8 +105,8 @@ namespace Gtk
   }
 
   WindowHandle::WindowHandle ()
-    : Glib::ObjectBase (nullptr),
-      Gtk::Widget (Glib::ConstructParams (windowhandle_class_.init ()))
+    : glib::ObjectBase (nullptr),
+      gtk::Widget (glib::ConstructParams (windowhandle_class_.init ()))
   {
   }
 
@@ -119,7 +119,7 @@ namespace Gtk
   auto
   WindowHandle::get_child () -> Widget*
   {
-    return Glib::wrap (gtk_window_handle_get_child (gobj ()));
+    return glib::wrap (gtk_window_handle_get_child (gobj ()));
   }
 
   auto
@@ -129,15 +129,15 @@ namespace Gtk
   }
 
   auto
-  WindowHandle::property_child () -> Glib::PropertyProxy<Widget*>
+  WindowHandle::property_child () -> glib::PropertyProxy<Widget*>
   {
-    return Glib::PropertyProxy<Widget*> (this, "child");
+    return glib::PropertyProxy<Widget*> (this, "child");
   }
 
   auto
-  WindowHandle::property_child () const -> Glib::PropertyProxy_ReadOnly<Widget*>
+  WindowHandle::property_child () const -> glib::PropertyProxy_ReadOnly<Widget*>
   {
-    return Glib::PropertyProxy_ReadOnly<Widget*> (this, "child");
+    return glib::PropertyProxy_ReadOnly<Widget*> (this, "child");
   }
 
-} // namespace Gtk
+} // namespace gtk

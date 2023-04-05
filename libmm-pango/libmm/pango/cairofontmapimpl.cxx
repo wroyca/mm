@@ -3,7 +3,7 @@
 #include <libmm/pango/cairofontmapimpl.hxx>
 #include <utility>
 
-namespace Pango
+namespace pango
 {
   CairoFontMapImpl::CairoFontMapImpl (PangoFontMap* castitem)
     : ObjectBase (nullptr),
@@ -26,4 +26,4 @@ namespace Pango
   }
 
   CairoFontMapImpl::~CairoFontMapImpl () noexcept = default;
-} // namespace Pango
+} // namespace pango

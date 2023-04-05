@@ -18,16 +18,16 @@ using GtkATContextClass = struct _GtkATContextClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT ATContext_Class;
 }
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
-  class LIBMM_GTK_SYMEXPORT ATContext : public Glib::Object
+  class LIBMM_GTK_SYMEXPORT ATContext : public glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -46,7 +46,7 @@ namespace Gtk
     static CppClassType atcontext_class_;
 
   protected:
-    explicit ATContext (const Glib::ConstructParams& construct_params);
+    explicit ATContext (const glib::ConstructParams& construct_params);
     explicit ATContext (GtkATContext* castitem);
 
 #endif
@@ -89,51 +89,51 @@ namespace Gtk
   public:
     static auto
     create (Accessible::Role accessible_role,
-            const Glib::RefPtr<Accessible>& accessible,
-            const Glib::RefPtr<Gdk::Display>& display)
-        -> Glib::RefPtr<ATContext>;
+            const glib::RefPtr<Accessible>& accessible,
+            const glib::RefPtr<gdk::Display>& display)
+        -> glib::RefPtr<ATContext>;
 
     auto
-    get_accessible () -> Glib::RefPtr<Accessible>;
+    get_accessible () -> glib::RefPtr<Accessible>;
 
     auto
-    get_accessible () const -> Glib::RefPtr<const Accessible>;
+    get_accessible () const -> glib::RefPtr<const Accessible>;
 
     auto
     get_accessible_role () const -> Accessible::Role;
 
     auto
-    property_accessible_role () -> Glib::PropertyProxy<Accessible::Role>;
+    property_accessible_role () -> glib::PropertyProxy<Accessible::Role>;
 
     auto
     property_accessible_role () const
-        -> Glib::PropertyProxy_ReadOnly<Accessible::Role>;
+        -> glib::PropertyProxy_ReadOnly<Accessible::Role>;
 
     auto
     property_accessible () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Accessible>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<Accessible>>;
 
     auto
-    property_display () -> Glib::PropertyProxy<Glib::RefPtr<Gdk::Display>>;
+    property_display () -> glib::PropertyProxy<glib::RefPtr<gdk::Display>>;
 
     auto
     property_display () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gdk::Display>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<gdk::Display>>;
 
     auto
-    signal_state_change () -> Glib::SignalProxy<void ()>;
+    signal_state_change () -> glib::SignalProxy<void ()>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkATContext* object, bool take_copy = false) -> Glib::RefPtr<Gtk::ATContext>;
-} // namespace Glib
+  wrap (GtkATContext* object, bool take_copy = false) -> glib::RefPtr<gtk::ATContext>;
+} // namespace glib
 
 #endif

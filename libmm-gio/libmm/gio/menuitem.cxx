@@ -7,13 +7,13 @@
 
 #include <gio/gio.h>
 
-namespace Gio
+namespace gio
 {
 
-  MenuItem::MenuItem (const Glib::ustring& label,
-                      const Glib::ustring& detailed_action)
+  MenuItem::MenuItem (const glib::ustring& label,
+                      const glib::ustring& detailed_action)
     : ObjectBase (nullptr),
-      Object (Glib::ConstructParams (menuitem_class_.init ()))
+      Object (glib::ConstructParams (menuitem_class_.init ()))
   {
     if (!label.empty ())
       set_label (label);
@@ -22,10 +22,10 @@ namespace Gio
       set_detailed_action (detailed_action);
   }
 
-  MenuItem::MenuItem (const Glib::ustring& label,
-                      const Glib::RefPtr<MenuModel>& submenu)
+  MenuItem::MenuItem (const glib::ustring& label,
+                      const glib::RefPtr<MenuModel>& submenu)
     : ObjectBase (nullptr),
-      Object (Glib::ConstructParams (menuitem_class_.init ()))
+      Object (glib::ConstructParams (menuitem_class_.init ()))
   {
     if (!label.empty ())
       set_label (label);
@@ -33,15 +33,15 @@ namespace Gio
     set_submenu (submenu);
   }
 
-  MenuItem::MenuItem (const Glib::RefPtr<MenuModel>& submenu)
+  MenuItem::MenuItem (const glib::RefPtr<MenuModel>& submenu)
     : ObjectBase (nullptr),
-      Object (Glib::ConstructParams (menuitem_class_.init ()))
+      Object (glib::ConstructParams (menuitem_class_.init ()))
   {
     set_submenu (submenu);
   }
 
   auto
-  MenuItem::set_action (const Glib::ustring& action) -> void
+  MenuItem::set_action (const glib::ustring& action) -> void
   {
     g_menu_item_set_action_and_target_value (gobj (), action.c_str (), nullptr);
   }
@@ -70,26 +70,26 @@ namespace Gio
     g_menu_item_set_icon (gobj (), nullptr);
   }
 
-} // namespace Gio
+} // namespace gio
 
 namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GMenuItem* object, const bool take_copy) -> RefPtr<Gio::MenuItem>
+  wrap (GMenuItem* object, const bool take_copy) -> RefPtr<gio::MenuItem>
   {
-    return Glib::make_refptr_for_instance<Gio::MenuItem> (
-        dynamic_cast<Gio::MenuItem*> (
+    return glib::make_refptr_for_instance<gio::MenuItem> (
+        dynamic_cast<gio::MenuItem*> (
             wrap_auto ((GObject*) object, take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gio
+namespace gio
 {
 
   auto
@@ -113,7 +113,7 @@ namespace Gio
   }
 
   auto
-  MenuItem_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  MenuItem_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new MenuItem ((GMenuItem*) object);
   }
@@ -125,7 +125,7 @@ namespace Gio
     return gobj ();
   }
 
-  MenuItem::MenuItem (const Glib::ConstructParams& construct_params)
+  MenuItem::MenuItem (const glib::ConstructParams& construct_params)
     : Object (construct_params)
   {
   }
@@ -164,30 +164,30 @@ namespace Gio
   }
 
   auto
-  MenuItem::create (const Glib::ustring& label,
-                    const Glib::ustring& detailed_action) -> Glib::RefPtr<MenuItem>
+  MenuItem::create (const glib::ustring& label,
+                    const glib::ustring& detailed_action) -> glib::RefPtr<MenuItem>
   {
-    return Glib::make_refptr_for_instance<MenuItem> (
+    return glib::make_refptr_for_instance<MenuItem> (
         new MenuItem (label, detailed_action));
   }
 
   auto
-  MenuItem::create (const Glib::ustring& label,
-                    const Glib::RefPtr<MenuModel>& submenu) -> Glib::RefPtr<MenuItem>
+  MenuItem::create (const glib::ustring& label,
+                    const glib::RefPtr<MenuModel>& submenu) -> glib::RefPtr<MenuItem>
   {
-    return Glib::make_refptr_for_instance<MenuItem> (
+    return glib::make_refptr_for_instance<MenuItem> (
         new MenuItem (label, submenu));
   }
 
   auto
-  MenuItem::create (const Glib::RefPtr<MenuModel>& submenu) -> Glib::RefPtr<MenuItem>
+  MenuItem::create (const glib::RefPtr<MenuModel>& submenu) -> glib::RefPtr<MenuItem>
   {
-    return Glib::make_refptr_for_instance<MenuItem> (new MenuItem (submenu));
+    return glib::make_refptr_for_instance<MenuItem> (new MenuItem (submenu));
   }
 
   auto
-  MenuItem::set_attribute_value (const Glib::ustring& attribute,
-                                 const Glib::VariantBase& value) -> void
+  MenuItem::set_attribute_value (const glib::ustring& attribute,
+                                 const glib::VariantBase& value) -> void
   {
     g_menu_item_set_attribute_value (gobj (),
                                      attribute.c_str (),
@@ -195,47 +195,47 @@ namespace Gio
   }
 
   auto
-  MenuItem::get_link (const Glib::ustring& link) -> Glib::RefPtr<MenuModel>
+  MenuItem::get_link (const glib::ustring& link) -> glib::RefPtr<MenuModel>
   {
-    return Glib::wrap (g_menu_item_get_link (gobj (), link.c_str ()));
+    return glib::wrap (g_menu_item_get_link (gobj (), link.c_str ()));
   }
 
   auto
-  MenuItem::get_link (const Glib::ustring& link) const -> Glib::RefPtr<const MenuModel>
+  MenuItem::get_link (const glib::ustring& link) const -> glib::RefPtr<const MenuModel>
   {
     return const_cast<MenuItem*> (this)->get_link (link);
   }
 
   auto
-  MenuItem::set_link (const Glib::ustring& link,
-                      const Glib::RefPtr<MenuModel>& model) -> void
+  MenuItem::set_link (const glib::ustring& link,
+                      const glib::RefPtr<MenuModel>& model) -> void
   {
-    g_menu_item_set_link (gobj (), link.c_str (), Glib::unwrap (model));
+    g_menu_item_set_link (gobj (), link.c_str (), glib::unwrap (model));
   }
 
   auto
-  MenuItem::set_label (const Glib::ustring& label) -> void
+  MenuItem::set_label (const glib::ustring& label) -> void
   {
     g_menu_item_set_label (gobj (), label.c_str ());
   }
 
   auto
-  MenuItem::set_submenu (const Glib::RefPtr<MenuModel>& submenu) -> void
+  MenuItem::set_submenu (const glib::RefPtr<MenuModel>& submenu) -> void
   {
-    g_menu_item_set_submenu (gobj (), Glib::unwrap (submenu));
+    g_menu_item_set_submenu (gobj (), glib::unwrap (submenu));
   }
 
   auto
-  MenuItem::set_section (const Glib::RefPtr<MenuModel>& section) -> void
+  MenuItem::set_section (const glib::RefPtr<MenuModel>& section) -> void
   {
-    g_menu_item_set_section (gobj (), Glib::unwrap (section));
+    g_menu_item_set_section (gobj (), glib::unwrap (section));
   }
 
   auto
-  MenuItem::get_attribute_value (const Glib::ustring& attribute,
-                                 const Glib::VariantType& expected_type) const -> Glib::VariantBase
+  MenuItem::get_attribute_value (const glib::ustring& attribute,
+                                 const glib::VariantType& expected_type) const -> glib::VariantBase
   {
-    return Glib::wrap (
+    return glib::wrap (
         g_menu_item_get_attribute_value (const_cast<GMenuItem*> (gobj ()),
                                          attribute.c_str (),
                                          expected_type.gobj ()),
@@ -243,9 +243,9 @@ namespace Gio
   }
 
   auto
-  MenuItem::get_attribute_value (const Glib::ustring& attribute) const -> Glib::VariantBase
+  MenuItem::get_attribute_value (const glib::ustring& attribute) const -> glib::VariantBase
   {
-    return Glib::wrap (
+    return glib::wrap (
         g_menu_item_get_attribute_value (const_cast<GMenuItem*> (gobj ()),
                                          attribute.c_str (),
                                          nullptr),
@@ -253,8 +253,8 @@ namespace Gio
   }
 
   auto
-  MenuItem::set_action_and_target (const Glib::ustring& action,
-                                   const Glib::VariantBase& target_value) -> void
+  MenuItem::set_action_and_target (const glib::ustring& action,
+                                   const glib::VariantBase& target_value) -> void
   {
     g_menu_item_set_action_and_target_value (
         gobj (),
@@ -263,15 +263,15 @@ namespace Gio
   }
 
   auto
-  MenuItem::set_detailed_action (const Glib::ustring& detailed_action) -> void
+  MenuItem::set_detailed_action (const glib::ustring& detailed_action) -> void
   {
     g_menu_item_set_detailed_action (gobj (), detailed_action.c_str ());
   }
 
   auto
-  MenuItem::set_icon (const Glib::RefPtr<Icon>& icon) -> void
+  MenuItem::set_icon (const glib::RefPtr<Icon>& icon) -> void
   {
-    g_menu_item_set_icon (gobj (), Glib::unwrap (icon));
+    g_menu_item_set_icon (gobj (), glib::unwrap (icon));
   }
 
-} // namespace Gio
+} // namespace gio

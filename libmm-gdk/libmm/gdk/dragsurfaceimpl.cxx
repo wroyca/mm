@@ -3,10 +3,10 @@
 #include <libmm/gdk/dragsurfaceimpl.hxx>
 #include <utility>
 
-namespace Gdk
+namespace gdk
 {
   DragSurfaceImpl::DragSurfaceImpl (GdkSurface* castitem)
-    : Glib::ObjectBase (nullptr),
+    : glib::ObjectBase (nullptr),
       Surface (castitem)
   {
   }
@@ -27,4 +27,4 @@ namespace Gdk
 
   DragSurfaceImpl::~DragSurfaceImpl () noexcept {}
 
-} // namespace Gdk
+} // namespace gdk

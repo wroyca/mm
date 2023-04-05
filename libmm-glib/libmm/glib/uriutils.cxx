@@ -8,7 +8,7 @@
 #include <glib.h>
 #include <libmm/glib/utility.hxx>
 
-namespace Glib
+namespace glib
 {
 
   auto
@@ -38,7 +38,7 @@ namespace Glib
     return convert_return_gchar_ptr_to_stdstring (cresult);
   }
 
-} // namespace Glib
+} // namespace glib
 
 namespace
 {

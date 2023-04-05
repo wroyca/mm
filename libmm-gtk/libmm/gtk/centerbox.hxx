@@ -16,13 +16,13 @@ using GtkCenterBoxClass = struct _GtkCenterBoxClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT CenterBox_Class;
 }
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
   class LIBMM_GTK_SYMEXPORT CenterBox : public Widget,
@@ -53,7 +53,7 @@ namespace Gtk
     static CppClassType centerbox_class_;
 
   protected:
-    explicit CenterBox (const Glib::ConstructParams& construct_params);
+    explicit CenterBox (const glib::ConstructParams& construct_params);
     explicit CenterBox (GtkCenterBox* castitem);
 
 #endif
@@ -127,41 +127,41 @@ namespace Gtk
     get_baseline_position () -> BaselinePosition;
 
     auto
-    property_start_widget () -> Glib::PropertyProxy<Widget*>;
+    property_start_widget () -> glib::PropertyProxy<Widget*>;
 
     auto
-    property_start_widget () const -> Glib::PropertyProxy_ReadOnly<Widget*>;
+    property_start_widget () const -> glib::PropertyProxy_ReadOnly<Widget*>;
 
     auto
-    property_center_widget () -> Glib::PropertyProxy<Widget*>;
+    property_center_widget () -> glib::PropertyProxy<Widget*>;
 
     auto
-    property_center_widget () const -> Glib::PropertyProxy_ReadOnly<Widget*>;
+    property_center_widget () const -> glib::PropertyProxy_ReadOnly<Widget*>;
 
     auto
-    property_end_widget () -> Glib::PropertyProxy<Widget*>;
+    property_end_widget () -> glib::PropertyProxy<Widget*>;
 
     auto
-    property_end_widget () const -> Glib::PropertyProxy_ReadOnly<Widget*>;
+    property_end_widget () const -> glib::PropertyProxy_ReadOnly<Widget*>;
 
     auto
-    property_baseline_position () -> Glib::PropertyProxy<BaselinePosition>;
+    property_baseline_position () -> glib::PropertyProxy<BaselinePosition>;
 
     auto
     property_baseline_position () const
-        -> Glib::PropertyProxy_ReadOnly<BaselinePosition>;
+        -> glib::PropertyProxy_ReadOnly<BaselinePosition>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkCenterBox* object, bool take_copy = false) -> Gtk::CenterBox*;
-} // namespace Glib
+  wrap (GtkCenterBox* object, bool take_copy = false) -> gtk::CenterBox*;
+} // namespace glib
 
 #endif

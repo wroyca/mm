@@ -7,32 +7,32 @@
 
 #include <gio/gio.h>
 
-using Flags = Gio::TlsPassword::Flags;
+using Flags = gio::TlsPassword::Flags;
 
 namespace
 {
 }
 
 auto
-Glib::Value<Gio::TlsPassword::Flags>::value_type () -> GType
+glib::Value<gio::TlsPassword::Flags>::value_type () -> GType
 {
   return g_tls_password_flags_get_type ();
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GTlsPassword* object, const bool take_copy) -> RefPtr<Gio::TlsPassword>
+  wrap (GTlsPassword* object, const bool take_copy) -> RefPtr<gio::TlsPassword>
   {
-    return Glib::make_refptr_for_instance<Gio::TlsPassword> (
-        dynamic_cast<Gio::TlsPassword*> (
+    return glib::make_refptr_for_instance<gio::TlsPassword> (
+        dynamic_cast<gio::TlsPassword*> (
             wrap_auto ((GObject*) object, take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gio
+namespace gio
 {
 
   auto
@@ -63,7 +63,7 @@ namespace Gio
                                                gsize* length) -> const guchar*
   {
     const auto obj_base =
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self);
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self);
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -76,7 +76,7 @@ namespace Gio
         }
         catch (...)
         {
-          Glib::exception_handlers_invoke ();
+          glib::exception_handlers_invoke ();
         }
       }
     }
@@ -95,7 +95,7 @@ namespace Gio
   TlsPassword_Class::get_default_warning_vfunc_callback (GTlsPassword* self) -> const gchar*
   {
     const auto obj_base =
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self);
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self);
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -105,18 +105,18 @@ namespace Gio
         try
         {
           static auto quark_return_value = g_quark_from_static_string (
-              "Gio::TlsPassword::get_default_warning_vfunc");
+              "gio::TlsPassword::get_default_warning_vfunc");
 
-          auto return_value = static_cast<Glib::ustring*> (
+          auto return_value = static_cast<glib::ustring*> (
               g_object_get_qdata (obj_base->gobj (), quark_return_value));
           if (!return_value)
           {
-            return_value = new Glib::ustring ();
+            return_value = new glib::ustring ();
             g_object_set_qdata_full (
                 obj_base->gobj (),
                 quark_return_value,
                 return_value,
-                &Glib::destroy_notify_delete<Glib::ustring>);
+                &glib::destroy_notify_delete<glib::ustring>);
           }
 
           *return_value = obj->get_default_warning_vfunc ();
@@ -124,7 +124,7 @@ namespace Gio
         }
         catch (...)
         {
-          Glib::exception_handlers_invoke ();
+          glib::exception_handlers_invoke ();
         }
       }
     }
@@ -140,7 +140,7 @@ namespace Gio
   }
 
   auto
-  TlsPassword_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  TlsPassword_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new TlsPassword ((GTlsPassword*) object);
   }
@@ -152,7 +152,7 @@ namespace Gio
     return gobj ();
   }
 
-  TlsPassword::TlsPassword (const Glib::ConstructParams& construct_params)
+  TlsPassword::TlsPassword (const glib::ConstructParams& construct_params)
     : Object (construct_params)
   {
   }
@@ -190,9 +190,9 @@ namespace Gio
     return g_tls_password_get_type ();
   }
 
-  TlsPassword::TlsPassword (const Glib::ustring& description, const Flags flags)
+  TlsPassword::TlsPassword (const glib::ustring& description, const Flags flags)
     : ObjectBase (nullptr),
-      Object (Glib::ConstructParams (tlspassword_class_.init (),
+      Object (glib::ConstructParams (tlspassword_class_.init (),
                                      "flags",
                                      flags,
                                      "description",
@@ -202,9 +202,9 @@ namespace Gio
   }
 
   auto
-  TlsPassword::create (const Glib::ustring& description, const Flags flags) -> Glib::RefPtr<TlsPassword>
+  TlsPassword::create (const glib::ustring& description, const Flags flags) -> glib::RefPtr<TlsPassword>
   {
-    return Glib::make_refptr_for_instance<TlsPassword> (
+    return glib::make_refptr_for_instance<TlsPassword> (
         new TlsPassword (description, flags));
   }
 
@@ -229,14 +229,14 @@ namespace Gio
   }
 
   auto
-  TlsPassword::get_description () const -> Glib::ustring
+  TlsPassword::get_description () const -> glib::ustring
   {
-    return Glib::convert_const_gchar_ptr_to_ustring (
+    return glib::convert_const_gchar_ptr_to_ustring (
         g_tls_password_get_description (const_cast<GTlsPassword*> (gobj ())));
   }
 
   auto
-  TlsPassword::set_description (const Glib::ustring& description) -> void
+  TlsPassword::set_description (const glib::ustring& description) -> void
   {
     g_tls_password_set_description (gobj (), description.c_str ());
   }
@@ -255,55 +255,55 @@ namespace Gio
   }
 
   auto
-  TlsPassword::get_warning () const -> Glib::ustring
+  TlsPassword::get_warning () const -> glib::ustring
   {
-    return Glib::convert_const_gchar_ptr_to_ustring (
+    return glib::convert_const_gchar_ptr_to_ustring (
         g_tls_password_get_warning (const_cast<GTlsPassword*> (gobj ())));
   }
 
   auto
-  TlsPassword::set_warning (const Glib::ustring& warning) -> void
+  TlsPassword::set_warning (const glib::ustring& warning) -> void
   {
     g_tls_password_set_warning (gobj (), warning.c_str ());
   }
 
   auto
-  TlsPassword::property_description () -> Glib::PropertyProxy<Glib::ustring>
+  TlsPassword::property_description () -> glib::PropertyProxy<glib::ustring>
   {
     return {this, "description"};
   }
 
   auto
-  TlsPassword::property_description () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>
+  TlsPassword::property_description () const -> glib::PropertyProxy_ReadOnly<glib::ustring>
   {
     return {this, "description"};
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<Flags>::value,
+      glib::Traits::ValueCompatibleWithWrapProperty<Flags>::value,
       "Type Flags cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  TlsPassword::property_flags () -> Glib::PropertyProxy<Flags>
+  TlsPassword::property_flags () -> glib::PropertyProxy<Flags>
   {
     return {this, "flags"};
   }
 
   auto
-  TlsPassword::property_flags () const -> Glib::PropertyProxy_ReadOnly<Flags>
+  TlsPassword::property_flags () const -> glib::PropertyProxy_ReadOnly<Flags>
   {
     return {this, "flags"};
   }
 
   auto
-  TlsPassword::property_warning () -> Glib::PropertyProxy<Glib::ustring>
+  TlsPassword::property_warning () -> glib::PropertyProxy<glib::ustring>
   {
     return {this, "warning"};
   }
 
   auto
-  TlsPassword::property_warning () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>
+  TlsPassword::property_warning () const -> glib::PropertyProxy_ReadOnly<glib::ustring>
   {
     return {this, "warning"};
   }
@@ -326,20 +326,20 @@ namespace Gio
   }
 
   auto
-  TlsPassword::get_default_warning_vfunc () const -> Glib::ustring
+  TlsPassword::get_default_warning_vfunc () const -> glib::ustring
   {
     const auto base = static_cast<BaseClassType*> (
         g_type_class_peek_parent (G_OBJECT_GET_CLASS (gobject_)));
 
     if (base && base->get_default_warning)
     {
-      Glib::ustring retval (Glib::convert_const_gchar_ptr_to_ustring (
+      glib::ustring retval (glib::convert_const_gchar_ptr_to_ustring (
           (*base->get_default_warning) (const_cast<GTlsPassword*> (gobj ()))));
       return retval;
     }
 
-    using RType = Glib::ustring;
+    using RType = glib::ustring;
     return {};
   }
 
-} // namespace Gio
+} // namespace gio

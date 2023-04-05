@@ -9,7 +9,7 @@
 #include <libmm/glib/mm-glib.hxx>
 #include <libmm/gtk/mm-gtk.hxx>
 
-namespace Adw
+namespace adw
 {
 
 }
@@ -18,24 +18,24 @@ namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (AdwTabPage* object, bool take_copy) -> Glib::RefPtr<Adw::TabPage>
+  wrap (AdwTabPage* object, bool take_copy) -> glib::RefPtr<adw::TabPage>
   {
-    return Glib::make_refptr_for_instance<Adw::TabPage> (
-        dynamic_cast<Adw::TabPage*> (
-            Glib::wrap_auto ((GObject*) (object), take_copy)));
+    return glib::make_refptr_for_instance<adw::TabPage> (
+        dynamic_cast<adw::TabPage*> (
+            glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Adw
+namespace adw
 {
 
   auto
-  TabPage_Class::init () -> const Glib::Class&
+  TabPage_Class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -46,7 +46,7 @@ namespace Adw
   }
 
   auto
-  TabPage_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  TabPage_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new TabPage ((AdwTabPage*) object);
   }
@@ -58,25 +58,25 @@ namespace Adw
     return gobj ();
   }
 
-  TabPage::TabPage (const Glib::ConstructParams& construct_params)
-    : Glib::Object (construct_params)
+  TabPage::TabPage (const glib::ConstructParams& construct_params)
+    : glib::Object (construct_params)
   {
   }
 
   TabPage::TabPage (AdwTabPage* castitem)
-    : Glib::Object ((GObject*) (castitem))
+    : glib::Object ((GObject*) (castitem))
   {
   }
 
   TabPage::TabPage (TabPage&& src) noexcept
-    : Glib::Object (std::move (src))
+    : glib::Object (std::move (src))
   {
   }
 
   auto
   TabPage::operator= (TabPage&& src) noexcept -> TabPage&
   {
-    Glib::Object::operator= (std::move (src));
+    glib::Object::operator= (std::move (src));
     return *this;
   }
 
@@ -97,29 +97,29 @@ namespace Adw
   }
 
   TabPage::TabPage ()
-    : Glib::ObjectBase (nullptr),
-      Glib::Object (Glib::ConstructParams (tabpage_class_.init ()))
+    : glib::ObjectBase (nullptr),
+      glib::Object (glib::ConstructParams (tabpage_class_.init ()))
   {
   }
 
   auto
-  TabPage::create () -> Glib::RefPtr<TabPage>
+  TabPage::create () -> glib::RefPtr<TabPage>
   {
-    return Glib::make_refptr_for_instance<TabPage> (new TabPage ());
+    return glib::make_refptr_for_instance<TabPage> (new TabPage ());
   }
 
   auto
-  TabPage::get_child () const -> Gtk::Widget*
+  TabPage::get_child () const -> gtk::Widget*
   {
-    return Glib::wrap (
+    return glib::wrap (
         adw_tab_page_get_child (const_cast<AdwTabPage*> (gobj ())));
   }
 
   auto
-  TabPage::get_icon () const -> Glib::RefPtr<Gio::Icon>
+  TabPage::get_icon () const -> glib::RefPtr<gio::Icon>
   {
     auto retvalue =
-        Glib::wrap (adw_tab_page_get_icon (const_cast<AdwTabPage*> (gobj ())));
+        glib::wrap (adw_tab_page_get_icon (const_cast<AdwTabPage*> (gobj ())));
     if (retvalue)
       retvalue->reference ();
     return retvalue;
@@ -133,9 +133,9 @@ namespace Adw
   }
 
   auto
-  TabPage::get_indicator_icon () const -> Glib::RefPtr<Gio::Icon>
+  TabPage::get_indicator_icon () const -> glib::RefPtr<gio::Icon>
   {
-    auto retvalue = Glib::wrap (
+    auto retvalue = glib::wrap (
         adw_tab_page_get_indicator_icon (const_cast<AdwTabPage*> (gobj ())));
     if (retvalue)
       retvalue->reference ();
@@ -143,9 +143,9 @@ namespace Adw
   }
 
   auto
-  TabPage::get_indicator_tooltip () const -> Glib::ustring
+  TabPage::get_indicator_tooltip () const -> glib::ustring
   {
-    return Glib::convert_const_gchar_ptr_to_ustring (
+    return glib::convert_const_gchar_ptr_to_ustring (
         adw_tab_page_get_indicator_tooltip (const_cast<AdwTabPage*> (gobj ())));
   }
 
@@ -162,9 +162,9 @@ namespace Adw
   }
 
   auto
-  TabPage::get_parent () const -> Glib::RefPtr<TabPage>
+  TabPage::get_parent () const -> glib::RefPtr<TabPage>
   {
-    auto retvalue = Glib::wrap (
+    auto retvalue = glib::wrap (
         adw_tab_page_get_parent (const_cast<AdwTabPage*> (gobj ())));
     if (retvalue)
       retvalue->reference ();
@@ -184,24 +184,24 @@ namespace Adw
   }
 
   auto
-  TabPage::get_title () const -> Glib::ustring
+  TabPage::get_title () const -> glib::ustring
   {
-    return Glib::convert_const_gchar_ptr_to_ustring (
+    return glib::convert_const_gchar_ptr_to_ustring (
         adw_tab_page_get_title (const_cast<AdwTabPage*> (gobj ())));
   }
 
   auto
-  TabPage::get_tooltip () const -> Glib::ustring
+  TabPage::get_tooltip () const -> glib::ustring
   {
-    return Glib::convert_const_gchar_ptr_to_ustring (
+    return glib::convert_const_gchar_ptr_to_ustring (
         adw_tab_page_get_tooltip (const_cast<AdwTabPage*> (gobj ())));
   }
 
   auto
-  TabPage::set_icon (const Glib::RefPtr<Gio::Icon>& icon) -> void
+  TabPage::set_icon (const glib::RefPtr<gio::Icon>& icon) -> void
   {
     adw_tab_page_set_icon (gobj (),
-                           const_cast<GIcon*> (Glib::unwrap<Gio::Icon> (icon)));
+                           const_cast<GIcon*> (glib::unwrap<gio::Icon> (icon)));
   }
 
   auto
@@ -212,15 +212,15 @@ namespace Adw
   }
 
   auto
-  TabPage::set_indicator_icon (const Glib::RefPtr<Gio::Icon>& indicator_icon) -> void
+  TabPage::set_indicator_icon (const glib::RefPtr<gio::Icon>& indicator_icon) -> void
   {
     adw_tab_page_set_indicator_icon (
         gobj (),
-        const_cast<GIcon*> (Glib::unwrap<Gio::Icon> (indicator_icon)));
+        const_cast<GIcon*> (glib::unwrap<gio::Icon> (indicator_icon)));
   }
 
   auto
-  TabPage::set_indicator_tooltip (const Glib::ustring& indicator_tooltip) -> void
+  TabPage::set_indicator_tooltip (const glib::ustring& indicator_tooltip) -> void
   {
     adw_tab_page_set_indicator_tooltip (gobj (), indicator_tooltip.c_str ());
   }
@@ -239,157 +239,157 @@ namespace Adw
   }
 
   auto
-  TabPage::set_title (const Glib::ustring& title) -> void
+  TabPage::set_title (const glib::ustring& title) -> void
   {
     adw_tab_page_set_title (gobj (), title.c_str ());
   }
 
   auto
-  TabPage::set_tooltip (const Glib::ustring& tooltip) -> void
+  TabPage::set_tooltip (const glib::ustring& tooltip) -> void
   {
     adw_tab_page_set_tooltip (gobj (), tooltip.c_str ());
   }
 
   auto
-  TabPage::property_child () const -> Glib::PropertyProxy_ReadOnly<Gtk::Widget*>
+  TabPage::property_child () const -> glib::PropertyProxy_ReadOnly<gtk::Widget*>
   {
-    return Glib::PropertyProxy_ReadOnly<Gtk::Widget*> (this, "child");
+    return glib::PropertyProxy_ReadOnly<gtk::Widget*> (this, "child");
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<
-          Glib::RefPtr<Gio::Icon>>::value,
-      "Type Glib::RefPtr<Gio::Icon> cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      glib::Traits::ValueCompatibleWithWrapProperty<
+          glib::RefPtr<gio::Icon>>::value,
+      "Type glib::RefPtr<gio::Icon> cannot be used in _WRAP_PROPERTY. "
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  TabPage::property_icon () -> Glib::PropertyProxy<Glib::RefPtr<Gio::Icon>>
+  TabPage::property_icon () -> glib::PropertyProxy<glib::RefPtr<gio::Icon>>
   {
-    return Glib::PropertyProxy<Glib::RefPtr<Gio::Icon>> (this, "icon");
+    return glib::PropertyProxy<glib::RefPtr<gio::Icon>> (this, "icon");
   }
 
   auto
-  TabPage::property_icon () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gio::Icon>>
+  TabPage::property_icon () const -> glib::PropertyProxy_ReadOnly<glib::RefPtr<gio::Icon>>
   {
-    return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gio::Icon>> (this, "icon");
+    return glib::PropertyProxy_ReadOnly<glib::RefPtr<gio::Icon>> (this, "icon");
   }
 
   auto
-  TabPage::property_indicator_activatable () -> Glib::PropertyProxy<bool>
+  TabPage::property_indicator_activatable () -> glib::PropertyProxy<bool>
   {
-    return Glib::PropertyProxy<bool> (this, "indicator-activatable");
+    return glib::PropertyProxy<bool> (this, "indicator-activatable");
   }
 
   auto
-  TabPage::property_indicator_activatable () const -> Glib::PropertyProxy_ReadOnly<bool>
+  TabPage::property_indicator_activatable () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "indicator-activatable");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "indicator-activatable");
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<
-          Glib::RefPtr<Gio::Icon>>::value,
-      "Type Glib::RefPtr<Gio::Icon> cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      glib::Traits::ValueCompatibleWithWrapProperty<
+          glib::RefPtr<gio::Icon>>::value,
+      "Type glib::RefPtr<gio::Icon> cannot be used in _WRAP_PROPERTY. "
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  TabPage::property_indicator_icon () -> Glib::PropertyProxy<Glib::RefPtr<Gio::Icon>>
+  TabPage::property_indicator_icon () -> glib::PropertyProxy<glib::RefPtr<gio::Icon>>
   {
-    return Glib::PropertyProxy<Glib::RefPtr<Gio::Icon>> (this,
+    return glib::PropertyProxy<glib::RefPtr<gio::Icon>> (this,
                                                          "indicator-icon");
   }
 
   auto
-  TabPage::property_indicator_icon () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gio::Icon>>
+  TabPage::property_indicator_icon () const -> glib::PropertyProxy_ReadOnly<glib::RefPtr<gio::Icon>>
   {
-    return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gio::Icon>> (
+    return glib::PropertyProxy_ReadOnly<glib::RefPtr<gio::Icon>> (
         this,
         "indicator-icon");
   }
 
   auto
-  TabPage::property_indicator_tooltip () -> Glib::PropertyProxy<Glib::ustring>
+  TabPage::property_indicator_tooltip () -> glib::PropertyProxy<glib::ustring>
   {
-    return Glib::PropertyProxy<Glib::ustring> (this, "indicator-tooltip");
+    return glib::PropertyProxy<glib::ustring> (this, "indicator-tooltip");
   }
 
   auto
-  TabPage::property_indicator_tooltip () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>
+  TabPage::property_indicator_tooltip () const -> glib::PropertyProxy_ReadOnly<glib::ustring>
   {
-    return Glib::PropertyProxy_ReadOnly<Glib::ustring> (this,
+    return glib::PropertyProxy_ReadOnly<glib::ustring> (this,
                                                         "indicator-tooltip");
   }
 
   auto
-  TabPage::property_loading () -> Glib::PropertyProxy<bool>
+  TabPage::property_loading () -> glib::PropertyProxy<bool>
   {
-    return Glib::PropertyProxy<bool> (this, "loading");
+    return glib::PropertyProxy<bool> (this, "loading");
   }
 
   auto
-  TabPage::property_loading () const -> Glib::PropertyProxy_ReadOnly<bool>
+  TabPage::property_loading () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "loading");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "loading");
   }
 
   auto
-  TabPage::property_needs_attention () -> Glib::PropertyProxy<bool>
+  TabPage::property_needs_attention () -> glib::PropertyProxy<bool>
   {
-    return Glib::PropertyProxy<bool> (this, "needs-attention");
+    return glib::PropertyProxy<bool> (this, "needs-attention");
   }
 
   auto
-  TabPage::property_needs_attention () const -> Glib::PropertyProxy_ReadOnly<bool>
+  TabPage::property_needs_attention () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "needs-attention");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "needs-attention");
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<
-          Glib::RefPtr<TabPage>>::value,
-      "Type Glib::RefPtr<TabPage> cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      glib::Traits::ValueCompatibleWithWrapProperty<
+          glib::RefPtr<TabPage>>::value,
+      "Type glib::RefPtr<TabPage> cannot be used in _WRAP_PROPERTY. "
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  TabPage::property_parent () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<TabPage>>
+  TabPage::property_parent () const -> glib::PropertyProxy_ReadOnly<glib::RefPtr<TabPage>>
   {
-    return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<TabPage>> (this, "parent");
+    return glib::PropertyProxy_ReadOnly<glib::RefPtr<TabPage>> (this, "parent");
   }
 
   auto
-  TabPage::property_pinned () const -> Glib::PropertyProxy_ReadOnly<bool>
+  TabPage::property_pinned () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "pinned");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "pinned");
   }
 
   auto
-  TabPage::property_selected () const -> Glib::PropertyProxy_ReadOnly<bool>
+  TabPage::property_selected () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "selected");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "selected");
   }
 
   auto
-  TabPage::property_title () -> Glib::PropertyProxy<Glib::ustring>
+  TabPage::property_title () -> glib::PropertyProxy<glib::ustring>
   {
-    return Glib::PropertyProxy<Glib::ustring> (this, "title");
+    return glib::PropertyProxy<glib::ustring> (this, "title");
   }
 
   auto
-  TabPage::property_title () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>
+  TabPage::property_title () const -> glib::PropertyProxy_ReadOnly<glib::ustring>
   {
-    return Glib::PropertyProxy_ReadOnly<Glib::ustring> (this, "title");
+    return glib::PropertyProxy_ReadOnly<glib::ustring> (this, "title");
   }
 
   auto
-  TabPage::property_tooltip () -> Glib::PropertyProxy<Glib::ustring>
+  TabPage::property_tooltip () -> glib::PropertyProxy<glib::ustring>
   {
-    return Glib::PropertyProxy<Glib::ustring> (this, "tooltip");
+    return glib::PropertyProxy<glib::ustring> (this, "tooltip");
   }
 
   auto
-  TabPage::property_tooltip () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>
+  TabPage::property_tooltip () const -> glib::PropertyProxy_ReadOnly<glib::ustring>
   {
-    return Glib::PropertyProxy_ReadOnly<Glib::ustring> (this, "tooltip");
+    return glib::PropertyProxy_ReadOnly<glib::ustring> (this, "tooltip");
   }
 
-} // namespace Adw
+} // namespace adw

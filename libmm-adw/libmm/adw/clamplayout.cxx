@@ -7,7 +7,7 @@
 
 #include <libmm/gtk/mm-gtk.hxx>
 
-namespace Adw
+namespace adw
 {
 
 }
@@ -16,24 +16,24 @@ namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (AdwClampLayout* object, bool take_copy) -> Glib::RefPtr<Adw::ClampLayout>
+  wrap (AdwClampLayout* object, bool take_copy) -> glib::RefPtr<adw::ClampLayout>
   {
-    return Glib::make_refptr_for_instance<Adw::ClampLayout> (
-        dynamic_cast<Adw::ClampLayout*> (
-            Glib::wrap_auto ((GObject*) (object), take_copy)));
+    return glib::make_refptr_for_instance<adw::ClampLayout> (
+        dynamic_cast<adw::ClampLayout*> (
+            glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Adw
+namespace adw
 {
 
   auto
-  ClampLayout_Class::init () -> const Glib::Class&
+  ClampLayout_Class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -44,7 +44,7 @@ namespace Adw
   }
 
   auto
-  ClampLayout_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  ClampLayout_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new ClampLayout ((AdwClampLayout*) object);
   }
@@ -56,27 +56,27 @@ namespace Adw
     return gobj ();
   }
 
-  ClampLayout::ClampLayout (const Glib::ConstructParams& construct_params)
-    : Gtk::LayoutManager (construct_params)
+  ClampLayout::ClampLayout (const glib::ConstructParams& construct_params)
+    : gtk::LayoutManager (construct_params)
   {
   }
 
   ClampLayout::ClampLayout (AdwClampLayout* castitem)
-    : Gtk::LayoutManager ((GtkLayoutManager*) (castitem))
+    : gtk::LayoutManager ((GtkLayoutManager*) (castitem))
   {
   }
 
   ClampLayout::ClampLayout (ClampLayout&& src) noexcept
-    : Gtk::LayoutManager (std::move (src)),
-      Gtk::Orientable (std::move (src))
+    : gtk::LayoutManager (std::move (src)),
+      gtk::Orientable (std::move (src))
   {
   }
 
   auto
   ClampLayout::operator= (ClampLayout&& src) noexcept -> ClampLayout&
   {
-    Gtk::LayoutManager::operator= (std::move (src));
-    Gtk::Orientable::operator= (std::move (src));
+    gtk::LayoutManager::operator= (std::move (src));
+    gtk::Orientable::operator= (std::move (src));
     return *this;
   }
 
@@ -97,15 +97,15 @@ namespace Adw
   }
 
   ClampLayout::ClampLayout ()
-    : Glib::ObjectBase (nullptr),
-      Gtk::LayoutManager (Glib::ConstructParams (clamplayout_class_.init ()))
+    : glib::ObjectBase (nullptr),
+      gtk::LayoutManager (glib::ConstructParams (clamplayout_class_.init ()))
   {
   }
 
   auto
-  ClampLayout::create () -> Glib::RefPtr<ClampLayout>
+  ClampLayout::create () -> glib::RefPtr<ClampLayout>
   {
-    return Glib::make_refptr_for_instance<ClampLayout> (new ClampLayout ());
+    return glib::make_refptr_for_instance<ClampLayout> (new ClampLayout ());
   }
 
   auto
@@ -135,27 +135,27 @@ namespace Adw
   }
 
   auto
-  ClampLayout::property_maximum_size () -> Glib::PropertyProxy<int>
+  ClampLayout::property_maximum_size () -> glib::PropertyProxy<int>
   {
-    return Glib::PropertyProxy<int> (this, "maximum-size");
+    return glib::PropertyProxy<int> (this, "maximum-size");
   }
 
   auto
-  ClampLayout::property_maximum_size () const -> Glib::PropertyProxy_ReadOnly<int>
+  ClampLayout::property_maximum_size () const -> glib::PropertyProxy_ReadOnly<int>
   {
-    return Glib::PropertyProxy_ReadOnly<int> (this, "maximum-size");
+    return glib::PropertyProxy_ReadOnly<int> (this, "maximum-size");
   }
 
   auto
-  ClampLayout::property_tightening_threshold () -> Glib::PropertyProxy<int>
+  ClampLayout::property_tightening_threshold () -> glib::PropertyProxy<int>
   {
-    return Glib::PropertyProxy<int> (this, "tightening-threshold");
+    return glib::PropertyProxy<int> (this, "tightening-threshold");
   }
 
   auto
-  ClampLayout::property_tightening_threshold () const -> Glib::PropertyProxy_ReadOnly<int>
+  ClampLayout::property_tightening_threshold () const -> glib::PropertyProxy_ReadOnly<int>
   {
-    return Glib::PropertyProxy_ReadOnly<int> (this, "tightening-threshold");
+    return glib::PropertyProxy_ReadOnly<int> (this, "tightening-threshold");
   }
 
-} // namespace Adw
+} // namespace adw

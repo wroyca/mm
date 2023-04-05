@@ -19,16 +19,16 @@ using GLoadableIconClass = struct _GLoadableIconClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gio
+namespace gio
 {
   class LIBMM_GIO_SYMEXPORT LoadableIcon_Class;
 }
 #endif
 
-namespace Gio
+namespace gio
 {
 
-  class LIBMM_GIO_SYMEXPORT LoadableIcon : public Glib::Interface
+  class LIBMM_GIO_SYMEXPORT LoadableIcon : public glib::Interface
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -52,7 +52,7 @@ namespace Gio
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
-    explicit LoadableIcon (const Glib::Interface_Class& interface_class);
+    explicit LoadableIcon (const glib::Interface_Class& interface_class);
 
   public:
     explicit LoadableIcon (GLoadableIcon* castitem);
@@ -94,17 +94,17 @@ namespace Gio
   public:
     auto
     load (int size,
-          Glib::ustring& type,
-          const Glib::RefPtr<Cancellable>& cancellable)
-        -> Glib::RefPtr<InputStream>;
+          glib::ustring& type,
+          const glib::RefPtr<Cancellable>& cancellable)
+        -> glib::RefPtr<InputStream>;
 
     auto
-    load (int size, Glib::ustring& type) -> Glib::RefPtr<InputStream>;
+    load (int size, glib::ustring& type) -> glib::RefPtr<InputStream>;
 
     auto
     load_async (int size,
                 const SlotAsyncReady& slot,
-                const Glib::RefPtr<Cancellable>& cancellable) -> void;
+                const glib::RefPtr<Cancellable>& cancellable) -> void;
 
     auto
     load_async (int size, const SlotAsyncReady& slot) -> void;
@@ -115,15 +115,15 @@ namespace Gio
   protected:
   };
 
-} // namespace Gio
+} // namespace gio
 
-namespace Glib
+namespace glib
 {
 
   LIBMM_GIO_SYMEXPORT
   auto
-  wrap (GLoadableIcon* object, bool take_copy = false) -> Glib::RefPtr<Gio::LoadableIcon>;
+  wrap (GLoadableIcon* object, bool take_copy = false) -> glib::RefPtr<gio::LoadableIcon>;
 
-} // namespace Glib
+} // namespace glib
 
 #endif

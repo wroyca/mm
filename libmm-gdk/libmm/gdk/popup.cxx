@@ -11,25 +11,25 @@ namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GdkPopup* object, bool take_copy) -> Glib::RefPtr<Gdk::Popup>
+  wrap (GdkPopup* object, bool take_copy) -> glib::RefPtr<gdk::Popup>
   {
-    return Glib::make_refptr_for_instance<Gdk::Popup> (
-        dynamic_cast<Gdk::Popup*> (
-            Glib::wrap_auto_interface<Gdk::Popup> ((GObject*) (object),
+    return glib::make_refptr_for_instance<gdk::Popup> (
+        dynamic_cast<gdk::Popup*> (
+            glib::wrap_auto_interface<gdk::Popup> ((GObject*) (object),
                                                    take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gdk
+namespace gdk
 {
 
   auto
-  Popup_Class::init () -> const Glib::Interface_Class&
+  Popup_Class::init () -> const glib::Interface_Class&
   {
     if (!gtype_)
     {
@@ -50,35 +50,35 @@ namespace Gdk
   }
 
   auto
-  Popup_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  Popup_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new Popup ((GdkPopup*) (object));
   }
 
   Popup::Popup ()
-    : Glib::Interface (popup_class_.init ())
+    : glib::Interface (popup_class_.init ())
   {
   }
 
   Popup::Popup (GdkPopup* castitem)
-    : Glib::Interface ((GObject*) (castitem))
+    : glib::Interface ((GObject*) (castitem))
   {
   }
 
-  Popup::Popup (const Glib::Interface_Class& interface_class)
-    : Glib::Interface (interface_class)
+  Popup::Popup (const glib::Interface_Class& interface_class)
+    : glib::Interface (interface_class)
   {
   }
 
   Popup::Popup (Popup&& src) noexcept
-    : Glib::Interface (std::move (src))
+    : glib::Interface (std::move (src))
   {
   }
 
   auto
   Popup::operator= (Popup&& src) noexcept -> Popup&
   {
-    Glib::Interface::operator= (std::move (src));
+    glib::Interface::operator= (std::move (src));
     return *this;
   }
 
@@ -107,9 +107,9 @@ namespace Gdk
   auto
   Popup::present (int width,
                   int height,
-                  const Glib::RefPtr<PopupLayout>& layout) -> bool
+                  const glib::RefPtr<PopupLayout>& layout) -> bool
   {
-    return gdk_popup_present (gobj (), width, height, Glib::unwrap (layout));
+    return gdk_popup_present (gobj (), width, height, glib::unwrap (layout));
   }
 
   auto
@@ -127,16 +127,16 @@ namespace Gdk
   }
 
   auto
-  Popup::get_parent () -> Glib::RefPtr<Surface>
+  Popup::get_parent () -> glib::RefPtr<Surface>
   {
-    auto retvalue = Glib::wrap (gdk_popup_get_parent (gobj ()));
+    auto retvalue = glib::wrap (gdk_popup_get_parent (gobj ()));
     if (retvalue)
       retvalue->reference ();
     return retvalue;
   }
 
   auto
-  Popup::get_parent () const -> Glib::RefPtr<const Surface>
+  Popup::get_parent () const -> glib::RefPtr<const Surface>
   {
     return const_cast<Popup*> (this)->get_parent ();
   }
@@ -160,21 +160,21 @@ namespace Gdk
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<
-          Glib::RefPtr<Surface>>::value,
-      "Type Glib::RefPtr<Surface> cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      glib::Traits::ValueCompatibleWithWrapProperty<
+          glib::RefPtr<Surface>>::value,
+      "Type glib::RefPtr<Surface> cannot be used in _WRAP_PROPERTY. "
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  Popup::property_parent () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Surface>>
+  Popup::property_parent () const -> glib::PropertyProxy_ReadOnly<glib::RefPtr<Surface>>
   {
-    return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Surface>> (this, "parent");
+    return glib::PropertyProxy_ReadOnly<glib::RefPtr<Surface>> (this, "parent");
   }
 
   auto
-  Popup::property_autohide () const -> Glib::PropertyProxy_ReadOnly<bool>
+  Popup::property_autohide () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "autohide");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "autohide");
   }
 
-} // namespace Gdk
+} // namespace gdk

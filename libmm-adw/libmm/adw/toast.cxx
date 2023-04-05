@@ -9,7 +9,7 @@
 #include <libmm/glib/mm-glib.hxx>
 #include <libmm/gtk/mm-gtk.hxx>
 
-namespace Adw
+namespace adw
 {
 
 }
@@ -17,42 +17,42 @@ namespace Adw
 namespace
 {
 
-  static const Glib::SignalProxyInfo Toast_signal_button_clicked_info = {
+  static const glib::SignalProxyInfo Toast_signal_button_clicked_info = {
       "button-clicked",
-      (GCallback) &Glib::SignalProxyNormal::slot0_void_callback,
-      (GCallback) &Glib::SignalProxyNormal::slot0_void_callback};
+      (GCallback) &glib::SignalProxyNormal::slot0_void_callback,
+      (GCallback) &glib::SignalProxyNormal::slot0_void_callback};
 
-  static const Glib::SignalProxyInfo Toast_signal_dismissed_info = {
+  static const glib::SignalProxyInfo Toast_signal_dismissed_info = {
       "dismissed",
-      (GCallback) &Glib::SignalProxyNormal::slot0_void_callback,
-      (GCallback) &Glib::SignalProxyNormal::slot0_void_callback};
+      (GCallback) &glib::SignalProxyNormal::slot0_void_callback,
+      (GCallback) &glib::SignalProxyNormal::slot0_void_callback};
 
 } // namespace
 
 auto
-Glib::Value<Adw::ToastPriority>::value_type () -> GType
+glib::Value<adw::ToastPriority>::value_type () -> GType
 {
   return adw_toast_priority_get_type ();
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (AdwToast* object, bool take_copy) -> Glib::RefPtr<Adw::Toast>
+  wrap (AdwToast* object, bool take_copy) -> glib::RefPtr<adw::Toast>
   {
-    return Glib::make_refptr_for_instance<Adw::Toast> (
-        dynamic_cast<Adw::Toast*> (
-            Glib::wrap_auto ((GObject*) (object), take_copy)));
+    return glib::make_refptr_for_instance<adw::Toast> (
+        dynamic_cast<adw::Toast*> (
+            glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Adw
+namespace adw
 {
 
   auto
-  Toast_Class::init () -> const Glib::Class&
+  Toast_Class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -63,7 +63,7 @@ namespace Adw
   }
 
   auto
-  Toast_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  Toast_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new Toast ((AdwToast*) object);
   }
@@ -75,25 +75,25 @@ namespace Adw
     return gobj ();
   }
 
-  Toast::Toast (const Glib::ConstructParams& construct_params)
-    : Glib::Object (construct_params)
+  Toast::Toast (const glib::ConstructParams& construct_params)
+    : glib::Object (construct_params)
   {
   }
 
   Toast::Toast (AdwToast* castitem)
-    : Glib::Object ((GObject*) (castitem))
+    : glib::Object ((GObject*) (castitem))
   {
   }
 
   Toast::Toast (Toast&& src) noexcept
-    : Glib::Object (std::move (src))
+    : glib::Object (std::move (src))
   {
   }
 
   auto
   Toast::operator= (Toast&& src) noexcept -> Toast&
   {
-    Glib::Object::operator= (std::move (src));
+    glib::Object::operator= (std::move (src));
     return *this;
   }
 
@@ -114,14 +114,14 @@ namespace Adw
   }
 
   Toast::Toast ()
-    : Glib::ObjectBase (nullptr),
-      Glib::Object (Glib::ConstructParams (toast_class_.init ()))
+    : glib::ObjectBase (nullptr),
+      glib::Object (glib::ConstructParams (toast_class_.init ()))
   {
   }
 
-  Toast::Toast (const Glib::ustring& title)
-    : Glib::ObjectBase (nullptr),
-      Glib::Object (Glib::ConstructParams (toast_class_.init (),
+  Toast::Toast (const glib::ustring& title)
+    : glib::ObjectBase (nullptr),
+      glib::Object (glib::ConstructParams (toast_class_.init (),
                                            "title",
                                            title.c_str (),
                                            nullptr))
@@ -135,23 +135,23 @@ namespace Adw
   }
 
   auto
-  Toast::get_action_name () const -> Glib::ustring
+  Toast::get_action_name () const -> glib::ustring
   {
-    return Glib::convert_const_gchar_ptr_to_ustring (
+    return glib::convert_const_gchar_ptr_to_ustring (
         adw_toast_get_action_name (const_cast<AdwToast*> (gobj ())));
   }
 
   auto
-  Toast::get_button_label () const -> Glib::ustring
+  Toast::get_button_label () const -> glib::ustring
   {
-    return Glib::convert_const_gchar_ptr_to_ustring (
+    return glib::convert_const_gchar_ptr_to_ustring (
         adw_toast_get_button_label (const_cast<AdwToast*> (gobj ())));
   }
 
   auto
-  Toast::get_custom_title () const -> Gtk::Widget*
+  Toast::get_custom_title () const -> gtk::Widget*
   {
-    return Glib::wrap (
+    return glib::wrap (
         adw_toast_get_custom_title (const_cast<AdwToast*> (gobj ())));
   }
 
@@ -169,32 +169,32 @@ namespace Adw
   }
 
   auto
-  Toast::get_title () const -> Glib::ustring
+  Toast::get_title () const -> glib::ustring
   {
-    return Glib::convert_const_gchar_ptr_to_ustring (
+    return glib::convert_const_gchar_ptr_to_ustring (
         adw_toast_get_title (const_cast<AdwToast*> (gobj ())));
   }
 
   auto
-  Toast::set_action_name (const Glib::ustring& action_name) -> void
+  Toast::set_action_name (const glib::ustring& action_name) -> void
   {
     adw_toast_set_action_name (gobj (), action_name.c_str ());
   }
 
   auto
-  Toast::set_button_label (const Glib::ustring& button_label) -> void
+  Toast::set_button_label (const glib::ustring& button_label) -> void
   {
     adw_toast_set_button_label (gobj (), button_label.c_str ());
   }
 
   auto
-  Toast::set_custom_title (Gtk::Widget* widget) -> void
+  Toast::set_custom_title (gtk::Widget* widget) -> void
   {
-    adw_toast_set_custom_title (gobj (), (GtkWidget*) Glib::unwrap (widget));
+    adw_toast_set_custom_title (gobj (), (GtkWidget*) glib::unwrap (widget));
   }
 
   auto
-  Toast::set_detailed_action_name (const Glib::ustring& detailed_action_name) -> void
+  Toast::set_detailed_action_name (const glib::ustring& detailed_action_name) -> void
   {
     adw_toast_set_detailed_action_name (gobj (), detailed_action_name.c_str ());
   }
@@ -212,21 +212,21 @@ namespace Adw
   }
 
   auto
-  Toast::set_title (const Glib::ustring& title) -> void
+  Toast::set_title (const glib::ustring& title) -> void
   {
     adw_toast_set_title (gobj (), title.c_str ());
   }
 
   auto
-  Toast::get_action_target_value () const -> Glib::VariantBase
+  Toast::get_action_target_value () const -> glib::VariantBase
   {
-    return Glib::wrap (
+    return glib::wrap (
         adw_toast_get_action_target_value (const_cast<AdwToast*> (gobj ())),
         true);
   }
 
   auto
-  Toast::set_action_target_value (const Glib::VariantBase& target_value) -> void
+  Toast::set_action_target_value (const glib::VariantBase& target_value) -> void
   {
     adw_toast_set_action_target_value (
         gobj (),
@@ -234,110 +234,110 @@ namespace Adw
   }
 
   auto
-  Toast::signal_button_clicked () -> Glib::SignalProxy<void ()>
+  Toast::signal_button_clicked () -> glib::SignalProxy<void ()>
   {
-    return Glib::SignalProxy<void ()> (this, &Toast_signal_button_clicked_info);
+    return glib::SignalProxy<void ()> (this, &Toast_signal_button_clicked_info);
   }
 
   auto
-  Toast::signal_dismissed () -> Glib::SignalProxy<void ()>
+  Toast::signal_dismissed () -> glib::SignalProxy<void ()>
   {
-    return Glib::SignalProxy<void ()> (this, &Toast_signal_dismissed_info);
+    return glib::SignalProxy<void ()> (this, &Toast_signal_dismissed_info);
   }
 
   auto
-  Toast::property_action_name () -> Glib::PropertyProxy<Glib::ustring>
+  Toast::property_action_name () -> glib::PropertyProxy<glib::ustring>
   {
-    return Glib::PropertyProxy<Glib::ustring> (this, "action-name");
+    return glib::PropertyProxy<glib::ustring> (this, "action-name");
   }
 
   auto
-  Toast::property_action_name () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>
+  Toast::property_action_name () const -> glib::PropertyProxy_ReadOnly<glib::ustring>
   {
-    return Glib::PropertyProxy_ReadOnly<Glib::ustring> (this, "action-name");
+    return glib::PropertyProxy_ReadOnly<glib::ustring> (this, "action-name");
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<Glib::VariantBase>::value,
-      "Type Glib::VariantBase cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      glib::Traits::ValueCompatibleWithWrapProperty<glib::VariantBase>::value,
+      "Type glib::VariantBase cannot be used in _WRAP_PROPERTY. "
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  Toast::property_action_target () -> Glib::PropertyProxy<Glib::VariantBase>
+  Toast::property_action_target () -> glib::PropertyProxy<glib::VariantBase>
   {
-    return Glib::PropertyProxy<Glib::VariantBase> (this, "action-target");
+    return glib::PropertyProxy<glib::VariantBase> (this, "action-target");
   }
 
   auto
-  Toast::property_action_target () const -> Glib::PropertyProxy_ReadOnly<Glib::VariantBase>
+  Toast::property_action_target () const -> glib::PropertyProxy_ReadOnly<glib::VariantBase>
   {
-    return Glib::PropertyProxy_ReadOnly<Glib::VariantBase> (this,
+    return glib::PropertyProxy_ReadOnly<glib::VariantBase> (this,
                                                             "action-target");
   }
 
   auto
-  Toast::property_button_label () -> Glib::PropertyProxy<Glib::ustring>
+  Toast::property_button_label () -> glib::PropertyProxy<glib::ustring>
   {
-    return Glib::PropertyProxy<Glib::ustring> (this, "button-label");
+    return glib::PropertyProxy<glib::ustring> (this, "button-label");
   }
 
   auto
-  Toast::property_button_label () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>
+  Toast::property_button_label () const -> glib::PropertyProxy_ReadOnly<glib::ustring>
   {
-    return Glib::PropertyProxy_ReadOnly<Glib::ustring> (this, "button-label");
+    return glib::PropertyProxy_ReadOnly<glib::ustring> (this, "button-label");
   }
 
   auto
-  Toast::property_custom_title () -> Glib::PropertyProxy<Gtk::Widget*>
+  Toast::property_custom_title () -> glib::PropertyProxy<gtk::Widget*>
   {
-    return Glib::PropertyProxy<Gtk::Widget*> (this, "custom-title");
+    return glib::PropertyProxy<gtk::Widget*> (this, "custom-title");
   }
 
   auto
-  Toast::property_custom_title () const -> Glib::PropertyProxy_ReadOnly<Gtk::Widget*>
+  Toast::property_custom_title () const -> glib::PropertyProxy_ReadOnly<gtk::Widget*>
   {
-    return Glib::PropertyProxy_ReadOnly<Gtk::Widget*> (this, "custom-title");
+    return glib::PropertyProxy_ReadOnly<gtk::Widget*> (this, "custom-title");
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<ToastPriority>::value,
+      glib::Traits::ValueCompatibleWithWrapProperty<ToastPriority>::value,
       "Type ToastPriority cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  Toast::property_priority () -> Glib::PropertyProxy<ToastPriority>
+  Toast::property_priority () -> glib::PropertyProxy<ToastPriority>
   {
-    return Glib::PropertyProxy<ToastPriority> (this, "priority");
+    return glib::PropertyProxy<ToastPriority> (this, "priority");
   }
 
   auto
-  Toast::property_priority () const -> Glib::PropertyProxy_ReadOnly<ToastPriority>
+  Toast::property_priority () const -> glib::PropertyProxy_ReadOnly<ToastPriority>
   {
-    return Glib::PropertyProxy_ReadOnly<ToastPriority> (this, "priority");
+    return glib::PropertyProxy_ReadOnly<ToastPriority> (this, "priority");
   }
 
   auto
-  Toast::property_timeout () -> Glib::PropertyProxy<guint>
+  Toast::property_timeout () -> glib::PropertyProxy<guint>
   {
-    return Glib::PropertyProxy<guint> (this, "timeout");
+    return glib::PropertyProxy<guint> (this, "timeout");
   }
 
   auto
-  Toast::property_timeout () const -> Glib::PropertyProxy_ReadOnly<guint>
+  Toast::property_timeout () const -> glib::PropertyProxy_ReadOnly<guint>
   {
-    return Glib::PropertyProxy_ReadOnly<guint> (this, "timeout");
+    return glib::PropertyProxy_ReadOnly<guint> (this, "timeout");
   }
 
   auto
-  Toast::property_title () -> Glib::PropertyProxy<Glib::ustring>
+  Toast::property_title () -> glib::PropertyProxy<glib::ustring>
   {
-    return Glib::PropertyProxy<Glib::ustring> (this, "title");
+    return glib::PropertyProxy<glib::ustring> (this, "title");
   }
 
   auto
-  Toast::property_title () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>
+  Toast::property_title () const -> glib::PropertyProxy_ReadOnly<glib::ustring>
   {
-    return Glib::PropertyProxy_ReadOnly<Glib::ustring> (this, "title");
+    return glib::PropertyProxy_ReadOnly<glib::ustring> (this, "title");
   }
 
-} // namespace Adw
+} // namespace adw

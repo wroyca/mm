@@ -7,7 +7,7 @@
 
 #include <libmm/pango/fontfamily.hxx>
 
-namespace Pango
+namespace pango
 {
 
   auto
@@ -19,31 +19,31 @@ namespace Pango
                                 &sizes,
                                 &n_sizes);
 
-    return Glib::ArrayHandler<int>::array_to_vector (sizes,
+    return glib::ArrayHandler<int>::array_to_vector (sizes,
                                                      n_sizes,
-                                                     Glib::OWNERSHIP_SHALLOW);
+                                                     glib::OWNERSHIP_SHALLOW);
   }
 
-} // namespace Pango
+} // namespace pango
 
 namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (PangoFontFace* object, const bool take_copy) -> RefPtr<Pango::FontFace>
+  wrap (PangoFontFace* object, const bool take_copy) -> RefPtr<pango::FontFace>
   {
-    return Glib::make_refptr_for_instance<Pango::FontFace> (
-        dynamic_cast<Pango::FontFace*> (
+    return glib::make_refptr_for_instance<pango::FontFace> (
+        dynamic_cast<pango::FontFace*> (
             wrap_auto ((GObject*) object, take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Pango
+namespace pango
 {
 
   auto
@@ -67,7 +67,7 @@ namespace Pango
   }
 
   auto
-  FontFace_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  FontFace_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new FontFace ((PangoFontFace*) object);
   }
@@ -79,7 +79,7 @@ namespace Pango
     return gobj ();
   }
 
-  FontFace::FontFace (const Glib::ConstructParams& construct_params)
+  FontFace::FontFace (const glib::ConstructParams& construct_params)
     : Object (construct_params)
   {
   }
@@ -125,9 +125,9 @@ namespace Pango
   }
 
   auto
-  FontFace::get_name () const -> Glib::ustring
+  FontFace::get_name () const -> glib::ustring
   {
-    return Glib::convert_const_gchar_ptr_to_ustring (
+    return glib::convert_const_gchar_ptr_to_ustring (
         pango_font_face_get_face_name (const_cast<PangoFontFace*> (gobj ())));
   }
 
@@ -139,18 +139,18 @@ namespace Pango
   }
 
   auto
-  FontFace::get_family () -> Glib::RefPtr<FontFamily>
+  FontFace::get_family () -> glib::RefPtr<FontFamily>
   {
-    auto retvalue = Glib::wrap (pango_font_face_get_family (gobj ()));
+    auto retvalue = glib::wrap (pango_font_face_get_family (gobj ()));
     if (retvalue)
       retvalue->reference ();
     return retvalue;
   }
 
   auto
-  FontFace::get_family () const -> Glib::RefPtr<const FontFamily>
+  FontFace::get_family () const -> glib::RefPtr<const FontFamily>
   {
     return const_cast<FontFace*> (this)->get_family ();
   }
 
-} // namespace Pango
+} // namespace pango

@@ -16,16 +16,16 @@ using GPermissionClass = struct _GPermissionClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gio
+namespace gio
 {
   class LIBMM_GIO_SYMEXPORT Permission_Class;
 }
 #endif
 
-namespace Gio
+namespace gio
 {
 
-  class LIBMM_GIO_SYMEXPORT Permission : public Glib::Object
+  class LIBMM_GIO_SYMEXPORT Permission : public glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -44,7 +44,7 @@ namespace Gio
     static CppClassType permission_class_;
 
   protected:
-    explicit Permission (const Glib::ConstructParams& construct_params);
+    explicit Permission (const glib::ConstructParams& construct_params);
     explicit Permission (GPermission* castitem);
 
 #endif
@@ -83,36 +83,36 @@ namespace Gio
   private:
   public:
     auto
-    acquire (const Glib::RefPtr<Cancellable>& cancellable) -> bool;
+    acquire (const glib::RefPtr<Cancellable>& cancellable) -> bool;
 
     auto
     acquire () -> bool;
 
     auto
     acquire_async (const SlotAsyncReady& slot,
-                   const Glib::RefPtr<Cancellable>& cancellable) -> void;
+                   const glib::RefPtr<Cancellable>& cancellable) -> void;
 
     auto
     acquire_async (const SlotAsyncReady& slot) -> void;
 
     auto
-    acquire_finish (const Glib::RefPtr<AsyncResult>& result) -> bool;
+    acquire_finish (const glib::RefPtr<AsyncResult>& result) -> bool;
 
     auto
-    release (const Glib::RefPtr<Cancellable>& cancellable) -> bool;
+    release (const glib::RefPtr<Cancellable>& cancellable) -> bool;
 
     auto
     release () -> bool;
 
     auto
     release_async (const SlotAsyncReady& slot,
-                   const Glib::RefPtr<Cancellable>& cancellable) -> void;
+                   const glib::RefPtr<Cancellable>& cancellable) -> void;
 
     auto
     release_async (const SlotAsyncReady& slot) -> void;
 
     auto
-    release_finish (const Glib::RefPtr<AsyncResult>& result) -> bool;
+    release_finish (const glib::RefPtr<AsyncResult>& result) -> bool;
 
     auto
     get_allowed () const -> bool;
@@ -124,36 +124,36 @@ namespace Gio
     get_can_release () const -> bool;
 
     auto
-    property_allowed () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_allowed () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_can_acquire () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_can_acquire () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_can_release () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_can_release () const -> glib::PropertyProxy_ReadOnly<bool>;
 
   protected:
     Permission ();
 
     virtual auto
-    acquire_vfunc (const Glib::RefPtr<Cancellable>& cancellable) -> bool;
+    acquire_vfunc (const glib::RefPtr<Cancellable>& cancellable) -> bool;
 
     virtual auto
     acquire_async_vfunc (const SlotAsyncReady& slot,
-                         const Glib::RefPtr<Cancellable>& cancellable) -> void;
+                         const glib::RefPtr<Cancellable>& cancellable) -> void;
 
     virtual auto
-    acquire_finish_vfunc (const Glib::RefPtr<AsyncResult>& result) -> bool;
+    acquire_finish_vfunc (const glib::RefPtr<AsyncResult>& result) -> bool;
 
     virtual auto
-    release_vfunc (const Glib::RefPtr<Cancellable>& cancellable) -> bool;
+    release_vfunc (const glib::RefPtr<Cancellable>& cancellable) -> bool;
 
     virtual auto
     release_async_vfunc (const SlotAsyncReady& slot,
-                         const Glib::RefPtr<Cancellable>& cancellable) -> void;
+                         const glib::RefPtr<Cancellable>& cancellable) -> void;
 
     virtual auto
-    release_finish_vfunc (const Glib::RefPtr<AsyncResult>& result) -> bool;
+    release_finish_vfunc (const glib::RefPtr<AsyncResult>& result) -> bool;
 
     auto
     impl_update (bool allowed, bool can_acquire, bool can_release) -> void;
@@ -163,14 +163,14 @@ namespace Gio
   protected:
   };
 
-} // namespace Gio
+} // namespace gio
 
-namespace Glib
+namespace glib
 {
 
   LIBMM_GIO_SYMEXPORT
   auto
-  wrap (GPermission* object, bool take_copy = false) -> Glib::RefPtr<Gio::Permission>;
-} // namespace Glib
+  wrap (GPermission* object, bool take_copy = false) -> glib::RefPtr<gio::Permission>;
+} // namespace glib
 
 #endif

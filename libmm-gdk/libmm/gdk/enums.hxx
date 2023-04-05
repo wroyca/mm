@@ -11,7 +11,7 @@
 #include <gdk/gdk.h>
 #include <libmm/glib/value.hxx>
 
-namespace Gdk
+namespace gdk
 {
 
   enum class AxisFlags
@@ -77,25 +77,25 @@ namespace Gdk
                                           static_cast<unsigned> (rhs)));
   }
 
-} // namespace Gdk
+} // namespace gdk
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_GDK_SYMEXPORT Value<Gdk::AxisFlags>
-    : public Glib::Value_Flags<Gdk::AxisFlags>
+  class LIBMM_GDK_SYMEXPORT Value<gdk::AxisFlags>
+    : public glib::Value_Flags<gdk::AxisFlags>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
-namespace Gdk
+namespace gdk
 {
 
   enum class AxisUse
@@ -115,24 +115,24 @@ namespace Gdk
     LAST
   };
 
-} // namespace Gdk
+} // namespace gdk
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_GDK_SYMEXPORT Value<Gdk::AxisUse> : public Glib::Value_Enum<Gdk::AxisUse>
+  class LIBMM_GDK_SYMEXPORT Value<gdk::AxisUse> : public glib::Value_Enum<gdk::AxisUse>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
-namespace Gdk
+namespace gdk
 {
 
   enum class CrossingMode
@@ -148,25 +148,25 @@ namespace Gdk
     DEVICE_SWITCH
   };
 
-} // namespace Gdk
+} // namespace gdk
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_GDK_SYMEXPORT Value<Gdk::CrossingMode>
-    : public Glib::Value_Enum<Gdk::CrossingMode>
+  class LIBMM_GDK_SYMEXPORT Value<gdk::CrossingMode>
+    : public glib::Value_Enum<gdk::CrossingMode>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
-namespace Gdk
+namespace gdk
 {
 
   enum class DragAction
@@ -225,25 +225,25 @@ namespace Gdk
                                            static_cast<unsigned> (rhs)));
   }
 
-} // namespace Gdk
+} // namespace gdk
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_GDK_SYMEXPORT Value<Gdk::DragAction>
-    : public Glib::Value_Flags<Gdk::DragAction>
+  class LIBMM_GDK_SYMEXPORT Value<gdk::DragAction>
+    : public glib::Value_Flags<gdk::DragAction>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
-namespace Gdk
+namespace gdk
 {
 
   enum class Gravity
@@ -260,24 +260,24 @@ namespace Gdk
     STATIC
   };
 
-} // namespace Gdk
+} // namespace gdk
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_GDK_SYMEXPORT Value<Gdk::Gravity> : public Glib::Value_Enum<Gdk::Gravity>
+  class LIBMM_GDK_SYMEXPORT Value<gdk::Gravity> : public glib::Value_Enum<gdk::Gravity>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
-namespace Gdk
+namespace gdk
 {
 
   enum class ModifierType
@@ -344,25 +344,25 @@ namespace Gdk
                                              static_cast<unsigned> (rhs)));
   }
 
-} // namespace Gdk
+} // namespace gdk
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_GDK_SYMEXPORT Value<Gdk::ModifierType>
-    : public Glib::Value_Flags<Gdk::ModifierType>
+  class LIBMM_GDK_SYMEXPORT Value<gdk::ModifierType>
+    : public glib::Value_Flags<gdk::ModifierType>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
-namespace Gdk
+namespace gdk
 {
 
   enum class NotifyType
@@ -375,25 +375,25 @@ namespace Gdk
     UNKNOWN
   };
 
-} // namespace Gdk
+} // namespace gdk
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_GDK_SYMEXPORT Value<Gdk::NotifyType>
-    : public Glib::Value_Enum<Gdk::NotifyType>
+  class LIBMM_GDK_SYMEXPORT Value<gdk::NotifyType>
+    : public glib::Value_Enum<gdk::NotifyType>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
-namespace Gdk
+namespace gdk
 {
 
   enum class ScrollDirection
@@ -405,25 +405,25 @@ namespace Gdk
     SMOOTH
   };
 
-} // namespace Gdk
+} // namespace gdk
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_GDK_SYMEXPORT Value<Gdk::ScrollDirection>
-    : public Glib::Value_Enum<Gdk::ScrollDirection>
+  class LIBMM_GDK_SYMEXPORT Value<gdk::ScrollDirection>
+    : public glib::Value_Enum<gdk::ScrollDirection>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
-namespace Gdk
+namespace gdk
 {
 
   enum class TouchpadGesturePhase
@@ -434,25 +434,25 @@ namespace Gdk
     CANCEL
   };
 
-} // namespace Gdk
+} // namespace gdk
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_GDK_SYMEXPORT Value<Gdk::TouchpadGesturePhase>
-    : public Glib::Value_Enum<Gdk::TouchpadGesturePhase>
+  class LIBMM_GDK_SYMEXPORT Value<gdk::TouchpadGesturePhase>
+    : public glib::Value_Enum<gdk::TouchpadGesturePhase>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
-namespace Gdk
+namespace gdk
 {
 
   enum class ScrollUnit
@@ -461,25 +461,25 @@ namespace Gdk
     SURFACE
   };
 
-} // namespace Gdk
+} // namespace gdk
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_GDK_SYMEXPORT Value<Gdk::ScrollUnit>
-    : public Glib::Value_Enum<Gdk::ScrollUnit>
+  class LIBMM_GDK_SYMEXPORT Value<gdk::ScrollUnit>
+    : public glib::Value_Enum<gdk::ScrollUnit>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
-namespace Gdk
+namespace gdk
 {
 
 }

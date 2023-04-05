@@ -5,40 +5,40 @@
 #include <libmm/pango/coverage.hxx>
 #include <libmm/pango/coverage_p.hxx>
 
-using Level = Pango::Coverage::Level;
+using Level = pango::Coverage::Level;
 
 namespace
 {
 }
 
 auto
-Glib::Value<Pango::Coverage::Level>::value_type () -> GType
+glib::Value<pango::Coverage::Level>::value_type () -> GType
 {
   return pango_coverage_level_get_type ();
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (PangoCoverage* object, const bool take_copy) -> RefPtr<Pango::Coverage>
+  wrap (PangoCoverage* object, const bool take_copy) -> RefPtr<pango::Coverage>
   {
     if (take_copy && object)
       pango_coverage_ref (object);
 
-    return Glib::make_refptr_for_instance<Pango::Coverage> (
-        reinterpret_cast<Pango::Coverage*> (object));
+    return glib::make_refptr_for_instance<pango::Coverage> (
+        reinterpret_cast<pango::Coverage*> (object));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Pango
+namespace pango
 {
 
   auto
-  Coverage::create () -> Glib::RefPtr<Coverage>
+  Coverage::create () -> glib::RefPtr<Coverage>
   {
-    return Glib::make_refptr_for_instance<Coverage> (
+    return glib::make_refptr_for_instance<Coverage> (
         reinterpret_cast<Coverage*> (pango_coverage_new ()));
   }
 
@@ -92,4 +92,4 @@ namespace Pango
                         static_cast<PangoCoverageLevel> (level));
   }
 
-} // namespace Pango
+} // namespace pango

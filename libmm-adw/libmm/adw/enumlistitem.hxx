@@ -17,16 +17,16 @@
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Adw
+namespace adw
 {
   class LIBMM_ADW_SYMEXPORT EnumListItem_Class;
 }
 #endif
 
-namespace Adw
+namespace adw
 {
 
-  class LIBMM_ADW_SYMEXPORT EnumListItem : public Glib::Object
+  class LIBMM_ADW_SYMEXPORT EnumListItem : public glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -45,7 +45,7 @@ namespace Adw
     static CppClassType enumlistitem_class_;
 
   protected:
-    explicit EnumListItem (const Glib::ConstructParams& construct_params);
+    explicit EnumListItem (const glib::ConstructParams& construct_params);
     explicit EnumListItem (AdwEnumListItem* castitem);
 
 #endif
@@ -87,38 +87,38 @@ namespace Adw
 
   public:
     static auto
-    create () -> Glib::RefPtr<EnumListItem>;
+    create () -> glib::RefPtr<EnumListItem>;
 
     auto
-    get_name () const -> Glib::ustring;
+    get_name () const -> glib::ustring;
 
     auto
-    get_nick () const -> Glib::ustring;
+    get_nick () const -> glib::ustring;
 
     auto
     get_value () const -> int;
 
     auto
-    property_name () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+    property_name () const -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
     auto
-    property_nick () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+    property_nick () const -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
     auto
-    property_value () const -> Glib::PropertyProxy_ReadOnly<int>;
+    property_value () const -> glib::PropertyProxy_ReadOnly<int>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Adw
+} // namespace adw
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (AdwEnumListItem* object, bool take_copy = false) -> Glib::RefPtr<Adw::EnumListItem>;
+  wrap (AdwEnumListItem* object, bool take_copy = false) -> glib::RefPtr<adw::EnumListItem>;
 }
 
 #endif

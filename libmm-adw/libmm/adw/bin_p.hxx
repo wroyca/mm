@@ -7,34 +7,34 @@
 
 #include <libmm/glib/class.hxx>
 
-namespace Adw
+namespace adw
 {
 
-  class LIBMM_ADW_SYMEXPORT Bin_Class : public Glib::Class
+  class LIBMM_ADW_SYMEXPORT Bin_Class : public glib::Class
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
     using CppObjectType = Bin;
     using BaseObjectType = AdwBin;
     using BaseClassType = AdwBinClass;
-    using CppClassParent = Gtk::Widget_Class;
+    using CppClassParent = gtk::Widget_Class;
     using BaseClassParent = GtkWidgetClass;
 
     friend class Bin;
 #endif
 
     auto
-    init () -> const Glib::Class&;
+    init () -> const glib::Class&;
 
     static auto
     class_init_function (void* g_class, void* class_data) -> void;
 
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
 
   protected:
   };
 
-} // namespace Adw
+} // namespace adw
 
 #endif

@@ -17,7 +17,7 @@ extern "C"
 }
 #endif
 
-namespace Pango
+namespace pango
 {
 
   class LIBMM_PANGO_SYMEXPORT LayoutIter
@@ -75,22 +75,22 @@ namespace Pango
     get_run () const -> GlyphItem;
 
     auto
-    get_line () -> Glib::RefPtr<LayoutLine>;
+    get_line () -> glib::RefPtr<LayoutLine>;
 
     auto
-    get_line () const -> Glib::RefPtr<const LayoutLine>;
+    get_line () const -> glib::RefPtr<const LayoutLine>;
 
     auto
-    get_const_line () const -> Glib::RefPtr<const LayoutLine>;
+    get_const_line () const -> glib::RefPtr<const LayoutLine>;
 
     auto
     at_last_line () const -> bool;
 
     auto
-    get_layout () -> Glib::RefPtr<Layout>;
+    get_layout () -> glib::RefPtr<Layout>;
 
     auto
-    get_layout () const -> Glib::RefPtr<const Layout>;
+    get_layout () const -> glib::RefPtr<const Layout>;
 
     auto
     next_char () -> bool;
@@ -154,9 +154,9 @@ namespace Pango
     get_baseline () const -> int;
   };
 
-} // namespace Pango
+} // namespace pango
 
-namespace Pango
+namespace pango
 {
 
   inline auto
@@ -165,23 +165,23 @@ namespace Pango
     lhs.swap (rhs);
   }
 
-} // namespace Pango
+} // namespace pango
 
-namespace Glib
+namespace glib
 {
 
   LIBMM_PANGO_SYMEXPORT
   auto
-  wrap (PangoLayoutIter* object, bool take_copy = false) -> Pango::LayoutIter;
+  wrap (PangoLayoutIter* object, bool take_copy = false) -> pango::LayoutIter;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
   template <>
-  class LIBMM_PANGO_SYMEXPORT Value<Pango::LayoutIter>
-    : public Glib::Value_Boxed<Pango::LayoutIter>
+  class LIBMM_PANGO_SYMEXPORT Value<pango::LayoutIter>
+    : public glib::Value_Boxed<pango::LayoutIter>
   {
   };
 #endif
 
-} // namespace Glib
+} // namespace glib
 
 #endif

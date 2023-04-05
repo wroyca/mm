@@ -12,7 +12,7 @@
 
   #include <gtk/gtk.h>
 
-namespace Gtk
+namespace gtk
 {
 
 }
@@ -21,24 +21,24 @@ namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GtkCellAreaBox* object, bool take_copy) -> Glib::RefPtr<Gtk::CellAreaBox>
+  wrap (GtkCellAreaBox* object, bool take_copy) -> glib::RefPtr<gtk::CellAreaBox>
   {
-    return Glib::make_refptr_for_instance<Gtk::CellAreaBox> (
-        dynamic_cast<Gtk::CellAreaBox*> (
-            Glib::wrap_auto ((GObject*) (object), take_copy)));
+    return glib::make_refptr_for_instance<gtk::CellAreaBox> (
+        dynamic_cast<gtk::CellAreaBox*> (
+            glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gtk
+namespace gtk
 {
 
   auto
-  CellAreaBox_Class::init () -> const Glib::Class&
+  CellAreaBox_Class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -60,7 +60,7 @@ namespace Gtk
   }
 
   auto
-  CellAreaBox_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  CellAreaBox_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new CellAreaBox ((GtkCellAreaBox*) object);
   }
@@ -72,7 +72,7 @@ namespace Gtk
     return gobj ();
   }
 
-  CellAreaBox::CellAreaBox (const Glib::ConstructParams& construct_params)
+  CellAreaBox::CellAreaBox (const glib::ConstructParams& construct_params)
     : CellArea (construct_params)
   {
   }
@@ -113,15 +113,15 @@ namespace Gtk
   }
 
   CellAreaBox::CellAreaBox ()
-    : Glib::ObjectBase (nullptr),
-      CellArea (Glib::ConstructParams (cellareabox_class_.init ()))
+    : glib::ObjectBase (nullptr),
+      CellArea (glib::ConstructParams (cellareabox_class_.init ()))
   {
   }
 
   auto
-  CellAreaBox::create () -> Glib::RefPtr<CellAreaBox>
+  CellAreaBox::create () -> glib::RefPtr<CellAreaBox>
   {
-    return Glib::make_refptr_for_instance<CellAreaBox> (new CellAreaBox ());
+    return glib::make_refptr_for_instance<CellAreaBox> (new CellAreaBox ());
   }
 
   auto
@@ -164,17 +164,17 @@ namespace Gtk
   }
 
   auto
-  CellAreaBox::property_spacing () -> Glib::PropertyProxy<int>
+  CellAreaBox::property_spacing () -> glib::PropertyProxy<int>
   {
-    return Glib::PropertyProxy<int> (this, "spacing");
+    return glib::PropertyProxy<int> (this, "spacing");
   }
 
   auto
-  CellAreaBox::property_spacing () const -> Glib::PropertyProxy_ReadOnly<int>
+  CellAreaBox::property_spacing () const -> glib::PropertyProxy_ReadOnly<int>
   {
-    return Glib::PropertyProxy_ReadOnly<int> (this, "spacing");
+    return glib::PropertyProxy_ReadOnly<int> (this, "spacing");
   }
 
-} // namespace Gtk
+} // namespace gtk
 
 #endif

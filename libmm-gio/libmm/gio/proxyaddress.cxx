@@ -7,7 +7,7 @@
 
 #include <gio/gio.h>
 
-namespace Gio
+namespace gio
 {
 
 }
@@ -16,20 +16,20 @@ namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GProxyAddress* object, const bool take_copy) -> RefPtr<Gio::ProxyAddress>
+  wrap (GProxyAddress* object, const bool take_copy) -> RefPtr<gio::ProxyAddress>
   {
-    return Glib::make_refptr_for_instance<Gio::ProxyAddress> (
-        dynamic_cast<Gio::ProxyAddress*> (
+    return glib::make_refptr_for_instance<gio::ProxyAddress> (
+        dynamic_cast<gio::ProxyAddress*> (
             wrap_auto ((GObject*) object, take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gio
+namespace gio
 {
 
   auto
@@ -53,7 +53,7 @@ namespace Gio
   }
 
   auto
-  ProxyAddress_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  ProxyAddress_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new ProxyAddress ((GProxyAddress*) object);
   }
@@ -65,7 +65,7 @@ namespace Gio
     return gobj ();
   }
 
-  ProxyAddress::ProxyAddress (const Glib::ConstructParams& construct_params)
+  ProxyAddress::ProxyAddress (const glib::ConstructParams& construct_params)
     : InetSocketAddress (construct_params)
   {
   }
@@ -103,17 +103,17 @@ namespace Gio
     return g_proxy_address_get_type ();
   }
 
-  ProxyAddress::ProxyAddress (const Glib::RefPtr<InetAddress>& address,
+  ProxyAddress::ProxyAddress (const glib::RefPtr<InetAddress>& address,
                               const guint16 port,
-                              const Glib::ustring& protocol,
-                              const Glib::ustring& destination_hostname,
+                              const glib::ustring& protocol,
+                              const glib::ustring& destination_hostname,
                               const guint16 destination_port,
-                              const Glib::ustring& username,
-                              const Glib::ustring& password)
+                              const glib::ustring& username,
+                              const glib::ustring& password)
     : ObjectBase (nullptr),
-      InetSocketAddress (Glib::ConstructParams (proxyaddress_class_.init (),
+      InetSocketAddress (glib::ConstructParams (proxyaddress_class_.init (),
                                                 "address",
-                                                Glib::unwrap (address),
+                                                glib::unwrap (address),
                                                 "port",
                                                 port,
                                                 "protocol",
@@ -131,15 +131,15 @@ namespace Gio
   }
 
   auto
-  ProxyAddress::create (const Glib::RefPtr<InetAddress>& address,
+  ProxyAddress::create (const glib::RefPtr<InetAddress>& address,
                         const guint16 port,
-                        const Glib::ustring& protocol,
-                        const Glib::ustring& destination_hostname,
+                        const glib::ustring& protocol,
+                        const glib::ustring& destination_hostname,
                         const guint16 destination_port,
-                        const Glib::ustring& username,
-                        const Glib::ustring& password) -> Glib::RefPtr<ProxyAddress>
+                        const glib::ustring& username,
+                        const glib::ustring& password) -> glib::RefPtr<ProxyAddress>
   {
-    return Glib::make_refptr_for_instance<ProxyAddress> (
+    return glib::make_refptr_for_instance<ProxyAddress> (
         new ProxyAddress (address,
                           port,
                           protocol,
@@ -150,24 +150,24 @@ namespace Gio
   }
 
   auto
-  ProxyAddress::get_protocol () const -> Glib::ustring
+  ProxyAddress::get_protocol () const -> glib::ustring
   {
-    return Glib::convert_const_gchar_ptr_to_ustring (
+    return glib::convert_const_gchar_ptr_to_ustring (
         g_proxy_address_get_protocol (const_cast<GProxyAddress*> (gobj ())));
   }
 
   auto
-  ProxyAddress::get_destination_protocol () const -> Glib::ustring
+  ProxyAddress::get_destination_protocol () const -> glib::ustring
   {
-    return Glib::convert_const_gchar_ptr_to_ustring (
+    return glib::convert_const_gchar_ptr_to_ustring (
         g_proxy_address_get_destination_protocol (
             const_cast<GProxyAddress*> (gobj ())));
   }
 
   auto
-  ProxyAddress::get_destination_hostname () const -> Glib::ustring
+  ProxyAddress::get_destination_hostname () const -> glib::ustring
   {
-    return Glib::convert_const_gchar_ptr_to_ustring (
+    return glib::convert_const_gchar_ptr_to_ustring (
         g_proxy_address_get_destination_hostname (
             const_cast<GProxyAddress*> (gobj ())));
   }
@@ -180,66 +180,66 @@ namespace Gio
   }
 
   auto
-  ProxyAddress::get_username () const -> Glib::ustring
+  ProxyAddress::get_username () const -> glib::ustring
   {
-    return Glib::convert_const_gchar_ptr_to_ustring (
+    return glib::convert_const_gchar_ptr_to_ustring (
         g_proxy_address_get_username (const_cast<GProxyAddress*> (gobj ())));
   }
 
   auto
-  ProxyAddress::get_password () const -> Glib::ustring
+  ProxyAddress::get_password () const -> glib::ustring
   {
-    return Glib::convert_const_gchar_ptr_to_ustring (
+    return glib::convert_const_gchar_ptr_to_ustring (
         g_proxy_address_get_password (const_cast<GProxyAddress*> (gobj ())));
   }
 
   auto
-  ProxyAddress::get_uri () const -> Glib::ustring
+  ProxyAddress::get_uri () const -> glib::ustring
   {
-    return Glib::convert_const_gchar_ptr_to_ustring (
+    return glib::convert_const_gchar_ptr_to_ustring (
         g_proxy_address_get_uri (const_cast<GProxyAddress*> (gobj ())));
   }
 
   auto
-  ProxyAddress::property_protocol () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>
+  ProxyAddress::property_protocol () const -> glib::PropertyProxy_ReadOnly<glib::ustring>
   {
     return {this, "protocol"};
   }
 
   auto
-  ProxyAddress::property_destination_protocol () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>
+  ProxyAddress::property_destination_protocol () const -> glib::PropertyProxy_ReadOnly<glib::ustring>
   {
     return {this, "destination-protocol"};
   }
 
   auto
-  ProxyAddress::property_destination_hostname () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>
+  ProxyAddress::property_destination_hostname () const -> glib::PropertyProxy_ReadOnly<glib::ustring>
   {
     return {this, "destination-hostname"};
   }
 
   auto
-  ProxyAddress::property_destination_port () const -> Glib::PropertyProxy_ReadOnly<guint>
+  ProxyAddress::property_destination_port () const -> glib::PropertyProxy_ReadOnly<guint>
   {
     return {this, "destination-port"};
   }
 
   auto
-  ProxyAddress::property_username () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>
+  ProxyAddress::property_username () const -> glib::PropertyProxy_ReadOnly<glib::ustring>
   {
     return {this, "username"};
   }
 
   auto
-  ProxyAddress::property_password () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>
+  ProxyAddress::property_password () const -> glib::PropertyProxy_ReadOnly<glib::ustring>
   {
     return {this, "password"};
   }
 
   auto
-  ProxyAddress::property_uri () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>
+  ProxyAddress::property_uri () const -> glib::PropertyProxy_ReadOnly<glib::ustring>
   {
     return {this, "uri"};
   }
 
-} // namespace Gio
+} // namespace gio

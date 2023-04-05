@@ -7,12 +7,12 @@
 
 #include <gtk/gtk.h>
 
-namespace Gtk
+namespace gtk
 {
 
   auto
   PageSetup::create_from_key_file (
-      const Glib::RefPtr<const Glib::KeyFile>& key_file) -> Glib::RefPtr<PageSetup>
+      const glib::RefPtr<const glib::KeyFile>& key_file) -> glib::RefPtr<PageSetup>
   {
     auto result = PageSetup::create ();
 
@@ -23,8 +23,8 @@ namespace Gtk
 
   auto
   PageSetup::create_from_key_file (
-      const Glib::RefPtr<const Glib::KeyFile>& key_file,
-      const Glib::ustring& group_name) -> Glib::RefPtr<PageSetup>
+      const glib::RefPtr<const glib::KeyFile>& key_file,
+      const glib::ustring& group_name) -> glib::RefPtr<PageSetup>
   {
     auto result = PageSetup::create ();
 
@@ -34,7 +34,7 @@ namespace Gtk
   }
 
   auto
-  PageSetup::create_from_file (const std::string& file_name) -> Glib::RefPtr<PageSetup>
+  PageSetup::create_from_file (const std::string& file_name) -> glib::RefPtr<PageSetup>
   {
     auto result = PageSetup::create ();
 
@@ -45,53 +45,53 @@ namespace Gtk
 
   auto
   PageSetup::save_to_key_file (
-      const Glib::RefPtr<Glib::KeyFile>& key_file) const -> void
+      const glib::RefPtr<glib::KeyFile>& key_file) const -> void
   {
     gtk_page_setup_to_key_file (const_cast<GtkPageSetup*> (gobj ()),
-                                Glib::unwrap (key_file),
+                                glib::unwrap (key_file),
                                 nullptr);
   }
 
   auto
   PageSetup::load_from_key_file (
-      const Glib::RefPtr<const Glib::KeyFile>& key_file) -> bool
+      const glib::RefPtr<const glib::KeyFile>& key_file) -> bool
   {
     GError* gerror = nullptr;
     bool retvalue = gtk_page_setup_load_key_file (
         gobj (),
-        const_cast<GKeyFile*> (Glib::unwrap (key_file)),
+        const_cast<GKeyFile*> (glib::unwrap (key_file)),
         nullptr,
         &(gerror));
     if (gerror)
-      ::Glib::Error::throw_exception (gerror);
+      ::glib::Error::throw_exception (gerror);
 
     return retvalue;
   }
 
-} // namespace Gtk
+} // namespace gtk
 
 namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GtkPageSetup* object, bool take_copy) -> Glib::RefPtr<Gtk::PageSetup>
+  wrap (GtkPageSetup* object, bool take_copy) -> glib::RefPtr<gtk::PageSetup>
   {
-    return Glib::make_refptr_for_instance<Gtk::PageSetup> (
-        dynamic_cast<Gtk::PageSetup*> (
-            Glib::wrap_auto ((GObject*) (object), take_copy)));
+    return glib::make_refptr_for_instance<gtk::PageSetup> (
+        dynamic_cast<gtk::PageSetup*> (
+            glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gtk
+namespace gtk
 {
 
   auto
-  PageSetup_Class::init () -> const Glib::Class&
+  PageSetup_Class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -111,7 +111,7 @@ namespace Gtk
   }
 
   auto
-  PageSetup_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  PageSetup_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new PageSetup ((GtkPageSetup*) object);
   }
@@ -123,25 +123,25 @@ namespace Gtk
     return gobj ();
   }
 
-  PageSetup::PageSetup (const Glib::ConstructParams& construct_params)
-    : Glib::Object (construct_params)
+  PageSetup::PageSetup (const glib::ConstructParams& construct_params)
+    : glib::Object (construct_params)
   {
   }
 
   PageSetup::PageSetup (GtkPageSetup* castitem)
-    : Glib::Object ((GObject*) (castitem))
+    : glib::Object ((GObject*) (castitem))
   {
   }
 
   PageSetup::PageSetup (PageSetup&& src) noexcept
-    : Glib::Object (std::move (src))
+    : glib::Object (std::move (src))
   {
   }
 
   auto
   PageSetup::operator= (PageSetup&& src) noexcept -> PageSetup&
   {
-    Glib::Object::operator= (std::move (src));
+    glib::Object::operator= (std::move (src));
     return *this;
   }
 
@@ -162,21 +162,21 @@ namespace Gtk
   }
 
   PageSetup::PageSetup ()
-    : Glib::ObjectBase (nullptr),
-      Glib::Object (Glib::ConstructParams (pagesetup_class_.init ()))
+    : glib::ObjectBase (nullptr),
+      glib::Object (glib::ConstructParams (pagesetup_class_.init ()))
   {
   }
 
   auto
-  PageSetup::create () -> Glib::RefPtr<PageSetup>
+  PageSetup::create () -> glib::RefPtr<PageSetup>
   {
-    return Glib::make_refptr_for_instance<PageSetup> (new PageSetup ());
+    return glib::make_refptr_for_instance<PageSetup> (new PageSetup ());
   }
 
   auto
-  PageSetup::copy () const -> Glib::RefPtr<PageSetup>
+  PageSetup::copy () const -> glib::RefPtr<PageSetup>
   {
-    return Glib::wrap (
+    return glib::wrap (
         gtk_page_setup_copy (const_cast<GtkPageSetup*> (gobj ())));
   }
 
@@ -187,23 +187,23 @@ namespace Gtk
     auto retvalue =
         gtk_page_setup_load_file (gobj (), file_name.c_str (), &(gerror));
     if (gerror)
-      ::Glib::Error::throw_exception (gerror);
+      ::glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
   auto
   PageSetup::load_from_key_file (
-      const Glib::RefPtr<const Glib::KeyFile>& key_file,
-      const Glib::ustring& group_name) -> bool
+      const glib::RefPtr<const glib::KeyFile>& key_file,
+      const glib::ustring& group_name) -> bool
   {
     GError* gerror = nullptr;
     auto retvalue = gtk_page_setup_load_key_file (
         gobj (),
-        const_cast<GKeyFile*> (Glib::unwrap (key_file)),
+        const_cast<GKeyFile*> (glib::unwrap (key_file)),
         group_name.c_str (),
         &(gerror));
     if (gerror)
-      ::Glib::Error::throw_exception (gerror);
+      ::glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
@@ -225,7 +225,7 @@ namespace Gtk
   auto
   PageSetup::get_paper_size () -> PaperSize
   {
-    return Glib::wrap (gtk_page_setup_get_paper_size (gobj ()), true);
+    return glib::wrap (gtk_page_setup_get_paper_size (gobj ()), true);
   }
 
   auto
@@ -346,17 +346,17 @@ namespace Gtk
                                             file_name.c_str (),
                                             &(gerror));
     if (gerror)
-      ::Glib::Error::throw_exception (gerror);
+      ::glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
   auto
-  PageSetup::save_to_key_file (const Glib::RefPtr<Glib::KeyFile>& key_file,
-                               const Glib::ustring& group_name) const -> void
+  PageSetup::save_to_key_file (const glib::RefPtr<glib::KeyFile>& key_file,
+                               const glib::ustring& group_name) const -> void
   {
     gtk_page_setup_to_key_file (const_cast<GtkPageSetup*> (gobj ()),
-                                Glib::unwrap (key_file),
+                                glib::unwrap (key_file),
                                 group_name.c_str ());
   }
 
-} // namespace Gtk
+} // namespace gtk

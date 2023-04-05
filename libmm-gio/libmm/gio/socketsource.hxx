@@ -13,7 +13,7 @@
 using GSocket = struct _GSocket;
 #endif
 
-namespace Gio
+namespace gio
 {
   class LIBMM_GIO_SYMEXPORT Socket;
 
@@ -25,11 +25,11 @@ namespace Gio
 #endif
 
     auto
-    connect (const sigc::slot<bool (Glib::IOCondition)>& slot,
-             const Glib::RefPtr<Socket>& socket,
-             Glib::IOCondition condition,
-             const Glib::RefPtr<Cancellable>& cancellable = {},
-             int priority = Glib::PRIORITY_DEFAULT) -> sigc::connection;
+    connect (const sigc::slot<bool (glib::IOCondition)>& slot,
+             const glib::RefPtr<Socket>& socket,
+             glib::IOCondition condition,
+             const glib::RefPtr<Cancellable>& cancellable = {},
+             int priority = glib::PRIORITY_DEFAULT) -> sigc::connection;
 
   private:
     GMainContext* context_;
@@ -40,24 +40,24 @@ namespace Gio
 
   LIBMM_GIO_SYMEXPORT
   auto
-  signal_socket (const Glib::RefPtr<Glib::MainContext>& context = {}) -> SignalSocket;
+  signal_socket (const glib::RefPtr<glib::MainContext>& context = {}) -> SignalSocket;
 
-  class SocketSource : public Glib::IOSource
+  class SocketSource : public glib::IOSource
   {
   public:
-    using CppObjectType = Gio::SocketSource;
+    using CppObjectType = gio::SocketSource;
 
     LIBMM_GIO_SYMEXPORT static auto
-    create (const Glib::RefPtr<Socket>& socket,
-            Glib::IOCondition condition,
-            const Glib::RefPtr<Cancellable>& cancellable = {})
-        -> Glib::RefPtr<SocketSource>;
+    create (const glib::RefPtr<Socket>& socket,
+            glib::IOCondition condition,
+            const glib::RefPtr<Cancellable>& cancellable = {})
+        -> glib::RefPtr<SocketSource>;
 
   protected:
     LIBMM_GIO_SYMEXPORT
-    SocketSource (const Glib::RefPtr<Socket>& socket,
-                  Glib::IOCondition condition,
-                  const Glib::RefPtr<Cancellable>& cancellable);
+    SocketSource (const glib::RefPtr<Socket>& socket,
+                  glib::IOCondition condition,
+                  const glib::RefPtr<Cancellable>& cancellable);
     LIBMM_GIO_SYMEXPORT ~SocketSource () noexcept override;
 
   private:
@@ -65,16 +65,16 @@ namespace Gio
 
     LIBMM_GIO_SYMEXPORT static auto
     create (GSocket* socket,
-            Glib::IOCondition condition,
-            const Glib::RefPtr<Cancellable>& cancellable = {})
-        -> Glib::RefPtr<SocketSource>;
+            glib::IOCondition condition,
+            const glib::RefPtr<Cancellable>& cancellable = {})
+        -> glib::RefPtr<SocketSource>;
 
     LIBMM_GIO_SYMEXPORT
     SocketSource (GSocket* socket,
-                  Glib::IOCondition condition,
-                  const Glib::RefPtr<Cancellable>& cancellable);
+                  glib::IOCondition condition,
+                  const glib::RefPtr<Cancellable>& cancellable);
   };
 
-} // namespace Gio
+} // namespace gio
 
 #endif

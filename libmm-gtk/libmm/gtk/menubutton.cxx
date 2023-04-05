@@ -14,7 +14,7 @@ namespace
   SignalProxy_MenuButton_create_popup_callback (GtkMenuButton*,
                                                 gpointer user_data) -> void
   {
-    auto the_slot = static_cast<Gtk::MenuButton::SlotCreatePopup*> (user_data);
+    auto the_slot = static_cast<gtk::MenuButton::SlotCreatePopup*> (user_data);
 
     try
     {
@@ -22,14 +22,14 @@ namespace
     }
     catch (...)
     {
-      Glib::exception_handlers_invoke ();
+      glib::exception_handlers_invoke ();
     }
     return;
   }
 
 } // namespace
 
-namespace Gtk
+namespace gtk
 {
 
   auto
@@ -53,7 +53,7 @@ namespace Gtk
         gobj (),
         &SignalProxy_MenuButton_create_popup_callback,
         slot_copy,
-        &Glib::destroy_notify_delete<SlotCreatePopup>);
+        &glib::destroy_notify_delete<SlotCreatePopup>);
   }
 
   auto
@@ -68,29 +68,29 @@ namespace Gtk
     gtk_menu_button_set_child (gobj (), nullptr);
   }
 
-} // namespace Gtk
+} // namespace gtk
 
 namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GtkMenuButton* object, bool take_copy) -> Gtk::MenuButton*
+  wrap (GtkMenuButton* object, bool take_copy) -> gtk::MenuButton*
   {
-    return dynamic_cast<Gtk::MenuButton*> (
-        Glib::wrap_auto ((GObject*) (object), take_copy));
+    return dynamic_cast<gtk::MenuButton*> (
+        glib::wrap_auto ((GObject*) (object), take_copy));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gtk
+namespace gtk
 {
 
   auto
-  MenuButton_Class::init () -> const Glib::Class&
+  MenuButton_Class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -110,30 +110,30 @@ namespace Gtk
   }
 
   auto
-  MenuButton_Class::wrap_new (GObject* o) -> Glib::ObjectBase*
+  MenuButton_Class::wrap_new (GObject* o) -> glib::ObjectBase*
   {
     return manage (new MenuButton ((GtkMenuButton*) (o)));
   }
 
-  MenuButton::MenuButton (const Glib::ConstructParams& construct_params)
-    : Gtk::Widget (construct_params)
+  MenuButton::MenuButton (const glib::ConstructParams& construct_params)
+    : gtk::Widget (construct_params)
   {
   }
 
   MenuButton::MenuButton (GtkMenuButton* castitem)
-    : Gtk::Widget ((GtkWidget*) (castitem))
+    : gtk::Widget ((GtkWidget*) (castitem))
   {
   }
 
   MenuButton::MenuButton (MenuButton&& src) noexcept
-    : Gtk::Widget (std::move (src))
+    : gtk::Widget (std::move (src))
   {
   }
 
   auto
   MenuButton::operator= (MenuButton&& src) noexcept -> MenuButton&
   {
-    Gtk::Widget::operator= (std::move (src));
+    gtk::Widget::operator= (std::move (src));
     return *this;
   }
 
@@ -157,21 +157,21 @@ namespace Gtk
   }
 
   MenuButton::MenuButton ()
-    : Glib::ObjectBase (nullptr),
-      Gtk::Widget (Glib::ConstructParams (menubutton_class_.init ()))
+    : glib::ObjectBase (nullptr),
+      gtk::Widget (glib::ConstructParams (menubutton_class_.init ()))
   {
   }
 
   auto
   MenuButton::set_popover (Popover& popover) -> void
   {
-    gtk_menu_button_set_popover (gobj (), (popover).Gtk::Widget::gobj ());
+    gtk_menu_button_set_popover (gobj (), (popover).gtk::Widget::gobj ());
   }
 
   auto
   MenuButton::get_popover () -> Popover*
   {
-    return Glib::wrap (gtk_menu_button_get_popover (gobj ()));
+    return glib::wrap (gtk_menu_button_get_popover (gobj ()));
   }
 
   auto
@@ -196,38 +196,38 @@ namespace Gtk
 
   auto
   MenuButton::set_menu_model (
-      const Glib::RefPtr<const Gio::MenuModel>& menu_model) -> void
+      const glib::RefPtr<const gio::MenuModel>& menu_model) -> void
   {
     gtk_menu_button_set_menu_model (
         gobj (),
-        const_cast<GMenuModel*> (Glib::unwrap (menu_model)));
+        const_cast<GMenuModel*> (glib::unwrap (menu_model)));
   }
 
   auto
-  MenuButton::get_menu_model () -> Glib::RefPtr<Gio::MenuModel>
+  MenuButton::get_menu_model () -> glib::RefPtr<gio::MenuModel>
   {
-    auto retvalue = Glib::wrap (gtk_menu_button_get_menu_model (gobj ()));
+    auto retvalue = glib::wrap (gtk_menu_button_get_menu_model (gobj ()));
     if (retvalue)
       retvalue->reference ();
     return retvalue;
   }
 
   auto
-  MenuButton::get_menu_model () const -> Glib::RefPtr<const Gio::MenuModel>
+  MenuButton::get_menu_model () const -> glib::RefPtr<const gio::MenuModel>
   {
     return const_cast<MenuButton*> (this)->get_menu_model ();
   }
 
   auto
-  MenuButton::set_icon_name (const Glib::ustring& icon_name) -> void
+  MenuButton::set_icon_name (const glib::ustring& icon_name) -> void
   {
     gtk_menu_button_set_icon_name (gobj (), icon_name.c_str ());
   }
 
   auto
-  MenuButton::get_icon_name () const -> Glib::ustring
+  MenuButton::get_icon_name () const -> glib::ustring
   {
-    return Glib::convert_const_gchar_ptr_to_ustring (
+    return glib::convert_const_gchar_ptr_to_ustring (
         gtk_menu_button_get_icon_name (const_cast<GtkMenuButton*> (gobj ())));
   }
 
@@ -247,15 +247,15 @@ namespace Gtk
   }
 
   auto
-  MenuButton::set_label (const Glib::ustring& label) -> void
+  MenuButton::set_label (const glib::ustring& label) -> void
   {
     gtk_menu_button_set_label (gobj (), label.c_str ());
   }
 
   auto
-  MenuButton::get_label () const -> Glib::ustring
+  MenuButton::get_label () const -> glib::ustring
   {
-    return Glib::convert_const_gchar_ptr_to_ustring (
+    return glib::convert_const_gchar_ptr_to_ustring (
         gtk_menu_button_get_label (const_cast<GtkMenuButton*> (gobj ())));
   }
 
@@ -318,7 +318,7 @@ namespace Gtk
   auto
   MenuButton::get_child () -> Widget*
   {
-    return Glib::wrap (gtk_menu_button_get_child (gobj ()));
+    return glib::wrap (gtk_menu_button_get_child (gobj ()));
   }
 
   auto
@@ -328,142 +328,142 @@ namespace Gtk
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<
-          Glib::RefPtr<Gio::MenuModel>>::value,
-      "Type Glib::RefPtr<Gio::MenuModel> cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      glib::Traits::ValueCompatibleWithWrapProperty<
+          glib::RefPtr<gio::MenuModel>>::value,
+      "Type glib::RefPtr<gio::MenuModel> cannot be used in _WRAP_PROPERTY. "
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  MenuButton::property_menu_model () -> Glib::PropertyProxy<Glib::RefPtr<Gio::MenuModel>>
+  MenuButton::property_menu_model () -> glib::PropertyProxy<glib::RefPtr<gio::MenuModel>>
   {
-    return Glib::PropertyProxy<Glib::RefPtr<Gio::MenuModel>> (this,
+    return glib::PropertyProxy<glib::RefPtr<gio::MenuModel>> (this,
                                                               "menu-model");
   }
 
   auto
-  MenuButton::property_menu_model () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gio::MenuModel>>
+  MenuButton::property_menu_model () const -> glib::PropertyProxy_ReadOnly<glib::RefPtr<gio::MenuModel>>
   {
-    return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gio::MenuModel>> (
+    return glib::PropertyProxy_ReadOnly<glib::RefPtr<gio::MenuModel>> (
         this,
         "menu-model");
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<ArrowType>::value,
+      glib::Traits::ValueCompatibleWithWrapProperty<ArrowType>::value,
       "Type ArrowType cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  MenuButton::property_direction () -> Glib::PropertyProxy<ArrowType>
+  MenuButton::property_direction () -> glib::PropertyProxy<ArrowType>
   {
-    return Glib::PropertyProxy<ArrowType> (this, "direction");
+    return glib::PropertyProxy<ArrowType> (this, "direction");
   }
 
   auto
-  MenuButton::property_direction () const -> Glib::PropertyProxy_ReadOnly<ArrowType>
+  MenuButton::property_direction () const -> glib::PropertyProxy_ReadOnly<ArrowType>
   {
-    return Glib::PropertyProxy_ReadOnly<ArrowType> (this, "direction");
+    return glib::PropertyProxy_ReadOnly<ArrowType> (this, "direction");
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<Popover*>::value,
+      glib::Traits::ValueCompatibleWithWrapProperty<Popover*>::value,
       "Type Popover* cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  MenuButton::property_popover () -> Glib::PropertyProxy<Popover*>
+  MenuButton::property_popover () -> glib::PropertyProxy<Popover*>
   {
-    return Glib::PropertyProxy<Popover*> (this, "popover");
+    return glib::PropertyProxy<Popover*> (this, "popover");
   }
 
   auto
-  MenuButton::property_popover () const -> Glib::PropertyProxy_ReadOnly<Popover*>
+  MenuButton::property_popover () const -> glib::PropertyProxy_ReadOnly<Popover*>
   {
-    return Glib::PropertyProxy_ReadOnly<Popover*> (this, "popover");
+    return glib::PropertyProxy_ReadOnly<Popover*> (this, "popover");
   }
 
   auto
-  MenuButton::property_icon_name () -> Glib::PropertyProxy<Glib::ustring>
+  MenuButton::property_icon_name () -> glib::PropertyProxy<glib::ustring>
   {
-    return Glib::PropertyProxy<Glib::ustring> (this, "icon-name");
+    return glib::PropertyProxy<glib::ustring> (this, "icon-name");
   }
 
   auto
-  MenuButton::property_icon_name () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>
+  MenuButton::property_icon_name () const -> glib::PropertyProxy_ReadOnly<glib::ustring>
   {
-    return Glib::PropertyProxy_ReadOnly<Glib::ustring> (this, "icon-name");
+    return glib::PropertyProxy_ReadOnly<glib::ustring> (this, "icon-name");
   }
 
   auto
-  MenuButton::property_always_show_arrow () -> Glib::PropertyProxy<bool>
+  MenuButton::property_always_show_arrow () -> glib::PropertyProxy<bool>
   {
-    return Glib::PropertyProxy<bool> (this, "always-show-arrow");
+    return glib::PropertyProxy<bool> (this, "always-show-arrow");
   }
 
   auto
-  MenuButton::property_always_show_arrow () const -> Glib::PropertyProxy_ReadOnly<bool>
+  MenuButton::property_always_show_arrow () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "always-show-arrow");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "always-show-arrow");
   }
 
   auto
-  MenuButton::property_label () -> Glib::PropertyProxy<Glib::ustring>
+  MenuButton::property_label () -> glib::PropertyProxy<glib::ustring>
   {
-    return Glib::PropertyProxy<Glib::ustring> (this, "label");
+    return glib::PropertyProxy<glib::ustring> (this, "label");
   }
 
   auto
-  MenuButton::property_label () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>
+  MenuButton::property_label () const -> glib::PropertyProxy_ReadOnly<glib::ustring>
   {
-    return Glib::PropertyProxy_ReadOnly<Glib::ustring> (this, "label");
+    return glib::PropertyProxy_ReadOnly<glib::ustring> (this, "label");
   }
 
   auto
-  MenuButton::property_use_underline () -> Glib::PropertyProxy<bool>
+  MenuButton::property_use_underline () -> glib::PropertyProxy<bool>
   {
-    return Glib::PropertyProxy<bool> (this, "use-underline");
+    return glib::PropertyProxy<bool> (this, "use-underline");
   }
 
   auto
-  MenuButton::property_use_underline () const -> Glib::PropertyProxy_ReadOnly<bool>
+  MenuButton::property_use_underline () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "use-underline");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "use-underline");
   }
 
   auto
-  MenuButton::property_has_frame () -> Glib::PropertyProxy<bool>
+  MenuButton::property_has_frame () -> glib::PropertyProxy<bool>
   {
-    return Glib::PropertyProxy<bool> (this, "has-frame");
+    return glib::PropertyProxy<bool> (this, "has-frame");
   }
 
   auto
-  MenuButton::property_has_frame () const -> Glib::PropertyProxy_ReadOnly<bool>
+  MenuButton::property_has_frame () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "has-frame");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "has-frame");
   }
 
   auto
-  MenuButton::property_primary () -> Glib::PropertyProxy<bool>
+  MenuButton::property_primary () -> glib::PropertyProxy<bool>
   {
-    return Glib::PropertyProxy<bool> (this, "primary");
+    return glib::PropertyProxy<bool> (this, "primary");
   }
 
   auto
-  MenuButton::property_primary () const -> Glib::PropertyProxy_ReadOnly<bool>
+  MenuButton::property_primary () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "primary");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "primary");
   }
 
   auto
-  MenuButton::property_child () -> Glib::PropertyProxy<Widget*>
+  MenuButton::property_child () -> glib::PropertyProxy<Widget*>
   {
-    return Glib::PropertyProxy<Widget*> (this, "child");
+    return glib::PropertyProxy<Widget*> (this, "child");
   }
 
   auto
-  MenuButton::property_child () const -> Glib::PropertyProxy_ReadOnly<Widget*>
+  MenuButton::property_child () const -> glib::PropertyProxy_ReadOnly<Widget*>
   {
-    return Glib::PropertyProxy_ReadOnly<Widget*> (this, "child");
+    return glib::PropertyProxy_ReadOnly<Widget*> (this, "child");
   }
 
-} // namespace Gtk
+} // namespace gtk

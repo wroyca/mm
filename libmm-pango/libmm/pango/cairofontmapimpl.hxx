@@ -7,7 +7,7 @@
 #include <libmm/pango/fontmap.hxx>
 #include <libmm/pango/mm-pangoconfig.hxx>
 
-namespace Pango
+namespace pango
 {
 
   class LIBMM_PANGO_SYMEXPORT CairoFontMapImpl : public CairoFontMap,
@@ -31,6 +31,6 @@ namespace Pango
     ~CairoFontMapImpl () noexcept override;
   };
 
-} // namespace Pango
+} // namespace pango
 
 #endif

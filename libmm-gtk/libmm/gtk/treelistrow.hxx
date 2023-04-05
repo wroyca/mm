@@ -16,16 +16,16 @@
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT TreeListRow_Class;
 }
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
-  class LIBMM_GTK_SYMEXPORT TreeListRow : public Glib::Object
+  class LIBMM_GTK_SYMEXPORT TreeListRow : public glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -44,7 +44,7 @@ namespace Gtk
     static CppClassType treelistrow_class_;
 
   protected:
-    explicit TreeListRow (const Glib::ConstructParams& construct_params);
+    explicit TreeListRow (const glib::ConstructParams& construct_params);
     explicit TreeListRow (GtkTreeListRow* castitem);
 
 #endif
@@ -83,10 +83,10 @@ namespace Gtk
   private:
   public:
     auto
-    get_item () -> Glib::RefPtr<Glib::ObjectBase>;
+    get_item () -> glib::RefPtr<glib::ObjectBase>;
 
     auto
-    get_item () const -> Glib::RefPtr<const Glib::ObjectBase>;
+    get_item () const -> glib::RefPtr<const glib::ObjectBase>;
 
     auto
     set_expanded (bool expanded = true) -> void;
@@ -104,54 +104,54 @@ namespace Gtk
     get_depth () const -> guint;
 
     auto
-    get_children () -> Glib::RefPtr<Gio::ListModel>;
+    get_children () -> glib::RefPtr<gio::ListModel>;
 
     auto
-    get_children () const -> Glib::RefPtr<const Gio::ListModel>;
+    get_children () const -> glib::RefPtr<const gio::ListModel>;
 
     auto
-    get_parent () -> Glib::RefPtr<TreeListRow>;
+    get_parent () -> glib::RefPtr<TreeListRow>;
 
     auto
-    get_parent () const -> Glib::RefPtr<const TreeListRow>;
+    get_parent () const -> glib::RefPtr<const TreeListRow>;
 
     auto
-    get_child_row (guint position) -> Glib::RefPtr<TreeListRow>;
+    get_child_row (guint position) -> glib::RefPtr<TreeListRow>;
 
     auto
-    get_child_row (guint position) const -> Glib::RefPtr<const TreeListRow>;
+    get_child_row (guint position) const -> glib::RefPtr<const TreeListRow>;
 
     auto
     property_children () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gio::ListModel>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<gio::ListModel>>;
 
     auto
-    property_depth () const -> Glib::PropertyProxy_ReadOnly<guint>;
+    property_depth () const -> glib::PropertyProxy_ReadOnly<guint>;
 
     auto
-    property_expandable () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_expandable () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_expanded () -> Glib::PropertyProxy<bool>;
+    property_expanded () -> glib::PropertyProxy<bool>;
 
     auto
-    property_expanded () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_expanded () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
     property_item () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Glib::ObjectBase>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<glib::ObjectBase>>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkTreeListRow* object, bool take_copy = false) -> Glib::RefPtr<Gtk::TreeListRow>;
-} // namespace Glib
+  wrap (GtkTreeListRow* object, bool take_copy = false) -> glib::RefPtr<gtk::TreeListRow>;
+} // namespace glib
 
 #endif

@@ -14,17 +14,17 @@ static auto
 SignalProxy_Custom_gtk_callback (GtkPrinter* gtk_printer, gpointer data)
     -> gboolean
 {
-  const auto the_slot = static_cast<Gtk::SlotPrinterEnumerator*> (data);
+  const auto the_slot = static_cast<gtk::SlotPrinterEnumerator*> (data);
 
   try
   {
-    auto printer = Glib::wrap (gtk_printer, true);
+    auto printer = glib::wrap (gtk_printer, true);
 
     return (*the_slot) (printer);
   }
   catch (...)
   {
-    Glib::exception_handlers_invoke ();
+    glib::exception_handlers_invoke ();
     return false;
   }
 }
@@ -32,14 +32,14 @@ SignalProxy_Custom_gtk_callback (GtkPrinter* gtk_printer, gpointer data)
 static auto
 SignalProxy_Custom_gtk_callback_destroy (void* data) -> void
 {
-  delete static_cast<Gtk::SlotPrinterEnumerator*> (data);
+  delete static_cast<gtk::SlotPrinterEnumerator*> (data);
 }
 
-namespace Gtk
+namespace gtk
 {
 
   auto
-  Printer::equal (const Glib::RefPtr<Printer>& other) const -> bool
+  Printer::equal (const glib::RefPtr<Printer>& other) const -> bool
   {
     return (static_cast<bool> (
         gtk_printer_compare (const_cast<GtkPrinter*> (this->gobj ()),
@@ -57,7 +57,7 @@ namespace Gtk
                             static_cast<int> (wait));
   }
 
-} // namespace Gtk
+} // namespace gtk
 
 namespace
 {
@@ -67,27 +67,27 @@ namespace
                                             gboolean p0,
                                             void* data) -> void
   {
-    using namespace Gtk;
+    using namespace gtk;
     using SlotType = sigc::slot<void (bool)>;
 
     auto obj = dynamic_cast<Printer*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
     {
       try
       {
-        if (const auto slot = Glib::SignalProxyNormal::data_to_slot (data))
+        if (const auto slot = glib::SignalProxyNormal::data_to_slot (data))
           (*static_cast<SlotType*> (slot)) (p0);
       }
       catch (...)
       {
-        Glib::exception_handlers_invoke ();
+        glib::exception_handlers_invoke ();
       }
     }
   }
 
-  static const Glib::SignalProxyInfo Printer_signal_details_acquired_info = {
+  static const glib::SignalProxyInfo Printer_signal_details_acquired_info = {
       "details_acquired",
       (GCallback) &Printer_signal_details_acquired_callback,
       (GCallback) &Printer_signal_details_acquired_callback};
@@ -95,29 +95,29 @@ namespace
 } // namespace
 
 auto
-Glib::Value<Gtk::PrintCapabilities>::value_type () -> GType
+glib::Value<gtk::PrintCapabilities>::value_type () -> GType
 {
   return gtk_print_capabilities_get_type ();
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GtkPrinter* object, bool take_copy) -> Glib::RefPtr<Gtk::Printer>
+  wrap (GtkPrinter* object, bool take_copy) -> glib::RefPtr<gtk::Printer>
   {
-    return Glib::make_refptr_for_instance<Gtk::Printer> (
-        dynamic_cast<Gtk::Printer*> (
-            Glib::wrap_auto ((GObject*) (object), take_copy)));
+    return glib::make_refptr_for_instance<gtk::Printer> (
+        dynamic_cast<gtk::Printer*> (
+            glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gtk
+namespace gtk
 {
 
   auto
-  Printer_Class::init () -> const Glib::Class&
+  Printer_Class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -137,7 +137,7 @@ namespace Gtk
   }
 
   auto
-  Printer_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  Printer_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new Printer ((GtkPrinter*) object);
   }
@@ -149,25 +149,25 @@ namespace Gtk
     return gobj ();
   }
 
-  Printer::Printer (const Glib::ConstructParams& construct_params)
-    : Glib::Object (construct_params)
+  Printer::Printer (const glib::ConstructParams& construct_params)
+    : glib::Object (construct_params)
   {
   }
 
   Printer::Printer (GtkPrinter* castitem)
-    : Glib::Object ((GObject*) (castitem))
+    : glib::Object ((GObject*) (castitem))
   {
   }
 
   Printer::Printer (Printer&& src) noexcept
-    : Glib::Object (std::move (src))
+    : glib::Object (std::move (src))
   {
   }
 
   auto
   Printer::operator= (Printer&& src) noexcept -> Printer&
   {
-    Glib::Object::operator= (std::move (src));
+    glib::Object::operator= (std::move (src));
     return *this;
   }
 
@@ -188,37 +188,37 @@ namespace Gtk
   }
 
   auto
-  Printer::get_name () const -> Glib::ustring
+  Printer::get_name () const -> glib::ustring
   {
-    return Glib::convert_const_gchar_ptr_to_ustring (
+    return glib::convert_const_gchar_ptr_to_ustring (
         gtk_printer_get_name (const_cast<GtkPrinter*> (gobj ())));
   }
 
   auto
-  Printer::get_state_message () const -> Glib::ustring
+  Printer::get_state_message () const -> glib::ustring
   {
-    return Glib::convert_const_gchar_ptr_to_ustring (
+    return glib::convert_const_gchar_ptr_to_ustring (
         gtk_printer_get_state_message (const_cast<GtkPrinter*> (gobj ())));
   }
 
   auto
-  Printer::get_description () const -> Glib::ustring
+  Printer::get_description () const -> glib::ustring
   {
-    return Glib::convert_const_gchar_ptr_to_ustring (
+    return glib::convert_const_gchar_ptr_to_ustring (
         gtk_printer_get_description (const_cast<GtkPrinter*> (gobj ())));
   }
 
   auto
-  Printer::get_location () const -> Glib::ustring
+  Printer::get_location () const -> glib::ustring
   {
-    return Glib::convert_const_gchar_ptr_to_ustring (
+    return glib::convert_const_gchar_ptr_to_ustring (
         gtk_printer_get_location (const_cast<GtkPrinter*> (gobj ())));
   }
 
   auto
-  Printer::get_icon_name () const -> Glib::ustring
+  Printer::get_icon_name () const -> glib::ustring
   {
-    return Glib::convert_const_gchar_ptr_to_ustring (
+    return glib::convert_const_gchar_ptr_to_ustring (
         gtk_printer_get_icon_name (const_cast<GtkPrinter*> (gobj ())));
   }
 
@@ -271,17 +271,17 @@ namespace Gtk
   }
 
   auto
-  Printer::list_papers () -> std::vector<Glib::RefPtr<PageSetup>>
+  Printer::list_papers () -> std::vector<glib::RefPtr<PageSetup>>
   {
-    return Glib::ListHandler<Glib::RefPtr<PageSetup>>::list_to_vector (
+    return glib::ListHandler<glib::RefPtr<PageSetup>>::list_to_vector (
         gtk_printer_list_papers (gobj ()),
-        Glib::OWNERSHIP_DEEP);
+        glib::OWNERSHIP_DEEP);
   }
 
   auto
-  Printer::get_default_page_size () const -> Glib::RefPtr<PageSetup>
+  Printer::get_default_page_size () const -> glib::RefPtr<PageSetup>
   {
-    auto retvalue = Glib::wrap (
+    auto retvalue = glib::wrap (
         gtk_printer_get_default_page_size (const_cast<GtkPrinter*> (gobj ())));
     if (retvalue)
       retvalue->reference ();
@@ -289,11 +289,11 @@ namespace Gtk
   }
 
   auto
-  Printer::list_papers () const -> std::vector<Glib::RefPtr<const PageSetup>>
+  Printer::list_papers () const -> std::vector<glib::RefPtr<const PageSetup>>
   {
-    return Glib::ListHandler<Glib::RefPtr<const PageSetup>>::list_to_vector (
+    return glib::ListHandler<glib::RefPtr<const PageSetup>>::list_to_vector (
         gtk_printer_list_papers (const_cast<GtkPrinter*> (gobj ())),
-        Glib::OWNERSHIP_DEEP);
+        glib::OWNERSHIP_DEEP);
   }
 
   auto
@@ -345,71 +345,71 @@ namespace Gtk
   }
 
   auto
-  Printer::signal_details_acquired () -> Glib::SignalProxy<void (bool)>
+  Printer::signal_details_acquired () -> glib::SignalProxy<void (bool)>
   {
-    return Glib::SignalProxy<void (bool)> (
+    return glib::SignalProxy<void (bool)> (
         this,
         &Printer_signal_details_acquired_info);
   }
 
   auto
-  Printer::property_name () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>
+  Printer::property_name () const -> glib::PropertyProxy_ReadOnly<glib::ustring>
   {
-    return Glib::PropertyProxy_ReadOnly<Glib::ustring> (this, "name");
+    return glib::PropertyProxy_ReadOnly<glib::ustring> (this, "name");
   }
 
   auto
-  Printer::property_is_virtual () const -> Glib::PropertyProxy_ReadOnly<bool>
+  Printer::property_is_virtual () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "is-virtual");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "is-virtual");
   }
 
   auto
-  Printer::property_state_message () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>
+  Printer::property_state_message () const -> glib::PropertyProxy_ReadOnly<glib::ustring>
   {
-    return Glib::PropertyProxy_ReadOnly<Glib::ustring> (this, "state-message");
+    return glib::PropertyProxy_ReadOnly<glib::ustring> (this, "state-message");
   }
 
   auto
-  Printer::property_location () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>
+  Printer::property_location () const -> glib::PropertyProxy_ReadOnly<glib::ustring>
   {
-    return Glib::PropertyProxy_ReadOnly<Glib::ustring> (this, "location");
+    return glib::PropertyProxy_ReadOnly<glib::ustring> (this, "location");
   }
 
   auto
-  Printer::property_icon_name () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>
+  Printer::property_icon_name () const -> glib::PropertyProxy_ReadOnly<glib::ustring>
   {
-    return Glib::PropertyProxy_ReadOnly<Glib::ustring> (this, "icon-name");
+    return glib::PropertyProxy_ReadOnly<glib::ustring> (this, "icon-name");
   }
 
   auto
-  Printer::property_job_count () const -> Glib::PropertyProxy_ReadOnly<int>
+  Printer::property_job_count () const -> glib::PropertyProxy_ReadOnly<int>
   {
-    return Glib::PropertyProxy_ReadOnly<int> (this, "job-count");
+    return glib::PropertyProxy_ReadOnly<int> (this, "job-count");
   }
 
   auto
-  Printer::property_accepts_pdf () const -> Glib::PropertyProxy_ReadOnly<bool>
+  Printer::property_accepts_pdf () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "accepts-pdf");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "accepts-pdf");
   }
 
   auto
-  Printer::property_accepts_ps () const -> Glib::PropertyProxy_ReadOnly<bool>
+  Printer::property_accepts_ps () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "accepts-ps");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "accepts-ps");
   }
 
   auto
-  Printer::property_paused () const -> Glib::PropertyProxy_ReadOnly<bool>
+  Printer::property_paused () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "paused");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "paused");
   }
 
   auto
-  Printer::property_accepting_jobs () const -> Glib::PropertyProxy_ReadOnly<bool>
+  Printer::property_accepting_jobs () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "accepting-jobs");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "accepting-jobs");
   }
 
-} // namespace Gtk
+} // namespace gtk

@@ -16,19 +16,19 @@ using GdkDropClass = struct _GdkDropClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gdk
+namespace gdk
 {
   class LIBMM_GDK_SYMEXPORT Drop_Class;
 }
 #endif
 
-namespace Gio
+namespace gio
 {
   class LIBMM_GDK_SYMEXPORT Cancellable;
   class LIBMM_GDK_SYMEXPORT InputStream;
-} // namespace Gio
+} // namespace gio
 
-namespace Gdk
+namespace gdk
 {
   class LIBMM_GDK_SYMEXPORT ContentFormats;
   class LIBMM_GDK_SYMEXPORT Device;
@@ -36,7 +36,7 @@ namespace Gdk
   class LIBMM_GDK_SYMEXPORT Display;
   class LIBMM_GDK_SYMEXPORT Surface;
 
-  class LIBMM_GDK_SYMEXPORT Drop : public Glib::Object
+  class LIBMM_GDK_SYMEXPORT Drop : public glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -55,7 +55,7 @@ namespace Gdk
     static CppClassType drop_class_;
 
   protected:
-    explicit Drop (const Glib::ConstructParams& construct_params);
+    explicit Drop (const glib::ConstructParams& construct_params);
     explicit Drop (GdkDrop* castitem);
 
 #endif
@@ -94,37 +94,37 @@ namespace Gdk
   private:
   public:
     auto
-    get_display () -> Glib::RefPtr<Display>;
+    get_display () -> glib::RefPtr<Display>;
 
     auto
-    get_display () const -> Glib::RefPtr<const Display>;
+    get_display () const -> glib::RefPtr<const Display>;
 
     auto
-    get_device () -> Glib::RefPtr<Device>;
+    get_device () -> glib::RefPtr<Device>;
 
     auto
-    get_device () const -> Glib::RefPtr<const Device>;
+    get_device () const -> glib::RefPtr<const Device>;
 
     auto
-    get_surface () -> Glib::RefPtr<Surface>;
+    get_surface () -> glib::RefPtr<Surface>;
 
     auto
-    get_surface () const -> Glib::RefPtr<const Surface>;
+    get_surface () const -> glib::RefPtr<const Surface>;
 
     auto
-    get_formats () -> Glib::RefPtr<ContentFormats>;
+    get_formats () -> glib::RefPtr<ContentFormats>;
 
     auto
-    get_formats () const -> Glib::RefPtr<const ContentFormats>;
+    get_formats () const -> glib::RefPtr<const ContentFormats>;
 
     auto
     get_actions () const -> DragAction;
 
     auto
-    get_drag () -> Glib::RefPtr<Drag>;
+    get_drag () -> glib::RefPtr<Drag>;
 
     auto
-    get_drag () const -> Glib::RefPtr<const Drag>;
+    get_drag () const -> glib::RefPtr<const Drag>;
 
     auto
     status (DragAction actions, DragAction preferred) -> void;
@@ -139,70 +139,70 @@ namespace Gdk
     failed () -> void;
 
     auto
-    read_async (const std::vector<Glib::ustring>& mime_types,
+    read_async (const std::vector<glib::ustring>& mime_types,
                 int io_priority,
-                const Gio::SlotAsyncReady& slot,
-                const Glib::RefPtr<Gio::Cancellable>& cancellable) -> void;
+                const gio::SlotAsyncReady& slot,
+                const glib::RefPtr<gio::Cancellable>& cancellable) -> void;
 
     auto
-    read_async (const std::vector<Glib::ustring>& mime_types,
+    read_async (const std::vector<glib::ustring>& mime_types,
                 int io_priority,
-                const Gio::SlotAsyncReady& slot) -> void;
+                const gio::SlotAsyncReady& slot) -> void;
 
     auto
-    read_finish (const Glib::RefPtr<Gio::AsyncResult>& result,
-                 Glib::ustring& out_mime_type)
-        -> Glib::RefPtr<Gio::InputStream>;
+    read_finish (const glib::RefPtr<gio::AsyncResult>& result,
+                 glib::ustring& out_mime_type)
+        -> glib::RefPtr<gio::InputStream>;
 
     auto
     read_value_async (GType type,
                       int io_priority,
-                      const Gio::SlotAsyncReady& slot,
-                      const Glib::RefPtr<Gio::Cancellable>& cancellable)
+                      const gio::SlotAsyncReady& slot,
+                      const glib::RefPtr<gio::Cancellable>& cancellable)
         -> void;
 
     auto
     read_value_async (GType type,
                       int io_priority,
-                      const Gio::SlotAsyncReady& slot) -> void;
+                      const gio::SlotAsyncReady& slot) -> void;
 
     auto
-    read_value_finish (const Glib::RefPtr<Gio::AsyncResult>& result)
-        -> Glib::ValueBase;
+    read_value_finish (const glib::RefPtr<gio::AsyncResult>& result)
+        -> glib::ValueBase;
 
     auto
-    property_actions () const -> Glib::PropertyProxy_ReadOnly<DragAction>;
+    property_actions () const -> glib::PropertyProxy_ReadOnly<DragAction>;
 
     auto
     property_device () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Device>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<Device>>;
 
     auto
     property_display () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Display>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<Display>>;
 
     auto
-    property_drag () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Drag>>;
+    property_drag () const -> glib::PropertyProxy_ReadOnly<glib::RefPtr<Drag>>;
 
     auto
     property_formats () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<ContentFormats>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<ContentFormats>>;
 
     auto
     property_surface () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Surface>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<Surface>>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gdk
+} // namespace gdk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GDK_SYMEXPORT auto
-  wrap (GdkDrop* object, bool take_copy = false) -> Glib::RefPtr<Gdk::Drop>;
-} // namespace Glib
+  wrap (GdkDrop* object, bool take_copy = false) -> glib::RefPtr<gdk::Drop>;
+} // namespace glib
 
 #endif

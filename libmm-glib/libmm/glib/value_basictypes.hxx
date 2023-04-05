@@ -10,7 +10,7 @@
   #pragma GCC system_header
 #endif
 
-namespace Glib
+namespace glib
 {
 
   template <>
@@ -29,10 +29,10 @@ namespace Glib
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
     auto
-    create_param_spec (const Glib::ustring& name,
-                       const Glib::ustring& nick,
-                       const Glib::ustring& blurb,
-                       Glib::ParamFlags flags) const -> GParamSpec*;
+    create_param_spec (const glib::ustring& name,
+                       const glib::ustring& nick,
+                       const glib::ustring& blurb,
+                       glib::ParamFlags flags) const -> GParamSpec*;
 #endif
   };
 
@@ -52,10 +52,10 @@ namespace Glib
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
     auto
-    create_param_spec (const Glib::ustring& name,
-                       const Glib::ustring& nick,
-                       const Glib::ustring& blurb,
-                       Glib::ParamFlags flags) const -> GParamSpec*;
+    create_param_spec (const glib::ustring& name,
+                       const glib::ustring& nick,
+                       const glib::ustring& blurb,
+                       glib::ParamFlags flags) const -> GParamSpec*;
 #endif
   };
 
@@ -75,10 +75,10 @@ namespace Glib
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
     auto
-    create_param_spec (const Glib::ustring& name,
-                       const Glib::ustring& nick,
-                       const Glib::ustring& blurb,
-                       Glib::ParamFlags flags) const -> GParamSpec*;
+    create_param_spec (const glib::ustring& name,
+                       const glib::ustring& nick,
+                       const glib::ustring& blurb,
+                       glib::ParamFlags flags) const -> GParamSpec*;
 #endif
   };
 
@@ -98,10 +98,10 @@ namespace Glib
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
     auto
-    create_param_spec (const Glib::ustring& name,
-                       const Glib::ustring& nick,
-                       const Glib::ustring& blurb,
-                       Glib::ParamFlags flags) const -> GParamSpec*;
+    create_param_spec (const glib::ustring& name,
+                       const glib::ustring& nick,
+                       const glib::ustring& blurb,
+                       glib::ParamFlags flags) const -> GParamSpec*;
 #endif
   };
 
@@ -121,10 +121,10 @@ namespace Glib
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
     auto
-    create_param_spec (const Glib::ustring& name,
-                       const Glib::ustring& nick,
-                       const Glib::ustring& blurb,
-                       Glib::ParamFlags flags) const -> GParamSpec*;
+    create_param_spec (const glib::ustring& name,
+                       const glib::ustring& nick,
+                       const glib::ustring& blurb,
+                       glib::ParamFlags flags) const -> GParamSpec*;
 #endif
   };
 
@@ -144,10 +144,10 @@ namespace Glib
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
     auto
-    create_param_spec (const Glib::ustring& name,
-                       const Glib::ustring& nick,
-                       const Glib::ustring& blurb,
-                       Glib::ParamFlags flags) const -> GParamSpec*;
+    create_param_spec (const glib::ustring& name,
+                       const glib::ustring& nick,
+                       const glib::ustring& blurb,
+                       glib::ParamFlags flags) const -> GParamSpec*;
 #endif
   };
 
@@ -167,10 +167,10 @@ namespace Glib
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
     auto
-    create_param_spec (const Glib::ustring& name,
-                       const Glib::ustring& nick,
-                       const Glib::ustring& blurb,
-                       Glib::ParamFlags flags) const -> GParamSpec*;
+    create_param_spec (const glib::ustring& name,
+                       const glib::ustring& nick,
+                       const glib::ustring& blurb,
+                       glib::ParamFlags flags) const -> GParamSpec*;
 #endif
   };
 
@@ -190,10 +190,10 @@ namespace Glib
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
     auto
-    create_param_spec (const Glib::ustring& name,
-                       const Glib::ustring& nick,
-                       const Glib::ustring& blurb,
-                       Glib::ParamFlags flags) const -> GParamSpec*;
+    create_param_spec (const glib::ustring& name,
+                       const glib::ustring& nick,
+                       const glib::ustring& blurb,
+                       glib::ParamFlags flags) const -> GParamSpec*;
 #endif
   };
 
@@ -213,10 +213,10 @@ namespace Glib
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
     auto
-    create_param_spec (const Glib::ustring& name,
-                       const Glib::ustring& nick,
-                       const Glib::ustring& blurb,
-                       Glib::ParamFlags flags) const -> GParamSpec*;
+    create_param_spec (const glib::ustring& name,
+                       const glib::ustring& nick,
+                       const glib::ustring& blurb,
+                       glib::ParamFlags flags) const -> GParamSpec*;
 #endif
   };
 
@@ -236,10 +236,10 @@ namespace Glib
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
     auto
-    create_param_spec (const Glib::ustring& name,
-                       const Glib::ustring& nick,
-                       const Glib::ustring& blurb,
-                       Glib::ParamFlags flags) const -> GParamSpec*;
+    create_param_spec (const glib::ustring& name,
+                       const glib::ustring& nick,
+                       const glib::ustring& blurb,
+                       glib::ParamFlags flags) const -> GParamSpec*;
 #endif
   };
 
@@ -259,10 +259,10 @@ namespace Glib
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
     auto
-    create_param_spec (const Glib::ustring& name,
-                       const Glib::ustring& nick,
-                       const Glib::ustring& blurb,
-                       Glib::ParamFlags flags) const -> GParamSpec*;
+    create_param_spec (const glib::ustring& name,
+                       const glib::ustring& nick,
+                       const glib::ustring& blurb,
+                       glib::ParamFlags flags) const -> GParamSpec*;
 #endif
   };
 
@@ -282,11 +282,11 @@ namespace Glib
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
     auto
-    create_param_spec (const Glib::ustring& name,
-                       const Glib::ustring& nick,
-                       const Glib::ustring& blurb,
-                       Glib::ParamFlags flags) const -> GParamSpec*;
+    create_param_spec (const glib::ustring& name,
+                       const glib::ustring& nick,
+                       const glib::ustring& blurb,
+                       glib::ParamFlags flags) const -> GParamSpec*;
 #endif
   };
 
-} // namespace Glib
+} // namespace glib

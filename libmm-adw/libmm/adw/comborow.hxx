@@ -16,16 +16,16 @@
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Adw
+namespace adw
 {
   class LIBMM_ADW_SYMEXPORT ComboRow_Class;
 }
 #endif
 
-namespace Adw
+namespace adw
 {
 
-  class LIBMM_ADW_SYMEXPORT ComboRow : public Adw::ActionRow
+  class LIBMM_ADW_SYMEXPORT ComboRow : public adw::ActionRow
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -52,7 +52,7 @@ namespace Adw
     static CppClassType comborow_class_;
 
   protected:
-    explicit ComboRow (const Glib::ConstructParams& construct_params);
+    explicit ComboRow (const glib::ConstructParams& construct_params);
     explicit ComboRow (AdwComboRow* castitem);
 
 #endif
@@ -84,31 +84,31 @@ namespace Adw
     ComboRow ();
 
     auto
-    get_expression () const -> Glib::RefPtr<Gtk::Expression<Glib::ustring>>;
+    get_expression () const -> glib::RefPtr<gtk::Expression<glib::ustring>>;
 
     auto
-    get_factory () const -> Glib::RefPtr<Gtk::ListItemFactory>;
+    get_factory () const -> glib::RefPtr<gtk::ListItemFactory>;
 
     auto
-    get_list_factory () const -> Glib::RefPtr<Gtk::ListItemFactory>;
+    get_list_factory () const -> glib::RefPtr<gtk::ListItemFactory>;
 
     auto
-    get_model () const -> Glib::RefPtr<Gio::ListModel>;
+    get_model () const -> glib::RefPtr<gio::ListModel>;
 
     auto
     get_selected () const -> guint;
 
     auto
-    get_selected_item () const -> Glib::RefPtr<Glib::ObjectBase>;
+    get_selected_item () const -> glib::RefPtr<glib::ObjectBase>;
 
     auto
     get_use_subtitle () const -> bool;
 
     auto
-    set_factory (const Glib::RefPtr<Gtk::ListItemFactory>& factory) -> void;
+    set_factory (const glib::RefPtr<gtk::ListItemFactory>& factory) -> void;
 
     auto
-    set_list_factory (const Glib::RefPtr<Gtk::ListItemFactory>& factory)
+    set_list_factory (const glib::RefPtr<gtk::ListItemFactory>& factory)
         -> void;
 
     auto
@@ -119,70 +119,70 @@ namespace Adw
 
     auto
     set_expression (
-        const Glib::RefPtr<Gtk::Expression<Glib::ustring>>& expression) -> void;
+        const glib::RefPtr<gtk::Expression<glib::ustring>>& expression) -> void;
 
     auto
-    set_model (const Glib::RefPtr<Gio::ListModel>& model) -> void;
+    set_model (const glib::RefPtr<gio::ListModel>& model) -> void;
 
     auto
     property_expression ()
-        -> Glib::PropertyProxy<Glib::RefPtr<Gtk::Expression<Glib::ustring>>>;
+        -> glib::PropertyProxy<glib::RefPtr<gtk::Expression<glib::ustring>>>;
 
     auto
-    property_expression () const -> Glib::PropertyProxy_ReadOnly<
-        Glib::RefPtr<Gtk::Expression<Glib::ustring>>>;
+    property_expression () const -> glib::PropertyProxy_ReadOnly<
+        glib::RefPtr<gtk::Expression<glib::ustring>>>;
 
     auto
     property_selected_item () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Glib::ObjectBase>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<glib::ObjectBase>>;
 
     auto
-    property_selected () -> Glib::PropertyProxy<guint>;
+    property_selected () -> glib::PropertyProxy<guint>;
 
     auto
-    property_selected () const -> Glib::PropertyProxy_ReadOnly<guint>;
+    property_selected () const -> glib::PropertyProxy_ReadOnly<guint>;
 
     auto
     property_factory ()
-        -> Glib::PropertyProxy<Glib::RefPtr<Gtk::ListItemFactory>>;
+        -> glib::PropertyProxy<glib::RefPtr<gtk::ListItemFactory>>;
 
     auto
     property_factory () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gtk::ListItemFactory>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<gtk::ListItemFactory>>;
 
     auto
     property_list_factory ()
-        -> Glib::PropertyProxy<Glib::RefPtr<Gtk::ListItemFactory>>;
+        -> glib::PropertyProxy<glib::RefPtr<gtk::ListItemFactory>>;
 
     auto
     property_list_factory () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gtk::ListItemFactory>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<gtk::ListItemFactory>>;
 
     auto
-    property_model () -> Glib::PropertyProxy<Glib::RefPtr<Gio::ListModel>>;
+    property_model () -> glib::PropertyProxy<glib::RefPtr<gio::ListModel>>;
 
     auto
     property_model () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gio::ListModel>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<gio::ListModel>>;
 
     auto
-    property_use_subtitle () -> Glib::PropertyProxy<bool>;
+    property_use_subtitle () -> glib::PropertyProxy<bool>;
 
     auto
-    property_use_subtitle () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_use_subtitle () const -> glib::PropertyProxy_ReadOnly<bool>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Adw
+} // namespace adw
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (AdwComboRow* object, bool take_copy = false) -> Adw::ComboRow*;
+  wrap (AdwComboRow* object, bool take_copy = false) -> adw::ComboRow*;
 }
 
 #endif

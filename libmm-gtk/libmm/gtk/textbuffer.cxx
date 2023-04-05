@@ -12,39 +12,39 @@
 #include <libmm/gtk/textiter.hxx>
 #include <libmm/gtk/textmark.hxx>
 
-namespace Gtk
+namespace gtk
 {
 
   typedef TextChildAnchor ChildAnchor;
 
-  TextBuffer::TextBuffer (const Glib::RefPtr<TagTable>& tag_table)
-    : Glib::ObjectBase (nullptr),
-      Glib::Object (Glib::ConstructParams (textbuffer_class_.init (),
+  TextBuffer::TextBuffer (const glib::RefPtr<TagTable>& tag_table)
+    : glib::ObjectBase (nullptr),
+      glib::Object (glib::ConstructParams (textbuffer_class_.init (),
                                            "tag_table",
-                                           Glib::unwrap (tag_table),
+                                           glib::unwrap (tag_table),
                                            nullptr))
   {
   }
 
   auto
-  TextBuffer::create_tag (const Glib::ustring& tag_name) -> Glib::RefPtr<TextBuffer::Tag>
+  TextBuffer::create_tag (const glib::ustring& tag_name) -> glib::RefPtr<TextBuffer::Tag>
   {
-    return Glib::wrap (
+    return glib::wrap (
         gtk_text_buffer_create_tag (gobj (), tag_name.c_str (), nullptr),
         true);
   }
 
   auto
-  TextBuffer::create_tag () -> Glib::RefPtr<TextBuffer::Tag>
+  TextBuffer::create_tag () -> glib::RefPtr<TextBuffer::Tag>
   {
-    return Glib::wrap (gtk_text_buffer_create_tag (gobj (), nullptr, nullptr),
+    return glib::wrap (gtk_text_buffer_create_tag (gobj (), nullptr, nullptr),
                        true);
   }
 
   auto
-  TextBuffer::create_mark (const TextBuffer::iterator& where, bool left_gravity) -> Glib::RefPtr<TextBuffer::Mark>
+  TextBuffer::create_mark (const TextBuffer::iterator& where, bool left_gravity) -> glib::RefPtr<TextBuffer::Mark>
   {
-    return Glib::wrap (
+    return glib::wrap (
         gtk_text_buffer_create_mark (gobj (),
                                      nullptr,
                                      const_cast<GtkTextIter*> (where.gobj ()),
@@ -163,7 +163,7 @@ namespace Gtk
   }
 
   auto
-  TextBuffer::get_iter_at_mark (const Glib::RefPtr<Mark>& mark) -> TextBuffer::iterator
+  TextBuffer::get_iter_at_mark (const glib::RefPtr<Mark>& mark) -> TextBuffer::iterator
   {
     iterator iter;
     gtk_text_buffer_get_iter_at_mark (gobj (), iter.gobj (), mark->gobj ());
@@ -179,13 +179,13 @@ namespace Gtk
   }
 
   auto
-  TextBuffer::get_iter_at_mark (const Glib::RefPtr<Mark>& mark) const -> TextBuffer::const_iterator
+  TextBuffer::get_iter_at_mark (const glib::RefPtr<Mark>& mark) const -> TextBuffer::const_iterator
   {
     return const_cast<TextBuffer*> (this)->get_iter_at_mark (mark);
   }
 
   auto
-  TextBuffer::set_text (const Glib::ustring& text) -> void
+  TextBuffer::set_text (const glib::ustring& text) -> void
   {
     gtk_text_buffer_set_text (gobj (), text.data (), text.bytes ());
   }
@@ -197,7 +197,7 @@ namespace Gtk
   }
 
   auto
-  TextBuffer::insert (const iterator& pos, const Glib::ustring& text) -> TextBuffer::iterator
+  TextBuffer::insert (const iterator& pos, const glib::ustring& text) -> TextBuffer::iterator
   {
     iterator iterCopy (pos);
     gtk_text_buffer_insert (gobj (),
@@ -224,7 +224,7 @@ namespace Gtk
 
   auto
   TextBuffer::insert_paintable (const iterator& pos,
-                                const Glib::RefPtr<Gdk::Paintable>& paintable) -> TextBuffer::iterator
+                                const glib::RefPtr<gdk::Paintable>& paintable) -> TextBuffer::iterator
   {
     iterator iterCopy (pos);
     gtk_text_buffer_insert_paintable (gobj (),
@@ -235,26 +235,26 @@ namespace Gtk
 
   auto
   TextBuffer::insert_child_anchor (const iterator& pos,
-                                   const Glib::RefPtr<ChildAnchor>& anchor) -> TextBuffer::iterator
+                                   const glib::RefPtr<ChildAnchor>& anchor) -> TextBuffer::iterator
   {
     iterator iterCopy (pos);
     gtk_text_buffer_insert_child_anchor (gobj (),
                                          iterCopy.gobj (),
-                                         Glib::unwrap (anchor));
+                                         glib::unwrap (anchor));
     return iterCopy;
   }
 
   auto
-  TextBuffer::create_child_anchor (const iterator& pos) -> Glib::RefPtr<ChildAnchor>
+  TextBuffer::create_child_anchor (const iterator& pos) -> glib::RefPtr<ChildAnchor>
   {
     iterator iterCopy (pos);
-    return Glib::wrap (
+    return glib::wrap (
         gtk_text_buffer_create_child_anchor (gobj (), iterCopy.gobj ()),
         true);
   }
 
   auto
-  TextBuffer::insert_at_cursor (const Glib::ustring& text) -> void
+  TextBuffer::insert_at_cursor (const glib::ustring& text) -> void
   {
     gtk_text_buffer_insert_at_cursor (gobj (), text.data (), text.bytes ());
   }
@@ -269,7 +269,7 @@ namespace Gtk
 
   auto
   TextBuffer::insert_interactive (const iterator& pos,
-                                  const Glib::ustring& text,
+                                  const glib::ustring& text,
                                   bool default_editable) -> std::pair<TextBuffer::iterator, bool>
   {
     std::pair<iterator, bool> pair_iter_success (pos, false);
@@ -303,7 +303,7 @@ namespace Gtk
   }
 
   auto
-  TextBuffer::insert_interactive_at_cursor (const Glib::ustring& text,
+  TextBuffer::insert_interactive_at_cursor (const glib::ustring& text,
                                             bool default_editable) -> bool
   {
     return gtk_text_buffer_insert_interactive_at_cursor (gobj (),
@@ -325,8 +325,8 @@ namespace Gtk
 
   auto
   TextBuffer::insert_with_tag (const iterator& pos,
-                               const Glib::ustring& text,
-                               const Glib::RefPtr<Tag>& tag) -> TextBuffer::iterator
+                               const glib::ustring& text,
+                               const glib::RefPtr<Tag>& tag) -> TextBuffer::iterator
   {
     const int offset = pos.get_offset ();
 
@@ -345,7 +345,7 @@ namespace Gtk
   TextBuffer::insert_with_tag (const iterator& pos,
                                const char* text_begin,
                                const char* text_end,
-                               const Glib::RefPtr<Tag>& tag) -> TextBuffer::iterator
+                               const glib::RefPtr<Tag>& tag) -> TextBuffer::iterator
   {
     const int offset = pos.get_offset ();
 
@@ -362,8 +362,8 @@ namespace Gtk
 
   auto
   TextBuffer::insert_with_tag (const iterator& pos,
-                               const Glib::ustring& text,
-                               const Glib::ustring& tag_name) -> TextBuffer::iterator
+                               const glib::ustring& text,
+                               const glib::ustring& tag_name) -> TextBuffer::iterator
   {
     const int offset = pos.get_offset ();
 
@@ -382,7 +382,7 @@ namespace Gtk
   TextBuffer::insert_with_tag (const iterator& pos,
                                const char* text_begin,
                                const char* text_end,
-                               const Glib::ustring& tag_name) -> TextBuffer::iterator
+                               const glib::ustring& tag_name) -> TextBuffer::iterator
   {
     const int offset = pos.get_offset ();
 
@@ -399,8 +399,8 @@ namespace Gtk
 
   auto
   TextBuffer::insert_with_tags (const iterator& pos,
-                                const Glib::ustring& text,
-                                const std::vector<Glib::RefPtr<Tag>>& tags) -> TextBuffer::iterator
+                                const glib::ustring& text,
+                                const std::vector<glib::RefPtr<Tag>>& tags) -> TextBuffer::iterator
   {
     const char* const text_begin = text.data ();
     return insert_with_tags (pos, text_begin, text_begin + text.bytes (), tags);
@@ -410,7 +410,7 @@ namespace Gtk
   TextBuffer::insert_with_tags (const iterator& pos,
                                 const char* text_begin,
                                 const char* text_end,
-                                const std::vector<Glib::RefPtr<Tag>>& tags) -> TextBuffer::iterator
+                                const std::vector<glib::RefPtr<Tag>>& tags) -> TextBuffer::iterator
   {
     const int start_offset = pos.get_offset ();
     iterator range_end (insert (pos, text_begin, text_end));
@@ -418,8 +418,8 @@ namespace Gtk
     GtkTextIter range_begin;
     gtk_text_buffer_get_iter_at_offset (gobj (), &range_begin, start_offset);
 
-    Glib::ArrayHandler<Glib::RefPtr<Tag>>::ArrayKeeperType array_keeper (
-        Glib::ArrayHandler<Glib::RefPtr<Tag>>::vector_to_array (tags));
+    glib::ArrayHandler<glib::RefPtr<Tag>>::ArrayKeeperType array_keeper (
+        glib::ArrayHandler<glib::RefPtr<Tag>>::vector_to_array (tags));
 
     GtkTextTag* const* const tags_begin = array_keeper.data ();
     GtkTextTag* const* const tags_end = tags_begin + tags.size ();
@@ -438,8 +438,8 @@ namespace Gtk
   auto
   TextBuffer::insert_with_tags_by_name (
       const iterator& pos,
-      const Glib::ustring& text,
-      const std::vector<Glib::ustring>& tag_names) -> TextBuffer::iterator
+      const glib::ustring& text,
+      const std::vector<glib::ustring>& tag_names) -> TextBuffer::iterator
   {
     const char* const text_begin = text.data ();
     return insert_with_tags_by_name (pos,
@@ -453,7 +453,7 @@ namespace Gtk
       const iterator& pos,
       const char* text_begin,
       const char* text_end,
-      const std::vector<Glib::ustring>& tag_names) -> TextBuffer::iterator
+      const std::vector<glib::ustring>& tag_names) -> TextBuffer::iterator
   {
     const int start_offset = pos.get_offset ();
     iterator range_end (insert (pos, text_begin, text_end));
@@ -462,8 +462,8 @@ namespace Gtk
     gtk_text_buffer_get_iter_at_offset (gobj (), &range_begin, start_offset);
 
     const auto tag_table = gtk_text_buffer_get_tag_table (gobj ());
-    Glib::ArrayHandler<Glib::ustring>::ArrayKeeperType array_keeper (
-        Glib::ArrayHandler<Glib::ustring>::vector_to_array (tag_names));
+    glib::ArrayHandler<glib::ustring>::ArrayKeeperType array_keeper (
+        glib::ArrayHandler<glib::ustring>::vector_to_array (tag_names));
 
     const char* const* const names_begin = array_keeper.data ();
     const char* const* const names_end = names_begin + tag_names.size ();
@@ -479,7 +479,7 @@ namespace Gtk
       }
       else
       {
-        g_warning ("Gtk::TextBuffer::insert_with_tags_by_name(): no tag with "
+        g_warning ("gtk::TextBuffer::insert_with_tags_by_name(): no tag with "
                    "name '%s'!",
                    *pname);
       }
@@ -489,7 +489,7 @@ namespace Gtk
   }
 
   auto
-  TextBuffer::insert_markup (const iterator& pos, const Glib::ustring& markup) -> TextBuffer::iterator
+  TextBuffer::insert_markup (const iterator& pos, const glib::ustring& markup) -> TextBuffer::iterator
   {
     iterator iterCopy (pos);
     gtk_text_buffer_insert_markup (gobj (),
@@ -586,7 +586,7 @@ namespace Gtk
   }
 
   auto
-  TextBuffer::get_iter_at_child_anchor (const Glib::RefPtr<ChildAnchor>& anchor) -> TextBuffer::iterator
+  TextBuffer::get_iter_at_child_anchor (const glib::RefPtr<ChildAnchor>& anchor) -> TextBuffer::iterator
   {
     iterator iter;
     gtk_text_buffer_get_iter_at_child_anchor (gobj (),
@@ -596,7 +596,7 @@ namespace Gtk
   }
 
   auto
-  TextBuffer::get_iter_at_child_anchor (const Glib::RefPtr<ChildAnchor>& anchor)
+  TextBuffer::get_iter_at_child_anchor (const glib::RefPtr<ChildAnchor>& anchor)
       const -> TextBuffer::const_iterator
   {
     return const_cast<TextBuffer*> (this)->get_iter_at_child_anchor (anchor);
@@ -609,13 +609,13 @@ namespace Gtk
   }
 
   auto
-  TextBuffer::get_text (bool include_hidden_chars) const -> Glib::ustring
+  TextBuffer::get_text (bool include_hidden_chars) const -> glib::ustring
   {
     auto unconst = const_cast<TextBuffer*> (this);
     return get_text (unconst->begin (), unconst->end (), include_hidden_chars);
   }
 
-} // namespace Gtk
+} // namespace gtk
 
 namespace
 {
@@ -627,29 +627,29 @@ namespace
                                      gint p2,
                                      void* data) -> void
   {
-    using namespace Gtk;
+    using namespace gtk;
     using SlotType =
-        sigc::slot<void (TextBuffer::iterator&, const Glib::ustring&, int)>;
+        sigc::slot<void (TextBuffer::iterator&, const glib::ustring&, int)>;
 
     auto obj = dynamic_cast<TextBuffer*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
     {
       try
       {
-        if (const auto slot = Glib::SignalProxyNormal::data_to_slot (data))
+        if (const auto slot = glib::SignalProxyNormal::data_to_slot (data))
           (*static_cast<SlotType*> (
-              slot)) (Glib::wrap_iter (p0), Glib::ustring (p1, p1 + p2), p2);
+              slot)) (glib::wrap_iter (p0), glib::ustring (p1, p1 + p2), p2);
       }
       catch (...)
       {
-        Glib::exception_handlers_invoke ();
+        glib::exception_handlers_invoke ();
       }
     }
   }
 
-  static const Glib::SignalProxyInfo TextBuffer_signal_insert_info = {
+  static const glib::SignalProxyInfo TextBuffer_signal_insert_info = {
       "insert_text",
       (GCallback) &TextBuffer_signal_insert_callback,
       (GCallback) &TextBuffer_signal_insert_callback};
@@ -660,29 +660,29 @@ namespace
                                                GdkPaintable* p1,
                                                void* data) -> void
   {
-    using namespace Gtk;
+    using namespace gtk;
     using SlotType = sigc::slot<void (TextBuffer::iterator&,
-                                      const Glib::RefPtr<Gdk::Paintable>&)>;
+                                      const glib::RefPtr<gdk::Paintable>&)>;
 
     auto obj = dynamic_cast<TextBuffer*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
     {
       try
       {
-        if (const auto slot = Glib::SignalProxyNormal::data_to_slot (data))
-          (*static_cast<SlotType*> (slot)) (Glib::wrap_iter (p0),
-                                            Glib::wrap (p1, true));
+        if (const auto slot = glib::SignalProxyNormal::data_to_slot (data))
+          (*static_cast<SlotType*> (slot)) (glib::wrap_iter (p0),
+                                            glib::wrap (p1, true));
       }
       catch (...)
       {
-        Glib::exception_handlers_invoke ();
+        glib::exception_handlers_invoke ();
       }
     }
   }
 
-  static const Glib::SignalProxyInfo TextBuffer_signal_insert_paintable_info = {
+  static const glib::SignalProxyInfo TextBuffer_signal_insert_paintable_info = {
       "insert_paintable",
       (GCallback) &TextBuffer_signal_insert_paintable_callback,
       (GCallback) &TextBuffer_signal_insert_paintable_callback};
@@ -693,29 +693,29 @@ namespace
                                                   GtkTextChildAnchor* p1,
                                                   void* data) -> void
   {
-    using namespace Gtk;
+    using namespace gtk;
     using SlotType = sigc::slot<void (TextBuffer::iterator&,
-                                      const Glib::RefPtr<ChildAnchor>&)>;
+                                      const glib::RefPtr<ChildAnchor>&)>;
 
     auto obj = dynamic_cast<TextBuffer*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
     {
       try
       {
-        if (const auto slot = Glib::SignalProxyNormal::data_to_slot (data))
-          (*static_cast<SlotType*> (slot)) (Glib::wrap_iter (p0),
-                                            Glib::wrap (p1, true));
+        if (const auto slot = glib::SignalProxyNormal::data_to_slot (data))
+          (*static_cast<SlotType*> (slot)) (glib::wrap_iter (p0),
+                                            glib::wrap (p1, true));
       }
       catch (...)
       {
-        Glib::exception_handlers_invoke ();
+        glib::exception_handlers_invoke ();
       }
     }
   }
 
-  static const Glib::SignalProxyInfo
+  static const glib::SignalProxyInfo
       TextBuffer_signal_insert_child_anchor_info = {
           "insert_child_anchor",
           (GCallback) &TextBuffer_signal_insert_child_anchor_callback,
@@ -727,42 +727,42 @@ namespace
                                     GtkTextIter* p1,
                                     void* data) -> void
   {
-    using namespace Gtk;
+    using namespace gtk;
     using SlotType =
         sigc::slot<void (TextBuffer::iterator&, TextBuffer::iterator&)>;
 
     auto obj = dynamic_cast<TextBuffer*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
     {
       try
       {
-        if (const auto slot = Glib::SignalProxyNormal::data_to_slot (data))
-          (*static_cast<SlotType*> (slot)) (Glib::wrap_iter (p0),
-                                            Glib::wrap_iter (p1));
+        if (const auto slot = glib::SignalProxyNormal::data_to_slot (data))
+          (*static_cast<SlotType*> (slot)) (glib::wrap_iter (p0),
+                                            glib::wrap_iter (p1));
       }
       catch (...)
       {
-        Glib::exception_handlers_invoke ();
+        glib::exception_handlers_invoke ();
       }
     }
   }
 
-  static const Glib::SignalProxyInfo TextBuffer_signal_erase_info = {
+  static const glib::SignalProxyInfo TextBuffer_signal_erase_info = {
       "delete_range",
       (GCallback) &TextBuffer_signal_erase_callback,
       (GCallback) &TextBuffer_signal_erase_callback};
 
-  static const Glib::SignalProxyInfo TextBuffer_signal_changed_info = {
+  static const glib::SignalProxyInfo TextBuffer_signal_changed_info = {
       "changed",
-      (GCallback) &Glib::SignalProxyNormal::slot0_void_callback,
-      (GCallback) &Glib::SignalProxyNormal::slot0_void_callback};
+      (GCallback) &glib::SignalProxyNormal::slot0_void_callback,
+      (GCallback) &glib::SignalProxyNormal::slot0_void_callback};
 
-  static const Glib::SignalProxyInfo TextBuffer_signal_modified_changed_info = {
+  static const glib::SignalProxyInfo TextBuffer_signal_modified_changed_info = {
       "modified_changed",
-      (GCallback) &Glib::SignalProxyNormal::slot0_void_callback,
-      (GCallback) &Glib::SignalProxyNormal::slot0_void_callback};
+      (GCallback) &glib::SignalProxyNormal::slot0_void_callback,
+      (GCallback) &glib::SignalProxyNormal::slot0_void_callback};
 
   static auto
   TextBuffer_signal_mark_set_callback (GtkTextBuffer* self,
@@ -770,29 +770,29 @@ namespace
                                        GtkTextMark* p1,
                                        void* data) -> void
   {
-    using namespace Gtk;
+    using namespace gtk;
     using SlotType = sigc::slot<void (const TextBuffer::iterator&,
-                                      const Glib::RefPtr<TextBuffer::Mark>&)>;
+                                      const glib::RefPtr<TextBuffer::Mark>&)>;
 
     auto obj = dynamic_cast<TextBuffer*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
     {
       try
       {
-        if (const auto slot = Glib::SignalProxyNormal::data_to_slot (data))
-          (*static_cast<SlotType*> (slot)) (Glib::wrap_iter (p0),
-                                            Glib::wrap (p1, true));
+        if (const auto slot = glib::SignalProxyNormal::data_to_slot (data))
+          (*static_cast<SlotType*> (slot)) (glib::wrap_iter (p0),
+                                            glib::wrap (p1, true));
       }
       catch (...)
       {
-        Glib::exception_handlers_invoke ();
+        glib::exception_handlers_invoke ();
       }
     }
   }
 
-  static const Glib::SignalProxyInfo TextBuffer_signal_mark_set_info = {
+  static const glib::SignalProxyInfo TextBuffer_signal_mark_set_info = {
       "mark_set",
       (GCallback) &TextBuffer_signal_mark_set_callback,
       (GCallback) &TextBuffer_signal_mark_set_callback};
@@ -802,27 +802,27 @@ namespace
                                            GtkTextMark* p0,
                                            void* data) -> void
   {
-    using namespace Gtk;
-    using SlotType = sigc::slot<void (const Glib::RefPtr<TextBuffer::Mark>&)>;
+    using namespace gtk;
+    using SlotType = sigc::slot<void (const glib::RefPtr<TextBuffer::Mark>&)>;
 
     auto obj = dynamic_cast<TextBuffer*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
     {
       try
       {
-        if (const auto slot = Glib::SignalProxyNormal::data_to_slot (data))
-          (*static_cast<SlotType*> (slot)) (Glib::wrap (p0, true));
+        if (const auto slot = glib::SignalProxyNormal::data_to_slot (data))
+          (*static_cast<SlotType*> (slot)) (glib::wrap (p0, true));
       }
       catch (...)
       {
-        Glib::exception_handlers_invoke ();
+        glib::exception_handlers_invoke ();
       }
     }
   }
 
-  static const Glib::SignalProxyInfo TextBuffer_signal_mark_deleted_info = {
+  static const glib::SignalProxyInfo TextBuffer_signal_mark_deleted_info = {
       "mark_deleted",
       (GCallback) &TextBuffer_signal_mark_deleted_callback,
       (GCallback) &TextBuffer_signal_mark_deleted_callback};
@@ -834,31 +834,31 @@ namespace
                                         const GtkTextIter* p2,
                                         void* data) -> void
   {
-    using namespace Gtk;
-    using SlotType = sigc::slot<void (const Glib::RefPtr<TextBuffer::Tag>&,
+    using namespace gtk;
+    using SlotType = sigc::slot<void (const glib::RefPtr<TextBuffer::Tag>&,
                                       const TextBuffer::iterator&,
                                       const TextBuffer::iterator&)>;
 
     auto obj = dynamic_cast<TextBuffer*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
     {
       try
       {
-        if (const auto slot = Glib::SignalProxyNormal::data_to_slot (data))
-          (*static_cast<SlotType*> (slot)) (Glib::wrap (p0, true),
-                                            Glib::wrap_iter (p1),
-                                            Glib::wrap_iter (p2));
+        if (const auto slot = glib::SignalProxyNormal::data_to_slot (data))
+          (*static_cast<SlotType*> (slot)) (glib::wrap (p0, true),
+                                            glib::wrap_iter (p1),
+                                            glib::wrap_iter (p2));
       }
       catch (...)
       {
-        Glib::exception_handlers_invoke ();
+        glib::exception_handlers_invoke ();
       }
     }
   }
 
-  static const Glib::SignalProxyInfo TextBuffer_signal_apply_tag_info = {
+  static const glib::SignalProxyInfo TextBuffer_signal_apply_tag_info = {
       "apply_tag",
       (GCallback) &TextBuffer_signal_apply_tag_callback,
       (GCallback) &TextBuffer_signal_apply_tag_callback};
@@ -870,105 +870,105 @@ namespace
                                          const GtkTextIter* p2,
                                          void* data) -> void
   {
-    using namespace Gtk;
-    using SlotType = sigc::slot<void (const Glib::RefPtr<TextBuffer::Tag>&,
+    using namespace gtk;
+    using SlotType = sigc::slot<void (const glib::RefPtr<TextBuffer::Tag>&,
                                       const TextBuffer::iterator&,
                                       const TextBuffer::iterator&)>;
 
     auto obj = dynamic_cast<TextBuffer*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
     {
       try
       {
-        if (const auto slot = Glib::SignalProxyNormal::data_to_slot (data))
-          (*static_cast<SlotType*> (slot)) (Glib::wrap (p0, true),
-                                            Glib::wrap_iter (p1),
-                                            Glib::wrap_iter (p2));
+        if (const auto slot = glib::SignalProxyNormal::data_to_slot (data))
+          (*static_cast<SlotType*> (slot)) (glib::wrap (p0, true),
+                                            glib::wrap_iter (p1),
+                                            glib::wrap_iter (p2));
       }
       catch (...)
       {
-        Glib::exception_handlers_invoke ();
+        glib::exception_handlers_invoke ();
       }
     }
   }
 
-  static const Glib::SignalProxyInfo TextBuffer_signal_remove_tag_info = {
+  static const glib::SignalProxyInfo TextBuffer_signal_remove_tag_info = {
       "remove_tag",
       (GCallback) &TextBuffer_signal_remove_tag_callback,
       (GCallback) &TextBuffer_signal_remove_tag_callback};
 
-  static const Glib::SignalProxyInfo TextBuffer_signal_begin_user_action_info =
+  static const glib::SignalProxyInfo TextBuffer_signal_begin_user_action_info =
       {"begin_user_action",
-       (GCallback) &Glib::SignalProxyNormal::slot0_void_callback,
-       (GCallback) &Glib::SignalProxyNormal::slot0_void_callback};
+       (GCallback) &glib::SignalProxyNormal::slot0_void_callback,
+       (GCallback) &glib::SignalProxyNormal::slot0_void_callback};
 
-  static const Glib::SignalProxyInfo TextBuffer_signal_end_user_action_info = {
+  static const glib::SignalProxyInfo TextBuffer_signal_end_user_action_info = {
       "end_user_action",
-      (GCallback) &Glib::SignalProxyNormal::slot0_void_callback,
-      (GCallback) &Glib::SignalProxyNormal::slot0_void_callback};
+      (GCallback) &glib::SignalProxyNormal::slot0_void_callback,
+      (GCallback) &glib::SignalProxyNormal::slot0_void_callback};
 
   static auto
   TextBuffer_signal_paste_done_callback (GtkTextBuffer* self,
                                          GdkClipboard* p0,
                                          void* data) -> void
   {
-    using namespace Gtk;
-    using SlotType = sigc::slot<void (const Glib::RefPtr<Gdk::Clipboard>&)>;
+    using namespace gtk;
+    using SlotType = sigc::slot<void (const glib::RefPtr<gdk::Clipboard>&)>;
 
     auto obj = dynamic_cast<TextBuffer*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
     {
       try
       {
-        if (const auto slot = Glib::SignalProxyNormal::data_to_slot (data))
-          (*static_cast<SlotType*> (slot)) (Glib::wrap (p0, true));
+        if (const auto slot = glib::SignalProxyNormal::data_to_slot (data))
+          (*static_cast<SlotType*> (slot)) (glib::wrap (p0, true));
       }
       catch (...)
       {
-        Glib::exception_handlers_invoke ();
+        glib::exception_handlers_invoke ();
       }
     }
   }
 
-  static const Glib::SignalProxyInfo TextBuffer_signal_paste_done_info = {
+  static const glib::SignalProxyInfo TextBuffer_signal_paste_done_info = {
       "paste_done",
       (GCallback) &TextBuffer_signal_paste_done_callback,
       (GCallback) &TextBuffer_signal_paste_done_callback};
 
-  static const Glib::SignalProxyInfo TextBuffer_signal_redo_info = {
+  static const glib::SignalProxyInfo TextBuffer_signal_redo_info = {
       "redo",
-      (GCallback) &Glib::SignalProxyNormal::slot0_void_callback,
-      (GCallback) &Glib::SignalProxyNormal::slot0_void_callback};
+      (GCallback) &glib::SignalProxyNormal::slot0_void_callback,
+      (GCallback) &glib::SignalProxyNormal::slot0_void_callback};
 
-  static const Glib::SignalProxyInfo TextBuffer_signal_undo_info = {
+  static const glib::SignalProxyInfo TextBuffer_signal_undo_info = {
       "undo",
-      (GCallback) &Glib::SignalProxyNormal::slot0_void_callback,
-      (GCallback) &Glib::SignalProxyNormal::slot0_void_callback};
+      (GCallback) &glib::SignalProxyNormal::slot0_void_callback,
+      (GCallback) &glib::SignalProxyNormal::slot0_void_callback};
 
 } // namespace
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GtkTextBuffer* object, bool take_copy) -> Glib::RefPtr<Gtk::TextBuffer>
+  wrap (GtkTextBuffer* object, bool take_copy) -> glib::RefPtr<gtk::TextBuffer>
   {
-    return Glib::make_refptr_for_instance<Gtk::TextBuffer> (
-        dynamic_cast<Gtk::TextBuffer*> (
-            Glib::wrap_auto ((GObject*) (object), take_copy)));
+    return glib::make_refptr_for_instance<gtk::TextBuffer> (
+        dynamic_cast<gtk::TextBuffer*> (
+            glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gtk
+namespace gtk
 {
 
   auto
-  TextBuffer_Class::init () -> const Glib::Class&
+  TextBuffer_Class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -1009,8 +1009,8 @@ namespace Gtk
                                           const gchar* p1,
                                           gint p2) -> void
   {
-    const auto obj_base = static_cast<Glib::ObjectBase*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+    const auto obj_base = static_cast<glib::ObjectBase*> (
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -1019,14 +1019,14 @@ namespace Gtk
       {
         try
         {
-          obj->on_insert (Glib::wrap_iter (p0),
-                          Glib::ustring (p1, p1 + p2),
+          obj->on_insert (glib::wrap_iter (p0),
+                          glib::ustring (p1, p1 + p2),
                           p2);
           return;
         }
         catch (...)
         {
-          Glib::exception_handlers_invoke ();
+          glib::exception_handlers_invoke ();
         }
       }
     }
@@ -1043,8 +1043,8 @@ namespace Gtk
                                                GtkTextIter* p0,
                                                GdkPaintable* p1) -> void
   {
-    const auto obj_base = static_cast<Glib::ObjectBase*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+    const auto obj_base = static_cast<glib::ObjectBase*> (
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -1053,13 +1053,13 @@ namespace Gtk
       {
         try
         {
-          obj->on_insert_paintable (Glib::wrap_iter (p0),
-                                    Glib::wrap (p1, true));
+          obj->on_insert_paintable (glib::wrap_iter (p0),
+                                    glib::wrap (p1, true));
           return;
         }
         catch (...)
         {
-          Glib::exception_handlers_invoke ();
+          glib::exception_handlers_invoke ();
         }
       }
     }
@@ -1076,8 +1076,8 @@ namespace Gtk
                                                   GtkTextIter* p0,
                                                   GtkTextChildAnchor* p1) -> void
   {
-    const auto obj_base = static_cast<Glib::ObjectBase*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+    const auto obj_base = static_cast<glib::ObjectBase*> (
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -1086,13 +1086,13 @@ namespace Gtk
       {
         try
         {
-          obj->on_insert_child_anchor (Glib::wrap_iter (p0),
-                                       Glib::wrap (p1, true));
+          obj->on_insert_child_anchor (glib::wrap_iter (p0),
+                                       glib::wrap (p1, true));
           return;
         }
         catch (...)
         {
-          Glib::exception_handlers_invoke ();
+          glib::exception_handlers_invoke ();
         }
       }
     }
@@ -1109,8 +1109,8 @@ namespace Gtk
                                            GtkTextIter* p0,
                                            GtkTextIter* p1) -> void
   {
-    const auto obj_base = static_cast<Glib::ObjectBase*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+    const auto obj_base = static_cast<glib::ObjectBase*> (
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -1119,12 +1119,12 @@ namespace Gtk
       {
         try
         {
-          obj->on_erase (Glib::wrap_iter (p0), Glib::wrap_iter (p1));
+          obj->on_erase (glib::wrap_iter (p0), glib::wrap_iter (p1));
           return;
         }
         catch (...)
         {
-          Glib::exception_handlers_invoke ();
+          glib::exception_handlers_invoke ();
         }
       }
     }
@@ -1139,8 +1139,8 @@ namespace Gtk
   auto
   TextBuffer_Class::changed_callback (GtkTextBuffer* self) -> void
   {
-    const auto obj_base = static_cast<Glib::ObjectBase*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+    const auto obj_base = static_cast<glib::ObjectBase*> (
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -1154,7 +1154,7 @@ namespace Gtk
         }
         catch (...)
         {
-          Glib::exception_handlers_invoke ();
+          glib::exception_handlers_invoke ();
         }
       }
     }
@@ -1169,8 +1169,8 @@ namespace Gtk
   auto
   TextBuffer_Class::modified_changed_callback (GtkTextBuffer* self) -> void
   {
-    const auto obj_base = static_cast<Glib::ObjectBase*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+    const auto obj_base = static_cast<glib::ObjectBase*> (
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -1184,7 +1184,7 @@ namespace Gtk
         }
         catch (...)
         {
-          Glib::exception_handlers_invoke ();
+          glib::exception_handlers_invoke ();
         }
       }
     }
@@ -1201,8 +1201,8 @@ namespace Gtk
                                        const GtkTextIter* p0,
                                        GtkTextMark* p1) -> void
   {
-    const auto obj_base = static_cast<Glib::ObjectBase*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+    const auto obj_base = static_cast<glib::ObjectBase*> (
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -1211,12 +1211,12 @@ namespace Gtk
       {
         try
         {
-          obj->on_mark_set (Glib::wrap_iter (p0), Glib::wrap (p1, true));
+          obj->on_mark_set (glib::wrap_iter (p0), glib::wrap (p1, true));
           return;
         }
         catch (...)
         {
-          Glib::exception_handlers_invoke ();
+          glib::exception_handlers_invoke ();
         }
       }
     }
@@ -1231,8 +1231,8 @@ namespace Gtk
   auto
   TextBuffer_Class::mark_deleted_callback (GtkTextBuffer* self, GtkTextMark* p0) -> void
   {
-    const auto obj_base = static_cast<Glib::ObjectBase*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+    const auto obj_base = static_cast<glib::ObjectBase*> (
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -1241,12 +1241,12 @@ namespace Gtk
       {
         try
         {
-          obj->on_mark_deleted (Glib::wrap (p0, true));
+          obj->on_mark_deleted (glib::wrap (p0, true));
           return;
         }
         catch (...)
         {
-          Glib::exception_handlers_invoke ();
+          glib::exception_handlers_invoke ();
         }
       }
     }
@@ -1264,8 +1264,8 @@ namespace Gtk
                                         const GtkTextIter* p1,
                                         const GtkTextIter* p2) -> void
   {
-    const auto obj_base = static_cast<Glib::ObjectBase*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+    const auto obj_base = static_cast<glib::ObjectBase*> (
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -1274,14 +1274,14 @@ namespace Gtk
       {
         try
         {
-          obj->on_apply_tag (Glib::wrap (p0, true),
-                             Glib::wrap_iter (p1),
-                             Glib::wrap_iter (p2));
+          obj->on_apply_tag (glib::wrap (p0, true),
+                             glib::wrap_iter (p1),
+                             glib::wrap_iter (p2));
           return;
         }
         catch (...)
         {
-          Glib::exception_handlers_invoke ();
+          glib::exception_handlers_invoke ();
         }
       }
     }
@@ -1299,8 +1299,8 @@ namespace Gtk
                                          const GtkTextIter* p1,
                                          const GtkTextIter* p2) -> void
   {
-    const auto obj_base = static_cast<Glib::ObjectBase*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+    const auto obj_base = static_cast<glib::ObjectBase*> (
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -1309,14 +1309,14 @@ namespace Gtk
       {
         try
         {
-          obj->on_remove_tag (Glib::wrap (p0, true),
-                              Glib::wrap_iter (p1),
-                              Glib::wrap_iter (p2));
+          obj->on_remove_tag (glib::wrap (p0, true),
+                              glib::wrap_iter (p1),
+                              glib::wrap_iter (p2));
           return;
         }
         catch (...)
         {
-          Glib::exception_handlers_invoke ();
+          glib::exception_handlers_invoke ();
         }
       }
     }
@@ -1331,8 +1331,8 @@ namespace Gtk
   auto
   TextBuffer_Class::begin_user_action_callback (GtkTextBuffer* self) -> void
   {
-    const auto obj_base = static_cast<Glib::ObjectBase*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+    const auto obj_base = static_cast<glib::ObjectBase*> (
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -1346,7 +1346,7 @@ namespace Gtk
         }
         catch (...)
         {
-          Glib::exception_handlers_invoke ();
+          glib::exception_handlers_invoke ();
         }
       }
     }
@@ -1361,8 +1361,8 @@ namespace Gtk
   auto
   TextBuffer_Class::end_user_action_callback (GtkTextBuffer* self) -> void
   {
-    const auto obj_base = static_cast<Glib::ObjectBase*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+    const auto obj_base = static_cast<glib::ObjectBase*> (
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -1376,7 +1376,7 @@ namespace Gtk
         }
         catch (...)
         {
-          Glib::exception_handlers_invoke ();
+          glib::exception_handlers_invoke ();
         }
       }
     }
@@ -1391,8 +1391,8 @@ namespace Gtk
   auto
   TextBuffer_Class::paste_done_callback (GtkTextBuffer* self, GdkClipboard* p0) -> void
   {
-    const auto obj_base = static_cast<Glib::ObjectBase*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+    const auto obj_base = static_cast<glib::ObjectBase*> (
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -1401,12 +1401,12 @@ namespace Gtk
       {
         try
         {
-          obj->on_paste_done (Glib::wrap (p0, true));
+          obj->on_paste_done (glib::wrap (p0, true));
           return;
         }
         catch (...)
         {
-          Glib::exception_handlers_invoke ();
+          glib::exception_handlers_invoke ();
         }
       }
     }
@@ -1421,8 +1421,8 @@ namespace Gtk
   auto
   TextBuffer_Class::redo_callback (GtkTextBuffer* self) -> void
   {
-    const auto obj_base = static_cast<Glib::ObjectBase*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+    const auto obj_base = static_cast<glib::ObjectBase*> (
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -1436,7 +1436,7 @@ namespace Gtk
         }
         catch (...)
         {
-          Glib::exception_handlers_invoke ();
+          glib::exception_handlers_invoke ();
         }
       }
     }
@@ -1451,8 +1451,8 @@ namespace Gtk
   auto
   TextBuffer_Class::undo_callback (GtkTextBuffer* self) -> void
   {
-    const auto obj_base = static_cast<Glib::ObjectBase*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+    const auto obj_base = static_cast<glib::ObjectBase*> (
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -1466,7 +1466,7 @@ namespace Gtk
         }
         catch (...)
         {
-          Glib::exception_handlers_invoke ();
+          glib::exception_handlers_invoke ();
         }
       }
     }
@@ -1479,7 +1479,7 @@ namespace Gtk
   }
 
   auto
-  TextBuffer_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  TextBuffer_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new TextBuffer ((GtkTextBuffer*) object);
   }
@@ -1491,25 +1491,25 @@ namespace Gtk
     return gobj ();
   }
 
-  TextBuffer::TextBuffer (const Glib::ConstructParams& construct_params)
-    : Glib::Object (construct_params)
+  TextBuffer::TextBuffer (const glib::ConstructParams& construct_params)
+    : glib::Object (construct_params)
   {
   }
 
   TextBuffer::TextBuffer (GtkTextBuffer* castitem)
-    : Glib::Object ((GObject*) (castitem))
+    : glib::Object ((GObject*) (castitem))
   {
   }
 
   TextBuffer::TextBuffer (TextBuffer&& src) noexcept
-    : Glib::Object (std::move (src))
+    : glib::Object (std::move (src))
   {
   }
 
   auto
   TextBuffer::operator= (TextBuffer&& src) noexcept -> TextBuffer&
   {
-    Glib::Object::operator= (std::move (src));
+    glib::Object::operator= (std::move (src));
     return *this;
   }
 
@@ -1530,21 +1530,21 @@ namespace Gtk
   }
 
   TextBuffer::TextBuffer ()
-    : Glib::ObjectBase (nullptr),
-      Glib::Object (Glib::ConstructParams (textbuffer_class_.init ()))
+    : glib::ObjectBase (nullptr),
+      glib::Object (glib::ConstructParams (textbuffer_class_.init ()))
   {
   }
 
   auto
-  TextBuffer::create () -> Glib::RefPtr<TextBuffer>
+  TextBuffer::create () -> glib::RefPtr<TextBuffer>
   {
-    return Glib::make_refptr_for_instance<TextBuffer> (new TextBuffer ());
+    return glib::make_refptr_for_instance<TextBuffer> (new TextBuffer ());
   }
 
   auto
-  TextBuffer::create (const Glib::RefPtr<TagTable>& tag_table) -> Glib::RefPtr<TextBuffer>
+  TextBuffer::create (const glib::RefPtr<TagTable>& tag_table) -> glib::RefPtr<TextBuffer>
   {
-    return Glib::make_refptr_for_instance<TextBuffer> (
+    return glib::make_refptr_for_instance<TextBuffer> (
         new TextBuffer (tag_table));
   }
 
@@ -1563,16 +1563,16 @@ namespace Gtk
   }
 
   auto
-  TextBuffer::get_tag_table () -> Glib::RefPtr<TextBuffer::TagTable>
+  TextBuffer::get_tag_table () -> glib::RefPtr<TextBuffer::TagTable>
   {
-    auto retvalue = Glib::wrap (gtk_text_buffer_get_tag_table (gobj ()));
+    auto retvalue = glib::wrap (gtk_text_buffer_get_tag_table (gobj ()));
     if (retvalue)
       retvalue->reference ();
     return retvalue;
   }
 
   auto
-  TextBuffer::get_tag_table () const -> Glib::RefPtr<const TextBuffer::TagTable>
+  TextBuffer::get_tag_table () const -> glib::RefPtr<const TextBuffer::TagTable>
   {
     return const_cast<TextBuffer*> (this)->get_tag_table ();
   }
@@ -1580,9 +1580,9 @@ namespace Gtk
   auto
   TextBuffer::get_text (const const_iterator& range_start,
                         const const_iterator& range_end,
-                        bool include_hidden_chars) const -> Glib::ustring
+                        bool include_hidden_chars) const -> glib::ustring
   {
-    return Glib::convert_return_gchar_ptr_to_ustring (
+    return glib::convert_return_gchar_ptr_to_ustring (
         gtk_text_buffer_get_text (const_cast<GtkTextBuffer*> (gobj ()),
                                   (range_start).gobj (),
                                   (range_end).gobj (),
@@ -1592,9 +1592,9 @@ namespace Gtk
   auto
   TextBuffer::get_slice (const const_iterator& range_start,
                          const const_iterator& range_end,
-                         bool include_hidden_chars) const -> Glib::ustring
+                         bool include_hidden_chars) const -> glib::ustring
   {
-    return Glib::convert_return_gchar_ptr_to_ustring (
+    return glib::convert_return_gchar_ptr_to_ustring (
         gtk_text_buffer_get_slice (const_cast<GtkTextBuffer*> (gobj ()),
                                    (range_start).gobj (),
                                    (range_end).gobj (),
@@ -1602,18 +1602,18 @@ namespace Gtk
   }
 
   auto
-  TextBuffer::add_mark (const Glib::RefPtr<TextBuffer::Mark>& mark,
+  TextBuffer::add_mark (const glib::RefPtr<TextBuffer::Mark>& mark,
                         const iterator& where) -> void
   {
-    gtk_text_buffer_add_mark (gobj (), Glib::unwrap (mark), (where).gobj ());
+    gtk_text_buffer_add_mark (gobj (), glib::unwrap (mark), (where).gobj ());
   }
 
   auto
-  TextBuffer::create_mark (const Glib::ustring& mark_name,
+  TextBuffer::create_mark (const glib::ustring& mark_name,
                            const iterator& where,
-                           bool left_gravity) -> Glib::RefPtr<TextBuffer::Mark>
+                           bool left_gravity) -> glib::RefPtr<TextBuffer::Mark>
   {
-    auto retvalue = Glib::wrap (
+    auto retvalue = glib::wrap (
         gtk_text_buffer_create_mark (gobj (),
                                      mark_name.c_str (),
                                      (where).gobj (),
@@ -1624,59 +1624,59 @@ namespace Gtk
   }
 
   auto
-  TextBuffer::move_mark (const Glib::RefPtr<Mark>& mark, const iterator& where) -> void
+  TextBuffer::move_mark (const glib::RefPtr<Mark>& mark, const iterator& where) -> void
   {
-    gtk_text_buffer_move_mark (gobj (), Glib::unwrap (mark), (where).gobj ());
+    gtk_text_buffer_move_mark (gobj (), glib::unwrap (mark), (where).gobj ());
   }
 
   auto
-  TextBuffer::delete_mark (const Glib::RefPtr<Mark>& mark) -> void
+  TextBuffer::delete_mark (const glib::RefPtr<Mark>& mark) -> void
   {
-    gtk_text_buffer_delete_mark (gobj (), Glib::unwrap (mark));
+    gtk_text_buffer_delete_mark (gobj (), glib::unwrap (mark));
   }
 
   auto
-  TextBuffer::get_mark (const Glib::ustring& name) -> Glib::RefPtr<TextBuffer::Mark>
+  TextBuffer::get_mark (const glib::ustring& name) -> glib::RefPtr<TextBuffer::Mark>
   {
     auto retvalue =
-        Glib::wrap (gtk_text_buffer_get_mark (gobj (), name.c_str ()));
+        glib::wrap (gtk_text_buffer_get_mark (gobj (), name.c_str ()));
     if (retvalue)
       retvalue->reference ();
     return retvalue;
   }
 
   auto
-  TextBuffer::get_mark (const Glib::ustring& name) const -> Glib::RefPtr<const TextBuffer::Mark>
+  TextBuffer::get_mark (const glib::ustring& name) const -> glib::RefPtr<const TextBuffer::Mark>
   {
     return const_cast<TextBuffer*> (this)->get_mark (name);
   }
 
   auto
-  TextBuffer::move_mark_by_name (const Glib::ustring& name,
+  TextBuffer::move_mark_by_name (const glib::ustring& name,
                                  const iterator& where) -> void
   {
     gtk_text_buffer_move_mark_by_name (gobj (), name.c_str (), (where).gobj ());
   }
 
   auto
-  TextBuffer::delete_mark_by_name (const Glib::ustring& name) -> void
+  TextBuffer::delete_mark_by_name (const glib::ustring& name) -> void
   {
     gtk_text_buffer_delete_mark_by_name (gobj (), name.c_str ());
   }
 
   auto
-  TextBuffer::get_insert () -> Glib::RefPtr<TextBuffer::Mark>
+  TextBuffer::get_insert () -> glib::RefPtr<TextBuffer::Mark>
   {
-    auto retvalue = Glib::wrap (gtk_text_buffer_get_insert (gobj ()));
+    auto retvalue = glib::wrap (gtk_text_buffer_get_insert (gobj ()));
     if (retvalue)
       retvalue->reference ();
     return retvalue;
   }
 
   auto
-  TextBuffer::get_selection_bound () -> Glib::RefPtr<TextBuffer::Mark>
+  TextBuffer::get_selection_bound () -> glib::RefPtr<TextBuffer::Mark>
   {
-    auto retvalue = Glib::wrap (gtk_text_buffer_get_selection_bound (gobj ()));
+    auto retvalue = glib::wrap (gtk_text_buffer_get_selection_bound (gobj ()));
     if (retvalue)
       retvalue->reference ();
     return retvalue;
@@ -1689,29 +1689,29 @@ namespace Gtk
   }
 
   auto
-  TextBuffer::apply_tag (const Glib::RefPtr<Tag>& tag,
+  TextBuffer::apply_tag (const glib::RefPtr<Tag>& tag,
                          const iterator& range_start,
                          const iterator& range_end) -> void
   {
     gtk_text_buffer_apply_tag (gobj (),
-                               Glib::unwrap (tag),
+                               glib::unwrap (tag),
                                (range_start).gobj (),
                                (range_end).gobj ());
   }
 
   auto
-  TextBuffer::remove_tag (const Glib::RefPtr<Tag>& tag,
+  TextBuffer::remove_tag (const glib::RefPtr<Tag>& tag,
                           const iterator& range_start,
                           const iterator& range_end) -> void
   {
     gtk_text_buffer_remove_tag (gobj (),
-                                Glib::unwrap (tag),
+                                glib::unwrap (tag),
                                 (range_start).gobj (),
                                 (range_end).gobj ());
   }
 
   auto
-  TextBuffer::apply_tag_by_name (const Glib::ustring& name,
+  TextBuffer::apply_tag_by_name (const glib::ustring& name,
                                  const iterator& range_start,
                                  const iterator& range_end) -> void
   {
@@ -1722,7 +1722,7 @@ namespace Gtk
   }
 
   auto
-  TextBuffer::remove_tag_by_name (const Glib::ustring& name,
+  TextBuffer::remove_tag_by_name (const glib::ustring& name,
                                   const iterator& range_start,
                                   const iterator& range_end) -> void
   {
@@ -1762,52 +1762,52 @@ namespace Gtk
 
   auto
   TextBuffer::add_selection_clipboard (
-      const Glib::RefPtr<Gdk::Clipboard>& clipboard) -> void
+      const glib::RefPtr<gdk::Clipboard>& clipboard) -> void
   {
-    gtk_text_buffer_add_selection_clipboard (gobj (), Glib::unwrap (clipboard));
+    gtk_text_buffer_add_selection_clipboard (gobj (), glib::unwrap (clipboard));
   }
 
   auto
   TextBuffer::remove_selection_clipboard (
-      const Glib::RefPtr<Gdk::Clipboard>& clipboard) -> void
+      const glib::RefPtr<gdk::Clipboard>& clipboard) -> void
   {
     gtk_text_buffer_remove_selection_clipboard (gobj (),
-                                                Glib::unwrap (clipboard));
+                                                glib::unwrap (clipboard));
   }
 
   auto
-  TextBuffer::cut_clipboard (const Glib::RefPtr<Gdk::Clipboard>& clipboard,
+  TextBuffer::cut_clipboard (const glib::RefPtr<gdk::Clipboard>& clipboard,
                              bool default_editable) -> void
   {
     gtk_text_buffer_cut_clipboard (gobj (),
-                                   Glib::unwrap (clipboard),
+                                   glib::unwrap (clipboard),
                                    static_cast<int> (default_editable));
   }
 
   auto
-  TextBuffer::copy_clipboard (const Glib::RefPtr<Gdk::Clipboard>& clipboard) -> void
+  TextBuffer::copy_clipboard (const glib::RefPtr<gdk::Clipboard>& clipboard) -> void
   {
-    gtk_text_buffer_copy_clipboard (gobj (), Glib::unwrap (clipboard));
+    gtk_text_buffer_copy_clipboard (gobj (), glib::unwrap (clipboard));
   }
 
   auto
-  TextBuffer::paste_clipboard (const Glib::RefPtr<Gdk::Clipboard>& clipboard,
+  TextBuffer::paste_clipboard (const glib::RefPtr<gdk::Clipboard>& clipboard,
                                const iterator& override_location,
                                bool default_editable) -> void
   {
     gtk_text_buffer_paste_clipboard (
         gobj (),
-        Glib::unwrap (clipboard),
+        glib::unwrap (clipboard),
         const_cast<GtkTextIter*> ((override_location).gobj ()),
         static_cast<int> (default_editable));
   }
 
   auto
-  TextBuffer::paste_clipboard (const Glib::RefPtr<Gdk::Clipboard>& clipboard,
+  TextBuffer::paste_clipboard (const glib::RefPtr<gdk::Clipboard>& clipboard,
                                bool default_editable) -> void
   {
     gtk_text_buffer_paste_clipboard (gobj (),
-                                     Glib::unwrap (clipboard),
+                                     glib::unwrap (clipboard),
                                      nullptr,
                                      static_cast<int> (default_editable));
   }
@@ -1840,9 +1840,9 @@ namespace Gtk
   }
 
   auto
-  TextBuffer::get_selection_content () -> Glib::RefPtr<Gdk::ContentProvider>
+  TextBuffer::get_selection_content () -> glib::RefPtr<gdk::ContentProvider>
   {
-    return Glib::wrap (gtk_text_buffer_get_selection_content (gobj ()));
+    return glib::wrap (gtk_text_buffer_get_selection_content (gobj ()));
   }
 
   auto
@@ -1926,82 +1926,82 @@ namespace Gtk
   }
 
   auto
-  TextBuffer::signal_insert () -> Glib::SignalProxy<
-      void (TextBuffer::iterator&, const Glib::ustring&, int)>
+  TextBuffer::signal_insert () -> glib::SignalProxy<
+      void (TextBuffer::iterator&, const glib::ustring&, int)>
   {
-    return Glib::SignalProxy<
-        void (TextBuffer::iterator&, const Glib::ustring&, int)> (
+    return glib::SignalProxy<
+        void (TextBuffer::iterator&, const glib::ustring&, int)> (
         this,
         &TextBuffer_signal_insert_info);
   }
 
   auto
-  TextBuffer::signal_insert_paintable () -> Glib::SignalProxy<void (TextBuffer::iterator&,
-                                 const Glib::RefPtr<Gdk::Paintable>&)>
+  TextBuffer::signal_insert_paintable () -> glib::SignalProxy<void (TextBuffer::iterator&,
+                                 const glib::RefPtr<gdk::Paintable>&)>
   {
-    return Glib::SignalProxy<void (TextBuffer::iterator&,
-                                   const Glib::RefPtr<Gdk::Paintable>&)> (
+    return glib::SignalProxy<void (TextBuffer::iterator&,
+                                   const glib::RefPtr<gdk::Paintable>&)> (
         this,
         &TextBuffer_signal_insert_paintable_info);
   }
 
   auto
-  TextBuffer::signal_insert_child_anchor () -> Glib::SignalProxy<void (TextBuffer::iterator&,
-                                 const Glib::RefPtr<ChildAnchor>&)>
+  TextBuffer::signal_insert_child_anchor () -> glib::SignalProxy<void (TextBuffer::iterator&,
+                                 const glib::RefPtr<ChildAnchor>&)>
   {
-    return Glib::SignalProxy<void (TextBuffer::iterator&,
-                                   const Glib::RefPtr<ChildAnchor>&)> (
+    return glib::SignalProxy<void (TextBuffer::iterator&,
+                                   const glib::RefPtr<ChildAnchor>&)> (
         this,
         &TextBuffer_signal_insert_child_anchor_info);
   }
 
   auto
-  TextBuffer::signal_erase () -> Glib::SignalProxy<void (TextBuffer::iterator&, TextBuffer::iterator&)>
+  TextBuffer::signal_erase () -> glib::SignalProxy<void (TextBuffer::iterator&, TextBuffer::iterator&)>
   {
-    return Glib::SignalProxy<void (TextBuffer::iterator&,
+    return glib::SignalProxy<void (TextBuffer::iterator&,
                                    TextBuffer::iterator&)> (
         this,
         &TextBuffer_signal_erase_info);
   }
 
   auto
-  TextBuffer::signal_changed () -> Glib::SignalProxy<void ()>
+  TextBuffer::signal_changed () -> glib::SignalProxy<void ()>
   {
-    return Glib::SignalProxy<void ()> (this, &TextBuffer_signal_changed_info);
+    return glib::SignalProxy<void ()> (this, &TextBuffer_signal_changed_info);
   }
 
   auto
-  TextBuffer::signal_modified_changed () -> Glib::SignalProxy<void ()>
+  TextBuffer::signal_modified_changed () -> glib::SignalProxy<void ()>
   {
-    return Glib::SignalProxy<void ()> (
+    return glib::SignalProxy<void ()> (
         this,
         &TextBuffer_signal_modified_changed_info);
   }
 
   auto
-  TextBuffer::signal_mark_set () -> Glib::SignalProxy<void (const TextBuffer::iterator&,
-                                 const Glib::RefPtr<TextBuffer::Mark>&)>
+  TextBuffer::signal_mark_set () -> glib::SignalProxy<void (const TextBuffer::iterator&,
+                                 const glib::RefPtr<TextBuffer::Mark>&)>
   {
-    return Glib::SignalProxy<void (const TextBuffer::iterator&,
-                                   const Glib::RefPtr<TextBuffer::Mark>&)> (
+    return glib::SignalProxy<void (const TextBuffer::iterator&,
+                                   const glib::RefPtr<TextBuffer::Mark>&)> (
         this,
         &TextBuffer_signal_mark_set_info);
   }
 
   auto
-  TextBuffer::signal_mark_deleted () -> Glib::SignalProxy<void (const Glib::RefPtr<TextBuffer::Mark>&)>
+  TextBuffer::signal_mark_deleted () -> glib::SignalProxy<void (const glib::RefPtr<TextBuffer::Mark>&)>
   {
-    return Glib::SignalProxy<void (const Glib::RefPtr<TextBuffer::Mark>&)> (
+    return glib::SignalProxy<void (const glib::RefPtr<TextBuffer::Mark>&)> (
         this,
         &TextBuffer_signal_mark_deleted_info);
   }
 
   auto
-  TextBuffer::signal_apply_tag () -> Glib::SignalProxy<void (const Glib::RefPtr<TextBuffer::Tag>&,
+  TextBuffer::signal_apply_tag () -> glib::SignalProxy<void (const glib::RefPtr<TextBuffer::Tag>&,
                                  const TextBuffer::iterator&,
                                  const TextBuffer::iterator&)>
   {
-    return Glib::SignalProxy<void (const Glib::RefPtr<TextBuffer::Tag>&,
+    return glib::SignalProxy<void (const glib::RefPtr<TextBuffer::Tag>&,
                                    const TextBuffer::iterator&,
                                    const TextBuffer::iterator&)> (
         this,
@@ -2009,11 +2009,11 @@ namespace Gtk
   }
 
   auto
-  TextBuffer::signal_remove_tag () -> Glib::SignalProxy<void (const Glib::RefPtr<TextBuffer::Tag>&,
+  TextBuffer::signal_remove_tag () -> glib::SignalProxy<void (const glib::RefPtr<TextBuffer::Tag>&,
                                  const TextBuffer::iterator&,
                                  const TextBuffer::iterator&)>
   {
-    return Glib::SignalProxy<void (const Glib::RefPtr<TextBuffer::Tag>&,
+    return glib::SignalProxy<void (const glib::RefPtr<TextBuffer::Tag>&,
                                    const TextBuffer::iterator&,
                                    const TextBuffer::iterator&)> (
         this,
@@ -2021,106 +2021,106 @@ namespace Gtk
   }
 
   auto
-  TextBuffer::signal_begin_user_action () -> Glib::SignalProxy<void ()>
+  TextBuffer::signal_begin_user_action () -> glib::SignalProxy<void ()>
   {
-    return Glib::SignalProxy<void ()> (
+    return glib::SignalProxy<void ()> (
         this,
         &TextBuffer_signal_begin_user_action_info);
   }
 
   auto
-  TextBuffer::signal_end_user_action () -> Glib::SignalProxy<void ()>
+  TextBuffer::signal_end_user_action () -> glib::SignalProxy<void ()>
   {
-    return Glib::SignalProxy<void ()> (this,
+    return glib::SignalProxy<void ()> (this,
                                        &TextBuffer_signal_end_user_action_info);
   }
 
   auto
-  TextBuffer::signal_paste_done () -> Glib::SignalProxy<void (const Glib::RefPtr<Gdk::Clipboard>&)>
+  TextBuffer::signal_paste_done () -> glib::SignalProxy<void (const glib::RefPtr<gdk::Clipboard>&)>
   {
-    return Glib::SignalProxy<void (const Glib::RefPtr<Gdk::Clipboard>&)> (
+    return glib::SignalProxy<void (const glib::RefPtr<gdk::Clipboard>&)> (
         this,
         &TextBuffer_signal_paste_done_info);
   }
 
   auto
-  TextBuffer::signal_redo () -> Glib::SignalProxy<void ()>
+  TextBuffer::signal_redo () -> glib::SignalProxy<void ()>
   {
-    return Glib::SignalProxy<void ()> (this, &TextBuffer_signal_redo_info);
+    return glib::SignalProxy<void ()> (this, &TextBuffer_signal_redo_info);
   }
 
   auto
-  TextBuffer::signal_undo () -> Glib::SignalProxy<void ()>
+  TextBuffer::signal_undo () -> glib::SignalProxy<void ()>
   {
-    return Glib::SignalProxy<void ()> (this, &TextBuffer_signal_undo_info);
+    return glib::SignalProxy<void ()> (this, &TextBuffer_signal_undo_info);
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<
-          Glib::RefPtr<TextBuffer::TagTable>>::value,
-      "Type Glib::RefPtr<TextBuffer::TagTable> cannot be used in "
+      glib::Traits::ValueCompatibleWithWrapProperty<
+          glib::RefPtr<TextBuffer::TagTable>>::value,
+      "Type glib::RefPtr<TextBuffer::TagTable> cannot be used in "
       "_WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  TextBuffer::property_tag_table () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<TextBuffer::TagTable>>
+  TextBuffer::property_tag_table () const -> glib::PropertyProxy_ReadOnly<glib::RefPtr<TextBuffer::TagTable>>
   {
-    return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<TextBuffer::TagTable>> (
+    return glib::PropertyProxy_ReadOnly<glib::RefPtr<TextBuffer::TagTable>> (
         this,
         "tag-table");
   }
 
   auto
-  TextBuffer::property_text () -> Glib::PropertyProxy<Glib::ustring>
+  TextBuffer::property_text () -> glib::PropertyProxy<glib::ustring>
   {
-    return Glib::PropertyProxy<Glib::ustring> (this, "text");
+    return glib::PropertyProxy<glib::ustring> (this, "text");
   }
 
   auto
-  TextBuffer::property_text () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>
+  TextBuffer::property_text () const -> glib::PropertyProxy_ReadOnly<glib::ustring>
   {
-    return Glib::PropertyProxy_ReadOnly<Glib::ustring> (this, "text");
+    return glib::PropertyProxy_ReadOnly<glib::ustring> (this, "text");
   }
 
   auto
-  TextBuffer::property_has_selection () const -> Glib::PropertyProxy_ReadOnly<bool>
+  TextBuffer::property_has_selection () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "has-selection");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "has-selection");
   }
 
   auto
-  TextBuffer::property_cursor_position () const -> Glib::PropertyProxy_ReadOnly<int>
+  TextBuffer::property_cursor_position () const -> glib::PropertyProxy_ReadOnly<int>
   {
-    return Glib::PropertyProxy_ReadOnly<int> (this, "cursor-position");
+    return glib::PropertyProxy_ReadOnly<int> (this, "cursor-position");
   }
 
   auto
-  TextBuffer::property_can_undo () const -> Glib::PropertyProxy_ReadOnly<bool>
+  TextBuffer::property_can_undo () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "can-undo");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "can-undo");
   }
 
   auto
-  TextBuffer::property_can_redo () const -> Glib::PropertyProxy_ReadOnly<bool>
+  TextBuffer::property_can_redo () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "can-redo");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "can-redo");
   }
 
   auto
-  TextBuffer::property_enable_undo () -> Glib::PropertyProxy<bool>
+  TextBuffer::property_enable_undo () -> glib::PropertyProxy<bool>
   {
-    return Glib::PropertyProxy<bool> (this, "enable-undo");
+    return glib::PropertyProxy<bool> (this, "enable-undo");
   }
 
   auto
-  TextBuffer::property_enable_undo () const -> Glib::PropertyProxy_ReadOnly<bool>
+  TextBuffer::property_enable_undo () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "enable-undo");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "enable-undo");
   }
 
   auto
-  Gtk::TextBuffer::on_insert (TextBuffer::iterator& pos,
-                              const Glib::ustring& text,
+  gtk::TextBuffer::on_insert (TextBuffer::iterator& pos,
+                              const glib::ustring& text,
                               int bytes) -> void
   {
     const auto base = static_cast<BaseClassType*> (
@@ -2131,9 +2131,9 @@ namespace Gtk
   }
 
   auto
-  Gtk::TextBuffer::on_insert_paintable (
+  gtk::TextBuffer::on_insert_paintable (
       TextBuffer::iterator& pos,
-      const Glib::RefPtr<Gdk::Paintable>& paintable) -> void
+      const glib::RefPtr<gdk::Paintable>& paintable) -> void
   {
     const auto base = static_cast<BaseClassType*> (
         g_type_class_peek_parent (G_OBJECT_GET_CLASS (gobject_)));
@@ -2141,13 +2141,13 @@ namespace Gtk
     if (base && base->insert_paintable)
       (*base->insert_paintable) (gobj (),
                                  (pos).gobj (),
-                                 Glib::unwrap (paintable));
+                                 glib::unwrap (paintable));
   }
 
   auto
-  Gtk::TextBuffer::on_insert_child_anchor (
+  gtk::TextBuffer::on_insert_child_anchor (
       TextBuffer::iterator& pos,
-      const Glib::RefPtr<ChildAnchor>& anchor) -> void
+      const glib::RefPtr<ChildAnchor>& anchor) -> void
   {
     const auto base = static_cast<BaseClassType*> (
         g_type_class_peek_parent (G_OBJECT_GET_CLASS (gobject_)));
@@ -2155,11 +2155,11 @@ namespace Gtk
     if (base && base->insert_child_anchor)
       (*base->insert_child_anchor) (gobj (),
                                     (pos).gobj (),
-                                    Glib::unwrap (anchor));
+                                    glib::unwrap (anchor));
   }
 
   auto
-  Gtk::TextBuffer::on_erase (TextBuffer::iterator& range_start,
+  gtk::TextBuffer::on_erase (TextBuffer::iterator& range_start,
                              TextBuffer::iterator& range_end) -> void
   {
     const auto base = static_cast<BaseClassType*> (
@@ -2172,7 +2172,7 @@ namespace Gtk
   }
 
   auto
-  Gtk::TextBuffer::on_changed () -> void
+  gtk::TextBuffer::on_changed () -> void
   {
     const auto base = static_cast<BaseClassType*> (
         g_type_class_peek_parent (G_OBJECT_GET_CLASS (gobject_)));
@@ -2182,7 +2182,7 @@ namespace Gtk
   }
 
   auto
-  Gtk::TextBuffer::on_modified_changed () -> void
+  gtk::TextBuffer::on_modified_changed () -> void
   {
     const auto base = static_cast<BaseClassType*> (
         g_type_class_peek_parent (G_OBJECT_GET_CLASS (gobject_)));
@@ -2192,28 +2192,28 @@ namespace Gtk
   }
 
   auto
-  Gtk::TextBuffer::on_mark_set (const TextBuffer::iterator& location,
-                                const Glib::RefPtr<TextBuffer::Mark>& mark) -> void
+  gtk::TextBuffer::on_mark_set (const TextBuffer::iterator& location,
+                                const glib::RefPtr<TextBuffer::Mark>& mark) -> void
   {
     const auto base = static_cast<BaseClassType*> (
         g_type_class_peek_parent (G_OBJECT_GET_CLASS (gobject_)));
 
     if (base && base->mark_set)
-      (*base->mark_set) (gobj (), (location).gobj (), Glib::unwrap (mark));
+      (*base->mark_set) (gobj (), (location).gobj (), glib::unwrap (mark));
   }
 
   auto
-  Gtk::TextBuffer::on_mark_deleted (const Glib::RefPtr<TextBuffer::Mark>& mark) -> void
+  gtk::TextBuffer::on_mark_deleted (const glib::RefPtr<TextBuffer::Mark>& mark) -> void
   {
     const auto base = static_cast<BaseClassType*> (
         g_type_class_peek_parent (G_OBJECT_GET_CLASS (gobject_)));
 
     if (base && base->mark_deleted)
-      (*base->mark_deleted) (gobj (), Glib::unwrap (mark));
+      (*base->mark_deleted) (gobj (), glib::unwrap (mark));
   }
 
   auto
-  Gtk::TextBuffer::on_apply_tag (const Glib::RefPtr<TextBuffer::Tag>& tag,
+  gtk::TextBuffer::on_apply_tag (const glib::RefPtr<TextBuffer::Tag>& tag,
                                  const TextBuffer::iterator& range_begin,
                                  const TextBuffer::iterator& range_end) -> void
   {
@@ -2222,13 +2222,13 @@ namespace Gtk
 
     if (base && base->apply_tag)
       (*base->apply_tag) (gobj (),
-                          Glib::unwrap (tag),
+                          glib::unwrap (tag),
                           (range_begin).gobj (),
                           (range_end).gobj ());
   }
 
   auto
-  Gtk::TextBuffer::on_remove_tag (const Glib::RefPtr<TextBuffer::Tag>& tag,
+  gtk::TextBuffer::on_remove_tag (const glib::RefPtr<TextBuffer::Tag>& tag,
                                   const TextBuffer::iterator& range_begin,
                                   const TextBuffer::iterator& range_end) -> void
   {
@@ -2237,13 +2237,13 @@ namespace Gtk
 
     if (base && base->remove_tag)
       (*base->remove_tag) (gobj (),
-                           Glib::unwrap (tag),
+                           glib::unwrap (tag),
                            (range_begin).gobj (),
                            (range_end).gobj ());
   }
 
   auto
-  Gtk::TextBuffer::on_begin_user_action () -> void
+  gtk::TextBuffer::on_begin_user_action () -> void
   {
     const auto base = static_cast<BaseClassType*> (
         g_type_class_peek_parent (G_OBJECT_GET_CLASS (gobject_)));
@@ -2253,7 +2253,7 @@ namespace Gtk
   }
 
   auto
-  Gtk::TextBuffer::on_end_user_action () -> void
+  gtk::TextBuffer::on_end_user_action () -> void
   {
     const auto base = static_cast<BaseClassType*> (
         g_type_class_peek_parent (G_OBJECT_GET_CLASS (gobject_)));
@@ -2263,17 +2263,17 @@ namespace Gtk
   }
 
   auto
-  Gtk::TextBuffer::on_paste_done (const Glib::RefPtr<Gdk::Clipboard>& clipboard) -> void
+  gtk::TextBuffer::on_paste_done (const glib::RefPtr<gdk::Clipboard>& clipboard) -> void
   {
     const auto base = static_cast<BaseClassType*> (
         g_type_class_peek_parent (G_OBJECT_GET_CLASS (gobject_)));
 
     if (base && base->paste_done)
-      (*base->paste_done) (gobj (), Glib::unwrap (clipboard));
+      (*base->paste_done) (gobj (), glib::unwrap (clipboard));
   }
 
   auto
-  Gtk::TextBuffer::on_redo () -> void
+  gtk::TextBuffer::on_redo () -> void
   {
     const auto base = static_cast<BaseClassType*> (
         g_type_class_peek_parent (G_OBJECT_GET_CLASS (gobject_)));
@@ -2283,7 +2283,7 @@ namespace Gtk
   }
 
   auto
-  Gtk::TextBuffer::on_undo () -> void
+  gtk::TextBuffer::on_undo () -> void
   {
     const auto base = static_cast<BaseClassType*> (
         g_type_class_peek_parent (G_OBJECT_GET_CLASS (gobject_)));
@@ -2292,4 +2292,4 @@ namespace Gtk
       (*base->undo) (gobj ());
   }
 
-} // namespace Gtk
+} // namespace gtk

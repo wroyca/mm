@@ -8,41 +8,41 @@
 #include <gio/gio.h>
 #include <libmm/glib/vectorutils.hxx>
 
-namespace Gio
+namespace gio
 {
 
   auto
-  ApplicationCommandLine::print (const Glib::ustring& message) -> void
+  ApplicationCommandLine::print (const glib::ustring& message) -> void
   {
     g_application_command_line_print (gobj (), "%s", message.c_str ());
   }
 
   auto
-  ApplicationCommandLine::printerr (const Glib::ustring& message) -> void
+  ApplicationCommandLine::printerr (const glib::ustring& message) -> void
   {
     g_application_command_line_printerr (gobj (), "%s", message.c_str ());
   }
 
-} // namespace Gio
+} // namespace gio
 
 namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GApplicationCommandLine* object, const bool take_copy) -> RefPtr<Gio::ApplicationCommandLine>
+  wrap (GApplicationCommandLine* object, const bool take_copy) -> RefPtr<gio::ApplicationCommandLine>
   {
-    return Glib::make_refptr_for_instance<Gio::ApplicationCommandLine> (
-        dynamic_cast<Gio::ApplicationCommandLine*> (
+    return glib::make_refptr_for_instance<gio::ApplicationCommandLine> (
+        dynamic_cast<gio::ApplicationCommandLine*> (
             wrap_auto ((GObject*) object, take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gio
+namespace gio
 {
 
   auto
@@ -67,7 +67,7 @@ namespace Gio
   }
 
   auto
-  ApplicationCommandLine_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  ApplicationCommandLine_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new ApplicationCommandLine ((GApplicationCommandLine*) object);
   }
@@ -80,7 +80,7 @@ namespace Gio
   }
 
   ApplicationCommandLine::ApplicationCommandLine (
-      const Glib::ConstructParams& construct_params)
+      const glib::ConstructParams& construct_params)
     : Object (construct_params)
   {
   }
@@ -123,7 +123,7 @@ namespace Gio
 
   ApplicationCommandLine::ApplicationCommandLine ()
     : ObjectBase (nullptr),
-      Object (Glib::ConstructParams (applicationcommandline_class_.init ()))
+      Object (glib::ConstructParams (applicationcommandline_class_.init ()))
   {
   }
 
@@ -136,32 +136,32 @@ namespace Gio
   }
 
   auto
-  ApplicationCommandLine::get_options_dict () -> Glib::RefPtr<Glib::VariantDict>
+  ApplicationCommandLine::get_options_dict () -> glib::RefPtr<glib::VariantDict>
   {
     auto retvalue =
-        Glib::wrap (g_application_command_line_get_options_dict (gobj ()));
+        glib::wrap (g_application_command_line_get_options_dict (gobj ()));
     if (retvalue)
       retvalue->reference ();
     return retvalue;
   }
 
   auto
-  ApplicationCommandLine::get_options_dict () const -> Glib::RefPtr<const Glib::VariantDict>
+  ApplicationCommandLine::get_options_dict () const -> glib::RefPtr<const glib::VariantDict>
   {
     return const_cast<ApplicationCommandLine*> (this)->get_options_dict ();
   }
 
   auto
-  ApplicationCommandLine::get_stdin () -> Glib::RefPtr<InputStream>
+  ApplicationCommandLine::get_stdin () -> glib::RefPtr<InputStream>
   {
-    auto retvalue = Glib::wrap (g_application_command_line_get_stdin (gobj ()));
+    auto retvalue = glib::wrap (g_application_command_line_get_stdin (gobj ()));
     if (retvalue)
       retvalue->reference ();
     return retvalue;
   }
 
   auto
-  ApplicationCommandLine::get_stdin () const -> Glib::RefPtr<const InputStream>
+  ApplicationCommandLine::get_stdin () const -> glib::RefPtr<const InputStream>
   {
     return const_cast<ApplicationCommandLine*> (this)->get_stdin ();
   }
@@ -169,7 +169,7 @@ namespace Gio
   auto
   ApplicationCommandLine::get_cwd () const -> std::string
   {
-    return Glib::convert_const_gchar_ptr_to_stdstring (
+    return glib::convert_const_gchar_ptr_to_stdstring (
         g_application_command_line_get_cwd (
             const_cast<GApplicationCommandLine*> (gobj ())));
   }
@@ -177,16 +177,16 @@ namespace Gio
   auto
   ApplicationCommandLine::get_environ () const -> std::vector<std::string>
   {
-    return Glib::ArrayHandler<std::string>::array_to_vector (
+    return glib::ArrayHandler<std::string>::array_to_vector (
         g_application_command_line_get_environ (
             const_cast<GApplicationCommandLine*> (gobj ())),
-        Glib::OWNERSHIP_NONE);
+        glib::OWNERSHIP_NONE);
   }
 
   auto
-  ApplicationCommandLine::getenv (const Glib::ustring& name) const -> std::string
+  ApplicationCommandLine::getenv (const glib::ustring& name) const -> std::string
   {
-    return Glib::convert_const_gchar_ptr_to_stdstring (
+    return glib::convert_const_gchar_ptr_to_stdstring (
         g_application_command_line_getenv (
             const_cast<GApplicationCommandLine*> (gobj ()),
             name.c_str ()));
@@ -200,9 +200,9 @@ namespace Gio
   }
 
   auto
-  ApplicationCommandLine::get_platform_data () const -> Glib::Variant<std::map<Glib::ustring, Glib::VariantBase>>
+  ApplicationCommandLine::get_platform_data () const -> glib::Variant<std::map<glib::ustring, glib::VariantBase>>
   {
-    return Glib::Variant<std::map<Glib::ustring, Glib::VariantBase>> (
+    return glib::Variant<std::map<glib::ustring, glib::VariantBase>> (
         g_application_command_line_get_platform_data (
             const_cast<GApplicationCommandLine*> (gobj ())));
   }
@@ -221,11 +221,11 @@ namespace Gio
   }
 
   auto
-  ApplicationCommandLine::create_file_for_arg (const Glib::ustring& arg) const -> Glib::RefPtr<File>
+  ApplicationCommandLine::create_file_for_arg (const glib::ustring& arg) const -> glib::RefPtr<File>
   {
-    return Glib::wrap (g_application_command_line_create_file_for_arg (
+    return glib::wrap (g_application_command_line_create_file_for_arg (
         const_cast<GApplicationCommandLine*> (gobj ()),
         arg.c_str ()));
   }
 
-} // namespace Gio
+} // namespace gio

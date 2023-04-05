@@ -2,7 +2,7 @@
 
 #include <libmm/glib/variant.hxx>
 
-namespace Glib
+namespace glib
 {
 
   auto
@@ -195,4 +195,4 @@ namespace Glib
     return g_variant_get_double (gobject_);
   }
 
-} // namespace Glib
+} // namespace glib

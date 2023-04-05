@@ -17,13 +17,13 @@ using GtkPageSetupUnixDialogClass = struct _GtkPageSetupUnixDialogClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT PageSetupUnixDialog_Class;
 }
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
   class LIBMM_GTK_SYMEXPORT PageSetupUnixDialog : public Dialog
@@ -54,7 +54,7 @@ namespace Gtk
 
   protected:
     explicit PageSetupUnixDialog (
-        const Glib::ConstructParams& construct_params);
+        const glib::ConstructParams& construct_params);
     explicit PageSetupUnixDialog (GtkPageSetupUnixDialog* castitem);
 
 #endif
@@ -83,40 +83,40 @@ namespace Gtk
 
   private:
   public:
-    explicit PageSetupUnixDialog (Gtk::Window& parent,
-                                  const Glib::ustring& title);
-    explicit PageSetupUnixDialog (const Glib::ustring& title);
+    explicit PageSetupUnixDialog (gtk::Window& parent,
+                                  const glib::ustring& title);
+    explicit PageSetupUnixDialog (const glib::ustring& title);
 
     auto
-    set_page_setup (const Glib::RefPtr<PageSetup>& page_setup) -> void;
+    set_page_setup (const glib::RefPtr<PageSetup>& page_setup) -> void;
 
     auto
-    get_page_setup () -> Glib::RefPtr<PageSetup>;
+    get_page_setup () -> glib::RefPtr<PageSetup>;
 
     auto
-    get_page_setup () const -> Glib::RefPtr<const PageSetup>;
+    get_page_setup () const -> glib::RefPtr<const PageSetup>;
 
     auto
-    set_print_settings (const Glib::RefPtr<PrintSettings>& print_settings)
+    set_print_settings (const glib::RefPtr<PrintSettings>& print_settings)
         -> void;
 
     auto
-    get_print_settings () -> Glib::RefPtr<PrintSettings>;
+    get_print_settings () -> glib::RefPtr<PrintSettings>;
 
     auto
-    get_print_settings () const -> Glib::RefPtr<const PrintSettings>;
+    get_print_settings () const -> glib::RefPtr<const PrintSettings>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkPageSetupUnixDialog* object, bool take_copy = false) -> Gtk::PageSetupUnixDialog*;
-} // namespace Glib
+  wrap (GtkPageSetupUnixDialog* object, bool take_copy = false) -> gtk::PageSetupUnixDialog*;
+} // namespace glib
 
 #endif

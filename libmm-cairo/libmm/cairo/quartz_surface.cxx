@@ -3,7 +3,7 @@
 #include <libmm/cairo/private.hxx>
 #include <libmm/cairo/quartz_surface.hxx>
 
-namespace Cairo
+namespace cairo
 {
 
 #ifdef CAIRO_HAS_QUARTZ_SURFACE
@@ -43,4 +43,4 @@ namespace Cairo
 
 #endif
 
-} // namespace Cairo
+} // namespace cairo

@@ -8,18 +8,18 @@
 #include <libmm/glib/error.hxx>
 #include <libmm/glib/utility.hxx>
 
-namespace Gio::DBus
+namespace gio::DBus
 {
 
   auto
-  NodeInfo::lookup_interface () -> Glib::RefPtr<InterfaceInfo>
+  NodeInfo::lookup_interface () -> glib::RefPtr<InterfaceInfo>
   {
-    Glib::RefPtr<InterfaceInfo> retvalue;
+    glib::RefPtr<InterfaceInfo> retvalue;
 
     if (!gobj () || !gobj ()->interfaces)
       return retvalue;
 
-    retvalue = Glib::wrap (gobj ()->interfaces[0]);
+    retvalue = glib::wrap (gobj ()->interfaces[0]);
 
     if (retvalue)
       retvalue->reference ();
@@ -28,33 +28,33 @@ namespace Gio::DBus
   }
 
   auto
-  NodeInfo::lookup_interface () const -> Glib::RefPtr<const InterfaceInfo>
+  NodeInfo::lookup_interface () const -> glib::RefPtr<const InterfaceInfo>
   {
     return const_cast<NodeInfo*> (this)->lookup_interface ();
   }
 
-} // namespace Gio::DBus
+} // namespace gio::DBus
 
 namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GDBusAnnotationInfo* object, const bool take_copy) -> RefPtr<Gio::DBus::AnnotationInfo>
+  wrap (GDBusAnnotationInfo* object, const bool take_copy) -> RefPtr<gio::DBus::AnnotationInfo>
   {
     if (take_copy && object)
       g_dbus_annotation_info_ref (object);
 
-    return Glib::make_refptr_for_instance<Gio::DBus::AnnotationInfo> (
-        reinterpret_cast<Gio::DBus::AnnotationInfo*> (object));
+    return glib::make_refptr_for_instance<gio::DBus::AnnotationInfo> (
+        reinterpret_cast<gio::DBus::AnnotationInfo*> (object));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gio::DBus
+namespace gio::DBus
 {
 
   auto
@@ -94,35 +94,35 @@ namespace Gio::DBus
 
   auto
   AnnotationInfo::info_lookup (
-      const std::vector<Glib::RefPtr<AnnotationInfo>>& annotations,
-      const Glib::ustring& name) -> Glib::ustring
+      const std::vector<glib::RefPtr<AnnotationInfo>>& annotations,
+      const glib::ustring& name) -> glib::ustring
   {
-    return Glib::convert_const_gchar_ptr_to_ustring (
+    return glib::convert_const_gchar_ptr_to_ustring (
         g_dbus_annotation_info_lookup (
-            Glib::ArrayHandler<Glib::RefPtr<AnnotationInfo>>::vector_to_array (
+            glib::ArrayHandler<glib::RefPtr<AnnotationInfo>>::vector_to_array (
                 annotations)
                 .data (),
             name.c_str ()));
   }
 
-} // namespace Gio::DBus
+} // namespace gio::DBus
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GDBusArgInfo* object, const bool take_copy) -> RefPtr<Gio::DBus::ArgInfo>
+  wrap (GDBusArgInfo* object, const bool take_copy) -> RefPtr<gio::DBus::ArgInfo>
   {
     if (take_copy && object)
       g_dbus_arg_info_ref (object);
 
-    return Glib::make_refptr_for_instance<Gio::DBus::ArgInfo> (
-        reinterpret_cast<Gio::DBus::ArgInfo*> (object));
+    return glib::make_refptr_for_instance<gio::DBus::ArgInfo> (
+        reinterpret_cast<gio::DBus::ArgInfo*> (object));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gio::DBus
+namespace gio::DBus
 {
 
   auto
@@ -160,24 +160,24 @@ namespace Gio::DBus
     return gobject;
   }
 
-} // namespace Gio::DBus
+} // namespace gio::DBus
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GDBusMethodInfo* object, const bool take_copy) -> RefPtr<Gio::DBus::MethodInfo>
+  wrap (GDBusMethodInfo* object, const bool take_copy) -> RefPtr<gio::DBus::MethodInfo>
   {
     if (take_copy && object)
       g_dbus_method_info_ref (object);
 
-    return Glib::make_refptr_for_instance<Gio::DBus::MethodInfo> (
-        reinterpret_cast<Gio::DBus::MethodInfo*> (object));
+    return glib::make_refptr_for_instance<gio::DBus::MethodInfo> (
+        reinterpret_cast<gio::DBus::MethodInfo*> (object));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gio::DBus
+namespace gio::DBus
 {
 
   auto
@@ -215,24 +215,24 @@ namespace Gio::DBus
     return gobject;
   }
 
-} // namespace Gio::DBus
+} // namespace gio::DBus
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GDBusSignalInfo* object, const bool take_copy) -> RefPtr<Gio::DBus::SignalInfo>
+  wrap (GDBusSignalInfo* object, const bool take_copy) -> RefPtr<gio::DBus::SignalInfo>
   {
     if (take_copy && object)
       g_dbus_signal_info_ref (object);
 
-    return Glib::make_refptr_for_instance<Gio::DBus::SignalInfo> (
-        reinterpret_cast<Gio::DBus::SignalInfo*> (object));
+    return glib::make_refptr_for_instance<gio::DBus::SignalInfo> (
+        reinterpret_cast<gio::DBus::SignalInfo*> (object));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gio::DBus
+namespace gio::DBus
 {
 
   auto
@@ -270,24 +270,24 @@ namespace Gio::DBus
     return gobject;
   }
 
-} // namespace Gio::DBus
+} // namespace gio::DBus
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GDBusPropertyInfo* object, const bool take_copy) -> RefPtr<Gio::DBus::PropertyInfo>
+  wrap (GDBusPropertyInfo* object, const bool take_copy) -> RefPtr<gio::DBus::PropertyInfo>
   {
     if (take_copy && object)
       g_dbus_property_info_ref (object);
 
-    return Glib::make_refptr_for_instance<Gio::DBus::PropertyInfo> (
-        reinterpret_cast<Gio::DBus::PropertyInfo*> (object));
+    return glib::make_refptr_for_instance<gio::DBus::PropertyInfo> (
+        reinterpret_cast<gio::DBus::PropertyInfo*> (object));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gio::DBus
+namespace gio::DBus
 {
 
   auto
@@ -325,24 +325,24 @@ namespace Gio::DBus
     return gobject;
   }
 
-} // namespace Gio::DBus
+} // namespace gio::DBus
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GDBusInterfaceInfo* object, const bool take_copy) -> RefPtr<Gio::DBus::InterfaceInfo>
+  wrap (GDBusInterfaceInfo* object, const bool take_copy) -> RefPtr<gio::DBus::InterfaceInfo>
   {
     if (take_copy && object)
       g_dbus_interface_info_ref (object);
 
-    return Glib::make_refptr_for_instance<Gio::DBus::InterfaceInfo> (
-        reinterpret_cast<Gio::DBus::InterfaceInfo*> (object));
+    return glib::make_refptr_for_instance<gio::DBus::InterfaceInfo> (
+        reinterpret_cast<gio::DBus::InterfaceInfo*> (object));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gio::DBus
+namespace gio::DBus
 {
 
   auto
@@ -387,9 +387,9 @@ namespace Gio::DBus
   }
 
   auto
-  InterfaceInfo::lookup_method (const Glib::ustring& name) -> Glib::RefPtr<MethodInfo>
+  InterfaceInfo::lookup_method (const glib::ustring& name) -> glib::RefPtr<MethodInfo>
   {
-    auto retvalue = Glib::wrap (
+    auto retvalue = glib::wrap (
         g_dbus_interface_info_lookup_method (gobj (), name.c_str ()));
     if (retvalue)
       retvalue->reference ();
@@ -397,15 +397,15 @@ namespace Gio::DBus
   }
 
   auto
-  InterfaceInfo::lookup_method (const Glib::ustring& name) const -> Glib::RefPtr<const MethodInfo>
+  InterfaceInfo::lookup_method (const glib::ustring& name) const -> glib::RefPtr<const MethodInfo>
   {
     return const_cast<InterfaceInfo*> (this)->lookup_method (name);
   }
 
   auto
-  InterfaceInfo::lookup_signal (const Glib::ustring& name) -> Glib::RefPtr<SignalInfo>
+  InterfaceInfo::lookup_signal (const glib::ustring& name) -> glib::RefPtr<SignalInfo>
   {
-    auto retvalue = Glib::wrap (
+    auto retvalue = glib::wrap (
         g_dbus_interface_info_lookup_signal (gobj (), name.c_str ()));
     if (retvalue)
       retvalue->reference ();
@@ -413,15 +413,15 @@ namespace Gio::DBus
   }
 
   auto
-  InterfaceInfo::lookup_signal (const Glib::ustring& name) const -> Glib::RefPtr<const SignalInfo>
+  InterfaceInfo::lookup_signal (const glib::ustring& name) const -> glib::RefPtr<const SignalInfo>
   {
     return const_cast<InterfaceInfo*> (this)->lookup_signal (name);
   }
 
   auto
-  InterfaceInfo::lookup_property (const Glib::ustring& name) -> Glib::RefPtr<PropertyInfo>
+  InterfaceInfo::lookup_property (const glib::ustring& name) -> glib::RefPtr<PropertyInfo>
   {
-    auto retvalue = Glib::wrap (
+    auto retvalue = glib::wrap (
         g_dbus_interface_info_lookup_property (gobj (), name.c_str ()));
     if (retvalue)
       retvalue->reference ();
@@ -429,7 +429,7 @@ namespace Gio::DBus
   }
 
   auto
-  InterfaceInfo::lookup_property (const Glib::ustring& name) const -> Glib::RefPtr<const PropertyInfo>
+  InterfaceInfo::lookup_property (const glib::ustring& name) const -> glib::RefPtr<const PropertyInfo>
   {
     return const_cast<InterfaceInfo*> (this)->lookup_property (name);
   }
@@ -446,24 +446,24 @@ namespace Gio::DBus
     g_dbus_interface_info_cache_release (gobj ());
   }
 
-} // namespace Gio::DBus
+} // namespace gio::DBus
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GDBusNodeInfo* object, const bool take_copy) -> RefPtr<Gio::DBus::NodeInfo>
+  wrap (GDBusNodeInfo* object, const bool take_copy) -> RefPtr<gio::DBus::NodeInfo>
   {
     if (take_copy && object)
       g_dbus_node_info_ref (object);
 
-    return Glib::make_refptr_for_instance<Gio::DBus::NodeInfo> (
-        reinterpret_cast<Gio::DBus::NodeInfo*> (object));
+    return glib::make_refptr_for_instance<gio::DBus::NodeInfo> (
+        reinterpret_cast<gio::DBus::NodeInfo*> (object));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gio::DBus
+namespace gio::DBus
 {
 
   auto
@@ -502,30 +502,30 @@ namespace Gio::DBus
   }
 
   auto
-  NodeInfo::create_for_xml (const Glib::ustring& xml_data) -> Glib::RefPtr<NodeInfo>
+  NodeInfo::create_for_xml (const glib::ustring& xml_data) -> glib::RefPtr<NodeInfo>
   {
     GError* gerror = nullptr;
     auto retvalue =
-        Glib::wrap (g_dbus_node_info_new_for_xml (xml_data.c_str (), &gerror));
+        glib::wrap (g_dbus_node_info_new_for_xml (xml_data.c_str (), &gerror));
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
   auto
-  NodeInfo::lookup_interface (const Glib::ustring& name) -> Glib::RefPtr<InterfaceInfo>
+  NodeInfo::lookup_interface (const glib::ustring& name) -> glib::RefPtr<InterfaceInfo>
   {
     auto retvalue =
-        Glib::wrap (g_dbus_node_info_lookup_interface (gobj (), name.c_str ()));
+        glib::wrap (g_dbus_node_info_lookup_interface (gobj (), name.c_str ()));
     if (retvalue)
       retvalue->reference ();
     return retvalue;
   }
 
   auto
-  NodeInfo::lookup_interface (const Glib::ustring& name) const -> Glib::RefPtr<const InterfaceInfo>
+  NodeInfo::lookup_interface (const glib::ustring& name) const -> glib::RefPtr<const InterfaceInfo>
   {
     return const_cast<NodeInfo*> (this)->lookup_interface (name);
   }
 
-} // namespace Gio::DBus
+} // namespace gio::DBus

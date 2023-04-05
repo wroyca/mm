@@ -7,49 +7,49 @@
 
 #include <gtk/gtk.h>
 
-using Attribute = Gtk::Constraint::Attribute;
-using Relation = Gtk::Constraint::Relation;
+using Attribute = gtk::Constraint::Attribute;
+using Relation = gtk::Constraint::Relation;
 
 namespace
 {
 }
 
 auto
-Glib::Value<Gtk::Constraint::Attribute>::value_type () -> GType
+glib::Value<gtk::Constraint::Attribute>::value_type () -> GType
 {
   return gtk_constraint_attribute_get_type ();
 }
 
 auto
-Glib::Value<Gtk::Constraint::Relation>::value_type () -> GType
+glib::Value<gtk::Constraint::Relation>::value_type () -> GType
 {
   return gtk_constraint_relation_get_type ();
 }
 
 auto
-Glib::Value<Gtk::Constraint::Strength>::value_type () -> GType
+glib::Value<gtk::Constraint::Strength>::value_type () -> GType
 {
   return gtk_constraint_strength_get_type ();
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GtkConstraint* object, bool take_copy) -> Glib::RefPtr<Gtk::Constraint>
+  wrap (GtkConstraint* object, bool take_copy) -> glib::RefPtr<gtk::Constraint>
   {
-    return Glib::make_refptr_for_instance<Gtk::Constraint> (
-        dynamic_cast<Gtk::Constraint*> (
-            Glib::wrap_auto ((GObject*) (object), take_copy)));
+    return glib::make_refptr_for_instance<gtk::Constraint> (
+        dynamic_cast<gtk::Constraint*> (
+            glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gtk
+namespace gtk
 {
 
   auto
-  Constraint_Class::init () -> const Glib::Class&
+  Constraint_Class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -69,7 +69,7 @@ namespace Gtk
   }
 
   auto
-  Constraint_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  Constraint_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new Constraint ((GtkConstraint*) object);
   }
@@ -81,25 +81,25 @@ namespace Gtk
     return gobj ();
   }
 
-  Constraint::Constraint (const Glib::ConstructParams& construct_params)
-    : Glib::Object (construct_params)
+  Constraint::Constraint (const glib::ConstructParams& construct_params)
+    : glib::Object (construct_params)
   {
   }
 
   Constraint::Constraint (GtkConstraint* castitem)
-    : Glib::Object ((GObject*) (castitem))
+    : glib::Object ((GObject*) (castitem))
   {
   }
 
   Constraint::Constraint (Constraint&& src) noexcept
-    : Glib::Object (std::move (src))
+    : glib::Object (std::move (src))
   {
   }
 
   auto
   Constraint::operator= (Constraint&& src) noexcept -> Constraint&
   {
-    Glib::Object::operator= (std::move (src));
+    glib::Object::operator= (std::move (src));
     return *this;
   }
 
@@ -119,25 +119,25 @@ namespace Gtk
     return gtk_constraint_get_type ();
   }
 
-  Constraint::Constraint (const Glib::RefPtr<ConstraintTarget>& target,
+  Constraint::Constraint (const glib::RefPtr<ConstraintTarget>& target,
                           Attribute target_attribute,
                           Relation relation,
-                          const Glib::RefPtr<ConstraintTarget>& source,
+                          const glib::RefPtr<ConstraintTarget>& source,
                           Attribute source_attribute,
                           double multiplier,
                           double constant,
                           int strength)
-    : Glib::ObjectBase (nullptr),
-      Glib::Object (Glib::ConstructParams (
+    : glib::ObjectBase (nullptr),
+      glib::Object (glib::ConstructParams (
           constraint_class_.init (),
           "target",
-          Glib::unwrap (target),
+          glib::unwrap (target),
           "target_attribute",
           static_cast<GtkConstraintAttribute> (target_attribute),
           "relation",
           static_cast<GtkConstraintRelation> (relation),
           "source",
-          Glib::unwrap (source),
+          glib::unwrap (source),
           "source_attribute",
           static_cast<GtkConstraintAttribute> (source_attribute),
           "multiplier",
@@ -150,16 +150,16 @@ namespace Gtk
   {
   }
 
-  Constraint::Constraint (const Glib::RefPtr<ConstraintTarget>& target,
+  Constraint::Constraint (const glib::RefPtr<ConstraintTarget>& target,
                           Attribute target_attribute,
                           Relation relation,
                           double constant,
                           int strength)
-    : Glib::ObjectBase (nullptr),
-      Glib::Object (Glib::ConstructParams (
+    : glib::ObjectBase (nullptr),
+      glib::Object (glib::ConstructParams (
           constraint_class_.init (),
           "target",
-          Glib::unwrap (target),
+          glib::unwrap (target),
           "target_attribute",
           static_cast<GtkConstraintAttribute> (target_attribute),
           "relation",
@@ -173,16 +173,16 @@ namespace Gtk
   }
 
   auto
-  Constraint::create (const Glib::RefPtr<ConstraintTarget>& target,
+  Constraint::create (const glib::RefPtr<ConstraintTarget>& target,
                       Attribute target_attribute,
                       Relation relation,
-                      const Glib::RefPtr<ConstraintTarget>& source,
+                      const glib::RefPtr<ConstraintTarget>& source,
                       Attribute source_attribute,
                       double multiplier,
                       double constant,
-                      int strength) -> Glib::RefPtr<Constraint>
+                      int strength) -> glib::RefPtr<Constraint>
   {
-    return Glib::make_refptr_for_instance<Constraint> (
+    return glib::make_refptr_for_instance<Constraint> (
         new Constraint (target,
                         target_attribute,
                         relation,
@@ -194,13 +194,13 @@ namespace Gtk
   }
 
   auto
-  Constraint::create (const Glib::RefPtr<ConstraintTarget>& target,
+  Constraint::create (const glib::RefPtr<ConstraintTarget>& target,
                       Attribute target_attribute,
                       Relation relation,
                       double constant,
-                      int strength) -> Glib::RefPtr<Constraint>
+                      int strength) -> glib::RefPtr<Constraint>
   {
-    return Glib::make_refptr_for_instance<Constraint> (
+    return glib::make_refptr_for_instance<Constraint> (
         new Constraint (target,
                         target_attribute,
                         relation,
@@ -209,16 +209,16 @@ namespace Gtk
   }
 
   auto
-  Constraint::get_target () -> Glib::RefPtr<ConstraintTarget>
+  Constraint::get_target () -> glib::RefPtr<ConstraintTarget>
   {
-    auto retvalue = Glib::wrap (gtk_constraint_get_target (gobj ()));
+    auto retvalue = glib::wrap (gtk_constraint_get_target (gobj ()));
     if (retvalue)
       retvalue->reference ();
     return retvalue;
   }
 
   auto
-  Constraint::get_target () const -> Glib::RefPtr<const ConstraintTarget>
+  Constraint::get_target () const -> glib::RefPtr<const ConstraintTarget>
   {
     return const_cast<Constraint*> (this)->get_target ();
   }
@@ -231,16 +231,16 @@ namespace Gtk
   }
 
   auto
-  Constraint::get_source () -> Glib::RefPtr<ConstraintTarget>
+  Constraint::get_source () -> glib::RefPtr<ConstraintTarget>
   {
-    auto retvalue = Glib::wrap (gtk_constraint_get_source (gobj ()));
+    auto retvalue = glib::wrap (gtk_constraint_get_source (gobj ()));
     if (retvalue)
       retvalue->reference ();
     return retvalue;
   }
 
   auto
-  Constraint::get_source () const -> Glib::RefPtr<const ConstraintTarget>
+  Constraint::get_source () const -> glib::RefPtr<const ConstraintTarget>
   {
     return const_cast<Constraint*> (this)->get_source ();
   }
@@ -296,82 +296,82 @@ namespace Gtk
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<
-          Glib::RefPtr<ConstraintTarget>>::value,
-      "Type Glib::RefPtr<ConstraintTarget> cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      glib::Traits::ValueCompatibleWithWrapProperty<
+          glib::RefPtr<ConstraintTarget>>::value,
+      "Type glib::RefPtr<ConstraintTarget> cannot be used in _WRAP_PROPERTY. "
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  Constraint::property_target () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<ConstraintTarget>>
+  Constraint::property_target () const -> glib::PropertyProxy_ReadOnly<glib::RefPtr<ConstraintTarget>>
   {
-    return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<ConstraintTarget>> (
+    return glib::PropertyProxy_ReadOnly<glib::RefPtr<ConstraintTarget>> (
         this,
         "target");
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<Attribute>::value,
+      glib::Traits::ValueCompatibleWithWrapProperty<Attribute>::value,
       "Type Attribute cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  Constraint::property_target_attribute () const -> Glib::PropertyProxy_ReadOnly<Attribute>
+  Constraint::property_target_attribute () const -> glib::PropertyProxy_ReadOnly<Attribute>
   {
-    return Glib::PropertyProxy_ReadOnly<Attribute> (this, "target-attribute");
+    return glib::PropertyProxy_ReadOnly<Attribute> (this, "target-attribute");
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<Relation>::value,
+      glib::Traits::ValueCompatibleWithWrapProperty<Relation>::value,
       "Type Relation cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  Constraint::property_relation () const -> Glib::PropertyProxy_ReadOnly<Relation>
+  Constraint::property_relation () const -> glib::PropertyProxy_ReadOnly<Relation>
   {
-    return Glib::PropertyProxy_ReadOnly<Relation> (this, "relation");
+    return glib::PropertyProxy_ReadOnly<Relation> (this, "relation");
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<
-          Glib::RefPtr<ConstraintTarget>>::value,
-      "Type Glib::RefPtr<ConstraintTarget> cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      glib::Traits::ValueCompatibleWithWrapProperty<
+          glib::RefPtr<ConstraintTarget>>::value,
+      "Type glib::RefPtr<ConstraintTarget> cannot be used in _WRAP_PROPERTY. "
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  Constraint::property_source () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<ConstraintTarget>>
+  Constraint::property_source () const -> glib::PropertyProxy_ReadOnly<glib::RefPtr<ConstraintTarget>>
   {
-    return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<ConstraintTarget>> (
+    return glib::PropertyProxy_ReadOnly<glib::RefPtr<ConstraintTarget>> (
         this,
         "source");
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<Attribute>::value,
+      glib::Traits::ValueCompatibleWithWrapProperty<Attribute>::value,
       "Type Attribute cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  Constraint::property_source_attribute () const -> Glib::PropertyProxy_ReadOnly<Attribute>
+  Constraint::property_source_attribute () const -> glib::PropertyProxy_ReadOnly<Attribute>
   {
-    return Glib::PropertyProxy_ReadOnly<Attribute> (this, "source-attribute");
+    return glib::PropertyProxy_ReadOnly<Attribute> (this, "source-attribute");
   }
 
   auto
-  Constraint::property_multiplier () const -> Glib::PropertyProxy_ReadOnly<double>
+  Constraint::property_multiplier () const -> glib::PropertyProxy_ReadOnly<double>
   {
-    return Glib::PropertyProxy_ReadOnly<double> (this, "multiplier");
+    return glib::PropertyProxy_ReadOnly<double> (this, "multiplier");
   }
 
   auto
-  Constraint::property_constant () const -> Glib::PropertyProxy_ReadOnly<double>
+  Constraint::property_constant () const -> glib::PropertyProxy_ReadOnly<double>
   {
-    return Glib::PropertyProxy_ReadOnly<double> (this, "constant");
+    return glib::PropertyProxy_ReadOnly<double> (this, "constant");
   }
 
   auto
-  Constraint::property_strength () const -> Glib::PropertyProxy_ReadOnly<int>
+  Constraint::property_strength () const -> glib::PropertyProxy_ReadOnly<int>
   {
-    return Glib::PropertyProxy_ReadOnly<int> (this, "strength");
+    return glib::PropertyProxy_ReadOnly<int> (this, "strength");
   }
 
-} // namespace Gtk
+} // namespace gtk

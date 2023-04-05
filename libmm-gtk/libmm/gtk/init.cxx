@@ -7,7 +7,7 @@
 #include <libmm/gtk/wrap_init.hxx>
 #include <libmm/pango/wrap_init.hxx>
 
-namespace Gtk
+namespace gtk
 {
 
   auto
@@ -17,15 +17,15 @@ namespace Gtk
 
     if (!init_done)
     {
-      Glib::init ();
-      Gio::init ();
+      glib::init ();
+      gio::init ();
 
-      Pango::wrap_init ();
-      Gdk::wrap_init ();
-      Gtk::wrap_init ();
+      pango::wrap_init ();
+      gdk::wrap_init ();
+      gtk::wrap_init ();
 
       init_done = true;
     }
   }
 
-} // namespace Gtk
+} // namespace gtk

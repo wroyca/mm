@@ -15,16 +15,16 @@ using GtkSorterClass = struct _GtkSorterClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT Sorter_Class;
 }
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
-  class LIBMM_GTK_SYMEXPORT Sorter : public Glib::Object
+  class LIBMM_GTK_SYMEXPORT Sorter : public glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -43,7 +43,7 @@ namespace Gtk
     static CppClassType sorter_class_;
 
   protected:
-    explicit Sorter (const Glib::ConstructParams& construct_params);
+    explicit Sorter (const glib::ConstructParams& construct_params);
     explicit Sorter (GtkSorter* castitem);
 
 #endif
@@ -109,7 +109,7 @@ namespace Gtk
     changed (Change change) -> void;
 
     auto
-    signal_changed () -> Glib::SignalProxy<void (Change)>;
+    signal_changed () -> glib::SignalProxy<void (Change)>;
 
   protected:
     virtual auto
@@ -123,44 +123,44 @@ namespace Gtk
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_GTK_SYMEXPORT Value<Gtk::Sorter::Order>
-    : public Glib::Value_Enum<Gtk::Sorter::Order>
+  class LIBMM_GTK_SYMEXPORT Value<gtk::Sorter::Order>
+    : public glib::Value_Enum<gtk::Sorter::Order>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_GTK_SYMEXPORT Value<Gtk::Sorter::Change>
-    : public Glib::Value_Enum<Gtk::Sorter::Change>
+  class LIBMM_GTK_SYMEXPORT Value<gtk::Sorter::Change>
+    : public glib::Value_Enum<gtk::Sorter::Change>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkSorter* object, bool take_copy = false) -> Glib::RefPtr<Gtk::Sorter>;
-} // namespace Glib
+  wrap (GtkSorter* object, bool take_copy = false) -> glib::RefPtr<gtk::Sorter>;
+} // namespace glib
 
 #endif

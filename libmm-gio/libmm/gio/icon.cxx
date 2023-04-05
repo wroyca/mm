@@ -8,46 +8,46 @@
 #include <gio/gio.h>
 #include <libmm/glib/error.hxx>
 
-namespace Gio
+namespace gio
 {
 
   auto
-  Icon::equal (const Glib::RefPtr<Icon>& other) const -> bool
+  Icon::equal (const glib::RefPtr<Icon>& other) const -> bool
   {
     return static_cast<bool> (
         g_icon_equal (const_cast<GIcon*> (this->gobj ()), other->gobj ()));
   }
 
   auto
-  Icon::create (const std::string& str) -> Glib::RefPtr<Icon>
+  Icon::create (const std::string& str) -> glib::RefPtr<Icon>
   {
     GError* gerror = nullptr;
     const auto icon = g_icon_new_for_string (str.c_str (), &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
 
-    return Glib::wrap (icon);
+    return glib::wrap (icon);
   }
 
-} // namespace Gio
+} // namespace gio
 
 namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GIcon* object, const bool take_copy) -> RefPtr<Gio::Icon>
+  wrap (GIcon* object, const bool take_copy) -> RefPtr<gio::Icon>
   {
-    return Glib::make_refptr_for_instance<Gio::Icon> (
-        Glib::wrap_auto_interface<Gio::Icon> ((GObject*) object, take_copy));
+    return glib::make_refptr_for_instance<gio::Icon> (
+        glib::wrap_auto_interface<gio::Icon> ((GObject*) object, take_copy));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gio
+namespace gio
 {
 
   auto
@@ -72,7 +72,7 @@ namespace Gio
   }
 
   auto
-  Icon_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  Icon_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new Icon ((GIcon*) object);
   }
@@ -87,7 +87,7 @@ namespace Gio
   {
   }
 
-  Icon::Icon (const Glib::Interface_Class& interface_class)
+  Icon::Icon (const glib::Interface_Class& interface_class)
     : Interface (interface_class)
   {
   }
@@ -135,21 +135,21 @@ namespace Gio
   auto
   Icon::to_string () const -> std::string
   {
-    return Glib::convert_return_gchar_ptr_to_stdstring (
+    return glib::convert_return_gchar_ptr_to_stdstring (
         g_icon_to_string (const_cast<GIcon*> (gobj ())));
   }
 
   auto
-  Icon::serialize () const -> Glib::VariantBase
+  Icon::serialize () const -> glib::VariantBase
   {
-    return Glib::wrap (g_icon_serialize (const_cast<GIcon*> (gobj ())), false);
+    return glib::wrap (g_icon_serialize (const_cast<GIcon*> (gobj ())), false);
   }
 
   auto
-  Icon::deserialize (const Glib::VariantBase& value) -> Glib::RefPtr<Icon>
+  Icon::deserialize (const glib::VariantBase& value) -> glib::RefPtr<Icon>
   {
-    return Glib::wrap (
+    return glib::wrap (
         g_icon_deserialize (const_cast<GVariant*> (value.gobj ())));
   }
 
-} // namespace Gio
+} // namespace gio

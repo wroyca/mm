@@ -14,10 +14,10 @@ extern "C"
 }
 #endif
 
-namespace Glib
+namespace glib
 {
 
-  class MarkupError : public Glib::Error
+  class MarkupError : public glib::Error
   {
   public:
     enum Code
@@ -32,7 +32,7 @@ namespace Glib
     };
 
     LIBMM_GLIB_SYMEXPORT
-    MarkupError (Code error_code, const Glib::ustring& error_message);
+    MarkupError (Code error_code, const glib::ustring& error_message);
     LIBMM_GLIB_SYMEXPORT explicit MarkupError (GError* gobject);
     LIBMM_GLIB_SYMEXPORT auto
     code () const -> Code;
@@ -53,11 +53,11 @@ namespace Glib
 
     class ParseContext;
 
-    using Error = Glib::MarkupError;
+    using Error = glib::MarkupError;
 
     LIBMM_GLIB_SYMEXPORT
     auto
-    escape_text (const Glib::ustring& text) -> Glib::ustring;
+    escape_text (const glib::ustring& text) -> glib::ustring;
 
     enum class ParseFlags
     {
@@ -119,12 +119,12 @@ namespace Glib
     class LIBMM_GLIB_SYMEXPORT AttributeKeyLess
     {
     public:
-      using first_argument_type = Glib::ustring;
-      using second_argument_type = Glib::ustring;
+      using first_argument_type = glib::ustring;
+      using second_argument_type = glib::ustring;
       typedef bool result_type;
 
       auto
-      operator() (const Glib::ustring& lhs, const Glib::ustring& rhs) const
+      operator() (const glib::ustring& lhs, const glib::ustring& rhs) const
           -> bool;
     };
 
@@ -136,7 +136,7 @@ namespace Glib
     {
     public:
       typedef std::
-          map<Glib::ustring, Glib::ustring, Glib::Markup::AttributeKeyLess>
+          map<glib::ustring, glib::ustring, glib::Markup::AttributeKeyLess>
               AttributeMap;
 
       virtual ~Parser () = 0;
@@ -154,26 +154,26 @@ namespace Glib
 
       virtual auto
       on_start_element (ParseContext& context,
-                        const Glib::ustring& element_name,
+                        const glib::ustring& element_name,
                         const AttributeMap& attributes) -> void;
 
       virtual auto
-      on_end_element (ParseContext& context, const Glib::ustring& element_name)
+      on_end_element (ParseContext& context, const glib::ustring& element_name)
           -> void;
 
       virtual auto
-      on_text (ParseContext& context, const Glib::ustring& text) -> void;
+      on_text (ParseContext& context, const glib::ustring& text) -> void;
 
       virtual auto
       on_passthrough (ParseContext& context,
-                      const Glib::ustring& passthrough_text) -> void;
+                      const glib::ustring& passthrough_text) -> void;
 
       virtual auto
       on_error (ParseContext& context, const MarkupError& error) -> void;
 
     private:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-      friend class Glib::Markup::ParserCallbacks;
+      friend class glib::Markup::ParserCallbacks;
 #endif
     };
 
@@ -193,7 +193,7 @@ namespace Glib
       virtual ~ParseContext ();
 
       auto
-      parse (const Glib::ustring& text) -> void;
+      parse (const glib::ustring& text) -> void;
 
       auto
       parse (const char* text_begin, const char* text_end) -> void;
@@ -202,7 +202,7 @@ namespace Glib
       end_parse () -> void;
 
       auto
-      get_element () const -> Glib::ustring;
+      get_element () const -> glib::ustring;
 
       auto
       get_line_number () const -> int;
@@ -246,6 +246,6 @@ namespace Glib
 
   } // namespace Markup
 
-} // namespace Glib
+} // namespace glib
 
 #endif

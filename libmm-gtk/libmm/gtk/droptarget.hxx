@@ -17,13 +17,13 @@ using GtkDropTargetClass = struct _GtkDropTargetClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT DropTarget_Class;
 }
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
   class LIBMM_GTK_SYMEXPORT DropTarget : public EventController
@@ -45,7 +45,7 @@ namespace Gtk
     static CppClassType droptarget_class_;
 
   protected:
-    explicit DropTarget (const Glib::ConstructParams& construct_params);
+    explicit DropTarget (const glib::ConstructParams& construct_params);
     explicit DropTarget (GtkDropTarget* castitem);
 
 #endif
@@ -84,7 +84,7 @@ namespace Gtk
   private:
   public:
     static auto
-    create (GType type, Gdk::DragAction actions) -> Glib::RefPtr<DropTarget>;
+    create (GType type, gdk::DragAction actions) -> glib::RefPtr<DropTarget>;
 
     auto
     set_gtypes (const std::vector<GType>& types) -> void;
@@ -93,16 +93,16 @@ namespace Gtk
     get_gtypes () const -> std::vector<GType>;
 
     auto
-    get_formats () -> Glib::RefPtr<Gdk::ContentFormats>;
+    get_formats () -> glib::RefPtr<gdk::ContentFormats>;
 
     auto
-    get_formats () const -> Glib::RefPtr<const Gdk::ContentFormats>;
+    get_formats () const -> glib::RefPtr<const gdk::ContentFormats>;
 
     auto
-    set_actions (Gdk::DragAction actions) -> void;
+    set_actions (gdk::DragAction actions) -> void;
 
     auto
-    get_actions () const -> Gdk::DragAction;
+    get_actions () const -> gdk::DragAction;
 
     auto
     set_preload (bool preload = true) -> void;
@@ -113,86 +113,86 @@ namespace Gtk
 #ifndef GTKMM_DISABLE_DEPRECATED
 
     auto
-    get_drop () -> Glib::RefPtr<Gdk::Drop>;
+    get_drop () -> glib::RefPtr<gdk::Drop>;
 #endif
 
 #ifndef GTKMM_DISABLE_DEPRECATED
 
     auto
-    get_drop () const -> Glib::RefPtr<const Gdk::Drop>;
+    get_drop () const -> glib::RefPtr<const gdk::Drop>;
 #endif
 
     auto
-    get_current_drop () -> Glib::RefPtr<Gdk::Drop>;
+    get_current_drop () -> glib::RefPtr<gdk::Drop>;
 
     auto
-    get_current_drop () const -> Glib::RefPtr<const Gdk::Drop>;
+    get_current_drop () const -> glib::RefPtr<const gdk::Drop>;
 
     auto
-    get_value () const -> Glib::ValueBase;
+    get_value () const -> glib::ValueBase;
 
     auto
     reject () -> void;
 
     auto
-    property_actions () -> Glib::PropertyProxy<Gdk::DragAction>;
+    property_actions () -> glib::PropertyProxy<gdk::DragAction>;
 
     auto
-    property_actions () const -> Glib::PropertyProxy_ReadOnly<Gdk::DragAction>;
+    property_actions () const -> glib::PropertyProxy_ReadOnly<gdk::DragAction>;
 
 #ifndef GTKMM_DISABLE_DEPRECATED
 
     auto
     property_drop () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gdk::Drop>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<gdk::Drop>>;
 
 #endif
 
     auto
     property_current_drop () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gdk::Drop>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<gdk::Drop>>;
 
     auto
     property_formats () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gdk::ContentFormats>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<gdk::ContentFormats>>;
 
     auto
-    property_preload () -> Glib::PropertyProxy<bool>;
+    property_preload () -> glib::PropertyProxy<bool>;
 
     auto
-    property_preload () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_preload () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_value () const -> Glib::PropertyProxy_ReadOnly<GValue*>;
+    property_value () const -> glib::PropertyProxy_ReadOnly<GValue*>;
 
     auto
     signal_accept ()
-        -> Glib::SignalProxy<bool (const Glib::RefPtr<Gdk::Drop>&)>;
+        -> glib::SignalProxy<bool (const glib::RefPtr<gdk::Drop>&)>;
 
     auto
-    signal_enter () -> Glib::SignalProxy<Gdk::DragAction (double, double)>;
+    signal_enter () -> glib::SignalProxy<gdk::DragAction (double, double)>;
 
     auto
-    signal_motion () -> Glib::SignalProxy<Gdk::DragAction (double, double)>;
+    signal_motion () -> glib::SignalProxy<gdk::DragAction (double, double)>;
 
     auto
-    signal_leave () -> Glib::SignalProxy<void ()>;
+    signal_leave () -> glib::SignalProxy<void ()>;
 
     auto
     signal_drop ()
-        -> Glib::SignalProxy<bool (const Glib::ValueBase&, double, double)>;
+        -> glib::SignalProxy<bool (const glib::ValueBase&, double, double)>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkDropTarget* object, bool take_copy = false) -> Glib::RefPtr<Gtk::DropTarget>;
-} // namespace Glib
+  wrap (GtkDropTarget* object, bool take_copy = false) -> glib::RefPtr<gtk::DropTarget>;
+} // namespace glib
 
 #endif

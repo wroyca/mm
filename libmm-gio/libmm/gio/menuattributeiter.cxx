@@ -7,12 +7,12 @@
 
 #include <gio/gio.h>
 
-namespace Gio
+namespace gio
 {
 
   auto
-  MenuAttributeIter::get_next (Glib::ustring& out_name,
-                               Glib::VariantBase& value) -> bool
+  MenuAttributeIter::get_next (glib::ustring& out_name,
+                               glib::VariantBase& value) -> bool
   {
     const char* g_out_name = nullptr;
     GVariant* g_value = nullptr;
@@ -26,26 +26,26 @@ namespace Gio
     return result;
   }
 
-} // namespace Gio
+} // namespace gio
 
 namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GMenuAttributeIter* object, const bool take_copy) -> RefPtr<Gio::MenuAttributeIter>
+  wrap (GMenuAttributeIter* object, const bool take_copy) -> RefPtr<gio::MenuAttributeIter>
   {
-    return Glib::make_refptr_for_instance<Gio::MenuAttributeIter> (
-        dynamic_cast<Gio::MenuAttributeIter*> (
+    return glib::make_refptr_for_instance<gio::MenuAttributeIter> (
+        dynamic_cast<gio::MenuAttributeIter*> (
             wrap_auto ((GObject*) object, take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gio
+namespace gio
 {
 
   auto
@@ -69,7 +69,7 @@ namespace Gio
   }
 
   auto
-  MenuAttributeIter_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  MenuAttributeIter_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new MenuAttributeIter ((GMenuAttributeIter*) object);
   }
@@ -82,7 +82,7 @@ namespace Gio
   }
 
   MenuAttributeIter::MenuAttributeIter (
-      const Glib::ConstructParams& construct_params)
+      const glib::ConstructParams& construct_params)
     : Object (construct_params)
   {
   }
@@ -122,22 +122,22 @@ namespace Gio
 
   MenuAttributeIter::MenuAttributeIter ()
     : ObjectBase (nullptr),
-      Object (Glib::ConstructParams (menuattributeiter_class_.init ()))
+      Object (glib::ConstructParams (menuattributeiter_class_.init ()))
   {
   }
 
   auto
-  MenuAttributeIter::get_name () const -> Glib::ustring
+  MenuAttributeIter::get_name () const -> glib::ustring
   {
-    return Glib::convert_const_gchar_ptr_to_ustring (
+    return glib::convert_const_gchar_ptr_to_ustring (
         g_menu_attribute_iter_get_name (
             const_cast<GMenuAttributeIter*> (gobj ())));
   }
 
   auto
-  MenuAttributeIter::get_value () const -> Glib::VariantBase
+  MenuAttributeIter::get_value () const -> glib::VariantBase
   {
-    return Glib::wrap (g_menu_attribute_iter_get_value (
+    return glib::wrap (g_menu_attribute_iter_get_value (
                            const_cast<GMenuAttributeIter*> (gobj ())),
                        false);
   }
@@ -148,4 +148,4 @@ namespace Gio
     return g_menu_attribute_iter_next (gobj ());
   }
 
-} // namespace Gio
+} // namespace gio

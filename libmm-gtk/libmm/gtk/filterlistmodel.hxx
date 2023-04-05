@@ -15,17 +15,17 @@
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT FilterListModel_Class;
 }
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
-  class LIBMM_GTK_SYMEXPORT FilterListModel : public Glib::Object,
-                                    public Gio::ListModel
+  class LIBMM_GTK_SYMEXPORT FilterListModel : public glib::Object,
+                                    public gio::ListModel
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -44,7 +44,7 @@ namespace Gtk
     static CppClassType filterlistmodel_class_;
 
   protected:
-    explicit FilterListModel (const Glib::ConstructParams& construct_params);
+    explicit FilterListModel (const glib::ConstructParams& construct_params);
     explicit FilterListModel (GtkFilterListModel* castitem);
 
 #endif
@@ -82,32 +82,32 @@ namespace Gtk
 
   private:
   protected:
-    explicit FilterListModel (const Glib::RefPtr<Gio::ListModel>& model,
-                              const Glib::RefPtr<Filter>& filter);
+    explicit FilterListModel (const glib::RefPtr<gio::ListModel>& model,
+                              const glib::RefPtr<Filter>& filter);
 
   public:
     static auto
-    create (const Glib::RefPtr<Gio::ListModel>& model,
-            const Glib::RefPtr<Filter>& filter)
-        -> Glib::RefPtr<FilterListModel>;
+    create (const glib::RefPtr<gio::ListModel>& model,
+            const glib::RefPtr<Filter>& filter)
+        -> glib::RefPtr<FilterListModel>;
 
     auto
-    set_filter (const Glib::RefPtr<Filter>& filter) -> void;
+    set_filter (const glib::RefPtr<Filter>& filter) -> void;
 
     auto
-    get_filter () -> Glib::RefPtr<Filter>;
+    get_filter () -> glib::RefPtr<Filter>;
 
     auto
-    get_filter () const -> Glib::RefPtr<const Filter>;
+    get_filter () const -> glib::RefPtr<const Filter>;
 
     auto
-    set_model (const Glib::RefPtr<Gio::ListModel>& model) -> void;
+    set_model (const glib::RefPtr<gio::ListModel>& model) -> void;
 
     auto
-    get_model () -> Glib::RefPtr<Gio::ListModel>;
+    get_model () -> glib::RefPtr<gio::ListModel>;
 
     auto
-    get_model () const -> Glib::RefPtr<const Gio::ListModel>;
+    get_model () const -> glib::RefPtr<const gio::ListModel>;
 
     auto
     set_incremental (bool incremental = true) -> void;
@@ -119,45 +119,45 @@ namespace Gtk
     get_pending () const -> guint;
 
     auto
-    property_filter () -> Glib::PropertyProxy<Glib::RefPtr<Filter>>;
+    property_filter () -> glib::PropertyProxy<glib::RefPtr<Filter>>;
 
     auto
     property_filter () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Filter>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<Filter>>;
 
     auto
-    property_incremental () -> Glib::PropertyProxy<bool>;
+    property_incremental () -> glib::PropertyProxy<bool>;
 
     auto
-    property_incremental () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_incremental () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_item_type () const -> Glib::PropertyProxy_ReadOnly<GType>;
+    property_item_type () const -> glib::PropertyProxy_ReadOnly<GType>;
 
     auto
-    property_model () -> Glib::PropertyProxy<Glib::RefPtr<Gio::ListModel>>;
+    property_model () -> glib::PropertyProxy<glib::RefPtr<gio::ListModel>>;
 
     auto
     property_model () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gio::ListModel>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<gio::ListModel>>;
 
     auto
-    property_n_items () const -> Glib::PropertyProxy_ReadOnly<unsigned int>;
+    property_n_items () const -> glib::PropertyProxy_ReadOnly<unsigned int>;
 
     auto
-    property_pending () const -> Glib::PropertyProxy_ReadOnly<guint>;
+    property_pending () const -> glib::PropertyProxy_ReadOnly<guint>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkFilterListModel* object, bool take_copy = false) -> Glib::RefPtr<Gtk::FilterListModel>;
-} // namespace Glib
+  wrap (GtkFilterListModel* object, bool take_copy = false) -> glib::RefPtr<gtk::FilterListModel>;
+} // namespace glib
 
 #endif

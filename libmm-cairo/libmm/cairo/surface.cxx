@@ -4,7 +4,7 @@
 #include <libmm/cairo/script.hxx>
 #include <libmm/cairo/surface.hxx>
 
-namespace Cairo
+namespace cairo
 {
 
   static cairo_user_data_key_t USER_DATA_KEY_WRITE_FUNC = {0};
@@ -805,4 +805,4 @@ namespace Cairo
 
 #endif
 
-} // namespace Cairo
+} // namespace cairo

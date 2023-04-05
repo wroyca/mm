@@ -16,13 +16,13 @@ using GTlsInteractionClass = struct _GTlsInteractionClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gio
+namespace gio
 {
   class LIBMM_GIO_SYMEXPORT TlsInteraction_Class;
 }
 #endif
 
-namespace Gio
+namespace gio
 {
 
   enum class TlsInteractionResult
@@ -32,25 +32,25 @@ namespace Gio
     FAILED
   };
 
-} // namespace Gio
+} // namespace gio
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_GIO_SYMEXPORT Value<Gio::TlsInteractionResult>
-    : public Glib::Value_Enum<Gio::TlsInteractionResult>
+  class LIBMM_GIO_SYMEXPORT Value<gio::TlsInteractionResult>
+    : public glib::Value_Enum<gio::TlsInteractionResult>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
-namespace Gio
+namespace gio
 {
 
   enum class TlsCertificateRequestFlags
@@ -107,31 +107,31 @@ namespace Gio
                 static_cast<unsigned> (lhs) ^ static_cast<unsigned> (rhs)));
   }
 
-} // namespace Gio
+} // namespace gio
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_GIO_SYMEXPORT Value<Gio::TlsCertificateRequestFlags>
-    : public Glib::Value_Flags<Gio::TlsCertificateRequestFlags>
+  class LIBMM_GIO_SYMEXPORT Value<gio::TlsCertificateRequestFlags>
+    : public glib::Value_Flags<gio::TlsCertificateRequestFlags>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
-namespace Gio
+namespace gio
 {
 
   class LIBMM_GIO_SYMEXPORT Cancellable;
   class LIBMM_GIO_SYMEXPORT TlsPassword;
 
-  class LIBMM_GIO_SYMEXPORT TlsInteraction : public Glib::Object
+  class LIBMM_GIO_SYMEXPORT TlsInteraction : public glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -150,7 +150,7 @@ namespace Gio
     static CppClassType tlsinteraction_class_;
 
   protected:
-    explicit TlsInteraction (const Glib::ConstructParams& construct_params);
+    explicit TlsInteraction (const glib::ConstructParams& construct_params);
     explicit TlsInteraction (GTlsInteraction* castitem);
 
 #endif
@@ -192,105 +192,105 @@ namespace Gio
 
   public:
     auto
-    ask_password (const Glib::RefPtr<TlsPassword>& password,
-                  const Glib::RefPtr<Cancellable>& cancellable)
+    ask_password (const glib::RefPtr<TlsPassword>& password,
+                  const glib::RefPtr<Cancellable>& cancellable)
         -> TlsInteractionResult;
 
     auto
-    ask_password (const Glib::RefPtr<TlsPassword>& password)
+    ask_password (const glib::RefPtr<TlsPassword>& password)
         -> TlsInteractionResult;
 
     auto
-    ask_password_async (const Glib::RefPtr<TlsPassword>& password,
+    ask_password_async (const glib::RefPtr<TlsPassword>& password,
                         const SlotAsyncReady& slot,
-                        const Glib::RefPtr<Cancellable>& cancellable) -> void;
+                        const glib::RefPtr<Cancellable>& cancellable) -> void;
 
     auto
-    ask_password_async (const Glib::RefPtr<TlsPassword>& password,
+    ask_password_async (const glib::RefPtr<TlsPassword>& password,
                         const SlotAsyncReady& slot) -> void;
 
     auto
-    ask_password_async (const Glib::RefPtr<TlsPassword>& password,
-                        const Glib::RefPtr<Cancellable>& cancellable) -> void;
+    ask_password_async (const glib::RefPtr<TlsPassword>& password,
+                        const glib::RefPtr<Cancellable>& cancellable) -> void;
 
     auto
-    ask_password_async (const Glib::RefPtr<TlsPassword>& password) -> void;
+    ask_password_async (const glib::RefPtr<TlsPassword>& password) -> void;
 
     auto
-    ask_password_finish (const Glib::RefPtr<AsyncResult>& result)
+    ask_password_finish (const glib::RefPtr<AsyncResult>& result)
         -> TlsInteractionResult;
 
     auto
-    invoke_ask_password (const Glib::RefPtr<TlsPassword>& password,
-                         const Glib::RefPtr<Cancellable>& cancellable)
+    invoke_ask_password (const glib::RefPtr<TlsPassword>& password,
+                         const glib::RefPtr<Cancellable>& cancellable)
         -> TlsInteractionResult;
 
     auto
-    invoke_ask_password (const Glib::RefPtr<TlsPassword>& password)
+    invoke_ask_password (const glib::RefPtr<TlsPassword>& password)
         -> TlsInteractionResult;
 
     auto
-    invoke_request_certificate (const Glib::RefPtr<TlsConnection>& connection,
+    invoke_request_certificate (const glib::RefPtr<TlsConnection>& connection,
                                 TlsCertificateRequestFlags flags,
-                                const Glib::RefPtr<Cancellable>& cancellable)
+                                const glib::RefPtr<Cancellable>& cancellable)
         -> TlsInteractionResult;
 
     auto
-    invoke_request_certificate (const Glib::RefPtr<TlsConnection>& connection,
+    invoke_request_certificate (const glib::RefPtr<TlsConnection>& connection,
                                 TlsCertificateRequestFlags flags)
         -> TlsInteractionResult;
 
     auto
-    request_certificate (const Glib::RefPtr<TlsConnection>& connection,
+    request_certificate (const glib::RefPtr<TlsConnection>& connection,
                          TlsCertificateRequestFlags flags,
-                         const Glib::RefPtr<Cancellable>& cancellable)
+                         const glib::RefPtr<Cancellable>& cancellable)
         -> TlsInteractionResult;
 
     auto
-    request_certificate (const Glib::RefPtr<TlsConnection>& connection,
+    request_certificate (const glib::RefPtr<TlsConnection>& connection,
                          TlsCertificateRequestFlags flags)
         -> TlsInteractionResult;
 
     auto
-    request_certificate_async (const Glib::RefPtr<TlsConnection>& connection,
+    request_certificate_async (const glib::RefPtr<TlsConnection>& connection,
                                TlsCertificateRequestFlags flags,
                                const SlotAsyncReady& slot,
-                               const Glib::RefPtr<Cancellable>& cancellable)
+                               const glib::RefPtr<Cancellable>& cancellable)
         -> void;
 
     auto
-    request_certificate_async (const Glib::RefPtr<TlsConnection>& connection,
+    request_certificate_async (const glib::RefPtr<TlsConnection>& connection,
                                TlsCertificateRequestFlags flags,
                                const SlotAsyncReady& slot) -> void;
 
     auto
-    request_certificate_async (const Glib::RefPtr<TlsConnection>& connection,
+    request_certificate_async (const glib::RefPtr<TlsConnection>& connection,
                                TlsCertificateRequestFlags flags,
-                               const Glib::RefPtr<Cancellable>& cancellable)
+                               const glib::RefPtr<Cancellable>& cancellable)
         -> void;
 
     auto
-    request_certificate_async (const Glib::RefPtr<TlsConnection>& connection,
+    request_certificate_async (const glib::RefPtr<TlsConnection>& connection,
                                TlsCertificateRequestFlags flags) -> void;
 
     auto
-    request_certificate_finish (const Glib::RefPtr<AsyncResult>& result)
+    request_certificate_finish (const glib::RefPtr<AsyncResult>& result)
         -> TlsInteractionResult;
 
   protected:
     virtual auto
-    ask_password_vfunc (const Glib::RefPtr<TlsPassword>& password,
-                        const Glib::RefPtr<Cancellable>& cancellable)
+    ask_password_vfunc (const glib::RefPtr<TlsPassword>& password,
+                        const glib::RefPtr<Cancellable>& cancellable)
         -> TlsInteractionResult;
 
     virtual auto
-    ask_password_async_vfunc (const Glib::RefPtr<TlsPassword>& password,
+    ask_password_async_vfunc (const glib::RefPtr<TlsPassword>& password,
                               const SlotAsyncReady& slot,
-                              const Glib::RefPtr<Cancellable>& cancellable)
+                              const glib::RefPtr<Cancellable>& cancellable)
         -> void;
 
     virtual auto
-    ask_password_finish_vfunc (const Glib::RefPtr<AsyncResult>& result)
+    ask_password_finish_vfunc (const glib::RefPtr<AsyncResult>& result)
         -> TlsInteractionResult;
 
   public:
@@ -298,14 +298,14 @@ namespace Gio
   protected:
   };
 
-} // namespace Gio
+} // namespace gio
 
-namespace Glib
+namespace glib
 {
 
   LIBMM_GIO_SYMEXPORT
   auto
-  wrap (GTlsInteraction* object, bool take_copy = false) -> Glib::RefPtr<Gio::TlsInteraction>;
-} // namespace Glib
+  wrap (GTlsInteraction* object, bool take_copy = false) -> glib::RefPtr<gio::TlsInteraction>;
+} // namespace glib
 
 #endif

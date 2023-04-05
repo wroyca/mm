@@ -15,7 +15,7 @@
   #include <libmm/glib/utility.hxx>
   #include <libmm/gtk/treemodel.hxx>
 
-namespace Gtk
+namespace gtk
 {
 
   TreePath::TreePath (GtkTreePath* gobject, bool make_a_copy)
@@ -32,7 +32,7 @@ namespace Gtk
       gtk_tree_path_append_index (gobject_, value);
   }
 
-  TreePath::TreePath (const Glib::ustring& path)
+  TreePath::TreePath (const glib::ustring& path)
     : gobject_ (gtk_tree_path_new_from_string (path.c_str ()))
   {
     if (!gobject_)
@@ -121,8 +121,8 @@ namespace Gtk
   }
 
   auto
-  TreePath::get_row_drag_data (const Glib::ValueBase& value,
-                               Glib::RefPtr<const TreeModel>& model,
+  TreePath::get_row_drag_data (const glib::ValueBase& value,
+                               glib::RefPtr<const TreeModel>& model,
                                TreePath& path) -> bool
   {
     GtkTreeModel* src_model = nullptr;
@@ -130,52 +130,52 @@ namespace Gtk
     gboolean result =
         gtk_tree_get_row_drag_data (value.gobj (), &src_model, &src_path);
 
-    model = Glib::wrap (src_model, true);
+    model = glib::wrap (src_model, true);
 
-    path = Glib::wrap (src_path, false);
+    path = glib::wrap (src_path, false);
 
     return result;
   }
 
   auto
-  TreePath::get_row_drag_data (const Glib::ValueBase& value, TreePath& path) -> bool
+  TreePath::get_row_drag_data (const glib::ValueBase& value, TreePath& path) -> bool
   {
     GtkTreePath* src_path = nullptr;
     gboolean result =
         gtk_tree_get_row_drag_data (value.gobj (), nullptr, &src_path);
 
-    path = Glib::wrap (src_path, false);
+    path = glib::wrap (src_path, false);
 
     return result;
   }
 
   auto
-  TreePath::create_row_drag_content (const Glib::RefPtr<const TreeModel>& model)
-      const -> Glib::RefPtr<Gdk::ContentProvider>
+  TreePath::create_row_drag_content (const glib::RefPtr<const TreeModel>& model)
+      const -> glib::RefPtr<gdk::ContentProvider>
   {
-    return Glib::wrap (gtk_tree_create_row_drag_content (
+    return glib::wrap (gtk_tree_create_row_drag_content (
         const_cast<GtkTreeModel*> (model->gobj ()),
         const_cast<GtkTreePath*> (gobj ())));
   }
 
-} // namespace Gtk
+} // namespace gtk
 
 namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GtkTreePath* object, bool take_copy) -> Gtk::TreePath
+  wrap (GtkTreePath* object, bool take_copy) -> gtk::TreePath
   {
-    return Gtk::TreePath (object, take_copy);
+    return gtk::TreePath (object, take_copy);
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gtk
+namespace gtk
 {
 
   auto
@@ -288,9 +288,9 @@ namespace Gtk
   }
 
   auto
-  TreePath::to_string () const -> Glib::ustring
+  TreePath::to_string () const -> glib::ustring
   {
-    return Glib::convert_return_gchar_ptr_to_ustring (
+    return glib::convert_return_gchar_ptr_to_ustring (
         gtk_tree_path_to_string (const_cast<GtkTreePath*> (gobj ())));
   }
 
@@ -330,6 +330,6 @@ namespace Gtk
     return (gtk_tree_path_compare (lhs.gobj (), rhs.gobj ()) >= 0);
   }
 
-} // namespace Gtk
+} // namespace gtk
 
 #endif

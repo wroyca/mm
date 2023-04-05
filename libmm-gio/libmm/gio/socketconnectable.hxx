@@ -19,16 +19,16 @@ using GSocketConnectableClass = struct _GSocketConnectableClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gio
+namespace gio
 {
   class LIBMM_GIO_SYMEXPORT SocketConnectable_Class;
 }
 #endif
 
-namespace Gio
+namespace gio
 {
 
-  class LIBMM_GIO_SYMEXPORT SocketConnectable : public Glib::Interface
+  class LIBMM_GIO_SYMEXPORT SocketConnectable : public glib::Interface
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -52,7 +52,7 @@ namespace Gio
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
-    explicit SocketConnectable (const Glib::Interface_Class& interface_class);
+    explicit SocketConnectable (const glib::Interface_Class& interface_class);
 
   public:
     explicit SocketConnectable (GSocketConnectable* castitem);
@@ -93,34 +93,34 @@ namespace Gio
   private:
   public:
     auto
-    enumerate () -> Glib::RefPtr<SocketAddressEnumerator>;
+    enumerate () -> glib::RefPtr<SocketAddressEnumerator>;
 
     auto
-    enumerate () const -> Glib::RefPtr<const SocketAddressEnumerator>;
+    enumerate () const -> glib::RefPtr<const SocketAddressEnumerator>;
 
     auto
-    proxy_enumerate () -> Glib::RefPtr<SocketAddressEnumerator>;
+    proxy_enumerate () -> glib::RefPtr<SocketAddressEnumerator>;
 
     auto
-    proxy_enumerate () const -> Glib::RefPtr<const SocketAddressEnumerator>;
+    proxy_enumerate () const -> glib::RefPtr<const SocketAddressEnumerator>;
 
     auto
-    to_string () const -> Glib::ustring;
+    to_string () const -> glib::ustring;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gio
+} // namespace gio
 
-namespace Glib
+namespace glib
 {
 
   LIBMM_GIO_SYMEXPORT
   auto
-  wrap (GSocketConnectable* object, bool take_copy = false) -> Glib::RefPtr<Gio::SocketConnectable>;
+  wrap (GSocketConnectable* object, bool take_copy = false) -> glib::RefPtr<gio::SocketConnectable>;
 
-} // namespace Glib
+} // namespace glib
 
 #endif

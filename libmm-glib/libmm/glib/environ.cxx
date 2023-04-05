@@ -3,7 +3,7 @@
 #include <libmm/glib/environ.hxx>
 #include <libmm/glib/vectorutils.hxx>
 
-namespace Glib
+namespace glib
 {
 
   Environ::Environ ()
@@ -52,4 +52,4 @@ namespace Glib
                                                        OWNERSHIP_NONE);
   }
 
-} // namespace Glib
+} // namespace glib

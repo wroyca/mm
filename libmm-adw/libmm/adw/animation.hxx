@@ -18,13 +18,13 @@ using AdwAnimationClass = struct _AdwAnimationClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Adw
+namespace adw
 {
   class LIBMM_ADW_SYMEXPORT Animation_Class;
 }
 #endif
 
-namespace Adw
+namespace adw
 {
 
   enum class LIBMM_ADW_SYMEXPORT AnimationState
@@ -35,28 +35,28 @@ namespace Adw
     FINISHED
   };
 
-} // namespace Adw
+} // namespace adw
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_ADW_SYMEXPORT Value<Adw::AnimationState>
-    : public Glib::Value_Enum<Adw::AnimationState>
+  class LIBMM_ADW_SYMEXPORT Value<adw::AnimationState>
+    : public glib::Value_Enum<adw::AnimationState>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
-namespace Adw
+namespace adw
 {
 
-  class LIBMM_ADW_SYMEXPORT Animation : public Glib::Object
+  class LIBMM_ADW_SYMEXPORT Animation : public glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -75,7 +75,7 @@ namespace Adw
     static CppClassType animation_class_;
 
   protected:
-    explicit Animation (const Glib::ConstructParams& construct_params);
+    explicit Animation (const glib::ConstructParams& construct_params);
     explicit Animation (AdwAnimation* castitem);
 
 #endif
@@ -117,7 +117,7 @@ namespace Adw
 
   public:
     static auto
-    create () -> Glib::RefPtr<Animation>;
+    create () -> glib::RefPtr<Animation>;
 
     auto
     get_state () const -> AnimationState;
@@ -126,10 +126,10 @@ namespace Adw
     get_value () const -> double;
 
     auto
-    get_target () const -> Glib::RefPtr<AnimationTarget>;
+    get_target () const -> glib::RefPtr<AnimationTarget>;
 
     auto
-    get_widget () const -> Gtk::Widget*;
+    get_widget () const -> gtk::Widget*;
 
     auto
     pause () -> void;
@@ -144,42 +144,42 @@ namespace Adw
     resume () -> void;
 
     auto
-    set_target (Glib::RefPtr<AnimationTarget> target) -> void;
+    set_target (glib::RefPtr<AnimationTarget> target) -> void;
 
     auto
     skip () -> void;
 
     auto
-    property_state () const -> Glib::PropertyProxy_ReadOnly<AnimationState>;
+    property_state () const -> glib::PropertyProxy_ReadOnly<AnimationState>;
 
     auto
-    property_target () -> Glib::PropertyProxy<Glib::RefPtr<AnimationTarget>>;
+    property_target () -> glib::PropertyProxy<glib::RefPtr<AnimationTarget>>;
 
     auto
     property_target () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<AnimationTarget>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<AnimationTarget>>;
 
     auto
-    property_value () const -> Glib::PropertyProxy_ReadOnly<double>;
+    property_value () const -> glib::PropertyProxy_ReadOnly<double>;
 
     auto
-    property_widget () const -> Glib::PropertyProxy_ReadOnly<Gtk::Widget*>;
+    property_widget () const -> glib::PropertyProxy_ReadOnly<gtk::Widget*>;
 
     auto
-    signal_done () -> Glib::SignalProxy<void ()>;
+    signal_done () -> glib::SignalProxy<void ()>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Adw
+} // namespace adw
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (AdwAnimation* object, bool take_copy = false) -> Glib::RefPtr<Adw::Animation>;
+  wrap (AdwAnimation* object, bool take_copy = false) -> glib::RefPtr<adw::Animation>;
 }
 
 #endif

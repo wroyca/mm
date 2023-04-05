@@ -16,16 +16,16 @@
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Adw
+namespace adw
 {
   class LIBMM_ADW_SYMEXPORT Avatar_Class;
 }
 #endif
 
-namespace Adw
+namespace adw
 {
 
-  class LIBMM_ADW_SYMEXPORT Avatar : public Gtk::Widget
+  class LIBMM_ADW_SYMEXPORT Avatar : public gtk::Widget
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -52,7 +52,7 @@ namespace Adw
     static CppClassType avatar_class_;
 
   protected:
-    explicit Avatar (const Glib::ConstructParams& construct_params);
+    explicit Avatar (const glib::ConstructParams& construct_params);
     explicit Avatar (AdwAvatar* castitem);
 
 #endif
@@ -82,16 +82,16 @@ namespace Adw
   private:
   public:
     Avatar ();
-    explicit Avatar (int size, const Glib::ustring& text, bool show_initials);
+    explicit Avatar (int size, const glib::ustring& text, bool show_initials);
 
     auto
-    draw_to_texture (int scale_factor) -> Glib::RefPtr<Gdk::Texture>;
+    draw_to_texture (int scale_factor) -> glib::RefPtr<gdk::Texture>;
 
     auto
-    get_custom_image () const -> Glib::RefPtr<Gdk::Paintable>;
+    get_custom_image () const -> glib::RefPtr<gdk::Paintable>;
 
     auto
-    get_icon_name () const -> Glib::ustring;
+    get_icon_name () const -> glib::ustring;
 
     auto
     get_show_initials () const -> bool;
@@ -100,13 +100,13 @@ namespace Adw
     get_size () const -> int;
 
     auto
-    get_text () const -> Glib::ustring;
+    get_text () const -> glib::ustring;
 
     auto
-    set_custom_image (const Glib::RefPtr<Gdk::Paintable>& custom_image) -> void;
+    set_custom_image (const glib::RefPtr<gdk::Paintable>& custom_image) -> void;
 
     auto
-    set_icon_name (const Glib::ustring& icon_name) -> void;
+    set_icon_name (const glib::ustring& icon_name) -> void;
 
     auto
     set_show_initials (bool show_initials) -> void;
@@ -115,52 +115,52 @@ namespace Adw
     set_size (int size) -> void;
 
     auto
-    set_text (const Glib::ustring& text) -> void;
+    set_text (const glib::ustring& text) -> void;
 
     auto
-    property_size () -> Glib::PropertyProxy<int>;
+    property_size () -> glib::PropertyProxy<int>;
 
     auto
-    property_size () const -> Glib::PropertyProxy_ReadOnly<int>;
+    property_size () const -> glib::PropertyProxy_ReadOnly<int>;
 
     auto
     property_custom_image ()
-        -> Glib::PropertyProxy<Glib::RefPtr<Gdk::Paintable>>;
+        -> glib::PropertyProxy<glib::RefPtr<gdk::Paintable>>;
 
     auto
     property_custom_image () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gdk::Paintable>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<gdk::Paintable>>;
 
     auto
-    property_show_initials () -> Glib::PropertyProxy<bool>;
+    property_show_initials () -> glib::PropertyProxy<bool>;
 
     auto
-    property_show_initials () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_show_initials () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_text () -> Glib::PropertyProxy<Glib::ustring>;
+    property_text () -> glib::PropertyProxy<glib::ustring>;
 
     auto
-    property_text () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+    property_text () const -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
     auto
-    property_icon_name () -> Glib::PropertyProxy<Glib::ustring>;
+    property_icon_name () -> glib::PropertyProxy<glib::ustring>;
 
     auto
-    property_icon_name () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+    property_icon_name () const -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Adw
+} // namespace adw
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (AdwAvatar* object, bool take_copy = false) -> Adw::Avatar*;
+  wrap (AdwAvatar* object, bool take_copy = false) -> adw::Avatar*;
 }
 
 #endif

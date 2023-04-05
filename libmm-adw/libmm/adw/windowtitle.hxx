@@ -16,16 +16,16 @@
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Adw
+namespace adw
 {
   class LIBMM_ADW_SYMEXPORT WindowTitle_Class;
 }
 #endif
 
-namespace Adw
+namespace adw
 {
 
-  class LIBMM_ADW_SYMEXPORT WindowTitle : public Gtk::Widget
+  class LIBMM_ADW_SYMEXPORT WindowTitle : public gtk::Widget
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -52,7 +52,7 @@ namespace Adw
     static CppClassType windowtitle_class_;
 
   protected:
-    explicit WindowTitle (const Glib::ConstructParams& construct_params);
+    explicit WindowTitle (const glib::ConstructParams& construct_params);
     explicit WindowTitle (AdwWindowTitle* castitem);
 
 #endif
@@ -82,45 +82,45 @@ namespace Adw
   private:
   public:
     WindowTitle ();
-    explicit WindowTitle (const Glib::ustring& title,
-                          const Glib::ustring& subtitle);
+    explicit WindowTitle (const glib::ustring& title,
+                          const glib::ustring& subtitle);
 
     auto
-    get_subtitle () const -> Glib::ustring;
+    get_subtitle () const -> glib::ustring;
 
     auto
-    get_title () const -> Glib::ustring;
+    get_title () const -> glib::ustring;
 
     auto
-    set_subtitle (const Glib::ustring& str) -> void;
+    set_subtitle (const glib::ustring& str) -> void;
 
     auto
-    set_title (const Glib::ustring& str) -> void;
+    set_title (const glib::ustring& str) -> void;
 
     auto
-    property_title () -> Glib::PropertyProxy<Glib::ustring>;
+    property_title () -> glib::PropertyProxy<glib::ustring>;
 
     auto
-    property_title () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+    property_title () const -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
     auto
-    property_subtitle () -> Glib::PropertyProxy<Glib::ustring>;
+    property_subtitle () -> glib::PropertyProxy<glib::ustring>;
 
     auto
-    property_subtitle () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+    property_subtitle () const -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Adw
+} // namespace adw
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (AdwWindowTitle* object, bool take_copy = false) -> Adw::WindowTitle*;
+  wrap (AdwWindowTitle* object, bool take_copy = false) -> adw::WindowTitle*;
 }
 
 #endif

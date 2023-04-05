@@ -19,7 +19,7 @@ using GtkShortcutTriggerClass = struct _GtkShortcutTriggerClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT ShortcutTrigger_Class;
 }
@@ -31,7 +31,7 @@ using GtkNeverTriggerClass = struct _GtkNeverTriggerClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT NeverTrigger_Class;
 }
@@ -43,7 +43,7 @@ using GtkKeyvalTriggerClass = struct _GtkKeyvalTriggerClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT KeyvalTrigger_Class;
 }
@@ -55,7 +55,7 @@ using GtkMnemonicTriggerClass = struct _GtkMnemonicTriggerClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT MnemonicTrigger_Class;
 }
@@ -67,16 +67,16 @@ using GtkAlternativeTriggerClass = struct _GtkAlternativeTriggerClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT AlternativeTrigger_Class;
 }
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
-  class LIBMM_GTK_SYMEXPORT ShortcutTrigger : public Glib::Object
+  class LIBMM_GTK_SYMEXPORT ShortcutTrigger : public glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -95,7 +95,7 @@ namespace Gtk
     static CppClassType shortcuttrigger_class_;
 
   protected:
-    explicit ShortcutTrigger (const Glib::ConstructParams& construct_params);
+    explicit ShortcutTrigger (const glib::ConstructParams& construct_params);
     explicit ShortcutTrigger (GtkShortcutTrigger* castitem);
 
 #endif
@@ -137,24 +137,24 @@ namespace Gtk
 
   public:
     static auto
-    parse_string (const Glib::ustring& string) -> Glib::RefPtr<ShortcutTrigger>;
+    parse_string (const glib::ustring& string) -> glib::RefPtr<ShortcutTrigger>;
 
     auto
-    to_string () const -> Glib::ustring;
+    to_string () const -> glib::ustring;
 
     auto
-    to_label (const Glib::RefPtr<const Gdk::Display>& display) const
-        -> Glib::ustring;
+    to_label (const glib::RefPtr<const gdk::Display>& display) const
+        -> glib::ustring;
 
     auto
-    equal (const Glib::RefPtr<const ShortcutTrigger>& trigger2) const -> bool;
+    equal (const glib::RefPtr<const ShortcutTrigger>& trigger2) const -> bool;
 
     auto
-    compare (const Glib::RefPtr<const ShortcutTrigger>& trigger2) const -> int;
+    compare (const glib::RefPtr<const ShortcutTrigger>& trigger2) const -> int;
 
     auto
-    trigger (const Glib::RefPtr<const Gdk::Event>& event,
-             bool enable_mnemonics) const -> Gdk::KeyMatch;
+    trigger (const glib::RefPtr<const gdk::Event>& event,
+             bool enable_mnemonics) const -> gdk::KeyMatch;
 
   public:
   public:
@@ -180,7 +180,7 @@ namespace Gtk
     static CppClassType nevertrigger_class_;
 
   protected:
-    explicit NeverTrigger (const Glib::ConstructParams& construct_params);
+    explicit NeverTrigger (const glib::ConstructParams& construct_params);
     explicit NeverTrigger (GtkNeverTrigger* castitem);
 
 #endif
@@ -222,7 +222,7 @@ namespace Gtk
 
   public:
     static auto
-    get () -> Glib::RefPtr<NeverTrigger>;
+    get () -> glib::RefPtr<NeverTrigger>;
 
   public:
   public:
@@ -248,7 +248,7 @@ namespace Gtk
     static CppClassType keyvaltrigger_class_;
 
   protected:
-    explicit KeyvalTrigger (const Glib::ConstructParams& construct_params);
+    explicit KeyvalTrigger (const glib::ConstructParams& construct_params);
     explicit KeyvalTrigger (GtkKeyvalTrigger* castitem);
 
 #endif
@@ -286,26 +286,26 @@ namespace Gtk
 
   private:
   protected:
-    explicit KeyvalTrigger (guint keyval, Gdk::ModifierType modifiers);
+    explicit KeyvalTrigger (guint keyval, gdk::ModifierType modifiers);
 
   public:
     static auto
     create (guint keyval,
-            Gdk::ModifierType modifiers = static_cast<Gdk::ModifierType> (0))
-        -> Glib::RefPtr<KeyvalTrigger>;
+            gdk::ModifierType modifiers = static_cast<gdk::ModifierType> (0))
+        -> glib::RefPtr<KeyvalTrigger>;
 
     auto
     get_keyval () const -> guint;
 
     auto
-    get_modifiers () const -> Gdk::ModifierType;
+    get_modifiers () const -> gdk::ModifierType;
 
     auto
-    property_keyval () const -> Glib::PropertyProxy_ReadOnly<guint>;
+    property_keyval () const -> glib::PropertyProxy_ReadOnly<guint>;
 
     auto
     property_modifiers () const
-        -> Glib::PropertyProxy_ReadOnly<Gdk::ModifierType>;
+        -> glib::PropertyProxy_ReadOnly<gdk::ModifierType>;
 
   public:
   public:
@@ -331,7 +331,7 @@ namespace Gtk
     static CppClassType mnemonictrigger_class_;
 
   protected:
-    explicit MnemonicTrigger (const Glib::ConstructParams& construct_params);
+    explicit MnemonicTrigger (const glib::ConstructParams& construct_params);
     explicit MnemonicTrigger (GtkMnemonicTrigger* castitem);
 
 #endif
@@ -373,13 +373,13 @@ namespace Gtk
 
   public:
     static auto
-    create (guint keyval) -> Glib::RefPtr<MnemonicTrigger>;
+    create (guint keyval) -> glib::RefPtr<MnemonicTrigger>;
 
     auto
     get_keyval () const -> guint;
 
     auto
-    property_keyval () const -> Glib::PropertyProxy_ReadOnly<guint>;
+    property_keyval () const -> glib::PropertyProxy_ReadOnly<guint>;
 
   public:
   public:
@@ -405,7 +405,7 @@ namespace Gtk
     static CppClassType alternativetrigger_class_;
 
   protected:
-    explicit AlternativeTrigger (const Glib::ConstructParams& construct_params);
+    explicit AlternativeTrigger (const glib::ConstructParams& construct_params);
     explicit AlternativeTrigger (GtkAlternativeTrigger* castitem);
 
 #endif
@@ -444,64 +444,64 @@ namespace Gtk
   private:
   protected:
     explicit AlternativeTrigger (
-        const Glib::RefPtr<const ShortcutTrigger>& first,
-        const Glib::RefPtr<const ShortcutTrigger>& second);
+        const glib::RefPtr<const ShortcutTrigger>& first,
+        const glib::RefPtr<const ShortcutTrigger>& second);
 
   public:
     static auto
-    create (const Glib::RefPtr<const ShortcutTrigger>& first,
-            const Glib::RefPtr<const ShortcutTrigger>& second)
-        -> Glib::RefPtr<AlternativeTrigger>;
+    create (const glib::RefPtr<const ShortcutTrigger>& first,
+            const glib::RefPtr<const ShortcutTrigger>& second)
+        -> glib::RefPtr<AlternativeTrigger>;
 
     auto
-    get_first () const -> Glib::RefPtr<const ShortcutTrigger>;
+    get_first () const -> glib::RefPtr<const ShortcutTrigger>;
 
     auto
-    get_second () const -> Glib::RefPtr<const ShortcutTrigger>;
+    get_second () const -> glib::RefPtr<const ShortcutTrigger>;
 
     auto
     property_first () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<const ShortcutTrigger>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<const ShortcutTrigger>>;
 
     auto
     property_second () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<const ShortcutTrigger>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<const ShortcutTrigger>>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkShortcutTrigger* object, bool take_copy = false) -> Glib::RefPtr<Gtk::ShortcutTrigger>;
-} // namespace Glib
+  wrap (GtkShortcutTrigger* object, bool take_copy = false) -> glib::RefPtr<gtk::ShortcutTrigger>;
+} // namespace glib
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkNeverTrigger* object, bool take_copy = false) -> Glib::RefPtr<Gtk::NeverTrigger>;
-} // namespace Glib
+  wrap (GtkNeverTrigger* object, bool take_copy = false) -> glib::RefPtr<gtk::NeverTrigger>;
+} // namespace glib
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkKeyvalTrigger* object, bool take_copy = false) -> Glib::RefPtr<Gtk::KeyvalTrigger>;
-} // namespace Glib
+  wrap (GtkKeyvalTrigger* object, bool take_copy = false) -> glib::RefPtr<gtk::KeyvalTrigger>;
+} // namespace glib
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkMnemonicTrigger* object, bool take_copy = false) -> Glib::RefPtr<Gtk::MnemonicTrigger>;
-} // namespace Glib
+  wrap (GtkMnemonicTrigger* object, bool take_copy = false) -> glib::RefPtr<gtk::MnemonicTrigger>;
+} // namespace glib
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkAlternativeTrigger* object, bool take_copy = false) -> Glib::RefPtr<Gtk::AlternativeTrigger>;
-} // namespace Glib
+  wrap (GtkAlternativeTrigger* object, bool take_copy = false) -> glib::RefPtr<gtk::AlternativeTrigger>;
+} // namespace glib
 
 #endif

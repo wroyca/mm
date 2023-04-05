@@ -21,13 +21,13 @@ using GtkTreeModelClass = struct _GtkTreeModelClass;
   #endif
 
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT TreeModel_Class;
 }
   #endif
 
-namespace Gtk
+namespace gtk
 {
 
   class LIBMM_GTK_SYMEXPORT TreeModelFilter;
@@ -35,7 +35,7 @@ namespace Gtk
   class LIBMM_GTK_SYMEXPORT TreePath;
   class LIBMM_GTK_SYMEXPORT TreeRowReference;
 
-  class LIBMM_GTK_SYMEXPORT TreeModel : public Glib::Interface
+  class LIBMM_GTK_SYMEXPORT TreeModel : public glib::Interface
   {
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -59,7 +59,7 @@ namespace Gtk
 
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
-    explicit TreeModel (const Glib::Interface_Class& interface_class);
+    explicit TreeModel (const glib::Interface_Class& interface_class);
 
   public:
     explicit TreeModel (GtkTreeModel* castitem);
@@ -124,10 +124,10 @@ namespace Gtk
     get_iter (const Path& path) const -> const_iterator;
 
     auto
-    get_iter (const Glib::ustring& path_string) -> iterator;
+    get_iter (const glib::ustring& path_string) -> iterator;
 
     auto
-    get_iter (const Glib::ustring& path_string) const -> const_iterator;
+    get_iter (const glib::ustring& path_string) const -> const_iterator;
 
     auto
     children () -> Children;
@@ -191,28 +191,28 @@ namespace Gtk
                     int* new_order) -> void;
 
     auto
-    get_string (const const_iterator& iter) const -> Glib::ustring;
+    get_string (const const_iterator& iter) const -> glib::ustring;
 
     auto
     signal_row_changed ()
-        -> Glib::SignalProxy<void (const TreeModel::Path&,
+        -> glib::SignalProxy<void (const TreeModel::Path&,
                                    const TreeModel::iterator&)>;
 
     auto
     signal_row_inserted ()
-        -> Glib::SignalProxy<void (const TreeModel::Path&,
+        -> glib::SignalProxy<void (const TreeModel::Path&,
                                    const TreeModel::iterator&)>;
 
     auto
     signal_row_has_child_toggled ()
-        -> Glib::SignalProxy<void (const TreeModel::Path&,
+        -> glib::SignalProxy<void (const TreeModel::Path&,
                                    const TreeModel::iterator&)>;
 
     auto
-    signal_row_deleted () -> Glib::SignalProxy<void (const TreeModel::Path&)>;
+    signal_row_deleted () -> glib::SignalProxy<void (const TreeModel::Path&)>;
 
     auto
-    signal_rows_reordered () -> Glib::SignalProxy<
+    signal_rows_reordered () -> glib::SignalProxy<
         void (const TreeModel::Path&, const TreeModel::iterator&, int*)>;
 
   protected:
@@ -265,22 +265,22 @@ namespace Gtk
     virtual auto
     get_value_vfunc (const const_iterator& iter,
                      int column,
-                     Glib::ValueBase& value) const -> void;
+                     glib::ValueBase& value) const -> void;
 
     virtual auto
     set_value_impl (const iterator& iter,
                     int column,
-                    const Glib::ValueBase& value) -> void;
+                    const glib::ValueBase& value) -> void;
 
     virtual auto
     get_value_impl (const const_iterator& iter,
                     int column,
-                    Glib::ValueBase& value) const -> void;
+                    glib::ValueBase& value) const -> void;
 
-    friend LIBMM_GTK_SYMEXPORT class Gtk::TreeModelFilter;
-    friend LIBMM_GTK_SYMEXPORT class Gtk::TreeModelSort;
-    friend LIBMM_GTK_SYMEXPORT class Gtk::TreeConstRow;
-    friend LIBMM_GTK_SYMEXPORT class Gtk::TreeRow;
+    friend LIBMM_GTK_SYMEXPORT class gtk::TreeModelFilter;
+    friend LIBMM_GTK_SYMEXPORT class gtk::TreeModelSort;
+    friend LIBMM_GTK_SYMEXPORT class gtk::TreeConstRow;
+    friend LIBMM_GTK_SYMEXPORT class gtk::TreeRow;
 
   public:
   public:
@@ -306,9 +306,9 @@ namespace Gtk
                        int* new_order) -> void;
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Gtk
+namespace gtk
 {
 
   inline auto
@@ -358,30 +358,30 @@ namespace Gtk
     return (lhs = static_cast<TreeModel::Flags> (static_cast<unsigned> (lhs) ^
                                                  static_cast<unsigned> (rhs)));
   }
-} // namespace Gtk
+} // namespace gtk
 
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_GTK_SYMEXPORT Value<Gtk::TreeModel::Flags>
-    : public Glib::Value_Flags<Gtk::TreeModel::Flags>
+  class LIBMM_GTK_SYMEXPORT Value<gtk::TreeModel::Flags>
+    : public glib::Value_Flags<gtk::TreeModel::Flags>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
   #endif
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkTreeModel* object, bool take_copy = false) -> Glib::RefPtr<Gtk::TreeModel>;
+  wrap (GtkTreeModel* object, bool take_copy = false) -> glib::RefPtr<gtk::TreeModel>;
 
-} // namespace Glib
+} // namespace glib
 
 #endif
 

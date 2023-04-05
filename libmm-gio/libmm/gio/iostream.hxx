@@ -19,16 +19,16 @@ using GIOStreamClass = struct _GIOStreamClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gio
+namespace gio
 {
   class LIBMM_GIO_SYMEXPORT IOStream_Class;
 }
 #endif
 
-namespace Gio
+namespace gio
 {
 
-  class LIBMM_GIO_SYMEXPORT IOStream : public Glib::Object
+  class LIBMM_GIO_SYMEXPORT IOStream : public glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -47,7 +47,7 @@ namespace Gio
     static CppClassType iostream_class_;
 
   protected:
-    explicit IOStream (const Glib::ConstructParams& construct_params);
+    explicit IOStream (const glib::ConstructParams& construct_params);
     explicit IOStream (GIOStream* castitem);
 
 #endif
@@ -94,43 +94,43 @@ namespace Gio
     };
 
     auto
-    splice_async (const Glib::RefPtr<IOStream>& stream2,
+    splice_async (const glib::RefPtr<IOStream>& stream2,
                   const SlotAsyncReady& slot,
-                  const Glib::RefPtr<Cancellable>& cancellable,
+                  const glib::RefPtr<Cancellable>& cancellable,
                   SpliceFlags flags = SpliceFlags::NONE,
-                  int io_priority = Glib::PRIORITY_DEFAULT) -> void;
+                  int io_priority = glib::PRIORITY_DEFAULT) -> void;
 
     auto
-    splice_async (const Glib::RefPtr<IOStream>& stream2,
+    splice_async (const glib::RefPtr<IOStream>& stream2,
                   const SlotAsyncReady& slot,
                   SpliceFlags flags = SpliceFlags::NONE,
-                  int io_priority = Glib::PRIORITY_DEFAULT) -> void;
+                  int io_priority = glib::PRIORITY_DEFAULT) -> void;
 
     static auto
-    splice_finish (const Glib::RefPtr<AsyncResult>& result) -> bool;
+    splice_finish (const glib::RefPtr<AsyncResult>& result) -> bool;
 
     auto
-    get_input_stream () -> Glib::RefPtr<InputStream>;
+    get_input_stream () -> glib::RefPtr<InputStream>;
 
     auto
-    get_output_stream () -> Glib::RefPtr<OutputStream>;
+    get_output_stream () -> glib::RefPtr<OutputStream>;
 
     auto
-    close (const Glib::RefPtr<Cancellable>& cancellable) -> bool;
+    close (const glib::RefPtr<Cancellable>& cancellable) -> bool;
 
     auto
     close () -> bool;
 
     auto
     close_async (const SlotAsyncReady& slot,
-                 const Glib::RefPtr<Cancellable>& cancellable,
-                 int io_priority = Glib::PRIORITY_DEFAULT) -> void;
+                 const glib::RefPtr<Cancellable>& cancellable,
+                 int io_priority = glib::PRIORITY_DEFAULT) -> void;
     auto
     close_async (const SlotAsyncReady& slot,
-                 int io_priority = Glib::PRIORITY_DEFAULT) -> void;
+                 int io_priority = glib::PRIORITY_DEFAULT) -> void;
 
     auto
-    close_finish (const Glib::RefPtr<AsyncResult>& result) -> bool;
+    close_finish (const glib::RefPtr<AsyncResult>& result) -> bool;
 
     auto
     is_closed () const -> bool;
@@ -149,9 +149,9 @@ namespace Gio
   protected:
   };
 
-} // namespace Gio
+} // namespace gio
 
-namespace Gio
+namespace gio
 {
 
   inline auto
@@ -201,14 +201,14 @@ namespace Gio
     return (lhs = static_cast<IOStream::SpliceFlags> (
                 static_cast<unsigned> (lhs) ^ static_cast<unsigned> (rhs)));
   }
-} // namespace Gio
+} // namespace gio
 
-namespace Glib
+namespace glib
 {
 
   LIBMM_GIO_SYMEXPORT
   auto
-  wrap (GIOStream* object, bool take_copy = false) -> Glib::RefPtr<Gio::IOStream>;
-} // namespace Glib
+  wrap (GIOStream* object, bool take_copy = false) -> glib::RefPtr<gio::IOStream>;
+} // namespace glib
 
 #endif

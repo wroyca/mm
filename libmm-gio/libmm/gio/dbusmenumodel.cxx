@@ -8,7 +8,7 @@
 #include <gio/gio.h>
 #include <libmm/gio/dbusconnection.hxx>
 
-namespace Gio
+namespace gio
 {
 
 }
@@ -17,20 +17,20 @@ namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GDBusMenuModel* object, const bool take_copy) -> RefPtr<Gio::DBus::MenuModel>
+  wrap (GDBusMenuModel* object, const bool take_copy) -> RefPtr<gio::DBus::MenuModel>
   {
-    return Glib::make_refptr_for_instance<Gio::DBus::MenuModel> (
-        dynamic_cast<Gio::DBus::MenuModel*> (
+    return glib::make_refptr_for_instance<gio::DBus::MenuModel> (
+        dynamic_cast<gio::DBus::MenuModel*> (
             wrap_auto ((GObject*) object, take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gio::DBus
+namespace gio::DBus
 {
 
   auto
@@ -54,7 +54,7 @@ namespace Gio::DBus
   }
 
   auto
-  MenuModel_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  MenuModel_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new MenuModel ((GDBusMenuModel*) object);
   }
@@ -66,25 +66,25 @@ namespace Gio::DBus
     return gobj ();
   }
 
-  MenuModel::MenuModel (const Glib::ConstructParams& construct_params)
-    : Gio::MenuModel (construct_params)
+  MenuModel::MenuModel (const glib::ConstructParams& construct_params)
+    : gio::MenuModel (construct_params)
   {
   }
 
   MenuModel::MenuModel (GDBusMenuModel* castitem)
-    : Gio::MenuModel ((GMenuModel*) castitem)
+    : gio::MenuModel ((GMenuModel*) castitem)
   {
   }
 
   MenuModel::MenuModel (MenuModel&& src) noexcept
-    : Gio::MenuModel (std::move (src))
+    : gio::MenuModel (std::move (src))
   {
   }
 
   auto
   MenuModel::operator= (MenuModel&& src) noexcept -> MenuModel&
   {
-    Gio::MenuModel::operator= (std::move (src));
+    gio::MenuModel::operator= (std::move (src));
     return *this;
   }
 
@@ -106,18 +106,18 @@ namespace Gio::DBus
 
   MenuModel::MenuModel ()
     : ObjectBase (nullptr),
-      Gio::MenuModel (Glib::ConstructParams (menumodel_class_.init ()))
+      gio::MenuModel (glib::ConstructParams (menumodel_class_.init ()))
   {
   }
 
   auto
-  MenuModel::get (const Glib::RefPtr<Connection>& connection,
-                  const Glib::ustring& bus_name,
-                  const Glib::ustring& object_path) -> Glib::RefPtr<MenuModel>
+  MenuModel::get (const glib::RefPtr<Connection>& connection,
+                  const glib::ustring& bus_name,
+                  const glib::ustring& object_path) -> glib::RefPtr<MenuModel>
   {
-    return Glib::wrap (g_dbus_menu_model_get (Glib::unwrap (connection),
+    return glib::wrap (g_dbus_menu_model_get (glib::unwrap (connection),
                                               bus_name.c_str (),
                                               object_path.c_str ()));
   }
 
-} // namespace Gio::DBus
+} // namespace gio::DBus

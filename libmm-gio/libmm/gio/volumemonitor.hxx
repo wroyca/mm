@@ -18,16 +18,16 @@ using GVolumeMonitorClass = struct _GVolumeMonitorClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gio
+namespace gio
 {
   class LIBMM_GIO_SYMEXPORT VolumeMonitor_Class;
 }
 #endif
 
-namespace Gio
+namespace gio
 {
 
-  class LIBMM_GIO_SYMEXPORT VolumeMonitor : public Glib::Object
+  class LIBMM_GIO_SYMEXPORT VolumeMonitor : public glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -46,7 +46,7 @@ namespace Gio
     static CppClassType volumemonitor_class_;
 
   protected:
-    explicit VolumeMonitor (const Glib::ConstructParams& construct_params);
+    explicit VolumeMonitor (const glib::ConstructParams& construct_params);
     explicit VolumeMonitor (GVolumeMonitor* castitem);
 
 #endif
@@ -86,120 +86,120 @@ namespace Gio
   protected:
   public:
     static auto
-    get () -> Glib::RefPtr<VolumeMonitor>;
+    get () -> glib::RefPtr<VolumeMonitor>;
 
     auto
-    get_connected_drives () -> std::vector<Glib::RefPtr<Drive>>;
+    get_connected_drives () -> std::vector<glib::RefPtr<Drive>>;
 
     auto
-    get_volumes () -> std::vector<Glib::RefPtr<Volume>>;
+    get_volumes () -> std::vector<glib::RefPtr<Volume>>;
 
     auto
-    get_mounts () -> std::vector<Glib::RefPtr<Mount>>;
+    get_mounts () -> std::vector<glib::RefPtr<Mount>>;
 
     auto
-    get_volume_for_uuid (const std::string& uuid) -> Glib::RefPtr<Volume>;
+    get_volume_for_uuid (const std::string& uuid) -> glib::RefPtr<Volume>;
 
     auto
-    get_mount_for_uuid (const std::string& uuid) -> Glib::RefPtr<Mount>;
+    get_mount_for_uuid (const std::string& uuid) -> glib::RefPtr<Mount>;
 
     auto
     signal_volume_added ()
-        -> Glib::SignalProxy<void (const Glib::RefPtr<Volume>&)>;
+        -> glib::SignalProxy<void (const glib::RefPtr<Volume>&)>;
 
     auto
     signal_volume_removed ()
-        -> Glib::SignalProxy<void (const Glib::RefPtr<Volume>&)>;
+        -> glib::SignalProxy<void (const glib::RefPtr<Volume>&)>;
 
     auto
     signal_volume_changed ()
-        -> Glib::SignalProxy<void (const Glib::RefPtr<Volume>&)>;
+        -> glib::SignalProxy<void (const glib::RefPtr<Volume>&)>;
 
     auto
     signal_mount_added ()
-        -> Glib::SignalProxy<void (const Glib::RefPtr<Mount>&)>;
+        -> glib::SignalProxy<void (const glib::RefPtr<Mount>&)>;
 
     auto
     signal_mount_removed ()
-        -> Glib::SignalProxy<void (const Glib::RefPtr<Mount>&)>;
+        -> glib::SignalProxy<void (const glib::RefPtr<Mount>&)>;
 
     auto
     signal_mount_pre_unmount ()
-        -> Glib::SignalProxy<void (const Glib::RefPtr<Mount>&)>;
+        -> glib::SignalProxy<void (const glib::RefPtr<Mount>&)>;
 
     auto
     signal_mount_changed ()
-        -> Glib::SignalProxy<void (const Glib::RefPtr<Mount>&)>;
+        -> glib::SignalProxy<void (const glib::RefPtr<Mount>&)>;
 
     auto
     signal_drive_connected ()
-        -> Glib::SignalProxy<void (const Glib::RefPtr<Drive>&)>;
+        -> glib::SignalProxy<void (const glib::RefPtr<Drive>&)>;
 
     auto
     signal_drive_disconnected ()
-        -> Glib::SignalProxy<void (const Glib::RefPtr<Drive>&)>;
+        -> glib::SignalProxy<void (const glib::RefPtr<Drive>&)>;
 
     auto
     signal_drive_changed ()
-        -> Glib::SignalProxy<void (const Glib::RefPtr<Drive>&)>;
+        -> glib::SignalProxy<void (const glib::RefPtr<Drive>&)>;
 
     auto
     signal_drive_eject_button ()
-        -> Glib::SignalProxy<void (const Glib::RefPtr<Drive>&)>;
+        -> glib::SignalProxy<void (const glib::RefPtr<Drive>&)>;
 
     auto
     signal_drive_stop_button ()
-        -> Glib::SignalProxy<void (const Glib::RefPtr<Drive>&)>;
+        -> glib::SignalProxy<void (const glib::RefPtr<Drive>&)>;
 
   protected:
   public:
   public:
   protected:
     virtual auto
-    on_volume_added (const Glib::RefPtr<Volume>& volume) -> void;
+    on_volume_added (const glib::RefPtr<Volume>& volume) -> void;
 
     virtual auto
-    on_volume_removed (const Glib::RefPtr<Volume>& volume) -> void;
+    on_volume_removed (const glib::RefPtr<Volume>& volume) -> void;
 
     virtual auto
-    on_volume_changed (const Glib::RefPtr<Volume>& volume) -> void;
+    on_volume_changed (const glib::RefPtr<Volume>& volume) -> void;
 
     virtual auto
-    on_mount_added (const Glib::RefPtr<Mount>& mount) -> void;
+    on_mount_added (const glib::RefPtr<Mount>& mount) -> void;
 
     virtual auto
-    on_mount_removed (const Glib::RefPtr<Mount>& mount) -> void;
+    on_mount_removed (const glib::RefPtr<Mount>& mount) -> void;
 
     virtual auto
-    on_mount_pre_unmount (const Glib::RefPtr<Mount>& mount) -> void;
+    on_mount_pre_unmount (const glib::RefPtr<Mount>& mount) -> void;
 
     virtual auto
-    on_mount_changed (const Glib::RefPtr<Mount>& mount) -> void;
+    on_mount_changed (const glib::RefPtr<Mount>& mount) -> void;
 
     virtual auto
-    on_drive_connected (const Glib::RefPtr<Drive>& drive) -> void;
+    on_drive_connected (const glib::RefPtr<Drive>& drive) -> void;
 
     virtual auto
-    on_drive_disconnected (const Glib::RefPtr<Drive>& drive) -> void;
+    on_drive_disconnected (const glib::RefPtr<Drive>& drive) -> void;
 
     virtual auto
-    on_drive_changed (const Glib::RefPtr<Drive>& drive) -> void;
+    on_drive_changed (const glib::RefPtr<Drive>& drive) -> void;
 
     virtual auto
-    on_drive_eject_button (const Glib::RefPtr<Drive>& drive) -> void;
+    on_drive_eject_button (const glib::RefPtr<Drive>& drive) -> void;
 
     virtual auto
-    on_drive_stop_button (const Glib::RefPtr<Drive>& drive) -> void;
+    on_drive_stop_button (const glib::RefPtr<Drive>& drive) -> void;
   };
 
-} // namespace Gio
+} // namespace gio
 
-namespace Glib
+namespace glib
 {
 
   LIBMM_GIO_SYMEXPORT
   auto
-  wrap (GVolumeMonitor* object, bool take_copy = false) -> Glib::RefPtr<Gio::VolumeMonitor>;
-} // namespace Glib
+  wrap (GVolumeMonitor* object, bool take_copy = false) -> glib::RefPtr<gio::VolumeMonitor>;
+} // namespace glib
 
 #endif

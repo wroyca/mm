@@ -7,7 +7,7 @@
 
 #include <gio/gio.h>
 
-namespace Gio
+namespace gio
 {
 
 }
@@ -16,19 +16,19 @@ namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GMenu* object, const bool take_copy) -> RefPtr<Gio::Menu>
+  wrap (GMenu* object, const bool take_copy) -> RefPtr<gio::Menu>
   {
-    return Glib::make_refptr_for_instance<Gio::Menu> (
-        dynamic_cast<Gio::Menu*> (wrap_auto ((GObject*) object, take_copy)));
+    return glib::make_refptr_for_instance<gio::Menu> (
+        dynamic_cast<gio::Menu*> (wrap_auto ((GObject*) object, take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gio
+namespace gio
 {
 
   auto
@@ -52,7 +52,7 @@ namespace Gio
   }
 
   auto
-  Menu_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  Menu_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new Menu ((GMenu*) object);
   }
@@ -64,7 +64,7 @@ namespace Gio
     return gobj ();
   }
 
-  Menu::Menu (const Glib::ConstructParams& construct_params)
+  Menu::Menu (const glib::ConstructParams& construct_params)
     : MenuModel (construct_params)
   {
   }
@@ -104,14 +104,14 @@ namespace Gio
 
   Menu::Menu ()
     : ObjectBase (nullptr),
-      MenuModel (Glib::ConstructParams (menu_class_.init ()))
+      MenuModel (glib::ConstructParams (menu_class_.init ()))
   {
   }
 
   auto
-  Menu::create () -> Glib::RefPtr<Menu>
+  Menu::create () -> glib::RefPtr<Menu>
   {
-    return Glib::make_refptr_for_instance<Menu> (new Menu ());
+    return glib::make_refptr_for_instance<Menu> (new Menu ());
   }
 
   auto
@@ -122,23 +122,23 @@ namespace Gio
 
   auto
   Menu::insert_item (const int position,
-                     const Glib::RefPtr<const MenuItem>& item) -> void
+                     const glib::RefPtr<const MenuItem>& item) -> void
   {
     g_menu_insert_item (gobj (),
                         position,
-                        const_cast<GMenuItem*> (Glib::unwrap (item)));
+                        const_cast<GMenuItem*> (glib::unwrap (item)));
   }
 
   auto
-  Menu::prepend_item (const Glib::RefPtr<const MenuItem>& item) -> void
+  Menu::prepend_item (const glib::RefPtr<const MenuItem>& item) -> void
   {
-    g_menu_prepend_item (gobj (), const_cast<GMenuItem*> (Glib::unwrap (item)));
+    g_menu_prepend_item (gobj (), const_cast<GMenuItem*> (glib::unwrap (item)));
   }
 
   auto
-  Menu::append_item (const Glib::RefPtr<const MenuItem>& item) -> void
+  Menu::append_item (const glib::RefPtr<const MenuItem>& item) -> void
   {
-    g_menu_append_item (gobj (), const_cast<GMenuItem*> (Glib::unwrap (item)));
+    g_menu_append_item (gobj (), const_cast<GMenuItem*> (glib::unwrap (item)));
   }
 
   auto
@@ -155,8 +155,8 @@ namespace Gio
 
   auto
   Menu::insert (const int position,
-                const Glib::ustring& label,
-                const Glib::ustring& detailed_action) -> void
+                const glib::ustring& label,
+                const glib::ustring& detailed_action) -> void
   {
     g_menu_insert (
         gobj (),
@@ -166,14 +166,14 @@ namespace Gio
   }
 
   auto
-  Menu::insert (const int position, const Glib::ustring& label) -> void
+  Menu::insert (const int position, const glib::ustring& label) -> void
   {
     g_menu_insert (gobj (), position, label.c_str (), nullptr);
   }
 
   auto
-  Menu::prepend (const Glib::ustring& label,
-                 const Glib::ustring& detailed_action) -> void
+  Menu::prepend (const glib::ustring& label,
+                 const glib::ustring& detailed_action) -> void
   {
     g_menu_prepend (
         gobj (),
@@ -182,14 +182,14 @@ namespace Gio
   }
 
   auto
-  Menu::prepend (const Glib::ustring& label) -> void
+  Menu::prepend (const glib::ustring& label) -> void
   {
     g_menu_prepend (gobj (), label.c_str (), nullptr);
   }
 
   auto
-  Menu::append (const Glib::ustring& label,
-                const Glib::ustring& detailed_action) -> void
+  Menu::append (const glib::ustring& label,
+                const glib::ustring& detailed_action) -> void
   {
     g_menu_append (
         gobj (),
@@ -198,82 +198,82 @@ namespace Gio
   }
 
   auto
-  Menu::append (const Glib::ustring& label) -> void
+  Menu::append (const glib::ustring& label) -> void
   {
     g_menu_append (gobj (), label.c_str (), nullptr);
   }
 
   auto
   Menu::insert_section (const int position,
-                        const Glib::ustring& label,
-                        const Glib::RefPtr<MenuModel>& section) -> void
+                        const glib::ustring& label,
+                        const glib::RefPtr<MenuModel>& section) -> void
   {
     g_menu_insert_section (gobj (),
                            position,
                            label.empty () ? nullptr : label.c_str (),
-                           Glib::unwrap (section));
+                           glib::unwrap (section));
   }
 
   auto
   Menu::insert_section (const int position,
-                        const Glib::RefPtr<MenuModel>& section) -> void
+                        const glib::RefPtr<MenuModel>& section) -> void
   {
-    g_menu_insert_section (gobj (), position, nullptr, Glib::unwrap (section));
+    g_menu_insert_section (gobj (), position, nullptr, glib::unwrap (section));
   }
 
   auto
-  Menu::prepend_section (const Glib::ustring& label,
-                         const Glib::RefPtr<MenuModel>& section) -> void
+  Menu::prepend_section (const glib::ustring& label,
+                         const glib::RefPtr<MenuModel>& section) -> void
   {
     g_menu_prepend_section (gobj (),
                             label.empty () ? nullptr : label.c_str (),
-                            Glib::unwrap (section));
+                            glib::unwrap (section));
   }
 
   auto
-  Menu::prepend_section (const Glib::RefPtr<MenuModel>& section) -> void
+  Menu::prepend_section (const glib::RefPtr<MenuModel>& section) -> void
   {
-    g_menu_prepend_section (gobj (), nullptr, Glib::unwrap (section));
+    g_menu_prepend_section (gobj (), nullptr, glib::unwrap (section));
   }
 
   auto
-  Menu::append_section (const Glib::ustring& label,
-                        const Glib::RefPtr<MenuModel>& section) -> void
+  Menu::append_section (const glib::ustring& label,
+                        const glib::RefPtr<MenuModel>& section) -> void
   {
     g_menu_append_section (gobj (),
                            label.empty () ? nullptr : label.c_str (),
-                           Glib::unwrap (section));
+                           glib::unwrap (section));
   }
 
   auto
-  Menu::append_section (const Glib::RefPtr<MenuModel>& section) -> void
+  Menu::append_section (const glib::RefPtr<MenuModel>& section) -> void
   {
-    g_menu_append_section (gobj (), nullptr, Glib::unwrap (section));
+    g_menu_append_section (gobj (), nullptr, glib::unwrap (section));
   }
 
   auto
   Menu::insert_submenu (const int position,
-                        const Glib::ustring& label,
-                        const Glib::RefPtr<MenuModel>& submenu) -> void
+                        const glib::ustring& label,
+                        const glib::RefPtr<MenuModel>& submenu) -> void
   {
     g_menu_insert_submenu (gobj (),
                            position,
                            label.c_str (),
-                           Glib::unwrap (submenu));
+                           glib::unwrap (submenu));
   }
 
   auto
-  Menu::prepend_submenu (const Glib::ustring& label,
-                         const Glib::RefPtr<MenuModel>& submenu) -> void
+  Menu::prepend_submenu (const glib::ustring& label,
+                         const glib::RefPtr<MenuModel>& submenu) -> void
   {
-    g_menu_prepend_submenu (gobj (), label.c_str (), Glib::unwrap (submenu));
+    g_menu_prepend_submenu (gobj (), label.c_str (), glib::unwrap (submenu));
   }
 
   auto
-  Menu::append_submenu (const Glib::ustring& label,
-                        const Glib::RefPtr<MenuModel>& submenu) -> void
+  Menu::append_submenu (const glib::ustring& label,
+                        const glib::RefPtr<MenuModel>& submenu) -> void
   {
-    g_menu_append_submenu (gobj (), label.c_str (), Glib::unwrap (submenu));
+    g_menu_append_submenu (gobj (), label.c_str (), glib::unwrap (submenu));
   }
 
-} // namespace Gio
+} // namespace gio

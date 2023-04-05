@@ -8,7 +8,7 @@
   #include <cairo-ft.h>
 #endif
 
-namespace Cairo
+namespace cairo
 {
 
 #ifndef DOXYGEN_IGNORE_THIS
@@ -89,6 +89,6 @@ namespace Cairo
                                       static_cast<int> (b));
   }
 #endif
-} // namespace Cairo
+} // namespace cairo
 
 #endif

@@ -7,7 +7,7 @@
 
 #include <libmm/gtk/mm-gtk.hxx>
 
-namespace Adw
+namespace adw
 {
 
 }
@@ -16,23 +16,23 @@ namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (AdwBin* object, bool take_copy) -> Adw::Bin*
+  wrap (AdwBin* object, bool take_copy) -> adw::Bin*
   {
-    return dynamic_cast<Adw::Bin*> (
-        Glib::wrap_auto ((GObject*) (object), take_copy));
+    return dynamic_cast<adw::Bin*> (
+        glib::wrap_auto ((GObject*) (object), take_copy));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Adw
+namespace adw
 {
 
   auto
-  Bin_Class::init () -> const Glib::Class&
+  Bin_Class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -52,30 +52,30 @@ namespace Adw
   }
 
   auto
-  Bin_Class::wrap_new (GObject* o) -> Glib::ObjectBase*
+  Bin_Class::wrap_new (GObject* o) -> glib::ObjectBase*
   {
     return manage (new Bin ((AdwBin*) (o)));
   }
 
-  Bin::Bin (const Glib::ConstructParams& construct_params)
-    : Gtk::Widget (construct_params)
+  Bin::Bin (const glib::ConstructParams& construct_params)
+    : gtk::Widget (construct_params)
   {
   }
 
   Bin::Bin (AdwBin* castitem)
-    : Gtk::Widget ((GtkWidget*) (castitem))
+    : gtk::Widget ((GtkWidget*) (castitem))
   {
   }
 
   Bin::Bin (Bin&& src) noexcept
-    : Gtk::Widget (std::move (src))
+    : gtk::Widget (std::move (src))
   {
   }
 
   auto
   Bin::operator= (Bin&& src) noexcept -> Bin&
   {
-    Gtk::Widget::operator= (std::move (src));
+    gtk::Widget::operator= (std::move (src));
     return *this;
   }
 
@@ -99,33 +99,33 @@ namespace Adw
   }
 
   Bin::Bin ()
-    : Glib::ObjectBase (nullptr),
-      Gtk::Widget (Glib::ConstructParams (bin_class_.init ()))
+    : glib::ObjectBase (nullptr),
+      gtk::Widget (glib::ConstructParams (bin_class_.init ()))
   {
   }
 
   auto
-  Bin::get_child () const -> Gtk::Widget*
+  Bin::get_child () const -> gtk::Widget*
   {
-    return Glib::wrap (adw_bin_get_child (const_cast<AdwBin*> (gobj ())));
+    return glib::wrap (adw_bin_get_child (const_cast<AdwBin*> (gobj ())));
   }
 
   auto
-  Bin::set_child (Gtk::Widget* widget) -> void
+  Bin::set_child (gtk::Widget* widget) -> void
   {
-    adw_bin_set_child (gobj (), (GtkWidget*) Glib::unwrap (widget));
+    adw_bin_set_child (gobj (), (GtkWidget*) glib::unwrap (widget));
   }
 
   auto
-  Bin::property_child () -> Glib::PropertyProxy<Gtk::Widget*>
+  Bin::property_child () -> glib::PropertyProxy<gtk::Widget*>
   {
-    return Glib::PropertyProxy<Gtk::Widget*> (this, "child");
+    return glib::PropertyProxy<gtk::Widget*> (this, "child");
   }
 
   auto
-  Bin::property_child () const -> Glib::PropertyProxy_ReadOnly<Gtk::Widget*>
+  Bin::property_child () const -> glib::PropertyProxy_ReadOnly<gtk::Widget*>
   {
-    return Glib::PropertyProxy_ReadOnly<Gtk::Widget*> (this, "child");
+    return glib::PropertyProxy_ReadOnly<gtk::Widget*> (this, "child");
   }
 
-} // namespace Adw
+} // namespace adw

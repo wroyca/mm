@@ -11,7 +11,7 @@
 #include <cstddef>
 #include <gtk/gtk.h>
 
-namespace Gtk
+namespace gtk
 {
 
   class LIBMM_GTK_SYMEXPORT CssLocation
@@ -73,13 +73,13 @@ namespace Gtk
     GtkCssLocation gobject_;
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (const GtkCssLocation* object) -> Gtk::CssLocation;
+  wrap (const GtkCssLocation* object) -> gtk::CssLocation;
 
-} // namespace Glib
+} // namespace glib
 
 #endif

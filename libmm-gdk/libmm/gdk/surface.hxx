@@ -22,13 +22,13 @@
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gdk
+namespace gdk
 {
   class LIBMM_GDK_SYMEXPORT Surface_Class;
 }
 #endif
 
-namespace Gdk
+namespace gdk
 {
 
   class LIBMM_GDK_SYMEXPORT ContentProvider;
@@ -38,7 +38,7 @@ namespace Gdk
   class LIBMM_GDK_SYMEXPORT FrameClock;
   class LIBMM_GDK_SYMEXPORT Monitor;
 
-  class LIBMM_GDK_SYMEXPORT Surface : public Glib::Object
+  class LIBMM_GDK_SYMEXPORT Surface : public glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -57,7 +57,7 @@ namespace Gdk
     static CppClassType surface_class_;
 
   protected:
-    explicit Surface (const Glib::ConstructParams& construct_params);
+    explicit Surface (const glib::ConstructParams& construct_params);
     explicit Surface (GdkSurface* castitem);
 
 #endif
@@ -96,51 +96,51 @@ namespace Gdk
   private:
   public:
     static auto
-    create_toplevel (const Glib::RefPtr<Display>& display)
-        -> Glib::RefPtr<Surface>;
+    create_toplevel (const glib::RefPtr<Display>& display)
+        -> glib::RefPtr<Surface>;
 
     static auto
-    create_popup (const Glib::RefPtr<Surface>& parent, bool autohide)
-        -> Glib::RefPtr<Surface>;
+    create_popup (const glib::RefPtr<Surface>& parent, bool autohide)
+        -> glib::RefPtr<Surface>;
 
     auto
-    get_display () -> Glib::RefPtr<Display>;
+    get_display () -> glib::RefPtr<Display>;
 
     auto
-    get_display () const -> Glib::RefPtr<const Display>;
+    get_display () const -> glib::RefPtr<const Display>;
 
     auto
     hide () -> void;
 
     auto
-    set_input_region (const ::Cairo::RefPtr<::Cairo::Region>& region) -> void;
+    set_input_region (const ::cairo::RefPtr<::cairo::Region>& region) -> void;
 
     auto
     get_mapped () const -> bool;
 
     auto
-    set_cursor (const Glib::RefPtr<Cursor>& cursor) -> void;
+    set_cursor (const glib::RefPtr<Cursor>& cursor) -> void;
 
     auto
     set_cursor () -> void;
 
     auto
-    set_device_cursor (const Glib::RefPtr<Device>& device,
-                       const Glib::RefPtr<Cursor>& cursor) -> void;
+    set_device_cursor (const glib::RefPtr<Device>& device,
+                       const glib::RefPtr<Cursor>& cursor) -> void;
 
     auto
-    get_device_cursor (const Glib::RefPtr<Device>& device)
-        -> Glib::RefPtr<Cursor>;
+    get_device_cursor (const glib::RefPtr<Device>& device)
+        -> glib::RefPtr<Cursor>;
 
     auto
-    get_device_cursor (const Glib::RefPtr<const Device>& device) const
-        -> Glib::RefPtr<const Cursor>;
+    get_device_cursor (const glib::RefPtr<const Device>& device) const
+        -> glib::RefPtr<const Cursor>;
 
     auto
-    get_cursor () -> Glib::RefPtr<Cursor>;
+    get_cursor () -> glib::RefPtr<Cursor>;
 
     auto
-    get_cursor () const -> Glib::RefPtr<const Cursor>;
+    get_cursor () const -> glib::RefPtr<const Cursor>;
 
     auto
     get_width () const -> int;
@@ -152,24 +152,24 @@ namespace Gdk
     get_scale_factor () const -> int;
 
     auto
-    get_device_position (const Glib::RefPtr<const Device>& device,
+    get_device_position (const glib::RefPtr<const Device>& device,
                          double& x,
                          double& y,
                          ModifierType& mask) const -> bool;
 
     auto
-    create_similar_surface (::Cairo::Content content, int width, int height)
-        -> ::Cairo::RefPtr<::Cairo::Surface>;
+    create_similar_surface (::cairo::Content content, int width, int height)
+        -> ::cairo::RefPtr<::cairo::Surface>;
 
     auto
     beep () -> void;
 
     auto
-    drag_begin_from_point (const Glib::RefPtr<Device>& device,
-                           const Glib::RefPtr<ContentProvider>& content,
+    drag_begin_from_point (const glib::RefPtr<Device>& device,
+                           const glib::RefPtr<ContentProvider>& content,
                            DragAction actions,
                            double dx,
-                           double dy) -> Glib::RefPtr<Drag>;
+                           double dy) -> glib::RefPtr<Drag>;
 
     auto
     queue_render () -> void;
@@ -178,78 +178,78 @@ namespace Gdk
     request_layout () -> void;
 
     auto
-    get_frame_clock () -> Glib::RefPtr<FrameClock>;
+    get_frame_clock () -> glib::RefPtr<FrameClock>;
 
     auto
-    get_frame_clock () const -> Glib::RefPtr<const FrameClock>;
+    get_frame_clock () const -> glib::RefPtr<const FrameClock>;
 
     auto
-    set_opaque_region (const ::Cairo::RefPtr<const ::Cairo::Region>& region)
+    set_opaque_region (const ::cairo::RefPtr<const ::cairo::Region>& region)
         -> void;
 
     auto
-    create_gl_context () -> Glib::RefPtr<Gdk::GLContext>;
+    create_gl_context () -> glib::RefPtr<gdk::GLContext>;
 
     auto
-    create_cairo_context () -> Glib::RefPtr<Gdk::CairoContext>;
+    create_cairo_context () -> glib::RefPtr<gdk::CairoContext>;
 
     auto
-    signal_layout () -> Glib::SignalProxy<void (int, int)>;
+    signal_layout () -> glib::SignalProxy<void (int, int)>;
 
     auto
-    signal_render () -> Glib::SignalProxy<
-        bool (const ::Cairo::RefPtr<const ::Cairo::Region>&)>;
+    signal_render () -> glib::SignalProxy<
+        bool (const ::cairo::RefPtr<const ::cairo::Region>&)>;
 
     auto
     signal_event ()
-        -> Glib::SignalProxy<bool (const Glib::RefPtr<const Event>&)>;
+        -> glib::SignalProxy<bool (const glib::RefPtr<const Event>&)>;
 
     auto
     signal_enter_monitor ()
-        -> Glib::SignalProxy<void (const Glib::RefPtr<Monitor>&)>;
+        -> glib::SignalProxy<void (const glib::RefPtr<Monitor>&)>;
 
     auto
     signal_leave_monitor ()
-        -> Glib::SignalProxy<void (const Glib::RefPtr<Monitor>&)>;
+        -> glib::SignalProxy<void (const glib::RefPtr<Monitor>&)>;
 
     auto
-    property_cursor () -> Glib::PropertyProxy<Glib::RefPtr<Cursor>>;
+    property_cursor () -> glib::PropertyProxy<glib::RefPtr<Cursor>>;
 
     auto
     property_cursor () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Cursor>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<Cursor>>;
 
     auto
     property_display () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Display>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<Display>>;
 
     auto
     property_frame_clock () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<FrameClock>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<FrameClock>>;
 
     auto
-    property_mapped () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_mapped () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_width () const -> Glib::PropertyProxy_ReadOnly<int>;
+    property_width () const -> glib::PropertyProxy_ReadOnly<int>;
 
     auto
-    property_height () const -> Glib::PropertyProxy_ReadOnly<int>;
+    property_height () const -> glib::PropertyProxy_ReadOnly<int>;
 
     auto
-    property_scale_factor () const -> Glib::PropertyProxy_ReadOnly<int>;
+    property_scale_factor () const -> glib::PropertyProxy_ReadOnly<int>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gdk
+} // namespace gdk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GDK_SYMEXPORT auto
-  wrap (GdkSurface* object, bool take_copy = false) -> Glib::RefPtr<Gdk::Surface>;
-} // namespace Glib
+  wrap (GdkSurface* object, bool take_copy = false) -> glib::RefPtr<gdk::Surface>;
+} // namespace glib
 
 #endif

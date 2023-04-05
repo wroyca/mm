@@ -15,13 +15,13 @@
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT FontDialogButton_Class;
 }
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
   enum class FontLevel
@@ -32,25 +32,25 @@ namespace Gtk
     FEATURES
   };
 
-} // namespace Gtk
+} // namespace gtk
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_GTK_SYMEXPORT Value<Gtk::FontLevel>
-    : public Glib::Value_Enum<Gtk::FontLevel>
+  class LIBMM_GTK_SYMEXPORT Value<gtk::FontLevel>
+    : public glib::Value_Enum<gtk::FontLevel>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
   class LIBMM_GTK_SYMEXPORT FontDialogButton : public Widget
@@ -80,7 +80,7 @@ namespace Gtk
     static CppClassType fontdialogbutton_class_;
 
   protected:
-    explicit FontDialogButton (const Glib::ConstructParams& construct_params);
+    explicit FontDialogButton (const glib::ConstructParams& construct_params);
     explicit FontDialogButton (GtkFontDialogButton* castitem);
 
 #endif
@@ -109,16 +109,16 @@ namespace Gtk
 
   private:
   public:
-    explicit FontDialogButton (const Glib::RefPtr<FontDialog>& dialog = {});
+    explicit FontDialogButton (const glib::RefPtr<FontDialog>& dialog = {});
 
     auto
-    get_dialog () -> Glib::RefPtr<FontDialog>;
+    get_dialog () -> glib::RefPtr<FontDialog>;
 
     auto
-    get_dialog () const -> Glib::RefPtr<const FontDialog>;
+    get_dialog () const -> glib::RefPtr<const FontDialog>;
 
     auto
-    set_dialog (const Glib::RefPtr<FontDialog>& dialog) -> void;
+    set_dialog (const glib::RefPtr<FontDialog>& dialog) -> void;
 
     auto
     get_level () const -> FontLevel;
@@ -127,22 +127,22 @@ namespace Gtk
     set_level (FontLevel level) -> void;
 
     auto
-    get_font_desc () const -> Pango::FontDescription;
+    get_font_desc () const -> pango::FontDescription;
 
     auto
-    set_font_desc (const Pango::FontDescription& font_desc) -> void;
+    set_font_desc (const pango::FontDescription& font_desc) -> void;
 
     auto
-    get_font_features () const -> Glib::ustring;
+    get_font_features () const -> glib::ustring;
 
     auto
-    set_font_features (const Glib::ustring& font_features) -> void;
+    set_font_features (const glib::ustring& font_features) -> void;
 
     auto
-    get_language () const -> Pango::Language;
+    get_language () const -> pango::Language;
 
     auto
-    set_language (const Pango::Language& language) -> void;
+    set_language (const pango::Language& language) -> void;
 
     auto
     get_use_font () const -> bool;
@@ -157,61 +157,61 @@ namespace Gtk
     set_use_size (bool use_size = true) -> void;
 
     auto
-    property_dialog () -> Glib::PropertyProxy<Glib::RefPtr<FontDialog>>;
+    property_dialog () -> glib::PropertyProxy<glib::RefPtr<FontDialog>>;
 
     auto
     property_dialog () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<FontDialog>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<FontDialog>>;
 
     auto
-    property_level () -> Glib::PropertyProxy<FontLevel>;
+    property_level () -> glib::PropertyProxy<FontLevel>;
 
     auto
-    property_level () const -> Glib::PropertyProxy_ReadOnly<FontLevel>;
+    property_level () const -> glib::PropertyProxy_ReadOnly<FontLevel>;
 
     auto
-    property_font_desc () -> Glib::PropertyProxy<Pango::FontDescription>;
+    property_font_desc () -> glib::PropertyProxy<pango::FontDescription>;
 
     auto
     property_font_desc () const
-        -> Glib::PropertyProxy_ReadOnly<Pango::FontDescription>;
+        -> glib::PropertyProxy_ReadOnly<pango::FontDescription>;
 
     auto
-    property_font_features () -> Glib::PropertyProxy<Glib::ustring>;
+    property_font_features () -> glib::PropertyProxy<glib::ustring>;
 
     auto
     property_font_features () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+        -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
     auto
-    property_language () -> Glib::PropertyProxy<Pango::Language>;
+    property_language () -> glib::PropertyProxy<pango::Language>;
 
     auto
-    property_language () const -> Glib::PropertyProxy_ReadOnly<Pango::Language>;
+    property_language () const -> glib::PropertyProxy_ReadOnly<pango::Language>;
 
     auto
-    property_use_font () -> Glib::PropertyProxy<bool>;
+    property_use_font () -> glib::PropertyProxy<bool>;
 
     auto
-    property_use_font () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_use_font () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_use_size () -> Glib::PropertyProxy<bool>;
+    property_use_size () -> glib::PropertyProxy<bool>;
 
     auto
-    property_use_size () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_use_size () const -> glib::PropertyProxy_ReadOnly<bool>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkFontDialogButton* object, bool take_copy = false) -> Gtk::FontDialogButton*;
-} // namespace Glib
+  wrap (GtkFontDialogButton* object, bool take_copy = false) -> gtk::FontDialogButton*;
+} // namespace glib
 
 #endif

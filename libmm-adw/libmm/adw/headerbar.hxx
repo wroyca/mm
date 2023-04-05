@@ -16,13 +16,13 @@
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Adw
+namespace adw
 {
   class LIBMM_ADW_SYMEXPORT HeaderBar_Class;
 }
 #endif
 
-namespace Adw
+namespace adw
 {
 
   enum class LIBMM_ADW_SYMEXPORT CenteringPolicy
@@ -31,28 +31,28 @@ namespace Adw
     STRICT
   };
 
-} // namespace Adw
+} // namespace adw
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_ADW_SYMEXPORT Value<Adw::CenteringPolicy>
-    : public Glib::Value_Enum<Adw::CenteringPolicy>
+  class LIBMM_ADW_SYMEXPORT Value<adw::CenteringPolicy>
+    : public glib::Value_Enum<adw::CenteringPolicy>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
-namespace Adw
+namespace adw
 {
 
-  class LIBMM_ADW_SYMEXPORT HeaderBar : public Gtk::Widget
+  class LIBMM_ADW_SYMEXPORT HeaderBar : public gtk::Widget
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -79,7 +79,7 @@ namespace Adw
     static CppClassType headerbar_class_;
 
   protected:
-    explicit HeaderBar (const Glib::ConstructParams& construct_params);
+    explicit HeaderBar (const glib::ConstructParams& construct_params);
     explicit HeaderBar (AdwHeaderBar* castitem);
 
 #endif
@@ -114,7 +114,7 @@ namespace Adw
     get_centering_policy () const -> CenteringPolicy;
 
     auto
-    get_decoration_layout () const -> Glib::ustring;
+    get_decoration_layout () const -> glib::ustring;
 
     auto
     get_show_end_title_buttons () const -> bool;
@@ -123,22 +123,22 @@ namespace Adw
     get_show_start_title_buttons () const -> bool;
 
     auto
-    get_title_widget () const -> Gtk::Widget*;
+    get_title_widget () const -> gtk::Widget*;
 
     auto
-    pack_end (Gtk::Widget* child) -> void;
+    pack_end (gtk::Widget* child) -> void;
 
     auto
-    pack_start (Gtk::Widget* child) -> void;
+    pack_start (gtk::Widget* child) -> void;
 
     auto
-    remove (Gtk::Widget* child) -> void;
+    remove (gtk::Widget* child) -> void;
 
     auto
     set_centering_policy (CenteringPolicy centering_policy) -> void;
 
     auto
-    set_decoration_layout (const Glib::ustring& layout) -> void;
+    set_decoration_layout (const glib::ustring& layout) -> void;
 
     auto
     set_show_end_title_buttons (bool setting) -> void;
@@ -147,55 +147,55 @@ namespace Adw
     set_show_start_title_buttons (bool setting) -> void;
 
     auto
-    set_title_widget (Gtk::Widget* title_widget) -> void;
+    set_title_widget (gtk::Widget* title_widget) -> void;
 
     auto
-    property_centering_policy () -> Glib::PropertyProxy<CenteringPolicy>;
+    property_centering_policy () -> glib::PropertyProxy<CenteringPolicy>;
 
     auto
     property_centering_policy () const
-        -> Glib::PropertyProxy_ReadOnly<CenteringPolicy>;
+        -> glib::PropertyProxy_ReadOnly<CenteringPolicy>;
 
     auto
-    property_decoration_layout () -> Glib::PropertyProxy<Glib::ustring>;
+    property_decoration_layout () -> glib::PropertyProxy<glib::ustring>;
 
     auto
     property_decoration_layout () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+        -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
     auto
-    property_show_end_title_buttons () -> Glib::PropertyProxy<bool>;
+    property_show_end_title_buttons () -> glib::PropertyProxy<bool>;
 
     auto
     property_show_end_title_buttons () const
-        -> Glib::PropertyProxy_ReadOnly<bool>;
+        -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_show_start_title_buttons () -> Glib::PropertyProxy<bool>;
+    property_show_start_title_buttons () -> glib::PropertyProxy<bool>;
 
     auto
     property_show_start_title_buttons () const
-        -> Glib::PropertyProxy_ReadOnly<bool>;
+        -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_title_widget () -> Glib::PropertyProxy<Gtk::Widget*>;
+    property_title_widget () -> glib::PropertyProxy<gtk::Widget*>;
 
     auto
     property_title_widget () const
-        -> Glib::PropertyProxy_ReadOnly<Gtk::Widget*>;
+        -> glib::PropertyProxy_ReadOnly<gtk::Widget*>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Adw
+} // namespace adw
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (AdwHeaderBar* object, bool take_copy = false) -> Adw::HeaderBar*;
+  wrap (AdwHeaderBar* object, bool take_copy = false) -> adw::HeaderBar*;
 }
 
 #endif

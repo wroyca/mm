@@ -1,6 +1,6 @@
 #include <libmm/gtk/mm-gtk.hxx>
 
-class MyButton : public Gtk::Button
+class MyButton : public gtk::Button
 {
 public:
     MyButton();
@@ -8,7 +8,7 @@ public:
 };
 
 MyButton::MyButton()
-: Gtk::Button("Ok", true)
+: gtk::Button("Ok", true)
 { }
 
 MyButton::~MyButton()
@@ -16,7 +16,7 @@ MyButton::~MyButton()
     g_warning("MyButtom::~MyButton()");
 }
 
-class ExampleWindow : public Gtk::Window
+class ExampleWindow : public gtk::Window
 {
 public:
     ExampleWindow();
@@ -31,7 +31,7 @@ ExampleWindow::ExampleWindow()
 {
     set_default_size(150, 150);
 
-    m_button = Gtk::make_managed<MyButton>();
+    m_button = gtk::make_managed<MyButton>();
     set_child(*m_button);
 }
 
@@ -43,6 +43,6 @@ ExampleWindow::~ExampleWindow()
 
 int main(int argc, char* argv[])
 {
-  auto app = Gtk::Application::create();
+  auto app = gtk::Application::create();
   return app->make_window_and_run<ExampleWindow>(argc, argv);
 }

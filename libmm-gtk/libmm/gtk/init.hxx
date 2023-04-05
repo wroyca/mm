@@ -5,11 +5,11 @@
 
 #include <libmm/gtk/mm-gtkconfig.hxx>
 
-namespace Gtk
+namespace gtk
 {
   LIBMM_GTK_SYMEXPORT auto
   init_gtkmm_internals () -> void;
 
-} // namespace Gtk
+} // namespace gtk
 
 #endif

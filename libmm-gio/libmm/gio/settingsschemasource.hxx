@@ -17,7 +17,7 @@
 typedef struct _GSettingsSchemaSource GSettingsSchemaSource;
 #endif
 
-namespace Gio
+namespace gio
 {
 
   class LIBMM_GIO_SYMEXPORT SettingsSchemaSource final
@@ -57,36 +57,36 @@ namespace Gio
   protected:
   public:
     static auto
-    get_default () -> Glib::RefPtr<SettingsSchemaSource>;
+    get_default () -> glib::RefPtr<SettingsSchemaSource>;
 
     static auto
     create (const std::string& directory,
             bool trusted,
-            const Glib::RefPtr<SettingsSchemaSource>& parent = get_default ())
-        -> Glib::RefPtr<SettingsSchemaSource>;
+            const glib::RefPtr<SettingsSchemaSource>& parent = get_default ())
+        -> glib::RefPtr<SettingsSchemaSource>;
 
     auto
-    lookup (const Glib::ustring& schema_id, bool recursive)
-        -> Glib::RefPtr<SettingsSchema>;
+    lookup (const glib::ustring& schema_id, bool recursive)
+        -> glib::RefPtr<SettingsSchema>;
 
     auto
-    lookup (const Glib::ustring& schema_id, bool recursive) const
-        -> Glib::RefPtr<const SettingsSchema>;
+    lookup (const glib::ustring& schema_id, bool recursive) const
+        -> glib::RefPtr<const SettingsSchema>;
 
     auto
     list_schemas (bool relocatable, bool recursive) const
-        -> std::vector<Glib::ustring>;
+        -> std::vector<glib::ustring>;
   };
 
-} // namespace Gio
+} // namespace gio
 
-namespace Glib
+namespace glib
 {
 
   LIBMM_GIO_SYMEXPORT
   auto
-  wrap (GSettingsSchemaSource* object, bool take_copy = false) -> Glib::RefPtr<Gio::SettingsSchemaSource>;
+  wrap (GSettingsSchemaSource* object, bool take_copy = false) -> glib::RefPtr<gio::SettingsSchemaSource>;
 
-} // namespace Glib
+} // namespace glib
 
 #endif

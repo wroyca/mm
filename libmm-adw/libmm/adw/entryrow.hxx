@@ -16,17 +16,17 @@
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Adw
+namespace adw
 {
   class LIBMM_ADW_SYMEXPORT EntryRow_Class;
 }
 #endif
 
-namespace Adw
+namespace adw
 {
 
-  class LIBMM_ADW_SYMEXPORT EntryRow : public Adw::PreferencesRow,
-                   public Gtk::Editable
+  class LIBMM_ADW_SYMEXPORT EntryRow : public adw::PreferencesRow,
+                   public gtk::Editable
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -53,7 +53,7 @@ namespace Adw
     static CppClassType entryrow_class_;
 
   protected:
-    explicit EntryRow (const Glib::ConstructParams& construct_params);
+    explicit EntryRow (const glib::ConstructParams& construct_params);
     explicit EntryRow (AdwEntryRow* castitem);
 
 #endif
@@ -85,108 +85,108 @@ namespace Adw
     EntryRow ();
 
     auto
-    add_prefix (Gtk::Widget* widget) -> void;
+    add_prefix (gtk::Widget* widget) -> void;
 
     auto
-    add_suffix (Gtk::Widget* widget) -> void;
+    add_suffix (gtk::Widget* widget) -> void;
 
     auto
     get_activates_default () const -> bool;
 
     auto
-    get_attributes () const -> Pango::AttrList;
+    get_attributes () const -> pango::AttrList;
 
     auto
     get_enable_moji_completion () const -> bool;
 
     auto
-    get_input_hints () const -> Gtk::InputHints;
+    get_input_hints () const -> gtk::InputHints;
 
     auto
-    get_input_purpose () const -> Gtk::InputPurpose;
+    get_input_purpose () const -> gtk::InputPurpose;
 
     auto
     get_show_apply_button () const -> bool;
 
     auto
-    remove (Gtk::Widget* widget) -> void;
+    remove (gtk::Widget* widget) -> void;
 
     auto
     set_activates_default (bool activates) -> void;
 
     auto
-    set_attributes (Pango::AttrList& attributes) -> void;
+    set_attributes (pango::AttrList& attributes) -> void;
 
     auto
     set_enable_emoji_completion (bool activates) -> void;
 
     auto
-    set_input_hints (Gtk::InputHints hints) -> void;
+    set_input_hints (gtk::InputHints hints) -> void;
 
     auto
-    set_input_purpose (Gtk::InputPurpose purpose) -> void;
+    set_input_purpose (gtk::InputPurpose purpose) -> void;
 
     auto
     set_show_apply_button (bool activates) -> void;
 
     auto
-    property_activates_default () -> Glib::PropertyProxy<bool>;
+    property_activates_default () -> glib::PropertyProxy<bool>;
 
     auto
-    property_activates_default () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_activates_default () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_attributes () -> Glib::PropertyProxy<Pango::AttrList>;
+    property_attributes () -> glib::PropertyProxy<pango::AttrList>;
 
     auto
     property_attributes () const
-        -> Glib::PropertyProxy_ReadOnly<Pango::AttrList>;
+        -> glib::PropertyProxy_ReadOnly<pango::AttrList>;
 
     auto
-    property_enable_emoji_completion () -> Glib::PropertyProxy<bool>;
+    property_enable_emoji_completion () -> glib::PropertyProxy<bool>;
 
     auto
     property_enable_emoji_completion () const
-        -> Glib::PropertyProxy_ReadOnly<bool>;
+        -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_input_hints () -> Glib::PropertyProxy<Gtk::InputHints>;
+    property_input_hints () -> glib::PropertyProxy<gtk::InputHints>;
 
     auto
     property_input_hints () const
-        -> Glib::PropertyProxy_ReadOnly<Gtk::InputHints>;
+        -> glib::PropertyProxy_ReadOnly<gtk::InputHints>;
 
     auto
-    property_input_purpose () -> Glib::PropertyProxy<Gtk::InputPurpose>;
+    property_input_purpose () -> glib::PropertyProxy<gtk::InputPurpose>;
 
     auto
     property_input_purpose () const
-        -> Glib::PropertyProxy_ReadOnly<Gtk::InputPurpose>;
+        -> glib::PropertyProxy_ReadOnly<gtk::InputPurpose>;
 
     auto
-    property_show_apply_button () -> Glib::PropertyProxy<bool>;
+    property_show_apply_button () -> glib::PropertyProxy<bool>;
 
     auto
-    property_show_apply_button () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_show_apply_button () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    signal_apply () -> Glib::SignalProxy<void ()>;
+    signal_apply () -> glib::SignalProxy<void ()>;
 
     auto
-    signal_entry_activated () -> Glib::SignalProxy<void ()>;
+    signal_entry_activated () -> glib::SignalProxy<void ()>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Adw
+} // namespace adw
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (AdwEntryRow* object, bool take_copy = false) -> Adw::EntryRow*;
+  wrap (AdwEntryRow* object, bool take_copy = false) -> adw::EntryRow*;
 }
 
 #endif

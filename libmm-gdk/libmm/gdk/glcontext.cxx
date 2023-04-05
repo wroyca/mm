@@ -8,7 +8,7 @@
 #include <gdk/gdk.h>
 #include <libmm/gdk/cairoutils.hxx>
 
-namespace Gdk
+namespace gdk
 {
 
 #ifndef GDKMM_DISABLE_DEPRECATED
@@ -22,14 +22,14 @@ namespace Gdk
   G_GNUC_END_IGNORE_DEPRECATIONS
 #endif
 
-} // namespace Gdk
+} // namespace gdk
 
 namespace
 {
 }
 
 auto
-Glib::Value<Gdk::GLApi>::value_type () -> GType
+glib::Value<gdk::GLApi>::value_type () -> GType
 {
   return gdk_gl_api_get_type ();
 }
@@ -37,59 +37,59 @@ Glib::Value<Gdk::GLApi>::value_type () -> GType
 #ifndef GDKMM_DISABLE_DEPRECATED
 
 auto
-Glib::Value<Gdk::GLAPI>::value_type () -> GType
+glib::Value<gdk::GLAPI>::value_type () -> GType
 {
   return gdk_gl_api_get_type ();
 }
 #endif
 
-Gdk::GLError::GLError (Gdk::GLError::Code error_code,
-                       const Glib::ustring& error_message)
-  : Glib::Error (GDK_GL_ERROR, error_code, error_message)
+gdk::GLError::GLError (gdk::GLError::Code error_code,
+                       const glib::ustring& error_message)
+  : glib::Error (GDK_GL_ERROR, error_code, error_message)
 {
 }
 
-Gdk::GLError::GLError (GError* gobject)
-  : Glib::Error (gobject)
+gdk::GLError::GLError (GError* gobject)
+  : glib::Error (gobject)
 {
 }
 
 auto
-Gdk::GLError::code () const -> Gdk::GLError::Code
+gdk::GLError::code () const -> gdk::GLError::Code
 {
-  return static_cast<Code> (Glib::Error::code ());
+  return static_cast<Code> (glib::Error::code ());
 }
 
 auto
-Gdk::GLError::throw_func (GError* gobject) -> void
+gdk::GLError::throw_func (GError* gobject) -> void
 {
-  throw Gdk::GLError (gobject);
+  throw gdk::GLError (gobject);
 }
 
 auto
-Glib::Value<Gdk::GLError::Code>::value_type () -> GType
+glib::Value<gdk::GLError::Code>::value_type () -> GType
 {
   return gdk_gl_error_get_type ();
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GdkGLContext* object, bool take_copy) -> Glib::RefPtr<Gdk::GLContext>
+  wrap (GdkGLContext* object, bool take_copy) -> glib::RefPtr<gdk::GLContext>
   {
-    return Glib::make_refptr_for_instance<Gdk::GLContext> (
-        dynamic_cast<Gdk::GLContext*> (
-            Glib::wrap_auto ((GObject*) (object), take_copy)));
+    return glib::make_refptr_for_instance<gdk::GLContext> (
+        dynamic_cast<gdk::GLContext*> (
+            glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gdk
+namespace gdk
 {
 
   auto
-  GLContext_Class::init () -> const Glib::Class&
+  GLContext_Class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -109,7 +109,7 @@ namespace Gdk
   }
 
   auto
-  GLContext_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  GLContext_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new GLContext ((GdkGLContext*) object);
   }
@@ -121,25 +121,25 @@ namespace Gdk
     return gobj ();
   }
 
-  GLContext::GLContext (const Glib::ConstructParams& construct_params)
-    : Gdk::DrawContext (construct_params)
+  GLContext::GLContext (const glib::ConstructParams& construct_params)
+    : gdk::DrawContext (construct_params)
   {
   }
 
   GLContext::GLContext (GdkGLContext* castitem)
-    : Gdk::DrawContext ((GdkDrawContext*) (castitem))
+    : gdk::DrawContext ((GdkDrawContext*) (castitem))
   {
   }
 
   GLContext::GLContext (GLContext&& src) noexcept
-    : Gdk::DrawContext (std::move (src))
+    : gdk::DrawContext (std::move (src))
   {
   }
 
   auto
   GLContext::operator= (GLContext&& src) noexcept -> GLContext&
   {
-    Gdk::DrawContext::operator= (std::move (src));
+    gdk::DrawContext::operator= (std::move (src));
     return *this;
   }
 
@@ -160,37 +160,37 @@ namespace Gdk
   }
 
   GLContext::GLContext ()
-    : Glib::ObjectBase (nullptr),
-      Gdk::DrawContext (Glib::ConstructParams (glcontext_class_.init ()))
+    : glib::ObjectBase (nullptr),
+      gdk::DrawContext (glib::ConstructParams (glcontext_class_.init ()))
   {
   }
 
   auto
-  GLContext::get_display () -> Glib::RefPtr<Display>
+  GLContext::get_display () -> glib::RefPtr<Display>
   {
-    auto retvalue = Glib::wrap (gdk_gl_context_get_display (gobj ()));
+    auto retvalue = glib::wrap (gdk_gl_context_get_display (gobj ()));
     if (retvalue)
       retvalue->reference ();
     return retvalue;
   }
 
   auto
-  GLContext::get_display () const -> Glib::RefPtr<const Display>
+  GLContext::get_display () const -> glib::RefPtr<const Display>
   {
     return const_cast<GLContext*> (this)->get_display ();
   }
 
   auto
-  GLContext::get_surface () -> Glib::RefPtr<Surface>
+  GLContext::get_surface () -> glib::RefPtr<Surface>
   {
-    auto retvalue = Glib::wrap (gdk_gl_context_get_surface (gobj ()));
+    auto retvalue = glib::wrap (gdk_gl_context_get_surface (gobj ()));
     if (retvalue)
       retvalue->reference ();
     return retvalue;
   }
 
   auto
-  GLContext::get_surface () const -> Glib::RefPtr<const Surface>
+  GLContext::get_surface () const -> glib::RefPtr<const Surface>
   {
     return const_cast<GLContext*> (this)->get_surface ();
   }
@@ -198,9 +198,9 @@ namespace Gdk
 #ifndef GDKMM_DISABLE_DEPRECATED
   G_GNUC_BEGIN_IGNORE_DEPRECATIONS
   auto
-  GLContext::get_shared_context () -> Glib::RefPtr<GLContext>
+  GLContext::get_shared_context () -> glib::RefPtr<GLContext>
   {
-    auto retvalue = Glib::wrap (gdk_gl_context_get_shared_context (gobj ()));
+    auto retvalue = glib::wrap (gdk_gl_context_get_shared_context (gobj ()));
     if (retvalue)
       retvalue->reference ();
     return retvalue;
@@ -212,7 +212,7 @@ namespace Gdk
 #ifndef GDKMM_DISABLE_DEPRECATED
   G_GNUC_BEGIN_IGNORE_DEPRECATIONS
   auto
-  GLContext::get_shared_context () const -> Glib::RefPtr<const GLContext>
+  GLContext::get_shared_context () const -> glib::RefPtr<const GLContext>
   {
     return const_cast<GLContext*> (this)->get_shared_context ();
   }
@@ -235,11 +235,11 @@ namespace Gdk
   }
 
   auto
-  GLContext::is_shared (const Glib::RefPtr<const GLContext>& other) const -> bool
+  GLContext::is_shared (const glib::RefPtr<const GLContext>& other) const -> bool
   {
     return gdk_gl_context_is_shared (
         const_cast<GdkGLContext*> (gobj ()),
-        const_cast<GdkGLContext*> (Glib::unwrap<Gdk::GLContext> (other)));
+        const_cast<GdkGLContext*> (glib::unwrap<gdk::GLContext> (other)));
   }
 
   auto
@@ -363,7 +363,7 @@ namespace Gdk
     GError* gerror = nullptr;
     auto retvalue = gdk_gl_context_realize (gobj (), &(gerror));
     if (gerror)
-      ::Glib::Error::throw_exception (gerror);
+      ::glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
@@ -374,9 +374,9 @@ namespace Gdk
   }
 
   auto
-  GLContext::get_current () -> Glib::RefPtr<GLContext>
+  GLContext::get_current () -> glib::RefPtr<GLContext>
   {
-    auto retvalue = Glib::wrap (gdk_gl_context_get_current ());
+    auto retvalue = glib::wrap (gdk_gl_context_get_current ());
     if (retvalue)
       retvalue->reference ();
     return retvalue;
@@ -391,15 +391,15 @@ namespace Gdk
 #ifndef GDKMM_DISABLE_DEPRECATED
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<
-          Glib::RefPtr<GLContext>>::value,
-      "Type Glib::RefPtr<GLContext> cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      glib::Traits::ValueCompatibleWithWrapProperty<
+          glib::RefPtr<GLContext>>::value,
+      "Type glib::RefPtr<GLContext> cannot be used in _WRAP_PROPERTY. "
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  GLContext::property_shared_context () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<GLContext>>
+  GLContext::property_shared_context () const -> glib::PropertyProxy_ReadOnly<glib::RefPtr<GLContext>>
   {
-    return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<GLContext>> (
+    return glib::PropertyProxy_ReadOnly<glib::RefPtr<GLContext>> (
         this,
         "shared-context");
   }
@@ -408,38 +408,38 @@ namespace Gdk
 #ifndef GDKMM_DISABLE_DEPRECATED
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<GLAPI>::value,
+      glib::Traits::ValueCompatibleWithWrapProperty<GLAPI>::value,
       "Type GLAPI cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  GLContext::property_allowed_apis () -> Glib::PropertyProxy<GLAPI>
+  GLContext::property_allowed_apis () -> glib::PropertyProxy<GLAPI>
   {
-    return Glib::PropertyProxy<GLAPI> (this, "allowed-apis");
+    return glib::PropertyProxy<GLAPI> (this, "allowed-apis");
   }
 #endif
 
 #ifndef GDKMM_DISABLE_DEPRECATED
 
   auto
-  GLContext::property_allowed_apis () const -> Glib::PropertyProxy_ReadOnly<GLAPI>
+  GLContext::property_allowed_apis () const -> glib::PropertyProxy_ReadOnly<GLAPI>
   {
-    return Glib::PropertyProxy_ReadOnly<GLAPI> (this, "allowed-apis");
+    return glib::PropertyProxy_ReadOnly<GLAPI> (this, "allowed-apis");
   }
 #endif
 
 #ifndef GDKMM_DISABLE_DEPRECATED
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<GLAPI>::value,
+      glib::Traits::ValueCompatibleWithWrapProperty<GLAPI>::value,
       "Type GLAPI cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  GLContext::property_api () const -> Glib::PropertyProxy_ReadOnly<GLAPI>
+  GLContext::property_api () const -> glib::PropertyProxy_ReadOnly<GLAPI>
   {
-    return Glib::PropertyProxy_ReadOnly<GLAPI> (this, "api");
+    return glib::PropertyProxy_ReadOnly<GLAPI> (this, "api");
   }
 #endif
 
-} // namespace Gdk
+} // namespace gdk

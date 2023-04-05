@@ -19,18 +19,18 @@ using GActionMapClass = struct _GActionMapClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gio
+namespace gio
 {
   class LIBMM_GIO_SYMEXPORT ActionMap_Class;
 }
 #endif
 
-namespace Gio
+namespace gio
 {
 
   class LIBMM_GIO_SYMEXPORT Action;
 
-  class LIBMM_GIO_SYMEXPORT ActionMap : public Glib::Interface
+  class LIBMM_GIO_SYMEXPORT ActionMap : public glib::Interface
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -54,7 +54,7 @@ namespace Gio
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
-    explicit ActionMap (const Glib::Interface_Class& interface_class);
+    explicit ActionMap (const glib::Interface_Class& interface_class);
 
   public:
     explicit ActionMap (GActionMap* castitem);
@@ -95,95 +95,95 @@ namespace Gio
   private:
   public:
     auto
-    add_action (const Glib::RefPtr<Action>& action) -> void;
+    add_action (const glib::RefPtr<Action>& action) -> void;
 
     auto
-    remove_action (const Glib::ustring& action_name) -> void;
+    remove_action (const glib::ustring& action_name) -> void;
 
     auto
-    lookup_action (const Glib::ustring& action_name) -> Glib::RefPtr<Action>;
+    lookup_action (const glib::ustring& action_name) -> glib::RefPtr<Action>;
 
     auto
-    lookup_action (const Glib::ustring& action_name) const
-        -> Glib::RefPtr<const Action>;
+    lookup_action (const glib::ustring& action_name) const
+        -> glib::RefPtr<const Action>;
 
     auto
-    add_action (const Glib::ustring& name) -> Glib::RefPtr<SimpleAction>;
+    add_action (const glib::ustring& name) -> glib::RefPtr<SimpleAction>;
 
     using ActivateSlot = sigc::slot<void ()>;
 
     auto
-    add_action (const Glib::ustring& name, const ActivateSlot& slot)
-        -> Glib::RefPtr<SimpleAction>;
+    add_action (const glib::ustring& name, const ActivateSlot& slot)
+        -> glib::RefPtr<SimpleAction>;
 
     using ActivateWithParameterSlot =
-        sigc::slot<void (const Glib::VariantBase&)>;
+        sigc::slot<void (const glib::VariantBase&)>;
 
     auto
-    add_action_with_parameter (const Glib::ustring& name,
-                               const Glib::VariantType& parameter_type,
+    add_action_with_parameter (const glib::ustring& name,
+                               const glib::VariantType& parameter_type,
                                const ActivateWithParameterSlot& slot)
-        -> Glib::RefPtr<SimpleAction>;
+        -> glib::RefPtr<SimpleAction>;
 
     auto
-    add_action_bool (const Glib::ustring& name, bool state = false)
-        -> Glib::RefPtr<SimpleAction>;
+    add_action_bool (const glib::ustring& name, bool state = false)
+        -> glib::RefPtr<SimpleAction>;
 
     auto
-    add_action_bool (const Glib::ustring& name,
+    add_action_bool (const glib::ustring& name,
                      const ActivateSlot& slot,
-                     bool state = false) -> Glib::RefPtr<SimpleAction>;
+                     bool state = false) -> glib::RefPtr<SimpleAction>;
 
     auto
-    add_action_radio_string (const Glib::ustring& name,
-                             const Glib::ustring& state)
-        -> Glib::RefPtr<SimpleAction>;
+    add_action_radio_string (const glib::ustring& name,
+                             const glib::ustring& state)
+        -> glib::RefPtr<SimpleAction>;
 
     using ActivateWithStringParameterSlot =
-        sigc::slot<void (const Glib::ustring&)>;
+        sigc::slot<void (const glib::ustring&)>;
 
     auto
-    add_action_radio_string (const Glib::ustring& name,
+    add_action_radio_string (const glib::ustring& name,
                              const ActivateWithStringParameterSlot& slot,
-                             const Glib::ustring& state)
-        -> Glib::RefPtr<SimpleAction>;
+                             const glib::ustring& state)
+        -> glib::RefPtr<SimpleAction>;
 
     auto
-    add_action_radio_integer (const Glib::ustring& name, gint32 state)
-        -> Glib::RefPtr<SimpleAction>;
+    add_action_radio_integer (const glib::ustring& name, gint32 state)
+        -> glib::RefPtr<SimpleAction>;
 
     using ActivateWithIntParameterSlot = sigc::slot<void (int)>;
 
     auto
-    add_action_radio_integer (const Glib::ustring& name,
+    add_action_radio_integer (const glib::ustring& name,
                               const ActivateWithIntParameterSlot& slot,
-                              gint32 state) -> Glib::RefPtr<SimpleAction>;
+                              gint32 state) -> glib::RefPtr<SimpleAction>;
 
   protected:
     virtual auto
-    lookup_action_vfunc (const Glib::ustring& name) const
-        -> Glib::RefPtr<Action>;
+    lookup_action_vfunc (const glib::ustring& name) const
+        -> glib::RefPtr<Action>;
 
     virtual auto
-    add_action_vfunc (const Glib::RefPtr<Action>& action) const -> void;
+    add_action_vfunc (const glib::RefPtr<Action>& action) const -> void;
 
     virtual auto
-    remove_action_vfunc (const Glib::ustring& name) -> void;
+    remove_action_vfunc (const glib::ustring& name) -> void;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gio
+} // namespace gio
 
-namespace Glib
+namespace glib
 {
 
   LIBMM_GIO_SYMEXPORT
   auto
-  wrap (GActionMap* object, bool take_copy = false) -> Glib::RefPtr<Gio::ActionMap>;
+  wrap (GActionMap* object, bool take_copy = false) -> glib::RefPtr<gio::ActionMap>;
 
-} // namespace Glib
+} // namespace glib
 
 #endif

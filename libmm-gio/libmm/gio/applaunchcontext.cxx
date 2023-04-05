@@ -9,7 +9,7 @@
 #include <libmm/gio/appinfo.hxx>
 #include <libmm/gio/file.hxx>
 
-namespace Gio
+namespace gio
 {
 
 }
@@ -18,20 +18,20 @@ namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GAppLaunchContext* object, const bool take_copy) -> RefPtr<Gio::AppLaunchContext>
+  wrap (GAppLaunchContext* object, const bool take_copy) -> RefPtr<gio::AppLaunchContext>
   {
-    return Glib::make_refptr_for_instance<Gio::AppLaunchContext> (
-        dynamic_cast<Gio::AppLaunchContext*> (
+    return glib::make_refptr_for_instance<gio::AppLaunchContext> (
+        dynamic_cast<gio::AppLaunchContext*> (
             wrap_auto ((GObject*) object, take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gio
+namespace gio
 {
 
   auto
@@ -55,7 +55,7 @@ namespace Gio
   }
 
   auto
-  AppLaunchContext_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  AppLaunchContext_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new AppLaunchContext ((GAppLaunchContext*) object);
   }
@@ -68,7 +68,7 @@ namespace Gio
   }
 
   AppLaunchContext::AppLaunchContext (
-      const Glib::ConstructParams& construct_params)
+      const glib::ConstructParams& construct_params)
     : Object (construct_params)
   {
   }
@@ -108,61 +108,61 @@ namespace Gio
 
   AppLaunchContext::AppLaunchContext ()
     : ObjectBase (nullptr),
-      Object (Glib::ConstructParams (applaunchcontext_class_.init ()))
+      Object (glib::ConstructParams (applaunchcontext_class_.init ()))
   {
   }
 
   auto
-  AppLaunchContext::create () -> Glib::RefPtr<AppLaunchContext>
+  AppLaunchContext::create () -> glib::RefPtr<AppLaunchContext>
   {
-    return Glib::make_refptr_for_instance<AppLaunchContext> (
+    return glib::make_refptr_for_instance<AppLaunchContext> (
         new AppLaunchContext ());
   }
 
   auto
-  AppLaunchContext::setenv (const Glib::ustring& variable,
-                            const Glib::ustring& value) -> void
+  AppLaunchContext::setenv (const glib::ustring& variable,
+                            const glib::ustring& value) -> void
   {
     g_app_launch_context_setenv (gobj (), variable.c_str (), value.c_str ());
   }
 
   auto
-  AppLaunchContext::unsetenv (const Glib::ustring& variable) -> void
+  AppLaunchContext::unsetenv (const glib::ustring& variable) -> void
   {
     g_app_launch_context_unsetenv (gobj (), variable.c_str ());
   }
 
   auto
-  AppLaunchContext::get_environment () const -> std::vector<Glib::ustring>
+  AppLaunchContext::get_environment () const -> std::vector<glib::ustring>
   {
-    return Glib::ArrayHandler<Glib::ustring>::array_to_vector (
+    return glib::ArrayHandler<glib::ustring>::array_to_vector (
         g_app_launch_context_get_environment (
             const_cast<GAppLaunchContext*> (gobj ())),
-        Glib::OWNERSHIP_DEEP);
+        glib::OWNERSHIP_DEEP);
   }
 
   auto
-  AppLaunchContext::get_display (const Glib::RefPtr<AppInfo>& info,
-                                 const std::vector<Glib::RefPtr<File>>& files) -> std::string
+  AppLaunchContext::get_display (const glib::RefPtr<AppInfo>& info,
+                                 const std::vector<glib::RefPtr<File>>& files) -> std::string
   {
-    return Glib::convert_return_gchar_ptr_to_stdstring (
+    return glib::convert_return_gchar_ptr_to_stdstring (
         g_app_launch_context_get_display (
             gobj (),
-            Glib::unwrap (info),
-            Glib::ListHandler<Glib::RefPtr<File>>::vector_to_list (files)
+            glib::unwrap (info),
+            glib::ListHandler<glib::RefPtr<File>>::vector_to_list (files)
                 .data ()));
   }
 
   auto
   AppLaunchContext::get_startup_notify_id (
-      const Glib::RefPtr<AppInfo>& info,
-      const std::vector<Glib::RefPtr<File>>& files) -> std::string
+      const glib::RefPtr<AppInfo>& info,
+      const std::vector<glib::RefPtr<File>>& files) -> std::string
   {
-    return Glib::convert_return_gchar_ptr_to_stdstring (
+    return glib::convert_return_gchar_ptr_to_stdstring (
         g_app_launch_context_get_startup_notify_id (
             gobj (),
-            Glib::unwrap (info),
-            Glib::ListHandler<Glib::RefPtr<File>>::vector_to_list (files)
+            glib::unwrap (info),
+            glib::ListHandler<glib::RefPtr<File>>::vector_to_list (files)
                 .data ()));
   }
 
@@ -172,4 +172,4 @@ namespace Gio
     g_app_launch_context_launch_failed (gobj (), startup_notify_id.c_str ());
   }
 
-} // namespace Gio
+} // namespace gio

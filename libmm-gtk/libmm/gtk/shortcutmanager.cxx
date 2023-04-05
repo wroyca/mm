@@ -12,26 +12,26 @@ namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GtkShortcutManager* object, bool take_copy) -> Glib::RefPtr<Gtk::ShortcutManager>
+  wrap (GtkShortcutManager* object, bool take_copy) -> glib::RefPtr<gtk::ShortcutManager>
   {
-    return Glib::make_refptr_for_instance<Gtk::ShortcutManager> (
-        dynamic_cast<Gtk::ShortcutManager*> (
-            Glib::wrap_auto_interface<Gtk::ShortcutManager> (
+    return glib::make_refptr_for_instance<gtk::ShortcutManager> (
+        dynamic_cast<gtk::ShortcutManager*> (
+            glib::wrap_auto_interface<gtk::ShortcutManager> (
                 (GObject*) (object),
                 take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gtk
+namespace gtk
 {
 
   auto
-  ShortcutManager_Class::init () -> const Glib::Interface_Class&
+  ShortcutManager_Class::init () -> const glib::Interface_Class&
   {
     if (!gtype_)
     {
@@ -59,8 +59,8 @@ namespace Gtk
       GtkShortcutManager* self,
       GtkShortcutController* controller) -> void
   {
-    const auto obj_base = static_cast<Glib::ObjectBase*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+    const auto obj_base = static_cast<glib::ObjectBase*> (
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -69,12 +69,12 @@ namespace Gtk
       {
         try
         {
-          obj->add_controller_vfunc (Glib::wrap (controller, true));
+          obj->add_controller_vfunc (glib::wrap (controller, true));
           return;
         }
         catch (...)
         {
-          Glib::exception_handlers_invoke ();
+          glib::exception_handlers_invoke ();
         }
       }
     }
@@ -93,8 +93,8 @@ namespace Gtk
       GtkShortcutManager* self,
       GtkShortcutController* controller) -> void
   {
-    const auto obj_base = static_cast<Glib::ObjectBase*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+    const auto obj_base = static_cast<glib::ObjectBase*> (
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -103,12 +103,12 @@ namespace Gtk
       {
         try
         {
-          obj->remove_controller_vfunc (Glib::wrap (controller, true));
+          obj->remove_controller_vfunc (glib::wrap (controller, true));
           return;
         }
         catch (...)
         {
-          Glib::exception_handlers_invoke ();
+          glib::exception_handlers_invoke ();
         }
       }
     }
@@ -123,36 +123,36 @@ namespace Gtk
   }
 
   auto
-  ShortcutManager_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  ShortcutManager_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new ShortcutManager ((GtkShortcutManager*) (object));
   }
 
   ShortcutManager::ShortcutManager ()
-    : Glib::Interface (shortcutmanager_class_.init ())
+    : glib::Interface (shortcutmanager_class_.init ())
   {
   }
 
   ShortcutManager::ShortcutManager (GtkShortcutManager* castitem)
-    : Glib::Interface ((GObject*) (castitem))
+    : glib::Interface ((GObject*) (castitem))
   {
   }
 
   ShortcutManager::ShortcutManager (
-      const Glib::Interface_Class& interface_class)
-    : Glib::Interface (interface_class)
+      const glib::Interface_Class& interface_class)
+    : glib::Interface (interface_class)
   {
   }
 
   ShortcutManager::ShortcutManager (ShortcutManager&& src) noexcept
-    : Glib::Interface (std::move (src))
+    : glib::Interface (std::move (src))
   {
   }
 
   auto
   ShortcutManager::operator= (ShortcutManager&& src) noexcept -> ShortcutManager&
   {
-    Glib::Interface::operator= (std::move (src));
+    glib::Interface::operator= (std::move (src));
     return *this;
   }
 
@@ -179,8 +179,8 @@ namespace Gtk
   }
 
   auto
-  Gtk::ShortcutManager::add_controller_vfunc (
-      const Glib::RefPtr<ShortcutController>& controller) -> void
+  gtk::ShortcutManager::add_controller_vfunc (
+      const glib::RefPtr<ShortcutController>& controller) -> void
   {
     const auto base =
         static_cast<BaseClassType*> (g_type_interface_peek_parent (
@@ -189,13 +189,13 @@ namespace Gtk
 
     if (base && base->add_controller)
     {
-      (*base->add_controller) (gobj (), Glib::unwrap (controller));
+      (*base->add_controller) (gobj (), glib::unwrap (controller));
     }
   }
 
   auto
-  Gtk::ShortcutManager::remove_controller_vfunc (
-      const Glib::RefPtr<ShortcutController>& controller) -> void
+  gtk::ShortcutManager::remove_controller_vfunc (
+      const glib::RefPtr<ShortcutController>& controller) -> void
   {
     const auto base =
         static_cast<BaseClassType*> (g_type_interface_peek_parent (
@@ -204,8 +204,8 @@ namespace Gtk
 
     if (base && base->remove_controller)
     {
-      (*base->remove_controller) (gobj (), Glib::unwrap (controller));
+      (*base->remove_controller) (gobj (), glib::unwrap (controller));
     }
   }
 
-} // namespace Gtk
+} // namespace gtk

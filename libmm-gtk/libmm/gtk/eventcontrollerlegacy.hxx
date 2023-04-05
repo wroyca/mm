@@ -14,13 +14,13 @@ using GtkEventControllerLegacyClass = struct _GtkEventControllerLegacyClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT EventControllerLegacy_Class;
 }
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
   class LIBMM_GTK_SYMEXPORT EventControllerLegacy : public EventController
@@ -43,7 +43,7 @@ namespace Gtk
 
   protected:
     explicit EventControllerLegacy (
-        const Glib::ConstructParams& construct_params);
+        const glib::ConstructParams& construct_params);
     explicit EventControllerLegacy (GtkEventControllerLegacy* castitem);
 
 #endif
@@ -85,23 +85,23 @@ namespace Gtk
 
   public:
     static auto
-    create () -> Glib::RefPtr<EventControllerLegacy>;
+    create () -> glib::RefPtr<EventControllerLegacy>;
 
     auto
     signal_event ()
-        -> Glib::SignalProxy<bool (const Glib::RefPtr<const Gdk::Event>&)>;
+        -> glib::SignalProxy<bool (const glib::RefPtr<const gdk::Event>&)>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkEventControllerLegacy* object, bool take_copy = false) -> Glib::RefPtr<Gtk::EventControllerLegacy>;
-} // namespace Glib
+  wrap (GtkEventControllerLegacy* object, bool take_copy = false) -> glib::RefPtr<gtk::EventControllerLegacy>;
+} // namespace glib
 
 #endif

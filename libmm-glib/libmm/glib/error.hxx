@@ -8,7 +8,7 @@
 #include <libmm/glib/mm-glibconfig.hxx>
 #include <libmm/glib/value.hxx>
 
-namespace Glib
+namespace glib
 {
 
   class Error : public std::exception
@@ -17,7 +17,7 @@ namespace Glib
     LIBMM_GLIB_SYMEXPORT
     Error ();
     LIBMM_GLIB_SYMEXPORT
-    Error (GQuark error_domain, int error_code, const Glib::ustring& message);
+    Error (GQuark error_domain, int error_code, const glib::ustring& message);
     LIBMM_GLIB_SYMEXPORT explicit Error (GError* gobject, bool take_copy = false);
 
     LIBMM_GLIB_SYMEXPORT
@@ -70,10 +70,10 @@ namespace Glib
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   template <>
-  class LIBMM_GLIB_SYMEXPORT Value<Glib::Error> : public ValueBase_Boxed
+  class LIBMM_GLIB_SYMEXPORT Value<glib::Error> : public ValueBase_Boxed
   {
   public:
-    using CppType = Glib::Error;
+    using CppType = glib::Error;
     using CType = GError*;
 
     static auto
@@ -86,6 +86,6 @@ namespace Glib
   };
 #endif
 
-} // namespace Glib
+} // namespace glib
 
 #endif

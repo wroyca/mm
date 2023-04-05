@@ -5,7 +5,7 @@
   #include <libmm/glib/mm-glib.hxx>
   #include <libmm/gtk/treeview_private.hxx>
 
-namespace Gtk
+namespace gtk
 {
 
   namespace TreeView_Private
@@ -27,7 +27,7 @@ namespace Gtk
 
       try
       {
-        auto cppiter = Gtk::TreeModel::iterator (model, iter);
+        auto cppiter = gtk::TreeModel::iterator (model, iter);
         if (!cppiter.get_model_gobject ())
         {
           g_warning (
@@ -35,11 +35,11 @@ namespace Gtk
           return;
         }
 
-        (*the_slot) (Glib::wrap (cell, false), cppiter);
+        (*the_slot) (glib::wrap (cell, false), cppiter);
       }
       catch (...)
       {
-        Glib::exception_handlers_invoke ();
+        glib::exception_handlers_invoke ();
       }
     }
 
@@ -59,12 +59,12 @@ namespace Gtk
 
       try
       {
-        return (*the_slot) (Glib::wrap (model, true),
-                            Gtk::TreeModel::iterator (model, iter));
+        return (*the_slot) (glib::wrap (model, true),
+                            gtk::TreeModel::iterator (model, iter));
       }
       catch (...)
       {
-        Glib::exception_handlers_invoke ();
+        glib::exception_handlers_invoke ();
       }
 
       return 0;
@@ -78,6 +78,6 @@ namespace Gtk
 
   } // namespace TreeView_Private
 
-} // namespace Gtk
+} // namespace gtk
 
 #endif

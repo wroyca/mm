@@ -7,54 +7,54 @@
 
 #include <libmm/gtk/mm-gtk.hxx>
 
-namespace Adw
+namespace adw
 {
 
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  Value<RefPtr<Adw::SpringParams>>::value_type () -> GType
+  Value<RefPtr<adw::SpringParams>>::value_type () -> GType
   {
     return adw_spring_params_get_type ();
   }
 
   auto
-  Value<RefPtr<Adw::SpringParams>>::set (const CppType& data) -> void
+  Value<RefPtr<adw::SpringParams>>::set (const CppType& data) -> void
   {
-    set_boxed (Glib::unwrap (data));
+    set_boxed (glib::unwrap (data));
   }
 
   auto
-  Value<RefPtr<Adw::SpringParams>>::get () const -> Value<RefPtr<Adw::SpringParams>>::CppType
+  Value<RefPtr<adw::SpringParams>>::get () const -> Value<RefPtr<adw::SpringParams>>::CppType
   {
-    return Glib::wrap (static_cast<CType> (get_boxed ()), true);
+    return glib::wrap (static_cast<CType> (get_boxed ()), true);
   }
 
-} // namespace Glib
+} // namespace glib
 
 namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (AdwSpringParams* object, bool take_copy) -> Glib::RefPtr<Adw::SpringParams>
+  wrap (AdwSpringParams* object, bool take_copy) -> glib::RefPtr<adw::SpringParams>
   {
     if (take_copy && object)
       adw_spring_params_ref (object);
 
-    return Glib::make_refptr_for_instance<Adw::SpringParams> (
-        reinterpret_cast<Adw::SpringParams*> (object));
+    return glib::make_refptr_for_instance<adw::SpringParams> (
+        reinterpret_cast<adw::SpringParams*> (object));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Adw
+namespace adw
 {
 
   auto
@@ -95,16 +95,16 @@ namespace Adw
   auto
   SpringParams::create (DampingRatio damping_ratio,
                         double mass,
-                        double stiffness) -> Glib::RefPtr<SpringParams>
+                        double stiffness) -> glib::RefPtr<SpringParams>
   {
-    return Glib::wrap (
+    return glib::wrap (
         adw_spring_params_new (damping_ratio.damping_ratio, mass, stiffness));
   }
 
   auto
-  SpringParams::create (Damping damping, double mass, double stiffness) -> Glib::RefPtr<SpringParams>
+  SpringParams::create (Damping damping, double mass, double stiffness) -> glib::RefPtr<SpringParams>
   {
-    return Glib::wrap (
+    return glib::wrap (
         adw_spring_params_new_full (damping.damping, mass, stiffness));
   }
 
@@ -135,4 +135,4 @@ namespace Adw
         const_cast<AdwSpringParams*> (gobj ()));
   }
 
-} // namespace Adw
+} // namespace adw

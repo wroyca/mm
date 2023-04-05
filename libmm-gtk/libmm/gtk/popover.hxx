@@ -16,13 +16,13 @@ using GtkPopoverClass = struct _GtkPopoverClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT Popover_Class;
 }
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
   class LIBMM_GTK_SYMEXPORT Popover : public Widget,
@@ -54,7 +54,7 @@ namespace Gtk
     static CppClassType popover_class_;
 
   protected:
-    explicit Popover (const Glib::ConstructParams& construct_params);
+    explicit Popover (const glib::ConstructParams& construct_params);
     explicit Popover (GtkPopover* castitem);
 
 #endif
@@ -97,10 +97,10 @@ namespace Gtk
     get_child () const -> const Widget*;
 
     auto
-    set_pointing_to (const Gdk::Rectangle& rect) -> void;
+    set_pointing_to (const gdk::Rectangle& rect) -> void;
 
     auto
-    get_pointing_to (Gdk::Rectangle& rect) const -> bool;
+    get_pointing_to (gdk::Rectangle& rect) const -> bool;
 
     auto
     set_position (PositionType position = PositionType::TOP) -> void;
@@ -151,56 +151,56 @@ namespace Gtk
     present () -> void;
 
     auto
-    property_pointing_to () -> Glib::PropertyProxy<Gdk::Rectangle>;
+    property_pointing_to () -> glib::PropertyProxy<gdk::Rectangle>;
 
     auto
     property_pointing_to () const
-        -> Glib::PropertyProxy_ReadOnly<Gdk::Rectangle>;
+        -> glib::PropertyProxy_ReadOnly<gdk::Rectangle>;
 
     auto
-    property_position () -> Glib::PropertyProxy<PositionType>;
+    property_position () -> glib::PropertyProxy<PositionType>;
 
     auto
-    property_position () const -> Glib::PropertyProxy_ReadOnly<PositionType>;
+    property_position () const -> glib::PropertyProxy_ReadOnly<PositionType>;
 
     auto
-    property_autohide () -> Glib::PropertyProxy<bool>;
+    property_autohide () -> glib::PropertyProxy<bool>;
 
     auto
-    property_autohide () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_autohide () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_has_arrow () -> Glib::PropertyProxy<bool>;
+    property_has_arrow () -> glib::PropertyProxy<bool>;
 
     auto
-    property_has_arrow () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_has_arrow () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_default_widget () -> Glib::PropertyProxy<Widget*>;
+    property_default_widget () -> glib::PropertyProxy<Widget*>;
 
     auto
-    property_default_widget () const -> Glib::PropertyProxy_ReadOnly<Widget*>;
+    property_default_widget () const -> glib::PropertyProxy_ReadOnly<Widget*>;
 
     auto
-    property_mnemonics_visible () -> Glib::PropertyProxy<bool>;
+    property_mnemonics_visible () -> glib::PropertyProxy<bool>;
 
     auto
-    property_mnemonics_visible () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_mnemonics_visible () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_child () -> Glib::PropertyProxy<Widget*>;
+    property_child () -> glib::PropertyProxy<Widget*>;
 
     auto
-    property_child () const -> Glib::PropertyProxy_ReadOnly<Widget*>;
+    property_child () const -> glib::PropertyProxy_ReadOnly<Widget*>;
 
     auto
-    property_cascade_popdown () -> Glib::PropertyProxy<bool>;
+    property_cascade_popdown () -> glib::PropertyProxy<bool>;
 
     auto
-    property_cascade_popdown () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_cascade_popdown () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    signal_closed () -> Glib::SignalProxy<void ()>;
+    signal_closed () -> glib::SignalProxy<void ()>;
 
   public:
   public:
@@ -209,12 +209,12 @@ namespace Gtk
     on_closed () -> void;
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkPopover* object, bool take_copy = false) -> Gtk::Popover*;
-} // namespace Glib
+  wrap (GtkPopover* object, bool take_copy = false) -> gtk::Popover*;
+} // namespace glib
 
 #endif

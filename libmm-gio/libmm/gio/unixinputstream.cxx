@@ -14,24 +14,24 @@ namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GUnixInputStream* object, bool take_copy) -> Glib::RefPtr<Gio::UnixInputStream>
+  wrap (GUnixInputStream* object, bool take_copy) -> glib::RefPtr<gio::UnixInputStream>
   {
-    return Glib::make_refptr_for_instance<Gio::UnixInputStream> (
-        dynamic_cast<Gio::UnixInputStream*> (
-            Glib::wrap_auto ((GObject*) (object), take_copy)));
+    return glib::make_refptr_for_instance<gio::UnixInputStream> (
+        dynamic_cast<gio::UnixInputStream*> (
+            glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gio
+namespace gio
 {
 
   auto
-  UnixInputStream_Class::init () -> const Glib::Class&
+  UnixInputStream_Class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -54,7 +54,7 @@ namespace Gio
   }
 
   auto
-  UnixInputStream_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  UnixInputStream_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new UnixInputStream ((GUnixInputStream*) object);
   }
@@ -67,18 +67,18 @@ namespace Gio
   }
 
   UnixInputStream::UnixInputStream (
-      const Glib::ConstructParams& construct_params)
-    : Gio::InputStream (construct_params)
+      const glib::ConstructParams& construct_params)
+    : gio::InputStream (construct_params)
   {
   }
 
   UnixInputStream::UnixInputStream (GUnixInputStream* castitem)
-    : Gio::InputStream ((GInputStream*) (castitem))
+    : gio::InputStream ((GInputStream*) (castitem))
   {
   }
 
   UnixInputStream::UnixInputStream (UnixInputStream&& src) noexcept
-    : Gio::InputStream (std::move (src)),
+    : gio::InputStream (std::move (src)),
       PollableInputStream (std::move (src)),
       FileDescriptorBased (std::move (src))
   {
@@ -87,7 +87,7 @@ namespace Gio
   auto
   UnixInputStream::operator= (UnixInputStream&& src) noexcept -> UnixInputStream&
   {
-    Gio::InputStream::operator= (std::move (src));
+    gio::InputStream::operator= (std::move (src));
     PollableInputStream::operator= (std::move (src));
     FileDescriptorBased::operator= (std::move (src));
     return *this;
@@ -110,8 +110,8 @@ namespace Gio
   }
 
   UnixInputStream::UnixInputStream (int fd, bool close_fd)
-    : Glib::ObjectBase (nullptr),
-      Gio::InputStream (Glib::ConstructParams (unixinputstream_class_.init (),
+    : glib::ObjectBase (nullptr),
+      gio::InputStream (glib::ConstructParams (unixinputstream_class_.init (),
                                                "fd",
                                                fd,
                                                "close_fd",
@@ -121,9 +121,9 @@ namespace Gio
   }
 
   auto
-  UnixInputStream::create (int fd, bool close_fd) -> Glib::RefPtr<UnixInputStream>
+  UnixInputStream::create (int fd, bool close_fd) -> glib::RefPtr<UnixInputStream>
   {
-    return Glib::make_refptr_for_instance<UnixInputStream> (
+    return glib::make_refptr_for_instance<UnixInputStream> (
         new UnixInputStream (fd, close_fd));
   }
 
@@ -147,23 +147,23 @@ namespace Gio
   }
 
   auto
-  UnixInputStream::property_fd () const -> Glib::PropertyProxy_ReadOnly<int>
+  UnixInputStream::property_fd () const -> glib::PropertyProxy_ReadOnly<int>
   {
-    return Glib::PropertyProxy_ReadOnly<int> (this, "fd");
+    return glib::PropertyProxy_ReadOnly<int> (this, "fd");
   }
 
   auto
-  UnixInputStream::property_close_fd () -> Glib::PropertyProxy<bool>
+  UnixInputStream::property_close_fd () -> glib::PropertyProxy<bool>
   {
-    return Glib::PropertyProxy<bool> (this, "close-fd");
+    return glib::PropertyProxy<bool> (this, "close-fd");
   }
 
   auto
-  UnixInputStream::property_close_fd () const -> Glib::PropertyProxy_ReadOnly<bool>
+  UnixInputStream::property_close_fd () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "close-fd");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "close-fd");
   }
 
-} // namespace Gio
+} // namespace gio
 
 #endif

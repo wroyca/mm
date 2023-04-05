@@ -14,13 +14,13 @@
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT Video_Class;
 }
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
   class LIBMM_GTK_SYMEXPORT Video : public Widget
@@ -50,7 +50,7 @@ namespace Gtk
     static CppClassType video_class_;
 
   protected:
-    explicit Video (const Glib::ConstructParams& construct_params);
+    explicit Video (const glib::ConstructParams& construct_params);
     explicit Video (GtkVideo* castitem);
 
 #endif
@@ -81,29 +81,29 @@ namespace Gtk
   public:
     Video ();
 
-    explicit Video (const Glib::RefPtr<MediaStream>& media_stream);
+    explicit Video (const glib::RefPtr<MediaStream>& media_stream);
 
-    explicit Video (const Glib::RefPtr<Gio::File>& file);
+    explicit Video (const glib::RefPtr<gio::File>& file);
 
     explicit Video (const std::string& filename);
 
     auto
-    get_media_stream () -> Glib::RefPtr<MediaStream>;
+    get_media_stream () -> glib::RefPtr<MediaStream>;
 
     auto
-    get_media_stream () const -> Glib::RefPtr<const MediaStream>;
+    get_media_stream () const -> glib::RefPtr<const MediaStream>;
 
     auto
-    set_media_stream (const Glib::RefPtr<MediaStream>& stream) -> void;
+    set_media_stream (const glib::RefPtr<MediaStream>& stream) -> void;
 
     auto
-    get_file () -> Glib::RefPtr<Gio::File>;
+    get_file () -> glib::RefPtr<gio::File>;
 
     auto
-    get_file () const -> Glib::RefPtr<const Gio::File>;
+    get_file () const -> glib::RefPtr<const gio::File>;
 
     auto
-    set_file (const Glib::RefPtr<const Gio::File>& file) -> void;
+    set_file (const glib::RefPtr<const gio::File>& file) -> void;
 
     auto
     set_filename (const std::string& filename) -> void;
@@ -124,42 +124,42 @@ namespace Gtk
     set_loop (bool loop = true) -> void;
 
     auto
-    property_media_stream () -> Glib::PropertyProxy<Glib::RefPtr<MediaStream>>;
+    property_media_stream () -> glib::PropertyProxy<glib::RefPtr<MediaStream>>;
 
     auto
     property_media_stream () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<MediaStream>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<MediaStream>>;
 
     auto
-    property_file () -> Glib::PropertyProxy<Glib::RefPtr<Gio::File>>;
+    property_file () -> glib::PropertyProxy<glib::RefPtr<gio::File>>;
 
     auto
     property_file () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gio::File>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<gio::File>>;
 
     auto
-    property_autoplay () -> Glib::PropertyProxy<bool>;
+    property_autoplay () -> glib::PropertyProxy<bool>;
 
     auto
-    property_autoplay () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_autoplay () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_loop () -> Glib::PropertyProxy<bool>;
+    property_loop () -> glib::PropertyProxy<bool>;
 
     auto
-    property_loop () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_loop () const -> glib::PropertyProxy_ReadOnly<bool>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkVideo* object, bool take_copy = false) -> Gtk::Video*;
-} // namespace Glib
+  wrap (GtkVideo* object, bool take_copy = false) -> gtk::Video*;
+} // namespace glib
 
 #endif

@@ -3,7 +3,7 @@
 #ifndef _GLIBMM_PRIORITIES_H
 #define _GLIBMM_PRIORITIES_H
 
-namespace Glib
+namespace glib
 {
 
   enum
@@ -19,6 +19,6 @@ namespace Glib
     PRIORITY_LOW = 300
   };
 
-} // namespace Glib
+} // namespace glib
 
 #endif

@@ -7,7 +7,7 @@
 
 #include <libmm/glib/class.hxx>
 
-namespace Glib
+namespace glib
 {
 
   class LIBMM_GLIB_SYMEXPORT Binding_Class : public Class
@@ -35,6 +35,6 @@ namespace Glib
   protected:
   };
 
-} // namespace Glib
+} // namespace glib
 
 #endif

@@ -17,16 +17,16 @@ using GDBusObjectManagerServerClass = struct _GDBusObjectManagerServerClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gio::DBus
+namespace gio::DBus
 {
   class LIBMM_GIO_SYMEXPORT ObjectManagerServer_Class;
 }
 #endif
 
-namespace Gio::DBus
+namespace gio::DBus
 {
 
-  class LIBMM_GIO_SYMEXPORT ObjectManagerServer : public Glib::Object,
+  class LIBMM_GIO_SYMEXPORT ObjectManagerServer : public glib::Object,
                                         public ObjectManager
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -47,7 +47,7 @@ namespace Gio::DBus
 
   protected:
     explicit ObjectManagerServer (
-        const Glib::ConstructParams& construct_params);
+        const glib::ConstructParams& construct_params);
     explicit ObjectManagerServer (GDBusObjectManagerServer* castitem);
 
 #endif
@@ -85,61 +85,61 @@ namespace Gio::DBus
 
   private:
   protected:
-    explicit ObjectManagerServer (const Glib::ustring& object_path);
+    explicit ObjectManagerServer (const glib::ustring& object_path);
 
   public:
     static auto
-    create (const Glib::ustring& object_path)
-        -> Glib::RefPtr<ObjectManagerServer>;
+    create (const glib::ustring& object_path)
+        -> glib::RefPtr<ObjectManagerServer>;
 
     auto
-    get_connection () -> Glib::RefPtr<Connection>;
+    get_connection () -> glib::RefPtr<Connection>;
 
     auto
-    get_connection () const -> Glib::RefPtr<const Connection>;
+    get_connection () const -> glib::RefPtr<const Connection>;
 
     auto
-    set_connection (const Glib::RefPtr<Connection>& connection) -> void;
+    set_connection (const glib::RefPtr<Connection>& connection) -> void;
 
     auto
-    export_object (const Glib::RefPtr<Gio::DBus::ObjectSkeleton>& object)
+    export_object (const glib::RefPtr<gio::DBus::ObjectSkeleton>& object)
         -> void;
 
     auto
-    export_uniquely (const Glib::RefPtr<Gio::DBus::ObjectSkeleton>& object)
+    export_uniquely (const glib::RefPtr<gio::DBus::ObjectSkeleton>& object)
         -> void;
 
     auto
-    is_exported (const Glib::RefPtr<Gio::DBus::ObjectSkeleton>& object) const
+    is_exported (const glib::RefPtr<gio::DBus::ObjectSkeleton>& object) const
         -> bool;
 
     auto
-    unexport (const Glib::ustring& object_path) -> bool;
+    unexport (const glib::ustring& object_path) -> bool;
 
     auto
-    property_connection () -> Glib::PropertyProxy<Glib::RefPtr<Connection>>;
+    property_connection () -> glib::PropertyProxy<glib::RefPtr<Connection>>;
 
     auto
     property_connection () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Connection>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<Connection>>;
 
     auto
     property_object_path () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+        -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gio::DBus
+} // namespace gio::DBus
 
-namespace Glib
+namespace glib
 {
 
   LIBMM_GIO_SYMEXPORT
   auto
-  wrap (GDBusObjectManagerServer* object, bool take_copy = false) -> Glib::RefPtr<Gio::DBus::ObjectManagerServer>;
-} // namespace Glib
+  wrap (GDBusObjectManagerServer* object, bool take_copy = false) -> glib::RefPtr<gio::DBus::ObjectManagerServer>;
+} // namespace glib
 
 #endif

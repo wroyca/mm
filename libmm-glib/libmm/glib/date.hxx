@@ -15,7 +15,7 @@ extern "C"
 }
 #endif
 
-namespace Glib
+namespace glib
 {
 
   class LIBMM_GLIB_SYMEXPORT Date
@@ -97,7 +97,7 @@ namespace Glib
     clear () -> void;
 
     auto
-    set_parse (const Glib::ustring& str) -> void;
+    set_parse (const glib::ustring& str) -> void;
 
     auto
     set_time (std::time_t timet) -> void;
@@ -208,7 +208,7 @@ namespace Glib
     is_leap_year (Year year) -> bool;
 
     auto
-    format_string (const Glib::ustring& format) const -> Glib::ustring;
+    format_string (const glib::ustring& format) const -> glib::ustring;
 
     auto
     to_struct_tm (struct tm& dest) const -> void;
@@ -271,6 +271,6 @@ namespace Glib
     return (lhs.compare (rhs) >= 0);
   }
 
-} // namespace Glib
+} // namespace glib
 
 #endif

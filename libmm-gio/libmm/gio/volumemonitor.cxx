@@ -8,7 +8,7 @@
 #include <gio/gio.h>
 #include <libmm/glib/exceptionhandler.hxx>
 
-namespace Gio
+namespace gio
 {
 
 }
@@ -21,27 +21,27 @@ namespace
                                               GVolume* p0,
                                               void* data) -> void
   {
-    using namespace Gio;
-    using SlotType = sigc::slot<void (const Glib::RefPtr<Volume>&)>;
+    using namespace gio;
+    using SlotType = sigc::slot<void (const glib::RefPtr<Volume>&)>;
 
     const auto obj = dynamic_cast<VolumeMonitor*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
     {
       try
       {
-        if (const auto slot = Glib::SignalProxyNormal::data_to_slot (data))
-          (*static_cast<SlotType*> (slot)) (Glib::wrap (p0, true));
+        if (const auto slot = glib::SignalProxyNormal::data_to_slot (data))
+          (*static_cast<SlotType*> (slot)) (glib::wrap (p0, true));
       }
       catch (...)
       {
-        Glib::exception_handlers_invoke ();
+        glib::exception_handlers_invoke ();
       }
     }
   }
 
-  const Glib::SignalProxyInfo VolumeMonitor_signal_volume_added_info = {
+  const glib::SignalProxyInfo VolumeMonitor_signal_volume_added_info = {
       "volume_added",
       (GCallback) &VolumeMonitor_signal_volume_added_callback,
       (GCallback) &VolumeMonitor_signal_volume_added_callback};
@@ -51,27 +51,27 @@ namespace
                                                 GVolume* p0,
                                                 void* data) -> void
   {
-    using namespace Gio;
-    using SlotType = sigc::slot<void (const Glib::RefPtr<Volume>&)>;
+    using namespace gio;
+    using SlotType = sigc::slot<void (const glib::RefPtr<Volume>&)>;
 
     const auto obj = dynamic_cast<VolumeMonitor*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
     {
       try
       {
-        if (const auto slot = Glib::SignalProxyNormal::data_to_slot (data))
-          (*static_cast<SlotType*> (slot)) (Glib::wrap (p0, true));
+        if (const auto slot = glib::SignalProxyNormal::data_to_slot (data))
+          (*static_cast<SlotType*> (slot)) (glib::wrap (p0, true));
       }
       catch (...)
       {
-        Glib::exception_handlers_invoke ();
+        glib::exception_handlers_invoke ();
       }
     }
   }
 
-  const Glib::SignalProxyInfo VolumeMonitor_signal_volume_removed_info = {
+  const glib::SignalProxyInfo VolumeMonitor_signal_volume_removed_info = {
       "volume_removed",
       (GCallback) &VolumeMonitor_signal_volume_removed_callback,
       (GCallback) &VolumeMonitor_signal_volume_removed_callback};
@@ -81,27 +81,27 @@ namespace
                                                 GVolume* p0,
                                                 void* data) -> void
   {
-    using namespace Gio;
-    using SlotType = sigc::slot<void (const Glib::RefPtr<Volume>&)>;
+    using namespace gio;
+    using SlotType = sigc::slot<void (const glib::RefPtr<Volume>&)>;
 
     const auto obj = dynamic_cast<VolumeMonitor*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
     {
       try
       {
-        if (const auto slot = Glib::SignalProxyNormal::data_to_slot (data))
-          (*static_cast<SlotType*> (slot)) (Glib::wrap (p0, true));
+        if (const auto slot = glib::SignalProxyNormal::data_to_slot (data))
+          (*static_cast<SlotType*> (slot)) (glib::wrap (p0, true));
       }
       catch (...)
       {
-        Glib::exception_handlers_invoke ();
+        glib::exception_handlers_invoke ();
       }
     }
   }
 
-  const Glib::SignalProxyInfo VolumeMonitor_signal_volume_changed_info = {
+  const glib::SignalProxyInfo VolumeMonitor_signal_volume_changed_info = {
       "volume_changed",
       (GCallback) &VolumeMonitor_signal_volume_changed_callback,
       (GCallback) &VolumeMonitor_signal_volume_changed_callback};
@@ -111,27 +111,27 @@ namespace
                                              GMount* p0,
                                              void* data) -> void
   {
-    using namespace Gio;
-    using SlotType = sigc::slot<void (const Glib::RefPtr<Mount>&)>;
+    using namespace gio;
+    using SlotType = sigc::slot<void (const glib::RefPtr<Mount>&)>;
 
     const auto obj = dynamic_cast<VolumeMonitor*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
     {
       try
       {
-        if (const auto slot = Glib::SignalProxyNormal::data_to_slot (data))
-          (*static_cast<SlotType*> (slot)) (Glib::wrap (p0, true));
+        if (const auto slot = glib::SignalProxyNormal::data_to_slot (data))
+          (*static_cast<SlotType*> (slot)) (glib::wrap (p0, true));
       }
       catch (...)
       {
-        Glib::exception_handlers_invoke ();
+        glib::exception_handlers_invoke ();
       }
     }
   }
 
-  const Glib::SignalProxyInfo VolumeMonitor_signal_mount_added_info = {
+  const glib::SignalProxyInfo VolumeMonitor_signal_mount_added_info = {
       "mount_added",
       (GCallback) &VolumeMonitor_signal_mount_added_callback,
       (GCallback) &VolumeMonitor_signal_mount_added_callback};
@@ -141,27 +141,27 @@ namespace
                                                GMount* p0,
                                                void* data) -> void
   {
-    using namespace Gio;
-    using SlotType = sigc::slot<void (const Glib::RefPtr<Mount>&)>;
+    using namespace gio;
+    using SlotType = sigc::slot<void (const glib::RefPtr<Mount>&)>;
 
     const auto obj = dynamic_cast<VolumeMonitor*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
     {
       try
       {
-        if (const auto slot = Glib::SignalProxyNormal::data_to_slot (data))
-          (*static_cast<SlotType*> (slot)) (Glib::wrap (p0, true));
+        if (const auto slot = glib::SignalProxyNormal::data_to_slot (data))
+          (*static_cast<SlotType*> (slot)) (glib::wrap (p0, true));
       }
       catch (...)
       {
-        Glib::exception_handlers_invoke ();
+        glib::exception_handlers_invoke ();
       }
     }
   }
 
-  const Glib::SignalProxyInfo VolumeMonitor_signal_mount_removed_info = {
+  const glib::SignalProxyInfo VolumeMonitor_signal_mount_removed_info = {
       "mount_removed",
       (GCallback) &VolumeMonitor_signal_mount_removed_callback,
       (GCallback) &VolumeMonitor_signal_mount_removed_callback};
@@ -171,27 +171,27 @@ namespace
                                                    GMount* p0,
                                                    void* data) -> void
   {
-    using namespace Gio;
-    using SlotType = sigc::slot<void (const Glib::RefPtr<Mount>&)>;
+    using namespace gio;
+    using SlotType = sigc::slot<void (const glib::RefPtr<Mount>&)>;
 
     const auto obj = dynamic_cast<VolumeMonitor*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
     {
       try
       {
-        if (const auto slot = Glib::SignalProxyNormal::data_to_slot (data))
-          (*static_cast<SlotType*> (slot)) (Glib::wrap (p0, true));
+        if (const auto slot = glib::SignalProxyNormal::data_to_slot (data))
+          (*static_cast<SlotType*> (slot)) (glib::wrap (p0, true));
       }
       catch (...)
       {
-        Glib::exception_handlers_invoke ();
+        glib::exception_handlers_invoke ();
       }
     }
   }
 
-  const Glib::SignalProxyInfo VolumeMonitor_signal_mount_pre_unmount_info = {
+  const glib::SignalProxyInfo VolumeMonitor_signal_mount_pre_unmount_info = {
       "mount_pre_unmount",
       (GCallback) &VolumeMonitor_signal_mount_pre_unmount_callback,
       (GCallback) &VolumeMonitor_signal_mount_pre_unmount_callback};
@@ -201,27 +201,27 @@ namespace
                                                GMount* p0,
                                                void* data) -> void
   {
-    using namespace Gio;
-    using SlotType = sigc::slot<void (const Glib::RefPtr<Mount>&)>;
+    using namespace gio;
+    using SlotType = sigc::slot<void (const glib::RefPtr<Mount>&)>;
 
     const auto obj = dynamic_cast<VolumeMonitor*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
     {
       try
       {
-        if (const auto slot = Glib::SignalProxyNormal::data_to_slot (data))
-          (*static_cast<SlotType*> (slot)) (Glib::wrap (p0, true));
+        if (const auto slot = glib::SignalProxyNormal::data_to_slot (data))
+          (*static_cast<SlotType*> (slot)) (glib::wrap (p0, true));
       }
       catch (...)
       {
-        Glib::exception_handlers_invoke ();
+        glib::exception_handlers_invoke ();
       }
     }
   }
 
-  const Glib::SignalProxyInfo VolumeMonitor_signal_mount_changed_info = {
+  const glib::SignalProxyInfo VolumeMonitor_signal_mount_changed_info = {
       "mount_changed",
       (GCallback) &VolumeMonitor_signal_mount_changed_callback,
       (GCallback) &VolumeMonitor_signal_mount_changed_callback};
@@ -231,27 +231,27 @@ namespace
                                                  GDrive* p0,
                                                  void* data) -> void
   {
-    using namespace Gio;
-    using SlotType = sigc::slot<void (const Glib::RefPtr<Drive>&)>;
+    using namespace gio;
+    using SlotType = sigc::slot<void (const glib::RefPtr<Drive>&)>;
 
     const auto obj = dynamic_cast<VolumeMonitor*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
     {
       try
       {
-        if (const auto slot = Glib::SignalProxyNormal::data_to_slot (data))
-          (*static_cast<SlotType*> (slot)) (Glib::wrap (p0, true));
+        if (const auto slot = glib::SignalProxyNormal::data_to_slot (data))
+          (*static_cast<SlotType*> (slot)) (glib::wrap (p0, true));
       }
       catch (...)
       {
-        Glib::exception_handlers_invoke ();
+        glib::exception_handlers_invoke ();
       }
     }
   }
 
-  const Glib::SignalProxyInfo VolumeMonitor_signal_drive_connected_info = {
+  const glib::SignalProxyInfo VolumeMonitor_signal_drive_connected_info = {
       "drive_connected",
       (GCallback) &VolumeMonitor_signal_drive_connected_callback,
       (GCallback) &VolumeMonitor_signal_drive_connected_callback};
@@ -261,27 +261,27 @@ namespace
                                                     GDrive* p0,
                                                     void* data) -> void
   {
-    using namespace Gio;
-    using SlotType = sigc::slot<void (const Glib::RefPtr<Drive>&)>;
+    using namespace gio;
+    using SlotType = sigc::slot<void (const glib::RefPtr<Drive>&)>;
 
     const auto obj = dynamic_cast<VolumeMonitor*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
     {
       try
       {
-        if (const auto slot = Glib::SignalProxyNormal::data_to_slot (data))
-          (*static_cast<SlotType*> (slot)) (Glib::wrap (p0, true));
+        if (const auto slot = glib::SignalProxyNormal::data_to_slot (data))
+          (*static_cast<SlotType*> (slot)) (glib::wrap (p0, true));
       }
       catch (...)
       {
-        Glib::exception_handlers_invoke ();
+        glib::exception_handlers_invoke ();
       }
     }
   }
 
-  const Glib::SignalProxyInfo VolumeMonitor_signal_drive_disconnected_info = {
+  const glib::SignalProxyInfo VolumeMonitor_signal_drive_disconnected_info = {
       "drive_disconnected",
       (GCallback) &VolumeMonitor_signal_drive_disconnected_callback,
       (GCallback) &VolumeMonitor_signal_drive_disconnected_callback};
@@ -291,27 +291,27 @@ namespace
                                                GDrive* p0,
                                                void* data) -> void
   {
-    using namespace Gio;
-    using SlotType = sigc::slot<void (const Glib::RefPtr<Drive>&)>;
+    using namespace gio;
+    using SlotType = sigc::slot<void (const glib::RefPtr<Drive>&)>;
 
     const auto obj = dynamic_cast<VolumeMonitor*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
     {
       try
       {
-        if (const auto slot = Glib::SignalProxyNormal::data_to_slot (data))
-          (*static_cast<SlotType*> (slot)) (Glib::wrap (p0, true));
+        if (const auto slot = glib::SignalProxyNormal::data_to_slot (data))
+          (*static_cast<SlotType*> (slot)) (glib::wrap (p0, true));
       }
       catch (...)
       {
-        Glib::exception_handlers_invoke ();
+        glib::exception_handlers_invoke ();
       }
     }
   }
 
-  const Glib::SignalProxyInfo VolumeMonitor_signal_drive_changed_info = {
+  const glib::SignalProxyInfo VolumeMonitor_signal_drive_changed_info = {
       "drive_changed",
       (GCallback) &VolumeMonitor_signal_drive_changed_callback,
       (GCallback) &VolumeMonitor_signal_drive_changed_callback};
@@ -321,27 +321,27 @@ namespace
                                                     GDrive* p0,
                                                     void* data) -> void
   {
-    using namespace Gio;
-    using SlotType = sigc::slot<void (const Glib::RefPtr<Drive>&)>;
+    using namespace gio;
+    using SlotType = sigc::slot<void (const glib::RefPtr<Drive>&)>;
 
     const auto obj = dynamic_cast<VolumeMonitor*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
     {
       try
       {
-        if (const auto slot = Glib::SignalProxyNormal::data_to_slot (data))
-          (*static_cast<SlotType*> (slot)) (Glib::wrap (p0, true));
+        if (const auto slot = glib::SignalProxyNormal::data_to_slot (data))
+          (*static_cast<SlotType*> (slot)) (glib::wrap (p0, true));
       }
       catch (...)
       {
-        Glib::exception_handlers_invoke ();
+        glib::exception_handlers_invoke ();
       }
     }
   }
 
-  const Glib::SignalProxyInfo VolumeMonitor_signal_drive_eject_button_info = {
+  const glib::SignalProxyInfo VolumeMonitor_signal_drive_eject_button_info = {
       "drive_eject_button",
       (GCallback) &VolumeMonitor_signal_drive_eject_button_callback,
       (GCallback) &VolumeMonitor_signal_drive_eject_button_callback};
@@ -351,47 +351,47 @@ namespace
                                                    GDrive* p0,
                                                    void* data) -> void
   {
-    using namespace Gio;
-    using SlotType = sigc::slot<void (const Glib::RefPtr<Drive>&)>;
+    using namespace gio;
+    using SlotType = sigc::slot<void (const glib::RefPtr<Drive>&)>;
 
     const auto obj = dynamic_cast<VolumeMonitor*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
     {
       try
       {
-        if (const auto slot = Glib::SignalProxyNormal::data_to_slot (data))
-          (*static_cast<SlotType*> (slot)) (Glib::wrap (p0, true));
+        if (const auto slot = glib::SignalProxyNormal::data_to_slot (data))
+          (*static_cast<SlotType*> (slot)) (glib::wrap (p0, true));
       }
       catch (...)
       {
-        Glib::exception_handlers_invoke ();
+        glib::exception_handlers_invoke ();
       }
     }
   }
 
-  const Glib::SignalProxyInfo VolumeMonitor_signal_drive_stop_button_info = {
+  const glib::SignalProxyInfo VolumeMonitor_signal_drive_stop_button_info = {
       "drive_stop_button",
       (GCallback) &VolumeMonitor_signal_drive_stop_button_callback,
       (GCallback) &VolumeMonitor_signal_drive_stop_button_callback};
 
 } // namespace
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GVolumeMonitor* object, const bool take_copy) -> RefPtr<Gio::VolumeMonitor>
+  wrap (GVolumeMonitor* object, const bool take_copy) -> RefPtr<gio::VolumeMonitor>
   {
-    return Glib::make_refptr_for_instance<Gio::VolumeMonitor> (
-        dynamic_cast<Gio::VolumeMonitor*> (
+    return glib::make_refptr_for_instance<gio::VolumeMonitor> (
+        dynamic_cast<gio::VolumeMonitor*> (
             wrap_auto ((GObject*) object, take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gio
+namespace gio
 {
 
   auto
@@ -431,7 +431,7 @@ namespace Gio
   VolumeMonitor_Class::volume_added_callback (GVolumeMonitor* self, GVolume* p0) -> void
   {
     const auto obj_base =
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self);
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self);
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -440,12 +440,12 @@ namespace Gio
       {
         try
         {
-          obj->on_volume_added (Glib::wrap (p0, true));
+          obj->on_volume_added (glib::wrap (p0, true));
           return;
         }
         catch (...)
         {
-          Glib::exception_handlers_invoke ();
+          glib::exception_handlers_invoke ();
         }
       }
     }
@@ -462,7 +462,7 @@ namespace Gio
                                                 GVolume* p0) -> void
   {
     const auto obj_base =
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self);
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self);
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -471,12 +471,12 @@ namespace Gio
       {
         try
         {
-          obj->on_volume_removed (Glib::wrap (p0, true));
+          obj->on_volume_removed (glib::wrap (p0, true));
           return;
         }
         catch (...)
         {
-          Glib::exception_handlers_invoke ();
+          glib::exception_handlers_invoke ();
         }
       }
     }
@@ -493,7 +493,7 @@ namespace Gio
                                                 GVolume* p0) -> void
   {
     const auto obj_base =
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self);
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self);
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -502,12 +502,12 @@ namespace Gio
       {
         try
         {
-          obj->on_volume_changed (Glib::wrap (p0, true));
+          obj->on_volume_changed (glib::wrap (p0, true));
           return;
         }
         catch (...)
         {
-          Glib::exception_handlers_invoke ();
+          glib::exception_handlers_invoke ();
         }
       }
     }
@@ -523,7 +523,7 @@ namespace Gio
   VolumeMonitor_Class::mount_added_callback (GVolumeMonitor* self, GMount* p0) -> void
   {
     const auto obj_base =
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self);
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self);
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -532,12 +532,12 @@ namespace Gio
       {
         try
         {
-          obj->on_mount_added (Glib::wrap (p0, true));
+          obj->on_mount_added (glib::wrap (p0, true));
           return;
         }
         catch (...)
         {
-          Glib::exception_handlers_invoke ();
+          glib::exception_handlers_invoke ();
         }
       }
     }
@@ -553,7 +553,7 @@ namespace Gio
   VolumeMonitor_Class::mount_removed_callback (GVolumeMonitor* self, GMount* p0) -> void
   {
     const auto obj_base =
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self);
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self);
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -562,12 +562,12 @@ namespace Gio
       {
         try
         {
-          obj->on_mount_removed (Glib::wrap (p0, true));
+          obj->on_mount_removed (glib::wrap (p0, true));
           return;
         }
         catch (...)
         {
-          Glib::exception_handlers_invoke ();
+          glib::exception_handlers_invoke ();
         }
       }
     }
@@ -584,7 +584,7 @@ namespace Gio
                                                    GMount* p0) -> void
   {
     const auto obj_base =
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self);
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self);
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -593,12 +593,12 @@ namespace Gio
       {
         try
         {
-          obj->on_mount_pre_unmount (Glib::wrap (p0, true));
+          obj->on_mount_pre_unmount (glib::wrap (p0, true));
           return;
         }
         catch (...)
         {
-          Glib::exception_handlers_invoke ();
+          glib::exception_handlers_invoke ();
         }
       }
     }
@@ -614,7 +614,7 @@ namespace Gio
   VolumeMonitor_Class::mount_changed_callback (GVolumeMonitor* self, GMount* p0) -> void
   {
     const auto obj_base =
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self);
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self);
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -623,12 +623,12 @@ namespace Gio
       {
         try
         {
-          obj->on_mount_changed (Glib::wrap (p0, true));
+          obj->on_mount_changed (glib::wrap (p0, true));
           return;
         }
         catch (...)
         {
-          Glib::exception_handlers_invoke ();
+          glib::exception_handlers_invoke ();
         }
       }
     }
@@ -645,7 +645,7 @@ namespace Gio
                                                  GDrive* p0) -> void
   {
     const auto obj_base =
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self);
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self);
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -654,12 +654,12 @@ namespace Gio
       {
         try
         {
-          obj->on_drive_connected (Glib::wrap (p0, true));
+          obj->on_drive_connected (glib::wrap (p0, true));
           return;
         }
         catch (...)
         {
-          Glib::exception_handlers_invoke ();
+          glib::exception_handlers_invoke ();
         }
       }
     }
@@ -676,7 +676,7 @@ namespace Gio
                                                     GDrive* p0) -> void
   {
     const auto obj_base =
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self);
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self);
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -685,12 +685,12 @@ namespace Gio
       {
         try
         {
-          obj->on_drive_disconnected (Glib::wrap (p0, true));
+          obj->on_drive_disconnected (glib::wrap (p0, true));
           return;
         }
         catch (...)
         {
-          Glib::exception_handlers_invoke ();
+          glib::exception_handlers_invoke ();
         }
       }
     }
@@ -706,7 +706,7 @@ namespace Gio
   VolumeMonitor_Class::drive_changed_callback (GVolumeMonitor* self, GDrive* p0) -> void
   {
     const auto obj_base =
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self);
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self);
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -715,12 +715,12 @@ namespace Gio
       {
         try
         {
-          obj->on_drive_changed (Glib::wrap (p0, true));
+          obj->on_drive_changed (glib::wrap (p0, true));
           return;
         }
         catch (...)
         {
-          Glib::exception_handlers_invoke ();
+          glib::exception_handlers_invoke ();
         }
       }
     }
@@ -737,7 +737,7 @@ namespace Gio
                                                     GDrive* p0) -> void
   {
     const auto obj_base =
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self);
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self);
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -746,12 +746,12 @@ namespace Gio
       {
         try
         {
-          obj->on_drive_eject_button (Glib::wrap (p0, true));
+          obj->on_drive_eject_button (glib::wrap (p0, true));
           return;
         }
         catch (...)
         {
-          Glib::exception_handlers_invoke ();
+          glib::exception_handlers_invoke ();
         }
       }
     }
@@ -768,7 +768,7 @@ namespace Gio
                                                    GDrive* p0) -> void
   {
     const auto obj_base =
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self);
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self);
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -777,12 +777,12 @@ namespace Gio
       {
         try
         {
-          obj->on_drive_stop_button (Glib::wrap (p0, true));
+          obj->on_drive_stop_button (glib::wrap (p0, true));
           return;
         }
         catch (...)
         {
-          Glib::exception_handlers_invoke ();
+          glib::exception_handlers_invoke ();
         }
       }
     }
@@ -795,7 +795,7 @@ namespace Gio
   }
 
   auto
-  VolumeMonitor_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  VolumeMonitor_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new VolumeMonitor ((GVolumeMonitor*) object);
   }
@@ -807,7 +807,7 @@ namespace Gio
     return gobj ();
   }
 
-  VolumeMonitor::VolumeMonitor (const Glib::ConstructParams& construct_params)
+  VolumeMonitor::VolumeMonitor (const glib::ConstructParams& construct_params)
     : Object (construct_params)
   {
   }
@@ -846,39 +846,39 @@ namespace Gio
   }
 
   auto
-  VolumeMonitor::get () -> Glib::RefPtr<VolumeMonitor>
+  VolumeMonitor::get () -> glib::RefPtr<VolumeMonitor>
   {
-    return Glib::wrap (g_volume_monitor_get ());
+    return glib::wrap (g_volume_monitor_get ());
   }
 
   auto
-  VolumeMonitor::get_connected_drives () -> std::vector<Glib::RefPtr<Drive>>
+  VolumeMonitor::get_connected_drives () -> std::vector<glib::RefPtr<Drive>>
   {
-    return Glib::ListHandler<Glib::RefPtr<Drive>>::list_to_vector (
+    return glib::ListHandler<glib::RefPtr<Drive>>::list_to_vector (
         g_volume_monitor_get_connected_drives (gobj ()),
-        Glib::OWNERSHIP_DEEP);
+        glib::OWNERSHIP_DEEP);
   }
 
   auto
-  VolumeMonitor::get_volumes () -> std::vector<Glib::RefPtr<Volume>>
+  VolumeMonitor::get_volumes () -> std::vector<glib::RefPtr<Volume>>
   {
-    return Glib::ListHandler<Glib::RefPtr<Volume>>::list_to_vector (
+    return glib::ListHandler<glib::RefPtr<Volume>>::list_to_vector (
         g_volume_monitor_get_volumes (gobj ()),
-        Glib::OWNERSHIP_DEEP);
+        glib::OWNERSHIP_DEEP);
   }
 
   auto
-  VolumeMonitor::get_mounts () -> std::vector<Glib::RefPtr<Mount>>
+  VolumeMonitor::get_mounts () -> std::vector<glib::RefPtr<Mount>>
   {
-    return Glib::ListHandler<Glib::RefPtr<Mount>>::list_to_vector (
+    return glib::ListHandler<glib::RefPtr<Mount>>::list_to_vector (
         g_volume_monitor_get_mounts (gobj ()),
-        Glib::OWNERSHIP_DEEP);
+        glib::OWNERSHIP_DEEP);
   }
 
   auto
-  VolumeMonitor::get_volume_for_uuid (const std::string& uuid) -> Glib::RefPtr<Volume>
+  VolumeMonitor::get_volume_for_uuid (const std::string& uuid) -> glib::RefPtr<Volume>
   {
-    auto retvalue = Glib::wrap (
+    auto retvalue = glib::wrap (
         g_volume_monitor_get_volume_for_uuid (gobj (), uuid.c_str ()));
     if (retvalue)
       retvalue->reference ();
@@ -886,9 +886,9 @@ namespace Gio
   }
 
   auto
-  VolumeMonitor::get_mount_for_uuid (const std::string& uuid) -> Glib::RefPtr<Mount>
+  VolumeMonitor::get_mount_for_uuid (const std::string& uuid) -> glib::RefPtr<Mount>
   {
-    auto retvalue = Glib::wrap (
+    auto retvalue = glib::wrap (
         g_volume_monitor_get_mount_for_uuid (gobj (), uuid.c_str ()));
     if (retvalue)
       retvalue->reference ();
@@ -896,195 +896,195 @@ namespace Gio
   }
 
   auto
-  VolumeMonitor::signal_volume_added () -> Glib::SignalProxy<void (const Glib::RefPtr<Volume>&)>
+  VolumeMonitor::signal_volume_added () -> glib::SignalProxy<void (const glib::RefPtr<Volume>&)>
   {
     return {this, &VolumeMonitor_signal_volume_added_info};
   }
 
   auto
-  VolumeMonitor::signal_volume_removed () -> Glib::SignalProxy<void (const Glib::RefPtr<Volume>&)>
+  VolumeMonitor::signal_volume_removed () -> glib::SignalProxy<void (const glib::RefPtr<Volume>&)>
   {
     return {this, &VolumeMonitor_signal_volume_removed_info};
   }
 
   auto
-  VolumeMonitor::signal_volume_changed () -> Glib::SignalProxy<void (const Glib::RefPtr<Volume>&)>
+  VolumeMonitor::signal_volume_changed () -> glib::SignalProxy<void (const glib::RefPtr<Volume>&)>
   {
     return {this, &VolumeMonitor_signal_volume_changed_info};
   }
 
   auto
-  VolumeMonitor::signal_mount_added () -> Glib::SignalProxy<void (const Glib::RefPtr<Mount>&)>
+  VolumeMonitor::signal_mount_added () -> glib::SignalProxy<void (const glib::RefPtr<Mount>&)>
   {
     return {this, &VolumeMonitor_signal_mount_added_info};
   }
 
   auto
-  VolumeMonitor::signal_mount_removed () -> Glib::SignalProxy<void (const Glib::RefPtr<Mount>&)>
+  VolumeMonitor::signal_mount_removed () -> glib::SignalProxy<void (const glib::RefPtr<Mount>&)>
   {
     return {this, &VolumeMonitor_signal_mount_removed_info};
   }
 
   auto
-  VolumeMonitor::signal_mount_pre_unmount () -> Glib::SignalProxy<void (const Glib::RefPtr<Mount>&)>
+  VolumeMonitor::signal_mount_pre_unmount () -> glib::SignalProxy<void (const glib::RefPtr<Mount>&)>
   {
     return {this, &VolumeMonitor_signal_mount_pre_unmount_info};
   }
 
   auto
-  VolumeMonitor::signal_mount_changed () -> Glib::SignalProxy<void (const Glib::RefPtr<Mount>&)>
+  VolumeMonitor::signal_mount_changed () -> glib::SignalProxy<void (const glib::RefPtr<Mount>&)>
   {
     return {this, &VolumeMonitor_signal_mount_changed_info};
   }
 
   auto
-  VolumeMonitor::signal_drive_connected () -> Glib::SignalProxy<void (const Glib::RefPtr<Drive>&)>
+  VolumeMonitor::signal_drive_connected () -> glib::SignalProxy<void (const glib::RefPtr<Drive>&)>
   {
     return {this, &VolumeMonitor_signal_drive_connected_info};
   }
 
   auto
-  VolumeMonitor::signal_drive_disconnected () -> Glib::SignalProxy<void (const Glib::RefPtr<Drive>&)>
+  VolumeMonitor::signal_drive_disconnected () -> glib::SignalProxy<void (const glib::RefPtr<Drive>&)>
   {
     return {this, &VolumeMonitor_signal_drive_disconnected_info};
   }
 
   auto
-  VolumeMonitor::signal_drive_changed () -> Glib::SignalProxy<void (const Glib::RefPtr<Drive>&)>
+  VolumeMonitor::signal_drive_changed () -> glib::SignalProxy<void (const glib::RefPtr<Drive>&)>
   {
     return {this, &VolumeMonitor_signal_drive_changed_info};
   }
 
   auto
-  VolumeMonitor::signal_drive_eject_button () -> Glib::SignalProxy<void (const Glib::RefPtr<Drive>&)>
+  VolumeMonitor::signal_drive_eject_button () -> glib::SignalProxy<void (const glib::RefPtr<Drive>&)>
   {
     return {this, &VolumeMonitor_signal_drive_eject_button_info};
   }
 
   auto
-  VolumeMonitor::signal_drive_stop_button () -> Glib::SignalProxy<void (const Glib::RefPtr<Drive>&)>
+  VolumeMonitor::signal_drive_stop_button () -> glib::SignalProxy<void (const glib::RefPtr<Drive>&)>
   {
     return {this, &VolumeMonitor_signal_drive_stop_button_info};
   }
 
   auto
-  VolumeMonitor::on_volume_added (const Glib::RefPtr<Volume>& volume) -> void
+  VolumeMonitor::on_volume_added (const glib::RefPtr<Volume>& volume) -> void
   {
     const auto base = static_cast<BaseClassType*> (
         g_type_class_peek_parent (G_OBJECT_GET_CLASS (gobject_)));
 
     if (base && base->volume_added)
-      (*base->volume_added) (gobj (), Glib::unwrap (volume));
+      (*base->volume_added) (gobj (), glib::unwrap (volume));
   }
 
   auto
-  VolumeMonitor::on_volume_removed (const Glib::RefPtr<Volume>& volume) -> void
+  VolumeMonitor::on_volume_removed (const glib::RefPtr<Volume>& volume) -> void
   {
     const auto base = static_cast<BaseClassType*> (
         g_type_class_peek_parent (G_OBJECT_GET_CLASS (gobject_)));
 
     if (base && base->volume_removed)
-      (*base->volume_removed) (gobj (), Glib::unwrap (volume));
+      (*base->volume_removed) (gobj (), glib::unwrap (volume));
   }
 
   auto
-  VolumeMonitor::on_volume_changed (const Glib::RefPtr<Volume>& volume) -> void
+  VolumeMonitor::on_volume_changed (const glib::RefPtr<Volume>& volume) -> void
   {
     const auto base = static_cast<BaseClassType*> (
         g_type_class_peek_parent (G_OBJECT_GET_CLASS (gobject_)));
 
     if (base && base->volume_changed)
-      (*base->volume_changed) (gobj (), Glib::unwrap (volume));
+      (*base->volume_changed) (gobj (), glib::unwrap (volume));
   }
 
   auto
-  VolumeMonitor::on_mount_added (const Glib::RefPtr<Mount>& mount) -> void
+  VolumeMonitor::on_mount_added (const glib::RefPtr<Mount>& mount) -> void
   {
     const auto base = static_cast<BaseClassType*> (
         g_type_class_peek_parent (G_OBJECT_GET_CLASS (gobject_)));
 
     if (base && base->mount_added)
-      (*base->mount_added) (gobj (), Glib::unwrap (mount));
+      (*base->mount_added) (gobj (), glib::unwrap (mount));
   }
 
   auto
-  VolumeMonitor::on_mount_removed (const Glib::RefPtr<Mount>& mount) -> void
+  VolumeMonitor::on_mount_removed (const glib::RefPtr<Mount>& mount) -> void
   {
     const auto base = static_cast<BaseClassType*> (
         g_type_class_peek_parent (G_OBJECT_GET_CLASS (gobject_)));
 
     if (base && base->mount_removed)
-      (*base->mount_removed) (gobj (), Glib::unwrap (mount));
+      (*base->mount_removed) (gobj (), glib::unwrap (mount));
   }
 
   auto
-  VolumeMonitor::on_mount_pre_unmount (const Glib::RefPtr<Mount>& mount) -> void
+  VolumeMonitor::on_mount_pre_unmount (const glib::RefPtr<Mount>& mount) -> void
   {
     const auto base = static_cast<BaseClassType*> (
         g_type_class_peek_parent (G_OBJECT_GET_CLASS (gobject_)));
 
     if (base && base->mount_pre_unmount)
-      (*base->mount_pre_unmount) (gobj (), Glib::unwrap (mount));
+      (*base->mount_pre_unmount) (gobj (), glib::unwrap (mount));
   }
 
   auto
-  VolumeMonitor::on_mount_changed (const Glib::RefPtr<Mount>& mount) -> void
+  VolumeMonitor::on_mount_changed (const glib::RefPtr<Mount>& mount) -> void
   {
     const auto base = static_cast<BaseClassType*> (
         g_type_class_peek_parent (G_OBJECT_GET_CLASS (gobject_)));
 
     if (base && base->mount_changed)
-      (*base->mount_changed) (gobj (), Glib::unwrap (mount));
+      (*base->mount_changed) (gobj (), glib::unwrap (mount));
   }
 
   auto
-  VolumeMonitor::on_drive_connected (const Glib::RefPtr<Drive>& drive) -> void
+  VolumeMonitor::on_drive_connected (const glib::RefPtr<Drive>& drive) -> void
   {
     const auto base = static_cast<BaseClassType*> (
         g_type_class_peek_parent (G_OBJECT_GET_CLASS (gobject_)));
 
     if (base && base->drive_connected)
-      (*base->drive_connected) (gobj (), Glib::unwrap (drive));
+      (*base->drive_connected) (gobj (), glib::unwrap (drive));
   }
 
   auto
-  VolumeMonitor::on_drive_disconnected (const Glib::RefPtr<Drive>& drive) -> void
+  VolumeMonitor::on_drive_disconnected (const glib::RefPtr<Drive>& drive) -> void
   {
     const auto base = static_cast<BaseClassType*> (
         g_type_class_peek_parent (G_OBJECT_GET_CLASS (gobject_)));
 
     if (base && base->drive_disconnected)
-      (*base->drive_disconnected) (gobj (), Glib::unwrap (drive));
+      (*base->drive_disconnected) (gobj (), glib::unwrap (drive));
   }
 
   auto
-  VolumeMonitor::on_drive_changed (const Glib::RefPtr<Drive>& drive) -> void
+  VolumeMonitor::on_drive_changed (const glib::RefPtr<Drive>& drive) -> void
   {
     const auto base = static_cast<BaseClassType*> (
         g_type_class_peek_parent (G_OBJECT_GET_CLASS (gobject_)));
 
     if (base && base->drive_changed)
-      (*base->drive_changed) (gobj (), Glib::unwrap (drive));
+      (*base->drive_changed) (gobj (), glib::unwrap (drive));
   }
 
   auto
-  VolumeMonitor::on_drive_eject_button (const Glib::RefPtr<Drive>& drive) -> void
+  VolumeMonitor::on_drive_eject_button (const glib::RefPtr<Drive>& drive) -> void
   {
     const auto base = static_cast<BaseClassType*> (
         g_type_class_peek_parent (G_OBJECT_GET_CLASS (gobject_)));
 
     if (base && base->drive_eject_button)
-      (*base->drive_eject_button) (gobj (), Glib::unwrap (drive));
+      (*base->drive_eject_button) (gobj (), glib::unwrap (drive));
   }
 
   auto
-  VolumeMonitor::on_drive_stop_button (const Glib::RefPtr<Drive>& drive) -> void
+  VolumeMonitor::on_drive_stop_button (const glib::RefPtr<Drive>& drive) -> void
   {
     const auto base = static_cast<BaseClassType*> (
         g_type_class_peek_parent (G_OBJECT_GET_CLASS (gobject_)));
 
     if (base && base->drive_stop_button)
-      (*base->drive_stop_button) (gobj (), Glib::unwrap (drive));
+      (*base->drive_stop_button) (gobj (), glib::unwrap (drive));
   }
 
-} // namespace Gio
+} // namespace gio

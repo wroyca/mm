@@ -17,13 +17,13 @@ using GtkCellRendererAccelClass = struct _GtkCellRendererAccelClass;
   #endif
 
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT CellRendererAccel_Class;
 }
   #endif
 
-namespace Gtk
+namespace gtk
 {
 
   class LIBMM_GTK_SYMEXPORT CellRendererAccel : public CellRendererText
@@ -53,7 +53,7 @@ namespace Gtk
     static CppClassType cellrendereraccel_class_;
 
   protected:
-    explicit CellRendererAccel (const Glib::ConstructParams& construct_params);
+    explicit CellRendererAccel (const glib::ConstructParams& construct_params);
     explicit CellRendererAccel (GtkCellRendererAccel* castitem);
 
   #endif
@@ -91,68 +91,68 @@ namespace Gtk
     CellRendererAccel ();
 
     auto
-    signal_accel_edited () -> Glib::SignalProxy<
-        void (const Glib::ustring&, guint, Gdk::ModifierType, guint)>;
+    signal_accel_edited () -> glib::SignalProxy<
+        void (const glib::ustring&, guint, gdk::ModifierType, guint)>;
 
     auto
-    signal_accel_cleared () -> Glib::SignalProxy<void (const Glib::ustring&)>;
+    signal_accel_cleared () -> glib::SignalProxy<void (const glib::ustring&)>;
 
     auto
-    property_accel_key () -> Glib::PropertyProxy<guint>;
+    property_accel_key () -> glib::PropertyProxy<guint>;
 
     auto
-    property_accel_key () const -> Glib::PropertyProxy_ReadOnly<guint>;
+    property_accel_key () const -> glib::PropertyProxy_ReadOnly<guint>;
 
     auto
-    property_accel_mods () -> Glib::PropertyProxy<Gdk::ModifierType>;
+    property_accel_mods () -> glib::PropertyProxy<gdk::ModifierType>;
 
     auto
     property_accel_mods () const
-        -> Glib::PropertyProxy_ReadOnly<Gdk::ModifierType>;
+        -> glib::PropertyProxy_ReadOnly<gdk::ModifierType>;
 
     auto
-    property_keycode () -> Glib::PropertyProxy<guint>;
+    property_keycode () -> glib::PropertyProxy<guint>;
 
     auto
-    property_keycode () const -> Glib::PropertyProxy_ReadOnly<guint>;
+    property_keycode () const -> glib::PropertyProxy_ReadOnly<guint>;
 
     auto
-    property_accel_mode () -> Glib::PropertyProxy<Mode>;
+    property_accel_mode () -> glib::PropertyProxy<Mode>;
 
     auto
-    property_accel_mode () const -> Glib::PropertyProxy_ReadOnly<Mode>;
+    property_accel_mode () const -> glib::PropertyProxy_ReadOnly<Mode>;
 
     auto
-    _property_renderable () -> Glib::PropertyProxy_Base override;
+    _property_renderable () -> glib::PropertyProxy_Base override;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_GTK_SYMEXPORT Value<Gtk::CellRendererAccel::Mode>
-    : public Glib::Value_Enum<Gtk::CellRendererAccel::Mode>
+  class LIBMM_GTK_SYMEXPORT Value<gtk::CellRendererAccel::Mode>
+    : public glib::Value_Enum<gtk::CellRendererAccel::Mode>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
   #endif
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkCellRendererAccel* object, bool take_copy = false) -> Gtk::CellRendererAccel*;
-} // namespace Glib
+  wrap (GtkCellRendererAccel* object, bool take_copy = false) -> gtk::CellRendererAccel*;
+} // namespace glib
 
 #endif
 

@@ -17,16 +17,16 @@
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Adw
+namespace adw
 {
   class LIBMM_ADW_SYMEXPORT ViewStackPage_Class;
 }
 #endif
 
-namespace Adw
+namespace adw
 {
 
-  class LIBMM_ADW_SYMEXPORT ViewStackPage : public Glib::Object
+  class LIBMM_ADW_SYMEXPORT ViewStackPage : public glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -45,7 +45,7 @@ namespace Adw
     static CppClassType viewstackpage_class_;
 
   protected:
-    explicit ViewStackPage (const Glib::ConstructParams& construct_params);
+    explicit ViewStackPage (const glib::ConstructParams& construct_params);
     explicit ViewStackPage (AdwViewStackPage* castitem);
 
 #endif
@@ -87,25 +87,25 @@ namespace Adw
 
   public:
     static auto
-    create () -> Glib::RefPtr<ViewStackPage>;
+    create () -> glib::RefPtr<ViewStackPage>;
 
     auto
     get_badge_number () const -> guint;
 
     auto
-    get_child () const -> Gtk::Widget*;
+    get_child () const -> gtk::Widget*;
 
     auto
-    get_icon_name () const -> Glib::ustring;
+    get_icon_name () const -> glib::ustring;
 
     auto
-    get_name () const -> Glib::ustring;
+    get_name () const -> glib::ustring;
 
     auto
     get_needs_attention () const -> bool;
 
     auto
-    get_title () const -> Glib::ustring;
+    get_title () const -> glib::ustring;
 
     auto
     get_use_underline () const -> bool;
@@ -117,16 +117,16 @@ namespace Adw
     set_badge_number (guint badge_number) -> void;
 
     auto
-    set_icon_name (const Glib::ustring& icon_name) -> void;
+    set_icon_name (const glib::ustring& icon_name) -> void;
 
     auto
-    set_name (const Glib::ustring& name) -> void;
+    set_name (const glib::ustring& name) -> void;
 
     auto
     set_needs_attention (bool needs_attention) -> void;
 
     auto
-    set_title (const Glib::ustring& title) -> void;
+    set_title (const glib::ustring& title) -> void;
 
     auto
     set_use_underline (bool use_underline) -> void;
@@ -135,62 +135,62 @@ namespace Adw
     set_visible (bool visible) -> void;
 
     auto
-    property_badge_number () -> Glib::PropertyProxy<guint>;
+    property_badge_number () -> glib::PropertyProxy<guint>;
 
     auto
-    property_badge_number () const -> Glib::PropertyProxy_ReadOnly<guint>;
+    property_badge_number () const -> glib::PropertyProxy_ReadOnly<guint>;
 
     auto
-    property_child () const -> Glib::PropertyProxy_ReadOnly<Gtk::Widget*>;
+    property_child () const -> glib::PropertyProxy_ReadOnly<gtk::Widget*>;
 
     auto
-    property_icon_name () -> Glib::PropertyProxy<Glib::ustring>;
+    property_icon_name () -> glib::PropertyProxy<glib::ustring>;
 
     auto
-    property_icon_name () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+    property_icon_name () const -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
     auto
-    property_name () -> Glib::PropertyProxy<Glib::ustring>;
+    property_name () -> glib::PropertyProxy<glib::ustring>;
 
     auto
-    property_name () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+    property_name () const -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
     auto
-    property_needs_attention () -> Glib::PropertyProxy<bool>;
+    property_needs_attention () -> glib::PropertyProxy<bool>;
 
     auto
-    property_needs_attention () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_needs_attention () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_title () -> Glib::PropertyProxy<Glib::ustring>;
+    property_title () -> glib::PropertyProxy<glib::ustring>;
 
     auto
-    property_title () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+    property_title () const -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
     auto
-    property_use_underline () -> Glib::PropertyProxy<bool>;
+    property_use_underline () -> glib::PropertyProxy<bool>;
 
     auto
-    property_use_underline () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_use_underline () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_visible () -> Glib::PropertyProxy<bool>;
+    property_visible () -> glib::PropertyProxy<bool>;
 
     auto
-    property_visible () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_visible () const -> glib::PropertyProxy_ReadOnly<bool>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Adw
+} // namespace adw
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (AdwViewStackPage* object, bool take_copy = false) -> Glib::RefPtr<Adw::ViewStackPage>;
+  wrap (AdwViewStackPage* object, bool take_copy = false) -> glib::RefPtr<adw::ViewStackPage>;
 }
 
 #endif

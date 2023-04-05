@@ -10,5 +10,5 @@ auto
 main () -> int
 {
   using namespace std;
-  using namespace Pango;
+  using namespace pango;
 }

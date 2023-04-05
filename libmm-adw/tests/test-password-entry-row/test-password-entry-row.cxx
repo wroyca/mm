@@ -6,20 +6,20 @@
  * Author: Alexander Mikhaylenko <alexander.mikhaylenko@puri.sm>
  */
 
-#include <libmm/adw/init.hxx> // Adw::init
+#include <libmm/adw/init.hxx> // adw::init
 #include <libmm/adw/mm-adw.hxx>
 
 static void
 test_adw_password_entry_row_new (void)
 {
-  Adw::PasswordEntryRow row;
+  adw::PasswordEntryRow row;
 }
 
 int
 main (int argc, char* argv[])
 {
   gtk_test_init (&argc, &argv, NULL);
-  Adw::init ();
+  adw::init ();
 
   g_test_add_func ("/Adwaita/PasswordEntryRow/new",
                    test_adw_password_entry_row_new);

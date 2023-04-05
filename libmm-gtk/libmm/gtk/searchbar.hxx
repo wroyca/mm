@@ -15,13 +15,13 @@ using GtkSearchBarClass = struct _GtkSearchBarClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT SearchBar_Class;
 }
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
   class LIBMM_GTK_SYMEXPORT SearchBar : public Widget
@@ -51,7 +51,7 @@ namespace Gtk
     static CppClassType searchbar_class_;
 
   protected:
-    explicit SearchBar (const Glib::ConstructParams& construct_params);
+    explicit SearchBar (const glib::ConstructParams& construct_params);
     explicit SearchBar (GtkSearchBar* castitem);
 
 #endif
@@ -120,41 +120,41 @@ namespace Gtk
     get_child () const -> const Widget*;
 
     auto
-    property_search_mode_enabled () -> Glib::PropertyProxy<bool>;
+    property_search_mode_enabled () -> glib::PropertyProxy<bool>;
 
     auto
-    property_search_mode_enabled () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_search_mode_enabled () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_show_close_button () -> Glib::PropertyProxy<bool>;
+    property_show_close_button () -> glib::PropertyProxy<bool>;
 
     auto
-    property_show_close_button () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_show_close_button () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_child () -> Glib::PropertyProxy<Widget*>;
+    property_child () -> glib::PropertyProxy<Widget*>;
 
     auto
-    property_child () const -> Glib::PropertyProxy_ReadOnly<Widget*>;
+    property_child () const -> glib::PropertyProxy_ReadOnly<Widget*>;
 
     auto
-    property_key_capture_widget () -> Glib::PropertyProxy<Widget*>;
+    property_key_capture_widget () -> glib::PropertyProxy<Widget*>;
 
     auto
     property_key_capture_widget () const
-        -> Glib::PropertyProxy_ReadOnly<Widget*>;
+        -> glib::PropertyProxy_ReadOnly<Widget*>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkSearchBar* object, bool take_copy = false) -> Gtk::SearchBar*;
-} // namespace Glib
+  wrap (GtkSearchBar* object, bool take_copy = false) -> gtk::SearchBar*;
+} // namespace glib
 
 #endif

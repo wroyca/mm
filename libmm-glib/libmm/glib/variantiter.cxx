@@ -8,7 +8,7 @@
 #include <glib.h>
 #include <libmm/glib/variant.hxx>
 
-namespace Glib
+namespace glib
 {
 
   VariantIter::VariantIter (const VariantContainerBase& variant)
@@ -30,13 +30,13 @@ namespace Glib
       return false;
   }
 
-} // namespace Glib
+} // namespace glib
 
 namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
@@ -45,9 +45,9 @@ namespace Glib
     return VariantIter (object, take_copy);
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Glib
+namespace glib
 {
 
   VariantIter::VariantIter ()
@@ -133,4 +133,4 @@ namespace Glib
     return g_variant_iter_n_children (const_cast<GVariantIter*> (gobj ()));
   }
 
-} // namespace Glib
+} // namespace glib

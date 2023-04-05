@@ -10,7 +10,7 @@
   #include <libmm/gtk/mm-gtkconfig.hxx>
   #include <vector>
 
-namespace Gtk
+namespace gtk
 {
 
   class LIBMM_GTK_SYMEXPORT TreeModelColumnBase;
@@ -61,7 +61,7 @@ namespace Gtk
     GType type_;
     int index_;
 
-    friend class Gtk::TreeModelColumnRecord;
+    friend class gtk::TreeModelColumnRecord;
   };
 
   inline auto
@@ -81,7 +81,7 @@ namespace Gtk
   {
   public:
     typedef T ElementType;
-    typedef Glib::Value<T> ValueType;
+    typedef glib::Value<T> ValueType;
 
     TreeModelColumn ()
       : TreeModelColumnBase (ValueType::value_type ())
@@ -89,7 +89,7 @@ namespace Gtk
     }
   };
 
-} // namespace Gtk
+} // namespace gtk
 
 #endif
 

@@ -12,10 +12,10 @@
 
   #include <gtk/gtk.h>
 
-namespace Gtk
+namespace gtk
 {
 
-  TreeRowReference::TreeRowReference (const Glib::RefPtr<TreeModel>& model,
+  TreeRowReference::TreeRowReference (const glib::RefPtr<TreeModel>& model,
                                       const TreeModel::Path& path)
     : gobject_ (
           gtk_tree_row_reference_new (model->gobj (),
@@ -28,24 +28,24 @@ namespace Gtk
     return is_valid ();
   }
 
-} // namespace Gtk
+} // namespace gtk
 
 namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GtkTreeRowReference* object, bool take_copy) -> Gtk::TreeRowReference
+  wrap (GtkTreeRowReference* object, bool take_copy) -> gtk::TreeRowReference
   {
-    return Gtk::TreeRowReference (object, take_copy);
+    return gtk::TreeRowReference (object, take_copy);
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gtk
+namespace gtk
 {
 
   auto
@@ -117,22 +117,22 @@ namespace Gtk
   auto
   TreeRowReference::get_path () const -> TreeModel::Path
   {
-    return Gtk::TreePath (gtk_tree_row_reference_get_path (
+    return gtk::TreePath (gtk_tree_row_reference_get_path (
                               const_cast<GtkTreeRowReference*> (gobj ())),
                           false);
   }
 
   auto
-  TreeRowReference::get_model () -> Glib::RefPtr<TreeModel>
+  TreeRowReference::get_model () -> glib::RefPtr<TreeModel>
   {
-    auto retvalue = Glib::wrap (gtk_tree_row_reference_get_model (gobj ()));
+    auto retvalue = glib::wrap (gtk_tree_row_reference_get_model (gobj ()));
     if (retvalue)
       retvalue->reference ();
     return retvalue;
   }
 
   auto
-  TreeRowReference::get_model () const -> Glib::RefPtr<const TreeModel>
+  TreeRowReference::get_model () const -> glib::RefPtr<const TreeModel>
   {
     return const_cast<TreeRowReference*> (this)->get_model ();
   }
@@ -144,6 +144,6 @@ namespace Gtk
         const_cast<GtkTreeRowReference*> (gobj ()));
   }
 
-} // namespace Gtk
+} // namespace gtk
 
 #endif

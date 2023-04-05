@@ -5,7 +5,7 @@
 #include <libmm/glib/binding.hxx>
 #include <libmm/glib/binding_p.hxx>
 
-using Flags = Glib::Binding::Flags;
+using Flags = glib::Binding::Flags;
 
 #include <glib.h>
 #include <libmm/glib/binding.hxx>
@@ -14,21 +14,21 @@ namespace
 {
   struct BindingTransformSlots
   {
-    BindingTransformSlots (const Glib::Binding::SlotTransform& transform_to,
-                           const Glib::Binding::SlotTransform& transform_from)
+    BindingTransformSlots (const glib::Binding::SlotTransform& transform_to,
+                           const glib::Binding::SlotTransform& transform_from)
       : from_source_to_target (transform_to),
         from_target_to_source (transform_from)
     {
     }
 
-    Glib::Binding::SlotTransform from_source_to_target;
-    Glib::Binding::SlotTransform from_target_to_source;
+    glib::Binding::SlotTransform from_source_to_target;
+    glib::Binding::SlotTransform from_target_to_source;
   };
 
   auto
   Binding_transform_callback_common (const GValue* from_value,
                                      GValue* to_value,
-                                     Glib::Binding::SlotTransform& the_slot) -> gboolean
+                                     glib::Binding::SlotTransform& the_slot) -> gboolean
   {
     bool result = false;
     try
@@ -37,7 +37,7 @@ namespace
     }
     catch (...)
     {
-      Glib::exception_handlers_invoke ();
+      glib::exception_handlers_invoke ();
     }
     return result;
   }
@@ -48,7 +48,7 @@ namespace
                                  GValue* to_value,
                                  const gpointer user_data) -> gboolean
   {
-    Glib::Binding::SlotTransform& the_slot =
+    glib::Binding::SlotTransform& the_slot =
         static_cast<BindingTransformSlots*> (user_data)->from_source_to_target;
 
     return Binding_transform_callback_common (from_value, to_value, the_slot);
@@ -60,7 +60,7 @@ namespace
                                    GValue* to_value,
                                    const gpointer user_data) -> gboolean
   {
-    Glib::Binding::SlotTransform& the_slot =
+    glib::Binding::SlotTransform& the_slot =
         static_cast<BindingTransformSlots*> (user_data)->from_target_to_source;
 
     return Binding_transform_callback_common (from_value, to_value, the_slot);
@@ -74,7 +74,7 @@ namespace
 
 } // namespace
 
-namespace Glib
+namespace glib
 {
 
   auto
@@ -114,7 +114,7 @@ namespace Glib
       return {};
 
     g_object_ref (binding);
-    return Glib::make_refptr_for_instance<Binding> (new Binding (binding));
+    return glib::make_refptr_for_instance<Binding> (new Binding (binding));
   }
 
   auto
@@ -128,31 +128,31 @@ namespace Glib
     }
   }
 
-} // namespace Glib
+} // namespace glib
 
 namespace
 {
 }
 
 auto
-Glib::Value<Glib::Binding::Flags>::value_type () -> GType
+glib::Value<glib::Binding::Flags>::value_type () -> GType
 {
   return g_binding_flags_get_type ();
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
   wrap (GBinding* object, const bool take_copy) -> RefPtr<Binding>
   {
-    return Glib::make_refptr_for_instance<Binding> (
+    return glib::make_refptr_for_instance<Binding> (
         dynamic_cast<Binding*> (wrap_auto ((GObject*) object, take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Glib
+namespace glib
 {
 
   auto
@@ -251,7 +251,7 @@ namespace Glib
   auto
   Binding::dup_source () -> RefPtr<ObjectBase>
   {
-    return Glib::make_refptr_for_instance<ObjectBase> (
+    return glib::make_refptr_for_instance<ObjectBase> (
         wrap_auto (g_binding_dup_source (gobj ())));
   }
 
@@ -293,7 +293,7 @@ namespace Glib
   auto
   Binding::dup_target () -> RefPtr<ObjectBase>
   {
-    return Glib::make_refptr_for_instance<ObjectBase> (
+    return glib::make_refptr_for_instance<ObjectBase> (
         wrap_auto (g_binding_dup_target (gobj ())));
   }
 
@@ -320,7 +320,7 @@ namespace Glib
   static_assert (
       Traits::ValueCompatibleWithWrapProperty<Flags>::value,
       "Type Flags cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
   Binding::property_flags () const -> PropertyProxy_ReadOnly<Flags>
@@ -330,8 +330,8 @@ namespace Glib
 
   static_assert (
       Traits::ValueCompatibleWithWrapProperty<RefPtr<ObjectBase>>::value,
-      "Type Glib::RefPtr<Glib::ObjectBase> cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      "Type glib::RefPtr<glib::ObjectBase> cannot be used in _WRAP_PROPERTY. "
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
   Binding::property_source () const -> PropertyProxy_ReadOnly<RefPtr<ObjectBase>>
@@ -347,8 +347,8 @@ namespace Glib
 
   static_assert (
       Traits::ValueCompatibleWithWrapProperty<RefPtr<ObjectBase>>::value,
-      "Type Glib::RefPtr<Glib::ObjectBase> cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      "Type glib::RefPtr<glib::ObjectBase> cannot be used in _WRAP_PROPERTY. "
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
   Binding::property_target () const -> PropertyProxy_ReadOnly<RefPtr<ObjectBase>>
@@ -362,4 +362,4 @@ namespace Glib
     return {this, "target-property"};
   }
 
-} // namespace Glib
+} // namespace glib

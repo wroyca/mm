@@ -12,7 +12,7 @@
 
 #include <adwaita.h>
 
-namespace Adw
+namespace adw
 {
 
   struct DampingRatio
@@ -62,11 +62,11 @@ namespace Adw
   public:
     static auto
     create (DampingRatio damping_ratio, double mass, double stiffness)
-        -> Glib::RefPtr<SpringParams>;
+        -> glib::RefPtr<SpringParams>;
 
     static auto
     create (Damping damping, double mass, double stiffness)
-        -> Glib::RefPtr<SpringParams>;
+        -> glib::RefPtr<SpringParams>;
 
     auto
     get_damping () const -> double;
@@ -81,16 +81,16 @@ namespace Adw
     get_stiffness () const -> double;
   };
 
-} // namespace Adw
+} // namespace adw
 
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_ADW_SYMEXPORT Value<Glib::RefPtr<Adw::SpringParams>> : public ValueBase_Boxed
+  class LIBMM_ADW_SYMEXPORT Value<glib::RefPtr<adw::SpringParams>> : public ValueBase_Boxed
   {
   public:
-    typedef Glib::RefPtr<Adw::SpringParams> CppType;
+    typedef glib::RefPtr<adw::SpringParams> CppType;
     typedef AdwSpringParams* CType;
 
     static auto
@@ -102,13 +102,13 @@ namespace Glib
     get () const -> CppType;
   };
 
-} // namespace Glib
+} // namespace glib
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (AdwSpringParams* object, bool take_copy = false) -> Glib::RefPtr<Adw::SpringParams>;
+  wrap (AdwSpringParams* object, bool take_copy = false) -> glib::RefPtr<adw::SpringParams>;
 
 }
 

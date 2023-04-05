@@ -1,17 +1,17 @@
 #include <libmm/gtk/mm-gtk.hxx>
 
-class MyWindow : public Gtk::Window
+class MyWindow : public gtk::Window
 {
 public:
   MyWindow();
 private:
-  Gtk::Button b;
-  Gtk::Box vbox;
+  gtk::Button b;
+  gtk::Box vbox;
 };
 
 MyWindow::MyWindow() :
   b("hello"),
-  vbox(Gtk::Orientation::VERTICAL)
+  vbox(gtk::Orientation::VERTICAL)
 {
   set_child(vbox);
   b.set_expand(true);
@@ -20,6 +20,6 @@ MyWindow::MyWindow() :
 
 int main(int argc, char* argv[])
 {
-  auto app = Gtk::Application::create();
+  auto app = gtk::Application::create();
   return app->make_window_and_run<MyWindow>(argc, argv);
 }

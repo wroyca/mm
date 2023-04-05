@@ -10,13 +10,13 @@
 namespace
 {
 
-  using ThrowFuncTable = std::map<GQuark, Glib::Error::ThrowFunc>;
+  using ThrowFuncTable = std::map<GQuark, glib::Error::ThrowFunc>;
 
   ThrowFuncTable* throw_func_table = nullptr;
 
 } // namespace
 
-namespace Glib
+namespace glib
 {
 
   Error::Error ()
@@ -166,8 +166,8 @@ namespace Glib
     }
 
     g_warning (
-        "Glib::Error::throw_exception():\n  "
-        "unknown error domain '%s': throwing generic Glib::Error exception\n",
+        "glib::Error::throw_exception():\n  "
+        "unknown error domain '%s': throwing generic glib::Error exception\n",
         gobject->domain ? g_quark_to_string (gobject->domain) : "(null)");
 
     throw Error (gobject);
@@ -191,4 +191,4 @@ namespace Glib
     return Error (static_cast<CType> (get_boxed ()), true);
   }
 
-} // namespace Glib
+} // namespace glib

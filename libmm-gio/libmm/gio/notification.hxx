@@ -18,17 +18,17 @@ using GNotificationClass = struct _GNotificationClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gio
+namespace gio
 {
   class LIBMM_GIO_SYMEXPORT Notification_Class;
 }
 #endif
 
-namespace Gio
+namespace gio
 {
   class LIBMM_GIO_SYMEXPORT Icon;
 
-  class LIBMM_GIO_SYMEXPORT Notification : public Glib::Object
+  class LIBMM_GIO_SYMEXPORT Notification : public glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -47,7 +47,7 @@ namespace Gio
     static CppClassType notification_class_;
 
   protected:
-    explicit Notification (const Glib::ConstructParams& construct_params);
+    explicit Notification (const glib::ConstructParams& construct_params);
     explicit Notification (GNotification* castitem);
 
 #endif
@@ -85,7 +85,7 @@ namespace Gio
 
   private:
   protected:
-    explicit Notification (const Glib::ustring& title);
+    explicit Notification (const glib::ustring& title);
 
   public:
     enum class Priority
@@ -97,49 +97,49 @@ namespace Gio
     };
 
     static auto
-    create (const Glib::ustring& title) -> Glib::RefPtr<Notification>;
+    create (const glib::ustring& title) -> glib::RefPtr<Notification>;
 
     auto
-    set_title (const Glib::ustring& title) -> void;
+    set_title (const glib::ustring& title) -> void;
 
     auto
-    set_body (const Glib::ustring& body) -> void;
+    set_body (const glib::ustring& body) -> void;
 
     auto
-    set_icon (const Glib::RefPtr<Icon>& icon) -> void;
+    set_icon (const glib::RefPtr<Icon>& icon) -> void;
 
     auto
     set_priority (Priority priority = Priority::NORMAL) -> void;
 
     auto
-    set_category (const Glib::ustring& category) -> void;
+    set_category (const glib::ustring& category) -> void;
 
     auto
-    add_button (const Glib::ustring& label,
-                const Glib::ustring& detailed_action) -> void;
+    add_button (const glib::ustring& label,
+                const glib::ustring& detailed_action) -> void;
 
     template <typename T_Value>
     auto
-    add_button (const Glib::ustring& label,
-                const Glib::ustring& action,
+    add_button (const glib::ustring& label,
+                const glib::ustring& action,
                 const T_Value& target) -> void;
 
     auto
-    add_button_variant (const Glib::ustring& label,
-                        const Glib::ustring& action,
-                        const Glib::VariantBase& target) -> void;
+    add_button_variant (const glib::ustring& label,
+                        const glib::ustring& action,
+                        const glib::VariantBase& target) -> void;
 
     auto
-    set_default_action (const Glib::ustring& detailed_action) -> void;
+    set_default_action (const glib::ustring& detailed_action) -> void;
 
     template <typename T_Value>
     auto
-    set_default_action (const Glib::ustring& action, const T_Value& target)
+    set_default_action (const glib::ustring& action, const T_Value& target)
         -> void;
 
     auto
-    set_default_action_variant (const Glib::ustring& action,
-                                const Glib::VariantBase& target) -> void;
+    set_default_action_variant (const glib::ustring& action,
+                                const glib::VariantBase& target) -> void;
 
   public:
   public:
@@ -148,49 +148,49 @@ namespace Gio
 
   template <typename T_Value>
   auto
-  Notification::add_button (const Glib::ustring& label,
-                            const Glib::ustring& action,
+  Notification::add_button (const glib::ustring& label,
+                            const glib::ustring& action,
                             const T_Value& target) -> void
   {
-    using type_glib_variant = Glib::Variant<T_Value>;
+    using type_glib_variant = glib::Variant<T_Value>;
 
     add_button_variant (label, action, type_glib_variant::create (target));
   }
 
   template <typename T_Value>
   auto
-  Notification::set_default_action (const Glib::ustring& action,
+  Notification::set_default_action (const glib::ustring& action,
                                     const T_Value& target) -> void
   {
-    using type_glib_variant = Glib::Variant<T_Value>;
+    using type_glib_variant = glib::Variant<T_Value>;
 
     set_default_action_variant (action, type_glib_variant::create (target));
   }
 
-} // namespace Gio
+} // namespace gio
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_GIO_SYMEXPORT Value<Gio::Notification::Priority>
-    : public Glib::Value_Enum<Gio::Notification::Priority>
+  class LIBMM_GIO_SYMEXPORT Value<gio::Notification::Priority>
+    : public glib::Value_Enum<gio::Notification::Priority>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
-namespace Glib
+namespace glib
 {
 
   LIBMM_GIO_SYMEXPORT
   auto
-  wrap (GNotification* object, bool take_copy = false) -> Glib::RefPtr<Gio::Notification>;
-} // namespace Glib
+  wrap (GNotification* object, bool take_copy = false) -> glib::RefPtr<gio::Notification>;
+} // namespace glib
 
 #endif

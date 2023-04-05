@@ -14,7 +14,7 @@
 typedef struct _GtkCssSection GtkCssSection;
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
   class LIBMM_GTK_SYMEXPORT CssSection final
@@ -53,24 +53,24 @@ namespace Gtk
   private:
   public:
     static auto
-    create (const Glib::RefPtr<Gio::File>& file,
+    create (const glib::RefPtr<gio::File>& file,
             const CssLocation& start,
-            const CssLocation& end) -> Glib::RefPtr<CssSection>;
+            const CssLocation& end) -> glib::RefPtr<CssSection>;
 
     auto
-    to_string () const -> Glib::ustring;
+    to_string () const -> glib::ustring;
 
     auto
-    get_parent () -> Glib::RefPtr<CssSection>;
+    get_parent () -> glib::RefPtr<CssSection>;
 
     auto
-    get_parent () const -> Glib::RefPtr<const CssSection>;
+    get_parent () const -> glib::RefPtr<const CssSection>;
 
     auto
-    get_file () -> Glib::RefPtr<Gio::File>;
+    get_file () -> glib::RefPtr<gio::File>;
 
     auto
-    get_file () const -> Glib::RefPtr<const Gio::File>;
+    get_file () const -> glib::RefPtr<const gio::File>;
 
     auto
     get_start_location () const -> CssLocation;
@@ -79,13 +79,13 @@ namespace Gtk
     get_end_location () const -> CssLocation;
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkCssSection* object, bool take_copy = false) -> Glib::RefPtr<Gtk::CssSection>;
+  wrap (GtkCssSection* object, bool take_copy = false) -> glib::RefPtr<gtk::CssSection>;
 
-} // namespace Glib
+} // namespace glib
 
 #endif

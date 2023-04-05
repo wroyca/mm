@@ -26,7 +26,7 @@ extern "C"
 }
 #endif
 
-namespace Glib
+namespace glib
 {
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -38,13 +38,13 @@ namespace Glib
   class LIBMM_GLIB_SYMEXPORT ConstructParams
   {
   public:
-    const Glib::Class& glibmm_class;
+    const glib::Class& glibmm_class;
     unsigned int n_parameters;
     const char** parameter_names;
     GValue* parameter_values;
 
-    explicit ConstructParams (const Glib::Class& glibmm_class_);
-    ConstructParams (const Glib::Class& glibmm_class_,
+    explicit ConstructParams (const glib::Class& glibmm_class_);
+    ConstructParams (const glib::Class& glibmm_class_,
                      const char* first_property_name,
                      ...) G_GNUC_NULL_TERMINATED;
     ~ConstructParams () noexcept;
@@ -76,7 +76,7 @@ namespace Glib
 
   protected:
     Object ();
-    explicit Object (const Glib::ConstructParams& construct_params);
+    explicit Object (const glib::ConstructParams& construct_params);
     explicit Object (GObject* castitem);
     ~Object () noexcept override;
 
@@ -104,7 +104,7 @@ namespace Glib
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   private:
-    friend class Glib::Object_Class;
+    friend class glib::Object_Class;
     static CppClassType object_class_;
 
 #endif
@@ -117,16 +117,16 @@ namespace Glib
   {
 
     template <class T>
-    struct TypeTraits<Glib::RefPtr<T>>
+    struct TypeTraits<glib::RefPtr<T>>
     {
-      using CppType = Glib::RefPtr<T>;
+      using CppType = glib::RefPtr<T>;
       using CType = typename T::BaseObjectType*;
       using CTypeNonConst = typename T::BaseObjectType*;
 
       static CType
       to_c_type (const CppType& ptr)
       {
-        return Glib::unwrap (ptr);
+        return glib::unwrap (ptr);
       }
 
       static CType
@@ -139,8 +139,8 @@ namespace Glib
       to_cpp_type (CType ptr)
       {
         GObject* cobj = (GObject*) const_cast<CTypeNonConst> (ptr);
-        return Glib::make_refptr_for_instance<T> (
-            dynamic_cast<T*> (Glib::wrap_auto (cobj, true)));
+        return glib::make_refptr_for_instance<T> (
+            dynamic_cast<T*> (glib::wrap_auto (cobj, true)));
       }
 
       static void
@@ -154,16 +154,16 @@ namespace Glib
     #ifdef GLIBMM_HAVE_DISAMBIGUOUS_CONST_TEMPLATE_SPECIALIZATIONS
 
     template <class T>
-    struct TypeTraits<Glib::RefPtr<const T>>
+    struct TypeTraits<glib::RefPtr<const T>>
     {
-      using CppType = Glib::RefPtr<const T>;
+      using CppType = glib::RefPtr<const T>;
       using CType = const typename T::BaseObjectType*;
       using CTypeNonConst = typename T::BaseObjectType*;
 
       static CType
       to_c_type (const CppType& ptr)
       {
-        return Glib::unwrap (ptr);
+        return glib::unwrap (ptr);
       }
 
       static CType
@@ -176,8 +176,8 @@ namespace Glib
       to_cpp_type (CType ptr)
       {
         GObject* cobj = (GObject*) (ptr);
-        return Glib::make_refptr_for_instance<const T> (
-            dynamic_cast<const T*> (Glib::wrap_auto (cobj, true)));
+        return glib::make_refptr_for_instance<const T> (
+            dynamic_cast<const T*> (glib::wrap_auto (cobj, true)));
       }
 
       static void
@@ -194,16 +194,16 @@ namespace Glib
 
   template <class PtrT>
   inline PtrT
-  Value_Pointer<PtrT>::get_ (Glib::Object*) const
+  Value_Pointer<PtrT>::get_ (glib::Object*) const
   {
     return dynamic_cast<T*> (get_object ());
   }
 
   template <class T>
-  class Value<Glib::RefPtr<T>> : public ValueBase_Object
+  class Value<glib::RefPtr<T>> : public ValueBase_Object
   {
   public:
-    using CppType = Glib::RefPtr<T>;
+    using CppType = glib::RefPtr<T>;
     using CType = typename T::BaseObjectType*;
 
     static GType
@@ -228,10 +228,10 @@ namespace Glib
     #ifdef GLIBMM_HAVE_DISAMBIGUOUS_CONST_TEMPLATE_SPECIALIZATIONS
 
   template <class T>
-  class Value<Glib::RefPtr<const T>> : public ValueBase_Object
+  class Value<glib::RefPtr<const T>> : public ValueBase_Object
   {
   public:
-    using CppType = Glib::RefPtr<const T>;
+    using CppType = glib::RefPtr<const T>;
     using CType = typename T::BaseObjectType*;
 
     static GType
@@ -257,6 +257,6 @@ namespace Glib
   #endif
 #endif
 
-} // namespace Glib
+} // namespace glib
 
 #endif

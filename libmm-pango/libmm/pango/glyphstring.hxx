@@ -19,7 +19,7 @@ extern "C"
 }
 #endif
 
-namespace Pango
+namespace pango
 {
 
   class LIBMM_PANGO_SYMEXPORT GlyphString
@@ -70,10 +70,10 @@ namespace Pango
 
   private:
   public:
-    GlyphString (const Glib::ustring& text, const Analysis& analysis);
+    GlyphString (const glib::ustring& text, const Analysis& analysis);
 
-    GlyphString (const Glib::ustring& item_text,
-                 const Glib::ustring& paragraph_text,
+    GlyphString (const glib::ustring& item_text,
+                 const glib::ustring& paragraph_text,
                  const Analysis& analysis,
                  ShapeFlags flags = ShapeFlags::NONE);
 
@@ -81,14 +81,14 @@ namespace Pango
     set_size (int new_len) -> void;
 
     auto
-    get_extents (const Glib::RefPtr<const Font>& font,
+    get_extents (const glib::RefPtr<const Font>& font,
                  Rectangle& ink_rect,
                  Rectangle& logical_rect) const -> void;
 
     auto
     get_extents (int start,
                  int end,
-                 const Glib::RefPtr<const Font>& font,
+                 const glib::RefPtr<const Font>& font,
                  Rectangle& ink_rect,
                  Rectangle& logical_rect) const -> void;
 
@@ -96,35 +96,35 @@ namespace Pango
     get_width () const -> int;
 
     auto
-    get_ink_extents (const Glib::RefPtr<const Font>& font) const -> Rectangle;
+    get_ink_extents (const glib::RefPtr<const Font>& font) const -> Rectangle;
 
     auto
     get_ink_extents (int start,
                      int end,
-                     const Glib::RefPtr<const Font>& font) const -> Rectangle;
+                     const glib::RefPtr<const Font>& font) const -> Rectangle;
 
     auto
-    get_logical_extents (const Glib::RefPtr<const Font>& font) const
+    get_logical_extents (const glib::RefPtr<const Font>& font) const
         -> Rectangle;
 
     auto
     get_logical_extents (int start,
                          int end,
-                         const Glib::RefPtr<const Font>& font) const
+                         const glib::RefPtr<const Font>& font) const
         -> Rectangle;
 
     auto
-    get_logical_widths (const Glib::ustring& text, int embedding_level) const
+    get_logical_widths (const glib::ustring& text, int embedding_level) const
         -> std::vector<int>;
 
     auto
-    index_to_x (const Glib::ustring& text,
+    index_to_x (const glib::ustring& text,
                 const Analysis& analysis,
                 int index,
                 bool trailing) const -> int;
 
     auto
-    x_to_index (const Glib::ustring& text,
+    x_to_index (const glib::ustring& text,
                 const Analysis& analysis,
                 int x_pos,
                 int& index,
@@ -134,9 +134,9 @@ namespace Pango
     get_glyphs () const -> std::vector<GlyphInfo>;
   };
 
-} // namespace Pango
+} // namespace pango
 
-namespace Pango
+namespace pango
 {
 
   inline auto
@@ -145,23 +145,23 @@ namespace Pango
     lhs.swap (rhs);
   }
 
-} // namespace Pango
+} // namespace pango
 
-namespace Glib
+namespace glib
 {
 
   LIBMM_PANGO_SYMEXPORT
   auto
-  wrap (PangoGlyphString* object, bool take_copy = false) -> Pango::GlyphString;
+  wrap (PangoGlyphString* object, bool take_copy = false) -> pango::GlyphString;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
   template <>
-  class LIBMM_PANGO_SYMEXPORT Value<Pango::GlyphString>
-    : public Glib::Value_Boxed<Pango::GlyphString>
+  class LIBMM_PANGO_SYMEXPORT Value<pango::GlyphString>
+    : public glib::Value_Boxed<pango::GlyphString>
   {
   };
 #endif
 
-} // namespace Glib
+} // namespace glib
 
 #endif

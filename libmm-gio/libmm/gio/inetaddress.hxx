@@ -17,16 +17,16 @@ using GInetAddressClass = struct _GInetAddressClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gio
+namespace gio
 {
   class LIBMM_GIO_SYMEXPORT InetAddress_Class;
 }
 #endif
 
-namespace Gio
+namespace gio
 {
 
-  class LIBMM_GIO_SYMEXPORT InetAddress : public Glib::Object
+  class LIBMM_GIO_SYMEXPORT InetAddress : public glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -45,7 +45,7 @@ namespace Gio
     static CppClassType inetaddress_class_;
 
   protected:
-    explicit InetAddress (const Glib::ConstructParams& construct_params);
+    explicit InetAddress (const glib::ConstructParams& construct_params);
     explicit InetAddress (GInetAddress* castitem);
 
 #endif
@@ -87,26 +87,26 @@ namespace Gio
 
   public:
     static auto
-    create (const Glib::ustring& string) -> Glib::RefPtr<InetAddress>;
+    create (const glib::ustring& string) -> glib::RefPtr<InetAddress>;
 
     static auto
     create (const guint8* bytes, SocketFamily family)
-        -> Glib::RefPtr<InetAddress>;
+        -> glib::RefPtr<InetAddress>;
 
     static auto
-    create_any (SocketFamily family) -> Glib::RefPtr<InetAddress>;
+    create_any (SocketFamily family) -> glib::RefPtr<InetAddress>;
     static auto
-    create_loopback (SocketFamily family) -> Glib::RefPtr<InetAddress>;
+    create_loopback (SocketFamily family) -> glib::RefPtr<InetAddress>;
 
     auto
-    address_equal (const Glib::RefPtr<const InetAddress>& other_address) const
+    address_equal (const glib::RefPtr<const InetAddress>& other_address) const
         -> bool;
 
     auto
     to_bytes () const -> const guint8*;
 
     auto
-    to_string () const -> Glib::ustring;
+    to_string () const -> glib::ustring;
 
     auto
     get_family () const -> SocketFamily;
@@ -145,54 +145,54 @@ namespace Gio
     get_native_size () const -> gsize;
 
     auto
-    property_bytes () const -> Glib::PropertyProxy_ReadOnly<void*>;
+    property_bytes () const -> glib::PropertyProxy_ReadOnly<void*>;
 
     auto
-    property_family () const -> Glib::PropertyProxy_ReadOnly<SocketFamily>;
+    property_family () const -> glib::PropertyProxy_ReadOnly<SocketFamily>;
 
     auto
-    property_is_any () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_is_any () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_is_link_local () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_is_link_local () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_is_loopback () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_is_loopback () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_is_mc_global () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_is_mc_global () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_is_mc_link_local () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_is_mc_link_local () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_is_mc_node_local () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_is_mc_node_local () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_is_mc_org_local () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_is_mc_org_local () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_is_mc_site_local () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_is_mc_site_local () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_is_multicast () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_is_multicast () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_is_site_local () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_is_site_local () const -> glib::PropertyProxy_ReadOnly<bool>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gio
+} // namespace gio
 
-namespace Glib
+namespace glib
 {
 
   LIBMM_GIO_SYMEXPORT
   auto
-  wrap (GInetAddress* object, bool take_copy = false) -> Glib::RefPtr<Gio::InetAddress>;
-} // namespace Glib
+  wrap (GInetAddress* object, bool take_copy = false) -> glib::RefPtr<gio::InetAddress>;
+} // namespace glib
 
 #endif

@@ -10,7 +10,7 @@ extern "C"
   using GTimer = struct _GTimer;
 }
 
-namespace Glib
+namespace glib
 {
 
   class LIBMM_GLIB_SYMEXPORT Timer
@@ -63,6 +63,6 @@ namespace Glib
   LIBMM_GLIB_SYMEXPORT auto
   usleep (unsigned long microseconds) -> void;
 
-} // namespace Glib
+} // namespace glib
 
 #endif

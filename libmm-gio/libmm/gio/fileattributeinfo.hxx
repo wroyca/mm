@@ -12,7 +12,7 @@
 #include <libmm/glib/object.hxx>
 #include <string>
 
-namespace Gio
+namespace gio
 {
 
   enum class FileAttributeType
@@ -29,25 +29,25 @@ namespace Gio
     STRINGV
   };
 
-} // namespace Gio
+} // namespace gio
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_GIO_SYMEXPORT Value<Gio::FileAttributeType>
-    : public Glib::Value_Enum<Gio::FileAttributeType>
+  class LIBMM_GIO_SYMEXPORT Value<gio::FileAttributeType>
+    : public glib::Value_Enum<gio::FileAttributeType>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
-namespace Gio
+namespace gio
 {
 
   enum class FileAttributeStatus
@@ -57,25 +57,25 @@ namespace Gio
     ERROR_SETTING
   };
 
-} // namespace Gio
+} // namespace gio
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_GIO_SYMEXPORT Value<Gio::FileAttributeStatus>
-    : public Glib::Value_Enum<Gio::FileAttributeStatus>
+  class LIBMM_GIO_SYMEXPORT Value<gio::FileAttributeStatus>
+    : public glib::Value_Enum<gio::FileAttributeStatus>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
-namespace Gio
+namespace gio
 {
 
   class FileAttributeInfo
@@ -122,9 +122,9 @@ namespace Gio
     Flags m_flags;
   };
 
-} // namespace Gio
+} // namespace gio
 
-namespace Gio
+namespace gio
 {
 
   inline auto
@@ -175,22 +175,22 @@ namespace Gio
     return (lhs = static_cast<FileAttributeInfo::Flags> (
                 static_cast<unsigned> (lhs) ^ static_cast<unsigned> (rhs)));
   }
-} // namespace Gio
+} // namespace gio
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class Value<Gio::FileAttributeInfo::Flags>
-    : public Glib::Value_Flags<Gio::FileAttributeInfo::Flags>
+  class Value<gio::FileAttributeInfo::Flags>
+    : public glib::Value_Flags<gio::FileAttributeInfo::Flags>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
 #endif

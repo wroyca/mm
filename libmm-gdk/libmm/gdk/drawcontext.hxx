@@ -17,18 +17,18 @@ using GdkDrawContextClass = struct _GdkDrawContextClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gdk
+namespace gdk
 {
   class LIBMM_GDK_SYMEXPORT DrawContext_Class;
 }
 #endif
 
-namespace Gdk
+namespace gdk
 {
   class LIBMM_GDK_SYMEXPORT Display;
   class LIBMM_GDK_SYMEXPORT Surface;
 
-  class LIBMM_GDK_SYMEXPORT DrawContext : public Glib::Object
+  class LIBMM_GDK_SYMEXPORT DrawContext : public glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -47,7 +47,7 @@ namespace Gdk
     static CppClassType drawcontext_class_;
 
   protected:
-    explicit DrawContext (const Glib::ConstructParams& construct_params);
+    explicit DrawContext (const glib::ConstructParams& construct_params);
     explicit DrawContext (GdkDrawContext* castitem);
 
 #endif
@@ -89,19 +89,19 @@ namespace Gdk
 
   public:
     auto
-    get_display () -> Glib::RefPtr<Display>;
+    get_display () -> glib::RefPtr<Display>;
 
     auto
-    get_display () const -> Glib::RefPtr<const Display>;
+    get_display () const -> glib::RefPtr<const Display>;
 
     auto
-    get_surface () -> Glib::RefPtr<Surface>;
+    get_surface () -> glib::RefPtr<Surface>;
 
     auto
-    get_surface () const -> Glib::RefPtr<const Surface>;
+    get_surface () const -> glib::RefPtr<const Surface>;
 
     auto
-    begin_frame (const ::Cairo::RefPtr<const ::Cairo::Region>& region) -> void;
+    begin_frame (const ::cairo::RefPtr<const ::cairo::Region>& region) -> void;
 
     auto
     end_frame () -> void;
@@ -110,27 +110,27 @@ namespace Gdk
     is_in_frame () const -> bool;
 
     auto
-    get_frame_region () const -> ::Cairo::RefPtr<const ::Cairo::Region>;
+    get_frame_region () const -> ::cairo::RefPtr<const ::cairo::Region>;
 
     auto
     property_display () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Display>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<Display>>;
 
     auto
     property_surface () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Surface>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<Surface>>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gdk
+} // namespace gdk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GDK_SYMEXPORT auto
-  wrap (GdkDrawContext* object, bool take_copy = false) -> Glib::RefPtr<Gdk::DrawContext>;
-} // namespace Glib
+  wrap (GdkDrawContext* object, bool take_copy = false) -> glib::RefPtr<gdk::DrawContext>;
+} // namespace glib
 
 #endif

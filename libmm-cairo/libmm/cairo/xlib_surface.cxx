@@ -3,7 +3,7 @@
 #include <libmm/cairo/private.hxx>
 #include <libmm/cairo/xlib_surface.hxx>
 
-namespace Cairo
+namespace cairo
 {
 
 #ifdef CAIRO_HAS_XLIB_SURFACE
@@ -147,7 +147,7 @@ namespace Cairo
                                            Screen* screen,
                                            XRenderPictFormat* format,
                                            int width,
-                                           int height) -> Cairo::RefPtr<Cairo::XlibSurface>
+                                           int height) -> cairo::RefPtr<cairo::XlibSurface>
   {
     auto cobject = cairo_xlib_surface_create_with_xrender_format (dpy,
                                                                   drawable,
@@ -173,4 +173,4 @@ namespace Cairo
 
 #endif
 
-} // namespace Cairo
+} // namespace cairo

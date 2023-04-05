@@ -17,16 +17,16 @@ using GDBusServerClass = struct _GDBusServerClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gio::DBus
+namespace gio::DBus
 {
   class LIBMM_GIO_SYMEXPORT Server_Class;
 }
 #endif
 
-namespace Gio::DBus
+namespace gio::DBus
 {
 
-  class LIBMM_GIO_SYMEXPORT Server : public Glib::Object,
+  class LIBMM_GIO_SYMEXPORT Server : public glib::Object,
                            public Initable
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -46,7 +46,7 @@ namespace Gio::DBus
     static CppClassType server_class_;
 
   protected:
-    explicit Server (const Glib::ConstructParams& construct_params);
+    explicit Server (const glib::ConstructParams& construct_params);
     explicit Server (GDBusServer* castitem);
 
 #endif
@@ -95,18 +95,18 @@ namespace Gio::DBus
   protected:
     Server (const std::string& address,
             const std::string& guid,
-            const Glib::RefPtr<AuthObserver>& observer,
-            const Glib::RefPtr<Cancellable>& cancellable,
+            const glib::RefPtr<AuthObserver>& observer,
+            const glib::RefPtr<Cancellable>& cancellable,
             Flags flags);
 
     Server (const std::string& address,
             const std::string& guid,
-            const Glib::RefPtr<Cancellable>& cancellable,
+            const glib::RefPtr<Cancellable>& cancellable,
             Flags flags);
 
     Server (const std::string& address,
             const std::string& guid,
-            const Glib::RefPtr<AuthObserver>& observer,
+            const glib::RefPtr<AuthObserver>& observer,
             Flags flags);
 
     Server (const std::string& address, const std::string& guid, Flags flags);
@@ -115,30 +115,30 @@ namespace Gio::DBus
     static auto
     create_sync (const std::string& address,
                  const std::string& guid,
-                 const Glib::RefPtr<AuthObserver>& observer,
-                 const Glib::RefPtr<Cancellable>& cancellable,
-                 Flags flags = Gio::DBus::Server::Flags::NONE)
-        -> Glib::RefPtr<Server>;
+                 const glib::RefPtr<AuthObserver>& observer,
+                 const glib::RefPtr<Cancellable>& cancellable,
+                 Flags flags = gio::DBus::Server::Flags::NONE)
+        -> glib::RefPtr<Server>;
 
     static auto
     create_sync (const std::string& address,
                  const std::string& guid,
-                 const Glib::RefPtr<Cancellable>& cancellable,
-                 Flags flags = Gio::DBus::Server::Flags::NONE)
-        -> Glib::RefPtr<Server>;
+                 const glib::RefPtr<Cancellable>& cancellable,
+                 Flags flags = gio::DBus::Server::Flags::NONE)
+        -> glib::RefPtr<Server>;
 
     static auto
     create_sync (const std::string& address,
                  const std::string& guid,
-                 const Glib::RefPtr<AuthObserver>& observer,
-                 Flags flags = Gio::DBus::Server::Flags::NONE)
-        -> Glib::RefPtr<Server>;
+                 const glib::RefPtr<AuthObserver>& observer,
+                 Flags flags = gio::DBus::Server::Flags::NONE)
+        -> glib::RefPtr<Server>;
 
     static auto
     create_sync (const std::string& address,
                  const std::string& guid,
-                 Flags flags = Gio::DBus::Server::Flags::NONE)
-        -> Glib::RefPtr<Server>;
+                 Flags flags = gio::DBus::Server::Flags::NONE)
+        -> glib::RefPtr<Server>;
 
     auto
     start () -> void;
@@ -159,37 +159,37 @@ namespace Gio::DBus
     get_client_address () const -> std::string;
 
     auto
-    property_active () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_active () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_address () const -> Glib::PropertyProxy_ReadOnly<std::string>;
+    property_address () const -> glib::PropertyProxy_ReadOnly<std::string>;
 
     auto
     property_authentication_observer () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<AuthObserver>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<AuthObserver>>;
 
     auto
     property_client_address () const
-        -> Glib::PropertyProxy_ReadOnly<std::string>;
+        -> glib::PropertyProxy_ReadOnly<std::string>;
 
     auto
-    property_flags () const -> Glib::PropertyProxy_ReadOnly<Flags>;
+    property_flags () const -> glib::PropertyProxy_ReadOnly<Flags>;
 
     auto
-    property_guid () const -> Glib::PropertyProxy_ReadOnly<std::string>;
+    property_guid () const -> glib::PropertyProxy_ReadOnly<std::string>;
 
     auto
     signal_new_connection ()
-        -> Glib::SignalProxy<bool (const Glib::RefPtr<Connection>&)>;
+        -> glib::SignalProxy<bool (const glib::RefPtr<Connection>&)>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gio::DBus
+} // namespace gio::DBus
 
-namespace Gio::DBus
+namespace gio::DBus
 {
 
   inline auto
@@ -239,30 +239,30 @@ namespace Gio::DBus
     return (lhs = static_cast<Server::Flags> (static_cast<unsigned> (lhs) ^
                                               static_cast<unsigned> (rhs)));
   }
-} // namespace Gio::DBus
+} // namespace gio::DBus
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_GIO_SYMEXPORT Value<Gio::DBus::Server::Flags>
-    : public Glib::Value_Flags<Gio::DBus::Server::Flags>
+  class LIBMM_GIO_SYMEXPORT Value<gio::DBus::Server::Flags>
+    : public glib::Value_Flags<gio::DBus::Server::Flags>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
-namespace Glib
+namespace glib
 {
 
   LIBMM_GIO_SYMEXPORT
   auto
-  wrap (GDBusServer* object, bool take_copy = false) -> Glib::RefPtr<Gio::DBus::Server>;
-} // namespace Glib
+  wrap (GDBusServer* object, bool take_copy = false) -> glib::RefPtr<gio::DBus::Server>;
+} // namespace glib
 
 #endif

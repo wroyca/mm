@@ -8,53 +8,53 @@
 #include <libmm/adw/selectionlistmodelimpl.hxx>
 #include <libmm/gtk/mm-gtk.hxx>
 
-namespace Adw
+namespace adw
 {
 
   auto
-  Squeezer::get_pages () const -> Glib::RefPtr<Gtk::SelectionModel>
+  Squeezer::get_pages () const -> glib::RefPtr<gtk::SelectionModel>
   {
     GtkSelectionModel* pages =
         adw_squeezer_get_pages (const_cast<AdwSqueezer*> (gobj ()));
     g_assert (G_IS_LIST_MODEL (pages));
 
-    Glib::ObjectBase* pCppObject =
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) pages);
+    glib::ObjectBase* pCppObject =
+        glib::ObjectBase::_get_current_wrapper ((GObject*) pages);
     if (!pCppObject)
-      pCppObject = new Adw::SelectionListModelImpl ((GObject*) pages);
-    return Glib::make_refptr_for_instance<Gtk::SelectionModel> (
-        dynamic_cast<Gtk::SelectionModel*> (pCppObject));
+      pCppObject = new adw::SelectionListModelImpl ((GObject*) pages);
+    return glib::make_refptr_for_instance<gtk::SelectionModel> (
+        dynamic_cast<gtk::SelectionModel*> (pCppObject));
   }
 
-} // namespace Adw
+} // namespace adw
 
 namespace
 {
 }
 
 auto
-Glib::Value<Adw::SqueezerTransitionType>::value_type () -> GType
+glib::Value<adw::SqueezerTransitionType>::value_type () -> GType
 {
   return adw_squeezer_transition_type_get_type ();
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (AdwSqueezer* object, bool take_copy) -> Adw::Squeezer*
+  wrap (AdwSqueezer* object, bool take_copy) -> adw::Squeezer*
   {
-    return dynamic_cast<Adw::Squeezer*> (
-        Glib::wrap_auto ((GObject*) (object), take_copy));
+    return dynamic_cast<adw::Squeezer*> (
+        glib::wrap_auto ((GObject*) (object), take_copy));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Adw
+namespace adw
 {
 
   auto
-  Squeezer_Class::init () -> const Glib::Class&
+  Squeezer_Class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -65,32 +65,32 @@ namespace Adw
   }
 
   auto
-  Squeezer_Class::wrap_new (GObject* o) -> Glib::ObjectBase*
+  Squeezer_Class::wrap_new (GObject* o) -> glib::ObjectBase*
   {
     return manage (new Squeezer ((AdwSqueezer*) (o)));
   }
 
-  Squeezer::Squeezer (const Glib::ConstructParams& construct_params)
-    : Gtk::Widget (construct_params)
+  Squeezer::Squeezer (const glib::ConstructParams& construct_params)
+    : gtk::Widget (construct_params)
   {
   }
 
   Squeezer::Squeezer (AdwSqueezer* castitem)
-    : Gtk::Widget ((GtkWidget*) (castitem))
+    : gtk::Widget ((GtkWidget*) (castitem))
   {
   }
 
   Squeezer::Squeezer (Squeezer&& src) noexcept
-    : Gtk::Widget (std::move (src)),
-      Gtk::Orientable (std::move (src))
+    : gtk::Widget (std::move (src)),
+      gtk::Orientable (std::move (src))
   {
   }
 
   auto
   Squeezer::operator= (Squeezer&& src) noexcept -> Squeezer&
   {
-    Gtk::Widget::operator= (std::move (src));
-    Gtk::Orientable::operator= (std::move (src));
+    gtk::Widget::operator= (std::move (src));
+    gtk::Orientable::operator= (std::move (src));
     return *this;
   }
 
@@ -114,16 +114,16 @@ namespace Adw
   }
 
   Squeezer::Squeezer ()
-    : Glib::ObjectBase (nullptr),
-      Gtk::Widget (Glib::ConstructParams (squeezer_class_.init ()))
+    : glib::ObjectBase (nullptr),
+      gtk::Widget (glib::ConstructParams (squeezer_class_.init ()))
   {
   }
 
   auto
-  Squeezer::add (Gtk::Widget* p1) -> Glib::RefPtr<SqueezerPage>
+  Squeezer::add (gtk::Widget* p1) -> glib::RefPtr<SqueezerPage>
   {
     auto retvalue =
-        Glib::wrap (adw_squeezer_add (gobj (), (GtkWidget*) Glib::unwrap (p1)));
+        glib::wrap (adw_squeezer_add (gobj (), (GtkWidget*) glib::unwrap (p1)));
     if (retvalue)
       retvalue->reference ();
     return retvalue;
@@ -149,11 +149,11 @@ namespace Adw
   }
 
   auto
-  Squeezer::get (Gtk::Widget* p1) const -> Glib::RefPtr<SqueezerPage>
+  Squeezer::get (gtk::Widget* p1) const -> glib::RefPtr<SqueezerPage>
   {
     auto retvalue =
-        Glib::wrap (adw_squeezer_get_page (const_cast<AdwSqueezer*> (gobj ()),
-                                           (GtkWidget*) Glib::unwrap (p1)));
+        glib::wrap (adw_squeezer_get_page (const_cast<AdwSqueezer*> (gobj ()),
+                                           (GtkWidget*) glib::unwrap (p1)));
     if (retvalue)
       retvalue->reference ();
     return retvalue;
@@ -189,9 +189,9 @@ namespace Adw
   }
 
   auto
-  Squeezer::get_visible_child () const -> Gtk::Widget*
+  Squeezer::get_visible_child () const -> gtk::Widget*
   {
-    return Glib::wrap (
+    return glib::wrap (
         adw_squeezer_get_visible_child (const_cast<AdwSqueezer*> (gobj ())));
   }
 
@@ -208,9 +208,9 @@ namespace Adw
   }
 
   auto
-  Squeezer::remove (Gtk::Widget* p1) -> void
+  Squeezer::remove (gtk::Widget* p1) -> void
   {
-    adw_squeezer_remove (gobj (), (GtkWidget*) Glib::unwrap (p1));
+    adw_squeezer_remove (gobj (), (GtkWidget*) glib::unwrap (p1));
   }
 
   auto
@@ -266,143 +266,143 @@ namespace Adw
   }
 
   auto
-  Squeezer::property_allow_none () -> Glib::PropertyProxy<bool>
+  Squeezer::property_allow_none () -> glib::PropertyProxy<bool>
   {
-    return Glib::PropertyProxy<bool> (this, "allow-none");
+    return glib::PropertyProxy<bool> (this, "allow-none");
   }
 
   auto
-  Squeezer::property_allow_none () const -> Glib::PropertyProxy_ReadOnly<bool>
+  Squeezer::property_allow_none () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "allow-none");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "allow-none");
   }
 
   auto
-  Squeezer::property_homogeneous () -> Glib::PropertyProxy<bool>
+  Squeezer::property_homogeneous () -> glib::PropertyProxy<bool>
   {
-    return Glib::PropertyProxy<bool> (this, "homogeneous");
+    return glib::PropertyProxy<bool> (this, "homogeneous");
   }
 
   auto
-  Squeezer::property_homogeneous () const -> Glib::PropertyProxy_ReadOnly<bool>
+  Squeezer::property_homogeneous () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "homogeneous");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "homogeneous");
   }
 
   auto
-  Squeezer::property_interpolate_size () -> Glib::PropertyProxy<bool>
+  Squeezer::property_interpolate_size () -> glib::PropertyProxy<bool>
   {
-    return Glib::PropertyProxy<bool> (this, "interpolate-size");
+    return glib::PropertyProxy<bool> (this, "interpolate-size");
   }
 
   auto
-  Squeezer::property_interpolate_size () const -> Glib::PropertyProxy_ReadOnly<bool>
+  Squeezer::property_interpolate_size () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "interpolate-size");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "interpolate-size");
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<
-          Glib::RefPtr<Gtk::SelectionModel>>::value,
-      "Type Glib::RefPtr<Gtk::SelectionModel> cannot be used in "
+      glib::Traits::ValueCompatibleWithWrapProperty<
+          glib::RefPtr<gtk::SelectionModel>>::value,
+      "Type glib::RefPtr<gtk::SelectionModel> cannot be used in "
       "_WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  Squeezer::property_pages () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gtk::SelectionModel>>
+  Squeezer::property_pages () const -> glib::PropertyProxy_ReadOnly<glib::RefPtr<gtk::SelectionModel>>
   {
-    return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gtk::SelectionModel>> (
+    return glib::PropertyProxy_ReadOnly<glib::RefPtr<gtk::SelectionModel>> (
         this,
         "pages");
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<FoldThresholdPolicy>::value,
+      glib::Traits::ValueCompatibleWithWrapProperty<FoldThresholdPolicy>::value,
       "Type FoldThresholdPolicy cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  Squeezer::property_switch_threshold_policy () -> Glib::PropertyProxy<FoldThresholdPolicy>
+  Squeezer::property_switch_threshold_policy () -> glib::PropertyProxy<FoldThresholdPolicy>
   {
-    return Glib::PropertyProxy<FoldThresholdPolicy> (this,
+    return glib::PropertyProxy<FoldThresholdPolicy> (this,
                                                      "switch-threshold-policy");
   }
 
   auto
-  Squeezer::property_switch_threshold_policy () const -> Glib::PropertyProxy_ReadOnly<FoldThresholdPolicy>
+  Squeezer::property_switch_threshold_policy () const -> glib::PropertyProxy_ReadOnly<FoldThresholdPolicy>
   {
-    return Glib::PropertyProxy_ReadOnly<FoldThresholdPolicy> (
+    return glib::PropertyProxy_ReadOnly<FoldThresholdPolicy> (
         this,
         "switch-threshold-policy");
   }
 
   auto
-  Squeezer::property_transition_duration () -> Glib::PropertyProxy<guint>
+  Squeezer::property_transition_duration () -> glib::PropertyProxy<guint>
   {
-    return Glib::PropertyProxy<guint> (this, "transition-duration");
+    return glib::PropertyProxy<guint> (this, "transition-duration");
   }
 
   auto
-  Squeezer::property_transition_duration () const -> Glib::PropertyProxy_ReadOnly<guint>
+  Squeezer::property_transition_duration () const -> glib::PropertyProxy_ReadOnly<guint>
   {
-    return Glib::PropertyProxy_ReadOnly<guint> (this, "transition-duration");
+    return glib::PropertyProxy_ReadOnly<guint> (this, "transition-duration");
   }
 
   auto
-  Squeezer::property_transition_running () const -> Glib::PropertyProxy_ReadOnly<bool>
+  Squeezer::property_transition_running () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "transition-running");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "transition-running");
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<
+      glib::Traits::ValueCompatibleWithWrapProperty<
           SqueezerTransitionType>::value,
       "Type SqueezerTransitionType cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  Squeezer::property_transition_type () -> Glib::PropertyProxy<SqueezerTransitionType>
+  Squeezer::property_transition_type () -> glib::PropertyProxy<SqueezerTransitionType>
   {
-    return Glib::PropertyProxy<SqueezerTransitionType> (this,
+    return glib::PropertyProxy<SqueezerTransitionType> (this,
                                                         "transition-type");
   }
 
   auto
-  Squeezer::property_transition_type () const -> Glib::PropertyProxy_ReadOnly<SqueezerTransitionType>
+  Squeezer::property_transition_type () const -> glib::PropertyProxy_ReadOnly<SqueezerTransitionType>
   {
-    return Glib::PropertyProxy_ReadOnly<SqueezerTransitionType> (
+    return glib::PropertyProxy_ReadOnly<SqueezerTransitionType> (
         this,
         "transition-type");
   }
 
   auto
-  Squeezer::property_visible_child () const -> Glib::PropertyProxy_ReadOnly<Gtk::Widget*>
+  Squeezer::property_visible_child () const -> glib::PropertyProxy_ReadOnly<gtk::Widget*>
   {
-    return Glib::PropertyProxy_ReadOnly<Gtk::Widget*> (this, "visible-child");
+    return glib::PropertyProxy_ReadOnly<gtk::Widget*> (this, "visible-child");
   }
 
   auto
-  Squeezer::property_xalign () -> Glib::PropertyProxy<float>
+  Squeezer::property_xalign () -> glib::PropertyProxy<float>
   {
-    return Glib::PropertyProxy<float> (this, "xalign");
+    return glib::PropertyProxy<float> (this, "xalign");
   }
 
   auto
-  Squeezer::property_xalign () const -> Glib::PropertyProxy_ReadOnly<float>
+  Squeezer::property_xalign () const -> glib::PropertyProxy_ReadOnly<float>
   {
-    return Glib::PropertyProxy_ReadOnly<float> (this, "xalign");
+    return glib::PropertyProxy_ReadOnly<float> (this, "xalign");
   }
 
   auto
-  Squeezer::property_yalign () -> Glib::PropertyProxy<float>
+  Squeezer::property_yalign () -> glib::PropertyProxy<float>
   {
-    return Glib::PropertyProxy<float> (this, "yalign");
+    return glib::PropertyProxy<float> (this, "yalign");
   }
 
   auto
-  Squeezer::property_yalign () const -> Glib::PropertyProxy_ReadOnly<float>
+  Squeezer::property_yalign () const -> glib::PropertyProxy_ReadOnly<float>
   {
-    return Glib::PropertyProxy_ReadOnly<float> (this, "yalign");
+    return glib::PropertyProxy_ReadOnly<float> (this, "yalign");
   }
 
-} // namespace Adw
+} // namespace adw

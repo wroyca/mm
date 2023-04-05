@@ -17,25 +17,25 @@ using GDBusMethodInvocationClass = struct _GDBusMethodInvocationClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gio::DBus
+namespace gio::DBus
 {
   class LIBMM_GIO_SYMEXPORT MethodInvocation_Class;
 }
 #endif
 
-namespace Glib
+namespace glib
 {
 
   class LIBMM_GIO_SYMEXPORT Error;
 
 }
 
-namespace Gio::DBus
+namespace gio::DBus
 {
 
   class Connection;
 
-  class LIBMM_GIO_SYMEXPORT MethodInvocation : public Glib::Object
+  class LIBMM_GIO_SYMEXPORT MethodInvocation : public glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -54,7 +54,7 @@ namespace Gio::DBus
     static CppClassType methodinvocation_class_;
 
   protected:
-    explicit MethodInvocation (const Glib::ConstructParams& construct_params);
+    explicit MethodInvocation (const glib::ConstructParams& construct_params);
     explicit MethodInvocation (GDBusMethodInvocation* castitem);
 
 #endif
@@ -93,70 +93,70 @@ namespace Gio::DBus
   private:
   public:
     auto
-    get_sender () const -> Glib::ustring;
+    get_sender () const -> glib::ustring;
 
     auto
-    get_object_path () const -> Glib::ustring;
+    get_object_path () const -> glib::ustring;
 
     auto
-    get_interface_name () const -> Glib::ustring;
+    get_interface_name () const -> glib::ustring;
 
     auto
-    get_method_name () const -> Glib::ustring;
+    get_method_name () const -> glib::ustring;
 
     auto
-    get_method_info () const -> Glib::RefPtr<const MethodInfo>;
+    get_method_info () const -> glib::RefPtr<const MethodInfo>;
 
     auto
-    get_connection () -> Glib::RefPtr<Connection>;
+    get_connection () -> glib::RefPtr<Connection>;
 
     auto
-    get_connection () const -> Glib::RefPtr<const Connection>;
+    get_connection () const -> glib::RefPtr<const Connection>;
 
     auto
-    get_message () -> Glib::RefPtr<Message>;
+    get_message () -> glib::RefPtr<Message>;
 
     auto
-    get_message () const -> Glib::RefPtr<const Message>;
+    get_message () const -> glib::RefPtr<const Message>;
 
     auto
-    get_parameters () const -> Glib::VariantContainerBase;
+    get_parameters () const -> glib::VariantContainerBase;
 
     auto
-    return_value (const Glib::VariantContainerBase& parameters) -> void;
+    return_value (const glib::VariantContainerBase& parameters) -> void;
 
 #ifdef G_OS_UNIX
 
     void
-    return_value (const Glib::VariantContainerBase& parameters,
-                  const Glib::RefPtr<UnixFDList>& fd_list);
+    return_value (const glib::VariantContainerBase& parameters,
+                  const glib::RefPtr<UnixFDList>& fd_list);
 #endif
 
     auto
-    return_error (const Glib::ustring& domain,
+    return_error (const glib::ustring& domain,
                   int code,
-                  const Glib::ustring& message) -> void;
+                  const glib::ustring& message) -> void;
 
     auto
-    return_error (const Glib::Error& error) -> void;
+    return_error (const glib::Error& error) -> void;
 
     auto
-    return_dbus_error (const Glib::ustring& error_name,
-                       const Glib::ustring& error_message) -> void;
+    return_dbus_error (const glib::ustring& error_name,
+                       const glib::ustring& error_message) -> void;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gio::DBus
+} // namespace gio::DBus
 
-namespace Glib
+namespace glib
 {
 
   LIBMM_GIO_SYMEXPORT
   auto
-  wrap (GDBusMethodInvocation* object, bool take_copy = false) -> Glib::RefPtr<Gio::DBus::MethodInvocation>;
-} // namespace Glib
+  wrap (GDBusMethodInvocation* object, bool take_copy = false) -> glib::RefPtr<gio::DBus::MethodInvocation>;
+} // namespace glib
 
 #endif

@@ -14,13 +14,13 @@ using GtkGestureSwipeClass = struct _GtkGestureSwipeClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT GestureSwipe_Class;
 }
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
   class LIBMM_GTK_SYMEXPORT GestureSwipe : public GestureSingle
@@ -42,7 +42,7 @@ namespace Gtk
     static CppClassType gestureswipe_class_;
 
   protected:
-    explicit GestureSwipe (const Glib::ConstructParams& construct_params);
+    explicit GestureSwipe (const glib::ConstructParams& construct_params);
     explicit GestureSwipe (GtkGestureSwipe* castitem);
 
 #endif
@@ -84,25 +84,25 @@ namespace Gtk
 
   public:
     static auto
-    create () -> Glib::RefPtr<GestureSwipe>;
+    create () -> glib::RefPtr<GestureSwipe>;
 
     auto
     get_velocity (double& velocity_x, double& velocity_y) const -> bool;
 
     auto
-    signal_swipe () -> Glib::SignalProxy<void (double, double)>;
+    signal_swipe () -> glib::SignalProxy<void (double, double)>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkGestureSwipe* object, bool take_copy = false) -> Glib::RefPtr<Gtk::GestureSwipe>;
-} // namespace Glib
+  wrap (GtkGestureSwipe* object, bool take_copy = false) -> glib::RefPtr<gtk::GestureSwipe>;
+} // namespace glib
 
 #endif

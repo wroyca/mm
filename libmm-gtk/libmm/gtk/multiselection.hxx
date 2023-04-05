@@ -16,17 +16,17 @@
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT MultiSelection_Class;
 }
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
-  class LIBMM_GTK_SYMEXPORT MultiSelection : public Glib::Object,
-                                   public Gio::ListModel,
+  class LIBMM_GTK_SYMEXPORT MultiSelection : public glib::Object,
+                                   public gio::ListModel,
                                    public SelectionModel
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -46,7 +46,7 @@ namespace Gtk
     static CppClassType multiselection_class_;
 
   protected:
-    explicit MultiSelection (const Glib::ConstructParams& construct_params);
+    explicit MultiSelection (const glib::ConstructParams& construct_params);
     explicit MultiSelection (GtkMultiSelection* castitem);
 
 #endif
@@ -85,49 +85,49 @@ namespace Gtk
   private:
   protected:
     MultiSelection ();
-    explicit MultiSelection (const Glib::RefPtr<Gio::ListModel>& model);
+    explicit MultiSelection (const glib::RefPtr<gio::ListModel>& model);
 
   public:
     static auto
-    create () -> Glib::RefPtr<MultiSelection>;
+    create () -> glib::RefPtr<MultiSelection>;
 
     static auto
-    create (const Glib::RefPtr<Gio::ListModel>& model)
-        -> Glib::RefPtr<MultiSelection>;
+    create (const glib::RefPtr<gio::ListModel>& model)
+        -> glib::RefPtr<MultiSelection>;
 
     auto
-    get_model () -> Glib::RefPtr<Gio::ListModel>;
+    get_model () -> glib::RefPtr<gio::ListModel>;
 
     auto
-    get_model () const -> Glib::RefPtr<const Gio::ListModel>;
+    get_model () const -> glib::RefPtr<const gio::ListModel>;
 
     auto
-    set_model (const Glib::RefPtr<Gio::ListModel>& model) -> void;
+    set_model (const glib::RefPtr<gio::ListModel>& model) -> void;
 
     auto
-    property_item_type () const -> Glib::PropertyProxy_ReadOnly<GType>;
+    property_item_type () const -> glib::PropertyProxy_ReadOnly<GType>;
 
     auto
-    property_model () -> Glib::PropertyProxy<Glib::RefPtr<Gio::ListModel>>;
+    property_model () -> glib::PropertyProxy<glib::RefPtr<gio::ListModel>>;
 
     auto
     property_model () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gio::ListModel>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<gio::ListModel>>;
 
     auto
-    property_n_items () const -> Glib::PropertyProxy_ReadOnly<unsigned int>;
+    property_n_items () const -> glib::PropertyProxy_ReadOnly<unsigned int>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkMultiSelection* object, bool take_copy = false) -> Glib::RefPtr<Gtk::MultiSelection>;
-} // namespace Glib
+  wrap (GtkMultiSelection* object, bool take_copy = false) -> glib::RefPtr<gtk::MultiSelection>;
+} // namespace glib
 
 #endif

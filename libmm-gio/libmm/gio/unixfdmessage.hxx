@@ -14,13 +14,13 @@ using GUnixFDMessageClass = struct _GUnixFDMessageClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gio
+namespace gio
 {
   class LIBMM_GIO_SYMEXPORT UnixFDMessage_Class;
 }
 #endif
 
-namespace Gio
+namespace gio
 {
 
   class LIBMM_GIO_SYMEXPORT UnixFDList;
@@ -44,7 +44,7 @@ namespace Gio
     static CppClassType unixfdmessage_class_;
 
   protected:
-    explicit UnixFDMessage (const Glib::ConstructParams& construct_params);
+    explicit UnixFDMessage (const glib::ConstructParams& construct_params);
     explicit UnixFDMessage (GUnixFDMessage* castitem);
 
 #endif
@@ -83,21 +83,21 @@ namespace Gio
   private:
   protected:
     UnixFDMessage ();
-    explicit UnixFDMessage (const Glib::RefPtr<UnixFDList>& fd_list);
+    explicit UnixFDMessage (const glib::RefPtr<UnixFDList>& fd_list);
 
   public:
     static auto
-    create () -> Glib::RefPtr<UnixFDMessage>;
+    create () -> glib::RefPtr<UnixFDMessage>;
 
     static auto
-    create (const Glib::RefPtr<UnixFDList>& fd_list)
-        -> Glib::RefPtr<UnixFDMessage>;
+    create (const glib::RefPtr<UnixFDList>& fd_list)
+        -> glib::RefPtr<UnixFDMessage>;
 
     auto
-    get_fd_list () -> Glib::RefPtr<UnixFDList>;
+    get_fd_list () -> glib::RefPtr<UnixFDList>;
 
     auto
-    get_fd_list () const -> Glib::RefPtr<const UnixFDList>;
+    get_fd_list () const -> glib::RefPtr<const UnixFDList>;
 
     auto
     append_fd (int fd) -> bool;
@@ -107,21 +107,21 @@ namespace Gio
 
     auto
     property_fd_list () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<UnixFDList>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<UnixFDList>>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gio
+} // namespace gio
 
-namespace Glib
+namespace glib
 {
 
   LIBMM_GIO_SYMEXPORT
   auto
-  wrap (GUnixFDMessage* object, bool take_copy = false) -> Glib::RefPtr<Gio::UnixFDMessage>;
-} // namespace Glib
+  wrap (GUnixFDMessage* object, bool take_copy = false) -> glib::RefPtr<gio::UnixFDMessage>;
+} // namespace glib
 
 #endif

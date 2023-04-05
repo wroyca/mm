@@ -28,7 +28,7 @@ enum
   #define GTKMM_MACRO_SHADOW_DELETE 1
 #endif
 
-namespace Gdk
+namespace gdk
 {
   class LIBMM_GDK_SYMEXPORT Device;
   class LIBMM_GDK_SYMEXPORT DeviceTool;
@@ -44,24 +44,24 @@ namespace Gdk
     EXACT
   };
 
-} // namespace Gdk
+} // namespace gdk
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_GDK_SYMEXPORT Value<Gdk::KeyMatch> : public Glib::Value_Enum<Gdk::KeyMatch>
+  class LIBMM_GDK_SYMEXPORT Value<gdk::KeyMatch> : public glib::Value_Enum<gdk::KeyMatch>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
-namespace Gdk
+namespace gdk
 {
 
   struct EventSequence;
@@ -139,37 +139,37 @@ namespace Gdk
     get_event_type () const -> Type;
 
     auto
-    get_surface () -> Glib::RefPtr<Surface>;
+    get_surface () -> glib::RefPtr<Surface>;
 
     auto
-    get_surface () const -> Glib::RefPtr<const Surface>;
+    get_surface () const -> glib::RefPtr<const Surface>;
 
     auto
-    get_seat () -> Glib::RefPtr<Seat>;
+    get_seat () -> glib::RefPtr<Seat>;
 
     auto
-    get_seat () const -> Glib::RefPtr<const Seat>;
+    get_seat () const -> glib::RefPtr<const Seat>;
 
     auto
-    get_device () -> Glib::RefPtr<Device>;
+    get_device () -> glib::RefPtr<Device>;
 
     auto
-    get_device () const -> Glib::RefPtr<const Device>;
+    get_device () const -> glib::RefPtr<const Device>;
 
     auto
-    get_device_tool () -> Glib::RefPtr<DeviceTool>;
+    get_device_tool () -> glib::RefPtr<DeviceTool>;
 
     auto
-    get_device_tool () const -> Glib::RefPtr<const DeviceTool>;
+    get_device_tool () const -> glib::RefPtr<const DeviceTool>;
 
     auto
     get_time () const -> guint32;
 
     auto
-    get_display () -> Glib::RefPtr<Display>;
+    get_display () -> glib::RefPtr<Display>;
 
     auto
-    get_display () const -> Glib::RefPtr<const Display>;
+    get_display () const -> glib::RefPtr<const Display>;
 
     auto
     get_event_sequence () const -> const EventSequence*;
@@ -184,7 +184,7 @@ namespace Gdk
     get_axes () const -> std::vector<double>;
 
     auto
-    get_axis (Gdk::AxisUse axis_use, double& value) const -> bool;
+    get_axis (gdk::AxisUse axis_use, double& value) const -> bool;
 
     auto
     get_pointer_emulated () const -> bool;
@@ -262,16 +262,16 @@ namespace Gdk
     get_pad_group_mode (guint& group, guint& mode) const -> void;
 
     auto
-    get_dnd_drop () -> Glib::RefPtr<Drop>;
+    get_dnd_drop () -> glib::RefPtr<Drop>;
 
     auto
-    get_dnd_drop () const -> Glib::RefPtr<const Drop>;
+    get_dnd_drop () const -> glib::RefPtr<const Drop>;
 
     auto
-    get_grab_broken_grab_surface () -> Glib::RefPtr<Surface>;
+    get_grab_broken_grab_surface () -> glib::RefPtr<Surface>;
 
     auto
-    get_grab_broken_grab_surface () const -> Glib::RefPtr<const Surface>;
+    get_grab_broken_grab_surface () const -> glib::RefPtr<const Surface>;
 
     auto
     get_grab_broken_implicit () const -> bool;
@@ -283,15 +283,15 @@ namespace Gdk
     triggers_context_menu () const -> bool;
 
     auto
-    get_distance (const Glib::RefPtr<const Event>& event2,
+    get_distance (const glib::RefPtr<const Event>& event2,
                   double& distance) const -> bool;
 
     auto
-    get_angle (const Glib::RefPtr<const Event>& event2, double& angle) const
+    get_angle (const glib::RefPtr<const Event>& event2, double& angle) const
         -> bool;
 
     auto
-    get_center (const Glib::RefPtr<const Event>& event2,
+    get_center (const glib::RefPtr<const Event>& event2,
                 double& x,
                 double& y) const -> bool;
 
@@ -302,29 +302,29 @@ namespace Gdk
     get_match (guint& keyval, ModifierType& modifiers) const -> bool;
   };
 
-} // namespace Gdk
+} // namespace gdk
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_GDK_SYMEXPORT Value<Gdk::Event::Type>
-    : public Glib::Value_Enum<Gdk::Event::Type>
+  class LIBMM_GDK_SYMEXPORT Value<gdk::Event::Type>
+    : public glib::Value_Enum<gdk::Event::Type>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
-namespace Glib
+namespace glib
 {
   LIBMM_GDK_SYMEXPORT auto
-  wrap (GdkEvent* object, bool take_copy = false) -> Glib::RefPtr<Gdk::Event>;
+  wrap (GdkEvent* object, bool take_copy = false) -> glib::RefPtr<gdk::Event>;
 
-} // namespace Glib
+} // namespace glib
 
 #endif

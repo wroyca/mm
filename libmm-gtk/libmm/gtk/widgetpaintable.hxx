@@ -14,17 +14,17 @@
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT WidgetPaintable_Class;
 }
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
-  class LIBMM_GTK_SYMEXPORT WidgetPaintable : public Glib::Object,
-                                    public Gdk::Paintable
+  class LIBMM_GTK_SYMEXPORT WidgetPaintable : public glib::Object,
+                                    public gdk::Paintable
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -43,7 +43,7 @@ namespace Gtk
     static CppClassType widgetpaintable_class_;
 
   protected:
-    explicit WidgetPaintable (const Glib::ConstructParams& construct_params);
+    explicit WidgetPaintable (const glib::ConstructParams& construct_params);
     explicit WidgetPaintable (GtkWidgetPaintable* castitem);
 
 #endif
@@ -86,10 +86,10 @@ namespace Gtk
 
   public:
     static auto
-    create () -> Glib::RefPtr<WidgetPaintable>;
+    create () -> glib::RefPtr<WidgetPaintable>;
 
     static auto
-    create (Widget& widget) -> Glib::RefPtr<WidgetPaintable>;
+    create (Widget& widget) -> glib::RefPtr<WidgetPaintable>;
 
     auto
     get_widget () -> Widget*;
@@ -103,22 +103,22 @@ namespace Gtk
     unset_widget () -> void;
 
     auto
-    property_widget () -> Glib::PropertyProxy<Widget*>;
+    property_widget () -> glib::PropertyProxy<Widget*>;
 
     auto
-    property_widget () const -> Glib::PropertyProxy_ReadOnly<Widget*>;
+    property_widget () const -> glib::PropertyProxy_ReadOnly<Widget*>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkWidgetPaintable* object, bool take_copy = false) -> Glib::RefPtr<Gtk::WidgetPaintable>;
-} // namespace Glib
+  wrap (GtkWidgetPaintable* object, bool take_copy = false) -> glib::RefPtr<gtk::WidgetPaintable>;
+} // namespace glib
 
 #endif

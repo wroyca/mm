@@ -8,25 +8,25 @@
 #include <gtk/gtk.h>
 #include <libmm/gdk/device.hxx>
 
-namespace Gtk
+namespace gtk
 {
 
   auto
-  Gesture::get_sequences () const -> std::vector<const Gdk::EventSequence*>
+  Gesture::get_sequences () const -> std::vector<const gdk::EventSequence*>
   {
-    std::vector<const Gdk::EventSequence*> sequences;
+    std::vector<const gdk::EventSequence*> sequences;
     auto list = g_list_first (
         gtk_gesture_get_sequences (const_cast<GtkGesture*> (gobj ())));
 
     for (GList* node = list; node; node = g_list_next (node))
-      sequences.emplace_back (static_cast<Gdk::EventSequence*> (node->data));
+      sequences.emplace_back (static_cast<gdk::EventSequence*> (node->data));
 
     g_list_free (list);
 
     return sequences;
   }
 
-} // namespace Gtk
+} // namespace gtk
 
 namespace
 {
@@ -36,28 +36,28 @@ namespace
                                  GdkEventSequence* p0,
                                  void* data) -> void
   {
-    using namespace Gtk;
-    using SlotType = sigc::slot<void (Gdk::EventSequence*)>;
+    using namespace gtk;
+    using SlotType = sigc::slot<void (gdk::EventSequence*)>;
 
     auto obj = dynamic_cast<Gesture*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
     {
       try
       {
-        if (const auto slot = Glib::SignalProxyNormal::data_to_slot (data))
+        if (const auto slot = glib::SignalProxyNormal::data_to_slot (data))
           (*static_cast<SlotType*> (slot)) (
-              reinterpret_cast<Gdk::EventSequence*> (p0));
+              reinterpret_cast<gdk::EventSequence*> (p0));
       }
       catch (...)
       {
-        Glib::exception_handlers_invoke ();
+        glib::exception_handlers_invoke ();
       }
     }
   }
 
-  static const Glib::SignalProxyInfo Gesture_signal_begin_info = {
+  static const glib::SignalProxyInfo Gesture_signal_begin_info = {
       "begin",
       (GCallback) &Gesture_signal_begin_callback,
       (GCallback) &Gesture_signal_begin_callback};
@@ -67,28 +67,28 @@ namespace
                                GdkEventSequence* p0,
                                void* data) -> void
   {
-    using namespace Gtk;
-    using SlotType = sigc::slot<void (Gdk::EventSequence*)>;
+    using namespace gtk;
+    using SlotType = sigc::slot<void (gdk::EventSequence*)>;
 
     auto obj = dynamic_cast<Gesture*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
     {
       try
       {
-        if (const auto slot = Glib::SignalProxyNormal::data_to_slot (data))
+        if (const auto slot = glib::SignalProxyNormal::data_to_slot (data))
           (*static_cast<SlotType*> (slot)) (
-              reinterpret_cast<Gdk::EventSequence*> (p0));
+              reinterpret_cast<gdk::EventSequence*> (p0));
       }
       catch (...)
       {
-        Glib::exception_handlers_invoke ();
+        glib::exception_handlers_invoke ();
       }
     }
   }
 
-  static const Glib::SignalProxyInfo Gesture_signal_end_info = {
+  static const glib::SignalProxyInfo Gesture_signal_end_info = {
       "end",
       (GCallback) &Gesture_signal_end_callback,
       (GCallback) &Gesture_signal_end_callback};
@@ -98,28 +98,28 @@ namespace
                                   GdkEventSequence* p0,
                                   void* data) -> void
   {
-    using namespace Gtk;
-    using SlotType = sigc::slot<void (Gdk::EventSequence*)>;
+    using namespace gtk;
+    using SlotType = sigc::slot<void (gdk::EventSequence*)>;
 
     auto obj = dynamic_cast<Gesture*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
     {
       try
       {
-        if (const auto slot = Glib::SignalProxyNormal::data_to_slot (data))
+        if (const auto slot = glib::SignalProxyNormal::data_to_slot (data))
           (*static_cast<SlotType*> (slot)) (
-              reinterpret_cast<Gdk::EventSequence*> (p0));
+              reinterpret_cast<gdk::EventSequence*> (p0));
       }
       catch (...)
       {
-        Glib::exception_handlers_invoke ();
+        glib::exception_handlers_invoke ();
       }
     }
   }
 
-  static const Glib::SignalProxyInfo Gesture_signal_update_info = {
+  static const glib::SignalProxyInfo Gesture_signal_update_info = {
       "update",
       (GCallback) &Gesture_signal_update_callback,
       (GCallback) &Gesture_signal_update_callback};
@@ -129,28 +129,28 @@ namespace
                                   GdkEventSequence* p0,
                                   void* data) -> void
   {
-    using namespace Gtk;
-    using SlotType = sigc::slot<void (Gdk::EventSequence*)>;
+    using namespace gtk;
+    using SlotType = sigc::slot<void (gdk::EventSequence*)>;
 
     auto obj = dynamic_cast<Gesture*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
     {
       try
       {
-        if (const auto slot = Glib::SignalProxyNormal::data_to_slot (data))
+        if (const auto slot = glib::SignalProxyNormal::data_to_slot (data))
           (*static_cast<SlotType*> (slot)) (
-              reinterpret_cast<Gdk::EventSequence*> (p0));
+              reinterpret_cast<gdk::EventSequence*> (p0));
       }
       catch (...)
       {
-        Glib::exception_handlers_invoke ();
+        glib::exception_handlers_invoke ();
       }
     }
   }
 
-  static const Glib::SignalProxyInfo Gesture_signal_cancel_info = {
+  static const glib::SignalProxyInfo Gesture_signal_cancel_info = {
       "cancel",
       (GCallback) &Gesture_signal_cancel_callback,
       (GCallback) &Gesture_signal_cancel_callback};
@@ -161,29 +161,29 @@ namespace
                                                   GtkEventSequenceState p1,
                                                   void* data) -> void
   {
-    using namespace Gtk;
-    using SlotType = sigc::slot<void (Gdk::EventSequence*, EventSequenceState)>;
+    using namespace gtk;
+    using SlotType = sigc::slot<void (gdk::EventSequence*, EventSequenceState)>;
 
     auto obj = dynamic_cast<Gesture*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
     {
       try
       {
-        if (const auto slot = Glib::SignalProxyNormal::data_to_slot (data))
+        if (const auto slot = glib::SignalProxyNormal::data_to_slot (data))
           (*static_cast<SlotType*> (slot)) (
-              reinterpret_cast<Gdk::EventSequence*> (p0),
+              reinterpret_cast<gdk::EventSequence*> (p0),
               static_cast<EventSequenceState> (p1));
       }
       catch (...)
       {
-        Glib::exception_handlers_invoke ();
+        glib::exception_handlers_invoke ();
       }
     }
   }
 
-  static const Glib::SignalProxyInfo
+  static const glib::SignalProxyInfo
       Gesture_signal_sequence_state_changed_info = {
           "sequence_state_changed",
           (GCallback) &Gesture_signal_sequence_state_changed_callback,
@@ -192,29 +192,29 @@ namespace
 } // namespace
 
 auto
-Glib::Value<Gtk::EventSequenceState>::value_type () -> GType
+glib::Value<gtk::EventSequenceState>::value_type () -> GType
 {
   return gtk_event_sequence_state_get_type ();
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GtkGesture* object, bool take_copy) -> Glib::RefPtr<Gtk::Gesture>
+  wrap (GtkGesture* object, bool take_copy) -> glib::RefPtr<gtk::Gesture>
   {
-    return Glib::make_refptr_for_instance<Gtk::Gesture> (
-        dynamic_cast<Gtk::Gesture*> (
-            Glib::wrap_auto ((GObject*) (object), take_copy)));
+    return glib::make_refptr_for_instance<gtk::Gesture> (
+        dynamic_cast<gtk::Gesture*> (
+            glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gtk
+namespace gtk
 {
 
   auto
-  Gesture_Class::init () -> const Glib::Class&
+  Gesture_Class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -234,7 +234,7 @@ namespace Gtk
   }
 
   auto
-  Gesture_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  Gesture_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new Gesture ((GtkGesture*) object);
   }
@@ -246,7 +246,7 @@ namespace Gtk
     return gobj ();
   }
 
-  Gesture::Gesture (const Glib::ConstructParams& construct_params)
+  Gesture::Gesture (const glib::ConstructParams& construct_params)
     : EventController (construct_params)
   {
   }
@@ -285,22 +285,22 @@ namespace Gtk
   }
 
   Gesture::Gesture ()
-    : Glib::ObjectBase (nullptr),
-      EventController (Glib::ConstructParams (gesture_class_.init ()))
+    : glib::ObjectBase (nullptr),
+      EventController (glib::ConstructParams (gesture_class_.init ()))
   {
   }
 
   auto
-  Gesture::get_device () -> Glib::RefPtr<Gdk::Device>
+  Gesture::get_device () -> glib::RefPtr<gdk::Device>
   {
-    auto retvalue = Glib::wrap (gtk_gesture_get_device (gobj ()));
+    auto retvalue = glib::wrap (gtk_gesture_get_device (gobj ()));
     if (retvalue)
       retvalue->reference ();
     return retvalue;
   }
 
   auto
-  Gesture::get_device () const -> Glib::RefPtr<const Gdk::Device>
+  Gesture::get_device () const -> glib::RefPtr<const gdk::Device>
   {
     return const_cast<Gesture*> (this)->get_device ();
   }
@@ -313,7 +313,7 @@ namespace Gtk
   }
 
   auto
-  Gesture::get_sequence_state (Gdk::EventSequence* sequence) const -> EventSequenceState
+  Gesture::get_sequence_state (gdk::EventSequence* sequence) const -> EventSequenceState
   {
     return static_cast<EventSequenceState> (gtk_gesture_get_sequence_state (
         const_cast<GtkGesture*> (gobj ()),
@@ -323,7 +323,7 @@ namespace Gtk
 #ifndef GTKMM_DISABLE_DEPRECATED
   G_GNUC_BEGIN_IGNORE_DEPRECATIONS
   auto
-  Gesture::set_sequence_state (Gdk::EventSequence* sequence,
+  Gesture::set_sequence_state (gdk::EventSequence* sequence,
                                EventSequenceState state) -> bool
   {
     return gtk_gesture_set_sequence_state (
@@ -336,20 +336,20 @@ namespace Gtk
 #endif
 
   auto
-  Gesture::get_last_updated_sequence () -> Gdk::EventSequence*
+  Gesture::get_last_updated_sequence () -> gdk::EventSequence*
   {
-    return reinterpret_cast<Gdk::EventSequence*> (
+    return reinterpret_cast<gdk::EventSequence*> (
         gtk_gesture_get_last_updated_sequence (gobj ()));
   }
 
   auto
-  Gesture::get_last_updated_sequence () const -> const Gdk::EventSequence*
+  Gesture::get_last_updated_sequence () const -> const gdk::EventSequence*
   {
     return const_cast<Gesture*> (this)->get_last_updated_sequence ();
   }
 
   auto
-  Gesture::handles_sequence (Gdk::EventSequence* sequence) const -> bool
+  Gesture::handles_sequence (gdk::EventSequence* sequence) const -> bool
   {
     return gtk_gesture_handles_sequence (
         const_cast<GtkGesture*> (gobj ()),
@@ -357,9 +357,9 @@ namespace Gtk
   }
 
   auto
-  Gesture::get_last_event (Gdk::EventSequence* sequence) -> Glib::RefPtr<Gdk::Event>
+  Gesture::get_last_event (gdk::EventSequence* sequence) -> glib::RefPtr<gdk::Event>
   {
-    auto retvalue = Glib::wrap (gtk_gesture_get_last_event (
+    auto retvalue = glib::wrap (gtk_gesture_get_last_event (
         gobj (),
         reinterpret_cast<GdkEventSequence*> (sequence)));
     if (retvalue)
@@ -368,13 +368,13 @@ namespace Gtk
   }
 
   auto
-  Gesture::get_last_event (Gdk::EventSequence* sequence) const -> Glib::RefPtr<const Gdk::Event>
+  Gesture::get_last_event (gdk::EventSequence* sequence) const -> glib::RefPtr<const gdk::Event>
   {
     return const_cast<Gesture*> (this)->get_last_event (sequence);
   }
 
   auto
-  Gesture::get_point (Gdk::EventSequence* sequence, double& x, double& y) const -> bool
+  Gesture::get_point (gdk::EventSequence* sequence, double& x, double& y) const -> bool
   {
     return gtk_gesture_get_point (
         const_cast<GtkGesture*> (gobj ()),
@@ -384,7 +384,7 @@ namespace Gtk
   }
 
   auto
-  Gesture::get_bounding_box (Gdk::Rectangle& rect) const -> bool
+  Gesture::get_bounding_box (gdk::Rectangle& rect) const -> bool
   {
     return gtk_gesture_get_bounding_box (const_cast<GtkGesture*> (gobj ()),
                                          (rect).gobj ());
@@ -412,9 +412,9 @@ namespace Gtk
   }
 
   auto
-  Gesture::group (const Glib::RefPtr<Gesture>& group_gesture) -> void
+  Gesture::group (const glib::RefPtr<Gesture>& group_gesture) -> void
   {
-    gtk_gesture_group (gobj (), Glib::unwrap (group_gesture));
+    gtk_gesture_group (gobj (), glib::unwrap (group_gesture));
   }
 
   auto
@@ -424,72 +424,72 @@ namespace Gtk
   }
 
   auto
-  Gesture::get_group () -> std::vector<Glib::RefPtr<Gesture>>
+  Gesture::get_group () -> std::vector<glib::RefPtr<Gesture>>
   {
-    return Glib::ListHandler<Glib::RefPtr<Gesture>>::list_to_vector (
+    return glib::ListHandler<glib::RefPtr<Gesture>>::list_to_vector (
         gtk_gesture_get_group (gobj ()),
-        Glib::OWNERSHIP_SHALLOW);
+        glib::OWNERSHIP_SHALLOW);
   }
 
   auto
-  Gesture::get_group () const -> std::vector<Glib::RefPtr<const Gesture>>
+  Gesture::get_group () const -> std::vector<glib::RefPtr<const Gesture>>
   {
-    return Glib::ListHandler<Glib::RefPtr<const Gesture>>::list_to_vector (
+    return glib::ListHandler<glib::RefPtr<const Gesture>>::list_to_vector (
         gtk_gesture_get_group (const_cast<GtkGesture*> (gobj ())),
-        Glib::OWNERSHIP_SHALLOW);
+        glib::OWNERSHIP_SHALLOW);
   }
 
   auto
-  Gesture::is_grouped_with (const Glib::RefPtr<Gesture>& other) const -> bool
+  Gesture::is_grouped_with (const glib::RefPtr<Gesture>& other) const -> bool
   {
     return gtk_gesture_is_grouped_with (const_cast<GtkGesture*> (gobj ()),
-                                        Glib::unwrap (other));
+                                        glib::unwrap (other));
   }
 
   auto
-  Gesture::signal_begin () -> Glib::SignalProxy<void (Gdk::EventSequence*)>
+  Gesture::signal_begin () -> glib::SignalProxy<void (gdk::EventSequence*)>
   {
-    return Glib::SignalProxy<void (Gdk::EventSequence*)> (
+    return glib::SignalProxy<void (gdk::EventSequence*)> (
         this,
         &Gesture_signal_begin_info);
   }
 
   auto
-  Gesture::signal_end () -> Glib::SignalProxy<void (Gdk::EventSequence*)>
+  Gesture::signal_end () -> glib::SignalProxy<void (gdk::EventSequence*)>
   {
-    return Glib::SignalProxy<void (Gdk::EventSequence*)> (
+    return glib::SignalProxy<void (gdk::EventSequence*)> (
         this,
         &Gesture_signal_end_info);
   }
 
   auto
-  Gesture::signal_update () -> Glib::SignalProxy<void (Gdk::EventSequence*)>
+  Gesture::signal_update () -> glib::SignalProxy<void (gdk::EventSequence*)>
   {
-    return Glib::SignalProxy<void (Gdk::EventSequence*)> (
+    return glib::SignalProxy<void (gdk::EventSequence*)> (
         this,
         &Gesture_signal_update_info);
   }
 
   auto
-  Gesture::signal_cancel () -> Glib::SignalProxy<void (Gdk::EventSequence*)>
+  Gesture::signal_cancel () -> glib::SignalProxy<void (gdk::EventSequence*)>
   {
-    return Glib::SignalProxy<void (Gdk::EventSequence*)> (
+    return glib::SignalProxy<void (gdk::EventSequence*)> (
         this,
         &Gesture_signal_cancel_info);
   }
 
   auto
-  Gesture::signal_sequence_state_changed () -> Glib::SignalProxy<void (Gdk::EventSequence*, EventSequenceState)>
+  Gesture::signal_sequence_state_changed () -> glib::SignalProxy<void (gdk::EventSequence*, EventSequenceState)>
   {
-    return Glib::SignalProxy<void (Gdk::EventSequence*, EventSequenceState)> (
+    return glib::SignalProxy<void (gdk::EventSequence*, EventSequenceState)> (
         this,
         &Gesture_signal_sequence_state_changed_info);
   }
 
   auto
-  Gesture::property_n_points () const -> Glib::PropertyProxy_ReadOnly<unsigned int>
+  Gesture::property_n_points () const -> glib::PropertyProxy_ReadOnly<unsigned int>
   {
-    return Glib::PropertyProxy_ReadOnly<unsigned int> (this, "n-points");
+    return glib::PropertyProxy_ReadOnly<unsigned int> (this, "n-points");
   }
 
-} // namespace Gtk
+} // namespace gtk

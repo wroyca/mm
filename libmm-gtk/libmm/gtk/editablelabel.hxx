@@ -13,13 +13,13 @@
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT EditableLabel_Class;
 }
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
   class LIBMM_GTK_SYMEXPORT EditableLabel : public Widget,
@@ -50,7 +50,7 @@ namespace Gtk
     static CppClassType editablelabel_class_;
 
   protected:
-    explicit EditableLabel (const Glib::ConstructParams& construct_params);
+    explicit EditableLabel (const glib::ConstructParams& construct_params);
     explicit EditableLabel (GtkEditableLabel* castitem);
 
 #endif
@@ -81,7 +81,7 @@ namespace Gtk
   public:
     EditableLabel ();
 
-    explicit EditableLabel (const Glib::ustring& text);
+    explicit EditableLabel (const glib::ustring& text);
 
     auto
     get_editing () const -> bool;
@@ -93,22 +93,22 @@ namespace Gtk
     stop_editing (bool commit) -> void;
 
     auto
-    property_editing () -> Glib::PropertyProxy<bool>;
+    property_editing () -> glib::PropertyProxy<bool>;
 
     auto
-    property_editing () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_editing () const -> glib::PropertyProxy_ReadOnly<bool>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkEditableLabel* object, bool take_copy = false) -> Gtk::EditableLabel*;
-} // namespace Glib
+  wrap (GtkEditableLabel* object, bool take_copy = false) -> gtk::EditableLabel*;
+} // namespace glib
 
 #endif

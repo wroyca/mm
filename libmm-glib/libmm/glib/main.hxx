@@ -12,7 +12,7 @@
 #include <sigc++/sigc++.h>
 #include <vector>
 
-namespace Glib
+namespace glib
 {
 
   class LIBMM_GLIB_SYMEXPORT PollFD
@@ -147,7 +147,7 @@ namespace Glib
 
     auto
     connect (const sigc::slot<bool (IOCondition)>& slot,
-             const Glib::RefPtr<IOChannel>& channel,
+             const glib::RefPtr<IOChannel>& channel,
              IOCondition condition,
              int priority = PRIORITY_DEFAULT) -> sigc::connection;
 
@@ -196,7 +196,7 @@ namespace Glib
   class LIBMM_GLIB_SYMEXPORT MainContext
   {
   public:
-    using CppObjectType = Glib::MainContext;
+    using CppObjectType = glib::MainContext;
     using BaseObjectType = GMainContext;
 
     MainContext (const MainContext& other) = delete;
@@ -204,13 +204,13 @@ namespace Glib
     operator= (const MainContext& other) -> MainContext& = delete;
 
     static auto
-    create () -> Glib::RefPtr<MainContext>;
+    create () -> glib::RefPtr<MainContext>;
 
     static auto
-    create (MainContextFlags flags) -> Glib::RefPtr<MainContext>;
+    create (MainContextFlags flags) -> glib::RefPtr<MainContext>;
 
     static auto
-    get_default () -> Glib::RefPtr<MainContext>;
+    get_default () -> glib::RefPtr<MainContext>;
 
     auto
     iteration (bool may_block) -> bool;
@@ -261,7 +261,7 @@ namespace Glib
     pop_thread_default () -> void;
 
     static auto
-    get_thread_default () -> Glib::RefPtr<MainContext>;
+    get_thread_default () -> glib::RefPtr<MainContext>;
 
     auto
     invoke (const sigc::slot<bool ()>& slot, int priority = PRIORITY_DEFAULT)
@@ -299,19 +299,19 @@ namespace Glib
 
   LIBMM_GLIB_SYMEXPORT
   auto
-  wrap (GMainContext* gobject, bool take_copy = false) -> Glib::RefPtr<MainContext>;
+  wrap (GMainContext* gobject, bool take_copy = false) -> glib::RefPtr<MainContext>;
 
   class LIBMM_GLIB_SYMEXPORT MainLoop
   {
   public:
-    using CppObjectType = Glib::MainLoop;
+    using CppObjectType = glib::MainLoop;
     using BaseObjectType = GMainLoop;
 
     static auto
-    create (bool is_running = false) -> Glib::RefPtr<MainLoop>;
+    create (bool is_running = false) -> glib::RefPtr<MainLoop>;
     static auto
-    create (const Glib::RefPtr<MainContext>& context, bool is_running = false)
-        -> Glib::RefPtr<MainLoop>;
+    create (const glib::RefPtr<MainContext>& context, bool is_running = false)
+        -> glib::RefPtr<MainLoop>;
 
     auto
     run () -> void;
@@ -323,7 +323,7 @@ namespace Glib
     is_running () -> bool;
 
     auto
-    get_context () -> Glib::RefPtr<MainContext>;
+    get_context () -> glib::RefPtr<MainContext>;
 
     static auto
     depth () -> int;
@@ -353,12 +353,12 @@ namespace Glib
 
   LIBMM_GLIB_SYMEXPORT
   auto
-  wrap (GMainLoop* gobject, bool take_copy = false) -> Glib::RefPtr<MainLoop>;
+  wrap (GMainLoop* gobject, bool take_copy = false) -> glib::RefPtr<MainLoop>;
 
   class Source
   {
   public:
-    using CppObjectType = Glib::Source;
+    using CppObjectType = glib::Source;
     using BaseObjectType = GSource;
 
     Source (const Source&) = delete;
@@ -366,10 +366,10 @@ namespace Glib
     operator= (const Source&) -> Source& = delete;
 
     LIBMM_GLIB_SYMEXPORT static auto
-    create () -> Glib::RefPtr<Source>;
+    create () -> glib::RefPtr<Source>;
 
     LIBMM_GLIB_SYMEXPORT auto
-    attach (const Glib::RefPtr<MainContext>& context) -> unsigned int;
+    attach (const glib::RefPtr<MainContext>& context) -> unsigned int;
 
     LIBMM_GLIB_SYMEXPORT auto
     attach () -> unsigned int;
@@ -393,7 +393,7 @@ namespace Glib
     get_id () const -> unsigned int;
 
     LIBMM_GLIB_SYMEXPORT auto
-    get_context () -> Glib::RefPtr<MainContext>;
+    get_context () -> glib::RefPtr<MainContext>;
 
     LIBMM_GLIB_SYMEXPORT auto
     gobj () -> GSource*
@@ -483,13 +483,13 @@ namespace Glib
 #endif
   };
 
-  class TimeoutSource : public Glib::Source
+  class TimeoutSource : public glib::Source
   {
   public:
-    using CppObjectType = Glib::TimeoutSource;
+    using CppObjectType = glib::TimeoutSource;
 
     LIBMM_GLIB_SYMEXPORT static auto
-    create (unsigned int interval) -> Glib::RefPtr<TimeoutSource>;
+    create (unsigned int interval) -> glib::RefPtr<TimeoutSource>;
     LIBMM_GLIB_SYMEXPORT auto
     connect (const sigc::slot<bool ()>& slot) -> sigc::connection;
 
@@ -509,13 +509,13 @@ namespace Glib
     unsigned int interval_;
   };
 
-  class IdleSource : public Glib::Source
+  class IdleSource : public glib::Source
   {
   public:
-    using CppObjectType = Glib::IdleSource;
+    using CppObjectType = glib::IdleSource;
 
     LIBMM_GLIB_SYMEXPORT static auto
-    create () -> Glib::RefPtr<IdleSource>;
+    create () -> glib::RefPtr<IdleSource>;
     LIBMM_GLIB_SYMEXPORT auto
     connect (const sigc::slot<bool ()>& slot) -> sigc::connection;
 
@@ -532,16 +532,16 @@ namespace Glib
     dispatch (sigc::slot_base* slot_data) -> bool override;
   };
 
-  class IOSource : public Glib::Source
+  class IOSource : public glib::Source
   {
   public:
-    using CppObjectType = Glib::IOSource;
+    using CppObjectType = glib::IOSource;
 
     LIBMM_GLIB_SYMEXPORT static auto
-    create (PollFD::fd_t fd, IOCondition condition) -> Glib::RefPtr<IOSource>;
+    create (PollFD::fd_t fd, IOCondition condition) -> glib::RefPtr<IOSource>;
     LIBMM_GLIB_SYMEXPORT static auto
-    create (const Glib::RefPtr<IOChannel>& channel, IOCondition condition)
-        -> Glib::RefPtr<IOSource>;
+    create (const glib::RefPtr<IOChannel>& channel, IOCondition condition)
+        -> glib::RefPtr<IOSource>;
     LIBMM_GLIB_SYMEXPORT auto
     connect (const sigc::slot<bool (IOCondition)>& slot) -> sigc::connection;
 
@@ -549,7 +549,7 @@ namespace Glib
     LIBMM_GLIB_SYMEXPORT
     IOSource (PollFD::fd_t fd, IOCondition condition);
     LIBMM_GLIB_SYMEXPORT
-    IOSource (const Glib::RefPtr<IOChannel>& channel, IOCondition condition);
+    IOSource (const glib::RefPtr<IOChannel>& channel, IOCondition condition);
 
     LIBMM_GLIB_SYMEXPORT
     IOSource (GSource* cast_item, GSourceFunc callback_func);
@@ -568,7 +568,7 @@ namespace Glib
 
     LIBMM_GLIB_SYMEXPORT static auto
     create (GIOChannel* channel, IOCondition condition)
-        -> Glib::RefPtr<IOSource>;
+        -> glib::RefPtr<IOSource>;
 
     LIBMM_GLIB_SYMEXPORT
     IOSource (GIOChannel* channel, IOCondition condition);
@@ -576,6 +576,6 @@ namespace Glib
     PollFD poll_fd_;
   };
 
-} // namespace Glib
+} // namespace glib
 
 #endif

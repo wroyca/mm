@@ -16,16 +16,16 @@
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Adw
+namespace adw
 {
   class LIBMM_ADW_SYMEXPORT AboutWindow_Class;
 }
 #endif
 
-namespace Adw
+namespace adw
 {
 
-  class LIBMM_ADW_SYMEXPORT AboutWindow : public Adw::Window
+  class LIBMM_ADW_SYMEXPORT AboutWindow : public adw::Window
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -52,7 +52,7 @@ namespace Adw
     static CppClassType aboutwindow_class_;
 
   protected:
-    explicit AboutWindow (const Glib::ConstructParams& construct_params);
+    explicit AboutWindow (const glib::ConstructParams& construct_params);
     explicit AboutWindow (AdwAboutWindow* castitem);
 
 #endif
@@ -84,291 +84,291 @@ namespace Adw
     AboutWindow ();
 
     auto
-    get_application_icon () const -> Glib::ustring;
+    get_application_icon () const -> glib::ustring;
 
     auto
-    get_application_name () const -> Glib::ustring;
+    get_application_name () const -> glib::ustring;
 
     auto
-    get_comments () const -> Glib::ustring;
+    get_comments () const -> glib::ustring;
 
     auto
-    get_copyright () const -> Glib::ustring;
+    get_copyright () const -> glib::ustring;
 
     auto
-    get_debug_info () const -> Glib::ustring;
+    get_debug_info () const -> glib::ustring;
 
     auto
-    get_debug_info_filename () const -> Glib::ustring;
+    get_debug_info_filename () const -> glib::ustring;
 
     auto
-    get_developer_name () const -> Glib::ustring;
+    get_developer_name () const -> glib::ustring;
 
     auto
-    get_issue_url () const -> Glib::ustring;
+    get_issue_url () const -> glib::ustring;
 
     auto
-    get_license () const -> Glib::ustring;
+    get_license () const -> glib::ustring;
 
     auto
-    get_release_notes () const -> Glib::ustring;
+    get_release_notes () const -> glib::ustring;
 
     auto
-    get_release_notes_version () const -> Glib::ustring;
+    get_release_notes_version () const -> glib::ustring;
 
     auto
-    get_support_url () const -> Glib::ustring;
+    get_support_url () const -> glib::ustring;
 
     auto
-    get_translator_credits () const -> Glib::ustring;
+    get_translator_credits () const -> glib::ustring;
 
     auto
-    get_version () const -> Glib::ustring;
+    get_version () const -> glib::ustring;
 
     auto
-    get_website () const -> Glib::ustring;
+    get_website () const -> glib::ustring;
 
     auto
-    get_license_type () const -> Gtk::License;
+    get_license_type () const -> gtk::License;
 
     auto
-    get_artists () const -> std::vector<Glib::ustring>;
+    get_artists () const -> std::vector<glib::ustring>;
 
     auto
-    get_designers () const -> std::vector<Glib::ustring>;
+    get_designers () const -> std::vector<glib::ustring>;
 
     auto
-    get_developers () const -> std::vector<Glib::ustring>;
+    get_developers () const -> std::vector<glib::ustring>;
 
     auto
-    get_documenters () const -> std::vector<Glib::ustring>;
+    get_documenters () const -> std::vector<glib::ustring>;
 
     auto
-    add_acknowledgement_section (const Glib::ustring& name,
-                                 const std::vector<Glib::ustring>& people)
+    add_acknowledgement_section (const glib::ustring& name,
+                                 const std::vector<glib::ustring>& people)
         -> void;
 
     auto
-    add_credit_section (const Glib::ustring& name,
-                        const std::vector<Glib::ustring>& people) -> void;
+    add_credit_section (const glib::ustring& name,
+                        const std::vector<glib::ustring>& people) -> void;
 
     auto
-    add_legal_section (const Glib::ustring& title,
-                       const Glib::ustring& copyright,
-                       Gtk::License license_type,
-                       const Glib::ustring& license) -> void;
+    add_legal_section (const glib::ustring& title,
+                       const glib::ustring& copyright,
+                       gtk::License license_type,
+                       const glib::ustring& license) -> void;
 
     auto
-    add_link (const Glib::ustring& title, const Glib::ustring& url) -> void;
+    add_link (const glib::ustring& title, const glib::ustring& url) -> void;
 
     auto
-    set_application_icon (const Glib::ustring& application_icon) -> void;
+    set_application_icon (const glib::ustring& application_icon) -> void;
 
     auto
-    set_application_name (const Glib::ustring& application_name) -> void;
+    set_application_name (const glib::ustring& application_name) -> void;
 
     auto
-    set_artists (const std::vector<Glib::ustring>& artists) -> void;
+    set_artists (const std::vector<glib::ustring>& artists) -> void;
 
     auto
-    set_comments (const Glib::ustring& comments) -> void;
+    set_comments (const glib::ustring& comments) -> void;
 
     auto
-    set_copyright (const Glib::ustring& copyright) -> void;
+    set_copyright (const glib::ustring& copyright) -> void;
 
     auto
-    set_debug_info (const Glib::ustring& debug_info) -> void;
+    set_debug_info (const glib::ustring& debug_info) -> void;
 
     auto
-    set_debug_info_filename (const Glib::ustring& filename) -> void;
+    set_debug_info_filename (const glib::ustring& filename) -> void;
 
     auto
-    set_designers (const std::vector<Glib::ustring>& designers) -> void;
+    set_designers (const std::vector<glib::ustring>& designers) -> void;
 
     auto
-    set_developer_name (const Glib::ustring& developer_name) -> void;
+    set_developer_name (const glib::ustring& developer_name) -> void;
 
     auto
-    set_developers (const std::vector<Glib::ustring>& developers) -> void;
+    set_developers (const std::vector<glib::ustring>& developers) -> void;
 
     auto
-    set_documenters (const std::vector<Glib::ustring>& documenters) -> void;
+    set_documenters (const std::vector<glib::ustring>& documenters) -> void;
 
     auto
-    set_issue_url (const Glib::ustring& issue_url) -> void;
+    set_issue_url (const glib::ustring& issue_url) -> void;
 
     auto
-    set_license (const Glib::ustring& license) -> void;
+    set_license (const glib::ustring& license) -> void;
 
     auto
-    set_license_type (Gtk::License license_type) -> void;
+    set_license_type (gtk::License license_type) -> void;
 
     auto
-    set_release_notes (const Glib::ustring& release_notes) -> void;
+    set_release_notes (const glib::ustring& release_notes) -> void;
 
     auto
-    set_release_notes_version (const Glib::ustring& version) -> void;
+    set_release_notes_version (const glib::ustring& version) -> void;
 
     auto
-    set_support_url (const Glib::ustring& support_url) -> void;
+    set_support_url (const glib::ustring& support_url) -> void;
 
     auto
-    set_translator_credits (const Glib::ustring& translator_credits) -> void;
+    set_translator_credits (const glib::ustring& translator_credits) -> void;
 
     auto
-    set_version (const Glib::ustring& version) -> void;
+    set_version (const glib::ustring& version) -> void;
 
     auto
-    set_website (const Glib::ustring& website) -> void;
+    set_website (const glib::ustring& website) -> void;
 
     auto
-    property_support_url () -> Glib::PropertyProxy<Glib::ustring>;
+    property_support_url () -> glib::PropertyProxy<glib::ustring>;
 
     auto
     property_support_url () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+        -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
     auto
-    property_application_icon () -> Glib::PropertyProxy<Glib::ustring>;
+    property_application_icon () -> glib::PropertyProxy<glib::ustring>;
 
     auto
     property_application_icon () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+        -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
     auto
-    property_translator_credits () -> Glib::PropertyProxy<Glib::ustring>;
+    property_translator_credits () -> glib::PropertyProxy<glib::ustring>;
 
     auto
     property_translator_credits () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+        -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
     auto
-    property_copyright () -> Glib::PropertyProxy<Glib::ustring>;
+    property_copyright () -> glib::PropertyProxy<glib::ustring>;
 
     auto
-    property_copyright () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+    property_copyright () const -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
     auto
-    property_release_notes () -> Glib::PropertyProxy<Glib::ustring>;
+    property_release_notes () -> glib::PropertyProxy<glib::ustring>;
 
     auto
     property_release_notes () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+        -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
     auto
-    property_designers () -> Glib::PropertyProxy<std::vector<Glib::ustring>>;
+    property_designers () -> glib::PropertyProxy<std::vector<glib::ustring>>;
 
     auto
     property_designers () const
-        -> Glib::PropertyProxy_ReadOnly<std::vector<Glib::ustring>>;
+        -> glib::PropertyProxy_ReadOnly<std::vector<glib::ustring>>;
 
     auto
-    property_application_name () -> Glib::PropertyProxy<Glib::ustring>;
+    property_application_name () -> glib::PropertyProxy<glib::ustring>;
 
     auto
     property_application_name () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+        -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
     auto
-    property_developer_name () -> Glib::PropertyProxy<Glib::ustring>;
+    property_developer_name () -> glib::PropertyProxy<glib::ustring>;
 
     auto
     property_developer_name () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+        -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
     auto
-    property_documenters () -> Glib::PropertyProxy<std::vector<Glib::ustring>>;
+    property_documenters () -> glib::PropertyProxy<std::vector<glib::ustring>>;
 
     auto
     property_documenters () const
-        -> Glib::PropertyProxy_ReadOnly<std::vector<Glib::ustring>>;
+        -> glib::PropertyProxy_ReadOnly<std::vector<glib::ustring>>;
 
     auto
-    property_debug_info () -> Glib::PropertyProxy<Glib::ustring>;
+    property_debug_info () -> glib::PropertyProxy<glib::ustring>;
 
     auto
-    property_debug_info () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+    property_debug_info () const -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
     auto
-    property_website () -> Glib::PropertyProxy<Glib::ustring>;
+    property_website () -> glib::PropertyProxy<glib::ustring>;
 
     auto
-    property_website () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+    property_website () const -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
     auto
-    property_version () -> Glib::PropertyProxy<Glib::ustring>;
+    property_version () -> glib::PropertyProxy<glib::ustring>;
 
     auto
-    property_version () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+    property_version () const -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
     auto
-    property_comments () -> Glib::PropertyProxy<Glib::ustring>;
+    property_comments () -> glib::PropertyProxy<glib::ustring>;
 
     auto
-    property_comments () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+    property_comments () const -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
     auto
-    property_release_notes_version () -> Glib::PropertyProxy<Glib::ustring>;
+    property_release_notes_version () -> glib::PropertyProxy<glib::ustring>;
 
     auto
     property_release_notes_version () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+        -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
     auto
-    property_license () -> Glib::PropertyProxy<Glib::ustring>;
+    property_license () -> glib::PropertyProxy<glib::ustring>;
 
     auto
-    property_license () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+    property_license () const -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
     auto
-    property_license_type () -> Glib::PropertyProxy<Glib::ustring>;
+    property_license_type () -> glib::PropertyProxy<glib::ustring>;
 
     auto
     property_license_type () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+        -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
     auto
-    property_developers () -> Glib::PropertyProxy<std::vector<Glib::ustring>>;
+    property_developers () -> glib::PropertyProxy<std::vector<glib::ustring>>;
 
     auto
     property_developers () const
-        -> Glib::PropertyProxy_ReadOnly<std::vector<Glib::ustring>>;
+        -> glib::PropertyProxy_ReadOnly<std::vector<glib::ustring>>;
 
     auto
-    property_issue_url () -> Glib::PropertyProxy<Glib::ustring>;
+    property_issue_url () -> glib::PropertyProxy<glib::ustring>;
 
     auto
-    property_issue_url () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+    property_issue_url () const -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
     auto
-    property_artists () -> Glib::PropertyProxy<std::vector<Glib::ustring>>;
+    property_artists () -> glib::PropertyProxy<std::vector<glib::ustring>>;
 
     auto
     property_artists () const
-        -> Glib::PropertyProxy_ReadOnly<std::vector<Glib::ustring>>;
+        -> glib::PropertyProxy_ReadOnly<std::vector<glib::ustring>>;
 
     auto
-    property_debug_info_filename () -> Glib::PropertyProxy<Glib::ustring>;
+    property_debug_info_filename () -> glib::PropertyProxy<glib::ustring>;
 
     auto
     property_debug_info_filename () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+        -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
     auto
-    signal_activate_link () -> Glib::SignalProxy<bool (const Glib::ustring&)>;
+    signal_activate_link () -> glib::SignalProxy<bool (const glib::ustring&)>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Adw
+} // namespace adw
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (AdwAboutWindow* object, bool take_copy = false) -> Adw::AboutWindow*;
+  wrap (AdwAboutWindow* object, bool take_copy = false) -> adw::AboutWindow*;
 }
 
 #endif

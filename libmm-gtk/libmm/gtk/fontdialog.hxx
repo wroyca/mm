@@ -24,17 +24,17 @@
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT FontDialog_Class;
 }
 #endif
 
-namespace Gtk
+namespace gtk
 {
   class Window;
 
-  class LIBMM_GTK_SYMEXPORT FontDialog : public Glib::Object
+  class LIBMM_GTK_SYMEXPORT FontDialog : public glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -53,7 +53,7 @@ namespace Gtk
     static CppClassType fontdialog_class_;
 
   protected:
-    explicit FontDialog (const Glib::ConstructParams& construct_params);
+    explicit FontDialog (const glib::ConstructParams& construct_params);
     explicit FontDialog (GtkFontDialog* castitem);
 
 #endif
@@ -95,13 +95,13 @@ namespace Gtk
 
   public:
     static auto
-    create () -> Glib::RefPtr<FontDialog>;
+    create () -> glib::RefPtr<FontDialog>;
 
     auto
-    get_title () const -> Glib::ustring;
+    get_title () const -> glib::ustring;
 
     auto
-    set_title (const Glib::ustring& title) -> void;
+    set_title (const glib::ustring& title) -> void;
 
     auto
     get_modal () const -> bool;
@@ -110,163 +110,163 @@ namespace Gtk
     set_modal (bool modal = true) -> void;
 
     auto
-    get_language () const -> Pango::Language;
+    get_language () const -> pango::Language;
 
     auto
-    set_language (const Pango::Language& language) -> void;
+    set_language (const pango::Language& language) -> void;
 
     auto
-    get_font_map () -> Glib::RefPtr<Pango::FontMap>;
+    get_font_map () -> glib::RefPtr<pango::FontMap>;
 
     auto
-    get_font_map () const -> Glib::RefPtr<const Pango::FontMap>;
+    get_font_map () const -> glib::RefPtr<const pango::FontMap>;
 
     auto
-    set_font_map (const Glib::RefPtr<Pango::FontMap>& fontmap) -> void;
+    set_font_map (const glib::RefPtr<pango::FontMap>& fontmap) -> void;
 
     auto
-    get_filter () -> Glib::RefPtr<Filter>;
+    get_filter () -> glib::RefPtr<Filter>;
 
     auto
-    get_filter () const -> Glib::RefPtr<const Filter>;
+    get_filter () const -> glib::RefPtr<const Filter>;
 
     auto
-    set_filter (const Glib::RefPtr<Filter>& filter) -> void;
+    set_filter (const glib::RefPtr<Filter>& filter) -> void;
 
     auto
     choose_family (Window& parent,
-                   const Gio::SlotAsyncReady& slot,
-                   const Glib::RefPtr<Pango::FontFamily>& initial_value = {},
-                   const Glib::RefPtr<Gio::Cancellable>& cancellable = {}) const
+                   const gio::SlotAsyncReady& slot,
+                   const glib::RefPtr<pango::FontFamily>& initial_value = {},
+                   const glib::RefPtr<gio::Cancellable>& cancellable = {}) const
         -> void;
 
     auto
-    choose_family (const Gio::SlotAsyncReady& slot,
-                   const Glib::RefPtr<Pango::FontFamily>& initial_value = {},
-                   const Glib::RefPtr<Gio::Cancellable>& cancellable = {}) const
+    choose_family (const gio::SlotAsyncReady& slot,
+                   const glib::RefPtr<pango::FontFamily>& initial_value = {},
+                   const glib::RefPtr<gio::Cancellable>& cancellable = {}) const
         -> void;
 
     auto
-    choose_family_finish (const Glib::RefPtr<Gio::AsyncResult>& result) const
-        -> Glib::RefPtr<Pango::FontFamily>;
+    choose_family_finish (const glib::RefPtr<gio::AsyncResult>& result) const
+        -> glib::RefPtr<pango::FontFamily>;
 
     auto
     choose_face (Window& parent,
-                 const Gio::SlotAsyncReady& slot,
-                 const Glib::RefPtr<Pango::FontFace>& initial_value = {},
-                 const Glib::RefPtr<Gio::Cancellable>& cancellable = {}) const
+                 const gio::SlotAsyncReady& slot,
+                 const glib::RefPtr<pango::FontFace>& initial_value = {},
+                 const glib::RefPtr<gio::Cancellable>& cancellable = {}) const
         -> void;
 
     auto
-    choose_face (const Gio::SlotAsyncReady& slot,
-                 const Glib::RefPtr<Pango::FontFace>& initial_value = {},
-                 const Glib::RefPtr<Gio::Cancellable>& cancellable = {}) const
+    choose_face (const gio::SlotAsyncReady& slot,
+                 const glib::RefPtr<pango::FontFace>& initial_value = {},
+                 const glib::RefPtr<gio::Cancellable>& cancellable = {}) const
         -> void;
 
     auto
-    choose_face_finish (const Glib::RefPtr<Gio::AsyncResult>& result) const
-        -> Glib::RefPtr<Pango::FontFace>;
+    choose_face_finish (const glib::RefPtr<gio::AsyncResult>& result) const
+        -> glib::RefPtr<pango::FontFace>;
 
     auto
     choose_font (Window& parent,
-                 const Gio::SlotAsyncReady& slot,
-                 const Pango::FontDescription& initial_value,
-                 const Glib::RefPtr<Gio::Cancellable>& cancellable = {}) const
+                 const gio::SlotAsyncReady& slot,
+                 const pango::FontDescription& initial_value,
+                 const glib::RefPtr<gio::Cancellable>& cancellable = {}) const
         -> void;
 
     auto
     choose_font (Window& parent,
-                 const Gio::SlotAsyncReady& slot,
-                 const Glib::RefPtr<Gio::Cancellable>& cancellable = {}) const
+                 const gio::SlotAsyncReady& slot,
+                 const glib::RefPtr<gio::Cancellable>& cancellable = {}) const
         -> void;
 
     auto
-    choose_font (const Gio::SlotAsyncReady& slot,
-                 const Pango::FontDescription& initial_value,
-                 const Glib::RefPtr<Gio::Cancellable>& cancellable = {}) const
+    choose_font (const gio::SlotAsyncReady& slot,
+                 const pango::FontDescription& initial_value,
+                 const glib::RefPtr<gio::Cancellable>& cancellable = {}) const
         -> void;
 
     auto
-    choose_font (const Gio::SlotAsyncReady& slot,
-                 const Glib::RefPtr<Gio::Cancellable>& cancellable = {}) const
+    choose_font (const gio::SlotAsyncReady& slot,
+                 const glib::RefPtr<gio::Cancellable>& cancellable = {}) const
         -> void;
 
     auto
-    choose_font_finish (const Glib::RefPtr<Gio::AsyncResult>& result) const
-        -> Pango::FontDescription;
+    choose_font_finish (const glib::RefPtr<gio::AsyncResult>& result) const
+        -> pango::FontDescription;
 
     auto
     choose_font_and_features (
         Window& parent,
-        const Gio::SlotAsyncReady& slot,
-        const Pango::FontDescription& initial_value,
-        const Glib::RefPtr<Gio::Cancellable>& cancellable = {}) const -> void;
+        const gio::SlotAsyncReady& slot,
+        const pango::FontDescription& initial_value,
+        const glib::RefPtr<gio::Cancellable>& cancellable = {}) const -> void;
 
     auto
     choose_font_and_features (
         Window& parent,
-        const Gio::SlotAsyncReady& slot,
-        const Glib::RefPtr<Gio::Cancellable>& cancellable = {}) const -> void;
+        const gio::SlotAsyncReady& slot,
+        const glib::RefPtr<gio::Cancellable>& cancellable = {}) const -> void;
 
     auto
     choose_font_and_features (
-        const Gio::SlotAsyncReady& slot,
-        const Pango::FontDescription& initial_value,
-        const Glib::RefPtr<Gio::Cancellable>& cancellable = {}) const -> void;
+        const gio::SlotAsyncReady& slot,
+        const pango::FontDescription& initial_value,
+        const glib::RefPtr<gio::Cancellable>& cancellable = {}) const -> void;
 
     auto
     choose_font_and_features (
-        const Gio::SlotAsyncReady& slot,
-        const Glib::RefPtr<Gio::Cancellable>& cancellable = {}) const -> void;
+        const gio::SlotAsyncReady& slot,
+        const glib::RefPtr<gio::Cancellable>& cancellable = {}) const -> void;
 
     auto
     choose_font_and_features_finish (
-        const Glib::RefPtr<Gio::AsyncResult>& result) const
-        -> std::tuple<Pango::FontDescription, Glib::ustring, Pango::Language>;
+        const glib::RefPtr<gio::AsyncResult>& result) const
+        -> std::tuple<pango::FontDescription, glib::ustring, pango::Language>;
 
     auto
-    property_title () -> Glib::PropertyProxy<Glib::ustring>;
+    property_title () -> glib::PropertyProxy<glib::ustring>;
 
     auto
-    property_title () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+    property_title () const -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
     auto
-    property_modal () -> Glib::PropertyProxy<bool>;
+    property_modal () -> glib::PropertyProxy<bool>;
 
     auto
-    property_modal () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_modal () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_language () -> Glib::PropertyProxy<Pango::Language>;
+    property_language () -> glib::PropertyProxy<pango::Language>;
 
     auto
-    property_language () const -> Glib::PropertyProxy_ReadOnly<Pango::Language>;
+    property_language () const -> glib::PropertyProxy_ReadOnly<pango::Language>;
 
     auto
-    property_font_map () -> Glib::PropertyProxy<Glib::RefPtr<Pango::FontMap>>;
+    property_font_map () -> glib::PropertyProxy<glib::RefPtr<pango::FontMap>>;
 
     auto
     property_font_map () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Pango::FontMap>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<pango::FontMap>>;
 
     auto
-    property_filter () -> Glib::PropertyProxy<Glib::RefPtr<Filter>>;
+    property_filter () -> glib::PropertyProxy<glib::RefPtr<Filter>>;
 
     auto
     property_filter () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Filter>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<Filter>>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkFontDialog* object, bool take_copy = false) -> Glib::RefPtr<Gtk::FontDialog>;
-} // namespace Glib
+  wrap (GtkFontDialog* object, bool take_copy = false) -> glib::RefPtr<gtk::FontDialog>;
+} // namespace glib
 
 #endif

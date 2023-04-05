@@ -9,7 +9,7 @@
 #include <libmm/glib/mm-glib.hxx>
 #include <libmm/gtk/mm-gtk.hxx>
 
-namespace Adw
+namespace adw
 {
 
 }
@@ -18,25 +18,25 @@ namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (AdwSwipeable* object, bool take_copy) -> Glib::RefPtr<Adw::Swipeable>
+  wrap (AdwSwipeable* object, bool take_copy) -> glib::RefPtr<adw::Swipeable>
   {
-    return Glib::make_refptr_for_instance<Adw::Swipeable> (
-        dynamic_cast<Adw::Swipeable*> (
-            Glib::wrap_auto_interface<Adw::Swipeable> ((GObject*) (object),
+    return glib::make_refptr_for_instance<adw::Swipeable> (
+        dynamic_cast<adw::Swipeable*> (
+            glib::wrap_auto_interface<adw::Swipeable> ((GObject*) (object),
                                                        take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Adw
+namespace adw
 {
 
   auto
-  Swipeable_Class::init () -> const Glib::Interface_Class&
+  Swipeable_Class::init () -> const glib::Interface_Class&
   {
     if (!gtype_)
     {
@@ -57,35 +57,35 @@ namespace Adw
   }
 
   auto
-  Swipeable_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  Swipeable_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new Swipeable ((AdwSwipeable*) (object));
   }
 
   Swipeable::Swipeable ()
-    : Glib::Interface (swipeable_class_.init ())
+    : glib::Interface (swipeable_class_.init ())
   {
   }
 
   Swipeable::Swipeable (AdwSwipeable* castitem)
-    : Glib::Interface ((GObject*) (castitem))
+    : glib::Interface ((GObject*) (castitem))
   {
   }
 
-  Swipeable::Swipeable (const Glib::Interface_Class& interface_class)
-    : Glib::Interface (interface_class)
+  Swipeable::Swipeable (const glib::Interface_Class& interface_class)
+    : glib::Interface (interface_class)
   {
   }
 
   Swipeable::Swipeable (Swipeable&& src) noexcept
-    : Glib::Interface (std::move (src))
+    : glib::Interface (std::move (src))
   {
   }
 
   auto
   Swipeable::operator= (Swipeable&& src) noexcept -> Swipeable&
   {
-    Glib::Interface::operator= (std::move (src));
+    glib::Interface::operator= (std::move (src));
     return *this;
   }
 
@@ -133,7 +133,7 @@ namespace Adw
   auto
   Swipeable::get_swipe_area (NavigationDirection navigation_direction,
                              bool is_drag,
-                             Gdk::Rectangle& rect) const -> void
+                             gdk::Rectangle& rect) const -> void
   {
     adw_swipeable_get_swipe_area (
         const_cast<AdwSwipeable*> (gobj ()),
@@ -142,4 +142,4 @@ namespace Adw
         (rect).gobj ());
   }
 
-} // namespace Adw
+} // namespace adw

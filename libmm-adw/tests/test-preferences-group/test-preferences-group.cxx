@@ -5,15 +5,15 @@
  */
 
 #include <libmm/adw/mm-adw.hxx>
-#include <libmm/adw/init.hxx> // Adw::init
+#include <libmm/adw/init.hxx> // adw::init
 
 static void test_adw_preferences_group_add_remove(void) {
-  Adw::PreferencesGroup group;
+  adw::PreferencesGroup group;
 
-  Adw::PreferencesRow *row = Gtk::make_managed<Adw::PreferencesRow>();
+  adw::PreferencesRow *row = gtk::make_managed<adw::PreferencesRow>();
   group.add(row);
 
-  Gtk::Switch *widget = Gtk::make_managed<Gtk::Switch>();
+  gtk::Switch *widget = gtk::make_managed<gtk::Switch>();
   group.add(widget);
 
   g_assert_true(G_TYPE_CHECK_INSTANCE_TYPE(
@@ -26,7 +26,7 @@ static void test_adw_preferences_group_add_remove(void) {
 }
 
 static void test_adw_preferences_group_title(void) {
-  Adw::PreferencesGroup group;
+  adw::PreferencesGroup group;
 
   g_assert_true(group.get_title() == "");
 
@@ -38,7 +38,7 @@ static void test_adw_preferences_group_title(void) {
 }
 
 static void test_adw_preferences_group_description(void) {
-  Adw::PreferencesGroup group;
+  adw::PreferencesGroup group;
 
   g_assert_true(group.get_description() == "");
 
@@ -51,7 +51,7 @@ static void test_adw_preferences_group_description(void) {
 
 int main(int argc, char *argv[]) {
   gtk_test_init(&argc, &argv, NULL);
-  Adw::init();
+  adw::init();
 
   g_test_add_func("/Adwaita/PreferencesGroup/add_remove",
                   test_adw_preferences_group_add_remove);

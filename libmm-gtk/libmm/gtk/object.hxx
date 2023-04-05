@@ -8,7 +8,7 @@
 
 #include <utility>
 
-namespace Gtk
+namespace gtk
 {
 
   class LIBMM_GTK_SYMEXPORT Object;
@@ -28,12 +28,12 @@ namespace Gtk
     return manage (new T (std::forward<T_Args> (args)...));
   }
 
-  class LIBMM_GTK_SYMEXPORT Object : public Glib::Object
+  class LIBMM_GTK_SYMEXPORT Object : public glib::Object
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
     typedef Object CppObjectType;
-    typedef Glib::Object_Class CppClassType;
+    typedef glib::Object_Class CppClassType;
     typedef GObject BaseObjectType;
     typedef GObjectClass BaseClassType;
 #endif
@@ -55,7 +55,7 @@ namespace Gtk
     operator= (const Object&) -> Object&;
 
   protected:
-    explicit Object (const Glib::ConstructParams& construct_params);
+    explicit Object (const glib::ConstructParams& construct_params);
     explicit Object (GObject* castitem);
 
 #endif
@@ -103,6 +103,6 @@ namespace Gtk
 #endif
   };
 
-} // namespace Gtk
+} // namespace gtk
 
 #endif

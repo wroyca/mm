@@ -31,7 +31,7 @@ const char gladefile[] =
   "<requires lib='gtk+' version='3.10'/>"
   "<object class='GtkWindow' id='main_window'>"
     "<property name='can_focus'>False</property>"
-    "<property name='title' translatable='yes'>Gtk::Builder ref count</property>"
+    "<property name='title' translatable='yes'>gtk::Builder ref count</property>"
     "<property name='default_width'>440</property>"
     "<property name='default_height'>150</property>"
     "<property name='hide_on_close'>True</property>"
@@ -49,7 +49,7 @@ const char gladefile[] =
         "</child>"
         "<child>"
           "<object class='GtkButton' id='standard_button'>"
-            "<property name='label' translatable='yes'>Gtk::Button</property>"
+            "<property name='label' translatable='yes'>gtk::Button</property>"
             "<property name='can_focus'>True</property>"
             "<property name='receives_default'>True</property>"
           "</object>"
@@ -58,7 +58,7 @@ const char gladefile[] =
     "</child>"
   "</object>"
   "<object class='GtkButton' id='orphaned_button'>"
-    "<property name='label' translatable='yes'>Gtk::Button</property>"
+    "<property name='label' translatable='yes'>gtk::Button</property>"
     "<property name='can_focus'>True</property>"
     "<property name='receives_default'>True</property>"
   "</object>"
@@ -73,20 +73,20 @@ const char gladefile[] =
 
 void on_managed_button_deleted(sigc::notifiable* /* data */)
 {
-  std::cout << "Gtk::Button in window deleted" << std::endl;
+  std::cout << "gtk::Button in window deleted" << std::endl;
 }
 
 void on_orphaned_button_deleted(sigc::notifiable* /* data */)
 {
-  std::cout << "Orphaned Gtk::Button deleted" << std::endl;
+  std::cout << "Orphaned gtk::Button deleted" << std::endl;
 }
 
 void on_adjustment_deleted(sigc::notifiable* /* data */)
 {
-  std::cout << "Gtk::Adjustment deleted" << std::endl;
+  std::cout << "gtk::Adjustment deleted" << std::endl;
 }
 
-class BackgroundArea : public Gtk::DrawingArea
+class BackgroundArea : public gtk::DrawingArea
 {
 public:
   BackgroundArea()
@@ -97,7 +97,7 @@ public:
   }
   virtual ~BackgroundArea() {}
 
-  bool set_color(const Glib::ustring& spec)
+  bool set_color(const glib::ustring& spec)
   {
     bool success = m_color.set(spec);
     if (success)
@@ -106,18 +106,18 @@ public:
   }
 
 protected:
-  void on_draw(const Cairo::RefPtr<Cairo::Context>& cr, int /* width */, int /* height */)
+  void on_draw(const cairo::RefPtr<cairo::Context>& cr, int /* width */, int /* height */)
   {
     // Fill The drawing area with the selected color.
-    Gdk::Cairo::set_source_rgba(cr, m_color);
+    gdk::cairo::set_source_rgba(cr, m_color);
     cr->paint();
   }
 
-  Gdk::RGBA m_color{1.0, 1.0, 1.0};
+  gdk::RGBA m_color{1.0, 1.0, 1.0};
 
 }; // BackgroundArea
 
-class DerivedButton : public Gtk::Button
+class DerivedButton : public gtk::Button
 {
 public:
   static void ensure_type()
@@ -126,10 +126,10 @@ public:
     static_cast<void>(DerivedButton());
   }
 
-  DerivedButton(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>& /* refBuilder */,
-                const Glib::ustring& icon_name = {})
-  : Glib::ObjectBase(s_type_name)
-  , Gtk::Button(cobject)
+  DerivedButton(BaseObjectType* cobject, const glib::RefPtr<gtk::Builder>& /* refBuilder */,
+                const glib::ustring& icon_name = {})
+  : glib::ObjectBase(s_type_name)
+  , gtk::Button(cobject)
   , m_backgroundArea()
   {
     std::cout << "DerivedButton::ctor" << std::endl;
@@ -142,19 +142,19 @@ public:
       set_child(m_backgroundArea);
     else
     {
-      auto box = Gtk::make_managed<Gtk::Box>();
+      auto box = gtk::make_managed<gtk::Box>();
       set_child(*box);
-      auto icon = Gtk::make_managed<Gtk::Image>();
+      auto icon = gtk::make_managed<gtk::Image>();
       icon->set_from_icon_name(icon_name);
       box->append(*icon);
       box->append(m_backgroundArea);
     }
   }
 
-  auto property_background() const -> Glib::PropertyProxy_ReadOnly<Glib::ustring> { return m_property_background.get_proxy(); }
-  auto property_background()       -> Glib::PropertyProxy         <Glib::ustring> { return m_property_background.get_proxy(); }
-  auto get_background() const -> Glib::ustring { return m_property_background.get_value(); }
-  void set_background(const Glib::ustring& background){ m_property_background.set_value(background); }
+  auto property_background() const -> glib::PropertyProxy_ReadOnly<glib::ustring> { return m_property_background.get_proxy(); }
+  auto property_background()       -> glib::PropertyProxy         <glib::ustring> { return m_property_background.get_proxy(); }
+  auto get_background() const -> glib::ustring { return m_property_background.get_value(); }
+  void set_background(const glib::ustring& background){ m_property_background.set_value(background); }
 
   virtual ~DerivedButton()
   {
@@ -163,12 +163,12 @@ public:
 
 private:
   static constexpr auto s_type_name = "DerivedButton";
-  Glib::Property<Glib::ustring> m_property_background{*this, "background"};
+  glib::Property<glib::ustring> m_property_background{*this, "background"};
 
   BackgroundArea m_backgroundArea;
 
   DerivedButton()
-  : Glib::ObjectBase(s_type_name)
+  : glib::ObjectBase(s_type_name)
   {
     std::cout << "DerivedButton::ctor to register type" << std::endl;
   }
@@ -183,30 +183,30 @@ private:
   }
 }; // DerivedButton
 
-class MainWindow : public Gtk::Window
+class MainWindow : public gtk::Window
 {
 public:
-  MainWindow(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>& refBuilder)
-  : Gtk::Window(cobject)
-  , m_pDerivedButton(Gtk::Builder::get_widget_derived<DerivedButton>(refBuilder, "derived_button", "face-smile"))
-  , m_pStandardButton(refBuilder->get_widget<Gtk::Button>("standard_button"))
+  MainWindow(BaseObjectType* cobject, const glib::RefPtr<gtk::Builder>& refBuilder)
+  : gtk::Window(cobject)
+  , m_pDerivedButton(gtk::Builder::get_widget_derived<DerivedButton>(refBuilder, "derived_button", "face-smile"))
+  , m_pStandardButton(refBuilder->get_widget<gtk::Button>("standard_button"))
   {
     std::cout << "MainWindow::ctor" << std::endl;
 
     // Called twice just to see if two calls affect the ref count.
-    m_pDerivedButton = Gtk::Builder::get_widget_derived<DerivedButton>(refBuilder, "derived_button");
-    m_pStandardButton = refBuilder->get_widget<Gtk::Button>("standard_button");
+    m_pDerivedButton = gtk::Builder::get_widget_derived<DerivedButton>(refBuilder, "derived_button");
+    m_pStandardButton = refBuilder->get_widget<gtk::Button>("standard_button");
 
     m_pStandardButton->add_destroy_notify_callback(nullptr, on_managed_button_deleted);
   }
 
-  // A default signal handler in Gtk::Window shall be called if the
+  // A default signal handler in gtk::Window shall be called if the
   // class name in the UI file is GtkWindow, although the real GType name
   // is gtkmm__GtkWindow. https://gitlab.gnome.org/GNOME/gtkmm/-/issues/61
   bool on_close_request() override
   {
     std::cout << "MainWindow::on_close_request()" << std::endl;
-    return Gtk::Window::on_close_request(); // Call the base class
+    return gtk::Window::on_close_request(); // Call the base class
   }
 
   virtual ~MainWindow()
@@ -215,11 +215,11 @@ public:
   }
 
   const DerivedButton* get_derived_button() const { return m_pDerivedButton; }
-  const Gtk::Button* get_standard_button() const { return m_pStandardButton; }
+  const gtk::Button* get_standard_button() const { return m_pStandardButton; }
 
 private:
   DerivedButton* m_pDerivedButton = nullptr;
-  Gtk::Button* m_pStandardButton = nullptr;
+  gtk::Button* m_pStandardButton = nullptr;
 
 }; // MainWindow
 
@@ -235,25 +235,25 @@ int main(int argc, char* argv[])
   if (argc > 1 && std::strcmp(argv[1], "--p-a-d") == 0)
   {
     print_after_deletion = true;
-    argc1 = 1; // Don't give the command line arguments to Gtk::Application.
+    argc1 = 1; // Don't give the command line arguments to gtk::Application.
   }
 
-  auto app = Gtk::Application::create();
+  auto app = gtk::Application::create();
   g_assert_nonnull(app);
   app->register_application();
 
   DerivedButton::ensure_type();
-  auto builder = Gtk::Builder::create_from_string(gladefile);
+  auto builder = gtk::Builder::create_from_string(gladefile);
   g_assert_nonnull(builder);
 
-  auto main_win = Gtk::Builder::get_widget_derived<MainWindow>(builder, "main_window");
+  auto main_win = gtk::Builder::get_widget_derived<MainWindow>(builder, "main_window");
   g_assert_nonnull(main_win);
 
-  auto orph_button = builder->get_widget<Gtk::Button>("orphaned_button");
+  auto orph_button = builder->get_widget<gtk::Button>("orphaned_button");
   g_assert_nonnull(orph_button);
   orph_button->add_destroy_notify_callback(nullptr, on_orphaned_button_deleted);
 
-  auto adjustment = builder->get_object<Gtk::Adjustment>("adjustment");
+  auto adjustment = builder->get_object<gtk::Adjustment>("adjustment");
   g_assert_nonnull(adjustment);
   builder->get_object("adjustment"); // Test get same again/no-template overload
   g_assert_nonnull(adjustment);
@@ -269,11 +269,11 @@ int main(int argc, char* argv[])
   std::cout << "Before app->run(argc1, argv)" << std::endl
     << "  ref_count(MainWindow)=" << window->ref_count << std::endl
     << "  ref_count(DerivedButton)=" << derived_button->ref_count << std::endl
-    << "  ref_count(Gtk::Button)=" << standard_button->ref_count << std::endl
+    << "  ref_count(gtk::Button)=" << standard_button->ref_count << std::endl
     << "  ref_count(orphaned_button)=" << orphaned_button->ref_count << std::endl
     << "  ref_count(adjustment)=" << adjustment_gobj->ref_count << std::endl;
 
-  // This is approximately what Gtk::Application::make_window_and_run() would do.
+  // This is approximately what gtk::Application::make_window_and_run() would do.
   app->signal_activate().connect([&app, main_win] ()
   {
     app->add_window(*main_win);
@@ -286,7 +286,7 @@ int main(int argc, char* argv[])
     std::cout << "After delete main_win" << std::endl
       << "  ref_count(MainWindow)=" << window->ref_count << std::endl
       << "  ref_count(DerivedButton)=" << derived_button->ref_count << std::endl
-      << "  ref_count(Gtk::Button)=" << standard_button->ref_count << std::endl
+      << "  ref_count(gtk::Button)=" << standard_button->ref_count << std::endl
       << "  ref_count(orphaned_button)=" << orphaned_button->ref_count << std::endl
       << "  ref_count(adjustment)=" << adjustment_gobj->ref_count << std::endl;
 
@@ -299,7 +299,7 @@ int main(int argc, char* argv[])
       std::cout
         << "  ref_count(MainWindow)=" << window->ref_count << std::endl
         << "  ref_count(DerivedButton)=" << derived_button->ref_count << std::endl
-        << "  ref_count(Gtk::Button)=" << standard_button->ref_count << std::endl
+        << "  ref_count(gtk::Button)=" << standard_button->ref_count << std::endl
         << "  ref_count(orphaned_button)=" << orphaned_button->ref_count << std::endl
         << "  ref_count(adjustment)=" << adjustment_gobj->ref_count << std::endl;
     }
@@ -314,7 +314,7 @@ int main(int argc, char* argv[])
     std::cout
       << "  ref_count(MainWindow)=" << window->ref_count << std::endl
       << "  ref_count(DerivedButton)=" << derived_button->ref_count << std::endl
-      << "  ref_count(Gtk::Button)=" << standard_button->ref_count << std::endl
+      << "  ref_count(gtk::Button)=" << standard_button->ref_count << std::endl
       << "  ref_count(orphaned_button)=" << orphaned_button->ref_count << std::endl
       << "  ref_count(adjustment)=" << adjustment_gobj->ref_count << std::endl;
   }

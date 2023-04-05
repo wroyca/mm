@@ -7,7 +7,7 @@
 
 #include <libmm/gtk/mm-gtk.hxx>
 
-namespace Adw
+namespace adw
 {
 
 }
@@ -17,7 +17,7 @@ namespace
 }
 
 auto
-Glib::Value<Adw::NavigationDirection>::value_type () -> GType
+glib::Value<adw::NavigationDirection>::value_type () -> GType
 {
   return adw_navigation_direction_get_type ();
 }

@@ -23,16 +23,16 @@ using GtkStyleProviderClass = struct _GtkStyleProviderClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT StyleProvider_Class;
 }
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
-  class LIBMM_GTK_SYMEXPORT StyleProvider : public Glib::Interface
+  class LIBMM_GTK_SYMEXPORT StyleProvider : public glib::Interface
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -56,7 +56,7 @@ namespace Gtk
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
-    explicit StyleProvider (const Glib::Interface_Class& interface_class);
+    explicit StyleProvider (const glib::Interface_Class& interface_class);
 
   public:
     explicit StyleProvider (GtkStyleProvider* castitem);
@@ -97,13 +97,13 @@ namespace Gtk
   private:
   public:
     static auto
-    add_provider_for_display (const Glib::RefPtr<Gdk::Display>& display,
-                              const Glib::RefPtr<StyleProvider>& provider,
+    add_provider_for_display (const glib::RefPtr<gdk::Display>& display,
+                              const glib::RefPtr<StyleProvider>& provider,
                               guint priority) -> void;
 
     static auto
-    remove_provider_for_display (const Glib::RefPtr<Gdk::Display>& display,
-                                 const Glib::RefPtr<StyleProvider>& provider)
+    remove_provider_for_display (const glib::RefPtr<gdk::Display>& display,
+                                 const glib::RefPtr<StyleProvider>& provider)
         -> void;
 
   public:
@@ -111,13 +111,13 @@ namespace Gtk
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkStyleProvider* object, bool take_copy = false) -> Glib::RefPtr<Gtk::StyleProvider>;
+  wrap (GtkStyleProvider* object, bool take_copy = false) -> glib::RefPtr<gtk::StyleProvider>;
 
-} // namespace Glib
+} // namespace glib
 
 #endif

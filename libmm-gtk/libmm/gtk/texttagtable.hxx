@@ -16,18 +16,18 @@ using GtkTextTagTableClass = struct _GtkTextTagTableClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT TextTagTable_Class;
 }
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
   class LIBMM_GTK_SYMEXPORT TextTag;
 
-  class LIBMM_GTK_SYMEXPORT TextTagTable : public Glib::Object,
+  class LIBMM_GTK_SYMEXPORT TextTagTable : public glib::Object,
                                  public Buildable
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -47,7 +47,7 @@ namespace Gtk
     static CppClassType texttagtable_class_;
 
   protected:
-    explicit TextTagTable (const Glib::ConstructParams& construct_params);
+    explicit TextTagTable (const glib::ConstructParams& construct_params);
     explicit TextTagTable (GtkTextTagTable* castitem);
 
 #endif
@@ -89,21 +89,21 @@ namespace Gtk
 
   public:
     static auto
-    create () -> Glib::RefPtr<TextTagTable>;
+    create () -> glib::RefPtr<TextTagTable>;
 
     auto
-    add (const Glib::RefPtr<TextTag>& tag) -> bool;
+    add (const glib::RefPtr<TextTag>& tag) -> bool;
 
     auto
-    remove (const Glib::RefPtr<TextTag>& tag) -> void;
+    remove (const glib::RefPtr<TextTag>& tag) -> void;
 
     auto
-    lookup (const Glib::ustring& name) -> Glib::RefPtr<TextTag>;
+    lookup (const glib::ustring& name) -> glib::RefPtr<TextTag>;
 
     auto
-    lookup (const Glib::ustring& name) const -> Glib::RefPtr<const TextTag>;
+    lookup (const glib::ustring& name) const -> glib::RefPtr<const TextTag>;
 
-    typedef sigc::slot<void (const Glib::RefPtr<TextTag>&)> SlotForEach;
+    typedef sigc::slot<void (const glib::RefPtr<TextTag>&)> SlotForEach;
     auto foreach (const SlotForEach& slot) -> void;
 
     auto
@@ -111,27 +111,27 @@ namespace Gtk
 
     auto
     signal_tag_changed ()
-        -> Glib::SignalProxy<void (const Glib::RefPtr<TextTag>&, bool)>;
+        -> glib::SignalProxy<void (const glib::RefPtr<TextTag>&, bool)>;
 
     auto
     signal_tag_added ()
-        -> Glib::SignalProxy<void (const Glib::RefPtr<TextTag>&)>;
+        -> glib::SignalProxy<void (const glib::RefPtr<TextTag>&)>;
 
     auto
     signal_tag_removed ()
-        -> Glib::SignalProxy<void (const Glib::RefPtr<TextTag>&)>;
+        -> glib::SignalProxy<void (const glib::RefPtr<TextTag>&)>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkTextTagTable* object, bool take_copy = false) -> Glib::RefPtr<Gtk::TextTagTable>;
-} // namespace Glib
+  wrap (GtkTextTagTable* object, bool take_copy = false) -> glib::RefPtr<gtk::TextTagTable>;
+} // namespace glib
 
 #endif

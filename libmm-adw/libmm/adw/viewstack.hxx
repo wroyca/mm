@@ -17,16 +17,16 @@
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Adw
+namespace adw
 {
   class LIBMM_ADW_SYMEXPORT ViewStack_Class;
 }
 #endif
 
-namespace Adw
+namespace adw
 {
 
-  class LIBMM_ADW_SYMEXPORT ViewStack : public Gtk::Widget
+  class LIBMM_ADW_SYMEXPORT ViewStack : public gtk::Widget
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -53,7 +53,7 @@ namespace Adw
     static CppClassType viewstack_class_;
 
   protected:
-    explicit ViewStack (const Glib::ConstructParams& construct_params);
+    explicit ViewStack (const glib::ConstructParams& construct_params);
     explicit ViewStack (AdwViewStack* castitem);
 
 #endif
@@ -85,47 +85,47 @@ namespace Adw
     ViewStack ();
 
     auto
-    add (Gtk::Widget* child) -> Glib::RefPtr<ViewStackPage>;
+    add (gtk::Widget* child) -> glib::RefPtr<ViewStackPage>;
 
     auto
-    add_named (Gtk::Widget* child, const Glib::ustring& name)
-        -> Glib::RefPtr<ViewStackPage>;
+    add_named (gtk::Widget* child, const glib::ustring& name)
+        -> glib::RefPtr<ViewStackPage>;
 
     auto
-    add_titled (Gtk::Widget* child,
-                const Glib::ustring& name,
-                const Glib::ustring& title) -> Glib::RefPtr<ViewStackPage>;
+    add_titled (gtk::Widget* child,
+                const glib::ustring& name,
+                const glib::ustring& title) -> glib::RefPtr<ViewStackPage>;
 
     auto
-    add_titled_with_icon (Gtk::Widget* child,
-                          const Glib::ustring& name,
-                          const Glib::ustring& title,
-                          const Glib::ustring& icon_name)
-        -> Glib::RefPtr<ViewStackPage>;
+    add_titled_with_icon (gtk::Widget* child,
+                          const glib::ustring& name,
+                          const glib::ustring& title,
+                          const glib::ustring& icon_name)
+        -> glib::RefPtr<ViewStackPage>;
 
     auto
-    get_child_by_name (const Glib::ustring& name) const -> Gtk::Widget*;
+    get_child_by_name (const glib::ustring& name) const -> gtk::Widget*;
 
     auto
     get_hhomogeneous () const -> bool;
 
     auto
-    get_page (Gtk::Widget* child) const -> Glib::RefPtr<ViewStackPage>;
+    get_page (gtk::Widget* child) const -> glib::RefPtr<ViewStackPage>;
 
     auto
-    get_pages () const -> Glib::RefPtr<Gtk::SelectionModel>;
+    get_pages () const -> glib::RefPtr<gtk::SelectionModel>;
 
     auto
     get_vhomogeneous () const -> bool;
 
     auto
-    get_visible_child () const -> Gtk::Widget*;
+    get_visible_child () const -> gtk::Widget*;
 
     auto
-    get_visible_child_name () const -> Glib::ustring;
+    get_visible_child_name () const -> glib::ustring;
 
     auto
-    remove (Gtk::Widget* widget) -> void;
+    remove (gtk::Widget* widget) -> void;
 
     auto
     set_hhomogeneous (bool hhomogeneous) -> void;
@@ -134,53 +134,53 @@ namespace Adw
     set_vhomogeneous (bool hhomogeneous) -> void;
 
     auto
-    set_visible_child (Gtk::Widget* child) -> void;
+    set_visible_child (gtk::Widget* child) -> void;
 
     auto
-    set_visible_child_name (const Glib::ustring& name) -> void;
+    set_visible_child_name (const glib::ustring& name) -> void;
 
     auto
-    property_hhomogeneous () -> Glib::PropertyProxy<bool>;
+    property_hhomogeneous () -> glib::PropertyProxy<bool>;
 
     auto
-    property_hhomogeneous () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_hhomogeneous () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
     property_pages () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gtk::SelectionModel>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<gtk::SelectionModel>>;
 
     auto
-    property_vhomogeneous () -> Glib::PropertyProxy<bool>;
+    property_vhomogeneous () -> glib::PropertyProxy<bool>;
 
     auto
-    property_vhomogeneous () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_vhomogeneous () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_visible_child () -> Glib::PropertyProxy<Gtk::Widget*>;
+    property_visible_child () -> glib::PropertyProxy<gtk::Widget*>;
 
     auto
     property_visible_child () const
-        -> Glib::PropertyProxy_ReadOnly<Gtk::Widget*>;
+        -> glib::PropertyProxy_ReadOnly<gtk::Widget*>;
 
     auto
-    property_visible_child_name () -> Glib::PropertyProxy<Glib::ustring>;
+    property_visible_child_name () -> glib::PropertyProxy<glib::ustring>;
 
     auto
     property_visible_child_name () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+        -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Adw
+} // namespace adw
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (AdwViewStack* object, bool take_copy = false) -> Adw::ViewStack*;
+  wrap (AdwViewStack* object, bool take_copy = false) -> adw::ViewStack*;
 }
 
 #endif

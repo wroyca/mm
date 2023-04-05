@@ -5,7 +5,7 @@
 #include <libmm/pango/tabarray.hxx>
 #include <libmm/pango/tabarray_p.hxx>
 
-namespace Pango
+namespace pango
 {
 
   TabArray::TabArray (const int initial_size, const bool positions_in_pixels)
@@ -59,36 +59,36 @@ namespace Pango
       g_free (pLocations);
     }
 
-    return Glib::ArrayHandler<PairType>::array_to_vector (
+    return glib::ArrayHandler<PairType>::array_to_vector (
         pair_buffer,
         size,
-        Glib::OWNERSHIP_SHALLOW);
+        glib::OWNERSHIP_SHALLOW);
   }
 
-} // namespace Pango
+} // namespace pango
 
 namespace
 {
 }
 
 auto
-Glib::Value<Pango::TabAlign>::value_type () -> GType
+glib::Value<pango::TabAlign>::value_type () -> GType
 {
   return pango_tab_align_get_type ();
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (PangoTabArray* object, const bool take_copy) -> Pango::TabArray
+  wrap (PangoTabArray* object, const bool take_copy) -> pango::TabArray
   {
-    return Pango::TabArray (object, take_copy);
+    return pango::TabArray (object, take_copy);
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Pango
+namespace pango
 {
 
   auto
@@ -184,4 +184,4 @@ namespace Pango
         const_cast<PangoTabArray*> (gobj ()));
   }
 
-} // namespace Pango
+} // namespace pango

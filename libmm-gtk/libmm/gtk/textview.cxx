@@ -9,12 +9,12 @@
 
 #include <gtk/gtk.h>
 
-namespace Gtk
+namespace gtk
 {
 
-  TextView::TextView (const Glib::RefPtr<TextBuffer>& buffer)
-    : Glib::ObjectBase (nullptr),
-      Gtk::Widget (Glib::ConstructParams (textview_class_.init ()))
+  TextView::TextView (const glib::RefPtr<TextBuffer>& buffer)
+    : glib::ObjectBase (nullptr),
+      gtk::Widget (glib::ConstructParams (textview_class_.init ()))
   {
     set_buffer (buffer);
   }
@@ -45,11 +45,11 @@ namespace Gtk
   }
 
   auto
-  TextView::scroll_to (const Glib::RefPtr<TextBuffer::Mark>& mark,
+  TextView::scroll_to (const glib::RefPtr<TextBuffer::Mark>& mark,
                        double within_margin) -> void
   {
     gtk_text_view_scroll_to_mark (gobj (),
-                                  Glib::unwrap (mark),
+                                  glib::unwrap (mark),
                                   within_margin,
                                   FALSE,
                                   0.0,
@@ -57,13 +57,13 @@ namespace Gtk
   }
 
   auto
-  TextView::scroll_to (const Glib::RefPtr<TextBuffer::Mark>& mark,
+  TextView::scroll_to (const glib::RefPtr<TextBuffer::Mark>& mark,
                        double within_margin,
                        double xalign,
                        double yalign) -> void
   {
     gtk_text_view_scroll_to_mark (gobj (),
-                                  Glib::unwrap (mark),
+                                  glib::unwrap (mark),
                                   within_margin,
                                   TRUE,
                                   xalign,
@@ -78,43 +78,43 @@ namespace Gtk
                               nullptr);
   }
 
-} // namespace Gtk
+} // namespace gtk
 
 namespace
 {
 
-  static const Glib::SignalProxyInfo TextView_signal_set_anchor_info = {
+  static const glib::SignalProxyInfo TextView_signal_set_anchor_info = {
       "set_anchor",
-      (GCallback) &Glib::SignalProxyNormal::slot0_void_callback,
-      (GCallback) &Glib::SignalProxyNormal::slot0_void_callback};
+      (GCallback) &glib::SignalProxyNormal::slot0_void_callback,
+      (GCallback) &glib::SignalProxyNormal::slot0_void_callback};
 
   static auto
   TextView_signal_insert_at_cursor_callback (GtkTextView* self,
                                              const gchar* p0,
                                              void* data) -> void
   {
-    using namespace Gtk;
-    using SlotType = sigc::slot<void (const Glib::ustring&)>;
+    using namespace gtk;
+    using SlotType = sigc::slot<void (const glib::ustring&)>;
 
     auto obj = dynamic_cast<TextView*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
     {
       try
       {
-        if (const auto slot = Glib::SignalProxyNormal::data_to_slot (data))
+        if (const auto slot = glib::SignalProxyNormal::data_to_slot (data))
           (*static_cast<SlotType*> (slot)) (
-              Glib::convert_const_gchar_ptr_to_ustring (p0));
+              glib::convert_const_gchar_ptr_to_ustring (p0));
       }
       catch (...)
       {
-        Glib::exception_handlers_invoke ();
+        glib::exception_handlers_invoke ();
       }
     }
   }
 
-  static const Glib::SignalProxyInfo TextView_signal_insert_at_cursor_info = {
+  static const glib::SignalProxyInfo TextView_signal_insert_at_cursor_info = {
       "insert_at_cursor",
       (GCallback) &TextView_signal_insert_at_cursor_callback,
       (GCallback) &TextView_signal_insert_at_cursor_callback};
@@ -122,28 +122,28 @@ namespace
 } // namespace
 
 auto
-Glib::Value<Gtk::TextWindowType>::value_type () -> GType
+glib::Value<gtk::TextWindowType>::value_type () -> GType
 {
   return gtk_text_window_type_get_type ();
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GtkTextView* object, bool take_copy) -> Gtk::TextView*
+  wrap (GtkTextView* object, bool take_copy) -> gtk::TextView*
   {
-    return dynamic_cast<Gtk::TextView*> (
-        Glib::wrap_auto ((GObject*) (object), take_copy));
+    return dynamic_cast<gtk::TextView*> (
+        glib::wrap_auto ((GObject*) (object), take_copy));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gtk
+namespace gtk
 {
 
   auto
-  TextView_Class::init () -> const Glib::Class&
+  TextView_Class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -170,8 +170,8 @@ namespace Gtk
   auto
   TextView_Class::set_anchor_callback (GtkTextView* self) -> void
   {
-    const auto obj_base = static_cast<Glib::ObjectBase*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+    const auto obj_base = static_cast<glib::ObjectBase*> (
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -185,7 +185,7 @@ namespace Gtk
         }
         catch (...)
         {
-          Glib::exception_handlers_invoke ();
+          glib::exception_handlers_invoke ();
         }
       }
     }
@@ -200,8 +200,8 @@ namespace Gtk
   auto
   TextView_Class::insert_at_cursor_callback (GtkTextView* self, const gchar* p0) -> void
   {
-    const auto obj_base = static_cast<Glib::ObjectBase*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+    const auto obj_base = static_cast<glib::ObjectBase*> (
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -211,12 +211,12 @@ namespace Gtk
         try
         {
           obj->on_insert_at_cursor (
-              Glib::convert_const_gchar_ptr_to_ustring (p0));
+              glib::convert_const_gchar_ptr_to_ustring (p0));
           return;
         }
         catch (...)
         {
-          Glib::exception_handlers_invoke ();
+          glib::exception_handlers_invoke ();
         }
       }
     }
@@ -229,23 +229,23 @@ namespace Gtk
   }
 
   auto
-  TextView_Class::wrap_new (GObject* o) -> Glib::ObjectBase*
+  TextView_Class::wrap_new (GObject* o) -> glib::ObjectBase*
   {
     return manage (new TextView ((GtkTextView*) (o)));
   }
 
-  TextView::TextView (const Glib::ConstructParams& construct_params)
-    : Gtk::Widget (construct_params)
+  TextView::TextView (const glib::ConstructParams& construct_params)
+    : gtk::Widget (construct_params)
   {
   }
 
   TextView::TextView (GtkTextView* castitem)
-    : Gtk::Widget ((GtkWidget*) (castitem))
+    : gtk::Widget ((GtkWidget*) (castitem))
   {
   }
 
   TextView::TextView (TextView&& src) noexcept
-    : Gtk::Widget (std::move (src)),
+    : gtk::Widget (std::move (src)),
       Scrollable (std::move (src))
   {
   }
@@ -253,7 +253,7 @@ namespace Gtk
   auto
   TextView::operator= (TextView&& src) noexcept -> TextView&
   {
-    Gtk::Widget::operator= (std::move (src));
+    gtk::Widget::operator= (std::move (src));
     Scrollable::operator= (std::move (src));
     return *this;
   }
@@ -278,36 +278,36 @@ namespace Gtk
   }
 
   TextView::TextView ()
-    : Glib::ObjectBase (nullptr),
-      Gtk::Widget (Glib::ConstructParams (textview_class_.init ()))
+    : glib::ObjectBase (nullptr),
+      gtk::Widget (glib::ConstructParams (textview_class_.init ()))
   {
   }
 
   auto
-  TextView::set_buffer (const Glib::RefPtr<TextBuffer>& buffer) -> void
+  TextView::set_buffer (const glib::RefPtr<TextBuffer>& buffer) -> void
   {
-    gtk_text_view_set_buffer (gobj (), Glib::unwrap (buffer));
+    gtk_text_view_set_buffer (gobj (), glib::unwrap (buffer));
   }
 
   auto
-  TextView::get_buffer () -> Glib::RefPtr<TextBuffer>
+  TextView::get_buffer () -> glib::RefPtr<TextBuffer>
   {
-    auto retvalue = Glib::wrap (gtk_text_view_get_buffer (gobj ()));
+    auto retvalue = glib::wrap (gtk_text_view_get_buffer (gobj ()));
     if (retvalue)
       retvalue->reference ();
     return retvalue;
   }
 
   auto
-  TextView::get_buffer () const -> Glib::RefPtr<const TextBuffer>
+  TextView::get_buffer () const -> glib::RefPtr<const TextBuffer>
   {
     return const_cast<TextView*> (this)->get_buffer ();
   }
 
   auto
-  TextView::move_mark_onscreen (const Glib::RefPtr<TextBuffer::Mark>& mark) -> bool
+  TextView::move_mark_onscreen (const glib::RefPtr<TextBuffer::Mark>& mark) -> bool
   {
-    return gtk_text_view_move_mark_onscreen (gobj (), Glib::unwrap (mark));
+    return gtk_text_view_move_mark_onscreen (gobj (), glib::unwrap (mark));
   }
 
   auto
@@ -317,7 +317,7 @@ namespace Gtk
   }
 
   auto
-  TextView::get_visible_rect (Gdk::Rectangle& visible_rect) const -> void
+  TextView::get_visible_rect (gdk::Rectangle& visible_rect) const -> void
   {
     gtk_text_view_get_visible_rect (const_cast<GtkTextView*> (gobj ()),
                                     (visible_rect).gobj ());
@@ -344,8 +344,8 @@ namespace Gtk
 
   auto
   TextView::get_cursor_locations (const TextBuffer::const_iterator& iter,
-                                  Gdk::Rectangle& strong,
-                                  Gdk::Rectangle& weak) const -> void
+                                  gdk::Rectangle& strong,
+                                  gdk::Rectangle& weak) const -> void
   {
     gtk_text_view_get_cursor_locations (const_cast<GtkTextView*> (gobj ()),
                                         (iter).gobj (),
@@ -354,8 +354,8 @@ namespace Gtk
   }
 
   auto
-  TextView::get_cursor_locations (Gdk::Rectangle& strong,
-                                  Gdk::Rectangle& weak) const -> void
+  TextView::get_cursor_locations (gdk::Rectangle& strong,
+                                  gdk::Rectangle& weak) const -> void
   {
     gtk_text_view_get_cursor_locations (const_cast<GtkTextView*> (gobj ()),
                                         nullptr,
@@ -365,7 +365,7 @@ namespace Gtk
 
   auto
   TextView::get_iter_location (const TextBuffer::const_iterator& iter,
-                               Gdk::Rectangle& location) const -> void
+                               gdk::Rectangle& location) const -> void
   {
     gtk_text_view_get_iter_location (const_cast<GtkTextView*> (gobj ()),
                                      (iter).gobj (),
@@ -517,10 +517,10 @@ namespace Gtk
   }
 
   auto
-  TextView::im_context_filter_keypress (const Glib::RefPtr<Gdk::Event>& event) -> bool
+  TextView::im_context_filter_keypress (const glib::RefPtr<gdk::Event>& event) -> bool
   {
     return gtk_text_view_im_context_filter_keypress (gobj (),
-                                                     Glib::unwrap (event));
+                                                     glib::unwrap (event));
   }
 
   auto
@@ -532,7 +532,7 @@ namespace Gtk
   auto
   TextView::get_gutter (TextWindowType win) -> Widget*
   {
-    return Glib::wrap (
+    return glib::wrap (
         gtk_text_view_get_gutter (gobj (),
                                   static_cast<GtkTextWindowType> (win)));
   }
@@ -554,11 +554,11 @@ namespace Gtk
   auto
   TextView::add_child_at_anchor (
       Widget& child,
-      const Glib::RefPtr<TextBuffer::ChildAnchor>& anchor) -> void
+      const glib::RefPtr<TextBuffer::ChildAnchor>& anchor) -> void
   {
     gtk_text_view_add_child_at_anchor (gobj (),
                                        (child).gobj (),
-                                       Glib::unwrap (anchor));
+                                       glib::unwrap (anchor));
   }
 
   auto
@@ -719,15 +719,15 @@ namespace Gtk
   }
 
   auto
-  TextView::set_tabs (Pango::TabArray& tabs) -> void
+  TextView::set_tabs (pango::TabArray& tabs) -> void
   {
     gtk_text_view_set_tabs (gobj (), (tabs).gobj ());
   }
 
   auto
-  TextView::get_tabs () const -> Pango::TabArray
+  TextView::get_tabs () const -> pango::TabArray
   {
-    return Pango::TabArray (
+    return pango::TabArray (
         (gtk_text_view_get_tabs (const_cast<GtkTextView*> (gobj ()))),
         false);
   }
@@ -796,365 +796,365 @@ namespace Gtk
   }
 
   auto
-  TextView::set_extra_menu (const Glib::RefPtr<Gio::MenuModel>& model) -> void
+  TextView::set_extra_menu (const glib::RefPtr<gio::MenuModel>& model) -> void
   {
-    gtk_text_view_set_extra_menu (gobj (), Glib::unwrap (model));
+    gtk_text_view_set_extra_menu (gobj (), glib::unwrap (model));
   }
 
   auto
-  TextView::get_extra_menu () -> Glib::RefPtr<Gio::MenuModel>
+  TextView::get_extra_menu () -> glib::RefPtr<gio::MenuModel>
   {
-    auto retvalue = Glib::wrap (gtk_text_view_get_extra_menu (gobj ()));
+    auto retvalue = glib::wrap (gtk_text_view_get_extra_menu (gobj ()));
     if (retvalue)
       retvalue->reference ();
     return retvalue;
   }
 
   auto
-  TextView::get_extra_menu () const -> Glib::RefPtr<const Gio::MenuModel>
+  TextView::get_extra_menu () const -> glib::RefPtr<const gio::MenuModel>
   {
     return const_cast<TextView*> (this)->get_extra_menu ();
   }
 
   auto
-  TextView::get_rtl_context () -> Glib::RefPtr<Pango::Context>
+  TextView::get_rtl_context () -> glib::RefPtr<pango::Context>
   {
-    auto retvalue = Glib::wrap (gtk_text_view_get_rtl_context (gobj ()));
+    auto retvalue = glib::wrap (gtk_text_view_get_rtl_context (gobj ()));
     if (retvalue)
       retvalue->reference ();
     return retvalue;
   }
 
   auto
-  TextView::get_rtl_context () const -> Glib::RefPtr<const Pango::Context>
+  TextView::get_rtl_context () const -> glib::RefPtr<const pango::Context>
   {
     return const_cast<TextView*> (this)->get_rtl_context ();
   }
 
   auto
-  TextView::get_ltr_context () -> Glib::RefPtr<Pango::Context>
+  TextView::get_ltr_context () -> glib::RefPtr<pango::Context>
   {
-    auto retvalue = Glib::wrap (gtk_text_view_get_ltr_context (gobj ()));
+    auto retvalue = glib::wrap (gtk_text_view_get_ltr_context (gobj ()));
     if (retvalue)
       retvalue->reference ();
     return retvalue;
   }
 
   auto
-  TextView::get_ltr_context () const -> Glib::RefPtr<const Pango::Context>
+  TextView::get_ltr_context () const -> glib::RefPtr<const pango::Context>
   {
     return const_cast<TextView*> (this)->get_ltr_context ();
   }
 
   auto
-  TextView::signal_set_anchor () -> Glib::SignalProxy<void ()>
+  TextView::signal_set_anchor () -> glib::SignalProxy<void ()>
   {
-    return Glib::SignalProxy<void ()> (this, &TextView_signal_set_anchor_info);
+    return glib::SignalProxy<void ()> (this, &TextView_signal_set_anchor_info);
   }
 
   auto
-  TextView::signal_insert_at_cursor () -> Glib::SignalProxy<void (const Glib::ustring&)>
+  TextView::signal_insert_at_cursor () -> glib::SignalProxy<void (const glib::ustring&)>
   {
-    return Glib::SignalProxy<void (const Glib::ustring&)> (
+    return glib::SignalProxy<void (const glib::ustring&)> (
         this,
         &TextView_signal_insert_at_cursor_info);
   }
 
   auto
-  TextView::property_pixels_above_lines () -> Glib::PropertyProxy<int>
+  TextView::property_pixels_above_lines () -> glib::PropertyProxy<int>
   {
-    return Glib::PropertyProxy<int> (this, "pixels-above-lines");
+    return glib::PropertyProxy<int> (this, "pixels-above-lines");
   }
 
   auto
-  TextView::property_pixels_above_lines () const -> Glib::PropertyProxy_ReadOnly<int>
+  TextView::property_pixels_above_lines () const -> glib::PropertyProxy_ReadOnly<int>
   {
-    return Glib::PropertyProxy_ReadOnly<int> (this, "pixels-above-lines");
+    return glib::PropertyProxy_ReadOnly<int> (this, "pixels-above-lines");
   }
 
   auto
-  TextView::property_pixels_below_lines () -> Glib::PropertyProxy<int>
+  TextView::property_pixels_below_lines () -> glib::PropertyProxy<int>
   {
-    return Glib::PropertyProxy<int> (this, "pixels-below-lines");
+    return glib::PropertyProxy<int> (this, "pixels-below-lines");
   }
 
   auto
-  TextView::property_pixels_below_lines () const -> Glib::PropertyProxy_ReadOnly<int>
+  TextView::property_pixels_below_lines () const -> glib::PropertyProxy_ReadOnly<int>
   {
-    return Glib::PropertyProxy_ReadOnly<int> (this, "pixels-below-lines");
+    return glib::PropertyProxy_ReadOnly<int> (this, "pixels-below-lines");
   }
 
   auto
-  TextView::property_pixels_inside_wrap () -> Glib::PropertyProxy<int>
+  TextView::property_pixels_inside_wrap () -> glib::PropertyProxy<int>
   {
-    return Glib::PropertyProxy<int> (this, "pixels-inside-wrap");
+    return glib::PropertyProxy<int> (this, "pixels-inside-wrap");
   }
 
   auto
-  TextView::property_pixels_inside_wrap () const -> Glib::PropertyProxy_ReadOnly<int>
+  TextView::property_pixels_inside_wrap () const -> glib::PropertyProxy_ReadOnly<int>
   {
-    return Glib::PropertyProxy_ReadOnly<int> (this, "pixels-inside-wrap");
+    return glib::PropertyProxy_ReadOnly<int> (this, "pixels-inside-wrap");
   }
 
   auto
-  TextView::property_editable () -> Glib::PropertyProxy<bool>
+  TextView::property_editable () -> glib::PropertyProxy<bool>
   {
-    return Glib::PropertyProxy<bool> (this, "editable");
+    return glib::PropertyProxy<bool> (this, "editable");
   }
 
   auto
-  TextView::property_editable () const -> Glib::PropertyProxy_ReadOnly<bool>
+  TextView::property_editable () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "editable");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "editable");
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<WrapMode>::value,
+      glib::Traits::ValueCompatibleWithWrapProperty<WrapMode>::value,
       "Type WrapMode cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  TextView::property_wrap_mode () -> Glib::PropertyProxy<WrapMode>
+  TextView::property_wrap_mode () -> glib::PropertyProxy<WrapMode>
   {
-    return Glib::PropertyProxy<WrapMode> (this, "wrap-mode");
+    return glib::PropertyProxy<WrapMode> (this, "wrap-mode");
   }
 
   auto
-  TextView::property_wrap_mode () const -> Glib::PropertyProxy_ReadOnly<WrapMode>
+  TextView::property_wrap_mode () const -> glib::PropertyProxy_ReadOnly<WrapMode>
   {
-    return Glib::PropertyProxy_ReadOnly<WrapMode> (this, "wrap-mode");
+    return glib::PropertyProxy_ReadOnly<WrapMode> (this, "wrap-mode");
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<Justification>::value,
+      glib::Traits::ValueCompatibleWithWrapProperty<Justification>::value,
       "Type Justification cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  TextView::property_justification () -> Glib::PropertyProxy<Justification>
+  TextView::property_justification () -> glib::PropertyProxy<Justification>
   {
-    return Glib::PropertyProxy<Justification> (this, "justification");
+    return glib::PropertyProxy<Justification> (this, "justification");
   }
 
   auto
-  TextView::property_justification () const -> Glib::PropertyProxy_ReadOnly<Justification>
+  TextView::property_justification () const -> glib::PropertyProxy_ReadOnly<Justification>
   {
-    return Glib::PropertyProxy_ReadOnly<Justification> (this, "justification");
+    return glib::PropertyProxy_ReadOnly<Justification> (this, "justification");
   }
 
   auto
-  TextView::property_left_margin () -> Glib::PropertyProxy<int>
+  TextView::property_left_margin () -> glib::PropertyProxy<int>
   {
-    return Glib::PropertyProxy<int> (this, "left-margin");
+    return glib::PropertyProxy<int> (this, "left-margin");
   }
 
   auto
-  TextView::property_left_margin () const -> Glib::PropertyProxy_ReadOnly<int>
+  TextView::property_left_margin () const -> glib::PropertyProxy_ReadOnly<int>
   {
-    return Glib::PropertyProxy_ReadOnly<int> (this, "left-margin");
+    return glib::PropertyProxy_ReadOnly<int> (this, "left-margin");
   }
 
   auto
-  TextView::property_right_margin () -> Glib::PropertyProxy<int>
+  TextView::property_right_margin () -> glib::PropertyProxy<int>
   {
-    return Glib::PropertyProxy<int> (this, "right-margin");
+    return glib::PropertyProxy<int> (this, "right-margin");
   }
 
   auto
-  TextView::property_right_margin () const -> Glib::PropertyProxy_ReadOnly<int>
+  TextView::property_right_margin () const -> glib::PropertyProxy_ReadOnly<int>
   {
-    return Glib::PropertyProxy_ReadOnly<int> (this, "right-margin");
+    return glib::PropertyProxy_ReadOnly<int> (this, "right-margin");
   }
 
   auto
-  TextView::property_top_margin () -> Glib::PropertyProxy<int>
+  TextView::property_top_margin () -> glib::PropertyProxy<int>
   {
-    return Glib::PropertyProxy<int> (this, "top-margin");
+    return glib::PropertyProxy<int> (this, "top-margin");
   }
 
   auto
-  TextView::property_top_margin () const -> Glib::PropertyProxy_ReadOnly<int>
+  TextView::property_top_margin () const -> glib::PropertyProxy_ReadOnly<int>
   {
-    return Glib::PropertyProxy_ReadOnly<int> (this, "top-margin");
+    return glib::PropertyProxy_ReadOnly<int> (this, "top-margin");
   }
 
   auto
-  TextView::property_bottom_margin () -> Glib::PropertyProxy<int>
+  TextView::property_bottom_margin () -> glib::PropertyProxy<int>
   {
-    return Glib::PropertyProxy<int> (this, "bottom-margin");
+    return glib::PropertyProxy<int> (this, "bottom-margin");
   }
 
   auto
-  TextView::property_bottom_margin () const -> Glib::PropertyProxy_ReadOnly<int>
+  TextView::property_bottom_margin () const -> glib::PropertyProxy_ReadOnly<int>
   {
-    return Glib::PropertyProxy_ReadOnly<int> (this, "bottom-margin");
+    return glib::PropertyProxy_ReadOnly<int> (this, "bottom-margin");
   }
 
   auto
-  TextView::property_indent () -> Glib::PropertyProxy<int>
+  TextView::property_indent () -> glib::PropertyProxy<int>
   {
-    return Glib::PropertyProxy<int> (this, "indent");
+    return glib::PropertyProxy<int> (this, "indent");
   }
 
   auto
-  TextView::property_indent () const -> Glib::PropertyProxy_ReadOnly<int>
+  TextView::property_indent () const -> glib::PropertyProxy_ReadOnly<int>
   {
-    return Glib::PropertyProxy_ReadOnly<int> (this, "indent");
-  }
-
-  static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<Pango::TabArray>::value,
-      "Type Pango::TabArray cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
-
-  auto
-  TextView::property_tabs () -> Glib::PropertyProxy<Pango::TabArray>
-  {
-    return Glib::PropertyProxy<Pango::TabArray> (this, "tabs");
-  }
-
-  auto
-  TextView::property_tabs () const -> Glib::PropertyProxy_ReadOnly<Pango::TabArray>
-  {
-    return Glib::PropertyProxy_ReadOnly<Pango::TabArray> (this, "tabs");
-  }
-
-  auto
-  TextView::property_cursor_visible () -> Glib::PropertyProxy<bool>
-  {
-    return Glib::PropertyProxy<bool> (this, "cursor-visible");
-  }
-
-  auto
-  TextView::property_cursor_visible () const -> Glib::PropertyProxy_ReadOnly<bool>
-  {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "cursor-visible");
+    return glib::PropertyProxy_ReadOnly<int> (this, "indent");
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<
-          Glib::RefPtr<TextBuffer>>::value,
-      "Type Glib::RefPtr<TextBuffer> cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      glib::Traits::ValueCompatibleWithWrapProperty<pango::TabArray>::value,
+      "Type pango::TabArray cannot be used in _WRAP_PROPERTY. "
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  TextView::property_buffer () -> Glib::PropertyProxy<Glib::RefPtr<TextBuffer>>
+  TextView::property_tabs () -> glib::PropertyProxy<pango::TabArray>
   {
-    return Glib::PropertyProxy<Glib::RefPtr<TextBuffer>> (this, "buffer");
+    return glib::PropertyProxy<pango::TabArray> (this, "tabs");
   }
 
   auto
-  TextView::property_buffer () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<TextBuffer>>
+  TextView::property_tabs () const -> glib::PropertyProxy_ReadOnly<pango::TabArray>
   {
-    return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<TextBuffer>> (this,
+    return glib::PropertyProxy_ReadOnly<pango::TabArray> (this, "tabs");
+  }
+
+  auto
+  TextView::property_cursor_visible () -> glib::PropertyProxy<bool>
+  {
+    return glib::PropertyProxy<bool> (this, "cursor-visible");
+  }
+
+  auto
+  TextView::property_cursor_visible () const -> glib::PropertyProxy_ReadOnly<bool>
+  {
+    return glib::PropertyProxy_ReadOnly<bool> (this, "cursor-visible");
+  }
+
+  static_assert (
+      glib::Traits::ValueCompatibleWithWrapProperty<
+          glib::RefPtr<TextBuffer>>::value,
+      "Type glib::RefPtr<TextBuffer> cannot be used in _WRAP_PROPERTY. "
+      "There is no suitable template specialization of glib::Value<>.");
+
+  auto
+  TextView::property_buffer () -> glib::PropertyProxy<glib::RefPtr<TextBuffer>>
+  {
+    return glib::PropertyProxy<glib::RefPtr<TextBuffer>> (this, "buffer");
+  }
+
+  auto
+  TextView::property_buffer () const -> glib::PropertyProxy_ReadOnly<glib::RefPtr<TextBuffer>>
+  {
+    return glib::PropertyProxy_ReadOnly<glib::RefPtr<TextBuffer>> (this,
                                                                    "buffer");
   }
 
   auto
-  TextView::property_overwrite () -> Glib::PropertyProxy<bool>
+  TextView::property_overwrite () -> glib::PropertyProxy<bool>
   {
-    return Glib::PropertyProxy<bool> (this, "overwrite");
+    return glib::PropertyProxy<bool> (this, "overwrite");
   }
 
   auto
-  TextView::property_overwrite () const -> Glib::PropertyProxy_ReadOnly<bool>
+  TextView::property_overwrite () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "overwrite");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "overwrite");
   }
 
   auto
-  TextView::property_accepts_tab () -> Glib::PropertyProxy<bool>
+  TextView::property_accepts_tab () -> glib::PropertyProxy<bool>
   {
-    return Glib::PropertyProxy<bool> (this, "accepts-tab");
+    return glib::PropertyProxy<bool> (this, "accepts-tab");
   }
 
   auto
-  TextView::property_accepts_tab () const -> Glib::PropertyProxy_ReadOnly<bool>
+  TextView::property_accepts_tab () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "accepts-tab");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "accepts-tab");
   }
 
   auto
-  TextView::property_im_module () -> Glib::PropertyProxy<Glib::ustring>
+  TextView::property_im_module () -> glib::PropertyProxy<glib::ustring>
   {
-    return Glib::PropertyProxy<Glib::ustring> (this, "im-module");
+    return glib::PropertyProxy<glib::ustring> (this, "im-module");
   }
 
   auto
-  TextView::property_im_module () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>
+  TextView::property_im_module () const -> glib::PropertyProxy_ReadOnly<glib::ustring>
   {
-    return Glib::PropertyProxy_ReadOnly<Glib::ustring> (this, "im-module");
+    return glib::PropertyProxy_ReadOnly<glib::ustring> (this, "im-module");
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<InputPurpose>::value,
+      glib::Traits::ValueCompatibleWithWrapProperty<InputPurpose>::value,
       "Type InputPurpose cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  TextView::property_input_purpose () -> Glib::PropertyProxy<InputPurpose>
+  TextView::property_input_purpose () -> glib::PropertyProxy<InputPurpose>
   {
-    return Glib::PropertyProxy<InputPurpose> (this, "input-purpose");
+    return glib::PropertyProxy<InputPurpose> (this, "input-purpose");
   }
 
   auto
-  TextView::property_input_purpose () const -> Glib::PropertyProxy_ReadOnly<InputPurpose>
+  TextView::property_input_purpose () const -> glib::PropertyProxy_ReadOnly<InputPurpose>
   {
-    return Glib::PropertyProxy_ReadOnly<InputPurpose> (this, "input-purpose");
+    return glib::PropertyProxy_ReadOnly<InputPurpose> (this, "input-purpose");
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<InputHints>::value,
+      glib::Traits::ValueCompatibleWithWrapProperty<InputHints>::value,
       "Type InputHints cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  TextView::property_input_hints () -> Glib::PropertyProxy<InputHints>
+  TextView::property_input_hints () -> glib::PropertyProxy<InputHints>
   {
-    return Glib::PropertyProxy<InputHints> (this, "input-hints");
+    return glib::PropertyProxy<InputHints> (this, "input-hints");
   }
 
   auto
-  TextView::property_input_hints () const -> Glib::PropertyProxy_ReadOnly<InputHints>
+  TextView::property_input_hints () const -> glib::PropertyProxy_ReadOnly<InputHints>
   {
-    return Glib::PropertyProxy_ReadOnly<InputHints> (this, "input-hints");
+    return glib::PropertyProxy_ReadOnly<InputHints> (this, "input-hints");
   }
 
   auto
-  TextView::property_monospace () -> Glib::PropertyProxy<bool>
+  TextView::property_monospace () -> glib::PropertyProxy<bool>
   {
-    return Glib::PropertyProxy<bool> (this, "monospace");
+    return glib::PropertyProxy<bool> (this, "monospace");
   }
 
   auto
-  TextView::property_monospace () const -> Glib::PropertyProxy_ReadOnly<bool>
+  TextView::property_monospace () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "monospace");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "monospace");
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<
-          Glib::RefPtr<Gio::MenuModel>>::value,
-      "Type Glib::RefPtr<Gio::MenuModel> cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      glib::Traits::ValueCompatibleWithWrapProperty<
+          glib::RefPtr<gio::MenuModel>>::value,
+      "Type glib::RefPtr<gio::MenuModel> cannot be used in _WRAP_PROPERTY. "
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  TextView::property_extra_menu () -> Glib::PropertyProxy<Glib::RefPtr<Gio::MenuModel>>
+  TextView::property_extra_menu () -> glib::PropertyProxy<glib::RefPtr<gio::MenuModel>>
   {
-    return Glib::PropertyProxy<Glib::RefPtr<Gio::MenuModel>> (this,
+    return glib::PropertyProxy<glib::RefPtr<gio::MenuModel>> (this,
                                                               "extra-menu");
   }
 
   auto
-  TextView::property_extra_menu () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gio::MenuModel>>
+  TextView::property_extra_menu () const -> glib::PropertyProxy_ReadOnly<glib::RefPtr<gio::MenuModel>>
   {
-    return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gio::MenuModel>> (
+    return glib::PropertyProxy_ReadOnly<glib::RefPtr<gio::MenuModel>> (
         this,
         "extra-menu");
   }
 
   auto
-  Gtk::TextView::on_set_anchor () -> void
+  gtk::TextView::on_set_anchor () -> void
   {
     const auto base = static_cast<BaseClassType*> (
         g_type_class_peek_parent (G_OBJECT_GET_CLASS (gobject_)));
@@ -1164,7 +1164,7 @@ namespace Gtk
   }
 
   auto
-  Gtk::TextView::on_insert_at_cursor (const Glib::ustring& str) -> void
+  gtk::TextView::on_insert_at_cursor (const glib::ustring& str) -> void
   {
     const auto base = static_cast<BaseClassType*> (
         g_type_class_peek_parent (G_OBJECT_GET_CLASS (gobject_)));
@@ -1173,4 +1173,4 @@ namespace Gtk
       (*base->insert_at_cursor) (gobj (), str.c_str ());
   }
 
-} // namespace Gtk
+} // namespace gtk

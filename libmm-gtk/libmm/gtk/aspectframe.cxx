@@ -7,7 +7,7 @@
 
 #include <gtk/gtk.h>
 
-namespace Gtk
+namespace gtk
 {
 
   auto
@@ -16,29 +16,29 @@ namespace Gtk
     gtk_aspect_frame_set_child (gobj (), nullptr);
   }
 
-} // namespace Gtk
+} // namespace gtk
 
 namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GtkAspectFrame* object, bool take_copy) -> Gtk::AspectFrame*
+  wrap (GtkAspectFrame* object, bool take_copy) -> gtk::AspectFrame*
   {
-    return dynamic_cast<Gtk::AspectFrame*> (
-        Glib::wrap_auto ((GObject*) (object), take_copy));
+    return dynamic_cast<gtk::AspectFrame*> (
+        glib::wrap_auto ((GObject*) (object), take_copy));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gtk
+namespace gtk
 {
 
   auto
-  AspectFrame_Class::init () -> const Glib::Class&
+  AspectFrame_Class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -58,30 +58,30 @@ namespace Gtk
   }
 
   auto
-  AspectFrame_Class::wrap_new (GObject* o) -> Glib::ObjectBase*
+  AspectFrame_Class::wrap_new (GObject* o) -> glib::ObjectBase*
   {
     return manage (new AspectFrame ((GtkAspectFrame*) (o)));
   }
 
-  AspectFrame::AspectFrame (const Glib::ConstructParams& construct_params)
-    : Gtk::Widget (construct_params)
+  AspectFrame::AspectFrame (const glib::ConstructParams& construct_params)
+    : gtk::Widget (construct_params)
   {
   }
 
   AspectFrame::AspectFrame (GtkAspectFrame* castitem)
-    : Gtk::Widget ((GtkWidget*) (castitem))
+    : gtk::Widget ((GtkWidget*) (castitem))
   {
   }
 
   AspectFrame::AspectFrame (AspectFrame&& src) noexcept
-    : Gtk::Widget (std::move (src))
+    : gtk::Widget (std::move (src))
   {
   }
 
   auto
   AspectFrame::operator= (AspectFrame&& src) noexcept -> AspectFrame&
   {
-    Gtk::Widget::operator= (std::move (src));
+    gtk::Widget::operator= (std::move (src));
     return *this;
   }
 
@@ -108,8 +108,8 @@ namespace Gtk
                             Align yalign,
                             float ratio,
                             bool obey_child)
-    : Glib::ObjectBase (nullptr),
-      Gtk::Widget (Glib::ConstructParams (aspectframe_class_.init (),
+    : glib::ObjectBase (nullptr),
+      gtk::Widget (glib::ConstructParams (aspectframe_class_.init (),
                                           "xalign",
                                           _gtkmm_align_float_from_enum (xalign),
                                           "yalign",
@@ -126,8 +126,8 @@ namespace Gtk
                             float yalign,
                             float ratio,
                             bool obey_child)
-    : Glib::ObjectBase (nullptr),
-      Gtk::Widget (Glib::ConstructParams (aspectframe_class_.init (),
+    : glib::ObjectBase (nullptr),
+      gtk::Widget (glib::ConstructParams (aspectframe_class_.init (),
                                           "xalign",
                                           xalign,
                                           "yalign",
@@ -212,7 +212,7 @@ namespace Gtk
   auto
   AspectFrame::get_child () -> Widget*
   {
-    return Glib::wrap (gtk_aspect_frame_get_child (gobj ()));
+    return glib::wrap (gtk_aspect_frame_get_child (gobj ()));
   }
 
   auto
@@ -222,63 +222,63 @@ namespace Gtk
   }
 
   auto
-  AspectFrame::property_xalign () -> Glib::PropertyProxy<float>
+  AspectFrame::property_xalign () -> glib::PropertyProxy<float>
   {
-    return Glib::PropertyProxy<float> (this, "xalign");
+    return glib::PropertyProxy<float> (this, "xalign");
   }
 
   auto
-  AspectFrame::property_xalign () const -> Glib::PropertyProxy_ReadOnly<float>
+  AspectFrame::property_xalign () const -> glib::PropertyProxy_ReadOnly<float>
   {
-    return Glib::PropertyProxy_ReadOnly<float> (this, "xalign");
+    return glib::PropertyProxy_ReadOnly<float> (this, "xalign");
   }
 
   auto
-  AspectFrame::property_yalign () -> Glib::PropertyProxy<float>
+  AspectFrame::property_yalign () -> glib::PropertyProxy<float>
   {
-    return Glib::PropertyProxy<float> (this, "yalign");
+    return glib::PropertyProxy<float> (this, "yalign");
   }
 
   auto
-  AspectFrame::property_yalign () const -> Glib::PropertyProxy_ReadOnly<float>
+  AspectFrame::property_yalign () const -> glib::PropertyProxy_ReadOnly<float>
   {
-    return Glib::PropertyProxy_ReadOnly<float> (this, "yalign");
+    return glib::PropertyProxy_ReadOnly<float> (this, "yalign");
   }
 
   auto
-  AspectFrame::property_ratio () -> Glib::PropertyProxy<float>
+  AspectFrame::property_ratio () -> glib::PropertyProxy<float>
   {
-    return Glib::PropertyProxy<float> (this, "ratio");
+    return glib::PropertyProxy<float> (this, "ratio");
   }
 
   auto
-  AspectFrame::property_ratio () const -> Glib::PropertyProxy_ReadOnly<float>
+  AspectFrame::property_ratio () const -> glib::PropertyProxy_ReadOnly<float>
   {
-    return Glib::PropertyProxy_ReadOnly<float> (this, "ratio");
+    return glib::PropertyProxy_ReadOnly<float> (this, "ratio");
   }
 
   auto
-  AspectFrame::property_obey_child () -> Glib::PropertyProxy<bool>
+  AspectFrame::property_obey_child () -> glib::PropertyProxy<bool>
   {
-    return Glib::PropertyProxy<bool> (this, "obey-child");
+    return glib::PropertyProxy<bool> (this, "obey-child");
   }
 
   auto
-  AspectFrame::property_obey_child () const -> Glib::PropertyProxy_ReadOnly<bool>
+  AspectFrame::property_obey_child () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "obey-child");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "obey-child");
   }
 
   auto
-  AspectFrame::property_child () -> Glib::PropertyProxy<Widget*>
+  AspectFrame::property_child () -> glib::PropertyProxy<Widget*>
   {
-    return Glib::PropertyProxy<Widget*> (this, "child");
+    return glib::PropertyProxy<Widget*> (this, "child");
   }
 
   auto
-  AspectFrame::property_child () const -> Glib::PropertyProxy_ReadOnly<Widget*>
+  AspectFrame::property_child () const -> glib::PropertyProxy_ReadOnly<Widget*>
   {
-    return Glib::PropertyProxy_ReadOnly<Widget*> (this, "child");
+    return glib::PropertyProxy_ReadOnly<Widget*> (this, "child");
   }
 
-} // namespace Gtk
+} // namespace gtk

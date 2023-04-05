@@ -20,13 +20,13 @@ using GtkTextViewClass = struct _GtkTextViewClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT TextView_Class;
 }
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
   enum class TextWindowType
@@ -39,25 +39,25 @@ namespace Gtk
     BOTTOM
   };
 
-} // namespace Gtk
+} // namespace gtk
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_GTK_SYMEXPORT Value<Gtk::TextWindowType>
-    : public Glib::Value_Enum<Gtk::TextWindowType>
+  class LIBMM_GTK_SYMEXPORT Value<gtk::TextWindowType>
+    : public glib::Value_Enum<gtk::TextWindowType>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
   class LIBMM_GTK_SYMEXPORT TextView : public Widget,
@@ -88,7 +88,7 @@ namespace Gtk
     static CppClassType textview_class_;
 
   protected:
-    explicit TextView (const Glib::ConstructParams& construct_params);
+    explicit TextView (const glib::ConstructParams& construct_params);
     explicit TextView (GtkTextView* castitem);
 
 #endif
@@ -118,16 +118,16 @@ namespace Gtk
   private:
   public:
     TextView ();
-    explicit TextView (const Glib::RefPtr<TextBuffer>& buffer);
+    explicit TextView (const glib::RefPtr<TextBuffer>& buffer);
 
     auto
-    set_buffer (const Glib::RefPtr<TextBuffer>& buffer) -> void;
+    set_buffer (const glib::RefPtr<TextBuffer>& buffer) -> void;
 
     auto
-    get_buffer () -> Glib::RefPtr<TextBuffer>;
+    get_buffer () -> glib::RefPtr<TextBuffer>;
 
     auto
-    get_buffer () const -> Glib::RefPtr<const TextBuffer>;
+    get_buffer () const -> glib::RefPtr<const TextBuffer>;
 
     auto
     scroll_to (TextBuffer::iterator& iter, double within_margin = 0) -> bool;
@@ -139,23 +139,23 @@ namespace Gtk
                double yalign) -> bool;
 
     auto
-    scroll_to (const Glib::RefPtr<TextBuffer::Mark>& mark,
+    scroll_to (const glib::RefPtr<TextBuffer::Mark>& mark,
                double within_margin = 0) -> void;
 
     auto
-    scroll_to (const Glib::RefPtr<TextBuffer::Mark>& mark,
+    scroll_to (const glib::RefPtr<TextBuffer::Mark>& mark,
                double within_margin,
                double xalign,
                double yalign) -> void;
 
     auto
-    move_mark_onscreen (const Glib::RefPtr<TextBuffer::Mark>& mark) -> bool;
+    move_mark_onscreen (const glib::RefPtr<TextBuffer::Mark>& mark) -> bool;
 
     auto
     place_cursor_onscreen () -> bool;
 
     auto
-    get_visible_rect (Gdk::Rectangle& visible_rect) const -> void;
+    get_visible_rect (gdk::Rectangle& visible_rect) const -> void;
 
     auto
     set_cursor_visible (bool setting = true) -> void;
@@ -168,16 +168,16 @@ namespace Gtk
 
     auto
     get_cursor_locations (const TextBuffer::const_iterator& iter,
-                          Gdk::Rectangle& strong,
-                          Gdk::Rectangle& weak) const -> void;
+                          gdk::Rectangle& strong,
+                          gdk::Rectangle& weak) const -> void;
 
     auto
-    get_cursor_locations (Gdk::Rectangle& strong, Gdk::Rectangle& weak) const
+    get_cursor_locations (gdk::Rectangle& strong, gdk::Rectangle& weak) const
         -> void;
 
     auto
     get_iter_location (const TextBuffer::const_iterator& iter,
-                       Gdk::Rectangle& location) const -> void;
+                       gdk::Rectangle& location) const -> void;
 
     auto
     get_iter_at_location (TextBuffer::iterator& iter, int x, int y) -> bool;
@@ -245,7 +245,7 @@ namespace Gtk
     move_visually (TextBuffer::iterator& iter, int count) -> bool;
 
     auto
-    im_context_filter_keypress (const Glib::RefPtr<Gdk::Event>& event) -> bool;
+    im_context_filter_keypress (const glib::RefPtr<gdk::Event>& event) -> bool;
 
     auto
     reset_im_context () -> void;
@@ -264,7 +264,7 @@ namespace Gtk
 
     auto
     add_child_at_anchor (Widget& child,
-                         const Glib::RefPtr<TextBuffer::ChildAnchor>& anchor)
+                         const glib::RefPtr<TextBuffer::ChildAnchor>& anchor)
         -> void;
 
     auto
@@ -343,10 +343,10 @@ namespace Gtk
     get_indent () const -> int;
 
     auto
-    set_tabs (Pango::TabArray& tabs) -> void;
+    set_tabs (pango::TabArray& tabs) -> void;
 
     auto
-    get_tabs () const -> Pango::TabArray;
+    get_tabs () const -> pango::TabArray;
 
     auto
     set_overwrite (bool overwrite = true) -> void;
@@ -379,162 +379,162 @@ namespace Gtk
     get_monospace () const -> bool;
 
     auto
-    set_extra_menu (const Glib::RefPtr<Gio::MenuModel>& model) -> void;
+    set_extra_menu (const glib::RefPtr<gio::MenuModel>& model) -> void;
 
     auto
-    get_extra_menu () -> Glib::RefPtr<Gio::MenuModel>;
+    get_extra_menu () -> glib::RefPtr<gio::MenuModel>;
 
     auto
-    get_extra_menu () const -> Glib::RefPtr<const Gio::MenuModel>;
+    get_extra_menu () const -> glib::RefPtr<const gio::MenuModel>;
 
     auto
-    get_rtl_context () -> Glib::RefPtr<Pango::Context>;
+    get_rtl_context () -> glib::RefPtr<pango::Context>;
 
     auto
-    get_rtl_context () const -> Glib::RefPtr<const Pango::Context>;
+    get_rtl_context () const -> glib::RefPtr<const pango::Context>;
 
     auto
-    get_ltr_context () -> Glib::RefPtr<Pango::Context>;
+    get_ltr_context () -> glib::RefPtr<pango::Context>;
 
     auto
-    get_ltr_context () const -> Glib::RefPtr<const Pango::Context>;
+    get_ltr_context () const -> glib::RefPtr<const pango::Context>;
 
     auto
-    signal_set_anchor () -> Glib::SignalProxy<void ()>;
+    signal_set_anchor () -> glib::SignalProxy<void ()>;
 
     auto
     signal_insert_at_cursor ()
-        -> Glib::SignalProxy<void (const Glib::ustring&)>;
+        -> glib::SignalProxy<void (const glib::ustring&)>;
 
     auto
-    property_pixels_above_lines () -> Glib::PropertyProxy<int>;
+    property_pixels_above_lines () -> glib::PropertyProxy<int>;
 
     auto
-    property_pixels_above_lines () const -> Glib::PropertyProxy_ReadOnly<int>;
+    property_pixels_above_lines () const -> glib::PropertyProxy_ReadOnly<int>;
 
     auto
-    property_pixels_below_lines () -> Glib::PropertyProxy<int>;
+    property_pixels_below_lines () -> glib::PropertyProxy<int>;
 
     auto
-    property_pixels_below_lines () const -> Glib::PropertyProxy_ReadOnly<int>;
+    property_pixels_below_lines () const -> glib::PropertyProxy_ReadOnly<int>;
 
     auto
-    property_pixels_inside_wrap () -> Glib::PropertyProxy<int>;
+    property_pixels_inside_wrap () -> glib::PropertyProxy<int>;
 
     auto
-    property_pixels_inside_wrap () const -> Glib::PropertyProxy_ReadOnly<int>;
+    property_pixels_inside_wrap () const -> glib::PropertyProxy_ReadOnly<int>;
 
     auto
-    property_editable () -> Glib::PropertyProxy<bool>;
+    property_editable () -> glib::PropertyProxy<bool>;
 
     auto
-    property_editable () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_editable () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_wrap_mode () -> Glib::PropertyProxy<WrapMode>;
+    property_wrap_mode () -> glib::PropertyProxy<WrapMode>;
 
     auto
-    property_wrap_mode () const -> Glib::PropertyProxy_ReadOnly<WrapMode>;
+    property_wrap_mode () const -> glib::PropertyProxy_ReadOnly<WrapMode>;
 
     auto
-    property_justification () -> Glib::PropertyProxy<Justification>;
+    property_justification () -> glib::PropertyProxy<Justification>;
 
     auto
     property_justification () const
-        -> Glib::PropertyProxy_ReadOnly<Justification>;
+        -> glib::PropertyProxy_ReadOnly<Justification>;
 
     auto
-    property_left_margin () -> Glib::PropertyProxy<int>;
+    property_left_margin () -> glib::PropertyProxy<int>;
 
     auto
-    property_left_margin () const -> Glib::PropertyProxy_ReadOnly<int>;
+    property_left_margin () const -> glib::PropertyProxy_ReadOnly<int>;
 
     auto
-    property_right_margin () -> Glib::PropertyProxy<int>;
+    property_right_margin () -> glib::PropertyProxy<int>;
 
     auto
-    property_right_margin () const -> Glib::PropertyProxy_ReadOnly<int>;
+    property_right_margin () const -> glib::PropertyProxy_ReadOnly<int>;
 
     auto
-    property_top_margin () -> Glib::PropertyProxy<int>;
+    property_top_margin () -> glib::PropertyProxy<int>;
 
     auto
-    property_top_margin () const -> Glib::PropertyProxy_ReadOnly<int>;
+    property_top_margin () const -> glib::PropertyProxy_ReadOnly<int>;
 
     auto
-    property_bottom_margin () -> Glib::PropertyProxy<int>;
+    property_bottom_margin () -> glib::PropertyProxy<int>;
 
     auto
-    property_bottom_margin () const -> Glib::PropertyProxy_ReadOnly<int>;
+    property_bottom_margin () const -> glib::PropertyProxy_ReadOnly<int>;
 
     auto
-    property_indent () -> Glib::PropertyProxy<int>;
+    property_indent () -> glib::PropertyProxy<int>;
 
     auto
-    property_indent () const -> Glib::PropertyProxy_ReadOnly<int>;
+    property_indent () const -> glib::PropertyProxy_ReadOnly<int>;
 
     auto
-    property_tabs () -> Glib::PropertyProxy<Pango::TabArray>;
+    property_tabs () -> glib::PropertyProxy<pango::TabArray>;
 
     auto
-    property_tabs () const -> Glib::PropertyProxy_ReadOnly<Pango::TabArray>;
+    property_tabs () const -> glib::PropertyProxy_ReadOnly<pango::TabArray>;
 
     auto
-    property_cursor_visible () -> Glib::PropertyProxy<bool>;
+    property_cursor_visible () -> glib::PropertyProxy<bool>;
 
     auto
-    property_cursor_visible () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_cursor_visible () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_buffer () -> Glib::PropertyProxy<Glib::RefPtr<TextBuffer>>;
+    property_buffer () -> glib::PropertyProxy<glib::RefPtr<TextBuffer>>;
 
     auto
     property_buffer () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<TextBuffer>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<TextBuffer>>;
 
     auto
-    property_overwrite () -> Glib::PropertyProxy<bool>;
+    property_overwrite () -> glib::PropertyProxy<bool>;
 
     auto
-    property_overwrite () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_overwrite () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_accepts_tab () -> Glib::PropertyProxy<bool>;
+    property_accepts_tab () -> glib::PropertyProxy<bool>;
 
     auto
-    property_accepts_tab () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_accepts_tab () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_im_module () -> Glib::PropertyProxy<Glib::ustring>;
+    property_im_module () -> glib::PropertyProxy<glib::ustring>;
 
     auto
-    property_im_module () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+    property_im_module () const -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
     auto
-    property_input_purpose () -> Glib::PropertyProxy<InputPurpose>;
+    property_input_purpose () -> glib::PropertyProxy<InputPurpose>;
 
     auto
     property_input_purpose () const
-        -> Glib::PropertyProxy_ReadOnly<InputPurpose>;
+        -> glib::PropertyProxy_ReadOnly<InputPurpose>;
 
     auto
-    property_input_hints () -> Glib::PropertyProxy<InputHints>;
+    property_input_hints () -> glib::PropertyProxy<InputHints>;
 
     auto
-    property_input_hints () const -> Glib::PropertyProxy_ReadOnly<InputHints>;
+    property_input_hints () const -> glib::PropertyProxy_ReadOnly<InputHints>;
 
     auto
-    property_monospace () -> Glib::PropertyProxy<bool>;
+    property_monospace () -> glib::PropertyProxy<bool>;
 
     auto
-    property_monospace () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_monospace () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_extra_menu () -> Glib::PropertyProxy<Glib::RefPtr<Gio::MenuModel>>;
+    property_extra_menu () -> glib::PropertyProxy<glib::RefPtr<gio::MenuModel>>;
 
     auto
     property_extra_menu () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gio::MenuModel>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<gio::MenuModel>>;
 
   public:
   public:
@@ -543,15 +543,15 @@ namespace Gtk
     on_set_anchor () -> void;
 
     virtual auto
-    on_insert_at_cursor (const Glib::ustring& str) -> void;
+    on_insert_at_cursor (const glib::ustring& str) -> void;
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkTextView* object, bool take_copy = false) -> Gtk::TextView*;
-} // namespace Glib
+  wrap (GtkTextView* object, bool take_copy = false) -> gtk::TextView*;
+} // namespace glib
 
 #endif

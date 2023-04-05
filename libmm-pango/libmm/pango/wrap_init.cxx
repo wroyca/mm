@@ -52,63 +52,63 @@ extern "C"
   pango_renderer_get_type (void) -> GType;
 }
 
-namespace Pango
+namespace pango
 {
 
   class Context_Class
   {
   public:
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
   class Font_Class
   {
   public:
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
   class FontFace_Class
   {
   public:
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
   class FontFamily_Class
   {
   public:
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
   class FontMap_Class
   {
   public:
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
   class Fontset_Class
   {
   public:
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
   class Layout_Class
   {
   public:
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
   class Renderer_Class
   {
   public:
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
   auto
@@ -133,4 +133,4 @@ namespace Pango
     g_type_ensure (Renderer::get_type ());
   }
 
-} // namespace Pango
+} // namespace pango

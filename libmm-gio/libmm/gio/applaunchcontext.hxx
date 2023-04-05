@@ -21,19 +21,19 @@ using GAppLaunchContextClass = struct _GAppLaunchContextClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gio
+namespace gio
 {
   class LIBMM_GIO_SYMEXPORT AppLaunchContext_Class;
 }
 #endif
 
-namespace Gio
+namespace gio
 {
 
   class LIBMM_GIO_SYMEXPORT AppInfo;
   class LIBMM_GIO_SYMEXPORT File;
 
-  class LIBMM_GIO_SYMEXPORT AppLaunchContext : public Glib::Object
+  class LIBMM_GIO_SYMEXPORT AppLaunchContext : public glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -52,7 +52,7 @@ namespace Gio
     static CppClassType applaunchcontext_class_;
 
   protected:
-    explicit AppLaunchContext (const Glib::ConstructParams& construct_params);
+    explicit AppLaunchContext (const glib::ConstructParams& construct_params);
     explicit AppLaunchContext (GAppLaunchContext* castitem);
 
 #endif
@@ -94,25 +94,25 @@ namespace Gio
 
   public:
     static auto
-    create () -> Glib::RefPtr<AppLaunchContext>;
+    create () -> glib::RefPtr<AppLaunchContext>;
 
     auto
-    setenv (const Glib::ustring& variable, const Glib::ustring& value) -> void;
+    setenv (const glib::ustring& variable, const glib::ustring& value) -> void;
 
     auto
-    unsetenv (const Glib::ustring& variable) -> void;
+    unsetenv (const glib::ustring& variable) -> void;
 
     auto
-    get_environment () const -> std::vector<Glib::ustring>;
+    get_environment () const -> std::vector<glib::ustring>;
 
     auto
-    get_display (const Glib::RefPtr<AppInfo>& info,
-                 const std::vector<Glib::RefPtr<Gio::File>>& files)
+    get_display (const glib::RefPtr<AppInfo>& info,
+                 const std::vector<glib::RefPtr<gio::File>>& files)
         -> std::string;
 
     auto
-    get_startup_notify_id (const Glib::RefPtr<AppInfo>& info,
-                           const std::vector<Glib::RefPtr<Gio::File>>& files)
+    get_startup_notify_id (const glib::RefPtr<AppInfo>& info,
+                           const std::vector<glib::RefPtr<gio::File>>& files)
         -> std::string;
 
     auto
@@ -123,14 +123,14 @@ namespace Gio
   protected:
   };
 
-} // namespace Gio
+} // namespace gio
 
-namespace Glib
+namespace glib
 {
 
   LIBMM_GIO_SYMEXPORT
   auto
-  wrap (GAppLaunchContext* object, bool take_copy = false) -> Glib::RefPtr<Gio::AppLaunchContext>;
-} // namespace Glib
+  wrap (GAppLaunchContext* object, bool take_copy = false) -> glib::RefPtr<gio::AppLaunchContext>;
+} // namespace glib
 
 #endif

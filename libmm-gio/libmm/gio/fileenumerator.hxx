@@ -18,18 +18,18 @@ using GFileEnumeratorClass = struct _GFileEnumeratorClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gio
+namespace gio
 {
   class LIBMM_GIO_SYMEXPORT FileEnumerator_Class;
 }
 #endif
 
-namespace Gio
+namespace gio
 {
 
   class LIBMM_GIO_SYMEXPORT File;
 
-  class LIBMM_GIO_SYMEXPORT FileEnumerator : public Glib::Object
+  class LIBMM_GIO_SYMEXPORT FileEnumerator : public glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -48,7 +48,7 @@ namespace Gio
     static CppClassType fileenumerator_class_;
 
   protected:
-    explicit FileEnumerator (const Glib::ConstructParams& construct_params);
+    explicit FileEnumerator (const glib::ConstructParams& construct_params);
     explicit FileEnumerator (GFileEnumerator* castitem);
 
 #endif
@@ -87,43 +87,43 @@ namespace Gio
   private:
   public:
     auto
-    next_file (const Glib::RefPtr<Cancellable>& cancellable)
-        -> Glib::RefPtr<FileInfo>;
+    next_file (const glib::RefPtr<Cancellable>& cancellable)
+        -> glib::RefPtr<FileInfo>;
 
     auto
-    next_file () -> Glib::RefPtr<FileInfo>;
+    next_file () -> glib::RefPtr<FileInfo>;
 
     auto
-    close (const Glib::RefPtr<Cancellable>& cancellable) -> bool;
+    close (const glib::RefPtr<Cancellable>& cancellable) -> bool;
 
     auto
     close () -> bool;
 
     auto
     next_files_async (const SlotAsyncReady& slot,
-                      const Glib::RefPtr<Cancellable>& cancellable,
+                      const glib::RefPtr<Cancellable>& cancellable,
                       int num_files = 1,
-                      int io_priority = Glib::PRIORITY_DEFAULT) -> void;
+                      int io_priority = glib::PRIORITY_DEFAULT) -> void;
 
     auto
     next_files_async (const SlotAsyncReady& slot,
                       int num_files = 1,
-                      int io_priority = Glib::PRIORITY_DEFAULT) -> void;
+                      int io_priority = glib::PRIORITY_DEFAULT) -> void;
 
     auto
-    next_files_finish (const Glib::RefPtr<AsyncResult>& result)
-        -> std::vector<Glib::RefPtr<FileInfo>>;
+    next_files_finish (const glib::RefPtr<AsyncResult>& result)
+        -> std::vector<glib::RefPtr<FileInfo>>;
 
     auto
     close_async (int io_priority,
-                 const Glib::RefPtr<Cancellable>& cancellable,
+                 const glib::RefPtr<Cancellable>& cancellable,
                  const SlotAsyncReady& slot) -> void;
 
     auto
     close_async (int io_priority, const SlotAsyncReady& slot) -> void;
 
     auto
-    close_finish (const Glib::RefPtr<AsyncResult>& result) -> bool;
+    close_finish (const glib::RefPtr<AsyncResult>& result) -> bool;
 
     auto
     is_closed () const -> bool;
@@ -135,31 +135,31 @@ namespace Gio
     set_pending (bool pending = true) -> void;
 
     auto
-    get_container () -> Glib::RefPtr<File>;
+    get_container () -> glib::RefPtr<File>;
 
     auto
-    get_container () const -> Glib::RefPtr<const File>;
+    get_container () const -> glib::RefPtr<const File>;
 
     auto
-    get_child (const Glib::RefPtr<FileInfo>& info) -> Glib::RefPtr<File>;
+    get_child (const glib::RefPtr<FileInfo>& info) -> glib::RefPtr<File>;
 
     auto
-    get_child (const Glib::RefPtr<FileInfo>& info) const
-        -> Glib::RefPtr<const File>;
+    get_child (const glib::RefPtr<FileInfo>& info) const
+        -> glib::RefPtr<const File>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gio
+} // namespace gio
 
-namespace Glib
+namespace glib
 {
 
   LIBMM_GIO_SYMEXPORT
   auto
-  wrap (GFileEnumerator* object, bool take_copy = false) -> Glib::RefPtr<Gio::FileEnumerator>;
-} // namespace Glib
+  wrap (GFileEnumerator* object, bool take_copy = false) -> glib::RefPtr<gio::FileEnumerator>;
+} // namespace glib
 
 #endif

@@ -7,7 +7,7 @@
 
 #include <gtk/gtk.h>
 
-namespace Gtk
+namespace gtk
 {
 
   auto
@@ -22,29 +22,29 @@ namespace Gtk
     gtk_tree_expander_set_list_row (gobj (), nullptr);
   }
 
-} // namespace Gtk
+} // namespace gtk
 
 namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GtkTreeExpander* object, bool take_copy) -> Gtk::TreeExpander*
+  wrap (GtkTreeExpander* object, bool take_copy) -> gtk::TreeExpander*
   {
-    return dynamic_cast<Gtk::TreeExpander*> (
-        Glib::wrap_auto ((GObject*) (object), take_copy));
+    return dynamic_cast<gtk::TreeExpander*> (
+        glib::wrap_auto ((GObject*) (object), take_copy));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gtk
+namespace gtk
 {
 
   auto
-  TreeExpander_Class::init () -> const Glib::Class&
+  TreeExpander_Class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -64,30 +64,30 @@ namespace Gtk
   }
 
   auto
-  TreeExpander_Class::wrap_new (GObject* o) -> Glib::ObjectBase*
+  TreeExpander_Class::wrap_new (GObject* o) -> glib::ObjectBase*
   {
     return manage (new TreeExpander ((GtkTreeExpander*) (o)));
   }
 
-  TreeExpander::TreeExpander (const Glib::ConstructParams& construct_params)
-    : Gtk::Widget (construct_params)
+  TreeExpander::TreeExpander (const glib::ConstructParams& construct_params)
+    : gtk::Widget (construct_params)
   {
   }
 
   TreeExpander::TreeExpander (GtkTreeExpander* castitem)
-    : Gtk::Widget ((GtkWidget*) (castitem))
+    : gtk::Widget ((GtkWidget*) (castitem))
   {
   }
 
   TreeExpander::TreeExpander (TreeExpander&& src) noexcept
-    : Gtk::Widget (std::move (src))
+    : gtk::Widget (std::move (src))
   {
   }
 
   auto
   TreeExpander::operator= (TreeExpander&& src) noexcept -> TreeExpander&
   {
-    Gtk::Widget::operator= (std::move (src));
+    gtk::Widget::operator= (std::move (src));
     return *this;
   }
 
@@ -111,15 +111,15 @@ namespace Gtk
   }
 
   TreeExpander::TreeExpander ()
-    : Glib::ObjectBase (nullptr),
-      Gtk::Widget (Glib::ConstructParams (treeexpander_class_.init ()))
+    : glib::ObjectBase (nullptr),
+      gtk::Widget (glib::ConstructParams (treeexpander_class_.init ()))
   {
   }
 
   auto
   TreeExpander::get_child () -> Widget*
   {
-    return Glib::wrap (gtk_tree_expander_get_child (gobj ()));
+    return glib::wrap (gtk_tree_expander_get_child (gobj ()));
   }
 
   auto
@@ -135,37 +135,37 @@ namespace Gtk
   }
 
   auto
-  TreeExpander::get_item () -> Glib::RefPtr<Glib::ObjectBase>
+  TreeExpander::get_item () -> glib::RefPtr<glib::ObjectBase>
   {
-    return Glib::make_refptr_for_instance<Glib::ObjectBase> (
-        Glib::wrap_auto (G_OBJECT (gtk_tree_expander_get_item (gobj ()))));
+    return glib::make_refptr_for_instance<glib::ObjectBase> (
+        glib::wrap_auto (G_OBJECT (gtk_tree_expander_get_item (gobj ()))));
   }
 
   auto
-  TreeExpander::get_item () const -> Glib::RefPtr<const Glib::ObjectBase>
+  TreeExpander::get_item () const -> glib::RefPtr<const glib::ObjectBase>
   {
     return const_cast<TreeExpander*> (this)->get_item ();
   }
 
   auto
-  TreeExpander::get_list_row () -> Glib::RefPtr<TreeListRow>
+  TreeExpander::get_list_row () -> glib::RefPtr<TreeListRow>
   {
-    auto retvalue = Glib::wrap (gtk_tree_expander_get_list_row (gobj ()));
+    auto retvalue = glib::wrap (gtk_tree_expander_get_list_row (gobj ()));
     if (retvalue)
       retvalue->reference ();
     return retvalue;
   }
 
   auto
-  TreeExpander::get_list_row () const -> Glib::RefPtr<const TreeListRow>
+  TreeExpander::get_list_row () const -> glib::RefPtr<const TreeListRow>
   {
     return const_cast<TreeExpander*> (this)->get_list_row ();
   }
 
   auto
-  TreeExpander::set_list_row (const Glib::RefPtr<TreeListRow>& list_row) -> void
+  TreeExpander::set_list_row (const glib::RefPtr<TreeListRow>& list_row) -> void
   {
-    gtk_tree_expander_set_list_row (gobj (), Glib::unwrap (list_row));
+    gtk_tree_expander_set_list_row (gobj (), glib::unwrap (list_row));
   }
 
   auto
@@ -212,84 +212,84 @@ namespace Gtk
   }
 
   auto
-  TreeExpander::property_child () -> Glib::PropertyProxy<Widget*>
+  TreeExpander::property_child () -> glib::PropertyProxy<Widget*>
   {
-    return Glib::PropertyProxy<Widget*> (this, "child");
+    return glib::PropertyProxy<Widget*> (this, "child");
   }
 
   auto
-  TreeExpander::property_child () const -> Glib::PropertyProxy_ReadOnly<Widget*>
+  TreeExpander::property_child () const -> glib::PropertyProxy_ReadOnly<Widget*>
   {
-    return Glib::PropertyProxy_ReadOnly<Widget*> (this, "child");
+    return glib::PropertyProxy_ReadOnly<Widget*> (this, "child");
   }
 
   auto
-  TreeExpander::property_hide_expander () -> Glib::PropertyProxy<bool>
+  TreeExpander::property_hide_expander () -> glib::PropertyProxy<bool>
   {
-    return Glib::PropertyProxy<bool> (this, "hide-expander");
+    return glib::PropertyProxy<bool> (this, "hide-expander");
   }
 
   auto
-  TreeExpander::property_hide_expander () const -> Glib::PropertyProxy_ReadOnly<bool>
+  TreeExpander::property_hide_expander () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "hide-expander");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "hide-expander");
   }
 
   auto
-  TreeExpander::property_indent_for_depth () -> Glib::PropertyProxy<bool>
+  TreeExpander::property_indent_for_depth () -> glib::PropertyProxy<bool>
   {
-    return Glib::PropertyProxy<bool> (this, "indent-for-depth");
+    return glib::PropertyProxy<bool> (this, "indent-for-depth");
   }
 
   auto
-  TreeExpander::property_indent_for_depth () const -> Glib::PropertyProxy_ReadOnly<bool>
+  TreeExpander::property_indent_for_depth () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "indent-for-depth");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "indent-for-depth");
   }
 
   auto
-  TreeExpander::property_indent_for_icon () -> Glib::PropertyProxy<bool>
+  TreeExpander::property_indent_for_icon () -> glib::PropertyProxy<bool>
   {
-    return Glib::PropertyProxy<bool> (this, "indent-for-icon");
+    return glib::PropertyProxy<bool> (this, "indent-for-icon");
   }
 
   auto
-  TreeExpander::property_indent_for_icon () const -> Glib::PropertyProxy_ReadOnly<bool>
+  TreeExpander::property_indent_for_icon () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "indent-for-icon");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "indent-for-icon");
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<
-          Glib::RefPtr<Glib::ObjectBase>>::value,
-      "Type Glib::RefPtr<Glib::ObjectBase> cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      glib::Traits::ValueCompatibleWithWrapProperty<
+          glib::RefPtr<glib::ObjectBase>>::value,
+      "Type glib::RefPtr<glib::ObjectBase> cannot be used in _WRAP_PROPERTY. "
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  TreeExpander::property_item () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Glib::ObjectBase>>
+  TreeExpander::property_item () const -> glib::PropertyProxy_ReadOnly<glib::RefPtr<glib::ObjectBase>>
   {
-    return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Glib::ObjectBase>> (
+    return glib::PropertyProxy_ReadOnly<glib::RefPtr<glib::ObjectBase>> (
         this,
         "item");
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<
-          Glib::RefPtr<TreeListRow>>::value,
-      "Type Glib::RefPtr<TreeListRow> cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      glib::Traits::ValueCompatibleWithWrapProperty<
+          glib::RefPtr<TreeListRow>>::value,
+      "Type glib::RefPtr<TreeListRow> cannot be used in _WRAP_PROPERTY. "
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  TreeExpander::property_list_row () -> Glib::PropertyProxy<Glib::RefPtr<TreeListRow>>
+  TreeExpander::property_list_row () -> glib::PropertyProxy<glib::RefPtr<TreeListRow>>
   {
-    return Glib::PropertyProxy<Glib::RefPtr<TreeListRow>> (this, "list-row");
+    return glib::PropertyProxy<glib::RefPtr<TreeListRow>> (this, "list-row");
   }
 
   auto
-  TreeExpander::property_list_row () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<TreeListRow>>
+  TreeExpander::property_list_row () const -> glib::PropertyProxy_ReadOnly<glib::RefPtr<TreeListRow>>
   {
-    return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<TreeListRow>> (this,
+    return glib::PropertyProxy_ReadOnly<glib::RefPtr<TreeListRow>> (this,
                                                                     "list-row");
   }
 
-} // namespace Gtk
+} // namespace gtk

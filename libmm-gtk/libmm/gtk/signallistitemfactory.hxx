@@ -15,13 +15,13 @@ using GtkSignalListItemFactoryClass = struct _GtkSignalListItemFactoryClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT SignalListItemFactory_Class;
 }
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
   class LIBMM_GTK_SYMEXPORT SignalListItemFactory : public ListItemFactory
@@ -44,7 +44,7 @@ namespace Gtk
 
   protected:
     explicit SignalListItemFactory (
-        const Glib::ConstructParams& construct_params);
+        const glib::ConstructParams& construct_params);
     explicit SignalListItemFactory (GtkSignalListItemFactory* castitem);
 
 #endif
@@ -86,32 +86,32 @@ namespace Gtk
 
   public:
     static auto
-    create () -> Glib::RefPtr<SignalListItemFactory>;
+    create () -> glib::RefPtr<SignalListItemFactory>;
 
     auto
-    signal_setup () -> Glib::SignalProxy<void (const Glib::RefPtr<ListItem>&)>;
+    signal_setup () -> glib::SignalProxy<void (const glib::RefPtr<ListItem>&)>;
 
     auto
-    signal_bind () -> Glib::SignalProxy<void (const Glib::RefPtr<ListItem>&)>;
+    signal_bind () -> glib::SignalProxy<void (const glib::RefPtr<ListItem>&)>;
 
     auto
-    signal_unbind () -> Glib::SignalProxy<void (const Glib::RefPtr<ListItem>&)>;
+    signal_unbind () -> glib::SignalProxy<void (const glib::RefPtr<ListItem>&)>;
 
     auto
     signal_teardown ()
-        -> Glib::SignalProxy<void (const Glib::RefPtr<ListItem>&)>;
+        -> glib::SignalProxy<void (const glib::RefPtr<ListItem>&)>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkSignalListItemFactory* object, bool take_copy = false) -> Glib::RefPtr<Gtk::SignalListItemFactory>;
-} // namespace Glib
+  wrap (GtkSignalListItemFactory* object, bool take_copy = false) -> glib::RefPtr<gtk::SignalListItemFactory>;
+} // namespace glib
 
 #endif

@@ -19,13 +19,13 @@
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Adw
+namespace adw
 {
   class LIBMM_ADW_SYMEXPORT Flap_Class;
 }
 #endif
 
-namespace Adw
+namespace adw
 {
 
   enum class LIBMM_ADW_SYMEXPORT FlapFoldPolicy
@@ -35,25 +35,25 @@ namespace Adw
     AUTO
   };
 
-} // namespace Adw
+} // namespace adw
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_ADW_SYMEXPORT Value<Adw::FlapFoldPolicy>
-    : public Glib::Value_Enum<Adw::FlapFoldPolicy>
+  class LIBMM_ADW_SYMEXPORT Value<adw::FlapFoldPolicy>
+    : public glib::Value_Enum<adw::FlapFoldPolicy>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
-namespace Adw
+namespace adw
 {
 
   enum class LIBMM_ADW_SYMEXPORT FlapTransitionType
@@ -63,30 +63,30 @@ namespace Adw
     SLIDE
   };
 
-} // namespace Adw
+} // namespace adw
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_ADW_SYMEXPORT Value<Adw::FlapTransitionType>
-    : public Glib::Value_Enum<Adw::FlapTransitionType>
+  class LIBMM_ADW_SYMEXPORT Value<adw::FlapTransitionType>
+    : public glib::Value_Enum<adw::FlapTransitionType>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
-namespace Adw
+namespace adw
 {
 
-  class LIBMM_ADW_SYMEXPORT Flap : public Gtk::Widget,
-               Gtk::Orientable,
-               Adw::Swipeable
+  class LIBMM_ADW_SYMEXPORT Flap : public gtk::Widget,
+               gtk::Orientable,
+               adw::Swipeable
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -113,7 +113,7 @@ namespace Adw
     static CppClassType flap_class_;
 
   protected:
-    explicit Flap (const Glib::ConstructParams& construct_params);
+    explicit Flap (const glib::ConstructParams& construct_params);
     explicit Flap (AdwFlap* castitem);
 
 #endif
@@ -145,13 +145,13 @@ namespace Adw
     Flap ();
 
     auto
-    get_content () const -> Gtk::Widget*;
+    get_content () const -> gtk::Widget*;
 
     auto
-    get_flap () const -> Gtk::Widget*;
+    get_flap () const -> gtk::Widget*;
 
     auto
-    get_flap_position () const -> Gtk::PackType;
+    get_flap_position () const -> gtk::PackType;
 
     auto
     get_fold_duration () const -> guint;
@@ -175,13 +175,13 @@ namespace Adw
     get_reveal_flap () const -> bool;
 
     auto
-    get_reveal_params () const -> Glib::RefPtr<SpringParams>;
+    get_reveal_params () const -> glib::RefPtr<SpringParams>;
 
     auto
     get_reveal_progress () const -> double;
 
     auto
-    get_separator () const -> Gtk::Widget*;
+    get_separator () const -> gtk::Widget*;
 
     auto
     get_swipe_to_close () const -> bool;
@@ -193,13 +193,13 @@ namespace Adw
     get_transition_type () const -> FlapTransitionType;
 
     auto
-    set_content (Gtk::Widget* widget) -> void;
+    set_content (gtk::Widget* widget) -> void;
 
     auto
-    set_flap (Gtk::Widget* widget) -> void;
+    set_flap (gtk::Widget* widget) -> void;
 
     auto
-    set_flap_position (Gtk::PackType position) -> void;
+    set_flap_position (gtk::PackType position) -> void;
 
     auto
     set_fold_duration (guint duration) -> void;
@@ -220,10 +220,10 @@ namespace Adw
     set_reveal_flap (bool reveal_flap) -> void;
 
     auto
-    set_reveal_params (const Glib::RefPtr<SpringParams>& params) -> void;
+    set_reveal_params (const glib::RefPtr<SpringParams>& params) -> void;
 
     auto
-    set_separator (Gtk::Widget* separator) -> void;
+    set_separator (gtk::Widget* separator) -> void;
 
     auto
     set_swipe_to_close (bool locked) -> void;
@@ -235,114 +235,114 @@ namespace Adw
     set_transition_type (FlapTransitionType transition_type) -> void;
 
     auto
-    property_content () -> Glib::PropertyProxy<Gtk::Widget*>;
+    property_content () -> glib::PropertyProxy<gtk::Widget*>;
 
     auto
-    property_content () const -> Glib::PropertyProxy_ReadOnly<Gtk::Widget*>;
+    property_content () const -> glib::PropertyProxy_ReadOnly<gtk::Widget*>;
 
     auto
-    property_flap () -> Glib::PropertyProxy<Gtk::Widget*>;
+    property_flap () -> glib::PropertyProxy<gtk::Widget*>;
 
     auto
-    property_flap () const -> Glib::PropertyProxy_ReadOnly<Gtk::Widget*>;
+    property_flap () const -> glib::PropertyProxy_ReadOnly<gtk::Widget*>;
 
     auto
-    property_flap_position () -> Glib::PropertyProxy<Gtk::PackType>;
+    property_flap_position () -> glib::PropertyProxy<gtk::PackType>;
 
     auto
     property_flap_position () const
-        -> Glib::PropertyProxy_ReadOnly<Gtk::PackType>;
+        -> glib::PropertyProxy_ReadOnly<gtk::PackType>;
 
     auto
-    property_fold_duration () -> Glib::PropertyProxy<guint>;
+    property_fold_duration () -> glib::PropertyProxy<guint>;
 
     auto
-    property_fold_duration () const -> Glib::PropertyProxy_ReadOnly<guint>;
+    property_fold_duration () const -> glib::PropertyProxy_ReadOnly<guint>;
 
     auto
-    property_fold_policy () -> Glib::PropertyProxy<FlapFoldPolicy>;
+    property_fold_policy () -> glib::PropertyProxy<FlapFoldPolicy>;
 
     auto
     property_fold_policy () const
-        -> Glib::PropertyProxy_ReadOnly<FlapFoldPolicy>;
+        -> glib::PropertyProxy_ReadOnly<FlapFoldPolicy>;
 
     auto
     property_fold_threshold_policy ()
-        -> Glib::PropertyProxy<FoldThresholdPolicy>;
+        -> glib::PropertyProxy<FoldThresholdPolicy>;
 
     auto
     property_fold_threshold_policy () const
-        -> Glib::PropertyProxy_ReadOnly<FoldThresholdPolicy>;
+        -> glib::PropertyProxy_ReadOnly<FoldThresholdPolicy>;
 
     auto
-    property_folded () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_folded () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_locked () -> Glib::PropertyProxy<bool>;
+    property_locked () -> glib::PropertyProxy<bool>;
 
     auto
-    property_locked () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_locked () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_modal () -> Glib::PropertyProxy<bool>;
+    property_modal () -> glib::PropertyProxy<bool>;
 
     auto
-    property_modal () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_modal () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_reveal_flap () -> Glib::PropertyProxy<bool>;
+    property_reveal_flap () -> glib::PropertyProxy<bool>;
 
     auto
-    property_reveal_flap () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_reveal_flap () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
     property_reveal_params ()
-        -> Glib::PropertyProxy<Glib::RefPtr<SpringParams>>;
+        -> glib::PropertyProxy<glib::RefPtr<SpringParams>>;
 
     auto
     property_reveal_params () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<SpringParams>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<SpringParams>>;
 
     auto
-    property_reveal_progress () const -> Glib::PropertyProxy_ReadOnly<double>;
+    property_reveal_progress () const -> glib::PropertyProxy_ReadOnly<double>;
 
     auto
-    property_separator () -> Glib::PropertyProxy<Gtk::Widget*>;
+    property_separator () -> glib::PropertyProxy<gtk::Widget*>;
 
     auto
-    property_separator () const -> Glib::PropertyProxy_ReadOnly<Gtk::Widget*>;
+    property_separator () const -> glib::PropertyProxy_ReadOnly<gtk::Widget*>;
 
     auto
-    property_swipe_to_close () -> Glib::PropertyProxy<bool>;
+    property_swipe_to_close () -> glib::PropertyProxy<bool>;
 
     auto
-    property_swipe_to_close () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_swipe_to_close () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_swipe_to_open () -> Glib::PropertyProxy<bool>;
+    property_swipe_to_open () -> glib::PropertyProxy<bool>;
 
     auto
-    property_swipe_to_open () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_swipe_to_open () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_transition_type () -> Glib::PropertyProxy<FlapTransitionType>;
+    property_transition_type () -> glib::PropertyProxy<FlapTransitionType>;
 
     auto
     property_transition_type () const
-        -> Glib::PropertyProxy_ReadOnly<FlapTransitionType>;
+        -> glib::PropertyProxy_ReadOnly<FlapTransitionType>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Adw
+} // namespace adw
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (AdwFlap* object, bool take_copy = false) -> Adw::Flap*;
+  wrap (AdwFlap* object, bool take_copy = false) -> adw::Flap*;
 }
 
 #endif

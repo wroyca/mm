@@ -7,13 +7,13 @@
 
 #include <gtk/gtkunixprint.h>
 
-namespace Gtk
+namespace gtk
 {
 
-  PageSetupUnixDialog::PageSetupUnixDialog (Gtk::Window& parent,
-                                            const Glib::ustring& title)
-    : Glib::ObjectBase (nullptr),
-      Gtk::Dialog (Glib::ConstructParams (pagesetupunixdialog_class_.init (),
+  PageSetupUnixDialog::PageSetupUnixDialog (gtk::Window& parent,
+                                            const glib::ustring& title)
+    : glib::ObjectBase (nullptr),
+      gtk::Dialog (glib::ConstructParams (pagesetupunixdialog_class_.init (),
                                           "title",
                                           title.c_str (),
                                           nullptr))
@@ -21,38 +21,38 @@ namespace Gtk
     set_transient_for (parent);
   }
 
-  PageSetupUnixDialog::PageSetupUnixDialog (const Glib::ustring& title)
-    : Glib::ObjectBase (nullptr),
-      Gtk::Dialog (Glib::ConstructParams (pagesetupunixdialog_class_.init (),
+  PageSetupUnixDialog::PageSetupUnixDialog (const glib::ustring& title)
+    : glib::ObjectBase (nullptr),
+      gtk::Dialog (glib::ConstructParams (pagesetupunixdialog_class_.init (),
                                           "title",
                                           title.c_str (),
                                           nullptr))
   {
   }
 
-} // namespace Gtk
+} // namespace gtk
 
 namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GtkPageSetupUnixDialog* object, bool take_copy) -> Gtk::PageSetupUnixDialog*
+  wrap (GtkPageSetupUnixDialog* object, bool take_copy) -> gtk::PageSetupUnixDialog*
   {
-    return dynamic_cast<Gtk::PageSetupUnixDialog*> (
-        Glib::wrap_auto ((GObject*) (object), take_copy));
+    return dynamic_cast<gtk::PageSetupUnixDialog*> (
+        glib::wrap_auto ((GObject*) (object), take_copy));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gtk
+namespace gtk
 {
 
   auto
-  PageSetupUnixDialog_Class::init () -> const Glib::Class&
+  PageSetupUnixDialog_Class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -73,31 +73,31 @@ namespace Gtk
   }
 
   auto
-  PageSetupUnixDialog_Class::wrap_new (GObject* o) -> Glib::ObjectBase*
+  PageSetupUnixDialog_Class::wrap_new (GObject* o) -> glib::ObjectBase*
   {
     return new PageSetupUnixDialog ((GtkPageSetupUnixDialog*) (o));
   }
 
   PageSetupUnixDialog::PageSetupUnixDialog (
-      const Glib::ConstructParams& construct_params)
-    : Gtk::Dialog (construct_params)
+      const glib::ConstructParams& construct_params)
+    : gtk::Dialog (construct_params)
   {
   }
 
   PageSetupUnixDialog::PageSetupUnixDialog (GtkPageSetupUnixDialog* castitem)
-    : Gtk::Dialog ((GtkDialog*) (castitem))
+    : gtk::Dialog ((GtkDialog*) (castitem))
   {
   }
 
   PageSetupUnixDialog::PageSetupUnixDialog (PageSetupUnixDialog&& src) noexcept
-    : Gtk::Dialog (std::move (src))
+    : gtk::Dialog (std::move (src))
   {
   }
 
   auto
   PageSetupUnixDialog::operator= (PageSetupUnixDialog&& src) noexcept -> PageSetupUnixDialog&
   {
-    Gtk::Dialog::operator= (std::move (src));
+    gtk::Dialog::operator= (std::move (src));
     return *this;
   }
 
@@ -123,51 +123,51 @@ namespace Gtk
 
   auto
   PageSetupUnixDialog::set_page_setup (
-      const Glib::RefPtr<PageSetup>& page_setup) -> void
+      const glib::RefPtr<PageSetup>& page_setup) -> void
   {
     gtk_page_setup_unix_dialog_set_page_setup (gobj (),
-                                               Glib::unwrap (page_setup));
+                                               glib::unwrap (page_setup));
   }
 
   auto
-  PageSetupUnixDialog::get_page_setup () -> Glib::RefPtr<PageSetup>
+  PageSetupUnixDialog::get_page_setup () -> glib::RefPtr<PageSetup>
   {
     auto retvalue =
-        Glib::wrap (gtk_page_setup_unix_dialog_get_page_setup (gobj ()));
+        glib::wrap (gtk_page_setup_unix_dialog_get_page_setup (gobj ()));
     if (retvalue)
       retvalue->reference ();
     return retvalue;
   }
 
   auto
-  PageSetupUnixDialog::get_page_setup () const -> Glib::RefPtr<const PageSetup>
+  PageSetupUnixDialog::get_page_setup () const -> glib::RefPtr<const PageSetup>
   {
     return const_cast<PageSetupUnixDialog*> (this)->get_page_setup ();
   }
 
   auto
   PageSetupUnixDialog::set_print_settings (
-      const Glib::RefPtr<PrintSettings>& print_settings) -> void
+      const glib::RefPtr<PrintSettings>& print_settings) -> void
   {
     gtk_page_setup_unix_dialog_set_print_settings (
         gobj (),
-        Glib::unwrap (print_settings));
+        glib::unwrap (print_settings));
   }
 
   auto
-  PageSetupUnixDialog::get_print_settings () -> Glib::RefPtr<PrintSettings>
+  PageSetupUnixDialog::get_print_settings () -> glib::RefPtr<PrintSettings>
   {
     auto retvalue =
-        Glib::wrap (gtk_page_setup_unix_dialog_get_print_settings (gobj ()));
+        glib::wrap (gtk_page_setup_unix_dialog_get_print_settings (gobj ()));
     if (retvalue)
       retvalue->reference ();
     return retvalue;
   }
 
   auto
-  PageSetupUnixDialog::get_print_settings () const -> Glib::RefPtr<const PrintSettings>
+  PageSetupUnixDialog::get_print_settings () const -> glib::RefPtr<const PrintSettings>
   {
     return const_cast<PageSetupUnixDialog*> (this)->get_print_settings ();
   }
 
-} // namespace Gtk
+} // namespace gtk

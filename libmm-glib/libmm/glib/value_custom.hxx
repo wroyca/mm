@@ -14,7 +14,7 @@
 #include <type_traits>
 #include <typeinfo>
 
-namespace Glib
+namespace glib
 {
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -54,17 +54,17 @@ namespace Glib
 
   private:
     inline static auto
-    value_type_ (Glib::Object*) -> GType;
+    value_type_ (glib::Object*) -> GType;
     static auto
     value_type_ (void*) -> GType;
 
     inline auto
-    set_ (CppType data, Glib::Object*) -> void;
+    set_ (CppType data, glib::Object*) -> void;
     inline auto
     set_ (CppType data, void*) -> void;
 
     inline auto
-    get_ (Glib::Object*) const -> CppType;
+    get_ (glib::Object*) const -> CppType;
     inline auto
     get_ (void*) const -> CppType;
   };
@@ -126,14 +126,14 @@ namespace Glib
 
   template <class PtrT>
   inline auto
-  Value_Pointer<PtrT>::value_type_ (Glib::Object*) -> GType
+  Value_Pointer<PtrT>::value_type_ (glib::Object*) -> GType
   {
     return T::get_base_type ();
   }
 
   template <class PtrT>
   inline auto
-  Value_Pointer<PtrT>::set_ (PtrT data, Glib::Object*) -> void
+  Value_Pointer<PtrT>::set_ (PtrT data, glib::Object*) -> void
   {
     set_object (const_cast<T*> (data));
   }
@@ -141,7 +141,7 @@ namespace Glib
   #ifdef GLIBMM_CAN_USE_DYNAMIC_CAST_IN_UNUSED_TEMPLATE_WITHOUT_DEFINITION
   template <class PtrT>
   inline auto
-  Value_Pointer<PtrT>::get_ (Glib::Object*) const -> PtrT
+  Value_Pointer<PtrT>::get_ (glib::Object*) const -> PtrT
   {
     return dynamic_cast<T*> (get_object ());
   }
@@ -154,7 +154,7 @@ namespace Glib
     static GType custom_type = 0;
 
     if (!custom_type)
-      custom_type = Glib::custom_pointer_type_register (typeid (PtrT).name ());
+      custom_type = glib::custom_pointer_type_register (typeid (PtrT).name ());
 
     return custom_type;
   }
@@ -217,7 +217,7 @@ namespace Glib
   {
     if (!custom_type_)
     {
-      custom_type_ = Glib::custom_boxed_type_register (
+      custom_type_ = glib::custom_boxed_type_register (
           typeid (CppType).name (),
           &Value<T>::value_init_func,
           &Value<T>::value_free_func,
@@ -267,7 +267,7 @@ namespace Glib
       template <typename X>
       static auto
       check_type (X* obj) ->
-          typename Glib::Value<X>::dont_use_with_wrap_property_;
+          typename glib::Value<X>::dont_use_with_wrap_property_;
 
     public:
       static const bool value =
@@ -278,6 +278,6 @@ namespace Glib
 
 #endif
 
-} // namespace Glib
+} // namespace glib
 
 #endif

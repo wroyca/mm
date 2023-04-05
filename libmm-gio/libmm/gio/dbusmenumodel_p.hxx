@@ -7,20 +7,20 @@
 
 #include <libmm/glib/class.hxx>
 
-namespace Gio
+namespace gio
 {
 
   namespace DBus
   {
 
-    class LIBMM_GIO_SYMEXPORT MenuModel_Class : public Glib::Class
+    class LIBMM_GIO_SYMEXPORT MenuModel_Class : public glib::Class
     {
     public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
       using CppObjectType = MenuModel;
       using BaseObjectType = GDBusMenuModel;
       using BaseClassType = GDBusMenuModelClass;
-      using CppClassParent = Gio::MenuModel_Class;
+      using CppClassParent = gio::MenuModel_Class;
       using BaseClassParent = GMenuModelClass;
 
       friend class MenuModel;
@@ -33,13 +33,13 @@ namespace Gio
       class_init_function (void* g_class, void* class_data) -> void;
 
       static auto
-      wrap_new (GObject*) -> Glib::ObjectBase*;
+      wrap_new (GObject*) -> glib::ObjectBase*;
 
     protected:
     };
 
   } // namespace DBus
 
-} // namespace Gio
+} // namespace gio
 
 #endif

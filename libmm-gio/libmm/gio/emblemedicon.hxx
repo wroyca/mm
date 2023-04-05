@@ -16,16 +16,16 @@ using GEmblemedIconClass = struct _GEmblemedIconClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gio
+namespace gio
 {
   class LIBMM_GIO_SYMEXPORT EmblemedIcon_Class;
 }
 #endif
 
-namespace Gio
+namespace gio
 {
 
-  class LIBMM_GIO_SYMEXPORT EmblemedIcon : public Glib::Object,
+  class LIBMM_GIO_SYMEXPORT EmblemedIcon : public glib::Object,
                                  public Icon
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -45,7 +45,7 @@ namespace Gio
     static CppClassType emblemedicon_class_;
 
   protected:
-    explicit EmblemedIcon (const Glib::ConstructParams& construct_params);
+    explicit EmblemedIcon (const glib::ConstructParams& construct_params);
     explicit EmblemedIcon (GEmblemedIcon* castitem);
 
 #endif
@@ -83,33 +83,33 @@ namespace Gio
 
   private:
   protected:
-    explicit EmblemedIcon (const Glib::RefPtr<Icon>& icon);
+    explicit EmblemedIcon (const glib::RefPtr<Icon>& icon);
 
-    explicit EmblemedIcon (const Glib::RefPtr<Icon>& icon,
-                           const Glib::RefPtr<Emblem>& emblem);
+    explicit EmblemedIcon (const glib::RefPtr<Icon>& icon,
+                           const glib::RefPtr<Emblem>& emblem);
 
   public:
     static auto
-    create (const Glib::RefPtr<Icon>& icon, const Glib::RefPtr<Emblem>& emblem)
-        -> Glib::RefPtr<EmblemedIcon>;
+    create (const glib::RefPtr<Icon>& icon, const glib::RefPtr<Emblem>& emblem)
+        -> glib::RefPtr<EmblemedIcon>;
 
     static auto
-    create (const Glib::RefPtr<Icon>& icon) -> Glib::RefPtr<EmblemedIcon>;
+    create (const glib::RefPtr<Icon>& icon) -> glib::RefPtr<EmblemedIcon>;
 
     auto
-    get_icon () -> Glib::RefPtr<Icon>;
+    get_icon () -> glib::RefPtr<Icon>;
 
     auto
-    get_icon () const -> Glib::RefPtr<const Icon>;
+    get_icon () const -> glib::RefPtr<const Icon>;
 
     auto
-    get_emblems () -> std::vector<Glib::RefPtr<Emblem>>;
+    get_emblems () -> std::vector<glib::RefPtr<Emblem>>;
 
     auto
-    get_emblems () const -> std::vector<Glib::RefPtr<const Emblem>>;
+    get_emblems () const -> std::vector<glib::RefPtr<const Emblem>>;
 
     auto
-    add_emblem (const Glib::RefPtr<Emblem>& emblem) -> void;
+    add_emblem (const glib::RefPtr<Emblem>& emblem) -> void;
 
     auto
     clear_emblems () -> void;
@@ -119,14 +119,14 @@ namespace Gio
   protected:
   };
 
-} // namespace Gio
+} // namespace gio
 
-namespace Glib
+namespace glib
 {
 
   LIBMM_GIO_SYMEXPORT
   auto
-  wrap (GEmblemedIcon* object, bool take_copy = false) -> Glib::RefPtr<Gio::EmblemedIcon>;
-} // namespace Glib
+  wrap (GEmblemedIcon* object, bool take_copy = false) -> glib::RefPtr<gio::EmblemedIcon>;
+} // namespace glib
 
 #endif

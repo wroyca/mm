@@ -10,7 +10,7 @@
 #include <libmm/gio/dbusinterfacevtable.hxx>
 #include <libmm/gio/dbusmethodinvocation.hxx>
 
-namespace Gio::DBus
+namespace gio::DBus
 {
 
   class LIBMM_GIO_SYMEXPORT SubtreeVTable
@@ -24,23 +24,23 @@ namespace Gio::DBus
   private:
   public:
     using SlotSubtreeEnumerate =
-        sigc::slot<std::vector<Glib::ustring> (const Glib::RefPtr<Connection>&,
-                                               const Glib::ustring&,
-                                               const Glib::ustring&)>;
+        sigc::slot<std::vector<glib::ustring> (const glib::RefPtr<Connection>&,
+                                               const glib::ustring&,
+                                               const glib::ustring&)>;
 
     using SlotSubtreeIntrospect =
-        sigc::slot<std::vector<Glib::RefPtr<Gio::DBus::InterfaceInfo>> (
-            const Glib::RefPtr<Connection>&,
-            const Glib::ustring&,
-            const Glib::ustring&,
-            const Glib::ustring&)>;
+        sigc::slot<std::vector<glib::RefPtr<gio::DBus::InterfaceInfo>> (
+            const glib::RefPtr<Connection>&,
+            const glib::ustring&,
+            const glib::ustring&,
+            const glib::ustring&)>;
 
     using SlotSubtreeDispatch =
-        sigc::slot<const InterfaceVTable*(const Glib::RefPtr<Connection>&,
-                                          const Glib::ustring&,
-                                          const Glib::ustring&,
-                                          const Glib::ustring&,
-                                          const Glib::ustring&)>;
+        sigc::slot<const InterfaceVTable*(const glib::RefPtr<Connection>&,
+                                          const glib::ustring&,
+                                          const glib::ustring&,
+                                          const glib::ustring&,
+                                          const glib::ustring&)>;
 
     explicit SubtreeVTable (const SlotSubtreeEnumerate& slot_enumerate,
                             const SlotSubtreeIntrospect& slot_introspect = {},
@@ -87,6 +87,6 @@ namespace Gio::DBus
     SlotSubtreeDispatch* slot_dispatch_;
   };
 
-} // namespace Gio::DBus
+} // namespace gio::DBus
 
 #endif

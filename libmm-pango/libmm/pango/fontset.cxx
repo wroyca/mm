@@ -11,20 +11,20 @@ fontset_foreach_callback (PangoFontset*, PangoFont* font, const gpointer data)
 {
   try
   {
-    const auto& slot = *static_cast<Pango::Fontset::ForeachSlot*> (data);
-    const auto cppFont = Glib::wrap (font, true);
+    const auto& slot = *static_cast<pango::Fontset::ForeachSlot*> (data);
+    const auto cppFont = glib::wrap (font, true);
 
     return slot (cppFont);
   }
   catch (...)
   {
-    Glib::exception_handlers_invoke ();
+    glib::exception_handlers_invoke ();
   }
 
   return false;
 }
 
-namespace Pango
+namespace pango
 {
 
   auto
@@ -33,26 +33,26 @@ namespace Pango
     pango_fontset_foreach (gobj (), &fontset_foreach_callback, (void*) &slot);
   }
 
-} // namespace Pango
+} // namespace pango
 
 namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (PangoFontset* object, const bool take_copy) -> RefPtr<Pango::Fontset>
+  wrap (PangoFontset* object, const bool take_copy) -> RefPtr<pango::Fontset>
   {
-    return Glib::make_refptr_for_instance<Pango::Fontset> (
-        dynamic_cast<Pango::Fontset*> (
+    return glib::make_refptr_for_instance<pango::Fontset> (
+        dynamic_cast<pango::Fontset*> (
             wrap_auto ((GObject*) object, take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Pango
+namespace pango
 {
 
   auto
@@ -76,7 +76,7 @@ namespace Pango
   }
 
   auto
-  Fontset_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  Fontset_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new Fontset ((PangoFontset*) object);
   }
@@ -88,7 +88,7 @@ namespace Pango
     return gobj ();
   }
 
-  Fontset::Fontset (const Glib::ConstructParams& construct_params)
+  Fontset::Fontset (const glib::ConstructParams& construct_params)
     : Object (construct_params)
   {
   }
@@ -127,9 +127,9 @@ namespace Pango
   }
 
   auto
-  Fontset::get_font (const guint wc) const -> Glib::RefPtr<Font>
+  Fontset::get_font (const guint wc) const -> glib::RefPtr<Font>
   {
-    return Glib::wrap (
+    return glib::wrap (
         pango_fontset_get_font (const_cast<PangoFontset*> (gobj ()), wc));
   }
 
@@ -140,4 +140,4 @@ namespace Pango
         pango_fontset_get_metrics (const_cast<PangoFontset*> (gobj ())));
   }
 
-} // namespace Pango
+} // namespace pango

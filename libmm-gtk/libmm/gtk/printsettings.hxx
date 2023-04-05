@@ -18,13 +18,13 @@ using GtkPrintSettingsClass = struct _GtkPrintSettingsClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT PrintSettings_Class;
 }
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
   enum class PrintDuplex
@@ -34,25 +34,25 @@ namespace Gtk
     VERTICAL
   };
 
-} // namespace Gtk
+} // namespace gtk
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_GTK_SYMEXPORT Value<Gtk::PrintDuplex>
-    : public Glib::Value_Enum<Gtk::PrintDuplex>
+  class LIBMM_GTK_SYMEXPORT Value<gtk::PrintDuplex>
+    : public glib::Value_Enum<gtk::PrintDuplex>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
   enum class PrintQuality
@@ -63,25 +63,25 @@ namespace Gtk
     DRAFT
   };
 
-} // namespace Gtk
+} // namespace gtk
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_GTK_SYMEXPORT Value<Gtk::PrintQuality>
-    : public Glib::Value_Enum<Gtk::PrintQuality>
+  class LIBMM_GTK_SYMEXPORT Value<gtk::PrintQuality>
+    : public glib::Value_Enum<gtk::PrintQuality>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
   enum class PrintPages
@@ -92,25 +92,25 @@ namespace Gtk
     SELECTION
   };
 
-} // namespace Gtk
+} // namespace gtk
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_GTK_SYMEXPORT Value<Gtk::PrintPages>
-    : public Glib::Value_Enum<Gtk::PrintPages>
+  class LIBMM_GTK_SYMEXPORT Value<gtk::PrintPages>
+    : public glib::Value_Enum<gtk::PrintPages>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
   enum class PageSet
@@ -120,24 +120,24 @@ namespace Gtk
     ODD
   };
 
-} // namespace Gtk
+} // namespace gtk
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_GTK_SYMEXPORT Value<Gtk::PageSet> : public Glib::Value_Enum<Gtk::PageSet>
+  class LIBMM_GTK_SYMEXPORT Value<gtk::PageSet> : public glib::Value_Enum<gtk::PageSet>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
   enum class NumberUpLayout
@@ -152,25 +152,25 @@ namespace Gtk
     BOTTOM_TO_TOP_RIGHT_TO_LEFT
   };
 
-} // namespace Gtk
+} // namespace gtk
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_GTK_SYMEXPORT Value<Gtk::NumberUpLayout>
-    : public Glib::Value_Enum<Gtk::NumberUpLayout>
+  class LIBMM_GTK_SYMEXPORT Value<gtk::NumberUpLayout>
+    : public glib::Value_Enum<gtk::NumberUpLayout>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
   class LIBMM_GTK_SYMEXPORT PageRange
@@ -216,7 +216,7 @@ namespace Gtk
   };
 #endif
 
-  class LIBMM_GTK_SYMEXPORT PrintSettings : public Glib::Object
+  class LIBMM_GTK_SYMEXPORT PrintSettings : public glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -235,7 +235,7 @@ namespace Gtk
     static CppClassType printsettings_class_;
 
   protected:
-    explicit PrintSettings (const Glib::ConstructParams& construct_params);
+    explicit PrintSettings (const glib::ConstructParams& construct_params);
     explicit PrintSettings (GtkPrintSettings* castitem);
 
 #endif
@@ -277,134 +277,134 @@ namespace Gtk
 
   public:
     static auto
-    create () -> Glib::RefPtr<PrintSettings>;
+    create () -> glib::RefPtr<PrintSettings>;
 
     static auto
-    create_from_key_file (const Glib::RefPtr<const Glib::KeyFile>& key_file)
-        -> Glib::RefPtr<PrintSettings>;
+    create_from_key_file (const glib::RefPtr<const glib::KeyFile>& key_file)
+        -> glib::RefPtr<PrintSettings>;
 
     static auto
-    create_from_key_file (const Glib::RefPtr<const Glib::KeyFile>& key_file,
-                          const Glib::ustring& group_name)
-        -> Glib::RefPtr<PrintSettings>;
+    create_from_key_file (const glib::RefPtr<const glib::KeyFile>& key_file,
+                          const glib::ustring& group_name)
+        -> glib::RefPtr<PrintSettings>;
 
     static auto
     create_from_file (const std::string& file_name)
-        -> Glib::RefPtr<PrintSettings>;
+        -> glib::RefPtr<PrintSettings>;
 
     class Keys
     {
     public:
-      static const Glib::ustring PRINTER;
-      static const Glib::ustring ORIENTATION;
-      static const Glib::ustring PAPER_FORMAT;
-      static const Glib::ustring PAPER_WIDTH;
-      static const Glib::ustring PAPER_HEIGHT;
-      static const Glib::ustring NUM_COPIES;
-      static const Glib::ustring DEFAULT_SOURCE;
-      static const Glib::ustring QUALITY;
-      static const Glib::ustring RESOLUTION;
-      static const Glib::ustring USE_COLOR;
-      static const Glib::ustring DUPLEX;
-      static const Glib::ustring COLLATE;
-      static const Glib::ustring REVERSE;
-      static const Glib::ustring MEDIA_TYPE;
-      static const Glib::ustring DITHER;
-      static const Glib::ustring SCALE;
-      static const Glib::ustring PRINT_PAGES;
-      static const Glib::ustring PAGE_RANGES;
-      static const Glib::ustring PAGE_SET;
-      static const Glib::ustring FINISHINGS;
-      static const Glib::ustring NUMBER_UP;
-      static const Glib::ustring NUMBER_UP_LAYOUT;
-      static const Glib::ustring OUTPUT_BIN;
+      static const glib::ustring PRINTER;
+      static const glib::ustring ORIENTATION;
+      static const glib::ustring PAPER_FORMAT;
+      static const glib::ustring PAPER_WIDTH;
+      static const glib::ustring PAPER_HEIGHT;
+      static const glib::ustring NUM_COPIES;
+      static const glib::ustring DEFAULT_SOURCE;
+      static const glib::ustring QUALITY;
+      static const glib::ustring RESOLUTION;
+      static const glib::ustring USE_COLOR;
+      static const glib::ustring DUPLEX;
+      static const glib::ustring COLLATE;
+      static const glib::ustring REVERSE;
+      static const glib::ustring MEDIA_TYPE;
+      static const glib::ustring DITHER;
+      static const glib::ustring SCALE;
+      static const glib::ustring PRINT_PAGES;
+      static const glib::ustring PAGE_RANGES;
+      static const glib::ustring PAGE_SET;
+      static const glib::ustring FINISHINGS;
+      static const glib::ustring NUMBER_UP;
+      static const glib::ustring NUMBER_UP_LAYOUT;
+      static const glib::ustring OUTPUT_BIN;
 
-      static const Glib::ustring OUTPUT_FILE_FORMAT;
-      static const Glib::ustring OUTPUT_URI;
+      static const glib::ustring OUTPUT_FILE_FORMAT;
+      static const glib::ustring OUTPUT_URI;
 
-      static const Glib::ustring WIN32_DRIVER_VERSION;
-      static const Glib::ustring WIN32_DRIVER_EXTRA;
+      static const glib::ustring WIN32_DRIVER_VERSION;
+      static const glib::ustring WIN32_DRIVER_EXTRA;
     };
 
     auto
-    copy () const -> Glib::RefPtr<PrintSettings>;
+    copy () const -> glib::RefPtr<PrintSettings>;
 
     auto
     load_from_file (const std::string& file_name) -> bool;
 
     auto
-    load_from_key_file (const Glib::RefPtr<const Glib::KeyFile>& key_file,
-                        const Glib::ustring& group_name) -> bool;
+    load_from_key_file (const glib::RefPtr<const glib::KeyFile>& key_file,
+                        const glib::ustring& group_name) -> bool;
 
     auto
-    load_from_key_file (const Glib::RefPtr<const Glib::KeyFile>& key_file)
+    load_from_key_file (const glib::RefPtr<const glib::KeyFile>& key_file)
         -> bool;
 
     auto
     save_to_file (const std::string& file_name) const -> bool;
 
     auto
-    save_to_key_file (const Glib::RefPtr<Glib::KeyFile>& key_file,
-                      const Glib::ustring& group_name) const -> void;
+    save_to_key_file (const glib::RefPtr<glib::KeyFile>& key_file,
+                      const glib::ustring& group_name) const -> void;
 
     auto
-    save_to_key_file (const Glib::RefPtr<Glib::KeyFile>& key_file) const
+    save_to_key_file (const glib::RefPtr<glib::KeyFile>& key_file) const
         -> void;
 
     auto
-    has_key (const Glib::ustring& key) const -> bool;
+    has_key (const glib::ustring& key) const -> bool;
 
     auto
-    get (const Glib::ustring& key) const -> Glib::ustring;
+    get (const glib::ustring& key) const -> glib::ustring;
 
     auto
-    set (const Glib::ustring& key, const Glib::ustring& value) -> void;
+    set (const glib::ustring& key, const glib::ustring& value) -> void;
 
     auto
-    unset (const Glib::ustring& key) -> void;
+    unset (const glib::ustring& key) -> void;
 
-    typedef sigc::slot<void (const Glib::ustring&, const Glib::ustring&)>
+    typedef sigc::slot<void (const glib::ustring&, const glib::ustring&)>
         SlotForeach;
 
     auto
     setting_foreach (const SlotForeach& slot) -> void;
 
     auto
-    get_bool (const Glib::ustring& key) const -> bool;
+    get_bool (const glib::ustring& key) const -> bool;
 
     auto
-    set_bool (const Glib::ustring& key, bool value = true) -> void;
+    set_bool (const glib::ustring& key, bool value = true) -> void;
 
     auto
-    get_double (const Glib::ustring& key) const -> double;
+    get_double (const glib::ustring& key) const -> double;
 
     auto
-    get_double_with_default (const Glib::ustring& key, double def) const
+    get_double_with_default (const glib::ustring& key, double def) const
         -> double;
 
     auto
-    set_double (const Glib::ustring& key, double value) -> void;
+    set_double (const glib::ustring& key, double value) -> void;
 
     auto
-    get_length (const Glib::ustring& key, Unit unit) const -> double;
+    get_length (const glib::ustring& key, Unit unit) const -> double;
 
     auto
-    set_length (const Glib::ustring& key, double value, Unit unit) -> void;
+    set_length (const glib::ustring& key, double value, Unit unit) -> void;
 
     auto
-    get_int (const Glib::ustring& key) const -> int;
+    get_int (const glib::ustring& key) const -> int;
 
     auto
-    get_int_with_default (const Glib::ustring& key, int def) const -> int;
+    get_int_with_default (const glib::ustring& key, int def) const -> int;
 
     auto
-    set_int (const Glib::ustring& key, int value) -> void;
+    set_int (const glib::ustring& key, int value) -> void;
 
     auto
-    get_printer () const -> Glib::ustring;
+    get_printer () const -> glib::ustring;
 
     auto
-    set_printer (const Glib::ustring& printer) -> void;
+    set_printer (const glib::ustring& printer) -> void;
 
     auto
     get_orientation () const -> PageOrientation;
@@ -526,46 +526,46 @@ namespace Gtk
     set_page_set (PageSet page_set) -> void;
 
     auto
-    get_default_source () const -> Glib::ustring;
+    get_default_source () const -> glib::ustring;
 
     auto
-    set_default_source (const Glib::ustring& default_source) -> void;
+    set_default_source (const glib::ustring& default_source) -> void;
 
     auto
-    get_media_type () const -> Glib::ustring;
+    get_media_type () const -> glib::ustring;
 
     auto
-    set_media_type (const Glib::ustring& media_type) -> void;
+    set_media_type (const glib::ustring& media_type) -> void;
 
     auto
-    get_dither () const -> Glib::ustring;
+    get_dither () const -> glib::ustring;
 
     auto
-    set_dither (const Glib::ustring& dither) -> void;
+    set_dither (const glib::ustring& dither) -> void;
 
     auto
-    get_finishings () const -> Glib::ustring;
+    get_finishings () const -> glib::ustring;
 
     auto
-    set_finishings (const Glib::ustring& finishings) -> void;
+    set_finishings (const glib::ustring& finishings) -> void;
 
     auto
-    get_output_bin () const -> Glib::ustring;
+    get_output_bin () const -> glib::ustring;
 
     auto
-    set_output_bin (const Glib::ustring& output_bin) -> void;
+    set_output_bin (const glib::ustring& output_bin) -> void;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkPrintSettings* object, bool take_copy = false) -> Glib::RefPtr<Gtk::PrintSettings>;
-} // namespace Glib
+  wrap (GtkPrintSettings* object, bool take_copy = false) -> glib::RefPtr<gtk::PrintSettings>;
+} // namespace glib
 
 #endif

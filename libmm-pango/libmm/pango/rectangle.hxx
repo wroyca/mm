@@ -10,7 +10,7 @@
 
 #include <pango/pango.h>
 
-namespace Pango
+namespace pango
 {
 
   class LIBMM_PANGO_SYMEXPORT Rectangle
@@ -130,19 +130,19 @@ namespace Pango
     return !lhs.equal (rhs);
   }
 
-} // namespace Pango
+} // namespace pango
 
-namespace Glib
+namespace glib
 {
 
   LIBMM_PANGO_SYMEXPORT
   auto
-  wrap (PangoRectangle* object) -> Pango::Rectangle&;
+  wrap (PangoRectangle* object) -> pango::Rectangle&;
 
   LIBMM_PANGO_SYMEXPORT
   auto
-  wrap (const PangoRectangle* object) -> const Pango::Rectangle&;
+  wrap (const PangoRectangle* object) -> const pango::Rectangle&;
 
-} // namespace Glib
+} // namespace glib
 
 #endif

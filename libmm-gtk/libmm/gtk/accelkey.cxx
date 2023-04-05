@@ -3,26 +3,26 @@
 #include <libmm/gtk/accelerator.hxx>
 #include <libmm/gtk/accelkey.hxx>
 
-namespace Gtk
+namespace gtk
 {
 
   AccelKey::AccelKey ()
     : key_ (GDK_KEY_VoidSymbol),
-      mod_ ((Gdk::ModifierType) 0)
+      mod_ ((gdk::ModifierType) 0)
   {
   }
 
   AccelKey::AccelKey (guint accel_key,
-                      Gdk::ModifierType accel_mods,
-                      const Glib::ustring& accel_path)
+                      gdk::ModifierType accel_mods,
+                      const glib::ustring& accel_path)
     : key_ (accel_key),
       mod_ (accel_mods),
       path_ (accel_path)
   {
   }
 
-  AccelKey::AccelKey (const Glib::ustring& accelerator,
-                      const Glib::ustring& accel_path)
+  AccelKey::AccelKey (const glib::ustring& accelerator,
+                      const glib::ustring& accel_path)
     : path_ (accel_path)
   {
     Accelerator::parse (accelerator, key_, mod_);
@@ -52,13 +52,13 @@ namespace Gtk
   }
 
   auto
-  AccelKey::get_mod () const -> Gdk::ModifierType
+  AccelKey::get_mod () const -> gdk::ModifierType
   {
     return mod_;
   }
 
   auto
-  AccelKey::get_path () const -> Glib::ustring
+  AccelKey::get_path () const -> glib::ustring
   {
     return path_;
   }
@@ -70,9 +70,9 @@ namespace Gtk
   }
 
   auto
-  AccelKey::get_abbrev () const -> Glib::ustring
+  AccelKey::get_abbrev () const -> glib::ustring
   {
     return Accelerator::name (key_, mod_);
   }
 
-} // namespace Gtk
+} // namespace gtk

@@ -7,34 +7,34 @@
 
 #include <libmm/glib/class.hxx>
 
-namespace Adw
+namespace adw
 {
 
-  class LIBMM_ADW_SYMEXPORT PreferencesRow_Class : public Glib::Class
+  class LIBMM_ADW_SYMEXPORT PreferencesRow_Class : public glib::Class
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
     using CppObjectType = PreferencesRow;
     using BaseObjectType = AdwPreferencesRow;
     using BaseClassType = AdwPreferencesRowClass;
-    using CppClassParent = Gtk::ListBoxRow_Class;
+    using CppClassParent = gtk::ListBoxRow_Class;
     using BaseClassParent = GtkListBoxRowClass;
 
     friend class PreferencesRow;
 #endif
 
     auto
-    init () -> const Glib::Class&;
+    init () -> const glib::Class&;
 
     static auto
     class_init_function (void* g_class, void* class_data) -> void;
 
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
 
   protected:
   };
 
-} // namespace Adw
+} // namespace adw
 
 #endif

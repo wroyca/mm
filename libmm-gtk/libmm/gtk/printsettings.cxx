@@ -16,76 +16,76 @@ namespace
   static auto
   proxy_foreach_callback (const char* key, const char* value, void* data) -> void
   {
-    typedef Gtk::PrintSettings::SlotForeach SlotType;
+    typedef gtk::PrintSettings::SlotForeach SlotType;
     auto& slot = *static_cast<SlotType*> (data);
 
     try
     {
-      slot (Glib::convert_const_gchar_ptr_to_ustring (key),
-            Glib::convert_const_gchar_ptr_to_ustring (value));
+      slot (glib::convert_const_gchar_ptr_to_ustring (key),
+            glib::convert_const_gchar_ptr_to_ustring (value));
     }
     catch (...)
     {
-      Glib::exception_handlers_invoke ();
+      glib::exception_handlers_invoke ();
     }
   }
 
 } // namespace
 
-namespace Gtk
+namespace gtk
 {
 
-  const Glib::ustring PrintSettings::Keys::PRINTER = GTK_PRINT_SETTINGS_PRINTER;
-  const Glib::ustring PrintSettings::Keys::ORIENTATION =
+  const glib::ustring PrintSettings::Keys::PRINTER = GTK_PRINT_SETTINGS_PRINTER;
+  const glib::ustring PrintSettings::Keys::ORIENTATION =
       GTK_PRINT_SETTINGS_ORIENTATION;
-  const Glib::ustring PrintSettings::Keys::PAPER_FORMAT =
+  const glib::ustring PrintSettings::Keys::PAPER_FORMAT =
       GTK_PRINT_SETTINGS_PAPER_FORMAT;
-  const Glib::ustring PrintSettings::Keys::PAPER_WIDTH =
+  const glib::ustring PrintSettings::Keys::PAPER_WIDTH =
       GTK_PRINT_SETTINGS_PAPER_WIDTH;
-  const Glib::ustring PrintSettings::Keys::PAPER_HEIGHT =
+  const glib::ustring PrintSettings::Keys::PAPER_HEIGHT =
       GTK_PRINT_SETTINGS_PAPER_HEIGHT;
-  const Glib::ustring PrintSettings::Keys::NUM_COPIES =
+  const glib::ustring PrintSettings::Keys::NUM_COPIES =
       GTK_PRINT_SETTINGS_N_COPIES;
-  const Glib::ustring PrintSettings::Keys::DEFAULT_SOURCE =
+  const glib::ustring PrintSettings::Keys::DEFAULT_SOURCE =
       GTK_PRINT_SETTINGS_DEFAULT_SOURCE;
-  const Glib::ustring PrintSettings::Keys::QUALITY = GTK_PRINT_SETTINGS_QUALITY;
-  const Glib::ustring PrintSettings::Keys::RESOLUTION =
+  const glib::ustring PrintSettings::Keys::QUALITY = GTK_PRINT_SETTINGS_QUALITY;
+  const glib::ustring PrintSettings::Keys::RESOLUTION =
       GTK_PRINT_SETTINGS_RESOLUTION;
-  const Glib::ustring PrintSettings::Keys::USE_COLOR =
+  const glib::ustring PrintSettings::Keys::USE_COLOR =
       GTK_PRINT_SETTINGS_USE_COLOR;
-  const Glib::ustring PrintSettings::Keys::DUPLEX = GTK_PRINT_SETTINGS_DUPLEX;
-  const Glib::ustring PrintSettings::Keys::COLLATE = GTK_PRINT_SETTINGS_COLLATE;
-  const Glib::ustring PrintSettings::Keys::REVERSE = GTK_PRINT_SETTINGS_REVERSE;
-  const Glib::ustring PrintSettings::Keys::MEDIA_TYPE =
+  const glib::ustring PrintSettings::Keys::DUPLEX = GTK_PRINT_SETTINGS_DUPLEX;
+  const glib::ustring PrintSettings::Keys::COLLATE = GTK_PRINT_SETTINGS_COLLATE;
+  const glib::ustring PrintSettings::Keys::REVERSE = GTK_PRINT_SETTINGS_REVERSE;
+  const glib::ustring PrintSettings::Keys::MEDIA_TYPE =
       GTK_PRINT_SETTINGS_MEDIA_TYPE;
-  const Glib::ustring PrintSettings::Keys::DITHER = GTK_PRINT_SETTINGS_DITHER;
-  const Glib::ustring PrintSettings::Keys::SCALE = GTK_PRINT_SETTINGS_SCALE;
-  const Glib::ustring PrintSettings::Keys::PRINT_PAGES =
+  const glib::ustring PrintSettings::Keys::DITHER = GTK_PRINT_SETTINGS_DITHER;
+  const glib::ustring PrintSettings::Keys::SCALE = GTK_PRINT_SETTINGS_SCALE;
+  const glib::ustring PrintSettings::Keys::PRINT_PAGES =
       GTK_PRINT_SETTINGS_PRINT_PAGES;
-  const Glib::ustring PrintSettings::Keys::PAGE_RANGES =
+  const glib::ustring PrintSettings::Keys::PAGE_RANGES =
       GTK_PRINT_SETTINGS_PAGE_RANGES;
-  const Glib::ustring PrintSettings::Keys::PAGE_SET =
+  const glib::ustring PrintSettings::Keys::PAGE_SET =
       GTK_PRINT_SETTINGS_PAGE_SET;
-  const Glib::ustring PrintSettings::Keys::FINISHINGS =
+  const glib::ustring PrintSettings::Keys::FINISHINGS =
       GTK_PRINT_SETTINGS_FINISHINGS;
-  const Glib::ustring PrintSettings::Keys::NUMBER_UP =
+  const glib::ustring PrintSettings::Keys::NUMBER_UP =
       GTK_PRINT_SETTINGS_NUMBER_UP;
-  const Glib::ustring PrintSettings::Keys::OUTPUT_BIN =
+  const glib::ustring PrintSettings::Keys::OUTPUT_BIN =
       GTK_PRINT_SETTINGS_OUTPUT_BIN;
 
-  const Glib::ustring PrintSettings::Keys::OUTPUT_FILE_FORMAT =
+  const glib::ustring PrintSettings::Keys::OUTPUT_FILE_FORMAT =
       GTK_PRINT_SETTINGS_OUTPUT_FILE_FORMAT;
-  const Glib::ustring PrintSettings::Keys::OUTPUT_URI =
+  const glib::ustring PrintSettings::Keys::OUTPUT_URI =
       GTK_PRINT_SETTINGS_OUTPUT_URI;
 
-  const Glib::ustring PrintSettings::Keys::WIN32_DRIVER_VERSION =
+  const glib::ustring PrintSettings::Keys::WIN32_DRIVER_VERSION =
       GTK_PRINT_SETTINGS_WIN32_DRIVER_VERSION;
-  const Glib::ustring PrintSettings::Keys::WIN32_DRIVER_EXTRA =
+  const glib::ustring PrintSettings::Keys::WIN32_DRIVER_EXTRA =
       GTK_PRINT_SETTINGS_WIN32_DRIVER_EXTRA;
 
   auto
   PrintSettings::create_from_key_file (
-      const Glib::RefPtr<const Glib::KeyFile>& key_file) -> Glib::RefPtr<PrintSettings>
+      const glib::RefPtr<const glib::KeyFile>& key_file) -> glib::RefPtr<PrintSettings>
   {
     auto result = PrintSettings::create ();
 
@@ -96,8 +96,8 @@ namespace Gtk
 
   auto
   PrintSettings::create_from_key_file (
-      const Glib::RefPtr<const Glib::KeyFile>& key_file,
-      const Glib::ustring& group_name) -> Glib::RefPtr<PrintSettings>
+      const glib::RefPtr<const glib::KeyFile>& key_file,
+      const glib::ustring& group_name) -> glib::RefPtr<PrintSettings>
   {
     auto result = PrintSettings::create ();
 
@@ -107,7 +107,7 @@ namespace Gtk
   }
 
   auto
-  PrintSettings::create_from_file (const std::string& file_name) -> Glib::RefPtr<PrintSettings>
+  PrintSettings::create_from_file (const std::string& file_name) -> glib::RefPtr<PrintSettings>
   {
     auto result = PrintSettings::create ();
 
@@ -145,10 +145,10 @@ namespace Gtk
         const_cast<GtkPrintSettings*> (gobj ()),
         &num_ranges);
 
-    return Glib::ArrayHandler<PageRange, PageRangeTraits>::array_to_vector (
+    return glib::ArrayHandler<PageRange, PageRangeTraits>::array_to_vector (
         page_ranges,
         num_ranges,
-        Glib::OWNERSHIP_SHALLOW);
+        glib::OWNERSHIP_SHALLOW);
   }
 
   auto
@@ -156,7 +156,7 @@ namespace Gtk
   {
     gtk_print_settings_set_page_ranges (
         gobj (),
-        Glib::ArrayHandler<PageRange, PageRangeTraits>::vector_to_array (
+        glib::ArrayHandler<PageRange, PageRangeTraits>::vector_to_array (
             page_ranges)
             .data (),
         page_ranges.size ());
@@ -164,83 +164,83 @@ namespace Gtk
 
   auto
   PrintSettings::load_from_key_file (
-      const Glib::RefPtr<const Glib::KeyFile>& key_file) -> bool
+      const glib::RefPtr<const glib::KeyFile>& key_file) -> bool
   {
     GError* gerror = nullptr;
     bool retvalue = gtk_print_settings_load_key_file (
         gobj (),
-        const_cast<GKeyFile*> (Glib::unwrap (key_file)),
+        const_cast<GKeyFile*> (glib::unwrap (key_file)),
         nullptr,
         &(gerror));
     if (gerror)
-      ::Glib::Error::throw_exception (gerror);
+      ::glib::Error::throw_exception (gerror);
 
     return retvalue;
   }
 
   auto
   PrintSettings::save_to_key_file (
-      const Glib::RefPtr<Glib::KeyFile>& key_file) const -> void
+      const glib::RefPtr<glib::KeyFile>& key_file) const -> void
   {
     gtk_print_settings_to_key_file (const_cast<GtkPrintSettings*> (gobj ()),
-                                    Glib::unwrap (key_file),
+                                    glib::unwrap (key_file),
                                     nullptr);
   }
 
-} // namespace Gtk
+} // namespace gtk
 
 namespace
 {
 }
 
 auto
-Glib::Value<Gtk::PrintDuplex>::value_type () -> GType
+glib::Value<gtk::PrintDuplex>::value_type () -> GType
 {
   return gtk_print_duplex_get_type ();
 }
 
 auto
-Glib::Value<Gtk::PrintQuality>::value_type () -> GType
+glib::Value<gtk::PrintQuality>::value_type () -> GType
 {
   return gtk_print_quality_get_type ();
 }
 
 auto
-Glib::Value<Gtk::PrintPages>::value_type () -> GType
+glib::Value<gtk::PrintPages>::value_type () -> GType
 {
   return gtk_print_pages_get_type ();
 }
 
 auto
-Glib::Value<Gtk::PageSet>::value_type () -> GType
+glib::Value<gtk::PageSet>::value_type () -> GType
 {
   return gtk_page_set_get_type ();
 }
 
 auto
-Glib::Value<Gtk::NumberUpLayout>::value_type () -> GType
+glib::Value<gtk::NumberUpLayout>::value_type () -> GType
 {
   return gtk_number_up_layout_get_type ();
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GtkPrintSettings* object, bool take_copy) -> Glib::RefPtr<Gtk::PrintSettings>
+  wrap (GtkPrintSettings* object, bool take_copy) -> glib::RefPtr<gtk::PrintSettings>
   {
-    return Glib::make_refptr_for_instance<Gtk::PrintSettings> (
-        dynamic_cast<Gtk::PrintSettings*> (
-            Glib::wrap_auto ((GObject*) (object), take_copy)));
+    return glib::make_refptr_for_instance<gtk::PrintSettings> (
+        dynamic_cast<gtk::PrintSettings*> (
+            glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gtk
+namespace gtk
 {
 
   auto
-  PrintSettings_Class::init () -> const Glib::Class&
+  PrintSettings_Class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -260,7 +260,7 @@ namespace Gtk
   }
 
   auto
-  PrintSettings_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  PrintSettings_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new PrintSettings ((GtkPrintSettings*) object);
   }
@@ -272,25 +272,25 @@ namespace Gtk
     return gobj ();
   }
 
-  PrintSettings::PrintSettings (const Glib::ConstructParams& construct_params)
-    : Glib::Object (construct_params)
+  PrintSettings::PrintSettings (const glib::ConstructParams& construct_params)
+    : glib::Object (construct_params)
   {
   }
 
   PrintSettings::PrintSettings (GtkPrintSettings* castitem)
-    : Glib::Object ((GObject*) (castitem))
+    : glib::Object ((GObject*) (castitem))
   {
   }
 
   PrintSettings::PrintSettings (PrintSettings&& src) noexcept
-    : Glib::Object (std::move (src))
+    : glib::Object (std::move (src))
   {
   }
 
   auto
   PrintSettings::operator= (PrintSettings&& src) noexcept -> PrintSettings&
   {
-    Glib::Object::operator= (std::move (src));
+    glib::Object::operator= (std::move (src));
     return *this;
   }
 
@@ -311,21 +311,21 @@ namespace Gtk
   }
 
   PrintSettings::PrintSettings ()
-    : Glib::ObjectBase (nullptr),
-      Glib::Object (Glib::ConstructParams (printsettings_class_.init ()))
+    : glib::ObjectBase (nullptr),
+      glib::Object (glib::ConstructParams (printsettings_class_.init ()))
   {
   }
 
   auto
-  PrintSettings::create () -> Glib::RefPtr<PrintSettings>
+  PrintSettings::create () -> glib::RefPtr<PrintSettings>
   {
-    return Glib::make_refptr_for_instance<PrintSettings> (new PrintSettings ());
+    return glib::make_refptr_for_instance<PrintSettings> (new PrintSettings ());
   }
 
   auto
-  PrintSettings::copy () const -> Glib::RefPtr<PrintSettings>
+  PrintSettings::copy () const -> glib::RefPtr<PrintSettings>
   {
-    return Glib::wrap (
+    return glib::wrap (
         gtk_print_settings_copy (const_cast<GtkPrintSettings*> (gobj ())));
   }
 
@@ -336,23 +336,23 @@ namespace Gtk
     auto retvalue =
         gtk_print_settings_load_file (gobj (), file_name.c_str (), &(gerror));
     if (gerror)
-      ::Glib::Error::throw_exception (gerror);
+      ::glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
   auto
   PrintSettings::load_from_key_file (
-      const Glib::RefPtr<const Glib::KeyFile>& key_file,
-      const Glib::ustring& group_name) -> bool
+      const glib::RefPtr<const glib::KeyFile>& key_file,
+      const glib::ustring& group_name) -> bool
   {
     GError* gerror = nullptr;
     auto retvalue = gtk_print_settings_load_key_file (
         gobj (),
-        const_cast<GKeyFile*> (Glib::unwrap (key_file)),
+        const_cast<GKeyFile*> (glib::unwrap (key_file)),
         group_name.c_str (),
         &(gerror));
     if (gerror)
-      ::Glib::Error::throw_exception (gerror);
+      ::glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
@@ -365,55 +365,55 @@ namespace Gtk
         file_name.c_str (),
         &(gerror));
     if (gerror)
-      ::Glib::Error::throw_exception (gerror);
+      ::glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
   auto
-  PrintSettings::save_to_key_file (const Glib::RefPtr<Glib::KeyFile>& key_file,
-                                   const Glib::ustring& group_name) const -> void
+  PrintSettings::save_to_key_file (const glib::RefPtr<glib::KeyFile>& key_file,
+                                   const glib::ustring& group_name) const -> void
   {
     gtk_print_settings_to_key_file (const_cast<GtkPrintSettings*> (gobj ()),
-                                    Glib::unwrap (key_file),
+                                    glib::unwrap (key_file),
                                     group_name.c_str ());
   }
 
   auto
-  PrintSettings::has_key (const Glib::ustring& key) const -> bool
+  PrintSettings::has_key (const glib::ustring& key) const -> bool
   {
     return gtk_print_settings_has_key (const_cast<GtkPrintSettings*> (gobj ()),
                                        key.c_str ());
   }
 
   auto
-  PrintSettings::get (const Glib::ustring& key) const -> Glib::ustring
+  PrintSettings::get (const glib::ustring& key) const -> glib::ustring
   {
-    return Glib::convert_const_gchar_ptr_to_ustring (
+    return glib::convert_const_gchar_ptr_to_ustring (
         gtk_print_settings_get (const_cast<GtkPrintSettings*> (gobj ()),
                                 key.c_str ()));
   }
 
   auto
-  PrintSettings::set (const Glib::ustring& key, const Glib::ustring& value) -> void
+  PrintSettings::set (const glib::ustring& key, const glib::ustring& value) -> void
   {
     gtk_print_settings_set (gobj (), key.c_str (), value.c_str ());
   }
 
   auto
-  PrintSettings::unset (const Glib::ustring& key) -> void
+  PrintSettings::unset (const glib::ustring& key) -> void
   {
     gtk_print_settings_unset (gobj (), key.c_str ());
   }
 
   auto
-  PrintSettings::get_bool (const Glib::ustring& key) const -> bool
+  PrintSettings::get_bool (const glib::ustring& key) const -> bool
   {
     return gtk_print_settings_get_bool (const_cast<GtkPrintSettings*> (gobj ()),
                                         key.c_str ());
   }
 
   auto
-  PrintSettings::set_bool (const Glib::ustring& key, bool value) -> void
+  PrintSettings::set_bool (const glib::ustring& key, bool value) -> void
   {
     gtk_print_settings_set_bool (gobj (),
                                  key.c_str (),
@@ -421,7 +421,7 @@ namespace Gtk
   }
 
   auto
-  PrintSettings::get_double (const Glib::ustring& key) const -> double
+  PrintSettings::get_double (const glib::ustring& key) const -> double
   {
     return gtk_print_settings_get_double (
         const_cast<GtkPrintSettings*> (gobj ()),
@@ -429,7 +429,7 @@ namespace Gtk
   }
 
   auto
-  PrintSettings::get_double_with_default (const Glib::ustring& key,
+  PrintSettings::get_double_with_default (const glib::ustring& key,
                                           double def) const -> double
   {
     return gtk_print_settings_get_double_with_default (
@@ -439,13 +439,13 @@ namespace Gtk
   }
 
   auto
-  PrintSettings::set_double (const Glib::ustring& key, double value) -> void
+  PrintSettings::set_double (const glib::ustring& key, double value) -> void
   {
     gtk_print_settings_set_double (gobj (), key.c_str (), value);
   }
 
   auto
-  PrintSettings::get_length (const Glib::ustring& key, Unit unit) const -> double
+  PrintSettings::get_length (const glib::ustring& key, Unit unit) const -> double
   {
     return gtk_print_settings_get_length (
         const_cast<GtkPrintSettings*> (gobj ()),
@@ -454,7 +454,7 @@ namespace Gtk
   }
 
   auto
-  PrintSettings::set_length (const Glib::ustring& key, double value, Unit unit) -> void
+  PrintSettings::set_length (const glib::ustring& key, double value, Unit unit) -> void
   {
     gtk_print_settings_set_length (gobj (),
                                    key.c_str (),
@@ -463,14 +463,14 @@ namespace Gtk
   }
 
   auto
-  PrintSettings::get_int (const Glib::ustring& key) const -> int
+  PrintSettings::get_int (const glib::ustring& key) const -> int
   {
     return gtk_print_settings_get_int (const_cast<GtkPrintSettings*> (gobj ()),
                                        key.c_str ());
   }
 
   auto
-  PrintSettings::get_int_with_default (const Glib::ustring& key, int def) const -> int
+  PrintSettings::get_int_with_default (const glib::ustring& key, int def) const -> int
   {
     return gtk_print_settings_get_int_with_default (
         const_cast<GtkPrintSettings*> (gobj ()),
@@ -479,21 +479,21 @@ namespace Gtk
   }
 
   auto
-  PrintSettings::set_int (const Glib::ustring& key, int value) -> void
+  PrintSettings::set_int (const glib::ustring& key, int value) -> void
   {
     gtk_print_settings_set_int (gobj (), key.c_str (), value);
   }
 
   auto
-  PrintSettings::get_printer () const -> Glib::ustring
+  PrintSettings::get_printer () const -> glib::ustring
   {
-    return Glib::convert_const_gchar_ptr_to_ustring (
+    return glib::convert_const_gchar_ptr_to_ustring (
         gtk_print_settings_get_printer (
             const_cast<GtkPrintSettings*> (gobj ())));
   }
 
   auto
-  PrintSettings::set_printer (const Glib::ustring& printer) -> void
+  PrintSettings::set_printer (const glib::ustring& printer) -> void
   {
     gtk_print_settings_set_printer (gobj (), printer.c_str ());
   }
@@ -516,7 +516,7 @@ namespace Gtk
   auto
   PrintSettings::get_paper_size () -> PaperSize
   {
-    return Glib::wrap (gtk_print_settings_get_paper_size (gobj ()), true);
+    return glib::wrap (gtk_print_settings_get_paper_size (gobj ()), true);
   }
 
   auto
@@ -762,73 +762,73 @@ namespace Gtk
   }
 
   auto
-  PrintSettings::get_default_source () const -> Glib::ustring
+  PrintSettings::get_default_source () const -> glib::ustring
   {
-    return Glib::convert_const_gchar_ptr_to_ustring (
+    return glib::convert_const_gchar_ptr_to_ustring (
         gtk_print_settings_get_default_source (
             const_cast<GtkPrintSettings*> (gobj ())));
   }
 
   auto
-  PrintSettings::set_default_source (const Glib::ustring& default_source) -> void
+  PrintSettings::set_default_source (const glib::ustring& default_source) -> void
   {
     gtk_print_settings_set_default_source (gobj (), default_source.c_str ());
   }
 
   auto
-  PrintSettings::get_media_type () const -> Glib::ustring
+  PrintSettings::get_media_type () const -> glib::ustring
   {
-    return Glib::convert_const_gchar_ptr_to_ustring (
+    return glib::convert_const_gchar_ptr_to_ustring (
         gtk_print_settings_get_media_type (
             const_cast<GtkPrintSettings*> (gobj ())));
   }
 
   auto
-  PrintSettings::set_media_type (const Glib::ustring& media_type) -> void
+  PrintSettings::set_media_type (const glib::ustring& media_type) -> void
   {
     gtk_print_settings_set_media_type (gobj (), media_type.c_str ());
   }
 
   auto
-  PrintSettings::get_dither () const -> Glib::ustring
+  PrintSettings::get_dither () const -> glib::ustring
   {
-    return Glib::convert_const_gchar_ptr_to_ustring (
+    return glib::convert_const_gchar_ptr_to_ustring (
         gtk_print_settings_get_dither (
             const_cast<GtkPrintSettings*> (gobj ())));
   }
 
   auto
-  PrintSettings::set_dither (const Glib::ustring& dither) -> void
+  PrintSettings::set_dither (const glib::ustring& dither) -> void
   {
     gtk_print_settings_set_dither (gobj (), dither.c_str ());
   }
 
   auto
-  PrintSettings::get_finishings () const -> Glib::ustring
+  PrintSettings::get_finishings () const -> glib::ustring
   {
-    return Glib::convert_const_gchar_ptr_to_ustring (
+    return glib::convert_const_gchar_ptr_to_ustring (
         gtk_print_settings_get_finishings (
             const_cast<GtkPrintSettings*> (gobj ())));
   }
 
   auto
-  PrintSettings::set_finishings (const Glib::ustring& finishings) -> void
+  PrintSettings::set_finishings (const glib::ustring& finishings) -> void
   {
     gtk_print_settings_set_finishings (gobj (), finishings.c_str ());
   }
 
   auto
-  PrintSettings::get_output_bin () const -> Glib::ustring
+  PrintSettings::get_output_bin () const -> glib::ustring
   {
-    return Glib::convert_const_gchar_ptr_to_ustring (
+    return glib::convert_const_gchar_ptr_to_ustring (
         gtk_print_settings_get_output_bin (
             const_cast<GtkPrintSettings*> (gobj ())));
   }
 
   auto
-  PrintSettings::set_output_bin (const Glib::ustring& output_bin) -> void
+  PrintSettings::set_output_bin (const glib::ustring& output_bin) -> void
   {
     gtk_print_settings_set_output_bin (gobj (), output_bin.c_str ());
   }
 
-} // namespace Gtk
+} // namespace gtk

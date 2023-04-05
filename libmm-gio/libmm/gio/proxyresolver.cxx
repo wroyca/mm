@@ -12,38 +12,38 @@
 #include <libmm/glib/vectorutils.hxx>
 #include <utility>
 
-namespace Gio
+namespace gio
 {
 
   auto
-  ProxyResolver::lookup (const Glib::ustring& uri) -> std::vector<Glib::ustring>
+  ProxyResolver::lookup (const glib::ustring& uri) -> std::vector<glib::ustring>
   {
     GError* gerror = nullptr;
-    auto retvalue = Glib::ArrayHandler<Glib::ustring>::array_to_vector (
+    auto retvalue = glib::ArrayHandler<glib::ustring>::array_to_vector (
         g_proxy_resolver_lookup (gobj (), uri.c_str (), nullptr, &gerror),
-        Glib::OWNERSHIP_DEEP);
+        glib::OWNERSHIP_DEEP);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
 
     return retvalue;
   }
 
   auto
-  ProxyResolver::lookup_async (const Glib::ustring& uri,
+  ProxyResolver::lookup_async (const glib::ustring& uri,
                                const SlotAsyncReady& slot,
-                               const Glib::RefPtr<Cancellable>& cancellable) -> void
+                               const glib::RefPtr<Cancellable>& cancellable) -> void
   {
     const auto slot_copy = new SlotAsyncReady (slot);
 
     g_proxy_resolver_lookup_async (gobj (),
                                    uri.c_str (),
-                                   Glib::unwrap (cancellable),
+                                   glib::unwrap (cancellable),
                                    &SignalProxy_async_callback,
                                    slot_copy);
   }
 
   auto
-  ProxyResolver::lookup_async (const Glib::ustring& uri,
+  ProxyResolver::lookup_async (const glib::ustring& uri,
                                const SlotAsyncReady& slot) -> void
   {
     const auto slot_copy = new SlotAsyncReady (slot);
@@ -55,26 +55,26 @@ namespace Gio
                                    slot_copy);
   }
 
-} // namespace Gio
+} // namespace gio
 
 namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GProxyResolver* object, const bool take_copy) -> RefPtr<Gio::ProxyResolver>
+  wrap (GProxyResolver* object, const bool take_copy) -> RefPtr<gio::ProxyResolver>
   {
-    return Glib::make_refptr_for_instance<Gio::ProxyResolver> (
-        Glib::wrap_auto_interface<Gio::ProxyResolver> ((GObject*) object,
+    return glib::make_refptr_for_instance<gio::ProxyResolver> (
+        glib::wrap_auto_interface<gio::ProxyResolver> ((GObject*) object,
                                                        take_copy));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gio
+namespace gio
 {
 
   auto
@@ -99,7 +99,7 @@ namespace Gio
   }
 
   auto
-  ProxyResolver_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  ProxyResolver_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new ProxyResolver ((GProxyResolver*) object);
   }
@@ -114,7 +114,7 @@ namespace Gio
   {
   }
 
-  ProxyResolver::ProxyResolver (const Glib::Interface_Class& interface_class)
+  ProxyResolver::ProxyResolver (const glib::Interface_Class& interface_class)
     : Interface (interface_class)
   {
   }
@@ -154,9 +154,9 @@ namespace Gio
   }
 
   auto
-  ProxyResolver::get_default () -> Glib::RefPtr<ProxyResolver>
+  ProxyResolver::get_default () -> glib::RefPtr<ProxyResolver>
   {
-    return Glib::wrap (g_proxy_resolver_get_default ());
+    return glib::wrap (g_proxy_resolver_get_default ());
   }
 
   auto
@@ -167,33 +167,33 @@ namespace Gio
   }
 
   auto
-  ProxyResolver::lookup (const Glib::ustring& uri,
-                         const Glib::RefPtr<Cancellable>& cancellable) -> std::vector<Glib::ustring>
+  ProxyResolver::lookup (const glib::ustring& uri,
+                         const glib::RefPtr<Cancellable>& cancellable) -> std::vector<glib::ustring>
   {
     GError* gerror = nullptr;
-    auto retvalue = Glib::ArrayHandler<Glib::ustring>::array_to_vector (
+    auto retvalue = glib::ArrayHandler<glib::ustring>::array_to_vector (
         g_proxy_resolver_lookup (gobj (),
                                  uri.c_str (),
-                                 Glib::unwrap (cancellable),
+                                 glib::unwrap (cancellable),
                                  &gerror),
-        Glib::OWNERSHIP_DEEP);
+        glib::OWNERSHIP_DEEP);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
   auto
-  ProxyResolver::lookup_finish (const Glib::RefPtr<AsyncResult>& result) -> std::vector<Glib::ustring>
+  ProxyResolver::lookup_finish (const glib::RefPtr<AsyncResult>& result) -> std::vector<glib::ustring>
   {
     GError* gerror = nullptr;
-    auto retvalue = Glib::ArrayHandler<Glib::ustring>::array_to_vector (
+    auto retvalue = glib::ArrayHandler<glib::ustring>::array_to_vector (
         g_proxy_resolver_lookup_finish (gobj (),
-                                        Glib::unwrap (result),
+                                        glib::unwrap (result),
                                         &gerror),
-        Glib::OWNERSHIP_DEEP);
+        glib::OWNERSHIP_DEEP);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
-} // namespace Gio
+} // namespace gio

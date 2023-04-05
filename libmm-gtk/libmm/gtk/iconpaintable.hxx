@@ -18,17 +18,17 @@ using GtkIconPaintableClass = struct _GtkIconPaintableClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT IconPaintable_Class;
 }
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
-  class LIBMM_GTK_SYMEXPORT IconPaintable : public Glib::Object,
-                                  public Gdk::Paintable
+  class LIBMM_GTK_SYMEXPORT IconPaintable : public glib::Object,
+                                  public gdk::Paintable
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -47,7 +47,7 @@ namespace Gtk
     static CppClassType iconpaintable_class_;
 
   protected:
-    explicit IconPaintable (const Glib::ConstructParams& construct_params);
+    explicit IconPaintable (const glib::ConstructParams& construct_params);
     explicit IconPaintable (GtkIconPaintable* castitem);
 
 #endif
@@ -86,39 +86,39 @@ namespace Gtk
   private:
   public:
     static auto
-    create (const Glib::RefPtr<Gio::File>& file, int size, int scale = 1)
-        -> Glib::RefPtr<IconPaintable>;
+    create (const glib::RefPtr<gio::File>& file, int size, int scale = 1)
+        -> glib::RefPtr<IconPaintable>;
 
     auto
-    get_file () const -> Glib::RefPtr<Gio::File>;
+    get_file () const -> glib::RefPtr<gio::File>;
 
     auto
-    get_icon_name () const -> Glib::ustring;
+    get_icon_name () const -> glib::ustring;
 
     auto
     is_symbolic () const -> bool;
 
     auto
     property_file () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gio::File>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<gio::File>>;
 
     auto
-    property_icon_name () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+    property_icon_name () const -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
     auto
-    property_is_symbolic () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_is_symbolic () const -> glib::PropertyProxy_ReadOnly<bool>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkIconPaintable* object, bool take_copy = false) -> Glib::RefPtr<Gtk::IconPaintable>;
-} // namespace Glib
+  wrap (GtkIconPaintable* object, bool take_copy = false) -> glib::RefPtr<gtk::IconPaintable>;
+} // namespace glib
 
 #endif

@@ -3,14 +3,14 @@
 #include <libmm/glib/init.hxx>
 #include <libmm/pango/wrap_init.hxx>
 
-namespace Pango
+namespace pango
 {
 
   auto
   init () -> void
   {
-    Glib::init ();
+    glib::init ();
     wrap_init ();
   }
 
-} // namespace Pango
+} // namespace pango

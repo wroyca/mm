@@ -17,16 +17,16 @@ using GSocketConnectionClass = struct _GSocketConnectionClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gio
+namespace gio
 {
   class LIBMM_GIO_SYMEXPORT SocketConnection_Class;
 }
 #endif
 
-namespace Gio
+namespace gio
 {
 
-  class LIBMM_GIO_SYMEXPORT SocketConnection : public Gio::IOStream
+  class LIBMM_GIO_SYMEXPORT SocketConnection : public gio::IOStream
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -45,7 +45,7 @@ namespace Gio
     static CppClassType socketconnection_class_;
 
   protected:
-    explicit SocketConnection (const Glib::ConstructParams& construct_params);
+    explicit SocketConnection (const glib::ConstructParams& construct_params);
     explicit SocketConnection (GSocketConnection* castitem);
 
 #endif
@@ -84,66 +84,66 @@ namespace Gio
   private:
   public:
     auto
-    connect (const Glib::RefPtr<SocketAddress>& address,
-             const Glib::RefPtr<Cancellable>& cancellable) -> bool;
+    connect (const glib::RefPtr<SocketAddress>& address,
+             const glib::RefPtr<Cancellable>& cancellable) -> bool;
 
     auto
-    connect (const Glib::RefPtr<SocketAddress>& address) -> bool;
+    connect (const glib::RefPtr<SocketAddress>& address) -> bool;
 
     auto
-    connect_async (const Glib::RefPtr<SocketAddress>& address,
+    connect_async (const glib::RefPtr<SocketAddress>& address,
                    const SlotAsyncReady& slot,
-                   const Glib::RefPtr<Cancellable>& cancellable) -> void;
+                   const glib::RefPtr<Cancellable>& cancellable) -> void;
 
     auto
-    connect_async (const Glib::RefPtr<SocketAddress>& address,
+    connect_async (const glib::RefPtr<SocketAddress>& address,
                    const SlotAsyncReady& slot) -> void;
 
     auto
-    connect_finish (const Glib::RefPtr<AsyncResult>& result) -> bool;
+    connect_finish (const glib::RefPtr<AsyncResult>& result) -> bool;
 
     auto
     is_connected () const -> bool;
 
     auto
-    get_socket () -> Glib::RefPtr<Socket>;
+    get_socket () -> glib::RefPtr<Socket>;
 
     auto
-    get_socket () const -> Glib::RefPtr<const Socket>;
+    get_socket () const -> glib::RefPtr<const Socket>;
 
     auto
-    get_local_address () -> Glib::RefPtr<SocketAddress>;
+    get_local_address () -> glib::RefPtr<SocketAddress>;
 
     auto
-    get_local_address () const -> Glib::RefPtr<const SocketAddress>;
+    get_local_address () const -> glib::RefPtr<const SocketAddress>;
 
     auto
-    get_remote_address () -> Glib::RefPtr<SocketAddress>;
+    get_remote_address () -> glib::RefPtr<SocketAddress>;
 
     auto
-    get_remote_address () const -> Glib::RefPtr<const SocketAddress>;
+    get_remote_address () const -> glib::RefPtr<const SocketAddress>;
 
     static auto
-    create (const Glib::RefPtr<Socket>& socket)
-        -> Glib::RefPtr<SocketConnection>;
+    create (const glib::RefPtr<Socket>& socket)
+        -> glib::RefPtr<SocketConnection>;
 
     auto
     property_socket () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Socket>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<Socket>>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gio
+} // namespace gio
 
-namespace Glib
+namespace glib
 {
 
   LIBMM_GIO_SYMEXPORT
   auto
-  wrap (GSocketConnection* object, bool take_copy = false) -> Glib::RefPtr<Gio::SocketConnection>;
-} // namespace Glib
+  wrap (GSocketConnection* object, bool take_copy = false) -> glib::RefPtr<gio::SocketConnection>;
+} // namespace glib
 
 #endif

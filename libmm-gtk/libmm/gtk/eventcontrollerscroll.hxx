@@ -14,13 +14,13 @@ using GtkEventControllerScrollClass = struct _GtkEventControllerScrollClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT EventControllerScroll_Class;
 }
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
   class LIBMM_GTK_SYMEXPORT EventControllerScroll : public EventController
@@ -43,7 +43,7 @@ namespace Gtk
 
   protected:
     explicit EventControllerScroll (
-        const Glib::ConstructParams& construct_params);
+        const glib::ConstructParams& construct_params);
     explicit EventControllerScroll (GtkEventControllerScroll* castitem);
 
 #endif
@@ -95,7 +95,7 @@ namespace Gtk
     };
 
     static auto
-    create () -> Glib::RefPtr<EventControllerScroll>;
+    create () -> glib::RefPtr<EventControllerScroll>;
 
     auto
     set_flags (Flags flags) -> void;
@@ -104,34 +104,34 @@ namespace Gtk
     get_flags () const -> Flags;
 
     auto
-    get_unit () const -> Gdk::ScrollUnit;
+    get_unit () const -> gdk::ScrollUnit;
 
     auto
-    property_flags () -> Glib::PropertyProxy<Flags>;
+    property_flags () -> glib::PropertyProxy<Flags>;
 
     auto
-    property_flags () const -> Glib::PropertyProxy_ReadOnly<Flags>;
+    property_flags () const -> glib::PropertyProxy_ReadOnly<Flags>;
 
     auto
-    signal_scroll_begin () -> Glib::SignalProxy<void ()>;
+    signal_scroll_begin () -> glib::SignalProxy<void ()>;
 
     auto
-    signal_scroll () -> Glib::SignalProxy<bool (double, double)>;
+    signal_scroll () -> glib::SignalProxy<bool (double, double)>;
 
     auto
-    signal_scroll_end () -> Glib::SignalProxy<void ()>;
+    signal_scroll_end () -> glib::SignalProxy<void ()>;
 
     auto
-    signal_decelerate () -> Glib::SignalProxy<void (double, double)>;
+    signal_decelerate () -> glib::SignalProxy<void (double, double)>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Gtk
+namespace gtk
 {
 
   inline auto
@@ -185,28 +185,28 @@ namespace Gtk
     return (lhs = static_cast<EventControllerScroll::Flags> (
                 static_cast<unsigned> (lhs) ^ static_cast<unsigned> (rhs)));
   }
-} // namespace Gtk
+} // namespace gtk
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_GTK_SYMEXPORT Value<Gtk::EventControllerScroll::Flags>
-    : public Glib::Value_Flags<Gtk::EventControllerScroll::Flags>
+  class LIBMM_GTK_SYMEXPORT Value<gtk::EventControllerScroll::Flags>
+    : public glib::Value_Flags<gtk::EventControllerScroll::Flags>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkEventControllerScroll* object, bool take_copy = false) -> Glib::RefPtr<Gtk::EventControllerScroll>;
-} // namespace Glib
+  wrap (GtkEventControllerScroll* object, bool take_copy = false) -> glib::RefPtr<gtk::EventControllerScroll>;
+} // namespace glib
 
 #endif

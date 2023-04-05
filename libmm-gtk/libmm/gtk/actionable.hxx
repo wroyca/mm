@@ -23,16 +23,16 @@ using GtkActionableClass = struct _GtkActionableClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT Actionable_Class;
 }
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
-  class LIBMM_GTK_SYMEXPORT Actionable : public Glib::Interface
+  class LIBMM_GTK_SYMEXPORT Actionable : public glib::Interface
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -56,7 +56,7 @@ namespace Gtk
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
-    explicit Actionable (const Glib::Interface_Class& interface_class);
+    explicit Actionable (const glib::Interface_Class& interface_class);
 
   public:
     explicit Actionable (GtkActionable* castitem);
@@ -97,64 +97,64 @@ namespace Gtk
   private:
   public:
     auto
-    get_action_name () const -> Glib::ustring;
+    get_action_name () const -> glib::ustring;
 
     auto
-    set_action_name (const Glib::ustring& action_name) -> void;
+    set_action_name (const glib::ustring& action_name) -> void;
 
     auto
-    get_action_target_value () -> Glib::VariantBase;
+    get_action_target_value () -> glib::VariantBase;
 
     auto
-    get_action_target_value () const -> const Glib::VariantBase;
+    get_action_target_value () const -> const glib::VariantBase;
 
     auto
-    set_action_target_value (const Glib::VariantBase& target_value) -> void;
+    set_action_target_value (const glib::VariantBase& target_value) -> void;
 
     auto
-    set_detailed_action_name (const Glib::ustring& detailed_action_name)
+    set_detailed_action_name (const glib::ustring& detailed_action_name)
         -> void;
 
     auto
-    property_action_name () -> Glib::PropertyProxy<Glib::ustring>;
+    property_action_name () -> glib::PropertyProxy<glib::ustring>;
 
     auto
     property_action_name () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+        -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
     auto
-    property_action_target () -> Glib::PropertyProxy<Glib::VariantBase>;
+    property_action_target () -> glib::PropertyProxy<glib::VariantBase>;
 
     auto
     property_action_target () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::VariantBase>;
+        -> glib::PropertyProxy_ReadOnly<glib::VariantBase>;
 
   protected:
     virtual auto
-    get_action_name_vfunc () const -> Glib::ustring;
+    get_action_name_vfunc () const -> glib::ustring;
 
     virtual auto
-    set_action_name_vfunc (const Glib::ustring& action_name) -> void;
+    set_action_name_vfunc (const glib::ustring& action_name) -> void;
 
     virtual auto
-    get_action_target_value_vfunc () const -> Glib::VariantBase;
+    get_action_target_value_vfunc () const -> glib::VariantBase;
 
     virtual auto
     set_action_target_value_vfunc (
-        const Glib::VariantBase& action_target_value) -> void;
+        const glib::VariantBase& action_target_value) -> void;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkActionable* object, bool take_copy = false) -> Glib::RefPtr<Gtk::Actionable>;
+  wrap (GtkActionable* object, bool take_copy = false) -> glib::RefPtr<gtk::Actionable>;
 
-} // namespace Glib
+} // namespace glib
 
 #endif

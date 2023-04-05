@@ -7,7 +7,7 @@
 
 #include <gio/gio.h>
 
-namespace Gio
+namespace gio
 {
 
   auto
@@ -16,25 +16,25 @@ namespace Gio
     g_action_activate (gobj (), nullptr);
   }
 
-} // namespace Gio
+} // namespace gio
 
 namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GAction* object, const bool take_copy) -> RefPtr<Gio::Action>
+  wrap (GAction* object, const bool take_copy) -> RefPtr<gio::Action>
   {
-    return Glib::make_refptr_for_instance<Gio::Action> (
-        Glib::wrap_auto_interface<Gio::Action> ((GObject*) object, take_copy));
+    return glib::make_refptr_for_instance<gio::Action> (
+        glib::wrap_auto_interface<gio::Action> ((GObject*) object, take_copy));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gio
+namespace gio
 {
 
   auto
@@ -71,7 +71,7 @@ namespace Gio
   Action_Class::get_name_vfunc_callback (GAction* self) -> const gchar*
   {
     const auto obj_base =
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self);
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self);
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -81,18 +81,18 @@ namespace Gio
         try
         {
           static auto quark_return_value =
-              g_quark_from_static_string ("Gio::Action::get_name_vfunc");
+              g_quark_from_static_string ("gio::Action::get_name_vfunc");
 
-          auto return_value = static_cast<Glib::ustring*> (
+          auto return_value = static_cast<glib::ustring*> (
               g_object_get_qdata (obj_base->gobj (), quark_return_value));
           if (!return_value)
           {
-            return_value = new Glib::ustring ();
+            return_value = new glib::ustring ();
             g_object_set_qdata_full (
                 obj_base->gobj (),
                 quark_return_value,
                 return_value,
-                &Glib::destroy_notify_delete<Glib::ustring>);
+                &glib::destroy_notify_delete<glib::ustring>);
           }
 
           *return_value = obj->get_name_vfunc ();
@@ -100,7 +100,7 @@ namespace Gio
         }
         catch (...)
         {
-          Glib::exception_handlers_invoke ();
+          glib::exception_handlers_invoke ();
         }
       }
     }
@@ -121,7 +121,7 @@ namespace Gio
   Action_Class::get_parameter_type_vfunc_callback (GAction* self) -> const GVariantType*
   {
     const auto obj_base =
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self);
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self);
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -131,18 +131,18 @@ namespace Gio
         try
         {
           static auto quark_return_value = g_quark_from_static_string (
-              "Gio::Action::get_parameter_type_vfunc");
+              "gio::Action::get_parameter_type_vfunc");
 
-          auto return_value = static_cast<Glib::VariantType*> (
+          auto return_value = static_cast<glib::VariantType*> (
               g_object_get_qdata (obj_base->gobj (), quark_return_value));
           if (!return_value)
           {
-            return_value = new Glib::VariantType ();
+            return_value = new glib::VariantType ();
             g_object_set_qdata_full (
                 obj_base->gobj (),
                 quark_return_value,
                 return_value,
-                &Glib::destroy_notify_delete<Glib::VariantType>);
+                &glib::destroy_notify_delete<glib::VariantType>);
           }
 
           *return_value = obj->get_parameter_type_vfunc ();
@@ -150,7 +150,7 @@ namespace Gio
         }
         catch (...)
         {
-          Glib::exception_handlers_invoke ();
+          glib::exception_handlers_invoke ();
         }
       }
     }
@@ -171,7 +171,7 @@ namespace Gio
   Action_Class::get_state_type_vfunc_callback (GAction* self) -> const GVariantType*
   {
     const auto obj_base =
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self);
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self);
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -181,18 +181,18 @@ namespace Gio
         try
         {
           static auto quark_return_value =
-              g_quark_from_static_string ("Gio::Action::get_state_type_vfunc");
+              g_quark_from_static_string ("gio::Action::get_state_type_vfunc");
 
-          auto return_value = static_cast<Glib::VariantType*> (
+          auto return_value = static_cast<glib::VariantType*> (
               g_object_get_qdata (obj_base->gobj (), quark_return_value));
           if (!return_value)
           {
-            return_value = new Glib::VariantType ();
+            return_value = new glib::VariantType ();
             g_object_set_qdata_full (
                 obj_base->gobj (),
                 quark_return_value,
                 return_value,
-                &Glib::destroy_notify_delete<Glib::VariantType>);
+                &glib::destroy_notify_delete<glib::VariantType>);
           }
 
           *return_value = obj->get_state_type_vfunc ();
@@ -200,7 +200,7 @@ namespace Gio
         }
         catch (...)
         {
-          Glib::exception_handlers_invoke ();
+          glib::exception_handlers_invoke ();
         }
       }
     }
@@ -221,7 +221,7 @@ namespace Gio
   Action_Class::get_state_hint_vfunc_callback (GAction* self) -> GVariant*
   {
     const auto obj_base =
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self);
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self);
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -234,7 +234,7 @@ namespace Gio
         }
         catch (...)
         {
-          Glib::exception_handlers_invoke ();
+          glib::exception_handlers_invoke ();
         }
       }
     }
@@ -255,7 +255,7 @@ namespace Gio
   Action_Class::get_enabled_vfunc_callback (GAction* self) -> gboolean
   {
     const auto obj_base =
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self);
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self);
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -268,7 +268,7 @@ namespace Gio
         }
         catch (...)
         {
-          Glib::exception_handlers_invoke ();
+          glib::exception_handlers_invoke ();
         }
       }
     }
@@ -289,7 +289,7 @@ namespace Gio
   Action_Class::get_state_vfunc_callback (GAction* self) -> GVariant*
   {
     const auto obj_base =
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self);
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self);
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -302,7 +302,7 @@ namespace Gio
         }
         catch (...)
         {
-          Glib::exception_handlers_invoke ();
+          glib::exception_handlers_invoke ();
         }
       }
     }
@@ -323,7 +323,7 @@ namespace Gio
   Action_Class::change_state_vfunc_callback (GAction* self, GVariant* value) -> void
   {
     const auto obj_base =
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self);
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self);
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -332,12 +332,12 @@ namespace Gio
       {
         try
         {
-          obj->change_state_vfunc (Glib::wrap (value, true));
+          obj->change_state_vfunc (glib::wrap (value, true));
           return;
         }
         catch (...)
         {
-          Glib::exception_handlers_invoke ();
+          glib::exception_handlers_invoke ();
         }
       }
     }
@@ -355,7 +355,7 @@ namespace Gio
   Action_Class::activate_vfunc_callback (GAction* self, GVariant* parameter) -> void
   {
     const auto obj_base =
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self);
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self);
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -364,12 +364,12 @@ namespace Gio
       {
         try
         {
-          obj->activate_vfunc (Glib::wrap (parameter, true));
+          obj->activate_vfunc (glib::wrap (parameter, true));
           return;
         }
         catch (...)
         {
-          Glib::exception_handlers_invoke ();
+          glib::exception_handlers_invoke ();
         }
       }
     }
@@ -384,7 +384,7 @@ namespace Gio
   }
 
   auto
-  Action_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  Action_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new Action ((GAction*) object);
   }
@@ -399,7 +399,7 @@ namespace Gio
   {
   }
 
-  Action::Action (const Glib::Interface_Class& interface_class)
+  Action::Action (const glib::Interface_Class& interface_class)
     : Interface (interface_class)
   {
   }
@@ -439,32 +439,32 @@ namespace Gio
   }
 
   auto
-  Action::get_name () const -> Glib::ustring
+  Action::get_name () const -> glib::ustring
   {
-    return Glib::convert_const_gchar_ptr_to_ustring (
+    return glib::convert_const_gchar_ptr_to_ustring (
         g_action_get_name (const_cast<GAction*> (gobj ())));
   }
 
   auto
-  Action::get_parameter_type () const -> Glib::VariantType
+  Action::get_parameter_type () const -> glib::VariantType
   {
-    return Glib::wrap (const_cast<GVariantType*> (g_action_get_parameter_type (
+    return glib::wrap (const_cast<GVariantType*> (g_action_get_parameter_type (
                            const_cast<GAction*> (gobj ()))),
                        true);
   }
 
   auto
-  Action::get_state_type () const -> Glib::VariantType
+  Action::get_state_type () const -> glib::VariantType
   {
-    return Glib::wrap (const_cast<GVariantType*> (g_action_get_state_type (
+    return glib::wrap (const_cast<GVariantType*> (g_action_get_state_type (
                            const_cast<GAction*> (gobj ()))),
                        true);
   }
 
   auto
-  Action::get_state_hint_variant () const -> Glib::VariantContainerBase
+  Action::get_state_hint_variant () const -> glib::VariantContainerBase
   {
-    return Glib::VariantContainerBase (
+    return glib::VariantContainerBase (
         g_action_get_state_hint (const_cast<GAction*> (gobj ())),
         false);
   }
@@ -476,34 +476,34 @@ namespace Gio
   }
 
   auto
-  Action::change_state_variant (const Glib::VariantBase& value) -> void
+  Action::change_state_variant (const glib::VariantBase& value) -> void
   {
     g_action_change_state (gobj (), const_cast<GVariant*> (value.gobj ()));
   }
 
   auto
-  Action::get_state_variant () const -> Glib::VariantBase
+  Action::get_state_variant () const -> glib::VariantBase
   {
-    return Glib::wrap (g_action_get_state (const_cast<GAction*> (gobj ())),
+    return glib::wrap (g_action_get_state (const_cast<GAction*> (gobj ())),
                        false);
   }
 
   auto
-  Action::activate_variant (const Glib::VariantBase& parameter) -> void
+  Action::activate_variant (const glib::VariantBase& parameter) -> void
   {
     g_action_activate (gobj (), const_cast<GVariant*> (parameter.gobj ()));
   }
 
   auto
-  Action::name_is_valid (const Glib::ustring& action_name) -> bool
+  Action::name_is_valid (const glib::ustring& action_name) -> bool
   {
     return g_action_name_is_valid (action_name.c_str ());
   }
 
   auto
-  Action::parse_detailed_name_variant (const Glib::ustring& detailed_name,
-                                       Glib::ustring& action_name,
-                                       Glib::VariantBase& target_value) -> void
+  Action::parse_detailed_name_variant (const glib::ustring& detailed_name,
+                                       glib::ustring& action_name,
+                                       glib::VariantBase& target_value) -> void
   {
     GError* gerror = nullptr;
     gchar* g_action_name = nullptr;
@@ -513,68 +513,68 @@ namespace Gio
                                   &g_target_value,
                                   &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
-    action_name = Glib::convert_return_gchar_ptr_to_ustring (g_action_name);
-    target_value = Glib::wrap (g_target_value);
+      glib::Error::throw_exception (gerror);
+    action_name = glib::convert_return_gchar_ptr_to_ustring (g_action_name);
+    target_value = glib::wrap (g_target_value);
   }
 
   auto
-  Action::print_detailed_name_variant (const Glib::ustring& action_name,
-                                       const Glib::VariantBase& target_value) -> Glib::ustring
+  Action::print_detailed_name_variant (const glib::ustring& action_name,
+                                       const glib::VariantBase& target_value) -> glib::ustring
   {
-    return Glib::convert_return_gchar_ptr_to_ustring (
+    return glib::convert_return_gchar_ptr_to_ustring (
         g_action_print_detailed_name (
             action_name.c_str (),
             const_cast<GVariant*> (target_value.gobj ())));
   }
 
   auto
-  Action::property_enabled () const -> Glib::PropertyProxy_ReadOnly<bool>
+  Action::property_enabled () const -> glib::PropertyProxy_ReadOnly<bool>
   {
     return {this, "enabled"};
   }
 
   auto
-  Action::property_name () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>
+  Action::property_name () const -> glib::PropertyProxy_ReadOnly<glib::ustring>
   {
     return {this, "name"};
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<Glib::VariantType>::value,
-      "Type Glib::VariantType cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      glib::Traits::ValueCompatibleWithWrapProperty<glib::VariantType>::value,
+      "Type glib::VariantType cannot be used in _WRAP_PROPERTY. "
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  Action::property_parameter_type () const -> Glib::PropertyProxy_ReadOnly<Glib::VariantType>
+  Action::property_parameter_type () const -> glib::PropertyProxy_ReadOnly<glib::VariantType>
   {
     return {this, "parameter-type"};
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<Glib::VariantBase>::value,
-      "Type Glib::VariantBase cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      glib::Traits::ValueCompatibleWithWrapProperty<glib::VariantBase>::value,
+      "Type glib::VariantBase cannot be used in _WRAP_PROPERTY. "
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  Action::property_state () const -> Glib::PropertyProxy_ReadOnly<Glib::VariantBase>
+  Action::property_state () const -> glib::PropertyProxy_ReadOnly<glib::VariantBase>
   {
     return {this, "state"};
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<Glib::VariantType>::value,
-      "Type Glib::VariantType cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      glib::Traits::ValueCompatibleWithWrapProperty<glib::VariantType>::value,
+      "Type glib::VariantType cannot be used in _WRAP_PROPERTY. "
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  Action::property_state_type () const -> Glib::PropertyProxy_ReadOnly<Glib::VariantType>
+  Action::property_state_type () const -> glib::PropertyProxy_ReadOnly<glib::VariantType>
   {
     return {this, "state-type"};
   }
 
   auto
-  Action::get_name_vfunc () const -> Glib::ustring
+  Action::get_name_vfunc () const -> glib::ustring
   {
     const auto base =
         static_cast<BaseClassType*> (g_type_interface_peek_parent (
@@ -583,17 +583,17 @@ namespace Gio
 
     if (base && base->get_name)
     {
-      Glib::ustring retval (Glib::convert_const_gchar_ptr_to_ustring (
+      glib::ustring retval (glib::convert_const_gchar_ptr_to_ustring (
           (*base->get_name) (const_cast<GAction*> (gobj ()))));
       return retval;
     }
 
-    using RType = Glib::ustring;
+    using RType = glib::ustring;
     return {};
   }
 
   auto
-  Action::get_parameter_type_vfunc () const -> Glib::VariantType
+  Action::get_parameter_type_vfunc () const -> glib::VariantType
   {
     const auto base =
         static_cast<BaseClassType*> (g_type_interface_peek_parent (
@@ -602,19 +602,19 @@ namespace Gio
 
     if (base && base->get_parameter_type)
     {
-      Glib::VariantType retval (Glib::wrap (
+      glib::VariantType retval (glib::wrap (
           const_cast<GVariantType*> (
               (*base->get_parameter_type) (const_cast<GAction*> (gobj ()))),
           true));
       return retval;
     }
 
-    using RType = Glib::VariantType;
+    using RType = glib::VariantType;
     return {};
   }
 
   auto
-  Action::get_state_type_vfunc () const -> Glib::VariantType
+  Action::get_state_type_vfunc () const -> glib::VariantType
   {
     const auto base =
         static_cast<BaseClassType*> (g_type_interface_peek_parent (
@@ -623,19 +623,19 @@ namespace Gio
 
     if (base && base->get_state_type)
     {
-      Glib::VariantType retval (Glib::wrap (
+      glib::VariantType retval (glib::wrap (
           const_cast<GVariantType*> (
               (*base->get_state_type) (const_cast<GAction*> (gobj ()))),
           true));
       return retval;
     }
 
-    using RType = Glib::VariantType;
+    using RType = glib::VariantType;
     return {};
   }
 
   auto
-  Action::get_state_hint_vfunc () const -> Glib::VariantBase
+  Action::get_state_hint_vfunc () const -> glib::VariantBase
   {
     const auto base =
         static_cast<BaseClassType*> (g_type_interface_peek_parent (
@@ -644,13 +644,13 @@ namespace Gio
 
     if (base && base->get_state_hint)
     {
-      Glib::VariantBase retval (
-          Glib::wrap ((*base->get_state_hint) (const_cast<GAction*> (gobj ())),
+      glib::VariantBase retval (
+          glib::wrap ((*base->get_state_hint) (const_cast<GAction*> (gobj ())),
                       false));
       return retval;
     }
 
-    using RType = Glib::VariantBase;
+    using RType = glib::VariantBase;
     return {};
   }
 
@@ -673,7 +673,7 @@ namespace Gio
   }
 
   auto
-  Action::get_state_vfunc () const -> Glib::VariantBase
+  Action::get_state_vfunc () const -> glib::VariantBase
   {
     const auto base =
         static_cast<BaseClassType*> (g_type_interface_peek_parent (
@@ -682,18 +682,18 @@ namespace Gio
 
     if (base && base->get_state)
     {
-      Glib::VariantBase retval (
-          Glib::wrap ((*base->get_state) (const_cast<GAction*> (gobj ())),
+      glib::VariantBase retval (
+          glib::wrap ((*base->get_state) (const_cast<GAction*> (gobj ())),
                       false));
       return retval;
     }
 
-    using RType = Glib::VariantBase;
+    using RType = glib::VariantBase;
     return {};
   }
 
   auto
-  Action::change_state_vfunc (const Glib::VariantBase& value) -> void
+  Action::change_state_vfunc (const glib::VariantBase& value) -> void
   {
     const auto base =
         static_cast<BaseClassType*> (g_type_interface_peek_parent (
@@ -707,7 +707,7 @@ namespace Gio
   }
 
   auto
-  Action::activate_vfunc (const Glib::VariantBase& parameter) -> void
+  Action::activate_vfunc (const glib::VariantBase& parameter) -> void
   {
     const auto base =
         static_cast<BaseClassType*> (g_type_interface_peek_parent (
@@ -720,4 +720,4 @@ namespace Gio
     }
   }
 
-} // namespace Gio
+} // namespace gio

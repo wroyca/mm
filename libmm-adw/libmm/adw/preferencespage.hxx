@@ -17,16 +17,16 @@
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Adw
+namespace adw
 {
   class LIBMM_ADW_SYMEXPORT PreferencesPage_Class;
 }
 #endif
 
-namespace Adw
+namespace adw
 {
 
-  class LIBMM_ADW_SYMEXPORT PreferencesPage : public Gtk::Widget
+  class LIBMM_ADW_SYMEXPORT PreferencesPage : public gtk::Widget
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -53,7 +53,7 @@ namespace Adw
     static CppClassType preferencespage_class_;
 
   protected:
-    explicit PreferencesPage (const Glib::ConstructParams& construct_params);
+    explicit PreferencesPage (const glib::ConstructParams& construct_params);
     explicit PreferencesPage (AdwPreferencesPage* castitem);
 
 #endif
@@ -88,13 +88,13 @@ namespace Adw
     add (PreferencesGroup* group) -> void;
 
     auto
-    get_icon_name () const -> Glib::ustring;
+    get_icon_name () const -> glib::ustring;
 
     auto
-    get_name () const -> Glib::ustring;
+    get_name () const -> glib::ustring;
 
     auto
-    get_title () const -> Glib::ustring;
+    get_title () const -> glib::ustring;
 
     auto
     get_use_underline () const -> bool;
@@ -103,53 +103,53 @@ namespace Adw
     remove (PreferencesGroup* group) -> void;
 
     auto
-    set_icon_name (const Glib::ustring& icon_name) -> void;
+    set_icon_name (const glib::ustring& icon_name) -> void;
 
     auto
-    set_name (const Glib::ustring& name) -> void;
+    set_name (const glib::ustring& name) -> void;
 
     auto
-    set_title (const Glib::ustring& title) -> void;
+    set_title (const glib::ustring& title) -> void;
 
     auto
     set_use_underline (bool use_underline) -> void;
 
     auto
-    property_icon_name () -> Glib::PropertyProxy<Glib::ustring>;
+    property_icon_name () -> glib::PropertyProxy<glib::ustring>;
 
     auto
-    property_icon_name () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+    property_icon_name () const -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
     auto
-    property_name () -> Glib::PropertyProxy<Glib::ustring>;
+    property_name () -> glib::PropertyProxy<glib::ustring>;
 
     auto
-    property_name () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+    property_name () const -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
     auto
-    property_title () -> Glib::PropertyProxy<Glib::ustring>;
+    property_title () -> glib::PropertyProxy<glib::ustring>;
 
     auto
-    property_title () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+    property_title () const -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
     auto
-    property_use_underline () -> Glib::PropertyProxy<bool>;
+    property_use_underline () -> glib::PropertyProxy<bool>;
 
     auto
-    property_use_underline () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_use_underline () const -> glib::PropertyProxy_ReadOnly<bool>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Adw
+} // namespace adw
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (AdwPreferencesPage* object, bool take_copy = false) -> Adw::PreferencesPage*;
+  wrap (AdwPreferencesPage* object, bool take_copy = false) -> adw::PreferencesPage*;
 }
 
 #endif

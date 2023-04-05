@@ -2,7 +2,7 @@
 
 #include <libmm/glib/mm-glib.hxx>
 
-namespace Glib
+namespace glib
 {
 
   Rand::Rand ()
@@ -56,4 +56,4 @@ namespace Glib
     return g_rand_double_range (gobject_, begin, end);
   }
 
-} // namespace Glib
+} // namespace glib

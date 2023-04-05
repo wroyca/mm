@@ -29,18 +29,18 @@ using GtkCellLayoutClass = struct _GtkCellLayoutClass;
   #endif
 
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT CellLayout_Class;
 }
   #endif
 
-namespace Gtk
+namespace gtk
 {
 
   class LIBMM_GTK_SYMEXPORT CellArea;
 
-  class LIBMM_GTK_SYMEXPORT CellLayout : public Glib::Interface
+  class LIBMM_GTK_SYMEXPORT CellLayout : public glib::Interface
   {
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -64,7 +64,7 @@ namespace Gtk
 
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
-    explicit CellLayout (const Glib::Interface_Class& interface_class);
+    explicit CellLayout (const glib::Interface_Class& interface_class);
 
   public:
     explicit CellLayout (GtkCellLayout* castitem);
@@ -132,16 +132,16 @@ namespace Gtk
 
     auto
     add_attribute (CellRenderer& cell,
-                   const Glib::ustring& attribute,
+                   const glib::ustring& attribute,
                    int column) -> void;
 
     auto
-    add_attribute (const Glib::PropertyProxy_Base& property,
+    add_attribute (const glib::PropertyProxy_Base& property,
                    const TreeModelColumnBase& column) -> void;
 
     auto
     add_attribute (CellRenderer& cell,
-                   const Glib::ustring& attribute,
+                   const glib::ustring& attribute,
                    const TreeModelColumnBase& column) -> void;
 
     typedef sigc::slot<void (const TreeModel::const_iterator&)> SlotCellData;
@@ -156,10 +156,10 @@ namespace Gtk
     reorder (CellRenderer& cell, int position) -> void;
 
     auto
-    get_area () -> Glib::RefPtr<CellArea>;
+    get_area () -> glib::RefPtr<CellArea>;
 
     auto
-    get_area () const -> Glib::RefPtr<const CellArea>;
+    get_area () const -> glib::RefPtr<const CellArea>;
 
   protected:
     virtual auto
@@ -173,7 +173,7 @@ namespace Gtk
 
     virtual auto
     add_attribute_vfunc (CellRenderer* cell,
-                         const Glib::ustring& attribute,
+                         const glib::ustring& attribute,
                          int column) -> void;
 
     virtual auto
@@ -200,14 +200,14 @@ namespace Gtk
     add_attribute (pCellRenderer->_property_renderable (), column);
   }
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkCellLayout* object, bool take_copy = false) -> Glib::RefPtr<Gtk::CellLayout>;
+  wrap (GtkCellLayout* object, bool take_copy = false) -> glib::RefPtr<gtk::CellLayout>;
 
-} // namespace Glib
+} // namespace glib
 
 #endif
 

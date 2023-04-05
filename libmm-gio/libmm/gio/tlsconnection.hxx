@@ -18,13 +18,13 @@ using GTlsConnectionClass = struct _GTlsConnectionClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gio
+namespace gio
 {
   class LIBMM_GIO_SYMEXPORT TlsConnection_Class;
 }
 #endif
 
-namespace Gio
+namespace gio
 {
 
   enum class TlsProtocolVersion
@@ -39,25 +39,25 @@ namespace Gio
     DTLS_1_2 = 202
   };
 
-} // namespace Gio
+} // namespace gio
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_GIO_SYMEXPORT Value<Gio::TlsProtocolVersion>
-    : public Glib::Value_Enum<Gio::TlsProtocolVersion>
+  class LIBMM_GIO_SYMEXPORT Value<gio::TlsProtocolVersion>
+    : public glib::Value_Enum<gio::TlsProtocolVersion>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
-namespace Gio
+namespace gio
 {
 
   class LIBMM_GIO_SYMEXPORT Cancellable;
@@ -83,7 +83,7 @@ namespace Gio
     static CppClassType tlsconnection_class_;
 
   protected:
-    explicit TlsConnection (const Glib::ConstructParams& construct_params);
+    explicit TlsConnection (const glib::ConstructParams& construct_params);
     explicit TlsConnection (GTlsConnection* castitem);
 
 #endif
@@ -125,19 +125,19 @@ namespace Gio
 
   public:
     auto
-    set_certificate (const Glib::RefPtr<TlsCertificate>& certificate) -> void;
+    set_certificate (const glib::RefPtr<TlsCertificate>& certificate) -> void;
 
     auto
-    get_certificate () -> Glib::RefPtr<TlsCertificate>;
+    get_certificate () -> glib::RefPtr<TlsCertificate>;
 
     auto
-    get_certificate () const -> Glib::RefPtr<const TlsCertificate>;
+    get_certificate () const -> glib::RefPtr<const TlsCertificate>;
 
     auto
-    get_peer_certificate () -> Glib::RefPtr<TlsCertificate>;
+    get_peer_certificate () -> glib::RefPtr<TlsCertificate>;
 
     auto
-    get_peer_certificate () const -> Glib::RefPtr<const TlsCertificate>;
+    get_peer_certificate () const -> glib::RefPtr<const TlsCertificate>;
 
     auto
     get_peer_certificate_errors () const -> TlsCertificateFlags;
@@ -149,135 +149,135 @@ namespace Gio
     get_require_close_notify () const -> bool;
 
     auto
-    get_database () -> Glib::RefPtr<TlsDatabase>;
+    get_database () -> glib::RefPtr<TlsDatabase>;
 
     auto
-    get_database () const -> Glib::RefPtr<const TlsDatabase>;
+    get_database () const -> glib::RefPtr<const TlsDatabase>;
 
     auto
-    set_database (const Glib::RefPtr<TlsDatabase>& database) -> void;
+    set_database (const glib::RefPtr<TlsDatabase>& database) -> void;
 
     auto
-    get_interaction () -> Glib::RefPtr<TlsInteraction>;
+    get_interaction () -> glib::RefPtr<TlsInteraction>;
 
     auto
-    get_interaction () const -> Glib::RefPtr<const TlsInteraction>;
+    get_interaction () const -> glib::RefPtr<const TlsInteraction>;
 
     auto
-    set_interaction (const Glib::RefPtr<TlsInteraction>& interaction) -> void;
+    set_interaction (const glib::RefPtr<TlsInteraction>& interaction) -> void;
 
     auto
-    handshake (const Glib::RefPtr<Cancellable>& cancellable) -> bool;
+    handshake (const glib::RefPtr<Cancellable>& cancellable) -> bool;
 
     auto
     handshake () -> bool;
 
     auto
     handshake_async (const SlotAsyncReady& slot,
-                     const Glib::RefPtr<Cancellable>& cancellable,
-                     int io_priority = Glib::PRIORITY_DEFAULT) -> void;
+                     const glib::RefPtr<Cancellable>& cancellable,
+                     int io_priority = glib::PRIORITY_DEFAULT) -> void;
 
     auto
     handshake_async (const SlotAsyncReady& slot,
-                     int io_priority = Glib::PRIORITY_DEFAULT) -> void;
+                     int io_priority = glib::PRIORITY_DEFAULT) -> void;
 
     auto
-    handshake_finish (const Glib::RefPtr<AsyncResult>& result) -> bool;
+    handshake_finish (const glib::RefPtr<AsyncResult>& result) -> bool;
 
     auto
     get_protocol_version () const -> TlsProtocolVersion;
 
     auto
-    get_ciphersuite_name () const -> Glib::ustring;
+    get_ciphersuite_name () const -> glib::ustring;
 
     auto
     emit_accept_certificate (
-        const Glib::RefPtr<const TlsCertificate>& peer_cert,
+        const glib::RefPtr<const TlsCertificate>& peer_cert,
         TlsCertificateFlags errors) -> bool;
 
     auto
     property_base_io_stream () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<IOStream>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<IOStream>>;
 
     auto
     property_certificate ()
-        -> Glib::PropertyProxy<Glib::RefPtr<TlsCertificate>>;
+        -> glib::PropertyProxy<glib::RefPtr<TlsCertificate>>;
 
     auto
     property_certificate () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<TlsCertificate>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<TlsCertificate>>;
 
     auto
-    property_database () -> Glib::PropertyProxy<Glib::RefPtr<TlsDatabase>>;
+    property_database () -> glib::PropertyProxy<glib::RefPtr<TlsDatabase>>;
 
     auto
     property_database () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<TlsDatabase>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<TlsDatabase>>;
 
     auto
     property_interaction ()
-        -> Glib::PropertyProxy<Glib::RefPtr<TlsInteraction>>;
+        -> glib::PropertyProxy<glib::RefPtr<TlsInteraction>>;
 
     auto
     property_interaction () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<TlsInteraction>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<TlsInteraction>>;
 
     auto
     property_peer_certificate () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<TlsCertificate>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<TlsCertificate>>;
 
     auto
     property_peer_certificate_errors () const
-        -> Glib::PropertyProxy_ReadOnly<TlsCertificateFlags>;
+        -> glib::PropertyProxy_ReadOnly<TlsCertificateFlags>;
 
     auto
-    property_require_close_notify () -> Glib::PropertyProxy<bool>;
+    property_require_close_notify () -> glib::PropertyProxy<bool>;
 
     auto
     property_require_close_notify () const
-        -> Glib::PropertyProxy_ReadOnly<bool>;
+        -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
     property_protocol_version () const
-        -> Glib::PropertyProxy_ReadOnly<TlsProtocolVersion>;
+        -> glib::PropertyProxy_ReadOnly<TlsProtocolVersion>;
 
     auto
     property_ciphersuite_name () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+        -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
     auto
     signal_accept_certificate ()
-        -> Glib::SignalProxy<bool (const Glib::RefPtr<const TlsCertificate>&,
+        -> glib::SignalProxy<bool (const glib::RefPtr<const TlsCertificate>&,
                                    TlsCertificateFlags)>;
 
   protected:
     virtual auto
-    handshake_vfunc (const Glib::RefPtr<Cancellable>& cancellable) -> bool;
+    handshake_vfunc (const glib::RefPtr<Cancellable>& cancellable) -> bool;
 
     virtual auto
     handshake_async_vfunc (const SlotAsyncReady& slot,
-                           const Glib::RefPtr<Cancellable>& cancellable,
+                           const glib::RefPtr<Cancellable>& cancellable,
                            int io_priority) -> void;
 
     virtual auto
-    handshake_finish_vfunc (const Glib::RefPtr<AsyncResult>& result) -> bool;
+    handshake_finish_vfunc (const glib::RefPtr<AsyncResult>& result) -> bool;
 
   public:
   public:
   protected:
     virtual auto
-    on_accept_certificate (const Glib::RefPtr<const TlsCertificate>& peer_cert,
+    on_accept_certificate (const glib::RefPtr<const TlsCertificate>& peer_cert,
                            TlsCertificateFlags errors) -> bool;
   };
 
-} // namespace Gio
+} // namespace gio
 
-namespace Glib
+namespace glib
 {
 
   LIBMM_GIO_SYMEXPORT
   auto
-  wrap (GTlsConnection* object, bool take_copy = false) -> Glib::RefPtr<Gio::TlsConnection>;
-} // namespace Glib
+  wrap (GTlsConnection* object, bool take_copy = false) -> glib::RefPtr<gio::TlsConnection>;
+} // namespace glib
 
 #endif

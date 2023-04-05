@@ -14,7 +14,7 @@ extern "C"
 #include <sigc++/sigc++.h>
 #include <utility>
 
-namespace Glib
+namespace glib
 {
 
   class LIBMM_GLIB_SYMEXPORT ObjectBase;
@@ -33,7 +33,7 @@ namespace Glib
   class LIBMM_GLIB_SYMEXPORT SignalProxyBase
   {
   public:
-    SignalProxyBase (Glib::ObjectBase* obj);
+    SignalProxyBase (glib::ObjectBase* obj);
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
     static inline auto
@@ -70,7 +70,7 @@ namespace Glib
 #endif
 
   protected:
-    SignalProxyNormal (Glib::ObjectBase* obj, const SignalProxyInfo* info);
+    SignalProxyNormal (glib::ObjectBase* obj, const SignalProxyInfo* info);
 
     auto
     connect_impl_ (bool notify, const sigc::slot_base& slot, bool after)
@@ -163,9 +163,9 @@ namespace Glib
     emission_stop () -> void;
 
   protected:
-    SignalProxyDetailedBase (Glib::ObjectBase* obj,
+    SignalProxyDetailedBase (glib::ObjectBase* obj,
                              const SignalProxyInfo* info,
-                             const Glib::ustring& detail_name);
+                             const glib::ustring& detail_name);
 
     auto
     connect_impl_ (bool notify, const sigc::slot_base& slot, bool after)
@@ -177,7 +177,7 @@ namespace Glib
 
   private:
     const SignalProxyInfo* info_;
-    const Glib::ustring detailed_name_;
+    const glib::ustring detailed_name_;
 
     auto
     operator= (const SignalProxyDetailedBase&)
@@ -198,7 +198,7 @@ namespace Glib
 
     SignalProxyDetailed (ObjectBase* obj,
                          const SignalProxyInfo* info,
-                         const Glib::ustring& detail_name)
+                         const glib::ustring& detail_name)
       : SignalProxyDetailedBase (obj, info, detail_name)
     {
     }
@@ -237,7 +237,7 @@ namespace Glib
 
     SignalProxyDetailed (ObjectBase* obj,
                          const SignalProxyInfo* info,
-                         const Glib::ustring& detail_name)
+                         const glib::ustring& detail_name)
       : SignalProxyDetailedBase (obj, info, detail_name)
     {
     }
@@ -255,6 +255,6 @@ namespace Glib
     }
   };
 
-} // namespace Glib
+} // namespace glib
 
 #endif

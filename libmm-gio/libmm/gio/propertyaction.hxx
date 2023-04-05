@@ -16,16 +16,16 @@ using GPropertyActionClass = struct _GPropertyActionClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gio
+namespace gio
 {
   class LIBMM_GIO_SYMEXPORT PropertyAction_Class;
 }
 #endif
 
-namespace Gio
+namespace gio
 {
 
-  class LIBMM_GIO_SYMEXPORT PropertyAction : public Glib::Object,
+  class LIBMM_GIO_SYMEXPORT PropertyAction : public glib::Object,
                                    public Action
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -45,7 +45,7 @@ namespace Gio
     static CppClassType propertyaction_class_;
 
   protected:
-    explicit PropertyAction (const Glib::ConstructParams& construct_params);
+    explicit PropertyAction (const glib::ConstructParams& construct_params);
     explicit PropertyAction (GPropertyAction* castitem);
 
 #endif
@@ -83,49 +83,49 @@ namespace Gio
 
   private:
   protected:
-    PropertyAction (const Glib::ustring& name,
-                    const Glib::PropertyProxy_Base& property_proxy,
+    PropertyAction (const glib::ustring& name,
+                    const glib::PropertyProxy_Base& property_proxy,
                     bool invert_boolean = false);
 
   public:
     static auto
-    create (const Glib::ustring& name,
-            const Glib::PropertyProxy_Base& property_proxy,
-            bool invert_boolean = false) -> Glib::RefPtr<PropertyAction>;
+    create (const glib::ustring& name,
+            const glib::PropertyProxy_Base& property_proxy,
+            bool invert_boolean = false) -> glib::RefPtr<PropertyAction>;
 
     auto
-    property_name () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+    property_name () const -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
     auto
     property_parameter_type () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::VariantType>;
+        -> glib::PropertyProxy_ReadOnly<glib::VariantType>;
 
     auto
-    property_enabled () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_enabled () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
     property_state_type () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::VariantType>;
+        -> glib::PropertyProxy_ReadOnly<glib::VariantType>;
 
     auto
-    property_state () const -> Glib::PropertyProxy_ReadOnly<Glib::VariantBase>;
+    property_state () const -> glib::PropertyProxy_ReadOnly<glib::VariantBase>;
 
     auto
-    property_invert_boolean () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_invert_boolean () const -> glib::PropertyProxy_ReadOnly<bool>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gio
+} // namespace gio
 
-namespace Glib
+namespace glib
 {
 
   LIBMM_GIO_SYMEXPORT
   auto
-  wrap (GPropertyAction* object, bool take_copy = false) -> Glib::RefPtr<Gio::PropertyAction>;
-} // namespace Glib
+  wrap (GPropertyAction* object, bool take_copy = false) -> glib::RefPtr<gio::PropertyAction>;
+} // namespace glib
 
 #endif

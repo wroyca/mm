@@ -4,7 +4,7 @@
 #include <libmm/cairo/pattern.hxx>
 #include <libmm/cairo/private.hxx>
 
-namespace Cairo
+namespace cairo
 {
 
   Pattern::Pattern ()
@@ -321,4 +321,4 @@ namespace Cairo
   }
 
   RadialGradient::~RadialGradient () = default;
-} // namespace Cairo
+} // namespace cairo

@@ -17,13 +17,13 @@ using GtkPadControllerClass = struct _GtkPadControllerClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT PadController_Class;
 }
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
   class LIBMM_GTK_SYMEXPORT PadController : public EventController
@@ -45,7 +45,7 @@ namespace Gtk
     static CppClassType padcontroller_class_;
 
   protected:
-    explicit PadController (const Glib::ConstructParams& construct_params);
+    explicit PadController (const glib::ConstructParams& construct_params);
     explicit PadController (GtkPadController* castitem);
 
 #endif
@@ -83,14 +83,14 @@ namespace Gtk
 
   private:
   protected:
-    explicit PadController (const Glib::RefPtr<Gio::ActionGroup>& action_group,
-                            const Glib::RefPtr<Gdk::Device>& pad = {});
+    explicit PadController (const glib::RefPtr<gio::ActionGroup>& action_group,
+                            const glib::RefPtr<gdk::Device>& pad = {});
 
   public:
     static auto
-    create (const Glib::RefPtr<Gio::ActionGroup>& action_group,
-            const Glib::RefPtr<Gdk::Device>& pad = {})
-        -> Glib::RefPtr<PadController>;
+    create (const glib::RefPtr<gio::ActionGroup>& action_group,
+            const glib::RefPtr<gdk::Device>& pad = {})
+        -> glib::RefPtr<PadController>;
 
     auto
     set_action_entries (const std::vector<PadActionEntry>& entries) -> void;
@@ -99,28 +99,28 @@ namespace Gtk
     set_action (PadActionType type,
                 int index,
                 int mode,
-                const Glib::ustring& label,
-                const Glib::ustring& action_name) -> void;
+                const glib::ustring& label,
+                const glib::ustring& action_name) -> void;
 
     auto
     property_action_group () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gio::ActionGroup>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<gio::ActionGroup>>;
 
     auto
     property_pad () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gdk::Device>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<gdk::Device>>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkPadController* object, bool take_copy = false) -> Glib::RefPtr<Gtk::PadController>;
-} // namespace Glib
+  wrap (GtkPadController* object, bool take_copy = false) -> glib::RefPtr<gtk::PadController>;
+} // namespace glib
 
 #endif

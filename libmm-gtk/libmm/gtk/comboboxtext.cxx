@@ -12,12 +12,12 @@
 
   #include <gtk/gtk.h>
 
-namespace Gtk
+namespace gtk
 {
 
   ComboBoxText::ComboBoxText (bool has_entry)
-    : Glib::ObjectBase (nullptr),
-      ComboBox (Glib::ConstructParams (comboboxtext_class_.init (),
+    : glib::ObjectBase (nullptr),
+      ComboBox (glib::ConstructParams (comboboxtext_class_.init (),
                                        "has-entry",
                                        gboolean (has_entry),
                                        nullptr))
@@ -25,7 +25,7 @@ namespace Gtk
   }
 
   auto
-  ComboBoxText::set_active_text (const Glib::ustring& text) -> void
+  ComboBoxText::set_active_text (const glib::ustring& text) -> void
   {
     auto model = get_model ();
     if (model)
@@ -33,7 +33,7 @@ namespace Gtk
       auto enditer = model->children ().end ();
       for (auto iter = model->children ().begin (); iter != enditer; ++iter)
       {
-        Glib::ustring this_text;
+        glib::ustring this_text;
         iter->get_value (0, this_text);
 
         if (this_text == text)
@@ -47,29 +47,29 @@ namespace Gtk
     unset_active ();
   }
 
-} // namespace Gtk
+} // namespace gtk
 
 namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GtkComboBoxText* object, bool take_copy) -> Gtk::ComboBoxText*
+  wrap (GtkComboBoxText* object, bool take_copy) -> gtk::ComboBoxText*
   {
-    return dynamic_cast<Gtk::ComboBoxText*> (
-        Glib::wrap_auto ((GObject*) (object), take_copy));
+    return dynamic_cast<gtk::ComboBoxText*> (
+        glib::wrap_auto ((GObject*) (object), take_copy));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gtk
+namespace gtk
 {
 
   auto
-  ComboBoxText_Class::init () -> const Glib::Class&
+  ComboBoxText_Class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -89,12 +89,12 @@ namespace Gtk
   }
 
   auto
-  ComboBoxText_Class::wrap_new (GObject* o) -> Glib::ObjectBase*
+  ComboBoxText_Class::wrap_new (GObject* o) -> glib::ObjectBase*
   {
     return manage (new ComboBoxText ((GtkComboBoxText*) (o)));
   }
 
-  ComboBoxText::ComboBoxText (const Glib::ConstructParams& construct_params)
+  ComboBoxText::ComboBoxText (const glib::ConstructParams& construct_params)
     : ComboBox (construct_params)
   {
   }
@@ -136,39 +136,39 @@ namespace Gtk
   }
 
   auto
-  ComboBoxText::append (const Glib::ustring& text) -> void
+  ComboBoxText::append (const glib::ustring& text) -> void
   {
     gtk_combo_box_text_append_text (gobj (), text.c_str ());
   }
 
   auto
-  ComboBoxText::append (const Glib::ustring& id, const Glib::ustring& text) -> void
+  ComboBoxText::append (const glib::ustring& id, const glib::ustring& text) -> void
   {
     gtk_combo_box_text_append (gobj (), id.c_str (), text.c_str ());
   }
 
   auto
-  ComboBoxText::insert (int position, const Glib::ustring& text) -> void
+  ComboBoxText::insert (int position, const glib::ustring& text) -> void
   {
     gtk_combo_box_text_insert_text (gobj (), position, text.c_str ());
   }
 
   auto
   ComboBoxText::insert (int position,
-                        const Glib::ustring& id,
-                        const Glib::ustring& text) -> void
+                        const glib::ustring& id,
+                        const glib::ustring& text) -> void
   {
     gtk_combo_box_text_insert (gobj (), position, id.c_str (), text.c_str ());
   }
 
   auto
-  ComboBoxText::prepend (const Glib::ustring& text) -> void
+  ComboBoxText::prepend (const glib::ustring& text) -> void
   {
     gtk_combo_box_text_prepend_text (gobj (), text.c_str ());
   }
 
   auto
-  ComboBoxText::prepend (const Glib::ustring& id, const Glib::ustring& text) -> void
+  ComboBoxText::prepend (const glib::ustring& id, const glib::ustring& text) -> void
   {
     gtk_combo_box_text_prepend (gobj (), id.c_str (), text.c_str ());
   }
@@ -180,9 +180,9 @@ namespace Gtk
   }
 
   auto
-  ComboBoxText::get_active_text () const -> Glib::ustring
+  ComboBoxText::get_active_text () const -> glib::ustring
   {
-    return Glib::convert_return_gchar_ptr_to_ustring (
+    return glib::convert_return_gchar_ptr_to_ustring (
         gtk_combo_box_text_get_active_text (
             const_cast<GtkComboBoxText*> (gobj ())));
   }
@@ -193,6 +193,6 @@ namespace Gtk
     gtk_combo_box_text_remove_all (gobj ());
   }
 
-} // namespace Gtk
+} // namespace gtk
 
 #endif

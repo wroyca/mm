@@ -5,7 +5,7 @@
 #include <libmm/pango/rectangle.hxx>
 #include <libmm/pango/rectangle_p.hxx>
 
-namespace Pango
+namespace pango
 {
 
   Rectangle::Rectangle ()
@@ -41,30 +41,30 @@ namespace Pango
            get_height () == rhs.get_height ();
   }
 
-} // namespace Pango
+} // namespace pango
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (PangoRectangle* object) -> Pango::Rectangle&
+  wrap (PangoRectangle* object) -> pango::Rectangle&
   {
-    return *reinterpret_cast<Pango::Rectangle*> (object);
+    return *reinterpret_cast<pango::Rectangle*> (object);
   }
 
   auto
-  wrap (const PangoRectangle* object) -> const Pango::Rectangle&
+  wrap (const PangoRectangle* object) -> const pango::Rectangle&
   {
-    return *reinterpret_cast<const Pango::Rectangle*> (object);
+    return *reinterpret_cast<const pango::Rectangle*> (object);
   }
 
-} // namespace Glib
+} // namespace glib
 
 namespace
 {
 }
 
-namespace Pango
+namespace pango
 {
 
 }

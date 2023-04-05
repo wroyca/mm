@@ -19,16 +19,16 @@ using GInitableClass = struct _GInitableClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gio
+namespace gio
 {
   class LIBMM_GIO_SYMEXPORT Initable_Class;
 }
 #endif
 
-namespace Gio
+namespace gio
 {
 
-  class LIBMM_GIO_SYMEXPORT Initable : public Glib::Interface
+  class LIBMM_GIO_SYMEXPORT Initable : public glib::Interface
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -52,7 +52,7 @@ namespace Gio
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
-    explicit Initable (const Glib::Interface_Class& interface_class);
+    explicit Initable (const glib::Interface_Class& interface_class);
 
   public:
     explicit Initable (GInitable* castitem);
@@ -93,14 +93,14 @@ namespace Gio
   private:
   protected:
     auto
-    init (const Glib::RefPtr<Cancellable>& cancellable) -> void;
+    init (const glib::RefPtr<Cancellable>& cancellable) -> void;
 
     auto
     init () -> void;
 
   protected:
     virtual auto
-    init_vfunc (const Glib::RefPtr<Cancellable>& cancellable, GError** error)
+    init_vfunc (const glib::RefPtr<Cancellable>& cancellable, GError** error)
         -> bool;
 
   public:
@@ -108,15 +108,15 @@ namespace Gio
   protected:
   };
 
-} // namespace Gio
+} // namespace gio
 
-namespace Glib
+namespace glib
 {
 
   LIBMM_GIO_SYMEXPORT
   auto
-  wrap (GInitable* object, bool take_copy = false) -> Glib::RefPtr<Gio::Initable>;
+  wrap (GInitable* object, bool take_copy = false) -> glib::RefPtr<gio::Initable>;
 
-} // namespace Glib
+} // namespace glib
 
 #endif

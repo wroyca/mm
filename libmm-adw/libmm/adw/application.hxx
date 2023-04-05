@@ -17,16 +17,16 @@ using AdwApplicationClass = struct _AdwApplicationClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Adw
+namespace adw
 {
   class LIBMM_ADW_SYMEXPORT Application_Class;
 }
 #endif
 
-namespace Adw
+namespace adw
 {
 
-  class LIBMM_ADW_SYMEXPORT Application : public Gtk::Application
+  class LIBMM_ADW_SYMEXPORT Application : public gtk::Application
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -45,7 +45,7 @@ namespace Adw
     static CppClassType application_class_;
 
   protected:
-    explicit Application (const Glib::ConstructParams& construct_params);
+    explicit Application (const glib::ConstructParams& construct_params);
     explicit Application (AdwApplication* castitem);
 
 #endif
@@ -84,36 +84,36 @@ namespace Adw
   private:
   private:
     auto
-    custom_class_init () -> const Glib::Class&;
+    custom_class_init () -> const glib::Class&;
 
   protected:
-    Application (const Glib::ustring& application_id,
-                 Gio::Application::Flags flags);
+    Application (const glib::ustring& application_id,
+                 gio::Application::Flags flags);
 
   public:
     static auto
-    create (const Glib::ustring& application_id, Gio::Application::Flags flags)
-        -> Glib::RefPtr<Application>;
+    create (const glib::ustring& application_id, gio::Application::Flags flags)
+        -> glib::RefPtr<Application>;
 
     auto
-    get_style_manager () const -> Glib::RefPtr<StyleManager>;
+    get_style_manager () const -> glib::RefPtr<StyleManager>;
 
     auto
     property_style_manager () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<StyleManager>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<StyleManager>>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Adw
+} // namespace adw
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (AdwApplication* object, bool take_copy = false) -> Glib::RefPtr<Adw::Application>;
+  wrap (AdwApplication* object, bool take_copy = false) -> glib::RefPtr<adw::Application>;
 }
 
 #endif

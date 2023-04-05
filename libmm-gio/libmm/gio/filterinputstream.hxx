@@ -15,16 +15,16 @@ using GFilterInputStreamClass = struct _GFilterInputStreamClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gio
+namespace gio
 {
   class LIBMM_GIO_SYMEXPORT FilterInputStream_Class;
 }
 #endif
 
-namespace Gio
+namespace gio
 {
 
-  class LIBMM_GIO_SYMEXPORT FilterInputStream : public Gio::InputStream
+  class LIBMM_GIO_SYMEXPORT FilterInputStream : public gio::InputStream
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -43,7 +43,7 @@ namespace Gio
     static CppClassType filterinputstream_class_;
 
   protected:
-    explicit FilterInputStream (const Glib::ConstructParams& construct_params);
+    explicit FilterInputStream (const glib::ConstructParams& construct_params);
     explicit FilterInputStream (GFilterInputStream* castitem);
 
 #endif
@@ -81,14 +81,14 @@ namespace Gio
 
   private:
   protected:
-    explicit FilterInputStream (const Glib::RefPtr<InputStream>& base_stream);
+    explicit FilterInputStream (const glib::RefPtr<InputStream>& base_stream);
 
   public:
     auto
-    get_base_stream () -> Glib::RefPtr<InputStream>;
+    get_base_stream () -> glib::RefPtr<InputStream>;
 
     auto
-    get_base_stream () const -> Glib::RefPtr<const InputStream>;
+    get_base_stream () const -> glib::RefPtr<const InputStream>;
 
     auto
     get_close_base_stream () const -> bool;
@@ -98,27 +98,27 @@ namespace Gio
 
     auto
     property_base_stream () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<InputStream>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<InputStream>>;
 
     auto
-    property_close_base_stream () -> Glib::PropertyProxy<bool>;
+    property_close_base_stream () -> glib::PropertyProxy<bool>;
 
     auto
-    property_close_base_stream () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_close_base_stream () const -> glib::PropertyProxy_ReadOnly<bool>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gio
+} // namespace gio
 
-namespace Glib
+namespace glib
 {
 
   LIBMM_GIO_SYMEXPORT
   auto
-  wrap (GFilterInputStream* object, bool take_copy = false) -> Glib::RefPtr<Gio::FilterInputStream>;
-} // namespace Glib
+  wrap (GFilterInputStream* object, bool take_copy = false) -> glib::RefPtr<gio::FilterInputStream>;
+} // namespace glib
 
 #endif

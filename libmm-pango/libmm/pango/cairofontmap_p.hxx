@@ -7,10 +7,10 @@
 
 #include <libmm/glib/interface_p.hxx>
 
-namespace Pango
+namespace pango
 {
 
-  class LIBMM_PANGO_SYMEXPORT CairoFontMap_Class : public Glib::Interface_Class
+  class LIBMM_PANGO_SYMEXPORT CairoFontMap_Class : public glib::Interface_Class
   {
   public:
     using CppObjectType = CairoFontMap;
@@ -27,11 +27,11 @@ namespace Pango
     iface_init_function (void* g_iface, void* iface_data) -> void;
 
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
 
   protected:
   };
 
-} // namespace Pango
+} // namespace pango
 
 #endif

@@ -2,7 +2,7 @@
 
 #include <libmm/glib/vectorutils.hxx>
 
-namespace Glib
+namespace glib
 {
 
   namespace Container_Helpers
@@ -43,7 +43,7 @@ namespace Glib
 #else
       VectorType temp;
       temp.reserve (array_size);
-      Glib::Container_Helpers::fill_container (
+      glib::Container_Helpers::fill_container (
           temp,
           ArrayIteratorType (array),
           ArrayIteratorType (array + array_size));
@@ -73,4 +73,4 @@ namespace Glib
         OWNERSHIP_SHALLOW);
   }
 
-} // namespace Glib
+} // namespace glib

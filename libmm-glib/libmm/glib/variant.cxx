@@ -10,7 +10,7 @@
 #include <libmm/glib/utility.hxx>
 #include <libmm/glib/variant.hxx>
 
-namespace Glib
+namespace glib
 {
 
   VariantBase::VariantBase (GVariant* castitem, const bool make_a_copy)
@@ -461,13 +461,13 @@ namespace Glib
   Variant<type_vec_ustring>::get_child (const gsize index) const -> ustring
   {
     if (index >= get_n_children ())
-      throw std::out_of_range ("Variant< std::vector<Glib::ustring> "
+      throw std::out_of_range ("Variant< std::vector<glib::ustring> "
                                ">::get_child(): Index out of bounds.");
 
     GVariant* gvariant =
         g_variant_get_child_value (const_cast<GVariant*> (gobj ()), index);
 
-    return Glib::Variant<ustring> (gvariant).get ();
+    return glib::Variant<ustring> (gvariant).get ();
   }
 
   auto
@@ -479,7 +479,7 @@ namespace Glib
     {
       GVariant* gvariant =
           g_variant_get_child_value (const_cast<GVariant*> (gobj ()), i);
-      result.emplace_back (Glib::Variant<ustring> (gvariant).get ());
+      result.emplace_back (glib::Variant<ustring> (gvariant).get ());
     }
 
     return result;
@@ -538,13 +538,13 @@ namespace Glib
   {
     if (index >= get_n_children ())
       throw std::out_of_range (
-          "Variant< std::vector<Glib::DBusObjectPathString> >::get_child(): "
+          "Variant< std::vector<glib::DBusObjectPathString> >::get_child(): "
           "Index out of bounds.");
 
     GVariant* gvariant =
         g_variant_get_child_value (const_cast<GVariant*> (gobj ()), index);
 
-    return Glib::Variant<CppType> (gvariant).get ();
+    return glib::Variant<CppType> (gvariant).get ();
   }
 
   auto
@@ -629,7 +629,7 @@ namespace Glib
     GVariant* gvariant =
         g_variant_get_child_value (const_cast<GVariant*> (gobj ()), index);
 
-    return Glib::Variant<std::string> (gvariant).get ();
+    return glib::Variant<std::string> (gvariant).get ();
   }
 
   auto
@@ -641,7 +641,7 @@ namespace Glib
     {
       GVariant* gvariant =
           g_variant_get_child_value (const_cast<GVariant*> (gobj ()), i);
-      result.emplace_back (Glib::Variant<std::string> (gvariant).get ());
+      result.emplace_back (glib::Variant<std::string> (gvariant).get ());
     }
 
     return result;
@@ -665,36 +665,36 @@ namespace Glib
     return CppType (get_variant (), true);
   }
 
-} // namespace Glib
+} // namespace glib
 
 namespace
 {
 }
 
-Glib::VariantParseError::VariantParseError (const Code error_code,
+glib::VariantParseError::VariantParseError (const Code error_code,
                                             const ustring& error_message)
   : Error (G_VARIANT_PARSE_ERROR, error_code, error_message)
 {
 }
 
-Glib::VariantParseError::VariantParseError (GError* gobject)
+glib::VariantParseError::VariantParseError (GError* gobject)
   : Error (gobject)
 {
 }
 
 auto
-Glib::VariantParseError::code () const -> Code
+glib::VariantParseError::code () const -> Code
 {
   return static_cast<Code> (Error::code ());
 }
 
 auto
-Glib::VariantParseError::throw_func (GError* gobject) -> void
+glib::VariantParseError::throw_func (GError* gobject) -> void
 {
   throw VariantParseError (gobject);
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
@@ -703,9 +703,9 @@ namespace Glib
     return VariantBase (object, take_copy);
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Glib
+namespace glib
 {
 
   VariantBase::VariantBase ()
@@ -861,9 +861,9 @@ namespace Glib
                                           copy_only);
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Glib
+namespace glib
 {
 
   auto
@@ -878,9 +878,9 @@ namespace Glib
     return g_variant_is_signature (string.c_str ());
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Glib
+namespace glib
 {
 
   auto
@@ -895,9 +895,9 @@ namespace Glib
     return wrap (g_variant_get_child_value (gobj (), index));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Glib
+namespace glib
 {
 
   auto
@@ -906,24 +906,24 @@ namespace Glib
     return wrap (g_variant_get_variant (const_cast<GVariant*> (gobj ())));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Glib
+namespace glib
 {
 
 }
 
-namespace Glib
+namespace glib
 {
 
 }
 
-namespace Glib
+namespace glib
 {
 
 }
 
-namespace Glib
+namespace glib
 {
 
 }

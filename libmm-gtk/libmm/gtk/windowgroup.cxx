@@ -14,24 +14,24 @@ namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GtkWindowGroup* object, bool take_copy) -> Glib::RefPtr<Gtk::WindowGroup>
+  wrap (GtkWindowGroup* object, bool take_copy) -> glib::RefPtr<gtk::WindowGroup>
   {
-    return Glib::make_refptr_for_instance<Gtk::WindowGroup> (
-        dynamic_cast<Gtk::WindowGroup*> (
-            Glib::wrap_auto ((GObject*) (object), take_copy)));
+    return glib::make_refptr_for_instance<gtk::WindowGroup> (
+        dynamic_cast<gtk::WindowGroup*> (
+            glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gtk
+namespace gtk
 {
 
   auto
-  WindowGroup_Class::init () -> const Glib::Class&
+  WindowGroup_Class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -51,7 +51,7 @@ namespace Gtk
   }
 
   auto
-  WindowGroup_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  WindowGroup_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new WindowGroup ((GtkWindowGroup*) object);
   }
@@ -63,25 +63,25 @@ namespace Gtk
     return gobj ();
   }
 
-  WindowGroup::WindowGroup (const Glib::ConstructParams& construct_params)
-    : Glib::Object (construct_params)
+  WindowGroup::WindowGroup (const glib::ConstructParams& construct_params)
+    : glib::Object (construct_params)
   {
   }
 
   WindowGroup::WindowGroup (GtkWindowGroup* castitem)
-    : Glib::Object ((GObject*) (castitem))
+    : glib::Object ((GObject*) (castitem))
   {
   }
 
   WindowGroup::WindowGroup (WindowGroup&& src) noexcept
-    : Glib::Object (std::move (src))
+    : glib::Object (std::move (src))
   {
   }
 
   auto
   WindowGroup::operator= (WindowGroup&& src) noexcept -> WindowGroup&
   {
-    Glib::Object::operator= (std::move (src));
+    glib::Object::operator= (std::move (src));
     return *this;
   }
 
@@ -102,15 +102,15 @@ namespace Gtk
   }
 
   WindowGroup::WindowGroup ()
-    : Glib::ObjectBase (nullptr),
-      Glib::Object (Glib::ConstructParams (windowgroup_class_.init ()))
+    : glib::ObjectBase (nullptr),
+      glib::Object (glib::ConstructParams (windowgroup_class_.init ()))
   {
   }
 
   auto
-  WindowGroup::create () -> Glib::RefPtr<WindowGroup>
+  WindowGroup::create () -> glib::RefPtr<WindowGroup>
   {
-    return Glib::make_refptr_for_instance<WindowGroup> (new WindowGroup ());
+    return glib::make_refptr_for_instance<WindowGroup> (new WindowGroup ());
   }
 
   auto
@@ -128,17 +128,17 @@ namespace Gtk
   auto
   WindowGroup::list_windows () -> std::vector<Window*>
   {
-    return Glib::ListHandler<Window*>::list_to_vector (
+    return glib::ListHandler<Window*>::list_to_vector (
         gtk_window_group_list_windows (gobj ()),
-        Glib::OWNERSHIP_SHALLOW);
+        glib::OWNERSHIP_SHALLOW);
   }
 
   auto
   WindowGroup::list_windows () const -> std::vector<const Window*>
   {
-    return Glib::ListHandler<const Window*>::list_to_vector (
+    return glib::ListHandler<const Window*>::list_to_vector (
         gtk_window_group_list_windows (const_cast<GtkWindowGroup*> (gobj ())),
-        Glib::OWNERSHIP_SHALLOW);
+        glib::OWNERSHIP_SHALLOW);
   }
 
-} // namespace Gtk
+} // namespace gtk

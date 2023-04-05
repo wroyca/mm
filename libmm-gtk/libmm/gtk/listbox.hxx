@@ -20,13 +20,13 @@ using GtkListBoxClass = struct _GtkListBoxClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT ListBox_Class;
 }
 #endif
 
-namespace Gtk
+namespace gtk
 {
   class Adjustment;
 
@@ -57,7 +57,7 @@ namespace Gtk
     static CppClassType listbox_class_;
 
   protected:
-    explicit ListBox (const Glib::ConstructParams& construct_params);
+    explicit ListBox (const glib::ConstructParams& construct_params);
     explicit ListBox (GtkListBox* castitem);
 
 #endif
@@ -137,13 +137,13 @@ namespace Gtk
     unset_placeholder () -> void;
 
     auto
-    set_adjustment (const Glib::RefPtr<Adjustment>& adjustment) -> void;
+    set_adjustment (const glib::RefPtr<Adjustment>& adjustment) -> void;
 
     auto
-    get_adjustment () -> Glib::RefPtr<Adjustment>;
+    get_adjustment () -> glib::RefPtr<Adjustment>;
 
     auto
-    get_adjustment () const -> Glib::RefPtr<const Adjustment>;
+    get_adjustment () const -> glib::RefPtr<const Adjustment>;
 
     typedef sigc::slot<void (ListBoxRow*)> SlotForeach;
 
@@ -212,16 +212,16 @@ namespace Gtk
 
     template <typename T_item>
     using SlotCreateWidget =
-        sigc::slot<Gtk::Widget*(const Glib::RefPtr<T_item>&)>;
+        sigc::slot<gtk::Widget*(const glib::RefPtr<T_item>&)>;
 
     auto
-    bind_model (const Glib::RefPtr<Gio::ListModel>& model,
-                const SlotCreateWidget<Glib::Object>& slot_create_widget)
+    bind_model (const glib::RefPtr<gio::ListModel>& model,
+                const SlotCreateWidget<glib::Object>& slot_create_widget)
         -> void;
 
     template <typename T_item, typename T_slot>
     auto
-    bind_list_store (const Glib::RefPtr<Gio::ListStore<T_item>>& store,
+    bind_list_store (const glib::RefPtr<gio::ListStore<T_item>>& store,
                      T_slot&& slot_create_widget) -> void;
 
     auto
@@ -231,40 +231,40 @@ namespace Gtk
     get_show_separators () const -> bool;
 
     auto
-    property_selection_mode () -> Glib::PropertyProxy<SelectionMode>;
+    property_selection_mode () -> glib::PropertyProxy<SelectionMode>;
 
     auto
     property_selection_mode () const
-        -> Glib::PropertyProxy_ReadOnly<SelectionMode>;
+        -> glib::PropertyProxy_ReadOnly<SelectionMode>;
 
     auto
-    property_activate_on_single_click () -> Glib::PropertyProxy<bool>;
+    property_activate_on_single_click () -> glib::PropertyProxy<bool>;
 
     auto
     property_activate_on_single_click () const
-        -> Glib::PropertyProxy_ReadOnly<bool>;
+        -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_accept_unpaired_release () -> Glib::PropertyProxy<bool>;
+    property_accept_unpaired_release () -> glib::PropertyProxy<bool>;
 
     auto
     property_accept_unpaired_release () const
-        -> Glib::PropertyProxy_ReadOnly<bool>;
+        -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_show_separators () -> Glib::PropertyProxy<bool>;
+    property_show_separators () -> glib::PropertyProxy<bool>;
 
     auto
-    property_show_separators () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_show_separators () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    signal_row_selected () -> Glib::SignalProxy<void (ListBoxRow*)>;
+    signal_row_selected () -> glib::SignalProxy<void (ListBoxRow*)>;
 
     auto
-    signal_row_activated () -> Glib::SignalProxy<void (ListBoxRow*)>;
+    signal_row_activated () -> glib::SignalProxy<void (ListBoxRow*)>;
 
     auto
-    signal_selected_rows_changed () -> Glib::SignalProxy<void ()>;
+    signal_selected_rows_changed () -> glib::SignalProxy<void ()>;
 
   private:
     template <typename T_item>
@@ -281,7 +281,7 @@ namespace Gtk
 
   template <typename T_item, typename T_slot>
   auto
-  ListBox::bind_list_store (const Glib::RefPtr<Gio::ListStore<T_item>>& store,
+  ListBox::bind_list_store (const glib::RefPtr<gio::ListStore<T_item>>& store,
                             T_slot&& slot_create_widget) -> void
   {
     auto slot_copy = new SlotCreateWidget<T_item> (
@@ -289,10 +289,10 @@ namespace Gtk
 
     gtk_list_box_bind_model (
         gobj (),
-        store ? store->Gio::ListModel::gobj () : nullptr,
+        store ? store->gio::ListModel::gobj () : nullptr,
         &proxy_bind_list_store_create_widget_callback<T_item>,
         slot_copy,
-        &Glib::destroy_notify_delete<SlotCreateWidget<T_item>>);
+        &glib::destroy_notify_delete<SlotCreateWidget<T_item>>);
   }
 
   template <typename T_item>
@@ -304,26 +304,26 @@ namespace Gtk
 
     try
     {
-      Gtk::Widget* widget =
-          slot (std::dynamic_pointer_cast<T_item> (Glib::wrap (cobject, true)));
+      gtk::Widget* widget =
+          slot (std::dynamic_pointer_cast<T_item> (glib::wrap (cobject, true)));
       if (widget)
         return widget->gobj ();
     }
     catch (...)
     {
-      Glib::exception_handlers_invoke ();
+      glib::exception_handlers_invoke ();
     }
     return nullptr;
   }
 
 #endif
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkListBox* object, bool take_copy = false) -> Gtk::ListBox*;
-} // namespace Glib
+  wrap (GtkListBox* object, bool take_copy = false) -> gtk::ListBox*;
+} // namespace glib
 
 #endif

@@ -10,5 +10,5 @@ auto
 main () -> int
 {
   using namespace std;
-  using namespace Cairo;
+  using namespace cairo;
 }

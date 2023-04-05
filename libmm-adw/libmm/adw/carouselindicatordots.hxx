@@ -17,17 +17,17 @@
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Adw
+namespace adw
 {
   class LIBMM_ADW_SYMEXPORT CarouselIndicatorDots_Class;
 }
 #endif
 
-namespace Adw
+namespace adw
 {
 
-  class LIBMM_ADW_SYMEXPORT CarouselIndicatorDots : public Gtk::Widget,
-                                public Gtk::Orientable
+  class LIBMM_ADW_SYMEXPORT CarouselIndicatorDots : public gtk::Widget,
+                                public gtk::Orientable
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -55,7 +55,7 @@ namespace Adw
 
   protected:
     explicit CarouselIndicatorDots (
-        const Glib::ConstructParams& construct_params);
+        const glib::ConstructParams& construct_params);
     explicit CarouselIndicatorDots (AdwCarouselIndicatorDots* castitem);
 
 #endif
@@ -87,29 +87,29 @@ namespace Adw
     CarouselIndicatorDots ();
 
     auto
-    get_carousel () const -> Adw::Carousel*;
+    get_carousel () const -> adw::Carousel*;
 
     auto
-    set_carousel (Adw::Carousel* carousel) -> void;
+    set_carousel (adw::Carousel* carousel) -> void;
 
     auto
-    property_carousel () -> Glib::PropertyProxy<Adw::Carousel*>;
+    property_carousel () -> glib::PropertyProxy<adw::Carousel*>;
 
     auto
-    property_carousel () const -> Glib::PropertyProxy_ReadOnly<Adw::Carousel*>;
+    property_carousel () const -> glib::PropertyProxy_ReadOnly<adw::Carousel*>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Adw
+} // namespace adw
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (AdwCarouselIndicatorDots* object, bool take_copy = false) -> Adw::CarouselIndicatorDots*;
+  wrap (AdwCarouselIndicatorDots* object, bool take_copy = false) -> adw::CarouselIndicatorDots*;
 }
 
 #endif

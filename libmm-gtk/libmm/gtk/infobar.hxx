@@ -18,13 +18,13 @@ using GtkInfoBarClass = struct _GtkInfoBarClass;
   #endif
 
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT InfoBar_Class;
 }
   #endif
 
-namespace Gtk
+namespace gtk
 {
 
   class LIBMM_GTK_SYMEXPORT InfoBar : public Widget
@@ -54,7 +54,7 @@ namespace Gtk
     static CppClassType infobar_class_;
 
   protected:
-    explicit InfoBar (const Glib::ConstructParams& construct_params);
+    explicit InfoBar (const glib::ConstructParams& construct_params);
     explicit InfoBar (GtkInfoBar* castitem);
 
   #endif
@@ -92,7 +92,7 @@ namespace Gtk
     remove_action_widget (Widget& widget) -> void;
 
     auto
-    add_button (const Glib::ustring& button_text, int response_id) -> Button*;
+    add_button (const glib::ustring& button_text, int response_id) -> Button*;
 
     auto
     add_child (Widget& widget) -> void;
@@ -128,38 +128,38 @@ namespace Gtk
     get_revealed () const -> bool;
 
     auto
-    signal_response () -> Glib::SignalProxy<void (int)>;
+    signal_response () -> glib::SignalProxy<void (int)>;
 
     auto
-    property_message_type () -> Glib::PropertyProxy<MessageType>;
+    property_message_type () -> glib::PropertyProxy<MessageType>;
 
     auto
-    property_message_type () const -> Glib::PropertyProxy_ReadOnly<MessageType>;
+    property_message_type () const -> glib::PropertyProxy_ReadOnly<MessageType>;
 
     auto
-    property_show_close_button () -> Glib::PropertyProxy<bool>;
+    property_show_close_button () -> glib::PropertyProxy<bool>;
 
     auto
-    property_show_close_button () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_show_close_button () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_revealed () -> Glib::PropertyProxy<bool>;
+    property_revealed () -> glib::PropertyProxy<bool>;
 
     auto
-    property_revealed () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_revealed () const -> glib::PropertyProxy_ReadOnly<bool>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkInfoBar* object, bool take_copy = false) -> Gtk::InfoBar*;
-} // namespace Glib
+  wrap (GtkInfoBar* object, bool take_copy = false) -> gtk::InfoBar*;
+} // namespace glib
 
 #endif
 

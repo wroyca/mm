@@ -16,13 +16,13 @@ using AdwPropertyAnimationTargetClass = struct _AdwPropertyAnimationTargetClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Adw
+namespace adw
 {
   class LIBMM_ADW_SYMEXPORT PropertyAnimationTarget_Class;
 }
 #endif
 
-namespace Adw
+namespace adw
 {
 
   class LIBMM_ADW_SYMEXPORT PropertyAnimationTarget : public AnimationTarget
@@ -46,7 +46,7 @@ namespace Adw
 
   protected:
     explicit PropertyAnimationTarget (
-        const Glib::ConstructParams& construct_params);
+        const glib::ConstructParams& construct_params);
     explicit PropertyAnimationTarget (AdwPropertyAnimationTarget* castitem);
 
 #endif
@@ -84,48 +84,48 @@ namespace Adw
     gobj_copy () -> AdwPropertyAnimationTarget*;
 
   private:
-    PropertyAnimationTarget (const Glib::RefPtr<Glib::Object>& object,
-                             const Glib::ustring& property_name);
-    explicit PropertyAnimationTarget (const Glib::RefPtr<Glib::Object>& object,
+    PropertyAnimationTarget (const glib::RefPtr<glib::Object>& object,
+                             const glib::ustring& property_name);
+    explicit PropertyAnimationTarget (const glib::RefPtr<glib::Object>& object,
                                       GParamSpec* pspec);
 
   public:
     PropertyAnimationTarget ();
 
     static auto
-    create (const Glib::RefPtr<Glib::Object>& object,
-            const Glib::ustring& property_name)
-        -> Glib::RefPtr<PropertyAnimationTarget>;
+    create (const glib::RefPtr<glib::Object>& object,
+            const glib::ustring& property_name)
+        -> glib::RefPtr<PropertyAnimationTarget>;
 
     static auto
-    create (const Glib::RefPtr<Glib::Object>& object, GParamSpec* pspec)
-        -> Glib::RefPtr<PropertyAnimationTarget>;
+    create (const glib::RefPtr<glib::Object>& object, GParamSpec* pspec)
+        -> glib::RefPtr<PropertyAnimationTarget>;
 
     auto
-    get_object () const -> Glib::RefPtr<Glib::Object>;
+    get_object () const -> glib::RefPtr<glib::Object>;
 
     auto
     get_pspec () const -> GParamSpec*;
 
     auto
     property_object () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Glib::Object>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<glib::Object>>;
 
     auto
-    property_pspec () const -> Glib::PropertyProxy_ReadOnly<GParamSpec*>;
+    property_pspec () const -> glib::PropertyProxy_ReadOnly<GParamSpec*>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Adw
+} // namespace adw
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (AdwPropertyAnimationTarget* object, bool take_copy = false) -> Glib::RefPtr<Adw::PropertyAnimationTarget>;
+  wrap (AdwPropertyAnimationTarget* object, bool take_copy = false) -> glib::RefPtr<adw::PropertyAnimationTarget>;
 }
 
 #endif

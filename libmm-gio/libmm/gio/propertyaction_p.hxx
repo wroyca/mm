@@ -7,17 +7,17 @@
 
 #include <libmm/glib/class.hxx>
 
-namespace Gio
+namespace gio
 {
 
-  class LIBMM_GIO_SYMEXPORT PropertyAction_Class : public Glib::Class
+  class LIBMM_GIO_SYMEXPORT PropertyAction_Class : public glib::Class
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
     using CppObjectType = PropertyAction;
     using BaseObjectType = GPropertyAction;
     using BaseClassType = GPropertyActionClass;
-    using CppClassParent = Glib::Object_Class;
+    using CppClassParent = glib::Object_Class;
     using BaseClassParent = GObjectClass;
 
     friend class PropertyAction;
@@ -30,11 +30,11 @@ namespace Gio
     class_init_function (void* g_class, void* class_data) -> void;
 
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
 
   protected:
   };
 
-} // namespace Gio
+} // namespace gio
 
 #endif

@@ -6,7 +6,7 @@
  * Author: Alexander Mikhaylenko <alexander.mikhaylenko@puri.sm>
  */
 
-#include <libmm/adw/init.hxx> // Adw::init
+#include <libmm/adw/init.hxx> // adw::init
 #include <libmm/adw/mm-adw.hxx>
 
 int notified;
@@ -20,24 +20,24 @@ notify_cb ()
 static void
 test_adw_flap_flap (void)
 {
-  Adw::Flap flap;
-  Gtk::Widget* widget = nullptr;
+  adw::Flap flap;
+  gtk::Widget* widget = nullptr;
 
   notified = 0;
   flap.property_flap ().signal_changed ().connect (sigc::ptr_fun (notify_cb));
 
-  widget = flap.get_property<Gtk::Widget*> ("flap");
+  widget = flap.get_property<gtk::Widget*> ("flap");
   g_assert_null (widget);
 
   flap.set_flap (nullptr);
   g_assert_true (notified == 0);
 
-  widget = Gtk::make_managed<Gtk::Button> ();
+  widget = gtk::make_managed<gtk::Button> ();
   flap.set_flap (widget);
   g_assert_true (flap.get_flap ()->gobj () == widget->gobj ());
   g_assert_true (notified == 1);
 
-  flap.set_property<Gtk::Widget*> ("flap", nullptr);
+  flap.set_property<gtk::Widget*> ("flap", nullptr);
   g_assert_null (flap.get_flap ());
   g_assert_true (notified == 2);
 }
@@ -45,25 +45,25 @@ test_adw_flap_flap (void)
 static void
 test_adw_flap_separator (void)
 {
-  Adw::Flap flap;
-  Gtk::Widget* widget = nullptr;
+  adw::Flap flap;
+  gtk::Widget* widget = nullptr;
 
   notified = 0;
   flap.property_separator ().signal_changed ().connect (
       sigc::ptr_fun (notify_cb));
 
-  widget = flap.get_property<Gtk::Widget*> ("separator");
+  widget = flap.get_property<gtk::Widget*> ("separator");
   g_assert_null (widget);
 
   flap.set_separator (nullptr);
   g_assert_true (notified == 0);
 
-  widget = Gtk::make_managed<Gtk::Button> ();
+  widget = gtk::make_managed<gtk::Button> ();
   flap.set_separator (widget);
   g_assert_true (flap.get_separator ()->gobj () == widget->gobj ());
   g_assert_true (notified == 1);
 
-  flap.set_property<Gtk::Widget*> ("separator", nullptr);
+  flap.set_property<gtk::Widget*> ("separator", nullptr);
   g_assert_null (flap.get_separator ());
   g_assert_true (notified == 2);
 }
@@ -71,33 +71,33 @@ test_adw_flap_separator (void)
 static void
 test_adw_flap_flap_position (void)
 {
-  Adw::Flap flap;
+  adw::Flap flap;
 
   notified = 0;
   flap.property_flap_position ().signal_changed ().connect (
       sigc::ptr_fun (notify_cb));
 
-  Gtk::PackType position = flap.get_property<Gtk::PackType> ("flap-position");
-  g_assert_true (position == Gtk::PackType::START);
+  gtk::PackType position = flap.get_property<gtk::PackType> ("flap-position");
+  g_assert_true (position == gtk::PackType::START);
 
-  flap.set_flap_position (Gtk::PackType::START);
+  flap.set_flap_position (gtk::PackType::START);
   g_assert_true (notified == 0);
 
-  flap.set_flap_position (Gtk::PackType::END);
-  g_assert_true (flap.get_flap_position () == Gtk::PackType::END);
+  flap.set_flap_position (gtk::PackType::END);
+  g_assert_true (flap.get_flap_position () == gtk::PackType::END);
   g_assert_true (notified == 1);
 
-  flap.set_property<Gtk::PackType> ("flap-position", Gtk::PackType::START);
-  g_assert_true (flap.get_flap_position () == Gtk::PackType::START);
+  flap.set_property<gtk::PackType> ("flap-position", gtk::PackType::START);
+  g_assert_true (flap.get_flap_position () == gtk::PackType::START);
   g_assert_true (notified == 2);
 }
 
 static void
 test_adw_flap_reveal_flap (void)
 {
-  Adw::Flap flap;
+  adw::Flap flap;
 
-  flap.set_flap (Gtk::make_managed<Gtk::Button> ());
+  flap.set_flap (gtk::make_managed<gtk::Button> ());
 
   notified = 0;
   flap.property_reveal_flap ().signal_changed ().connect (
@@ -121,7 +121,7 @@ test_adw_flap_reveal_flap (void)
 static void
 test_adw_flap_reveal_progress (void)
 {
-  Adw::Flap flap;
+  adw::Flap flap;
 
   notified = 0;
   flap.property_reveal_progress ().signal_changed ().connect (
@@ -142,33 +142,33 @@ test_adw_flap_reveal_progress (void)
 static void
 test_adw_flap_fold_policy (void)
 {
-  Adw::Flap flap;
+  adw::Flap flap;
 
   notified = 0;
   flap.property_fold_policy ().signal_changed ().connect (
       sigc::ptr_fun (notify_cb));
 
-  Adw::FlapFoldPolicy policy =
-      flap.get_property<Adw::FlapFoldPolicy> ("fold-policy");
-  g_assert_true (policy == Adw::FlapFoldPolicy::AUTO);
+  adw::FlapFoldPolicy policy =
+      flap.get_property<adw::FlapFoldPolicy> ("fold-policy");
+  g_assert_true (policy == adw::FlapFoldPolicy::AUTO);
 
-  flap.set_fold_policy (Adw::FlapFoldPolicy::AUTO);
+  flap.set_fold_policy (adw::FlapFoldPolicy::AUTO);
   g_assert_true (notified == 0);
 
-  flap.set_fold_policy (Adw::FlapFoldPolicy::NEVER);
-  g_assert_true (flap.get_fold_policy () == Adw::FlapFoldPolicy::NEVER);
+  flap.set_fold_policy (adw::FlapFoldPolicy::NEVER);
+  g_assert_true (flap.get_fold_policy () == adw::FlapFoldPolicy::NEVER);
   g_assert_true (notified == 1);
 
-  flap.set_property<Adw::FlapFoldPolicy> ("fold-policy",
-                                          Adw::FlapFoldPolicy::ALWAYS);
-  g_assert_true (flap.get_fold_policy () == Adw::FlapFoldPolicy::ALWAYS);
+  flap.set_property<adw::FlapFoldPolicy> ("fold-policy",
+                                          adw::FlapFoldPolicy::ALWAYS);
+  g_assert_true (flap.get_fold_policy () == adw::FlapFoldPolicy::ALWAYS);
   g_assert_true (notified == 2);
 }
 
 static void
 test_adw_flap_fold_duration (void)
 {
-  Adw::Flap flap;
+  adw::Flap flap;
 
   notified = 0;
   flap.property_fold_duration ().signal_changed ().connect (
@@ -192,10 +192,10 @@ test_adw_flap_fold_duration (void)
 static void
 test_adw_flap_folded (void)
 {
-  Adw::Flap flap;
+  adw::Flap flap;
 
-  flap.set_flap (Gtk::make_managed<Gtk::Button> ());
-  flap.set_fold_policy (Adw::FlapFoldPolicy::NEVER);
+  flap.set_flap (gtk::make_managed<gtk::Button> ());
+  flap.set_fold_policy (adw::FlapFoldPolicy::NEVER);
 
   notified = 0;
   flap.property_folded ().signal_changed ().connect (sigc::ptr_fun (notify_cb));
@@ -203,7 +203,7 @@ test_adw_flap_folded (void)
   bool folded = flap.get_property<bool> ("folded");
   g_assert_false (folded);
 
-  flap.set_fold_policy (Adw::FlapFoldPolicy::ALWAYS);
+  flap.set_fold_policy (adw::FlapFoldPolicy::ALWAYS);
   g_assert_true (flap.get_folded ());
   g_assert_true (notified == 1);
 }
@@ -211,9 +211,9 @@ test_adw_flap_folded (void)
 static void
 test_adw_flap_locked (void)
 {
-  Adw::Flap flap;
+  adw::Flap flap;
 
-  flap.set_flap (Gtk::make_managed<Gtk::Button> ());
+  flap.set_flap (gtk::make_managed<gtk::Button> ());
 
   notified = 0;
   flap.property_locked ().signal_changed ().connect (sigc::ptr_fun (notify_cb));
@@ -236,35 +236,35 @@ test_adw_flap_locked (void)
 static void
 test_adw_flap_transition_type (void)
 {
-  Adw::Flap flap;
+  adw::Flap flap;
 
   notified = 0;
   flap.property_transition_type ().signal_changed ().connect (
       sigc::ptr_fun (notify_cb));
 
-  Adw::FlapTransitionType policy =
-      flap.get_property<Adw::FlapTransitionType> ("transition-type");
-  g_assert_true (policy == Adw::FlapTransitionType::OVER);
+  adw::FlapTransitionType policy =
+      flap.get_property<adw::FlapTransitionType> ("transition-type");
+  g_assert_true (policy == adw::FlapTransitionType::OVER);
 
-  flap.set_transition_type (Adw::FlapTransitionType::OVER);
+  flap.set_transition_type (adw::FlapTransitionType::OVER);
   g_assert_true (notified == 0);
 
-  flap.set_transition_type (Adw::FlapTransitionType::SLIDE);
-  g_assert_true (flap.get_transition_type () == Adw::FlapTransitionType::SLIDE);
+  flap.set_transition_type (adw::FlapTransitionType::SLIDE);
+  g_assert_true (flap.get_transition_type () == adw::FlapTransitionType::SLIDE);
   g_assert_true (notified == 1);
 
-  flap.set_property<Adw::FlapTransitionType> ("transition-type",
-                                              Adw::FlapTransitionType::UNDER);
-  g_assert_true (flap.get_transition_type () == Adw::FlapTransitionType::UNDER);
+  flap.set_property<adw::FlapTransitionType> ("transition-type",
+                                              adw::FlapTransitionType::UNDER);
+  g_assert_true (flap.get_transition_type () == adw::FlapTransitionType::UNDER);
   g_assert_true (notified == 2);
 }
 
 static void
 test_adw_flap_modal (void)
 {
-  Adw::Flap flap;
+  adw::Flap flap;
 
-  flap.set_flap (Gtk::make_managed<Gtk::Button> ());
+  flap.set_flap (gtk::make_managed<gtk::Button> ());
 
   notified = 0;
   flap.property_modal ().signal_changed ().connect (sigc::ptr_fun (notify_cb));
@@ -287,9 +287,9 @@ test_adw_flap_modal (void)
 static void
 test_adw_flap_swipe_to_open (void)
 {
-  Adw::Flap flap;
+  adw::Flap flap;
 
-  flap.set_flap (Gtk::make_managed<Gtk::Button> ());
+  flap.set_flap (gtk::make_managed<gtk::Button> ());
 
   notified = 0;
   flap.property_swipe_to_open ().signal_changed ().connect (
@@ -313,9 +313,9 @@ test_adw_flap_swipe_to_open (void)
 static void
 test_adw_flap_swipe_to_close (void)
 {
-  Adw::Flap flap;
+  adw::Flap flap;
 
-  flap.set_flap (Gtk::make_managed<Gtk::Button> ());
+  flap.set_flap (gtk::make_managed<gtk::Button> ());
 
   notified = 0;
   flap.property_swipe_to_close ().signal_changed ().connect (
@@ -340,7 +340,7 @@ int
 main (int argc, char* argv[])
 {
   gtk_test_init (&argc, &argv, NULL);
-  Adw::init ();
+  adw::init ();
 
   g_test_add_func ("/Adwaita/Flap/flap", test_adw_flap_flap);
   g_test_add_func ("/Adwaita/Flap/separator", test_adw_flap_separator);

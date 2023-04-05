@@ -23,16 +23,16 @@ _get_model (GtkCellRendererCombo* renderer) -> GtkTreeModel*
   return combo_model;
 }
 
-namespace Gtk
+namespace gtk
 {
 
   auto
-  CellRendererCombo::_property_renderable () -> Glib::PropertyProxy_Base
+  CellRendererCombo::_property_renderable () -> glib::PropertyProxy_Base
   {
     return CellRendererText::_property_renderable ();
   }
 
-} // namespace Gtk
+} // namespace gtk
 
 namespace
 {
@@ -43,53 +43,53 @@ namespace
                                              GtkTreeIter* p1,
                                              void* data) -> void
   {
-    using namespace Gtk;
+    using namespace gtk;
     using SlotType =
-        sigc::slot<void (const Glib::ustring&, const TreeModel::iterator&)>;
+        sigc::slot<void (const glib::ustring&, const TreeModel::iterator&)>;
 
     auto obj = dynamic_cast<CellRendererCombo*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
     {
       try
       {
-        if (const auto slot = Glib::SignalProxyNormal::data_to_slot (data))
+        if (const auto slot = glib::SignalProxyNormal::data_to_slot (data))
           (*static_cast<SlotType*> (slot)) (
-              Glib::convert_const_gchar_ptr_to_ustring (p0),
+              glib::convert_const_gchar_ptr_to_ustring (p0),
               TreeModel::iterator (_get_model (self), p1));
       }
       catch (...)
       {
-        Glib::exception_handlers_invoke ();
+        glib::exception_handlers_invoke ();
       }
     }
   }
 
-  static const Glib::SignalProxyInfo CellRendererCombo_signal_changed_info = {
+  static const glib::SignalProxyInfo CellRendererCombo_signal_changed_info = {
       "changed",
       (GCallback) &CellRendererCombo_signal_changed_callback,
       (GCallback) &CellRendererCombo_signal_changed_callback};
 
 } // namespace
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GtkCellRendererCombo* object, bool take_copy) -> Gtk::CellRendererCombo*
+  wrap (GtkCellRendererCombo* object, bool take_copy) -> gtk::CellRendererCombo*
   {
-    return dynamic_cast<Gtk::CellRendererCombo*> (
-        Glib::wrap_auto ((GObject*) (object), take_copy));
+    return dynamic_cast<gtk::CellRendererCombo*> (
+        glib::wrap_auto ((GObject*) (object), take_copy));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gtk
+namespace gtk
 {
 
   auto
-  CellRendererCombo_Class::init () -> const Glib::Class&
+  CellRendererCombo_Class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -109,31 +109,31 @@ namespace Gtk
   }
 
   auto
-  CellRendererCombo_Class::wrap_new (GObject* o) -> Glib::ObjectBase*
+  CellRendererCombo_Class::wrap_new (GObject* o) -> glib::ObjectBase*
   {
     return manage (new CellRendererCombo ((GtkCellRendererCombo*) (o)));
   }
 
   CellRendererCombo::CellRendererCombo (
-      const Glib::ConstructParams& construct_params)
-    : Gtk::CellRendererText (construct_params)
+      const glib::ConstructParams& construct_params)
+    : gtk::CellRendererText (construct_params)
   {
   }
 
   CellRendererCombo::CellRendererCombo (GtkCellRendererCombo* castitem)
-    : Gtk::CellRendererText ((GtkCellRendererText*) (castitem))
+    : gtk::CellRendererText ((GtkCellRendererText*) (castitem))
   {
   }
 
   CellRendererCombo::CellRendererCombo (CellRendererCombo&& src) noexcept
-    : Gtk::CellRendererText (std::move (src))
+    : gtk::CellRendererText (std::move (src))
   {
   }
 
   auto
   CellRendererCombo::operator= (CellRendererCombo&& src) noexcept -> CellRendererCombo&
   {
-    Gtk::CellRendererText::operator= (std::move (src));
+    gtk::CellRendererText::operator= (std::move (src));
     return *this;
   }
 
@@ -157,65 +157,65 @@ namespace Gtk
   }
 
   CellRendererCombo::CellRendererCombo ()
-    : Glib::ObjectBase (nullptr),
-      Gtk::CellRendererText (
-          Glib::ConstructParams (cellrenderercombo_class_.init ()))
+    : glib::ObjectBase (nullptr),
+      gtk::CellRendererText (
+          glib::ConstructParams (cellrenderercombo_class_.init ()))
   {
   }
 
   auto
-  CellRendererCombo::signal_changed () -> Glib::SignalProxy<void (const Glib::ustring&,
+  CellRendererCombo::signal_changed () -> glib::SignalProxy<void (const glib::ustring&,
                                  const TreeModel::iterator&)>
   {
-    return Glib::SignalProxy<void (const Glib::ustring&,
+    return glib::SignalProxy<void (const glib::ustring&,
                                    const TreeModel::iterator&)> (
         this,
         &CellRendererCombo_signal_changed_info);
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<
-          Glib::RefPtr<Gtk::TreeModel>>::value,
-      "Type Glib::RefPtr<Gtk::TreeModel> cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      glib::Traits::ValueCompatibleWithWrapProperty<
+          glib::RefPtr<gtk::TreeModel>>::value,
+      "Type glib::RefPtr<gtk::TreeModel> cannot be used in _WRAP_PROPERTY. "
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  CellRendererCombo::property_model () -> Glib::PropertyProxy<Glib::RefPtr<Gtk::TreeModel>>
+  CellRendererCombo::property_model () -> glib::PropertyProxy<glib::RefPtr<gtk::TreeModel>>
   {
-    return Glib::PropertyProxy<Glib::RefPtr<Gtk::TreeModel>> (this, "model");
+    return glib::PropertyProxy<glib::RefPtr<gtk::TreeModel>> (this, "model");
   }
 
   auto
-  CellRendererCombo::property_model () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gtk::TreeModel>>
+  CellRendererCombo::property_model () const -> glib::PropertyProxy_ReadOnly<glib::RefPtr<gtk::TreeModel>>
   {
-    return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gtk::TreeModel>> (this,
+    return glib::PropertyProxy_ReadOnly<glib::RefPtr<gtk::TreeModel>> (this,
                                                                        "model");
   }
 
   auto
-  CellRendererCombo::property_text_column () -> Glib::PropertyProxy<int>
+  CellRendererCombo::property_text_column () -> glib::PropertyProxy<int>
   {
-    return Glib::PropertyProxy<int> (this, "text-column");
+    return glib::PropertyProxy<int> (this, "text-column");
   }
 
   auto
-  CellRendererCombo::property_text_column () const -> Glib::PropertyProxy_ReadOnly<int>
+  CellRendererCombo::property_text_column () const -> glib::PropertyProxy_ReadOnly<int>
   {
-    return Glib::PropertyProxy_ReadOnly<int> (this, "text-column");
+    return glib::PropertyProxy_ReadOnly<int> (this, "text-column");
   }
 
   auto
-  CellRendererCombo::property_has_entry () -> Glib::PropertyProxy<bool>
+  CellRendererCombo::property_has_entry () -> glib::PropertyProxy<bool>
   {
-    return Glib::PropertyProxy<bool> (this, "has-entry");
+    return glib::PropertyProxy<bool> (this, "has-entry");
   }
 
   auto
-  CellRendererCombo::property_has_entry () const -> Glib::PropertyProxy_ReadOnly<bool>
+  CellRendererCombo::property_has_entry () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "has-entry");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "has-entry");
   }
 
-} // namespace Gtk
+} // namespace gtk
 
 #endif

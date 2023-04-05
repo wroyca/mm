@@ -15,13 +15,13 @@ using GtkSwitchClass = struct _GtkSwitchClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT Switch_Class;
 }
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
   class LIBMM_GTK_SYMEXPORT Switch : public Widget,
@@ -52,7 +52,7 @@ namespace Gtk
     static CppClassType switch_class_;
 
   protected:
-    explicit Switch (const Glib::ConstructParams& construct_params);
+    explicit Switch (const glib::ConstructParams& construct_params);
     explicit Switch (GtkSwitch* castitem);
 
 #endif
@@ -96,31 +96,31 @@ namespace Gtk
     get_state () const -> bool;
 
     auto
-    property_active () -> Glib::PropertyProxy<bool>;
+    property_active () -> glib::PropertyProxy<bool>;
 
     auto
-    property_active () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_active () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_state () -> Glib::PropertyProxy<bool>;
+    property_state () -> glib::PropertyProxy<bool>;
 
     auto
-    property_state () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_state () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    signal_state_set () -> Glib::SignalProxy<bool (bool)>;
+    signal_state_set () -> glib::SignalProxy<bool (bool)>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkSwitch* object, bool take_copy = false) -> Gtk::Switch*;
-} // namespace Glib
+  wrap (GtkSwitch* object, bool take_copy = false) -> gtk::Switch*;
+} // namespace glib
 
 #endif

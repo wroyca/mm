@@ -4,7 +4,7 @@
 #include <libmm/cairo/mm-cairoconfig.hxx>
 #include <libmm/cairo/xlib_surface.hxx>
 
-namespace Cairo::Private
+namespace cairo::Private
 {
 
   auto
@@ -18,4 +18,4 @@ namespace Cairo::Private
 #endif
   }
 
-} // namespace Cairo::Private
+} // namespace cairo::Private

@@ -4,7 +4,7 @@
 
   #include <libmm/gtk/treemodelcolumn.hxx>
 
-namespace Gtk
+namespace gtk
 {
 
   TreeModelColumnRecord::TreeModelColumnRecord ()
@@ -43,6 +43,6 @@ namespace Gtk
   {
   }
 
-} // namespace Gtk
+} // namespace gtk
 
 #endif

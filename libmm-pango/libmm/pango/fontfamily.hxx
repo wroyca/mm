@@ -17,17 +17,17 @@ using PangoFontFamilyClass = struct _PangoFontFamilyClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Pango
+namespace pango
 {
   class LIBMM_PANGO_SYMEXPORT FontFamily_Class;
 }
 #endif
 
-namespace Pango
+namespace pango
 {
 
-  class LIBMM_PANGO_SYMEXPORT FontFamily : public Glib::Object,
-                                 public Gio::ListModel
+  class LIBMM_PANGO_SYMEXPORT FontFamily : public glib::Object,
+                                 public gio::ListModel
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -46,7 +46,7 @@ namespace Pango
     static CppClassType fontfamily_class_;
 
   protected:
-    explicit FontFamily (const Glib::ConstructParams& construct_params);
+    explicit FontFamily (const glib::ConstructParams& construct_params);
     explicit FontFamily (PangoFontFamily* castitem);
 
 #endif
@@ -85,10 +85,10 @@ namespace Pango
   private:
   public:
     auto
-    list_faces () const -> std::vector<Glib::RefPtr<FontFace>>;
+    list_faces () const -> std::vector<glib::RefPtr<FontFace>>;
 
     auto
-    get_name () const -> Glib::ustring;
+    get_name () const -> glib::ustring;
 
     auto
     is_monospace () const -> bool;
@@ -97,25 +97,25 @@ namespace Pango
     is_variable () const -> bool;
 
     auto
-    get_face (const Glib::ustring& name = {}) -> Glib::RefPtr<FontFace>;
+    get_face (const glib::ustring& name = {}) -> glib::RefPtr<FontFace>;
 
     auto
-    get_face (const Glib::ustring& name = {}) const
-        -> Glib::RefPtr<const FontFace>;
+    get_face (const glib::ustring& name = {}) const
+        -> glib::RefPtr<const FontFace>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Pango
+} // namespace pango
 
-namespace Glib
+namespace glib
 {
 
   LIBMM_PANGO_SYMEXPORT
   auto
-  wrap (PangoFontFamily* object, bool take_copy = false) -> Glib::RefPtr<Pango::FontFamily>;
-} // namespace Glib
+  wrap (PangoFontFamily* object, bool take_copy = false) -> glib::RefPtr<pango::FontFamily>;
+} // namespace glib
 
 #endif

@@ -26,16 +26,16 @@ using GtkAppChooserClass = struct _GtkAppChooserClass;
   #endif
 
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT AppChooser_Class;
 }
   #endif
 
-namespace Gtk
+namespace gtk
 {
 
-  class LIBMM_GTK_SYMEXPORT AppChooser : public Glib::Interface
+  class LIBMM_GTK_SYMEXPORT AppChooser : public glib::Interface
   {
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -59,7 +59,7 @@ namespace Gtk
 
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
-    explicit AppChooser (const Glib::Interface_Class& interface_class);
+    explicit AppChooser (const glib::Interface_Class& interface_class);
 
   public:
     explicit AppChooser (GtkAppChooser* castitem);
@@ -100,34 +100,34 @@ namespace Gtk
   private:
   public:
     auto
-    get_app_info () -> Glib::RefPtr<Gio::AppInfo>;
+    get_app_info () -> glib::RefPtr<gio::AppInfo>;
 
     auto
-    get_app_info () const -> Glib::RefPtr<const Gio::AppInfo>;
+    get_app_info () const -> glib::RefPtr<const gio::AppInfo>;
 
     auto
-    get_content_type () const -> Glib::ustring;
+    get_content_type () const -> glib::ustring;
 
     auto
     refresh () -> void;
 
     auto
     property_content_type () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+        -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkAppChooser* object, bool take_copy = false) -> Glib::RefPtr<Gtk::AppChooser>;
+  wrap (GtkAppChooser* object, bool take_copy = false) -> glib::RefPtr<gtk::AppChooser>;
 
-} // namespace Glib
+} // namespace glib
 
 #endif
 

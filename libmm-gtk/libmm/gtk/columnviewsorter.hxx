@@ -16,13 +16,13 @@
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT ColumnViewSorter_Class;
 }
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
   class LIBMM_GTK_SYMEXPORT ColumnViewSorter : public Sorter
@@ -44,7 +44,7 @@ namespace Gtk
     static CppClassType columnviewsorter_class_;
 
   protected:
-    explicit ColumnViewSorter (const Glib::ConstructParams& construct_params);
+    explicit ColumnViewSorter (const glib::ConstructParams& construct_params);
     explicit ColumnViewSorter (GtkColumnViewSorter* castitem);
 
 #endif
@@ -86,10 +86,10 @@ namespace Gtk
 
   public:
     auto
-    get_primary_sort_column () -> Glib::RefPtr<ColumnViewColumn>;
+    get_primary_sort_column () -> glib::RefPtr<ColumnViewColumn>;
 
     auto
-    get_primary_sort_column () const -> Glib::RefPtr<const ColumnViewColumn>;
+    get_primary_sort_column () const -> glib::RefPtr<const ColumnViewColumn>;
 
     auto
     get_primary_sort_order () const -> SortType;
@@ -99,31 +99,31 @@ namespace Gtk
 
     auto
     get_nth_sort_column (unsigned int position)
-        -> std::pair<Glib::RefPtr<ColumnViewColumn>, SortType>;
+        -> std::pair<glib::RefPtr<ColumnViewColumn>, SortType>;
 
     auto
     get_nth_sort_column (unsigned int position) const
-        -> std::pair<Glib::RefPtr<const ColumnViewColumn>, SortType>;
+        -> std::pair<glib::RefPtr<const ColumnViewColumn>, SortType>;
 
     auto
     property_primary_sort_column () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<ColumnViewColumn>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<ColumnViewColumn>>;
 
     auto
     property_primary_sort_order () const
-        -> Glib::PropertyProxy_ReadOnly<SortType>;
+        -> glib::PropertyProxy_ReadOnly<SortType>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkColumnViewSorter* object, bool take_copy = false) -> Glib::RefPtr<Gtk::ColumnViewSorter>;
-} // namespace Glib
+  wrap (GtkColumnViewSorter* object, bool take_copy = false) -> glib::RefPtr<gtk::ColumnViewSorter>;
+} // namespace glib
 
 #endif

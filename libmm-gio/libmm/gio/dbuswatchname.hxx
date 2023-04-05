@@ -8,7 +8,7 @@
 
 #include <libmm/gio/dbusconnection.hxx>
 
-namespace Gio::DBus
+namespace gio::DBus
 {
 
   enum class BusNameWatcherFlags
@@ -66,33 +66,33 @@ namespace Gio::DBus
   }
 
   using SlotNameAppeared =
-      sigc::slot<void (const Glib::RefPtr<Gio::DBus::Connection>&,
-                       Glib::ustring,
-                       const Glib::ustring&)>;
+      sigc::slot<void (const glib::RefPtr<gio::DBus::Connection>&,
+                       glib::ustring,
+                       const glib::ustring&)>;
 
   using SlotNameVanished =
-      sigc::slot<void (const Glib::RefPtr<Gio::DBus::Connection>&,
-                       Glib::ustring)>;
+      sigc::slot<void (const glib::RefPtr<gio::DBus::Connection>&,
+                       glib::ustring)>;
 
   LIBMM_GIO_SYMEXPORT
   auto
   watch_name (BusType bus_type,
-              const Glib::ustring& name,
+              const glib::ustring& name,
               const SlotNameAppeared& name_appeared_slot = {},
               const SlotNameVanished& name_vanished_slot = {},
-              BusNameWatcherFlags flags = Gio::DBus::BusNameWatcherFlags::NONE) -> guint;
+              BusNameWatcherFlags flags = gio::DBus::BusNameWatcherFlags::NONE) -> guint;
 
   LIBMM_GIO_SYMEXPORT
   auto
-  watch_name (const Glib::RefPtr<Connection>& connection,
-              const Glib::ustring& name,
+  watch_name (const glib::RefPtr<Connection>& connection,
+              const glib::ustring& name,
               const SlotNameAppeared& name_appeared_slot = {},
               const SlotNameVanished& name_vanished_slot = {},
-              BusNameWatcherFlags flags = Gio::DBus::BusNameWatcherFlags::NONE) -> guint;
+              BusNameWatcherFlags flags = gio::DBus::BusNameWatcherFlags::NONE) -> guint;
 
   LIBMM_GIO_SYMEXPORT auto
   unwatch_name (guint watcher_id) -> void;
 
-} // namespace Gio::DBus
+} // namespace gio::DBus
 
 #endif

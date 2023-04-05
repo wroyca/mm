@@ -19,16 +19,16 @@ using GtkPrintJobClass = struct _GtkPrintJobClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT PrintJob_Class;
 }
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
-  class LIBMM_GTK_SYMEXPORT PrintJob : public Glib::Object
+  class LIBMM_GTK_SYMEXPORT PrintJob : public glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -47,7 +47,7 @@ namespace Gtk
     static CppClassType printjob_class_;
 
   protected:
-    explicit PrintJob (const Glib::ConstructParams& construct_params);
+    explicit PrintJob (const glib::ConstructParams& construct_params);
     explicit PrintJob (GtkPrintJob* castitem);
 
 #endif
@@ -85,33 +85,33 @@ namespace Gtk
 
   private:
   protected:
-    explicit PrintJob (const Glib::ustring& title,
-                       const Glib::RefPtr<Printer>& printer,
-                       const Glib::RefPtr<PrintSettings>& settings,
-                       const Glib::RefPtr<PageSetup>& page_setup);
+    explicit PrintJob (const glib::ustring& title,
+                       const glib::RefPtr<Printer>& printer,
+                       const glib::RefPtr<PrintSettings>& settings,
+                       const glib::RefPtr<PageSetup>& page_setup);
 
   public:
     static auto
-    create (const Glib::ustring& title,
-            const Glib::RefPtr<Printer>& printer,
-            const Glib::RefPtr<PrintSettings>& settings,
-            const Glib::RefPtr<PageSetup>& page_setup)
-        -> Glib::RefPtr<PrintJob>;
+    create (const glib::ustring& title,
+            const glib::RefPtr<Printer>& printer,
+            const glib::RefPtr<PrintSettings>& settings,
+            const glib::RefPtr<PageSetup>& page_setup)
+        -> glib::RefPtr<PrintJob>;
 
     auto
-    get_settings () -> Glib::RefPtr<PrintSettings>;
+    get_settings () -> glib::RefPtr<PrintSettings>;
 
     auto
-    get_settings () const -> Glib::RefPtr<const PrintSettings>;
+    get_settings () const -> glib::RefPtr<const PrintSettings>;
 
     auto
-    get_printer () -> Glib::RefPtr<Printer>;
+    get_printer () -> glib::RefPtr<Printer>;
 
     auto
-    get_printer () const -> Glib::RefPtr<const Printer>;
+    get_printer () const -> glib::RefPtr<const Printer>;
 
     auto
-    get_title () const -> Glib::ustring;
+    get_title () const -> glib::ustring;
 
     auto
     get_status () const -> PrintStatus;
@@ -120,10 +120,10 @@ namespace Gtk
     set_source_file (const std::string& filename) -> void;
 
     auto
-    get_surface () -> Cairo::RefPtr<Cairo::Surface>;
+    get_surface () -> cairo::RefPtr<cairo::Surface>;
 
     auto
-    get_surface () const -> Cairo::RefPtr<const Cairo::Surface>;
+    get_surface () const -> cairo::RefPtr<const cairo::Surface>;
 
     auto
     set_track_print_status (bool track_status = true) -> void;
@@ -131,7 +131,7 @@ namespace Gtk
     auto
     get_track_print_status () const -> bool;
 
-    typedef sigc::slot<void (const Glib::RefPtr<PrintJob>&)>
+    typedef sigc::slot<void (const glib::RefPtr<PrintJob>&)>
         SlotPrintJobComplete;
 
     auto
@@ -198,40 +198,40 @@ namespace Gtk
     set_reverse (bool reverse = true) -> void;
 
     auto
-    signal_status_changed () -> Glib::SignalProxy<void ()>;
+    signal_status_changed () -> glib::SignalProxy<void ()>;
 
     auto
-    property_title () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+    property_title () const -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
     auto
     property_printer () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Printer>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<Printer>>;
 
     auto
     property_settings () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<PrintSettings>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<PrintSettings>>;
 
     auto
     property_page_setup () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<PageSetup>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<PageSetup>>;
 
     auto
-    property_track_print_status () -> Glib::PropertyProxy<bool>;
+    property_track_print_status () -> glib::PropertyProxy<bool>;
 
     auto
-    property_track_print_status () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_track_print_status () const -> glib::PropertyProxy_ReadOnly<bool>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkPrintJob* object, bool take_copy = false) -> Glib::RefPtr<Gtk::PrintJob>;
-} // namespace Glib
+  wrap (GtkPrintJob* object, bool take_copy = false) -> glib::RefPtr<gtk::PrintJob>;
+} // namespace glib
 
 #endif

@@ -16,7 +16,7 @@ namespace
 
 }
 
-namespace Glib
+namespace glib
 {
 
   struct ObjectBase::PrivImpl
@@ -122,7 +122,7 @@ namespace Glib
     if (GObject* const gobject = gobject_)
     {
 #ifdef GLIBMM_DEBUG_REFCOUNTING
-      g_warning ("(Glib::ObjectBase::~ObjectBase): gobject_ = %p",
+      g_warning ("(glib::ObjectBase::~ObjectBase): gobject_ = %p",
                  (void*) gobject_);
 #endif
 
@@ -130,13 +130,13 @@ namespace Glib
 
 #ifdef GLIBMM_DEBUG_REFCOUNTING
       g_warning (
-          "(Glib::ObjectBase::~ObjectBase): before g_object_steal_qdata()");
+          "(glib::ObjectBase::~ObjectBase): before g_object_steal_qdata()");
 #endif
 
       g_object_steal_qdata (gobject, quark_);
 
 #ifdef GLIBMM_DEBUG_REFCOUNTING
-      g_warning ("(Glib::ObjectBase::~ObjectBase): calling g_object_unref()");
+      g_warning ("(glib::ObjectBase::~ObjectBase): calling g_object_unref()");
 #endif
 
       g_object_unref (gobject);
@@ -239,7 +239,7 @@ namespace Glib
   ObjectBase::destroy_notify_ () -> void
   {
 #ifdef GLIBMM_DEBUG_REFCOUNTING
-    g_warning ("Glib::ObjectBase::destroy_notify_: gobject_ = %p",
+    g_warning ("glib::ObjectBase::destroy_notify_: gobject_ = %p",
                (void*) gobject_);
 #endif
 
@@ -263,8 +263,8 @@ namespace Glib
   auto
   ObjectBase::set_manage () -> void
   {
-    g_error ("Glib::ObjectBase::set_manage(): "
-             "only Gtk::Object instances can be managed");
+    g_error ("glib::ObjectBase::set_manage(): "
+             "only gtk::Object instances can be managed");
   }
 
   auto
@@ -387,4 +387,4 @@ namespace Glib
       return false;
   }
 
-} // namespace Glib
+} // namespace glib

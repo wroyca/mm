@@ -15,13 +15,13 @@ using GtkEventControllerKeyClass = struct _GtkEventControllerKeyClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT EventControllerKey_Class;
 }
 #endif
 
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT Widget;
 
@@ -44,7 +44,7 @@ namespace Gtk
     static CppClassType eventcontrollerkey_class_;
 
   protected:
-    explicit EventControllerKey (const Glib::ConstructParams& construct_params);
+    explicit EventControllerKey (const glib::ConstructParams& construct_params);
     explicit EventControllerKey (GtkEventControllerKey* castitem);
 
 #endif
@@ -86,7 +86,7 @@ namespace Gtk
 
   public:
     static auto
-    create () -> Glib::RefPtr<EventControllerKey>;
+    create () -> glib::RefPtr<EventControllerKey>;
 
     auto
     forward (Widget& widget) -> bool;
@@ -96,29 +96,29 @@ namespace Gtk
 
     auto
     signal_key_pressed ()
-        -> Glib::SignalProxy<bool (guint, guint, Gdk::ModifierType)>;
+        -> glib::SignalProxy<bool (guint, guint, gdk::ModifierType)>;
 
     auto
     signal_key_released ()
-        -> Glib::SignalProxy<void (guint, guint, Gdk::ModifierType)>;
+        -> glib::SignalProxy<void (guint, guint, gdk::ModifierType)>;
 
     auto
-    signal_modifiers () -> Glib::SignalProxy<bool (Gdk::ModifierType)>;
+    signal_modifiers () -> glib::SignalProxy<bool (gdk::ModifierType)>;
 
     auto
-    signal_im_update () -> Glib::SignalProxy<void ()>;
+    signal_im_update () -> glib::SignalProxy<void ()>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkEventControllerKey* object, bool take_copy = false) -> Glib::RefPtr<Gtk::EventControllerKey>;
-} // namespace Glib
+  wrap (GtkEventControllerKey* object, bool take_copy = false) -> glib::RefPtr<gtk::EventControllerKey>;
+} // namespace glib
 
 #endif

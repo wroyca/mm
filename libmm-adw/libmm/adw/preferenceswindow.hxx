@@ -18,16 +18,16 @@
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Adw
+namespace adw
 {
   class LIBMM_ADW_SYMEXPORT PreferencesWindow_Class;
 }
 #endif
 
-namespace Adw
+namespace adw
 {
 
-  class LIBMM_ADW_SYMEXPORT PreferencesWindow : public Adw::Window
+  class LIBMM_ADW_SYMEXPORT PreferencesWindow : public adw::Window
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -54,7 +54,7 @@ namespace Adw
     static CppClassType preferenceswindow_class_;
 
   protected:
-    explicit PreferencesWindow (const Glib::ConstructParams& construct_params);
+    explicit PreferencesWindow (const glib::ConstructParams& construct_params);
     explicit PreferencesWindow (AdwPreferencesWindow* castitem);
 
 #endif
@@ -104,10 +104,10 @@ namespace Adw
     get_visible_page () const -> PreferencesPage*;
 
     auto
-    get_visible_page_name () const -> Glib::ustring;
+    get_visible_page_name () const -> glib::ustring;
 
     auto
-    present_subpage (Gtk::Widget* subpage) -> void;
+    present_subpage (gtk::Widget* subpage) -> void;
 
     auto
     remove (PreferencesPage* page) -> void;
@@ -122,46 +122,46 @@ namespace Adw
     set_visible_page (PreferencesPage* page) -> void;
 
     auto
-    set_visible_page_name (const Glib::ustring& name) -> void;
+    set_visible_page_name (const glib::ustring& name) -> void;
 
     auto
-    property_can_navigate_back () -> Glib::PropertyProxy<bool>;
+    property_can_navigate_back () -> glib::PropertyProxy<bool>;
 
     auto
-    property_can_navigate_back () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_can_navigate_back () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_search_enabled () -> Glib::PropertyProxy<bool>;
+    property_search_enabled () -> glib::PropertyProxy<bool>;
 
     auto
-    property_search_enabled () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_search_enabled () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_visible_page () -> Glib::PropertyProxy<PreferencesPage*>;
+    property_visible_page () -> glib::PropertyProxy<PreferencesPage*>;
 
     auto
     property_visible_page () const
-        -> Glib::PropertyProxy_ReadOnly<PreferencesPage*>;
+        -> glib::PropertyProxy_ReadOnly<PreferencesPage*>;
 
     auto
-    property_visible_page_name () -> Glib::PropertyProxy<Glib::ustring>;
+    property_visible_page_name () -> glib::PropertyProxy<glib::ustring>;
 
     auto
     property_visible_page_name () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+        -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Adw
+} // namespace adw
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (AdwPreferencesWindow* object, bool take_copy = false) -> Adw::PreferencesWindow*;
+  wrap (AdwPreferencesWindow* object, bool take_copy = false) -> adw::PreferencesWindow*;
 }
 
 #endif

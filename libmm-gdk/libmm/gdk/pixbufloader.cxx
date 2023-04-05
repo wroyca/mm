@@ -12,7 +12,7 @@ namespace
 {
 
   static auto
-  pixbuf_loader_create_with_type (const Glib::ustring& image_type,
+  pixbuf_loader_create_with_type (const glib::ustring& image_type,
                                   bool mime_type) -> GdkPixbufLoader*
   {
     GError* error = nullptr;
@@ -25,32 +25,32 @@ namespace
       loader = gdk_pixbuf_loader_new_with_type (image_type.c_str (), &error);
 
     if (error)
-      Glib::Error::throw_exception (error);
+      glib::Error::throw_exception (error);
 
     return loader;
   }
 
 } // namespace
 
-namespace Gdk
+namespace gdk
 {
 
-  PixbufLoader::PixbufLoader (const Glib::ustring& image_type, bool mime_type)
-    : Glib::ObjectBase (nullptr),
-      Glib::Object (
+  PixbufLoader::PixbufLoader (const glib::ustring& image_type, bool mime_type)
+    : glib::ObjectBase (nullptr),
+      glib::Object (
           (GObject*) pixbuf_loader_create_with_type (image_type, mime_type))
   {
   }
 
-} // namespace Gdk
+} // namespace gdk
 
 namespace
 {
 
-  static const Glib::SignalProxyInfo PixbufLoader_signal_area_prepared_info = {
+  static const glib::SignalProxyInfo PixbufLoader_signal_area_prepared_info = {
       "area_prepared",
-      (GCallback) &Glib::SignalProxyNormal::slot0_void_callback,
-      (GCallback) &Glib::SignalProxyNormal::slot0_void_callback};
+      (GCallback) &glib::SignalProxyNormal::slot0_void_callback,
+      (GCallback) &glib::SignalProxyNormal::slot0_void_callback};
 
   static auto
   PixbufLoader_signal_area_updated_callback (GdkPixbufLoader* self,
@@ -60,35 +60,35 @@ namespace
                                              gint p3,
                                              void* data) -> void
   {
-    using namespace Gdk;
+    using namespace gdk;
     using SlotType = sigc::slot<void (int, int, int, int)>;
 
     auto obj = dynamic_cast<PixbufLoader*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
     {
       try
       {
-        if (const auto slot = Glib::SignalProxyNormal::data_to_slot (data))
+        if (const auto slot = glib::SignalProxyNormal::data_to_slot (data))
           (*static_cast<SlotType*> (slot)) (p0, p1, p2, p3);
       }
       catch (...)
       {
-        Glib::exception_handlers_invoke ();
+        glib::exception_handlers_invoke ();
       }
     }
   }
 
-  static const Glib::SignalProxyInfo PixbufLoader_signal_area_updated_info = {
+  static const glib::SignalProxyInfo PixbufLoader_signal_area_updated_info = {
       "area_updated",
       (GCallback) &PixbufLoader_signal_area_updated_callback,
       (GCallback) &PixbufLoader_signal_area_updated_callback};
 
-  static const Glib::SignalProxyInfo PixbufLoader_signal_closed_info = {
+  static const glib::SignalProxyInfo PixbufLoader_signal_closed_info = {
       "closed",
-      (GCallback) &Glib::SignalProxyNormal::slot0_void_callback,
-      (GCallback) &Glib::SignalProxyNormal::slot0_void_callback};
+      (GCallback) &glib::SignalProxyNormal::slot0_void_callback,
+      (GCallback) &glib::SignalProxyNormal::slot0_void_callback};
 
   static auto
   PixbufLoader_signal_size_prepared_callback (GdkPixbufLoader* self,
@@ -96,51 +96,51 @@ namespace
                                               gint p1,
                                               void* data) -> void
   {
-    using namespace Gdk;
+    using namespace gdk;
     using SlotType = sigc::slot<void (int, int)>;
 
     auto obj = dynamic_cast<PixbufLoader*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
     {
       try
       {
-        if (const auto slot = Glib::SignalProxyNormal::data_to_slot (data))
+        if (const auto slot = glib::SignalProxyNormal::data_to_slot (data))
           (*static_cast<SlotType*> (slot)) (p0, p1);
       }
       catch (...)
       {
-        Glib::exception_handlers_invoke ();
+        glib::exception_handlers_invoke ();
       }
     }
   }
 
-  static const Glib::SignalProxyInfo PixbufLoader_signal_size_prepared_info = {
+  static const glib::SignalProxyInfo PixbufLoader_signal_size_prepared_info = {
       "size_prepared",
       (GCallback) &PixbufLoader_signal_size_prepared_callback,
       (GCallback) &PixbufLoader_signal_size_prepared_callback};
 
 } // namespace
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GdkPixbufLoader* object, bool take_copy) -> Glib::RefPtr<Gdk::PixbufLoader>
+  wrap (GdkPixbufLoader* object, bool take_copy) -> glib::RefPtr<gdk::PixbufLoader>
   {
-    return Glib::make_refptr_for_instance<Gdk::PixbufLoader> (
-        dynamic_cast<Gdk::PixbufLoader*> (
-            Glib::wrap_auto ((GObject*) (object), take_copy)));
+    return glib::make_refptr_for_instance<gdk::PixbufLoader> (
+        dynamic_cast<gdk::PixbufLoader*> (
+            glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gdk
+namespace gdk
 {
 
   auto
-  PixbufLoader_Class::init () -> const Glib::Class&
+  PixbufLoader_Class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -167,8 +167,8 @@ namespace Gdk
   auto
   PixbufLoader_Class::area_prepared_callback (GdkPixbufLoader* self) -> void
   {
-    const auto obj_base = static_cast<Glib::ObjectBase*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+    const auto obj_base = static_cast<glib::ObjectBase*> (
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -182,7 +182,7 @@ namespace Gdk
         }
         catch (...)
         {
-          Glib::exception_handlers_invoke ();
+          glib::exception_handlers_invoke ();
         }
       }
     }
@@ -201,8 +201,8 @@ namespace Gdk
                                              gint p2,
                                              gint p3) -> void
   {
-    const auto obj_base = static_cast<Glib::ObjectBase*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+    const auto obj_base = static_cast<glib::ObjectBase*> (
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -216,7 +216,7 @@ namespace Gdk
         }
         catch (...)
         {
-          Glib::exception_handlers_invoke ();
+          glib::exception_handlers_invoke ();
         }
       }
     }
@@ -231,8 +231,8 @@ namespace Gdk
   auto
   PixbufLoader_Class::closed_callback (GdkPixbufLoader* self) -> void
   {
-    const auto obj_base = static_cast<Glib::ObjectBase*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+    const auto obj_base = static_cast<glib::ObjectBase*> (
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -246,7 +246,7 @@ namespace Gdk
         }
         catch (...)
         {
-          Glib::exception_handlers_invoke ();
+          glib::exception_handlers_invoke ();
         }
       }
     }
@@ -263,8 +263,8 @@ namespace Gdk
                                               gint p0,
                                               gint p1) -> void
   {
-    const auto obj_base = static_cast<Glib::ObjectBase*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+    const auto obj_base = static_cast<glib::ObjectBase*> (
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -278,7 +278,7 @@ namespace Gdk
         }
         catch (...)
         {
-          Glib::exception_handlers_invoke ();
+          glib::exception_handlers_invoke ();
         }
       }
     }
@@ -291,7 +291,7 @@ namespace Gdk
   }
 
   auto
-  PixbufLoader_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  PixbufLoader_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new PixbufLoader ((GdkPixbufLoader*) object);
   }
@@ -303,25 +303,25 @@ namespace Gdk
     return gobj ();
   }
 
-  PixbufLoader::PixbufLoader (const Glib::ConstructParams& construct_params)
-    : Glib::Object (construct_params)
+  PixbufLoader::PixbufLoader (const glib::ConstructParams& construct_params)
+    : glib::Object (construct_params)
   {
   }
 
   PixbufLoader::PixbufLoader (GdkPixbufLoader* castitem)
-    : Glib::Object ((GObject*) (castitem))
+    : glib::Object ((GObject*) (castitem))
   {
   }
 
   PixbufLoader::PixbufLoader (PixbufLoader&& src) noexcept
-    : Glib::Object (std::move (src))
+    : glib::Object (std::move (src))
   {
   }
 
   auto
   PixbufLoader::operator= (PixbufLoader&& src) noexcept -> PixbufLoader&
   {
-    Glib::Object::operator= (std::move (src));
+    glib::Object::operator= (std::move (src));
     return *this;
   }
 
@@ -342,21 +342,21 @@ namespace Gdk
   }
 
   PixbufLoader::PixbufLoader ()
-    : Glib::ObjectBase (nullptr),
-      Glib::Object (Glib::ConstructParams (pixbufloader_class_.init ()))
+    : glib::ObjectBase (nullptr),
+      glib::Object (glib::ConstructParams (pixbufloader_class_.init ()))
   {
   }
 
   auto
-  PixbufLoader::create () -> Glib::RefPtr<PixbufLoader>
+  PixbufLoader::create () -> glib::RefPtr<PixbufLoader>
   {
-    return Glib::make_refptr_for_instance<PixbufLoader> (new PixbufLoader ());
+    return glib::make_refptr_for_instance<PixbufLoader> (new PixbufLoader ());
   }
 
   auto
-  PixbufLoader::create (const Glib::ustring& image_type, bool mime_type) -> Glib::RefPtr<PixbufLoader>
+  PixbufLoader::create (const glib::ustring& image_type, bool mime_type) -> glib::RefPtr<PixbufLoader>
   {
-    return Glib::make_refptr_for_instance<PixbufLoader> (
+    return glib::make_refptr_for_instance<PixbufLoader> (
         new PixbufLoader (image_type, mime_type));
   }
 
@@ -372,7 +372,7 @@ namespace Gdk
     GError* gerror = nullptr;
     gdk_pixbuf_loader_write (gobj (), (buf), count, &(gerror));
     if (gerror)
-      ::Glib::Error::throw_exception (gerror);
+      ::glib::Error::throw_exception (gerror);
   }
 
   auto
@@ -381,22 +381,22 @@ namespace Gdk
     GError* gerror = nullptr;
     gdk_pixbuf_loader_close (gobj (), &(gerror));
     if (gerror)
-      ::Glib::Error::throw_exception (gerror);
+      ::glib::Error::throw_exception (gerror);
   }
 
   auto
-  PixbufLoader::get_pixbuf () -> Glib::RefPtr<Gdk::Pixbuf>
+  PixbufLoader::get_pixbuf () -> glib::RefPtr<gdk::Pixbuf>
   {
-    auto retvalue = Glib::wrap (gdk_pixbuf_loader_get_pixbuf (gobj ()));
+    auto retvalue = glib::wrap (gdk_pixbuf_loader_get_pixbuf (gobj ()));
     if (retvalue)
       retvalue->reference ();
     return retvalue;
   }
 
   auto
-  PixbufLoader::get_animation () -> Glib::RefPtr<Gdk::PixbufAnimation>
+  PixbufLoader::get_animation () -> glib::RefPtr<gdk::PixbufAnimation>
   {
-    auto retvalue = Glib::wrap (gdk_pixbuf_loader_get_animation (gobj ()));
+    auto retvalue = glib::wrap (gdk_pixbuf_loader_get_animation (gobj ()));
     if (retvalue)
       retvalue->reference ();
     return retvalue;
@@ -410,36 +410,36 @@ namespace Gdk
   }
 
   auto
-  PixbufLoader::signal_area_prepared () -> Glib::SignalProxy<void ()>
+  PixbufLoader::signal_area_prepared () -> glib::SignalProxy<void ()>
   {
-    return Glib::SignalProxy<void ()> (this,
+    return glib::SignalProxy<void ()> (this,
                                        &PixbufLoader_signal_area_prepared_info);
   }
 
   auto
-  PixbufLoader::signal_area_updated () -> Glib::SignalProxy<void (int, int, int, int)>
+  PixbufLoader::signal_area_updated () -> glib::SignalProxy<void (int, int, int, int)>
   {
-    return Glib::SignalProxy<void (int, int, int, int)> (
+    return glib::SignalProxy<void (int, int, int, int)> (
         this,
         &PixbufLoader_signal_area_updated_info);
   }
 
   auto
-  PixbufLoader::signal_closed () -> Glib::SignalProxy<void ()>
+  PixbufLoader::signal_closed () -> glib::SignalProxy<void ()>
   {
-    return Glib::SignalProxy<void ()> (this, &PixbufLoader_signal_closed_info);
+    return glib::SignalProxy<void ()> (this, &PixbufLoader_signal_closed_info);
   }
 
   auto
-  PixbufLoader::signal_size_prepared () -> Glib::SignalProxy<void (int, int)>
+  PixbufLoader::signal_size_prepared () -> glib::SignalProxy<void (int, int)>
   {
-    return Glib::SignalProxy<void (int, int)> (
+    return glib::SignalProxy<void (int, int)> (
         this,
         &PixbufLoader_signal_size_prepared_info);
   }
 
   auto
-  Gdk::PixbufLoader::on_area_prepared () -> void
+  gdk::PixbufLoader::on_area_prepared () -> void
   {
     const auto base = static_cast<BaseClassType*> (
         g_type_class_peek_parent (G_OBJECT_GET_CLASS (gobject_)));
@@ -449,7 +449,7 @@ namespace Gdk
   }
 
   auto
-  Gdk::PixbufLoader::on_area_updated (int x, int y, int width, int height) -> void
+  gdk::PixbufLoader::on_area_updated (int x, int y, int width, int height) -> void
   {
     const auto base = static_cast<BaseClassType*> (
         g_type_class_peek_parent (G_OBJECT_GET_CLASS (gobject_)));
@@ -459,7 +459,7 @@ namespace Gdk
   }
 
   auto
-  Gdk::PixbufLoader::on_closed () -> void
+  gdk::PixbufLoader::on_closed () -> void
   {
     const auto base = static_cast<BaseClassType*> (
         g_type_class_peek_parent (G_OBJECT_GET_CLASS (gobject_)));
@@ -469,7 +469,7 @@ namespace Gdk
   }
 
   auto
-  Gdk::PixbufLoader::on_size_prepared (int width, int height) -> void
+  gdk::PixbufLoader::on_size_prepared (int width, int height) -> void
   {
     const auto base = static_cast<BaseClassType*> (
         g_type_class_peek_parent (G_OBJECT_GET_CLASS (gobject_)));
@@ -478,4 +478,4 @@ namespace Gdk
       (*base->size_prepared) (gobj (), width, height);
   }
 
-} // namespace Gdk
+} // namespace gdk

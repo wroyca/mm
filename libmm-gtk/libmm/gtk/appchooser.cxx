@@ -17,25 +17,25 @@ namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GtkAppChooser* object, bool take_copy) -> Glib::RefPtr<Gtk::AppChooser>
+  wrap (GtkAppChooser* object, bool take_copy) -> glib::RefPtr<gtk::AppChooser>
   {
-    return Glib::make_refptr_for_instance<Gtk::AppChooser> (
-        dynamic_cast<Gtk::AppChooser*> (
-            Glib::wrap_auto_interface<Gtk::AppChooser> ((GObject*) (object),
+    return glib::make_refptr_for_instance<gtk::AppChooser> (
+        dynamic_cast<gtk::AppChooser*> (
+            glib::wrap_auto_interface<gtk::AppChooser> ((GObject*) (object),
                                                         take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gtk
+namespace gtk
 {
 
   auto
-  AppChooser_Class::init () -> const Glib::Interface_Class&
+  AppChooser_Class::init () -> const glib::Interface_Class&
   {
     if (!gtype_)
     {
@@ -56,35 +56,35 @@ namespace Gtk
   }
 
   auto
-  AppChooser_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  AppChooser_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new AppChooser ((GtkAppChooser*) (object));
   }
 
   AppChooser::AppChooser ()
-    : Glib::Interface (appchooser_class_.init ())
+    : glib::Interface (appchooser_class_.init ())
   {
   }
 
   AppChooser::AppChooser (GtkAppChooser* castitem)
-    : Glib::Interface ((GObject*) (castitem))
+    : glib::Interface ((GObject*) (castitem))
   {
   }
 
-  AppChooser::AppChooser (const Glib::Interface_Class& interface_class)
-    : Glib::Interface (interface_class)
+  AppChooser::AppChooser (const glib::Interface_Class& interface_class)
+    : glib::Interface (interface_class)
   {
   }
 
   AppChooser::AppChooser (AppChooser&& src) noexcept
-    : Glib::Interface (std::move (src))
+    : glib::Interface (std::move (src))
   {
   }
 
   auto
   AppChooser::operator= (AppChooser&& src) noexcept -> AppChooser&
   {
-    Glib::Interface::operator= (std::move (src));
+    glib::Interface::operator= (std::move (src));
     return *this;
   }
 
@@ -111,24 +111,24 @@ namespace Gtk
   }
 
   auto
-  AppChooser::get_app_info () -> Glib::RefPtr<Gio::AppInfo>
+  AppChooser::get_app_info () -> glib::RefPtr<gio::AppInfo>
   {
-    auto retvalue = Glib::wrap (gtk_app_chooser_get_app_info (gobj ()));
+    auto retvalue = glib::wrap (gtk_app_chooser_get_app_info (gobj ()));
     if (retvalue)
       retvalue->reference ();
     return retvalue;
   }
 
   auto
-  AppChooser::get_app_info () const -> Glib::RefPtr<const Gio::AppInfo>
+  AppChooser::get_app_info () const -> glib::RefPtr<const gio::AppInfo>
   {
     return const_cast<AppChooser*> (this)->get_app_info ();
   }
 
   auto
-  AppChooser::get_content_type () const -> Glib::ustring
+  AppChooser::get_content_type () const -> glib::ustring
   {
-    return Glib::convert_return_gchar_ptr_to_ustring (
+    return glib::convert_return_gchar_ptr_to_ustring (
         gtk_app_chooser_get_content_type (
             const_cast<GtkAppChooser*> (gobj ())));
   }
@@ -140,11 +140,11 @@ namespace Gtk
   }
 
   auto
-  AppChooser::property_content_type () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>
+  AppChooser::property_content_type () const -> glib::PropertyProxy_ReadOnly<glib::ustring>
   {
-    return Glib::PropertyProxy_ReadOnly<Glib::ustring> (this, "content-type");
+    return glib::PropertyProxy_ReadOnly<glib::ustring> (this, "content-type");
   }
 
-} // namespace Gtk
+} // namespace gtk
 
 #endif

@@ -14,24 +14,24 @@ namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GUnixOutputStream* object, bool take_copy) -> Glib::RefPtr<Gio::UnixOutputStream>
+  wrap (GUnixOutputStream* object, bool take_copy) -> glib::RefPtr<gio::UnixOutputStream>
   {
-    return Glib::make_refptr_for_instance<Gio::UnixOutputStream> (
-        dynamic_cast<Gio::UnixOutputStream*> (
-            Glib::wrap_auto ((GObject*) (object), take_copy)));
+    return glib::make_refptr_for_instance<gio::UnixOutputStream> (
+        dynamic_cast<gio::UnixOutputStream*> (
+            glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gio
+namespace gio
 {
 
   auto
-  UnixOutputStream_Class::init () -> const Glib::Class&
+  UnixOutputStream_Class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -54,7 +54,7 @@ namespace Gio
   }
 
   auto
-  UnixOutputStream_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  UnixOutputStream_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new UnixOutputStream ((GUnixOutputStream*) object);
   }
@@ -67,18 +67,18 @@ namespace Gio
   }
 
   UnixOutputStream::UnixOutputStream (
-      const Glib::ConstructParams& construct_params)
-    : Gio::OutputStream (construct_params)
+      const glib::ConstructParams& construct_params)
+    : gio::OutputStream (construct_params)
   {
   }
 
   UnixOutputStream::UnixOutputStream (GUnixOutputStream* castitem)
-    : Gio::OutputStream ((GOutputStream*) (castitem))
+    : gio::OutputStream ((GOutputStream*) (castitem))
   {
   }
 
   UnixOutputStream::UnixOutputStream (UnixOutputStream&& src) noexcept
-    : Gio::OutputStream (std::move (src)),
+    : gio::OutputStream (std::move (src)),
       PollableOutputStream (std::move (src)),
       FileDescriptorBased (std::move (src))
   {
@@ -87,7 +87,7 @@ namespace Gio
   auto
   UnixOutputStream::operator= (UnixOutputStream&& src) noexcept -> UnixOutputStream&
   {
-    Gio::OutputStream::operator= (std::move (src));
+    gio::OutputStream::operator= (std::move (src));
     PollableOutputStream::operator= (std::move (src));
     FileDescriptorBased::operator= (std::move (src));
     return *this;
@@ -110,8 +110,8 @@ namespace Gio
   }
 
   UnixOutputStream::UnixOutputStream (int fd, bool close_fd)
-    : Glib::ObjectBase (nullptr),
-      Gio::OutputStream (Glib::ConstructParams (unixoutputstream_class_.init (),
+    : glib::ObjectBase (nullptr),
+      gio::OutputStream (glib::ConstructParams (unixoutputstream_class_.init (),
                                                 "fd",
                                                 fd,
                                                 "close_fd",
@@ -121,9 +121,9 @@ namespace Gio
   }
 
   auto
-  UnixOutputStream::create (int fd, bool close_fd) -> Glib::RefPtr<UnixOutputStream>
+  UnixOutputStream::create (int fd, bool close_fd) -> glib::RefPtr<UnixOutputStream>
   {
-    return Glib::make_refptr_for_instance<UnixOutputStream> (
+    return glib::make_refptr_for_instance<UnixOutputStream> (
         new UnixOutputStream (fd, close_fd));
   }
 
@@ -148,23 +148,23 @@ namespace Gio
   }
 
   auto
-  UnixOutputStream::property_fd () const -> Glib::PropertyProxy_ReadOnly<int>
+  UnixOutputStream::property_fd () const -> glib::PropertyProxy_ReadOnly<int>
   {
-    return Glib::PropertyProxy_ReadOnly<int> (this, "fd");
+    return glib::PropertyProxy_ReadOnly<int> (this, "fd");
   }
 
   auto
-  UnixOutputStream::property_close_fd () -> Glib::PropertyProxy<bool>
+  UnixOutputStream::property_close_fd () -> glib::PropertyProxy<bool>
   {
-    return Glib::PropertyProxy<bool> (this, "close-fd");
+    return glib::PropertyProxy<bool> (this, "close-fd");
   }
 
   auto
-  UnixOutputStream::property_close_fd () const -> Glib::PropertyProxy_ReadOnly<bool>
+  UnixOutputStream::property_close_fd () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "close-fd");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "close-fd");
   }
 
-} // namespace Gio
+} // namespace gio
 
 #endif

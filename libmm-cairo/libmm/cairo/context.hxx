@@ -15,7 +15,7 @@
 #include <valarray>
 #include <vector>
 
-namespace Cairo
+namespace cairo
 {
 
   class LIBMM_CAIRO_SYMEXPORT Context
@@ -490,6 +490,6 @@ namespace Cairo
     RefPtr<Context> ctx_;
   };
 
-} // namespace Cairo
+} // namespace cairo
 
 #endif

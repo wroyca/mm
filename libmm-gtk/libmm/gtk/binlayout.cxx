@@ -11,24 +11,24 @@ namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GtkBinLayout* object, bool take_copy) -> Glib::RefPtr<Gtk::BinLayout>
+  wrap (GtkBinLayout* object, bool take_copy) -> glib::RefPtr<gtk::BinLayout>
   {
-    return Glib::make_refptr_for_instance<Gtk::BinLayout> (
-        dynamic_cast<Gtk::BinLayout*> (
-            Glib::wrap_auto ((GObject*) (object), take_copy)));
+    return glib::make_refptr_for_instance<gtk::BinLayout> (
+        dynamic_cast<gtk::BinLayout*> (
+            glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gtk
+namespace gtk
 {
 
   auto
-  BinLayout_Class::init () -> const Glib::Class&
+  BinLayout_Class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -48,7 +48,7 @@ namespace Gtk
   }
 
   auto
-  BinLayout_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  BinLayout_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new BinLayout ((GtkBinLayout*) object);
   }
@@ -60,7 +60,7 @@ namespace Gtk
     return gobj ();
   }
 
-  BinLayout::BinLayout (const Glib::ConstructParams& construct_params)
+  BinLayout::BinLayout (const glib::ConstructParams& construct_params)
     : LayoutManager (construct_params)
   {
   }
@@ -99,15 +99,15 @@ namespace Gtk
   }
 
   BinLayout::BinLayout ()
-    : Glib::ObjectBase (nullptr),
-      LayoutManager (Glib::ConstructParams (binlayout_class_.init ()))
+    : glib::ObjectBase (nullptr),
+      LayoutManager (glib::ConstructParams (binlayout_class_.init ()))
   {
   }
 
   auto
-  BinLayout::create () -> Glib::RefPtr<BinLayout>
+  BinLayout::create () -> glib::RefPtr<BinLayout>
   {
-    return Glib::make_refptr_for_instance<BinLayout> (new BinLayout ());
+    return glib::make_refptr_for_instance<BinLayout> (new BinLayout ());
   }
 
-} // namespace Gtk
+} // namespace gtk

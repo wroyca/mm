@@ -8,7 +8,7 @@
 #include <adwaita.h>
 #include <libmm/gtk/mm-gtk.hxx>
 
-namespace Adw
+namespace adw
 {
 
 }
@@ -17,23 +17,23 @@ namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (AdwWindow* object, bool take_copy) -> Adw::Window*
+  wrap (AdwWindow* object, bool take_copy) -> adw::Window*
   {
-    return dynamic_cast<Adw::Window*> (
-        Glib::wrap_auto ((GObject*) (object), take_copy));
+    return dynamic_cast<adw::Window*> (
+        glib::wrap_auto ((GObject*) (object), take_copy));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Adw
+namespace adw
 {
 
   auto
-  Window_Class::init () -> const Glib::Class&
+  Window_Class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -53,30 +53,30 @@ namespace Adw
   }
 
   auto
-  Window_Class::wrap_new (GObject* o) -> Glib::ObjectBase*
+  Window_Class::wrap_new (GObject* o) -> glib::ObjectBase*
   {
     return new Window ((AdwWindow*) (o));
   }
 
-  Window::Window (const Glib::ConstructParams& construct_params)
-    : Gtk::Window (construct_params)
+  Window::Window (const glib::ConstructParams& construct_params)
+    : gtk::Window (construct_params)
   {
   }
 
   Window::Window (AdwWindow* castitem)
-    : Gtk::Window ((GtkWindow*) (castitem))
+    : gtk::Window ((GtkWindow*) (castitem))
   {
   }
 
   Window::Window (Window&& src) noexcept
-    : Gtk::Window (std::move (src))
+    : gtk::Window (std::move (src))
   {
   }
 
   auto
   Window::operator= (Window&& src) noexcept -> Window&
   {
-    Gtk::Window::operator= (std::move (src));
+    gtk::Window::operator= (std::move (src));
     return *this;
   }
 
@@ -100,34 +100,34 @@ namespace Adw
   }
 
   Window::Window ()
-    : Glib::ObjectBase (nullptr),
-      Gtk::Window (Glib::ConstructParams (window_class_.init ()))
+    : glib::ObjectBase (nullptr),
+      gtk::Window (glib::ConstructParams (window_class_.init ()))
   {
   }
 
   auto
-  Window::get_content () const -> Gtk::Widget*
+  Window::get_content () const -> gtk::Widget*
   {
-    return Glib::wrap (
+    return glib::wrap (
         adw_window_get_content (const_cast<AdwWindow*> (gobj ())));
   }
 
   auto
-  Window::set_content (Gtk::Widget* content) -> void
+  Window::set_content (gtk::Widget* content) -> void
   {
-    adw_window_set_content (gobj (), (GtkWidget*) Glib::unwrap (content));
+    adw_window_set_content (gobj (), (GtkWidget*) glib::unwrap (content));
   }
 
   auto
-  Window::property_content () -> Glib::PropertyProxy<Gtk::Widget*>
+  Window::property_content () -> glib::PropertyProxy<gtk::Widget*>
   {
-    return Glib::PropertyProxy<Gtk::Widget*> (this, "content");
+    return glib::PropertyProxy<gtk::Widget*> (this, "content");
   }
 
   auto
-  Window::property_content () const -> Glib::PropertyProxy_ReadOnly<Gtk::Widget*>
+  Window::property_content () const -> glib::PropertyProxy_ReadOnly<gtk::Widget*>
   {
-    return Glib::PropertyProxy_ReadOnly<Gtk::Widget*> (this, "content");
+    return glib::PropertyProxy_ReadOnly<gtk::Widget*> (this, "content");
   }
 
-} // namespace Adw
+} // namespace adw

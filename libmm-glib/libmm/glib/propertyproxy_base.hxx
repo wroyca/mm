@@ -7,7 +7,7 @@
 #include <libmm/glib/signalproxy.hxx>
 #include <libmm/glib/value.hxx>
 
-namespace Glib
+namespace glib
 {
 
   class LIBMM_GLIB_SYMEXPORT ObjectBase;
@@ -17,7 +17,7 @@ namespace Glib
   public:
     friend class PropertyProxy_Base;
 
-    SignalProxyProperty (Glib::ObjectBase* obj, const gchar* property_name);
+    SignalProxyProperty (glib::ObjectBase* obj, const gchar* property_name);
     ~SignalProxyProperty () noexcept;
 
     using SlotType = sigc::slot<void ()>;
@@ -58,9 +58,9 @@ namespace Glib
 
   protected:
     auto
-    set_property_ (const Glib::ValueBase& value) -> void;
+    set_property_ (const glib::ValueBase& value) -> void;
     auto
-    get_property_ (Glib::ValueBase& value) const -> void;
+    get_property_ (glib::ValueBase& value) const -> void;
     auto
     reset_property_ () -> void;
 
@@ -88,7 +88,7 @@ namespace Glib
     PropertyProxyConnectionNode (sigc::slot_base&& slot, GObject* gobject);
 
     auto
-    connect_changed (const Glib::ustring& property_name) -> sigc::connection;
+    connect_changed (const glib::ustring& property_name) -> sigc::connection;
 
     static auto
     callback (GObject* object, GParamSpec* pspec, gpointer data) -> void;
@@ -96,6 +96,6 @@ namespace Glib
 
 #endif
 
-} // namespace Glib
+} // namespace glib
 
 #endif

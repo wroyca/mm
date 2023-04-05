@@ -7,7 +7,7 @@
 
 #include <gtk/gtk.h>
 
-namespace Gtk
+namespace gtk
 {
 
   PadActionEntry::PadActionEntry ()
@@ -18,8 +18,8 @@ namespace Gtk
   PadActionEntry::PadActionEntry (PadActionType type,
                                   int index,
                                   int mode,
-                                  const Glib::ustring& label,
-                                  const Glib::ustring& action_name)
+                                  const glib::ustring& label,
+                                  const glib::ustring& action_name)
     : gobject_ (g_new (GtkPadActionEntry, 1))
   {
     gobject_->type = static_cast<GtkPadActionType> (type);
@@ -97,19 +97,19 @@ namespace Gtk
     return *this;
   }
 
-} // namespace Gtk
+} // namespace gtk
 
 namespace
 {
 }
 
 auto
-Glib::Value<Gtk::PadActionType>::value_type () -> GType
+glib::Value<gtk::PadActionType>::value_type () -> GType
 {
   return gtk_pad_action_type_get_type ();
 }
 
-namespace Gtk
+namespace gtk
 {
 
   auto
@@ -149,29 +149,29 @@ namespace Gtk
   }
 
   auto
-  PadActionEntry::get_label () const -> Glib::ustring
+  PadActionEntry::get_label () const -> glib::ustring
   {
-    return Glib::convert_const_gchar_ptr_to_ustring (gobj ()->label);
+    return glib::convert_const_gchar_ptr_to_ustring (gobj ()->label);
   }
 
   auto
-  PadActionEntry::set_label (const Glib::ustring& value) -> void
+  PadActionEntry::set_label (const glib::ustring& value) -> void
   {
     g_free ((char*) gobj ()->label);
     gobj ()->label = g_strdup ((value).c_str ());
   }
 
   auto
-  PadActionEntry::get_action_name () const -> Glib::ustring
+  PadActionEntry::get_action_name () const -> glib::ustring
   {
-    return Glib::convert_const_gchar_ptr_to_ustring (gobj ()->action_name);
+    return glib::convert_const_gchar_ptr_to_ustring (gobj ()->action_name);
   }
 
   auto
-  PadActionEntry::set_action_name (const Glib::ustring& value) -> void
+  PadActionEntry::set_action_name (const glib::ustring& value) -> void
   {
     g_free ((char*) gobj ()->action_name);
     gobj ()->action_name = g_strdup ((value).c_str ());
   }
 
-} // namespace Gtk
+} // namespace gtk

@@ -17,13 +17,13 @@
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Adw
+namespace adw
 {
   class LIBMM_ADW_SYMEXPORT Toast_Class;
 }
 #endif
 
-namespace Adw
+namespace adw
 {
 
   enum class LIBMM_ADW_SYMEXPORT ToastPriority
@@ -32,27 +32,27 @@ namespace Adw
     HIGH
   };
 
-} // namespace Adw
+} // namespace adw
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_ADW_SYMEXPORT Value<Adw::ToastPriority> : public Glib::Value_Enum<Adw::ToastPriority>
+  class LIBMM_ADW_SYMEXPORT Value<adw::ToastPriority> : public glib::Value_Enum<adw::ToastPriority>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
-namespace Adw
+namespace adw
 {
 
-  class LIBMM_ADW_SYMEXPORT Toast : public Glib::Object
+  class LIBMM_ADW_SYMEXPORT Toast : public glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -71,7 +71,7 @@ namespace Adw
     static CppClassType toast_class_;
 
   protected:
-    explicit Toast (const Glib::ConstructParams& construct_params);
+    explicit Toast (const glib::ConstructParams& construct_params);
     explicit Toast (AdwToast* castitem);
 
 #endif
@@ -112,19 +112,19 @@ namespace Adw
     Toast ();
 
   public:
-    explicit Toast (const Glib::ustring& title);
+    explicit Toast (const glib::ustring& title);
 
     auto
     dismiss () -> void;
 
     auto
-    get_action_name () const -> Glib::ustring;
+    get_action_name () const -> glib::ustring;
 
     auto
-    get_button_label () const -> Glib::ustring;
+    get_button_label () const -> glib::ustring;
 
     auto
-    get_custom_title () const -> Gtk::Widget*;
+    get_custom_title () const -> gtk::Widget*;
 
     auto
     get_priority () const -> ToastPriority;
@@ -133,19 +133,19 @@ namespace Adw
     get_timeout () const -> guint;
 
     auto
-    get_title () const -> Glib::ustring;
+    get_title () const -> glib::ustring;
 
     auto
-    set_action_name (const Glib::ustring& action_name) -> void;
+    set_action_name (const glib::ustring& action_name) -> void;
 
     auto
-    set_button_label (const Glib::ustring& button_label) -> void;
+    set_button_label (const glib::ustring& button_label) -> void;
 
     auto
-    set_custom_title (Gtk::Widget* widget) -> void;
+    set_custom_title (gtk::Widget* widget) -> void;
 
     auto
-    set_detailed_action_name (const Glib::ustring& detailed_action_name)
+    set_detailed_action_name (const glib::ustring& detailed_action_name)
         -> void;
 
     auto
@@ -155,78 +155,78 @@ namespace Adw
     set_timeout (guint timeout) -> void;
 
     auto
-    set_title (const Glib::ustring& title) -> void;
+    set_title (const glib::ustring& title) -> void;
 
     auto
-    get_action_target_value () const -> Glib::VariantBase;
+    get_action_target_value () const -> glib::VariantBase;
 
     auto
-    set_action_target_value (const Glib::VariantBase& target_value) -> void;
+    set_action_target_value (const glib::VariantBase& target_value) -> void;
 
     auto
-    property_action_name () -> Glib::PropertyProxy<Glib::ustring>;
+    property_action_name () -> glib::PropertyProxy<glib::ustring>;
 
     auto
     property_action_name () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+        -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
     auto
-    property_action_target () -> Glib::PropertyProxy<Glib::VariantBase>;
+    property_action_target () -> glib::PropertyProxy<glib::VariantBase>;
 
     auto
     property_action_target () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::VariantBase>;
+        -> glib::PropertyProxy_ReadOnly<glib::VariantBase>;
 
     auto
-    property_button_label () -> Glib::PropertyProxy<Glib::ustring>;
+    property_button_label () -> glib::PropertyProxy<glib::ustring>;
 
     auto
     property_button_label () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+        -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
     auto
-    property_custom_title () -> Glib::PropertyProxy<Gtk::Widget*>;
+    property_custom_title () -> glib::PropertyProxy<gtk::Widget*>;
 
     auto
     property_custom_title () const
-        -> Glib::PropertyProxy_ReadOnly<Gtk::Widget*>;
+        -> glib::PropertyProxy_ReadOnly<gtk::Widget*>;
 
     auto
-    property_priority () -> Glib::PropertyProxy<ToastPriority>;
+    property_priority () -> glib::PropertyProxy<ToastPriority>;
 
     auto
-    property_priority () const -> Glib::PropertyProxy_ReadOnly<ToastPriority>;
+    property_priority () const -> glib::PropertyProxy_ReadOnly<ToastPriority>;
 
     auto
-    property_timeout () -> Glib::PropertyProxy<guint>;
+    property_timeout () -> glib::PropertyProxy<guint>;
 
     auto
-    property_timeout () const -> Glib::PropertyProxy_ReadOnly<guint>;
+    property_timeout () const -> glib::PropertyProxy_ReadOnly<guint>;
 
     auto
-    property_title () -> Glib::PropertyProxy<Glib::ustring>;
+    property_title () -> glib::PropertyProxy<glib::ustring>;
 
     auto
-    property_title () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+    property_title () const -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
     auto
-    signal_button_clicked () -> Glib::SignalProxy<void ()>;
+    signal_button_clicked () -> glib::SignalProxy<void ()>;
 
     auto
-    signal_dismissed () -> Glib::SignalProxy<void ()>;
+    signal_dismissed () -> glib::SignalProxy<void ()>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Adw
+} // namespace adw
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (AdwToast* object, bool take_copy = false) -> Glib::RefPtr<Adw::Toast>;
+  wrap (AdwToast* object, bool take_copy = false) -> glib::RefPtr<adw::Toast>;
 }
 
 #endif

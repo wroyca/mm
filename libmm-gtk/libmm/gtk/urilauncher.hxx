@@ -17,17 +17,17 @@
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT UriLauncher_Class;
 }
 #endif
 
-namespace Gtk
+namespace gtk
 {
   class Window;
 
-  class LIBMM_GTK_SYMEXPORT UriLauncher : public Glib::Object
+  class LIBMM_GTK_SYMEXPORT UriLauncher : public glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -46,7 +46,7 @@ namespace Gtk
     static CppClassType urilauncher_class_;
 
   protected:
-    explicit UriLauncher (const Glib::ConstructParams& construct_params);
+    explicit UriLauncher (const glib::ConstructParams& construct_params);
     explicit UriLauncher (GtkUriLauncher* castitem);
 
 #endif
@@ -84,49 +84,49 @@ namespace Gtk
 
   private:
   protected:
-    explicit UriLauncher (const Glib::ustring& uri);
+    explicit UriLauncher (const glib::ustring& uri);
 
   public:
     static auto
-    create (const Glib::ustring& uri = {}) -> Glib::RefPtr<UriLauncher>;
+    create (const glib::ustring& uri = {}) -> glib::RefPtr<UriLauncher>;
 
     auto
-    get_uri () const -> Glib::ustring;
+    get_uri () const -> glib::ustring;
 
     auto
-    set_uri (const Glib::ustring& uri) -> void;
+    set_uri (const glib::ustring& uri) -> void;
 
     auto
     launch (Window& parent,
-            const Gio::SlotAsyncReady& slot,
-            const Glib::RefPtr<Gio::Cancellable>& cancellable = {}) const
+            const gio::SlotAsyncReady& slot,
+            const glib::RefPtr<gio::Cancellable>& cancellable = {}) const
         -> void;
 
     auto
-    launch (const Gio::SlotAsyncReady& slot,
-            const Glib::RefPtr<Gio::Cancellable>& cancellable = {}) const
+    launch (const gio::SlotAsyncReady& slot,
+            const glib::RefPtr<gio::Cancellable>& cancellable = {}) const
         -> void;
 
     auto
-    launch_finish (const Glib::RefPtr<Gio::AsyncResult>& result) const -> bool;
+    launch_finish (const glib::RefPtr<gio::AsyncResult>& result) const -> bool;
 
     auto
-    property_uri () -> Glib::PropertyProxy<Glib::ustring>;
+    property_uri () -> glib::PropertyProxy<glib::ustring>;
 
     auto
-    property_uri () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+    property_uri () const -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkUriLauncher* object, bool take_copy = false) -> Glib::RefPtr<Gtk::UriLauncher>;
-} // namespace Glib
+  wrap (GtkUriLauncher* object, bool take_copy = false) -> glib::RefPtr<gtk::UriLauncher>;
+} // namespace glib
 
 #endif

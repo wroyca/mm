@@ -5,7 +5,7 @@
 #include <libmm/glib/keyfile.hxx>
 #include <libmm/glib/keyfile_p.hxx>
 
-namespace Glib
+namespace glib
 {
 
   auto
@@ -234,7 +234,7 @@ namespace Glib
 #define GLIBMM_ERROR_ARG
 #define GLIBMM_THROW(err) \
   if (err)                \
-  Glib::Error::throw_exception (err)
+  glib::Error::throw_exception (err)
 
   auto
   KeyFile::get_string_list (const ustring& group_name,
@@ -462,36 +462,36 @@ namespace Glib
     GLIBMM_THROW (gerror);
   }
 
-} // namespace Glib
+} // namespace glib
 
 namespace
 {
 }
 
-Glib::KeyFileError::KeyFileError (const Code error_code,
+glib::KeyFileError::KeyFileError (const Code error_code,
                                   const ustring& error_message)
   : Error (G_KEY_FILE_ERROR, error_code, error_message)
 {
 }
 
-Glib::KeyFileError::KeyFileError (GError* gobject)
+glib::KeyFileError::KeyFileError (GError* gobject)
   : Error (gobject)
 {
 }
 
 auto
-Glib::KeyFileError::code () const -> Code
+glib::KeyFileError::code () const -> Code
 {
   return static_cast<Code> (Error::code ());
 }
 
 auto
-Glib::KeyFileError::throw_func (GError* gobject) -> void
+glib::KeyFileError::throw_func (GError* gobject) -> void
 {
   throw KeyFileError (gobject);
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
@@ -500,19 +500,19 @@ namespace Glib
     if (take_copy && object)
       g_key_file_ref (object);
 
-    return Glib::make_refptr_for_instance<KeyFile> (
+    return glib::make_refptr_for_instance<KeyFile> (
         reinterpret_cast<KeyFile*> (object));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Glib
+namespace glib
 {
 
   auto
   KeyFile::create () -> RefPtr<KeyFile>
   {
-    return Glib::make_refptr_for_instance<KeyFile> (
+    return glib::make_refptr_for_instance<KeyFile> (
         reinterpret_cast<KeyFile*> (g_key_file_new ()));
   }
 
@@ -868,4 +868,4 @@ namespace Glib
       Error::throw_exception (gerror);
   }
 
-} // namespace Glib
+} // namespace glib

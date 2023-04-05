@@ -15,16 +15,16 @@ using GTcpConnectionClass = struct _GTcpConnectionClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gio
+namespace gio
 {
   class LIBMM_GIO_SYMEXPORT TcpConnection_Class;
 }
 #endif
 
-namespace Gio
+namespace gio
 {
 
-  class LIBMM_GIO_SYMEXPORT TcpConnection : public Gio::SocketConnection
+  class LIBMM_GIO_SYMEXPORT TcpConnection : public gio::SocketConnection
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -43,7 +43,7 @@ namespace Gio
     static CppClassType tcpconnection_class_;
 
   protected:
-    explicit TcpConnection (const Glib::ConstructParams& construct_params);
+    explicit TcpConnection (const glib::ConstructParams& construct_params);
     explicit TcpConnection (GTcpConnection* castitem);
 
 #endif
@@ -88,24 +88,24 @@ namespace Gio
     get_graceful_disconnect () const -> bool;
 
     auto
-    property_graceful_disconnect () -> Glib::PropertyProxy<bool>;
+    property_graceful_disconnect () -> glib::PropertyProxy<bool>;
 
     auto
-    property_graceful_disconnect () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_graceful_disconnect () const -> glib::PropertyProxy_ReadOnly<bool>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gio
+} // namespace gio
 
-namespace Glib
+namespace glib
 {
 
   LIBMM_GIO_SYMEXPORT
   auto
-  wrap (GTcpConnection* object, bool take_copy = false) -> Glib::RefPtr<Gio::TcpConnection>;
-} // namespace Glib
+  wrap (GTcpConnection* object, bool take_copy = false) -> glib::RefPtr<gio::TcpConnection>;
+} // namespace glib
 
 #endif

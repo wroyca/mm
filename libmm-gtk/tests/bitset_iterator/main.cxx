@@ -10,7 +10,7 @@ bool success = true;
 
 void test_traversal1()
 {
-  auto bitset = Gtk::Bitset::create();
+  auto bitset = gtk::Bitset::create();
   bitset->add_range(200, 5); // Add 200, 201, 202, 203, 204
   bitset->add(42);
 
@@ -34,7 +34,7 @@ void test_traversal1()
 
 void test_traversal2()
 {
-  auto bitset = Gtk::Bitset::create();
+  auto bitset = gtk::Bitset::create();
   bitset->add_range(200, 5); // Add 200, 201, 202, 203, 204
   bitset->add(42);
 
@@ -59,7 +59,7 @@ void test_traversal2()
 
 void test_copy()
 {
-  auto bitset = Gtk::Bitset::create();
+  auto bitset = gtk::Bitset::create();
   bitset->add_range(200, 5); // Add 200, 201, 202, 203, 204
   bitset->add(42);
 
@@ -96,7 +96,7 @@ void test_copy()
 int main(int /* argc */, char** /* argv */)
 {
   gtk_init();
-  Gtk::init_gtkmm_internals();
+  gtk::init_gtkmm_internals();
 
   test_traversal1();
   test_traversal2();

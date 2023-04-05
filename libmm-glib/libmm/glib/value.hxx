@@ -10,7 +10,7 @@
 #include <libmm/glib/ustring.hxx>
 #include <vector>
 
-namespace Glib
+namespace glib
 {
 
   class ObjectBase;
@@ -60,10 +60,10 @@ namespace Glib
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
     auto
-    create_param_spec (const Glib::ustring& name,
-                       const Glib::ustring& nick,
-                       const Glib::ustring& blurb,
-                       Glib::ParamFlags flags) const -> GParamSpec*;
+    create_param_spec (const glib::ustring& name,
+                       const glib::ustring& nick,
+                       const glib::ustring& blurb,
+                       glib::ParamFlags flags) const -> GParamSpec*;
 #endif
 
   protected:
@@ -81,19 +81,19 @@ namespace Glib
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
     auto
-    create_param_spec (const Glib::ustring& name,
-                       const Glib::ustring& nick,
-                       const Glib::ustring& blurb,
-                       Glib::ParamFlags flags) const -> GParamSpec*;
+    create_param_spec (const glib::ustring& name,
+                       const glib::ustring& nick,
+                       const glib::ustring& blurb,
+                       glib::ParamFlags flags) const -> GParamSpec*;
 #endif
 
   protected:
     auto
-    set_object (Glib::ObjectBase* data) -> void;
+    set_object (glib::ObjectBase* data) -> void;
     auto
-    get_object () const -> Glib::ObjectBase*;
+    get_object () const -> glib::ObjectBase*;
     auto
-    get_object_copy () const -> Glib::RefPtr<Glib::ObjectBase>;
+    get_object_copy () const -> glib::RefPtr<glib::ObjectBase>;
   };
 
   class LIBMM_GLIB_SYMEXPORT ValueBase_Enum : public ValueBase
@@ -104,10 +104,10 @@ namespace Glib
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
     auto
-    create_param_spec (const Glib::ustring& name,
-                       const Glib::ustring& nick,
-                       const Glib::ustring& blurb,
-                       Glib::ParamFlags flags) const -> GParamSpec*;
+    create_param_spec (const glib::ustring& name,
+                       const glib::ustring& nick,
+                       const glib::ustring& blurb,
+                       glib::ParamFlags flags) const -> GParamSpec*;
 #endif
 
   protected:
@@ -125,10 +125,10 @@ namespace Glib
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
     auto
-    create_param_spec (const Glib::ustring& name,
-                       const Glib::ustring& nick,
-                       const Glib::ustring& blurb,
-                       Glib::ParamFlags flags) const -> GParamSpec*;
+    create_param_spec (const glib::ustring& name,
+                       const glib::ustring& nick,
+                       const glib::ustring& blurb,
+                       glib::ParamFlags flags) const -> GParamSpec*;
 #endif
 
   protected:
@@ -146,10 +146,10 @@ namespace Glib
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
     auto
-    create_param_spec (const Glib::ustring& name,
-                       const Glib::ustring& nick,
-                       const Glib::ustring& blurb,
-                       Glib::ParamFlags flags) const -> GParamSpec*;
+    create_param_spec (const glib::ustring& name,
+                       const glib::ustring& nick,
+                       const glib::ustring& blurb,
+                       glib::ParamFlags flags) const -> GParamSpec*;
 #endif
 
   protected:
@@ -167,10 +167,10 @@ namespace Glib
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
     auto
-    create_param_spec (const Glib::ustring& name,
-                       const Glib::ustring& nick,
-                       const Glib::ustring& blurb,
-                       Glib::ParamFlags flags) const -> GParamSpec*;
+    create_param_spec (const glib::ustring& name,
+                       const glib::ustring& nick,
+                       const glib::ustring& blurb,
+                       glib::ParamFlags flags) const -> GParamSpec*;
 #endif
 
   protected:
@@ -180,13 +180,13 @@ namespace Glib
     get_variant () const -> GVariant*;
   };
 
-} // namespace Glib
+} // namespace glib
 
 #define _GLIBMM_VALUE_H_INCLUDE_VALUE_CUSTOM_H
 #include <libmm/glib/value_custom.hxx>
 #undef _GLIBMM_VALUE_H_INCLUDE_VALUE_CUSTOM_H
 
-namespace Glib
+namespace glib
 {
 
   template <class T>
@@ -218,7 +218,7 @@ namespace Glib
   class Value_RefPtrBoxed : public ValueBase_Boxed
   {
   public:
-    using CppType = Glib::RefPtr<T>;
+    using CppType = glib::RefPtr<T>;
 
     static auto
     value_type () -> GType
@@ -261,13 +261,13 @@ namespace Glib
   } // namespace Traits
 
   template <class T>
-  class Value<Glib::RefPtr<T>,
+  class Value<glib::RefPtr<T>,
               typename std::enable_if<
-                  Glib::Traits::HasGetBaseType<T, GType ()>::value>::type>
+                  glib::Traits::HasGetBaseType<T, GType ()>::value>::type>
     : public ValueBase_Object
   {
   public:
-    using CppType = Glib::RefPtr<T>;
+    using CppType = glib::RefPtr<T>;
 
     static auto
     value_type () -> GType
@@ -294,13 +294,13 @@ namespace Glib
 
 #endif
 
-} // namespace Glib
+} // namespace glib
 
 #define _GLIBMM_VALUE_H_INCLUDE_VALUE_BASICTYPES_H
 #include <libmm/glib/value_basictypes.hxx>
 #undef _GLIBMM_VALUE_H_INCLUDE_VALUE_BASICTYPES_H
 
-namespace Glib
+namespace glib
 {
 
   template <>
@@ -320,16 +320,16 @@ namespace Glib
   };
 
   template <>
-  class LIBMM_GLIB_SYMEXPORT Value<Glib::ustring> : public ValueBase_String
+  class LIBMM_GLIB_SYMEXPORT Value<glib::ustring> : public ValueBase_String
   {
   public:
-    using CppType = Glib::ustring;
+    using CppType = glib::ustring;
 
     auto
-    set (const Glib::ustring& data) -> void;
+    set (const glib::ustring& data) -> void;
 
     auto
-    get () const -> Glib::ustring
+    get () const -> glib::ustring
     {
       return get_cstring ();
     }
@@ -351,10 +351,10 @@ namespace Glib
   };
 
   template <>
-  class LIBMM_GLIB_SYMEXPORT Value<std::vector<Glib::ustring>> : public ValueBase_Boxed
+  class LIBMM_GLIB_SYMEXPORT Value<std::vector<glib::ustring>> : public ValueBase_Boxed
   {
   public:
-    using CppType = std::vector<Glib::ustring>;
+    using CppType = std::vector<glib::ustring>;
 
     static auto
     value_type () -> GType;
@@ -403,6 +403,6 @@ namespace Glib
     }
   };
 
-} // namespace Glib
+} // namespace glib
 
 #endif

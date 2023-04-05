@@ -6,7 +6,7 @@
 #include <libmm/glib/mm-glibconfig.hxx>
 #include <sigc++/sigc++.h>
 
-namespace Glib
+namespace glib
 {
 
   LIBMM_GLIB_SYMEXPORT
@@ -19,6 +19,6 @@ namespace Glib
   exception_handlers_invoke () noexcept -> void;
 #endif
 
-} // namespace Glib
+} // namespace glib
 
 #endif

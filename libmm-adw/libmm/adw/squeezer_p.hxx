@@ -7,29 +7,29 @@
 
 #include <libmm/glib/class.hxx>
 
-namespace Adw
+namespace adw
 {
 
-  class LIBMM_ADW_SYMEXPORT Squeezer_Class : public Glib::Class
+  class LIBMM_ADW_SYMEXPORT Squeezer_Class : public glib::Class
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
     using CppObjectType = Squeezer;
     using BaseObjectType = AdwSqueezer;
-    using CppClassParent = Gtk::Widget_Class;
+    using CppClassParent = gtk::Widget_Class;
 
     friend class Squeezer;
 #endif
 
     auto
-    init () -> const Glib::Class&;
+    init () -> const glib::Class&;
 
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
 
   protected:
   };
 
-} // namespace Adw
+} // namespace adw
 
 #endif

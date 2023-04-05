@@ -1,29 +1,29 @@
 #include <libmm/gtk/mm-gtk.hxx>
 #include <iostream>
 
-// Gtk::Dialog is deprecated since 4.10.
-// A class that derives from Gtk::Window can act as a dialog.
-class MyDialog : public Gtk::Window
+// gtk::Dialog is deprecated since 4.10.
+// A class that derives from gtk::Window can act as a dialog.
+class MyDialog : public gtk::Window
 {
 public:
   MyDialog()
-  : m_ButtonBox(Gtk::Orientation::HORIZONTAL),
+  : m_ButtonBox(gtk::Orientation::HORIZONTAL),
     m_ButtonOK("OK")
   {
     set_child(m_ButtonBox);
     m_ButtonBox.append(m_ButtonOK);
-    m_ButtonBox.set_halign(Gtk::Align::END);
+    m_ButtonBox.set_halign(gtk::Align::END);
   }
-  Gtk::Button& get_button_ok()
+  gtk::Button& get_button_ok()
   {
     return m_ButtonOK;
   }
 protected:
-  Gtk::Box m_ButtonBox;
-  Gtk::Button m_ButtonOK;
+  gtk::Box m_ButtonBox;
+  gtk::Button m_ButtonOK;
 };
 
-class MyWindow : public Gtk::Window
+class MyWindow : public gtk::Window
 {
 public:
   MyWindow();
@@ -32,7 +32,7 @@ public:
   void on_dialog_response();
 
 protected:
-  Gtk::Button m_Button;
+  gtk::Button m_Button;
   std::unique_ptr<MyDialog> m_Dialog;
 };
 
@@ -50,7 +50,7 @@ void MyWindow::on_button_clicked()
 {
   m_Dialog.reset(nullptr);
   std::cout << "before list_toplevels 1" << std::endl;
-  std::vector<Gtk::Window*> toplevelwindows = list_toplevels();
+  std::vector<gtk::Window*> toplevelwindows = list_toplevels();
   std::cout << "after list_toplevels" << std::endl;
   std::cout << "toplevelwindows.size = " << toplevelwindows.size() << std::endl;
 
@@ -71,7 +71,7 @@ void MyWindow::on_dialog_response()
   else
   {
     std::cout << "before list_toplevels 2" << std::endl;
-    std::vector<Gtk::Window*> toplevelwindows = list_toplevels();
+    std::vector<gtk::Window*> toplevelwindows = list_toplevels();
     std::cout << "after list_toplevels" << std::endl;
     std::cout << "toplevelwindows.size = " << toplevelwindows.size() << std::endl;
   }
@@ -79,6 +79,6 @@ void MyWindow::on_dialog_response()
 
 int main(int argc, char* argv[])
 {
-  auto app = Gtk::Application::create();
+  auto app = gtk::Application::create();
   return app->make_window_and_run<MyWindow>(argc, argv);
 }

@@ -2,7 +2,7 @@
 
 #include <libmm/gtk/bitsetconstiter.hxx>
 
-namespace Gtk
+namespace gtk
 {
 
   BitsetConstIter::BitsetConstIter (const GtkBitset* bitset, bool is_end)
@@ -187,4 +187,4 @@ namespace Gtk
            gtk_bitset_iter_get_value (other.gobject_.get ());
   }
 
-} // namespace Gtk
+} // namespace gtk

@@ -7,7 +7,7 @@
 #include <libmm/glib/mm-glibconfig.hxx>
 #include <libmm/glib/ustring.hxx>
 
-namespace Glib
+namespace glib
 {
 
   class LIBMM_GLIB_SYMEXPORT QueryQuark
@@ -64,6 +64,6 @@ namespace Glib
   extern LIBMM_GLIB_SYMEXPORT GQuark quark_cpp_wrapper_deleted_;
 #endif
 
-} // namespace Glib
+} // namespace glib
 
 #endif

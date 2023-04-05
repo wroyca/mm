@@ -21,18 +21,18 @@ using GTlsServerConnectionClass = struct _GTlsServerConnectionClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gio
+namespace gio
 {
   class LIBMM_GIO_SYMEXPORT TlsServerConnection_Class;
 }
 #endif
 
-namespace Gio
+namespace gio
 {
 
   class LIBMM_GIO_SYMEXPORT TlsServerConnectionImpl;
 
-  class LIBMM_GIO_SYMEXPORT TlsServerConnection : public Glib::Interface
+  class LIBMM_GIO_SYMEXPORT TlsServerConnection : public glib::Interface
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -56,7 +56,7 @@ namespace Gio
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
-    explicit TlsServerConnection (const Glib::Interface_Class& interface_class);
+    explicit TlsServerConnection (const glib::Interface_Class& interface_class);
 
   public:
     explicit TlsServerConnection (GTlsServerConnection* castitem);
@@ -97,32 +97,32 @@ namespace Gio
   private:
   public:
     static auto
-    create (const Glib::RefPtr<IOStream>& base_io_stream,
-            const Glib::RefPtr<TlsCertificate>& certificate)
-        -> Glib::RefPtr<TlsServerConnectionImpl>;
+    create (const glib::RefPtr<IOStream>& base_io_stream,
+            const glib::RefPtr<TlsCertificate>& certificate)
+        -> glib::RefPtr<TlsServerConnectionImpl>;
 
     auto
     property_authentication_mode ()
-        -> Glib::PropertyProxy<TlsAuthenticationMode>;
+        -> glib::PropertyProxy<TlsAuthenticationMode>;
 
     auto
     property_authentication_mode () const
-        -> Glib::PropertyProxy_ReadOnly<TlsAuthenticationMode>;
+        -> glib::PropertyProxy_ReadOnly<TlsAuthenticationMode>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gio
+} // namespace gio
 
-namespace Glib
+namespace glib
 {
 
   LIBMM_GIO_SYMEXPORT
   auto
-  wrap (GTlsServerConnection* object, bool take_copy = false) -> Glib::RefPtr<Gio::TlsServerConnection>;
+  wrap (GTlsServerConnection* object, bool take_copy = false) -> glib::RefPtr<gio::TlsServerConnection>;
 
-} // namespace Glib
+} // namespace glib
 
 #endif

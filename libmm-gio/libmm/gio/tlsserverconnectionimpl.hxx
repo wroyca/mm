@@ -7,7 +7,7 @@
 #include <libmm/gio/tlsconnection.hxx>
 #include <libmm/gio/tlsserverconnection.hxx>
 
-namespace Gio
+namespace gio
 {
 
   class LIBMM_GIO_SYMEXPORT TlsServerConnectionImpl : public TlsServerConnection,
@@ -33,6 +33,6 @@ namespace Gio
     ~TlsServerConnectionImpl () noexcept override;
   };
 
-} // namespace Gio
+} // namespace gio
 
 #endif

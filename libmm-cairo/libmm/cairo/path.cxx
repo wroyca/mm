@@ -4,7 +4,7 @@
 #include <libmm/cairo/path.hxx>
 #include <libmm/cairo/private.hxx>
 
-namespace Cairo
+namespace cairo
 {
 
   Path::Path (cairo_path_t* cobject, const bool take_ownership)
@@ -26,4 +26,4 @@ namespace Cairo
       cairo_path_destroy (m_cobject);
   }
 
-} // namespace Cairo
+} // namespace cairo

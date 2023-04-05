@@ -6,23 +6,23 @@
  * Author: Alexander Mikhaylenko <alexander.mikhaylenko@puri.sm>
  */
 
-#include <libmm/adw/init.hxx> // Adw::init
+#include <libmm/adw/init.hxx> // adw::init
 #include <libmm/adw/mm-adw.hxx>
 
 static void
 test_easing_ease (gconstpointer data)
 {
-  Adw::Easing easing = static_cast<Adw::Easing> (GPOINTER_TO_INT (data));
+  adw::Easing easing = static_cast<adw::Easing> (GPOINTER_TO_INT (data));
 
-  g_assert_cmpfloat_with_epsilon (Adw::ease (easing, 0), 0, 0.005);
-  g_assert_cmpfloat_with_epsilon (Adw::ease (easing, 1), 1, 0.005);
+  g_assert_cmpfloat_with_epsilon (adw::ease (easing, 0), 0, 0.005);
+  g_assert_cmpfloat_with_epsilon (adw::ease (easing, 1), 1, 0.005);
 }
 
 int
 main (int argc, char* argv[])
 {
   gtk_test_init (&argc, &argv, NULL);
-  Adw::init ();
+  adw::init ();
 
   // This does not seem wrapped at all in gtkmm.
   GEnumClass* enum_class = (GEnumClass*) g_type_class_ref (ADW_TYPE_EASING);

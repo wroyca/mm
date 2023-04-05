@@ -7,39 +7,39 @@
 
 #include <gio/gio.h>
 
-namespace Gio
+namespace gio
 {
 
   FilterInputStream::FilterInputStream (
-      const Glib::RefPtr<InputStream>& base_stream)
+      const glib::RefPtr<InputStream>& base_stream)
     : ObjectBase (nullptr),
-      InputStream (Glib::ConstructParams (filterinputstream_class_.init (),
+      InputStream (glib::ConstructParams (filterinputstream_class_.init (),
                                           "base_stream",
-                                          Glib::unwrap (base_stream),
+                                          glib::unwrap (base_stream),
                                           nullptr))
   {
   }
 
-} // namespace Gio
+} // namespace gio
 
 namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GFilterInputStream* object, const bool take_copy) -> RefPtr<Gio::FilterInputStream>
+  wrap (GFilterInputStream* object, const bool take_copy) -> RefPtr<gio::FilterInputStream>
   {
-    return Glib::make_refptr_for_instance<Gio::FilterInputStream> (
-        dynamic_cast<Gio::FilterInputStream*> (
+    return glib::make_refptr_for_instance<gio::FilterInputStream> (
+        dynamic_cast<gio::FilterInputStream*> (
             wrap_auto ((GObject*) object, take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gio
+namespace gio
 {
 
   auto
@@ -63,7 +63,7 @@ namespace Gio
   }
 
   auto
-  FilterInputStream_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  FilterInputStream_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new FilterInputStream ((GFilterInputStream*) object);
   }
@@ -76,7 +76,7 @@ namespace Gio
   }
 
   FilterInputStream::FilterInputStream (
-      const Glib::ConstructParams& construct_params)
+      const glib::ConstructParams& construct_params)
     : InputStream (construct_params)
   {
   }
@@ -115,17 +115,17 @@ namespace Gio
   }
 
   auto
-  FilterInputStream::get_base_stream () -> Glib::RefPtr<InputStream>
+  FilterInputStream::get_base_stream () -> glib::RefPtr<InputStream>
   {
     auto retvalue =
-        Glib::wrap (g_filter_input_stream_get_base_stream (gobj ()));
+        glib::wrap (g_filter_input_stream_get_base_stream (gobj ()));
     if (retvalue)
       retvalue->reference ();
     return retvalue;
   }
 
   auto
-  FilterInputStream::get_base_stream () const -> Glib::RefPtr<const InputStream>
+  FilterInputStream::get_base_stream () const -> glib::RefPtr<const InputStream>
   {
     return const_cast<FilterInputStream*> (this)->get_base_stream ();
   }
@@ -144,27 +144,27 @@ namespace Gio
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<
-          Glib::RefPtr<InputStream>>::value,
-      "Type Glib::RefPtr<InputStream> cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      glib::Traits::ValueCompatibleWithWrapProperty<
+          glib::RefPtr<InputStream>>::value,
+      "Type glib::RefPtr<InputStream> cannot be used in _WRAP_PROPERTY. "
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  FilterInputStream::property_base_stream () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<InputStream>>
+  FilterInputStream::property_base_stream () const -> glib::PropertyProxy_ReadOnly<glib::RefPtr<InputStream>>
   {
     return {this, "base-stream"};
   }
 
   auto
-  FilterInputStream::property_close_base_stream () -> Glib::PropertyProxy<bool>
+  FilterInputStream::property_close_base_stream () -> glib::PropertyProxy<bool>
   {
     return {this, "close-base-stream"};
   }
 
   auto
-  FilterInputStream::property_close_base_stream () const -> Glib::PropertyProxy_ReadOnly<bool>
+  FilterInputStream::property_close_base_stream () const -> glib::PropertyProxy_ReadOnly<bool>
   {
     return {this, "close-base-stream"};
   }
 
-} // namespace Gio
+} // namespace gio

@@ -17,13 +17,13 @@ using GtkColorChooserDialogClass = struct _GtkColorChooserDialogClass;
   #endif
 
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT ColorChooserDialog_Class;
 }
   #endif
 
-namespace Gtk
+namespace gtk
 {
 
   class LIBMM_GTK_SYMEXPORT ColorChooserDialog : public Dialog,
@@ -54,7 +54,7 @@ namespace Gtk
     static CppClassType colorchooserdialog_class_;
 
   protected:
-    explicit ColorChooserDialog (const Glib::ConstructParams& construct_params);
+    explicit ColorChooserDialog (const glib::ConstructParams& construct_params);
     explicit ColorChooserDialog (GtkColorChooserDialog* castitem);
 
   #endif
@@ -85,29 +85,29 @@ namespace Gtk
   public:
     ColorChooserDialog ();
 
-    explicit ColorChooserDialog (const Glib::ustring& title);
+    explicit ColorChooserDialog (const glib::ustring& title);
 
-    explicit ColorChooserDialog (const Glib::ustring& title,
+    explicit ColorChooserDialog (const glib::ustring& title,
                                  Window& transient_for);
 
     auto
-    property_show_editor () -> Glib::PropertyProxy<bool>;
+    property_show_editor () -> glib::PropertyProxy<bool>;
 
     auto
-    property_show_editor () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_show_editor () const -> glib::PropertyProxy_ReadOnly<bool>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkColorChooserDialog* object, bool take_copy = false) -> Gtk::ColorChooserDialog*;
-} // namespace Glib
+  wrap (GtkColorChooserDialog* object, bool take_copy = false) -> gtk::ColorChooserDialog*;
+} // namespace glib
 
 #endif
 

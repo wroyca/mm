@@ -9,7 +9,7 @@
 #include <libmm/glib/mm-glib.hxx>
 #include <libmm/gtk/mm-gtk.hxx>
 
-namespace Adw
+namespace adw
 {
 
 }
@@ -18,24 +18,24 @@ namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (AdwLeafletPage* object, bool take_copy) -> Glib::RefPtr<Adw::LeafletPage>
+  wrap (AdwLeafletPage* object, bool take_copy) -> glib::RefPtr<adw::LeafletPage>
   {
-    return Glib::make_refptr_for_instance<Adw::LeafletPage> (
-        dynamic_cast<Adw::LeafletPage*> (
-            Glib::wrap_auto ((GObject*) (object), take_copy)));
+    return glib::make_refptr_for_instance<adw::LeafletPage> (
+        dynamic_cast<adw::LeafletPage*> (
+            glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Adw
+namespace adw
 {
 
   auto
-  LeafletPage_Class::init () -> const Glib::Class&
+  LeafletPage_Class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -46,7 +46,7 @@ namespace Adw
   }
 
   auto
-  LeafletPage_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  LeafletPage_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new LeafletPage ((AdwLeafletPage*) object);
   }
@@ -58,25 +58,25 @@ namespace Adw
     return gobj ();
   }
 
-  LeafletPage::LeafletPage (const Glib::ConstructParams& construct_params)
-    : Glib::Object (construct_params)
+  LeafletPage::LeafletPage (const glib::ConstructParams& construct_params)
+    : glib::Object (construct_params)
   {
   }
 
   LeafletPage::LeafletPage (AdwLeafletPage* castitem)
-    : Glib::Object ((GObject*) (castitem))
+    : glib::Object ((GObject*) (castitem))
   {
   }
 
   LeafletPage::LeafletPage (LeafletPage&& src) noexcept
-    : Glib::Object (std::move (src))
+    : glib::Object (std::move (src))
   {
   }
 
   auto
   LeafletPage::operator= (LeafletPage&& src) noexcept -> LeafletPage&
   {
-    Glib::Object::operator= (std::move (src));
+    glib::Object::operator= (std::move (src));
     return *this;
   }
 
@@ -97,28 +97,28 @@ namespace Adw
   }
 
   LeafletPage::LeafletPage ()
-    : Glib::ObjectBase (nullptr),
-      Glib::Object (Glib::ConstructParams (leafletpage_class_.init ()))
+    : glib::ObjectBase (nullptr),
+      glib::Object (glib::ConstructParams (leafletpage_class_.init ()))
   {
   }
 
   auto
-  LeafletPage::create () -> Glib::RefPtr<LeafletPage>
+  LeafletPage::create () -> glib::RefPtr<LeafletPage>
   {
-    return Glib::make_refptr_for_instance<LeafletPage> (new LeafletPage ());
+    return glib::make_refptr_for_instance<LeafletPage> (new LeafletPage ());
   }
 
   auto
-  LeafletPage::get_child () const -> Gtk::Widget*
+  LeafletPage::get_child () const -> gtk::Widget*
   {
-    return Glib::wrap (
+    return glib::wrap (
         adw_leaflet_page_get_child (const_cast<AdwLeafletPage*> (gobj ())));
   }
 
   auto
-  LeafletPage::get_name () const -> Glib::ustring
+  LeafletPage::get_name () const -> glib::ustring
   {
-    return Glib::convert_const_gchar_ptr_to_ustring (
+    return glib::convert_const_gchar_ptr_to_ustring (
         adw_leaflet_page_get_name (const_cast<AdwLeafletPage*> (gobj ())));
   }
 
@@ -130,7 +130,7 @@ namespace Adw
   }
 
   auto
-  LeafletPage::set_name (const Glib::ustring& name) -> void
+  LeafletPage::set_name (const glib::ustring& name) -> void
   {
     adw_leaflet_page_set_name (gobj (), name.c_str ());
   }
@@ -142,33 +142,33 @@ namespace Adw
   }
 
   auto
-  LeafletPage::property_child () const -> Glib::PropertyProxy_ReadOnly<Gtk::Widget*>
+  LeafletPage::property_child () const -> glib::PropertyProxy_ReadOnly<gtk::Widget*>
   {
-    return Glib::PropertyProxy_ReadOnly<Gtk::Widget*> (this, "child");
+    return glib::PropertyProxy_ReadOnly<gtk::Widget*> (this, "child");
   }
 
   auto
-  LeafletPage::property_name () -> Glib::PropertyProxy<Glib::ustring>
+  LeafletPage::property_name () -> glib::PropertyProxy<glib::ustring>
   {
-    return Glib::PropertyProxy<Glib::ustring> (this, "name");
+    return glib::PropertyProxy<glib::ustring> (this, "name");
   }
 
   auto
-  LeafletPage::property_name () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>
+  LeafletPage::property_name () const -> glib::PropertyProxy_ReadOnly<glib::ustring>
   {
-    return Glib::PropertyProxy_ReadOnly<Glib::ustring> (this, "name");
+    return glib::PropertyProxy_ReadOnly<glib::ustring> (this, "name");
   }
 
   auto
-  LeafletPage::property_navigatable () -> Glib::PropertyProxy<bool>
+  LeafletPage::property_navigatable () -> glib::PropertyProxy<bool>
   {
-    return Glib::PropertyProxy<bool> (this, "navigatable");
+    return glib::PropertyProxy<bool> (this, "navigatable");
   }
 
   auto
-  LeafletPage::property_navigatable () const -> Glib::PropertyProxy_ReadOnly<bool>
+  LeafletPage::property_navigatable () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "navigatable");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "navigatable");
   }
 
-} // namespace Adw
+} // namespace adw

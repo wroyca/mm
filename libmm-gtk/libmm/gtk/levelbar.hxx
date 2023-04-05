@@ -15,13 +15,13 @@ using GtkLevelBarClass = struct _GtkLevelBarClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT LevelBar_Class;
 }
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
   class LIBMM_GTK_SYMEXPORT LevelBar : public Widget,
@@ -52,7 +52,7 @@ namespace Gtk
     static CppClassType levelbar_class_;
 
   protected:
-    explicit LevelBar (const Glib::ConstructParams& construct_params);
+    explicit LevelBar (const glib::ConstructParams& construct_params);
     explicit LevelBar (GtkLevelBar* castitem);
 
 #endif
@@ -120,75 +120,75 @@ namespace Gtk
     get_inverted () const -> bool;
 
     auto
-    add_offset_value (const Glib::ustring& name, double value) -> void;
+    add_offset_value (const glib::ustring& name, double value) -> void;
 
     auto
-    remove_offset_value (const Glib::ustring& name) -> void;
+    remove_offset_value (const glib::ustring& name) -> void;
 
     auto
-    get_offset_value (const Glib::ustring& name, double& value) const -> bool;
+    get_offset_value (const glib::ustring& name, double& value) const -> bool;
 
     auto
-    signal_offset_changed (const Glib::ustring& offset_name = {})
-        -> Glib::SignalProxyDetailed<void (const Glib::ustring&)>;
+    signal_offset_changed (const glib::ustring& offset_name = {})
+        -> glib::SignalProxyDetailed<void (const glib::ustring&)>;
 
     auto
-    property_value () -> Glib::PropertyProxy<double>;
+    property_value () -> glib::PropertyProxy<double>;
 
     auto
-    property_value () const -> Glib::PropertyProxy_ReadOnly<double>;
+    property_value () const -> glib::PropertyProxy_ReadOnly<double>;
 
     auto
-    property_min_value () -> Glib::PropertyProxy<double>;
+    property_min_value () -> glib::PropertyProxy<double>;
 
     auto
-    property_min_value () const -> Glib::PropertyProxy_ReadOnly<double>;
+    property_min_value () const -> glib::PropertyProxy_ReadOnly<double>;
 
     auto
-    property_max_value () -> Glib::PropertyProxy<double>;
+    property_max_value () -> glib::PropertyProxy<double>;
 
     auto
-    property_max_value () const -> Glib::PropertyProxy_ReadOnly<double>;
+    property_max_value () const -> glib::PropertyProxy_ReadOnly<double>;
 
     auto
-    property_mode () -> Glib::PropertyProxy<Mode>;
+    property_mode () -> glib::PropertyProxy<Mode>;
 
     auto
-    property_mode () const -> Glib::PropertyProxy_ReadOnly<Mode>;
+    property_mode () const -> glib::PropertyProxy_ReadOnly<Mode>;
 
     auto
-    property_inverted () -> Glib::PropertyProxy<bool>;
+    property_inverted () -> glib::PropertyProxy<bool>;
 
     auto
-    property_inverted () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_inverted () const -> glib::PropertyProxy_ReadOnly<bool>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_GTK_SYMEXPORT Value<Gtk::LevelBar::Mode>
-    : public Glib::Value_Enum<Gtk::LevelBar::Mode>
+  class LIBMM_GTK_SYMEXPORT Value<gtk::LevelBar::Mode>
+    : public glib::Value_Enum<gtk::LevelBar::Mode>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkLevelBar* object, bool take_copy = false) -> Gtk::LevelBar*;
-} // namespace Glib
+  wrap (GtkLevelBar* object, bool take_copy = false) -> gtk::LevelBar*;
+} // namespace glib
 
 #endif

@@ -16,17 +16,17 @@ using GtkNativeDialogClass = struct _GtkNativeDialogClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT NativeDialog_Class;
 }
 #endif
 
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT Window;
 
-  class LIBMM_GTK_SYMEXPORT NativeDialog : public Glib::Object
+  class LIBMM_GTK_SYMEXPORT NativeDialog : public glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -45,7 +45,7 @@ namespace Gtk
     static CppClassType nativedialog_class_;
 
   protected:
-    explicit NativeDialog (const Glib::ConstructParams& construct_params);
+    explicit NativeDialog (const glib::ConstructParams& construct_params);
     explicit NativeDialog (GtkNativeDialog* castitem);
 
 #endif
@@ -102,10 +102,10 @@ namespace Gtk
     get_modal () const -> bool;
 
     auto
-    set_title (const Glib::ustring& title) -> void;
+    set_title (const glib::ustring& title) -> void;
 
     auto
-    get_title () const -> Glib::ustring;
+    get_title () const -> glib::ustring;
 
     auto
     set_transient_for (Window& parent) -> void;
@@ -120,31 +120,31 @@ namespace Gtk
     get_transient_for () const -> const Window*;
 
     auto
-    property_title () -> Glib::PropertyProxy<Glib::ustring>;
+    property_title () -> glib::PropertyProxy<glib::ustring>;
 
     auto
-    property_title () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+    property_title () const -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
     auto
-    property_modal () -> Glib::PropertyProxy<bool>;
+    property_modal () -> glib::PropertyProxy<bool>;
 
     auto
-    property_modal () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_modal () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_visible () -> Glib::PropertyProxy<bool>;
+    property_visible () -> glib::PropertyProxy<bool>;
 
     auto
-    property_visible () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_visible () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_transient_for () -> Glib::PropertyProxy<Window*>;
+    property_transient_for () -> glib::PropertyProxy<Window*>;
 
     auto
-    property_transient_for () const -> Glib::PropertyProxy_ReadOnly<Window*>;
+    property_transient_for () const -> glib::PropertyProxy_ReadOnly<Window*>;
 
     auto
-    signal_response () -> Glib::SignalProxy<void (int)>;
+    signal_response () -> glib::SignalProxy<void (int)>;
 
   public:
   public:
@@ -153,12 +153,12 @@ namespace Gtk
     on_response (int response_id) -> void;
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkNativeDialog* object, bool take_copy = false) -> Glib::RefPtr<Gtk::NativeDialog>;
-} // namespace Glib
+  wrap (GtkNativeDialog* object, bool take_copy = false) -> glib::RefPtr<gtk::NativeDialog>;
+} // namespace glib
 
 #endif

@@ -15,17 +15,17 @@
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT SliceListModel_Class;
 }
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
-  class LIBMM_GTK_SYMEXPORT SliceListModel : public Glib::Object,
-                                   public Gio::ListModel
+  class LIBMM_GTK_SYMEXPORT SliceListModel : public glib::Object,
+                                   public gio::ListModel
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -44,7 +44,7 @@ namespace Gtk
     static CppClassType slicelistmodel_class_;
 
   protected:
-    explicit SliceListModel (const Glib::ConstructParams& construct_params);
+    explicit SliceListModel (const glib::ConstructParams& construct_params);
     explicit SliceListModel (GtkSliceListModel* castitem);
 
 #endif
@@ -82,23 +82,23 @@ namespace Gtk
 
   private:
   protected:
-    explicit SliceListModel (const Glib::RefPtr<Gio::ListModel>& model,
+    explicit SliceListModel (const glib::RefPtr<gio::ListModel>& model,
                              guint offset,
                              guint size);
 
   public:
     static auto
-    create (const Glib::RefPtr<Gio::ListModel>& model, guint offset, guint size)
-        -> Glib::RefPtr<SliceListModel>;
+    create (const glib::RefPtr<gio::ListModel>& model, guint offset, guint size)
+        -> glib::RefPtr<SliceListModel>;
 
     auto
-    set_model (const Glib::RefPtr<Gio::ListModel>& model) -> void;
+    set_model (const glib::RefPtr<gio::ListModel>& model) -> void;
 
     auto
-    get_model () -> Glib::RefPtr<Gio::ListModel>;
+    get_model () -> glib::RefPtr<gio::ListModel>;
 
     auto
-    get_model () const -> Glib::RefPtr<const Gio::ListModel>;
+    get_model () const -> glib::RefPtr<const gio::ListModel>;
 
     auto
     set_offset (guint offset) -> void;
@@ -113,41 +113,41 @@ namespace Gtk
     get_size () const -> guint;
 
     auto
-    property_item_type () const -> Glib::PropertyProxy_ReadOnly<GType>;
+    property_item_type () const -> glib::PropertyProxy_ReadOnly<GType>;
 
     auto
-    property_model () -> Glib::PropertyProxy<Glib::RefPtr<Gio::ListModel>>;
+    property_model () -> glib::PropertyProxy<glib::RefPtr<gio::ListModel>>;
 
     auto
     property_model () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gio::ListModel>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<gio::ListModel>>;
 
     auto
-    property_n_items () const -> Glib::PropertyProxy_ReadOnly<unsigned int>;
+    property_n_items () const -> glib::PropertyProxy_ReadOnly<unsigned int>;
 
     auto
-    property_offset () -> Glib::PropertyProxy<guint>;
+    property_offset () -> glib::PropertyProxy<guint>;
 
     auto
-    property_offset () const -> Glib::PropertyProxy_ReadOnly<guint>;
+    property_offset () const -> glib::PropertyProxy_ReadOnly<guint>;
 
     auto
-    property_size () -> Glib::PropertyProxy<guint>;
+    property_size () -> glib::PropertyProxy<guint>;
 
     auto
-    property_size () const -> Glib::PropertyProxy_ReadOnly<guint>;
+    property_size () const -> glib::PropertyProxy_ReadOnly<guint>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkSliceListModel* object, bool take_copy = false) -> Glib::RefPtr<Gtk::SliceListModel>;
-} // namespace Glib
+  wrap (GtkSliceListModel* object, bool take_copy = false) -> glib::RefPtr<gtk::SliceListModel>;
+} // namespace glib
 
 #endif

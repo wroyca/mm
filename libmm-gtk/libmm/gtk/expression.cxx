@@ -7,7 +7,7 @@
 
 #include <libmm/gtk/expression.hxx>
 
-namespace Gtk
+namespace gtk
 {
 
   namespace Expression_Private
@@ -27,28 +27,28 @@ namespace Gtk
 
   } // namespace Expression_Private
 
-} // namespace Gtk
+} // namespace gtk
 
 namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GtkExpression* object, bool take_copy) -> Glib::RefPtr<Gtk::ExpressionBase>
+  wrap (GtkExpression* object, bool take_copy) -> glib::RefPtr<gtk::ExpressionBase>
   {
     if (take_copy && object)
       gtk_expression_ref (object);
 
-    return Glib::make_refptr_for_instance<Gtk::ExpressionBase> (
-        reinterpret_cast<Gtk::ExpressionBase*> (object));
+    return glib::make_refptr_for_instance<gtk::ExpressionBase> (
+        reinterpret_cast<gtk::ExpressionBase*> (object));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gtk
+namespace gtk
 {
 
   auto
@@ -98,4 +98,4 @@ namespace Gtk
     return gtk_expression_is_static (const_cast<GtkExpression*> (gobj ()));
   }
 
-} // namespace Gtk
+} // namespace gtk

@@ -6,7 +6,7 @@
 #include <libmm/glib/main.hxx>
 #include <sigc++/sigc++.h>
 
-namespace Glib
+namespace glib
 {
 
   class LIBMM_GLIB_SYMEXPORT Dispatcher
@@ -18,7 +18,7 @@ namespace Glib
     auto
     operator= (const Dispatcher&) -> Dispatcher& = delete;
 
-    explicit Dispatcher (const Glib::RefPtr<MainContext>& context);
+    explicit Dispatcher (const glib::RefPtr<MainContext>& context);
     ~Dispatcher () noexcept;
 
     auto
@@ -40,6 +40,6 @@ namespace Glib
     Impl* impl_;
   };
 
-} // namespace Glib
+} // namespace glib
 
 #endif

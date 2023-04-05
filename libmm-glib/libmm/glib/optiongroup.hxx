@@ -17,7 +17,7 @@ extern "C"
 }
 #endif
 
-namespace Glib
+namespace glib
 {
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -35,17 +35,17 @@ namespace Glib
 
   private:
   public:
-    using SlotTranslate = sigc::slot<Glib::ustring (const Glib::ustring&)>;
+    using SlotTranslate = sigc::slot<glib::ustring (const glib::ustring&)>;
 
     using SlotOptionArgString =
-        sigc::slot<bool (const Glib::ustring&, const Glib::ustring&, bool)>;
+        sigc::slot<bool (const glib::ustring&, const glib::ustring&, bool)>;
 
     using SlotOptionArgFilename =
-        sigc::slot<bool (const Glib::ustring&, const std::string&, bool)>;
+        sigc::slot<bool (const glib::ustring&, const std::string&, bool)>;
 
-    OptionGroup (const Glib::ustring& name,
-                 const Glib::ustring& description,
-                 const Glib::ustring& help_description = {});
+    OptionGroup (const glib::ustring& name,
+                 const glib::ustring& description,
+                 const glib::ustring& help_description = {});
 
     explicit OptionGroup (GOptionGroup* castitem);
 
@@ -68,7 +68,7 @@ namespace Glib
     auto
     add_entry (const OptionEntry& entry) -> void;
 
-    using vecustrings = std::vector<Glib::ustring>;
+    using vecustrings = std::vector<glib::ustring>;
     using vecstrings = std::vector<std::string>;
 
     auto
@@ -81,7 +81,7 @@ namespace Glib
     add_entry (const OptionEntry& entry, double& arg) -> void;
 
     auto
-    add_entry (const OptionEntry& entry, Glib::ustring& arg) -> void;
+    add_entry (const OptionEntry& entry, glib::ustring& arg) -> void;
 
     auto
     add_entry_filename (const OptionEntry& entry, std::string& arg) -> void;
@@ -104,7 +104,7 @@ namespace Glib
     set_translate_func (const SlotTranslate& slot) -> void;
 
     auto
-    set_translation_domain (const Glib::ustring& domain) -> void;
+    set_translation_domain (const glib::ustring& domain) -> void;
 
     auto
     gobj () -> GOptionGroup*
@@ -161,7 +161,7 @@ namespace Glib
                          gpointer data,
                          GError** error) -> gboolean;
 
-    using type_map_entries = std::map<Glib::ustring, CppOptionEntry>;
+    using type_map_entries = std::map<glib::ustring, CppOptionEntry>;
     type_map_entries map_entries_;
 
     GOptionGroup* gobject_;
@@ -172,6 +172,6 @@ namespace Glib
     release_gobject () noexcept -> void;
   };
 
-} // namespace Glib
+} // namespace glib
 
 #endif

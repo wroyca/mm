@@ -12,24 +12,24 @@ namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GtkAlertDialog* object, bool take_copy) -> Glib::RefPtr<Gtk::AlertDialog>
+  wrap (GtkAlertDialog* object, bool take_copy) -> glib::RefPtr<gtk::AlertDialog>
   {
-    return Glib::make_refptr_for_instance<Gtk::AlertDialog> (
-        dynamic_cast<Gtk::AlertDialog*> (
-            Glib::wrap_auto ((GObject*) (object), take_copy)));
+    return glib::make_refptr_for_instance<gtk::AlertDialog> (
+        dynamic_cast<gtk::AlertDialog*> (
+            glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gtk
+namespace gtk
 {
 
   auto
-  AlertDialog_Class::init () -> const Glib::Class&
+  AlertDialog_Class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -40,7 +40,7 @@ namespace Gtk
   }
 
   auto
-  AlertDialog_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  AlertDialog_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new AlertDialog ((GtkAlertDialog*) object);
   }
@@ -52,25 +52,25 @@ namespace Gtk
     return gobj ();
   }
 
-  AlertDialog::AlertDialog (const Glib::ConstructParams& construct_params)
-    : Glib::Object (construct_params)
+  AlertDialog::AlertDialog (const glib::ConstructParams& construct_params)
+    : glib::Object (construct_params)
   {
   }
 
   AlertDialog::AlertDialog (GtkAlertDialog* castitem)
-    : Glib::Object ((GObject*) (castitem))
+    : glib::Object ((GObject*) (castitem))
   {
   }
 
   AlertDialog::AlertDialog (AlertDialog&& src) noexcept
-    : Glib::Object (std::move (src))
+    : glib::Object (std::move (src))
   {
   }
 
   auto
   AlertDialog::operator= (AlertDialog&& src) noexcept -> AlertDialog&
   {
-    Glib::Object::operator= (std::move (src));
+    glib::Object::operator= (std::move (src));
     return *this;
   }
 
@@ -91,14 +91,14 @@ namespace Gtk
   }
 
   AlertDialog::AlertDialog ()
-    : Glib::ObjectBase (nullptr),
-      Glib::Object (Glib::ConstructParams (alertdialog_class_.init ()))
+    : glib::ObjectBase (nullptr),
+      glib::Object (glib::ConstructParams (alertdialog_class_.init ()))
   {
   }
 
-  AlertDialog::AlertDialog (const Glib::ustring& message)
-    : Glib::ObjectBase (nullptr),
-      Glib::Object (Glib::ConstructParams (alertdialog_class_.init (),
+  AlertDialog::AlertDialog (const glib::ustring& message)
+    : glib::ObjectBase (nullptr),
+      glib::Object (glib::ConstructParams (alertdialog_class_.init (),
                                            "message",
                                            message.c_str (),
                                            nullptr))
@@ -106,15 +106,15 @@ namespace Gtk
   }
 
   auto
-  AlertDialog::create () -> Glib::RefPtr<AlertDialog>
+  AlertDialog::create () -> glib::RefPtr<AlertDialog>
   {
-    return Glib::make_refptr_for_instance<AlertDialog> (new AlertDialog ());
+    return glib::make_refptr_for_instance<AlertDialog> (new AlertDialog ());
   }
 
   auto
-  AlertDialog::create (const Glib::ustring& message) -> Glib::RefPtr<AlertDialog>
+  AlertDialog::create (const glib::ustring& message) -> glib::RefPtr<AlertDialog>
   {
-    return Glib::make_refptr_for_instance<AlertDialog> (
+    return glib::make_refptr_for_instance<AlertDialog> (
         new AlertDialog (message));
   }
 
@@ -131,45 +131,45 @@ namespace Gtk
   }
 
   auto
-  AlertDialog::get_message () const -> Glib::ustring
+  AlertDialog::get_message () const -> glib::ustring
   {
-    return Glib::convert_const_gchar_ptr_to_ustring (
+    return glib::convert_const_gchar_ptr_to_ustring (
         gtk_alert_dialog_get_message (const_cast<GtkAlertDialog*> (gobj ())));
   }
 
   auto
-  AlertDialog::set_message (const Glib::ustring& message) -> void
+  AlertDialog::set_message (const glib::ustring& message) -> void
   {
     gtk_alert_dialog_set_message (gobj (), message.c_str ());
   }
 
   auto
-  AlertDialog::get_detail () const -> Glib::ustring
+  AlertDialog::get_detail () const -> glib::ustring
   {
-    return Glib::convert_const_gchar_ptr_to_ustring (
+    return glib::convert_const_gchar_ptr_to_ustring (
         gtk_alert_dialog_get_detail (const_cast<GtkAlertDialog*> (gobj ())));
   }
 
   auto
-  AlertDialog::set_detail (const Glib::ustring& detail) -> void
+  AlertDialog::set_detail (const glib::ustring& detail) -> void
   {
     gtk_alert_dialog_set_detail (gobj (), detail.c_str ());
   }
 
   auto
-  AlertDialog::get_buttons () const -> std::vector<Glib::ustring>
+  AlertDialog::get_buttons () const -> std::vector<glib::ustring>
   {
-    return Glib::ArrayHandler<Glib::ustring>::array_to_vector (
+    return glib::ArrayHandler<glib::ustring>::array_to_vector (
         gtk_alert_dialog_get_buttons (const_cast<GtkAlertDialog*> (gobj ())),
-        Glib::OWNERSHIP_NONE);
+        glib::OWNERSHIP_NONE);
   }
 
   auto
-  AlertDialog::set_buttons (const std::vector<Glib::ustring>& labels) const -> void
+  AlertDialog::set_buttons (const std::vector<glib::ustring>& labels) const -> void
   {
     gtk_alert_dialog_set_buttons (
         const_cast<GtkAlertDialog*> (gobj ()),
-        Glib::ArrayHandler<Glib::ustring>::vector_to_array (labels).data ());
+        glib::ArrayHandler<glib::ustring>::vector_to_array (labels).data ());
   }
 
   auto
@@ -200,44 +200,44 @@ namespace Gtk
 
   auto
   AlertDialog::choose (Window& parent,
-                       const Gio::SlotAsyncReady& slot,
-                       const Glib::RefPtr<Gio::Cancellable>& cancellable) const -> void
+                       const gio::SlotAsyncReady& slot,
+                       const glib::RefPtr<gio::Cancellable>& cancellable) const -> void
   {
-    auto slot_copy = new Gio::SlotAsyncReady (slot);
+    auto slot_copy = new gio::SlotAsyncReady (slot);
 
     gtk_alert_dialog_choose (
         const_cast<GtkAlertDialog*> (gobj ()),
         (parent).gobj (),
-        const_cast<GCancellable*> (Glib::unwrap (cancellable)),
-        &Gio::SignalProxy_async_callback,
+        const_cast<GCancellable*> (glib::unwrap (cancellable)),
+        &gio::SignalProxy_async_callback,
         slot_copy);
   }
 
   auto
-  AlertDialog::choose (const Gio::SlotAsyncReady& slot,
-                       const Glib::RefPtr<Gio::Cancellable>& cancellable) const -> void
+  AlertDialog::choose (const gio::SlotAsyncReady& slot,
+                       const glib::RefPtr<gio::Cancellable>& cancellable) const -> void
   {
-    auto slot_copy = new Gio::SlotAsyncReady (slot);
+    auto slot_copy = new gio::SlotAsyncReady (slot);
 
     gtk_alert_dialog_choose (
         const_cast<GtkAlertDialog*> (gobj ()),
         nullptr,
-        const_cast<GCancellable*> (Glib::unwrap (cancellable)),
-        &Gio::SignalProxy_async_callback,
+        const_cast<GCancellable*> (glib::unwrap (cancellable)),
+        &gio::SignalProxy_async_callback,
         slot_copy);
   }
 
   auto
   AlertDialog::choose_finish (
-      const Glib::RefPtr<Gio::AsyncResult>& result) const -> int
+      const glib::RefPtr<gio::AsyncResult>& result) const -> int
   {
     GError* gerror = nullptr;
     auto retvalue = gtk_alert_dialog_choose_finish (
         const_cast<GtkAlertDialog*> (gobj ()),
-        Glib::unwrap (result),
+        glib::unwrap (result),
         &(gerror));
     if (gerror)
-      ::Glib::Error::throw_exception (gerror);
+      ::glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
@@ -254,82 +254,82 @@ namespace Gtk
   }
 
   auto
-  AlertDialog::property_modal () -> Glib::PropertyProxy<bool>
+  AlertDialog::property_modal () -> glib::PropertyProxy<bool>
   {
-    return Glib::PropertyProxy<bool> (this, "modal");
+    return glib::PropertyProxy<bool> (this, "modal");
   }
 
   auto
-  AlertDialog::property_modal () const -> Glib::PropertyProxy_ReadOnly<bool>
+  AlertDialog::property_modal () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "modal");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "modal");
   }
 
   auto
-  AlertDialog::property_message () -> Glib::PropertyProxy<Glib::ustring>
+  AlertDialog::property_message () -> glib::PropertyProxy<glib::ustring>
   {
-    return Glib::PropertyProxy<Glib::ustring> (this, "message");
+    return glib::PropertyProxy<glib::ustring> (this, "message");
   }
 
   auto
-  AlertDialog::property_message () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>
+  AlertDialog::property_message () const -> glib::PropertyProxy_ReadOnly<glib::ustring>
   {
-    return Glib::PropertyProxy_ReadOnly<Glib::ustring> (this, "message");
+    return glib::PropertyProxy_ReadOnly<glib::ustring> (this, "message");
   }
 
   auto
-  AlertDialog::property_detail () -> Glib::PropertyProxy<Glib::ustring>
+  AlertDialog::property_detail () -> glib::PropertyProxy<glib::ustring>
   {
-    return Glib::PropertyProxy<Glib::ustring> (this, "detail");
+    return glib::PropertyProxy<glib::ustring> (this, "detail");
   }
 
   auto
-  AlertDialog::property_detail () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>
+  AlertDialog::property_detail () const -> glib::PropertyProxy_ReadOnly<glib::ustring>
   {
-    return Glib::PropertyProxy_ReadOnly<Glib::ustring> (this, "detail");
+    return glib::PropertyProxy_ReadOnly<glib::ustring> (this, "detail");
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<
-          std::vector<Glib::ustring>>::value,
-      "Type std::vector<Glib::ustring> cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      glib::Traits::ValueCompatibleWithWrapProperty<
+          std::vector<glib::ustring>>::value,
+      "Type std::vector<glib::ustring> cannot be used in _WRAP_PROPERTY. "
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  AlertDialog::property_buttons () -> Glib::PropertyProxy<std::vector<Glib::ustring>>
+  AlertDialog::property_buttons () -> glib::PropertyProxy<std::vector<glib::ustring>>
   {
-    return Glib::PropertyProxy<std::vector<Glib::ustring>> (this, "buttons");
+    return glib::PropertyProxy<std::vector<glib::ustring>> (this, "buttons");
   }
 
   auto
-  AlertDialog::property_buttons () const -> Glib::PropertyProxy_ReadOnly<std::vector<Glib::ustring>>
+  AlertDialog::property_buttons () const -> glib::PropertyProxy_ReadOnly<std::vector<glib::ustring>>
   {
-    return Glib::PropertyProxy_ReadOnly<std::vector<Glib::ustring>> (this,
+    return glib::PropertyProxy_ReadOnly<std::vector<glib::ustring>> (this,
                                                                      "buttons");
   }
 
   auto
-  AlertDialog::property_cancel_button () -> Glib::PropertyProxy<int>
+  AlertDialog::property_cancel_button () -> glib::PropertyProxy<int>
   {
-    return Glib::PropertyProxy<int> (this, "cancel-button");
+    return glib::PropertyProxy<int> (this, "cancel-button");
   }
 
   auto
-  AlertDialog::property_cancel_button () const -> Glib::PropertyProxy_ReadOnly<int>
+  AlertDialog::property_cancel_button () const -> glib::PropertyProxy_ReadOnly<int>
   {
-    return Glib::PropertyProxy_ReadOnly<int> (this, "cancel-button");
+    return glib::PropertyProxy_ReadOnly<int> (this, "cancel-button");
   }
 
   auto
-  AlertDialog::property_default_button () -> Glib::PropertyProxy<int>
+  AlertDialog::property_default_button () -> glib::PropertyProxy<int>
   {
-    return Glib::PropertyProxy<int> (this, "default-button");
+    return glib::PropertyProxy<int> (this, "default-button");
   }
 
   auto
-  AlertDialog::property_default_button () const -> Glib::PropertyProxy_ReadOnly<int>
+  AlertDialog::property_default_button () const -> glib::PropertyProxy_ReadOnly<int>
   {
-    return Glib::PropertyProxy_ReadOnly<int> (this, "default-button");
+    return glib::PropertyProxy_ReadOnly<int> (this, "default-button");
   }
 
-} // namespace Gtk
+} // namespace gtk

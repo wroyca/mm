@@ -31,18 +31,18 @@ using GAppInfoClass = struct _GAppInfoClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gio
+namespace gio
 {
   class LIBMM_GIO_SYMEXPORT AppInfo_Class;
 }
 #endif
 
-namespace Gio
+namespace gio
 {
 
   class LIBMM_GIO_SYMEXPORT File;
 
-  class LIBMM_GIO_SYMEXPORT AppInfo : public Glib::Interface
+  class LIBMM_GIO_SYMEXPORT AppInfo : public glib::Interface
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -66,7 +66,7 @@ namespace Gio
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
-    explicit AppInfo (const Glib::Interface_Class& interface_class);
+    explicit AppInfo (const glib::Interface_Class& interface_class);
 
   public:
     explicit AppInfo (GAppInfo* castitem);
@@ -117,13 +117,13 @@ namespace Gio
     static auto
     create_from_commandline (const std::string& commandline,
                              const std::string& application_name,
-                             CreateFlags flags) -> Glib::RefPtr<AppInfo>;
+                             CreateFlags flags) -> glib::RefPtr<AppInfo>;
 
     auto
-    create_duplicate () const -> Glib::RefPtr<AppInfo>;
+    create_duplicate () const -> glib::RefPtr<AppInfo>;
 
     auto
-    equal (const Glib::RefPtr<AppInfo>& other) const -> bool;
+    equal (const glib::RefPtr<AppInfo>& other) const -> bool;
 
     auto
     get_id () const -> std::string;
@@ -144,24 +144,24 @@ namespace Gio
     get_commandline () const -> std::string;
 
     auto
-    get_icon () -> Glib::RefPtr<Icon>;
+    get_icon () -> glib::RefPtr<Icon>;
 
     auto
-    get_icon () const -> const Glib::RefPtr<const Icon>;
+    get_icon () const -> const glib::RefPtr<const Icon>;
 
     auto
-    launch (const Glib::RefPtr<Gio::File>& file,
-            const Glib::RefPtr<AppLaunchContext>& context) -> bool;
+    launch (const glib::RefPtr<gio::File>& file,
+            const glib::RefPtr<AppLaunchContext>& context) -> bool;
 
     auto
-    launch (const Glib::RefPtr<Gio::File>& file) -> bool;
+    launch (const glib::RefPtr<gio::File>& file) -> bool;
 
     auto
-    launch (const std::vector<Glib::RefPtr<Gio::File>>& files,
-            const Glib::RefPtr<AppLaunchContext>& context) -> bool;
+    launch (const std::vector<glib::RefPtr<gio::File>>& files,
+            const glib::RefPtr<AppLaunchContext>& context) -> bool;
 
     auto
-    launch (const std::vector<Glib::RefPtr<Gio::File>>& files) -> bool;
+    launch (const std::vector<glib::RefPtr<gio::File>>& files) -> bool;
 
     auto
     supports_uris () const -> bool;
@@ -171,33 +171,33 @@ namespace Gio
 
     auto
     launch_uris (const std::vector<std::string>& uris,
-                 const Glib::RefPtr<AppLaunchContext>& context) -> bool;
+                 const glib::RefPtr<AppLaunchContext>& context) -> bool;
 
     auto
     launch_uris (const std::vector<std::string>& uris) -> bool;
 
     auto
     launch_uri (const std::string& uri,
-                const Glib::RefPtr<AppLaunchContext>& context) -> bool;
+                const glib::RefPtr<AppLaunchContext>& context) -> bool;
 
     auto
     launch_uri (const std::string& uris) -> bool;
 
     auto
     launch_uris_async (const std::vector<std::string>& uris,
-                       const Glib::RefPtr<AppLaunchContext>& context,
+                       const glib::RefPtr<AppLaunchContext>& context,
                        const SlotAsyncReady& slot,
-                       const Glib::RefPtr<Cancellable>& cancellable = {})
+                       const glib::RefPtr<Cancellable>& cancellable = {})
         -> void;
 
     auto
     launch_uris_async (const std::vector<std::string>& uris,
-                       const Glib::RefPtr<AppLaunchContext>& context,
-                       const Glib::RefPtr<Cancellable>& cancellable = {})
+                       const glib::RefPtr<AppLaunchContext>& context,
+                       const glib::RefPtr<Cancellable>& cancellable = {})
         -> void;
 
     auto
-    launch_uris_finish (const Glib::RefPtr<AsyncResult>& result) -> bool;
+    launch_uris_finish (const glib::RefPtr<AsyncResult>& result) -> bool;
 
     auto
     should_show () const -> bool;
@@ -224,65 +224,65 @@ namespace Gio
     remove_supports_type (const std::string& content_type) -> bool;
 
     auto
-    get_supported_types () const -> std::vector<Glib::ustring>;
+    get_supported_types () const -> std::vector<glib::ustring>;
 
     auto
     set_as_last_used_for_type (const std::string& content_type) -> bool;
 
     static auto
-    get_all () -> std::vector<Glib::RefPtr<AppInfo>>;
+    get_all () -> std::vector<glib::RefPtr<AppInfo>>;
 
     static auto
     get_all_for_type (const std::string& content_type)
-        -> std::vector<Glib::RefPtr<AppInfo>>;
+        -> std::vector<glib::RefPtr<AppInfo>>;
 
     static auto
     get_default_for_type (const std::string& content_type,
                           bool must_support_uris = true)
-        -> Glib::RefPtr<AppInfo>;
+        -> glib::RefPtr<AppInfo>;
 
     static auto
     get_default_for_type_async (
         const std::string& content_type,
         bool must_support_uris,
         const SlotAsyncReady& slot,
-        const Glib::RefPtr<Cancellable>& cancellable = {}) -> void;
+        const glib::RefPtr<Cancellable>& cancellable = {}) -> void;
 
     static auto
     get_default_for_type_async (
         const std::string& content_type,
         bool must_support_uris,
-        const Glib::RefPtr<Cancellable>& cancellable = {}) -> void;
+        const glib::RefPtr<Cancellable>& cancellable = {}) -> void;
 
     static auto
-    get_default_for_type_finish (const Glib::RefPtr<AsyncResult>& result)
-        -> Glib::RefPtr<AppInfo>;
+    get_default_for_type_finish (const glib::RefPtr<AsyncResult>& result)
+        -> glib::RefPtr<AppInfo>;
 
     static auto
     get_default_for_uri_scheme (const std::string& uri_scheme)
-        -> Glib::RefPtr<AppInfo>;
+        -> glib::RefPtr<AppInfo>;
 
     static auto
     get_default_for_uri_scheme_async (
         const std::string& content_type,
         const SlotAsyncReady& slot,
-        const Glib::RefPtr<Cancellable>& cancellable = {}) -> void;
+        const glib::RefPtr<Cancellable>& cancellable = {}) -> void;
 
     static auto
     get_default_for_uri_scheme_async (
         const std::string& content_type,
-        const Glib::RefPtr<Cancellable>& cancellable = {}) -> void;
+        const glib::RefPtr<Cancellable>& cancellable = {}) -> void;
 
     static auto
-    get_default_for_uri_scheme_finish (const Glib::RefPtr<AsyncResult>& result)
-        -> Glib::RefPtr<AppInfo>;
+    get_default_for_uri_scheme_finish (const glib::RefPtr<AsyncResult>& result)
+        -> glib::RefPtr<AppInfo>;
 
     static auto
     reset_type_associations (const std::string& content_type) -> void;
 
     static auto
     launch_default_for_uri (const std::string& uri,
-                            const Glib::RefPtr<AppLaunchContext>& context)
+                            const glib::RefPtr<AppLaunchContext>& context)
         -> bool;
 
     static auto
@@ -290,31 +290,31 @@ namespace Gio
 
     static auto
     launch_default_for_uri_async (const std::string& uri,
-                                  const Glib::RefPtr<AppLaunchContext>& context,
+                                  const glib::RefPtr<AppLaunchContext>& context,
                                   const SlotAsyncReady& slot,
-                                  const Glib::RefPtr<Cancellable>& cancellable)
+                                  const glib::RefPtr<Cancellable>& cancellable)
         -> void;
 
     static auto
     launch_default_for_uri_async (const std::string& uri,
-                                  const Glib::RefPtr<AppLaunchContext>& context,
+                                  const glib::RefPtr<AppLaunchContext>& context,
                                   const SlotAsyncReady& slot) -> void;
 
     static auto
     launch_default_for_uri_async (const std::string& uri,
-                                  const Glib::RefPtr<AppLaunchContext>& context,
-                                  const Glib::RefPtr<Cancellable>& cancellable)
+                                  const glib::RefPtr<AppLaunchContext>& context,
+                                  const glib::RefPtr<Cancellable>& cancellable)
         -> void;
 
     static auto
     launch_default_for_uri_async (const std::string& uri,
-                                  const Glib::RefPtr<AppLaunchContext>& context)
+                                  const glib::RefPtr<AppLaunchContext>& context)
         -> void;
 
     static auto
     launch_default_for_uri_async (const std::string& uri,
                                   const SlotAsyncReady& slot,
-                                  const Glib::RefPtr<Cancellable>& cancellable)
+                                  const glib::RefPtr<Cancellable>& cancellable)
         -> void;
 
     static auto
@@ -323,14 +323,14 @@ namespace Gio
 
     static auto
     launch_default_for_uri_async (const std::string& uri,
-                                  const Glib::RefPtr<Cancellable>& cancellable)
+                                  const glib::RefPtr<Cancellable>& cancellable)
         -> void;
 
     static auto
     launch_default_for_uri_async (const std::string& uri) -> void;
 
     static auto
-    launch_default_for_uri_finish (const Glib::RefPtr<AsyncResult>& result)
+    launch_default_for_uri_finish (const glib::RefPtr<AsyncResult>& result)
         -> bool;
 
   protected:
@@ -339,9 +339,9 @@ namespace Gio
   protected:
   };
 
-} // namespace Gio
+} // namespace gio
 
-namespace Gio
+namespace gio
 {
 
   inline auto
@@ -391,15 +391,15 @@ namespace Gio
     return (lhs = static_cast<AppInfo::CreateFlags> (
                 static_cast<unsigned> (lhs) ^ static_cast<unsigned> (rhs)));
   }
-} // namespace Gio
+} // namespace gio
 
-namespace Glib
+namespace glib
 {
 
   LIBMM_GIO_SYMEXPORT
   auto
-  wrap (GAppInfo* object, bool take_copy = false) -> Glib::RefPtr<Gio::AppInfo>;
+  wrap (GAppInfo* object, bool take_copy = false) -> glib::RefPtr<gio::AppInfo>;
 
-} // namespace Glib
+} // namespace glib
 
 #endif

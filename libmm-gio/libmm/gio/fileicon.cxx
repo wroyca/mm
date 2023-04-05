@@ -11,20 +11,20 @@ namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GFileIcon* object, const bool take_copy) -> RefPtr<Gio::FileIcon>
+  wrap (GFileIcon* object, const bool take_copy) -> RefPtr<gio::FileIcon>
   {
-    return Glib::make_refptr_for_instance<Gio::FileIcon> (
-        dynamic_cast<Gio::FileIcon*> (
+    return glib::make_refptr_for_instance<gio::FileIcon> (
+        dynamic_cast<gio::FileIcon*> (
             wrap_auto ((GObject*) object, take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gio
+namespace gio
 {
 
   auto
@@ -51,7 +51,7 @@ namespace Gio
   }
 
   auto
-  FileIcon_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  FileIcon_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new FileIcon ((GFileIcon*) object);
   }
@@ -63,7 +63,7 @@ namespace Gio
     return gobj ();
   }
 
-  FileIcon::FileIcon (const Glib::ConstructParams& construct_params)
+  FileIcon::FileIcon (const glib::ConstructParams& construct_params)
     : Object (construct_params)
   {
   }
@@ -107,40 +107,40 @@ namespace Gio
 
   FileIcon::FileIcon ()
     : ObjectBase (nullptr),
-      Object (Glib::ConstructParams (fileicon_class_.init ()))
+      Object (glib::ConstructParams (fileicon_class_.init ()))
   {
   }
 
   auto
-  FileIcon::create () -> Glib::RefPtr<FileIcon>
+  FileIcon::create () -> glib::RefPtr<FileIcon>
   {
-    return Glib::make_refptr_for_instance<FileIcon> (new FileIcon ());
+    return glib::make_refptr_for_instance<FileIcon> (new FileIcon ());
   }
 
   auto
-  FileIcon::get_file () -> Glib::RefPtr<File>
+  FileIcon::get_file () -> glib::RefPtr<File>
   {
-    auto retvalue = Glib::wrap (g_file_icon_get_file (gobj ()));
+    auto retvalue = glib::wrap (g_file_icon_get_file (gobj ()));
     if (retvalue)
       retvalue->reference ();
     return retvalue;
   }
 
   auto
-  FileIcon::get_file () const -> Glib::RefPtr<const File>
+  FileIcon::get_file () const -> glib::RefPtr<const File>
   {
     return const_cast<FileIcon*> (this)->get_file ();
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<Glib::RefPtr<File>>::value,
-      "Type Glib::RefPtr<File> cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      glib::Traits::ValueCompatibleWithWrapProperty<glib::RefPtr<File>>::value,
+      "Type glib::RefPtr<File> cannot be used in _WRAP_PROPERTY. "
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  FileIcon::property_file () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<File>>
+  FileIcon::property_file () const -> glib::PropertyProxy_ReadOnly<glib::RefPtr<File>>
   {
     return {this, "file"};
   }
 
-} // namespace Gio
+} // namespace gio

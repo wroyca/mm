@@ -13,8 +13,8 @@ namespace
 
   struct WatchSlots
   {
-    Gio::DBus::SlotNameAppeared* name_appeared_slot;
-    Gio::DBus::SlotNameVanished* name_vanished_slot;
+    gio::DBus::SlotNameAppeared* name_appeared_slot;
+    gio::DBus::SlotNameVanished* name_vanished_slot;
   };
 
   extern "C"
@@ -30,13 +30,13 @@ namespace
 
       try
       {
-        (*the_slot) (Glib::wrap (connection, true),
-                     Glib::convert_const_gchar_ptr_to_ustring (name),
-                     Glib::convert_const_gchar_ptr_to_ustring (name_owner));
+        (*the_slot) (glib::wrap (connection, true),
+                     glib::convert_const_gchar_ptr_to_ustring (name),
+                     glib::convert_const_gchar_ptr_to_ustring (name_owner));
       }
       catch (...)
       {
-        Glib::exception_handlers_invoke ();
+        glib::exception_handlers_invoke ();
       }
     }
 
@@ -50,12 +50,12 @@ namespace
 
       try
       {
-        (*the_slot) (Glib::wrap (connection, true),
-                     Glib::convert_const_gchar_ptr_to_ustring (name));
+        (*the_slot) (glib::wrap (connection, true),
+                     glib::convert_const_gchar_ptr_to_ustring (name));
       }
       catch (...)
       {
-        Glib::exception_handlers_invoke ();
+        glib::exception_handlers_invoke ();
       }
     }
 
@@ -76,12 +76,12 @@ namespace
 
 } // namespace
 
-namespace Gio::DBus
+namespace gio::DBus
 {
 
   auto
   watch_name (BusType bus_type,
-              const Glib::ustring& name,
+              const glib::ustring& name,
               const SlotNameAppeared& name_appeared_slot,
               const SlotNameVanished& name_vanished_slot,
               BusNameWatcherFlags flags) -> guint
@@ -101,8 +101,8 @@ namespace Gio::DBus
   }
 
   auto
-  watch_name (const Glib::RefPtr<Connection>& connection,
-              const Glib::ustring& name,
+  watch_name (const glib::RefPtr<Connection>& connection,
+              const glib::ustring& name,
               const SlotNameAppeared& name_appeared_slot,
               const SlotNameVanished& name_vanished_slot,
               BusNameWatcherFlags flags) -> guint
@@ -113,7 +113,7 @@ namespace Gio::DBus
     slots->name_vanished_slot = new SlotNameVanished (name_vanished_slot);
 
     return g_bus_watch_name_on_connection (
-        Glib::unwrap (connection),
+        glib::unwrap (connection),
         name.c_str (),
         static_cast<GBusNameWatcherFlags> (flags),
         &Bus_Name_Appeared_giomm_callback,
@@ -128,7 +128,7 @@ namespace Gio::DBus
     g_bus_unwatch_name (watcher_id);
   }
 
-} // namespace Gio::DBus
+} // namespace gio::DBus
 
 namespace
 {

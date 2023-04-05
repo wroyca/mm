@@ -23,7 +23,7 @@ extern "C"
 }
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
   class LIBMM_GTK_SYMEXPORT RecentInfo final
@@ -62,65 +62,65 @@ namespace Gtk
   private:
   public:
     auto
-    get_uri () const -> Glib::ustring;
+    get_uri () const -> glib::ustring;
 
     auto
-    get_display_name () const -> Glib::ustring;
+    get_display_name () const -> glib::ustring;
 
     auto
-    get_description () const -> Glib::ustring;
+    get_description () const -> glib::ustring;
 
     auto
-    get_mime_type () const -> Glib::ustring;
+    get_mime_type () const -> glib::ustring;
 
     auto
-    get_added () const -> Glib::DateTime;
+    get_added () const -> glib::DateTime;
 
     auto
-    get_modified () const -> Glib::DateTime;
+    get_modified () const -> glib::DateTime;
 
     auto
-    get_visited () const -> Glib::DateTime;
+    get_visited () const -> glib::DateTime;
 
     auto
     get_private_hint () const -> bool;
 
     auto
-    create_app_info (const Glib::ustring& app_name)
-        -> Glib::RefPtr<Gio::AppInfo>;
+    create_app_info (const glib::ustring& app_name)
+        -> glib::RefPtr<gio::AppInfo>;
 
     auto
-    get_application_info (const Glib::ustring& app_name,
+    get_application_info (const glib::ustring& app_name,
                           std::string& app_exec,
                           guint& count,
-                          Glib::DateTime& stamp) const -> bool;
+                          glib::DateTime& stamp) const -> bool;
 
     auto
-    get_applications () const -> std::vector<Glib::ustring>;
+    get_applications () const -> std::vector<glib::ustring>;
 
     auto
-    last_application () const -> Glib::ustring;
+    last_application () const -> glib::ustring;
 
     auto
-    has_application (const Glib::ustring& app_name) const -> bool;
+    has_application (const glib::ustring& app_name) const -> bool;
 
     auto
-    get_groups () const -> std::vector<Glib::ustring>;
+    get_groups () const -> std::vector<glib::ustring>;
 
     auto
-    has_group (const Glib::ustring& group_name) const -> bool;
+    has_group (const glib::ustring& group_name) const -> bool;
 
     auto
-    get_gicon () -> Glib::RefPtr<Gio::Icon>;
+    get_gicon () -> glib::RefPtr<gio::Icon>;
 
     auto
-    get_gicon () const -> Glib::RefPtr<const Gio::Icon>;
+    get_gicon () const -> glib::RefPtr<const gio::Icon>;
 
     auto
-    get_short_name () const -> Glib::ustring;
+    get_short_name () const -> glib::ustring;
 
     auto
-    get_uri_display () const -> Glib::ustring;
+    get_uri_display () const -> glib::ustring;
 
     auto
     get_age () const -> int;
@@ -132,21 +132,21 @@ namespace Gtk
     exists () const -> bool;
 
     auto
-    equal (const Glib::RefPtr<const RecentInfo>& info_b) const -> bool;
+    equal (const glib::RefPtr<const RecentInfo>& info_b) const -> bool;
   };
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   struct RecentInfoTraits
   {
-    typedef Glib::RefPtr<RecentInfo> CppType;
+    typedef glib::RefPtr<RecentInfo> CppType;
     typedef const GtkRecentInfo* CType;
     typedef GtkRecentInfo* CTypeNonConst;
 
     static inline auto
     to_c_type (const CppType& obj) -> CType
     {
-      return Glib::unwrap (obj);
+      return glib::unwrap (obj);
     }
 
     static inline auto
@@ -167,29 +167,29 @@ namespace Gtk
 #endif
 
   inline auto
-  operator== (const Glib::RefPtr<const RecentInfo>& lhs,
-              const Glib::RefPtr<const RecentInfo>& rhs) -> bool
+  operator== (const glib::RefPtr<const RecentInfo>& lhs,
+              const glib::RefPtr<const RecentInfo>& rhs) -> bool
   {
     return lhs->equal (rhs);
   }
 
   inline auto
-  operator!= (const Glib::RefPtr<const RecentInfo>& lhs,
-              const Glib::RefPtr<const RecentInfo>& rhs) -> bool
+  operator!= (const glib::RefPtr<const RecentInfo>& lhs,
+              const glib::RefPtr<const RecentInfo>& rhs) -> bool
   {
     return !lhs->equal (rhs);
   }
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_GTK_SYMEXPORT Value<Glib::RefPtr<Gtk::RecentInfo>> : public ValueBase_Boxed
+  class LIBMM_GTK_SYMEXPORT Value<glib::RefPtr<gtk::RecentInfo>> : public ValueBase_Boxed
   {
   public:
-    typedef Glib::RefPtr<Gtk::RecentInfo> CppType;
+    typedef glib::RefPtr<gtk::RecentInfo> CppType;
     typedef GtkRecentInfo* CType;
 
     static auto
@@ -201,13 +201,13 @@ namespace Glib
     get () const -> CppType;
   };
 
-} // namespace Glib
+} // namespace glib
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkRecentInfo* object, bool take_copy = false) -> Glib::RefPtr<Gtk::RecentInfo>;
+  wrap (GtkRecentInfo* object, bool take_copy = false) -> glib::RefPtr<gtk::RecentInfo>;
 
-} // namespace Glib
+} // namespace glib
 
 #endif

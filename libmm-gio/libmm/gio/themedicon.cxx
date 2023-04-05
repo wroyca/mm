@@ -7,13 +7,13 @@
 
 #include <gio/gio.h>
 
-namespace Gio
+namespace gio
 {
 
-  ThemedIcon::ThemedIcon (const Glib::ustring& iconname,
+  ThemedIcon::ThemedIcon (const glib::ustring& iconname,
                           const bool use_default_fallbacks)
     : ObjectBase (nullptr),
-      Object (Glib::ConstructParams (themedicon_class_.init (),
+      Object (glib::ConstructParams (themedicon_class_.init (),
                                      "name",
                                      iconname.c_str (),
                                      "use-default-fallbacks",
@@ -22,37 +22,37 @@ namespace Gio
   {
   }
 
-  ThemedIcon::ThemedIcon (const std::vector<Glib::ustring>& iconnames)
+  ThemedIcon::ThemedIcon (const std::vector<glib::ustring>& iconnames)
     : ObjectBase (nullptr),
-      Object (Glib::ConstructParams (
+      Object (glib::ConstructParams (
           themedicon_class_.init (),
           "names",
-          Glib::ArrayHandler<Glib::ustring>::vector_to_array (iconnames)
+          glib::ArrayHandler<glib::ustring>::vector_to_array (iconnames)
               .data (),
           nullptr))
   {
   }
 
-} // namespace Gio
+} // namespace gio
 
 namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GThemedIcon* object, const bool take_copy) -> RefPtr<Gio::ThemedIcon>
+  wrap (GThemedIcon* object, const bool take_copy) -> RefPtr<gio::ThemedIcon>
   {
-    return Glib::make_refptr_for_instance<Gio::ThemedIcon> (
-        dynamic_cast<Gio::ThemedIcon*> (
+    return glib::make_refptr_for_instance<gio::ThemedIcon> (
+        dynamic_cast<gio::ThemedIcon*> (
             wrap_auto ((GObject*) object, take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gio
+namespace gio
 {
 
   auto
@@ -78,7 +78,7 @@ namespace Gio
   }
 
   auto
-  ThemedIcon_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  ThemedIcon_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new ThemedIcon ((GThemedIcon*) object);
   }
@@ -90,7 +90,7 @@ namespace Gio
     return gobj ();
   }
 
-  ThemedIcon::ThemedIcon (const Glib::ConstructParams& construct_params)
+  ThemedIcon::ThemedIcon (const glib::ConstructParams& construct_params)
     : Object (construct_params)
   {
   }
@@ -131,56 +131,56 @@ namespace Gio
   }
 
   auto
-  ThemedIcon::create (const Glib::ustring& iconname,
-                      const bool use_default_fallbacks) -> Glib::RefPtr<ThemedIcon>
+  ThemedIcon::create (const glib::ustring& iconname,
+                      const bool use_default_fallbacks) -> glib::RefPtr<ThemedIcon>
   {
-    return Glib::make_refptr_for_instance<ThemedIcon> (
+    return glib::make_refptr_for_instance<ThemedIcon> (
         new ThemedIcon (iconname, use_default_fallbacks));
   }
 
   auto
-  ThemedIcon::create (const std::vector<Glib::ustring>& iconnames) -> Glib::RefPtr<ThemedIcon>
+  ThemedIcon::create (const std::vector<glib::ustring>& iconnames) -> glib::RefPtr<ThemedIcon>
   {
-    return Glib::make_refptr_for_instance<ThemedIcon> (
+    return glib::make_refptr_for_instance<ThemedIcon> (
         new ThemedIcon (iconnames));
   }
 
   auto
-  ThemedIcon::prepend_name (const Glib::ustring& iconname) -> void
+  ThemedIcon::prepend_name (const glib::ustring& iconname) -> void
   {
     g_themed_icon_prepend_name (gobj (), iconname.c_str ());
   }
 
   auto
-  ThemedIcon::append_name (const Glib::ustring& iconname) -> void
+  ThemedIcon::append_name (const glib::ustring& iconname) -> void
   {
     g_themed_icon_append_name (gobj (), iconname.c_str ());
   }
 
   auto
-  ThemedIcon::get_names () const -> std::vector<Glib::ustring>
+  ThemedIcon::get_names () const -> std::vector<glib::ustring>
   {
-    return Glib::ArrayHandler<Glib::ustring>::array_to_vector (
+    return glib::ArrayHandler<glib::ustring>::array_to_vector (
         g_themed_icon_get_names (const_cast<GThemedIcon*> (gobj ())),
-        Glib::OWNERSHIP_NONE);
+        glib::OWNERSHIP_NONE);
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<
-          std::vector<Glib::ustring>>::value,
-      "Type std::vector<Glib::ustring> cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      glib::Traits::ValueCompatibleWithWrapProperty<
+          std::vector<glib::ustring>>::value,
+      "Type std::vector<glib::ustring> cannot be used in _WRAP_PROPERTY. "
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  ThemedIcon::property_names () const -> Glib::PropertyProxy_ReadOnly<std::vector<Glib::ustring>>
+  ThemedIcon::property_names () const -> glib::PropertyProxy_ReadOnly<std::vector<glib::ustring>>
   {
     return {this, "names"};
   }
 
   auto
-  ThemedIcon::property_use_default_fallbacks () const -> Glib::PropertyProxy_ReadOnly<bool>
+  ThemedIcon::property_use_default_fallbacks () const -> glib::PropertyProxy_ReadOnly<bool>
   {
     return {this, "use-default-fallbacks"};
   }
 
-} // namespace Gio
+} // namespace gio

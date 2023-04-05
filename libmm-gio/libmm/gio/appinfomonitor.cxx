@@ -7,7 +7,7 @@
 
 #include <gio/gio.h>
 
-namespace Gio
+namespace gio
 {
 
 }
@@ -15,27 +15,27 @@ namespace Gio
 namespace
 {
 
-  const Glib::SignalProxyInfo AppInfoMonitor_signal_changed_info = {
+  const glib::SignalProxyInfo AppInfoMonitor_signal_changed_info = {
       "changed",
-      (GCallback) &Glib::SignalProxyNormal::slot0_void_callback,
-      (GCallback) &Glib::SignalProxyNormal::slot0_void_callback};
+      (GCallback) &glib::SignalProxyNormal::slot0_void_callback,
+      (GCallback) &glib::SignalProxyNormal::slot0_void_callback};
 
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GAppInfoMonitor* object, const bool take_copy) -> RefPtr<Gio::AppInfoMonitor>
+  wrap (GAppInfoMonitor* object, const bool take_copy) -> RefPtr<gio::AppInfoMonitor>
   {
-    return Glib::make_refptr_for_instance<Gio::AppInfoMonitor> (
-        dynamic_cast<Gio::AppInfoMonitor*> (
+    return glib::make_refptr_for_instance<gio::AppInfoMonitor> (
+        dynamic_cast<gio::AppInfoMonitor*> (
             wrap_auto ((GObject*) object, take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gio
+namespace gio
 {
 
   auto
@@ -59,7 +59,7 @@ namespace Gio
   }
 
   auto
-  AppInfoMonitor_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  AppInfoMonitor_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new AppInfoMonitor ((GAppInfoMonitor*) object);
   }
@@ -71,7 +71,7 @@ namespace Gio
     return gobj ();
   }
 
-  AppInfoMonitor::AppInfoMonitor (const Glib::ConstructParams& construct_params)
+  AppInfoMonitor::AppInfoMonitor (const glib::ConstructParams& construct_params)
     : Object (construct_params)
   {
   }
@@ -110,15 +110,15 @@ namespace Gio
   }
 
   auto
-  AppInfoMonitor::get () -> Glib::RefPtr<AppInfoMonitor>
+  AppInfoMonitor::get () -> glib::RefPtr<AppInfoMonitor>
   {
-    return Glib::wrap (g_app_info_monitor_get ());
+    return glib::wrap (g_app_info_monitor_get ());
   }
 
   auto
-  AppInfoMonitor::signal_changed () -> Glib::SignalProxy<void ()>
+  AppInfoMonitor::signal_changed () -> glib::SignalProxy<void ()>
   {
     return {this, &AppInfoMonitor_signal_changed_info};
   }
 
-} // namespace Gio
+} // namespace gio

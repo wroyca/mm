@@ -16,27 +16,27 @@ namespace
                                           gdouble p1,
                                           void* data) -> void
   {
-    using namespace Gtk;
+    using namespace gtk;
     using SlotType = sigc::slot<void (double, double)>;
 
     auto obj = dynamic_cast<GestureDrag*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
     {
       try
       {
-        if (const auto slot = Glib::SignalProxyNormal::data_to_slot (data))
+        if (const auto slot = glib::SignalProxyNormal::data_to_slot (data))
           (*static_cast<SlotType*> (slot)) (p0, p1);
       }
       catch (...)
       {
-        Glib::exception_handlers_invoke ();
+        glib::exception_handlers_invoke ();
       }
     }
   }
 
-  static const Glib::SignalProxyInfo GestureDrag_signal_drag_begin_info = {
+  static const glib::SignalProxyInfo GestureDrag_signal_drag_begin_info = {
       "drag-begin",
       (GCallback) &GestureDrag_signal_drag_begin_callback,
       (GCallback) &GestureDrag_signal_drag_begin_callback};
@@ -47,27 +47,27 @@ namespace
                                            gdouble p1,
                                            void* data) -> void
   {
-    using namespace Gtk;
+    using namespace gtk;
     using SlotType = sigc::slot<void (double, double)>;
 
     auto obj = dynamic_cast<GestureDrag*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
     {
       try
       {
-        if (const auto slot = Glib::SignalProxyNormal::data_to_slot (data))
+        if (const auto slot = glib::SignalProxyNormal::data_to_slot (data))
           (*static_cast<SlotType*> (slot)) (p0, p1);
       }
       catch (...)
       {
-        Glib::exception_handlers_invoke ();
+        glib::exception_handlers_invoke ();
       }
     }
   }
 
-  static const Glib::SignalProxyInfo GestureDrag_signal_drag_update_info = {
+  static const glib::SignalProxyInfo GestureDrag_signal_drag_update_info = {
       "drag-update",
       (GCallback) &GestureDrag_signal_drag_update_callback,
       (GCallback) &GestureDrag_signal_drag_update_callback};
@@ -78,51 +78,51 @@ namespace
                                         gdouble p1,
                                         void* data) -> void
   {
-    using namespace Gtk;
+    using namespace gtk;
     using SlotType = sigc::slot<void (double, double)>;
 
     auto obj = dynamic_cast<GestureDrag*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
     {
       try
       {
-        if (const auto slot = Glib::SignalProxyNormal::data_to_slot (data))
+        if (const auto slot = glib::SignalProxyNormal::data_to_slot (data))
           (*static_cast<SlotType*> (slot)) (p0, p1);
       }
       catch (...)
       {
-        Glib::exception_handlers_invoke ();
+        glib::exception_handlers_invoke ();
       }
     }
   }
 
-  static const Glib::SignalProxyInfo GestureDrag_signal_drag_end_info = {
+  static const glib::SignalProxyInfo GestureDrag_signal_drag_end_info = {
       "drag-end",
       (GCallback) &GestureDrag_signal_drag_end_callback,
       (GCallback) &GestureDrag_signal_drag_end_callback};
 
 } // namespace
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GtkGestureDrag* object, bool take_copy) -> Glib::RefPtr<Gtk::GestureDrag>
+  wrap (GtkGestureDrag* object, bool take_copy) -> glib::RefPtr<gtk::GestureDrag>
   {
-    return Glib::make_refptr_for_instance<Gtk::GestureDrag> (
-        dynamic_cast<Gtk::GestureDrag*> (
-            Glib::wrap_auto ((GObject*) (object), take_copy)));
+    return glib::make_refptr_for_instance<gtk::GestureDrag> (
+        dynamic_cast<gtk::GestureDrag*> (
+            glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gtk
+namespace gtk
 {
 
   auto
-  GestureDrag_Class::init () -> const Glib::Class&
+  GestureDrag_Class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -142,7 +142,7 @@ namespace Gtk
   }
 
   auto
-  GestureDrag_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  GestureDrag_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new GestureDrag ((GtkGestureDrag*) object);
   }
@@ -154,7 +154,7 @@ namespace Gtk
     return gobj ();
   }
 
-  GestureDrag::GestureDrag (const Glib::ConstructParams& construct_params)
+  GestureDrag::GestureDrag (const glib::ConstructParams& construct_params)
     : GestureSingle (construct_params)
   {
   }
@@ -193,15 +193,15 @@ namespace Gtk
   }
 
   GestureDrag::GestureDrag ()
-    : Glib::ObjectBase (nullptr),
-      GestureSingle (Glib::ConstructParams (gesturedrag_class_.init ()))
+    : glib::ObjectBase (nullptr),
+      GestureSingle (glib::ConstructParams (gesturedrag_class_.init ()))
   {
   }
 
   auto
-  GestureDrag::create () -> Glib::RefPtr<GestureDrag>
+  GestureDrag::create () -> glib::RefPtr<GestureDrag>
   {
-    return Glib::make_refptr_for_instance<GestureDrag> (new GestureDrag ());
+    return glib::make_refptr_for_instance<GestureDrag> (new GestureDrag ());
   }
 
   auto
@@ -222,27 +222,27 @@ namespace Gtk
   }
 
   auto
-  GestureDrag::signal_drag_begin () -> Glib::SignalProxy<void (double, double)>
+  GestureDrag::signal_drag_begin () -> glib::SignalProxy<void (double, double)>
   {
-    return Glib::SignalProxy<void (double, double)> (
+    return glib::SignalProxy<void (double, double)> (
         this,
         &GestureDrag_signal_drag_begin_info);
   }
 
   auto
-  GestureDrag::signal_drag_update () -> Glib::SignalProxy<void (double, double)>
+  GestureDrag::signal_drag_update () -> glib::SignalProxy<void (double, double)>
   {
-    return Glib::SignalProxy<void (double, double)> (
+    return glib::SignalProxy<void (double, double)> (
         this,
         &GestureDrag_signal_drag_update_info);
   }
 
   auto
-  GestureDrag::signal_drag_end () -> Glib::SignalProxy<void (double, double)>
+  GestureDrag::signal_drag_end () -> glib::SignalProxy<void (double, double)>
   {
-    return Glib::SignalProxy<void (double, double)> (
+    return glib::SignalProxy<void (double, double)> (
         this,
         &GestureDrag_signal_drag_end_info);
   }
 
-} // namespace Gtk
+} // namespace gtk

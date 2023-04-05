@@ -14,13 +14,13 @@ using GtkEmojiChooserClass = struct _GtkEmojiChooserClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT EmojiChooser_Class;
 }
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
   class LIBMM_GTK_SYMEXPORT EmojiChooser : public Popover
@@ -50,7 +50,7 @@ namespace Gtk
     static CppClassType emojichooser_class_;
 
   protected:
-    explicit EmojiChooser (const Glib::ConstructParams& construct_params);
+    explicit EmojiChooser (const glib::ConstructParams& construct_params);
     explicit EmojiChooser (GtkEmojiChooser* castitem);
 
 #endif
@@ -82,19 +82,19 @@ namespace Gtk
     EmojiChooser ();
 
     auto
-    signal_emoji_picked () -> Glib::SignalProxy<void (const Glib::ustring&)>;
+    signal_emoji_picked () -> glib::SignalProxy<void (const glib::ustring&)>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkEmojiChooser* object, bool take_copy = false) -> Gtk::EmojiChooser*;
-} // namespace Glib
+  wrap (GtkEmojiChooser* object, bool take_copy = false) -> gtk::EmojiChooser*;
+} // namespace glib
 
 #endif

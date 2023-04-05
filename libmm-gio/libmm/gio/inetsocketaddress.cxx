@@ -7,7 +7,7 @@
 
 #include <gio/gio.h>
 
-namespace Gio
+namespace gio
 {
 
 }
@@ -16,20 +16,20 @@ namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GInetSocketAddress* object, const bool take_copy) -> RefPtr<Gio::InetSocketAddress>
+  wrap (GInetSocketAddress* object, const bool take_copy) -> RefPtr<gio::InetSocketAddress>
   {
-    return Glib::make_refptr_for_instance<Gio::InetSocketAddress> (
-        dynamic_cast<Gio::InetSocketAddress*> (
+    return glib::make_refptr_for_instance<gio::InetSocketAddress> (
+        dynamic_cast<gio::InetSocketAddress*> (
             wrap_auto ((GObject*) object, take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gio
+namespace gio
 {
 
   auto
@@ -53,7 +53,7 @@ namespace Gio
   }
 
   auto
-  InetSocketAddress_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  InetSocketAddress_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new InetSocketAddress ((GInetSocketAddress*) object);
   }
@@ -66,7 +66,7 @@ namespace Gio
   }
 
   InetSocketAddress::InetSocketAddress (
-      const Glib::ConstructParams& construct_params)
+      const glib::ConstructParams& construct_params)
     : SocketAddress (construct_params)
   {
   }
@@ -105,12 +105,12 @@ namespace Gio
   }
 
   InetSocketAddress::InetSocketAddress (
-      const Glib::RefPtr<InetAddress>& address,
+      const glib::RefPtr<InetAddress>& address,
       const guint16 port)
     : ObjectBase (nullptr),
-      SocketAddress (Glib::ConstructParams (inetsocketaddress_class_.init (),
+      SocketAddress (glib::ConstructParams (inetsocketaddress_class_.init (),
                                             "address",
-                                            Glib::unwrap (address),
+                                            glib::unwrap (address),
                                             "port",
                                             port,
                                             nullptr))
@@ -118,24 +118,24 @@ namespace Gio
   }
 
   auto
-  InetSocketAddress::create (const Glib::RefPtr<InetAddress>& address,
-                             const guint16 port) -> Glib::RefPtr<InetSocketAddress>
+  InetSocketAddress::create (const glib::RefPtr<InetAddress>& address,
+                             const guint16 port) -> glib::RefPtr<InetSocketAddress>
   {
-    return Glib::make_refptr_for_instance<InetSocketAddress> (
+    return glib::make_refptr_for_instance<InetSocketAddress> (
         new InetSocketAddress (address, port));
   }
 
   auto
-  InetSocketAddress::get_address () -> Glib::RefPtr<InetAddress>
+  InetSocketAddress::get_address () -> glib::RefPtr<InetAddress>
   {
-    auto retvalue = Glib::wrap (g_inet_socket_address_get_address (gobj ()));
+    auto retvalue = glib::wrap (g_inet_socket_address_get_address (gobj ()));
     if (retvalue)
       retvalue->reference ();
     return retvalue;
   }
 
   auto
-  InetSocketAddress::get_address () const -> Glib::RefPtr<const InetAddress>
+  InetSocketAddress::get_address () const -> glib::RefPtr<const InetAddress>
   {
     return const_cast<InetSocketAddress*> (this)->get_address ();
   }
@@ -162,33 +162,33 @@ namespace Gio
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<
-          Glib::RefPtr<InetAddress>>::value,
-      "Type Glib::RefPtr<InetAddress> cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      glib::Traits::ValueCompatibleWithWrapProperty<
+          glib::RefPtr<InetAddress>>::value,
+      "Type glib::RefPtr<InetAddress> cannot be used in _WRAP_PROPERTY. "
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  InetSocketAddress::property_address () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<InetAddress>>
+  InetSocketAddress::property_address () const -> glib::PropertyProxy_ReadOnly<glib::RefPtr<InetAddress>>
   {
     return {this, "address"};
   }
 
   auto
-  InetSocketAddress::property_port () const -> Glib::PropertyProxy_ReadOnly<guint>
+  InetSocketAddress::property_port () const -> glib::PropertyProxy_ReadOnly<guint>
   {
     return {this, "port"};
   }
 
   auto
-  InetSocketAddress::property_flowinfo () const -> Glib::PropertyProxy_ReadOnly<guint>
+  InetSocketAddress::property_flowinfo () const -> glib::PropertyProxy_ReadOnly<guint>
   {
     return {this, "flowinfo"};
   }
 
   auto
-  InetSocketAddress::property_scope_id () const -> Glib::PropertyProxy_ReadOnly<guint>
+  InetSocketAddress::property_scope_id () const -> glib::PropertyProxy_ReadOnly<guint>
   {
     return {this, "scope-id"};
   }
 
-} // namespace Gio
+} // namespace gio

@@ -9,7 +9,7 @@
 #include <libmm/glib/mm-glib.hxx>
 #include <libmm/gtk/mm-gtk.hxx>
 
-namespace Adw
+namespace adw
 {
 
 }
@@ -19,29 +19,29 @@ namespace
 }
 
 auto
-Glib::Value<Adw::ColorScheme>::value_type () -> GType
+glib::Value<adw::ColorScheme>::value_type () -> GType
 {
   return adw_color_scheme_get_type ();
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (AdwStyleManager* object, bool take_copy) -> Glib::RefPtr<Adw::StyleManager>
+  wrap (AdwStyleManager* object, bool take_copy) -> glib::RefPtr<adw::StyleManager>
   {
-    return Glib::make_refptr_for_instance<Adw::StyleManager> (
-        dynamic_cast<Adw::StyleManager*> (
-            Glib::wrap_auto ((GObject*) (object), take_copy)));
+    return glib::make_refptr_for_instance<adw::StyleManager> (
+        dynamic_cast<adw::StyleManager*> (
+            glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Adw
+namespace adw
 {
 
   auto
-  StyleManager_Class::init () -> const Glib::Class&
+  StyleManager_Class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -52,7 +52,7 @@ namespace Adw
   }
 
   auto
-  StyleManager_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  StyleManager_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new StyleManager ((AdwStyleManager*) object);
   }
@@ -64,25 +64,25 @@ namespace Adw
     return gobj ();
   }
 
-  StyleManager::StyleManager (const Glib::ConstructParams& construct_params)
-    : Glib::Object (construct_params)
+  StyleManager::StyleManager (const glib::ConstructParams& construct_params)
+    : glib::Object (construct_params)
   {
   }
 
   StyleManager::StyleManager (AdwStyleManager* castitem)
-    : Glib::Object ((GObject*) (castitem))
+    : glib::Object ((GObject*) (castitem))
   {
   }
 
   StyleManager::StyleManager (StyleManager&& src) noexcept
-    : Glib::Object (std::move (src))
+    : glib::Object (std::move (src))
   {
   }
 
   auto
   StyleManager::operator= (StyleManager&& src) noexcept -> StyleManager&
   {
-    Glib::Object::operator= (std::move (src));
+    glib::Object::operator= (std::move (src));
     return *this;
   }
 
@@ -103,31 +103,31 @@ namespace Adw
   }
 
   StyleManager::StyleManager ()
-    : Glib::ObjectBase (nullptr),
-      Glib::Object (Glib::ConstructParams (stylemanager_class_.init ()))
+    : glib::ObjectBase (nullptr),
+      glib::Object (glib::ConstructParams (stylemanager_class_.init ()))
   {
   }
 
   auto
-  StyleManager::create () -> Glib::RefPtr<StyleManager>
+  StyleManager::create () -> glib::RefPtr<StyleManager>
   {
-    return Glib::make_refptr_for_instance<StyleManager> (new StyleManager ());
+    return glib::make_refptr_for_instance<StyleManager> (new StyleManager ());
   }
 
   auto
-  StyleManager::get_default () -> Glib::RefPtr<StyleManager>
+  StyleManager::get_default () -> glib::RefPtr<StyleManager>
   {
-    auto retvalue = Glib::wrap (adw_style_manager_get_default ());
+    auto retvalue = glib::wrap (adw_style_manager_get_default ());
     if (retvalue)
       retvalue->reference ();
     return retvalue;
   }
 
   auto
-  StyleManager::get_for_display (const Glib::RefPtr<Gdk::Display>& display) -> Glib::RefPtr<StyleManager>
+  StyleManager::get_for_display (const glib::RefPtr<gdk::Display>& display) -> glib::RefPtr<StyleManager>
   {
     auto retvalue =
-        Glib::wrap (adw_style_manager_get_for_display (Glib::unwrap (display)));
+        glib::wrap (adw_style_manager_get_for_display (glib::unwrap (display)));
     if (retvalue)
       retvalue->reference ();
     return retvalue;
@@ -161,9 +161,9 @@ namespace Adw
   }
 
   auto
-  StyleManager::get_display () const -> Glib::RefPtr<Gdk::Display>
+  StyleManager::get_display () const -> glib::RefPtr<gdk::Display>
   {
-    auto retvalue = Glib::wrap (
+    auto retvalue = glib::wrap (
         adw_style_manager_get_display (const_cast<AdwStyleManager*> (gobj ())));
     if (retvalue)
       retvalue->reference ();
@@ -179,52 +179,52 @@ namespace Adw
   }
 
   auto
-  StyleManager::property_high_contrast () const -> Glib::PropertyProxy_ReadOnly<bool>
+  StyleManager::property_high_contrast () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "high-contrast");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "high-contrast");
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<ColorScheme>::value,
+      glib::Traits::ValueCompatibleWithWrapProperty<ColorScheme>::value,
       "Type ColorScheme cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  StyleManager::property_color_scheme () -> Glib::PropertyProxy<ColorScheme>
+  StyleManager::property_color_scheme () -> glib::PropertyProxy<ColorScheme>
   {
-    return Glib::PropertyProxy<ColorScheme> (this, "color-scheme");
+    return glib::PropertyProxy<ColorScheme> (this, "color-scheme");
   }
 
   auto
-  StyleManager::property_color_scheme () const -> Glib::PropertyProxy_ReadOnly<ColorScheme>
+  StyleManager::property_color_scheme () const -> glib::PropertyProxy_ReadOnly<ColorScheme>
   {
-    return Glib::PropertyProxy_ReadOnly<ColorScheme> (this, "color-scheme");
+    return glib::PropertyProxy_ReadOnly<ColorScheme> (this, "color-scheme");
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<
-          Glib::RefPtr<Gdk::Display>>::value,
-      "Type Glib::RefPtr<Gdk::Display> cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      glib::Traits::ValueCompatibleWithWrapProperty<
+          glib::RefPtr<gdk::Display>>::value,
+      "Type glib::RefPtr<gdk::Display> cannot be used in _WRAP_PROPERTY. "
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  StyleManager::property_display () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gdk::Display>>
+  StyleManager::property_display () const -> glib::PropertyProxy_ReadOnly<glib::RefPtr<gdk::Display>>
   {
-    return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gdk::Display>> (this,
+    return glib::PropertyProxy_ReadOnly<glib::RefPtr<gdk::Display>> (this,
                                                                      "display");
   }
 
   auto
-  StyleManager::property_system_supports_color_schemes () const -> Glib::PropertyProxy_ReadOnly<bool>
+  StyleManager::property_system_supports_color_schemes () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this,
+    return glib::PropertyProxy_ReadOnly<bool> (this,
                                                "system-supports-color-schemes");
   }
 
   auto
-  StyleManager::property_dark () const -> Glib::PropertyProxy_ReadOnly<bool>
+  StyleManager::property_dark () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "dark");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "dark");
   }
 
-} // namespace Adw
+} // namespace adw

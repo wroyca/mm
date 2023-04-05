@@ -23,17 +23,17 @@ using GdkPaintableClass = struct _GdkPaintableClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gdk
+namespace gdk
 {
   class LIBMM_GDK_SYMEXPORT Paintable_Class;
 }
 #endif
 
-namespace Gdk
+namespace gdk
 {
   class LIBMM_GDK_SYMEXPORT Snapshot;
 
-  class LIBMM_GDK_SYMEXPORT Paintable : public Glib::Interface
+  class LIBMM_GDK_SYMEXPORT Paintable : public glib::Interface
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -57,7 +57,7 @@ namespace Gdk
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
-    explicit Paintable (const Glib::Interface_Class& interface_class);
+    explicit Paintable (const glib::Interface_Class& interface_class);
 
   public:
     explicit Paintable (GdkPaintable* castitem);
@@ -104,12 +104,12 @@ namespace Gdk
     };
 
     auto
-    snapshot (const Glib::RefPtr<Gdk::Snapshot>& snapshot,
+    snapshot (const glib::RefPtr<gdk::Snapshot>& snapshot,
               double width,
               double height) -> void;
 
     auto
-    get_current_image () const -> Glib::RefPtr<const Paintable>;
+    get_current_image () const -> glib::RefPtr<const Paintable>;
 
     auto
     get_flags () const -> Flags;
@@ -138,19 +138,19 @@ namespace Gdk
     invalidate_size () -> void;
 
     auto
-    signal_invalidate_contents () -> Glib::SignalProxy<void ()>;
+    signal_invalidate_contents () -> glib::SignalProxy<void ()>;
 
     auto
-    signal_invalidate_size () -> Glib::SignalProxy<void ()>;
+    signal_invalidate_size () -> glib::SignalProxy<void ()>;
 
   protected:
     virtual auto
-    snapshot_vfunc (const Glib::RefPtr<Gdk::Snapshot>& snapshot,
+    snapshot_vfunc (const glib::RefPtr<gdk::Snapshot>& snapshot,
                     double width,
                     double height) -> void;
 
     virtual auto
-    get_current_image_vfunc () const -> Glib::RefPtr<Paintable>;
+    get_current_image_vfunc () const -> glib::RefPtr<Paintable>;
 
     virtual auto
     get_flags_vfunc () const -> Flags;
@@ -169,9 +169,9 @@ namespace Gdk
   protected:
   };
 
-} // namespace Gdk
+} // namespace gdk
 
-namespace Gdk
+namespace gdk
 {
 
   inline auto
@@ -221,29 +221,29 @@ namespace Gdk
     return (lhs = static_cast<Paintable::Flags> (static_cast<unsigned> (lhs) ^
                                                  static_cast<unsigned> (rhs)));
   }
-} // namespace Gdk
+} // namespace gdk
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_GDK_SYMEXPORT Value<Gdk::Paintable::Flags>
-    : public Glib::Value_Flags<Gdk::Paintable::Flags>
+  class LIBMM_GDK_SYMEXPORT Value<gdk::Paintable::Flags>
+    : public glib::Value_Flags<gdk::Paintable::Flags>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
-namespace Glib
+namespace glib
 {
   LIBMM_GDK_SYMEXPORT auto
-  wrap (GdkPaintable* object, bool take_copy = false) -> Glib::RefPtr<Gdk::Paintable>;
+  wrap (GdkPaintable* object, bool take_copy = false) -> glib::RefPtr<gdk::Paintable>;
 
-} // namespace Glib
+} // namespace glib
 
 #endif

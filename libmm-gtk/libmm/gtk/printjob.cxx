@@ -14,23 +14,23 @@ SignalProxy_Custom_gtk_callback (GtkPrintJob* print_job,
                                  const GError* gerror) -> void
 {
   const auto the_slot =
-      static_cast<Gtk::PrintJob::SlotPrintJobComplete*> (data);
+      static_cast<gtk::PrintJob::SlotPrintJobComplete*> (data);
 
   try
   {
     if (gerror)
-      Glib::Error::throw_exception (g_error_copy (gerror));
+      glib::Error::throw_exception (g_error_copy (gerror));
 
-    auto job = Glib::wrap (print_job);
+    auto job = glib::wrap (print_job);
     (*the_slot) (job);
   }
   catch (...)
   {
-    Glib::exception_handlers_invoke ();
+    glib::exception_handlers_invoke ();
   }
 }
 
-namespace Gtk
+namespace gtk
 {
 
   auto
@@ -41,7 +41,7 @@ namespace Gtk
     gtk_print_job_send (gobj (),
                         &SignalProxy_Custom_gtk_callback,
                         slot_copy,
-                        &Glib::destroy_notify_delete<SlotPrintJobComplete>);
+                        &glib::destroy_notify_delete<SlotPrintJobComplete>);
   }
 
   auto
@@ -52,10 +52,10 @@ namespace Gtk
         const_cast<GtkPrintJob*> (gobj ()),
         &num_ranges);
 
-    return Glib::ArrayHandler<PageRange, PageRangeTraits>::array_to_vector (
+    return glib::ArrayHandler<PageRange, PageRangeTraits>::array_to_vector (
         page_ranges,
         num_ranges,
-        Glib::OWNERSHIP_NONE);
+        glib::OWNERSHIP_NONE);
   }
 
   auto
@@ -70,36 +70,36 @@ namespace Gtk
     gtk_print_job_set_page_ranges (gobj (), c_ranges, page_ranges.size ());
   }
 
-} // namespace Gtk
+} // namespace gtk
 
 namespace
 {
 
-  static const Glib::SignalProxyInfo PrintJob_signal_status_changed_info = {
+  static const glib::SignalProxyInfo PrintJob_signal_status_changed_info = {
       "status_changed",
-      (GCallback) &Glib::SignalProxyNormal::slot0_void_callback,
-      (GCallback) &Glib::SignalProxyNormal::slot0_void_callback};
+      (GCallback) &glib::SignalProxyNormal::slot0_void_callback,
+      (GCallback) &glib::SignalProxyNormal::slot0_void_callback};
 
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GtkPrintJob* object, bool take_copy) -> Glib::RefPtr<Gtk::PrintJob>
+  wrap (GtkPrintJob* object, bool take_copy) -> glib::RefPtr<gtk::PrintJob>
   {
-    return Glib::make_refptr_for_instance<Gtk::PrintJob> (
-        dynamic_cast<Gtk::PrintJob*> (
-            Glib::wrap_auto ((GObject*) (object), take_copy)));
+    return glib::make_refptr_for_instance<gtk::PrintJob> (
+        dynamic_cast<gtk::PrintJob*> (
+            glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gtk
+namespace gtk
 {
 
   auto
-  PrintJob_Class::init () -> const Glib::Class&
+  PrintJob_Class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -119,7 +119,7 @@ namespace Gtk
   }
 
   auto
-  PrintJob_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  PrintJob_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new PrintJob ((GtkPrintJob*) object);
   }
@@ -131,25 +131,25 @@ namespace Gtk
     return gobj ();
   }
 
-  PrintJob::PrintJob (const Glib::ConstructParams& construct_params)
-    : Glib::Object (construct_params)
+  PrintJob::PrintJob (const glib::ConstructParams& construct_params)
+    : glib::Object (construct_params)
   {
   }
 
   PrintJob::PrintJob (GtkPrintJob* castitem)
-    : Glib::Object ((GObject*) (castitem))
+    : glib::Object ((GObject*) (castitem))
   {
   }
 
   PrintJob::PrintJob (PrintJob&& src) noexcept
-    : Glib::Object (std::move (src))
+    : glib::Object (std::move (src))
   {
   }
 
   auto
   PrintJob::operator= (PrintJob&& src) noexcept -> PrintJob&
   {
-    Glib::Object::operator= (std::move (src));
+    glib::Object::operator= (std::move (src));
     return *this;
   }
 
@@ -169,68 +169,68 @@ namespace Gtk
     return gtk_print_job_get_type ();
   }
 
-  PrintJob::PrintJob (const Glib::ustring& title,
-                      const Glib::RefPtr<Printer>& printer,
-                      const Glib::RefPtr<PrintSettings>& settings,
-                      const Glib::RefPtr<PageSetup>& page_setup)
-    : Glib::ObjectBase (nullptr),
-      Glib::Object (Glib::ConstructParams (printjob_class_.init (),
+  PrintJob::PrintJob (const glib::ustring& title,
+                      const glib::RefPtr<Printer>& printer,
+                      const glib::RefPtr<PrintSettings>& settings,
+                      const glib::RefPtr<PageSetup>& page_setup)
+    : glib::ObjectBase (nullptr),
+      glib::Object (glib::ConstructParams (printjob_class_.init (),
                                            "title",
                                            title.c_str (),
                                            "printer",
-                                           Glib::unwrap (printer),
+                                           glib::unwrap (printer),
                                            "settings",
-                                           Glib::unwrap (settings),
+                                           glib::unwrap (settings),
                                            "page_setup",
-                                           Glib::unwrap (page_setup),
+                                           glib::unwrap (page_setup),
                                            nullptr))
   {
   }
 
   auto
-  PrintJob::create (const Glib::ustring& title,
-                    const Glib::RefPtr<Printer>& printer,
-                    const Glib::RefPtr<PrintSettings>& settings,
-                    const Glib::RefPtr<PageSetup>& page_setup) -> Glib::RefPtr<PrintJob>
+  PrintJob::create (const glib::ustring& title,
+                    const glib::RefPtr<Printer>& printer,
+                    const glib::RefPtr<PrintSettings>& settings,
+                    const glib::RefPtr<PageSetup>& page_setup) -> glib::RefPtr<PrintJob>
   {
-    return Glib::make_refptr_for_instance<PrintJob> (
+    return glib::make_refptr_for_instance<PrintJob> (
         new PrintJob (title, printer, settings, page_setup));
   }
 
   auto
-  PrintJob::get_settings () -> Glib::RefPtr<PrintSettings>
+  PrintJob::get_settings () -> glib::RefPtr<PrintSettings>
   {
-    auto retvalue = Glib::wrap (gtk_print_job_get_settings (gobj ()));
+    auto retvalue = glib::wrap (gtk_print_job_get_settings (gobj ()));
     if (retvalue)
       retvalue->reference ();
     return retvalue;
   }
 
   auto
-  PrintJob::get_settings () const -> Glib::RefPtr<const PrintSettings>
+  PrintJob::get_settings () const -> glib::RefPtr<const PrintSettings>
   {
     return const_cast<PrintJob*> (this)->get_settings ();
   }
 
   auto
-  PrintJob::get_printer () -> Glib::RefPtr<Printer>
+  PrintJob::get_printer () -> glib::RefPtr<Printer>
   {
-    auto retvalue = Glib::wrap (gtk_print_job_get_printer (gobj ()));
+    auto retvalue = glib::wrap (gtk_print_job_get_printer (gobj ()));
     if (retvalue)
       retvalue->reference ();
     return retvalue;
   }
 
   auto
-  PrintJob::get_printer () const -> Glib::RefPtr<const Printer>
+  PrintJob::get_printer () const -> glib::RefPtr<const Printer>
   {
     return const_cast<PrintJob*> (this)->get_printer ();
   }
 
   auto
-  PrintJob::get_title () const -> Glib::ustring
+  PrintJob::get_title () const -> glib::ustring
   {
-    return Glib::convert_const_gchar_ptr_to_ustring (
+    return glib::convert_const_gchar_ptr_to_ustring (
         gtk_print_job_get_title (const_cast<GtkPrintJob*> (gobj ())));
   }
 
@@ -247,24 +247,24 @@ namespace Gtk
     GError* gerror = nullptr;
     gtk_print_job_set_source_file (gobj (), filename.c_str (), &(gerror));
     if (gerror)
-      ::Glib::Error::throw_exception (gerror);
+      ::glib::Error::throw_exception (gerror);
   }
 
   auto
-  PrintJob::get_surface () -> Cairo::RefPtr<Cairo::Surface>
+  PrintJob::get_surface () -> cairo::RefPtr<cairo::Surface>
   {
     GError* gerror = nullptr;
     auto retvalue =
-        Gdk::Cairo::wrap (gtk_print_job_get_surface (gobj (), &(gerror)));
+        gdk::cairo::wrap (gtk_print_job_get_surface (gobj (), &(gerror)));
     if (gerror)
-      ::Glib::Error::throw_exception (gerror);
+      ::glib::Error::throw_exception (gerror);
     if (retvalue)
       retvalue->reference ();
     return retvalue;
   }
 
   auto
-  PrintJob::get_surface () const -> Cairo::RefPtr<const Cairo::Surface>
+  PrintJob::get_surface () const -> cairo::RefPtr<const cairo::Surface>
   {
     return const_cast<PrintJob*> (this)->get_surface ();
   }
@@ -396,68 +396,68 @@ namespace Gtk
   }
 
   auto
-  PrintJob::signal_status_changed () -> Glib::SignalProxy<void ()>
+  PrintJob::signal_status_changed () -> glib::SignalProxy<void ()>
   {
-    return Glib::SignalProxy<void ()> (this,
+    return glib::SignalProxy<void ()> (this,
                                        &PrintJob_signal_status_changed_info);
   }
 
   auto
-  PrintJob::property_title () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>
+  PrintJob::property_title () const -> glib::PropertyProxy_ReadOnly<glib::ustring>
   {
-    return Glib::PropertyProxy_ReadOnly<Glib::ustring> (this, "title");
+    return glib::PropertyProxy_ReadOnly<glib::ustring> (this, "title");
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<
-          Glib::RefPtr<Printer>>::value,
-      "Type Glib::RefPtr<Printer> cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      glib::Traits::ValueCompatibleWithWrapProperty<
+          glib::RefPtr<Printer>>::value,
+      "Type glib::RefPtr<Printer> cannot be used in _WRAP_PROPERTY. "
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  PrintJob::property_printer () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Printer>>
+  PrintJob::property_printer () const -> glib::PropertyProxy_ReadOnly<glib::RefPtr<Printer>>
   {
-    return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Printer>> (this,
+    return glib::PropertyProxy_ReadOnly<glib::RefPtr<Printer>> (this,
                                                                 "printer");
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<
-          Glib::RefPtr<PrintSettings>>::value,
-      "Type Glib::RefPtr<PrintSettings> cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      glib::Traits::ValueCompatibleWithWrapProperty<
+          glib::RefPtr<PrintSettings>>::value,
+      "Type glib::RefPtr<PrintSettings> cannot be used in _WRAP_PROPERTY. "
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  PrintJob::property_settings () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<PrintSettings>>
+  PrintJob::property_settings () const -> glib::PropertyProxy_ReadOnly<glib::RefPtr<PrintSettings>>
   {
-    return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<PrintSettings>> (
+    return glib::PropertyProxy_ReadOnly<glib::RefPtr<PrintSettings>> (
         this,
         "settings");
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<
-          Glib::RefPtr<PageSetup>>::value,
-      "Type Glib::RefPtr<PageSetup> cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      glib::Traits::ValueCompatibleWithWrapProperty<
+          glib::RefPtr<PageSetup>>::value,
+      "Type glib::RefPtr<PageSetup> cannot be used in _WRAP_PROPERTY. "
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  PrintJob::property_page_setup () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<PageSetup>>
+  PrintJob::property_page_setup () const -> glib::PropertyProxy_ReadOnly<glib::RefPtr<PageSetup>>
   {
-    return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<PageSetup>> (this,
+    return glib::PropertyProxy_ReadOnly<glib::RefPtr<PageSetup>> (this,
                                                                   "page-setup");
   }
 
   auto
-  PrintJob::property_track_print_status () -> Glib::PropertyProxy<bool>
+  PrintJob::property_track_print_status () -> glib::PropertyProxy<bool>
   {
-    return Glib::PropertyProxy<bool> (this, "track-print-status");
+    return glib::PropertyProxy<bool> (this, "track-print-status");
   }
 
   auto
-  PrintJob::property_track_print_status () const -> Glib::PropertyProxy_ReadOnly<bool>
+  PrintJob::property_track_print_status () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "track-print-status");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "track-print-status");
   }
 
-} // namespace Gtk
+} // namespace gtk

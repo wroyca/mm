@@ -7,7 +7,7 @@
 
 #include <gdk/gdk.h>
 
-namespace Gdk
+namespace gdk
 {
 
   auto
@@ -16,34 +16,34 @@ namespace Gdk
     gdk_popup_layout_set_shadow_width (gobj (), width, width, width, width);
   }
 
-} // namespace Gdk
+} // namespace gdk
 
 namespace
 {
 }
 
 auto
-Glib::Value<Gdk::AnchorHints>::value_type () -> GType
+glib::Value<gdk::AnchorHints>::value_type () -> GType
 {
   return gdk_anchor_hints_get_type ();
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GdkPopupLayout* object, bool take_copy) -> Glib::RefPtr<Gdk::PopupLayout>
+  wrap (GdkPopupLayout* object, bool take_copy) -> glib::RefPtr<gdk::PopupLayout>
   {
     if (take_copy && object)
       gdk_popup_layout_ref (object);
 
-    return Glib::make_refptr_for_instance<Gdk::PopupLayout> (
-        reinterpret_cast<Gdk::PopupLayout*> (object));
+    return glib::make_refptr_for_instance<gdk::PopupLayout> (
+        reinterpret_cast<gdk::PopupLayout*> (object));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gdk
+namespace gdk
 {
 
   auto
@@ -84,27 +84,27 @@ namespace Gdk
   auto
   PopupLayout::create (const Rectangle& anchor_rect,
                        Gravity rect_anchor,
-                       Gravity surface_anchor) -> Glib::RefPtr<PopupLayout>
+                       Gravity surface_anchor) -> glib::RefPtr<PopupLayout>
   {
-    return Glib::wrap (
+    return glib::wrap (
         gdk_popup_layout_new ((anchor_rect).gobj (),
                               static_cast<GdkGravity> (rect_anchor),
                               static_cast<GdkGravity> (surface_anchor)));
   }
 
   auto
-  PopupLayout::copy () const -> Glib::RefPtr<PopupLayout>
+  PopupLayout::copy () const -> glib::RefPtr<PopupLayout>
   {
-    return Glib::wrap (
+    return glib::wrap (
         gdk_popup_layout_copy (const_cast<GdkPopupLayout*> (gobj ())));
   }
 
   auto
-  PopupLayout::equal (const Glib::RefPtr<const PopupLayout>& other) const -> bool
+  PopupLayout::equal (const glib::RefPtr<const PopupLayout>& other) const -> bool
   {
     return gdk_popup_layout_equal (
         const_cast<GdkPopupLayout*> (gobj ()),
-        const_cast<GdkPopupLayout*> (Glib::unwrap (other)));
+        const_cast<GdkPopupLayout*> (glib::unwrap (other)));
   }
 
   auto
@@ -194,4 +194,4 @@ namespace Gdk
                                        &(bottom));
   }
 
-} // namespace Gdk
+} // namespace gdk

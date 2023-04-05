@@ -19,16 +19,16 @@ using GSocketAddressClass = struct _GSocketAddressClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gio
+namespace gio
 {
   class LIBMM_GIO_SYMEXPORT SocketAddress_Class;
 }
 #endif
 
-namespace Gio
+namespace gio
 {
 
-  class LIBMM_GIO_SYMEXPORT SocketAddress : public Glib::Object,
+  class LIBMM_GIO_SYMEXPORT SocketAddress : public glib::Object,
                                   public SocketConnectable
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -48,7 +48,7 @@ namespace Gio
     static CppClassType socketaddress_class_;
 
   protected:
-    explicit SocketAddress (const Glib::ConstructParams& construct_params);
+    explicit SocketAddress (const glib::ConstructParams& construct_params);
     explicit SocketAddress (GSocketAddress* castitem);
 
 #endif
@@ -87,7 +87,7 @@ namespace Gio
   private:
   public:
     static auto
-    create (gpointer native, gsize len) -> Glib::RefPtr<SocketAddress>;
+    create (gpointer native, gsize len) -> glib::RefPtr<SocketAddress>;
 
     auto
     get_family () const -> SocketFamily;
@@ -99,21 +99,21 @@ namespace Gio
     get_native_size () const -> gssize;
 
     auto
-    property_family () const -> Glib::PropertyProxy_ReadOnly<SocketFamily>;
+    property_family () const -> glib::PropertyProxy_ReadOnly<SocketFamily>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gio
+} // namespace gio
 
-namespace Glib
+namespace glib
 {
 
   LIBMM_GIO_SYMEXPORT
   auto
-  wrap (GSocketAddress* object, bool take_copy = false) -> Glib::RefPtr<Gio::SocketAddress>;
-} // namespace Glib
+  wrap (GSocketAddress* object, bool take_copy = false) -> glib::RefPtr<gio::SocketAddress>;
+} // namespace glib
 
 #endif

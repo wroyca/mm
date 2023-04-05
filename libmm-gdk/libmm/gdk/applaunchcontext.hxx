@@ -16,17 +16,17 @@ using GdkAppLaunchContextClass = struct _GdkAppLaunchContextClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gdk
+namespace gdk
 {
   class LIBMM_GDK_SYMEXPORT AppLaunchContext_Class;
 }
 #endif
 
-namespace Gdk
+namespace gdk
 {
   class LIBMM_GDK_SYMEXPORT Display;
 
-  class LIBMM_GDK_SYMEXPORT AppLaunchContext : public Gio::AppLaunchContext
+  class LIBMM_GDK_SYMEXPORT AppLaunchContext : public gio::AppLaunchContext
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -45,7 +45,7 @@ namespace Gdk
     static CppClassType applaunchcontext_class_;
 
   protected:
-    explicit AppLaunchContext (const Glib::ConstructParams& construct_params);
+    explicit AppLaunchContext (const glib::ConstructParams& construct_params);
     explicit AppLaunchContext (GdkAppLaunchContext* castitem);
 
 #endif
@@ -87,13 +87,13 @@ namespace Gdk
 
   public:
     static auto
-    create () -> Glib::RefPtr<AppLaunchContext>;
+    create () -> glib::RefPtr<AppLaunchContext>;
 
     auto
-    get_display () -> Glib::RefPtr<Display>;
+    get_display () -> glib::RefPtr<Display>;
 
     auto
-    get_display () const -> Glib::RefPtr<const Display>;
+    get_display () const -> glib::RefPtr<const Display>;
 
     auto
     set_desktop (int desktop) -> void;
@@ -102,26 +102,26 @@ namespace Gdk
     set_timestamp (guint32 timestamp) -> void;
 
     auto
-    set_icon (const Glib::RefPtr<Gio::Icon>& icon) -> void;
+    set_icon (const glib::RefPtr<gio::Icon>& icon) -> void;
 
     auto
-    set_icon_name (const Glib::ustring& icon_name) -> void;
+    set_icon_name (const glib::ustring& icon_name) -> void;
 
     auto
     property_display () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Display>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<Display>>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gdk
+} // namespace gdk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GDK_SYMEXPORT auto
-  wrap (GdkAppLaunchContext* object, bool take_copy = false) -> Glib::RefPtr<Gdk::AppLaunchContext>;
-} // namespace Glib
+  wrap (GdkAppLaunchContext* object, bool take_copy = false) -> glib::RefPtr<gdk::AppLaunchContext>;
+} // namespace glib
 
 #endif

@@ -9,15 +9,15 @@
 #include <libmm/glib/value.hxx>
 #include <type_traits>
 
-namespace Cairo
+namespace cairo
 {
   class LIBMM_GDK_SYMEXPORT Region;
   class LIBMM_GDK_SYMEXPORT Surface;
-} // namespace Cairo
+} // namespace cairo
 
-namespace Gdk
+namespace gdk
 {
-  namespace Cairo
+  namespace cairo
   {
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -32,35 +32,35 @@ namespace Gdk
 
     template <>
     LIBMM_GDK_SYMEXPORT auto
-    get_base_type<::Cairo::Region> () -> GType;
+    get_base_type<::cairo::Region> () -> GType;
 
     template <>
     LIBMM_GDK_SYMEXPORT auto
-    get_base_type<::Cairo::Surface> () -> GType;
+    get_base_type<::cairo::Surface> () -> GType;
 #endif
 
-  } // namespace Cairo
+  } // namespace cairo
 
-} // namespace Gdk
+} // namespace gdk
 
-namespace Glib
+namespace glib
 {
 
   template <typename T>
-  class Value<::Cairo::RefPtr<T>,
+  class Value<::cairo::RefPtr<T>,
               typename std::enable_if<
-                  std::is_base_of<::Cairo::Region, T>::value ||
-                  std::is_base_of<::Cairo::Surface, T>::value>::type>
+                  std::is_base_of<::cairo::Region, T>::value ||
+                  std::is_base_of<::cairo::Surface, T>::value>::type>
     : public ValueBase_Boxed
   {
   public:
-    using CppType = ::Cairo::RefPtr<T>;
+    using CppType = ::cairo::RefPtr<T>;
     using CType = typename T::cobject;
 
     static auto
     value_type () -> GType
     {
-      return Gdk::Cairo::get_base_type<std::remove_const_t<T>> ();
+      return gdk::cairo::get_base_type<std::remove_const_t<T>> ();
     }
 
     auto
@@ -74,10 +74,10 @@ namespace Glib
     {
       CType* CObj = static_cast<CType*> (get_boxed ());
       T* CppObj = new T (CObj, false);
-      return ::Cairo::make_refptr_for_instance<T> (CppObj);
+      return ::cairo::make_refptr_for_instance<T> (CppObj);
     }
   };
 
-} // namespace Glib
+} // namespace glib
 
 #endif

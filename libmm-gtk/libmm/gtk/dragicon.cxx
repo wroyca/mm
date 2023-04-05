@@ -7,7 +7,7 @@
 
 #include <gtk/gtk.h>
 
-namespace Gtk
+namespace gtk
 {
 
   auto
@@ -16,29 +16,29 @@ namespace Gtk
     gtk_drag_icon_set_child (gobj (), nullptr);
   }
 
-} // namespace Gtk
+} // namespace gtk
 
 namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GtkDragIcon* object, bool take_copy) -> Gtk::DragIcon*
+  wrap (GtkDragIcon* object, bool take_copy) -> gtk::DragIcon*
   {
-    return dynamic_cast<Gtk::DragIcon*> (
-        Glib::wrap_auto ((GObject*) (object), take_copy));
+    return dynamic_cast<gtk::DragIcon*> (
+        glib::wrap_auto ((GObject*) (object), take_copy));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gtk
+namespace gtk
 {
 
   auto
-  DragIcon_Class::init () -> const Glib::Class&
+  DragIcon_Class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -58,23 +58,23 @@ namespace Gtk
   }
 
   auto
-  DragIcon_Class::wrap_new (GObject* o) -> Glib::ObjectBase*
+  DragIcon_Class::wrap_new (GObject* o) -> glib::ObjectBase*
   {
     return manage (new DragIcon ((GtkDragIcon*) (o)));
   }
 
-  DragIcon::DragIcon (const Glib::ConstructParams& construct_params)
-    : Gtk::Widget (construct_params)
+  DragIcon::DragIcon (const glib::ConstructParams& construct_params)
+    : gtk::Widget (construct_params)
   {
   }
 
   DragIcon::DragIcon (GtkDragIcon* castitem)
-    : Gtk::Widget ((GtkWidget*) (castitem))
+    : gtk::Widget ((GtkWidget*) (castitem))
   {
   }
 
   DragIcon::DragIcon (DragIcon&& src) noexcept
-    : Gtk::Widget (std::move (src)),
+    : gtk::Widget (std::move (src)),
       Native (std::move (src)),
       Root (std::move (src))
   {
@@ -83,7 +83,7 @@ namespace Gtk
   auto
   DragIcon::operator= (DragIcon&& src) noexcept -> DragIcon&
   {
-    Gtk::Widget::operator= (std::move (src));
+    gtk::Widget::operator= (std::move (src));
     Native::operator= (std::move (src));
     Root::operator= (std::move (src));
     return *this;
@@ -109,10 +109,10 @@ namespace Gtk
   }
 
   auto
-  DragIcon::get_for_drag (const Glib::RefPtr<Gdk::Drag>& drag) -> DragIcon*
+  DragIcon::get_for_drag (const glib::RefPtr<gdk::Drag>& drag) -> DragIcon*
   {
-    return Glib::wrap (
-        (GtkDragIcon*) (gtk_drag_icon_get_for_drag (Glib::unwrap (drag))));
+    return glib::wrap (
+        (GtkDragIcon*) (gtk_drag_icon_get_for_drag (glib::unwrap (drag))));
   }
 
   auto
@@ -124,7 +124,7 @@ namespace Gtk
   auto
   DragIcon::get_child () -> Widget*
   {
-    return Glib::wrap (gtk_drag_icon_get_child (gobj ()));
+    return glib::wrap (gtk_drag_icon_get_child (gobj ()));
   }
 
   auto
@@ -134,33 +134,33 @@ namespace Gtk
   }
 
   auto
-  DragIcon::set_from_paintable (const Glib::RefPtr<Gdk::Drag>& drag,
-                                const Glib::RefPtr<Gdk::Paintable>& paintable,
+  DragIcon::set_from_paintable (const glib::RefPtr<gdk::Drag>& drag,
+                                const glib::RefPtr<gdk::Paintable>& paintable,
                                 int hot_x,
                                 int hot_y) -> void
   {
-    gtk_drag_icon_set_from_paintable (Glib::unwrap (drag),
-                                      Glib::unwrap (paintable),
+    gtk_drag_icon_set_from_paintable (glib::unwrap (drag),
+                                      glib::unwrap (paintable),
                                       hot_x,
                                       hot_y);
   }
 
   auto
-  DragIcon::create_widget_for_value (const Glib::ValueBase& value) -> Widget*
+  DragIcon::create_widget_for_value (const glib::ValueBase& value) -> Widget*
   {
-    return Glib::wrap (gtk_drag_icon_create_widget_for_value ((value).gobj ()));
+    return glib::wrap (gtk_drag_icon_create_widget_for_value ((value).gobj ()));
   }
 
   auto
-  DragIcon::property_child () -> Glib::PropertyProxy<Widget*>
+  DragIcon::property_child () -> glib::PropertyProxy<Widget*>
   {
-    return Glib::PropertyProxy<Widget*> (this, "child");
+    return glib::PropertyProxy<Widget*> (this, "child");
   }
 
   auto
-  DragIcon::property_child () const -> Glib::PropertyProxy_ReadOnly<Widget*>
+  DragIcon::property_child () const -> glib::PropertyProxy_ReadOnly<Widget*>
   {
-    return Glib::PropertyProxy_ReadOnly<Widget*> (this, "child");
+    return glib::PropertyProxy_ReadOnly<Widget*> (this, "child");
   }
 
-} // namespace Gtk
+} // namespace gtk

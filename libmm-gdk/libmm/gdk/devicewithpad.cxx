@@ -2,7 +2,7 @@
 
 #include <libmm/gdk/devicewithpad.hxx>
 
-namespace Gdk
+namespace gdk
 {
 
   DeviceWithPad::DeviceWithPad (GdkDevice* castitem)
@@ -26,4 +26,4 @@ namespace Gdk
 
   DeviceWithPad::~DeviceWithPad () noexcept {}
 
-} // namespace Gdk
+} // namespace gdk

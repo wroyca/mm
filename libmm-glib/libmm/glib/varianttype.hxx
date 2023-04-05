@@ -13,7 +13,7 @@
 typedef struct _GVariantType GVariantType;
 #endif
 
-namespace Glib
+namespace glib
 {
 
   class LIBMM_GLIB_SYMEXPORT VariantType
@@ -191,10 +191,10 @@ namespace Glib
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   template <>
-  class LIBMM_GLIB_SYMEXPORT Value<Glib::VariantType> : public ValueBase_Boxed
+  class LIBMM_GLIB_SYMEXPORT Value<glib::VariantType> : public ValueBase_Boxed
   {
   public:
-    using CppType = Glib::VariantType;
+    using CppType = glib::VariantType;
     using CType = GVariantType*;
 
     static auto
@@ -207,9 +207,9 @@ namespace Glib
   };
 #endif
 
-} // namespace Glib
+} // namespace glib
 
-namespace Glib
+namespace glib
 {
 
   inline auto
@@ -218,15 +218,15 @@ namespace Glib
     lhs.swap (rhs);
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Glib
+namespace glib
 {
 
   LIBMM_GLIB_SYMEXPORT
   auto
-  wrap (GVariantType* object, bool take_copy = false) -> Glib::VariantType;
+  wrap (GVariantType* object, bool take_copy = false) -> glib::VariantType;
 
-} // namespace Glib
+} // namespace glib
 
 #endif

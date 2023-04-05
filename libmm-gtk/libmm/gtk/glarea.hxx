@@ -16,13 +16,13 @@ using GtkGLAreaClass = struct _GtkGLAreaClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT GLArea_Class;
 }
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
   class LIBMM_GTK_SYMEXPORT GLArea : public Widget
@@ -52,7 +52,7 @@ namespace Gtk
     static CppClassType glarea_class_;
 
   protected:
-    explicit GLArea (const Glib::ConstructParams& construct_params);
+    explicit GLArea (const glib::ConstructParams& construct_params);
     explicit GLArea (GtkGLArea* castitem);
 
 #endif
@@ -84,10 +84,10 @@ namespace Gtk
     GLArea ();
 
     auto
-    get_context () -> Glib::RefPtr<Gdk::GLContext>;
+    get_context () -> glib::RefPtr<gdk::GLContext>;
 
     auto
-    get_context () const -> Glib::RefPtr<const Gdk::GLContext>;
+    get_context () const -> glib::RefPtr<const gdk::GLContext>;
 
     auto
     make_current () -> void;
@@ -105,7 +105,7 @@ namespace Gtk
     throw_if_error () const -> void;
 
     auto
-    set_error (const Glib::Error& error) -> void;
+    set_error (const glib::Error& error) -> void;
 
     auto
     unset_error () -> void;
@@ -141,63 +141,63 @@ namespace Gtk
     set_use_es (bool use_es = true) -> void;
 
     auto
-    property_auto_render () -> Glib::PropertyProxy<bool>;
+    property_auto_render () -> glib::PropertyProxy<bool>;
 
     auto
-    property_auto_render () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_auto_render () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
     property_context () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gdk::GLContext>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<gdk::GLContext>>;
 
     auto
-    property_has_depth_buffer () -> Glib::PropertyProxy<bool>;
+    property_has_depth_buffer () -> glib::PropertyProxy<bool>;
 
     auto
-    property_has_depth_buffer () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_has_depth_buffer () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_has_stencil_buffer () -> Glib::PropertyProxy<bool>;
+    property_has_stencil_buffer () -> glib::PropertyProxy<bool>;
 
     auto
-    property_has_stencil_buffer () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_has_stencil_buffer () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_use_es () -> Glib::PropertyProxy<bool>;
+    property_use_es () -> glib::PropertyProxy<bool>;
 
     auto
-    property_use_es () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_use_es () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
     signal_create_context ()
-        -> Glib::SignalProxy<Glib::RefPtr<Gdk::GLContext> ()>;
+        -> glib::SignalProxy<glib::RefPtr<gdk::GLContext> ()>;
 
     auto
     signal_render ()
-        -> Glib::SignalProxy<bool (const Glib::RefPtr<Gdk::GLContext>&)>;
+        -> glib::SignalProxy<bool (const glib::RefPtr<gdk::GLContext>&)>;
 
     auto
-    signal_resize () -> Glib::SignalProxy<void (int, int)>;
+    signal_resize () -> glib::SignalProxy<void (int, int)>;
 
   public:
   public:
   protected:
     virtual auto
-    on_create_context () -> Glib::RefPtr<Gdk::GLContext>;
+    on_create_context () -> glib::RefPtr<gdk::GLContext>;
 
     virtual auto
-    on_render (const Glib::RefPtr<Gdk::GLContext>& context) -> bool;
+    on_render (const glib::RefPtr<gdk::GLContext>& context) -> bool;
 
     virtual auto
     on_resize (int width, int height) -> void;
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkGLArea* object, bool take_copy = false) -> Gtk::GLArea*;
-} // namespace Glib
+  wrap (GtkGLArea* object, bool take_copy = false) -> gtk::GLArea*;
+} // namespace glib
 
 #endif

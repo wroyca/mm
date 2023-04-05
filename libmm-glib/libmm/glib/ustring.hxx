@@ -22,7 +22,7 @@ const std::basic_string<char>::size_type std::basic_string<char>::npos =
     (std::basic_string<char>::size_type) - 1;
 #endif
 
-namespace Glib
+namespace glib
 {
 
   class ustring;
@@ -53,7 +53,7 @@ namespace Glib
   class LIBMM_GLIB_SYMEXPORT UStringView
   {
   public:
-    inline UStringView (const Glib::ustring& s);
+    inline UStringView (const glib::ustring& s);
 
     UStringView (const char* s)
       : pstring_ (s)
@@ -587,7 +587,7 @@ namespace Glib
               class ValueType = typename std::iterator_traits<In>::value_type>
   #else
     template <class In,
-              class ValueType = typename Glib::IteratorTraits<In>::value_type>
+              class ValueType = typename glib::IteratorTraits<In>::value_type>
   #endif
     struct SequenceToString;
 
@@ -638,21 +638,21 @@ namespace Glib
   };
 
   template <>
-  struct ustring::SequenceToString<Glib::ustring::iterator, gunichar>
+  struct ustring::SequenceToString<glib::ustring::iterator, gunichar>
     : public std::string
   {
     LIBMM_GLIB_SYMEXPORT
-    SequenceToString (Glib::ustring::iterator pbegin,
-                      Glib::ustring::iterator pend);
+    SequenceToString (glib::ustring::iterator pbegin,
+                      glib::ustring::iterator pend);
   };
 
   template <>
-  struct ustring::SequenceToString<Glib::ustring::const_iterator, gunichar>
+  struct ustring::SequenceToString<glib::ustring::const_iterator, gunichar>
     : public std::string
   {
     LIBMM_GLIB_SYMEXPORT
-    SequenceToString (Glib::ustring::const_iterator pbegin,
-                      Glib::ustring::const_iterator pend);
+    SequenceToString (glib::ustring::const_iterator pbegin,
+                      glib::ustring::const_iterator pend);
   };
 
   class ustring::FormatStream
@@ -693,11 +693,11 @@ namespace Glib
 
   LIBMM_GLIB_SYMEXPORT
   auto
-  operator>> (std::istream& is, Glib::ustring& utf8_string) -> std::istream&;
+  operator>> (std::istream& is, glib::ustring& utf8_string) -> std::istream&;
 
   LIBMM_GLIB_SYMEXPORT
   auto
-  operator<< (std::ostream& os, const Glib::ustring& utf8_string) -> std::ostream&;
+  operator<< (std::ostream& os, const glib::ustring& utf8_string) -> std::ostream&;
 
 #ifdef GLIBMM_HAVE_WIDE_STREAM
 
@@ -743,7 +743,7 @@ namespace Glib
   ustring_Iterator<T>::operator* () const ->
       typename ustring_Iterator<T>::value_type
   {
-    return Glib::get_unichar_from_std_iterator (pos_);
+    return glib::get_unichar_from_std_iterator (pos_);
   }
 
   template <class T>
@@ -787,43 +787,43 @@ namespace Glib
 #endif
 
   inline auto
-  operator== (const Glib::ustring::const_iterator& lhs,
-              const Glib::ustring::const_iterator& rhs) -> bool
+  operator== (const glib::ustring::const_iterator& lhs,
+              const glib::ustring::const_iterator& rhs) -> bool
   {
     return (lhs.base () == rhs.base ());
   }
 
   inline auto
-  operator!= (const Glib::ustring::const_iterator& lhs,
-              const Glib::ustring::const_iterator& rhs) -> bool
+  operator!= (const glib::ustring::const_iterator& lhs,
+              const glib::ustring::const_iterator& rhs) -> bool
   {
     return (lhs.base () != rhs.base ());
   }
 
   inline auto
-  operator<(const Glib::ustring::const_iterator& lhs,
-            const Glib::ustring::const_iterator& rhs) -> bool
+  operator<(const glib::ustring::const_iterator& lhs,
+            const glib::ustring::const_iterator& rhs) -> bool
   {
     return (lhs.base () < rhs.base ());
   }
 
   inline auto
-  operator> (const Glib::ustring::const_iterator& lhs,
-             const Glib::ustring::const_iterator& rhs) -> bool
+  operator> (const glib::ustring::const_iterator& lhs,
+             const glib::ustring::const_iterator& rhs) -> bool
   {
     return (lhs.base () > rhs.base ());
   }
 
   inline auto
-  operator<= (const Glib::ustring::const_iterator& lhs,
-              const Glib::ustring::const_iterator& rhs) -> bool
+  operator<= (const glib::ustring::const_iterator& lhs,
+              const glib::ustring::const_iterator& rhs) -> bool
   {
     return (lhs.base () <= rhs.base ());
   }
 
   inline auto
-  operator>= (const Glib::ustring::const_iterator& lhs,
-              const Glib::ustring::const_iterator& rhs) -> bool
+  operator>= (const glib::ustring::const_iterator& lhs,
+              const glib::ustring::const_iterator& rhs) -> bool
   {
     return (lhs.base () >= rhs.base ());
   }
@@ -870,7 +870,7 @@ namespace Glib
 
   template <class In>
   ustring::ustring (In pbegin, In pend)
-    : string_ (Glib::ustring::SequenceToString<In> (pbegin, pend))
+    : string_ (glib::ustring::SequenceToString<In> (pbegin, pend))
   {
   }
 
@@ -878,7 +878,7 @@ namespace Glib
   auto
   ustring::assign (In pbegin, In pend) -> ustring&
   {
-    Glib::ustring::SequenceToString<In> temp_string (pbegin, pend);
+    glib::ustring::SequenceToString<In> temp_string (pbegin, pend);
     string_.swap (temp_string);
     return *this;
   }
@@ -887,7 +887,7 @@ namespace Glib
   auto
   ustring::append (In pbegin, In pend) -> ustring&
   {
-    string_.append (Glib::ustring::SequenceToString<In> (pbegin, pend));
+    string_.append (glib::ustring::SequenceToString<In> (pbegin, pend));
     return *this;
   }
 
@@ -896,7 +896,7 @@ namespace Glib
   ustring::insert (ustring::iterator p, In pbegin, In pend) -> void
   {
     size_type pos = p.base () - string_.begin ();
-    string_.insert (pos, Glib::ustring::SequenceToString<In> (pbegin, pend));
+    string_.insert (pos, glib::ustring::SequenceToString<In> (pbegin, pend));
   }
 
   template <class In>
@@ -908,7 +908,7 @@ namespace Glib
   {
     string_.replace (pbegin.base (),
                      pend.base (),
-                     Glib::ustring::SequenceToString<In> (pbegin2, pend2));
+                     glib::ustring::SequenceToString<In> (pbegin2, pend2));
     return *this;
   }
 
@@ -1110,7 +1110,7 @@ namespace Glib
   ustring::sprintf (const char* fmt, const Ts&... args) -> ustring
   {
     auto c_str = g_strdup_printf (fmt, sprintify (args)...);
-    Glib::ustring ustr (c_str);
+    glib::ustring ustr (c_str);
     g_free (c_str);
 
     return ustr;
@@ -1309,6 +1309,6 @@ namespace Glib
   {
   }
 
-} // namespace Glib
+} // namespace glib
 
 #endif

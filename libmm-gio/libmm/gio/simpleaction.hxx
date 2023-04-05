@@ -18,16 +18,16 @@ using GSimpleActionClass = GObjectClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gio
+namespace gio
 {
   class LIBMM_GIO_SYMEXPORT SimpleAction_Class;
 }
 #endif
 
-namespace Gio
+namespace gio
 {
 
-  class LIBMM_GIO_SYMEXPORT SimpleAction : public Glib::Object,
+  class LIBMM_GIO_SYMEXPORT SimpleAction : public glib::Object,
                                  public Action
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -47,7 +47,7 @@ namespace Gio
     static CppClassType simpleaction_class_;
 
   protected:
-    explicit SimpleAction (const Glib::ConstructParams& construct_params);
+    explicit SimpleAction (const glib::ConstructParams& construct_params);
     explicit SimpleAction (GSimpleAction* castitem);
 
 #endif
@@ -85,99 +85,99 @@ namespace Gio
 
   private:
   protected:
-    explicit SimpleAction (const Glib::ustring& name);
+    explicit SimpleAction (const glib::ustring& name);
 
-    SimpleAction (const Glib::ustring& name, const Glib::VariantBase& state);
+    SimpleAction (const glib::ustring& name, const glib::VariantBase& state);
 
-    explicit SimpleAction (const Glib::ustring& name,
-                           const Glib::VariantType& parameter_type);
+    explicit SimpleAction (const glib::ustring& name,
+                           const glib::VariantType& parameter_type);
 
-    explicit SimpleAction (const Glib::ustring& name,
-                           const Glib::VariantType& parameter_type,
-                           const Glib::VariantBase& state);
+    explicit SimpleAction (const glib::ustring& name,
+                           const glib::VariantType& parameter_type,
+                           const glib::VariantBase& state);
 
   public:
     static auto
-    create (const Glib::ustring& name) -> Glib::RefPtr<SimpleAction>;
+    create (const glib::ustring& name) -> glib::RefPtr<SimpleAction>;
 
     static auto
-    create (const Glib::ustring& name, const Glib::VariantType& parameter_type)
-        -> Glib::RefPtr<SimpleAction>;
+    create (const glib::ustring& name, const glib::VariantType& parameter_type)
+        -> glib::RefPtr<SimpleAction>;
 
     static auto
-    create (const Glib::ustring& name,
-            const Glib::VariantType& parameter_type,
-            const Glib::VariantBase& state) -> Glib::RefPtr<SimpleAction>;
+    create (const glib::ustring& name,
+            const glib::VariantType& parameter_type,
+            const glib::VariantBase& state) -> glib::RefPtr<SimpleAction>;
 
     static auto
-    create (const Glib::ustring& name, const Glib::VariantBase& state)
-        -> Glib::RefPtr<SimpleAction>;
+    create (const glib::ustring& name, const glib::VariantBase& state)
+        -> glib::RefPtr<SimpleAction>;
 
     static auto
-    create_bool (const Glib::ustring& name, bool state = false)
-        -> Glib::RefPtr<SimpleAction>;
+    create_bool (const glib::ustring& name, bool state = false)
+        -> glib::RefPtr<SimpleAction>;
 
     static auto
-    create_radio_string (const Glib::ustring& name,
-                         const Glib::ustring& initial_state)
-        -> Glib::RefPtr<SimpleAction>;
+    create_radio_string (const glib::ustring& name,
+                         const glib::ustring& initial_state)
+        -> glib::RefPtr<SimpleAction>;
 
     static auto
-    create_radio_integer (const Glib::ustring& name, gint32 initial_state)
-        -> Glib::RefPtr<SimpleAction>;
+    create_radio_integer (const glib::ustring& name, gint32 initial_state)
+        -> glib::RefPtr<SimpleAction>;
 
     auto
     set_enabled (bool enabled = true) -> void;
 
     auto
-    set_state (const Glib::VariantBase& value) -> void;
+    set_state (const glib::VariantBase& value) -> void;
 
     auto
-    set_state_hint (const Glib::VariantBase& state_hint) -> void;
+    set_state_hint (const glib::VariantBase& state_hint) -> void;
 
     auto
-    property_enabled () -> Glib::PropertyProxy<bool>;
+    property_enabled () -> glib::PropertyProxy<bool>;
 
     auto
-    property_enabled () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_enabled () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_name () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+    property_name () const -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
     auto
     property_parameter_type () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::VariantType>;
+        -> glib::PropertyProxy_ReadOnly<glib::VariantType>;
 
     auto
-    property_state () -> Glib::PropertyProxy<Glib::VariantBase>;
+    property_state () -> glib::PropertyProxy<glib::VariantBase>;
 
     auto
-    property_state () const -> Glib::PropertyProxy_ReadOnly<Glib::VariantBase>;
+    property_state () const -> glib::PropertyProxy_ReadOnly<glib::VariantBase>;
 
     auto
     property_state_type () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::VariantType>;
+        -> glib::PropertyProxy_ReadOnly<glib::VariantType>;
 
     auto
-    signal_activate () -> Glib::SignalProxy<void (const Glib::VariantBase&)>;
+    signal_activate () -> glib::SignalProxy<void (const glib::VariantBase&)>;
 
     auto
     signal_change_state ()
-        -> Glib::SignalProxy<void (const Glib::VariantBase&)>;
+        -> glib::SignalProxy<void (const glib::VariantBase&)>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gio
+} // namespace gio
 
-namespace Glib
+namespace glib
 {
 
   LIBMM_GIO_SYMEXPORT
   auto
-  wrap (GSimpleAction* object, bool take_copy = false) -> Glib::RefPtr<Gio::SimpleAction>;
-} // namespace Glib
+  wrap (GSimpleAction* object, bool take_copy = false) -> glib::RefPtr<gio::SimpleAction>;
+} // namespace glib
 
 #endif

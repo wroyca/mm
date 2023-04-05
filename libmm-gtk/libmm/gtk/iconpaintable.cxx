@@ -11,24 +11,24 @@ namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GtkIconPaintable* object, bool take_copy) -> Glib::RefPtr<Gtk::IconPaintable>
+  wrap (GtkIconPaintable* object, bool take_copy) -> glib::RefPtr<gtk::IconPaintable>
   {
-    return Glib::make_refptr_for_instance<Gtk::IconPaintable> (
-        dynamic_cast<Gtk::IconPaintable*> (
-            Glib::wrap_auto ((GObject*) (object), take_copy)));
+    return glib::make_refptr_for_instance<gtk::IconPaintable> (
+        dynamic_cast<gtk::IconPaintable*> (
+            glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gtk
+namespace gtk
 {
 
   auto
-  IconPaintable_Class::init () -> const Glib::Class&
+  IconPaintable_Class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -36,7 +36,7 @@ namespace Gtk
 
       register_derived_type (gtk_icon_paintable_get_type ());
 
-      Gdk::Paintable::add_interface (get_type ());
+      gdk::Paintable::add_interface (get_type ());
     }
 
     return *this;
@@ -50,7 +50,7 @@ namespace Gtk
   }
 
   auto
-  IconPaintable_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  IconPaintable_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new IconPaintable ((GtkIconPaintable*) object);
   }
@@ -62,27 +62,27 @@ namespace Gtk
     return gobj ();
   }
 
-  IconPaintable::IconPaintable (const Glib::ConstructParams& construct_params)
-    : Glib::Object (construct_params)
+  IconPaintable::IconPaintable (const glib::ConstructParams& construct_params)
+    : glib::Object (construct_params)
   {
   }
 
   IconPaintable::IconPaintable (GtkIconPaintable* castitem)
-    : Glib::Object ((GObject*) (castitem))
+    : glib::Object ((GObject*) (castitem))
   {
   }
 
   IconPaintable::IconPaintable (IconPaintable&& src) noexcept
-    : Glib::Object (std::move (src)),
-      Gdk::Paintable (std::move (src))
+    : glib::Object (std::move (src)),
+      gdk::Paintable (std::move (src))
   {
   }
 
   auto
   IconPaintable::operator= (IconPaintable&& src) noexcept -> IconPaintable&
   {
-    Glib::Object::operator= (std::move (src));
-    Gdk::Paintable::operator= (std::move (src));
+    glib::Object::operator= (std::move (src));
+    gdk::Paintable::operator= (std::move (src));
     return *this;
   }
 
@@ -103,27 +103,27 @@ namespace Gtk
   }
 
   auto
-  IconPaintable::create (const Glib::RefPtr<Gio::File>& file,
+  IconPaintable::create (const glib::RefPtr<gio::File>& file,
                          int size,
-                         int scale) -> Glib::RefPtr<IconPaintable>
+                         int scale) -> glib::RefPtr<IconPaintable>
   {
-    return Glib::wrap (gtk_icon_paintable_new_for_file (
-        const_cast<GFile*> (Glib::unwrap<Gio::File> (file)),
+    return glib::wrap (gtk_icon_paintable_new_for_file (
+        const_cast<GFile*> (glib::unwrap<gio::File> (file)),
         size,
         scale));
   }
 
   auto
-  IconPaintable::get_file () const -> Glib::RefPtr<Gio::File>
+  IconPaintable::get_file () const -> glib::RefPtr<gio::File>
   {
-    return Glib::wrap (
+    return glib::wrap (
         gtk_icon_paintable_get_file (const_cast<GtkIconPaintable*> (gobj ())));
   }
 
   auto
-  IconPaintable::get_icon_name () const -> Glib::ustring
+  IconPaintable::get_icon_name () const -> glib::ustring
   {
-    return Glib::convert_const_gchar_ptr_to_ustring (
+    return glib::convert_const_gchar_ptr_to_ustring (
         gtk_icon_paintable_get_icon_name (
             const_cast<GtkIconPaintable*> (gobj ())));
   }
@@ -136,27 +136,27 @@ namespace Gtk
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<
-          Glib::RefPtr<Gio::File>>::value,
-      "Type Glib::RefPtr<Gio::File> cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      glib::Traits::ValueCompatibleWithWrapProperty<
+          glib::RefPtr<gio::File>>::value,
+      "Type glib::RefPtr<gio::File> cannot be used in _WRAP_PROPERTY. "
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  IconPaintable::property_file () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gio::File>>
+  IconPaintable::property_file () const -> glib::PropertyProxy_ReadOnly<glib::RefPtr<gio::File>>
   {
-    return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gio::File>> (this, "file");
+    return glib::PropertyProxy_ReadOnly<glib::RefPtr<gio::File>> (this, "file");
   }
 
   auto
-  IconPaintable::property_icon_name () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>
+  IconPaintable::property_icon_name () const -> glib::PropertyProxy_ReadOnly<glib::ustring>
   {
-    return Glib::PropertyProxy_ReadOnly<Glib::ustring> (this, "icon-name");
+    return glib::PropertyProxy_ReadOnly<glib::ustring> (this, "icon-name");
   }
 
   auto
-  IconPaintable::property_is_symbolic () const -> Glib::PropertyProxy_ReadOnly<bool>
+  IconPaintable::property_is_symbolic () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "is-symbolic");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "is-symbolic");
   }
 
-} // namespace Gtk
+} // namespace gtk

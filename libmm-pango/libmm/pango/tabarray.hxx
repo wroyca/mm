@@ -17,7 +17,7 @@ extern "C"
 }
 #endif
 
-namespace Pango
+namespace pango
 {
 
   enum class TabAlign
@@ -28,25 +28,25 @@ namespace Pango
     DECIMAL
   };
 
-} // namespace Pango
+} // namespace pango
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_PANGO_SYMEXPORT Value<Pango::TabAlign>
-    : public Glib::Value_Enum<Pango::TabAlign>
+  class LIBMM_PANGO_SYMEXPORT Value<pango::TabAlign>
+    : public glib::Value_Enum<pango::TabAlign>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
-namespace Pango
+namespace pango
 {
 
   class LIBMM_PANGO_SYMEXPORT TabArray
@@ -118,9 +118,9 @@ namespace Pango
     get_positions_in_pixels () const -> bool;
   };
 
-} // namespace Pango
+} // namespace pango
 
-namespace Pango
+namespace pango
 {
 
   inline auto
@@ -129,23 +129,23 @@ namespace Pango
     lhs.swap (rhs);
   }
 
-} // namespace Pango
+} // namespace pango
 
-namespace Glib
+namespace glib
 {
 
   LIBMM_PANGO_SYMEXPORT
   auto
-  wrap (PangoTabArray* object, bool take_copy = false) -> Pango::TabArray;
+  wrap (PangoTabArray* object, bool take_copy = false) -> pango::TabArray;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
   template <>
-  class LIBMM_PANGO_SYMEXPORT Value<Pango::TabArray>
-    : public Glib::Value_Boxed<Pango::TabArray>
+  class LIBMM_PANGO_SYMEXPORT Value<pango::TabArray>
+    : public glib::Value_Boxed<pango::TabArray>
   {
   };
 #endif
 
-} // namespace Glib
+} // namespace glib
 
 #endif

@@ -18,17 +18,17 @@
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT FileLauncher_Class;
 }
 #endif
 
-namespace Gtk
+namespace gtk
 {
   class Window;
 
-  class LIBMM_GTK_SYMEXPORT FileLauncher : public Glib::Object
+  class LIBMM_GTK_SYMEXPORT FileLauncher : public glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -47,7 +47,7 @@ namespace Gtk
     static CppClassType filelauncher_class_;
 
   protected:
-    explicit FileLauncher (const Glib::ConstructParams& construct_params);
+    explicit FileLauncher (const glib::ConstructParams& construct_params);
     explicit FileLauncher (GtkFileLauncher* castitem);
 
 #endif
@@ -85,69 +85,69 @@ namespace Gtk
 
   private:
   protected:
-    explicit FileLauncher (const Glib::RefPtr<Gio::File>& file);
+    explicit FileLauncher (const glib::RefPtr<gio::File>& file);
 
   public:
     static auto
-    create (const Glib::RefPtr<Gio::File>& file = {})
-        -> Glib::RefPtr<FileLauncher>;
+    create (const glib::RefPtr<gio::File>& file = {})
+        -> glib::RefPtr<FileLauncher>;
 
     auto
-    get_file () -> Glib::RefPtr<Gio::File>;
+    get_file () -> glib::RefPtr<gio::File>;
 
     auto
-    get_file () const -> Glib::RefPtr<const Gio::File>;
+    get_file () const -> glib::RefPtr<const gio::File>;
 
     auto
-    set_file (const Glib::RefPtr<Gio::File>& file) -> void;
+    set_file (const glib::RefPtr<gio::File>& file) -> void;
 
     auto
     launch (Window& parent,
-            const Gio::SlotAsyncReady& slot,
-            const Glib::RefPtr<Gio::Cancellable>& cancellable = {}) const
+            const gio::SlotAsyncReady& slot,
+            const glib::RefPtr<gio::Cancellable>& cancellable = {}) const
         -> void;
 
     auto
-    launch (const Gio::SlotAsyncReady& slot,
-            const Glib::RefPtr<Gio::Cancellable>& cancellable = {}) const
+    launch (const gio::SlotAsyncReady& slot,
+            const glib::RefPtr<gio::Cancellable>& cancellable = {}) const
         -> void;
 
     auto
-    launch_finish (const Glib::RefPtr<Gio::AsyncResult>& result) const -> bool;
+    launch_finish (const glib::RefPtr<gio::AsyncResult>& result) const -> bool;
 
     auto
     open_containing_folder (
         Window& parent,
-        const Gio::SlotAsyncReady& slot,
-        const Glib::RefPtr<Gio::Cancellable>& cancellable = {}) const -> void;
+        const gio::SlotAsyncReady& slot,
+        const glib::RefPtr<gio::Cancellable>& cancellable = {}) const -> void;
 
     auto
     open_containing_folder (
-        const Gio::SlotAsyncReady& slot,
-        const Glib::RefPtr<Gio::Cancellable>& cancellable = {}) const -> void;
+        const gio::SlotAsyncReady& slot,
+        const glib::RefPtr<gio::Cancellable>& cancellable = {}) const -> void;
 
     auto
     open_containing_folder_finish (
-        const Glib::RefPtr<Gio::AsyncResult>& result) const -> bool;
+        const glib::RefPtr<gio::AsyncResult>& result) const -> bool;
 
     auto
-    property_file () -> Glib::PropertyProxy<Glib::RefPtr<Gio::File>>;
+    property_file () -> glib::PropertyProxy<glib::RefPtr<gio::File>>;
 
     auto
     property_file () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gio::File>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<gio::File>>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkFileLauncher* object, bool take_copy = false) -> Glib::RefPtr<Gtk::FileLauncher>;
-} // namespace Glib
+  wrap (GtkFileLauncher* object, bool take_copy = false) -> glib::RefPtr<gtk::FileLauncher>;
+} // namespace glib
 
 #endif

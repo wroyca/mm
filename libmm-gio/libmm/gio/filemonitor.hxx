@@ -16,18 +16,18 @@ using GFileMonitorClass = struct _GFileMonitorClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gio
+namespace gio
 {
   class LIBMM_GIO_SYMEXPORT FileMonitor_Class;
 }
 #endif
 
-namespace Gio
+namespace gio
 {
 
   class LIBMM_GIO_SYMEXPORT File;
 
-  class LIBMM_GIO_SYMEXPORT FileMonitor : public Glib::Object
+  class LIBMM_GIO_SYMEXPORT FileMonitor : public glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -46,7 +46,7 @@ namespace Gio
     static CppClassType filemonitor_class_;
 
   protected:
-    explicit FileMonitor (const Glib::ConstructParams& construct_params);
+    explicit FileMonitor (const glib::ConstructParams& construct_params);
     explicit FileMonitor (GFileMonitor* castitem);
 
 #endif
@@ -110,36 +110,36 @@ namespace Gio
     set_rate_limit (int limit_msecs) -> void;
 
     auto
-    signal_changed () -> Glib::SignalProxy<
-        void (const Glib::RefPtr<File>&, const Glib::RefPtr<File>&, Event)>;
+    signal_changed () -> glib::SignalProxy<
+        void (const glib::RefPtr<File>&, const glib::RefPtr<File>&, Event)>;
 
     auto
-    property_rate_limit () -> Glib::PropertyProxy<int>;
+    property_rate_limit () -> glib::PropertyProxy<int>;
 
     auto
-    property_rate_limit () const -> Glib::PropertyProxy_ReadOnly<int>;
+    property_rate_limit () const -> glib::PropertyProxy_ReadOnly<int>;
 
     auto
-    property_cancelled () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_cancelled () const -> glib::PropertyProxy_ReadOnly<bool>;
 
   protected:
   public:
   public:
   protected:
     virtual auto
-    on_changed (const Glib::RefPtr<File>& file,
-                const Glib::RefPtr<File>& other_file,
+    on_changed (const glib::RefPtr<File>& file,
+                const glib::RefPtr<File>& other_file,
                 Event event_type) -> void;
   };
 
-} // namespace Gio
+} // namespace gio
 
-namespace Glib
+namespace glib
 {
 
   LIBMM_GIO_SYMEXPORT
   auto
-  wrap (GFileMonitor* object, bool take_copy = false) -> Glib::RefPtr<Gio::FileMonitor>;
-} // namespace Glib
+  wrap (GFileMonitor* object, bool take_copy = false) -> glib::RefPtr<gio::FileMonitor>;
+} // namespace glib
 
 #endif

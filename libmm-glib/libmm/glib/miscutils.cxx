@@ -12,7 +12,7 @@
 #include <libmm/glib/miscutils.hxx>
 #include <libmm/glib/utility.hxx>
 
-namespace Glib
+namespace glib
 {
 
   auto
@@ -224,7 +224,7 @@ namespace Glib
         g_format_size_full (size, (GFormatSizeFlags) flags));
   }
 
-} // namespace Glib
+} // namespace glib
 
 namespace
 {

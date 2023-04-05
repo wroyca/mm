@@ -8,7 +8,7 @@
 #include <gtk/gtk.h>
 #include <libmm/gtk/builder.hxx>
 
-namespace Gtk
+namespace gtk
 {
 
   auto
@@ -22,10 +22,10 @@ namespace Gtk
     GType gtype = G_TYPE_INVALID;
 
     const auto obj = dynamic_cast<Builder*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) builder));
+        glib::ObjectBase::_get_current_wrapper ((GObject*) builder));
     if (!(obj && obj->no_gtkmm_derived_types))
     {
-      Glib::ustring classname_prefixed ("gtkmm__");
+      glib::ustring classname_prefixed ("gtkmm__");
       classname_prefixed += type_name;
 
       gtype = g_type_from_name (classname_prefixed.c_str ());
@@ -49,31 +49,31 @@ namespace Gtk
     return gtype;
   }
 
-} // namespace Gtk
+} // namespace gtk
 
 namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GtkBuilderScope* object, bool take_copy) -> Glib::RefPtr<Gtk::BuilderScope>
+  wrap (GtkBuilderScope* object, bool take_copy) -> glib::RefPtr<gtk::BuilderScope>
   {
-    return Glib::make_refptr_for_instance<Gtk::BuilderScope> (
-        dynamic_cast<Gtk::BuilderScope*> (
-            Glib::wrap_auto_interface<Gtk::BuilderScope> ((GObject*) (object),
+    return glib::make_refptr_for_instance<gtk::BuilderScope> (
+        dynamic_cast<gtk::BuilderScope*> (
+            glib::wrap_auto_interface<gtk::BuilderScope> ((GObject*) (object),
                                                           take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gtk
+namespace gtk
 {
 
   auto
-  BuilderScope_Class::init () -> const Glib::Interface_Class&
+  BuilderScope_Class::init () -> const glib::Interface_Class&
   {
     if (!gtype_)
     {
@@ -96,35 +96,35 @@ namespace Gtk
   }
 
   auto
-  BuilderScope_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  BuilderScope_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new BuilderScope ((GtkBuilderScope*) (object));
   }
 
   BuilderScope::BuilderScope ()
-    : Glib::Interface (builderscope_class_.init ())
+    : glib::Interface (builderscope_class_.init ())
   {
   }
 
   BuilderScope::BuilderScope (GtkBuilderScope* castitem)
-    : Glib::Interface ((GObject*) (castitem))
+    : glib::Interface ((GObject*) (castitem))
   {
   }
 
-  BuilderScope::BuilderScope (const Glib::Interface_Class& interface_class)
-    : Glib::Interface (interface_class)
+  BuilderScope::BuilderScope (const glib::Interface_Class& interface_class)
+    : glib::Interface (interface_class)
   {
   }
 
   BuilderScope::BuilderScope (BuilderScope&& src) noexcept
-    : Glib::Interface (std::move (src))
+    : glib::Interface (std::move (src))
   {
   }
 
   auto
   BuilderScope::operator= (BuilderScope&& src) noexcept -> BuilderScope&
   {
-    Glib::Interface::operator= (std::move (src));
+    glib::Interface::operator= (std::move (src));
     return *this;
   }
 
@@ -150,4 +150,4 @@ namespace Gtk
     return gtk_builder_scope_get_type ();
   }
 
-} // namespace Gtk
+} // namespace gtk

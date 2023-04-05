@@ -7,7 +7,7 @@
 #include <libmm/glib/ustring.hxx>
 #include <libmm/glib/utility.hxx>
 
-namespace Glib
+namespace glib
 {
 
   auto
@@ -250,4 +250,4 @@ namespace Glib
     g_free (iface_types);
   }
 
-} // namespace Glib
+} // namespace glib

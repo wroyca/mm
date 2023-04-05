@@ -14,13 +14,13 @@ using GtkGestureRotateClass = struct _GtkGestureRotateClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT GestureRotate_Class;
 }
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
   class LIBMM_GTK_SYMEXPORT GestureRotate : public Gesture
@@ -42,7 +42,7 @@ namespace Gtk
     static CppClassType gesturerotate_class_;
 
   protected:
-    explicit GestureRotate (const Glib::ConstructParams& construct_params);
+    explicit GestureRotate (const glib::ConstructParams& construct_params);
     explicit GestureRotate (GtkGestureRotate* castitem);
 
 #endif
@@ -84,25 +84,25 @@ namespace Gtk
 
   public:
     static auto
-    create () -> Glib::RefPtr<GestureRotate>;
+    create () -> glib::RefPtr<GestureRotate>;
 
     auto
     get_angle_delta () const -> double;
 
     auto
-    signal_angle_changed () -> Glib::SignalProxy<void (double, double)>;
+    signal_angle_changed () -> glib::SignalProxy<void (double, double)>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkGestureRotate* object, bool take_copy = false) -> Glib::RefPtr<Gtk::GestureRotate>;
-} // namespace Glib
+  wrap (GtkGestureRotate* object, bool take_copy = false) -> glib::RefPtr<gtk::GestureRotate>;
+} // namespace glib
 
 #endif

@@ -9,23 +9,23 @@
 #include <libmm/gio/slot_async.hxx>
 #include <libmm/glib/error.hxx>
 
-namespace Gio
+namespace gio
 {
 
   auto
   LoadableIcon::load (const int size,
-                      Glib::ustring& type,
-                      const Glib::RefPtr<Cancellable>& cancellable) -> Glib::RefPtr<InputStream>
+                      glib::ustring& type,
+                      const glib::RefPtr<Cancellable>& cancellable) -> glib::RefPtr<InputStream>
   {
     char* c_type;
     GError* gerror = nullptr;
-    auto retval = Glib::wrap (g_loadable_icon_load (gobj (),
+    auto retval = glib::wrap (g_loadable_icon_load (gobj (),
                                                     size,
                                                     &c_type,
-                                                    Glib::unwrap (cancellable),
+                                                    glib::unwrap (cancellable),
                                                     &gerror));
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
 
     type = c_type;
     g_free (c_type);
@@ -35,14 +35,14 @@ namespace Gio
   }
 
   auto
-  LoadableIcon::load (const int size, Glib::ustring& type) -> Glib::RefPtr<InputStream>
+  LoadableIcon::load (const int size, glib::ustring& type) -> glib::RefPtr<InputStream>
   {
     char* c_type;
     GError* gerror = nullptr;
-    auto retval = Glib::wrap (
+    auto retval = glib::wrap (
         g_loadable_icon_load (gobj (), size, &c_type, nullptr, &gerror));
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
 
     type = c_type;
     g_free (c_type);
@@ -54,13 +54,13 @@ namespace Gio
   auto
   LoadableIcon::load_async (const int size,
                             const SlotAsyncReady& slot,
-                            const Glib::RefPtr<Cancellable>& cancellable) -> void
+                            const glib::RefPtr<Cancellable>& cancellable) -> void
   {
     const auto slot_copy = new SlotAsyncReady (slot);
 
     g_loadable_icon_load_async (gobj (),
                                 size,
-                                Glib::unwrap (cancellable),
+                                glib::unwrap (cancellable),
                                 &SignalProxy_async_callback,
                                 slot_copy);
   }
@@ -77,26 +77,26 @@ namespace Gio
                                 slot_copy);
   }
 
-} // namespace Gio
+} // namespace gio
 
 namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GLoadableIcon* object, const bool take_copy) -> RefPtr<Gio::LoadableIcon>
+  wrap (GLoadableIcon* object, const bool take_copy) -> RefPtr<gio::LoadableIcon>
   {
-    return Glib::make_refptr_for_instance<Gio::LoadableIcon> (
-        Glib::wrap_auto_interface<Gio::LoadableIcon> ((GObject*) object,
+    return glib::make_refptr_for_instance<gio::LoadableIcon> (
+        glib::wrap_auto_interface<gio::LoadableIcon> ((GObject*) object,
                                                       take_copy));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gio
+namespace gio
 {
 
   auto
@@ -121,7 +121,7 @@ namespace Gio
   }
 
   auto
-  LoadableIcon_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  LoadableIcon_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new LoadableIcon ((GLoadableIcon*) object);
   }
@@ -136,7 +136,7 @@ namespace Gio
   {
   }
 
-  LoadableIcon::LoadableIcon (const Glib::Interface_Class& interface_class)
+  LoadableIcon::LoadableIcon (const glib::Interface_Class& interface_class)
     : Interface (interface_class)
   {
   }
@@ -175,4 +175,4 @@ namespace Gio
     return g_loadable_icon_get_type ();
   }
 
-} // namespace Gio
+} // namespace gio

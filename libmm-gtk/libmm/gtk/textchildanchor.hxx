@@ -16,16 +16,16 @@ using GtkTextChildAnchorClass = struct _GtkTextChildAnchorClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT TextChildAnchor_Class;
 }
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
-  class LIBMM_GTK_SYMEXPORT TextChildAnchor : public Glib::Object
+  class LIBMM_GTK_SYMEXPORT TextChildAnchor : public glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -44,7 +44,7 @@ namespace Gtk
     static CppClassType textchildanchor_class_;
 
   protected:
-    explicit TextChildAnchor (const Glib::ConstructParams& construct_params);
+    explicit TextChildAnchor (const glib::ConstructParams& construct_params);
     explicit TextChildAnchor (GtkTextChildAnchor* castitem);
 
 #endif
@@ -86,11 +86,11 @@ namespace Gtk
 
   public:
     static auto
-    create () -> Glib::RefPtr<TextChildAnchor>;
+    create () -> glib::RefPtr<TextChildAnchor>;
 
     static auto
-    create (const Glib::ustring& replacement_character)
-        -> Glib::RefPtr<TextChildAnchor>;
+    create (const glib::ustring& replacement_character)
+        -> glib::RefPtr<TextChildAnchor>;
 
     auto
     get_widgets () -> std::vector<Widget*>;
@@ -106,12 +106,12 @@ namespace Gtk
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkTextChildAnchor* object, bool take_copy = false) -> Glib::RefPtr<Gtk::TextChildAnchor>;
-} // namespace Glib
+  wrap (GtkTextChildAnchor* object, bool take_copy = false) -> glib::RefPtr<gtk::TextChildAnchor>;
+} // namespace glib
 
 #endif

@@ -5,7 +5,7 @@
 
 #include <libmm/glib/class.hxx>
 
-namespace Glib
+namespace glib
 {
 
   class LIBMM_GLIB_SYMEXPORT Interface_Class : public Class
@@ -18,6 +18,6 @@ namespace Glib
     add_interface (GType instance_type) const -> void;
   };
 
-} // namespace Glib
+} // namespace glib
 
 #endif

@@ -10,7 +10,7 @@
   #include <libmm/gtk/cellrenderertext.hxx>
   #include <libmm/gtk/cellrenderertoggle.hxx>
 
-namespace Gtk
+namespace gtk
 {
 
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -36,7 +36,7 @@ namespace Gtk
 
     template <>
     LIBMM_GTK_SYMEXPORT auto
-    generate_cellrenderer<Glib::RefPtr<Gdk::Pixbuf>> (bool editable)
+    generate_cellrenderer<glib::RefPtr<gdk::Pixbuf>> (bool editable)
         -> CellRenderer*;
 
     template <>
@@ -48,7 +48,7 @@ namespace Gtk
   } // namespace CellRenderer_Generation
   #endif
 
-} // namespace Gtk
+} // namespace gtk
 
 #endif
 

@@ -11,7 +11,7 @@
 #include <libmm/pango/rectangle.hxx>
 #include <pango/pango.h>
 
-namespace Pango
+namespace pango
 {
 
   class LIBMM_PANGO_SYMEXPORT Layout;
@@ -81,16 +81,16 @@ namespace Pango
     get_pixel_logical_extents () const -> Rectangle;
 
     auto
-    show_in_cairo_context (const Cairo::RefPtr<Cairo::Context>& context)
+    show_in_cairo_context (const cairo::RefPtr<cairo::Context>& context)
         -> void;
 
     auto
-    add_to_cairo_context (const Cairo::RefPtr<Cairo::Context>& context) -> void;
+    add_to_cairo_context (const cairo::RefPtr<cairo::Context>& context) -> void;
 
     auto
-    get_layout () -> Glib::RefPtr<Pango::Layout>;
+    get_layout () -> glib::RefPtr<pango::Layout>;
     auto
-    get_layout () const -> Glib::RefPtr<const Pango::Layout>;
+    get_layout () const -> glib::RefPtr<const pango::Layout>;
 
     auto
     get_length () const -> int;
@@ -98,15 +98,15 @@ namespace Pango
     get_start_index () const -> int;
   };
 
-} // namespace Pango
+} // namespace pango
 
-namespace Glib
+namespace glib
 {
 
   LIBMM_PANGO_SYMEXPORT
   auto
-  wrap (PangoLayoutLine* object, bool take_copy = false) -> Glib::RefPtr<Pango::LayoutLine>;
+  wrap (PangoLayoutLine* object, bool take_copy = false) -> glib::RefPtr<pango::LayoutLine>;
 
-} // namespace Glib
+} // namespace glib
 
 #endif

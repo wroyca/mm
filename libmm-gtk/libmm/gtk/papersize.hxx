@@ -19,20 +19,20 @@ extern "C"
 }
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
   struct PaperSizeTraits;
 #endif
 
-  extern LIBMM_GTK_SYMEXPORT const Glib::ustring PAPER_NAME_A3;
-  extern LIBMM_GTK_SYMEXPORT const Glib::ustring PAPER_NAME_A4;
-  extern LIBMM_GTK_SYMEXPORT const Glib::ustring PAPER_NAME_A5;
-  extern LIBMM_GTK_SYMEXPORT const Glib::ustring PAPER_NAME_B5;
-  extern LIBMM_GTK_SYMEXPORT const Glib::ustring PAPER_NAME_LETTER;
-  extern LIBMM_GTK_SYMEXPORT const Glib::ustring PAPER_NAME_EXECUTIVE;
-  extern LIBMM_GTK_SYMEXPORT const Glib::ustring PAPER_NAME_LEGAL;
+  extern LIBMM_GTK_SYMEXPORT const glib::ustring PAPER_NAME_A3;
+  extern LIBMM_GTK_SYMEXPORT const glib::ustring PAPER_NAME_A4;
+  extern LIBMM_GTK_SYMEXPORT const glib::ustring PAPER_NAME_A5;
+  extern LIBMM_GTK_SYMEXPORT const glib::ustring PAPER_NAME_B5;
+  extern LIBMM_GTK_SYMEXPORT const glib::ustring PAPER_NAME_LETTER;
+  extern LIBMM_GTK_SYMEXPORT const glib::ustring PAPER_NAME_EXECUTIVE;
+  extern LIBMM_GTK_SYMEXPORT const glib::ustring PAPER_NAME_LEGAL;
 
   enum class Unit
   {
@@ -42,24 +42,24 @@ namespace Gtk
     MM
   };
 
-} // namespace Gtk
+} // namespace gtk
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_GTK_SYMEXPORT Value<Gtk::Unit> : public Glib::Value_Enum<Gtk::Unit>
+  class LIBMM_GTK_SYMEXPORT Value<gtk::Unit> : public glib::Value_Enum<gtk::Unit>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
   class LIBMM_GTK_SYMEXPORT PaperSize
@@ -110,19 +110,19 @@ namespace Gtk
 
   private:
   public:
-    explicit PaperSize (const Glib::ustring& name);
-    explicit PaperSize (const Glib::ustring& ppd_name,
-                        const Glib::ustring& ppd_display_name,
+    explicit PaperSize (const glib::ustring& name);
+    explicit PaperSize (const glib::ustring& ppd_name,
+                        const glib::ustring& ppd_display_name,
                         double width,
                         double height);
-    explicit PaperSize (const Glib::ustring& name,
-                        const Glib::ustring& display_name,
+    explicit PaperSize (const glib::ustring& name,
+                        const glib::ustring& display_name,
                         double width,
                         double height,
                         Unit unit);
 
-    explicit PaperSize (const Glib::RefPtr<const Glib::KeyFile>& key_file,
-                        const Glib::ustring& group_name = {});
+    explicit PaperSize (const glib::RefPtr<const glib::KeyFile>& key_file,
+                        const glib::ustring& group_name = {});
 
     auto
     equal (const PaperSize& other) const -> bool;
@@ -133,13 +133,13 @@ namespace Gtk
     get_paper_sizes (bool include_custom = true) -> std::vector<PaperSize>;
 
     auto
-    get_name () const -> Glib::ustring;
+    get_name () const -> glib::ustring;
 
     auto
-    get_display_name () const -> Glib::ustring;
+    get_display_name () const -> glib::ustring;
 
     auto
-    get_ppd_name () const -> Glib::ustring;
+    get_ppd_name () const -> glib::ustring;
 
     auto
     get_width (Unit unit) const -> double;
@@ -169,14 +169,14 @@ namespace Gtk
     get_default_right_margin (Unit unit) const -> double;
 
     static auto
-    get_default () -> Glib::ustring;
+    get_default () -> glib::ustring;
 
     auto
-    save_to_key_file (const Glib::RefPtr<Glib::KeyFile>& key_file,
-                      const Glib::ustring& group_name) -> void;
+    save_to_key_file (const glib::RefPtr<glib::KeyFile>& key_file,
+                      const glib::ustring& group_name) -> void;
 
     auto
-    save_to_key_file (const Glib::RefPtr<Glib::KeyFile>& key_file) -> void;
+    save_to_key_file (const glib::RefPtr<glib::KeyFile>& key_file) -> void;
   };
 
   inline auto
@@ -221,9 +221,9 @@ namespace Gtk
   };
 #endif
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Gtk
+namespace gtk
 {
 
   inline auto
@@ -232,21 +232,21 @@ namespace Gtk
     lhs.swap (rhs);
   }
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkPaperSize* object, bool take_copy = false) -> Gtk::PaperSize;
+  wrap (GtkPaperSize* object, bool take_copy = false) -> gtk::PaperSize;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
   template <>
-  class LIBMM_GTK_SYMEXPORT Value<Gtk::PaperSize>
-    : public Glib::Value_Boxed<Gtk::PaperSize>
+  class LIBMM_GTK_SYMEXPORT Value<gtk::PaperSize>
+    : public glib::Value_Boxed<gtk::PaperSize>
   {
   };
 #endif
 
-} // namespace Glib
+} // namespace glib
 
 #endif

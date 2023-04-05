@@ -19,11 +19,11 @@ namespace
     {
       try
       {
-        (*reinterpret_cast<Glib::SlotSpawnChildSetup*> (user_data)) ();
+        (*reinterpret_cast<glib::SlotSpawnChildSetup*> (user_data)) ();
       }
       catch (...)
       {
-        Glib::exception_handlers_invoke ();
+        glib::exception_handlers_invoke ();
       }
     }
 
@@ -42,7 +42,7 @@ namespace
 
 } // namespace
 
-namespace Glib
+namespace glib
 {
 
   auto
@@ -290,31 +290,31 @@ namespace Glib
     g_spawn_close_pid (pid);
   }
 
-} // namespace Glib
+} // namespace glib
 
 namespace
 {
 }
 
-Glib::SpawnError::SpawnError (const Code error_code,
+glib::SpawnError::SpawnError (const Code error_code,
                               const ustring& error_message)
   : Error (G_SPAWN_ERROR, error_code, error_message)
 {
 }
 
-Glib::SpawnError::SpawnError (GError* gobject)
+glib::SpawnError::SpawnError (GError* gobject)
   : Error (gobject)
 {
 }
 
 auto
-Glib::SpawnError::code () const -> Code
+glib::SpawnError::code () const -> Code
 {
   return static_cast<Code> (Error::code ());
 }
 
 auto
-Glib::SpawnError::throw_func (GError* gobject) -> void
+glib::SpawnError::throw_func (GError* gobject) -> void
 {
   throw SpawnError (gobject);
 }

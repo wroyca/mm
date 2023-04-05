@@ -11,25 +11,25 @@ namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GdkDragSurface* object, bool take_copy) -> Glib::RefPtr<Gdk::DragSurface>
+  wrap (GdkDragSurface* object, bool take_copy) -> glib::RefPtr<gdk::DragSurface>
   {
-    return Glib::make_refptr_for_instance<Gdk::DragSurface> (
-        dynamic_cast<Gdk::DragSurface*> (
-            Glib::wrap_auto_interface<Gdk::DragSurface> ((GObject*) (object),
+    return glib::make_refptr_for_instance<gdk::DragSurface> (
+        dynamic_cast<gdk::DragSurface*> (
+            glib::wrap_auto_interface<gdk::DragSurface> ((GObject*) (object),
                                                          take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gdk
+namespace gdk
 {
 
   auto
-  DragSurface_Class::init () -> const Glib::Interface_Class&
+  DragSurface_Class::init () -> const glib::Interface_Class&
   {
     if (!gtype_)
     {
@@ -50,35 +50,35 @@ namespace Gdk
   }
 
   auto
-  DragSurface_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  DragSurface_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new DragSurface ((GdkDragSurface*) (object));
   }
 
   DragSurface::DragSurface ()
-    : Glib::Interface (dragsurface_class_.init ())
+    : glib::Interface (dragsurface_class_.init ())
   {
   }
 
   DragSurface::DragSurface (GdkDragSurface* castitem)
-    : Glib::Interface ((GObject*) (castitem))
+    : glib::Interface ((GObject*) (castitem))
   {
   }
 
-  DragSurface::DragSurface (const Glib::Interface_Class& interface_class)
-    : Glib::Interface (interface_class)
+  DragSurface::DragSurface (const glib::Interface_Class& interface_class)
+    : glib::Interface (interface_class)
   {
   }
 
   DragSurface::DragSurface (DragSurface&& src) noexcept
-    : Glib::Interface (std::move (src))
+    : glib::Interface (std::move (src))
   {
   }
 
   auto
   DragSurface::operator= (DragSurface&& src) noexcept -> DragSurface&
   {
-    Glib::Interface::operator= (std::move (src));
+    glib::Interface::operator= (std::move (src));
     return *this;
   }
 
@@ -110,4 +110,4 @@ namespace Gdk
     return gdk_drag_surface_present (gobj (), width, height);
   }
 
-} // namespace Gdk
+} // namespace gdk

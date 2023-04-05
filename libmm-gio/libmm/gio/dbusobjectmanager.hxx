@@ -22,18 +22,18 @@ using GDBusObjectManagerClass = struct _GDBusObjectManagerClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gio::DBus
+namespace gio::DBus
 {
   class LIBMM_GIO_SYMEXPORT ObjectManager_Class;
 }
 #endif
 
-namespace Gio::DBus
+namespace gio::DBus
 {
   class LIBMM_GIO_SYMEXPORT Interface;
   class LIBMM_GIO_SYMEXPORT Object;
 
-  class LIBMM_GIO_SYMEXPORT ObjectManager : public Glib::Interface
+  class LIBMM_GIO_SYMEXPORT ObjectManager : public glib::Interface
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -57,7 +57,7 @@ namespace Gio::DBus
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
-    explicit ObjectManager (const Glib::Interface_Class& interface_class);
+    explicit ObjectManager (const glib::Interface_Class& interface_class);
 
   public:
     explicit ObjectManager (GDBusObjectManager* castitem);
@@ -98,95 +98,95 @@ namespace Gio::DBus
   private:
   public:
     auto
-    get_object_path () const -> Glib::ustring;
+    get_object_path () const -> glib::ustring;
 
     auto
-    get_objects () -> std::vector<Glib::RefPtr<Gio::DBus::Object>>;
+    get_objects () -> std::vector<glib::RefPtr<gio::DBus::Object>>;
 
     auto
-    get_objects () const -> std::vector<Glib::RefPtr<const Gio::DBus::Object>>;
+    get_objects () const -> std::vector<glib::RefPtr<const gio::DBus::Object>>;
 
     auto
-    get_object (const Glib::ustring& object_path)
-        -> Glib::RefPtr<Gio::DBus::Object>;
+    get_object (const glib::ustring& object_path)
+        -> glib::RefPtr<gio::DBus::Object>;
 
     auto
-    get_object (const Glib::ustring& object_path) const
-        -> Glib::RefPtr<const Gio::DBus::Object>;
+    get_object (const glib::ustring& object_path) const
+        -> glib::RefPtr<const gio::DBus::Object>;
 
     auto
-    get_interface (const Glib::ustring& object_path,
-                   const Glib::ustring& interface_name)
-        -> Glib::RefPtr<Gio::DBus::Interface>;
+    get_interface (const glib::ustring& object_path,
+                   const glib::ustring& interface_name)
+        -> glib::RefPtr<gio::DBus::Interface>;
 
     auto
-    get_interface (const Glib::ustring& object_path,
-                   const Glib::ustring& interface_name) const
-        -> Glib::RefPtr<const Gio::DBus::Interface>;
+    get_interface (const glib::ustring& object_path,
+                   const glib::ustring& interface_name) const
+        -> glib::RefPtr<const gio::DBus::Interface>;
 
     auto
     signal_object_added ()
-        -> Glib::SignalProxy<void (const Glib::RefPtr<Gio::DBus::Object>&)>;
+        -> glib::SignalProxy<void (const glib::RefPtr<gio::DBus::Object>&)>;
 
     auto
     signal_object_removed ()
-        -> Glib::SignalProxy<void (const Glib::RefPtr<Gio::DBus::Object>&)>;
+        -> glib::SignalProxy<void (const glib::RefPtr<gio::DBus::Object>&)>;
 
     auto
     signal_interface_added ()
-        -> Glib::SignalProxy<void (const Glib::RefPtr<Gio::DBus::Object>&,
-                                   const Glib::RefPtr<Gio::DBus::Interface>&)>;
+        -> glib::SignalProxy<void (const glib::RefPtr<gio::DBus::Object>&,
+                                   const glib::RefPtr<gio::DBus::Interface>&)>;
 
     auto
     signal_interface_removed ()
-        -> Glib::SignalProxy<void (const Glib::RefPtr<Gio::DBus::Object>&,
-                                   const Glib::RefPtr<Gio::DBus::Interface>&)>;
+        -> glib::SignalProxy<void (const glib::RefPtr<gio::DBus::Object>&,
+                                   const glib::RefPtr<gio::DBus::Interface>&)>;
 
   protected:
     virtual auto
-    get_object_path_vfunc () const -> Glib::ustring;
+    get_object_path_vfunc () const -> glib::ustring;
 
     virtual auto
-    get_objects_vfunc () const -> std::vector<Glib::RefPtr<Gio::DBus::Object>>;
+    get_objects_vfunc () const -> std::vector<glib::RefPtr<gio::DBus::Object>>;
 
     virtual auto
-    get_object_vfunc (const Glib::ustring& object_path) const
-        -> Glib::RefPtr<Gio::DBus::Object>;
+    get_object_vfunc (const glib::ustring& object_path) const
+        -> glib::RefPtr<gio::DBus::Object>;
 
     virtual auto
-    get_interface_vfunc (const Glib::ustring& object_path,
-                         const Glib::ustring& interface_name) const
-        -> Glib::RefPtr<Gio::DBus::Interface>;
+    get_interface_vfunc (const glib::ustring& object_path,
+                         const glib::ustring& interface_name) const
+        -> glib::RefPtr<gio::DBus::Interface>;
 
   public:
   public:
   protected:
     virtual auto
-    on_object_added (const Glib::RefPtr<Gio::DBus::Object>& object) -> void;
+    on_object_added (const glib::RefPtr<gio::DBus::Object>& object) -> void;
 
     virtual auto
-    on_object_removed (const Glib::RefPtr<Gio::DBus::Object>& object) -> void;
+    on_object_removed (const glib::RefPtr<gio::DBus::Object>& object) -> void;
 
     virtual auto
-    on_interface_added (const Glib::RefPtr<Gio::DBus::Object>& object,
-                        const Glib::RefPtr<Gio::DBus::Interface>& iface)
+    on_interface_added (const glib::RefPtr<gio::DBus::Object>& object,
+                        const glib::RefPtr<gio::DBus::Interface>& iface)
         -> void;
 
     virtual auto
-    on_interface_removed (const Glib::RefPtr<Gio::DBus::Object>& object,
-                          const Glib::RefPtr<Gio::DBus::Interface>& iface)
+    on_interface_removed (const glib::RefPtr<gio::DBus::Object>& object,
+                          const glib::RefPtr<gio::DBus::Interface>& iface)
         -> void;
   };
 
-} // namespace Gio::DBus
+} // namespace gio::DBus
 
-namespace Glib
+namespace glib
 {
 
   LIBMM_GIO_SYMEXPORT
   auto
-  wrap (GDBusObjectManager* object, bool take_copy = false) -> Glib::RefPtr<Gio::DBus::ObjectManager>;
+  wrap (GDBusObjectManager* object, bool take_copy = false) -> glib::RefPtr<gio::DBus::ObjectManager>;
 
-} // namespace Glib
+} // namespace glib
 
 #endif

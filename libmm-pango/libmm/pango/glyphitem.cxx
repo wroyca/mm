@@ -12,18 +12,18 @@ namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (PangoGlyphItem* object, const bool take_copy) -> Pango::GlyphItem
+  wrap (PangoGlyphItem* object, const bool take_copy) -> pango::GlyphItem
   {
-    return Pango::GlyphItem (object, take_copy);
+    return pango::GlyphItem (object, take_copy);
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Pango
+namespace pango
 {
 
   auto
@@ -90,14 +90,14 @@ namespace Pango
   }
 
   auto
-  GlyphItem::split (const Glib::ustring& text, const int split_index) -> GlyphItem
+  GlyphItem::split (const glib::ustring& text, const int split_index) -> GlyphItem
   {
-    return Glib::wrap (
+    return glib::wrap (
         pango_glyph_item_split (gobj (), text.c_str (), split_index));
   }
 
   auto
-  GlyphItem::letter_space (const Glib::ustring& text,
+  GlyphItem::letter_space (const glib::ustring& text,
                            const LogAttr& log_attrs,
                            const int letter_spacing) -> void
   {
@@ -119,4 +119,4 @@ namespace Pango
     return GlyphString (gobj ()->glyphs);
   }
 
-} // namespace Pango
+} // namespace pango

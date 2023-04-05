@@ -7,44 +7,44 @@
 
 #include <gtk/gtk.h>
 
-namespace Gtk
+namespace gtk
 {
 
-  StringList::StringList (const std::vector<Glib::ustring>& strings)
-    : Glib::ObjectBase (nullptr),
-      Glib::Object (Glib::ConstructParams (stringlist_class_.init ()))
+  StringList::StringList (const std::vector<glib::ustring>& strings)
+    : glib::ObjectBase (nullptr),
+      glib::Object (glib::ConstructParams (stringlist_class_.init ()))
   {
     gtk_string_list_splice (
         gobj (),
         0,
         0,
-        Glib::ArrayHandler<Glib::ustring>::vector_to_array (strings).data ());
+        glib::ArrayHandler<glib::ustring>::vector_to_array (strings).data ());
   }
 
-} // namespace Gtk
+} // namespace gtk
 
 namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GtkStringList* object, bool take_copy) -> Glib::RefPtr<Gtk::StringList>
+  wrap (GtkStringList* object, bool take_copy) -> glib::RefPtr<gtk::StringList>
   {
-    return Glib::make_refptr_for_instance<Gtk::StringList> (
-        dynamic_cast<Gtk::StringList*> (
-            Glib::wrap_auto ((GObject*) (object), take_copy)));
+    return glib::make_refptr_for_instance<gtk::StringList> (
+        dynamic_cast<gtk::StringList*> (
+            glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gtk
+namespace gtk
 {
 
   auto
-  StringList_Class::init () -> const Glib::Class&
+  StringList_Class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -64,7 +64,7 @@ namespace Gtk
   }
 
   auto
-  StringList_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  StringList_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new StringList ((GtkStringList*) object);
   }
@@ -76,19 +76,19 @@ namespace Gtk
     return gobj ();
   }
 
-  StringList::StringList (const Glib::ConstructParams& construct_params)
-    : Glib::Object (construct_params)
+  StringList::StringList (const glib::ConstructParams& construct_params)
+    : glib::Object (construct_params)
   {
   }
 
   StringList::StringList (GtkStringList* castitem)
-    : Glib::Object ((GObject*) (castitem))
+    : glib::Object ((GObject*) (castitem))
   {
   }
 
   StringList::StringList (StringList&& src) noexcept
-    : Glib::Object (std::move (src)),
-      Gio::ListModel (std::move (src)),
+    : glib::Object (std::move (src)),
+      gio::ListModel (std::move (src)),
       Buildable (std::move (src))
   {
   }
@@ -96,8 +96,8 @@ namespace Gtk
   auto
   StringList::operator= (StringList&& src) noexcept -> StringList&
   {
-    Glib::Object::operator= (std::move (src));
-    Gio::ListModel::operator= (std::move (src));
+    glib::Object::operator= (std::move (src));
+    gio::ListModel::operator= (std::move (src));
     Buildable::operator= (std::move (src));
     return *this;
   }
@@ -119,14 +119,14 @@ namespace Gtk
   }
 
   auto
-  StringList::create (const std::vector<Glib::ustring>& strings) -> Glib::RefPtr<StringList>
+  StringList::create (const std::vector<glib::ustring>& strings) -> glib::RefPtr<StringList>
   {
-    return Glib::make_refptr_for_instance<StringList> (
+    return glib::make_refptr_for_instance<StringList> (
         new StringList (strings));
   }
 
   auto
-  StringList::append (const Glib::ustring& string) -> void
+  StringList::append (const glib::ustring& string) -> void
   {
     gtk_string_list_append (gobj (), string.c_str ());
   }
@@ -140,21 +140,21 @@ namespace Gtk
   auto
   StringList::splice (guint position,
                       guint n_removals,
-                      const std::vector<Glib::ustring>& additions) -> void
+                      const std::vector<glib::ustring>& additions) -> void
   {
     gtk_string_list_splice (
         gobj (),
         position,
         n_removals,
-        Glib::ArrayHandler<Glib::ustring>::vector_to_array (additions).data ());
+        glib::ArrayHandler<glib::ustring>::vector_to_array (additions).data ());
   }
 
   auto
-  StringList::get_string (guint position) const -> Glib::ustring
+  StringList::get_string (guint position) const -> glib::ustring
   {
-    return Glib::convert_const_gchar_ptr_to_ustring (
+    return glib::convert_const_gchar_ptr_to_ustring (
         gtk_string_list_get_string (const_cast<GtkStringList*> (gobj ()),
                                     position));
   }
 
-} // namespace Gtk
+} // namespace gtk

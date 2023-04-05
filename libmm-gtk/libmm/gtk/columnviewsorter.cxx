@@ -7,14 +7,14 @@
 
 #include <gtk/gtk.h>
 
-namespace Gtk
+namespace gtk
 {
 
   auto
-  ColumnViewSorter::get_nth_sort_column (unsigned int position) -> std::pair<Glib::RefPtr<ColumnViewColumn>, SortType>
+  ColumnViewSorter::get_nth_sort_column (unsigned int position) -> std::pair<glib::RefPtr<ColumnViewColumn>, SortType>
   {
     GtkSortType sort_order;
-    auto retvalue = Glib::wrap (gtk_column_view_sorter_get_nth_sort_column (
+    auto retvalue = glib::wrap (gtk_column_view_sorter_get_nth_sort_column (
         gobj (),
         position,
         (GtkSortType*) &sort_order));
@@ -24,35 +24,35 @@ namespace Gtk
   }
 
   auto
-  ColumnViewSorter::get_nth_sort_column (unsigned int position) const -> std::pair<Glib::RefPtr<const ColumnViewColumn>, SortType>
+  ColumnViewSorter::get_nth_sort_column (unsigned int position) const -> std::pair<glib::RefPtr<const ColumnViewColumn>, SortType>
   {
     return const_cast<ColumnViewSorter*> (this)->get_nth_sort_column (position);
   }
 
-} // namespace Gtk
+} // namespace gtk
 
 namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GtkColumnViewSorter* object, bool take_copy) -> Glib::RefPtr<Gtk::ColumnViewSorter>
+  wrap (GtkColumnViewSorter* object, bool take_copy) -> glib::RefPtr<gtk::ColumnViewSorter>
   {
-    return Glib::make_refptr_for_instance<Gtk::ColumnViewSorter> (
-        dynamic_cast<Gtk::ColumnViewSorter*> (
-            Glib::wrap_auto ((GObject*) (object), take_copy)));
+    return glib::make_refptr_for_instance<gtk::ColumnViewSorter> (
+        dynamic_cast<gtk::ColumnViewSorter*> (
+            glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gtk
+namespace gtk
 {
 
   auto
-  ColumnViewSorter_Class::init () -> const Glib::Class&
+  ColumnViewSorter_Class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -63,7 +63,7 @@ namespace Gtk
   }
 
   auto
-  ColumnViewSorter_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  ColumnViewSorter_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new ColumnViewSorter ((GtkColumnViewSorter*) object);
   }
@@ -76,25 +76,25 @@ namespace Gtk
   }
 
   ColumnViewSorter::ColumnViewSorter (
-      const Glib::ConstructParams& construct_params)
-    : Gtk::Sorter (construct_params)
+      const glib::ConstructParams& construct_params)
+    : gtk::Sorter (construct_params)
   {
   }
 
   ColumnViewSorter::ColumnViewSorter (GtkColumnViewSorter* castitem)
-    : Gtk::Sorter ((GtkSorter*) (castitem))
+    : gtk::Sorter ((GtkSorter*) (castitem))
   {
   }
 
   ColumnViewSorter::ColumnViewSorter (ColumnViewSorter&& src) noexcept
-    : Gtk::Sorter (std::move (src))
+    : gtk::Sorter (std::move (src))
   {
   }
 
   auto
   ColumnViewSorter::operator= (ColumnViewSorter&& src) noexcept -> ColumnViewSorter&
   {
-    Gtk::Sorter::operator= (std::move (src));
+    gtk::Sorter::operator= (std::move (src));
     return *this;
   }
 
@@ -115,23 +115,23 @@ namespace Gtk
   }
 
   ColumnViewSorter::ColumnViewSorter ()
-    : Glib::ObjectBase (nullptr),
-      Gtk::Sorter (Glib::ConstructParams (columnviewsorter_class_.init ()))
+    : glib::ObjectBase (nullptr),
+      gtk::Sorter (glib::ConstructParams (columnviewsorter_class_.init ()))
   {
   }
 
   auto
-  ColumnViewSorter::get_primary_sort_column () -> Glib::RefPtr<ColumnViewColumn>
+  ColumnViewSorter::get_primary_sort_column () -> glib::RefPtr<ColumnViewColumn>
   {
     auto retvalue =
-        Glib::wrap (gtk_column_view_sorter_get_primary_sort_column (gobj ()));
+        glib::wrap (gtk_column_view_sorter_get_primary_sort_column (gobj ()));
     if (retvalue)
       retvalue->reference ();
     return retvalue;
   }
 
   auto
-  ColumnViewSorter::get_primary_sort_column () const -> Glib::RefPtr<const ColumnViewColumn>
+  ColumnViewSorter::get_primary_sort_column () const -> glib::RefPtr<const ColumnViewColumn>
   {
     return const_cast<ColumnViewSorter*> (this)->get_primary_sort_column ();
   }
@@ -152,28 +152,28 @@ namespace Gtk
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<
-          Glib::RefPtr<ColumnViewColumn>>::value,
-      "Type Glib::RefPtr<ColumnViewColumn> cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      glib::Traits::ValueCompatibleWithWrapProperty<
+          glib::RefPtr<ColumnViewColumn>>::value,
+      "Type glib::RefPtr<ColumnViewColumn> cannot be used in _WRAP_PROPERTY. "
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  ColumnViewSorter::property_primary_sort_column () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<ColumnViewColumn>>
+  ColumnViewSorter::property_primary_sort_column () const -> glib::PropertyProxy_ReadOnly<glib::RefPtr<ColumnViewColumn>>
   {
-    return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<ColumnViewColumn>> (
+    return glib::PropertyProxy_ReadOnly<glib::RefPtr<ColumnViewColumn>> (
         this,
         "primary-sort-column");
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<SortType>::value,
+      glib::Traits::ValueCompatibleWithWrapProperty<SortType>::value,
       "Type SortType cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  ColumnViewSorter::property_primary_sort_order () const -> Glib::PropertyProxy_ReadOnly<SortType>
+  ColumnViewSorter::property_primary_sort_order () const -> glib::PropertyProxy_ReadOnly<SortType>
   {
-    return Glib::PropertyProxy_ReadOnly<SortType> (this, "primary-sort-order");
+    return glib::PropertyProxy_ReadOnly<SortType> (this, "primary-sort-order");
   }
 
-} // namespace Gtk
+} // namespace gtk

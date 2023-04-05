@@ -21,16 +21,16 @@ using GtkTreeModelSortClass = struct _GtkTreeModelSortClass;
   #endif
 
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT TreeModelSort_Class;
 }
   #endif
 
-namespace Gtk
+namespace gtk
 {
 
-  class LIBMM_GTK_SYMEXPORT TreeModelSort : public Glib::Object,
+  class LIBMM_GTK_SYMEXPORT TreeModelSort : public glib::Object,
                                   public TreeModel,
                                   public TreeSortable,
                                   public TreeDragSource
@@ -52,7 +52,7 @@ namespace Gtk
     static CppClassType treemodelsort_class_;
 
   protected:
-    explicit TreeModelSort (const Glib::ConstructParams& construct_params);
+    explicit TreeModelSort (const glib::ConstructParams& construct_params);
     explicit TreeModelSort (GtkTreeModelSort* castitem);
 
   #endif
@@ -90,18 +90,18 @@ namespace Gtk
 
   private:
   protected:
-    explicit TreeModelSort (const Glib::RefPtr<TreeModel>& model);
+    explicit TreeModelSort (const glib::RefPtr<TreeModel>& model);
 
   public:
     static auto
-    create (const Glib::RefPtr<TreeModel>& model)
-        -> Glib::RefPtr<TreeModelSort>;
+    create (const glib::RefPtr<TreeModel>& model)
+        -> glib::RefPtr<TreeModelSort>;
 
     auto
-    get_model () -> Glib::RefPtr<TreeModel>;
+    get_model () -> glib::RefPtr<TreeModel>;
 
     auto
-    get_model () const -> Glib::RefPtr<const TreeModel>;
+    get_model () const -> glib::RefPtr<const TreeModel>;
 
     auto
     convert_child_path_to_path (const Path& child_path) const -> Path;
@@ -134,26 +134,26 @@ namespace Gtk
 
     auto
     property_model () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<TreeModel>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<TreeModel>>;
 
   protected:
     auto
     set_value_impl (const iterator& row,
                     int column,
-                    const Glib::ValueBase& value) -> void override;
+                    const glib::ValueBase& value) -> void override;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkTreeModelSort* object, bool take_copy = false) -> Glib::RefPtr<Gtk::TreeModelSort>;
-} // namespace Glib
+  wrap (GtkTreeModelSort* object, bool take_copy = false) -> glib::RefPtr<gtk::TreeModelSort>;
+} // namespace glib
 
 #endif
 

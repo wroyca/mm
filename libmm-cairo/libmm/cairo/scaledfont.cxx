@@ -4,7 +4,7 @@
 #include <libmm/cairo/private.hxx>
 #include <libmm/cairo/scaledfont.hxx>
 
-namespace Cairo
+namespace cairo
 {
 
   ScaledFont::ScaledFont (cobject* cobj, const bool has_reference)
@@ -171,4 +171,4 @@ namespace Cairo
   }
 #endif
 
-} // namespace Cairo
+} // namespace cairo

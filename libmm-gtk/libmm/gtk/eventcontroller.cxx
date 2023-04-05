@@ -12,35 +12,35 @@ namespace
 }
 
 auto
-Glib::Value<Gtk::PropagationPhase>::value_type () -> GType
+glib::Value<gtk::PropagationPhase>::value_type () -> GType
 {
   return gtk_propagation_phase_get_type ();
 }
 
 auto
-Glib::Value<Gtk::PropagationLimit>::value_type () -> GType
+glib::Value<gtk::PropagationLimit>::value_type () -> GType
 {
   return gtk_propagation_limit_get_type ();
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GtkEventController* object, bool take_copy) -> Glib::RefPtr<Gtk::EventController>
+  wrap (GtkEventController* object, bool take_copy) -> glib::RefPtr<gtk::EventController>
   {
-    return Glib::make_refptr_for_instance<Gtk::EventController> (
-        dynamic_cast<Gtk::EventController*> (
-            Glib::wrap_auto ((GObject*) (object), take_copy)));
+    return glib::make_refptr_for_instance<gtk::EventController> (
+        dynamic_cast<gtk::EventController*> (
+            glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gtk
+namespace gtk
 {
 
   auto
-  EventController_Class::init () -> const Glib::Class&
+  EventController_Class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -60,7 +60,7 @@ namespace Gtk
   }
 
   auto
-  EventController_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  EventController_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new EventController ((GtkEventController*) object);
   }
@@ -73,25 +73,25 @@ namespace Gtk
   }
 
   EventController::EventController (
-      const Glib::ConstructParams& construct_params)
-    : Glib::Object (construct_params)
+      const glib::ConstructParams& construct_params)
+    : glib::Object (construct_params)
   {
   }
 
   EventController::EventController (GtkEventController* castitem)
-    : Glib::Object ((GObject*) (castitem))
+    : glib::Object ((GObject*) (castitem))
   {
   }
 
   EventController::EventController (EventController&& src) noexcept
-    : Glib::Object (std::move (src))
+    : glib::Object (std::move (src))
   {
   }
 
   auto
   EventController::operator= (EventController&& src) noexcept -> EventController&
   {
-    Glib::Object::operator= (std::move (src));
+    glib::Object::operator= (std::move (src));
     return *this;
   }
 
@@ -112,15 +112,15 @@ namespace Gtk
   }
 
   EventController::EventController ()
-    : Glib::ObjectBase (nullptr),
-      Glib::Object (Glib::ConstructParams (eventcontroller_class_.init ()))
+    : glib::ObjectBase (nullptr),
+      glib::Object (glib::ConstructParams (eventcontroller_class_.init ()))
   {
   }
 
   auto
   EventController::get_widget () -> Widget*
   {
-    return Glib::wrap (gtk_event_controller_get_widget (gobj ()));
+    return glib::wrap (gtk_event_controller_get_widget (gobj ()));
   }
 
   auto
@@ -168,23 +168,23 @@ namespace Gtk
   }
 
   auto
-  EventController::get_name () const -> Glib::ustring
+  EventController::get_name () const -> glib::ustring
   {
-    return Glib::convert_const_gchar_ptr_to_ustring (
+    return glib::convert_const_gchar_ptr_to_ustring (
         gtk_event_controller_get_name (
             const_cast<GtkEventController*> (gobj ())));
   }
 
   auto
-  EventController::set_name (const Glib::ustring& name) -> void
+  EventController::set_name (const glib::ustring& name) -> void
   {
     gtk_event_controller_set_name (gobj (), name.c_str ());
   }
 
   auto
-  EventController::get_current_event () const -> Glib::RefPtr<const Gdk::Event>
+  EventController::get_current_event () const -> glib::RefPtr<const gdk::Event>
   {
-    auto retvalue = Glib::wrap (gtk_event_controller_get_current_event (
+    auto retvalue = glib::wrap (gtk_event_controller_get_current_event (
         const_cast<GtkEventController*> (gobj ())));
     if (retvalue)
       retvalue->reference ();
@@ -199,81 +199,81 @@ namespace Gtk
   }
 
   auto
-  EventController::get_current_event_device () -> Glib::RefPtr<Gdk::Device>
+  EventController::get_current_event_device () -> glib::RefPtr<gdk::Device>
   {
     auto retvalue =
-        Glib::wrap (gtk_event_controller_get_current_event_device (gobj ()));
+        glib::wrap (gtk_event_controller_get_current_event_device (gobj ()));
     if (retvalue)
       retvalue->reference ();
     return retvalue;
   }
 
   auto
-  EventController::get_current_event_device () const -> Glib::RefPtr<const Gdk::Device>
+  EventController::get_current_event_device () const -> glib::RefPtr<const gdk::Device>
   {
     return const_cast<EventController*> (this)->get_current_event_device ();
   }
 
   auto
-  EventController::get_current_event_state () const -> Gdk::ModifierType
+  EventController::get_current_event_state () const -> gdk::ModifierType
   {
-    return static_cast<Gdk::ModifierType> (
+    return static_cast<gdk::ModifierType> (
         gtk_event_controller_get_current_event_state (
             const_cast<GtkEventController*> (gobj ())));
   }
 
   auto
-  EventController::property_widget () const -> Glib::PropertyProxy_ReadOnly<Widget*>
+  EventController::property_widget () const -> glib::PropertyProxy_ReadOnly<Widget*>
   {
-    return Glib::PropertyProxy_ReadOnly<Widget*> (this, "widget");
+    return glib::PropertyProxy_ReadOnly<Widget*> (this, "widget");
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<PropagationPhase>::value,
+      glib::Traits::ValueCompatibleWithWrapProperty<PropagationPhase>::value,
       "Type PropagationPhase cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  EventController::property_propagation_phase () -> Glib::PropertyProxy<PropagationPhase>
+  EventController::property_propagation_phase () -> glib::PropertyProxy<PropagationPhase>
   {
-    return Glib::PropertyProxy<PropagationPhase> (this, "propagation-phase");
+    return glib::PropertyProxy<PropagationPhase> (this, "propagation-phase");
   }
 
   auto
-  EventController::property_propagation_phase () const -> Glib::PropertyProxy_ReadOnly<PropagationPhase>
+  EventController::property_propagation_phase () const -> glib::PropertyProxy_ReadOnly<PropagationPhase>
   {
-    return Glib::PropertyProxy_ReadOnly<PropagationPhase> (this,
+    return glib::PropertyProxy_ReadOnly<PropagationPhase> (this,
                                                            "propagation-phase");
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<PropagationLimit>::value,
+      glib::Traits::ValueCompatibleWithWrapProperty<PropagationLimit>::value,
       "Type PropagationLimit cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  EventController::property_propagation_limit () -> Glib::PropertyProxy<PropagationLimit>
+  EventController::property_propagation_limit () -> glib::PropertyProxy<PropagationLimit>
   {
-    return Glib::PropertyProxy<PropagationLimit> (this, "propagation-limit");
+    return glib::PropertyProxy<PropagationLimit> (this, "propagation-limit");
   }
 
   auto
-  EventController::property_propagation_limit () const -> Glib::PropertyProxy_ReadOnly<PropagationLimit>
+  EventController::property_propagation_limit () const -> glib::PropertyProxy_ReadOnly<PropagationLimit>
   {
-    return Glib::PropertyProxy_ReadOnly<PropagationLimit> (this,
+    return glib::PropertyProxy_ReadOnly<PropagationLimit> (this,
                                                            "propagation-limit");
   }
 
   auto
-  EventController::property_name () -> Glib::PropertyProxy<Glib::ustring>
+  EventController::property_name () -> glib::PropertyProxy<glib::ustring>
   {
-    return Glib::PropertyProxy<Glib::ustring> (this, "name");
+    return glib::PropertyProxy<glib::ustring> (this, "name");
   }
 
   auto
-  EventController::property_name () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>
+  EventController::property_name () const -> glib::PropertyProxy_ReadOnly<glib::ustring>
   {
-    return Glib::PropertyProxy_ReadOnly<Glib::ustring> (this, "name");
+    return glib::PropertyProxy_ReadOnly<glib::ustring> (this, "name");
   }
 
-} // namespace Gtk
+} // namespace gtk

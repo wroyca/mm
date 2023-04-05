@@ -7,36 +7,36 @@
 
 #include <gtk/gtk.h>
 
-namespace Gtk
+namespace gtk
 {
   auto
   ShortcutsWindow::unset_view_name () -> void
   {
     property_view_name ().reset_value ();
   }
-} // namespace Gtk
+} // namespace gtk
 
 namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GtkShortcutsWindow* object, bool take_copy) -> Gtk::ShortcutsWindow*
+  wrap (GtkShortcutsWindow* object, bool take_copy) -> gtk::ShortcutsWindow*
   {
-    return dynamic_cast<Gtk::ShortcutsWindow*> (
-        Glib::wrap_auto ((GObject*) (object), take_copy));
+    return dynamic_cast<gtk::ShortcutsWindow*> (
+        glib::wrap_auto ((GObject*) (object), take_copy));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gtk
+namespace gtk
 {
 
   auto
-  ShortcutsWindow_Class::init () -> const Glib::Class&
+  ShortcutsWindow_Class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -56,13 +56,13 @@ namespace Gtk
   }
 
   auto
-  ShortcutsWindow_Class::wrap_new (GObject* o) -> Glib::ObjectBase*
+  ShortcutsWindow_Class::wrap_new (GObject* o) -> glib::ObjectBase*
   {
     return new ShortcutsWindow ((GtkShortcutsWindow*) (o));
   }
 
   ShortcutsWindow::ShortcutsWindow (
-      const Glib::ConstructParams& construct_params)
+      const glib::ConstructParams& construct_params)
     : Window (construct_params)
   {
   }
@@ -104,33 +104,33 @@ namespace Gtk
   }
 
   ShortcutsWindow::ShortcutsWindow ()
-    : Glib::ObjectBase (nullptr),
-      Window (Glib::ConstructParams (shortcutswindow_class_.init ()))
+    : glib::ObjectBase (nullptr),
+      Window (glib::ConstructParams (shortcutswindow_class_.init ()))
   {
   }
 
   auto
-  ShortcutsWindow::property_section_name () -> Glib::PropertyProxy<Glib::ustring>
+  ShortcutsWindow::property_section_name () -> glib::PropertyProxy<glib::ustring>
   {
-    return Glib::PropertyProxy<Glib::ustring> (this, "section-name");
+    return glib::PropertyProxy<glib::ustring> (this, "section-name");
   }
 
   auto
-  ShortcutsWindow::property_section_name () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>
+  ShortcutsWindow::property_section_name () const -> glib::PropertyProxy_ReadOnly<glib::ustring>
   {
-    return Glib::PropertyProxy_ReadOnly<Glib::ustring> (this, "section-name");
+    return glib::PropertyProxy_ReadOnly<glib::ustring> (this, "section-name");
   }
 
   auto
-  ShortcutsWindow::property_view_name () -> Glib::PropertyProxy<Glib::ustring>
+  ShortcutsWindow::property_view_name () -> glib::PropertyProxy<glib::ustring>
   {
-    return Glib::PropertyProxy<Glib::ustring> (this, "view-name");
+    return glib::PropertyProxy<glib::ustring> (this, "view-name");
   }
 
   auto
-  ShortcutsWindow::property_view_name () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>
+  ShortcutsWindow::property_view_name () const -> glib::PropertyProxy_ReadOnly<glib::ustring>
   {
-    return Glib::PropertyProxy_ReadOnly<Glib::ustring> (this, "view-name");
+    return glib::PropertyProxy_ReadOnly<glib::ustring> (this, "view-name");
   }
 
-} // namespace Gtk
+} // namespace gtk

@@ -11,24 +11,24 @@ namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GtkNumericSorter* object, bool take_copy) -> Glib::RefPtr<Gtk::NumericSorterBase>
+  wrap (GtkNumericSorter* object, bool take_copy) -> glib::RefPtr<gtk::NumericSorterBase>
   {
-    return Glib::make_refptr_for_instance<Gtk::NumericSorterBase> (
-        dynamic_cast<Gtk::NumericSorterBase*> (
-            Glib::wrap_auto ((GObject*) (object), take_copy)));
+    return glib::make_refptr_for_instance<gtk::NumericSorterBase> (
+        dynamic_cast<gtk::NumericSorterBase*> (
+            glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gtk
+namespace gtk
 {
 
   auto
-  NumericSorterBase_Class::init () -> const Glib::Class&
+  NumericSorterBase_Class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -48,7 +48,7 @@ namespace Gtk
   }
 
   auto
-  NumericSorterBase_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  NumericSorterBase_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new NumericSorterBase ((GtkNumericSorter*) object);
   }
@@ -61,25 +61,25 @@ namespace Gtk
   }
 
   NumericSorterBase::NumericSorterBase (
-      const Glib::ConstructParams& construct_params)
-    : Gtk::Sorter (construct_params)
+      const glib::ConstructParams& construct_params)
+    : gtk::Sorter (construct_params)
   {
   }
 
   NumericSorterBase::NumericSorterBase (GtkNumericSorter* castitem)
-    : Gtk::Sorter ((GtkSorter*) (castitem))
+    : gtk::Sorter ((GtkSorter*) (castitem))
   {
   }
 
   NumericSorterBase::NumericSorterBase (NumericSorterBase&& src) noexcept
-    : Gtk::Sorter (std::move (src))
+    : gtk::Sorter (std::move (src))
   {
   }
 
   auto
   NumericSorterBase::operator= (NumericSorterBase&& src) noexcept -> NumericSorterBase&
   {
-    Gtk::Sorter::operator= (std::move (src));
+    gtk::Sorter::operator= (std::move (src));
     return *this;
   }
 
@@ -100,9 +100,9 @@ namespace Gtk
   }
 
   NumericSorterBase::NumericSorterBase (
-      const Glib::RefPtr<ExpressionBase>& expression)
-    : Glib::ObjectBase (nullptr),
-      Gtk::Sorter (Glib::ConstructParams (
+      const glib::RefPtr<ExpressionBase>& expression)
+    : glib::ObjectBase (nullptr),
+      gtk::Sorter (glib::ConstructParams (
           numericsorterbase_class_.init (),
           "expression",
           ((expression) ? (expression)->gobj () : nullptr),
@@ -125,20 +125,20 @@ namespace Gtk
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<SortType>::value,
+      glib::Traits::ValueCompatibleWithWrapProperty<SortType>::value,
       "Type SortType cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  NumericSorterBase::property_sort_order () -> Glib::PropertyProxy<SortType>
+  NumericSorterBase::property_sort_order () -> glib::PropertyProxy<SortType>
   {
-    return Glib::PropertyProxy<SortType> (this, "sort-order");
+    return glib::PropertyProxy<SortType> (this, "sort-order");
   }
 
   auto
-  NumericSorterBase::property_sort_order () const -> Glib::PropertyProxy_ReadOnly<SortType>
+  NumericSorterBase::property_sort_order () const -> glib::PropertyProxy_ReadOnly<SortType>
   {
-    return Glib::PropertyProxy_ReadOnly<SortType> (this, "sort-order");
+    return glib::PropertyProxy_ReadOnly<SortType> (this, "sort-order");
   }
 
-} // namespace Gtk
+} // namespace gtk

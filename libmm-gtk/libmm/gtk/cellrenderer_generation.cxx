@@ -4,7 +4,7 @@
 
   #include <libmm/gtk/cellrenderer_generation.hxx>
 
-namespace Gtk
+namespace gtk
 {
 
   namespace CellRenderer_Generation
@@ -12,7 +12,7 @@ namespace Gtk
 
     template <>
     auto
-    generate_cellrenderer<Glib::RefPtr<Gdk::Pixbuf>> (bool) -> CellRenderer*
+    generate_cellrenderer<glib::RefPtr<gdk::Pixbuf>> (bool) -> CellRenderer*
     {
       return new CellRendererPixbuf ();
     }
@@ -41,6 +41,6 @@ namespace Gtk
 
   } // namespace CellRenderer_Generation
 
-} // namespace Gtk
+} // namespace gtk
 
 #endif

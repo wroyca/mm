@@ -16,17 +16,17 @@ using GDataOutputStreamClass = struct _GDataOutputStreamClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gio
+namespace gio
 {
   class LIBMM_GIO_SYMEXPORT DataOutputStream_Class;
 }
 #endif
 
-namespace Gio
+namespace gio
 {
 
-  class LIBMM_GIO_SYMEXPORT DataOutputStream : public Gio::FilterOutputStream,
-                                     public Gio::Seekable
+  class LIBMM_GIO_SYMEXPORT DataOutputStream : public gio::FilterOutputStream,
+                                     public gio::Seekable
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -45,7 +45,7 @@ namespace Gio
     static CppClassType dataoutputstream_class_;
 
   protected:
-    explicit DataOutputStream (const Glib::ConstructParams& construct_params);
+    explicit DataOutputStream (const glib::ConstructParams& construct_params);
     explicit DataOutputStream (GDataOutputStream* castitem);
 
 #endif
@@ -83,12 +83,12 @@ namespace Gio
 
   private:
   protected:
-    explicit DataOutputStream (const Glib::RefPtr<OutputStream>& base_stream);
+    explicit DataOutputStream (const glib::RefPtr<OutputStream>& base_stream);
 
   public:
     static auto
-    create (const Glib::RefPtr<OutputStream>& base_stream)
-        -> Glib::RefPtr<DataOutputStream>;
+    create (const glib::RefPtr<OutputStream>& base_stream)
+        -> glib::RefPtr<DataOutputStream>;
 
     auto
     set_byte_order (DataStreamByteOrder order) -> void;
@@ -97,49 +97,49 @@ namespace Gio
     get_byte_order () const -> DataStreamByteOrder;
 
     auto
-    put_byte (guchar data, const Glib::RefPtr<Cancellable>& cancellable)
+    put_byte (guchar data, const glib::RefPtr<Cancellable>& cancellable)
         -> bool;
 
     auto
     put_byte (guchar data) -> bool;
 
     auto
-    put_int16 (gint16 data, const Glib::RefPtr<Cancellable>& cancellable)
+    put_int16 (gint16 data, const glib::RefPtr<Cancellable>& cancellable)
         -> bool;
 
     auto
     put_int16 (gint16 data) -> bool;
 
     auto
-    put_uint16 (guint16 data, const Glib::RefPtr<Cancellable>& cancellable)
+    put_uint16 (guint16 data, const glib::RefPtr<Cancellable>& cancellable)
         -> bool;
 
     auto
     put_uint16 (guint16 data) -> bool;
 
     auto
-    put_int32 (gint32 data, const Glib::RefPtr<Cancellable>& cancellable)
+    put_int32 (gint32 data, const glib::RefPtr<Cancellable>& cancellable)
         -> bool;
 
     auto
     put_int32 (gint32 data) -> bool;
 
     auto
-    put_uint32 (guint32 data, const Glib::RefPtr<Cancellable>& cancellable)
+    put_uint32 (guint32 data, const glib::RefPtr<Cancellable>& cancellable)
         -> bool;
 
     auto
     put_uint32 (guint32 data) -> bool;
 
     auto
-    put_int64 (gint64 data, const Glib::RefPtr<Cancellable>& cancellable)
+    put_int64 (gint64 data, const glib::RefPtr<Cancellable>& cancellable)
         -> bool;
 
     auto
     put_int64 (gint64 data) -> bool;
 
     auto
-    put_uint64 (guint64 data, const Glib::RefPtr<Cancellable>& cancellable)
+    put_uint64 (guint64 data, const glib::RefPtr<Cancellable>& cancellable)
         -> bool;
 
     auto
@@ -147,31 +147,31 @@ namespace Gio
 
     auto
     put_string (const std::string& str,
-                const Glib::RefPtr<Cancellable>& cancellable) -> bool;
+                const glib::RefPtr<Cancellable>& cancellable) -> bool;
 
     auto
     put_string (const std::string& str) -> bool;
 
     auto
-    property_byte_order () -> Glib::PropertyProxy<DataStreamByteOrder>;
+    property_byte_order () -> glib::PropertyProxy<DataStreamByteOrder>;
 
     auto
     property_byte_order () const
-        -> Glib::PropertyProxy_ReadOnly<DataStreamByteOrder>;
+        -> glib::PropertyProxy_ReadOnly<DataStreamByteOrder>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gio
+} // namespace gio
 
-namespace Glib
+namespace glib
 {
 
   LIBMM_GIO_SYMEXPORT
   auto
-  wrap (GDataOutputStream* object, bool take_copy = false) -> Glib::RefPtr<Gio::DataOutputStream>;
-} // namespace Glib
+  wrap (GDataOutputStream* object, bool take_copy = false) -> glib::RefPtr<gio::DataOutputStream>;
+} // namespace glib
 
 #endif

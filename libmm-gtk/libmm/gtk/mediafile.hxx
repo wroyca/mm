@@ -14,22 +14,22 @@ using GtkMediaFileClass = struct _GtkMediaFileClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT MediaFile_Class;
 }
 #endif
 
-namespace Gio
+namespace gio
 {
   class LIBMM_GTK_SYMEXPORT File;
   class LIBMM_GTK_SYMEXPORT InputStream;
-} // namespace Gio
+} // namespace gio
 
-namespace Gtk
+namespace gtk
 {
 
-  class LIBMM_GTK_SYMEXPORT MediaFile : public Gtk::MediaStream
+  class LIBMM_GTK_SYMEXPORT MediaFile : public gtk::MediaStream
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -48,7 +48,7 @@ namespace Gtk
     static CppClassType mediafile_class_;
 
   protected:
-    explicit MediaFile (const Glib::ConstructParams& construct_params);
+    explicit MediaFile (const glib::ConstructParams& construct_params);
     explicit MediaFile (GtkMediaFile* castitem);
 
 #endif
@@ -90,22 +90,22 @@ namespace Gtk
 
   public:
     static auto
-    create () -> Glib::RefPtr<MediaFile>;
+    create () -> glib::RefPtr<MediaFile>;
 
     static auto
     create_for_filename (const std::string& filename)
-        -> Glib::RefPtr<MediaFile>;
+        -> glib::RefPtr<MediaFile>;
 
     static auto
     create_for_resource (const std::string& resource_path)
-        -> Glib::RefPtr<MediaFile>;
+        -> glib::RefPtr<MediaFile>;
 
     static auto
-    create (const Glib::RefPtr<Gio::File>& file) -> Glib::RefPtr<MediaFile>;
+    create (const glib::RefPtr<gio::File>& file) -> glib::RefPtr<MediaFile>;
 
     static auto
-    create (const Glib::RefPtr<Gio::InputStream>& stream)
-        -> Glib::RefPtr<MediaFile>;
+    create (const glib::RefPtr<gio::InputStream>& stream)
+        -> glib::RefPtr<MediaFile>;
 
     auto
     clear () -> void;
@@ -117,37 +117,37 @@ namespace Gtk
     set_resource (const std::string& resource_path) -> void;
 
     auto
-    set_file (const Glib::RefPtr<Gio::File>& file) -> void;
+    set_file (const glib::RefPtr<gio::File>& file) -> void;
 
     auto
-    get_file () -> Glib::RefPtr<Gio::File>;
+    get_file () -> glib::RefPtr<gio::File>;
 
     auto
-    get_file () const -> Glib::RefPtr<const Gio::File>;
+    get_file () const -> glib::RefPtr<const gio::File>;
 
     auto
-    set_input_stream (const Glib::RefPtr<Gio::InputStream>& stream) -> void;
+    set_input_stream (const glib::RefPtr<gio::InputStream>& stream) -> void;
 
     auto
-    get_input_stream () -> Glib::RefPtr<Gio::InputStream>;
+    get_input_stream () -> glib::RefPtr<gio::InputStream>;
 
     auto
-    get_input_stream () const -> Glib::RefPtr<const Gio::InputStream>;
+    get_input_stream () const -> glib::RefPtr<const gio::InputStream>;
 
     auto
-    property_file () -> Glib::PropertyProxy<Glib::RefPtr<Gio::File>>;
+    property_file () -> glib::PropertyProxy<glib::RefPtr<gio::File>>;
 
     auto
     property_file () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gio::File>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<gio::File>>;
 
     auto
     property_input_stream ()
-        -> Glib::PropertyProxy<Glib::RefPtr<Gio::InputStream>>;
+        -> glib::PropertyProxy<glib::RefPtr<gio::InputStream>>;
 
     auto
     property_input_stream () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gio::InputStream>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<gio::InputStream>>;
 
   protected:
     virtual auto
@@ -161,12 +161,12 @@ namespace Gtk
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkMediaFile* object, bool take_copy = false) -> Glib::RefPtr<Gtk::MediaFile>;
-} // namespace Glib
+  wrap (GtkMediaFile* object, bool take_copy = false) -> glib::RefPtr<gtk::MediaFile>;
+} // namespace glib
 
 #endif

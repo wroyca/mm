@@ -5,7 +5,7 @@
 
 #include <libmm/glib/objectbase.hxx>
 
-namespace Glib
+namespace glib
 {
 
   class LIBMM_GLIB_SYMEXPORT ExtraClassInit : virtual public ObjectBase
@@ -16,6 +16,6 @@ namespace Glib
                              GInstanceInitFunc instance_init_func = nullptr);
   };
 
-} // namespace Glib
+} // namespace glib
 
 #endif

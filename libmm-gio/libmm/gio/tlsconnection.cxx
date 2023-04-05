@@ -13,11 +13,11 @@
 #include <libmm/gio/tlsinteraction.hxx>
 #include <libmm/gio/tlsserverconnectionimpl.hxx>
 
-namespace Gio
+namespace gio
 {
 
   auto
-  TlsConnection_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  TlsConnection_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     if (G_IS_TLS_CLIENT_CONNECTION (object))
       return new TlsClientConnectionImpl ((GTlsConnection*) object);
@@ -26,7 +26,7 @@ namespace Gio
     return new TlsConnection ((GTlsConnection*) object);
   }
 
-} // namespace Gio
+} // namespace gio
 
 namespace
 {
@@ -37,25 +37,25 @@ namespace
                                                     GTlsCertificateFlags p1,
                                                     void* data) -> gboolean
   {
-    using namespace Gio;
-    using SlotType = sigc::slot<bool (const Glib::RefPtr<const TlsCertificate>&,
+    using namespace gio;
+    using SlotType = sigc::slot<bool (const glib::RefPtr<const TlsCertificate>&,
                                       TlsCertificateFlags)>;
 
     const auto obj = dynamic_cast<TlsConnection*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
     {
       try
       {
-        if (const auto slot = Glib::SignalProxyNormal::data_to_slot (data))
+        if (const auto slot = glib::SignalProxyNormal::data_to_slot (data))
           return (*static_cast<SlotType*> (slot)) (
-              Glib::wrap (p0, true),
+              glib::wrap (p0, true),
               static_cast<TlsCertificateFlags> (p1));
       }
       catch (...)
       {
-        Glib::exception_handlers_invoke ();
+        glib::exception_handlers_invoke ();
       }
     }
 
@@ -70,25 +70,25 @@ namespace
       GTlsCertificateFlags p1,
       void* data) -> gboolean
   {
-    using namespace Gio;
-    using SlotType = sigc::slot<void (const Glib::RefPtr<const TlsCertificate>&,
+    using namespace gio;
+    using SlotType = sigc::slot<void (const glib::RefPtr<const TlsCertificate>&,
                                       TlsCertificateFlags)>;
 
     const auto obj = dynamic_cast<TlsConnection*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
     {
       try
       {
-        if (const auto slot = Glib::SignalProxyNormal::data_to_slot (data))
+        if (const auto slot = glib::SignalProxyNormal::data_to_slot (data))
           (*static_cast<SlotType*> (slot)) (
-              Glib::wrap (p0, true),
+              glib::wrap (p0, true),
               static_cast<TlsCertificateFlags> (p1));
       }
       catch (...)
       {
-        Glib::exception_handlers_invoke ();
+        glib::exception_handlers_invoke ();
       }
     }
 
@@ -96,7 +96,7 @@ namespace
     return RType ();
   }
 
-  const Glib::SignalProxyInfo TlsConnection_signal_accept_certificate_info = {
+  const glib::SignalProxyInfo TlsConnection_signal_accept_certificate_info = {
       "accept_certificate",
       (GCallback) &TlsConnection_signal_accept_certificate_callback,
       (GCallback) &TlsConnection_signal_accept_certificate_notify_callback};
@@ -104,25 +104,25 @@ namespace
 } // namespace
 
 auto
-Glib::Value<Gio::TlsProtocolVersion>::value_type () -> GType
+glib::Value<gio::TlsProtocolVersion>::value_type () -> GType
 {
   return g_tls_protocol_version_get_type ();
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GTlsConnection* object, const bool take_copy) -> RefPtr<Gio::TlsConnection>
+  wrap (GTlsConnection* object, const bool take_copy) -> RefPtr<gio::TlsConnection>
   {
-    return Glib::make_refptr_for_instance<Gio::TlsConnection> (
-        dynamic_cast<Gio::TlsConnection*> (
+    return glib::make_refptr_for_instance<gio::TlsConnection> (
+        dynamic_cast<gio::TlsConnection*> (
             wrap_auto ((GObject*) object, take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gio
+namespace gio
 {
 
   auto
@@ -157,7 +157,7 @@ namespace Gio
                                                  GError** error) -> gboolean
   {
     const auto obj_base =
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self);
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self);
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -166,9 +166,9 @@ namespace Gio
       {
         try
         {
-          return obj->handshake_vfunc (Glib::wrap (cancellable));
+          return obj->handshake_vfunc (glib::wrap (cancellable));
         }
-        catch (Glib::Error& errormm)
+        catch (glib::Error& errormm)
         {
           errormm.propagate (error);
           using RType = gboolean;
@@ -176,7 +176,7 @@ namespace Gio
         }
         catch (...)
         {
-          Glib::exception_handlers_invoke ();
+          glib::exception_handlers_invoke ();
         }
       }
     }
@@ -202,7 +202,7 @@ namespace Gio
     const auto slot = static_cast<SlotAsyncReady*> (user_data);
 
     const auto obj_base =
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self);
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self);
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -212,13 +212,13 @@ namespace Gio
         try
         {
           obj->handshake_async_vfunc (*slot,
-                                      Glib::wrap (cancellable),
+                                      glib::wrap (cancellable),
                                       io_priority);
           return;
         }
         catch (...)
         {
-          Glib::exception_handlers_invoke ();
+          glib::exception_handlers_invoke ();
         }
       }
     }
@@ -240,7 +240,7 @@ namespace Gio
                                                         GError** error) -> gboolean
   {
     const auto obj_base =
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self);
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self);
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -249,9 +249,9 @@ namespace Gio
       {
         try
         {
-          return obj->handshake_finish_vfunc (Glib::wrap (result, true));
+          return obj->handshake_finish_vfunc (glib::wrap (result, true));
         }
-        catch (Glib::Error& errormm)
+        catch (glib::Error& errormm)
         {
           errormm.propagate (error);
           using RType = gboolean;
@@ -259,7 +259,7 @@ namespace Gio
         }
         catch (...)
         {
-          Glib::exception_handlers_invoke ();
+          glib::exception_handlers_invoke ();
         }
       }
     }
@@ -280,7 +280,7 @@ namespace Gio
                                                     GTlsCertificateFlags p1) -> gboolean
   {
     const auto obj_base =
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self);
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self);
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -290,12 +290,12 @@ namespace Gio
         try
         {
           return obj->on_accept_certificate (
-              Glib::wrap (p0, true),
+              glib::wrap (p0, true),
               static_cast<TlsCertificateFlags> (p1));
         }
         catch (...)
         {
-          Glib::exception_handlers_invoke ();
+          glib::exception_handlers_invoke ();
         }
       }
     }
@@ -317,7 +317,7 @@ namespace Gio
     return gobj ();
   }
 
-  TlsConnection::TlsConnection (const Glib::ConstructParams& construct_params)
+  TlsConnection::TlsConnection (const glib::ConstructParams& construct_params)
     : IOStream (construct_params)
   {
   }
@@ -357,44 +357,44 @@ namespace Gio
 
   TlsConnection::TlsConnection ()
     : ObjectBase (nullptr),
-      IOStream (Glib::ConstructParams (tlsconnection_class_.init ()))
+      IOStream (glib::ConstructParams (tlsconnection_class_.init ()))
   {
   }
 
   auto
   TlsConnection::set_certificate (
-      const Glib::RefPtr<TlsCertificate>& certificate) -> void
+      const glib::RefPtr<TlsCertificate>& certificate) -> void
   {
-    g_tls_connection_set_certificate (gobj (), Glib::unwrap (certificate));
+    g_tls_connection_set_certificate (gobj (), glib::unwrap (certificate));
   }
 
   auto
-  TlsConnection::get_certificate () -> Glib::RefPtr<TlsCertificate>
+  TlsConnection::get_certificate () -> glib::RefPtr<TlsCertificate>
   {
-    auto retvalue = Glib::wrap (g_tls_connection_get_certificate (gobj ()));
+    auto retvalue = glib::wrap (g_tls_connection_get_certificate (gobj ()));
     if (retvalue)
       retvalue->reference ();
     return retvalue;
   }
 
   auto
-  TlsConnection::get_certificate () const -> Glib::RefPtr<const TlsCertificate>
+  TlsConnection::get_certificate () const -> glib::RefPtr<const TlsCertificate>
   {
     return const_cast<TlsConnection*> (this)->get_certificate ();
   }
 
   auto
-  TlsConnection::get_peer_certificate () -> Glib::RefPtr<TlsCertificate>
+  TlsConnection::get_peer_certificate () -> glib::RefPtr<TlsCertificate>
   {
     auto retvalue =
-        Glib::wrap (g_tls_connection_get_peer_certificate (gobj ()));
+        glib::wrap (g_tls_connection_get_peer_certificate (gobj ()));
     if (retvalue)
       retvalue->reference ();
     return retvalue;
   }
 
   auto
-  TlsConnection::get_peer_certificate () const -> Glib::RefPtr<const TlsCertificate>
+  TlsConnection::get_peer_certificate () const -> glib::RefPtr<const TlsCertificate>
   {
     return const_cast<TlsConnection*> (this)->get_peer_certificate ();
   }
@@ -421,52 +421,52 @@ namespace Gio
   }
 
   auto
-  TlsConnection::get_database () -> Glib::RefPtr<TlsDatabase>
+  TlsConnection::get_database () -> glib::RefPtr<TlsDatabase>
   {
-    return Glib::wrap (g_tls_connection_get_database (gobj ()));
+    return glib::wrap (g_tls_connection_get_database (gobj ()));
   }
 
   auto
-  TlsConnection::get_database () const -> Glib::RefPtr<const TlsDatabase>
+  TlsConnection::get_database () const -> glib::RefPtr<const TlsDatabase>
   {
     return const_cast<TlsConnection*> (this)->get_database ();
   }
 
   auto
-  TlsConnection::set_database (const Glib::RefPtr<TlsDatabase>& database) -> void
+  TlsConnection::set_database (const glib::RefPtr<TlsDatabase>& database) -> void
   {
-    g_tls_connection_set_database (gobj (), Glib::unwrap (database));
+    g_tls_connection_set_database (gobj (), glib::unwrap (database));
   }
 
   auto
-  TlsConnection::get_interaction () -> Glib::RefPtr<TlsInteraction>
+  TlsConnection::get_interaction () -> glib::RefPtr<TlsInteraction>
   {
-    return Glib::wrap (g_tls_connection_get_interaction (gobj ()));
+    return glib::wrap (g_tls_connection_get_interaction (gobj ()));
   }
 
   auto
-  TlsConnection::get_interaction () const -> Glib::RefPtr<const TlsInteraction>
+  TlsConnection::get_interaction () const -> glib::RefPtr<const TlsInteraction>
   {
     return const_cast<TlsConnection*> (this)->get_interaction ();
   }
 
   auto
   TlsConnection::set_interaction (
-      const Glib::RefPtr<TlsInteraction>& interaction) -> void
+      const glib::RefPtr<TlsInteraction>& interaction) -> void
   {
-    g_tls_connection_set_interaction (gobj (), Glib::unwrap (interaction));
+    g_tls_connection_set_interaction (gobj (), glib::unwrap (interaction));
   }
 
   auto
-  TlsConnection::handshake (const Glib::RefPtr<Cancellable>& cancellable) -> bool
+  TlsConnection::handshake (const glib::RefPtr<Cancellable>& cancellable) -> bool
   {
     GError* gerror = nullptr;
     const auto retvalue = g_tls_connection_handshake (
         gobj (),
-        Glib::unwrap (cancellable),
+        glib::unwrap (cancellable),
         &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
@@ -477,20 +477,20 @@ namespace Gio
     const auto retvalue =
         g_tls_connection_handshake (gobj (), nullptr, &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
   auto
   TlsConnection::handshake_async (const SlotAsyncReady& slot,
-                                  const Glib::RefPtr<Cancellable>& cancellable,
+                                  const glib::RefPtr<Cancellable>& cancellable,
                                   const int io_priority) -> void
   {
     const auto slot_copy = new SlotAsyncReady (slot);
 
     g_tls_connection_handshake_async (gobj (),
                                       io_priority,
-                                      Glib::unwrap (cancellable),
+                                      glib::unwrap (cancellable),
                                       &SignalProxy_async_callback,
                                       slot_copy);
   }
@@ -509,15 +509,15 @@ namespace Gio
   }
 
   auto
-  TlsConnection::handshake_finish (const Glib::RefPtr<AsyncResult>& result) -> bool
+  TlsConnection::handshake_finish (const glib::RefPtr<AsyncResult>& result) -> bool
   {
     GError* gerror = nullptr;
     const auto retvalue = g_tls_connection_handshake_finish (
         gobj (),
-        Glib::unwrap (result),
+        glib::unwrap (result),
         &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
@@ -530,152 +530,152 @@ namespace Gio
   }
 
   auto
-  TlsConnection::get_ciphersuite_name () const -> Glib::ustring
+  TlsConnection::get_ciphersuite_name () const -> glib::ustring
   {
-    return Glib::convert_return_gchar_ptr_to_ustring (
+    return glib::convert_return_gchar_ptr_to_ustring (
         g_tls_connection_get_ciphersuite_name (
             const_cast<GTlsConnection*> (gobj ())));
   }
 
   auto
   TlsConnection::emit_accept_certificate (
-      const Glib::RefPtr<const TlsCertificate>& peer_cert,
+      const glib::RefPtr<const TlsCertificate>& peer_cert,
       TlsCertificateFlags errors) -> bool
   {
     return g_tls_connection_emit_accept_certificate (
         gobj (),
-        const_cast<GTlsCertificate*> (Glib::unwrap (peer_cert)),
+        const_cast<GTlsCertificate*> (glib::unwrap (peer_cert)),
         static_cast<GTlsCertificateFlags> (errors));
   }
 
   auto
-  TlsConnection::signal_accept_certificate () -> Glib::SignalProxy<bool (const Glib::RefPtr<const TlsCertificate>&,
+  TlsConnection::signal_accept_certificate () -> glib::SignalProxy<bool (const glib::RefPtr<const TlsCertificate>&,
                                  TlsCertificateFlags)>
   {
     return {this, &TlsConnection_signal_accept_certificate_info};
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<
-          Glib::RefPtr<IOStream>>::value,
-      "Type Glib::RefPtr<IOStream> cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      glib::Traits::ValueCompatibleWithWrapProperty<
+          glib::RefPtr<IOStream>>::value,
+      "Type glib::RefPtr<IOStream> cannot be used in _WRAP_PROPERTY. "
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  TlsConnection::property_base_io_stream () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<IOStream>>
+  TlsConnection::property_base_io_stream () const -> glib::PropertyProxy_ReadOnly<glib::RefPtr<IOStream>>
   {
     return {this, "base-io-stream"};
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<
-          Glib::RefPtr<TlsCertificate>>::value,
-      "Type Glib::RefPtr<TlsCertificate> cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      glib::Traits::ValueCompatibleWithWrapProperty<
+          glib::RefPtr<TlsCertificate>>::value,
+      "Type glib::RefPtr<TlsCertificate> cannot be used in _WRAP_PROPERTY. "
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  TlsConnection::property_certificate () -> Glib::PropertyProxy<Glib::RefPtr<TlsCertificate>>
+  TlsConnection::property_certificate () -> glib::PropertyProxy<glib::RefPtr<TlsCertificate>>
   {
     return {this, "certificate"};
   }
 
   auto
-  TlsConnection::property_certificate () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<TlsCertificate>>
+  TlsConnection::property_certificate () const -> glib::PropertyProxy_ReadOnly<glib::RefPtr<TlsCertificate>>
   {
     return {this, "certificate"};
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<
-          Glib::RefPtr<TlsDatabase>>::value,
-      "Type Glib::RefPtr<TlsDatabase> cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      glib::Traits::ValueCompatibleWithWrapProperty<
+          glib::RefPtr<TlsDatabase>>::value,
+      "Type glib::RefPtr<TlsDatabase> cannot be used in _WRAP_PROPERTY. "
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  TlsConnection::property_database () -> Glib::PropertyProxy<Glib::RefPtr<TlsDatabase>>
+  TlsConnection::property_database () -> glib::PropertyProxy<glib::RefPtr<TlsDatabase>>
   {
     return {this, "database"};
   }
 
   auto
-  TlsConnection::property_database () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<TlsDatabase>>
+  TlsConnection::property_database () const -> glib::PropertyProxy_ReadOnly<glib::RefPtr<TlsDatabase>>
   {
     return {this, "database"};
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<
-          Glib::RefPtr<TlsInteraction>>::value,
-      "Type Glib::RefPtr<TlsInteraction> cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      glib::Traits::ValueCompatibleWithWrapProperty<
+          glib::RefPtr<TlsInteraction>>::value,
+      "Type glib::RefPtr<TlsInteraction> cannot be used in _WRAP_PROPERTY. "
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  TlsConnection::property_interaction () -> Glib::PropertyProxy<Glib::RefPtr<TlsInteraction>>
+  TlsConnection::property_interaction () -> glib::PropertyProxy<glib::RefPtr<TlsInteraction>>
   {
     return {this, "interaction"};
   }
 
   auto
-  TlsConnection::property_interaction () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<TlsInteraction>>
+  TlsConnection::property_interaction () const -> glib::PropertyProxy_ReadOnly<glib::RefPtr<TlsInteraction>>
   {
     return {this, "interaction"};
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<
-          Glib::RefPtr<TlsCertificate>>::value,
-      "Type Glib::RefPtr<TlsCertificate> cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      glib::Traits::ValueCompatibleWithWrapProperty<
+          glib::RefPtr<TlsCertificate>>::value,
+      "Type glib::RefPtr<TlsCertificate> cannot be used in _WRAP_PROPERTY. "
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  TlsConnection::property_peer_certificate () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<TlsCertificate>>
+  TlsConnection::property_peer_certificate () const -> glib::PropertyProxy_ReadOnly<glib::RefPtr<TlsCertificate>>
   {
     return {this, "peer-certificate"};
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<TlsCertificateFlags>::value,
+      glib::Traits::ValueCompatibleWithWrapProperty<TlsCertificateFlags>::value,
       "Type TlsCertificateFlags cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  TlsConnection::property_peer_certificate_errors () const -> Glib::PropertyProxy_ReadOnly<TlsCertificateFlags>
+  TlsConnection::property_peer_certificate_errors () const -> glib::PropertyProxy_ReadOnly<TlsCertificateFlags>
   {
     return {this, "peer-certificate-errors"};
   }
 
   auto
-  TlsConnection::property_require_close_notify () -> Glib::PropertyProxy<bool>
+  TlsConnection::property_require_close_notify () -> glib::PropertyProxy<bool>
   {
     return {this, "require-close-notify"};
   }
 
   auto
-  TlsConnection::property_require_close_notify () const -> Glib::PropertyProxy_ReadOnly<bool>
+  TlsConnection::property_require_close_notify () const -> glib::PropertyProxy_ReadOnly<bool>
   {
     return {this, "require-close-notify"};
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<TlsProtocolVersion>::value,
+      glib::Traits::ValueCompatibleWithWrapProperty<TlsProtocolVersion>::value,
       "Type TlsProtocolVersion cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  TlsConnection::property_protocol_version () const -> Glib::PropertyProxy_ReadOnly<TlsProtocolVersion>
+  TlsConnection::property_protocol_version () const -> glib::PropertyProxy_ReadOnly<TlsProtocolVersion>
   {
     return {this, "protocol-version"};
   }
 
   auto
-  TlsConnection::property_ciphersuite_name () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>
+  TlsConnection::property_ciphersuite_name () const -> glib::PropertyProxy_ReadOnly<glib::ustring>
   {
     return {this, "ciphersuite-name"};
   }
 
   auto
   TlsConnection::on_accept_certificate (
-      const Glib::RefPtr<const TlsCertificate>& peer_cert,
+      const glib::RefPtr<const TlsCertificate>& peer_cert,
       TlsCertificateFlags errors) -> bool
   {
     const auto base = static_cast<BaseClassType*> (
@@ -684,7 +684,7 @@ namespace Gio
     if (base && base->accept_certificate)
       return (*base->accept_certificate) (
           gobj (),
-          const_cast<GTlsCertificate*> (Glib::unwrap (peer_cert)),
+          const_cast<GTlsCertificate*> (glib::unwrap (peer_cert)),
           static_cast<GTlsCertificateFlags> (errors));
 
     using RType = bool;
@@ -692,7 +692,7 @@ namespace Gio
   }
 
   auto
-  TlsConnection::handshake_vfunc (const Glib::RefPtr<Cancellable>& cancellable) -> bool
+  TlsConnection::handshake_vfunc (const glib::RefPtr<Cancellable>& cancellable) -> bool
   {
     const auto base = static_cast<BaseClassType*> (
         g_type_class_peek_parent (G_OBJECT_GET_CLASS (gobject_)));
@@ -701,9 +701,9 @@ namespace Gio
     {
       GError* gerror = nullptr;
       const bool retval (
-          (*base->handshake) (gobj (), Glib::unwrap (cancellable), &gerror));
+          (*base->handshake) (gobj (), glib::unwrap (cancellable), &gerror));
       if (gerror)
-        Glib::Error::throw_exception (gerror);
+        glib::Error::throw_exception (gerror);
       return retval;
     }
 
@@ -714,7 +714,7 @@ namespace Gio
   auto
   TlsConnection::handshake_async_vfunc (
       const SlotAsyncReady& slot,
-      const Glib::RefPtr<Cancellable>& cancellable,
+      const glib::RefPtr<Cancellable>& cancellable,
       const int io_priority) -> void
   {
     const auto slot_copy = new SlotAsyncReady (slot);
@@ -726,7 +726,7 @@ namespace Gio
     {
       (*base->handshake_async) (gobj (),
                                 io_priority,
-                                Glib::unwrap (cancellable),
+                                glib::unwrap (cancellable),
                                 &SignalProxy_async_callback,
                                 slot_copy);
     }
@@ -734,7 +734,7 @@ namespace Gio
 
   auto
   TlsConnection::handshake_finish_vfunc (
-      const Glib::RefPtr<AsyncResult>& result) -> bool
+      const glib::RefPtr<AsyncResult>& result) -> bool
   {
     const auto base = static_cast<BaseClassType*> (
         g_type_class_peek_parent (G_OBJECT_GET_CLASS (gobject_)));
@@ -743,9 +743,9 @@ namespace Gio
     {
       GError* gerror = nullptr;
       const bool retval (
-          (*base->handshake_finish) (gobj (), Glib::unwrap (result), &gerror));
+          (*base->handshake_finish) (gobj (), glib::unwrap (result), &gerror));
       if (gerror)
-        Glib::Error::throw_exception (gerror);
+        glib::Error::throw_exception (gerror);
       return retval;
     }
 
@@ -753,4 +753,4 @@ namespace Gio
     return RType ();
   }
 
-} // namespace Gio
+} // namespace gio

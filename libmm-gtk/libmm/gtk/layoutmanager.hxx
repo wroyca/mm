@@ -16,18 +16,18 @@ using GtkLayoutManagerClass = struct _GtkLayoutManagerClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT LayoutManager_Class;
 }
 #endif
 
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT LayoutChild;
   class LIBMM_GTK_SYMEXPORT Widget;
 
-  class LIBMM_GTK_SYMEXPORT LayoutManager : public Glib::Object
+  class LIBMM_GTK_SYMEXPORT LayoutManager : public glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -46,7 +46,7 @@ namespace Gtk
     static CppClassType layoutmanager_class_;
 
   protected:
-    explicit LayoutManager (const Glib::ConstructParams& construct_params);
+    explicit LayoutManager (const glib::ConstructParams& construct_params);
     explicit LayoutManager (GtkLayoutManager* castitem);
 
 #endif
@@ -112,10 +112,10 @@ namespace Gtk
     layout_changed () -> void;
 
     auto
-    get_layout_child (Widget& child) -> Glib::RefPtr<LayoutChild>;
+    get_layout_child (Widget& child) -> glib::RefPtr<LayoutChild>;
 
     auto
-    get_layout_child (Widget& child) const -> Glib::RefPtr<const LayoutChild>;
+    get_layout_child (Widget& child) const -> glib::RefPtr<const LayoutChild>;
 
   protected:
     virtual auto
@@ -136,7 +136,7 @@ namespace Gtk
 
     virtual auto
     create_layout_child_vfunc (const Widget& widget, const Widget& for_child)
-        -> Glib::RefPtr<LayoutChild>;
+        -> glib::RefPtr<LayoutChild>;
 
     virtual auto
     root_vfunc () -> void;
@@ -149,12 +149,12 @@ namespace Gtk
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkLayoutManager* object, bool take_copy = false) -> Glib::RefPtr<Gtk::LayoutManager>;
-} // namespace Glib
+  wrap (GtkLayoutManager* object, bool take_copy = false) -> glib::RefPtr<gtk::LayoutManager>;
+} // namespace glib
 
 #endif

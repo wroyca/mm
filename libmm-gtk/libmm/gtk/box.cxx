@@ -8,7 +8,7 @@
 #include <gtk/gtk.h>
 #include <libmm/glib/wrap.hxx>
 
-namespace Gtk
+namespace gtk
 {
   auto
   Box::insert_child_at_start (Widget& child) -> void
@@ -22,29 +22,29 @@ namespace Gtk
     gtk_box_reorder_child_after (gobj (), child.gobj (), nullptr);
   }
 
-} // namespace Gtk
+} // namespace gtk
 
 namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GtkBox* object, bool take_copy) -> Gtk::Box*
+  wrap (GtkBox* object, bool take_copy) -> gtk::Box*
   {
-    return dynamic_cast<Gtk::Box*> (
-        Glib::wrap_auto ((GObject*) (object), take_copy));
+    return dynamic_cast<gtk::Box*> (
+        glib::wrap_auto ((GObject*) (object), take_copy));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gtk
+namespace gtk
 {
 
   auto
-  Box_Class::init () -> const Glib::Class&
+  Box_Class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -66,23 +66,23 @@ namespace Gtk
   }
 
   auto
-  Box_Class::wrap_new (GObject* o) -> Glib::ObjectBase*
+  Box_Class::wrap_new (GObject* o) -> glib::ObjectBase*
   {
     return manage (new Box ((GtkBox*) (o)));
   }
 
-  Box::Box (const Glib::ConstructParams& construct_params)
-    : Gtk::Widget (construct_params)
+  Box::Box (const glib::ConstructParams& construct_params)
+    : gtk::Widget (construct_params)
   {
   }
 
   Box::Box (GtkBox* castitem)
-    : Gtk::Widget ((GtkWidget*) (castitem))
+    : gtk::Widget ((GtkWidget*) (castitem))
   {
   }
 
   Box::Box (Box&& src) noexcept
-    : Gtk::Widget (std::move (src)),
+    : gtk::Widget (std::move (src)),
       Orientable (std::move (src))
   {
   }
@@ -90,7 +90,7 @@ namespace Gtk
   auto
   Box::operator= (Box&& src) noexcept -> Box&
   {
-    Gtk::Widget::operator= (std::move (src));
+    gtk::Widget::operator= (std::move (src));
     Orientable::operator= (std::move (src));
     return *this;
   }
@@ -115,9 +115,9 @@ namespace Gtk
   }
 
   Box::Box (Orientation orientation, int spacing)
-    : Glib::ObjectBase (nullptr),
-      Gtk::Widget (
-          Glib::ConstructParams (box_class_.init (),
+    : glib::ObjectBase (nullptr),
+      gtk::Widget (
+          glib::ConstructParams (box_class_.init (),
                                  "orientation",
                                  static_cast<GtkOrientation> (orientation),
                                  "spacing",
@@ -165,19 +165,19 @@ namespace Gtk
   }
 
   auto
-  Box::append (Gtk::Widget& child) -> void
+  Box::append (gtk::Widget& child) -> void
   {
     gtk_box_append (gobj (), (child).gobj ());
   }
 
   auto
-  Box::prepend (Gtk::Widget& child) -> void
+  Box::prepend (gtk::Widget& child) -> void
   {
     gtk_box_prepend (gobj (), (child).gobj ());
   }
 
   auto
-  Box::remove (Gtk::Widget& child) -> void
+  Box::remove (gtk::Widget& child) -> void
   {
     gtk_box_remove (gobj (), (child).gobj ());
   }
@@ -199,45 +199,45 @@ namespace Gtk
   }
 
   auto
-  Box::property_spacing () -> Glib::PropertyProxy<int>
+  Box::property_spacing () -> glib::PropertyProxy<int>
   {
-    return Glib::PropertyProxy<int> (this, "spacing");
+    return glib::PropertyProxy<int> (this, "spacing");
   }
 
   auto
-  Box::property_spacing () const -> Glib::PropertyProxy_ReadOnly<int>
+  Box::property_spacing () const -> glib::PropertyProxy_ReadOnly<int>
   {
-    return Glib::PropertyProxy_ReadOnly<int> (this, "spacing");
+    return glib::PropertyProxy_ReadOnly<int> (this, "spacing");
   }
 
   auto
-  Box::property_homogeneous () -> Glib::PropertyProxy<bool>
+  Box::property_homogeneous () -> glib::PropertyProxy<bool>
   {
-    return Glib::PropertyProxy<bool> (this, "homogeneous");
+    return glib::PropertyProxy<bool> (this, "homogeneous");
   }
 
   auto
-  Box::property_homogeneous () const -> Glib::PropertyProxy_ReadOnly<bool>
+  Box::property_homogeneous () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "homogeneous");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "homogeneous");
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<BaselinePosition>::value,
+      glib::Traits::ValueCompatibleWithWrapProperty<BaselinePosition>::value,
       "Type BaselinePosition cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  Box::property_baseline_position () -> Glib::PropertyProxy<BaselinePosition>
+  Box::property_baseline_position () -> glib::PropertyProxy<BaselinePosition>
   {
-    return Glib::PropertyProxy<BaselinePosition> (this, "baseline-position");
+    return glib::PropertyProxy<BaselinePosition> (this, "baseline-position");
   }
 
   auto
-  Box::property_baseline_position () const -> Glib::PropertyProxy_ReadOnly<BaselinePosition>
+  Box::property_baseline_position () const -> glib::PropertyProxy_ReadOnly<BaselinePosition>
   {
-    return Glib::PropertyProxy_ReadOnly<BaselinePosition> (this,
+    return glib::PropertyProxy_ReadOnly<BaselinePosition> (this,
                                                            "baseline-position");
   }
 
-} // namespace Gtk
+} // namespace gtk

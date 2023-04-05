@@ -14,17 +14,17 @@
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT StringList_Class;
 }
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
-  class LIBMM_GTK_SYMEXPORT StringList : public Glib::Object,
-                               public Gio::ListModel,
+  class LIBMM_GTK_SYMEXPORT StringList : public glib::Object,
+                               public gio::ListModel,
                                public Buildable
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -44,7 +44,7 @@ namespace Gtk
     static CppClassType stringlist_class_;
 
   protected:
-    explicit StringList (const Glib::ConstructParams& construct_params);
+    explicit StringList (const glib::ConstructParams& construct_params);
     explicit StringList (GtkStringList* castitem);
 
 #endif
@@ -82,15 +82,15 @@ namespace Gtk
 
   private:
   protected:
-    explicit StringList (const std::vector<Glib::ustring>& strings);
+    explicit StringList (const std::vector<glib::ustring>& strings);
 
   public:
     static auto
-    create (const std::vector<Glib::ustring>& strings = {})
-        -> Glib::RefPtr<StringList>;
+    create (const std::vector<glib::ustring>& strings = {})
+        -> glib::RefPtr<StringList>;
 
     auto
-    append (const Glib::ustring& string) -> void;
+    append (const glib::ustring& string) -> void;
 
     auto
     remove (guint position) -> void;
@@ -98,22 +98,22 @@ namespace Gtk
     auto
     splice (guint position,
             guint n_removals,
-            const std::vector<Glib::ustring>& additions) -> void;
+            const std::vector<glib::ustring>& additions) -> void;
 
     auto
-    get_string (guint position) const -> Glib::ustring;
+    get_string (guint position) const -> glib::ustring;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkStringList* object, bool take_copy = false) -> Glib::RefPtr<Gtk::StringList>;
-} // namespace Glib
+  wrap (GtkStringList* object, bool take_copy = false) -> glib::RefPtr<gtk::StringList>;
+} // namespace glib
 
 #endif

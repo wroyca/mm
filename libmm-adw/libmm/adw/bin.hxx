@@ -16,16 +16,16 @@
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Adw
+namespace adw
 {
   class LIBMM_ADW_SYMEXPORT Bin_Class;
 }
 #endif
 
-namespace Adw
+namespace adw
 {
 
-  class LIBMM_ADW_SYMEXPORT Bin : public Gtk::Widget
+  class LIBMM_ADW_SYMEXPORT Bin : public gtk::Widget
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -52,7 +52,7 @@ namespace Adw
     static CppClassType bin_class_;
 
   protected:
-    explicit Bin (const Glib::ConstructParams& construct_params);
+    explicit Bin (const glib::ConstructParams& construct_params);
     explicit Bin (AdwBin* castitem);
 
 #endif
@@ -84,29 +84,29 @@ namespace Adw
     Bin ();
 
     auto
-    get_child () const -> Gtk::Widget*;
+    get_child () const -> gtk::Widget*;
 
     auto
-    set_child (Gtk::Widget* widget) -> void;
+    set_child (gtk::Widget* widget) -> void;
 
     auto
-    property_child () -> Glib::PropertyProxy<Gtk::Widget*>;
+    property_child () -> glib::PropertyProxy<gtk::Widget*>;
 
     auto
-    property_child () const -> Glib::PropertyProxy_ReadOnly<Gtk::Widget*>;
+    property_child () const -> glib::PropertyProxy_ReadOnly<gtk::Widget*>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Adw
+} // namespace adw
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (AdwBin* object, bool take_copy = false) -> Adw::Bin*;
+  wrap (AdwBin* object, bool take_copy = false) -> adw::Bin*;
 }
 
 #endif

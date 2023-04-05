@@ -14,26 +14,26 @@ namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GFileDescriptorBased* object, bool take_copy) -> Glib::RefPtr<Gio::FileDescriptorBased>
+  wrap (GFileDescriptorBased* object, bool take_copy) -> glib::RefPtr<gio::FileDescriptorBased>
   {
-    return Glib::make_refptr_for_instance<Gio::FileDescriptorBased> (
-        dynamic_cast<Gio::FileDescriptorBased*> (
-            Glib::wrap_auto_interface<Gio::FileDescriptorBased> (
+    return glib::make_refptr_for_instance<gio::FileDescriptorBased> (
+        dynamic_cast<gio::FileDescriptorBased*> (
+            glib::wrap_auto_interface<gio::FileDescriptorBased> (
                 (GObject*) (object),
                 take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gio
+namespace gio
 {
 
   auto
-  FileDescriptorBased_Class::init () -> const Glib::Interface_Class&
+  FileDescriptorBased_Class::init () -> const glib::Interface_Class&
   {
     if (!gtype_)
     {
@@ -58,8 +58,8 @@ namespace Gio
   auto
   FileDescriptorBased_Class::get_fd_vfunc_callback (GFileDescriptorBased* self) -> int
   {
-    const auto obj_base = static_cast<Glib::ObjectBase*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+    const auto obj_base = static_cast<glib::ObjectBase*> (
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -72,7 +72,7 @@ namespace Gio
         }
         catch (...)
         {
-          Glib::exception_handlers_invoke ();
+          glib::exception_handlers_invoke ();
         }
       }
     }
@@ -90,36 +90,36 @@ namespace Gio
   }
 
   auto
-  FileDescriptorBased_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  FileDescriptorBased_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new FileDescriptorBased ((GFileDescriptorBased*) (object));
   }
 
   FileDescriptorBased::FileDescriptorBased ()
-    : Glib::Interface (filedescriptorbased_class_.init ())
+    : glib::Interface (filedescriptorbased_class_.init ())
   {
   }
 
   FileDescriptorBased::FileDescriptorBased (GFileDescriptorBased* castitem)
-    : Glib::Interface ((GObject*) (castitem))
+    : glib::Interface ((GObject*) (castitem))
   {
   }
 
   FileDescriptorBased::FileDescriptorBased (
-      const Glib::Interface_Class& interface_class)
-    : Glib::Interface (interface_class)
+      const glib::Interface_Class& interface_class)
+    : glib::Interface (interface_class)
   {
   }
 
   FileDescriptorBased::FileDescriptorBased (FileDescriptorBased&& src) noexcept
-    : Glib::Interface (std::move (src))
+    : glib::Interface (std::move (src))
   {
   }
 
   auto
   FileDescriptorBased::operator= (FileDescriptorBased&& src) noexcept -> FileDescriptorBased&
   {
-    Glib::Interface::operator= (std::move (src));
+    glib::Interface::operator= (std::move (src));
     return *this;
   }
 
@@ -154,7 +154,7 @@ namespace Gio
   }
 
   auto
-  Gio::FileDescriptorBased::get_fd_vfunc () const -> int
+  gio::FileDescriptorBased::get_fd_vfunc () const -> int
   {
     const auto base =
         static_cast<BaseClassType*> (g_type_interface_peek_parent (
@@ -172,6 +172,6 @@ namespace Gio
     return RType ();
   }
 
-} // namespace Gio
+} // namespace gio
 
 #endif

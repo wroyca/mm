@@ -9,11 +9,11 @@
 
 #include <gtk/gtk.h>
 
-namespace Gtk
+namespace gtk
 {
 
   auto
-  RecentManager::add_item (const Glib::ustring& uri, const Data& data) -> bool
+  RecentManager::add_item (const glib::ustring& uri, const Data& data) -> bool
   {
     GtkRecentData c_data;
     gboolean result;
@@ -39,66 +39,66 @@ namespace Gtk
     return result == TRUE;
   }
 
-} // namespace Gtk
+} // namespace gtk
 
 namespace
 {
 
-  static const Glib::SignalProxyInfo RecentManager_signal_changed_info = {
+  static const glib::SignalProxyInfo RecentManager_signal_changed_info = {
       "changed",
-      (GCallback) &Glib::SignalProxyNormal::slot0_void_callback,
-      (GCallback) &Glib::SignalProxyNormal::slot0_void_callback};
+      (GCallback) &glib::SignalProxyNormal::slot0_void_callback,
+      (GCallback) &glib::SignalProxyNormal::slot0_void_callback};
 
 }
 
-Gtk::RecentManagerError::RecentManagerError (
-    Gtk::RecentManagerError::Code error_code,
-    const Glib::ustring& error_message)
-  : Glib::Error (GTK_RECENT_MANAGER_ERROR, error_code, error_message)
+gtk::RecentManagerError::RecentManagerError (
+    gtk::RecentManagerError::Code error_code,
+    const glib::ustring& error_message)
+  : glib::Error (GTK_RECENT_MANAGER_ERROR, error_code, error_message)
 {
 }
 
-Gtk::RecentManagerError::RecentManagerError (GError* gobject)
-  : Glib::Error (gobject)
+gtk::RecentManagerError::RecentManagerError (GError* gobject)
+  : glib::Error (gobject)
 {
 }
 
 auto
-Gtk::RecentManagerError::code () const -> Gtk::RecentManagerError::Code
+gtk::RecentManagerError::code () const -> gtk::RecentManagerError::Code
 {
-  return static_cast<Code> (Glib::Error::code ());
+  return static_cast<Code> (glib::Error::code ());
 }
 
 auto
-Gtk::RecentManagerError::throw_func (GError* gobject) -> void
+gtk::RecentManagerError::throw_func (GError* gobject) -> void
 {
-  throw Gtk::RecentManagerError (gobject);
+  throw gtk::RecentManagerError (gobject);
 }
 
 auto
-Glib::Value<Gtk::RecentManagerError::Code>::value_type () -> GType
+glib::Value<gtk::RecentManagerError::Code>::value_type () -> GType
 {
   return gtk_recent_manager_error_get_type ();
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GtkRecentManager* object, bool take_copy) -> Glib::RefPtr<Gtk::RecentManager>
+  wrap (GtkRecentManager* object, bool take_copy) -> glib::RefPtr<gtk::RecentManager>
   {
-    return Glib::make_refptr_for_instance<Gtk::RecentManager> (
-        dynamic_cast<Gtk::RecentManager*> (
-            Glib::wrap_auto ((GObject*) (object), take_copy)));
+    return glib::make_refptr_for_instance<gtk::RecentManager> (
+        dynamic_cast<gtk::RecentManager*> (
+            glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gtk
+namespace gtk
 {
 
   auto
-  RecentManager_Class::init () -> const Glib::Class&
+  RecentManager_Class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -122,8 +122,8 @@ namespace Gtk
   auto
   RecentManager_Class::changed_callback (GtkRecentManager* self) -> void
   {
-    const auto obj_base = static_cast<Glib::ObjectBase*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+    const auto obj_base = static_cast<glib::ObjectBase*> (
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -137,7 +137,7 @@ namespace Gtk
         }
         catch (...)
         {
-          Glib::exception_handlers_invoke ();
+          glib::exception_handlers_invoke ();
         }
       }
     }
@@ -150,7 +150,7 @@ namespace Gtk
   }
 
   auto
-  RecentManager_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  RecentManager_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new RecentManager ((GtkRecentManager*) object);
   }
@@ -162,25 +162,25 @@ namespace Gtk
     return gobj ();
   }
 
-  RecentManager::RecentManager (const Glib::ConstructParams& construct_params)
-    : Glib::Object (construct_params)
+  RecentManager::RecentManager (const glib::ConstructParams& construct_params)
+    : glib::Object (construct_params)
   {
   }
 
   RecentManager::RecentManager (GtkRecentManager* castitem)
-    : Glib::Object ((GObject*) (castitem))
+    : glib::Object ((GObject*) (castitem))
   {
   }
 
   RecentManager::RecentManager (RecentManager&& src) noexcept
-    : Glib::Object (std::move (src))
+    : glib::Object (std::move (src))
   {
   }
 
   auto
   RecentManager::operator= (RecentManager&& src) noexcept -> RecentManager&
   {
-    Glib::Object::operator= (std::move (src));
+    glib::Object::operator= (std::move (src));
     return *this;
   }
 
@@ -201,81 +201,81 @@ namespace Gtk
   }
 
   RecentManager::RecentManager ()
-    : Glib::ObjectBase (nullptr),
-      Glib::Object (Glib::ConstructParams (recentmanager_class_.init ()))
+    : glib::ObjectBase (nullptr),
+      glib::Object (glib::ConstructParams (recentmanager_class_.init ()))
   {
   }
 
   auto
-  RecentManager::create () -> Glib::RefPtr<RecentManager>
+  RecentManager::create () -> glib::RefPtr<RecentManager>
   {
-    return Glib::make_refptr_for_instance<RecentManager> (new RecentManager ());
+    return glib::make_refptr_for_instance<RecentManager> (new RecentManager ());
   }
 
   auto
-  RecentManager::get_default () -> Glib::RefPtr<RecentManager>
+  RecentManager::get_default () -> glib::RefPtr<RecentManager>
   {
-    auto retvalue = Glib::wrap (gtk_recent_manager_get_default ());
+    auto retvalue = glib::wrap (gtk_recent_manager_get_default ());
     if (retvalue)
       retvalue->reference ();
     return retvalue;
   }
 
   auto
-  RecentManager::add_item (const Glib::ustring& uri) -> bool
+  RecentManager::add_item (const glib::ustring& uri) -> bool
   {
     GError* gerror = nullptr;
     auto retvalue = gtk_recent_manager_add_item (gobj (), uri.c_str ());
     if (gerror)
-      ::Glib::Error::throw_exception (gerror);
+      ::glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
   auto
-  RecentManager::remove_item (const Glib::ustring& uri) -> bool
+  RecentManager::remove_item (const glib::ustring& uri) -> bool
   {
     GError* gerror = nullptr;
     auto retvalue =
         gtk_recent_manager_remove_item (gobj (), uri.c_str (), &(gerror));
     if (gerror)
-      ::Glib::Error::throw_exception (gerror);
+      ::glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
   auto
-  RecentManager::lookup_item (const Glib::ustring& uri) -> Glib::RefPtr<RecentInfo>
+  RecentManager::lookup_item (const glib::ustring& uri) -> glib::RefPtr<RecentInfo>
   {
     GError* gerror = nullptr;
-    auto retvalue = Glib::wrap (
+    auto retvalue = glib::wrap (
         gtk_recent_manager_lookup_item (gobj (), uri.c_str (), &(gerror)));
     if (gerror)
-      ::Glib::Error::throw_exception (gerror);
+      ::glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
   auto
-  RecentManager::lookup_item (const Glib::ustring& uri) const -> Glib::RefPtr<const RecentInfo>
+  RecentManager::lookup_item (const glib::ustring& uri) const -> glib::RefPtr<const RecentInfo>
   {
     GError* gerror = nullptr;
-    auto retvalue = Glib::wrap (
+    auto retvalue = glib::wrap (
         gtk_recent_manager_lookup_item (const_cast<GtkRecentManager*> (gobj ()),
                                         uri.c_str (),
                                         &(gerror)));
     if (gerror)
-      ::Glib::Error::throw_exception (gerror);
+      ::glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
   auto
-  RecentManager::has_item (const Glib::ustring& uri) const -> bool
+  RecentManager::has_item (const glib::ustring& uri) const -> bool
   {
     return gtk_recent_manager_has_item (const_cast<GtkRecentManager*> (gobj ()),
                                         uri.c_str ());
   }
 
   auto
-  RecentManager::move_item (const Glib::ustring& uri,
-                            const Glib::ustring& new_uri) -> bool
+  RecentManager::move_item (const glib::ustring& uri,
+                            const glib::ustring& new_uri) -> bool
   {
     GError* gerror = nullptr;
     auto retvalue = gtk_recent_manager_move_item (gobj (),
@@ -283,17 +283,17 @@ namespace Gtk
                                                   new_uri.c_str (),
                                                   &(gerror));
     if (gerror)
-      ::Glib::Error::throw_exception (gerror);
+      ::glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
   auto
-  RecentManager::get_items () const -> std::vector<Glib::RefPtr<RecentInfo>>
+  RecentManager::get_items () const -> std::vector<glib::RefPtr<RecentInfo>>
   {
-    return Glib::ListHandler<Glib::RefPtr<RecentInfo>, RecentInfoTraits>::
+    return glib::ListHandler<glib::RefPtr<RecentInfo>, RecentInfoTraits>::
         list_to_vector (gtk_recent_manager_get_items (
                             const_cast<GtkRecentManager*> (gobj ())),
-                        Glib::OWNERSHIP_DEEP);
+                        glib::OWNERSHIP_DEEP);
   }
 
   auto
@@ -302,31 +302,31 @@ namespace Gtk
     GError* gerror = nullptr;
     auto retvalue = gtk_recent_manager_purge_items (gobj (), &(gerror));
     if (gerror)
-      ::Glib::Error::throw_exception (gerror);
+      ::glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
   auto
-  RecentManager::signal_changed () -> Glib::SignalProxy<void ()>
+  RecentManager::signal_changed () -> glib::SignalProxy<void ()>
   {
-    return Glib::SignalProxy<void ()> (this,
+    return glib::SignalProxy<void ()> (this,
                                        &RecentManager_signal_changed_info);
   }
 
   auto
-  RecentManager::property_filename () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>
+  RecentManager::property_filename () const -> glib::PropertyProxy_ReadOnly<glib::ustring>
   {
-    return Glib::PropertyProxy_ReadOnly<Glib::ustring> (this, "filename");
+    return glib::PropertyProxy_ReadOnly<glib::ustring> (this, "filename");
   }
 
   auto
-  RecentManager::property_size () const -> Glib::PropertyProxy_ReadOnly<int>
+  RecentManager::property_size () const -> glib::PropertyProxy_ReadOnly<int>
   {
-    return Glib::PropertyProxy_ReadOnly<int> (this, "size");
+    return glib::PropertyProxy_ReadOnly<int> (this, "size");
   }
 
   auto
-  Gtk::RecentManager::on_changed () -> void
+  gtk::RecentManager::on_changed () -> void
   {
     const auto base = static_cast<BaseClassType*> (
         g_type_class_peek_parent (G_OBJECT_GET_CLASS (gobject_)));
@@ -335,4 +335,4 @@ namespace Gtk
       (*base->changed) (gobj ());
   }
 
-} // namespace Gtk
+} // namespace gtk

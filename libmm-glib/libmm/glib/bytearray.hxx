@@ -14,7 +14,7 @@
 typedef struct _GByteArray GByteArray;
 #endif
 
-namespace Glib
+namespace glib
 {
 
   class LIBMM_GLIB_SYMEXPORT ByteArray final
@@ -58,13 +58,13 @@ namespace Glib
     using SlotCompare = sigc::slot<int (const guint8*, const guint8*)>;
 
     static auto
-    create () -> Glib::RefPtr<ByteArray>;
+    create () -> glib::RefPtr<ByteArray>;
 
     auto
-    append (const guint8* data, guint len) -> Glib::RefPtr<ByteArray>;
+    append (const guint8* data, guint len) -> glib::RefPtr<ByteArray>;
 
     auto
-    prepend (const guint8* data, guint len) -> Glib::RefPtr<ByteArray>;
+    prepend (const guint8* data, guint len) -> glib::RefPtr<ByteArray>;
 
     auto
     size () const -> guint;
@@ -76,44 +76,44 @@ namespace Glib
     get_data () const -> const guint8*;
 
     auto
-    remove_index (guint index) -> Glib::RefPtr<ByteArray>;
+    remove_index (guint index) -> glib::RefPtr<ByteArray>;
 
     auto
-    remove_index_fast (guint index) -> Glib::RefPtr<ByteArray>;
+    remove_index_fast (guint index) -> glib::RefPtr<ByteArray>;
 
     auto
-    remove_range (guint index, guint length) -> Glib::RefPtr<ByteArray>;
+    remove_range (guint index, guint length) -> glib::RefPtr<ByteArray>;
 
     auto
     sort (const SlotCompare& slot) -> void;
 
     auto
-    set_size (guint length) -> Glib::RefPtr<ByteArray>;
+    set_size (guint length) -> glib::RefPtr<ByteArray>;
   };
 
-} // namespace Glib
+} // namespace glib
 
-namespace Glib
+namespace glib
 {
 
   LIBMM_GLIB_SYMEXPORT
   auto
-  wrap (GByteArray* object, bool take_copy = false) -> Glib::RefPtr<Glib::ByteArray>;
+  wrap (GByteArray* object, bool take_copy = false) -> glib::RefPtr<glib::ByteArray>;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
   template <>
-  class LIBMM_GLIB_SYMEXPORT Value<Glib::RefPtr<Glib::ByteArray>>
-    : public Glib::Value_RefPtrBoxed<Glib::ByteArray>
+  class LIBMM_GLIB_SYMEXPORT Value<glib::RefPtr<glib::ByteArray>>
+    : public glib::Value_RefPtrBoxed<glib::ByteArray>
   {
   public:
     auto
     get () const -> CppType
     {
-      return Glib::wrap (static_cast<GByteArray*> (get_boxed ()), true);
+      return glib::wrap (static_cast<GByteArray*> (get_boxed ()), true);
     }
   };
 #endif
 
-} // namespace Glib
+} // namespace glib
 
 #endif

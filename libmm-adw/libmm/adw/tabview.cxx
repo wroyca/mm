@@ -8,25 +8,25 @@
 #include <libmm/adw/selectionlistmodelimpl.hxx>
 #include <libmm/gtk/mm-gtk.hxx>
 
-namespace Adw
+namespace adw
 {
 
   auto
-  TabView::get_pages () const -> Glib::RefPtr<Gtk::SelectionModel>
+  TabView::get_pages () const -> glib::RefPtr<gtk::SelectionModel>
   {
     GtkSelectionModel* pages =
         adw_tab_view_get_pages (const_cast<AdwTabView*> (gobj ()));
     g_assert (G_IS_LIST_MODEL (pages));
 
-    Glib::ObjectBase* pCppObject =
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) pages);
+    glib::ObjectBase* pCppObject =
+        glib::ObjectBase::_get_current_wrapper ((GObject*) pages);
     if (!pCppObject)
-      pCppObject = new Adw::SelectionListModelImpl ((GObject*) pages);
-    return Glib::make_refptr_for_instance<Gtk::SelectionModel> (
-        dynamic_cast<Gtk::SelectionModel*> (pCppObject));
+      pCppObject = new adw::SelectionListModelImpl ((GObject*) pages);
+    return glib::make_refptr_for_instance<gtk::SelectionModel> (
+        dynamic_cast<gtk::SelectionModel*> (pCppObject));
   }
 
-} // namespace Adw
+} // namespace adw
 
 namespace
 {
@@ -36,23 +36,23 @@ namespace
                                       AdwTabPage* p0,
                                       void* data) -> gboolean
   {
-    using namespace Adw;
-    using SlotType = sigc::slot<bool (const Glib::RefPtr<TabPage>&)>;
+    using namespace adw;
+    using SlotType = sigc::slot<bool (const glib::RefPtr<TabPage>&)>;
 
     auto obj = dynamic_cast<TabView*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
     {
       try
       {
-        if (const auto slot = Glib::SignalProxyNormal::data_to_slot (data))
+        if (const auto slot = glib::SignalProxyNormal::data_to_slot (data))
           return static_cast<int> (
-              (*static_cast<SlotType*> (slot)) (Glib::wrap (p0, true)));
+              (*static_cast<SlotType*> (slot)) (glib::wrap (p0, true)));
       }
       catch (...)
       {
-        Glib::exception_handlers_invoke ();
+        glib::exception_handlers_invoke ();
       }
     }
 
@@ -65,22 +65,22 @@ namespace
                                              AdwTabPage* p0,
                                              void* data) -> gboolean
   {
-    using namespace Adw;
-    using SlotType = sigc::slot<void (const Glib::RefPtr<TabPage>&)>;
+    using namespace adw;
+    using SlotType = sigc::slot<void (const glib::RefPtr<TabPage>&)>;
 
     auto obj = dynamic_cast<TabView*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
     {
       try
       {
-        if (const auto slot = Glib::SignalProxyNormal::data_to_slot (data))
-          (*static_cast<SlotType*> (slot)) (Glib::wrap (p0, true));
+        if (const auto slot = glib::SignalProxyNormal::data_to_slot (data))
+          (*static_cast<SlotType*> (slot)) (glib::wrap (p0, true));
       }
       catch (...)
       {
-        Glib::exception_handlers_invoke ();
+        glib::exception_handlers_invoke ();
       }
     }
 
@@ -88,7 +88,7 @@ namespace
     return RType ();
   }
 
-  static const Glib::SignalProxyInfo TabView_signal_close_page_info = {
+  static const glib::SignalProxyInfo TabView_signal_close_page_info = {
       "close-page",
       (GCallback) &TabView_signal_close_page_callback,
       (GCallback) &TabView_signal_close_page_notify_callback};
@@ -96,23 +96,23 @@ namespace
   static auto
   TabView_signal_create_window_callback (AdwTabView* self, void* data) -> AdwTabView*
   {
-    using namespace Adw;
+    using namespace adw;
     using SlotType = sigc::slot<TabView*()>;
 
     auto obj = dynamic_cast<TabView*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
     {
       try
       {
-        if (const auto slot = Glib::SignalProxyNormal::data_to_slot (data))
-          return (AdwTabView*) Glib::unwrap (
+        if (const auto slot = glib::SignalProxyNormal::data_to_slot (data))
+          return (AdwTabView*) glib::unwrap (
               (*static_cast<SlotType*> (slot)) ());
       }
       catch (...)
       {
-        Glib::exception_handlers_invoke ();
+        glib::exception_handlers_invoke ();
       }
     }
 
@@ -123,22 +123,22 @@ namespace
   static auto
   TabView_signal_create_window_notify_callback (AdwTabView* self, void* data) -> AdwTabView*
   {
-    using namespace Adw;
+    using namespace adw;
     using SlotType = sigc::slot<void ()>;
 
     auto obj = dynamic_cast<TabView*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
     {
       try
       {
-        if (const auto slot = Glib::SignalProxyNormal::data_to_slot (data))
+        if (const auto slot = glib::SignalProxyNormal::data_to_slot (data))
           (*static_cast<SlotType*> (slot)) ();
       }
       catch (...)
       {
-        Glib::exception_handlers_invoke ();
+        glib::exception_handlers_invoke ();
       }
     }
 
@@ -146,7 +146,7 @@ namespace
     return RType ();
   }
 
-  static const Glib::SignalProxyInfo TabView_signal_create_window_info = {
+  static const glib::SignalProxyInfo TabView_signal_create_window_info = {
       "create-window",
       (GCallback) &TabView_signal_create_window_callback,
       (GCallback) &TabView_signal_create_window_notify_callback};
@@ -156,27 +156,27 @@ namespace
                                                AdwTabPage* p0,
                                                void* data) -> void
   {
-    using namespace Adw;
-    using SlotType = sigc::slot<void (const Glib::RefPtr<TabPage>&)>;
+    using namespace adw;
+    using SlotType = sigc::slot<void (const glib::RefPtr<TabPage>&)>;
 
     auto obj = dynamic_cast<TabView*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
     {
       try
       {
-        if (const auto slot = Glib::SignalProxyNormal::data_to_slot (data))
-          (*static_cast<SlotType*> (slot)) (Glib::wrap (p0, true));
+        if (const auto slot = glib::SignalProxyNormal::data_to_slot (data))
+          (*static_cast<SlotType*> (slot)) (glib::wrap (p0, true));
       }
       catch (...)
       {
-        Glib::exception_handlers_invoke ();
+        glib::exception_handlers_invoke ();
       }
     }
   }
 
-  static const Glib::SignalProxyInfo TabView_signal_indicator_activated_info = {
+  static const glib::SignalProxyInfo TabView_signal_indicator_activated_info = {
       "indicator-activated",
       (GCallback) &TabView_signal_indicator_activated_callback,
       (GCallback) &TabView_signal_indicator_activated_callback};
@@ -187,27 +187,27 @@ namespace
                                          gint p1,
                                          void* data) -> void
   {
-    using namespace Adw;
-    using SlotType = sigc::slot<void (const Glib::RefPtr<TabPage>&, int)>;
+    using namespace adw;
+    using SlotType = sigc::slot<void (const glib::RefPtr<TabPage>&, int)>;
 
     auto obj = dynamic_cast<TabView*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
     {
       try
       {
-        if (const auto slot = Glib::SignalProxyNormal::data_to_slot (data))
-          (*static_cast<SlotType*> (slot)) (Glib::wrap (p0, true), p1);
+        if (const auto slot = glib::SignalProxyNormal::data_to_slot (data))
+          (*static_cast<SlotType*> (slot)) (glib::wrap (p0, true), p1);
       }
       catch (...)
       {
-        Glib::exception_handlers_invoke ();
+        glib::exception_handlers_invoke ();
       }
     }
   }
 
-  static const Glib::SignalProxyInfo TabView_signal_page_attached_info = {
+  static const glib::SignalProxyInfo TabView_signal_page_attached_info = {
       "page-attached",
       (GCallback) &TabView_signal_page_attached_callback,
       (GCallback) &TabView_signal_page_attached_callback};
@@ -218,27 +218,27 @@ namespace
                                          gint p1,
                                          void* data) -> void
   {
-    using namespace Adw;
-    using SlotType = sigc::slot<void (const Glib::RefPtr<TabPage>&, int)>;
+    using namespace adw;
+    using SlotType = sigc::slot<void (const glib::RefPtr<TabPage>&, int)>;
 
     auto obj = dynamic_cast<TabView*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
     {
       try
       {
-        if (const auto slot = Glib::SignalProxyNormal::data_to_slot (data))
-          (*static_cast<SlotType*> (slot)) (Glib::wrap (p0, true), p1);
+        if (const auto slot = glib::SignalProxyNormal::data_to_slot (data))
+          (*static_cast<SlotType*> (slot)) (glib::wrap (p0, true), p1);
       }
       catch (...)
       {
-        Glib::exception_handlers_invoke ();
+        glib::exception_handlers_invoke ();
       }
     }
   }
 
-  static const Glib::SignalProxyInfo TabView_signal_page_detached_info = {
+  static const glib::SignalProxyInfo TabView_signal_page_detached_info = {
       "page-detached",
       (GCallback) &TabView_signal_page_detached_callback,
       (GCallback) &TabView_signal_page_detached_callback};
@@ -249,27 +249,27 @@ namespace
                                           gint p1,
                                           void* data) -> void
   {
-    using namespace Adw;
-    using SlotType = sigc::slot<void (const Glib::RefPtr<TabPage>&, int)>;
+    using namespace adw;
+    using SlotType = sigc::slot<void (const glib::RefPtr<TabPage>&, int)>;
 
     auto obj = dynamic_cast<TabView*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
     {
       try
       {
-        if (const auto slot = Glib::SignalProxyNormal::data_to_slot (data))
-          (*static_cast<SlotType*> (slot)) (Glib::wrap (p0, true), p1);
+        if (const auto slot = glib::SignalProxyNormal::data_to_slot (data))
+          (*static_cast<SlotType*> (slot)) (glib::wrap (p0, true), p1);
       }
       catch (...)
       {
-        Glib::exception_handlers_invoke ();
+        glib::exception_handlers_invoke ();
       }
     }
   }
 
-  static const Glib::SignalProxyInfo TabView_signal_page_reordered_info = {
+  static const glib::SignalProxyInfo TabView_signal_page_reordered_info = {
       "page-reordered",
       (GCallback) &TabView_signal_page_reordered_callback,
       (GCallback) &TabView_signal_page_reordered_callback};
@@ -279,27 +279,27 @@ namespace
                                       AdwTabPage* p0,
                                       void* data) -> void
   {
-    using namespace Adw;
-    using SlotType = sigc::slot<void (const Glib::RefPtr<TabPage>&)>;
+    using namespace adw;
+    using SlotType = sigc::slot<void (const glib::RefPtr<TabPage>&)>;
 
     auto obj = dynamic_cast<TabView*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
     {
       try
       {
-        if (const auto slot = Glib::SignalProxyNormal::data_to_slot (data))
-          (*static_cast<SlotType*> (slot)) (Glib::wrap (p0, true));
+        if (const auto slot = glib::SignalProxyNormal::data_to_slot (data))
+          (*static_cast<SlotType*> (slot)) (glib::wrap (p0, true));
       }
       catch (...)
       {
-        Glib::exception_handlers_invoke ();
+        glib::exception_handlers_invoke ();
       }
     }
   }
 
-  static const Glib::SignalProxyInfo TabView_signal_setup_menu_info = {
+  static const glib::SignalProxyInfo TabView_signal_setup_menu_info = {
       "setup-menu",
       (GCallback) &TabView_signal_setup_menu_callback,
       (GCallback) &TabView_signal_setup_menu_callback};
@@ -307,28 +307,28 @@ namespace
 } // namespace
 
 auto
-Glib::Value<Adw::TabViewShortcuts>::value_type () -> GType
+glib::Value<adw::TabViewShortcuts>::value_type () -> GType
 {
   return adw_tab_view_shortcuts_get_type ();
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (AdwTabView* object, bool take_copy) -> Adw::TabView*
+  wrap (AdwTabView* object, bool take_copy) -> adw::TabView*
   {
-    return dynamic_cast<Adw::TabView*> (
-        Glib::wrap_auto ((GObject*) (object), take_copy));
+    return dynamic_cast<adw::TabView*> (
+        glib::wrap_auto ((GObject*) (object), take_copy));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Adw
+namespace adw
 {
 
   auto
-  TabView_Class::init () -> const Glib::Class&
+  TabView_Class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -339,30 +339,30 @@ namespace Adw
   }
 
   auto
-  TabView_Class::wrap_new (GObject* o) -> Glib::ObjectBase*
+  TabView_Class::wrap_new (GObject* o) -> glib::ObjectBase*
   {
     return manage (new TabView ((AdwTabView*) (o)));
   }
 
-  TabView::TabView (const Glib::ConstructParams& construct_params)
-    : Gtk::Widget (construct_params)
+  TabView::TabView (const glib::ConstructParams& construct_params)
+    : gtk::Widget (construct_params)
   {
   }
 
   TabView::TabView (AdwTabView* castitem)
-    : Gtk::Widget ((GtkWidget*) (castitem))
+    : gtk::Widget ((GtkWidget*) (castitem))
   {
   }
 
   TabView::TabView (TabView&& src) noexcept
-    : Gtk::Widget (std::move (src))
+    : gtk::Widget (std::move (src))
   {
   }
 
   auto
   TabView::operator= (TabView&& src) noexcept -> TabView&
   {
-    Gtk::Widget::operator= (std::move (src));
+    gtk::Widget::operator= (std::move (src));
     return *this;
   }
 
@@ -386,29 +386,29 @@ namespace Adw
   }
 
   TabView::TabView ()
-    : Glib::ObjectBase (nullptr),
-      Gtk::Widget (Glib::ConstructParams (tabview_class_.init ()))
+    : glib::ObjectBase (nullptr),
+      gtk::Widget (glib::ConstructParams (tabview_class_.init ()))
   {
   }
 
   auto
-  TabView::add_page (Gtk::Widget* child, const Glib::RefPtr<TabPage>& parent) -> Glib::RefPtr<TabPage>
+  TabView::add_page (gtk::Widget* child, const glib::RefPtr<TabPage>& parent) -> glib::RefPtr<TabPage>
   {
     auto retvalue =
-        Glib::wrap (adw_tab_view_add_page (gobj (),
-                                           (GtkWidget*) Glib::unwrap (child),
-                                           Glib::unwrap (parent)));
+        glib::wrap (adw_tab_view_add_page (gobj (),
+                                           (GtkWidget*) glib::unwrap (child),
+                                           glib::unwrap (parent)));
     if (retvalue)
       retvalue->reference ();
     return retvalue;
   }
 
   auto
-  TabView::add_page (Gtk::Widget* child) -> Glib::RefPtr<TabPage>
+  TabView::add_page (gtk::Widget* child) -> glib::RefPtr<TabPage>
   {
     auto retvalue =
-        Glib::wrap (adw_tab_view_add_page (gobj (),
-                                           (GtkWidget*) Glib::unwrap (child),
+        glib::wrap (adw_tab_view_add_page (gobj (),
+                                           (GtkWidget*) glib::unwrap (child),
                                            nullptr));
     if (retvalue)
       retvalue->reference ();
@@ -423,62 +423,62 @@ namespace Adw
   }
 
   auto
-  TabView::append (Gtk::Widget* child) -> Glib::RefPtr<TabPage>
+  TabView::append (gtk::Widget* child) -> glib::RefPtr<TabPage>
   {
-    auto retvalue = Glib::wrap (
-        adw_tab_view_append (gobj (), (GtkWidget*) Glib::unwrap (child)));
+    auto retvalue = glib::wrap (
+        adw_tab_view_append (gobj (), (GtkWidget*) glib::unwrap (child)));
     if (retvalue)
       retvalue->reference ();
     return retvalue;
   }
 
   auto
-  TabView::append_pinned (Gtk::Widget* child) -> Glib::RefPtr<TabPage>
+  TabView::append_pinned (gtk::Widget* child) -> glib::RefPtr<TabPage>
   {
-    auto retvalue = Glib::wrap (
+    auto retvalue = glib::wrap (
         adw_tab_view_append_pinned (gobj (),
-                                    (GtkWidget*) Glib::unwrap (child)));
+                                    (GtkWidget*) glib::unwrap (child)));
     if (retvalue)
       retvalue->reference ();
     return retvalue;
   }
 
   auto
-  TabView::close_other_pages (const Glib::RefPtr<TabPage>& page) -> void
+  TabView::close_other_pages (const glib::RefPtr<TabPage>& page) -> void
   {
-    adw_tab_view_close_other_pages (gobj (), Glib::unwrap (page));
+    adw_tab_view_close_other_pages (gobj (), glib::unwrap (page));
   }
 
   auto
-  TabView::close_page (const Glib::RefPtr<TabPage>& page) -> void
+  TabView::close_page (const glib::RefPtr<TabPage>& page) -> void
   {
-    adw_tab_view_close_page (gobj (), Glib::unwrap (page));
+    adw_tab_view_close_page (gobj (), glib::unwrap (page));
   }
 
   auto
-  TabView::close_page_finish (const Glib::RefPtr<TabPage>& page, bool confirm) -> void
+  TabView::close_page_finish (const glib::RefPtr<TabPage>& page, bool confirm) -> void
   {
     adw_tab_view_close_page_finish (gobj (),
-                                    Glib::unwrap (page),
+                                    glib::unwrap (page),
                                     static_cast<int> (confirm));
   }
 
   auto
-  TabView::close_pages_after (const Glib::RefPtr<TabPage>& page) -> void
+  TabView::close_pages_after (const glib::RefPtr<TabPage>& page) -> void
   {
-    adw_tab_view_close_pages_after (gobj (), Glib::unwrap (page));
+    adw_tab_view_close_pages_after (gobj (), glib::unwrap (page));
   }
 
   auto
-  TabView::close_pages_before (const Glib::RefPtr<TabPage>& page) -> void
+  TabView::close_pages_before (const glib::RefPtr<TabPage>& page) -> void
   {
-    adw_tab_view_close_pages_before (gobj (), Glib::unwrap (page));
+    adw_tab_view_close_pages_before (gobj (), glib::unwrap (page));
   }
 
   auto
-  TabView::get_default_icon () const -> Glib::RefPtr<Gio::Icon>
+  TabView::get_default_icon () const -> glib::RefPtr<gio::Icon>
   {
-    auto retvalue = Glib::wrap (
+    auto retvalue = glib::wrap (
         adw_tab_view_get_default_icon (const_cast<AdwTabView*> (gobj ())));
     if (retvalue)
       retvalue->reference ();
@@ -493,9 +493,9 @@ namespace Adw
   }
 
   auto
-  TabView::get_menu_model () const -> Glib::RefPtr<Gio::MenuModel>
+  TabView::get_menu_model () const -> glib::RefPtr<gio::MenuModel>
   {
-    auto retvalue = Glib::wrap (
+    auto retvalue = glib::wrap (
         adw_tab_view_get_menu_model (const_cast<AdwTabView*> (gobj ())));
     if (retvalue)
       retvalue->reference ();
@@ -515,9 +515,9 @@ namespace Adw
   }
 
   auto
-  TabView::get_nth_page (int position) const -> Glib::RefPtr<TabPage>
+  TabView::get_nth_page (int position) const -> glib::RefPtr<TabPage>
   {
-    auto retvalue = Glib::wrap (
+    auto retvalue = glib::wrap (
         adw_tab_view_get_nth_page (const_cast<AdwTabView*> (gobj ()),
                                    position));
     if (retvalue)
@@ -526,27 +526,27 @@ namespace Adw
   }
 
   auto
-  TabView::get_page (Gtk::Widget* child) const -> Glib::RefPtr<TabPage>
+  TabView::get_page (gtk::Widget* child) const -> glib::RefPtr<TabPage>
   {
     auto retvalue =
-        Glib::wrap (adw_tab_view_get_page (const_cast<AdwTabView*> (gobj ()),
-                                           (GtkWidget*) Glib::unwrap (child)));
+        glib::wrap (adw_tab_view_get_page (const_cast<AdwTabView*> (gobj ()),
+                                           (GtkWidget*) glib::unwrap (child)));
     if (retvalue)
       retvalue->reference ();
     return retvalue;
   }
 
   auto
-  TabView::get_page_position (const Glib::RefPtr<TabPage>& page) const -> int
+  TabView::get_page_position (const glib::RefPtr<TabPage>& page) const -> int
   {
     return adw_tab_view_get_page_position (const_cast<AdwTabView*> (gobj ()),
-                                           Glib::unwrap (page));
+                                           glib::unwrap (page));
   }
 
   auto
-  TabView::get_selected_page () const -> Glib::RefPtr<TabPage>
+  TabView::get_selected_page () const -> glib::RefPtr<TabPage>
   {
-    auto retvalue = Glib::wrap (
+    auto retvalue = glib::wrap (
         adw_tab_view_get_selected_page (const_cast<AdwTabView*> (gobj ())));
     if (retvalue)
       retvalue->reference ();
@@ -561,11 +561,11 @@ namespace Adw
   }
 
   auto
-  TabView::insert (Gtk::Widget* child, int position) -> Glib::RefPtr<TabPage>
+  TabView::insert (gtk::Widget* child, int position) -> glib::RefPtr<TabPage>
   {
     auto retvalue =
-        Glib::wrap (adw_tab_view_insert (gobj (),
-                                         (GtkWidget*) Glib::unwrap (child),
+        glib::wrap (adw_tab_view_insert (gobj (),
+                                         (GtkWidget*) glib::unwrap (child),
                                          position));
     if (retvalue)
       retvalue->reference ();
@@ -573,11 +573,11 @@ namespace Adw
   }
 
   auto
-  TabView::insert_pinned (Gtk::Widget* child, int position) -> Glib::RefPtr<TabPage>
+  TabView::insert_pinned (gtk::Widget* child, int position) -> glib::RefPtr<TabPage>
   {
-    auto retvalue = Glib::wrap (
+    auto retvalue = glib::wrap (
         adw_tab_view_insert_pinned (gobj (),
-                                    (GtkWidget*) Glib::unwrap (child),
+                                    (GtkWidget*) glib::unwrap (child),
                                     position));
     if (retvalue)
       retvalue->reference ();
@@ -585,21 +585,21 @@ namespace Adw
   }
 
   auto
-  TabView::prepend (Gtk::Widget* child) -> Glib::RefPtr<TabPage>
+  TabView::prepend (gtk::Widget* child) -> glib::RefPtr<TabPage>
   {
-    auto retvalue = Glib::wrap (
-        adw_tab_view_prepend (gobj (), (GtkWidget*) Glib::unwrap (child)));
+    auto retvalue = glib::wrap (
+        adw_tab_view_prepend (gobj (), (GtkWidget*) glib::unwrap (child)));
     if (retvalue)
       retvalue->reference ();
     return retvalue;
   }
 
   auto
-  TabView::prepend_pinned (Gtk::Widget* child) -> Glib::RefPtr<TabPage>
+  TabView::prepend_pinned (gtk::Widget* child) -> glib::RefPtr<TabPage>
   {
-    auto retvalue = Glib::wrap (
+    auto retvalue = glib::wrap (
         adw_tab_view_prepend_pinned (gobj (),
-                                     (GtkWidget*) Glib::unwrap (child)));
+                                     (GtkWidget*) glib::unwrap (child)));
     if (retvalue)
       retvalue->reference ();
     return retvalue;
@@ -614,33 +614,33 @@ namespace Adw
   }
 
   auto
-  TabView::reorder_backward (const Glib::RefPtr<TabPage>& page) -> bool
+  TabView::reorder_backward (const glib::RefPtr<TabPage>& page) -> bool
   {
-    return adw_tab_view_reorder_backward (gobj (), Glib::unwrap (page));
+    return adw_tab_view_reorder_backward (gobj (), glib::unwrap (page));
   }
 
   auto
-  TabView::reorder_first (const Glib::RefPtr<TabPage>& page) -> bool
+  TabView::reorder_first (const glib::RefPtr<TabPage>& page) -> bool
   {
-    return adw_tab_view_reorder_first (gobj (), Glib::unwrap (page));
+    return adw_tab_view_reorder_first (gobj (), glib::unwrap (page));
   }
 
   auto
-  TabView::reorder_forward (const Glib::RefPtr<TabPage>& page) -> bool
+  TabView::reorder_forward (const glib::RefPtr<TabPage>& page) -> bool
   {
-    return adw_tab_view_reorder_forward (gobj (), Glib::unwrap (page));
+    return adw_tab_view_reorder_forward (gobj (), glib::unwrap (page));
   }
 
   auto
-  TabView::reorder_last (const Glib::RefPtr<TabPage>& page) -> bool
+  TabView::reorder_last (const glib::RefPtr<TabPage>& page) -> bool
   {
-    return adw_tab_view_reorder_last (gobj (), Glib::unwrap (page));
+    return adw_tab_view_reorder_last (gobj (), glib::unwrap (page));
   }
 
   auto
-  TabView::reorder_page (const Glib::RefPtr<TabPage>& page, int position) -> bool
+  TabView::reorder_page (const glib::RefPtr<TabPage>& page, int position) -> bool
   {
-    return adw_tab_view_reorder_page (gobj (), Glib::unwrap (page), position);
+    return adw_tab_view_reorder_page (gobj (), glib::unwrap (page), position);
   }
 
   auto
@@ -656,31 +656,31 @@ namespace Adw
   }
 
   auto
-  TabView::set_default_icon (const Glib::RefPtr<Gio::Icon>& default_icon) -> void
+  TabView::set_default_icon (const glib::RefPtr<gio::Icon>& default_icon) -> void
   {
     adw_tab_view_set_default_icon (
         gobj (),
-        const_cast<GIcon*> (Glib::unwrap<Gio::Icon> (default_icon)));
+        const_cast<GIcon*> (glib::unwrap<gio::Icon> (default_icon)));
   }
 
   auto
-  TabView::set_menu_model (const Glib::RefPtr<Gio::MenuModel>& menu_model) -> void
+  TabView::set_menu_model (const glib::RefPtr<gio::MenuModel>& menu_model) -> void
   {
-    adw_tab_view_set_menu_model (gobj (), Glib::unwrap (menu_model));
+    adw_tab_view_set_menu_model (gobj (), glib::unwrap (menu_model));
   }
 
   auto
-  TabView::set_page_pinned (const Glib::RefPtr<TabPage>& page, bool pinned) -> void
+  TabView::set_page_pinned (const glib::RefPtr<TabPage>& page, bool pinned) -> void
   {
     adw_tab_view_set_page_pinned (gobj (),
-                                  Glib::unwrap (page),
+                                  glib::unwrap (page),
                                   static_cast<int> (pinned));
   }
 
   auto
-  TabView::set_selected_page (const Glib::RefPtr<TabPage>& selected_page) -> void
+  TabView::set_selected_page (const glib::RefPtr<TabPage>& selected_page) -> void
   {
-    adw_tab_view_set_selected_page (gobj (), Glib::unwrap (selected_page));
+    adw_tab_view_set_selected_page (gobj (), glib::unwrap (selected_page));
   }
 
   auto
@@ -691,180 +691,180 @@ namespace Adw
   }
 
   auto
-  TabView::transfer_page (const Glib::RefPtr<TabPage>& page,
+  TabView::transfer_page (const glib::RefPtr<TabPage>& page,
                           TabView* other_view,
                           int position) -> void
   {
     adw_tab_view_transfer_page (gobj (),
-                                Glib::unwrap (page),
-                                (AdwTabView*) Glib::unwrap (other_view),
+                                glib::unwrap (page),
+                                (AdwTabView*) glib::unwrap (other_view),
                                 position);
   }
 
   auto
-  TabView::signal_close_page () -> Glib::SignalProxy<bool (const Glib::RefPtr<TabPage>&)>
+  TabView::signal_close_page () -> glib::SignalProxy<bool (const glib::RefPtr<TabPage>&)>
   {
-    return Glib::SignalProxy<bool (const Glib::RefPtr<TabPage>&)> (
+    return glib::SignalProxy<bool (const glib::RefPtr<TabPage>&)> (
         this,
         &TabView_signal_close_page_info);
   }
 
   auto
-  TabView::signal_create_window () -> Glib::SignalProxy<TabView*()>
+  TabView::signal_create_window () -> glib::SignalProxy<TabView*()>
   {
-    return Glib::SignalProxy<TabView*()> (this,
+    return glib::SignalProxy<TabView*()> (this,
                                           &TabView_signal_create_window_info);
   }
 
   auto
-  TabView::signal_indicator_activated () -> Glib::SignalProxy<void (const Glib::RefPtr<TabPage>&)>
+  TabView::signal_indicator_activated () -> glib::SignalProxy<void (const glib::RefPtr<TabPage>&)>
   {
-    return Glib::SignalProxy<void (const Glib::RefPtr<TabPage>&)> (
+    return glib::SignalProxy<void (const glib::RefPtr<TabPage>&)> (
         this,
         &TabView_signal_indicator_activated_info);
   }
 
   auto
-  TabView::signal_page_attached () -> Glib::SignalProxy<void (const Glib::RefPtr<TabPage>&, int)>
+  TabView::signal_page_attached () -> glib::SignalProxy<void (const glib::RefPtr<TabPage>&, int)>
   {
-    return Glib::SignalProxy<void (const Glib::RefPtr<TabPage>&, int)> (
+    return glib::SignalProxy<void (const glib::RefPtr<TabPage>&, int)> (
         this,
         &TabView_signal_page_attached_info);
   }
 
   auto
-  TabView::signal_page_detached () -> Glib::SignalProxy<void (const Glib::RefPtr<TabPage>&, int)>
+  TabView::signal_page_detached () -> glib::SignalProxy<void (const glib::RefPtr<TabPage>&, int)>
   {
-    return Glib::SignalProxy<void (const Glib::RefPtr<TabPage>&, int)> (
+    return glib::SignalProxy<void (const glib::RefPtr<TabPage>&, int)> (
         this,
         &TabView_signal_page_detached_info);
   }
 
   auto
-  TabView::signal_page_reordered () -> Glib::SignalProxy<void (const Glib::RefPtr<TabPage>&, int)>
+  TabView::signal_page_reordered () -> glib::SignalProxy<void (const glib::RefPtr<TabPage>&, int)>
   {
-    return Glib::SignalProxy<void (const Glib::RefPtr<TabPage>&, int)> (
+    return glib::SignalProxy<void (const glib::RefPtr<TabPage>&, int)> (
         this,
         &TabView_signal_page_reordered_info);
   }
 
   auto
-  TabView::signal_setup_menu () -> Glib::SignalProxy<void (const Glib::RefPtr<TabPage>&)>
+  TabView::signal_setup_menu () -> glib::SignalProxy<void (const glib::RefPtr<TabPage>&)>
   {
-    return Glib::SignalProxy<void (const Glib::RefPtr<TabPage>&)> (
+    return glib::SignalProxy<void (const glib::RefPtr<TabPage>&)> (
         this,
         &TabView_signal_setup_menu_info);
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<
-          Glib::RefPtr<Gio::Icon>>::value,
-      "Type Glib::RefPtr<Gio::Icon> cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      glib::Traits::ValueCompatibleWithWrapProperty<
+          glib::RefPtr<gio::Icon>>::value,
+      "Type glib::RefPtr<gio::Icon> cannot be used in _WRAP_PROPERTY. "
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  TabView::property_default_icon () -> Glib::PropertyProxy<Glib::RefPtr<Gio::Icon>>
+  TabView::property_default_icon () -> glib::PropertyProxy<glib::RefPtr<gio::Icon>>
   {
-    return Glib::PropertyProxy<Glib::RefPtr<Gio::Icon>> (this, "default-icon");
+    return glib::PropertyProxy<glib::RefPtr<gio::Icon>> (this, "default-icon");
   }
 
   auto
-  TabView::property_default_icon () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gio::Icon>>
+  TabView::property_default_icon () const -> glib::PropertyProxy_ReadOnly<glib::RefPtr<gio::Icon>>
   {
-    return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gio::Icon>> (
+    return glib::PropertyProxy_ReadOnly<glib::RefPtr<gio::Icon>> (
         this,
         "default-icon");
   }
 
   auto
-  TabView::property_is_transferring_page () const -> Glib::PropertyProxy_ReadOnly<bool>
+  TabView::property_is_transferring_page () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "is-transferring-page");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "is-transferring-page");
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<
-          Glib::RefPtr<Gio::MenuModel>>::value,
-      "Type Glib::RefPtr<Gio::MenuModel> cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      glib::Traits::ValueCompatibleWithWrapProperty<
+          glib::RefPtr<gio::MenuModel>>::value,
+      "Type glib::RefPtr<gio::MenuModel> cannot be used in _WRAP_PROPERTY. "
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  TabView::property_menu_model () -> Glib::PropertyProxy<Glib::RefPtr<Gio::MenuModel>>
+  TabView::property_menu_model () -> glib::PropertyProxy<glib::RefPtr<gio::MenuModel>>
   {
-    return Glib::PropertyProxy<Glib::RefPtr<Gio::MenuModel>> (this,
+    return glib::PropertyProxy<glib::RefPtr<gio::MenuModel>> (this,
                                                               "menu-model");
   }
 
   auto
-  TabView::property_menu_model () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gio::MenuModel>>
+  TabView::property_menu_model () const -> glib::PropertyProxy_ReadOnly<glib::RefPtr<gio::MenuModel>>
   {
-    return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gio::MenuModel>> (
+    return glib::PropertyProxy_ReadOnly<glib::RefPtr<gio::MenuModel>> (
         this,
         "menu-model");
   }
 
   auto
-  TabView::property_n_pages () const -> Glib::PropertyProxy_ReadOnly<int>
+  TabView::property_n_pages () const -> glib::PropertyProxy_ReadOnly<int>
   {
-    return Glib::PropertyProxy_ReadOnly<int> (this, "n-pages");
+    return glib::PropertyProxy_ReadOnly<int> (this, "n-pages");
   }
 
   auto
-  TabView::property_n_pinned_pages () const -> Glib::PropertyProxy_ReadOnly<int>
+  TabView::property_n_pinned_pages () const -> glib::PropertyProxy_ReadOnly<int>
   {
-    return Glib::PropertyProxy_ReadOnly<int> (this, "n-pinned-pages");
+    return glib::PropertyProxy_ReadOnly<int> (this, "n-pinned-pages");
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<
-          Glib::RefPtr<Gtk::SelectionModel>>::value,
-      "Type Glib::RefPtr<Gtk::SelectionModel> cannot be used in "
+      glib::Traits::ValueCompatibleWithWrapProperty<
+          glib::RefPtr<gtk::SelectionModel>>::value,
+      "Type glib::RefPtr<gtk::SelectionModel> cannot be used in "
       "_WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  TabView::property_pages () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gtk::SelectionModel>>
+  TabView::property_pages () const -> glib::PropertyProxy_ReadOnly<glib::RefPtr<gtk::SelectionModel>>
   {
-    return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gtk::SelectionModel>> (
+    return glib::PropertyProxy_ReadOnly<glib::RefPtr<gtk::SelectionModel>> (
         this,
         "pages");
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<
-          Glib::RefPtr<TabPage>>::value,
-      "Type Glib::RefPtr<TabPage> cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      glib::Traits::ValueCompatibleWithWrapProperty<
+          glib::RefPtr<TabPage>>::value,
+      "Type glib::RefPtr<TabPage> cannot be used in _WRAP_PROPERTY. "
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  TabView::property_selected_page () -> Glib::PropertyProxy<Glib::RefPtr<TabPage>>
+  TabView::property_selected_page () -> glib::PropertyProxy<glib::RefPtr<TabPage>>
   {
-    return Glib::PropertyProxy<Glib::RefPtr<TabPage>> (this, "selected-page");
+    return glib::PropertyProxy<glib::RefPtr<TabPage>> (this, "selected-page");
   }
 
   auto
-  TabView::property_selected_page () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<TabPage>>
+  TabView::property_selected_page () const -> glib::PropertyProxy_ReadOnly<glib::RefPtr<TabPage>>
   {
-    return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<TabPage>> (
+    return glib::PropertyProxy_ReadOnly<glib::RefPtr<TabPage>> (
         this,
         "selected-page");
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<TabViewShortcuts>::value,
+      glib::Traits::ValueCompatibleWithWrapProperty<TabViewShortcuts>::value,
       "Type TabViewShortcuts cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  TabView::property_shortcuts () -> Glib::PropertyProxy<TabViewShortcuts>
+  TabView::property_shortcuts () -> glib::PropertyProxy<TabViewShortcuts>
   {
-    return Glib::PropertyProxy<TabViewShortcuts> (this, "shortcuts");
+    return glib::PropertyProxy<TabViewShortcuts> (this, "shortcuts");
   }
 
   auto
-  TabView::property_shortcuts () const -> Glib::PropertyProxy_ReadOnly<TabViewShortcuts>
+  TabView::property_shortcuts () const -> glib::PropertyProxy_ReadOnly<TabViewShortcuts>
   {
-    return Glib::PropertyProxy_ReadOnly<TabViewShortcuts> (this, "shortcuts");
+    return glib::PropertyProxy_ReadOnly<TabViewShortcuts> (this, "shortcuts");
   }
 
-} // namespace Adw
+} // namespace adw

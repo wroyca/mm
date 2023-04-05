@@ -23,22 +23,22 @@ using GtkNativeClass = struct _GtkNativeClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT Native_Class;
 }
 #endif
 
-namespace Gdk
+namespace gdk
 {
   class LIBMM_GTK_SYMEXPORT Surface;
 }
 
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT Widget;
 
-  class LIBMM_GTK_SYMEXPORT Native : public Glib::Interface
+  class LIBMM_GTK_SYMEXPORT Native : public glib::Interface
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -62,7 +62,7 @@ namespace Gtk
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
-    explicit Native (const Glib::Interface_Class& interface_class);
+    explicit Native (const glib::Interface_Class& interface_class);
 
   public:
     explicit Native (GtkNative* castitem);
@@ -109,14 +109,14 @@ namespace Gtk
     unrealize () -> void;
 
     static auto
-    get_for_surface (const Glib::RefPtr<const Gdk::Surface>& surface)
+    get_for_surface (const glib::RefPtr<const gdk::Surface>& surface)
         -> Native*;
 
     auto
-    get_surface () -> Glib::RefPtr<Gdk::Surface>;
+    get_surface () -> glib::RefPtr<gdk::Surface>;
 
     auto
-    get_surface () const -> Glib::RefPtr<const Gdk::Surface>;
+    get_surface () const -> glib::RefPtr<const gdk::Surface>;
 
     auto
     get_surface_transform (double& x, double& y) -> void;
@@ -126,13 +126,13 @@ namespace Gtk
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkNative* object, bool take_copy = false) -> Glib::RefPtr<Gtk::Native>;
+  wrap (GtkNative* object, bool take_copy = false) -> glib::RefPtr<gtk::Native>;
 
-} // namespace Glib
+} // namespace glib
 
 #endif

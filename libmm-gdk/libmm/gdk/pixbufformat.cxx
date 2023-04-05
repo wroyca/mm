@@ -7,7 +7,7 @@
 
 #include <gdk-pixbuf/gdk-pixbuf.h>
 
-namespace Gdk
+namespace gdk
 {
 
   PixbufFormat::PixbufFormat ()
@@ -15,24 +15,24 @@ namespace Gdk
   {
   }
 
-} // namespace Gdk
+} // namespace gdk
 
 namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GdkPixbufFormat* object, bool take_copy) -> Gdk::PixbufFormat
+  wrap (GdkPixbufFormat* object, bool take_copy) -> gdk::PixbufFormat
   {
-    return Gdk::PixbufFormat (object, take_copy);
+    return gdk::PixbufFormat (object, take_copy);
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gdk
+namespace gdk
 {
 
   auto
@@ -94,40 +94,40 @@ namespace Gdk
   }
 
   auto
-  PixbufFormat::get_name () const -> Glib::ustring
+  PixbufFormat::get_name () const -> glib::ustring
   {
-    return Glib::convert_return_gchar_ptr_to_ustring (
+    return glib::convert_return_gchar_ptr_to_ustring (
         gdk_pixbuf_format_get_name (const_cast<GdkPixbufFormat*> (gobj ())));
   }
 
   auto
-  PixbufFormat::get_description () const -> Glib::ustring
+  PixbufFormat::get_description () const -> glib::ustring
   {
-    return Glib::convert_return_gchar_ptr_to_ustring (
+    return glib::convert_return_gchar_ptr_to_ustring (
         gdk_pixbuf_format_get_description (
             const_cast<GdkPixbufFormat*> (gobj ())));
   }
 
   auto
-  PixbufFormat::get_mime_types () const -> std::vector<Glib::ustring>
+  PixbufFormat::get_mime_types () const -> std::vector<glib::ustring>
   {
-    return Glib::ArrayHandler<Glib::ustring>::array_to_vector (
+    return glib::ArrayHandler<glib::ustring>::array_to_vector (
         gdk_pixbuf_format_get_mime_types (
             const_cast<GdkPixbufFormat*> (gobj ())),
-        Glib::OWNERSHIP_DEEP);
+        glib::OWNERSHIP_DEEP);
   }
 
   auto
-  PixbufFormat::get_extensions () const -> std::vector<Glib::ustring>
+  PixbufFormat::get_extensions () const -> std::vector<glib::ustring>
   {
-    return Glib::ArrayHandler<Glib::ustring>::array_to_vector (
+    return glib::ArrayHandler<glib::ustring>::array_to_vector (
         gdk_pixbuf_format_get_extensions (
             const_cast<GdkPixbufFormat*> (gobj ())),
-        Glib::OWNERSHIP_DEEP);
+        glib::OWNERSHIP_DEEP);
   }
 
   auto
-  PixbufFormat::is_save_option_supported (const Glib::ustring& option_key) const -> bool
+  PixbufFormat::is_save_option_supported (const glib::ustring& option_key) const -> bool
   {
     return gdk_pixbuf_format_is_save_option_supported (
         const_cast<GdkPixbufFormat*> (gobj ()),
@@ -162,10 +162,10 @@ namespace Gdk
   }
 
   auto
-  PixbufFormat::get_license () const -> Glib::ustring
+  PixbufFormat::get_license () const -> glib::ustring
   {
-    return Glib::convert_return_gchar_ptr_to_ustring (
+    return glib::convert_return_gchar_ptr_to_ustring (
         gdk_pixbuf_format_get_license (const_cast<GdkPixbufFormat*> (gobj ())));
   }
 
-} // namespace Gdk
+} // namespace gdk

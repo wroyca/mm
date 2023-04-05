@@ -8,7 +8,7 @@
 #include <libmm/cairo/enums.hxx>
 #include <stdexcept>
 
-namespace Cairo
+namespace cairo
 {
 
   class logic_error : public std::logic_error
@@ -24,6 +24,6 @@ namespace Cairo
     ErrorStatus m_status;
   };
 
-} // namespace Cairo
+} // namespace cairo
 
 #endif

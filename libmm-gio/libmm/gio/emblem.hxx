@@ -15,16 +15,16 @@ using GEmblemClass = struct _GEmblemClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gio
+namespace gio
 {
   class LIBMM_GIO_SYMEXPORT Emblem_Class;
 }
 #endif
 
-namespace Gio
+namespace gio
 {
 
-  class LIBMM_GIO_SYMEXPORT Emblem : public Glib::Object,
+  class LIBMM_GIO_SYMEXPORT Emblem : public glib::Object,
                            public Icon
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -44,7 +44,7 @@ namespace Gio
     static CppClassType emblem_class_;
 
   protected:
-    explicit Emblem (const Glib::ConstructParams& construct_params);
+    explicit Emblem (const glib::ConstructParams& construct_params);
     explicit Emblem (GEmblem* castitem);
 
 #endif
@@ -91,23 +91,23 @@ namespace Gio
     };
 
   protected:
-    explicit Emblem (const Glib::RefPtr<Icon>& icon);
+    explicit Emblem (const glib::RefPtr<Icon>& icon);
 
-    explicit Emblem (const Glib::RefPtr<Icon>& icon, Origin origin);
+    explicit Emblem (const glib::RefPtr<Icon>& icon, Origin origin);
 
   public:
     static auto
-    create (const Glib::RefPtr<Icon>& icon) -> Glib::RefPtr<Emblem>;
+    create (const glib::RefPtr<Icon>& icon) -> glib::RefPtr<Emblem>;
 
     static auto
-    create (const Glib::RefPtr<Icon>& icon, Origin origin)
-        -> Glib::RefPtr<Emblem>;
+    create (const glib::RefPtr<Icon>& icon, Origin origin)
+        -> glib::RefPtr<Emblem>;
 
     auto
-    get_icon () -> Glib::RefPtr<Icon>;
+    get_icon () -> glib::RefPtr<Icon>;
 
     auto
-    get_icon () const -> Glib::RefPtr<const Icon>;
+    get_icon () const -> glib::RefPtr<const Icon>;
 
     auto
     get_origin () const -> Origin;
@@ -117,14 +117,14 @@ namespace Gio
   protected:
   };
 
-} // namespace Gio
+} // namespace gio
 
-namespace Glib
+namespace glib
 {
 
   LIBMM_GIO_SYMEXPORT
   auto
-  wrap (GEmblem* object, bool take_copy = false) -> Glib::RefPtr<Gio::Emblem>;
-} // namespace Glib
+  wrap (GEmblem* object, bool take_copy = false) -> glib::RefPtr<gio::Emblem>;
+} // namespace glib
 
 #endif

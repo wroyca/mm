@@ -18,17 +18,17 @@ using GtkStackPageClass = struct _GtkStackPageClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT StackPage_Class;
 }
 #endif
 
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT Widget;
 
-  class LIBMM_GTK_SYMEXPORT StackPage : public Glib::Object,
+  class LIBMM_GTK_SYMEXPORT StackPage : public glib::Object,
                               public Accessible
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -48,7 +48,7 @@ namespace Gtk
     static CppClassType stackpage_class_;
 
   protected:
-    explicit StackPage (const Glib::ConstructParams& construct_params);
+    explicit StackPage (const glib::ConstructParams& construct_params);
     explicit StackPage (GtkStackPage* castitem);
 
 #endif
@@ -111,73 +111,73 @@ namespace Gtk
     set_use_underline (bool setting = true) -> void;
 
     auto
-    get_name () const -> Glib::ustring;
+    get_name () const -> glib::ustring;
 
     auto
-    set_name (const Glib::ustring& setting) -> void;
+    set_name (const glib::ustring& setting) -> void;
 
     auto
-    get_title () const -> Glib::ustring;
+    get_title () const -> glib::ustring;
 
     auto
-    set_title (const Glib::ustring& setting) -> void;
+    set_title (const glib::ustring& setting) -> void;
 
     auto
-    get_icon_name () const -> Glib::ustring;
+    get_icon_name () const -> glib::ustring;
 
     auto
-    set_icon_name (const Glib::ustring& setting) -> void;
+    set_icon_name (const glib::ustring& setting) -> void;
 
     auto
-    property_child () const -> Glib::PropertyProxy_ReadOnly<Widget*>;
+    property_child () const -> glib::PropertyProxy_ReadOnly<Widget*>;
 
     auto
-    property_name () -> Glib::PropertyProxy<Glib::ustring>;
+    property_name () -> glib::PropertyProxy<glib::ustring>;
 
     auto
-    property_name () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+    property_name () const -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
     auto
-    property_title () -> Glib::PropertyProxy<Glib::ustring>;
+    property_title () -> glib::PropertyProxy<glib::ustring>;
 
     auto
-    property_title () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+    property_title () const -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
     auto
-    property_icon_name () -> Glib::PropertyProxy<Glib::ustring>;
+    property_icon_name () -> glib::PropertyProxy<glib::ustring>;
 
     auto
-    property_icon_name () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+    property_icon_name () const -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
     auto
-    property_needs_attention () -> Glib::PropertyProxy<bool>;
+    property_needs_attention () -> glib::PropertyProxy<bool>;
 
     auto
-    property_needs_attention () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_needs_attention () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_visible () -> Glib::PropertyProxy<bool>;
+    property_visible () -> glib::PropertyProxy<bool>;
 
     auto
-    property_visible () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_visible () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_use_underline () -> Glib::PropertyProxy<bool>;
+    property_use_underline () -> glib::PropertyProxy<bool>;
 
     auto
-    property_use_underline () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_use_underline () const -> glib::PropertyProxy_ReadOnly<bool>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkStackPage* object, bool take_copy = false) -> Glib::RefPtr<Gtk::StackPage>;
-} // namespace Glib
+  wrap (GtkStackPage* object, bool take_copy = false) -> glib::RefPtr<gtk::StackPage>;
+} // namespace glib
 
 #endif

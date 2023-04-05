@@ -18,22 +18,22 @@ using GtkMediaStreamClass = struct _GtkMediaStreamClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT MediaStream_Class;
 }
 #endif
 
-namespace Glib
+namespace glib
 {
   class LIBMM_GTK_SYMEXPORT Error;
 }
 
-namespace Gtk
+namespace gtk
 {
 
-  class LIBMM_GTK_SYMEXPORT MediaStream : public Glib::Object,
-                                public Gdk::Paintable
+  class LIBMM_GTK_SYMEXPORT MediaStream : public glib::Object,
+                                public gdk::Paintable
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -52,7 +52,7 @@ namespace Gtk
     static CppClassType mediastream_class_;
 
   protected:
-    explicit MediaStream (const Glib::ConstructParams& construct_params);
+    explicit MediaStream (const glib::ConstructParams& construct_params);
     explicit MediaStream (GtkMediaStream* castitem);
 
 #endif
@@ -94,7 +94,7 @@ namespace Gtk
     is_prepared () const -> bool;
 
     auto
-    get_error () const -> Glib::Error;
+    get_error () const -> glib::Error;
 
     auto
     has_audio () const -> bool;
@@ -151,10 +151,10 @@ namespace Gtk
     set_volume (double volume) -> void;
 
     auto
-    realize (const Glib::RefPtr<Gdk::Surface>& surface) -> void;
+    realize (const glib::RefPtr<gdk::Surface>& surface) -> void;
 
     auto
-    unrealize (const Glib::RefPtr<Gdk::Surface>& surface) -> void;
+    unrealize (const glib::RefPtr<gdk::Surface>& surface) -> void;
 
 #ifndef GTKMM_DISABLE_DEPRECATED
 
@@ -197,61 +197,61 @@ namespace Gtk
     seek_failed () -> void;
 
     auto
-    set_error (const Glib::Error& error) -> void;
+    set_error (const glib::Error& error) -> void;
 
     auto
-    property_prepared () -> Glib::PropertyProxy<bool>;
+    property_prepared () -> glib::PropertyProxy<bool>;
 
     auto
-    property_prepared () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_prepared () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_error () const -> Glib::PropertyProxy_ReadOnly<Glib::Error>;
+    property_error () const -> glib::PropertyProxy_ReadOnly<glib::Error>;
 
     auto
-    property_has_audio () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_has_audio () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_has_video () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_has_video () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_playing () -> Glib::PropertyProxy<bool>;
+    property_playing () -> glib::PropertyProxy<bool>;
 
     auto
-    property_playing () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_playing () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_ended () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_ended () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_timestamp () const -> Glib::PropertyProxy_ReadOnly<gint64>;
+    property_timestamp () const -> glib::PropertyProxy_ReadOnly<gint64>;
 
     auto
-    property_duration () const -> Glib::PropertyProxy_ReadOnly<gint64>;
+    property_duration () const -> glib::PropertyProxy_ReadOnly<gint64>;
 
     auto
-    property_seekable () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_seekable () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_seeking () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_seeking () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_loop () -> Glib::PropertyProxy<bool>;
+    property_loop () -> glib::PropertyProxy<bool>;
 
     auto
-    property_loop () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_loop () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_muted () -> Glib::PropertyProxy<bool>;
+    property_muted () -> glib::PropertyProxy<bool>;
 
     auto
-    property_muted () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_muted () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_volume () -> Glib::PropertyProxy<double>;
+    property_volume () -> glib::PropertyProxy<double>;
 
     auto
-    property_volume () const -> Glib::PropertyProxy_ReadOnly<double>;
+    property_volume () const -> glib::PropertyProxy_ReadOnly<double>;
 
   protected:
     virtual auto
@@ -267,22 +267,22 @@ namespace Gtk
     update_audio_vfunc (bool muted, double volume) -> void;
 
     virtual auto
-    realize_vfunc (const Glib::RefPtr<Gdk::Surface>& surface) -> void;
+    realize_vfunc (const glib::RefPtr<gdk::Surface>& surface) -> void;
 
     virtual auto
-    unrealize_vfunc (const Glib::RefPtr<Gdk::Surface>& surface) -> void;
+    unrealize_vfunc (const glib::RefPtr<gdk::Surface>& surface) -> void;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkMediaStream* object, bool take_copy = false) -> Glib::RefPtr<Gtk::MediaStream>;
-} // namespace Glib
+  wrap (GtkMediaStream* object, bool take_copy = false) -> glib::RefPtr<gtk::MediaStream>;
+} // namespace glib
 
 #endif

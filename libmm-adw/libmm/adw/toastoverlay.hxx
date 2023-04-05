@@ -17,16 +17,16 @@
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Adw
+namespace adw
 {
   class LIBMM_ADW_SYMEXPORT ToastOverlay_Class;
 }
 #endif
 
-namespace Adw
+namespace adw
 {
 
-  class LIBMM_ADW_SYMEXPORT ToastOverlay : public Gtk::Widget
+  class LIBMM_ADW_SYMEXPORT ToastOverlay : public gtk::Widget
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -53,7 +53,7 @@ namespace Adw
     static CppClassType toastoverlay_class_;
 
   protected:
-    explicit ToastOverlay (const Glib::ConstructParams& construct_params);
+    explicit ToastOverlay (const glib::ConstructParams& construct_params);
     explicit ToastOverlay (AdwToastOverlay* castitem);
 
 #endif
@@ -88,29 +88,29 @@ namespace Adw
     add_toast (Toast* toast) -> void;
 
     auto
-    get_child () const -> Gtk::Widget*;
+    get_child () const -> gtk::Widget*;
 
     auto
-    set_child (Gtk::Widget* child) -> void;
+    set_child (gtk::Widget* child) -> void;
 
     auto
-    property_child () -> Glib::PropertyProxy<Gtk::Widget*>;
+    property_child () -> glib::PropertyProxy<gtk::Widget*>;
 
     auto
-    property_child () const -> Glib::PropertyProxy_ReadOnly<Gtk::Widget*>;
+    property_child () const -> glib::PropertyProxy_ReadOnly<gtk::Widget*>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Adw
+} // namespace adw
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (AdwToastOverlay* object, bool take_copy = false) -> Adw::ToastOverlay*;
+  wrap (AdwToastOverlay* object, bool take_copy = false) -> adw::ToastOverlay*;
 }
 
 #endif

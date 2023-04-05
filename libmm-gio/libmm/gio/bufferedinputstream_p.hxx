@@ -7,10 +7,10 @@
 
 #include <libmm/glib/class.hxx>
 
-namespace Gio
+namespace gio
 {
 
-  class LIBMM_GIO_SYMEXPORT BufferedInputStream_Class : public Glib::Class
+  class LIBMM_GIO_SYMEXPORT BufferedInputStream_Class : public glib::Class
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -30,7 +30,7 @@ namespace Gio
     class_init_function (void* g_class, void* class_data) -> void;
 
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
 
   protected:
     static auto
@@ -40,6 +40,6 @@ namespace Gio
                          GError** error) -> gssize;
   };
 
-} // namespace Gio
+} // namespace gio
 
 #endif

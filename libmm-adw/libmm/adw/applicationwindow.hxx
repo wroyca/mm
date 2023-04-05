@@ -16,16 +16,16 @@ using AdwApplicationWindowClass = struct _AdwApplicationWindowClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Adw
+namespace adw
 {
   class LIBMM_ADW_SYMEXPORT ApplicationWindow_Class;
 }
 #endif
 
-namespace Adw
+namespace adw
 {
 
-  class LIBMM_ADW_SYMEXPORT ApplicationWindow : public Gtk::ApplicationWindow
+  class LIBMM_ADW_SYMEXPORT ApplicationWindow : public gtk::ApplicationWindow
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -52,7 +52,7 @@ namespace Adw
     static CppClassType applicationwindow_class_;
 
   protected:
-    explicit ApplicationWindow (const Glib::ConstructParams& construct_params);
+    explicit ApplicationWindow (const glib::ConstructParams& construct_params);
     explicit ApplicationWindow (AdwApplicationWindow* castitem);
 
 #endif
@@ -85,32 +85,32 @@ namespace Adw
 
   public:
     explicit ApplicationWindow (
-        const Glib::RefPtr<Gtk::Application>& application);
+        const glib::RefPtr<gtk::Application>& application);
 
     auto
-    get_content () const -> Gtk::Widget*;
+    get_content () const -> gtk::Widget*;
 
     auto
-    set_content (Gtk::Widget* content) -> void;
+    set_content (gtk::Widget* content) -> void;
 
     auto
-    property_content () -> Glib::PropertyProxy<Gtk::Widget*>;
+    property_content () -> glib::PropertyProxy<gtk::Widget*>;
 
     auto
-    property_content () const -> Glib::PropertyProxy_ReadOnly<Gtk::Widget*>;
+    property_content () const -> glib::PropertyProxy_ReadOnly<gtk::Widget*>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Adw
+} // namespace adw
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (AdwApplicationWindow* object, bool take_copy = false) -> Adw::ApplicationWindow*;
+  wrap (AdwApplicationWindow* object, bool take_copy = false) -> adw::ApplicationWindow*;
 }
 
 #endif

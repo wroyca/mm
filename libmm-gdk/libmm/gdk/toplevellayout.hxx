@@ -9,7 +9,7 @@
 #include <libmm/gdk/monitor.hxx>
 #include <libmm/glib/refptr.hxx>
 
-namespace Gdk
+namespace gdk
 {
 
   class LIBMM_GDK_SYMEXPORT ToplevelLayout final
@@ -48,20 +48,20 @@ namespace Gdk
   private:
   public:
     static auto
-    create () -> Glib::RefPtr<ToplevelLayout>;
+    create () -> glib::RefPtr<ToplevelLayout>;
 
     auto
-    copy () const -> Glib::RefPtr<ToplevelLayout>;
+    copy () const -> glib::RefPtr<ToplevelLayout>;
 
     auto
-    equal (const Glib::RefPtr<const ToplevelLayout>& other) const -> bool;
+    equal (const glib::RefPtr<const ToplevelLayout>& other) const -> bool;
 
     auto
     set_maximized (bool maximized = true) -> void;
 
     auto
     set_fullscreen (bool fullscreen = true,
-                    const Glib::RefPtr<Monitor>& monitor = {}) -> void;
+                    const glib::RefPtr<Monitor>& monitor = {}) -> void;
 
     auto
     get_maximized (bool& maximized) const -> bool;
@@ -70,10 +70,10 @@ namespace Gdk
     get_fullscreen (bool& fullscreen) const -> bool;
 
     auto
-    get_fullscreen_monitor () -> Glib::RefPtr<Monitor>;
+    get_fullscreen_monitor () -> glib::RefPtr<Monitor>;
 
     auto
-    get_fullscreen_monitor () const -> Glib::RefPtr<const Monitor>;
+    get_fullscreen_monitor () const -> glib::RefPtr<const Monitor>;
 
     auto
     set_resizable (bool resizable = true) -> void;
@@ -82,13 +82,13 @@ namespace Gdk
     get_resizable () const -> bool;
   };
 
-} // namespace Gdk
+} // namespace gdk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GDK_SYMEXPORT auto
-  wrap (GdkToplevelLayout* object, bool take_copy = false) -> Glib::RefPtr<Gdk::ToplevelLayout>;
+  wrap (GdkToplevelLayout* object, bool take_copy = false) -> glib::RefPtr<gdk::ToplevelLayout>;
 
-} // namespace Glib
+} // namespace glib
 
 #endif

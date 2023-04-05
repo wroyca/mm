@@ -18,13 +18,13 @@ namespace
                                    const gpointer user_data) -> int
     {
       const auto slot =
-          static_cast<Gio::ListStoreBase::SlotCompare*> (user_data);
+          static_cast<gio::ListStoreBase::SlotCompare*> (user_data);
 
-      const Glib::RefPtr<const Glib::ObjectBase> item_a = Glib::wrap (
-          static_cast<Glib::Object::BaseObjectType*> (const_cast<gpointer> (a)),
+      const glib::RefPtr<const glib::ObjectBase> item_a = glib::wrap (
+          static_cast<glib::Object::BaseObjectType*> (const_cast<gpointer> (a)),
           true);
-      const Glib::RefPtr<const Glib::ObjectBase> item_b = Glib::wrap (
-          static_cast<Glib::Object::BaseObjectType*> (const_cast<gpointer> (b)),
+      const glib::RefPtr<const glib::ObjectBase> item_b = glib::wrap (
+          static_cast<glib::Object::BaseObjectType*> (const_cast<gpointer> (b)),
           true);
 
       return (*slot) (item_a, item_b);
@@ -35,13 +35,13 @@ namespace
                                  const gconstpointer b,
                                  const gpointer user_data) -> gboolean
     {
-      const auto slot = static_cast<Gio::ListStoreBase::SlotEqual*> (user_data);
+      const auto slot = static_cast<gio::ListStoreBase::SlotEqual*> (user_data);
 
-      const Glib::RefPtr<const Glib::ObjectBase> item_a = Glib::wrap (
-          static_cast<Glib::Object::BaseObjectType*> (const_cast<gpointer> (a)),
+      const glib::RefPtr<const glib::ObjectBase> item_a = glib::wrap (
+          static_cast<glib::Object::BaseObjectType*> (const_cast<gpointer> (a)),
           true);
-      const Glib::RefPtr<const Glib::ObjectBase> item_b = Glib::wrap (
-          static_cast<Glib::Object::BaseObjectType*> (const_cast<gpointer> (b)),
+      const glib::RefPtr<const glib::ObjectBase> item_b = glib::wrap (
+          static_cast<glib::Object::BaseObjectType*> (const_cast<gpointer> (b)),
           true);
 
       return (*slot) (item_a, item_b);
@@ -49,12 +49,12 @@ namespace
   }
 } // namespace
 
-namespace Gio
+namespace gio
 {
   auto
   ListStoreBase::splice (const guint position,
                          const guint n_removals,
-                         const std::vector<Glib::RefPtr<ObjectBase>>& additions) -> void
+                         const std::vector<glib::RefPtr<ObjectBase>>& additions) -> void
   {
     const std::size_t n_additions = additions.size ();
     std::unique_ptr<gpointer[]> g_additions{new gpointer[n_additions]};
@@ -70,7 +70,7 @@ namespace Gio
   }
 
   auto
-  ListStoreBase::find (const Glib::RefPtr<const ObjectBase>& item) const -> std::pair<bool, unsigned int>
+  ListStoreBase::find (const glib::RefPtr<const ObjectBase>& item) const -> std::pair<bool, unsigned int>
   {
     unsigned int position = std::numeric_limits<unsigned int>::max ();
     bool result = g_list_store_find (const_cast<GListStore*> (gobj ()),
@@ -80,7 +80,7 @@ namespace Gio
   }
 
   auto
-  ListStoreBase::find (const Glib::RefPtr<const ObjectBase>& item,
+  ListStoreBase::find (const glib::RefPtr<const ObjectBase>& item,
                        const SlotEqual& slot) const -> std::pair<bool, unsigned int>
   {
     const auto slot_ptr = const_cast<SlotEqual*> (&slot);
@@ -95,26 +95,26 @@ namespace Gio
     return {result, position};
   }
 
-} // namespace Gio
+} // namespace gio
 
 namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GListStore* object, const bool take_copy) -> RefPtr<Gio::ListStoreBase>
+  wrap (GListStore* object, const bool take_copy) -> RefPtr<gio::ListStoreBase>
   {
-    return Glib::make_refptr_for_instance<Gio::ListStoreBase> (
-        dynamic_cast<Gio::ListStoreBase*> (
+    return glib::make_refptr_for_instance<gio::ListStoreBase> (
+        dynamic_cast<gio::ListStoreBase*> (
             wrap_auto ((GObject*) object, take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gio
+namespace gio
 {
 
   auto
@@ -138,7 +138,7 @@ namespace Gio
   }
 
   auto
-  ListStoreBase_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  ListStoreBase_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new ListStoreBase ((GListStore*) object);
   }
@@ -150,7 +150,7 @@ namespace Gio
     return gobj ();
   }
 
-  ListStoreBase::ListStoreBase (const Glib::ConstructParams& construct_params)
+  ListStoreBase::ListStoreBase (const glib::ConstructParams& construct_params)
     : Object (construct_params)
   {
   }
@@ -192,7 +192,7 @@ namespace Gio
 
   ListStoreBase::ListStoreBase (const GType item_type)
     : ObjectBase (nullptr),
-      Object (Glib::ConstructParams (liststorebase_class_.init (),
+      Object (glib::ConstructParams (liststorebase_class_.init (),
                                      "item_type",
                                      item_type,
                                      nullptr))
@@ -200,21 +200,21 @@ namespace Gio
   }
 
   auto
-  ListStoreBase::create (const GType item_type) -> Glib::RefPtr<ListStoreBase>
+  ListStoreBase::create (const GType item_type) -> glib::RefPtr<ListStoreBase>
   {
-    return Glib::make_refptr_for_instance<ListStoreBase> (
+    return glib::make_refptr_for_instance<ListStoreBase> (
         new ListStoreBase (item_type));
   }
 
   auto
   ListStoreBase::insert (const guint position,
-                         const Glib::RefPtr<ObjectBase>& item) -> void
+                         const glib::RefPtr<ObjectBase>& item) -> void
   {
     g_list_store_insert (gobj (), position, item->gobj ());
   }
 
   auto
-  ListStoreBase::insert_sorted (const Glib::RefPtr<ObjectBase>& item,
+  ListStoreBase::insert_sorted (const glib::RefPtr<ObjectBase>& item,
                                 const SlotCompare& slot) -> guint
   {
     const auto slot_copy = const_cast<SlotCompare*> (&slot);
@@ -234,7 +234,7 @@ namespace Gio
   }
 
   auto
-  ListStoreBase::append (const Glib::RefPtr<ObjectBase>& item) -> void
+  ListStoreBase::append (const glib::RefPtr<ObjectBase>& item) -> void
   {
     g_list_store_append (gobj (), item->gobj ());
   }
@@ -252,20 +252,20 @@ namespace Gio
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<GType>::value,
+      glib::Traits::ValueCompatibleWithWrapProperty<GType>::value,
       "Type GType cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  ListStoreBase::property_item_type () const -> Glib::PropertyProxy_ReadOnly<GType>
+  ListStoreBase::property_item_type () const -> glib::PropertyProxy_ReadOnly<GType>
   {
     return {this, "item-type"};
   }
 
   auto
-  ListStoreBase::property_n_items () const -> Glib::PropertyProxy_ReadOnly<unsigned int>
+  ListStoreBase::property_n_items () const -> glib::PropertyProxy_ReadOnly<unsigned int>
   {
     return {this, "n-items"};
   }
 
-} // namespace Gio
+} // namespace gio

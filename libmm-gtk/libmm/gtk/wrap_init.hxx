@@ -5,7 +5,7 @@
 
 #include <libmm/gtk/mm-gtkconfig.hxx>
 
-namespace Gtk
+namespace gtk
 {
 
 #define GDK_DISABLE_DEPRECATION_WARNINGS 1
@@ -13,6 +13,6 @@ namespace Gtk
   LIBMM_GTK_SYMEXPORT auto
   wrap_init () -> void;
 
-} // namespace Gtk
+} // namespace gtk
 
 #endif

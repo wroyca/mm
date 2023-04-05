@@ -11,24 +11,24 @@ namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GtkGridLayout* object, bool take_copy) -> Glib::RefPtr<Gtk::GridLayout>
+  wrap (GtkGridLayout* object, bool take_copy) -> glib::RefPtr<gtk::GridLayout>
   {
-    return Glib::make_refptr_for_instance<Gtk::GridLayout> (
-        dynamic_cast<Gtk::GridLayout*> (
-            Glib::wrap_auto ((GObject*) (object), take_copy)));
+    return glib::make_refptr_for_instance<gtk::GridLayout> (
+        dynamic_cast<gtk::GridLayout*> (
+            glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gtk
+namespace gtk
 {
 
   auto
-  GridLayout_Class::init () -> const Glib::Class&
+  GridLayout_Class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -48,7 +48,7 @@ namespace Gtk
   }
 
   auto
-  GridLayout_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  GridLayout_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new GridLayout ((GtkGridLayout*) object);
   }
@@ -60,7 +60,7 @@ namespace Gtk
     return gobj ();
   }
 
-  GridLayout::GridLayout (const Glib::ConstructParams& construct_params)
+  GridLayout::GridLayout (const glib::ConstructParams& construct_params)
     : LayoutManager (construct_params)
   {
   }
@@ -99,15 +99,15 @@ namespace Gtk
   }
 
   GridLayout::GridLayout ()
-    : Glib::ObjectBase (nullptr),
-      LayoutManager (Glib::ConstructParams (gridlayout_class_.init ()))
+    : glib::ObjectBase (nullptr),
+      LayoutManager (glib::ConstructParams (gridlayout_class_.init ()))
   {
   }
 
   auto
-  GridLayout::create () -> Glib::RefPtr<GridLayout>
+  GridLayout::create () -> glib::RefPtr<GridLayout>
   {
-    return Glib::make_refptr_for_instance<GridLayout> (new GridLayout ());
+    return glib::make_refptr_for_instance<GridLayout> (new GridLayout ());
   }
 
   auto
@@ -196,63 +196,63 @@ namespace Gtk
   }
 
   auto
-  GridLayout::property_row_spacing () -> Glib::PropertyProxy<int>
+  GridLayout::property_row_spacing () -> glib::PropertyProxy<int>
   {
-    return Glib::PropertyProxy<int> (this, "row-spacing");
+    return glib::PropertyProxy<int> (this, "row-spacing");
   }
 
   auto
-  GridLayout::property_row_spacing () const -> Glib::PropertyProxy_ReadOnly<int>
+  GridLayout::property_row_spacing () const -> glib::PropertyProxy_ReadOnly<int>
   {
-    return Glib::PropertyProxy_ReadOnly<int> (this, "row-spacing");
+    return glib::PropertyProxy_ReadOnly<int> (this, "row-spacing");
   }
 
   auto
-  GridLayout::property_column_spacing () -> Glib::PropertyProxy<int>
+  GridLayout::property_column_spacing () -> glib::PropertyProxy<int>
   {
-    return Glib::PropertyProxy<int> (this, "column-spacing");
+    return glib::PropertyProxy<int> (this, "column-spacing");
   }
 
   auto
-  GridLayout::property_column_spacing () const -> Glib::PropertyProxy_ReadOnly<int>
+  GridLayout::property_column_spacing () const -> glib::PropertyProxy_ReadOnly<int>
   {
-    return Glib::PropertyProxy_ReadOnly<int> (this, "column-spacing");
+    return glib::PropertyProxy_ReadOnly<int> (this, "column-spacing");
   }
 
   auto
-  GridLayout::property_row_homogeneous () -> Glib::PropertyProxy<bool>
+  GridLayout::property_row_homogeneous () -> glib::PropertyProxy<bool>
   {
-    return Glib::PropertyProxy<bool> (this, "row-homogeneous");
+    return glib::PropertyProxy<bool> (this, "row-homogeneous");
   }
 
   auto
-  GridLayout::property_row_homogeneous () const -> Glib::PropertyProxy_ReadOnly<bool>
+  GridLayout::property_row_homogeneous () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "row-homogeneous");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "row-homogeneous");
   }
 
   auto
-  GridLayout::property_column_homogeneous () -> Glib::PropertyProxy<bool>
+  GridLayout::property_column_homogeneous () -> glib::PropertyProxy<bool>
   {
-    return Glib::PropertyProxy<bool> (this, "column-homogeneous");
+    return glib::PropertyProxy<bool> (this, "column-homogeneous");
   }
 
   auto
-  GridLayout::property_column_homogeneous () const -> Glib::PropertyProxy_ReadOnly<bool>
+  GridLayout::property_column_homogeneous () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "column-homogeneous");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "column-homogeneous");
   }
 
   auto
-  GridLayout::property_baseline_row () -> Glib::PropertyProxy<int>
+  GridLayout::property_baseline_row () -> glib::PropertyProxy<int>
   {
-    return Glib::PropertyProxy<int> (this, "baseline-row");
+    return glib::PropertyProxy<int> (this, "baseline-row");
   }
 
   auto
-  GridLayout::property_baseline_row () const -> Glib::PropertyProxy_ReadOnly<int>
+  GridLayout::property_baseline_row () const -> glib::PropertyProxy_ReadOnly<int>
   {
-    return Glib::PropertyProxy_ReadOnly<int> (this, "baseline-row");
+    return glib::PropertyProxy_ReadOnly<int> (this, "baseline-row");
   }
 
-} // namespace Gtk
+} // namespace gtk

@@ -6,7 +6,7 @@
 #include <libmm/cairo/script.hxx>
 #include <libmm/cairo/surface.hxx>
 
-namespace Cairo
+namespace cairo
 {
 
 #ifdef CAIRO_HAS_SCRIPT_SURFACE
@@ -31,6 +31,6 @@ namespace Cairo
 
 #endif
 
-} // namespace Cairo
+} // namespace cairo
 
 #endif

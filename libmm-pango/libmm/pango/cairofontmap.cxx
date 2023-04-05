@@ -11,20 +11,20 @@ namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (PangoCairoFontMap* object, const bool take_copy) -> RefPtr<Pango::CairoFontMap>
+  wrap (PangoCairoFontMap* object, const bool take_copy) -> RefPtr<pango::CairoFontMap>
   {
-    return Glib::make_refptr_for_instance<Pango::CairoFontMap> (
-        Glib::wrap_auto_interface<Pango::CairoFontMap> ((GObject*) object,
+    return glib::make_refptr_for_instance<pango::CairoFontMap> (
+        glib::wrap_auto_interface<pango::CairoFontMap> ((GObject*) object,
                                                         take_copy));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Pango
+namespace pango
 {
 
   auto
@@ -49,7 +49,7 @@ namespace Pango
   }
 
   auto
-  CairoFontMap_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  CairoFontMap_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new CairoFontMap ((PangoCairoFontMap*) object);
   }
@@ -64,7 +64,7 @@ namespace Pango
   {
   }
 
-  CairoFontMap::CairoFontMap (const Glib::Interface_Class& interface_class)
+  CairoFontMap::CairoFontMap (const glib::Interface_Class& interface_class)
     : Interface (interface_class)
   {
   }
@@ -104,9 +104,9 @@ namespace Pango
   }
 
   auto
-  CairoFontMap::get_default () -> Glib::RefPtr<FontMap>
+  CairoFontMap::get_default () -> glib::RefPtr<FontMap>
   {
-    auto retvalue = Glib::wrap (pango_cairo_font_map_get_default ());
+    auto retvalue = glib::wrap (pango_cairo_font_map_get_default ());
     if (retvalue)
       retvalue->reference ();
     return retvalue;
@@ -119,9 +119,9 @@ namespace Pango
   }
 
   auto
-  CairoFontMap::get_font_type () const -> Cairo::FontType
+  CairoFontMap::get_font_type () const -> cairo::FontType
   {
-    return static_cast<Cairo::FontType> (pango_cairo_font_map_get_font_type (
+    return static_cast<cairo::FontType> (pango_cairo_font_map_get_font_type (
         const_cast<PangoCairoFontMap*> (gobj ())));
   }
 
@@ -138,4 +138,4 @@ namespace Pango
         const_cast<PangoCairoFontMap*> (gobj ()));
   }
 
-} // namespace Pango
+} // namespace pango

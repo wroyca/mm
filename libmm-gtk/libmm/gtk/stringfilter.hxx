@@ -13,13 +13,13 @@
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT StringFilter_Class;
 }
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
   class LIBMM_GTK_SYMEXPORT StringFilter : public Filter
@@ -41,7 +41,7 @@ namespace Gtk
     static CppClassType stringfilter_class_;
 
   protected:
-    explicit StringFilter (const Glib::ConstructParams& construct_params);
+    explicit StringFilter (const glib::ConstructParams& construct_params);
     explicit StringFilter (GtkStringFilter* castitem);
 
 #endif
@@ -80,7 +80,7 @@ namespace Gtk
   private:
   protected:
     explicit StringFilter (
-        const Glib::RefPtr<Expression<Glib::ustring>>& expression);
+        const glib::RefPtr<Expression<glib::ustring>>& expression);
 
   public:
     enum class MatchMode
@@ -91,23 +91,23 @@ namespace Gtk
     };
 
     static auto
-    create (const Glib::RefPtr<Expression<Glib::ustring>>& expression)
-        -> Glib::RefPtr<StringFilter>;
+    create (const glib::RefPtr<Expression<glib::ustring>>& expression)
+        -> glib::RefPtr<StringFilter>;
 
     auto
-    get_search () const -> Glib::ustring;
+    get_search () const -> glib::ustring;
 
     auto
-    set_search (const Glib::ustring& search) -> void;
+    set_search (const glib::ustring& search) -> void;
 
     auto
-    get_expression () -> Glib::RefPtr<Expression<Glib::ustring>>;
+    get_expression () -> glib::RefPtr<Expression<glib::ustring>>;
 
     auto
-    get_expression () const -> Glib::RefPtr<const Expression<Glib::ustring>>;
+    get_expression () const -> glib::RefPtr<const Expression<glib::ustring>>;
 
     auto
-    set_expression (const Glib::RefPtr<Expression<Glib::ustring>>& expression)
+    set_expression (const glib::RefPtr<Expression<glib::ustring>>& expression)
         -> void;
 
     auto
@@ -124,57 +124,57 @@ namespace Gtk
 
     auto
     property_expression ()
-        -> Glib::PropertyProxy<Glib::RefPtr<Expression<Glib::ustring>>>;
+        -> glib::PropertyProxy<glib::RefPtr<Expression<glib::ustring>>>;
 
     auto
-    property_expression () const -> Glib::PropertyProxy_ReadOnly<
-        Glib::RefPtr<Expression<Glib::ustring>>>;
+    property_expression () const -> glib::PropertyProxy_ReadOnly<
+        glib::RefPtr<Expression<glib::ustring>>>;
 
     auto
-    property_ignore_case () -> Glib::PropertyProxy<bool>;
+    property_ignore_case () -> glib::PropertyProxy<bool>;
 
     auto
-    property_ignore_case () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_ignore_case () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_match_mode () -> Glib::PropertyProxy<MatchMode>;
+    property_match_mode () -> glib::PropertyProxy<MatchMode>;
 
     auto
-    property_match_mode () const -> Glib::PropertyProxy_ReadOnly<MatchMode>;
+    property_match_mode () const -> glib::PropertyProxy_ReadOnly<MatchMode>;
 
     auto
-    property_search () -> Glib::PropertyProxy<Glib::ustring>;
+    property_search () -> glib::PropertyProxy<glib::ustring>;
 
     auto
-    property_search () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+    property_search () const -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_GTK_SYMEXPORT Value<Gtk::StringFilter::MatchMode>
-    : public Glib::Value_Enum<Gtk::StringFilter::MatchMode>
+  class LIBMM_GTK_SYMEXPORT Value<gtk::StringFilter::MatchMode>
+    : public glib::Value_Enum<gtk::StringFilter::MatchMode>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkStringFilter* object, bool take_copy = false) -> Glib::RefPtr<Gtk::StringFilter>;
-} // namespace Glib
+  wrap (GtkStringFilter* object, bool take_copy = false) -> glib::RefPtr<gtk::StringFilter>;
+} // namespace glib
 
 #endif

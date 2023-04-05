@@ -13,13 +13,13 @@
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT GridLayout_Class;
 }
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
   class LIBMM_GTK_SYMEXPORT GridLayout : public LayoutManager
@@ -41,7 +41,7 @@ namespace Gtk
     static CppClassType gridlayout_class_;
 
   protected:
-    explicit GridLayout (const Glib::ConstructParams& construct_params);
+    explicit GridLayout (const glib::ConstructParams& construct_params);
     explicit GridLayout (GtkGridLayout* castitem);
 
 #endif
@@ -83,7 +83,7 @@ namespace Gtk
 
   public:
     static auto
-    create () -> Glib::RefPtr<GridLayout>;
+    create () -> glib::RefPtr<GridLayout>;
 
     auto
     set_row_homogeneous (bool homogeneous = true) -> void;
@@ -122,46 +122,46 @@ namespace Gtk
     get_baseline_row () const -> int;
 
     auto
-    property_row_spacing () -> Glib::PropertyProxy<int>;
+    property_row_spacing () -> glib::PropertyProxy<int>;
 
     auto
-    property_row_spacing () const -> Glib::PropertyProxy_ReadOnly<int>;
+    property_row_spacing () const -> glib::PropertyProxy_ReadOnly<int>;
 
     auto
-    property_column_spacing () -> Glib::PropertyProxy<int>;
+    property_column_spacing () -> glib::PropertyProxy<int>;
 
     auto
-    property_column_spacing () const -> Glib::PropertyProxy_ReadOnly<int>;
+    property_column_spacing () const -> glib::PropertyProxy_ReadOnly<int>;
 
     auto
-    property_row_homogeneous () -> Glib::PropertyProxy<bool>;
+    property_row_homogeneous () -> glib::PropertyProxy<bool>;
 
     auto
-    property_row_homogeneous () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_row_homogeneous () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_column_homogeneous () -> Glib::PropertyProxy<bool>;
+    property_column_homogeneous () -> glib::PropertyProxy<bool>;
 
     auto
-    property_column_homogeneous () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_column_homogeneous () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_baseline_row () -> Glib::PropertyProxy<int>;
+    property_baseline_row () -> glib::PropertyProxy<int>;
 
     auto
-    property_baseline_row () const -> Glib::PropertyProxy_ReadOnly<int>;
+    property_baseline_row () const -> glib::PropertyProxy_ReadOnly<int>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkGridLayout* object, bool take_copy = false) -> Glib::RefPtr<Gtk::GridLayout>;
-} // namespace Glib
+  wrap (GtkGridLayout* object, bool take_copy = false) -> glib::RefPtr<gtk::GridLayout>;
+} // namespace glib
 
 #endif

@@ -22,16 +22,16 @@ using GtkApplicationClass = struct _GtkApplicationClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT Application_Class;
 }
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
-  class LIBMM_GTK_SYMEXPORT Application : public Gio::Application
+  class LIBMM_GTK_SYMEXPORT Application : public gio::Application
   {
   protected:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -51,7 +51,7 @@ namespace Gtk
     static CppClassType application_class_;
 
   protected:
-    explicit Application (const Glib::ConstructParams& construct_params);
+    explicit Application (const glib::ConstructParams& construct_params);
     explicit Application (GtkApplication* castitem);
 
 #endif
@@ -90,8 +90,8 @@ namespace Gtk
   private:
   protected:
     explicit Application (
-        const Glib::ustring& application_id = {},
-        Gio::Application::Flags flags = Gio::Application::Flags::NONE);
+        const glib::ustring& application_id = {},
+        gio::Application::Flags flags = gio::Application::Flags::NONE);
 
   public:
     enum class InhibitFlags
@@ -103,9 +103,9 @@ namespace Gtk
     };
 
     static auto
-    create (const Glib::ustring& application_id = {},
-            Gio::Application::Flags flags = Gio::Application::Flags::NONE)
-        -> Glib::RefPtr<Application>;
+    create (const glib::ustring& application_id = {},
+            gio::Application::Flags flags = gio::Application::Flags::NONE)
+        -> glib::RefPtr<Application>;
 
     auto
     get_windows () -> std::vector<Window*>;
@@ -142,16 +142,16 @@ namespace Gtk
     }
 
     auto
-    get_menubar () -> Glib::RefPtr<Gio::MenuModel>;
+    get_menubar () -> glib::RefPtr<gio::MenuModel>;
 
     auto
-    get_menubar () const -> Glib::RefPtr<const Gio::MenuModel>;
+    get_menubar () const -> glib::RefPtr<const gio::MenuModel>;
 
     auto
-    set_menubar (const Glib::RefPtr<Gio::MenuModel>& menubar) -> void;
+    set_menubar (const glib::RefPtr<gio::MenuModel>& menubar) -> void;
 
     auto
-    inhibit (Window& window, InhibitFlags flags, const Glib::ustring& reason)
+    inhibit (Window& window, InhibitFlags flags, const glib::ustring& reason)
         -> guint;
 
     auto
@@ -170,65 +170,65 @@ namespace Gtk
     get_active_window () const -> const Window*;
 
     auto
-    list_action_descriptions () const -> std::vector<Glib::ustring>;
+    list_action_descriptions () const -> std::vector<glib::ustring>;
 
     auto
-    get_accels_for_action (const Glib::ustring& detailed_action_name) const
-        -> std::vector<Glib::ustring>;
+    get_accels_for_action (const glib::ustring& detailed_action_name) const
+        -> std::vector<glib::ustring>;
 
     auto
-    get_actions_for_accel (const Glib::ustring& accel) const
-        -> std::vector<Glib::ustring>;
+    get_actions_for_accel (const glib::ustring& accel) const
+        -> std::vector<glib::ustring>;
 
     auto
-    set_accels_for_action (const Glib::ustring& detailed_action_name,
-                           const std::vector<Glib::ustring>& accels) -> void;
+    set_accels_for_action (const glib::ustring& detailed_action_name,
+                           const std::vector<glib::ustring>& accels) -> void;
 
     auto
-    set_accel_for_action (const Glib::ustring& detailed_action_name,
-                          const Glib::ustring& accel) -> void;
+    set_accel_for_action (const glib::ustring& detailed_action_name,
+                          const glib::ustring& accel) -> void;
 
     auto
-    unset_accels_for_action (const Glib::ustring& detailed_action_name) -> void;
+    unset_accels_for_action (const glib::ustring& detailed_action_name) -> void;
 
     auto
-    get_menu_by_id (const Glib::ustring& id) -> Glib::RefPtr<Gio::Menu>;
+    get_menu_by_id (const glib::ustring& id) -> glib::RefPtr<gio::Menu>;
 
     auto
-    get_menu_by_id (const Glib::ustring& id) const
-        -> Glib::RefPtr<const Gio::Menu>;
+    get_menu_by_id (const glib::ustring& id) const
+        -> glib::RefPtr<const gio::Menu>;
 
     auto
-    property_menubar () -> Glib::PropertyProxy<Glib::RefPtr<Gio::MenuModel>>;
+    property_menubar () -> glib::PropertyProxy<glib::RefPtr<gio::MenuModel>>;
 
     auto
     property_menubar () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gio::MenuModel>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<gio::MenuModel>>;
 
     auto
-    property_register_session () -> Glib::PropertyProxy<bool>;
+    property_register_session () -> glib::PropertyProxy<bool>;
 
     auto
-    property_register_session () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_register_session () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_screensaver_active () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_screensaver_active () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_active_window () const -> Glib::PropertyProxy_ReadOnly<Window*>;
+    property_active_window () const -> glib::PropertyProxy_ReadOnly<Window*>;
 
     auto
-    signal_window_added () -> Glib::SignalProxy<void (Window*)>;
+    signal_window_added () -> glib::SignalProxy<void (Window*)>;
 
     auto
-    signal_window_removed () -> Glib::SignalProxy<void (Window*)>;
+    signal_window_removed () -> glib::SignalProxy<void (Window*)>;
 
     auto
-    signal_query_end () -> Glib::SignalProxy<void ()>;
+    signal_query_end () -> glib::SignalProxy<void ()>;
 
   private:
     auto
-    custom_class_init () -> const Glib::Class&;
+    custom_class_init () -> const glib::Class&;
 
     Window* m_run_window = nullptr;
 
@@ -276,12 +276,12 @@ namespace Gtk
           }
         });
 
-    return Gio::Application::run (argc, argv);
+    return gio::Application::run (argc, argv);
   }
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Gtk
+namespace gtk
 {
 
   inline auto
@@ -332,28 +332,28 @@ namespace Gtk
     return (lhs = static_cast<Application::InhibitFlags> (
                 static_cast<unsigned> (lhs) ^ static_cast<unsigned> (rhs)));
   }
-} // namespace Gtk
+} // namespace gtk
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_GTK_SYMEXPORT Value<Gtk::Application::InhibitFlags>
-    : public Glib::Value_Flags<Gtk::Application::InhibitFlags>
+  class LIBMM_GTK_SYMEXPORT Value<gtk::Application::InhibitFlags>
+    : public glib::Value_Flags<gtk::Application::InhibitFlags>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkApplication* object, bool take_copy = false) -> Glib::RefPtr<Gtk::Application>;
-} // namespace Glib
+  wrap (GtkApplication* object, bool take_copy = false) -> glib::RefPtr<gtk::Application>;
+} // namespace glib
 
 #endif

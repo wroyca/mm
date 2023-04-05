@@ -17,18 +17,18 @@ using GSimpleActionGroupClass = struct _GSimpleActionGroupClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gio
+namespace gio
 {
   class LIBMM_GIO_SYMEXPORT SimpleActionGroup_Class;
 }
 #endif
 
-namespace Gio
+namespace gio
 {
 
   class LIBMM_GIO_SYMEXPORT Action;
 
-  class LIBMM_GIO_SYMEXPORT SimpleActionGroup : public Glib::Object,
+  class LIBMM_GIO_SYMEXPORT SimpleActionGroup : public glib::Object,
                                       public ActionGroup,
                                       public ActionMap
   {
@@ -49,7 +49,7 @@ namespace Gio
     static CppClassType simpleactiongroup_class_;
 
   protected:
-    explicit SimpleActionGroup (const Glib::ConstructParams& construct_params);
+    explicit SimpleActionGroup (const glib::ConstructParams& construct_params);
     explicit SimpleActionGroup (GSimpleActionGroup* castitem);
 
 #endif
@@ -91,21 +91,21 @@ namespace Gio
 
   public:
     static auto
-    create () -> Glib::RefPtr<SimpleActionGroup>;
+    create () -> glib::RefPtr<SimpleActionGroup>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gio
+} // namespace gio
 
-namespace Glib
+namespace glib
 {
 
   LIBMM_GIO_SYMEXPORT
   auto
-  wrap (GSimpleActionGroup* object, bool take_copy = false) -> Glib::RefPtr<Gio::SimpleActionGroup>;
-} // namespace Glib
+  wrap (GSimpleActionGroup* object, bool take_copy = false) -> glib::RefPtr<gio::SimpleActionGroup>;
+} // namespace glib
 
 #endif

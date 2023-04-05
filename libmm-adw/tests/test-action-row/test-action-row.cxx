@@ -4,7 +4,7 @@
  * SPDX-License-Identifier: LGPL-2.1-or-later
  */
 
-#include <libmm/adw/init.hxx> // Adw::init
+#include <libmm/adw/init.hxx> // adw::init
 #include <libmm/adw/mm-adw.hxx>
 
 #include <adwaita.h>
@@ -12,10 +12,10 @@
 static void
 test_adw_action_row_add_remove (void)
 {
-  Adw::ActionRow row;
+  adw::ActionRow row;
 
-  auto* prefix = Gtk::make_managed<Gtk::CheckButton> ();
-  auto* suffix = Gtk::make_managed<Gtk::CheckButton> ();
+  auto* prefix = gtk::make_managed<gtk::CheckButton> ();
+  auto* suffix = gtk::make_managed<gtk::CheckButton> ();
 
   row.add_prefix (*prefix);
   row.add_suffix (*suffix);
@@ -27,7 +27,7 @@ test_adw_action_row_add_remove (void)
 static void
 test_adw_action_row_subtitle (void)
 {
-  Adw::ActionRow row;
+  adw::ActionRow row;
 
   g_assert_true (row.get_subtitle () == "");
 
@@ -42,7 +42,7 @@ test_adw_action_row_subtitle (void)
 static void
 test_adw_action_row_icon_name (void)
 {
-  Adw::ActionRow row;
+  adw::ActionRow row;
 
   g_assert_true (row.get_icon_name () == "");
 
@@ -53,7 +53,7 @@ test_adw_action_row_icon_name (void)
 static void
 test_adw_action_row_title_lines (void)
 {
-  Adw::ActionRow row;
+  adw::ActionRow row;
   g_assert_true (row.get_title_lines () == 0);
 
   g_test_expect_message (
@@ -72,7 +72,7 @@ test_adw_action_row_title_lines (void)
 static void
 test_adw_action_row_subtitle_lines (void)
 {
-  Adw::ActionRow row;
+  adw::ActionRow row;
 
   g_assert_true (row.get_subtitle_lines () == 0);
 
@@ -92,7 +92,7 @@ test_adw_action_row_subtitle_lines (void)
 static void
 test_adw_action_row_activate (void)
 {
-  Adw::ActionRow row;
+  adw::ActionRow row;
 
   int activated = 0;
   row.signal_activated ().connect ([&activated] () { activated++; });
@@ -105,7 +105,7 @@ int
 main (int argc, char* argv[])
 {
   gtk_test_init (&argc, &argv, NULL);
-  Adw::init ();
+  adw::init ();
 
   g_test_add_func ("/Adwaita/ActionRow/add_remove",
                    test_adw_action_row_add_remove);

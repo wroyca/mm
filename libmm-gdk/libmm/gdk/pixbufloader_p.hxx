@@ -7,30 +7,30 @@
 
 #include <libmm/glib/class.hxx>
 
-namespace Gdk
+namespace gdk
 {
 
-  class LIBMM_GDK_SYMEXPORT PixbufLoader_Class : public Glib::Class
+  class LIBMM_GDK_SYMEXPORT PixbufLoader_Class : public glib::Class
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
     using CppObjectType = PixbufLoader;
     using BaseObjectType = GdkPixbufLoader;
     using BaseClassType = GdkPixbufLoaderClass;
-    using CppClassParent = Glib::Object_Class;
+    using CppClassParent = glib::Object_Class;
     using BaseClassParent = GObjectClass;
 
     friend class PixbufLoader;
 #endif
 
     auto
-    init () -> const Glib::Class&;
+    init () -> const glib::Class&;
 
     static auto
     class_init_function (void* g_class, void* class_data) -> void;
 
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
 
   protected:
     static auto
@@ -47,6 +47,6 @@ namespace Gdk
     size_prepared_callback (GdkPixbufLoader* self, gint p0, gint p1) -> void;
   };
 
-} // namespace Gdk
+} // namespace gdk
 
 #endif

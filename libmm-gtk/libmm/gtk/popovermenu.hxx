@@ -15,13 +15,13 @@ using GtkPopoverMenuClass = struct _GtkPopoverMenuClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT PopoverMenu_Class;
 }
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
   class LIBMM_GTK_SYMEXPORT PopoverMenu : public Popover
@@ -51,7 +51,7 @@ namespace Gtk
     static CppClassType popovermenu_class_;
 
   protected:
-    explicit PopoverMenu (const Glib::ConstructParams& construct_params);
+    explicit PopoverMenu (const glib::ConstructParams& construct_params);
     explicit PopoverMenu (GtkPopoverMenu* castitem);
 
 #endif
@@ -85,46 +85,46 @@ namespace Gtk
       NESTED = 1 << 0
     };
 
-    explicit PopoverMenu (const Glib::RefPtr<Gio::MenuModel>& model = {},
+    explicit PopoverMenu (const glib::RefPtr<gio::MenuModel>& model = {},
                           Flags flags = static_cast<Flags> (0));
 
     auto
-    set_menu_model (const Glib::RefPtr<Gio::MenuModel>& model) -> void;
+    set_menu_model (const glib::RefPtr<gio::MenuModel>& model) -> void;
 
     auto
-    get_menu_model () -> Glib::RefPtr<Gio::MenuModel>;
+    get_menu_model () -> glib::RefPtr<gio::MenuModel>;
 
     auto
-    get_menu_model () const -> Glib::RefPtr<const Gio::MenuModel>;
+    get_menu_model () const -> glib::RefPtr<const gio::MenuModel>;
 
     auto
-    add_child (Widget& child, const Glib::ustring& id) -> bool;
+    add_child (Widget& child, const glib::ustring& id) -> bool;
 
     auto
     remove_child (Widget& child) -> bool;
 
     auto
-    property_visible_submenu () -> Glib::PropertyProxy<Glib::ustring>;
+    property_visible_submenu () -> glib::PropertyProxy<glib::ustring>;
 
     auto
     property_visible_submenu () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+        -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
     auto
-    property_menu_model () -> Glib::PropertyProxy<Glib::RefPtr<Gio::MenuModel>>;
+    property_menu_model () -> glib::PropertyProxy<glib::RefPtr<gio::MenuModel>>;
 
     auto
     property_menu_model () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gio::MenuModel>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<gio::MenuModel>>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Gtk
+namespace gtk
 {
 
   inline auto
@@ -174,28 +174,28 @@ namespace Gtk
     return (lhs = static_cast<PopoverMenu::Flags> (
                 static_cast<unsigned> (lhs) ^ static_cast<unsigned> (rhs)));
   }
-} // namespace Gtk
+} // namespace gtk
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_GTK_SYMEXPORT Value<Gtk::PopoverMenu::Flags>
-    : public Glib::Value_Flags<Gtk::PopoverMenu::Flags>
+  class LIBMM_GTK_SYMEXPORT Value<gtk::PopoverMenu::Flags>
+    : public glib::Value_Flags<gtk::PopoverMenu::Flags>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkPopoverMenu* object, bool take_copy = false) -> Gtk::PopoverMenu*;
-} // namespace Glib
+  wrap (GtkPopoverMenu* object, bool take_copy = false) -> gtk::PopoverMenu*;
+} // namespace glib
 
 #endif

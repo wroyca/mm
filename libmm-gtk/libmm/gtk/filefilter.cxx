@@ -11,24 +11,24 @@ namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GtkFileFilter* object, bool take_copy) -> Glib::RefPtr<Gtk::FileFilter>
+  wrap (GtkFileFilter* object, bool take_copy) -> glib::RefPtr<gtk::FileFilter>
   {
-    return Glib::make_refptr_for_instance<Gtk::FileFilter> (
-        dynamic_cast<Gtk::FileFilter*> (
-            Glib::wrap_auto ((GObject*) (object), take_copy)));
+    return glib::make_refptr_for_instance<gtk::FileFilter> (
+        dynamic_cast<gtk::FileFilter*> (
+            glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gtk
+namespace gtk
 {
 
   auto
-  FileFilter_Class::init () -> const Glib::Class&
+  FileFilter_Class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -50,7 +50,7 @@ namespace Gtk
   }
 
   auto
-  FileFilter_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  FileFilter_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new FileFilter ((GtkFileFilter*) object);
   }
@@ -62,18 +62,18 @@ namespace Gtk
     return gobj ();
   }
 
-  FileFilter::FileFilter (const Glib::ConstructParams& construct_params)
-    : Gtk::Filter (construct_params)
+  FileFilter::FileFilter (const glib::ConstructParams& construct_params)
+    : gtk::Filter (construct_params)
   {
   }
 
   FileFilter::FileFilter (GtkFileFilter* castitem)
-    : Gtk::Filter ((GtkFilter*) (castitem))
+    : gtk::Filter ((GtkFilter*) (castitem))
   {
   }
 
   FileFilter::FileFilter (FileFilter&& src) noexcept
-    : Gtk::Filter (std::move (src)),
+    : gtk::Filter (std::move (src)),
       Buildable (std::move (src))
   {
   }
@@ -81,7 +81,7 @@ namespace Gtk
   auto
   FileFilter::operator= (FileFilter&& src) noexcept -> FileFilter&
   {
-    Gtk::Filter::operator= (std::move (src));
+    gtk::Filter::operator= (std::move (src));
     Buildable::operator= (std::move (src));
     return *this;
   }
@@ -103,38 +103,38 @@ namespace Gtk
   }
 
   FileFilter::FileFilter ()
-    : Glib::ObjectBase (nullptr),
-      Gtk::Filter (Glib::ConstructParams (filefilter_class_.init ()))
+    : glib::ObjectBase (nullptr),
+      gtk::Filter (glib::ConstructParams (filefilter_class_.init ()))
   {
   }
 
   auto
-  FileFilter::create () -> Glib::RefPtr<FileFilter>
+  FileFilter::create () -> glib::RefPtr<FileFilter>
   {
-    return Glib::make_refptr_for_instance<FileFilter> (new FileFilter ());
+    return glib::make_refptr_for_instance<FileFilter> (new FileFilter ());
   }
 
   auto
-  FileFilter::set_name (const Glib::ustring& name) -> void
+  FileFilter::set_name (const glib::ustring& name) -> void
   {
     gtk_file_filter_set_name (gobj (), name.c_str ());
   }
 
   auto
-  FileFilter::get_name () const -> Glib::ustring
+  FileFilter::get_name () const -> glib::ustring
   {
-    return Glib::convert_const_gchar_ptr_to_ustring (
+    return glib::convert_const_gchar_ptr_to_ustring (
         gtk_file_filter_get_name (const_cast<GtkFileFilter*> (gobj ())));
   }
 
   auto
-  FileFilter::add_mime_type (const Glib::ustring& mime_type) -> void
+  FileFilter::add_mime_type (const glib::ustring& mime_type) -> void
   {
     gtk_file_filter_add_mime_type (gobj (), mime_type.c_str ());
   }
 
   auto
-  FileFilter::add_pattern (const Glib::ustring& pattern) -> void
+  FileFilter::add_pattern (const glib::ustring& pattern) -> void
   {
     gtk_file_filter_add_pattern (gobj (), pattern.c_str ());
   }
@@ -152,15 +152,15 @@ namespace Gtk
   }
 
   auto
-  FileFilter::property_name () -> Glib::PropertyProxy<Glib::ustring>
+  FileFilter::property_name () -> glib::PropertyProxy<glib::ustring>
   {
-    return Glib::PropertyProxy<Glib::ustring> (this, "name");
+    return glib::PropertyProxy<glib::ustring> (this, "name");
   }
 
   auto
-  FileFilter::property_name () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>
+  FileFilter::property_name () const -> glib::PropertyProxy_ReadOnly<glib::ustring>
   {
-    return Glib::PropertyProxy_ReadOnly<Glib::ustring> (this, "name");
+    return glib::PropertyProxy_ReadOnly<glib::ustring> (this, "name");
   }
 
-} // namespace Gtk
+} // namespace gtk

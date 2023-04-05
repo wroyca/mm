@@ -5,7 +5,7 @@
 
 #include <libmm/glib/variant.hxx>
 
-namespace Glib
+namespace glib
 {
 
   class LIBMM_GLIB_SYMEXPORT VariantDict final
@@ -44,33 +44,33 @@ namespace Glib
   private:
   public:
     static auto
-    create (const VariantBase& from_asv) -> Glib::RefPtr<VariantDict>;
+    create (const VariantBase& from_asv) -> glib::RefPtr<VariantDict>;
 
     static auto
-    create () -> Glib::RefPtr<VariantDict>;
+    create () -> glib::RefPtr<VariantDict>;
 
     auto
-    lookup_value_variant (const Glib::ustring& key,
+    lookup_value_variant (const glib::ustring& key,
                           const VariantType& expected_type,
                           VariantBase& value) const -> bool;
 
     template <typename T_Value>
     auto
-    lookup_value (const Glib::ustring& key, T_Value& value) const -> bool;
+    lookup_value (const glib::ustring& key, T_Value& value) const -> bool;
 
     auto
-    contains (const Glib::ustring& key) const -> bool;
+    contains (const glib::ustring& key) const -> bool;
 
     auto
-    insert_value_variant (const Glib::ustring& key, const VariantBase& value)
+    insert_value_variant (const glib::ustring& key, const VariantBase& value)
         -> void;
 
     template <typename T_Value>
     auto
-    insert_value (const Glib::ustring& key, const T_Value& value) -> void;
+    insert_value (const glib::ustring& key, const T_Value& value) -> void;
 
     auto
-    remove (const Glib::ustring& key) -> bool;
+    remove (const glib::ustring& key) -> bool;
 
     auto
     clear () -> void;
@@ -78,22 +78,22 @@ namespace Glib
 
   template <typename T_Value>
   auto
-  VariantDict::insert_value (const Glib::ustring& key, const T_Value& value) -> void
+  VariantDict::insert_value (const glib::ustring& key, const T_Value& value) -> void
   {
-    using type_glib_variant = Glib::Variant<T_Value>;
+    using type_glib_variant = glib::Variant<T_Value>;
 
     return insert_value_variant (key, type_glib_variant::create (value));
   }
 
   template <typename T_Value>
   auto
-  VariantDict::lookup_value (const Glib::ustring& key, T_Value& value) const -> bool
+  VariantDict::lookup_value (const glib::ustring& key, T_Value& value) const -> bool
   {
     value = T_Value ();
 
-    using type_glib_variant = Glib::Variant<T_Value>;
+    using type_glib_variant = glib::Variant<T_Value>;
 
-    Glib::VariantBase variantBase;
+    glib::VariantBase variantBase;
     const bool result = lookup_value_variant (
         key,
         type_glib_variant::variant_type (),
@@ -115,15 +115,15 @@ namespace Glib
     return result;
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Glib
+namespace glib
 {
 
   LIBMM_GLIB_SYMEXPORT
   auto
-  wrap (GVariantDict* object, bool take_copy = false) -> Glib::RefPtr<Glib::VariantDict>;
+  wrap (GVariantDict* object, bool take_copy = false) -> glib::RefPtr<glib::VariantDict>;
 
-} // namespace Glib
+} // namespace glib
 
 #endif

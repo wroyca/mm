@@ -7,7 +7,7 @@
 
 #include <gio/gio.h>
 
-namespace Gio
+namespace gio
 {
 }
 
@@ -15,20 +15,20 @@ namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GSocketConnectable* object, const bool take_copy) -> RefPtr<Gio::SocketConnectable>
+  wrap (GSocketConnectable* object, const bool take_copy) -> RefPtr<gio::SocketConnectable>
   {
-    return Glib::make_refptr_for_instance<Gio::SocketConnectable> (
-        Glib::wrap_auto_interface<Gio::SocketConnectable> ((GObject*) object,
+    return glib::make_refptr_for_instance<gio::SocketConnectable> (
+        glib::wrap_auto_interface<gio::SocketConnectable> ((GObject*) object,
                                                            take_copy));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gio
+namespace gio
 {
 
   auto
@@ -53,7 +53,7 @@ namespace Gio
   }
 
   auto
-  SocketConnectable_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  SocketConnectable_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new SocketConnectable ((GSocketConnectable*) object);
   }
@@ -69,7 +69,7 @@ namespace Gio
   }
 
   SocketConnectable::SocketConnectable (
-      const Glib::Interface_Class& interface_class)
+      const glib::Interface_Class& interface_class)
     : Interface (interface_class)
   {
   }
@@ -109,35 +109,35 @@ namespace Gio
   }
 
   auto
-  SocketConnectable::enumerate () -> Glib::RefPtr<SocketAddressEnumerator>
+  SocketConnectable::enumerate () -> glib::RefPtr<SocketAddressEnumerator>
   {
-    return Glib::wrap (g_socket_connectable_enumerate (gobj ()));
+    return glib::wrap (g_socket_connectable_enumerate (gobj ()));
   }
 
   auto
-  SocketConnectable::enumerate () const -> Glib::RefPtr<const SocketAddressEnumerator>
+  SocketConnectable::enumerate () const -> glib::RefPtr<const SocketAddressEnumerator>
   {
     return const_cast<SocketConnectable*> (this)->enumerate ();
   }
 
   auto
-  SocketConnectable::proxy_enumerate () -> Glib::RefPtr<SocketAddressEnumerator>
+  SocketConnectable::proxy_enumerate () -> glib::RefPtr<SocketAddressEnumerator>
   {
-    return Glib::wrap (g_socket_connectable_proxy_enumerate (gobj ()));
+    return glib::wrap (g_socket_connectable_proxy_enumerate (gobj ()));
   }
 
   auto
-  SocketConnectable::proxy_enumerate () const -> Glib::RefPtr<const SocketAddressEnumerator>
+  SocketConnectable::proxy_enumerate () const -> glib::RefPtr<const SocketAddressEnumerator>
   {
     return const_cast<SocketConnectable*> (this)->proxy_enumerate ();
   }
 
   auto
-  SocketConnectable::to_string () const -> Glib::ustring
+  SocketConnectable::to_string () const -> glib::ustring
   {
-    return Glib::convert_return_gchar_ptr_to_ustring (
+    return glib::convert_return_gchar_ptr_to_ustring (
         g_socket_connectable_to_string (
             const_cast<GSocketConnectable*> (gobj ())));
   }
 
-} // namespace Gio
+} // namespace gio

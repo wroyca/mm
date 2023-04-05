@@ -7,7 +7,7 @@
 
 #include <libmm/gtk/mm-gtk.hxx>
 
-namespace Adw
+namespace adw
 {
 
 }
@@ -16,23 +16,23 @@ namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (AdwPreferencesWindow* object, bool take_copy) -> Adw::PreferencesWindow*
+  wrap (AdwPreferencesWindow* object, bool take_copy) -> adw::PreferencesWindow*
   {
-    return dynamic_cast<Adw::PreferencesWindow*> (
-        Glib::wrap_auto ((GObject*) (object), take_copy));
+    return dynamic_cast<adw::PreferencesWindow*> (
+        glib::wrap_auto ((GObject*) (object), take_copy));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Adw
+namespace adw
 {
 
   auto
-  PreferencesWindow_Class::init () -> const Glib::Class&
+  PreferencesWindow_Class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -52,31 +52,31 @@ namespace Adw
   }
 
   auto
-  PreferencesWindow_Class::wrap_new (GObject* o) -> Glib::ObjectBase*
+  PreferencesWindow_Class::wrap_new (GObject* o) -> glib::ObjectBase*
   {
     return new PreferencesWindow ((AdwPreferencesWindow*) (o));
   }
 
   PreferencesWindow::PreferencesWindow (
-      const Glib::ConstructParams& construct_params)
-    : Adw::Window (construct_params)
+      const glib::ConstructParams& construct_params)
+    : adw::Window (construct_params)
   {
   }
 
   PreferencesWindow::PreferencesWindow (AdwPreferencesWindow* castitem)
-    : Adw::Window ((AdwWindow*) (castitem))
+    : adw::Window ((AdwWindow*) (castitem))
   {
   }
 
   PreferencesWindow::PreferencesWindow (PreferencesWindow&& src) noexcept
-    : Adw::Window (std::move (src))
+    : adw::Window (std::move (src))
   {
   }
 
   auto
   PreferencesWindow::operator= (PreferencesWindow&& src) noexcept -> PreferencesWindow&
   {
-    Adw::Window::operator= (std::move (src));
+    adw::Window::operator= (std::move (src));
     return *this;
   }
 
@@ -100,8 +100,8 @@ namespace Adw
   }
 
   PreferencesWindow::PreferencesWindow ()
-    : Glib::ObjectBase (nullptr),
-      Adw::Window (Glib::ConstructParams (preferenceswindow_class_.init ()))
+    : glib::ObjectBase (nullptr),
+      adw::Window (glib::ConstructParams (preferenceswindow_class_.init ()))
   {
   }
 
@@ -109,14 +109,14 @@ namespace Adw
   PreferencesWindow::add (PreferencesPage* page) -> void
   {
     adw_preferences_window_add (gobj (),
-                                (AdwPreferencesPage*) Glib::unwrap (page));
+                                (AdwPreferencesPage*) glib::unwrap (page));
   }
 
   auto
   PreferencesWindow::add_toast (Toast* toast) -> void
   {
     adw_preferences_window_add_toast (gobj (),
-                                      (AdwToast*) Glib::unwrap (toast));
+                                      (AdwToast*) glib::unwrap (toast));
   }
 
   auto
@@ -142,31 +142,31 @@ namespace Adw
   auto
   PreferencesWindow::get_visible_page () const -> PreferencesPage*
   {
-    return Glib::wrap (adw_preferences_window_get_visible_page (
+    return glib::wrap (adw_preferences_window_get_visible_page (
         const_cast<AdwPreferencesWindow*> (gobj ())));
   }
 
   auto
-  PreferencesWindow::get_visible_page_name () const -> Glib::ustring
+  PreferencesWindow::get_visible_page_name () const -> glib::ustring
   {
-    return Glib::convert_const_gchar_ptr_to_ustring (
+    return glib::convert_const_gchar_ptr_to_ustring (
         adw_preferences_window_get_visible_page_name (
             const_cast<AdwPreferencesWindow*> (gobj ())));
   }
 
   auto
-  PreferencesWindow::present_subpage (Gtk::Widget* subpage) -> void
+  PreferencesWindow::present_subpage (gtk::Widget* subpage) -> void
   {
     adw_preferences_window_present_subpage (
         gobj (),
-        (GtkWidget*) Glib::unwrap (subpage));
+        (GtkWidget*) glib::unwrap (subpage));
   }
 
   auto
   PreferencesWindow::remove (PreferencesPage* page) -> void
   {
     adw_preferences_window_remove (gobj (),
-                                   (AdwPreferencesPage*) Glib::unwrap (page));
+                                   (AdwPreferencesPage*) glib::unwrap (page));
   }
 
   auto
@@ -190,68 +190,68 @@ namespace Adw
   {
     adw_preferences_window_set_visible_page (
         gobj (),
-        (AdwPreferencesPage*) Glib::unwrap (page));
+        (AdwPreferencesPage*) glib::unwrap (page));
   }
 
   auto
-  PreferencesWindow::set_visible_page_name (const Glib::ustring& name) -> void
+  PreferencesWindow::set_visible_page_name (const glib::ustring& name) -> void
   {
     adw_preferences_window_set_visible_page_name (gobj (), name.c_str ());
   }
 
   auto
-  PreferencesWindow::property_can_navigate_back () -> Glib::PropertyProxy<bool>
+  PreferencesWindow::property_can_navigate_back () -> glib::PropertyProxy<bool>
   {
-    return Glib::PropertyProxy<bool> (this, "can-navigate-back");
+    return glib::PropertyProxy<bool> (this, "can-navigate-back");
   }
 
   auto
-  PreferencesWindow::property_can_navigate_back () const -> Glib::PropertyProxy_ReadOnly<bool>
+  PreferencesWindow::property_can_navigate_back () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "can-navigate-back");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "can-navigate-back");
   }
 
   auto
-  PreferencesWindow::property_search_enabled () -> Glib::PropertyProxy<bool>
+  PreferencesWindow::property_search_enabled () -> glib::PropertyProxy<bool>
   {
-    return Glib::PropertyProxy<bool> (this, "search-enabled");
+    return glib::PropertyProxy<bool> (this, "search-enabled");
   }
 
   auto
-  PreferencesWindow::property_search_enabled () const -> Glib::PropertyProxy_ReadOnly<bool>
+  PreferencesWindow::property_search_enabled () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "search-enabled");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "search-enabled");
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<PreferencesPage*>::value,
+      glib::Traits::ValueCompatibleWithWrapProperty<PreferencesPage*>::value,
       "Type PreferencesPage* cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  PreferencesWindow::property_visible_page () -> Glib::PropertyProxy<PreferencesPage*>
+  PreferencesWindow::property_visible_page () -> glib::PropertyProxy<PreferencesPage*>
   {
-    return Glib::PropertyProxy<PreferencesPage*> (this, "visible-page");
+    return glib::PropertyProxy<PreferencesPage*> (this, "visible-page");
   }
 
   auto
-  PreferencesWindow::property_visible_page () const -> Glib::PropertyProxy_ReadOnly<PreferencesPage*>
+  PreferencesWindow::property_visible_page () const -> glib::PropertyProxy_ReadOnly<PreferencesPage*>
   {
-    return Glib::PropertyProxy_ReadOnly<PreferencesPage*> (this,
+    return glib::PropertyProxy_ReadOnly<PreferencesPage*> (this,
                                                            "visible-page");
   }
 
   auto
-  PreferencesWindow::property_visible_page_name () -> Glib::PropertyProxy<Glib::ustring>
+  PreferencesWindow::property_visible_page_name () -> glib::PropertyProxy<glib::ustring>
   {
-    return Glib::PropertyProxy<Glib::ustring> (this, "visible-page-name");
+    return glib::PropertyProxy<glib::ustring> (this, "visible-page-name");
   }
 
   auto
-  PreferencesWindow::property_visible_page_name () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>
+  PreferencesWindow::property_visible_page_name () const -> glib::PropertyProxy_ReadOnly<glib::ustring>
   {
-    return Glib::PropertyProxy_ReadOnly<Glib::ustring> (this,
+    return glib::PropertyProxy_ReadOnly<glib::ustring> (this,
                                                         "visible-page-name");
   }
 
-} // namespace Adw
+} // namespace adw

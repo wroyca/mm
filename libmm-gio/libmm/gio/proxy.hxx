@@ -23,16 +23,16 @@ using GProxyClass = struct _GProxyClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gio
+namespace gio
 {
   class LIBMM_GIO_SYMEXPORT Proxy_Class;
 }
 #endif
 
-namespace Gio
+namespace gio
 {
 
-  class LIBMM_GIO_SYMEXPORT Proxy : public Glib::Interface
+  class LIBMM_GIO_SYMEXPORT Proxy : public glib::Interface
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -56,7 +56,7 @@ namespace Gio
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
-    explicit Proxy (const Glib::Interface_Class& interface_class);
+    explicit Proxy (const glib::Interface_Class& interface_class);
 
   public:
     explicit Proxy (GProxy* castitem);
@@ -97,29 +97,29 @@ namespace Gio
   private:
   public:
     static auto
-    get_default_for_protocol (const Glib::ustring& protocol)
-        -> Glib::RefPtr<Proxy>;
+    get_default_for_protocol (const glib::ustring& protocol)
+        -> glib::RefPtr<Proxy>;
 
     auto
-    connect (const Glib::RefPtr<IOStream>& connection,
-             const Glib::RefPtr<const ProxyAddress>& proxy_address,
-             const Glib::RefPtr<Cancellable>& cancellable)
-        -> Glib::RefPtr<IOStream>;
+    connect (const glib::RefPtr<IOStream>& connection,
+             const glib::RefPtr<const ProxyAddress>& proxy_address,
+             const glib::RefPtr<Cancellable>& cancellable)
+        -> glib::RefPtr<IOStream>;
 
     auto
-    connect_async (const Glib::RefPtr<IOStream>& connection,
-                   const Glib::RefPtr<const ProxyAddress>& proxy_address,
+    connect_async (const glib::RefPtr<IOStream>& connection,
+                   const glib::RefPtr<const ProxyAddress>& proxy_address,
                    const SlotAsyncReady& slot,
-                   const Glib::RefPtr<Cancellable>& cancellable) -> void;
+                   const glib::RefPtr<Cancellable>& cancellable) -> void;
 
     auto
-    connect_async (const Glib::RefPtr<IOStream>& connection,
-                   const Glib::RefPtr<const ProxyAddress>& proxy_address,
+    connect_async (const glib::RefPtr<IOStream>& connection,
+                   const glib::RefPtr<const ProxyAddress>& proxy_address,
                    const SlotAsyncReady& slot) -> void;
 
     auto
-    connect_finish (const Glib::RefPtr<AsyncResult>& result)
-        -> Glib::RefPtr<IOStream>;
+    connect_finish (const glib::RefPtr<AsyncResult>& result)
+        -> glib::RefPtr<IOStream>;
 
     auto
     supports_hostname () const -> bool;
@@ -129,15 +129,15 @@ namespace Gio
   protected:
   };
 
-} // namespace Gio
+} // namespace gio
 
-namespace Glib
+namespace glib
 {
 
   LIBMM_GIO_SYMEXPORT
   auto
-  wrap (GProxy* object, bool take_copy = false) -> Glib::RefPtr<Gio::Proxy>;
+  wrap (GProxy* object, bool take_copy = false) -> glib::RefPtr<gio::Proxy>;
 
-} // namespace Glib
+} // namespace glib
 
 #endif

@@ -6,7 +6,7 @@
 #include <libmm/cairo/refptr.hxx>
 #include <libmm/cairo/surface.hxx>
 
-namespace Cairo::Private
+namespace cairo::Private
 {
 
   auto
@@ -16,6 +16,6 @@ namespace Cairo::Private
   auto
   wrap_surface_xlib (cairo_surface_t*) -> RefPtr<Surface>;
 
-} // namespace Cairo::Private
+} // namespace cairo::Private
 
 #endif

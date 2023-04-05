@@ -9,7 +9,7 @@
 #include <libmm/gio/asyncresult.hxx>
 #include <libmm/gio/slot_async.hxx>
 
-namespace Gio
+namespace gio
 {
 }
 
@@ -17,20 +17,20 @@ namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GNetworkService* object, const bool take_copy) -> RefPtr<Gio::NetworkService>
+  wrap (GNetworkService* object, const bool take_copy) -> RefPtr<gio::NetworkService>
   {
-    return Glib::make_refptr_for_instance<Gio::NetworkService> (
-        dynamic_cast<Gio::NetworkService*> (
+    return glib::make_refptr_for_instance<gio::NetworkService> (
+        dynamic_cast<gio::NetworkService*> (
             wrap_auto ((GObject*) object, take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gio
+namespace gio
 {
 
   auto
@@ -56,7 +56,7 @@ namespace Gio
   }
 
   auto
-  NetworkService_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  NetworkService_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new NetworkService ((GNetworkService*) object);
   }
@@ -68,7 +68,7 @@ namespace Gio
     return gobj ();
   }
 
-  NetworkService::NetworkService (const Glib::ConstructParams& construct_params)
+  NetworkService::NetworkService (const glib::ConstructParams& construct_params)
     : Object (construct_params)
   {
   }
@@ -108,11 +108,11 @@ namespace Gio
     return g_network_service_get_type ();
   }
 
-  NetworkService::NetworkService (const Glib::ustring& service,
-                                  const Glib::ustring& protocol,
-                                  const Glib::ustring& domain)
+  NetworkService::NetworkService (const glib::ustring& service,
+                                  const glib::ustring& protocol,
+                                  const glib::ustring& domain)
     : ObjectBase (nullptr),
-      Object (Glib::ConstructParams (networkservice_class_.init (),
+      Object (glib::ConstructParams (networkservice_class_.init (),
                                      "service",
                                      service.c_str (),
                                      "protocol",
@@ -124,77 +124,77 @@ namespace Gio
   }
 
   auto
-  NetworkService::create (const Glib::ustring& service,
-                          const Glib::ustring& protocol,
-                          const Glib::ustring& domain) -> Glib::RefPtr<NetworkService>
+  NetworkService::create (const glib::ustring& service,
+                          const glib::ustring& protocol,
+                          const glib::ustring& domain) -> glib::RefPtr<NetworkService>
   {
-    return Glib::make_refptr_for_instance<NetworkService> (
+    return glib::make_refptr_for_instance<NetworkService> (
         new NetworkService (service, protocol, domain));
   }
 
   auto
-  NetworkService::get_service () const -> Glib::ustring
+  NetworkService::get_service () const -> glib::ustring
   {
-    return Glib::convert_const_gchar_ptr_to_ustring (
+    return glib::convert_const_gchar_ptr_to_ustring (
         g_network_service_get_service (const_cast<GNetworkService*> (gobj ())));
   }
 
   auto
-  NetworkService::get_protocol () const -> Glib::ustring
+  NetworkService::get_protocol () const -> glib::ustring
   {
-    return Glib::convert_const_gchar_ptr_to_ustring (
+    return glib::convert_const_gchar_ptr_to_ustring (
         g_network_service_get_protocol (
             const_cast<GNetworkService*> (gobj ())));
   }
 
   auto
-  NetworkService::get_domain () const -> Glib::ustring
+  NetworkService::get_domain () const -> glib::ustring
   {
-    return Glib::convert_const_gchar_ptr_to_ustring (
+    return glib::convert_const_gchar_ptr_to_ustring (
         g_network_service_get_domain (const_cast<GNetworkService*> (gobj ())));
   }
 
   auto
-  NetworkService::get_scheme () const -> Glib::ustring
+  NetworkService::get_scheme () const -> glib::ustring
   {
-    return Glib::convert_const_gchar_ptr_to_ustring (
+    return glib::convert_const_gchar_ptr_to_ustring (
         g_network_service_get_scheme (const_cast<GNetworkService*> (gobj ())));
   }
 
   auto
-  NetworkService::set_scheme (const Glib::ustring& scheme) -> void
+  NetworkService::set_scheme (const glib::ustring& scheme) -> void
   {
     g_network_service_set_scheme (gobj (), scheme.c_str ());
   }
 
   auto
-  NetworkService::property_domain () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>
+  NetworkService::property_domain () const -> glib::PropertyProxy_ReadOnly<glib::ustring>
   {
     return {this, "domain"};
   }
 
   auto
-  NetworkService::property_protocol () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>
+  NetworkService::property_protocol () const -> glib::PropertyProxy_ReadOnly<glib::ustring>
   {
     return {this, "protocol"};
   }
 
   auto
-  NetworkService::property_scheme () -> Glib::PropertyProxy<Glib::ustring>
+  NetworkService::property_scheme () -> glib::PropertyProxy<glib::ustring>
   {
     return {this, "scheme"};
   }
 
   auto
-  NetworkService::property_scheme () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>
+  NetworkService::property_scheme () const -> glib::PropertyProxy_ReadOnly<glib::ustring>
   {
     return {this, "scheme"};
   }
 
   auto
-  NetworkService::property_service () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>
+  NetworkService::property_service () const -> glib::PropertyProxy_ReadOnly<glib::ustring>
   {
     return {this, "service"};
   }
 
-} // namespace Gio
+} // namespace gio

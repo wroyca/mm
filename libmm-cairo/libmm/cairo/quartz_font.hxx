@@ -10,7 +10,7 @@
   #include <libmm/cairo/fontface.hxx>
   #include <libmm/cairo/scaledfont.hxx>
 
-namespace Cairo
+namespace cairo
 {
 
   class LIBMM_CAIRO_SYMEXPORT QuartzFontFace : public FontFace
@@ -32,7 +32,7 @@ namespace Cairo
   #endif
   };
 
-} // namespace Cairo
+} // namespace cairo
 
 #endif
 

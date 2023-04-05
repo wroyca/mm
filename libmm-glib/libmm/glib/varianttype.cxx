@@ -9,7 +9,7 @@
 #include <libmm/glib/utility.hxx>
 #include <libmm/glib/varianttype.hxx>
 
-namespace Glib
+namespace glib
 {
 
   VariantType::VariantType (const GVariantType* castitem)
@@ -149,13 +149,13 @@ namespace Glib
     return wrap (static_cast<CType> (get_boxed ()), true);
   }
 
-} // namespace Glib
+} // namespace glib
 
 namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
@@ -164,9 +164,9 @@ namespace Glib
     return VariantType (object, take_copy);
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Glib
+namespace glib
 {
 
   VariantType::VariantType ()
@@ -358,4 +358,4 @@ namespace Glib
                  true);
   }
 
-} // namespace Glib
+} // namespace glib

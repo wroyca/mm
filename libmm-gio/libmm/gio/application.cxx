@@ -14,7 +14,7 @@
 #include <mutex>
 #include <vector>
 
-using Flags = Gio::Application::Flags;
+using Flags = gio::Application::Flags;
 
 namespace
 {
@@ -26,22 +26,22 @@ namespace
                                     const gchar* hint,
                                     void* data) -> void
   {
-    using SlotType = sigc::slot<void (const Gio::Application::type_vec_files&,
-                                      const Glib::ustring&)>;
+    using SlotType = sigc::slot<void (const gio::Application::type_vec_files&,
+                                      const glib::ustring&)>;
 
-    Gio::Application::type_vec_files vec_files (n_files);
+    gio::Application::type_vec_files vec_files (n_files);
     for (int i = 0; i < n_files; ++i)
     {
-      vec_files[i] = Glib::wrap (files[i], true);
+      vec_files[i] = glib::wrap (files[i], true);
     }
 
-    const auto hint_str = hint ? hint : Glib::ustring ();
+    const auto hint_str = hint ? hint : glib::ustring ();
 
-    if (Glib::ObjectBase::_get_current_wrapper ((GObject*) self))
+    if (glib::ObjectBase::_get_current_wrapper ((GObject*) self))
     {
       try
       {
-        if (const auto slot = Glib::SignalProxyNormal::data_to_slot (data))
+        if (const auto slot = glib::SignalProxyNormal::data_to_slot (data))
         {
           (*static_cast<SlotType*> (slot)) (vec_files, hint_str);
           return;
@@ -49,7 +49,7 @@ namespace
       }
       catch (...)
       {
-        Glib::exception_handlers_invoke ();
+        glib::exception_handlers_invoke ();
       }
     }
 
@@ -63,23 +63,23 @@ namespace
                                            const gchar* hint,
                                            void* data) -> void
   {
-    using namespace Gio;
+    using namespace gio;
     using SlotType = sigc::slot<void (const Application::type_vec_files&,
-                                      const Glib::ustring&)>;
+                                      const glib::ustring&)>;
 
     Application::type_vec_files vec_files (n_files);
     for (int i = 0; i < n_files; i++)
     {
-      vec_files[i] = Glib::wrap (files[i], true);
+      vec_files[i] = glib::wrap (files[i], true);
     }
 
-    const auto hint_str = hint ? hint : Glib::ustring ();
+    const auto hint_str = hint ? hint : glib::ustring ();
 
-    if (Glib::ObjectBase::_get_current_wrapper ((GObject*) self))
+    if (glib::ObjectBase::_get_current_wrapper ((GObject*) self))
     {
       try
       {
-        if (const auto slot = Glib::SignalProxyNormal::data_to_slot (data))
+        if (const auto slot = glib::SignalProxyNormal::data_to_slot (data))
         {
           (*static_cast<SlotType*> (slot)) (vec_files, hint_str);
           return;
@@ -87,14 +87,14 @@ namespace
       }
       catch (...)
       {
-        Glib::exception_handlers_invoke ();
+        glib::exception_handlers_invoke ();
       }
     }
 
     return;
   }
 
-  const Glib::SignalProxyInfo Application_signal_open_info = {
+  const glib::SignalProxyInfo Application_signal_open_info = {
       "open",
       (GCallback) &Application_signal_open_callback,
       (GCallback) &Application_signal_open_notify_callback};
@@ -103,41 +103,41 @@ namespace
   {
   public:
     explicit OptionArgCallbackData (
-        const Gio::Application* application,
-        const Glib::ustring& long_name,
+        const gio::Application* application,
+        const glib::ustring& long_name,
         const gchar short_name,
-        const Glib::ustring& description,
-        const Glib::ustring& arg_description,
-        const Glib::OptionGroup::SlotOptionArgString& slot)
+        const glib::ustring& description,
+        const glib::ustring& arg_description,
+        const glib::OptionGroup::SlotOptionArgString& slot)
       : application_ (application),
         long_name_ (g_strdup (long_name.c_str ())),
         short_name_ (short_name),
         description_ (g_strdup (c_str_or_nullptr (description))),
         arg_description_ (g_strdup (c_str_or_nullptr (arg_description))),
-        slot_string_ (new Glib::OptionGroup::SlotOptionArgString (slot)),
+        slot_string_ (new glib::OptionGroup::SlotOptionArgString (slot)),
         slot_filename_ (nullptr)
     {
     }
 
     explicit OptionArgCallbackData (
-        const Gio::Application* application,
-        const Glib::ustring& long_name,
+        const gio::Application* application,
+        const glib::ustring& long_name,
         const gchar short_name,
-        const Glib::ustring& description,
-        const Glib::ustring& arg_description,
-        const Glib::OptionGroup::SlotOptionArgFilename& slot)
+        const glib::ustring& description,
+        const glib::ustring& arg_description,
+        const glib::OptionGroup::SlotOptionArgFilename& slot)
       : application_ (application),
         long_name_ (g_strdup (long_name.c_str ())),
         short_name_ (short_name),
         description_ (g_strdup (c_str_or_nullptr (description))),
         arg_description_ (g_strdup (c_str_or_nullptr (arg_description))),
         slot_string_ (nullptr),
-        slot_filename_ (new Glib::OptionGroup::SlotOptionArgFilename (slot))
+        slot_filename_ (new glib::OptionGroup::SlotOptionArgFilename (slot))
     {
     }
 
     auto
-    get_application () const -> const Gio::Application*
+    get_application () const -> const gio::Application*
     {
       return application_;
     }
@@ -173,14 +173,14 @@ namespace
     }
 
     auto
-    get_slot_string () const -> const Glib::OptionGroup::SlotOptionArgString*
+    get_slot_string () const -> const glib::OptionGroup::SlotOptionArgString*
     {
       return slot_string_;
     }
 
     auto
     get_slot_filename () const
-        -> const Glib::OptionGroup::SlotOptionArgFilename*
+        -> const glib::OptionGroup::SlotOptionArgFilename*
     {
       return slot_filename_;
     }
@@ -195,14 +195,14 @@ namespace
     }
 
   private:
-    const Gio::Application* application_;
+    const gio::Application* application_;
     gchar* long_name_;
     gchar short_name_;
     gchar* description_;
     gchar* arg_description_;
 
-    Glib::OptionGroup::SlotOptionArgString* slot_string_;
-    Glib::OptionGroup::SlotOptionArgFilename* slot_filename_;
+    glib::OptionGroup::SlotOptionArgString* slot_string_;
+    glib::OptionGroup::SlotOptionArgFilename* slot_filename_;
 
     OptionArgCallbackData (const OptionArgCallbackData&) = delete;
     auto
@@ -210,7 +210,7 @@ namespace
   };
 
   using OptionArgCallbackDataMap =
-      std::map<Glib::ustring, OptionArgCallbackData*>;
+      std::map<glib::ustring, OptionArgCallbackData*>;
   OptionArgCallbackDataMap option_arg_callback_data;
 
   std::mutex option_arg_callback_data_mutex;
@@ -221,14 +221,14 @@ namespace
                                    gpointer,
                                    GError** error) -> gboolean
   {
-    const Glib::ustring cpp_option_name (option_name);
+    const glib::ustring cpp_option_name (option_name);
 
     std::unique_lock<std::mutex> lock (option_arg_callback_data_mutex);
     OptionArgCallbackDataMap::const_iterator iterFind =
         option_arg_callback_data.end ();
     if (option_name[1] == '-')
     {
-      const auto long_option_name = Glib::ustring (option_name + 2);
+      const auto long_option_name = glib::ustring (option_name + 2);
       iterFind = option_arg_callback_data.find (long_option_name);
     }
     else
@@ -245,7 +245,7 @@ namespace
 
     if (iterFind == option_arg_callback_data.end ())
     {
-      Glib::OptionError (Glib::OptionError::UNKNOWN_OPTION,
+      glib::OptionError (glib::OptionError::UNKNOWN_OPTION,
                          "Application_option_arg_callback(): "
                          "Unknown option " +
                              cpp_option_name)
@@ -268,38 +268,38 @@ namespace
       {
         const auto the_slot = option_arg->get_slot_string ();
         lock.unlock ();
-        const Glib::ustring cpp_value (value ? value : "");
+        const glib::ustring cpp_value (value ? value : "");
         return (*the_slot) (cpp_option_name, cpp_value, has_value);
       }
     }
-    catch (Glib::Error& err)
+    catch (glib::Error& err)
     {
       err.propagate (error);
     }
     catch (...)
     {
-      Glib::exception_handlers_invoke ();
+      glib::exception_handlers_invoke ();
     }
     return false;
   }
 
 } // namespace
 
-namespace Gio
+namespace gio
 {
 
   auto
-  Application::custom_class_init () -> const Glib::Class&
+  Application::custom_class_init () -> const glib::Class&
   {
-    Glib::init ();
+    glib::init ();
     init ();
     return application_class_.init ();
   }
 
-  Application::Application (const Glib::ustring& application_id,
+  Application::Application (const glib::ustring& application_id,
                             const Flags flags)
     : ObjectBase (nullptr),
-      Object (Glib::ConstructParams (custom_class_init (),
+      Object (glib::ConstructParams (custom_class_init (),
                                      "application_id",
                                      c_str_or_nullptr (application_id),
                                      "flags",
@@ -337,7 +337,7 @@ namespace Gio
                                     const gchar* hint) -> void
   {
     const auto obj_base =
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self);
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self);
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -349,17 +349,17 @@ namespace Gio
           Application::type_vec_files vec_files (n_files);
           for (int i = 0; i < n_files; i++)
           {
-            vec_files[i] = Glib::wrap (files[i], true);
+            vec_files[i] = glib::wrap (files[i], true);
           }
 
-          const auto hint_str = hint ? hint : Glib::ustring ();
+          const auto hint_str = hint ? hint : glib::ustring ();
 
           obj->on_open (vec_files, hint_str);
           return;
         }
         catch (...)
         {
-          Glib::exception_handlers_invoke ();
+          glib::exception_handlers_invoke ();
         }
       }
     }
@@ -372,13 +372,13 @@ namespace Gio
   }
 
   auto
-  Application::signal_open () -> Glib::SignalProxy<void (const type_vec_files&, const Glib::ustring&)>
+  Application::signal_open () -> glib::SignalProxy<void (const type_vec_files&, const glib::ustring&)>
   {
     return {this, &Application_signal_open_info};
   }
 
   auto
-  Application::on_open (const type_vec_files& files, const Glib::ustring& hint) -> void
+  Application::on_open (const type_vec_files& files, const glib::ustring& hint) -> void
   {
     const auto base = static_cast<BaseClassType*> (
         g_type_class_peek_parent (G_OBJECT_GET_CLASS (gobject_)));
@@ -387,7 +387,7 @@ namespace Gio
     {
       (*base->open) (
           gobj (),
-          Glib::ArrayHandler<type_vec_files::value_type>::vector_to_array (
+          glib::ArrayHandler<type_vec_files::value_type>::vector_to_array (
               files)
               .data (),
           files.size (),
@@ -396,18 +396,18 @@ namespace Gio
   }
 
   auto
-  Application::open (const type_vec_files& files, const Glib::ustring& hint) -> void
+  Application::open (const type_vec_files& files, const glib::ustring& hint) -> void
   {
     g_application_open (
         gobj (),
-        Glib::ArrayHandler<type_vec_files::value_type>::vector_to_array (files)
+        glib::ArrayHandler<type_vec_files::value_type>::vector_to_array (files)
             .data (),
         files.size (),
         hint.c_str ());
   }
 
   auto
-  Application::open (const Glib::RefPtr<File>& file, const Glib::ustring& hint) -> void
+  Application::open (const glib::RefPtr<File>& file, const glib::ustring& hint) -> void
   {
     type_vec_files files (1);
     files[0] = file;
@@ -416,11 +416,11 @@ namespace Gio
 
   auto
   Application::add_main_option_entry (OptionType arg_type,
-                                      const Glib::ustring& long_name,
+                                      const glib::ustring& long_name,
                                       const gchar short_name,
-                                      const Glib::ustring& description,
-                                      const Glib::ustring& arg_description,
-                                      Glib::OptionEntry::Flags flags) -> void
+                                      const glib::ustring& description,
+                                      const glib::ustring& arg_description,
+                                      glib::OptionEntry::Flags flags) -> void
   {
     g_application_add_main_option (gobj (),
                                    long_name.c_str (),
@@ -433,12 +433,12 @@ namespace Gio
 
   auto
   Application::add_main_option_entry (
-      const Glib::OptionGroup::SlotOptionArgString& slot,
-      const Glib::ustring& long_name,
+      const glib::OptionGroup::SlotOptionArgString& slot,
+      const glib::ustring& long_name,
       const gchar short_name,
-      const Glib::ustring& description,
-      const Glib::ustring& arg_description,
-      const Glib::OptionEntry::Flags flags) -> void
+      const glib::ustring& description,
+      const glib::ustring& arg_description,
+      const glib::OptionEntry::Flags flags) -> void
   {
     OptionArgCallbackData* callback_data = nullptr;
     {
@@ -461,17 +461,17 @@ namespace Gio
                                    short_name,
                                    callback_data->get_description (),
                                    callback_data->get_arg_description (),
-                                   flags & ~Glib::OptionEntry::Flags::FILENAME);
+                                   flags & ~glib::OptionEntry::Flags::FILENAME);
   }
 
   auto
   Application::add_main_option_entry_filename (
-      const Glib::OptionGroup::SlotOptionArgFilename& slot,
-      const Glib::ustring& long_name,
+      const glib::OptionGroup::SlotOptionArgFilename& slot,
+      const glib::ustring& long_name,
       const gchar short_name,
-      const Glib::ustring& description,
-      const Glib::ustring& arg_description,
-      const Glib::OptionEntry::Flags flags) -> void
+      const glib::ustring& description,
+      const glib::ustring& arg_description,
+      const glib::OptionEntry::Flags flags) -> void
   {
     OptionArgCallbackData* callback_data = nullptr;
     {
@@ -494,7 +494,7 @@ namespace Gio
                                    short_name,
                                    callback_data->get_description (),
                                    callback_data->get_arg_description (),
-                                   flags | Glib::OptionEntry::Flags::FILENAME);
+                                   flags | glib::OptionEntry::Flags::FILENAME);
   }
 
   auto
@@ -502,7 +502,7 @@ namespace Gio
                                               const gchar short_name,
                                               const gchar* description,
                                               const gchar* arg_description,
-                                              Glib::OptionEntry::Flags flags) -> void
+                                              glib::OptionEntry::Flags flags) -> void
   {
     GOptionEntry array[2];
     std::memset (array, 0, 2 * sizeof (GOptionEntry));
@@ -532,48 +532,48 @@ namespace Gio
     g_application_set_resource_base_path (gobj (), nullptr);
   }
 
-} // namespace Gio
+} // namespace gio
 
 namespace
 {
 
-  const Glib::SignalProxyInfo Application_signal_startup_info = {
+  const glib::SignalProxyInfo Application_signal_startup_info = {
       "startup",
-      (GCallback) &Glib::SignalProxyNormal::slot0_void_callback,
-      (GCallback) &Glib::SignalProxyNormal::slot0_void_callback};
+      (GCallback) &glib::SignalProxyNormal::slot0_void_callback,
+      (GCallback) &glib::SignalProxyNormal::slot0_void_callback};
 
-  const Glib::SignalProxyInfo Application_signal_shutdown_info = {
+  const glib::SignalProxyInfo Application_signal_shutdown_info = {
       "shutdown",
-      (GCallback) &Glib::SignalProxyNormal::slot0_void_callback,
-      (GCallback) &Glib::SignalProxyNormal::slot0_void_callback};
+      (GCallback) &glib::SignalProxyNormal::slot0_void_callback,
+      (GCallback) &glib::SignalProxyNormal::slot0_void_callback};
 
-  const Glib::SignalProxyInfo Application_signal_activate_info = {
+  const glib::SignalProxyInfo Application_signal_activate_info = {
       "activate",
-      (GCallback) &Glib::SignalProxyNormal::slot0_void_callback,
-      (GCallback) &Glib::SignalProxyNormal::slot0_void_callback};
+      (GCallback) &glib::SignalProxyNormal::slot0_void_callback,
+      (GCallback) &glib::SignalProxyNormal::slot0_void_callback};
 
   auto
   Application_signal_command_line_callback (GApplication* self,
                                             GApplicationCommandLine* p0,
                                             void* data) -> gint
   {
-    using namespace Gio;
+    using namespace gio;
     using SlotType =
-        sigc::slot<int (const Glib::RefPtr<ApplicationCommandLine>&)>;
+        sigc::slot<int (const glib::RefPtr<ApplicationCommandLine>&)>;
 
     const auto obj = dynamic_cast<Application*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
     {
       try
       {
-        if (const auto slot = Glib::SignalProxyNormal::data_to_slot (data))
-          return (*static_cast<SlotType*> (slot)) (Glib::wrap (p0, true));
+        if (const auto slot = glib::SignalProxyNormal::data_to_slot (data))
+          return (*static_cast<SlotType*> (slot)) (glib::wrap (p0, true));
       }
       catch (...)
       {
-        Glib::exception_handlers_invoke ();
+        glib::exception_handlers_invoke ();
       }
     }
 
@@ -586,23 +586,23 @@ namespace
                                                    GApplicationCommandLine* p0,
                                                    void* data) -> gint
   {
-    using namespace Gio;
+    using namespace gio;
     using SlotType =
-        sigc::slot<void (const Glib::RefPtr<ApplicationCommandLine>&)>;
+        sigc::slot<void (const glib::RefPtr<ApplicationCommandLine>&)>;
 
     const auto obj = dynamic_cast<Application*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
     {
       try
       {
-        if (const auto slot = Glib::SignalProxyNormal::data_to_slot (data))
-          (*static_cast<SlotType*> (slot)) (Glib::wrap (p0, true));
+        if (const auto slot = glib::SignalProxyNormal::data_to_slot (data))
+          (*static_cast<SlotType*> (slot)) (glib::wrap (p0, true));
       }
       catch (...)
       {
-        Glib::exception_handlers_invoke ();
+        glib::exception_handlers_invoke ();
       }
     }
 
@@ -610,7 +610,7 @@ namespace
     return RType ();
   }
 
-  const Glib::SignalProxyInfo Application_signal_command_line_info = {
+  const glib::SignalProxyInfo Application_signal_command_line_info = {
       "command-line",
       (GCallback) &Application_signal_command_line_callback,
       (GCallback) &Application_signal_command_line_notify_callback};
@@ -620,22 +620,22 @@ namespace
                                                     GVariantDict* p0,
                                                     void* data) -> gint
   {
-    using namespace Gio;
-    using SlotType = sigc::slot<int (const Glib::RefPtr<Glib::VariantDict>&)>;
+    using namespace gio;
+    using SlotType = sigc::slot<int (const glib::RefPtr<glib::VariantDict>&)>;
 
     const auto obj = dynamic_cast<Application*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
     {
       try
       {
-        if (const auto slot = Glib::SignalProxyNormal::data_to_slot (data))
-          return (*static_cast<SlotType*> (slot)) (Glib::wrap (p0, true));
+        if (const auto slot = glib::SignalProxyNormal::data_to_slot (data))
+          return (*static_cast<SlotType*> (slot)) (glib::wrap (p0, true));
       }
       catch (...)
       {
-        Glib::exception_handlers_invoke ();
+        glib::exception_handlers_invoke ();
       }
     }
 
@@ -648,22 +648,22 @@ namespace
                                                            GVariantDict* p0,
                                                            void* data) -> gint
   {
-    using namespace Gio;
-    using SlotType = sigc::slot<void (const Glib::RefPtr<Glib::VariantDict>&)>;
+    using namespace gio;
+    using SlotType = sigc::slot<void (const glib::RefPtr<glib::VariantDict>&)>;
 
     const auto obj = dynamic_cast<Application*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
     {
       try
       {
-        if (const auto slot = Glib::SignalProxyNormal::data_to_slot (data))
-          (*static_cast<SlotType*> (slot)) (Glib::wrap (p0, true));
+        if (const auto slot = glib::SignalProxyNormal::data_to_slot (data))
+          (*static_cast<SlotType*> (slot)) (glib::wrap (p0, true));
       }
       catch (...)
       {
-        Glib::exception_handlers_invoke ();
+        glib::exception_handlers_invoke ();
       }
     }
 
@@ -671,7 +671,7 @@ namespace
     return RType ();
   }
 
-  const Glib::SignalProxyInfo Application_signal_handle_local_options_info = {
+  const glib::SignalProxyInfo Application_signal_handle_local_options_info = {
       "handle-local-options",
       (GCallback) &Application_signal_handle_local_options_callback,
       (GCallback) &Application_signal_handle_local_options_notify_callback};
@@ -679,22 +679,22 @@ namespace
   auto
   Application_signal_name_lost_callback (GApplication* self, void* data) -> gboolean
   {
-    using namespace Gio;
+    using namespace gio;
     using SlotType = sigc::slot<bool ()>;
 
     const auto obj = dynamic_cast<Application*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
     {
       try
       {
-        if (const auto slot = Glib::SignalProxyNormal::data_to_slot (data))
+        if (const auto slot = glib::SignalProxyNormal::data_to_slot (data))
           return (*static_cast<SlotType*> (slot)) ();
       }
       catch (...)
       {
-        Glib::exception_handlers_invoke ();
+        glib::exception_handlers_invoke ();
       }
     }
 
@@ -705,22 +705,22 @@ namespace
   auto
   Application_signal_name_lost_notify_callback (GApplication* self, void* data) -> gboolean
   {
-    using namespace Gio;
+    using namespace gio;
     using SlotType = sigc::slot<void ()>;
 
     const auto obj = dynamic_cast<Application*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
     {
       try
       {
-        if (const auto slot = Glib::SignalProxyNormal::data_to_slot (data))
+        if (const auto slot = glib::SignalProxyNormal::data_to_slot (data))
           (*static_cast<SlotType*> (slot)) ();
       }
       catch (...)
       {
-        Glib::exception_handlers_invoke ();
+        glib::exception_handlers_invoke ();
       }
     }
 
@@ -728,7 +728,7 @@ namespace
     return RType ();
   }
 
-  const Glib::SignalProxyInfo Application_signal_name_lost_info = {
+  const glib::SignalProxyInfo Application_signal_name_lost_info = {
       "name-lost",
       (GCallback) &Application_signal_name_lost_callback,
       (GCallback) &Application_signal_name_lost_notify_callback};
@@ -736,25 +736,25 @@ namespace
 } // namespace
 
 auto
-Glib::Value<Gio::Application::Flags>::value_type () -> GType
+glib::Value<gio::Application::Flags>::value_type () -> GType
 {
   return g_application_flags_get_type ();
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GApplication* object, const bool take_copy) -> RefPtr<Gio::Application>
+  wrap (GApplication* object, const bool take_copy) -> RefPtr<gio::Application>
   {
-    return Glib::make_refptr_for_instance<Gio::Application> (
-        dynamic_cast<Gio::Application*> (
+    return glib::make_refptr_for_instance<gio::Application> (
+        dynamic_cast<gio::Application*> (
             wrap_auto ((GObject*) object, take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gio
+namespace gio
 {
 
   auto
@@ -802,7 +802,7 @@ namespace Gio
                                                         int* exit_status) -> gboolean
   {
     const auto obj_base =
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self);
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self);
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -815,7 +815,7 @@ namespace Gio
         }
         catch (...)
         {
-          Glib::exception_handlers_invoke ();
+          glib::exception_handlers_invoke ();
         }
       }
     }
@@ -835,7 +835,7 @@ namespace Gio
                                                  GVariant* platform_data) -> void
   {
     const auto obj_base =
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self);
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self);
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -844,12 +844,12 @@ namespace Gio
       {
         try
         {
-          obj->before_emit_vfunc (Glib::wrap (platform_data, true));
+          obj->before_emit_vfunc (glib::wrap (platform_data, true));
           return;
         }
         catch (...)
         {
-          Glib::exception_handlers_invoke ();
+          glib::exception_handlers_invoke ();
         }
       }
     }
@@ -866,7 +866,7 @@ namespace Gio
                                                 GVariant* platform_data) -> void
   {
     const auto obj_base =
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self);
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self);
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -875,12 +875,12 @@ namespace Gio
       {
         try
         {
-          obj->after_emit_vfunc (Glib::wrap (platform_data, true));
+          obj->after_emit_vfunc (glib::wrap (platform_data, true));
           return;
         }
         catch (...)
         {
-          Glib::exception_handlers_invoke ();
+          glib::exception_handlers_invoke ();
         }
       }
     }
@@ -896,7 +896,7 @@ namespace Gio
   Application_Class::quit_mainloop_vfunc_callback (GApplication* self) -> void
   {
     const auto obj_base =
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self);
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self);
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -910,7 +910,7 @@ namespace Gio
         }
         catch (...)
         {
-          Glib::exception_handlers_invoke ();
+          glib::exception_handlers_invoke ();
         }
       }
     }
@@ -926,7 +926,7 @@ namespace Gio
   Application_Class::run_mainloop_vfunc_callback (GApplication* self) -> void
   {
     const auto obj_base =
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self);
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self);
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -940,7 +940,7 @@ namespace Gio
         }
         catch (...)
         {
-          Glib::exception_handlers_invoke ();
+          glib::exception_handlers_invoke ();
         }
       }
     }
@@ -959,7 +959,7 @@ namespace Gio
                                                    GError** error) -> gboolean
   {
     const auto obj_base =
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self);
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self);
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -969,10 +969,10 @@ namespace Gio
         try
         {
           return obj->dbus_register_vfunc (
-              Glib::wrap (connection, true),
-              Glib::convert_const_gchar_ptr_to_ustring (object_path));
+              glib::wrap (connection, true),
+              glib::convert_const_gchar_ptr_to_ustring (object_path));
         }
-        catch (Glib::Error& errormm)
+        catch (glib::Error& errormm)
         {
           errormm.propagate (error);
           using RType = gboolean;
@@ -980,7 +980,7 @@ namespace Gio
         }
         catch (...)
         {
-          Glib::exception_handlers_invoke ();
+          glib::exception_handlers_invoke ();
         }
       }
     }
@@ -1002,7 +1002,7 @@ namespace Gio
       const gchar* object_path) -> void
   {
     const auto obj_base =
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self);
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self);
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -1012,13 +1012,13 @@ namespace Gio
         try
         {
           obj->dbus_unregister_vfunc (
-              Glib::wrap (connection, true),
-              Glib::convert_const_gchar_ptr_to_ustring (object_path));
+              glib::wrap (connection, true),
+              glib::convert_const_gchar_ptr_to_ustring (object_path));
           return;
         }
         catch (...)
         {
-          Glib::exception_handlers_invoke ();
+          glib::exception_handlers_invoke ();
         }
       }
     }
@@ -1034,7 +1034,7 @@ namespace Gio
   Application_Class::startup_callback (GApplication* self) -> void
   {
     const auto obj_base =
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self);
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self);
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -1048,7 +1048,7 @@ namespace Gio
         }
         catch (...)
         {
-          Glib::exception_handlers_invoke ();
+          glib::exception_handlers_invoke ();
         }
       }
     }
@@ -1064,7 +1064,7 @@ namespace Gio
   Application_Class::shutdown_callback (GApplication* self) -> void
   {
     const auto obj_base =
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self);
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self);
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -1078,7 +1078,7 @@ namespace Gio
         }
         catch (...)
         {
-          Glib::exception_handlers_invoke ();
+          glib::exception_handlers_invoke ();
         }
       }
     }
@@ -1094,7 +1094,7 @@ namespace Gio
   Application_Class::activate_callback (GApplication* self) -> void
   {
     const auto obj_base =
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self);
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self);
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -1108,7 +1108,7 @@ namespace Gio
         }
         catch (...)
         {
-          Glib::exception_handlers_invoke ();
+          glib::exception_handlers_invoke ();
         }
       }
     }
@@ -1125,7 +1125,7 @@ namespace Gio
                                             GApplicationCommandLine* p0) -> gint
   {
     const auto obj_base =
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self);
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self);
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -1134,11 +1134,11 @@ namespace Gio
       {
         try
         {
-          return obj->on_command_line (Glib::wrap (p0, true));
+          return obj->on_command_line (glib::wrap (p0, true));
         }
         catch (...)
         {
-          Glib::exception_handlers_invoke ();
+          glib::exception_handlers_invoke ();
         }
       }
     }
@@ -1158,7 +1158,7 @@ namespace Gio
                                                     GVariantDict* p0) -> gint
   {
     const auto obj_base =
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self);
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self);
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -1167,11 +1167,11 @@ namespace Gio
       {
         try
         {
-          return obj->on_handle_local_options (Glib::wrap (p0, true));
+          return obj->on_handle_local_options (glib::wrap (p0, true));
         }
         catch (...)
         {
-          Glib::exception_handlers_invoke ();
+          glib::exception_handlers_invoke ();
         }
       }
     }
@@ -1190,7 +1190,7 @@ namespace Gio
   Application_Class::name_lost_callback (GApplication* self) -> gboolean
   {
     const auto obj_base =
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self);
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self);
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -1203,7 +1203,7 @@ namespace Gio
         }
         catch (...)
         {
-          Glib::exception_handlers_invoke ();
+          glib::exception_handlers_invoke ();
         }
       }
     }
@@ -1219,7 +1219,7 @@ namespace Gio
   }
 
   auto
-  Application_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  Application_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new Application ((GApplication*) object);
   }
@@ -1231,7 +1231,7 @@ namespace Gio
     return gobj ();
   }
 
-  Application::Application (const Glib::ConstructParams& construct_params)
+  Application::Application (const glib::ConstructParams& construct_params)
     : Object (construct_params)
   {
   }
@@ -1272,50 +1272,50 @@ namespace Gio
   }
 
   auto
-  Application::create (const Glib::ustring& application_id, const Flags flags) -> Glib::RefPtr<Application>
+  Application::create (const glib::ustring& application_id, const Flags flags) -> glib::RefPtr<Application>
   {
-    return Glib::make_refptr_for_instance<Application> (
+    return glib::make_refptr_for_instance<Application> (
         new Application (application_id, flags));
   }
 
   auto
-  Application::id_is_valid (const Glib::ustring& application_id) -> bool
+  Application::id_is_valid (const glib::ustring& application_id) -> bool
   {
     return g_application_id_is_valid (application_id.c_str ());
   }
 
   auto
-  Application::get_id () const -> Glib::ustring
+  Application::get_id () const -> glib::ustring
   {
-    return Glib::convert_const_gchar_ptr_to_ustring (
+    return glib::convert_const_gchar_ptr_to_ustring (
         g_application_get_application_id (const_cast<GApplication*> (gobj ())));
   }
 
   auto
-  Application::set_id (const Glib::ustring& application_id) -> void
+  Application::set_id (const glib::ustring& application_id) -> void
   {
     g_application_set_application_id (gobj (), application_id.c_str ());
   }
 
   auto
-  Application::get_dbus_connection () -> Glib::RefPtr<DBus::Connection>
+  Application::get_dbus_connection () -> glib::RefPtr<DBus::Connection>
   {
-    auto retvalue = Glib::wrap (g_application_get_dbus_connection (gobj ()));
+    auto retvalue = glib::wrap (g_application_get_dbus_connection (gobj ()));
     if (retvalue)
       retvalue->reference ();
     return retvalue;
   }
 
   auto
-  Application::get_dbus_connection () const -> Glib::RefPtr<const DBus::Connection>
+  Application::get_dbus_connection () const -> glib::RefPtr<const DBus::Connection>
   {
     return const_cast<Application*> (this)->get_dbus_connection ();
   }
 
   auto
-  Application::get_dbus_object_path () const -> Glib::ustring
+  Application::get_dbus_object_path () const -> glib::ustring
   {
-    return Glib::convert_const_gchar_ptr_to_ustring (
+    return glib::convert_const_gchar_ptr_to_ustring (
         g_application_get_dbus_object_path (
             const_cast<GApplication*> (gobj ())));
   }
@@ -1349,7 +1349,7 @@ namespace Gio
   auto
   Application::get_resource_base_path () const -> std::string
   {
-    return Glib::convert_const_gchar_ptr_to_stdstring (
+    return glib::convert_const_gchar_ptr_to_stdstring (
         g_application_get_resource_base_path (
             const_cast<GApplication*> (gobj ())));
   }
@@ -1361,14 +1361,14 @@ namespace Gio
   }
 
   auto
-  Application::add_option_group (Glib::OptionGroup& group) -> void
+  Application::add_option_group (glib::OptionGroup& group) -> void
   {
     g_application_add_option_group (gobj (), group.gobj_copy ());
   }
 
   auto
   Application::set_option_context_parameter_string (
-      const Glib::ustring& parameter_string) -> void
+      const glib::ustring& parameter_string) -> void
   {
     g_application_set_option_context_parameter_string (
         gobj (),
@@ -1376,7 +1376,7 @@ namespace Gio
   }
 
   auto
-  Application::set_option_context_summary (const Glib::ustring& summary) -> void
+  Application::set_option_context_summary (const glib::ustring& summary) -> void
   {
     g_application_set_option_context_summary (
         gobj (),
@@ -1384,7 +1384,7 @@ namespace Gio
   }
 
   auto
-  Application::set_option_context_description (const Glib::ustring& description) -> void
+  Application::set_option_context_description (const glib::ustring& description) -> void
   {
     g_application_set_option_context_description (
         gobj (),
@@ -1406,13 +1406,13 @@ namespace Gio
 
   auto
   Application::register_application (
-      const Glib::RefPtr<Cancellable>& cancellable) -> bool
+      const glib::RefPtr<Cancellable>& cancellable) -> bool
   {
     GError* gerror = nullptr;
     const auto retvalue =
-        g_application_register (gobj (), Glib::unwrap (cancellable), &gerror);
+        g_application_register (gobj (), glib::unwrap (cancellable), &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
@@ -1422,7 +1422,7 @@ namespace Gio
     GError* gerror = nullptr;
     const auto retvalue = g_application_register (gobj (), nullptr, &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
@@ -1457,15 +1457,15 @@ namespace Gio
   }
 
   auto
-  Application::set_default (const Glib::RefPtr<Application>& application) -> void
+  Application::set_default (const glib::RefPtr<Application>& application) -> void
   {
-    g_application_set_default (Glib::unwrap (application));
+    g_application_set_default (glib::unwrap (application));
   }
 
   auto
-  Application::get_default () -> Glib::RefPtr<Application>
+  Application::get_default () -> glib::RefPtr<Application>
   {
-    auto retvalue = Glib::wrap (g_application_get_default ());
+    auto retvalue = glib::wrap (g_application_get_default ());
     if (retvalue)
       retvalue->reference ();
     return retvalue;
@@ -1491,132 +1491,132 @@ namespace Gio
 
   auto
   Application::send_notification (
-      const Glib::ustring& id,
-      const Glib::RefPtr<Notification>& notification) -> void
+      const glib::ustring& id,
+      const glib::RefPtr<Notification>& notification) -> void
   {
     g_application_send_notification (gobj (),
                                      id.empty () ? nullptr : id.c_str (),
-                                     Glib::unwrap (notification));
+                                     glib::unwrap (notification));
   }
 
   auto
   Application::send_notification (
-      const Glib::RefPtr<Notification>& notification) -> void
+      const glib::RefPtr<Notification>& notification) -> void
   {
     g_application_send_notification (gobj (),
                                      nullptr,
-                                     Glib::unwrap (notification));
+                                     glib::unwrap (notification));
   }
 
   auto
-  Application::withdraw_notification (const Glib::ustring& id) -> void
+  Application::withdraw_notification (const glib::ustring& id) -> void
   {
     g_application_withdraw_notification (gobj (), id.c_str ());
   }
 
   auto
-  Application::signal_startup () -> Glib::SignalProxy<void ()>
+  Application::signal_startup () -> glib::SignalProxy<void ()>
   {
     return {this, &Application_signal_startup_info};
   }
 
   auto
-  Application::signal_shutdown () -> Glib::SignalProxy<void ()>
+  Application::signal_shutdown () -> glib::SignalProxy<void ()>
   {
     return {this, &Application_signal_shutdown_info};
   }
 
   auto
-  Application::signal_activate () -> Glib::SignalProxy<void ()>
+  Application::signal_activate () -> glib::SignalProxy<void ()>
   {
     return {this, &Application_signal_activate_info};
   }
 
   auto
-  Application::signal_command_line () -> Glib::SignalProxy<int (const Glib::RefPtr<ApplicationCommandLine>&)>
+  Application::signal_command_line () -> glib::SignalProxy<int (const glib::RefPtr<ApplicationCommandLine>&)>
   {
     return {this, &Application_signal_command_line_info};
   }
 
   auto
-  Application::signal_handle_local_options () -> Glib::SignalProxy<int (const Glib::RefPtr<Glib::VariantDict>&)>
+  Application::signal_handle_local_options () -> glib::SignalProxy<int (const glib::RefPtr<glib::VariantDict>&)>
   {
     return {this, &Application_signal_handle_local_options_info};
   }
 
   auto
-  Application::signal_name_lost () -> Glib::SignalProxy<bool ()>
+  Application::signal_name_lost () -> glib::SignalProxy<bool ()>
   {
     return {this, &Application_signal_name_lost_info};
   }
 
   auto
-  Application::property_application_id () -> Glib::PropertyProxy<Glib::ustring>
+  Application::property_application_id () -> glib::PropertyProxy<glib::ustring>
   {
     return {this, "application-id"};
   }
 
   auto
-  Application::property_application_id () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>
+  Application::property_application_id () const -> glib::PropertyProxy_ReadOnly<glib::ustring>
   {
     return {this, "application-id"};
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<Flags>::value,
+      glib::Traits::ValueCompatibleWithWrapProperty<Flags>::value,
       "Type Flags cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  Application::property_flags () -> Glib::PropertyProxy<Flags>
+  Application::property_flags () -> glib::PropertyProxy<Flags>
   {
     return {this, "flags"};
   }
 
   auto
-  Application::property_flags () const -> Glib::PropertyProxy_ReadOnly<Flags>
+  Application::property_flags () const -> glib::PropertyProxy_ReadOnly<Flags>
   {
     return {this, "flags"};
   }
 
   auto
-  Application::property_inactivity_timeout () -> Glib::PropertyProxy<guint>
+  Application::property_inactivity_timeout () -> glib::PropertyProxy<guint>
   {
     return {this, "inactivity-timeout"};
   }
 
   auto
-  Application::property_inactivity_timeout () const -> Glib::PropertyProxy_ReadOnly<guint>
+  Application::property_inactivity_timeout () const -> glib::PropertyProxy_ReadOnly<guint>
   {
     return {this, "inactivity-timeout"};
   }
 
   auto
-  Application::property_is_registered () const -> Glib::PropertyProxy_ReadOnly<bool>
+  Application::property_is_registered () const -> glib::PropertyProxy_ReadOnly<bool>
   {
     return {this, "is-registered"};
   }
 
   auto
-  Application::property_is_remote () const -> Glib::PropertyProxy_ReadOnly<bool>
+  Application::property_is_remote () const -> glib::PropertyProxy_ReadOnly<bool>
   {
     return {this, "is-remote"};
   }
 
   auto
-  Application::property_resource_base_path () -> Glib::PropertyProxy<std::string>
+  Application::property_resource_base_path () -> glib::PropertyProxy<std::string>
   {
     return {this, "resource-base-path"};
   }
 
   auto
-  Application::property_resource_base_path () const -> Glib::PropertyProxy_ReadOnly<std::string>
+  Application::property_resource_base_path () const -> glib::PropertyProxy_ReadOnly<std::string>
   {
     return {this, "resource-base-path"};
   }
 
   auto
-  Application::property_is_busy () const -> Glib::PropertyProxy_ReadOnly<bool>
+  Application::property_is_busy () const -> glib::PropertyProxy_ReadOnly<bool>
   {
     return {this, "is-busy"};
   }
@@ -1653,13 +1653,13 @@ namespace Gio
 
   auto
   Application::on_command_line (
-      const Glib::RefPtr<ApplicationCommandLine>& command_line) -> int
+      const glib::RefPtr<ApplicationCommandLine>& command_line) -> int
   {
     const auto base = static_cast<BaseClassType*> (
         g_type_class_peek_parent (G_OBJECT_GET_CLASS (gobject_)));
 
     if (base && base->command_line)
-      return (*base->command_line) (gobj (), Glib::unwrap (command_line));
+      return (*base->command_line) (gobj (), glib::unwrap (command_line));
 
     using RType = int;
     return RType ();
@@ -1667,7 +1667,7 @@ namespace Gio
 
   auto
   Application::on_handle_local_options (
-      const Glib::RefPtr<Glib::VariantDict>& options) -> int
+      const glib::RefPtr<glib::VariantDict>& options) -> int
   {
     const auto base = static_cast<BaseClassType*> (
         g_type_class_peek_parent (G_OBJECT_GET_CLASS (gobject_)));
@@ -1710,7 +1710,7 @@ namespace Gio
   }
 
   auto
-  Application::before_emit_vfunc (const Glib::VariantBase& platform_data) -> void
+  Application::before_emit_vfunc (const glib::VariantBase& platform_data) -> void
   {
     const auto base = static_cast<BaseClassType*> (
         g_type_class_peek_parent (G_OBJECT_GET_CLASS (gobject_)));
@@ -1723,7 +1723,7 @@ namespace Gio
   }
 
   auto
-  Application::after_emit_vfunc (const Glib::VariantBase& platform_data) -> void
+  Application::after_emit_vfunc (const glib::VariantBase& platform_data) -> void
   {
     const auto base = static_cast<BaseClassType*> (
         g_type_class_peek_parent (G_OBJECT_GET_CLASS (gobject_)));
@@ -1761,8 +1761,8 @@ namespace Gio
 
   auto
   Application::dbus_register_vfunc (
-      const Glib::RefPtr<DBus::Connection>& connection,
-      const Glib::ustring& object_path) -> bool
+      const glib::RefPtr<DBus::Connection>& connection,
+      const glib::ustring& object_path) -> bool
   {
     const auto base = static_cast<BaseClassType*> (
         g_type_class_peek_parent (G_OBJECT_GET_CLASS (gobject_)));
@@ -1771,11 +1771,11 @@ namespace Gio
     {
       GError* gerror = nullptr;
       const bool retval ((*base->dbus_register) (gobj (),
-                                                 Glib::unwrap (connection),
+                                                 glib::unwrap (connection),
                                                  object_path.c_str (),
                                                  &gerror));
       if (gerror)
-        Glib::Error::throw_exception (gerror);
+        glib::Error::throw_exception (gerror);
       return retval;
     }
 
@@ -1785,8 +1785,8 @@ namespace Gio
 
   auto
   Application::dbus_unregister_vfunc (
-      const Glib::RefPtr<DBus::Connection>& connection,
-      const Glib::ustring& object_path) -> void
+      const glib::RefPtr<DBus::Connection>& connection,
+      const glib::ustring& object_path) -> void
   {
     const auto base = static_cast<BaseClassType*> (
         g_type_class_peek_parent (G_OBJECT_GET_CLASS (gobject_)));
@@ -1794,9 +1794,9 @@ namespace Gio
     if (base && base->dbus_unregister)
     {
       (*base->dbus_unregister) (gobj (),
-                                Glib::unwrap (connection),
+                                glib::unwrap (connection),
                                 object_path.c_str ());
     }
   }
 
-} // namespace Gio
+} // namespace gio

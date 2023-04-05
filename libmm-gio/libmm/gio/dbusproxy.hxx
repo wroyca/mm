@@ -20,13 +20,13 @@ using GDBusProxyClass = struct _GDBusProxyClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gio::DBus
+namespace gio::DBus
 {
   class LIBMM_GIO_SYMEXPORT Proxy_Class;
 }
 #endif
 
-namespace Gio::DBus
+namespace gio::DBus
 {
 
   enum class ProxyFlags
@@ -88,28 +88,28 @@ namespace Gio::DBus
                                            static_cast<unsigned> (rhs)));
   }
 
-} // namespace Gio::DBus
+} // namespace gio::DBus
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_GIO_SYMEXPORT Value<Gio::DBus::ProxyFlags>
-    : public Glib::Value_Flags<Gio::DBus::ProxyFlags>
+  class LIBMM_GIO_SYMEXPORT Value<gio::DBus::ProxyFlags>
+    : public glib::Value_Flags<gio::DBus::ProxyFlags>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
-namespace Gio::DBus
+namespace gio::DBus
 {
 
-  class LIBMM_GIO_SYMEXPORT Proxy : public Glib::Object,
+  class LIBMM_GIO_SYMEXPORT Proxy : public glib::Object,
                           public Initable,
                           public AsyncInitable,
                           public Interface
@@ -131,7 +131,7 @@ namespace Gio::DBus
     static CppClassType proxy_class_;
 
   protected:
-    explicit Proxy (const Glib::ConstructParams& construct_params);
+    explicit Proxy (const glib::ConstructParams& construct_params);
     explicit Proxy (GDBusProxy* castitem);
 
 #endif
@@ -169,173 +169,173 @@ namespace Gio::DBus
 
   private:
   protected:
-    Proxy (const Glib::RefPtr<Connection>& connection,
-           const Glib::ustring& name,
-           const Glib::ustring& object_path,
-           const Glib::ustring& interface_name,
+    Proxy (const glib::RefPtr<Connection>& connection,
+           const glib::ustring& name,
+           const glib::ustring& object_path,
+           const glib::ustring& interface_name,
            const SlotAsyncReady& slot,
-           const Glib::RefPtr<Cancellable>& cancellable,
-           const Glib::RefPtr<InterfaceInfo>& info = {},
+           const glib::RefPtr<Cancellable>& cancellable,
+           const glib::RefPtr<InterfaceInfo>& info = {},
            ProxyFlags flags = ProxyFlags::NONE);
 
-    Proxy (const Glib::RefPtr<Connection>& connection,
-           const Glib::ustring& name,
-           const Glib::ustring& object_path,
-           const Glib::ustring& interface_name,
+    Proxy (const glib::RefPtr<Connection>& connection,
+           const glib::ustring& name,
+           const glib::ustring& object_path,
+           const glib::ustring& interface_name,
            const SlotAsyncReady& slot,
-           const Glib::RefPtr<InterfaceInfo>& info = {},
+           const glib::RefPtr<InterfaceInfo>& info = {},
            ProxyFlags flags = ProxyFlags::NONE);
 
-    Proxy (const Glib::RefPtr<Connection>& connection,
-           const Glib::ustring& name,
-           const Glib::ustring& object_path,
-           const Glib::ustring& interface_name,
-           const Glib::RefPtr<Cancellable>& cancellable,
-           const Glib::RefPtr<InterfaceInfo>& info = {},
+    Proxy (const glib::RefPtr<Connection>& connection,
+           const glib::ustring& name,
+           const glib::ustring& object_path,
+           const glib::ustring& interface_name,
+           const glib::RefPtr<Cancellable>& cancellable,
+           const glib::RefPtr<InterfaceInfo>& info = {},
            ProxyFlags flags = ProxyFlags::NONE);
 
-    Proxy (const Glib::RefPtr<Connection>& connection,
-           const Glib::ustring& name,
-           const Glib::ustring& object_path,
-           const Glib::ustring& interface_name,
-           const Glib::RefPtr<InterfaceInfo>& info = {},
+    Proxy (const glib::RefPtr<Connection>& connection,
+           const glib::ustring& name,
+           const glib::ustring& object_path,
+           const glib::ustring& interface_name,
+           const glib::RefPtr<InterfaceInfo>& info = {},
            ProxyFlags flags = ProxyFlags::NONE);
 
     Proxy (BusType bus_type,
-           const Glib::ustring& name,
-           const Glib::ustring& object_path,
-           const Glib::ustring& interface_name,
+           const glib::ustring& name,
+           const glib::ustring& object_path,
+           const glib::ustring& interface_name,
            const SlotAsyncReady& slot,
-           const Glib::RefPtr<Cancellable>& cancellable,
-           const Glib::RefPtr<InterfaceInfo>& info = {},
+           const glib::RefPtr<Cancellable>& cancellable,
+           const glib::RefPtr<InterfaceInfo>& info = {},
            ProxyFlags flags = ProxyFlags::NONE);
 
     Proxy (BusType bus_type,
-           const Glib::ustring& name,
-           const Glib::ustring& object_path,
-           const Glib::ustring& interface_name,
+           const glib::ustring& name,
+           const glib::ustring& object_path,
+           const glib::ustring& interface_name,
            const SlotAsyncReady& slot,
-           const Glib::RefPtr<InterfaceInfo>& info = {},
+           const glib::RefPtr<InterfaceInfo>& info = {},
            ProxyFlags flags = ProxyFlags::NONE);
 
     Proxy (BusType bus_type,
-           const Glib::ustring& name,
-           const Glib::ustring& object_path,
-           const Glib::ustring& interface_name,
-           const Glib::RefPtr<Cancellable>& cancellable,
-           const Glib::RefPtr<InterfaceInfo>& info = {},
+           const glib::ustring& name,
+           const glib::ustring& object_path,
+           const glib::ustring& interface_name,
+           const glib::RefPtr<Cancellable>& cancellable,
+           const glib::RefPtr<InterfaceInfo>& info = {},
            ProxyFlags flags = ProxyFlags::NONE);
 
     Proxy (BusType bus_type,
-           const Glib::ustring& name,
-           const Glib::ustring& object_path,
-           const Glib::ustring& interface_name,
-           const Glib::RefPtr<InterfaceInfo>& info = {},
+           const glib::ustring& name,
+           const glib::ustring& object_path,
+           const glib::ustring& interface_name,
+           const glib::RefPtr<InterfaceInfo>& info = {},
            ProxyFlags flags = ProxyFlags::NONE);
 
   public:
     static auto
-    create (const Glib::RefPtr<Connection>& connection,
-            const Glib::ustring& name,
-            const Glib::ustring& object_path,
-            const Glib::ustring& interface_name,
+    create (const glib::RefPtr<Connection>& connection,
+            const glib::ustring& name,
+            const glib::ustring& object_path,
+            const glib::ustring& interface_name,
             const SlotAsyncReady& slot,
-            const Glib::RefPtr<Cancellable>& cancellable,
-            const Glib::RefPtr<InterfaceInfo>& info = {},
+            const glib::RefPtr<Cancellable>& cancellable,
+            const glib::RefPtr<InterfaceInfo>& info = {},
             ProxyFlags flags = ProxyFlags::NONE) -> void;
 
     static auto
-    create (const Glib::RefPtr<Connection>& connection,
-            const Glib::ustring& name,
-            const Glib::ustring& object_path,
-            const Glib::ustring& interface_name,
+    create (const glib::RefPtr<Connection>& connection,
+            const glib::ustring& name,
+            const glib::ustring& object_path,
+            const glib::ustring& interface_name,
             const SlotAsyncReady& slot,
-            const Glib::RefPtr<InterfaceInfo>& info = {},
+            const glib::RefPtr<InterfaceInfo>& info = {},
             ProxyFlags flags = ProxyFlags::NONE) -> void;
 
     static auto
-    create_finish (const Glib::RefPtr<AsyncResult>& res)
-        -> Glib::RefPtr<Gio::DBus::Proxy>;
+    create_finish (const glib::RefPtr<AsyncResult>& res)
+        -> glib::RefPtr<gio::DBus::Proxy>;
 
     static auto
-    create_sync (const Glib::RefPtr<Connection>& connection,
-                 const Glib::ustring& name,
-                 const Glib::ustring& object_path,
-                 const Glib::ustring& interface_name,
-                 const Glib::RefPtr<Cancellable>& cancellable,
-                 const Glib::RefPtr<InterfaceInfo>& info = {},
-                 ProxyFlags flags = ProxyFlags::NONE) -> Glib::RefPtr<Proxy>;
+    create_sync (const glib::RefPtr<Connection>& connection,
+                 const glib::ustring& name,
+                 const glib::ustring& object_path,
+                 const glib::ustring& interface_name,
+                 const glib::RefPtr<Cancellable>& cancellable,
+                 const glib::RefPtr<InterfaceInfo>& info = {},
+                 ProxyFlags flags = ProxyFlags::NONE) -> glib::RefPtr<Proxy>;
 
     static auto
-    create_sync (const Glib::RefPtr<Connection>& connection,
-                 const Glib::ustring& name,
-                 const Glib::ustring& object_path,
-                 const Glib::ustring& interface_name,
-                 const Glib::RefPtr<InterfaceInfo>& info = {},
-                 ProxyFlags flags = ProxyFlags::NONE) -> Glib::RefPtr<Proxy>;
+    create_sync (const glib::RefPtr<Connection>& connection,
+                 const glib::ustring& name,
+                 const glib::ustring& object_path,
+                 const glib::ustring& interface_name,
+                 const glib::RefPtr<InterfaceInfo>& info = {},
+                 ProxyFlags flags = ProxyFlags::NONE) -> glib::RefPtr<Proxy>;
 
     static auto
     create_for_bus (BusType bus_type,
-                    const Glib::ustring& name,
-                    const Glib::ustring& object_path,
-                    const Glib::ustring& interface_name,
+                    const glib::ustring& name,
+                    const glib::ustring& object_path,
+                    const glib::ustring& interface_name,
                     const SlotAsyncReady& slot,
-                    const Glib::RefPtr<Cancellable>& cancellable,
-                    const Glib::RefPtr<InterfaceInfo>& info = {},
+                    const glib::RefPtr<Cancellable>& cancellable,
+                    const glib::RefPtr<InterfaceInfo>& info = {},
                     ProxyFlags flags = ProxyFlags::NONE) -> void;
 
     static auto
     create_for_bus (BusType bus_type,
-                    const Glib::ustring& name,
-                    const Glib::ustring& object_path,
-                    const Glib::ustring& interface_name,
+                    const glib::ustring& name,
+                    const glib::ustring& object_path,
+                    const glib::ustring& interface_name,
                     const SlotAsyncReady& slot,
-                    const Glib::RefPtr<InterfaceInfo>& info = {},
+                    const glib::RefPtr<InterfaceInfo>& info = {},
                     ProxyFlags flags = ProxyFlags::NONE) -> void;
 
     static auto
-    create_for_bus_finish (const Glib::RefPtr<AsyncResult>& res)
-        -> Glib::RefPtr<Gio::DBus::Proxy>;
+    create_for_bus_finish (const glib::RefPtr<AsyncResult>& res)
+        -> glib::RefPtr<gio::DBus::Proxy>;
 
     static auto
     create_for_bus_sync (BusType bus_type,
-                         const Glib::ustring& name,
-                         const Glib::ustring& object_path,
-                         const Glib::ustring& interface_name,
-                         const Glib::RefPtr<Cancellable>& cancellable,
-                         const Glib::RefPtr<InterfaceInfo>& info = {},
+                         const glib::ustring& name,
+                         const glib::ustring& object_path,
+                         const glib::ustring& interface_name,
+                         const glib::RefPtr<Cancellable>& cancellable,
+                         const glib::RefPtr<InterfaceInfo>& info = {},
                          ProxyFlags flags = ProxyFlags::NONE)
-        -> Glib::RefPtr<Proxy>;
+        -> glib::RefPtr<Proxy>;
 
     static auto
     create_for_bus_sync (BusType bus_type,
-                         const Glib::ustring& name,
-                         const Glib::ustring& object_path,
-                         const Glib::ustring& interface_name,
-                         const Glib::RefPtr<InterfaceInfo>& info = {},
+                         const glib::ustring& name,
+                         const glib::ustring& object_path,
+                         const glib::ustring& interface_name,
+                         const glib::RefPtr<InterfaceInfo>& info = {},
                          ProxyFlags flags = ProxyFlags::NONE)
-        -> Glib::RefPtr<Proxy>;
+        -> glib::RefPtr<Proxy>;
 
     auto
     get_flags () const -> ProxyFlags;
 
     auto
-    get_connection () -> Glib::RefPtr<Connection>;
+    get_connection () -> glib::RefPtr<Connection>;
 
     auto
-    get_connection () const -> Glib::RefPtr<const Connection>;
+    get_connection () const -> glib::RefPtr<const Connection>;
 
     auto
-    get_name () const -> Glib::ustring;
+    get_name () const -> glib::ustring;
 
     auto
-    get_name_owner () const -> Glib::ustring;
+    get_name_owner () const -> glib::ustring;
 
     auto
-    get_object_path () const -> Glib::ustring;
+    get_object_path () const -> glib::ustring;
 
     auto
-    get_interface_name () const -> Glib::ustring;
+    get_interface_name () const -> glib::ustring;
 
     auto
     get_default_timeout () const -> int;
@@ -344,203 +344,203 @@ namespace Gio::DBus
     set_default_timeout (int timeout_msec = -1) -> void;
 
     auto
-    get_cached_property (Glib::VariantBase& property,
-                         const Glib::ustring& property_name) const -> void;
+    get_cached_property (glib::VariantBase& property,
+                         const glib::ustring& property_name) const -> void;
 
     auto
-    set_cached_property (const Glib::ustring& property_name,
-                         const Glib::VariantBase& value) -> void;
+    set_cached_property (const glib::ustring& property_name,
+                         const glib::VariantBase& value) -> void;
 
     auto
-    get_cached_property_names () const -> std::vector<Glib::ustring>;
+    get_cached_property_names () const -> std::vector<glib::ustring>;
 
     auto
-    set_interface_info (const Glib::RefPtr<InterfaceInfo>& info) -> void;
+    set_interface_info (const glib::RefPtr<InterfaceInfo>& info) -> void;
 
     auto
-    get_interface_info () -> Glib::RefPtr<InterfaceInfo>;
+    get_interface_info () -> glib::RefPtr<InterfaceInfo>;
 
     auto
-    get_interface_info () const -> Glib::RefPtr<const InterfaceInfo>;
+    get_interface_info () const -> glib::RefPtr<const InterfaceInfo>;
 
     auto
-    call (const Glib::ustring& method_name,
+    call (const glib::ustring& method_name,
           const SlotAsyncReady& slot,
-          const Glib::RefPtr<Cancellable>& cancellable,
-          const Glib::VariantContainerBase& parameters = {},
+          const glib::RefPtr<Cancellable>& cancellable,
+          const glib::VariantContainerBase& parameters = {},
           int timeout_msec = -1,
-          CallFlags flags = Gio::DBus::CallFlags::NONE) -> void;
+          CallFlags flags = gio::DBus::CallFlags::NONE) -> void;
 
     auto
-    call (const Glib::ustring& method_name,
+    call (const glib::ustring& method_name,
           const SlotAsyncReady& slot,
-          const Glib::VariantContainerBase& parameters = {},
+          const glib::VariantContainerBase& parameters = {},
           int timeout_msec = -1,
-          CallFlags flags = Gio::DBus::CallFlags::NONE) -> void;
+          CallFlags flags = gio::DBus::CallFlags::NONE) -> void;
 
     auto
-    call (const Glib::ustring& method_name,
-          const Glib::RefPtr<Cancellable>& cancellable,
-          const Glib::VariantContainerBase& parameters = {},
+    call (const glib::ustring& method_name,
+          const glib::RefPtr<Cancellable>& cancellable,
+          const glib::VariantContainerBase& parameters = {},
           int timeout_msec = -1,
-          CallFlags flags = Gio::DBus::CallFlags::NONE) -> void;
+          CallFlags flags = gio::DBus::CallFlags::NONE) -> void;
 
     auto
-    call (const Glib::ustring& method_name,
-          const Glib::VariantContainerBase& parameters = {},
+    call (const glib::ustring& method_name,
+          const glib::VariantContainerBase& parameters = {},
           int timeout_msec = -1,
-          CallFlags flags = Gio::DBus::CallFlags::NONE) -> void;
+          CallFlags flags = gio::DBus::CallFlags::NONE) -> void;
 
     auto
-    call_finish (const Glib::RefPtr<AsyncResult>& res)
-        -> Glib::VariantContainerBase;
+    call_finish (const glib::RefPtr<AsyncResult>& res)
+        -> glib::VariantContainerBase;
 
     auto
-    call_sync (const Glib::ustring& method_name,
-               const Glib::RefPtr<Cancellable>& cancellable,
-               const Glib::VariantContainerBase& parameters = {},
+    call_sync (const glib::ustring& method_name,
+               const glib::RefPtr<Cancellable>& cancellable,
+               const glib::VariantContainerBase& parameters = {},
                int timeout_msec = -1,
-               CallFlags flags = Gio::DBus::CallFlags::NONE)
-        -> Glib::VariantContainerBase;
+               CallFlags flags = gio::DBus::CallFlags::NONE)
+        -> glib::VariantContainerBase;
 
     auto
-    call_sync (const Glib::ustring& method_name,
-               const Glib::VariantContainerBase& parameters = {},
+    call_sync (const glib::ustring& method_name,
+               const glib::VariantContainerBase& parameters = {},
                int timeout_msec = -1,
-               CallFlags flags = Gio::DBus::CallFlags::NONE)
-        -> Glib::VariantContainerBase;
+               CallFlags flags = gio::DBus::CallFlags::NONE)
+        -> glib::VariantContainerBase;
 
 #ifdef G_OS_UNIX
 
     void
-    call (const Glib::ustring& method_name,
-          const Glib::VariantContainerBase& parameters,
+    call (const glib::ustring& method_name,
+          const glib::VariantContainerBase& parameters,
           const SlotAsyncReady& slot,
-          const Glib::RefPtr<Cancellable>& cancellable,
-          const Glib::RefPtr<UnixFDList>& fd_list,
+          const glib::RefPtr<Cancellable>& cancellable,
+          const glib::RefPtr<UnixFDList>& fd_list,
           int timeout_msec = -1,
-          CallFlags flags = Gio::DBus::CallFlags::NONE);
-#endif
-
-#ifdef G_OS_UNIX
-
-    void
-    call (const Glib::ustring& method_name,
-          const Glib::VariantContainerBase& parameters,
-          const SlotAsyncReady& slot,
-          const Glib::RefPtr<UnixFDList>& fd_list,
-          int timeout_msec = -1,
-          CallFlags flags = Gio::DBus::CallFlags::NONE);
+          CallFlags flags = gio::DBus::CallFlags::NONE);
 #endif
 
 #ifdef G_OS_UNIX
 
     void
-    call (const Glib::ustring& method_name,
-          const Glib::VariantContainerBase& parameters,
-          const Glib::RefPtr<Cancellable>& cancellable,
-          const Glib::RefPtr<UnixFDList>& fd_list,
+    call (const glib::ustring& method_name,
+          const glib::VariantContainerBase& parameters,
+          const SlotAsyncReady& slot,
+          const glib::RefPtr<UnixFDList>& fd_list,
           int timeout_msec = -1,
-          CallFlags flags = Gio::DBus::CallFlags::NONE);
+          CallFlags flags = gio::DBus::CallFlags::NONE);
 #endif
 
 #ifdef G_OS_UNIX
 
     void
-    call (const Glib::ustring& method_name,
-          const Glib::VariantContainerBase& parameters,
-          const Glib::RefPtr<UnixFDList>& fd_list,
+    call (const glib::ustring& method_name,
+          const glib::VariantContainerBase& parameters,
+          const glib::RefPtr<Cancellable>& cancellable,
+          const glib::RefPtr<UnixFDList>& fd_list,
           int timeout_msec = -1,
-          CallFlags flags = Gio::DBus::CallFlags::NONE);
+          CallFlags flags = gio::DBus::CallFlags::NONE);
+#endif
+
+#ifdef G_OS_UNIX
+
+    void
+    call (const glib::ustring& method_name,
+          const glib::VariantContainerBase& parameters,
+          const glib::RefPtr<UnixFDList>& fd_list,
+          int timeout_msec = -1,
+          CallFlags flags = gio::DBus::CallFlags::NONE);
 #endif
 
 #ifdef G_OS_UNIX
 
     auto
-    call_finish (const Glib::RefPtr<AsyncResult>& res,
-                 Glib::RefPtr<UnixFDList>& out_fd_list)
-        -> Glib::VariantContainerBase;
+    call_finish (const glib::RefPtr<AsyncResult>& res,
+                 glib::RefPtr<UnixFDList>& out_fd_list)
+        -> glib::VariantContainerBase;
 #endif
 
 #ifdef G_OS_UNIX
 
     auto
-    call_sync (const Glib::ustring& method_name,
-               const Glib::VariantContainerBase& parameters,
-               const Glib::RefPtr<Cancellable>& cancellable,
-               const Glib::RefPtr<UnixFDList>& fd_list,
-               Glib::RefPtr<UnixFDList>& out_fd_list,
+    call_sync (const glib::ustring& method_name,
+               const glib::VariantContainerBase& parameters,
+               const glib::RefPtr<Cancellable>& cancellable,
+               const glib::RefPtr<UnixFDList>& fd_list,
+               glib::RefPtr<UnixFDList>& out_fd_list,
                int timeout_msec = -1,
-               CallFlags flags = Gio::DBus::CallFlags::NONE)
-        -> Glib::VariantContainerBase;
+               CallFlags flags = gio::DBus::CallFlags::NONE)
+        -> glib::VariantContainerBase;
 #endif
 
 #ifdef G_OS_UNIX
 
     auto
-    call_sync (const Glib::ustring& method_name,
-               const Glib::VariantContainerBase& parameters,
-               const Glib::RefPtr<UnixFDList>& fd_list,
-               Glib::RefPtr<UnixFDList>& out_fd_list,
+    call_sync (const glib::ustring& method_name,
+               const glib::VariantContainerBase& parameters,
+               const glib::RefPtr<UnixFDList>& fd_list,
+               glib::RefPtr<UnixFDList>& out_fd_list,
                int timeout_msec = -1,
-               CallFlags flags = Gio::DBus::CallFlags::NONE)
-        -> Glib::VariantContainerBase;
+               CallFlags flags = gio::DBus::CallFlags::NONE)
+        -> glib::VariantContainerBase;
 #endif
 
     auto
     property_g_connection () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Connection>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<Connection>>;
 
     auto
-    property_g_default_timeout () -> Glib::PropertyProxy<int>;
+    property_g_default_timeout () -> glib::PropertyProxy<int>;
 
     auto
-    property_g_default_timeout () const -> Glib::PropertyProxy_ReadOnly<int>;
+    property_g_default_timeout () const -> glib::PropertyProxy_ReadOnly<int>;
 
     auto
-    property_g_flags () const -> Glib::PropertyProxy_ReadOnly<ProxyFlags>;
+    property_g_flags () const -> glib::PropertyProxy_ReadOnly<ProxyFlags>;
 
     auto
     property_g_interface_info ()
-        -> Glib::PropertyProxy<Glib::RefPtr<InterfaceInfo>>;
+        -> glib::PropertyProxy<glib::RefPtr<InterfaceInfo>>;
 
     auto
     property_g_interface_info () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<InterfaceInfo>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<InterfaceInfo>>;
 
     auto
     property_g_interface_name () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+        -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
     auto
-    property_g_name () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+    property_g_name () const -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
     auto
     property_g_name_owner () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+        -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
     auto
     property_g_object_path () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+        -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
-    using MapChangedProperties = std::map<Glib::ustring, Glib::VariantBase>;
+    using MapChangedProperties = std::map<glib::ustring, glib::VariantBase>;
 
     auto
     signal_properties_changed ()
-        -> Glib::SignalProxy<void (const MapChangedProperties&,
-                                   const std::vector<Glib::ustring>&)>;
+        -> glib::SignalProxy<void (const MapChangedProperties&,
+                                   const std::vector<glib::ustring>&)>;
 
     auto
     signal_signal ()
-        -> Glib::SignalProxy<void (const Glib::ustring&,
-                                   const Glib::ustring&,
-                                   const Glib::VariantContainerBase&)>;
+        -> glib::SignalProxy<void (const glib::ustring&,
+                                   const glib::ustring&,
+                                   const glib::VariantContainerBase&)>;
 
     auto
-    signal_signal (const Glib::ustring& signal_name)
-        -> Glib::SignalProxyDetailed<void (const Glib::ustring&,
-                                           const Glib::ustring&,
-                                           const Glib::VariantContainerBase&)>;
+    signal_signal (const glib::ustring& signal_name)
+        -> glib::SignalProxyDetailed<void (const glib::ustring&,
+                                           const glib::ustring&,
+                                           const glib::VariantContainerBase&)>;
 
   public:
   public:
@@ -548,22 +548,22 @@ namespace Gio::DBus
     virtual auto
     on_properties_changed (
         const MapChangedProperties& changed_properties,
-        const std::vector<Glib::ustring>& invalidated_properties) -> void;
+        const std::vector<glib::ustring>& invalidated_properties) -> void;
 
     virtual auto
-    on_signal (const Glib::ustring& sender_name,
-               const Glib::ustring& signal_name,
-               const Glib::VariantContainerBase& parameters) -> void;
+    on_signal (const glib::ustring& sender_name,
+               const glib::ustring& signal_name,
+               const glib::VariantContainerBase& parameters) -> void;
   };
 
-} // namespace Gio::DBus
+} // namespace gio::DBus
 
-namespace Glib
+namespace glib
 {
 
   LIBMM_GIO_SYMEXPORT
   auto
-  wrap (GDBusProxy* object, bool take_copy = false) -> Glib::RefPtr<Gio::DBus::Proxy>;
-} // namespace Glib
+  wrap (GDBusProxy* object, bool take_copy = false) -> glib::RefPtr<gio::DBus::Proxy>;
+} // namespace glib
 
 #endif

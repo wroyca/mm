@@ -13,7 +13,7 @@
 typedef struct _GBytes GBytes;
 #endif
 
-namespace Glib
+namespace glib
 {
 
   class LIBMM_GLIB_SYMEXPORT Bytes final
@@ -52,7 +52,7 @@ namespace Glib
   private:
   public:
     static auto
-    create (gconstpointer data, gsize size) -> Glib::RefPtr<Glib::Bytes>;
+    create (gconstpointer data, gsize size) -> glib::RefPtr<glib::Bytes>;
 
     auto
     get_data (gsize& size) const -> gconstpointer;
@@ -71,10 +71,10 @@ namespace Glib
   };
 
   template <>
-  class LIBMM_GLIB_SYMEXPORT Value<Glib::RefPtr<Glib::Bytes>> : public ValueBase_Boxed
+  class LIBMM_GLIB_SYMEXPORT Value<glib::RefPtr<glib::Bytes>> : public ValueBase_Boxed
   {
   public:
-    using CppType = Glib::RefPtr<Glib::Bytes>;
+    using CppType = glib::RefPtr<glib::Bytes>;
     using CType = GBytes*;
 
     static GType
@@ -86,15 +86,15 @@ namespace Glib
     get () const;
   };
 
-} // namespace Glib
+} // namespace glib
 
-namespace Glib
+namespace glib
 {
 
   LIBMM_GLIB_SYMEXPORT
   auto
-  wrap (GBytes* object, bool take_copy = false) -> Glib::RefPtr<Glib::Bytes>;
+  wrap (GBytes* object, bool take_copy = false) -> glib::RefPtr<glib::Bytes>;
 
-} // namespace Glib
+} // namespace glib
 
 #endif

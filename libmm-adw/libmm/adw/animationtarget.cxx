@@ -8,7 +8,7 @@
 #include <adwaita.h>
 #include <libmm/glib/mm-glib.hxx>
 
-namespace Adw
+namespace adw
 {
 
 }
@@ -17,24 +17,24 @@ namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (AdwAnimationTarget* object, bool take_copy) -> Glib::RefPtr<Adw::AnimationTarget>
+  wrap (AdwAnimationTarget* object, bool take_copy) -> glib::RefPtr<adw::AnimationTarget>
   {
-    return Glib::make_refptr_for_instance<Adw::AnimationTarget> (
-        dynamic_cast<Adw::AnimationTarget*> (
-            Glib::wrap_auto ((GObject*) (object), take_copy)));
+    return glib::make_refptr_for_instance<adw::AnimationTarget> (
+        dynamic_cast<adw::AnimationTarget*> (
+            glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Adw
+namespace adw
 {
 
   auto
-  AnimationTarget_Class::init () -> const Glib::Class&
+  AnimationTarget_Class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -54,7 +54,7 @@ namespace Adw
   }
 
   auto
-  AnimationTarget_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  AnimationTarget_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new AnimationTarget ((AdwAnimationTarget*) object);
   }
@@ -67,25 +67,25 @@ namespace Adw
   }
 
   AnimationTarget::AnimationTarget (
-      const Glib::ConstructParams& construct_params)
-    : Glib::Object (construct_params)
+      const glib::ConstructParams& construct_params)
+    : glib::Object (construct_params)
   {
   }
 
   AnimationTarget::AnimationTarget (AdwAnimationTarget* castitem)
-    : Glib::Object ((GObject*) (castitem))
+    : glib::Object ((GObject*) (castitem))
   {
   }
 
   AnimationTarget::AnimationTarget (AnimationTarget&& src) noexcept
-    : Glib::Object (std::move (src))
+    : glib::Object (std::move (src))
   {
   }
 
   auto
   AnimationTarget::operator= (AnimationTarget&& src) noexcept -> AnimationTarget&
   {
-    Glib::Object::operator= (std::move (src));
+    glib::Object::operator= (std::move (src));
     return *this;
   }
 
@@ -106,9 +106,9 @@ namespace Adw
   }
 
   AnimationTarget::AnimationTarget ()
-    : Glib::ObjectBase (nullptr),
-      Glib::Object (Glib::ConstructParams (animationtarget_class_.init ()))
+    : glib::ObjectBase (nullptr),
+      glib::Object (glib::ConstructParams (animationtarget_class_.init ()))
   {
   }
 
-} // namespace Adw
+} // namespace adw

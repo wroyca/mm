@@ -11,24 +11,24 @@ namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GtkBoxLayout* object, bool take_copy) -> Glib::RefPtr<Gtk::BoxLayout>
+  wrap (GtkBoxLayout* object, bool take_copy) -> glib::RefPtr<gtk::BoxLayout>
   {
-    return Glib::make_refptr_for_instance<Gtk::BoxLayout> (
-        dynamic_cast<Gtk::BoxLayout*> (
-            Glib::wrap_auto ((GObject*) (object), take_copy)));
+    return glib::make_refptr_for_instance<gtk::BoxLayout> (
+        dynamic_cast<gtk::BoxLayout*> (
+            glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gtk
+namespace gtk
 {
 
   auto
-  BoxLayout_Class::init () -> const Glib::Class&
+  BoxLayout_Class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -48,7 +48,7 @@ namespace Gtk
   }
 
   auto
-  BoxLayout_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  BoxLayout_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new BoxLayout ((GtkBoxLayout*) object);
   }
@@ -60,7 +60,7 @@ namespace Gtk
     return gobj ();
   }
 
-  BoxLayout::BoxLayout (const Glib::ConstructParams& construct_params)
+  BoxLayout::BoxLayout (const glib::ConstructParams& construct_params)
     : LayoutManager (construct_params)
   {
   }
@@ -101,9 +101,9 @@ namespace Gtk
   }
 
   BoxLayout::BoxLayout (Orientation orientation)
-    : Glib::ObjectBase (nullptr),
+    : glib::ObjectBase (nullptr),
       LayoutManager (
-          Glib::ConstructParams (boxlayout_class_.init (),
+          glib::ConstructParams (boxlayout_class_.init (),
                                  "orientation",
                                  static_cast<GtkOrientation> (orientation),
                                  nullptr))
@@ -111,9 +111,9 @@ namespace Gtk
   }
 
   auto
-  BoxLayout::create (Orientation orientation) -> Glib::RefPtr<BoxLayout>
+  BoxLayout::create (Orientation orientation) -> glib::RefPtr<BoxLayout>
   {
-    return Glib::make_refptr_for_instance<BoxLayout> (
+    return glib::make_refptr_for_instance<BoxLayout> (
         new BoxLayout (orientation));
   }
 
@@ -157,45 +157,45 @@ namespace Gtk
   }
 
   auto
-  BoxLayout::property_homogeneous () -> Glib::PropertyProxy<bool>
+  BoxLayout::property_homogeneous () -> glib::PropertyProxy<bool>
   {
-    return Glib::PropertyProxy<bool> (this, "homogeneous");
+    return glib::PropertyProxy<bool> (this, "homogeneous");
   }
 
   auto
-  BoxLayout::property_homogeneous () const -> Glib::PropertyProxy_ReadOnly<bool>
+  BoxLayout::property_homogeneous () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "homogeneous");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "homogeneous");
   }
 
   auto
-  BoxLayout::property_spacing () -> Glib::PropertyProxy<int>
+  BoxLayout::property_spacing () -> glib::PropertyProxy<int>
   {
-    return Glib::PropertyProxy<int> (this, "spacing");
+    return glib::PropertyProxy<int> (this, "spacing");
   }
 
   auto
-  BoxLayout::property_spacing () const -> Glib::PropertyProxy_ReadOnly<int>
+  BoxLayout::property_spacing () const -> glib::PropertyProxy_ReadOnly<int>
   {
-    return Glib::PropertyProxy_ReadOnly<int> (this, "spacing");
+    return glib::PropertyProxy_ReadOnly<int> (this, "spacing");
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<BaselinePosition>::value,
+      glib::Traits::ValueCompatibleWithWrapProperty<BaselinePosition>::value,
       "Type BaselinePosition cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  BoxLayout::property_baseline_position () -> Glib::PropertyProxy<BaselinePosition>
+  BoxLayout::property_baseline_position () -> glib::PropertyProxy<BaselinePosition>
   {
-    return Glib::PropertyProxy<BaselinePosition> (this, "baseline-position");
+    return glib::PropertyProxy<BaselinePosition> (this, "baseline-position");
   }
 
   auto
-  BoxLayout::property_baseline_position () const -> Glib::PropertyProxy_ReadOnly<BaselinePosition>
+  BoxLayout::property_baseline_position () const -> glib::PropertyProxy_ReadOnly<BaselinePosition>
   {
-    return Glib::PropertyProxy_ReadOnly<BaselinePosition> (this,
+    return glib::PropertyProxy_ReadOnly<BaselinePosition> (this,
                                                            "baseline-position");
   }
 
-} // namespace Gtk
+} // namespace gtk

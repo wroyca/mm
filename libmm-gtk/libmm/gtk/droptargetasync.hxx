@@ -17,13 +17,13 @@ using GtkDropTargetAsyncClass = struct _GtkDropTargetAsyncClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT DropTargetAsync_Class;
 }
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
   class LIBMM_GTK_SYMEXPORT DropTargetAsync : public EventController
@@ -45,7 +45,7 @@ namespace Gtk
     static CppClassType droptargetasync_class_;
 
   protected:
-    explicit DropTargetAsync (const Glib::ConstructParams& construct_params);
+    explicit DropTargetAsync (const glib::ConstructParams& construct_params);
     explicit DropTargetAsync (GtkDropTargetAsync* castitem);
 
 #endif
@@ -84,77 +84,77 @@ namespace Gtk
   private:
   public:
     static auto
-    create (const Glib::RefPtr<const Gdk::ContentFormats>& formats,
-            Gdk::DragAction actions = static_cast<Gdk::DragAction> (0))
-        -> Glib::RefPtr<DropTargetAsync>;
+    create (const glib::RefPtr<const gdk::ContentFormats>& formats,
+            gdk::DragAction actions = static_cast<gdk::DragAction> (0))
+        -> glib::RefPtr<DropTargetAsync>;
     static auto
-    create (Gdk::DragAction actions = static_cast<Gdk::DragAction> (0))
-        -> Glib::RefPtr<DropTargetAsync>;
+    create (gdk::DragAction actions = static_cast<gdk::DragAction> (0))
+        -> glib::RefPtr<DropTargetAsync>;
 
     auto
-    set_formats (const Glib::RefPtr<const Gdk::ContentFormats>& formats)
+    set_formats (const glib::RefPtr<const gdk::ContentFormats>& formats)
         -> void;
 
     auto
-    get_formats () -> Glib::RefPtr<Gdk::ContentFormats>;
+    get_formats () -> glib::RefPtr<gdk::ContentFormats>;
 
     auto
-    get_formats () const -> Glib::RefPtr<const Gdk::ContentFormats>;
+    get_formats () const -> glib::RefPtr<const gdk::ContentFormats>;
 
     auto
-    set_actions (Gdk::DragAction actions) -> void;
+    set_actions (gdk::DragAction actions) -> void;
 
     auto
-    get_actions () const -> Gdk::DragAction;
+    get_actions () const -> gdk::DragAction;
 
     auto
-    reject_drop (const Glib::RefPtr<Gdk::Drop>& drop) -> void;
+    reject_drop (const glib::RefPtr<gdk::Drop>& drop) -> void;
 
     auto
-    property_actions () -> Glib::PropertyProxy<Gdk::DragAction>;
+    property_actions () -> glib::PropertyProxy<gdk::DragAction>;
 
     auto
-    property_actions () const -> Glib::PropertyProxy_ReadOnly<Gdk::DragAction>;
+    property_actions () const -> glib::PropertyProxy_ReadOnly<gdk::DragAction>;
 
     auto
     property_formats ()
-        -> Glib::PropertyProxy<Glib::RefPtr<Gdk::ContentFormats>>;
+        -> glib::PropertyProxy<glib::RefPtr<gdk::ContentFormats>>;
 
     auto
     property_formats () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gdk::ContentFormats>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<gdk::ContentFormats>>;
 
     auto
     signal_accept ()
-        -> Glib::SignalProxy<bool (const Glib::RefPtr<Gdk::Drop>&)>;
+        -> glib::SignalProxy<bool (const glib::RefPtr<gdk::Drop>&)>;
 
     auto
-    signal_drag_enter () -> Glib::SignalProxy<
-        Gdk::DragAction (const Glib::RefPtr<Gdk::Drop>&, double, double)>;
+    signal_drag_enter () -> glib::SignalProxy<
+        gdk::DragAction (const glib::RefPtr<gdk::Drop>&, double, double)>;
 
     auto
-    signal_drag_motion () -> Glib::SignalProxy<
-        Gdk::DragAction (const Glib::RefPtr<Gdk::Drop>&, double, double)>;
+    signal_drag_motion () -> glib::SignalProxy<
+        gdk::DragAction (const glib::RefPtr<gdk::Drop>&, double, double)>;
 
     auto
     signal_drag_leave ()
-        -> Glib::SignalProxy<void (const Glib::RefPtr<Gdk::Drop>&)>;
+        -> glib::SignalProxy<void (const glib::RefPtr<gdk::Drop>&)>;
 
     auto
-    signal_drop () -> Glib::SignalProxy<
-        bool (const Glib::RefPtr<Gdk::Drop>&, double, double)>;
+    signal_drop () -> glib::SignalProxy<
+        bool (const glib::RefPtr<gdk::Drop>&, double, double)>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkDropTargetAsync* object, bool take_copy = false) -> Glib::RefPtr<Gtk::DropTargetAsync>;
-} // namespace Glib
+  wrap (GtkDropTargetAsync* object, bool take_copy = false) -> glib::RefPtr<gtk::DropTargetAsync>;
+} // namespace glib
 
 #endif

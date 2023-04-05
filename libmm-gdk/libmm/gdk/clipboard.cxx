@@ -9,43 +9,43 @@
 #include <libmm/gio/inputstream.hxx>
 #include <libmm/gio/slot_async.hxx>
 
-namespace Gdk
+namespace gdk
 {
   auto
   Clipboard::unset_content () -> bool
   {
     return gdk_clipboard_set_content (gobj (), nullptr);
   }
-} // namespace Gdk
+} // namespace gdk
 
 namespace
 {
 
-  static const Glib::SignalProxyInfo Clipboard_signal_changed_info = {
+  static const glib::SignalProxyInfo Clipboard_signal_changed_info = {
       "changed",
-      (GCallback) &Glib::SignalProxyNormal::slot0_void_callback,
-      (GCallback) &Glib::SignalProxyNormal::slot0_void_callback};
+      (GCallback) &glib::SignalProxyNormal::slot0_void_callback,
+      (GCallback) &glib::SignalProxyNormal::slot0_void_callback};
 
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GdkClipboard* object, bool take_copy) -> Glib::RefPtr<Gdk::Clipboard>
+  wrap (GdkClipboard* object, bool take_copy) -> glib::RefPtr<gdk::Clipboard>
   {
-    return Glib::make_refptr_for_instance<Gdk::Clipboard> (
-        dynamic_cast<Gdk::Clipboard*> (
-            Glib::wrap_auto ((GObject*) (object), take_copy)));
+    return glib::make_refptr_for_instance<gdk::Clipboard> (
+        dynamic_cast<gdk::Clipboard*> (
+            glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gdk
+namespace gdk
 {
 
   auto
-  Clipboard_Class::init () -> const Glib::Class&
+  Clipboard_Class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -65,7 +65,7 @@ namespace Gdk
   }
 
   auto
-  Clipboard_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  Clipboard_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new Clipboard ((GdkClipboard*) object);
   }
@@ -77,25 +77,25 @@ namespace Gdk
     return gobj ();
   }
 
-  Clipboard::Clipboard (const Glib::ConstructParams& construct_params)
-    : Glib::Object (construct_params)
+  Clipboard::Clipboard (const glib::ConstructParams& construct_params)
+    : glib::Object (construct_params)
   {
   }
 
   Clipboard::Clipboard (GdkClipboard* castitem)
-    : Glib::Object ((GObject*) (castitem))
+    : glib::Object ((GObject*) (castitem))
   {
   }
 
   Clipboard::Clipboard (Clipboard&& src) noexcept
-    : Glib::Object (std::move (src))
+    : glib::Object (std::move (src))
   {
   }
 
   auto
   Clipboard::operator= (Clipboard&& src) noexcept -> Clipboard&
   {
-    Glib::Object::operator= (std::move (src));
+    glib::Object::operator= (std::move (src));
     return *this;
   }
 
@@ -116,31 +116,31 @@ namespace Gdk
   }
 
   auto
-  Clipboard::get_display () -> Glib::RefPtr<Display>
+  Clipboard::get_display () -> glib::RefPtr<Display>
   {
-    auto retvalue = Glib::wrap (gdk_clipboard_get_display (gobj ()));
+    auto retvalue = glib::wrap (gdk_clipboard_get_display (gobj ()));
     if (retvalue)
       retvalue->reference ();
     return retvalue;
   }
 
   auto
-  Clipboard::get_display () const -> Glib::RefPtr<const Display>
+  Clipboard::get_display () const -> glib::RefPtr<const Display>
   {
     return const_cast<Clipboard*> (this)->get_display ();
   }
 
   auto
-  Clipboard::get_formats () -> Glib::RefPtr<ContentFormats>
+  Clipboard::get_formats () -> glib::RefPtr<ContentFormats>
   {
-    auto retvalue = Glib::wrap (gdk_clipboard_get_formats (gobj ()));
+    auto retvalue = glib::wrap (gdk_clipboard_get_formats (gobj ()));
     if (retvalue)
       retvalue->reference ();
     return retvalue;
   }
 
   auto
-  Clipboard::get_formats () const -> Glib::RefPtr<const ContentFormats>
+  Clipboard::get_formats () const -> glib::RefPtr<const ContentFormats>
   {
     return const_cast<Clipboard*> (this)->get_formats ();
   }
@@ -152,218 +152,218 @@ namespace Gdk
   }
 
   auto
-  Clipboard::get_content () -> Glib::RefPtr<ContentProvider>
+  Clipboard::get_content () -> glib::RefPtr<ContentProvider>
   {
-    auto retvalue = Glib::wrap (gdk_clipboard_get_content (gobj ()));
+    auto retvalue = glib::wrap (gdk_clipboard_get_content (gobj ()));
     if (retvalue)
       retvalue->reference ();
     return retvalue;
   }
 
   auto
-  Clipboard::get_content () const -> Glib::RefPtr<const ContentProvider>
+  Clipboard::get_content () const -> glib::RefPtr<const ContentProvider>
   {
     return const_cast<Clipboard*> (this)->get_content ();
   }
 
   auto
-  Clipboard::read_async (const std::vector<Glib::ustring>& mime_types,
+  Clipboard::read_async (const std::vector<glib::ustring>& mime_types,
                          int io_priority,
-                         const Gio::SlotAsyncReady& slot,
-                         const Glib::RefPtr<Gio::Cancellable>& cancellable) -> void
+                         const gio::SlotAsyncReady& slot,
+                         const glib::RefPtr<gio::Cancellable>& cancellable) -> void
   {
-    auto slot_copy = new Gio::SlotAsyncReady (slot);
+    auto slot_copy = new gio::SlotAsyncReady (slot);
 
     gdk_clipboard_read_async (
         gobj (),
-        Glib::ArrayHandler<Glib::ustring>::vector_to_array (mime_types).data (),
+        glib::ArrayHandler<glib::ustring>::vector_to_array (mime_types).data (),
         io_priority,
-        const_cast<GCancellable*> (Glib::unwrap (cancellable)),
-        &Gio::SignalProxy_async_callback,
+        const_cast<GCancellable*> (glib::unwrap (cancellable)),
+        &gio::SignalProxy_async_callback,
         slot_copy);
   }
 
   auto
-  Clipboard::read_async (const std::vector<Glib::ustring>& mime_types,
+  Clipboard::read_async (const std::vector<glib::ustring>& mime_types,
                          int io_priority,
-                         const Gio::SlotAsyncReady& slot) -> void
+                         const gio::SlotAsyncReady& slot) -> void
   {
-    auto slot_copy = new Gio::SlotAsyncReady (slot);
+    auto slot_copy = new gio::SlotAsyncReady (slot);
 
     gdk_clipboard_read_async (
         gobj (),
-        Glib::ArrayHandler<Glib::ustring>::vector_to_array (mime_types).data (),
+        glib::ArrayHandler<glib::ustring>::vector_to_array (mime_types).data (),
         io_priority,
         nullptr,
-        &Gio::SignalProxy_async_callback,
+        &gio::SignalProxy_async_callback,
         slot_copy);
   }
 
   auto
-  Clipboard::read_finish (const Glib::RefPtr<Gio::AsyncResult>& result,
-                          Glib::ustring& out_mime_type) -> Glib::RefPtr<Gio::InputStream>
+  Clipboard::read_finish (const glib::RefPtr<gio::AsyncResult>& result,
+                          glib::ustring& out_mime_type) -> glib::RefPtr<gio::InputStream>
   {
     GError* gerror = nullptr;
     const char* g_out_mime_type = nullptr;
     auto retvalue =
-        Glib::wrap (gdk_clipboard_read_finish (gobj (),
-                                               Glib::unwrap (result),
+        glib::wrap (gdk_clipboard_read_finish (gobj (),
+                                               glib::unwrap (result),
                                                &g_out_mime_type,
                                                &(gerror)));
     if (gerror)
-      ::Glib::Error::throw_exception (gerror);
-    out_mime_type = Glib::convert_const_gchar_ptr_to_ustring (g_out_mime_type);
+      ::glib::Error::throw_exception (gerror);
+    out_mime_type = glib::convert_const_gchar_ptr_to_ustring (g_out_mime_type);
     return retvalue;
   }
 
   auto
   Clipboard::read_texture_async (
-      const Gio::SlotAsyncReady& slot,
-      const Glib::RefPtr<Gio::Cancellable>& cancellable) -> void
+      const gio::SlotAsyncReady& slot,
+      const glib::RefPtr<gio::Cancellable>& cancellable) -> void
   {
-    auto slot_copy = new Gio::SlotAsyncReady (slot);
+    auto slot_copy = new gio::SlotAsyncReady (slot);
 
     gdk_clipboard_read_texture_async (
         gobj (),
-        const_cast<GCancellable*> (Glib::unwrap (cancellable)),
-        &Gio::SignalProxy_async_callback,
+        const_cast<GCancellable*> (glib::unwrap (cancellable)),
+        &gio::SignalProxy_async_callback,
         slot_copy);
   }
 
   auto
-  Clipboard::read_texture_async (const Gio::SlotAsyncReady& slot) -> void
+  Clipboard::read_texture_async (const gio::SlotAsyncReady& slot) -> void
   {
-    auto slot_copy = new Gio::SlotAsyncReady (slot);
+    auto slot_copy = new gio::SlotAsyncReady (slot);
 
     gdk_clipboard_read_texture_async (gobj (),
                                       nullptr,
-                                      &Gio::SignalProxy_async_callback,
+                                      &gio::SignalProxy_async_callback,
                                       slot_copy);
   }
 
   auto
-  Clipboard::read_texture_finish (const Glib::RefPtr<Gio::AsyncResult>& result) -> Glib::RefPtr<Texture>
+  Clipboard::read_texture_finish (const glib::RefPtr<gio::AsyncResult>& result) -> glib::RefPtr<Texture>
   {
     GError* gerror = nullptr;
     auto retvalue =
-        Glib::wrap (gdk_clipboard_read_texture_finish (gobj (),
-                                                       Glib::unwrap (result),
+        glib::wrap (gdk_clipboard_read_texture_finish (gobj (),
+                                                       glib::unwrap (result),
                                                        &(gerror)));
     if (gerror)
-      ::Glib::Error::throw_exception (gerror);
+      ::glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
   auto
-  Clipboard::read_text_async (const Gio::SlotAsyncReady& slot,
-                              const Glib::RefPtr<Gio::Cancellable>& cancellable) -> void
+  Clipboard::read_text_async (const gio::SlotAsyncReady& slot,
+                              const glib::RefPtr<gio::Cancellable>& cancellable) -> void
   {
-    auto slot_copy = new Gio::SlotAsyncReady (slot);
+    auto slot_copy = new gio::SlotAsyncReady (slot);
 
     gdk_clipboard_read_text_async (
         gobj (),
-        const_cast<GCancellable*> (Glib::unwrap (cancellable)),
-        &Gio::SignalProxy_async_callback,
+        const_cast<GCancellable*> (glib::unwrap (cancellable)),
+        &gio::SignalProxy_async_callback,
         slot_copy);
   }
 
   auto
-  Clipboard::read_text_async (const Gio::SlotAsyncReady& slot) -> void
+  Clipboard::read_text_async (const gio::SlotAsyncReady& slot) -> void
   {
-    auto slot_copy = new Gio::SlotAsyncReady (slot);
+    auto slot_copy = new gio::SlotAsyncReady (slot);
 
     gdk_clipboard_read_text_async (gobj (),
                                    nullptr,
-                                   &Gio::SignalProxy_async_callback,
+                                   &gio::SignalProxy_async_callback,
                                    slot_copy);
   }
 
   auto
-  Clipboard::read_text_finish (const Glib::RefPtr<Gio::AsyncResult>& result) -> Glib::ustring
+  Clipboard::read_text_finish (const glib::RefPtr<gio::AsyncResult>& result) -> glib::ustring
   {
     GError* gerror = nullptr;
-    auto retvalue = Glib::convert_return_gchar_ptr_to_ustring (
+    auto retvalue = glib::convert_return_gchar_ptr_to_ustring (
         gdk_clipboard_read_text_finish (gobj (),
-                                        Glib::unwrap (result),
+                                        glib::unwrap (result),
                                         &(gerror)));
     if (gerror)
-      ::Glib::Error::throw_exception (gerror);
+      ::glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
   auto
-  Clipboard::set_content (const Glib::RefPtr<const ContentProvider>& provider) -> bool
+  Clipboard::set_content (const glib::RefPtr<const ContentProvider>& provider) -> bool
   {
     return gdk_clipboard_set_content (
         gobj (),
-        const_cast<GdkContentProvider*> (Glib::unwrap (provider)));
+        const_cast<GdkContentProvider*> (glib::unwrap (provider)));
   }
 
   auto
-  Clipboard::set_text (const Glib::ustring& text) -> void
+  Clipboard::set_text (const glib::ustring& text) -> void
   {
     gdk_clipboard_set_text (gobj (), text.c_str ());
   }
 
   auto
-  Clipboard::set_texture (const Glib::RefPtr<const Texture>& texture) -> void
+  Clipboard::set_texture (const glib::RefPtr<const Texture>& texture) -> void
   {
     gdk_clipboard_set_texture (
         gobj (),
-        const_cast<GdkTexture*> (Glib::unwrap (texture)));
+        const_cast<GdkTexture*> (glib::unwrap (texture)));
   }
 
   auto
-  Clipboard::signal_changed () -> Glib::SignalProxy<void ()>
+  Clipboard::signal_changed () -> glib::SignalProxy<void ()>
   {
-    return Glib::SignalProxy<void ()> (this, &Clipboard_signal_changed_info);
+    return glib::SignalProxy<void ()> (this, &Clipboard_signal_changed_info);
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<
-          Glib::RefPtr<Display>>::value,
-      "Type Glib::RefPtr<Display> cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      glib::Traits::ValueCompatibleWithWrapProperty<
+          glib::RefPtr<Display>>::value,
+      "Type glib::RefPtr<Display> cannot be used in _WRAP_PROPERTY. "
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  Clipboard::property_display () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Display>>
+  Clipboard::property_display () const -> glib::PropertyProxy_ReadOnly<glib::RefPtr<Display>>
   {
-    return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Display>> (this,
+    return glib::PropertyProxy_ReadOnly<glib::RefPtr<Display>> (this,
                                                                 "display");
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<
-          Glib::RefPtr<ContentFormats>>::value,
-      "Type Glib::RefPtr<ContentFormats> cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      glib::Traits::ValueCompatibleWithWrapProperty<
+          glib::RefPtr<ContentFormats>>::value,
+      "Type glib::RefPtr<ContentFormats> cannot be used in _WRAP_PROPERTY. "
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  Clipboard::property_formats () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<ContentFormats>>
+  Clipboard::property_formats () const -> glib::PropertyProxy_ReadOnly<glib::RefPtr<ContentFormats>>
   {
-    return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<ContentFormats>> (
+    return glib::PropertyProxy_ReadOnly<glib::RefPtr<ContentFormats>> (
         this,
         "formats");
   }
 
   auto
-  Clipboard::property_local () const -> Glib::PropertyProxy_ReadOnly<bool>
+  Clipboard::property_local () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "local");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "local");
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<
-          Glib::RefPtr<ContentProvider>>::value,
-      "Type Glib::RefPtr<ContentProvider> cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      glib::Traits::ValueCompatibleWithWrapProperty<
+          glib::RefPtr<ContentProvider>>::value,
+      "Type glib::RefPtr<ContentProvider> cannot be used in _WRAP_PROPERTY. "
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  Clipboard::property_content () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<ContentProvider>>
+  Clipboard::property_content () const -> glib::PropertyProxy_ReadOnly<glib::RefPtr<ContentProvider>>
   {
-    return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<ContentProvider>> (
+    return glib::PropertyProxy_ReadOnly<glib::RefPtr<ContentProvider>> (
         this,
         "content");
   }
 
-} // namespace Gdk
+} // namespace gdk

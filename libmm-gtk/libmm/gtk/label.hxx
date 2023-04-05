@@ -17,13 +17,13 @@ using GtkLabelClass = struct _GtkLabelClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT Label_Class;
 }
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
   class LIBMM_GTK_SYMEXPORT Menu;
@@ -55,7 +55,7 @@ namespace Gtk
     static CppClassType label_class_;
 
   protected:
-    explicit Label (const Glib::ConstructParams& construct_params);
+    explicit Label (const glib::ConstructParams& construct_params);
     explicit Label (GtkLabel* castitem);
 
 #endif
@@ -85,33 +85,33 @@ namespace Gtk
   private:
   public:
     Label ();
-    explicit Label (const Glib::ustring& label, bool mnemonic = false);
+    explicit Label (const glib::ustring& label, bool mnemonic = false);
 
-    Label (const Glib::ustring& label,
+    Label (const glib::ustring& label,
            Align halign,
            Align valign = Align::CENTER,
            bool mnemonic = false);
 
     auto
-    set_text (const Glib::ustring& str) -> void;
+    set_text (const glib::ustring& str) -> void;
 
     auto
-    get_text () const -> Glib::ustring;
+    get_text () const -> glib::ustring;
 
     auto
-    set_attributes (Pango::AttrList& attrs) -> void;
+    set_attributes (pango::AttrList& attrs) -> void;
 
     auto
-    get_attributes () const -> Pango::AttrList;
+    get_attributes () const -> pango::AttrList;
 
     auto
-    set_label (const Glib::ustring& str) -> void;
+    set_label (const glib::ustring& str) -> void;
 
     auto
-    get_label () const -> Glib::ustring;
+    get_label () const -> glib::ustring;
 
     auto
-    set_markup (const Glib::ustring& str) -> void;
+    set_markup (const glib::ustring& str) -> void;
 
     auto
     set_use_markup (bool setting = true) -> void;
@@ -126,7 +126,7 @@ namespace Gtk
     get_use_underline () const -> bool;
 
     auto
-    set_markup_with_mnemonic (const Glib::ustring& str) -> void;
+    set_markup_with_mnemonic (const glib::ustring& str) -> void;
 
     auto
     get_mnemonic_keyval () const -> guint;
@@ -141,7 +141,7 @@ namespace Gtk
     get_mnemonic_widget () const -> const Widget*;
 
     auto
-    set_text_with_mnemonic (const Glib::ustring& str) -> void;
+    set_text_with_mnemonic (const glib::ustring& str) -> void;
 
     auto
     set_justify (Justification jtype) -> void;
@@ -150,10 +150,10 @@ namespace Gtk
     get_justify () const -> Justification;
 
     auto
-    set_ellipsize (Pango::EllipsizeMode mode) -> void;
+    set_ellipsize (pango::EllipsizeMode mode) -> void;
 
     auto
-    get_ellipsize () const -> Pango::EllipsizeMode;
+    get_ellipsize () const -> pango::EllipsizeMode;
 
     auto
     set_width_chars (int n_chars) -> void;
@@ -180,10 +180,10 @@ namespace Gtk
     get_wrap () const -> bool;
 
     auto
-    set_wrap_mode (Pango::WrapMode wrap_mode) -> void;
+    set_wrap_mode (pango::WrapMode wrap_mode) -> void;
 
     auto
-    get_wrap_mode () const -> Pango::WrapMode;
+    get_wrap_mode () const -> pango::WrapMode;
 
     auto
     set_natural_wrap_mode (NaturalWrapMode wrap_mode) -> void;
@@ -207,10 +207,10 @@ namespace Gtk
     get_selection_bounds (int& start, int& end) const -> bool;
 
     auto
-    get_layout () -> Glib::RefPtr<Pango::Layout>;
+    get_layout () -> glib::RefPtr<pango::Layout>;
 
     auto
-    get_layout () const -> Glib::RefPtr<const Pango::Layout>;
+    get_layout () const -> glib::RefPtr<const pango::Layout>;
 
     auto
     get_layout_offsets (int& x, int& y) const -> void;
@@ -222,7 +222,7 @@ namespace Gtk
     get_single_line_mode () const -> bool;
 
     auto
-    get_current_uri () const -> Glib::ustring;
+    get_current_uri () const -> glib::ustring;
 
     auto
     set_xalign (float xalign) -> void;
@@ -237,156 +237,156 @@ namespace Gtk
     get_yalign () const -> float;
 
     auto
-    set_extra_menu (const Glib::RefPtr<Gio::MenuModel>& model) -> void;
+    set_extra_menu (const glib::RefPtr<gio::MenuModel>& model) -> void;
 
     auto
-    get_extra_menu () -> Glib::RefPtr<Gio::MenuModel>;
+    get_extra_menu () -> glib::RefPtr<gio::MenuModel>;
 
     auto
-    get_extra_menu () const -> Glib::RefPtr<const Gio::MenuModel>;
+    get_extra_menu () const -> glib::RefPtr<const gio::MenuModel>;
 
     auto
-    set_tabs (const Pango::TabArray& tabs) -> void;
+    set_tabs (const pango::TabArray& tabs) -> void;
 
     auto
-    get_tabs () const -> Pango::TabArray;
+    get_tabs () const -> pango::TabArray;
 
     auto
-    signal_activate_link () -> Glib::SignalProxy<bool (const Glib::ustring&)>;
+    signal_activate_link () -> glib::SignalProxy<bool (const glib::ustring&)>;
 
     auto
-    property_label () -> Glib::PropertyProxy<Glib::ustring>;
+    property_label () -> glib::PropertyProxy<glib::ustring>;
 
     auto
-    property_label () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+    property_label () const -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
     auto
-    property_attributes () -> Glib::PropertyProxy<Pango::AttrList>;
+    property_attributes () -> glib::PropertyProxy<pango::AttrList>;
 
     auto
     property_attributes () const
-        -> Glib::PropertyProxy_ReadOnly<Pango::AttrList>;
+        -> glib::PropertyProxy_ReadOnly<pango::AttrList>;
 
     auto
-    property_use_markup () -> Glib::PropertyProxy<bool>;
+    property_use_markup () -> glib::PropertyProxy<bool>;
 
     auto
-    property_use_markup () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_use_markup () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_use_underline () -> Glib::PropertyProxy<bool>;
+    property_use_underline () -> glib::PropertyProxy<bool>;
 
     auto
-    property_use_underline () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_use_underline () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_justify () -> Glib::PropertyProxy<Justification>;
+    property_justify () -> glib::PropertyProxy<Justification>;
 
     auto
-    property_justify () const -> Glib::PropertyProxy_ReadOnly<Justification>;
+    property_justify () const -> glib::PropertyProxy_ReadOnly<Justification>;
 
     auto
-    property_wrap () -> Glib::PropertyProxy<bool>;
+    property_wrap () -> glib::PropertyProxy<bool>;
 
     auto
-    property_wrap () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_wrap () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_wrap_mode () -> Glib::PropertyProxy<Pango::WrapMode>;
+    property_wrap_mode () -> glib::PropertyProxy<pango::WrapMode>;
 
     auto
     property_wrap_mode () const
-        -> Glib::PropertyProxy_ReadOnly<Pango::WrapMode>;
+        -> glib::PropertyProxy_ReadOnly<pango::WrapMode>;
 
     auto
-    property_natural_wrap_mode () -> Glib::PropertyProxy<NaturalWrapMode>;
+    property_natural_wrap_mode () -> glib::PropertyProxy<NaturalWrapMode>;
 
     auto
     property_natural_wrap_mode () const
-        -> Glib::PropertyProxy_ReadOnly<NaturalWrapMode>;
+        -> glib::PropertyProxy_ReadOnly<NaturalWrapMode>;
 
     auto
-    property_selectable () -> Glib::PropertyProxy<bool>;
+    property_selectable () -> glib::PropertyProxy<bool>;
 
     auto
-    property_selectable () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_selectable () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_mnemonic_keyval () const -> Glib::PropertyProxy_ReadOnly<guint>;
+    property_mnemonic_keyval () const -> glib::PropertyProxy_ReadOnly<guint>;
 
     auto
-    property_mnemonic_widget () -> Glib::PropertyProxy<Widget*>;
+    property_mnemonic_widget () -> glib::PropertyProxy<Widget*>;
 
     auto
-    property_mnemonic_widget () const -> Glib::PropertyProxy_ReadOnly<Widget*>;
+    property_mnemonic_widget () const -> glib::PropertyProxy_ReadOnly<Widget*>;
 
     auto
-    property_ellipsize () -> Glib::PropertyProxy<Pango::EllipsizeMode>;
+    property_ellipsize () -> glib::PropertyProxy<pango::EllipsizeMode>;
 
     auto
     property_ellipsize () const
-        -> Glib::PropertyProxy_ReadOnly<Pango::EllipsizeMode>;
+        -> glib::PropertyProxy_ReadOnly<pango::EllipsizeMode>;
 
     auto
-    property_width_chars () -> Glib::PropertyProxy<int>;
+    property_width_chars () -> glib::PropertyProxy<int>;
 
     auto
-    property_width_chars () const -> Glib::PropertyProxy_ReadOnly<int>;
+    property_width_chars () const -> glib::PropertyProxy_ReadOnly<int>;
 
     auto
-    property_single_line_mode () -> Glib::PropertyProxy<bool>;
+    property_single_line_mode () -> glib::PropertyProxy<bool>;
 
     auto
-    property_single_line_mode () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_single_line_mode () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_max_width_chars () -> Glib::PropertyProxy<int>;
+    property_max_width_chars () -> glib::PropertyProxy<int>;
 
     auto
-    property_max_width_chars () const -> Glib::PropertyProxy_ReadOnly<int>;
+    property_max_width_chars () const -> glib::PropertyProxy_ReadOnly<int>;
 
     auto
-    property_lines () -> Glib::PropertyProxy<int>;
+    property_lines () -> glib::PropertyProxy<int>;
 
     auto
-    property_lines () const -> Glib::PropertyProxy_ReadOnly<int>;
+    property_lines () const -> glib::PropertyProxy_ReadOnly<int>;
 
     auto
-    property_xalign () -> Glib::PropertyProxy<float>;
+    property_xalign () -> glib::PropertyProxy<float>;
 
     auto
-    property_xalign () const -> Glib::PropertyProxy_ReadOnly<float>;
+    property_xalign () const -> glib::PropertyProxy_ReadOnly<float>;
 
     auto
-    property_yalign () -> Glib::PropertyProxy<float>;
+    property_yalign () -> glib::PropertyProxy<float>;
 
     auto
-    property_yalign () const -> Glib::PropertyProxy_ReadOnly<float>;
+    property_yalign () const -> glib::PropertyProxy_ReadOnly<float>;
 
     auto
-    property_extra_menu () -> Glib::PropertyProxy<Glib::RefPtr<Gio::MenuModel>>;
+    property_extra_menu () -> glib::PropertyProxy<glib::RefPtr<gio::MenuModel>>;
 
     auto
     property_extra_menu () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gio::MenuModel>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<gio::MenuModel>>;
 
     auto
-    property_tabs () -> Glib::PropertyProxy<Pango::TabArray>;
+    property_tabs () -> glib::PropertyProxy<pango::TabArray>;
 
     auto
-    property_tabs () const -> Glib::PropertyProxy_ReadOnly<Pango::TabArray>;
+    property_tabs () const -> glib::PropertyProxy_ReadOnly<pango::TabArray>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkLabel* object, bool take_copy = false) -> Gtk::Label*;
-} // namespace Glib
+  wrap (GtkLabel* object, bool take_copy = false) -> gtk::Label*;
+} // namespace glib
 
 #endif

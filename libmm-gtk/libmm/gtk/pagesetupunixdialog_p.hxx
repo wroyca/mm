@@ -8,34 +8,34 @@
 #include <libmm/glib/class.hxx>
 #include <libmm/gtk/export.hxx>
 
-namespace Gtk
+namespace gtk
 {
 
-  class LIBMM_GTK_SYMEXPORT PageSetupUnixDialog_Class : public Glib::Class
+  class LIBMM_GTK_SYMEXPORT PageSetupUnixDialog_Class : public glib::Class
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
     using CppObjectType = PageSetupUnixDialog;
     using BaseObjectType = GtkPageSetupUnixDialog;
     using BaseClassType = GtkPageSetupUnixDialogClass;
-    using CppClassParent = Gtk::Dialog_Class;
+    using CppClassParent = gtk::Dialog_Class;
     using BaseClassParent = GtkDialogClass;
 
     friend class PageSetupUnixDialog;
 #endif
 
     auto
-    init () -> const Glib::Class&;
+    init () -> const glib::Class&;
 
     static auto
     class_init_function (void* g_class, void* class_data) -> void;
 
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
 
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
 #endif

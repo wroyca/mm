@@ -23,16 +23,16 @@ using GtkBuildableClass = struct _GtkBuildableClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT Buildable_Class;
 }
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
-  class LIBMM_GTK_SYMEXPORT Buildable : public Glib::Interface
+  class LIBMM_GTK_SYMEXPORT Buildable : public glib::Interface
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -56,7 +56,7 @@ namespace Gtk
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
-    explicit Buildable (const Glib::Interface_Class& interface_class);
+    explicit Buildable (const glib::Interface_Class& interface_class);
 
   public:
     explicit Buildable (GtkBuildable* castitem);
@@ -97,20 +97,20 @@ namespace Gtk
   private:
   public:
     auto
-    get_buildable_id () const -> Glib::ustring;
+    get_buildable_id () const -> glib::ustring;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkBuildable* object, bool take_copy = false) -> Glib::RefPtr<Gtk::Buildable>;
+  wrap (GtkBuildable* object, bool take_copy = false) -> glib::RefPtr<gtk::Buildable>;
 
-} // namespace Glib
+} // namespace glib
 
 #endif

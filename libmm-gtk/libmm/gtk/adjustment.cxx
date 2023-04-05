@@ -7,7 +7,7 @@
 
 #include <gtk/gtk.h>
 
-namespace Gtk
+namespace gtk
 {
 
   Adjustment::Adjustment (double value,
@@ -16,8 +16,8 @@ namespace Gtk
                           double step_increment,
                           double page_increment,
                           double page_size)
-    : Glib::ObjectBase (nullptr),
-      Glib::Object (Glib::ConstructParams (adjustment_class_.init (),
+    : glib::ObjectBase (nullptr),
+      glib::Object (glib::ConstructParams (adjustment_class_.init (),
                                            "lower",
                                            lower,
                                            "upper",
@@ -36,41 +36,41 @@ namespace Gtk
       g_object_ref_sink (gobject_);
   }
 
-} // namespace Gtk
+} // namespace gtk
 
 namespace
 {
 
-  static const Glib::SignalProxyInfo Adjustment_signal_changed_info = {
+  static const glib::SignalProxyInfo Adjustment_signal_changed_info = {
       "changed",
-      (GCallback) &Glib::SignalProxyNormal::slot0_void_callback,
-      (GCallback) &Glib::SignalProxyNormal::slot0_void_callback};
+      (GCallback) &glib::SignalProxyNormal::slot0_void_callback,
+      (GCallback) &glib::SignalProxyNormal::slot0_void_callback};
 
-  static const Glib::SignalProxyInfo Adjustment_signal_value_changed_info = {
+  static const glib::SignalProxyInfo Adjustment_signal_value_changed_info = {
       "value_changed",
-      (GCallback) &Glib::SignalProxyNormal::slot0_void_callback,
-      (GCallback) &Glib::SignalProxyNormal::slot0_void_callback};
+      (GCallback) &glib::SignalProxyNormal::slot0_void_callback,
+      (GCallback) &glib::SignalProxyNormal::slot0_void_callback};
 
 } // namespace
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GtkAdjustment* object, bool take_copy) -> Glib::RefPtr<Gtk::Adjustment>
+  wrap (GtkAdjustment* object, bool take_copy) -> glib::RefPtr<gtk::Adjustment>
   {
-    return Glib::make_refptr_for_instance<Gtk::Adjustment> (
-        dynamic_cast<Gtk::Adjustment*> (
-            Glib::wrap_auto ((GObject*) (object), take_copy)));
+    return glib::make_refptr_for_instance<gtk::Adjustment> (
+        dynamic_cast<gtk::Adjustment*> (
+            glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gtk
+namespace gtk
 {
 
   auto
-  Adjustment_Class::init () -> const Glib::Class&
+  Adjustment_Class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -95,8 +95,8 @@ namespace Gtk
   auto
   Adjustment_Class::changed_callback (GtkAdjustment* self) -> void
   {
-    const auto obj_base = static_cast<Glib::ObjectBase*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+    const auto obj_base = static_cast<glib::ObjectBase*> (
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -110,7 +110,7 @@ namespace Gtk
         }
         catch (...)
         {
-          Glib::exception_handlers_invoke ();
+          glib::exception_handlers_invoke ();
         }
       }
     }
@@ -125,8 +125,8 @@ namespace Gtk
   auto
   Adjustment_Class::value_changed_callback (GtkAdjustment* self) -> void
   {
-    const auto obj_base = static_cast<Glib::ObjectBase*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+    const auto obj_base = static_cast<glib::ObjectBase*> (
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -140,7 +140,7 @@ namespace Gtk
         }
         catch (...)
         {
-          Glib::exception_handlers_invoke ();
+          glib::exception_handlers_invoke ();
         }
       }
     }
@@ -153,7 +153,7 @@ namespace Gtk
   }
 
   auto
-  Adjustment_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  Adjustment_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new Adjustment ((GtkAdjustment*) object);
   }
@@ -165,27 +165,27 @@ namespace Gtk
     return gobj ();
   }
 
-  Adjustment::Adjustment (const Glib::ConstructParams& construct_params)
-    : Glib::Object (construct_params)
+  Adjustment::Adjustment (const glib::ConstructParams& construct_params)
+    : glib::Object (construct_params)
   {
     if (gobject_ && g_object_is_floating (gobject_))
       g_object_ref_sink (gobject_);
   }
 
   Adjustment::Adjustment (GtkAdjustment* castitem)
-    : Glib::Object ((GObject*) (castitem))
+    : glib::Object ((GObject*) (castitem))
   {
   }
 
   Adjustment::Adjustment (Adjustment&& src) noexcept
-    : Glib::Object (std::move (src))
+    : glib::Object (std::move (src))
   {
   }
 
   auto
   Adjustment::operator= (Adjustment&& src) noexcept -> Adjustment&
   {
-    Glib::Object::operator= (std::move (src));
+    glib::Object::operator= (std::move (src));
     return *this;
   }
 
@@ -211,9 +211,9 @@ namespace Gtk
                       double upper,
                       double step_increment,
                       double page_increment,
-                      double page_size) -> Glib::RefPtr<Adjustment>
+                      double page_size) -> glib::RefPtr<Adjustment>
   {
-    return Glib::make_refptr_for_instance<Adjustment> (
+    return glib::make_refptr_for_instance<Adjustment> (
         new Adjustment (value,
                         lower,
                         upper,
@@ -327,92 +327,92 @@ namespace Gtk
   }
 
   auto
-  Adjustment::signal_changed () -> Glib::SignalProxy<void ()>
+  Adjustment::signal_changed () -> glib::SignalProxy<void ()>
   {
-    return Glib::SignalProxy<void ()> (this, &Adjustment_signal_changed_info);
+    return glib::SignalProxy<void ()> (this, &Adjustment_signal_changed_info);
   }
 
   auto
-  Adjustment::signal_value_changed () -> Glib::SignalProxy<void ()>
+  Adjustment::signal_value_changed () -> glib::SignalProxy<void ()>
   {
-    return Glib::SignalProxy<void ()> (this,
+    return glib::SignalProxy<void ()> (this,
                                        &Adjustment_signal_value_changed_info);
   }
 
   auto
-  Adjustment::property_value () -> Glib::PropertyProxy<double>
+  Adjustment::property_value () -> glib::PropertyProxy<double>
   {
-    return Glib::PropertyProxy<double> (this, "value");
+    return glib::PropertyProxy<double> (this, "value");
   }
 
   auto
-  Adjustment::property_value () const -> Glib::PropertyProxy_ReadOnly<double>
+  Adjustment::property_value () const -> glib::PropertyProxy_ReadOnly<double>
   {
-    return Glib::PropertyProxy_ReadOnly<double> (this, "value");
+    return glib::PropertyProxy_ReadOnly<double> (this, "value");
   }
 
   auto
-  Adjustment::property_lower () -> Glib::PropertyProxy<double>
+  Adjustment::property_lower () -> glib::PropertyProxy<double>
   {
-    return Glib::PropertyProxy<double> (this, "lower");
+    return glib::PropertyProxy<double> (this, "lower");
   }
 
   auto
-  Adjustment::property_lower () const -> Glib::PropertyProxy_ReadOnly<double>
+  Adjustment::property_lower () const -> glib::PropertyProxy_ReadOnly<double>
   {
-    return Glib::PropertyProxy_ReadOnly<double> (this, "lower");
+    return glib::PropertyProxy_ReadOnly<double> (this, "lower");
   }
 
   auto
-  Adjustment::property_upper () -> Glib::PropertyProxy<double>
+  Adjustment::property_upper () -> glib::PropertyProxy<double>
   {
-    return Glib::PropertyProxy<double> (this, "upper");
+    return glib::PropertyProxy<double> (this, "upper");
   }
 
   auto
-  Adjustment::property_upper () const -> Glib::PropertyProxy_ReadOnly<double>
+  Adjustment::property_upper () const -> glib::PropertyProxy_ReadOnly<double>
   {
-    return Glib::PropertyProxy_ReadOnly<double> (this, "upper");
+    return glib::PropertyProxy_ReadOnly<double> (this, "upper");
   }
 
   auto
-  Adjustment::property_step_increment () -> Glib::PropertyProxy<double>
+  Adjustment::property_step_increment () -> glib::PropertyProxy<double>
   {
-    return Glib::PropertyProxy<double> (this, "step-increment");
+    return glib::PropertyProxy<double> (this, "step-increment");
   }
 
   auto
-  Adjustment::property_step_increment () const -> Glib::PropertyProxy_ReadOnly<double>
+  Adjustment::property_step_increment () const -> glib::PropertyProxy_ReadOnly<double>
   {
-    return Glib::PropertyProxy_ReadOnly<double> (this, "step-increment");
+    return glib::PropertyProxy_ReadOnly<double> (this, "step-increment");
   }
 
   auto
-  Adjustment::property_page_increment () -> Glib::PropertyProxy<double>
+  Adjustment::property_page_increment () -> glib::PropertyProxy<double>
   {
-    return Glib::PropertyProxy<double> (this, "page-increment");
+    return glib::PropertyProxy<double> (this, "page-increment");
   }
 
   auto
-  Adjustment::property_page_increment () const -> Glib::PropertyProxy_ReadOnly<double>
+  Adjustment::property_page_increment () const -> glib::PropertyProxy_ReadOnly<double>
   {
-    return Glib::PropertyProxy_ReadOnly<double> (this, "page-increment");
+    return glib::PropertyProxy_ReadOnly<double> (this, "page-increment");
   }
 
   auto
-  Adjustment::property_page_size () -> Glib::PropertyProxy<double>
+  Adjustment::property_page_size () -> glib::PropertyProxy<double>
   {
-    return Glib::PropertyProxy<double> (this, "page-size");
+    return glib::PropertyProxy<double> (this, "page-size");
   }
 
   auto
-  Adjustment::property_page_size () const -> Glib::PropertyProxy_ReadOnly<double>
+  Adjustment::property_page_size () const -> glib::PropertyProxy_ReadOnly<double>
   {
-    return Glib::PropertyProxy_ReadOnly<double> (this, "page-size");
+    return glib::PropertyProxy_ReadOnly<double> (this, "page-size");
   }
 
   auto
-  Gtk::Adjustment::on_changed () -> void
+  gtk::Adjustment::on_changed () -> void
   {
     const auto base = static_cast<BaseClassType*> (
         g_type_class_peek_parent (G_OBJECT_GET_CLASS (gobject_)));
@@ -422,7 +422,7 @@ namespace Gtk
   }
 
   auto
-  Gtk::Adjustment::on_value_changed () -> void
+  gtk::Adjustment::on_value_changed () -> void
   {
     const auto base = static_cast<BaseClassType*> (
         g_type_class_peek_parent (G_OBJECT_GET_CLASS (gobject_)));
@@ -431,4 +431,4 @@ namespace Gtk
       (*base->value_changed) (gobj ());
   }
 
-} // namespace Gtk
+} // namespace gtk

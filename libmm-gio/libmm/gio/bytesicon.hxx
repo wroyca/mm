@@ -15,16 +15,16 @@ using GBytesIconClass = struct _GBytesIconClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gio
+namespace gio
 {
   class LIBMM_GIO_SYMEXPORT BytesIcon_Class;
 }
 #endif
 
-namespace Gio
+namespace gio
 {
 
-  class LIBMM_GIO_SYMEXPORT BytesIcon : public Glib::Object,
+  class LIBMM_GIO_SYMEXPORT BytesIcon : public glib::Object,
                               public Icon,
                               public LoadableIcon
   {
@@ -45,7 +45,7 @@ namespace Gio
     static CppClassType bytesicon_class_;
 
   protected:
-    explicit BytesIcon (const Glib::ConstructParams& construct_params);
+    explicit BytesIcon (const glib::ConstructParams& construct_params);
     explicit BytesIcon (GBytesIcon* castitem);
 
 #endif
@@ -83,16 +83,16 @@ namespace Gio
 
   private:
   protected:
-    explicit BytesIcon (const Glib::RefPtr<const Glib::Bytes>& bytes);
+    explicit BytesIcon (const glib::RefPtr<const glib::Bytes>& bytes);
 
   public:
-    static Glib::RefPtr<BytesIcon>
-    create (const Glib::RefPtr<const Glib::Bytes>& bytes);
+    static glib::RefPtr<BytesIcon>
+    create (const glib::RefPtr<const glib::Bytes>& bytes);
 
-    Glib::RefPtr<const Glib::Bytes>
+    glib::RefPtr<const glib::Bytes>
     get_bytes () const;
 
-    Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Glib::Bytes>>
+    glib::PropertyProxy_ReadOnly<glib::RefPtr<glib::Bytes>>
     property_bytes () const;
 
   public:
@@ -100,13 +100,13 @@ namespace Gio
   protected:
   };
 
-} // namespace Gio
+} // namespace gio
 
-namespace Glib
+namespace glib
 {
   LIBMM_GIO_SYMEXPORT
-  Glib::RefPtr<Gio::BytesIcon>
+  glib::RefPtr<gio::BytesIcon>
   wrap (GBytesIcon* object, bool take_copy = false);
-} // namespace Glib
+} // namespace glib
 
 #endif

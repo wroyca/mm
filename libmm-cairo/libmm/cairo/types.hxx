@@ -7,7 +7,7 @@
 
 #include <cairo.h>
 
-namespace Cairo
+namespace cairo
 {
 
   typedef cairo_rectangle_t Rectangle;
@@ -22,6 +22,6 @@ namespace Cairo
 
   typedef cairo_glyph_t Glyph;
 
-} // namespace Cairo
+} // namespace cairo
 
 #endif

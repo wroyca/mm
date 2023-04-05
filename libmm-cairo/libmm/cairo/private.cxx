@@ -6,7 +6,7 @@
 #include <libmm/cairo/private.hxx>
 #include <stdexcept>
 
-namespace Cairo
+namespace cairo
 {
 
 #ifdef CAIROMM_EXCEPTIONS_ENABLED
@@ -58,4 +58,4 @@ namespace Cairo
   }
 #endif
 
-} // namespace Cairo
+} // namespace cairo

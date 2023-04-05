@@ -14,7 +14,7 @@
 #include <sigc++/bind.h>
 #include <sigc++/slot.h>
 
-namespace Glib
+namespace glib
 {
 
   template <typename T>
@@ -536,6 +536,6 @@ namespace Glib
     T data_;
   };
 
-} // namespace Glib
+} // namespace glib
 
 #endif

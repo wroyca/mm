@@ -21,19 +21,19 @@ namespace
   {
     try
     {
-      auto slot = static_cast<Gtk::TextIterBase::SlotFindChar*> (user_data);
+      auto slot = static_cast<gtk::TextIterBase::SlotFindChar*> (user_data);
       return (*slot) (ch);
     }
     catch (...)
     {
-      Glib::exception_handlers_invoke ();
+      glib::exception_handlers_invoke ();
       return false;
     }
   }
 
 } // namespace
 
-namespace Gtk
+namespace gtk
 {
   auto
   TextIterBase::forward_find_char (const SlotFindChar& slot,
@@ -81,65 +81,65 @@ namespace Gtk
                                              nullptr);
   }
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap_iter (GtkTextIter* object) -> Gtk::TextIter&
+  wrap_iter (GtkTextIter* object) -> gtk::TextIter&
   {
-    return *reinterpret_cast<Gtk::TextIter*> (object);
+    return *reinterpret_cast<gtk::TextIter*> (object);
   }
 
   auto
-  wrap_iter (const GtkTextIter* object) -> const Gtk::TextIter&
+  wrap_iter (const GtkTextIter* object) -> const gtk::TextIter&
   {
-    return *reinterpret_cast<const Gtk::TextIter*> (object);
+    return *reinterpret_cast<const gtk::TextIter*> (object);
   }
 
   auto
-  wrap_const_iter (GtkTextIter* object) -> Gtk::TextConstIter&
+  wrap_const_iter (GtkTextIter* object) -> gtk::TextConstIter&
   {
-    return *reinterpret_cast<Gtk::TextConstIter*> (object);
+    return *reinterpret_cast<gtk::TextConstIter*> (object);
   }
 
   auto
-  wrap_const_iter (const GtkTextIter* object) -> const Gtk::TextConstIter&
+  wrap_const_iter (const GtkTextIter* object) -> const gtk::TextConstIter&
   {
-    return *reinterpret_cast<const Gtk::TextConstIter*> (object);
+    return *reinterpret_cast<const gtk::TextConstIter*> (object);
   }
 
-} // namespace Glib
+} // namespace glib
 
 namespace
 {
 }
 
 auto
-Glib::Value<Gtk::TextSearchFlags>::value_type () -> GType
+glib::Value<gtk::TextSearchFlags>::value_type () -> GType
 {
   return gtk_text_search_flags_get_type ();
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GtkTextIter* object) -> Gtk::TextIterBase&
+  wrap (GtkTextIter* object) -> gtk::TextIterBase&
   {
-    return *reinterpret_cast<Gtk::TextIterBase*> (object);
+    return *reinterpret_cast<gtk::TextIterBase*> (object);
   }
 
   auto
-  wrap (const GtkTextIter* object) -> const Gtk::TextIterBase&
+  wrap (const GtkTextIter* object) -> const gtk::TextIterBase&
   {
-    return *reinterpret_cast<const Gtk::TextIterBase*> (object);
+    return *reinterpret_cast<const gtk::TextIterBase*> (object);
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gtk
+namespace gtk
 {
 
   TextIterBase::TextIterBase (const TextIterBase& other) noexcept
@@ -230,67 +230,67 @@ namespace Gtk
   }
 
   auto
-  TextIterBase::get_slice (const TextIterBase& end) const -> Glib::ustring
+  TextIterBase::get_slice (const TextIterBase& end) const -> glib::ustring
   {
-    return Glib::convert_return_gchar_ptr_to_ustring (
+    return glib::convert_return_gchar_ptr_to_ustring (
         gtk_text_iter_get_slice (const_cast<GtkTextIter*> (gobj ()),
                                  (end).gobj ()));
   }
 
   auto
-  TextIterBase::get_text (const TextIterBase& end) const -> Glib::ustring
+  TextIterBase::get_text (const TextIterBase& end) const -> glib::ustring
   {
-    return Glib::convert_return_gchar_ptr_to_ustring (
+    return glib::convert_return_gchar_ptr_to_ustring (
         gtk_text_iter_get_text (const_cast<GtkTextIter*> (gobj ()),
                                 (end).gobj ()));
   }
 
   auto
-  TextIterBase::get_visible_slice (const TextIterBase& end) const -> Glib::ustring
+  TextIterBase::get_visible_slice (const TextIterBase& end) const -> glib::ustring
   {
-    return Glib::convert_return_gchar_ptr_to_ustring (
+    return glib::convert_return_gchar_ptr_to_ustring (
         gtk_text_iter_get_visible_slice (const_cast<GtkTextIter*> (gobj ()),
                                          (end).gobj ()));
   }
 
   auto
-  TextIterBase::get_visible_text (const TextIterBase& end) const -> Glib::ustring
+  TextIterBase::get_visible_text (const TextIterBase& end) const -> glib::ustring
   {
-    return Glib::convert_return_gchar_ptr_to_ustring (
+    return glib::convert_return_gchar_ptr_to_ustring (
         gtk_text_iter_get_visible_text (const_cast<GtkTextIter*> (gobj ()),
                                         (end).gobj ()));
   }
 
   auto
-  TextIterBase::starts_tag (const Glib::RefPtr<const TextTag>& tag) const -> bool
+  TextIterBase::starts_tag (const glib::RefPtr<const TextTag>& tag) const -> bool
   {
     return gtk_text_iter_starts_tag (
         const_cast<GtkTextIter*> (gobj ()),
-        const_cast<GtkTextTag*> (Glib::unwrap<TextTag> (tag)));
+        const_cast<GtkTextTag*> (glib::unwrap<TextTag> (tag)));
   }
 
   auto
-  TextIterBase::ends_tag (const Glib::RefPtr<const TextTag>& tag) const -> bool
+  TextIterBase::ends_tag (const glib::RefPtr<const TextTag>& tag) const -> bool
   {
     return gtk_text_iter_ends_tag (
         const_cast<GtkTextIter*> (gobj ()),
-        const_cast<GtkTextTag*> (Glib::unwrap<TextTag> (tag)));
+        const_cast<GtkTextTag*> (glib::unwrap<TextTag> (tag)));
   }
 
   auto
-  TextIterBase::toggles_tag (const Glib::RefPtr<const TextTag>& tag) const -> bool
+  TextIterBase::toggles_tag (const glib::RefPtr<const TextTag>& tag) const -> bool
   {
     return gtk_text_iter_toggles_tag (
         const_cast<GtkTextIter*> (gobj ()),
-        const_cast<GtkTextTag*> (Glib::unwrap<TextTag> (tag)));
+        const_cast<GtkTextTag*> (glib::unwrap<TextTag> (tag)));
   }
 
   auto
-  TextIterBase::has_tag (const Glib::RefPtr<const TextTag>& tag) const -> bool
+  TextIterBase::has_tag (const glib::RefPtr<const TextTag>& tag) const -> bool
   {
     return gtk_text_iter_has_tag (
         const_cast<GtkTextIter*> (gobj ()),
-        const_cast<GtkTextTag*> (Glib::unwrap<TextTag> (tag)));
+        const_cast<GtkTextTag*> (glib::unwrap<TextTag> (tag)));
   }
 
   auto
@@ -375,9 +375,9 @@ namespace Gtk
   }
 
   auto
-  TextIterBase::get_language () const -> Pango::Language
+  TextIterBase::get_language () const -> pango::Language
   {
-    return Pango::Language (
+    return pango::Language (
         gtk_text_iter_get_language (const_cast<GtkTextIter*> (gobj ())));
   }
 
@@ -634,19 +634,19 @@ namespace Gtk
   }
 
   auto
-  TextIterBase::forward_to_tag_toggle (const Glib::RefPtr<const TextTag>& tag) -> bool
+  TextIterBase::forward_to_tag_toggle (const glib::RefPtr<const TextTag>& tag) -> bool
   {
     return gtk_text_iter_forward_to_tag_toggle (
         gobj (),
-        const_cast<GtkTextTag*> (Glib::unwrap<TextTag> (tag)));
+        const_cast<GtkTextTag*> (glib::unwrap<TextTag> (tag)));
   }
 
   auto
-  TextIterBase::backward_to_tag_toggle (const Glib::RefPtr<const TextTag>& tag) -> bool
+  TextIterBase::backward_to_tag_toggle (const glib::RefPtr<const TextTag>& tag) -> bool
   {
     return gtk_text_iter_backward_to_tag_toggle (
         gobj (),
-        const_cast<GtkTextTag*> (Glib::unwrap<TextTag> (tag)));
+        const_cast<GtkTextTag*> (glib::unwrap<TextTag> (tag)));
   }
 
   auto
@@ -701,15 +701,15 @@ namespace Gtk
     return (gtk_text_iter_compare (lhs.gobj (), rhs.gobj ()) >= 0);
   }
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Gtk
+namespace gtk
 {
 
   auto
-  TextIter::get_buffer () const -> Glib::RefPtr<TextBuffer>
+  TextIter::get_buffer () const -> glib::RefPtr<TextBuffer>
   {
-    auto retvalue = Glib::wrap (
+    auto retvalue = glib::wrap (
         gtk_text_iter_get_buffer (const_cast<GtkTextIter*> (gobj ())));
     if (retvalue)
       retvalue->reference ();
@@ -717,9 +717,9 @@ namespace Gtk
   }
 
   auto
-  TextIter::get_paintable () const -> Glib::RefPtr<Gdk::Paintable>
+  TextIter::get_paintable () const -> glib::RefPtr<gdk::Paintable>
   {
-    auto retvalue = Glib::wrap (
+    auto retvalue = glib::wrap (
         gtk_text_iter_get_paintable (const_cast<GtkTextIter*> (gobj ())));
     if (retvalue)
       retvalue->reference ();
@@ -727,17 +727,17 @@ namespace Gtk
   }
 
   auto
-  TextIter::get_marks () const -> std::vector<Glib::RefPtr<TextMark>>
+  TextIter::get_marks () const -> std::vector<glib::RefPtr<TextMark>>
   {
-    return Glib::SListHandler<Glib::RefPtr<TextMark>>::slist_to_vector (
+    return glib::SListHandler<glib::RefPtr<TextMark>>::slist_to_vector (
         gtk_text_iter_get_marks (const_cast<GtkTextIter*> (gobj ())),
-        Glib::OWNERSHIP_SHALLOW);
+        glib::OWNERSHIP_SHALLOW);
   }
 
   auto
-  TextIter::get_child_anchor () const -> Glib::RefPtr<TextChildAnchor>
+  TextIter::get_child_anchor () const -> glib::RefPtr<TextChildAnchor>
   {
-    auto retvalue = Glib::wrap (
+    auto retvalue = glib::wrap (
         gtk_text_iter_get_child_anchor (const_cast<GtkTextIter*> (gobj ())));
     if (retvalue)
       retvalue->reference ();
@@ -745,24 +745,24 @@ namespace Gtk
   }
 
   auto
-  TextIter::get_toggled_tags (bool toggled_on) const -> std::vector<Glib::RefPtr<TextTag>>
+  TextIter::get_toggled_tags (bool toggled_on) const -> std::vector<glib::RefPtr<TextTag>>
   {
-    return Glib::SListHandler<Glib::RefPtr<TextTag>>::slist_to_vector (
+    return glib::SListHandler<glib::RefPtr<TextTag>>::slist_to_vector (
         gtk_text_iter_get_toggled_tags (const_cast<GtkTextIter*> (gobj ()),
                                         static_cast<int> (toggled_on)),
-        Glib::OWNERSHIP_SHALLOW);
+        glib::OWNERSHIP_SHALLOW);
   }
 
   auto
-  TextIter::get_tags () const -> std::vector<Glib::RefPtr<TextTag>>
+  TextIter::get_tags () const -> std::vector<glib::RefPtr<TextTag>>
   {
-    return Glib::SListHandler<Glib::RefPtr<TextTag>>::slist_to_vector (
+    return glib::SListHandler<glib::RefPtr<TextTag>>::slist_to_vector (
         gtk_text_iter_get_tags (const_cast<GtkTextIter*> (gobj ())),
-        Glib::OWNERSHIP_SHALLOW);
+        glib::OWNERSHIP_SHALLOW);
   }
 
   auto
-  TextIter::forward_search (const Glib::ustring& str,
+  TextIter::forward_search (const glib::ustring& str,
                             TextSearchFlags flags,
                             TextIter& match_start,
                             TextIter& match_end,
@@ -778,7 +778,7 @@ namespace Gtk
   }
 
   auto
-  TextIter::forward_search (const Glib::ustring& str,
+  TextIter::forward_search (const glib::ustring& str,
                             TextSearchFlags flags,
                             TextIter& match_start,
                             TextIter& match_end) const -> bool
@@ -793,7 +793,7 @@ namespace Gtk
   }
 
   auto
-  TextIter::backward_search (const Glib::ustring& str,
+  TextIter::backward_search (const glib::ustring& str,
                              TextSearchFlags flags,
                              TextIter& match_start,
                              TextIter& match_end,
@@ -809,7 +809,7 @@ namespace Gtk
   }
 
   auto
-  TextIter::backward_search (const Glib::ustring& str,
+  TextIter::backward_search (const glib::ustring& str,
                              TextSearchFlags flags,
                              TextIter& match_start,
                              TextIter& match_end) const -> bool
@@ -829,15 +829,15 @@ namespace Gtk
     gtk_text_iter_order (gobj (), (second).gobj ());
   }
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Gtk
+namespace gtk
 {
 
   auto
-  TextConstIter::get_buffer () const -> Glib::RefPtr<const TextBuffer>
+  TextConstIter::get_buffer () const -> glib::RefPtr<const TextBuffer>
   {
-    auto retvalue = Glib::wrap (
+    auto retvalue = glib::wrap (
         gtk_text_iter_get_buffer (const_cast<GtkTextIter*> (gobj ())));
     if (retvalue)
       retvalue->reference ();
@@ -845,9 +845,9 @@ namespace Gtk
   }
 
   auto
-  TextConstIter::get_paintable () const -> Glib::RefPtr<const Gdk::Paintable>
+  TextConstIter::get_paintable () const -> glib::RefPtr<const gdk::Paintable>
   {
-    auto retvalue = Glib::wrap (
+    auto retvalue = glib::wrap (
         gtk_text_iter_get_paintable (const_cast<GtkTextIter*> (gobj ())));
     if (retvalue)
       retvalue->reference ();
@@ -855,17 +855,17 @@ namespace Gtk
   }
 
   auto
-  TextConstIter::get_marks () const -> std::vector<Glib::RefPtr<const TextMark>>
+  TextConstIter::get_marks () const -> std::vector<glib::RefPtr<const TextMark>>
   {
-    return Glib::SListHandler<Glib::RefPtr<const TextMark>>::slist_to_vector (
+    return glib::SListHandler<glib::RefPtr<const TextMark>>::slist_to_vector (
         gtk_text_iter_get_marks (const_cast<GtkTextIter*> (gobj ())),
-        Glib::OWNERSHIP_SHALLOW);
+        glib::OWNERSHIP_SHALLOW);
   }
 
   auto
-  TextConstIter::get_child_anchor () const -> Glib::RefPtr<const TextChildAnchor>
+  TextConstIter::get_child_anchor () const -> glib::RefPtr<const TextChildAnchor>
   {
-    auto retvalue = Glib::wrap (
+    auto retvalue = glib::wrap (
         gtk_text_iter_get_child_anchor (const_cast<GtkTextIter*> (gobj ())));
     if (retvalue)
       retvalue->reference ();
@@ -873,24 +873,24 @@ namespace Gtk
   }
 
   auto
-  TextConstIter::get_toggled_tags (bool toggled_on) const -> std::vector<Glib::RefPtr<const TextTag>>
+  TextConstIter::get_toggled_tags (bool toggled_on) const -> std::vector<glib::RefPtr<const TextTag>>
   {
-    return Glib::SListHandler<Glib::RefPtr<const TextTag>>::slist_to_vector (
+    return glib::SListHandler<glib::RefPtr<const TextTag>>::slist_to_vector (
         gtk_text_iter_get_toggled_tags (const_cast<GtkTextIter*> (gobj ()),
                                         static_cast<int> (toggled_on)),
-        Glib::OWNERSHIP_SHALLOW);
+        glib::OWNERSHIP_SHALLOW);
   }
 
   auto
-  TextConstIter::get_tags () const -> std::vector<Glib::RefPtr<const TextTag>>
+  TextConstIter::get_tags () const -> std::vector<glib::RefPtr<const TextTag>>
   {
-    return Glib::SListHandler<Glib::RefPtr<const TextTag>>::slist_to_vector (
+    return glib::SListHandler<glib::RefPtr<const TextTag>>::slist_to_vector (
         gtk_text_iter_get_tags (const_cast<GtkTextIter*> (gobj ())),
-        Glib::OWNERSHIP_SHALLOW);
+        glib::OWNERSHIP_SHALLOW);
   }
 
   auto
-  TextConstIter::forward_search (const Glib::ustring& str,
+  TextConstIter::forward_search (const glib::ustring& str,
                                  TextSearchFlags flags,
                                  TextConstIter& match_start,
                                  TextConstIter& match_end,
@@ -906,7 +906,7 @@ namespace Gtk
   }
 
   auto
-  TextConstIter::forward_search (const Glib::ustring& str,
+  TextConstIter::forward_search (const glib::ustring& str,
                                  TextSearchFlags flags,
                                  TextConstIter& match_start,
                                  TextConstIter& match_end) const -> bool
@@ -921,7 +921,7 @@ namespace Gtk
   }
 
   auto
-  TextConstIter::backward_search (const Glib::ustring& str,
+  TextConstIter::backward_search (const glib::ustring& str,
                                   TextSearchFlags flags,
                                   TextConstIter& match_start,
                                   TextConstIter& match_end,
@@ -937,7 +937,7 @@ namespace Gtk
   }
 
   auto
-  TextConstIter::backward_search (const Glib::ustring& str,
+  TextConstIter::backward_search (const glib::ustring& str,
                                   TextSearchFlags flags,
                                   TextConstIter& match_start,
                                   TextConstIter& match_end) const -> bool
@@ -957,4 +957,4 @@ namespace Gtk
     gtk_text_iter_order (gobj (), (second).gobj ());
   }
 
-} // namespace Gtk
+} // namespace gtk

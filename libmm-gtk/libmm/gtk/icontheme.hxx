@@ -20,13 +20,13 @@ using GtkIconThemeClass = struct _GtkIconThemeClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT IconTheme_Class;
 }
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
   enum class IconLookupFlags
@@ -84,7 +84,7 @@ namespace Gtk
                                                 static_cast<unsigned> (rhs)));
   }
 
-  class IconThemeError : public Glib::Error
+  class IconThemeError : public glib::Error
   {
   public:
     enum Code
@@ -94,7 +94,7 @@ namespace Gtk
     };
 
     LIBMM_GTK_SYMEXPORT
-    IconThemeError (Code error_code, const Glib::ustring& error_message);
+    IconThemeError (Code error_code, const glib::ustring& error_message);
     LIBMM_GTK_SYMEXPORT explicit IconThemeError (GError* gobject);
     LIBMM_GTK_SYMEXPORT auto
     code () const -> Code;
@@ -110,28 +110,28 @@ namespace Gtk
 #endif
   };
 
-} // namespace Gtk
+} // namespace gtk
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_GTK_SYMEXPORT Value<Gtk::IconThemeError::Code>
-    : public Glib::Value_Enum<Gtk::IconThemeError::Code>
+  class LIBMM_GTK_SYMEXPORT Value<gtk::IconThemeError::Code>
+    : public glib::Value_Enum<gtk::IconThemeError::Code>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
-  class LIBMM_GTK_SYMEXPORT IconTheme : public Glib::Object
+  class LIBMM_GTK_SYMEXPORT IconTheme : public glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -150,7 +150,7 @@ namespace Gtk
     static CppClassType icontheme_class_;
 
   protected:
-    explicit IconTheme (const Glib::ConstructParams& construct_params);
+    explicit IconTheme (const glib::ConstructParams& construct_params);
     explicit IconTheme (GtkIconTheme* castitem);
 
 #endif
@@ -192,17 +192,17 @@ namespace Gtk
 
   public:
     static auto
-    create () -> Glib::RefPtr<IconTheme>;
+    create () -> glib::RefPtr<IconTheme>;
 
     static auto
-    get_for_display (const Glib::RefPtr<Gdk::Display>& display)
-        -> Glib::RefPtr<IconTheme>;
+    get_for_display (const glib::RefPtr<gdk::Display>& display)
+        -> glib::RefPtr<IconTheme>;
 
     auto
-    get_display () -> Glib::RefPtr<Gdk::Display>;
+    get_display () -> glib::RefPtr<gdk::Display>;
 
     auto
-    get_display () const -> Glib::RefPtr<const Gdk::Display>;
+    get_display () const -> glib::RefPtr<const gdk::Display>;
 
     auto
     set_search_path (const std::vector<std::string>& path) -> void;
@@ -223,118 +223,118 @@ namespace Gtk
     add_resource_path (const std::string& path) -> void;
 
     auto
-    set_theme_name (const Glib::ustring& theme_name) -> void;
+    set_theme_name (const glib::ustring& theme_name) -> void;
 
     auto
-    get_theme_name () const -> Glib::ustring;
+    get_theme_name () const -> glib::ustring;
 
     auto
-    has_icon (const Glib::ustring& icon_name) const -> bool;
+    has_icon (const glib::ustring& icon_name) const -> bool;
 
     auto
-    has_gicon (const Glib::RefPtr<const Gio::Icon>& gicon) const -> bool;
+    has_gicon (const glib::RefPtr<const gio::Icon>& gicon) const -> bool;
 
     auto
-    get_icon_sizes (const Glib::ustring& icon_name) const -> std::vector<int>;
+    get_icon_sizes (const glib::ustring& icon_name) const -> std::vector<int>;
 
     auto
-    lookup_icon (const Glib::ustring& icon_name,
-                 const std::vector<Glib::ustring>& fallbacks,
+    lookup_icon (const glib::ustring& icon_name,
+                 const std::vector<glib::ustring>& fallbacks,
                  int size,
                  int scale = 1,
                  TextDirection direction = TextDirection::NONE,
                  IconLookupFlags flags = (IconLookupFlags) 0)
-        -> Glib::RefPtr<IconPaintable>;
+        -> glib::RefPtr<IconPaintable>;
 
     auto
-    lookup_icon (const Glib::ustring& icon_name,
+    lookup_icon (const glib::ustring& icon_name,
                  int size,
                  int scale = 1,
                  TextDirection direction = TextDirection::NONE,
                  IconLookupFlags flags = (IconLookupFlags) 0)
-        -> Glib::RefPtr<IconPaintable>;
+        -> glib::RefPtr<IconPaintable>;
 
     auto
-    lookup_icon (const Glib::ustring& icon_name,
-                 const std::vector<Glib::ustring>& fallbacks,
+    lookup_icon (const glib::ustring& icon_name,
+                 const std::vector<glib::ustring>& fallbacks,
                  int size,
                  int scale = 1,
                  TextDirection direction = TextDirection::NONE,
                  IconLookupFlags flags = (IconLookupFlags) 0) const
-        -> Glib::RefPtr<const IconPaintable>;
+        -> glib::RefPtr<const IconPaintable>;
 
     auto
-    lookup_icon (const Glib::ustring& icon_name,
+    lookup_icon (const glib::ustring& icon_name,
                  int size,
                  int scale = 1,
                  TextDirection direction = TextDirection::NONE,
                  IconLookupFlags flags = (IconLookupFlags) 0) const
-        -> Glib::RefPtr<const IconPaintable>;
+        -> glib::RefPtr<const IconPaintable>;
 
     auto
-    lookup_icon (const Glib::RefPtr<const Gio::Icon>& icon,
+    lookup_icon (const glib::RefPtr<const gio::Icon>& icon,
                  int size,
                  int scale = 1,
                  TextDirection direction = TextDirection::NONE,
                  IconLookupFlags flags = (IconLookupFlags) 0)
-        -> Glib::RefPtr<IconPaintable>;
+        -> glib::RefPtr<IconPaintable>;
 
     auto
-    lookup_icon (const Glib::RefPtr<const Gio::Icon>& icon,
+    lookup_icon (const glib::RefPtr<const gio::Icon>& icon,
                  int size,
                  int scale = 1,
                  TextDirection direction = TextDirection::NONE,
                  IconLookupFlags flags = (IconLookupFlags) 0) const
-        -> Glib::RefPtr<const IconPaintable>;
+        -> glib::RefPtr<const IconPaintable>;
 
     auto
-    get_icon_names () const -> std::vector<Glib::ustring>;
+    get_icon_names () const -> std::vector<glib::ustring>;
 
     auto
-    signal_changed () -> Glib::SignalProxy<void ()>;
+    signal_changed () -> glib::SignalProxy<void ()>;
 
     auto
-    property_display () -> Glib::PropertyProxy<Glib::RefPtr<Gdk::Display>>;
+    property_display () -> glib::PropertyProxy<glib::RefPtr<gdk::Display>>;
 
     auto
     property_display () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gdk::Display>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<gdk::Display>>;
 
     auto
     property_icon_names () const
-        -> Glib::PropertyProxy_ReadOnly<std::vector<Glib::ustring>>;
+        -> glib::PropertyProxy_ReadOnly<std::vector<glib::ustring>>;
 
     auto
-    property_search_path () -> Glib::PropertyProxy<std::vector<std::string>>;
+    property_search_path () -> glib::PropertyProxy<std::vector<std::string>>;
 
     auto
     property_search_path () const
-        -> Glib::PropertyProxy_ReadOnly<std::vector<std::string>>;
+        -> glib::PropertyProxy_ReadOnly<std::vector<std::string>>;
 
     auto
-    property_resource_path () -> Glib::PropertyProxy<std::vector<std::string>>;
+    property_resource_path () -> glib::PropertyProxy<std::vector<std::string>>;
 
     auto
     property_resource_path () const
-        -> Glib::PropertyProxy_ReadOnly<std::vector<std::string>>;
+        -> glib::PropertyProxy_ReadOnly<std::vector<std::string>>;
 
     auto
-    property_theme_name () -> Glib::PropertyProxy<Glib::ustring>;
+    property_theme_name () -> glib::PropertyProxy<glib::ustring>;
 
     auto
-    property_theme_name () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+    property_theme_name () const -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkIconTheme* object, bool take_copy = false) -> Glib::RefPtr<Gtk::IconTheme>;
-} // namespace Glib
+  wrap (GtkIconTheme* object, bool take_copy = false) -> glib::RefPtr<gtk::IconTheme>;
+} // namespace glib
 
 #endif

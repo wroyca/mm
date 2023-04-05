@@ -5,7 +5,7 @@
 #include <libmm/gio/remoteactiongroup.hxx>
 #include <libmm/gio/remoteactiongroup_p.hxx>
 
-namespace Gio
+namespace gio
 {
 
 }
@@ -14,20 +14,20 @@ namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GRemoteActionGroup* object, const bool take_copy) -> RefPtr<Gio::RemoteActionGroup>
+  wrap (GRemoteActionGroup* object, const bool take_copy) -> RefPtr<gio::RemoteActionGroup>
   {
-    return Glib::make_refptr_for_instance<Gio::RemoteActionGroup> (
-        Glib::wrap_auto_interface<Gio::RemoteActionGroup> ((GObject*) object,
+    return glib::make_refptr_for_instance<gio::RemoteActionGroup> (
+        glib::wrap_auto_interface<gio::RemoteActionGroup> ((GObject*) object,
                                                            take_copy));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gio
+namespace gio
 {
 
   auto
@@ -62,7 +62,7 @@ namespace Gio
       GVariant* platform_data) -> void
   {
     const auto obj_base =
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self);
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self);
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -72,14 +72,14 @@ namespace Gio
         try
         {
           obj->activate_action_full_vfunc (
-              Glib::convert_const_gchar_ptr_to_ustring (action_name),
-              Glib::wrap (parameter, true),
-              Glib::wrap (platform_data, true));
+              glib::convert_const_gchar_ptr_to_ustring (action_name),
+              glib::wrap (parameter, true),
+              glib::wrap (platform_data, true));
           return;
         }
         catch (...)
         {
-          Glib::exception_handlers_invoke ();
+          glib::exception_handlers_invoke ();
         }
       }
     }
@@ -104,7 +104,7 @@ namespace Gio
       GVariant* platform_data) -> void
   {
     const auto obj_base =
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self);
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self);
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -114,14 +114,14 @@ namespace Gio
         try
         {
           obj->change_action_state_full_vfunc (
-              Glib::convert_const_gchar_ptr_to_ustring (action_name),
-              Glib::wrap (value, true),
-              Glib::wrap (platform_data, true));
+              glib::convert_const_gchar_ptr_to_ustring (action_name),
+              glib::wrap (value, true),
+              glib::wrap (platform_data, true));
           return;
         }
         catch (...)
         {
-          Glib::exception_handlers_invoke ();
+          glib::exception_handlers_invoke ();
         }
       }
     }
@@ -139,7 +139,7 @@ namespace Gio
   }
 
   auto
-  RemoteActionGroup_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  RemoteActionGroup_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new RemoteActionGroup ((GRemoteActionGroup*) object);
   }
@@ -155,7 +155,7 @@ namespace Gio
   }
 
   RemoteActionGroup::RemoteActionGroup (
-      const Glib::Interface_Class& interface_class)
+      const glib::Interface_Class& interface_class)
     : Interface (interface_class)
   {
   }
@@ -195,9 +195,9 @@ namespace Gio
   }
 
   auto
-  RemoteActionGroup::activate_action (const Glib::ustring& action_name,
-                                      const Glib::VariantBase& parameter,
-                                      const Glib::VariantBase& platform_data) -> void
+  RemoteActionGroup::activate_action (const glib::ustring& action_name,
+                                      const glib::VariantBase& parameter,
+                                      const glib::VariantBase& platform_data) -> void
   {
     g_remote_action_group_activate_action_full (
         gobj (),
@@ -208,9 +208,9 @@ namespace Gio
 
   auto
   RemoteActionGroup::change_action_state (
-      const Glib::ustring& action_name,
-      const Glib::VariantBase& value,
-      const Glib::VariantBase& platform_data) -> void
+      const glib::ustring& action_name,
+      const glib::VariantBase& value,
+      const glib::VariantBase& platform_data) -> void
   {
     g_remote_action_group_change_action_state_full (
         gobj (),
@@ -221,9 +221,9 @@ namespace Gio
 
   auto
   RemoteActionGroup::activate_action_full_vfunc (
-      const Glib::ustring& action_name,
-      const Glib::VariantBase& parameter,
-      const Glib::VariantBase& platform_data) -> void
+      const glib::ustring& action_name,
+      const glib::VariantBase& parameter,
+      const glib::VariantBase& platform_data) -> void
   {
     const auto base =
         static_cast<BaseClassType*> (g_type_interface_peek_parent (
@@ -242,9 +242,9 @@ namespace Gio
 
   auto
   RemoteActionGroup::change_action_state_full_vfunc (
-      const Glib::ustring& action_name,
-      const Glib::VariantBase& value,
-      const Glib::VariantBase& platform_data) -> void
+      const glib::ustring& action_name,
+      const glib::VariantBase& value,
+      const glib::VariantBase& platform_data) -> void
   {
     const auto base =
         static_cast<BaseClassType*> (g_type_interface_peek_parent (
@@ -261,4 +261,4 @@ namespace Gio
     }
   }
 
-} // namespace Gio
+} // namespace gio

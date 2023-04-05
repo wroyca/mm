@@ -14,17 +14,17 @@ using GdkGLTextureClass = struct _GdkGLTextureClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gdk
+namespace gdk
 {
   class LIBMM_GDK_SYMEXPORT GLTexture_Class;
 }
 #endif
 
-namespace Gdk
+namespace gdk
 {
   class LIBMM_GDK_SYMEXPORT GLContext;
 
-  class LIBMM_GDK_SYMEXPORT GLTexture : public Gdk::Texture
+  class LIBMM_GDK_SYMEXPORT GLTexture : public gdk::Texture
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -43,7 +43,7 @@ namespace Gdk
     static CppClassType gltexture_class_;
 
   protected:
-    explicit GLTexture (const Glib::ConstructParams& construct_params);
+    explicit GLTexture (const glib::ConstructParams& construct_params);
     explicit GLTexture (GdkGLTexture* castitem);
 
 #endif
@@ -87,11 +87,11 @@ namespace Gdk
     using SlotGLReleased = sigc::slot<void ()>;
 
     static auto
-    create (const Glib::RefPtr<GLContext>& context,
+    create (const glib::RefPtr<GLContext>& context,
             guint id,
             int width,
             int height,
-            const SlotGLReleased& slot = {}) -> Glib::RefPtr<Texture>;
+            const SlotGLReleased& slot = {}) -> glib::RefPtr<Texture>;
 
     auto
     release () -> void;
@@ -101,12 +101,12 @@ namespace Gdk
   protected:
   };
 
-} // namespace Gdk
+} // namespace gdk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GDK_SYMEXPORT auto
-  wrap (GdkGLTexture* object, bool take_copy = false) -> Glib::RefPtr<Gdk::GLTexture>;
-} // namespace Glib
+  wrap (GdkGLTexture* object, bool take_copy = false) -> glib::RefPtr<gdk::GLTexture>;
+} // namespace glib
 
 #endif

@@ -10,7 +10,7 @@
 #include <libmm/gdk/surface.hxx>
 #include <libmm/gtk/widget.hxx>
 
-namespace Gtk
+namespace gtk
 {
   auto
   Root::unset_focus () -> void
@@ -18,29 +18,29 @@ namespace Gtk
     gtk_root_set_focus (gobj (), nullptr);
   }
 
-} // namespace Gtk
+} // namespace gtk
 
 namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GtkRoot* object, bool take_copy) -> Glib::RefPtr<Gtk::Root>
+  wrap (GtkRoot* object, bool take_copy) -> glib::RefPtr<gtk::Root>
   {
-    return Glib::make_refptr_for_instance<Gtk::Root> (dynamic_cast<Gtk::Root*> (
-        Glib::wrap_auto_interface<Gtk::Root> ((GObject*) (object), take_copy)));
+    return glib::make_refptr_for_instance<gtk::Root> (dynamic_cast<gtk::Root*> (
+        glib::wrap_auto_interface<gtk::Root> ((GObject*) (object), take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gtk
+namespace gtk
 {
 
   auto
-  Root_Class::init () -> const Glib::Interface_Class&
+  Root_Class::init () -> const glib::Interface_Class&
   {
     if (!gtype_)
     {
@@ -61,35 +61,35 @@ namespace Gtk
   }
 
   auto
-  Root_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  Root_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new Root ((GtkRoot*) (object));
   }
 
   Root::Root ()
-    : Glib::Interface (root_class_.init ())
+    : glib::Interface (root_class_.init ())
   {
   }
 
   Root::Root (GtkRoot* castitem)
-    : Glib::Interface ((GObject*) (castitem))
+    : glib::Interface ((GObject*) (castitem))
   {
   }
 
-  Root::Root (const Glib::Interface_Class& interface_class)
-    : Glib::Interface (interface_class)
+  Root::Root (const glib::Interface_Class& interface_class)
+    : glib::Interface (interface_class)
   {
   }
 
   Root::Root (Root&& src) noexcept
-    : Glib::Interface (std::move (src))
+    : glib::Interface (std::move (src))
   {
   }
 
   auto
   Root::operator= (Root&& src) noexcept -> Root&
   {
-    Glib::Interface::operator= (std::move (src));
+    glib::Interface::operator= (std::move (src));
     return *this;
   }
 
@@ -116,16 +116,16 @@ namespace Gtk
   }
 
   auto
-  Root::get_display () -> Glib::RefPtr<Gdk::Display>
+  Root::get_display () -> glib::RefPtr<gdk::Display>
   {
-    auto retvalue = Glib::wrap (gtk_root_get_display (gobj ()));
+    auto retvalue = glib::wrap (gtk_root_get_display (gobj ()));
     if (retvalue)
       retvalue->reference ();
     return retvalue;
   }
 
   auto
-  Root::get_display () const -> Glib::RefPtr<const Gdk::Display>
+  Root::get_display () const -> glib::RefPtr<const gdk::Display>
   {
     return const_cast<Root*> (this)->get_display ();
   }
@@ -139,7 +139,7 @@ namespace Gtk
   auto
   Root::get_focus () -> Widget*
   {
-    return Glib::wrap (gtk_root_get_focus (gobj ()));
+    return glib::wrap (gtk_root_get_focus (gobj ()));
   }
 
   auto
@@ -148,4 +148,4 @@ namespace Gtk
     return const_cast<Root*> (this)->get_focus ();
   }
 
-} // namespace Gtk
+} // namespace gtk

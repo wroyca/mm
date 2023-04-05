@@ -17,23 +17,23 @@ namespace
                                                   GdkModifierType p2,
                                                   void* data) -> gboolean
   {
-    using namespace Gtk;
-    using SlotType = sigc::slot<bool (guint, guint, Gdk::ModifierType)>;
+    using namespace gtk;
+    using SlotType = sigc::slot<bool (guint, guint, gdk::ModifierType)>;
 
     auto obj = dynamic_cast<EventControllerKey*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
     {
       try
       {
-        if (const auto slot = Glib::SignalProxyNormal::data_to_slot (data))
+        if (const auto slot = glib::SignalProxyNormal::data_to_slot (data))
           return static_cast<int> ((*static_cast<SlotType*> (
-              slot)) (p0, p1, static_cast<Gdk::ModifierType> (p2)));
+              slot)) (p0, p1, static_cast<gdk::ModifierType> (p2)));
       }
       catch (...)
       {
-        Glib::exception_handlers_invoke ();
+        glib::exception_handlers_invoke ();
       }
     }
 
@@ -49,23 +49,23 @@ namespace
       GdkModifierType p2,
       void* data) -> gboolean
   {
-    using namespace Gtk;
-    using SlotType = sigc::slot<void (guint, guint, Gdk::ModifierType)>;
+    using namespace gtk;
+    using SlotType = sigc::slot<void (guint, guint, gdk::ModifierType)>;
 
     auto obj = dynamic_cast<EventControllerKey*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
     {
       try
       {
-        if (const auto slot = Glib::SignalProxyNormal::data_to_slot (data))
+        if (const auto slot = glib::SignalProxyNormal::data_to_slot (data))
           (*static_cast<SlotType*> (
-              slot)) (p0, p1, static_cast<Gdk::ModifierType> (p2));
+              slot)) (p0, p1, static_cast<gdk::ModifierType> (p2));
       }
       catch (...)
       {
-        Glib::exception_handlers_invoke ();
+        glib::exception_handlers_invoke ();
       }
     }
 
@@ -73,7 +73,7 @@ namespace
     return RType ();
   }
 
-  static const Glib::SignalProxyInfo
+  static const glib::SignalProxyInfo
       EventControllerKey_signal_key_pressed_info = {
           "key-pressed",
           (GCallback) &EventControllerKey_signal_key_pressed_callback,
@@ -86,28 +86,28 @@ namespace
                                                    GdkModifierType p2,
                                                    void* data) -> void
   {
-    using namespace Gtk;
-    using SlotType = sigc::slot<void (guint, guint, Gdk::ModifierType)>;
+    using namespace gtk;
+    using SlotType = sigc::slot<void (guint, guint, gdk::ModifierType)>;
 
     auto obj = dynamic_cast<EventControllerKey*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
     {
       try
       {
-        if (const auto slot = Glib::SignalProxyNormal::data_to_slot (data))
+        if (const auto slot = glib::SignalProxyNormal::data_to_slot (data))
           (*static_cast<SlotType*> (
-              slot)) (p0, p1, static_cast<Gdk::ModifierType> (p2));
+              slot)) (p0, p1, static_cast<gdk::ModifierType> (p2));
       }
       catch (...)
       {
-        Glib::exception_handlers_invoke ();
+        glib::exception_handlers_invoke ();
       }
     }
   }
 
-  static const Glib::SignalProxyInfo
+  static const glib::SignalProxyInfo
       EventControllerKey_signal_key_released_info = {
           "key-released",
           (GCallback) &EventControllerKey_signal_key_released_callback,
@@ -118,23 +118,23 @@ namespace
                                                 GdkModifierType p0,
                                                 void* data) -> gboolean
   {
-    using namespace Gtk;
-    using SlotType = sigc::slot<bool (Gdk::ModifierType)>;
+    using namespace gtk;
+    using SlotType = sigc::slot<bool (gdk::ModifierType)>;
 
     auto obj = dynamic_cast<EventControllerKey*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
     {
       try
       {
-        if (const auto slot = Glib::SignalProxyNormal::data_to_slot (data))
+        if (const auto slot = glib::SignalProxyNormal::data_to_slot (data))
           return static_cast<int> ((*static_cast<SlotType*> (slot)) (
-              static_cast<Gdk::ModifierType> (p0)));
+              static_cast<gdk::ModifierType> (p0)));
       }
       catch (...)
       {
-        Glib::exception_handlers_invoke ();
+        glib::exception_handlers_invoke ();
       }
     }
 
@@ -148,23 +148,23 @@ namespace
       GdkModifierType p0,
       void* data) -> gboolean
   {
-    using namespace Gtk;
-    using SlotType = sigc::slot<void (Gdk::ModifierType)>;
+    using namespace gtk;
+    using SlotType = sigc::slot<void (gdk::ModifierType)>;
 
     auto obj = dynamic_cast<EventControllerKey*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
     {
       try
       {
-        if (const auto slot = Glib::SignalProxyNormal::data_to_slot (data))
+        if (const auto slot = glib::SignalProxyNormal::data_to_slot (data))
           (*static_cast<SlotType*> (slot)) (
-              static_cast<Gdk::ModifierType> (p0));
+              static_cast<gdk::ModifierType> (p0));
       }
       catch (...)
       {
-        Glib::exception_handlers_invoke ();
+        glib::exception_handlers_invoke ();
       }
     }
 
@@ -172,36 +172,36 @@ namespace
     return RType ();
   }
 
-  static const Glib::SignalProxyInfo EventControllerKey_signal_modifiers_info =
+  static const glib::SignalProxyInfo EventControllerKey_signal_modifiers_info =
       {"modifiers",
        (GCallback) &EventControllerKey_signal_modifiers_callback,
        (GCallback) &EventControllerKey_signal_modifiers_notify_callback};
 
-  static const Glib::SignalProxyInfo EventControllerKey_signal_im_update_info =
+  static const glib::SignalProxyInfo EventControllerKey_signal_im_update_info =
       {"im-update",
-       (GCallback) &Glib::SignalProxyNormal::slot0_void_callback,
-       (GCallback) &Glib::SignalProxyNormal::slot0_void_callback};
+       (GCallback) &glib::SignalProxyNormal::slot0_void_callback,
+       (GCallback) &glib::SignalProxyNormal::slot0_void_callback};
 
 } // namespace
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GtkEventControllerKey* object, bool take_copy) -> Glib::RefPtr<Gtk::EventControllerKey>
+  wrap (GtkEventControllerKey* object, bool take_copy) -> glib::RefPtr<gtk::EventControllerKey>
   {
-    return Glib::make_refptr_for_instance<Gtk::EventControllerKey> (
-        dynamic_cast<Gtk::EventControllerKey*> (
-            Glib::wrap_auto ((GObject*) (object), take_copy)));
+    return glib::make_refptr_for_instance<gtk::EventControllerKey> (
+        dynamic_cast<gtk::EventControllerKey*> (
+            glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gtk
+namespace gtk
 {
 
   auto
-  EventControllerKey_Class::init () -> const Glib::Class&
+  EventControllerKey_Class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -222,7 +222,7 @@ namespace Gtk
   }
 
   auto
-  EventControllerKey_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  EventControllerKey_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new EventControllerKey ((GtkEventControllerKey*) object);
   }
@@ -235,7 +235,7 @@ namespace Gtk
   }
 
   EventControllerKey::EventControllerKey (
-      const Glib::ConstructParams& construct_params)
+      const glib::ConstructParams& construct_params)
     : EventController (construct_params)
   {
   }
@@ -275,16 +275,16 @@ namespace Gtk
   }
 
   EventControllerKey::EventControllerKey ()
-    : Glib::ObjectBase (nullptr),
+    : glib::ObjectBase (nullptr),
       EventController (
-          Glib::ConstructParams (eventcontrollerkey_class_.init ()))
+          glib::ConstructParams (eventcontrollerkey_class_.init ()))
   {
   }
 
   auto
-  EventControllerKey::create () -> Glib::RefPtr<EventControllerKey>
+  EventControllerKey::create () -> glib::RefPtr<EventControllerKey>
   {
-    return Glib::make_refptr_for_instance<EventControllerKey> (
+    return glib::make_refptr_for_instance<EventControllerKey> (
         new EventControllerKey ());
   }
 
@@ -302,35 +302,35 @@ namespace Gtk
   }
 
   auto
-  EventControllerKey::signal_key_pressed () -> Glib::SignalProxy<bool (guint, guint, Gdk::ModifierType)>
+  EventControllerKey::signal_key_pressed () -> glib::SignalProxy<bool (guint, guint, gdk::ModifierType)>
   {
-    return Glib::SignalProxy<bool (guint, guint, Gdk::ModifierType)> (
+    return glib::SignalProxy<bool (guint, guint, gdk::ModifierType)> (
         this,
         &EventControllerKey_signal_key_pressed_info);
   }
 
   auto
-  EventControllerKey::signal_key_released () -> Glib::SignalProxy<void (guint, guint, Gdk::ModifierType)>
+  EventControllerKey::signal_key_released () -> glib::SignalProxy<void (guint, guint, gdk::ModifierType)>
   {
-    return Glib::SignalProxy<void (guint, guint, Gdk::ModifierType)> (
+    return glib::SignalProxy<void (guint, guint, gdk::ModifierType)> (
         this,
         &EventControllerKey_signal_key_released_info);
   }
 
   auto
-  EventControllerKey::signal_modifiers () -> Glib::SignalProxy<bool (Gdk::ModifierType)>
+  EventControllerKey::signal_modifiers () -> glib::SignalProxy<bool (gdk::ModifierType)>
   {
-    return Glib::SignalProxy<bool (Gdk::ModifierType)> (
+    return glib::SignalProxy<bool (gdk::ModifierType)> (
         this,
         &EventControllerKey_signal_modifiers_info);
   }
 
   auto
-  EventControllerKey::signal_im_update () -> Glib::SignalProxy<void ()>
+  EventControllerKey::signal_im_update () -> glib::SignalProxy<void ()>
   {
-    return Glib::SignalProxy<void ()> (
+    return glib::SignalProxy<void ()> (
         this,
         &EventControllerKey_signal_im_update_info);
   }
 
-} // namespace Gtk
+} // namespace gtk

@@ -13,9 +13,9 @@ namespace
 
   struct OwnSlots
   {
-    Gio::DBus::SlotBusAcquired* bus_acquired_slot;
-    Gio::DBus::SlotNameAcquired* name_acquired_slot;
-    Gio::DBus::SlotNameLost* name_lost_slot;
+    gio::DBus::SlotBusAcquired* bus_acquired_slot;
+    gio::DBus::SlotNameAcquired* name_acquired_slot;
+    gio::DBus::SlotNameLost* name_lost_slot;
   };
 
   extern "C"
@@ -30,12 +30,12 @@ namespace
 
       try
       {
-        (*the_slot) (Glib::wrap (connection, true),
-                     Glib::convert_const_gchar_ptr_to_ustring (name));
+        (*the_slot) (glib::wrap (connection, true),
+                     glib::convert_const_gchar_ptr_to_ustring (name));
       }
       catch (...)
       {
-        Glib::exception_handlers_invoke ();
+        glib::exception_handlers_invoke ();
       }
     }
 
@@ -49,12 +49,12 @@ namespace
 
       try
       {
-        (*the_slot) (Glib::wrap (connection, true),
-                     Glib::convert_const_gchar_ptr_to_ustring (name));
+        (*the_slot) (glib::wrap (connection, true),
+                     glib::convert_const_gchar_ptr_to_ustring (name));
       }
       catch (...)
       {
-        Glib::exception_handlers_invoke ();
+        glib::exception_handlers_invoke ();
       }
     }
 
@@ -68,12 +68,12 @@ namespace
 
       try
       {
-        (*the_slot) (Glib::wrap (connection, true),
-                     Glib::convert_const_gchar_ptr_to_ustring (name));
+        (*the_slot) (glib::wrap (connection, true),
+                     glib::convert_const_gchar_ptr_to_ustring (name));
       }
       catch (...)
       {
-        Glib::exception_handlers_invoke ();
+        glib::exception_handlers_invoke ();
       }
     }
 
@@ -97,12 +97,12 @@ namespace
 
 } // namespace
 
-namespace Gio::DBus
+namespace gio::DBus
 {
 
   auto
   own_name (BusType bus_type,
-            const Glib::ustring& name,
+            const glib::ustring& name,
             const SlotBusAcquired& bus_acquired_slot,
             const SlotNameAcquired& name_acquired_slot,
             const SlotNameLost& name_lost_slot,
@@ -130,14 +130,14 @@ namespace Gio::DBus
     g_bus_unown_name (owner_id);
   }
 
-} // namespace Gio::DBus
+} // namespace gio::DBus
 
 namespace
 {
 }
 
 auto
-Glib::Value<Gio::DBus::BusNameOwnerFlags>::value_type () -> GType
+glib::Value<gio::DBus::BusNameOwnerFlags>::value_type () -> GType
 {
   return g_bus_name_owner_flags_get_type ();
 }

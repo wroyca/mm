@@ -15,13 +15,13 @@ using GtkProgressBarClass = struct _GtkProgressBarClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class ProgressBar_Class;
 }
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
   class LIBMM_GTK_SYMEXPORT ProgressBar : public Widget,
@@ -52,7 +52,7 @@ namespace Gtk
     static CppClassType progressbar_class_;
 
   protected:
-    explicit ProgressBar (const Glib::ConstructParams& construct_params);
+    explicit ProgressBar (const glib::ConstructParams& construct_params);
     explicit ProgressBar (GtkProgressBar* castitem);
 
 #endif
@@ -87,10 +87,10 @@ namespace Gtk
     pulse () -> void;
 
     auto
-    get_text () const -> Glib::ustring;
+    get_text () const -> glib::ustring;
 
     auto
-    set_text (const Glib::ustring& text) -> void;
+    set_text (const glib::ustring& text) -> void;
 
     auto
     get_fraction () const -> double;
@@ -111,10 +111,10 @@ namespace Gtk
     get_inverted () const -> bool;
 
     auto
-    set_ellipsize (Pango::EllipsizeMode mode) -> void;
+    set_ellipsize (pango::EllipsizeMode mode) -> void;
 
     auto
-    get_ellipsize () const -> Pango::EllipsizeMode;
+    get_ellipsize () const -> pango::EllipsizeMode;
 
     auto
     set_show_text (bool show_text = true) -> void;
@@ -123,53 +123,53 @@ namespace Gtk
     get_show_text () const -> bool;
 
     auto
-    property_fraction () -> Glib::PropertyProxy<double>;
+    property_fraction () -> glib::PropertyProxy<double>;
 
     auto
-    property_fraction () const -> Glib::PropertyProxy_ReadOnly<double>;
+    property_fraction () const -> glib::PropertyProxy_ReadOnly<double>;
 
     auto
-    property_pulse_step () -> Glib::PropertyProxy<double>;
+    property_pulse_step () -> glib::PropertyProxy<double>;
 
     auto
-    property_pulse_step () const -> Glib::PropertyProxy_ReadOnly<double>;
+    property_pulse_step () const -> glib::PropertyProxy_ReadOnly<double>;
 
     auto
-    property_text () -> Glib::PropertyProxy<Glib::ustring>;
+    property_text () -> glib::PropertyProxy<glib::ustring>;
 
     auto
-    property_text () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+    property_text () const -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
     auto
-    property_ellipsize () -> Glib::PropertyProxy<bool>;
+    property_ellipsize () -> glib::PropertyProxy<bool>;
 
     auto
-    property_ellipsize () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_ellipsize () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_show_text () -> Glib::PropertyProxy<bool>;
+    property_show_text () -> glib::PropertyProxy<bool>;
 
     auto
-    property_show_text () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_show_text () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_inverted () -> Glib::PropertyProxy<bool>;
+    property_inverted () -> glib::PropertyProxy<bool>;
 
     auto
-    property_inverted () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_inverted () const -> glib::PropertyProxy_ReadOnly<bool>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GtkProgressBar* object, bool take_copy = false) -> Gtk::ProgressBar*;
+  wrap (GtkProgressBar* object, bool take_copy = false) -> gtk::ProgressBar*;
 }
 
 #endif

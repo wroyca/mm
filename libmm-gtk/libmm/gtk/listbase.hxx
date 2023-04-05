@@ -16,13 +16,13 @@ using GtkListBaseClass = struct _GtkListBaseClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT ListBase_Class;
 }
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
   class LIBMM_GTK_SYMEXPORT ListBase : public Widget,
@@ -54,7 +54,7 @@ namespace Gtk
     static CppClassType listbase_class_;
 
   protected:
-    explicit ListBase (const Glib::ConstructParams& construct_params);
+    explicit ListBase (const glib::ConstructParams& construct_params);
     explicit ListBase (GtkListBase* castitem);
 
 #endif
@@ -87,12 +87,12 @@ namespace Gtk
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkListBase* object, bool take_copy = false) -> Gtk::ListBase*;
-} // namespace Glib
+  wrap (GtkListBase* object, bool take_copy = false) -> gtk::ListBase*;
+} // namespace glib
 
 #endif

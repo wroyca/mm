@@ -13,50 +13,50 @@ namespace
   static auto
   GridView_signal_activate_callback (GtkGridView* self, guint p0, void* data) -> void
   {
-    using namespace Gtk;
+    using namespace gtk;
     using SlotType = sigc::slot<void (guint)>;
 
     auto obj = dynamic_cast<GridView*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
     {
       try
       {
-        if (const auto slot = Glib::SignalProxyNormal::data_to_slot (data))
+        if (const auto slot = glib::SignalProxyNormal::data_to_slot (data))
           (*static_cast<SlotType*> (slot)) (p0);
       }
       catch (...)
       {
-        Glib::exception_handlers_invoke ();
+        glib::exception_handlers_invoke ();
       }
     }
   }
 
-  static const Glib::SignalProxyInfo GridView_signal_activate_info = {
+  static const glib::SignalProxyInfo GridView_signal_activate_info = {
       "activate",
       (GCallback) &GridView_signal_activate_callback,
       (GCallback) &GridView_signal_activate_callback};
 
 } // namespace
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GtkGridView* object, bool take_copy) -> Gtk::GridView*
+  wrap (GtkGridView* object, bool take_copy) -> gtk::GridView*
   {
-    return dynamic_cast<Gtk::GridView*> (
-        Glib::wrap_auto ((GObject*) (object), take_copy));
+    return dynamic_cast<gtk::GridView*> (
+        glib::wrap_auto ((GObject*) (object), take_copy));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gtk
+namespace gtk
 {
 
   auto
-  GridView_Class::init () -> const Glib::Class&
+  GridView_Class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -76,12 +76,12 @@ namespace Gtk
   }
 
   auto
-  GridView_Class::wrap_new (GObject* o) -> Glib::ObjectBase*
+  GridView_Class::wrap_new (GObject* o) -> glib::ObjectBase*
   {
     return manage (new GridView ((GtkGridView*) (o)));
   }
 
-  GridView::GridView (const Glib::ConstructParams& construct_params)
+  GridView::GridView (const glib::ConstructParams& construct_params)
     : ListBase (construct_params)
   {
   }
@@ -122,56 +122,56 @@ namespace Gtk
     return gtk_grid_view_get_type ();
   }
 
-  GridView::GridView (const Glib::RefPtr<SelectionModel>& model,
-                      const Glib::RefPtr<ListItemFactory>& factory)
-    : Glib::ObjectBase (nullptr),
-      ListBase (Glib::ConstructParams (gridview_class_.init (),
+  GridView::GridView (const glib::RefPtr<SelectionModel>& model,
+                      const glib::RefPtr<ListItemFactory>& factory)
+    : glib::ObjectBase (nullptr),
+      ListBase (glib::ConstructParams (gridview_class_.init (),
                                        "model",
-                                       Glib::unwrap (model),
+                                       glib::unwrap (model),
                                        "factory",
-                                       Glib::unwrap (factory),
+                                       glib::unwrap (factory),
                                        nullptr))
   {
   }
 
   auto
-  GridView::get_model () -> Glib::RefPtr<SelectionModel>
+  GridView::get_model () -> glib::RefPtr<SelectionModel>
   {
-    auto retvalue = Glib::wrap (gtk_grid_view_get_model (gobj ()));
+    auto retvalue = glib::wrap (gtk_grid_view_get_model (gobj ()));
     if (retvalue)
       retvalue->reference ();
     return retvalue;
   }
 
   auto
-  GridView::get_model () const -> Glib::RefPtr<const SelectionModel>
+  GridView::get_model () const -> glib::RefPtr<const SelectionModel>
   {
     return const_cast<GridView*> (this)->get_model ();
   }
 
   auto
-  GridView::set_model (const Glib::RefPtr<SelectionModel>& model) -> void
+  GridView::set_model (const glib::RefPtr<SelectionModel>& model) -> void
   {
-    gtk_grid_view_set_model (gobj (), Glib::unwrap (model));
+    gtk_grid_view_set_model (gobj (), glib::unwrap (model));
   }
 
   auto
-  GridView::set_factory (const Glib::RefPtr<ListItemFactory>& factory) -> void
+  GridView::set_factory (const glib::RefPtr<ListItemFactory>& factory) -> void
   {
-    gtk_grid_view_set_factory (gobj (), Glib::unwrap (factory));
+    gtk_grid_view_set_factory (gobj (), glib::unwrap (factory));
   }
 
   auto
-  GridView::get_factory () -> Glib::RefPtr<ListItemFactory>
+  GridView::get_factory () -> glib::RefPtr<ListItemFactory>
   {
-    auto retvalue = Glib::wrap (gtk_grid_view_get_factory (gobj ()));
+    auto retvalue = glib::wrap (gtk_grid_view_get_factory (gobj ()));
     if (retvalue)
       retvalue->reference ();
     return retvalue;
   }
 
   auto
-  GridView::get_factory () const -> Glib::RefPtr<const ListItemFactory>
+  GridView::get_factory () const -> glib::RefPtr<const ListItemFactory>
   {
     return const_cast<GridView*> (this)->get_factory ();
   }
@@ -230,97 +230,97 @@ namespace Gtk
   }
 
   auto
-  GridView::signal_activate () -> Glib::SignalProxy<void (guint)>
+  GridView::signal_activate () -> glib::SignalProxy<void (guint)>
   {
-    return Glib::SignalProxy<void (guint)> (this,
+    return glib::SignalProxy<void (guint)> (this,
                                             &GridView_signal_activate_info);
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<
-          Glib::RefPtr<ListItemFactory>>::value,
-      "Type Glib::RefPtr<ListItemFactory> cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      glib::Traits::ValueCompatibleWithWrapProperty<
+          glib::RefPtr<ListItemFactory>>::value,
+      "Type glib::RefPtr<ListItemFactory> cannot be used in _WRAP_PROPERTY. "
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  GridView::property_factory () -> Glib::PropertyProxy<Glib::RefPtr<ListItemFactory>>
+  GridView::property_factory () -> glib::PropertyProxy<glib::RefPtr<ListItemFactory>>
   {
-    return Glib::PropertyProxy<Glib::RefPtr<ListItemFactory>> (this, "factory");
+    return glib::PropertyProxy<glib::RefPtr<ListItemFactory>> (this, "factory");
   }
 
   auto
-  GridView::property_factory () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<ListItemFactory>>
+  GridView::property_factory () const -> glib::PropertyProxy_ReadOnly<glib::RefPtr<ListItemFactory>>
   {
-    return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<ListItemFactory>> (
+    return glib::PropertyProxy_ReadOnly<glib::RefPtr<ListItemFactory>> (
         this,
         "factory");
   }
 
   auto
-  GridView::property_max_columns () -> Glib::PropertyProxy<guint>
+  GridView::property_max_columns () -> glib::PropertyProxy<guint>
   {
-    return Glib::PropertyProxy<guint> (this, "max-columns");
+    return glib::PropertyProxy<guint> (this, "max-columns");
   }
 
   auto
-  GridView::property_max_columns () const -> Glib::PropertyProxy_ReadOnly<guint>
+  GridView::property_max_columns () const -> glib::PropertyProxy_ReadOnly<guint>
   {
-    return Glib::PropertyProxy_ReadOnly<guint> (this, "max-columns");
+    return glib::PropertyProxy_ReadOnly<guint> (this, "max-columns");
   }
 
   auto
-  GridView::property_min_columns () -> Glib::PropertyProxy<guint>
+  GridView::property_min_columns () -> glib::PropertyProxy<guint>
   {
-    return Glib::PropertyProxy<guint> (this, "min-columns");
+    return glib::PropertyProxy<guint> (this, "min-columns");
   }
 
   auto
-  GridView::property_min_columns () const -> Glib::PropertyProxy_ReadOnly<guint>
+  GridView::property_min_columns () const -> glib::PropertyProxy_ReadOnly<guint>
   {
-    return Glib::PropertyProxy_ReadOnly<guint> (this, "min-columns");
+    return glib::PropertyProxy_ReadOnly<guint> (this, "min-columns");
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<
-          Glib::RefPtr<SelectionModel>>::value,
-      "Type Glib::RefPtr<SelectionModel> cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      glib::Traits::ValueCompatibleWithWrapProperty<
+          glib::RefPtr<SelectionModel>>::value,
+      "Type glib::RefPtr<SelectionModel> cannot be used in _WRAP_PROPERTY. "
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  GridView::property_model () -> Glib::PropertyProxy<Glib::RefPtr<SelectionModel>>
+  GridView::property_model () -> glib::PropertyProxy<glib::RefPtr<SelectionModel>>
   {
-    return Glib::PropertyProxy<Glib::RefPtr<SelectionModel>> (this, "model");
+    return glib::PropertyProxy<glib::RefPtr<SelectionModel>> (this, "model");
   }
 
   auto
-  GridView::property_model () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<SelectionModel>>
+  GridView::property_model () const -> glib::PropertyProxy_ReadOnly<glib::RefPtr<SelectionModel>>
   {
-    return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<SelectionModel>> (this,
+    return glib::PropertyProxy_ReadOnly<glib::RefPtr<SelectionModel>> (this,
                                                                        "model");
   }
 
   auto
-  GridView::property_single_click_activate () -> Glib::PropertyProxy<bool>
+  GridView::property_single_click_activate () -> glib::PropertyProxy<bool>
   {
-    return Glib::PropertyProxy<bool> (this, "single-click-activate");
+    return glib::PropertyProxy<bool> (this, "single-click-activate");
   }
 
   auto
-  GridView::property_single_click_activate () const -> Glib::PropertyProxy_ReadOnly<bool>
+  GridView::property_single_click_activate () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "single-click-activate");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "single-click-activate");
   }
 
   auto
-  GridView::property_enable_rubberband () -> Glib::PropertyProxy<bool>
+  GridView::property_enable_rubberband () -> glib::PropertyProxy<bool>
   {
-    return Glib::PropertyProxy<bool> (this, "enable-rubberband");
+    return glib::PropertyProxy<bool> (this, "enable-rubberband");
   }
 
   auto
-  GridView::property_enable_rubberband () const -> Glib::PropertyProxy_ReadOnly<bool>
+  GridView::property_enable_rubberband () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "enable-rubberband");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "enable-rubberband");
   }
 
-} // namespace Gtk
+} // namespace gtk

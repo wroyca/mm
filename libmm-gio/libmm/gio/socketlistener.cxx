@@ -8,71 +8,71 @@
 #include <gio/gio.h>
 #include <libmm/gio/slot_async.hxx>
 
-namespace Gio
+namespace gio
 {
 
   auto
-  SocketListener::add_socket (const Glib::RefPtr<Socket>& socket) -> bool
+  SocketListener::add_socket (const glib::RefPtr<Socket>& socket) -> bool
   {
     GError* gerror = nullptr;
     const bool retval = g_socket_listener_add_socket (gobj (),
-                                                      Glib::unwrap (socket),
+                                                      glib::unwrap (socket),
                                                       nullptr,
                                                       &gerror);
 
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
 
     return retval;
   }
 
   auto
-  SocketListener::add_address (const Glib::RefPtr<SocketAddress>& address,
+  SocketListener::add_address (const glib::RefPtr<SocketAddress>& address,
                                Socket::Type type,
                                Socket::Protocol protocol,
-                               const Glib::RefPtr<Object>& source_object,
-                               Glib::RefPtr<SocketAddress>& effective_address) -> bool
+                               const glib::RefPtr<Object>& source_object,
+                               glib::RefPtr<SocketAddress>& effective_address) -> bool
   {
     GError* gerror = nullptr;
     GSocketAddress* retaddr = nullptr;
     const bool retval = g_socket_listener_add_address (
         gobj (),
-        Glib::unwrap (address),
+        glib::unwrap (address),
         static_cast<GSocketType> (type),
         static_cast<GSocketProtocol> (protocol),
-        Glib::unwrap (source_object),
+        glib::unwrap (source_object),
         &retaddr,
         &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
 
     if (retaddr)
-      effective_address = Glib::wrap (retaddr);
+      effective_address = glib::wrap (retaddr);
 
     return retval;
   }
 
   auto
-  SocketListener::add_address (const Glib::RefPtr<SocketAddress>& address,
+  SocketListener::add_address (const glib::RefPtr<SocketAddress>& address,
                                Socket::Type type,
                                Socket::Protocol protocol,
-                               Glib::RefPtr<SocketAddress>& effective_address) -> bool
+                               glib::RefPtr<SocketAddress>& effective_address) -> bool
   {
     GError* gerror = nullptr;
     GSocketAddress* retaddr = nullptr;
     const bool retval = g_socket_listener_add_address (
         gobj (),
-        Glib::unwrap (address),
+        glib::unwrap (address),
         static_cast<GSocketType> (type),
         static_cast<GSocketProtocol> (protocol),
         nullptr,
         &retaddr,
         &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
 
     if (retaddr)
-      effective_address = Glib::wrap (retaddr);
+      effective_address = glib::wrap (retaddr);
 
     return retval;
   }
@@ -84,7 +84,7 @@ namespace Gio
     const bool retvalue =
         g_socket_listener_add_inet_port (gobj (), port, nullptr, &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
 
     return retvalue;
   }
@@ -96,83 +96,83 @@ namespace Gio
     const auto retvalue =
         g_socket_listener_add_any_inet_port (gobj (), nullptr, &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
 
     return retvalue;
   }
 
   auto
-  SocketListener::accept_socket (Glib::RefPtr<Object>& source_object,
-                                 const Glib::RefPtr<Cancellable>& cancellable) -> Glib::RefPtr<Socket>
+  SocketListener::accept_socket (glib::RefPtr<Object>& source_object,
+                                 const glib::RefPtr<Cancellable>& cancellable) -> glib::RefPtr<Socket>
   {
     GError* gerror = nullptr;
     GObject* retobj = nullptr;
     const auto retvalue = g_socket_listener_accept_socket (
         gobj (),
         &retobj,
-        Glib::unwrap (cancellable),
+        glib::unwrap (cancellable),
         &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
 
     if (retobj)
-      source_object = Glib::wrap (retobj);
+      source_object = glib::wrap (retobj);
 
-    return Glib::wrap (retvalue);
+    return glib::wrap (retvalue);
   }
 
   auto
-  SocketListener::accept_socket (Glib::RefPtr<Object>& source_object) -> Glib::RefPtr<Socket>
+  SocketListener::accept_socket (glib::RefPtr<Object>& source_object) -> glib::RefPtr<Socket>
   {
     GError* gerror = nullptr;
     GObject* retobj = nullptr;
     const auto retvalue =
         g_socket_listener_accept_socket (gobj (), &retobj, nullptr, &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
 
     if (retobj)
-      source_object = Glib::wrap (retobj);
+      source_object = glib::wrap (retobj);
 
-    return Glib::wrap (retvalue);
+    return glib::wrap (retvalue);
   }
 
   auto
-  SocketListener::accept_socket (const Glib::RefPtr<Cancellable>& cancellable) -> Glib::RefPtr<Socket>
+  SocketListener::accept_socket (const glib::RefPtr<Cancellable>& cancellable) -> glib::RefPtr<Socket>
   {
     GError* gerror = nullptr;
     const auto retvalue = g_socket_listener_accept_socket (
         gobj (),
         nullptr,
-        Glib::unwrap (cancellable),
+        glib::unwrap (cancellable),
         &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
 
-    return Glib::wrap (retvalue);
+    return glib::wrap (retvalue);
   }
 
   auto
-  SocketListener::accept_socket () -> Glib::RefPtr<Socket>
+  SocketListener::accept_socket () -> glib::RefPtr<Socket>
   {
     GError* gerror = nullptr;
     const auto retvalue =
         g_socket_listener_accept_socket (gobj (), nullptr, nullptr, &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
 
-    return Glib::wrap (retvalue);
+    return glib::wrap (retvalue);
   }
 
   auto
   SocketListener::accept_socket_async (
-      const Glib::RefPtr<Cancellable>& cancellable,
+      const glib::RefPtr<Cancellable>& cancellable,
       const SlotAsyncReady& slot) -> void
   {
     const auto slot_copy = new SlotAsyncReady (slot);
 
     g_socket_listener_accept_socket_async (gobj (),
-                                           Glib::unwrap (cancellable),
+                                           glib::unwrap (cancellable),
                                            &SignalProxy_async_callback,
                                            slot_copy);
   }
@@ -189,98 +189,98 @@ namespace Gio
   }
 
   auto
-  SocketListener::accept_socket_finish (const Glib::RefPtr<AsyncResult>& result,
-                                        Glib::RefPtr<Object>& source_object) -> Glib::RefPtr<Socket>
+  SocketListener::accept_socket_finish (const glib::RefPtr<AsyncResult>& result,
+                                        glib::RefPtr<Object>& source_object) -> glib::RefPtr<Socket>
   {
     GError* gerror = nullptr;
     GObject* retobj = nullptr;
     const auto retvalue = g_socket_listener_accept_socket_finish (
         gobj (),
-        Glib::unwrap (result),
+        glib::unwrap (result),
         &retobj,
         &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     if (retobj)
-      source_object = Glib::wrap (retobj);
+      source_object = glib::wrap (retobj);
 
-    return Glib::wrap (retvalue);
+    return glib::wrap (retvalue);
   }
 
   auto
-  SocketListener::accept_socket_finish (const Glib::RefPtr<AsyncResult>& result) -> Glib::RefPtr<Socket>
+  SocketListener::accept_socket_finish (const glib::RefPtr<AsyncResult>& result) -> glib::RefPtr<Socket>
   {
     GError* gerror = nullptr;
     const auto retvalue = g_socket_listener_accept_socket_finish (
         gobj (),
-        Glib::unwrap (result),
+        glib::unwrap (result),
         nullptr,
         &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
 
-    return Glib::wrap (retvalue);
+    return glib::wrap (retvalue);
   }
 
   auto
-  SocketListener::accept (Glib::RefPtr<Object>& source_object,
-                          const Glib::RefPtr<Cancellable>& cancellable) -> Glib::RefPtr<SocketConnection>
+  SocketListener::accept (glib::RefPtr<Object>& source_object,
+                          const glib::RefPtr<Cancellable>& cancellable) -> glib::RefPtr<SocketConnection>
   {
     GError* gerror = nullptr;
     GObject* retobj = nullptr;
     const auto retvalue = g_socket_listener_accept (gobj (),
                                                     &retobj,
-                                                    Glib::unwrap (cancellable),
+                                                    glib::unwrap (cancellable),
                                                     &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
 
     if (retobj)
-      source_object = Glib::wrap (retobj);
+      source_object = glib::wrap (retobj);
 
-    return Glib::wrap (retvalue);
+    return glib::wrap (retvalue);
   }
 
   auto
-  SocketListener::accept (Glib::RefPtr<Object>& source_object) -> Glib::RefPtr<SocketConnection>
+  SocketListener::accept (glib::RefPtr<Object>& source_object) -> glib::RefPtr<SocketConnection>
   {
     GError* gerror = nullptr;
     GObject* retobj = nullptr;
     const auto retvalue =
         g_socket_listener_accept (gobj (), &retobj, nullptr, &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
 
     if (retobj)
-      source_object = Glib::wrap (retobj);
+      source_object = glib::wrap (retobj);
 
-    return Glib::wrap (retvalue);
+    return glib::wrap (retvalue);
   }
 
   auto
-  SocketListener::accept (const Glib::RefPtr<Cancellable>& cancellable) -> Glib::RefPtr<SocketConnection>
+  SocketListener::accept (const glib::RefPtr<Cancellable>& cancellable) -> glib::RefPtr<SocketConnection>
   {
     GError* gerror = nullptr;
     const auto retvalue = g_socket_listener_accept (gobj (),
                                                     nullptr,
-                                                    Glib::unwrap (cancellable),
+                                                    glib::unwrap (cancellable),
                                                     &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
 
-    return Glib::wrap (retvalue);
+    return glib::wrap (retvalue);
   }
 
   auto
-  SocketListener::accept () -> Glib::RefPtr<SocketConnection>
+  SocketListener::accept () -> glib::RefPtr<SocketConnection>
   {
     GError* gerror = nullptr;
     const auto retvalue =
         g_socket_listener_accept (gobj (), nullptr, nullptr, &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
 
-    return Glib::wrap (retvalue);
+    return glib::wrap (retvalue);
   }
 
   auto
@@ -295,71 +295,71 @@ namespace Gio
   }
 
   auto
-  SocketListener::accept_async (const Glib::RefPtr<Cancellable>& cancellable,
+  SocketListener::accept_async (const glib::RefPtr<Cancellable>& cancellable,
                                 const SlotAsyncReady& slot) -> void
   {
     const auto slot_copy = new SlotAsyncReady (slot);
 
     g_socket_listener_accept_async (gobj (),
-                                    Glib::unwrap (cancellable),
+                                    glib::unwrap (cancellable),
                                     &SignalProxy_async_callback,
                                     slot_copy);
   }
 
   auto
-  SocketListener::accept_finish (const Glib::RefPtr<AsyncResult>& result,
-                                 Glib::RefPtr<Object>& source_object) -> Glib::RefPtr<SocketConnection>
+  SocketListener::accept_finish (const glib::RefPtr<AsyncResult>& result,
+                                 glib::RefPtr<Object>& source_object) -> glib::RefPtr<SocketConnection>
   {
     GError* gerror = nullptr;
     GObject* retobj = nullptr;
     const auto retvalue = g_socket_listener_accept_finish (
         gobj (),
-        Glib::unwrap (result),
+        glib::unwrap (result),
         &retobj,
         &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     if (retobj)
-      source_object = Glib::wrap (retobj);
+      source_object = glib::wrap (retobj);
 
-    return Glib::wrap (retvalue);
+    return glib::wrap (retvalue);
   }
 
   auto
-  SocketListener::accept_finish (const Glib::RefPtr<AsyncResult>& result) -> Glib::RefPtr<SocketConnection>
+  SocketListener::accept_finish (const glib::RefPtr<AsyncResult>& result) -> glib::RefPtr<SocketConnection>
   {
     GError* gerror = nullptr;
     const auto retvalue = g_socket_listener_accept_finish (
         gobj (),
-        Glib::unwrap (result),
+        glib::unwrap (result),
         nullptr,
         &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
 
-    return Glib::wrap (retvalue);
+    return glib::wrap (retvalue);
   }
 
-} // namespace Gio
+} // namespace gio
 
 namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GSocketListener* object, const bool take_copy) -> RefPtr<Gio::SocketListener>
+  wrap (GSocketListener* object, const bool take_copy) -> RefPtr<gio::SocketListener>
   {
-    return Glib::make_refptr_for_instance<Gio::SocketListener> (
-        dynamic_cast<Gio::SocketListener*> (
+    return glib::make_refptr_for_instance<gio::SocketListener> (
+        dynamic_cast<gio::SocketListener*> (
             wrap_auto ((GObject*) object, take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gio
+namespace gio
 {
 
   auto
@@ -383,7 +383,7 @@ namespace Gio
   }
 
   auto
-  SocketListener_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  SocketListener_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new SocketListener ((GSocketListener*) object);
   }
@@ -395,7 +395,7 @@ namespace Gio
     return gobj ();
   }
 
-  SocketListener::SocketListener (const Glib::ConstructParams& construct_params)
+  SocketListener::SocketListener (const glib::ConstructParams& construct_params)
     : Object (construct_params)
   {
   }
@@ -435,14 +435,14 @@ namespace Gio
 
   SocketListener::SocketListener ()
     : ObjectBase (nullptr),
-      Object (Glib::ConstructParams (socketlistener_class_.init ()))
+      Object (glib::ConstructParams (socketlistener_class_.init ()))
   {
   }
 
   auto
-  SocketListener::create () -> Glib::RefPtr<SocketListener>
+  SocketListener::create () -> glib::RefPtr<SocketListener>
   {
-    return Glib::make_refptr_for_instance<SocketListener> (
+    return glib::make_refptr_for_instance<SocketListener> (
         new SocketListener ());
   }
 
@@ -453,45 +453,45 @@ namespace Gio
   }
 
   auto
-  SocketListener::add_socket (const Glib::RefPtr<Socket>& socket,
-                              const Glib::RefPtr<Object>& source_object) -> bool
+  SocketListener::add_socket (const glib::RefPtr<Socket>& socket,
+                              const glib::RefPtr<Object>& source_object) -> bool
   {
     GError* gerror = nullptr;
     const auto retvalue = g_socket_listener_add_socket (
         gobj (),
-        Glib::unwrap (socket),
-        Glib::unwrap (source_object),
+        glib::unwrap (socket),
+        glib::unwrap (source_object),
         &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
   auto
   SocketListener::add_inet_port (const guint16 port,
-                                 const Glib::RefPtr<Object>& source_object) -> bool
+                                 const glib::RefPtr<Object>& source_object) -> bool
   {
     GError* gerror = nullptr;
     const auto retvalue = g_socket_listener_add_inet_port (
         gobj (),
         port,
-        Glib::unwrap (source_object),
+        glib::unwrap (source_object),
         &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
   auto
-  SocketListener::add_any_inet_port (const Glib::RefPtr<Object>& source_object) -> guint16
+  SocketListener::add_any_inet_port (const glib::RefPtr<Object>& source_object) -> guint16
   {
     GError* gerror = nullptr;
     const auto retvalue = g_socket_listener_add_any_inet_port (
         gobj (),
-        Glib::unwrap (source_object),
+        glib::unwrap (source_object),
         &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
@@ -502,15 +502,15 @@ namespace Gio
   }
 
   auto
-  SocketListener::property_listen_backlog () -> Glib::PropertyProxy<int>
+  SocketListener::property_listen_backlog () -> glib::PropertyProxy<int>
   {
     return {this, "listen-backlog"};
   }
 
   auto
-  SocketListener::property_listen_backlog () const -> Glib::PropertyProxy_ReadOnly<int>
+  SocketListener::property_listen_backlog () const -> glib::PropertyProxy_ReadOnly<int>
   {
     return {this, "listen-backlog"};
   }
 
-} // namespace Gio
+} // namespace gio

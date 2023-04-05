@@ -15,16 +15,16 @@
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT ConstraintGuide_Class;
 }
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
-  class LIBMM_GTK_SYMEXPORT ConstraintGuide : public Glib::Object,
+  class LIBMM_GTK_SYMEXPORT ConstraintGuide : public glib::Object,
                                     public ConstraintTarget
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -44,7 +44,7 @@ namespace Gtk
     static CppClassType constraintguide_class_;
 
   protected:
-    explicit ConstraintGuide (const Glib::ConstructParams& construct_params);
+    explicit ConstraintGuide (const glib::ConstructParams& construct_params);
     explicit ConstraintGuide (GtkConstraintGuide* castitem);
 
 #endif
@@ -86,7 +86,7 @@ namespace Gtk
 
   public:
     static auto
-    create () -> Glib::RefPtr<ConstraintGuide>;
+    create () -> glib::RefPtr<ConstraintGuide>;
 
     auto
     set_min_size (int width, int height) -> void;
@@ -113,71 +113,71 @@ namespace Gtk
     get_strength () const -> Constraint::Strength;
 
     auto
-    set_name (const Glib::ustring& name) -> void;
+    set_name (const glib::ustring& name) -> void;
 
     auto
-    get_name () const -> Glib::ustring;
+    get_name () const -> glib::ustring;
 
     auto
-    property_min_width () -> Glib::PropertyProxy<int>;
+    property_min_width () -> glib::PropertyProxy<int>;
 
     auto
-    property_min_width () const -> Glib::PropertyProxy_ReadOnly<int>;
+    property_min_width () const -> glib::PropertyProxy_ReadOnly<int>;
 
     auto
-    property_min_height () -> Glib::PropertyProxy<int>;
+    property_min_height () -> glib::PropertyProxy<int>;
 
     auto
-    property_min_height () const -> Glib::PropertyProxy_ReadOnly<int>;
+    property_min_height () const -> glib::PropertyProxy_ReadOnly<int>;
 
     auto
-    property_nat_width () -> Glib::PropertyProxy<int>;
+    property_nat_width () -> glib::PropertyProxy<int>;
 
     auto
-    property_nat_width () const -> Glib::PropertyProxy_ReadOnly<int>;
+    property_nat_width () const -> glib::PropertyProxy_ReadOnly<int>;
 
     auto
-    property_nat_height () -> Glib::PropertyProxy<int>;
+    property_nat_height () -> glib::PropertyProxy<int>;
 
     auto
-    property_nat_height () const -> Glib::PropertyProxy_ReadOnly<int>;
+    property_nat_height () const -> glib::PropertyProxy_ReadOnly<int>;
 
     auto
-    property_max_width () -> Glib::PropertyProxy<int>;
+    property_max_width () -> glib::PropertyProxy<int>;
 
     auto
-    property_max_width () const -> Glib::PropertyProxy_ReadOnly<int>;
+    property_max_width () const -> glib::PropertyProxy_ReadOnly<int>;
 
     auto
-    property_max_height () -> Glib::PropertyProxy<int>;
+    property_max_height () -> glib::PropertyProxy<int>;
 
     auto
-    property_max_height () const -> Glib::PropertyProxy_ReadOnly<int>;
+    property_max_height () const -> glib::PropertyProxy_ReadOnly<int>;
 
     auto
-    property_strength () -> Glib::PropertyProxy<Constraint::Strength>;
+    property_strength () -> glib::PropertyProxy<Constraint::Strength>;
 
     auto
     property_strength () const
-        -> Glib::PropertyProxy_ReadOnly<Constraint::Strength>;
+        -> glib::PropertyProxy_ReadOnly<Constraint::Strength>;
 
     auto
-    property_name () -> Glib::PropertyProxy<Glib::ustring>;
+    property_name () -> glib::PropertyProxy<glib::ustring>;
 
     auto
-    property_name () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+    property_name () const -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkConstraintGuide* object, bool take_copy = false) -> Glib::RefPtr<Gtk::ConstraintGuide>;
-} // namespace Glib
+  wrap (GtkConstraintGuide* object, bool take_copy = false) -> glib::RefPtr<gtk::ConstraintGuide>;
+} // namespace glib
 
 #endif

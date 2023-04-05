@@ -13,13 +13,13 @@
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT BoolFilter_Class;
 }
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
   class LIBMM_GTK_SYMEXPORT BoolFilter : public Filter
@@ -41,7 +41,7 @@ namespace Gtk
     static CppClassType boolfilter_class_;
 
   protected:
-    explicit BoolFilter (const Glib::ConstructParams& construct_params);
+    explicit BoolFilter (const glib::ConstructParams& construct_params);
     explicit BoolFilter (GtkBoolFilter* castitem);
 
 #endif
@@ -79,21 +79,21 @@ namespace Gtk
 
   private:
   protected:
-    explicit BoolFilter (const Glib::RefPtr<Expression<bool>>& expression);
+    explicit BoolFilter (const glib::RefPtr<Expression<bool>>& expression);
 
   public:
     static auto
-    create (const Glib::RefPtr<Expression<bool>>& expression)
-        -> Glib::RefPtr<BoolFilter>;
+    create (const glib::RefPtr<Expression<bool>>& expression)
+        -> glib::RefPtr<BoolFilter>;
 
     auto
-    get_expression () -> Glib::RefPtr<Expression<bool>>;
+    get_expression () -> glib::RefPtr<Expression<bool>>;
 
     auto
-    get_expression () const -> Glib::RefPtr<const Expression<bool>>;
+    get_expression () const -> glib::RefPtr<const Expression<bool>>;
 
     auto
-    set_expression (const Glib::RefPtr<Expression<bool>>& expression) -> void;
+    set_expression (const glib::RefPtr<Expression<bool>>& expression) -> void;
 
     auto
     get_invert () const -> bool;
@@ -103,29 +103,29 @@ namespace Gtk
 
     auto
     property_expression ()
-        -> Glib::PropertyProxy<Glib::RefPtr<Expression<bool>>>;
+        -> glib::PropertyProxy<glib::RefPtr<Expression<bool>>>;
 
     auto
     property_expression () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Expression<bool>>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<Expression<bool>>>;
 
     auto
-    property_invert () -> Glib::PropertyProxy<bool>;
+    property_invert () -> glib::PropertyProxy<bool>;
 
     auto
-    property_invert () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_invert () const -> glib::PropertyProxy_ReadOnly<bool>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkBoolFilter* object, bool take_copy = false) -> Glib::RefPtr<Gtk::BoolFilter>;
-} // namespace Glib
+  wrap (GtkBoolFilter* object, bool take_copy = false) -> glib::RefPtr<gtk::BoolFilter>;
+} // namespace glib
 
 #endif

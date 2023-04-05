@@ -16,13 +16,13 @@ using GtkPanedClass = struct _GtkPanedClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT Paned_Class;
 }
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
   class LIBMM_GTK_SYMEXPORT Paned : public Widget,
@@ -53,7 +53,7 @@ namespace Gtk
     static CppClassType paned_class_;
 
   protected:
-    explicit Paned (const Glib::ConstructParams& construct_params);
+    explicit Paned (const glib::ConstructParams& construct_params);
     explicit Paned (GtkPaned* castitem);
 
 #endif
@@ -139,76 +139,76 @@ namespace Gtk
     get_wide_handle () const -> bool;
 
     auto
-    property_position () -> Glib::PropertyProxy<int>;
+    property_position () -> glib::PropertyProxy<int>;
 
     auto
-    property_position () const -> Glib::PropertyProxy_ReadOnly<int>;
+    property_position () const -> glib::PropertyProxy_ReadOnly<int>;
 
     auto
-    property_position_set () -> Glib::PropertyProxy<bool>;
+    property_position_set () -> glib::PropertyProxy<bool>;
 
     auto
-    property_position_set () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_position_set () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_min_position () const -> Glib::PropertyProxy_ReadOnly<int>;
+    property_min_position () const -> glib::PropertyProxy_ReadOnly<int>;
 
     auto
-    property_max_position () const -> Glib::PropertyProxy_ReadOnly<int>;
+    property_max_position () const -> glib::PropertyProxy_ReadOnly<int>;
 
     auto
-    property_wide_handle () -> Glib::PropertyProxy<bool>;
+    property_wide_handle () -> glib::PropertyProxy<bool>;
 
     auto
-    property_wide_handle () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_wide_handle () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_resize_start_child () -> Glib::PropertyProxy<bool>;
+    property_resize_start_child () -> glib::PropertyProxy<bool>;
 
     auto
-    property_resize_start_child () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_resize_start_child () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_resize_end_child () -> Glib::PropertyProxy<bool>;
+    property_resize_end_child () -> glib::PropertyProxy<bool>;
 
     auto
-    property_resize_end_child () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_resize_end_child () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_shrink_start_child () -> Glib::PropertyProxy<bool>;
+    property_shrink_start_child () -> glib::PropertyProxy<bool>;
 
     auto
-    property_shrink_start_child () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_shrink_start_child () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_shrink_end_child () -> Glib::PropertyProxy<bool>;
+    property_shrink_end_child () -> glib::PropertyProxy<bool>;
 
     auto
-    property_shrink_end_child () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_shrink_end_child () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_start_child () -> Glib::PropertyProxy<Widget*>;
+    property_start_child () -> glib::PropertyProxy<Widget*>;
 
     auto
-    property_start_child () const -> Glib::PropertyProxy_ReadOnly<Widget*>;
+    property_start_child () const -> glib::PropertyProxy_ReadOnly<Widget*>;
 
     auto
-    property_end_child () -> Glib::PropertyProxy<Widget*>;
+    property_end_child () -> glib::PropertyProxy<Widget*>;
 
     auto
-    property_end_child () const -> Glib::PropertyProxy_ReadOnly<Widget*>;
+    property_end_child () const -> glib::PropertyProxy_ReadOnly<Widget*>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkPaned* object, bool take_copy = false) -> Gtk::Paned*;
-} // namespace Glib
+  wrap (GtkPaned* object, bool take_copy = false) -> gtk::Paned*;
+} // namespace glib
 
 #endif

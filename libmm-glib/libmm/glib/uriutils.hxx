@@ -6,7 +6,7 @@
 #include <libmm/glib/mm-glibconfig.hxx>
 #include <string>
 
-namespace Glib
+namespace glib
 {
 
   LIBMM_GLIB_SYMEXPORT
@@ -24,6 +24,6 @@ namespace Glib
                      const std::string& reserved_chars_allowed = {},
                      bool allow_utf8 = true) -> std::string;
 
-} // namespace Glib
+} // namespace glib
 
 #endif

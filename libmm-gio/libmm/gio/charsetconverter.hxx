@@ -16,16 +16,16 @@ using GCharsetConverterClass = struct _GCharsetConverterClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gio
+namespace gio
 {
   class LIBMM_GIO_SYMEXPORT CharsetConverter_Class;
 }
 #endif
 
-namespace Gio
+namespace gio
 {
 
-  class LIBMM_GIO_SYMEXPORT CharsetConverter : public Glib::Object,
+  class LIBMM_GIO_SYMEXPORT CharsetConverter : public glib::Object,
                                      public Converter,
                                      public Initable
   {
@@ -46,7 +46,7 @@ namespace Gio
     static CppClassType charsetconverter_class_;
 
   protected:
-    explicit CharsetConverter (const Glib::ConstructParams& construct_params);
+    explicit CharsetConverter (const glib::ConstructParams& construct_params);
     explicit CharsetConverter (GCharsetConverter* castitem);
 
 #endif
@@ -84,13 +84,13 @@ namespace Gio
 
   private:
   protected:
-    explicit CharsetConverter (const Glib::ustring& to_charset,
-                               const Glib::ustring& from_charset);
+    explicit CharsetConverter (const glib::ustring& to_charset,
+                               const glib::ustring& from_charset);
 
   public:
     static auto
-    create (const Glib::ustring& to_charset, const Glib::ustring& from_charset)
-        -> Glib::RefPtr<CharsetConverter>;
+    create (const glib::ustring& to_charset, const glib::ustring& from_charset)
+        -> glib::RefPtr<CharsetConverter>;
 
     auto
     set_use_fallback (bool use_fallback) -> void;
@@ -103,30 +103,30 @@ namespace Gio
 
     auto
     property_from_charset () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+        -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
     auto
-    property_to_charset () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+    property_to_charset () const -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
     auto
-    property_use_fallback () -> Glib::PropertyProxy<bool>;
+    property_use_fallback () -> glib::PropertyProxy<bool>;
 
     auto
-    property_use_fallback () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_use_fallback () const -> glib::PropertyProxy_ReadOnly<bool>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gio
+} // namespace gio
 
-namespace Glib
+namespace glib
 {
 
   LIBMM_GIO_SYMEXPORT
   auto
-  wrap (GCharsetConverter* object, bool take_copy = false) -> Glib::RefPtr<Gio::CharsetConverter>;
-} // namespace Glib
+  wrap (GCharsetConverter* object, bool take_copy = false) -> glib::RefPtr<gio::CharsetConverter>;
+} // namespace glib
 
 #endif

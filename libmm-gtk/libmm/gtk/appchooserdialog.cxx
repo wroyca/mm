@@ -12,22 +12,22 @@
 
   #include <gtk/gtk.h>
 
-namespace Gtk
+namespace gtk
 {
 
-  AppChooserDialog::AppChooserDialog (const Glib::ustring& content_type)
-    : Glib::ObjectBase (nullptr),
-      Dialog (Glib::ConstructParams (appchooserdialog_class_.init (),
+  AppChooserDialog::AppChooserDialog (const glib::ustring& content_type)
+    : glib::ObjectBase (nullptr),
+      Dialog (glib::ConstructParams (appchooserdialog_class_.init (),
                                      "content_type",
                                      content_type.c_str (),
                                      nullptr))
   {
   }
 
-  AppChooserDialog::AppChooserDialog (const Glib::ustring& content_type,
-                                      Gtk::Window& parent)
-    : Glib::ObjectBase (nullptr),
-      Dialog (Glib::ConstructParams (appchooserdialog_class_.init (),
+  AppChooserDialog::AppChooserDialog (const glib::ustring& content_type,
+                                      gtk::Window& parent)
+    : glib::ObjectBase (nullptr),
+      Dialog (glib::ConstructParams (appchooserdialog_class_.init (),
                                      "content_type",
                                      content_type.c_str (),
                                      nullptr))
@@ -35,49 +35,49 @@ namespace Gtk
     set_transient_for (parent);
   }
 
-  AppChooserDialog::AppChooserDialog (const Glib::RefPtr<Gio::File>& file)
-    : Glib::ObjectBase (nullptr),
-      Dialog (Glib::ConstructParams (appchooserdialog_class_.init (),
+  AppChooserDialog::AppChooserDialog (const glib::RefPtr<gio::File>& file)
+    : glib::ObjectBase (nullptr),
+      Dialog (glib::ConstructParams (appchooserdialog_class_.init (),
                                      "gfile",
-                                     Glib::unwrap (file),
+                                     glib::unwrap (file),
                                      nullptr))
   {
   }
 
-  AppChooserDialog::AppChooserDialog (const Glib::RefPtr<Gio::File>& file,
-                                      Gtk::Window& parent)
-    : Glib::ObjectBase (nullptr),
-      Dialog (Glib::ConstructParams (appchooserdialog_class_.init (),
+  AppChooserDialog::AppChooserDialog (const glib::RefPtr<gio::File>& file,
+                                      gtk::Window& parent)
+    : glib::ObjectBase (nullptr),
+      Dialog (glib::ConstructParams (appchooserdialog_class_.init (),
                                      "gfile",
-                                     Glib::unwrap (file),
+                                     glib::unwrap (file),
                                      nullptr))
   {
     set_transient_for (parent);
   }
 
-} // namespace Gtk
+} // namespace gtk
 
 namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GtkAppChooserDialog* object, bool take_copy) -> Gtk::AppChooserDialog*
+  wrap (GtkAppChooserDialog* object, bool take_copy) -> gtk::AppChooserDialog*
   {
-    return dynamic_cast<Gtk::AppChooserDialog*> (
-        Glib::wrap_auto ((GObject*) (object), take_copy));
+    return dynamic_cast<gtk::AppChooserDialog*> (
+        glib::wrap_auto ((GObject*) (object), take_copy));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gtk
+namespace gtk
 {
 
   auto
-  AppChooserDialog_Class::init () -> const Glib::Class&
+  AppChooserDialog_Class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -99,13 +99,13 @@ namespace Gtk
   }
 
   auto
-  AppChooserDialog_Class::wrap_new (GObject* o) -> Glib::ObjectBase*
+  AppChooserDialog_Class::wrap_new (GObject* o) -> glib::ObjectBase*
   {
     return new AppChooserDialog ((GtkAppChooserDialog*) (o));
   }
 
   AppChooserDialog::AppChooserDialog (
-      const Glib::ConstructParams& construct_params)
+      const glib::ConstructParams& construct_params)
     : Dialog (construct_params)
   {
   }
@@ -151,7 +151,7 @@ namespace Gtk
   auto
   AppChooserDialog::get_widget () -> Widget*
   {
-    return Glib::wrap (gtk_app_chooser_dialog_get_widget (gobj ()));
+    return glib::wrap (gtk_app_chooser_dialog_get_widget (gobj ()));
   }
 
   auto
@@ -161,44 +161,44 @@ namespace Gtk
   }
 
   auto
-  AppChooserDialog::set_heading (const Glib::ustring& heading) -> void
+  AppChooserDialog::set_heading (const glib::ustring& heading) -> void
   {
     gtk_app_chooser_dialog_set_heading (gobj (), heading.c_str ());
   }
 
   auto
-  AppChooserDialog::get_heading () const -> Glib::ustring
+  AppChooserDialog::get_heading () const -> glib::ustring
   {
-    return Glib::convert_const_gchar_ptr_to_ustring (
+    return glib::convert_const_gchar_ptr_to_ustring (
         gtk_app_chooser_dialog_get_heading (
             const_cast<GtkAppChooserDialog*> (gobj ())));
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<
-          Glib::RefPtr<Gio::File>>::value,
-      "Type Glib::RefPtr<Gio::File> cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      glib::Traits::ValueCompatibleWithWrapProperty<
+          glib::RefPtr<gio::File>>::value,
+      "Type glib::RefPtr<gio::File> cannot be used in _WRAP_PROPERTY. "
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  AppChooserDialog::property_gfile () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gio::File>>
+  AppChooserDialog::property_gfile () const -> glib::PropertyProxy_ReadOnly<glib::RefPtr<gio::File>>
   {
-    return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gio::File>> (this,
+    return glib::PropertyProxy_ReadOnly<glib::RefPtr<gio::File>> (this,
                                                                   "gfile");
   }
 
   auto
-  AppChooserDialog::property_heading () -> Glib::PropertyProxy<Glib::ustring>
+  AppChooserDialog::property_heading () -> glib::PropertyProxy<glib::ustring>
   {
-    return Glib::PropertyProxy<Glib::ustring> (this, "heading");
+    return glib::PropertyProxy<glib::ustring> (this, "heading");
   }
 
   auto
-  AppChooserDialog::property_heading () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>
+  AppChooserDialog::property_heading () const -> glib::PropertyProxy_ReadOnly<glib::ustring>
   {
-    return Glib::PropertyProxy_ReadOnly<Glib::ustring> (this, "heading");
+    return glib::PropertyProxy_ReadOnly<glib::ustring> (this, "heading");
   }
 
-} // namespace Gtk
+} // namespace gtk
 
 #endif

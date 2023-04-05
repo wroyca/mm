@@ -7,7 +7,7 @@
 
 #include <gtk/gtk.h>
 
-namespace Gtk
+namespace gtk
 {
 
 }
@@ -16,25 +16,25 @@ namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GtkActionable* object, bool take_copy) -> Glib::RefPtr<Gtk::Actionable>
+  wrap (GtkActionable* object, bool take_copy) -> glib::RefPtr<gtk::Actionable>
   {
-    return Glib::make_refptr_for_instance<Gtk::Actionable> (
-        dynamic_cast<Gtk::Actionable*> (
-            Glib::wrap_auto_interface<Gtk::Actionable> ((GObject*) (object),
+    return glib::make_refptr_for_instance<gtk::Actionable> (
+        dynamic_cast<gtk::Actionable*> (
+            glib::wrap_auto_interface<gtk::Actionable> ((GObject*) (object),
                                                         take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gtk
+namespace gtk
 {
 
   auto
-  Actionable_Class::init () -> const Glib::Interface_Class&
+  Actionable_Class::init () -> const glib::Interface_Class&
   {
     if (!gtype_)
     {
@@ -62,8 +62,8 @@ namespace Gtk
   auto
   Actionable_Class::get_action_name_vfunc_callback (GtkActionable* self) -> const gchar*
   {
-    const auto obj_base = static_cast<Glib::ObjectBase*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+    const auto obj_base = static_cast<glib::ObjectBase*> (
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -73,18 +73,18 @@ namespace Gtk
         try
         {
           static auto quark_return_value = g_quark_from_static_string (
-              "Gtk::Actionable::get_action_name_vfunc");
+              "gtk::Actionable::get_action_name_vfunc");
 
-          auto return_value = static_cast<Glib::ustring*> (
+          auto return_value = static_cast<glib::ustring*> (
               g_object_get_qdata (obj_base->gobj (), quark_return_value));
           if (!return_value)
           {
-            return_value = new Glib::ustring ();
+            return_value = new glib::ustring ();
             g_object_set_qdata_full (
                 obj_base->gobj (),
                 quark_return_value,
                 return_value,
-                &Glib::destroy_notify_delete<Glib::ustring>);
+                &glib::destroy_notify_delete<glib::ustring>);
           }
 
           *return_value = obj->get_action_name_vfunc ();
@@ -92,7 +92,7 @@ namespace Gtk
         }
         catch (...)
         {
-          Glib::exception_handlers_invoke ();
+          glib::exception_handlers_invoke ();
         }
       }
     }
@@ -113,8 +113,8 @@ namespace Gtk
   Actionable_Class::set_action_name_vfunc_callback (GtkActionable* self,
                                                     const gchar* action_name) -> void
   {
-    const auto obj_base = static_cast<Glib::ObjectBase*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+    const auto obj_base = static_cast<glib::ObjectBase*> (
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -124,12 +124,12 @@ namespace Gtk
         try
         {
           obj->set_action_name_vfunc (
-              Glib::convert_const_gchar_ptr_to_ustring (action_name));
+              glib::convert_const_gchar_ptr_to_ustring (action_name));
           return;
         }
         catch (...)
         {
-          Glib::exception_handlers_invoke ();
+          glib::exception_handlers_invoke ();
         }
       }
     }
@@ -146,8 +146,8 @@ namespace Gtk
   auto
   Actionable_Class::get_action_target_value_vfunc_callback (GtkActionable* self) -> GVariant*
   {
-    const auto obj_base = static_cast<Glib::ObjectBase*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+    const auto obj_base = static_cast<glib::ObjectBase*> (
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -157,18 +157,18 @@ namespace Gtk
         try
         {
           static auto quark_return_value = g_quark_from_static_string (
-              "Gtk::Actionable::get_action_target_value_vfunc");
+              "gtk::Actionable::get_action_target_value_vfunc");
 
-          auto return_value = static_cast<Glib::VariantBase*> (
+          auto return_value = static_cast<glib::VariantBase*> (
               g_object_get_qdata (obj_base->gobj (), quark_return_value));
           if (!return_value)
           {
-            return_value = new Glib::VariantBase ();
+            return_value = new glib::VariantBase ();
             g_object_set_qdata_full (
                 obj_base->gobj (),
                 quark_return_value,
                 return_value,
-                &Glib::destroy_notify_delete<Glib::VariantBase>);
+                &glib::destroy_notify_delete<glib::VariantBase>);
           }
 
           *return_value = obj->get_action_target_value_vfunc ();
@@ -176,7 +176,7 @@ namespace Gtk
         }
         catch (...)
         {
-          Glib::exception_handlers_invoke ();
+          glib::exception_handlers_invoke ();
         }
       }
     }
@@ -198,8 +198,8 @@ namespace Gtk
       GtkActionable* self,
       GVariant* action_target_value) -> void
   {
-    const auto obj_base = static_cast<Glib::ObjectBase*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+    const auto obj_base = static_cast<glib::ObjectBase*> (
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -209,12 +209,12 @@ namespace Gtk
         try
         {
           obj->set_action_target_value_vfunc (
-              Glib::wrap (action_target_value, true));
+              glib::wrap (action_target_value, true));
           return;
         }
         catch (...)
         {
-          Glib::exception_handlers_invoke ();
+          glib::exception_handlers_invoke ();
         }
       }
     }
@@ -229,35 +229,35 @@ namespace Gtk
   }
 
   auto
-  Actionable_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  Actionable_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new Actionable ((GtkActionable*) (object));
   }
 
   Actionable::Actionable ()
-    : Glib::Interface (actionable_class_.init ())
+    : glib::Interface (actionable_class_.init ())
   {
   }
 
   Actionable::Actionable (GtkActionable* castitem)
-    : Glib::Interface ((GObject*) (castitem))
+    : glib::Interface ((GObject*) (castitem))
   {
   }
 
-  Actionable::Actionable (const Glib::Interface_Class& interface_class)
-    : Glib::Interface (interface_class)
+  Actionable::Actionable (const glib::Interface_Class& interface_class)
+    : glib::Interface (interface_class)
   {
   }
 
   Actionable::Actionable (Actionable&& src) noexcept
-    : Glib::Interface (std::move (src))
+    : glib::Interface (std::move (src))
   {
   }
 
   auto
   Actionable::operator= (Actionable&& src) noexcept -> Actionable&
   {
-    Glib::Interface::operator= (std::move (src));
+    glib::Interface::operator= (std::move (src));
     return *this;
   }
 
@@ -284,32 +284,32 @@ namespace Gtk
   }
 
   auto
-  Actionable::get_action_name () const -> Glib::ustring
+  Actionable::get_action_name () const -> glib::ustring
   {
-    return Glib::convert_const_gchar_ptr_to_ustring (
+    return glib::convert_const_gchar_ptr_to_ustring (
         gtk_actionable_get_action_name (const_cast<GtkActionable*> (gobj ())));
   }
 
   auto
-  Actionable::set_action_name (const Glib::ustring& action_name) -> void
+  Actionable::set_action_name (const glib::ustring& action_name) -> void
   {
     gtk_actionable_set_action_name (gobj (), action_name.c_str ());
   }
 
   auto
-  Actionable::get_action_target_value () -> Glib::VariantBase
+  Actionable::get_action_target_value () -> glib::VariantBase
   {
-    return Glib::wrap (gtk_actionable_get_action_target_value (gobj ()), true);
+    return glib::wrap (gtk_actionable_get_action_target_value (gobj ()), true);
   }
 
   auto
-  Actionable::get_action_target_value () const -> const Glib::VariantBase
+  Actionable::get_action_target_value () const -> const glib::VariantBase
   {
     return const_cast<Actionable*> (this)->get_action_target_value ();
   }
 
   auto
-  Actionable::set_action_target_value (const Glib::VariantBase& target_value) -> void
+  Actionable::set_action_target_value (const glib::VariantBase& target_value) -> void
   {
     gtk_actionable_set_action_target_value (
         gobj (),
@@ -318,44 +318,44 @@ namespace Gtk
 
   auto
   Actionable::set_detailed_action_name (
-      const Glib::ustring& detailed_action_name) -> void
+      const glib::ustring& detailed_action_name) -> void
   {
     gtk_actionable_set_detailed_action_name (gobj (),
                                              detailed_action_name.c_str ());
   }
 
   auto
-  Actionable::property_action_name () -> Glib::PropertyProxy<Glib::ustring>
+  Actionable::property_action_name () -> glib::PropertyProxy<glib::ustring>
   {
-    return Glib::PropertyProxy<Glib::ustring> (this, "action-name");
+    return glib::PropertyProxy<glib::ustring> (this, "action-name");
   }
 
   auto
-  Actionable::property_action_name () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>
+  Actionable::property_action_name () const -> glib::PropertyProxy_ReadOnly<glib::ustring>
   {
-    return Glib::PropertyProxy_ReadOnly<Glib::ustring> (this, "action-name");
+    return glib::PropertyProxy_ReadOnly<glib::ustring> (this, "action-name");
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<Glib::VariantBase>::value,
-      "Type Glib::VariantBase cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      glib::Traits::ValueCompatibleWithWrapProperty<glib::VariantBase>::value,
+      "Type glib::VariantBase cannot be used in _WRAP_PROPERTY. "
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  Actionable::property_action_target () -> Glib::PropertyProxy<Glib::VariantBase>
+  Actionable::property_action_target () -> glib::PropertyProxy<glib::VariantBase>
   {
-    return Glib::PropertyProxy<Glib::VariantBase> (this, "action-target");
+    return glib::PropertyProxy<glib::VariantBase> (this, "action-target");
   }
 
   auto
-  Actionable::property_action_target () const -> Glib::PropertyProxy_ReadOnly<Glib::VariantBase>
+  Actionable::property_action_target () const -> glib::PropertyProxy_ReadOnly<glib::VariantBase>
   {
-    return Glib::PropertyProxy_ReadOnly<Glib::VariantBase> (this,
+    return glib::PropertyProxy_ReadOnly<glib::VariantBase> (this,
                                                             "action-target");
   }
 
   auto
-  Gtk::Actionable::get_action_name_vfunc () const -> Glib::ustring
+  gtk::Actionable::get_action_name_vfunc () const -> glib::ustring
   {
     const auto base =
         static_cast<BaseClassType*> (g_type_interface_peek_parent (
@@ -364,17 +364,17 @@ namespace Gtk
 
     if (base && base->get_action_name)
     {
-      Glib::ustring retval (Glib::convert_const_gchar_ptr_to_ustring (
+      glib::ustring retval (glib::convert_const_gchar_ptr_to_ustring (
           (*base->get_action_name) (const_cast<GtkActionable*> (gobj ()))));
       return retval;
     }
 
-    using RType = Glib::ustring;
+    using RType = glib::ustring;
     return RType ();
   }
 
   auto
-  Gtk::Actionable::set_action_name_vfunc (const Glib::ustring& action_name) -> void
+  gtk::Actionable::set_action_name_vfunc (const glib::ustring& action_name) -> void
   {
     const auto base =
         static_cast<BaseClassType*> (g_type_interface_peek_parent (
@@ -388,7 +388,7 @@ namespace Gtk
   }
 
   auto
-  Gtk::Actionable::get_action_target_value_vfunc () const -> Glib::VariantBase
+  gtk::Actionable::get_action_target_value_vfunc () const -> glib::VariantBase
   {
     const auto base =
         static_cast<BaseClassType*> (g_type_interface_peek_parent (
@@ -397,20 +397,20 @@ namespace Gtk
 
     if (base && base->get_action_target_value)
     {
-      Glib::VariantBase retval (
-          Glib::wrap ((*base->get_action_target_value) (
+      glib::VariantBase retval (
+          glib::wrap ((*base->get_action_target_value) (
                           const_cast<GtkActionable*> (gobj ())),
                       true));
       return retval;
     }
 
-    using RType = Glib::VariantBase;
+    using RType = glib::VariantBase;
     return RType ();
   }
 
   auto
-  Gtk::Actionable::set_action_target_value_vfunc (
-      const Glib::VariantBase& action_target_value) -> void
+  gtk::Actionable::set_action_target_value_vfunc (
+      const glib::VariantBase& action_target_value) -> void
   {
     const auto base =
         static_cast<BaseClassType*> (g_type_interface_peek_parent (
@@ -425,4 +425,4 @@ namespace Gtk
     }
   }
 
-} // namespace Gtk
+} // namespace gtk

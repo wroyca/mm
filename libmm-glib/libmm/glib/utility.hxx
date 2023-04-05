@@ -10,7 +10,7 @@
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
-namespace Glib
+namespace glib
 {
 
   template <typename T>
@@ -21,9 +21,9 @@ namespace Glib
   }
 
   inline auto
-  convert_const_gchar_ptr_to_ustring (const char* str) -> Glib::ustring
+  convert_const_gchar_ptr_to_ustring (const char* str) -> glib::ustring
   {
-    return (str) ? Glib::ustring (str) : Glib::ustring ();
+    return (str) ? glib::ustring (str) : glib::ustring ();
   }
 
   inline auto
@@ -33,16 +33,16 @@ namespace Glib
   }
 
   inline auto
-  convert_return_gchar_ptr_to_ustring (char* str) -> Glib::ustring
+  convert_return_gchar_ptr_to_ustring (char* str) -> glib::ustring
   {
-    return (str) ? Glib::ustring (Glib::make_unique_ptr_gfree (str).get ()) :
-                   Glib::ustring ();
+    return (str) ? glib::ustring (glib::make_unique_ptr_gfree (str).get ()) :
+                   glib::ustring ();
   }
 
   inline auto
   convert_return_gchar_ptr_to_stdstring (char* str) -> std::string
   {
-    return (str) ? std::string (Glib::make_unique_ptr_gfree (str).get ()) :
+    return (str) ? std::string (glib::make_unique_ptr_gfree (str).get ()) :
                    std::string ();
   }
 
@@ -70,7 +70,7 @@ namespace Glib
     return reinterpret_cast<T_out> (reinterpret_cast<void (*) ()> (in));
   }
 
-} // namespace Glib
+} // namespace glib
 
 #endif
 

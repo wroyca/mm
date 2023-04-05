@@ -11,23 +11,23 @@ namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GtkListBase* object, bool take_copy) -> Gtk::ListBase*
+  wrap (GtkListBase* object, bool take_copy) -> gtk::ListBase*
   {
-    return dynamic_cast<Gtk::ListBase*> (
-        Glib::wrap_auto ((GObject*) (object), take_copy));
+    return dynamic_cast<gtk::ListBase*> (
+        glib::wrap_auto ((GObject*) (object), take_copy));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gtk
+namespace gtk
 {
 
   auto
-  ListBase_Class::init () -> const Glib::Class&
+  ListBase_Class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -50,23 +50,23 @@ namespace Gtk
   }
 
   auto
-  ListBase_Class::wrap_new (GObject* o) -> Glib::ObjectBase*
+  ListBase_Class::wrap_new (GObject* o) -> glib::ObjectBase*
   {
     return manage (new ListBase ((GtkListBase*) (o)));
   }
 
-  ListBase::ListBase (const Glib::ConstructParams& construct_params)
-    : Gtk::Widget (construct_params)
+  ListBase::ListBase (const glib::ConstructParams& construct_params)
+    : gtk::Widget (construct_params)
   {
   }
 
   ListBase::ListBase (GtkListBase* castitem)
-    : Gtk::Widget ((GtkWidget*) (castitem))
+    : gtk::Widget ((GtkWidget*) (castitem))
   {
   }
 
   ListBase::ListBase (ListBase&& src) noexcept
-    : Gtk::Widget (std::move (src)),
+    : gtk::Widget (std::move (src)),
       Orientable (std::move (src)),
       Scrollable (std::move (src))
   {
@@ -75,7 +75,7 @@ namespace Gtk
   auto
   ListBase::operator= (ListBase&& src) noexcept -> ListBase&
   {
-    Gtk::Widget::operator= (std::move (src));
+    gtk::Widget::operator= (std::move (src));
     Orientable::operator= (std::move (src));
     Scrollable::operator= (std::move (src));
     return *this;
@@ -100,4 +100,4 @@ namespace Gtk
     return gtk_list_base_get_type ();
   }
 
-} // namespace Gtk
+} // namespace gtk

@@ -25,7 +25,7 @@
 #undef tolower
 #undef totitle
 
-namespace Glib
+namespace glib
 {
 
   enum class UnicodeType
@@ -309,16 +309,16 @@ namespace Glib
     }
 
     inline auto
-    type (gunichar uc) -> Glib::UnicodeType
+    type (gunichar uc) -> glib::UnicodeType
     {
-      return static_cast<Glib::UnicodeType> (
+      return static_cast<glib::UnicodeType> (
           static_cast<int> (g_unichar_type (uc)));
     }
 
     inline auto
-    break_type (gunichar uc) -> Glib::UnicodeBreakType
+    break_type (gunichar uc) -> glib::UnicodeBreakType
     {
-      return static_cast<Glib::UnicodeBreakType> (
+      return static_cast<glib::UnicodeBreakType> (
           static_cast<int> (g_unichar_break_type (uc)));
     }
 
@@ -419,6 +419,6 @@ namespace Glib
 
   } // namespace Ascii
 
-} // namespace Glib
+} // namespace glib
 
 #endif

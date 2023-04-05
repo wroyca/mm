@@ -8,7 +8,7 @@
 #include <gio/gunixcredentialsmessage.h>
 #include <libmm/gio/credentials.hxx>
 
-namespace Gio
+namespace gio
 {
 
 }
@@ -17,20 +17,20 @@ namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GUnixCredentialsMessage* object, const bool take_copy) -> RefPtr<Gio::UnixCredentialsMessage>
+  wrap (GUnixCredentialsMessage* object, const bool take_copy) -> RefPtr<gio::UnixCredentialsMessage>
   {
-    return Glib::make_refptr_for_instance<Gio::UnixCredentialsMessage> (
-        dynamic_cast<Gio::UnixCredentialsMessage*> (
+    return glib::make_refptr_for_instance<gio::UnixCredentialsMessage> (
+        dynamic_cast<gio::UnixCredentialsMessage*> (
             wrap_auto ((GObject*) object, take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gio
+namespace gio
 {
 
   auto
@@ -55,7 +55,7 @@ namespace Gio
   }
 
   auto
-  UnixCredentialsMessage_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  UnixCredentialsMessage_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new UnixCredentialsMessage ((GUnixCredentialsMessage*) object);
   }
@@ -68,7 +68,7 @@ namespace Gio
   }
 
   UnixCredentialsMessage::UnixCredentialsMessage (
-      const Glib::ConstructParams& construct_params)
+      const glib::ConstructParams& construct_params)
     : SocketControlMessage (construct_params)
   {
   }
@@ -112,43 +112,43 @@ namespace Gio
   UnixCredentialsMessage::UnixCredentialsMessage ()
     : ObjectBase (nullptr),
       SocketControlMessage (
-          Glib::ConstructParams (unixcredentialsmessage_class_.init ()))
+          glib::ConstructParams (unixcredentialsmessage_class_.init ()))
   {
   }
 
   UnixCredentialsMessage::UnixCredentialsMessage (
-      const Glib::RefPtr<Credentials>& credentials)
+      const glib::RefPtr<Credentials>& credentials)
     : ObjectBase (nullptr),
       SocketControlMessage (
-          Glib::ConstructParams (unixcredentialsmessage_class_.init (),
+          glib::ConstructParams (unixcredentialsmessage_class_.init (),
                                  "credentials",
-                                 Glib::unwrap<Credentials> (credentials),
+                                 glib::unwrap<Credentials> (credentials),
                                  nullptr))
   {
   }
 
   auto
-  UnixCredentialsMessage::create () -> Glib::RefPtr<UnixCredentialsMessage>
+  UnixCredentialsMessage::create () -> glib::RefPtr<UnixCredentialsMessage>
   {
-    return Glib::make_refptr_for_instance<UnixCredentialsMessage> (
+    return glib::make_refptr_for_instance<UnixCredentialsMessage> (
         new UnixCredentialsMessage ());
   }
 
   auto
-  UnixCredentialsMessage::create (const Glib::RefPtr<Credentials>& credentials) -> Glib::RefPtr<UnixCredentialsMessage>
+  UnixCredentialsMessage::create (const glib::RefPtr<Credentials>& credentials) -> glib::RefPtr<UnixCredentialsMessage>
   {
-    return Glib::make_refptr_for_instance<UnixCredentialsMessage> (
+    return glib::make_refptr_for_instance<UnixCredentialsMessage> (
         new UnixCredentialsMessage (credentials));
   }
 
   auto
-  UnixCredentialsMessage::get_credentials () -> Glib::RefPtr<Credentials>
+  UnixCredentialsMessage::get_credentials () -> glib::RefPtr<Credentials>
   {
-    return Glib::wrap (g_unix_credentials_message_get_credentials (gobj ()));
+    return glib::wrap (g_unix_credentials_message_get_credentials (gobj ()));
   }
 
   auto
-  UnixCredentialsMessage::get_credentials () const -> Glib::RefPtr<const Credentials>
+  UnixCredentialsMessage::get_credentials () const -> glib::RefPtr<const Credentials>
   {
     return const_cast<UnixCredentialsMessage*> (this)->get_credentials ();
   }
@@ -160,15 +160,15 @@ namespace Gio
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<
-          Glib::RefPtr<Credentials>>::value,
-      "Type Glib::RefPtr<Credentials> cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      glib::Traits::ValueCompatibleWithWrapProperty<
+          glib::RefPtr<Credentials>>::value,
+      "Type glib::RefPtr<Credentials> cannot be used in _WRAP_PROPERTY. "
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  UnixCredentialsMessage::property_credentials () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Credentials>>
+  UnixCredentialsMessage::property_credentials () const -> glib::PropertyProxy_ReadOnly<glib::RefPtr<Credentials>>
   {
     return {this, "credentials"};
   }
 
-} // namespace Gio
+} // namespace gio

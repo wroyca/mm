@@ -12,7 +12,7 @@
 #include <libmm/pango/rectangle.hxx>
 #include <pango/pango.h>
 
-namespace Pango
+namespace pango
 {
 
   enum class AttrType
@@ -57,25 +57,25 @@ namespace Pango
     FONT_SCALE
   };
 
-} // namespace Pango
+} // namespace pango
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_PANGO_SYMEXPORT Value<Pango::AttrType>
-    : public Glib::Value_Enum<Pango::AttrType>
+  class LIBMM_PANGO_SYMEXPORT Value<pango::AttrType>
+    : public glib::Value_Enum<pango::AttrType>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
-namespace Pango
+namespace pango
 {
 
   enum class Underline
@@ -90,25 +90,25 @@ namespace Pango
     ERROR_LINE
   };
 
-} // namespace Pango
+} // namespace pango
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_PANGO_SYMEXPORT Value<Pango::Underline>
-    : public Glib::Value_Enum<Pango::Underline>
+  class LIBMM_PANGO_SYMEXPORT Value<pango::Underline>
+    : public glib::Value_Enum<pango::Underline>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
-namespace Pango
+namespace pango
 {
 
   enum class Overline
@@ -117,25 +117,25 @@ namespace Pango
     SINGLE
   };
 
-} // namespace Pango
+} // namespace pango
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_PANGO_SYMEXPORT Value<Pango::Overline>
-    : public Glib::Value_Enum<Pango::Overline>
+  class LIBMM_PANGO_SYMEXPORT Value<pango::Overline>
+    : public glib::Value_Enum<pango::Overline>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
-namespace Pango
+namespace pango
 {
 
   enum class ShowFlags
@@ -194,25 +194,25 @@ namespace Pango
                                           static_cast<unsigned> (rhs)));
   }
 
-} // namespace Pango
+} // namespace pango
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_PANGO_SYMEXPORT Value<Pango::ShowFlags>
-    : public Glib::Value_Flags<Pango::ShowFlags>
+  class LIBMM_PANGO_SYMEXPORT Value<pango::ShowFlags>
+    : public glib::Value_Flags<pango::ShowFlags>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
-namespace Pango
+namespace pango
 {
 
   enum class TextTransform
@@ -223,25 +223,25 @@ namespace Pango
     CAPITALIZE
   };
 
-} // namespace Pango
+} // namespace pango
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_PANGO_SYMEXPORT Value<Pango::TextTransform>
-    : public Glib::Value_Enum<Pango::TextTransform>
+  class LIBMM_PANGO_SYMEXPORT Value<pango::TextTransform>
+    : public glib::Value_Enum<pango::TextTransform>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
-namespace Pango
+namespace pango
 {
 
   class BaselineShift_Wrapper final
@@ -260,25 +260,25 @@ namespace Pango
 
   using BaselineShift = BaselineShift_Wrapper::BaselineShift;
 
-} // namespace Pango
+} // namespace pango
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_PANGO_SYMEXPORT Value<Pango::BaselineShift>
-    : public Glib::Value_Enum<Pango::BaselineShift>
+  class LIBMM_PANGO_SYMEXPORT Value<pango::BaselineShift>
+    : public glib::Value_Enum<pango::BaselineShift>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
-namespace Pango
+namespace pango
 {
 
   enum class FontScale
@@ -289,25 +289,25 @@ namespace Pango
     SMALL_CAPS
   };
 
-} // namespace Pango
+} // namespace pango
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_PANGO_SYMEXPORT Value<Pango::FontScale>
-    : public Glib::Value_Enum<Pango::FontScale>
+  class LIBMM_PANGO_SYMEXPORT Value<pango::FontScale>
+    : public glib::Value_Enum<pango::FontScale>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
-namespace Pango
+namespace pango
 {
 
   typedef PangoLogAttr LogAttr;
@@ -345,10 +345,10 @@ namespace Pango
     get_type () const -> AttrType;
 
     static auto
-    register_type (const Glib::ustring& name) -> AttrType;
+    register_type (const glib::ustring& name) -> AttrType;
 
     static auto
-    get_type_name (AttrType type) -> Glib::ustring;
+    get_type_name (AttrType type) -> glib::ustring;
 
     auto
     get_start_index () const -> unsigned int;
@@ -378,7 +378,7 @@ namespace Pango
     }
 
     static auto
-    create_attr_family (const Glib::ustring& family) -> AttrString;
+    create_attr_family (const glib::ustring& family) -> AttrString;
 
     static auto
     create_attr_language (const Language& language) -> AttrLanguage;
@@ -468,7 +468,7 @@ namespace Pango
     create_attr_gravity_hint (GravityHint hint) -> AttrInt;
 
     static auto
-    create_attr_font_features (const Glib::ustring& features) -> AttrString;
+    create_attr_font_features (const glib::ustring& features) -> AttrString;
 
     static auto
     create_attr_allow_breaks (bool allow_breaks) -> AttrInt;
@@ -530,10 +530,10 @@ namespace Pango
     operator= (const AttrString& src) -> AttrString&;
 
     auto
-    get_string () const -> Glib::ustring;
+    get_string () const -> glib::ustring;
 
     auto
-    set_string (const Glib::ustring& string) -> void;
+    set_string (const glib::ustring& string) -> void;
 
     auto
     gobj () -> PangoAttrString*
@@ -784,7 +784,7 @@ namespace Pango
 
   struct AttributeTraits
   {
-    typedef Pango::Attribute CppType;
+    typedef pango::Attribute CppType;
     typedef const PangoAttribute* CType;
     typedef PangoAttribute* CTypeNonConst;
 
@@ -813,43 +813,43 @@ namespace Pango
     }
   };
 
-} // namespace Pango
+} // namespace pango
 
-namespace Glib
+namespace glib
 {
 
   LIBMM_PANGO_SYMEXPORT
   auto
-  wrap (PangoAttribute* object, bool take_copy = false) -> Pango::Attribute;
+  wrap (PangoAttribute* object, bool take_copy = false) -> pango::Attribute;
 
   LIBMM_PANGO_SYMEXPORT
   auto
-  wrap (PangoAttrString* object, bool take_copy = false) -> Pango::AttrString;
+  wrap (PangoAttrString* object, bool take_copy = false) -> pango::AttrString;
 
   LIBMM_PANGO_SYMEXPORT
   auto
-  wrap (PangoAttrLanguage* object, bool take_copy = false) -> Pango::AttrLanguage;
+  wrap (PangoAttrLanguage* object, bool take_copy = false) -> pango::AttrLanguage;
 
   LIBMM_PANGO_SYMEXPORT
   auto
-  wrap (PangoAttrColor* object, bool take_copy = false) -> Pango::AttrColor;
+  wrap (PangoAttrColor* object, bool take_copy = false) -> pango::AttrColor;
 
   LIBMM_PANGO_SYMEXPORT
   auto
-  wrap (PangoAttrInt* object, bool take_copy = false) -> Pango::AttrInt;
+  wrap (PangoAttrInt* object, bool take_copy = false) -> pango::AttrInt;
 
   LIBMM_PANGO_SYMEXPORT
   auto
-  wrap (PangoAttrFloat* object, bool take_copy = false) -> Pango::AttrFloat;
+  wrap (PangoAttrFloat* object, bool take_copy = false) -> pango::AttrFloat;
 
   LIBMM_PANGO_SYMEXPORT
   auto
-  wrap (PangoAttrFontDesc* object, bool take_copy = false) -> Pango::AttrFontDesc;
+  wrap (PangoAttrFontDesc* object, bool take_copy = false) -> pango::AttrFontDesc;
 
   LIBMM_PANGO_SYMEXPORT
   auto
-  wrap (PangoAttrShape* object, bool take_copy = false) -> Pango::AttrShape;
+  wrap (PangoAttrShape* object, bool take_copy = false) -> pango::AttrShape;
 
-} // namespace Glib
+} // namespace glib
 
 #endif

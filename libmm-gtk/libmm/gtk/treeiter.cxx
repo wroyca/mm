@@ -16,7 +16,7 @@
   #include <gtk/gtk.h>
   #include <libmm/gtk/treemodel.hxx>
 
-namespace Gtk
+namespace gtk
 {
 
   TreeIterBase2::TreeIterBase2 ()
@@ -35,7 +35,7 @@ namespace Gtk
 
   TreeIterBase2::TreeIterBase2 (GtkTreeModel* model, const GtkTreeIter* iter)
     : TreeIterBase (iter),
-      model_ (dynamic_cast<TreeModel*> (Glib::wrap_auto ((GObject*) model))),
+      model_ (dynamic_cast<TreeModel*> (glib::wrap_auto ((GObject*) model))),
       is_end_ (iter == nullptr)
   {
   }
@@ -65,7 +65,7 @@ namespace Gtk
     if (!gtk_tree_model_iter_next (model_->gobj (), &gobject_))
     {
       is_end_ = true;
-      gtk_tree_model_iter_parent (Glib::unwrap (model_), &gobject_, &previous);
+      gtk_tree_model_iter_parent (glib::unwrap (model_), &gobject_, &previous);
     }
   }
 
@@ -74,7 +74,7 @@ namespace Gtk
   {
     if (!is_end_)
     {
-      gtk_tree_model_iter_previous (Glib::unwrap (model_), &gobject_);
+      gtk_tree_model_iter_previous (glib::unwrap (model_), &gobject_);
     }
     else
     {
@@ -82,8 +82,8 @@ namespace Gtk
       const auto parent = (next.stamp != 0) ? &next : nullptr;
 
       const int index =
-          gtk_tree_model_iter_n_children (Glib::unwrap (model_), parent) - 1;
-      is_end_ = !gtk_tree_model_iter_nth_child (Glib::unwrap (model_),
+          gtk_tree_model_iter_n_children (glib::unwrap (model_), parent) - 1;
+      is_end_ = !gtk_tree_model_iter_nth_child (glib::unwrap (model_),
                                                 &gobject_,
                                                 parent,
                                                 index);
@@ -123,7 +123,7 @@ namespace Gtk
   }
 
   auto
-  TreeIterBase3::set_model_refptr (const Glib::RefPtr<TreeModel>& model) -> void
+  TreeIterBase3::set_model_refptr (const glib::RefPtr<TreeModel>& model) -> void
   {
     model_ = model.operator->();
   }
@@ -131,7 +131,7 @@ namespace Gtk
   auto
   TreeIterBase3::set_model_gobject (GtkTreeModel* model) -> void
   {
-    model_ = dynamic_cast<TreeModel*> (Glib::wrap_auto ((GObject*) model));
+    model_ = dynamic_cast<TreeModel*> (glib::wrap_auto ((GObject*) model));
   }
 
   auto
@@ -218,7 +218,7 @@ namespace Gtk
   }
 
   auto
-  TreeRow::set_value_impl (int column, const Glib::ValueBase& value) -> void
+  TreeRow::set_value_impl (int column, const glib::ValueBase& value) -> void
   {
     model_->set_value_impl (
         static_cast<TreeIter<TreeRow>&> (static_cast<TreeIterBase2&> (*this)),
@@ -227,7 +227,7 @@ namespace Gtk
   }
 
   auto
-  TreeRow::get_value_impl (int column, Glib::ValueBase& value) const -> void
+  TreeRow::get_value_impl (int column, glib::ValueBase& value) const -> void
   {
     model_->get_value_impl (static_cast<const TreeIter<TreeConstRow>&> (
                                 static_cast<const TreeIterBase2&> (*this)),
@@ -236,7 +236,7 @@ namespace Gtk
   }
 
   auto
-  TreeConstRow::get_value_impl (int column, Glib::ValueBase& value) const -> void
+  TreeConstRow::get_value_impl (int column, glib::ValueBase& value) const -> void
   {
     model_->get_value_impl (static_cast<const TreeIter<TreeConstRow>&> (
                                 static_cast<const TreeIterBase2&> (*this)),
@@ -360,13 +360,13 @@ namespace Gtk
         const_cast<GtkTreeIter*> (&gobject_));
   }
 
-} // namespace Gtk
+} // namespace gtk
 
 namespace
 {
 }
 
-namespace Gtk
+namespace gtk
 {
 
   TreeIterBase::TreeIterBase (const TreeIterBase& other) noexcept
@@ -412,6 +412,6 @@ namespace Gtk
       std::memset (&gobject_, 0, sizeof (GtkTreeIter));
   }
 
-} // namespace Gtk
+} // namespace gtk
 
 #endif

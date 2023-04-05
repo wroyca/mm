@@ -8,7 +8,7 @@
 #include <glib.h>
 #include <string>
 
-namespace Glib::Base64
+namespace glib::Base64
 {
 
   LIBMM_GLIB_SYMEXPORT
@@ -18,6 +18,6 @@ namespace Glib::Base64
   LIBMM_GLIB_SYMEXPORT
   auto
   decode (const std::string& source) -> std::string;
-} // namespace Glib::Base64
+} // namespace glib::Base64
 
 #endif

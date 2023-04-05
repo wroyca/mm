@@ -19,16 +19,16 @@ using GtkRecentManagerClass = struct _GtkRecentManagerClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT RecentManager_Class;
 }
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
-  class RecentManagerError : public Glib::Error
+  class RecentManagerError : public glib::Error
   {
   public:
     enum Code
@@ -43,7 +43,7 @@ namespace Gtk
     };
 
     LIBMM_GTK_SYMEXPORT
-    RecentManagerError (Code error_code, const Glib::ustring& error_message);
+    RecentManagerError (Code error_code, const glib::ustring& error_message);
     LIBMM_GTK_SYMEXPORT explicit RecentManagerError (GError* gobject);
     LIBMM_GTK_SYMEXPORT auto
     code () const -> Code;
@@ -59,28 +59,28 @@ namespace Gtk
 #endif
   };
 
-} // namespace Gtk
+} // namespace gtk
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_GTK_SYMEXPORT Value<Gtk::RecentManagerError::Code>
-    : public Glib::Value_Enum<Gtk::RecentManagerError::Code>
+  class LIBMM_GTK_SYMEXPORT Value<gtk::RecentManagerError::Code>
+    : public glib::Value_Enum<gtk::RecentManagerError::Code>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
-  class LIBMM_GTK_SYMEXPORT RecentManager : public Glib::Object
+  class LIBMM_GTK_SYMEXPORT RecentManager : public glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -99,7 +99,7 @@ namespace Gtk
     static CppClassType recentmanager_class_;
 
   protected:
-    explicit RecentManager (const Glib::ConstructParams& construct_params);
+    explicit RecentManager (const glib::ConstructParams& construct_params);
     explicit RecentManager (GtkRecentManager* castitem);
 
 #endif
@@ -141,63 +141,63 @@ namespace Gtk
 
   public:
     static auto
-    create () -> Glib::RefPtr<RecentManager>;
+    create () -> glib::RefPtr<RecentManager>;
 
     static auto
-    get_default () -> Glib::RefPtr<RecentManager>;
+    get_default () -> glib::RefPtr<RecentManager>;
 
     class Data
     {
     public:
-      Glib::ustring display_name;
-      Glib::ustring description;
+      glib::ustring display_name;
+      glib::ustring description;
 
-      Glib::ustring mime_type;
+      glib::ustring mime_type;
 
-      Glib::ustring app_name;
-      Glib::ustring app_exec;
+      glib::ustring app_name;
+      glib::ustring app_exec;
 
-      std::vector<Glib::ustring> groups;
+      std::vector<glib::ustring> groups;
 
       bool is_private;
     };
 
     auto
-    add_item (const Glib::ustring& uri) -> bool;
+    add_item (const glib::ustring& uri) -> bool;
 
     auto
-    add_item (const Glib::ustring& uri, const Data& recent_data) -> bool;
+    add_item (const glib::ustring& uri, const Data& recent_data) -> bool;
 
     auto
-    remove_item (const Glib::ustring& uri) -> bool;
+    remove_item (const glib::ustring& uri) -> bool;
 
     auto
-    lookup_item (const Glib::ustring& uri) -> Glib::RefPtr<RecentInfo>;
+    lookup_item (const glib::ustring& uri) -> glib::RefPtr<RecentInfo>;
 
     auto
-    lookup_item (const Glib::ustring& uri) const
-        -> Glib::RefPtr<const RecentInfo>;
+    lookup_item (const glib::ustring& uri) const
+        -> glib::RefPtr<const RecentInfo>;
 
     auto
-    has_item (const Glib::ustring& uri) const -> bool;
+    has_item (const glib::ustring& uri) const -> bool;
 
     auto
-    move_item (const Glib::ustring& uri, const Glib::ustring& new_uri) -> bool;
+    move_item (const glib::ustring& uri, const glib::ustring& new_uri) -> bool;
 
     auto
-    get_items () const -> std::vector<Glib::RefPtr<RecentInfo>>;
+    get_items () const -> std::vector<glib::RefPtr<RecentInfo>>;
 
     auto
     purge_items () -> int;
 
     auto
-    signal_changed () -> Glib::SignalProxy<void ()>;
+    signal_changed () -> glib::SignalProxy<void ()>;
 
     auto
-    property_filename () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+    property_filename () const -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
     auto
-    property_size () const -> Glib::PropertyProxy_ReadOnly<int>;
+    property_size () const -> glib::PropertyProxy_ReadOnly<int>;
 
   public:
   public:
@@ -206,12 +206,12 @@ namespace Gtk
     on_changed () -> void;
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkRecentManager* object, bool take_copy = false) -> Glib::RefPtr<Gtk::RecentManager>;
-} // namespace Glib
+  wrap (GtkRecentManager* object, bool take_copy = false) -> glib::RefPtr<gtk::RecentManager>;
+} // namespace glib
 
 #endif

@@ -4,7 +4,7 @@
  * SPDX-License-Identifier: LGPL-2.1-or-later
  */
 
-#include <libmm/adw/init.hxx> // Adw::init
+#include <libmm/adw/init.hxx> // adw::init
 #include <libmm/adw/mm-adw.hxx>
 
 int notified;
@@ -18,8 +18,8 @@ notify_cb ()
 static void
 test_adw_carousel_indicator_dots_carousel (void)
 {
-  Adw::CarouselIndicatorDots dots;
-  Adw::Carousel carousel;
+  adw::CarouselIndicatorDots dots;
+  adw::Carousel carousel;
 
   notified = 0;
   dots.property_carousel ().signal_changed ().connect (
@@ -41,7 +41,7 @@ int
 main (int argc, char* argv[])
 {
   gtk_test_init (&argc, &argv, NULL);
-  Adw::init ();
+  adw::init ();
 
   g_test_add_func ("/Adwaita/CarouselIndicatorDots/carousel",
                    test_adw_carousel_indicator_dots_carousel);

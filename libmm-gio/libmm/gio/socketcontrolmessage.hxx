@@ -17,16 +17,16 @@ using GSocketControlMessageClass = struct _GSocketControlMessageClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gio
+namespace gio
 {
   class LIBMM_GIO_SYMEXPORT SocketControlMessage_Class;
 }
 #endif
 
-namespace Gio
+namespace gio
 {
 
-  class LIBMM_GIO_SYMEXPORT SocketControlMessage : public Glib::Object
+  class LIBMM_GIO_SYMEXPORT SocketControlMessage : public glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -46,7 +46,7 @@ namespace Gio
 
   protected:
     explicit SocketControlMessage (
-        const Glib::ConstructParams& construct_params);
+        const glib::ConstructParams& construct_params);
     explicit SocketControlMessage (GSocketControlMessage* castitem);
 
 #endif
@@ -89,7 +89,7 @@ namespace Gio
   public:
     static auto
     deserialize (int level, int type, gsize size, gpointer data)
-        -> Glib::RefPtr<SocketControlMessage>;
+        -> glib::RefPtr<SocketControlMessage>;
 
     auto
     get_level () const -> int;
@@ -105,7 +105,7 @@ namespace Gio
 
   protected:
     using DeserializeFunc =
-        Glib::RefPtr<SocketControlMessage> (*) (int level,
+        glib::RefPtr<SocketControlMessage> (*) (int level,
                                                 int type,
                                                 gsize size,
                                                 gpointer data);
@@ -133,14 +133,14 @@ namespace Gio
   protected:
   };
 
-} // namespace Gio
+} // namespace gio
 
-namespace Glib
+namespace glib
 {
 
   LIBMM_GIO_SYMEXPORT
   auto
-  wrap (GSocketControlMessage* object, bool take_copy = false) -> Glib::RefPtr<Gio::SocketControlMessage>;
-} // namespace Glib
+  wrap (GSocketControlMessage* object, bool take_copy = false) -> glib::RefPtr<gio::SocketControlMessage>;
+} // namespace glib
 
 #endif

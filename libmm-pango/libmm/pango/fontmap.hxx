@@ -19,19 +19,19 @@ using PangoFontMapClass = struct _PangoFontMapClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Pango
+namespace pango
 {
   class LIBMM_PANGO_SYMEXPORT FontMap_Class;
 }
 #endif
 
-namespace Pango
+namespace pango
 {
 
   class LIBMM_PANGO_SYMEXPORT Context;
 
-  class LIBMM_PANGO_SYMEXPORT FontMap : public Glib::Object,
-                              public Gio::ListModel
+  class LIBMM_PANGO_SYMEXPORT FontMap : public glib::Object,
+                              public gio::ListModel
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -50,7 +50,7 @@ namespace Pango
     static CppClassType fontmap_class_;
 
   protected:
-    explicit FontMap (const Glib::ConstructParams& construct_params);
+    explicit FontMap (const glib::ConstructParams& construct_params);
     explicit FontMap (PangoFontMap* castitem);
 
 #endif
@@ -89,43 +89,43 @@ namespace Pango
   private:
   public:
     auto
-    load_font (const Glib::RefPtr<Context>& context,
-               const FontDescription& desc) const -> Glib::RefPtr<Font>;
+    load_font (const glib::RefPtr<Context>& context,
+               const FontDescription& desc) const -> glib::RefPtr<Font>;
 
     auto
-    load_fontset (const Glib::RefPtr<Context>& context,
+    load_fontset (const glib::RefPtr<Context>& context,
                   const FontDescription& desc,
-                  const Language& language) const -> Glib::RefPtr<Fontset>;
+                  const Language& language) const -> glib::RefPtr<Fontset>;
 
     auto
-    create_context () -> Glib::RefPtr<Context>;
+    create_context () -> glib::RefPtr<Context>;
 
     auto
-    list_families () const -> std::vector<Glib::RefPtr<FontFamily>>;
+    list_families () const -> std::vector<glib::RefPtr<FontFamily>>;
 
     auto
     get_serial () const -> guint;
 
     auto
-    get_family (const Glib::ustring& name) -> Glib::RefPtr<FontFamily>;
+    get_family (const glib::ustring& name) -> glib::RefPtr<FontFamily>;
 
     auto
-    get_family (const Glib::ustring& name) const
-        -> Glib::RefPtr<const FontFamily>;
+    get_family (const glib::ustring& name) const
+        -> glib::RefPtr<const FontFamily>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Pango
+} // namespace pango
 
-namespace Glib
+namespace glib
 {
 
   LIBMM_PANGO_SYMEXPORT
   auto
-  wrap (PangoFontMap* object, bool take_copy = false) -> Glib::RefPtr<Pango::FontMap>;
-} // namespace Glib
+  wrap (PangoFontMap* object, bool take_copy = false) -> glib::RefPtr<pango::FontMap>;
+} // namespace glib
 
 #endif

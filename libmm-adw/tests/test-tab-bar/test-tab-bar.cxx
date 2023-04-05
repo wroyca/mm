@@ -6,7 +6,7 @@
  * Author: Alexander Mikhaylenko <alexander.mikhaylenko@puri.sm>
  */
 
-#include <libmm/adw/init.hxx> // Adw::init
+#include <libmm/adw/init.hxx> // adw::init
 #include <libmm/adw/mm-adw.hxx>
 
 int notified;
@@ -20,23 +20,23 @@ notify_cb ()
 static void
 test_adw_tab_bar_view (void)
 {
-  Adw::TabBar bar;
+  adw::TabBar bar;
 
   notified = 0;
   bar.property_view ().signal_changed ().connect (sigc::ptr_fun (notify_cb));
 
-  Adw::TabView* view = bar.get_property<Adw::TabView*> ("view");
+  adw::TabView* view = bar.get_property<adw::TabView*> ("view");
   g_assert_true (view == nullptr);
 
   bar.set_view (nullptr);
   g_assert_true (notified == 0);
 
-  view = Gtk::make_managed<Adw::TabView> ();
+  view = gtk::make_managed<adw::TabView> ();
   bar.set_view (view);
   g_assert_true (bar.get_view () == view);
   g_assert_true (notified == 1);
 
-  bar.set_property<Adw::TabView*> ("view", nullptr);
+  bar.set_property<adw::TabView*> ("view", nullptr);
   g_assert_true (bar.get_view () == nullptr);
   g_assert_true (notified == 2);
 }
@@ -44,24 +44,24 @@ test_adw_tab_bar_view (void)
 static void
 test_adw_tab_bar_start_action_widget (void)
 {
-  Adw::TabBar bar;
+  adw::TabBar bar;
 
   notified = 0;
   bar.property_start_action_widget ().signal_changed ().connect (
       sigc::ptr_fun (notify_cb));
 
-  Gtk::Widget* widget = bar.get_property<Gtk::Widget*> ("start-action-widget");
+  gtk::Widget* widget = bar.get_property<gtk::Widget*> ("start-action-widget");
   g_assert_true (widget == nullptr);
 
   bar.set_start_action_widget (nullptr);
   g_assert_true (notified == 0);
 
-  widget = Gtk::make_managed<Gtk::Button> ();
+  widget = gtk::make_managed<gtk::Button> ();
   bar.set_start_action_widget (widget);
   g_assert_true (bar.get_start_action_widget () == widget);
   g_assert_true (notified == 1);
 
-  bar.set_property<Gtk::Widget*> ("start-action-widget", nullptr);
+  bar.set_property<gtk::Widget*> ("start-action-widget", nullptr);
   g_assert_null (bar.get_start_action_widget ());
   g_assert_true (notified == 2);
 }
@@ -69,24 +69,24 @@ test_adw_tab_bar_start_action_widget (void)
 static void
 test_adw_tab_bar_end_action_widget (void)
 {
-  Adw::TabBar bar;
+  adw::TabBar bar;
 
   notified = 0;
   bar.property_end_action_widget ().signal_changed ().connect (
       sigc::ptr_fun (notify_cb));
 
-  Gtk::Widget* widget = bar.get_property<Gtk::Widget*> ("end-action-widget");
+  gtk::Widget* widget = bar.get_property<gtk::Widget*> ("end-action-widget");
   g_assert_true (widget == nullptr);
 
   bar.set_end_action_widget (nullptr);
   g_assert_true (notified == 0);
 
-  widget = Gtk::make_managed<Gtk::Button> ();
+  widget = gtk::make_managed<gtk::Button> ();
   bar.set_end_action_widget (widget);
   g_assert_true (bar.get_end_action_widget () == widget);
   g_assert_true (notified == 1);
 
-  bar.set_property<Gtk::Widget*> ("end-action-widget", nullptr);
+  bar.set_property<gtk::Widget*> ("end-action-widget", nullptr);
   g_assert_true (bar.get_end_action_widget () == nullptr);
   g_assert_true (notified == 2);
 }
@@ -94,7 +94,7 @@ test_adw_tab_bar_end_action_widget (void)
 static void
 test_adw_tab_bar_autohide (void)
 {
-  Adw::TabBar bar;
+  adw::TabBar bar;
 
   notified = 0;
   bar.property_autohide ().signal_changed ().connect (
@@ -118,7 +118,7 @@ test_adw_tab_bar_autohide (void)
 static void
 test_adw_tab_bar_tabs_revealed (void)
 {
-  Adw::TabBar bar;
+  adw::TabBar bar;
 
   notified = 0;
   bar.property_tabs_revealed ().signal_changed ().connect (
@@ -133,7 +133,7 @@ test_adw_tab_bar_tabs_revealed (void)
   g_assert_false (bar.get_tabs_revealed ());
   g_assert_true (notified == 0);
 
-  Adw::TabView* view = Gtk::make_managed<Adw::TabView> ();
+  adw::TabView* view = gtk::make_managed<adw::TabView> ();
   bar.set_view (view);
   g_assert_true (bar.get_tabs_revealed ());
   g_assert_true (notified == 1);
@@ -142,8 +142,8 @@ test_adw_tab_bar_tabs_revealed (void)
   g_assert_false (bar.get_tabs_revealed ());
   g_assert_true (notified == 2);
 
-  Glib::RefPtr<Adw::TabPage> page =
-      view->append_pinned (Gtk::make_managed<Gtk::Button> ());
+  glib::RefPtr<adw::TabPage> page =
+      view->append_pinned (gtk::make_managed<gtk::Button> ());
   g_assert_true (bar.get_tabs_revealed ());
   g_assert_true (notified == 3);
 
@@ -151,7 +151,7 @@ test_adw_tab_bar_tabs_revealed (void)
   g_assert_false (bar.get_tabs_revealed ());
   g_assert_true (notified == 4);
 
-  view->append (Gtk::make_managed<Gtk::Button> ());
+  view->append (gtk::make_managed<gtk::Button> ());
   g_assert_true (bar.get_tabs_revealed ());
   g_assert_true (notified == 5);
 
@@ -167,7 +167,7 @@ test_adw_tab_bar_tabs_revealed (void)
 static void
 test_adw_tab_bar_expand_tabs (void)
 {
-  Adw::TabBar bar;
+  adw::TabBar bar;
 
   notified = 0;
   bar.property_expand_tabs ().signal_changed ().connect (
@@ -191,7 +191,7 @@ test_adw_tab_bar_expand_tabs (void)
 static void
 test_adw_tab_bar_inverted (void)
 {
-  Adw::TabBar bar;
+  adw::TabBar bar;
 
   notified = 0;
   bar.property_inverted ().signal_changed ().connect (
@@ -216,7 +216,7 @@ int
 main (int argc, char* argv[])
 {
   gtk_test_init (&argc, &argv, NULL);
-  Adw::init ();
+  adw::init ();
 
   g_test_add_func ("/Adwaita/TabBar/view", test_adw_tab_bar_view);
   g_test_add_func ("/Adwaita/TabBar/start_action_widget",

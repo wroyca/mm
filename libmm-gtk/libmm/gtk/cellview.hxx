@@ -26,13 +26,13 @@ using GtkCellViewClass = struct _GtkCellViewClass;
   #endif
 
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT CellView_Class;
 }
   #endif
 
-namespace Gtk
+namespace gtk
 {
 
   class LIBMM_GTK_SYMEXPORT CellView : public Widget,
@@ -64,7 +64,7 @@ namespace Gtk
     static CppClassType cellview_class_;
 
   protected:
-    explicit CellView (const Glib::ConstructParams& construct_params);
+    explicit CellView (const glib::ConstructParams& construct_params);
     explicit CellView (GtkCellView* castitem);
 
   #endif
@@ -95,21 +95,21 @@ namespace Gtk
   public:
     CellView ();
 
-    explicit CellView (const Glib::ustring& text, bool use_markup = false);
+    explicit CellView (const glib::ustring& text, bool use_markup = false);
 
-    explicit CellView (const Glib::RefPtr<Gdk::Texture>& texture);
+    explicit CellView (const glib::RefPtr<gdk::Texture>& texture);
 
     auto
-    set_model (const Glib::RefPtr<TreeModel>& model) -> void;
+    set_model (const glib::RefPtr<TreeModel>& model) -> void;
 
     auto
     unset_model () -> void;
 
     auto
-    get_model () -> Glib::RefPtr<TreeModel>;
+    get_model () -> glib::RefPtr<TreeModel>;
 
     auto
-    get_model () const -> Glib::RefPtr<const TreeModel>;
+    get_model () const -> glib::RefPtr<const TreeModel>;
 
     auto
     set_displayed_row (const TreeModel::Path& path) -> void;
@@ -130,44 +130,44 @@ namespace Gtk
     set_fit_model (bool fit_model = true) -> void;
 
     auto
-    property_model () -> Glib::PropertyProxy<Glib::RefPtr<TreeModel>>;
+    property_model () -> glib::PropertyProxy<glib::RefPtr<TreeModel>>;
 
     auto
     property_model () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<TreeModel>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<TreeModel>>;
 
     auto
     property_cell_area () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<CellArea>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<CellArea>>;
 
     auto
     property_cell_area_context () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<CellAreaContext>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<CellAreaContext>>;
 
     auto
-    property_draw_sensitive () -> Glib::PropertyProxy<bool>;
+    property_draw_sensitive () -> glib::PropertyProxy<bool>;
 
     auto
-    property_draw_sensitive () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_draw_sensitive () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_fit_model () -> Glib::PropertyProxy<bool>;
+    property_fit_model () -> glib::PropertyProxy<bool>;
 
     auto
-    property_fit_model () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_fit_model () const -> glib::PropertyProxy_ReadOnly<bool>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkCellView* object, bool take_copy = false) -> Gtk::CellView*;
-} // namespace Glib
+  wrap (GtkCellView* object, bool take_copy = false) -> gtk::CellView*;
+} // namespace glib
 
 #endif
 

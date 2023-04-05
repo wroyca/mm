@@ -7,7 +7,7 @@
 
 #include <gtk/gtk.h>
 
-namespace Gtk
+namespace gtk
 {
 
   auto
@@ -22,28 +22,28 @@ namespace Gtk
     return BitsetConstIter (gobj (), true);
   }
 
-} // namespace Gtk
+} // namespace gtk
 
 namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GtkBitset* object, bool take_copy) -> Glib::RefPtr<Gtk::Bitset>
+  wrap (GtkBitset* object, bool take_copy) -> glib::RefPtr<gtk::Bitset>
   {
     if (take_copy && object)
       gtk_bitset_ref (object);
 
-    return Glib::make_refptr_for_instance<Gtk::Bitset> (
-        reinterpret_cast<Gtk::Bitset*> (object));
+    return glib::make_refptr_for_instance<gtk::Bitset> (
+        reinterpret_cast<gtk::Bitset*> (object));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gtk
+namespace gtk
 {
 
   auto
@@ -81,9 +81,9 @@ namespace Gtk
   }
 
   auto
-  Bitset::create () -> Glib::RefPtr<Bitset>
+  Bitset::create () -> glib::RefPtr<Bitset>
   {
-    return Glib::wrap (gtk_bitset_new_empty ());
+    return glib::wrap (gtk_bitset_new_empty ());
   }
 
   auto
@@ -119,10 +119,10 @@ namespace Gtk
   }
 
   auto
-  Bitset::equals (const Glib::RefPtr<const Bitset>& other) const -> bool
+  Bitset::equals (const glib::RefPtr<const Bitset>& other) const -> bool
   {
     return gtk_bitset_equals (const_cast<GtkBitset*> (gobj ()),
-                              Glib::unwrap (other));
+                              glib::unwrap (other));
   }
 
   auto
@@ -138,9 +138,9 @@ namespace Gtk
   }
 
   auto
-  Bitset::copy () const -> Glib::RefPtr<Bitset>
+  Bitset::copy () const -> glib::RefPtr<Bitset>
   {
-    return Glib::wrap (gtk_bitset_copy (const_cast<GtkBitset*> (gobj ())));
+    return glib::wrap (gtk_bitset_copy (const_cast<GtkBitset*> (gobj ())));
   }
 
   auto
@@ -201,27 +201,27 @@ namespace Gtk
   }
 
   auto
-  Bitset::join (const Glib::RefPtr<const Bitset>& other) -> void
+  Bitset::join (const glib::RefPtr<const Bitset>& other) -> void
   {
-    gtk_bitset_union (gobj (), Glib::unwrap (other));
+    gtk_bitset_union (gobj (), glib::unwrap (other));
   }
 
   auto
-  Bitset::intersect (const Glib::RefPtr<const Bitset>& other) -> void
+  Bitset::intersect (const glib::RefPtr<const Bitset>& other) -> void
   {
-    gtk_bitset_intersect (gobj (), Glib::unwrap (other));
+    gtk_bitset_intersect (gobj (), glib::unwrap (other));
   }
 
   auto
-  Bitset::subtract (const Glib::RefPtr<const Bitset>& other) -> void
+  Bitset::subtract (const glib::RefPtr<const Bitset>& other) -> void
   {
-    gtk_bitset_subtract (gobj (), Glib::unwrap (other));
+    gtk_bitset_subtract (gobj (), glib::unwrap (other));
   }
 
   auto
-  Bitset::difference (const Glib::RefPtr<const Bitset>& other) -> void
+  Bitset::difference (const glib::RefPtr<const Bitset>& other) -> void
   {
-    gtk_bitset_difference (gobj (), Glib::unwrap (other));
+    gtk_bitset_difference (gobj (), glib::unwrap (other));
   }
 
   auto
@@ -242,4 +242,4 @@ namespace Gtk
     gtk_bitset_splice (gobj (), position, removed, value);
   }
 
-} // namespace Gtk
+} // namespace gtk

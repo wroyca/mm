@@ -7,7 +7,7 @@
 
 #include <gio/gio.h>
 
-namespace Gio
+namespace gio
 {
 
 }
@@ -16,25 +16,25 @@ namespace
 {
 }
 
-Gio::DBus::Error::Error (const Code error_code,
-                         const Glib::ustring& error_message)
-  : Glib::Error (G_DBUS_ERROR, error_code, error_message)
+gio::DBus::Error::Error (const Code error_code,
+                         const glib::ustring& error_message)
+  : glib::Error (G_DBUS_ERROR, error_code, error_message)
 {
 }
 
-Gio::DBus::Error::Error (GError* gobject)
-  : Glib::Error (gobject)
+gio::DBus::Error::Error (GError* gobject)
+  : glib::Error (gobject)
 {
 }
 
 auto
-Gio::DBus::Error::code () const -> Code
+gio::DBus::Error::code () const -> Code
 {
-  return static_cast<Code> (Glib::Error::code ());
+  return static_cast<Code> (glib::Error::code ());
 }
 
 auto
-Gio::DBus::Error::throw_func (GError* gobject) -> void
+gio::DBus::Error::throw_func (GError* gobject) -> void
 {
   throw Error (gobject);
 }

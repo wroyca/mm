@@ -3,7 +3,7 @@
 #include <libmm/cairo/exception.hxx>
 #include <string>
 
-namespace Cairo
+namespace cairo
 {
 
   inline static auto
@@ -26,4 +26,4 @@ namespace Cairo
     return m_status;
   }
 
-} // namespace Cairo
+} // namespace cairo

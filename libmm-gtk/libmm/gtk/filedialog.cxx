@@ -12,24 +12,24 @@ namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GtkFileDialog* object, bool take_copy) -> Glib::RefPtr<Gtk::FileDialog>
+  wrap (GtkFileDialog* object, bool take_copy) -> glib::RefPtr<gtk::FileDialog>
   {
-    return Glib::make_refptr_for_instance<Gtk::FileDialog> (
-        dynamic_cast<Gtk::FileDialog*> (
-            Glib::wrap_auto ((GObject*) (object), take_copy)));
+    return glib::make_refptr_for_instance<gtk::FileDialog> (
+        dynamic_cast<gtk::FileDialog*> (
+            glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gtk
+namespace gtk
 {
 
   auto
-  FileDialog_Class::init () -> const Glib::Class&
+  FileDialog_Class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -40,7 +40,7 @@ namespace Gtk
   }
 
   auto
-  FileDialog_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  FileDialog_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new FileDialog ((GtkFileDialog*) object);
   }
@@ -52,25 +52,25 @@ namespace Gtk
     return gobj ();
   }
 
-  FileDialog::FileDialog (const Glib::ConstructParams& construct_params)
-    : Glib::Object (construct_params)
+  FileDialog::FileDialog (const glib::ConstructParams& construct_params)
+    : glib::Object (construct_params)
   {
   }
 
   FileDialog::FileDialog (GtkFileDialog* castitem)
-    : Glib::Object ((GObject*) (castitem))
+    : glib::Object ((GObject*) (castitem))
   {
   }
 
   FileDialog::FileDialog (FileDialog&& src) noexcept
-    : Glib::Object (std::move (src))
+    : glib::Object (std::move (src))
   {
   }
 
   auto
   FileDialog::operator= (FileDialog&& src) noexcept -> FileDialog&
   {
-    Glib::Object::operator= (std::move (src));
+    glib::Object::operator= (std::move (src));
     return *this;
   }
 
@@ -91,26 +91,26 @@ namespace Gtk
   }
 
   FileDialog::FileDialog ()
-    : Glib::ObjectBase (nullptr),
-      Glib::Object (Glib::ConstructParams (filedialog_class_.init ()))
+    : glib::ObjectBase (nullptr),
+      glib::Object (glib::ConstructParams (filedialog_class_.init ()))
   {
   }
 
   auto
-  FileDialog::create () -> Glib::RefPtr<FileDialog>
+  FileDialog::create () -> glib::RefPtr<FileDialog>
   {
-    return Glib::make_refptr_for_instance<FileDialog> (new FileDialog ());
+    return glib::make_refptr_for_instance<FileDialog> (new FileDialog ());
   }
 
   auto
-  FileDialog::get_title () const -> Glib::ustring
+  FileDialog::get_title () const -> glib::ustring
   {
-    return Glib::convert_const_gchar_ptr_to_ustring (
+    return glib::convert_const_gchar_ptr_to_ustring (
         gtk_file_dialog_get_title (const_cast<GtkFileDialog*> (gobj ())));
   }
 
   auto
-  FileDialog::set_title (const Glib::ustring& title) -> void
+  FileDialog::set_title (const glib::ustring& title) -> void
   {
     gtk_file_dialog_set_title (gobj (), title.c_str ());
   }
@@ -128,76 +128,76 @@ namespace Gtk
   }
 
   auto
-  FileDialog::get_filters () -> Glib::RefPtr<Gio::ListModel>
+  FileDialog::get_filters () -> glib::RefPtr<gio::ListModel>
   {
-    auto retvalue = Glib::wrap (gtk_file_dialog_get_filters (gobj ()));
+    auto retvalue = glib::wrap (gtk_file_dialog_get_filters (gobj ()));
     if (retvalue)
       retvalue->reference ();
     return retvalue;
   }
 
   auto
-  FileDialog::get_filters () const -> Glib::RefPtr<const Gio::ListModel>
+  FileDialog::get_filters () const -> glib::RefPtr<const gio::ListModel>
   {
     return const_cast<FileDialog*> (this)->get_filters ();
   }
 
   auto
-  FileDialog::set_filters (const Glib::RefPtr<Gio::ListModel>& filters) -> void
+  FileDialog::set_filters (const glib::RefPtr<gio::ListModel>& filters) -> void
   {
-    gtk_file_dialog_set_filters (gobj (), Glib::unwrap (filters));
+    gtk_file_dialog_set_filters (gobj (), glib::unwrap (filters));
   }
 
   auto
-  FileDialog::get_default_filter () -> Glib::RefPtr<FileFilter>
+  FileDialog::get_default_filter () -> glib::RefPtr<FileFilter>
   {
-    auto retvalue = Glib::wrap (gtk_file_dialog_get_default_filter (gobj ()));
+    auto retvalue = glib::wrap (gtk_file_dialog_get_default_filter (gobj ()));
     if (retvalue)
       retvalue->reference ();
     return retvalue;
   }
 
   auto
-  FileDialog::get_default_filter () const -> Glib::RefPtr<const FileFilter>
+  FileDialog::get_default_filter () const -> glib::RefPtr<const FileFilter>
   {
     return const_cast<FileDialog*> (this)->get_default_filter ();
   }
 
   auto
-  FileDialog::set_default_filter (const Glib::RefPtr<FileFilter>& filter) -> void
+  FileDialog::set_default_filter (const glib::RefPtr<FileFilter>& filter) -> void
   {
     gtk_file_dialog_set_default_filter (
         gobj (),
-        const_cast<GtkFileFilter*> (Glib::unwrap (filter)));
+        const_cast<GtkFileFilter*> (glib::unwrap (filter)));
   }
 
   auto
-  FileDialog::get_initial_folder () -> Glib::RefPtr<Gio::File>
+  FileDialog::get_initial_folder () -> glib::RefPtr<gio::File>
   {
-    auto retvalue = Glib::wrap (gtk_file_dialog_get_initial_folder (gobj ()));
+    auto retvalue = glib::wrap (gtk_file_dialog_get_initial_folder (gobj ()));
     if (retvalue)
       retvalue->reference ();
     return retvalue;
   }
 
   auto
-  FileDialog::get_initial_folder () const -> Glib::RefPtr<const Gio::File>
+  FileDialog::get_initial_folder () const -> glib::RefPtr<const gio::File>
   {
     return const_cast<FileDialog*> (this)->get_initial_folder ();
   }
 
   auto
-  FileDialog::set_initial_folder (const Glib::RefPtr<Gio::File>& folder) -> void
+  FileDialog::set_initial_folder (const glib::RefPtr<gio::File>& folder) -> void
   {
     gtk_file_dialog_set_initial_folder (
         gobj (),
-        const_cast<GFile*> (Glib::unwrap<Gio::File> (folder)));
+        const_cast<GFile*> (glib::unwrap<gio::File> (folder)));
   }
 
   auto
   FileDialog::get_initial_name () const -> std::string
   {
-    return Glib::convert_const_gchar_ptr_to_stdstring (
+    return glib::convert_const_gchar_ptr_to_stdstring (
         gtk_file_dialog_get_initial_name (
             const_cast<GtkFileDialog*> (gobj ())));
   }
@@ -209,389 +209,389 @@ namespace Gtk
   }
 
   auto
-  FileDialog::get_initial_file () -> Glib::RefPtr<Gio::File>
+  FileDialog::get_initial_file () -> glib::RefPtr<gio::File>
   {
-    auto retvalue = Glib::wrap (gtk_file_dialog_get_initial_file (gobj ()));
+    auto retvalue = glib::wrap (gtk_file_dialog_get_initial_file (gobj ()));
     if (retvalue)
       retvalue->reference ();
     return retvalue;
   }
 
   auto
-  FileDialog::get_initial_file () const -> Glib::RefPtr<const Gio::File>
+  FileDialog::get_initial_file () const -> glib::RefPtr<const gio::File>
   {
     return const_cast<FileDialog*> (this)->get_initial_file ();
   }
 
   auto
-  FileDialog::set_initial_file (const Glib::RefPtr<Gio::File>& file) -> void
+  FileDialog::set_initial_file (const glib::RefPtr<gio::File>& file) -> void
   {
     gtk_file_dialog_set_initial_file (
         gobj (),
-        const_cast<GFile*> (Glib::unwrap<Gio::File> (file)));
+        const_cast<GFile*> (glib::unwrap<gio::File> (file)));
   }
 
   auto
-  FileDialog::get_accept_label () const -> Glib::ustring
+  FileDialog::get_accept_label () const -> glib::ustring
   {
-    return Glib::convert_const_gchar_ptr_to_ustring (
+    return glib::convert_const_gchar_ptr_to_ustring (
         gtk_file_dialog_get_accept_label (
             const_cast<GtkFileDialog*> (gobj ())));
   }
 
   auto
-  FileDialog::set_accept_label (const Glib::ustring& accept_label) -> void
+  FileDialog::set_accept_label (const glib::ustring& accept_label) -> void
   {
     gtk_file_dialog_set_accept_label (gobj (), accept_label.c_str ());
   }
 
   auto
   FileDialog::open (Window& parent,
-                    const Gio::SlotAsyncReady& slot,
-                    const Glib::RefPtr<Gio::Cancellable>& cancellable) const -> void
+                    const gio::SlotAsyncReady& slot,
+                    const glib::RefPtr<gio::Cancellable>& cancellable) const -> void
   {
-    auto slot_copy = new Gio::SlotAsyncReady (slot);
+    auto slot_copy = new gio::SlotAsyncReady (slot);
 
     gtk_file_dialog_open (
         const_cast<GtkFileDialog*> (gobj ()),
         (parent).gobj (),
-        const_cast<GCancellable*> (Glib::unwrap (cancellable)),
-        &Gio::SignalProxy_async_callback,
+        const_cast<GCancellable*> (glib::unwrap (cancellable)),
+        &gio::SignalProxy_async_callback,
         slot_copy);
   }
 
   auto
-  FileDialog::open (const Gio::SlotAsyncReady& slot,
-                    const Glib::RefPtr<Gio::Cancellable>& cancellable) const -> void
+  FileDialog::open (const gio::SlotAsyncReady& slot,
+                    const glib::RefPtr<gio::Cancellable>& cancellable) const -> void
   {
-    auto slot_copy = new Gio::SlotAsyncReady (slot);
+    auto slot_copy = new gio::SlotAsyncReady (slot);
 
     gtk_file_dialog_open (
         const_cast<GtkFileDialog*> (gobj ()),
         nullptr,
-        const_cast<GCancellable*> (Glib::unwrap (cancellable)),
-        &Gio::SignalProxy_async_callback,
+        const_cast<GCancellable*> (glib::unwrap (cancellable)),
+        &gio::SignalProxy_async_callback,
         slot_copy);
   }
 
   auto
-  FileDialog::open_finish (const Glib::RefPtr<Gio::AsyncResult>& result) const -> Glib::RefPtr<Gio::File>
+  FileDialog::open_finish (const glib::RefPtr<gio::AsyncResult>& result) const -> glib::RefPtr<gio::File>
   {
     GError* gerror = nullptr;
-    auto retvalue = Glib::wrap (
+    auto retvalue = glib::wrap (
         gtk_file_dialog_open_finish (const_cast<GtkFileDialog*> (gobj ()),
-                                     Glib::unwrap (result),
+                                     glib::unwrap (result),
                                      &(gerror)));
     if (gerror)
-      ::Glib::Error::throw_exception (gerror);
+      ::glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
   auto
   FileDialog::select_folder (
       Window& parent,
-      const Gio::SlotAsyncReady& slot,
-      const Glib::RefPtr<Gio::Cancellable>& cancellable) const -> void
+      const gio::SlotAsyncReady& slot,
+      const glib::RefPtr<gio::Cancellable>& cancellable) const -> void
   {
-    auto slot_copy = new Gio::SlotAsyncReady (slot);
+    auto slot_copy = new gio::SlotAsyncReady (slot);
 
     gtk_file_dialog_select_folder (
         const_cast<GtkFileDialog*> (gobj ()),
         (parent).gobj (),
-        const_cast<GCancellable*> (Glib::unwrap (cancellable)),
-        &Gio::SignalProxy_async_callback,
+        const_cast<GCancellable*> (glib::unwrap (cancellable)),
+        &gio::SignalProxy_async_callback,
         slot_copy);
   }
 
   auto
   FileDialog::select_folder (
-      const Gio::SlotAsyncReady& slot,
-      const Glib::RefPtr<Gio::Cancellable>& cancellable) const -> void
+      const gio::SlotAsyncReady& slot,
+      const glib::RefPtr<gio::Cancellable>& cancellable) const -> void
   {
-    auto slot_copy = new Gio::SlotAsyncReady (slot);
+    auto slot_copy = new gio::SlotAsyncReady (slot);
 
     gtk_file_dialog_select_folder (
         const_cast<GtkFileDialog*> (gobj ()),
         nullptr,
-        const_cast<GCancellable*> (Glib::unwrap (cancellable)),
-        &Gio::SignalProxy_async_callback,
+        const_cast<GCancellable*> (glib::unwrap (cancellable)),
+        &gio::SignalProxy_async_callback,
         slot_copy);
   }
 
   auto
   FileDialog::select_folder_finish (
-      const Glib::RefPtr<Gio::AsyncResult>& result) const -> Glib::RefPtr<Gio::File>
+      const glib::RefPtr<gio::AsyncResult>& result) const -> glib::RefPtr<gio::File>
   {
     GError* gerror = nullptr;
-    auto retvalue = Glib::wrap (gtk_file_dialog_select_folder_finish (
+    auto retvalue = glib::wrap (gtk_file_dialog_select_folder_finish (
         const_cast<GtkFileDialog*> (gobj ()),
-        Glib::unwrap (result),
+        glib::unwrap (result),
         &(gerror)));
     if (gerror)
-      ::Glib::Error::throw_exception (gerror);
+      ::glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
   auto
   FileDialog::save (Window& parent,
-                    const Gio::SlotAsyncReady& slot,
-                    const Glib::RefPtr<Gio::Cancellable>& cancellable) const -> void
+                    const gio::SlotAsyncReady& slot,
+                    const glib::RefPtr<gio::Cancellable>& cancellable) const -> void
   {
-    auto slot_copy = new Gio::SlotAsyncReady (slot);
+    auto slot_copy = new gio::SlotAsyncReady (slot);
 
     gtk_file_dialog_save (
         const_cast<GtkFileDialog*> (gobj ()),
         (parent).gobj (),
-        const_cast<GCancellable*> (Glib::unwrap (cancellable)),
-        &Gio::SignalProxy_async_callback,
+        const_cast<GCancellable*> (glib::unwrap (cancellable)),
+        &gio::SignalProxy_async_callback,
         slot_copy);
   }
 
   auto
-  FileDialog::save (const Gio::SlotAsyncReady& slot,
-                    const Glib::RefPtr<Gio::Cancellable>& cancellable) const -> void
+  FileDialog::save (const gio::SlotAsyncReady& slot,
+                    const glib::RefPtr<gio::Cancellable>& cancellable) const -> void
   {
-    auto slot_copy = new Gio::SlotAsyncReady (slot);
+    auto slot_copy = new gio::SlotAsyncReady (slot);
 
     gtk_file_dialog_save (
         const_cast<GtkFileDialog*> (gobj ()),
         nullptr,
-        const_cast<GCancellable*> (Glib::unwrap (cancellable)),
-        &Gio::SignalProxy_async_callback,
+        const_cast<GCancellable*> (glib::unwrap (cancellable)),
+        &gio::SignalProxy_async_callback,
         slot_copy);
   }
 
   auto
-  FileDialog::save_finish (const Glib::RefPtr<Gio::AsyncResult>& result) const -> Glib::RefPtr<Gio::File>
+  FileDialog::save_finish (const glib::RefPtr<gio::AsyncResult>& result) const -> glib::RefPtr<gio::File>
   {
     GError* gerror = nullptr;
-    auto retvalue = Glib::wrap (
+    auto retvalue = glib::wrap (
         gtk_file_dialog_save_finish (const_cast<GtkFileDialog*> (gobj ()),
-                                     Glib::unwrap (result),
+                                     glib::unwrap (result),
                                      &(gerror)));
     if (gerror)
-      ::Glib::Error::throw_exception (gerror);
+      ::glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
   auto
   FileDialog::open_multiple (
       Window& parent,
-      const Gio::SlotAsyncReady& slot,
-      const Glib::RefPtr<Gio::Cancellable>& cancellable) const -> void
+      const gio::SlotAsyncReady& slot,
+      const glib::RefPtr<gio::Cancellable>& cancellable) const -> void
   {
-    auto slot_copy = new Gio::SlotAsyncReady (slot);
+    auto slot_copy = new gio::SlotAsyncReady (slot);
 
     gtk_file_dialog_open_multiple (
         const_cast<GtkFileDialog*> (gobj ()),
         (parent).gobj (),
-        const_cast<GCancellable*> (Glib::unwrap (cancellable)),
-        &Gio::SignalProxy_async_callback,
+        const_cast<GCancellable*> (glib::unwrap (cancellable)),
+        &gio::SignalProxy_async_callback,
         slot_copy);
   }
 
   auto
   FileDialog::open_multiple (
-      const Gio::SlotAsyncReady& slot,
-      const Glib::RefPtr<Gio::Cancellable>& cancellable) const -> void
+      const gio::SlotAsyncReady& slot,
+      const glib::RefPtr<gio::Cancellable>& cancellable) const -> void
   {
-    auto slot_copy = new Gio::SlotAsyncReady (slot);
+    auto slot_copy = new gio::SlotAsyncReady (slot);
 
     gtk_file_dialog_open_multiple (
         const_cast<GtkFileDialog*> (gobj ()),
         nullptr,
-        const_cast<GCancellable*> (Glib::unwrap (cancellable)),
-        &Gio::SignalProxy_async_callback,
+        const_cast<GCancellable*> (glib::unwrap (cancellable)),
+        &gio::SignalProxy_async_callback,
         slot_copy);
   }
 
   auto
   FileDialog::open_multiple_finish (
-      const Glib::RefPtr<Gio::AsyncResult>& result) const -> Glib::RefPtr<Gio::ListModel>
+      const glib::RefPtr<gio::AsyncResult>& result) const -> glib::RefPtr<gio::ListModel>
   {
     GError* gerror = nullptr;
-    auto retvalue = Glib::wrap (gtk_file_dialog_open_multiple_finish (
+    auto retvalue = glib::wrap (gtk_file_dialog_open_multiple_finish (
         const_cast<GtkFileDialog*> (gobj ()),
-        Glib::unwrap (result),
+        glib::unwrap (result),
         &(gerror)));
     if (gerror)
-      ::Glib::Error::throw_exception (gerror);
+      ::glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
   auto
   FileDialog::select_multiple_folders (
       Window& parent,
-      const Gio::SlotAsyncReady& slot,
-      const Glib::RefPtr<Gio::Cancellable>& cancellable) const -> void
+      const gio::SlotAsyncReady& slot,
+      const glib::RefPtr<gio::Cancellable>& cancellable) const -> void
   {
-    auto slot_copy = new Gio::SlotAsyncReady (slot);
+    auto slot_copy = new gio::SlotAsyncReady (slot);
 
     gtk_file_dialog_select_multiple_folders (
         const_cast<GtkFileDialog*> (gobj ()),
         (parent).gobj (),
-        const_cast<GCancellable*> (Glib::unwrap (cancellable)),
-        &Gio::SignalProxy_async_callback,
+        const_cast<GCancellable*> (glib::unwrap (cancellable)),
+        &gio::SignalProxy_async_callback,
         slot_copy);
   }
 
   auto
   FileDialog::select_multiple_folders (
-      const Gio::SlotAsyncReady& slot,
-      const Glib::RefPtr<Gio::Cancellable>& cancellable) const -> void
+      const gio::SlotAsyncReady& slot,
+      const glib::RefPtr<gio::Cancellable>& cancellable) const -> void
   {
-    auto slot_copy = new Gio::SlotAsyncReady (slot);
+    auto slot_copy = new gio::SlotAsyncReady (slot);
 
     gtk_file_dialog_select_multiple_folders (
         const_cast<GtkFileDialog*> (gobj ()),
         nullptr,
-        const_cast<GCancellable*> (Glib::unwrap (cancellable)),
-        &Gio::SignalProxy_async_callback,
+        const_cast<GCancellable*> (glib::unwrap (cancellable)),
+        &gio::SignalProxy_async_callback,
         slot_copy);
   }
 
   auto
   FileDialog::select_multiple_folders_finish (
-      const Glib::RefPtr<Gio::AsyncResult>& result) const -> Glib::RefPtr<Gio::ListModel>
+      const glib::RefPtr<gio::AsyncResult>& result) const -> glib::RefPtr<gio::ListModel>
   {
     GError* gerror = nullptr;
-    auto retvalue = Glib::wrap (gtk_file_dialog_select_multiple_folders_finish (
+    auto retvalue = glib::wrap (gtk_file_dialog_select_multiple_folders_finish (
         const_cast<GtkFileDialog*> (gobj ()),
-        Glib::unwrap (result),
+        glib::unwrap (result),
         &(gerror)));
     if (gerror)
-      ::Glib::Error::throw_exception (gerror);
+      ::glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
   auto
-  FileDialog::property_title () -> Glib::PropertyProxy<Glib::ustring>
+  FileDialog::property_title () -> glib::PropertyProxy<glib::ustring>
   {
-    return Glib::PropertyProxy<Glib::ustring> (this, "title");
+    return glib::PropertyProxy<glib::ustring> (this, "title");
   }
 
   auto
-  FileDialog::property_title () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>
+  FileDialog::property_title () const -> glib::PropertyProxy_ReadOnly<glib::ustring>
   {
-    return Glib::PropertyProxy_ReadOnly<Glib::ustring> (this, "title");
+    return glib::PropertyProxy_ReadOnly<glib::ustring> (this, "title");
   }
 
   auto
-  FileDialog::property_modal () -> Glib::PropertyProxy<bool>
+  FileDialog::property_modal () -> glib::PropertyProxy<bool>
   {
-    return Glib::PropertyProxy<bool> (this, "modal");
+    return glib::PropertyProxy<bool> (this, "modal");
   }
 
   auto
-  FileDialog::property_modal () const -> Glib::PropertyProxy_ReadOnly<bool>
+  FileDialog::property_modal () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "modal");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "modal");
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<
-          Glib::RefPtr<Gio::ListModel>>::value,
-      "Type Glib::RefPtr<Gio::ListModel> cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      glib::Traits::ValueCompatibleWithWrapProperty<
+          glib::RefPtr<gio::ListModel>>::value,
+      "Type glib::RefPtr<gio::ListModel> cannot be used in _WRAP_PROPERTY. "
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  FileDialog::property_filters () -> Glib::PropertyProxy<Glib::RefPtr<Gio::ListModel>>
+  FileDialog::property_filters () -> glib::PropertyProxy<glib::RefPtr<gio::ListModel>>
   {
-    return Glib::PropertyProxy<Glib::RefPtr<Gio::ListModel>> (this, "filters");
+    return glib::PropertyProxy<glib::RefPtr<gio::ListModel>> (this, "filters");
   }
 
   auto
-  FileDialog::property_filters () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gio::ListModel>>
+  FileDialog::property_filters () const -> glib::PropertyProxy_ReadOnly<glib::RefPtr<gio::ListModel>>
   {
-    return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gio::ListModel>> (
+    return glib::PropertyProxy_ReadOnly<glib::RefPtr<gio::ListModel>> (
         this,
         "filters");
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<
-          Glib::RefPtr<FileFilter>>::value,
-      "Type Glib::RefPtr<FileFilter> cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      glib::Traits::ValueCompatibleWithWrapProperty<
+          glib::RefPtr<FileFilter>>::value,
+      "Type glib::RefPtr<FileFilter> cannot be used in _WRAP_PROPERTY. "
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  FileDialog::property_default_filter () -> Glib::PropertyProxy<Glib::RefPtr<FileFilter>>
+  FileDialog::property_default_filter () -> glib::PropertyProxy<glib::RefPtr<FileFilter>>
   {
-    return Glib::PropertyProxy<Glib::RefPtr<FileFilter>> (this,
+    return glib::PropertyProxy<glib::RefPtr<FileFilter>> (this,
                                                           "default-filter");
   }
 
   auto
-  FileDialog::property_default_filter () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<FileFilter>>
+  FileDialog::property_default_filter () const -> glib::PropertyProxy_ReadOnly<glib::RefPtr<FileFilter>>
   {
-    return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<FileFilter>> (
+    return glib::PropertyProxy_ReadOnly<glib::RefPtr<FileFilter>> (
         this,
         "default-filter");
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<
-          Glib::RefPtr<Gio::File>>::value,
-      "Type Glib::RefPtr<Gio::File> cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      glib::Traits::ValueCompatibleWithWrapProperty<
+          glib::RefPtr<gio::File>>::value,
+      "Type glib::RefPtr<gio::File> cannot be used in _WRAP_PROPERTY. "
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  FileDialog::property_initial_file () -> Glib::PropertyProxy<Glib::RefPtr<Gio::File>>
+  FileDialog::property_initial_file () -> glib::PropertyProxy<glib::RefPtr<gio::File>>
   {
-    return Glib::PropertyProxy<Glib::RefPtr<Gio::File>> (this, "initial-file");
+    return glib::PropertyProxy<glib::RefPtr<gio::File>> (this, "initial-file");
   }
 
   auto
-  FileDialog::property_initial_file () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gio::File>>
+  FileDialog::property_initial_file () const -> glib::PropertyProxy_ReadOnly<glib::RefPtr<gio::File>>
   {
-    return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gio::File>> (
+    return glib::PropertyProxy_ReadOnly<glib::RefPtr<gio::File>> (
         this,
         "initial-file");
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<
-          Glib::RefPtr<Gio::File>>::value,
-      "Type Glib::RefPtr<Gio::File> cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      glib::Traits::ValueCompatibleWithWrapProperty<
+          glib::RefPtr<gio::File>>::value,
+      "Type glib::RefPtr<gio::File> cannot be used in _WRAP_PROPERTY. "
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  FileDialog::property_initial_folder () -> Glib::PropertyProxy<Glib::RefPtr<Gio::File>>
+  FileDialog::property_initial_folder () -> glib::PropertyProxy<glib::RefPtr<gio::File>>
   {
-    return Glib::PropertyProxy<Glib::RefPtr<Gio::File>> (this,
+    return glib::PropertyProxy<glib::RefPtr<gio::File>> (this,
                                                          "initial-folder");
   }
 
   auto
-  FileDialog::property_initial_folder () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gio::File>>
+  FileDialog::property_initial_folder () const -> glib::PropertyProxy_ReadOnly<glib::RefPtr<gio::File>>
   {
-    return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gio::File>> (
+    return glib::PropertyProxy_ReadOnly<glib::RefPtr<gio::File>> (
         this,
         "initial-folder");
   }
 
   auto
-  FileDialog::property_initial_name () -> Glib::PropertyProxy<std::string>
+  FileDialog::property_initial_name () -> glib::PropertyProxy<std::string>
   {
-    return Glib::PropertyProxy<std::string> (this, "initial-name");
+    return glib::PropertyProxy<std::string> (this, "initial-name");
   }
 
   auto
-  FileDialog::property_initial_name () const -> Glib::PropertyProxy_ReadOnly<std::string>
+  FileDialog::property_initial_name () const -> glib::PropertyProxy_ReadOnly<std::string>
   {
-    return Glib::PropertyProxy_ReadOnly<std::string> (this, "initial-name");
+    return glib::PropertyProxy_ReadOnly<std::string> (this, "initial-name");
   }
 
   auto
-  FileDialog::property_accept_label () -> Glib::PropertyProxy<Glib::ustring>
+  FileDialog::property_accept_label () -> glib::PropertyProxy<glib::ustring>
   {
-    return Glib::PropertyProxy<Glib::ustring> (this, "accept-label");
+    return glib::PropertyProxy<glib::ustring> (this, "accept-label");
   }
 
   auto
-  FileDialog::property_accept_label () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>
+  FileDialog::property_accept_label () const -> glib::PropertyProxy_ReadOnly<glib::ustring>
   {
-    return Glib::PropertyProxy_ReadOnly<Glib::ustring> (this, "accept-label");
+    return glib::PropertyProxy_ReadOnly<glib::ustring> (this, "accept-label");
   }
 
-} // namespace Gtk
+} // namespace gtk

@@ -15,13 +15,13 @@
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT DropDown_Class;
 }
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
   class LIBMM_GTK_SYMEXPORT DropDown : public Widget
@@ -51,7 +51,7 @@ namespace Gtk
     static CppClassType dropdown_class_;
 
   protected:
-    explicit DropDown (const Glib::ConstructParams& construct_params);
+    explicit DropDown (const glib::ConstructParams& construct_params);
     explicit DropDown (GtkDropDown* castitem);
 
 #endif
@@ -81,19 +81,19 @@ namespace Gtk
   private:
   public:
     explicit DropDown (
-        const Glib::RefPtr<Gio::ListModel>& model = {},
-        const Glib::RefPtr<Expression<Glib::ustring>>& expression = {});
+        const glib::RefPtr<gio::ListModel>& model = {},
+        const glib::RefPtr<Expression<glib::ustring>>& expression = {});
 
-    explicit DropDown (const std::vector<Glib::ustring>& strings);
-
-    auto
-    set_model (const Glib::RefPtr<Gio::ListModel>& model) -> void;
+    explicit DropDown (const std::vector<glib::ustring>& strings);
 
     auto
-    get_model () -> Glib::RefPtr<Gio::ListModel>;
+    set_model (const glib::RefPtr<gio::ListModel>& model) -> void;
 
     auto
-    get_model () const -> Glib::RefPtr<const Gio::ListModel>;
+    get_model () -> glib::RefPtr<gio::ListModel>;
+
+    auto
+    get_model () const -> glib::RefPtr<const gio::ListModel>;
 
     auto
     set_selected (guint position) -> void;
@@ -102,38 +102,38 @@ namespace Gtk
     get_selected () const -> guint;
 
     auto
-    get_selected_item () -> Glib::RefPtr<Glib::ObjectBase>;
+    get_selected_item () -> glib::RefPtr<glib::ObjectBase>;
 
     auto
-    get_selected_item () const -> Glib::RefPtr<const Glib::ObjectBase>;
+    get_selected_item () const -> glib::RefPtr<const glib::ObjectBase>;
 
     auto
-    set_factory (const Glib::RefPtr<ListItemFactory>& factory) -> void;
+    set_factory (const glib::RefPtr<ListItemFactory>& factory) -> void;
 
     auto
-    get_factory () -> Glib::RefPtr<ListItemFactory>;
+    get_factory () -> glib::RefPtr<ListItemFactory>;
 
     auto
-    get_factory () const -> Glib::RefPtr<const ListItemFactory>;
+    get_factory () const -> glib::RefPtr<const ListItemFactory>;
 
     auto
-    set_list_factory (const Glib::RefPtr<ListItemFactory>& factory) -> void;
+    set_list_factory (const glib::RefPtr<ListItemFactory>& factory) -> void;
 
     auto
-    get_list_factory () -> Glib::RefPtr<ListItemFactory>;
+    get_list_factory () -> glib::RefPtr<ListItemFactory>;
 
     auto
-    get_list_factory () const -> Glib::RefPtr<const ListItemFactory>;
+    get_list_factory () const -> glib::RefPtr<const ListItemFactory>;
 
     auto
-    set_expression (const Glib::RefPtr<Expression<Glib::ustring>>& expression)
+    set_expression (const glib::RefPtr<Expression<glib::ustring>>& expression)
         -> void;
 
     auto
-    get_expression () -> Glib::RefPtr<Expression<Glib::ustring>>;
+    get_expression () -> glib::RefPtr<Expression<glib::ustring>>;
 
     auto
-    get_expression () const -> Glib::RefPtr<const Expression<Glib::ustring>>;
+    get_expression () const -> glib::RefPtr<const Expression<glib::ustring>>;
 
     auto
     set_enable_search (bool enable_search = true) -> void;
@@ -148,68 +148,68 @@ namespace Gtk
     set_show_arrow () const -> bool;
 
     auto
-    property_factory () -> Glib::PropertyProxy<Glib::RefPtr<ListItemFactory>>;
+    property_factory () -> glib::PropertyProxy<glib::RefPtr<ListItemFactory>>;
 
     auto
     property_factory () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<ListItemFactory>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<ListItemFactory>>;
 
     auto
     property_list_factory ()
-        -> Glib::PropertyProxy<Glib::RefPtr<ListItemFactory>>;
+        -> glib::PropertyProxy<glib::RefPtr<ListItemFactory>>;
 
     auto
     property_list_factory () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<ListItemFactory>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<ListItemFactory>>;
 
     auto
-    property_model () -> Glib::PropertyProxy<Glib::RefPtr<Gio::ListModel>>;
+    property_model () -> glib::PropertyProxy<glib::RefPtr<gio::ListModel>>;
 
     auto
     property_model () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gio::ListModel>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<gio::ListModel>>;
 
     auto
-    property_selected () -> Glib::PropertyProxy<guint>;
+    property_selected () -> glib::PropertyProxy<guint>;
 
     auto
-    property_selected () const -> Glib::PropertyProxy_ReadOnly<guint>;
+    property_selected () const -> glib::PropertyProxy_ReadOnly<guint>;
 
     auto
     property_selected_item () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Glib::ObjectBase>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<glib::ObjectBase>>;
 
     auto
-    property_enable_search () -> Glib::PropertyProxy<bool>;
+    property_enable_search () -> glib::PropertyProxy<bool>;
 
     auto
-    property_enable_search () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_enable_search () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
     property_expression ()
-        -> Glib::PropertyProxy<Glib::RefPtr<Expression<Glib::ustring>>>;
+        -> glib::PropertyProxy<glib::RefPtr<Expression<glib::ustring>>>;
 
     auto
-    property_expression () const -> Glib::PropertyProxy_ReadOnly<
-        Glib::RefPtr<Expression<Glib::ustring>>>;
+    property_expression () const -> glib::PropertyProxy_ReadOnly<
+        glib::RefPtr<Expression<glib::ustring>>>;
 
     auto
-    property_show_arrow () -> Glib::PropertyProxy<bool>;
+    property_show_arrow () -> glib::PropertyProxy<bool>;
 
     auto
-    property_show_arrow () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_show_arrow () const -> glib::PropertyProxy_ReadOnly<bool>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkDropDown* object, bool take_copy = false) -> Gtk::DropDown*;
-} // namespace Glib
+  wrap (GtkDropDown* object, bool take_copy = false) -> gtk::DropDown*;
+} // namespace glib
 
 #endif

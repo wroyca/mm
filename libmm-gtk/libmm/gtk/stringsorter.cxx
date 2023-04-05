@@ -12,29 +12,29 @@ namespace
 }
 
 auto
-Glib::Value<Gtk::Collation>::value_type () -> GType
+glib::Value<gtk::Collation>::value_type () -> GType
 {
   return gtk_collation_get_type ();
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GtkStringSorter* object, bool take_copy) -> Glib::RefPtr<Gtk::StringSorter>
+  wrap (GtkStringSorter* object, bool take_copy) -> glib::RefPtr<gtk::StringSorter>
   {
-    return Glib::make_refptr_for_instance<Gtk::StringSorter> (
-        dynamic_cast<Gtk::StringSorter*> (
-            Glib::wrap_auto ((GObject*) (object), take_copy)));
+    return glib::make_refptr_for_instance<gtk::StringSorter> (
+        dynamic_cast<gtk::StringSorter*> (
+            glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gtk
+namespace gtk
 {
 
   auto
-  StringSorter_Class::init () -> const Glib::Class&
+  StringSorter_Class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -54,7 +54,7 @@ namespace Gtk
   }
 
   auto
-  StringSorter_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  StringSorter_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new StringSorter ((GtkStringSorter*) object);
   }
@@ -66,25 +66,25 @@ namespace Gtk
     return gobj ();
   }
 
-  StringSorter::StringSorter (const Glib::ConstructParams& construct_params)
-    : Gtk::Sorter (construct_params)
+  StringSorter::StringSorter (const glib::ConstructParams& construct_params)
+    : gtk::Sorter (construct_params)
   {
   }
 
   StringSorter::StringSorter (GtkStringSorter* castitem)
-    : Gtk::Sorter ((GtkSorter*) (castitem))
+    : gtk::Sorter ((GtkSorter*) (castitem))
   {
   }
 
   StringSorter::StringSorter (StringSorter&& src) noexcept
-    : Gtk::Sorter (std::move (src))
+    : gtk::Sorter (std::move (src))
   {
   }
 
   auto
   StringSorter::operator= (StringSorter&& src) noexcept -> StringSorter&
   {
-    Gtk::Sorter::operator= (std::move (src));
+    gtk::Sorter::operator= (std::move (src));
     return *this;
   }
 
@@ -105,9 +105,9 @@ namespace Gtk
   }
 
   StringSorter::StringSorter (
-      const Glib::RefPtr<Expression<Glib::ustring>>& expression)
-    : Glib::ObjectBase (nullptr),
-      Gtk::Sorter (Glib::ConstructParams (
+      const glib::RefPtr<Expression<glib::ustring>>& expression)
+    : glib::ObjectBase (nullptr),
+      gtk::Sorter (glib::ConstructParams (
           stringsorter_class_.init (),
           "expression",
           ((expression) ? (expression)->gobj () : nullptr),
@@ -117,27 +117,27 @@ namespace Gtk
 
   auto
   StringSorter::create (
-      const Glib::RefPtr<Expression<Glib::ustring>>& expression) -> Glib::RefPtr<StringSorter>
+      const glib::RefPtr<Expression<glib::ustring>>& expression) -> glib::RefPtr<StringSorter>
   {
-    return Glib::make_refptr_for_instance<StringSorter> (
+    return glib::make_refptr_for_instance<StringSorter> (
         new StringSorter (expression));
   }
 
   auto
-  StringSorter::get_expression () -> Glib::RefPtr<Expression<Glib::ustring>>
+  StringSorter::get_expression () -> glib::RefPtr<Expression<glib::ustring>>
   {
     auto retvalue =
-        Glib::wrap<Glib::ustring> (gtk_string_sorter_get_expression (gobj ()));
+        glib::wrap<glib::ustring> (gtk_string_sorter_get_expression (gobj ()));
     if (retvalue)
       retvalue->reference ();
     return retvalue;
   }
 
   auto
-  StringSorter::get_expression () const -> Glib::RefPtr<const Expression<Glib::ustring>>
+  StringSorter::get_expression () const -> glib::RefPtr<const Expression<glib::ustring>>
   {
     auto retvalue =
-        Glib::wrap<Glib::ustring> (gtk_string_sorter_get_expression (
+        glib::wrap<glib::ustring> (gtk_string_sorter_get_expression (
             const_cast<GtkStringSorter*> (gobj ())));
     if (retvalue)
       retvalue->reference ();
@@ -146,7 +146,7 @@ namespace Gtk
 
   auto
   StringSorter::set_expression (
-      const Glib::RefPtr<Expression<Glib::ustring>>& expression) -> void
+      const glib::RefPtr<Expression<glib::ustring>>& expression) -> void
   {
     gtk_string_sorter_set_expression (
         gobj (),
@@ -181,54 +181,54 @@ namespace Gtk
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<
-          Glib::RefPtr<Expression<Glib::ustring>>>::value,
-      "Type Glib::RefPtr<Expression<Glib::ustring>> cannot be used in "
+      glib::Traits::ValueCompatibleWithWrapProperty<
+          glib::RefPtr<Expression<glib::ustring>>>::value,
+      "Type glib::RefPtr<Expression<glib::ustring>> cannot be used in "
       "_WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  StringSorter::property_expression () -> Glib::PropertyProxy<Glib::RefPtr<Expression<Glib::ustring>>>
+  StringSorter::property_expression () -> glib::PropertyProxy<glib::RefPtr<Expression<glib::ustring>>>
   {
-    return Glib::PropertyProxy<Glib::RefPtr<Expression<Glib::ustring>>> (
+    return glib::PropertyProxy<glib::RefPtr<Expression<glib::ustring>>> (
         this,
         "expression");
   }
 
   auto
-  StringSorter::property_expression () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Expression<Glib::ustring>>>
+  StringSorter::property_expression () const -> glib::PropertyProxy_ReadOnly<glib::RefPtr<Expression<glib::ustring>>>
   {
-    return Glib::PropertyProxy_ReadOnly<
-        Glib::RefPtr<Expression<Glib::ustring>>> (this, "expression");
+    return glib::PropertyProxy_ReadOnly<
+        glib::RefPtr<Expression<glib::ustring>>> (this, "expression");
   }
 
   auto
-  StringSorter::property_ignore_case () -> Glib::PropertyProxy<bool>
+  StringSorter::property_ignore_case () -> glib::PropertyProxy<bool>
   {
-    return Glib::PropertyProxy<bool> (this, "ignore-case");
+    return glib::PropertyProxy<bool> (this, "ignore-case");
   }
 
   auto
-  StringSorter::property_ignore_case () const -> Glib::PropertyProxy_ReadOnly<bool>
+  StringSorter::property_ignore_case () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "ignore-case");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "ignore-case");
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<Collation>::value,
+      glib::Traits::ValueCompatibleWithWrapProperty<Collation>::value,
       "Type Collation cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  StringSorter::property_collation () -> Glib::PropertyProxy<Collation>
+  StringSorter::property_collation () -> glib::PropertyProxy<Collation>
   {
-    return Glib::PropertyProxy<Collation> (this, "collation");
+    return glib::PropertyProxy<Collation> (this, "collation");
   }
 
   auto
-  StringSorter::property_collation () const -> Glib::PropertyProxy_ReadOnly<Collation>
+  StringSorter::property_collation () const -> glib::PropertyProxy_ReadOnly<Collation>
   {
-    return Glib::PropertyProxy_ReadOnly<Collation> (this, "collation");
+    return glib::PropertyProxy_ReadOnly<Collation> (this, "collation");
   }
 
-} // namespace Gtk
+} // namespace gtk

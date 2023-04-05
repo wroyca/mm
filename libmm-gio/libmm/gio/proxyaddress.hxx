@@ -14,13 +14,13 @@ using GProxyAddressClass = struct _GProxyAddressClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gio
+namespace gio
 {
   class LIBMM_GIO_SYMEXPORT ProxyAddress_Class;
 }
 #endif
 
-namespace Gio
+namespace gio
 {
 
   class LIBMM_GIO_SYMEXPORT ProxyAddress : public InetSocketAddress
@@ -42,7 +42,7 @@ namespace Gio
     static CppClassType proxyaddress_class_;
 
   protected:
-    explicit ProxyAddress (const Glib::ConstructParams& construct_params);
+    explicit ProxyAddress (const glib::ConstructParams& construct_params);
     explicit ProxyAddress (GProxyAddress* castitem);
 
 #endif
@@ -80,81 +80,81 @@ namespace Gio
 
   private:
   protected:
-    explicit ProxyAddress (const Glib::RefPtr<InetAddress>& address,
+    explicit ProxyAddress (const glib::RefPtr<InetAddress>& address,
                            guint16 port,
-                           const Glib::ustring& protocol,
-                           const Glib::ustring& destination_hostname,
+                           const glib::ustring& protocol,
+                           const glib::ustring& destination_hostname,
                            guint16 destination_port,
-                           const Glib::ustring& username = {},
-                           const Glib::ustring& password = {});
+                           const glib::ustring& username = {},
+                           const glib::ustring& password = {});
 
   public:
     static auto
-    create (const Glib::RefPtr<InetAddress>& address,
+    create (const glib::RefPtr<InetAddress>& address,
             guint16 port,
-            const Glib::ustring& protocol,
-            const Glib::ustring& destination_hostname,
+            const glib::ustring& protocol,
+            const glib::ustring& destination_hostname,
             guint16 destination_port,
-            const Glib::ustring& username = {},
-            const Glib::ustring& password = {}) -> Glib::RefPtr<ProxyAddress>;
+            const glib::ustring& username = {},
+            const glib::ustring& password = {}) -> glib::RefPtr<ProxyAddress>;
 
     auto
-    get_protocol () const -> Glib::ustring;
+    get_protocol () const -> glib::ustring;
 
     auto
-    get_destination_protocol () const -> Glib::ustring;
+    get_destination_protocol () const -> glib::ustring;
 
     auto
-    get_destination_hostname () const -> Glib::ustring;
+    get_destination_hostname () const -> glib::ustring;
 
     auto
     get_destination_port () const -> guint16;
 
     auto
-    get_username () const -> Glib::ustring;
+    get_username () const -> glib::ustring;
 
     auto
-    get_password () const -> Glib::ustring;
+    get_password () const -> glib::ustring;
 
     auto
-    get_uri () const -> Glib::ustring;
+    get_uri () const -> glib::ustring;
 
     auto
-    property_protocol () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+    property_protocol () const -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
     auto
     property_destination_protocol () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+        -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
     auto
     property_destination_hostname () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+        -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
     auto
-    property_destination_port () const -> Glib::PropertyProxy_ReadOnly<guint>;
+    property_destination_port () const -> glib::PropertyProxy_ReadOnly<guint>;
 
     auto
-    property_username () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+    property_username () const -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
     auto
-    property_password () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+    property_password () const -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
     auto
-    property_uri () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+    property_uri () const -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gio
+} // namespace gio
 
-namespace Glib
+namespace glib
 {
 
   LIBMM_GIO_SYMEXPORT
   auto
-  wrap (GProxyAddress* object, bool take_copy = false) -> Glib::RefPtr<Gio::ProxyAddress>;
-} // namespace Glib
+  wrap (GProxyAddress* object, bool take_copy = false) -> glib::RefPtr<gio::ProxyAddress>;
+} // namespace glib
 
 #endif

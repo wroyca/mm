@@ -16,13 +16,13 @@ using GtkCellRendererSpinClass = struct _GtkCellRendererSpinClass;
   #endif
 
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT CellRendererSpin_Class;
 }
   #endif
 
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT Adjustment;
 
@@ -53,7 +53,7 @@ namespace Gtk
     static CppClassType cellrendererspin_class_;
 
   protected:
-    explicit CellRendererSpin (const Glib::ConstructParams& construct_params);
+    explicit CellRendererSpin (const glib::ConstructParams& construct_params);
     explicit CellRendererSpin (GtkCellRendererSpin* castitem);
 
   #endif
@@ -85,39 +85,39 @@ namespace Gtk
     CellRendererSpin ();
 
     auto
-    property_adjustment () -> Glib::PropertyProxy<Glib::RefPtr<Adjustment>>;
+    property_adjustment () -> glib::PropertyProxy<glib::RefPtr<Adjustment>>;
 
     auto
     property_adjustment () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Adjustment>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<Adjustment>>;
 
     auto
-    property_climb_rate () -> Glib::PropertyProxy<double>;
+    property_climb_rate () -> glib::PropertyProxy<double>;
 
     auto
-    property_climb_rate () const -> Glib::PropertyProxy_ReadOnly<double>;
+    property_climb_rate () const -> glib::PropertyProxy_ReadOnly<double>;
 
     auto
-    property_digits () -> Glib::PropertyProxy<guint>;
+    property_digits () -> glib::PropertyProxy<guint>;
 
     auto
-    property_digits () const -> Glib::PropertyProxy_ReadOnly<guint>;
+    property_digits () const -> glib::PropertyProxy_ReadOnly<guint>;
 
     auto
-    _property_renderable () -> Glib::PropertyProxy_Base override;
+    _property_renderable () -> glib::PropertyProxy_Base override;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkCellRendererSpin* object, bool take_copy = false) -> Gtk::CellRendererSpin*;
-} // namespace Glib
+  wrap (GtkCellRendererSpin* object, bool take_copy = false) -> gtk::CellRendererSpin*;
+} // namespace glib
 
 #endif
 

@@ -22,25 +22,25 @@ using GActionGroupClass = struct _GActionGroupClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gio
+namespace gio
 {
   class LIBMM_GIO_SYMEXPORT ActionGroup_Class;
 }
 #endif
 
-namespace Glib
+namespace glib
 {
 
   class LIBMM_GIO_SYMEXPORT VariantBase;
   class LIBMM_GIO_SYMEXPORT VariantContainerBase;
   class LIBMM_GIO_SYMEXPORT VariantType;
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gio
+namespace gio
 {
 
-  class LIBMM_GIO_SYMEXPORT ActionGroup : public Glib::Interface
+  class LIBMM_GIO_SYMEXPORT ActionGroup : public glib::Interface
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -64,7 +64,7 @@ namespace Gio
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
-    explicit ActionGroup (const Glib::Interface_Class& interface_class);
+    explicit ActionGroup (const glib::Interface_Class& interface_class);
 
   public:
     explicit ActionGroup (GActionGroup* castitem);
@@ -105,194 +105,194 @@ namespace Gio
   private:
   public:
     auto
-    has_action (const Glib::ustring& action_name) const -> bool;
+    has_action (const glib::ustring& action_name) const -> bool;
 
     auto
-    list_actions () const -> std::vector<Glib::ustring>;
+    list_actions () const -> std::vector<glib::ustring>;
 
     auto
-    query_action (const Glib::ustring& action_name,
+    query_action (const glib::ustring& action_name,
                   bool& enabled,
-                  Glib::VariantType& parameter_type,
-                  Glib::VariantBase& state_hint,
-                  Glib::VariantType& state_type,
-                  Glib::VariantBase& state) -> bool;
+                  glib::VariantType& parameter_type,
+                  glib::VariantBase& state_hint,
+                  glib::VariantType& state_type,
+                  glib::VariantBase& state) -> bool;
 
     auto
-    query_action (const Glib::ustring& action_name,
+    query_action (const glib::ustring& action_name,
                   bool& enabled,
-                  Glib::VariantType& parameter_type,
-                  Glib::VariantBase& state_hint,
-                  Glib::VariantType& state_type) -> bool;
+                  glib::VariantType& parameter_type,
+                  glib::VariantBase& state_hint,
+                  glib::VariantType& state_type) -> bool;
 
     auto
-    query_action (const Glib::ustring& action_name,
+    query_action (const glib::ustring& action_name,
                   bool& enabled,
-                  Glib::VariantType& parameter_type,
-                  Glib::VariantBase& state_hint,
-                  Glib::VariantBase& state) -> bool;
+                  glib::VariantType& parameter_type,
+                  glib::VariantBase& state_hint,
+                  glib::VariantBase& state) -> bool;
 
     auto
-    query_action (const Glib::ustring& action_name,
+    query_action (const glib::ustring& action_name,
                   bool& enabled,
-                  Glib::VariantType& parameter_type,
-                  Glib::VariantBase& state_hint) -> bool;
+                  glib::VariantType& parameter_type,
+                  glib::VariantBase& state_hint) -> bool;
 
     auto
-    query_action (const Glib::ustring& action_name,
+    query_action (const glib::ustring& action_name,
                   bool& enabled,
-                  Glib::VariantBase& state_hint,
-                  Glib::VariantType& state_type,
-                  Glib::VariantBase& state) -> bool;
+                  glib::VariantBase& state_hint,
+                  glib::VariantType& state_type,
+                  glib::VariantBase& state) -> bool;
 
     auto
-    query_action (const Glib::ustring& action_name,
+    query_action (const glib::ustring& action_name,
                   bool& enabled,
-                  Glib::VariantBase& state_hint,
-                  Glib::VariantType& state_type) -> bool;
+                  glib::VariantBase& state_hint,
+                  glib::VariantType& state_type) -> bool;
 
     auto
-    query_action (const Glib::ustring& action_name,
+    query_action (const glib::ustring& action_name,
                   bool& enabled,
-                  Glib::VariantBase& state_hint,
-                  Glib::VariantBase& state) -> bool;
+                  glib::VariantBase& state_hint,
+                  glib::VariantBase& state) -> bool;
 
     auto
-    query_action (const Glib::ustring& action_name,
+    query_action (const glib::ustring& action_name,
                   bool& enabled,
-                  Glib::VariantBase& state_hint) -> bool;
+                  glib::VariantBase& state_hint) -> bool;
 
     auto
-    get_action_enabled (const Glib::ustring& action_name) const -> bool;
+    get_action_enabled (const glib::ustring& action_name) const -> bool;
 
     auto
-    get_action_parameter_type (const Glib::ustring& action_name) const
-        -> Glib::VariantType;
+    get_action_parameter_type (const glib::ustring& action_name) const
+        -> glib::VariantType;
 
     auto
-    get_action_state_type (const Glib::ustring& action_name) const
-        -> Glib::VariantType;
+    get_action_state_type (const glib::ustring& action_name) const
+        -> glib::VariantType;
 
     template <typename T_Value>
     auto
-    get_action_state_hint (const Glib::ustring& action_name,
+    get_action_state_hint (const glib::ustring& action_name,
                            T_Value& value) const -> void;
 
     auto
-    get_action_state_hint_variant (const Glib::ustring& action_name) const
-        -> Glib::VariantContainerBase;
+    get_action_state_hint_variant (const glib::ustring& action_name) const
+        -> glib::VariantContainerBase;
 
     template <typename T_Value>
     auto
-    get_action_state (const Glib::ustring& action_name, T_Value& value) const
+    get_action_state (const glib::ustring& action_name, T_Value& value) const
         -> void;
 
     auto
-    get_action_state_variant (const Glib::ustring& action_name) const
-        -> Glib::VariantBase;
+    get_action_state_variant (const glib::ustring& action_name) const
+        -> glib::VariantBase;
 
     auto
-    change_action_state (const Glib::ustring& action_name,
-                         const Glib::VariantBase& value) -> void;
+    change_action_state (const glib::ustring& action_name,
+                         const glib::VariantBase& value) -> void;
 
     auto
-    activate_action (const Glib::ustring& action_name,
-                     const Glib::VariantBase& parameter) -> void;
+    activate_action (const glib::ustring& action_name,
+                     const glib::VariantBase& parameter) -> void;
 
     auto
-    activate_action (const Glib::ustring& action_name) -> void;
+    activate_action (const glib::ustring& action_name) -> void;
 
     auto
-    action_added (const Glib::ustring& action_name) -> void;
+    action_added (const glib::ustring& action_name) -> void;
 
     auto
-    action_removed (const Glib::ustring& action_name) -> void;
+    action_removed (const glib::ustring& action_name) -> void;
 
     auto
-    action_enabled_changed (const Glib::ustring& action_name, bool enabled)
+    action_enabled_changed (const glib::ustring& action_name, bool enabled)
         -> void;
 
     auto
-    action_state_changed (const Glib::ustring& action_name,
-                          const Glib::VariantBase& state) -> void;
+    action_state_changed (const glib::ustring& action_name,
+                          const glib::VariantBase& state) -> void;
 
     auto
-    signal_action_added (const Glib::ustring& action_name = {})
-        -> Glib::SignalProxyDetailed<void (const Glib::ustring&)>;
+    signal_action_added (const glib::ustring& action_name = {})
+        -> glib::SignalProxyDetailed<void (const glib::ustring&)>;
 
     auto
-    signal_action_enabled_changed (const Glib::ustring& action_name = {})
-        -> Glib::SignalProxyDetailed<void (const Glib::ustring&, bool)>;
+    signal_action_enabled_changed (const glib::ustring& action_name = {})
+        -> glib::SignalProxyDetailed<void (const glib::ustring&, bool)>;
 
     auto
-    signal_action_removed (const Glib::ustring& action_name = {})
-        -> Glib::SignalProxyDetailed<void (const Glib::ustring&)>;
+    signal_action_removed (const glib::ustring& action_name = {})
+        -> glib::SignalProxyDetailed<void (const glib::ustring&)>;
 
     auto
-    signal_action_state_changed (const Glib::ustring& action_name = {})
-        -> Glib::SignalProxyDetailed<void (const Glib::ustring&,
-                                           const Glib::VariantBase&)>;
+    signal_action_state_changed (const glib::ustring& action_name = {})
+        -> glib::SignalProxyDetailed<void (const glib::ustring&,
+                                           const glib::VariantBase&)>;
 
   protected:
     virtual auto
-    has_action_vfunc (const Glib::ustring& name) const -> bool;
+    has_action_vfunc (const glib::ustring& name) const -> bool;
 
     virtual auto
-    list_actions_vfunc () const -> std::vector<Glib::ustring>;
+    list_actions_vfunc () const -> std::vector<glib::ustring>;
 
     virtual auto
-    get_action_enabled_vfunc (const Glib::ustring& name) const -> bool;
+    get_action_enabled_vfunc (const glib::ustring& name) const -> bool;
 
     virtual auto
-    get_action_parameter_type_vfunc (const Glib::ustring& name) const
-        -> Glib::VariantType;
+    get_action_parameter_type_vfunc (const glib::ustring& name) const
+        -> glib::VariantType;
 
     virtual auto
-    get_action_state_type_vfunc (const Glib::ustring& name) const
-        -> Glib::VariantType;
+    get_action_state_type_vfunc (const glib::ustring& name) const
+        -> glib::VariantType;
 
     virtual auto
-    get_action_state_hint_vfunc (const Glib::ustring& name) const
-        -> Glib::VariantBase;
+    get_action_state_hint_vfunc (const glib::ustring& name) const
+        -> glib::VariantBase;
 
     virtual auto
-    get_action_state_vfunc (const Glib::ustring& name) const
-        -> Glib::VariantBase;
+    get_action_state_vfunc (const glib::ustring& name) const
+        -> glib::VariantBase;
 
     virtual auto
-    change_action_state_vfunc (const Glib::ustring& name,
-                               const Glib::VariantBase& value) -> void;
+    change_action_state_vfunc (const glib::ustring& name,
+                               const glib::VariantBase& value) -> void;
 
     virtual auto
-    activate_action_vfunc (const Glib::ustring& name,
-                           const Glib::VariantBase& parameter) -> void;
+    activate_action_vfunc (const glib::ustring& name,
+                           const glib::VariantBase& parameter) -> void;
 
   public:
   public:
   protected:
     virtual auto
-    on_action_added (const Glib::ustring& action_name) -> void;
+    on_action_added (const glib::ustring& action_name) -> void;
 
     virtual auto
-    on_action_enabled_changed (const Glib::ustring& action_name, bool enabled)
+    on_action_enabled_changed (const glib::ustring& action_name, bool enabled)
         -> void;
 
     virtual auto
-    on_action_removed (const Glib::ustring& action_name) -> void;
+    on_action_removed (const glib::ustring& action_name) -> void;
 
     virtual auto
-    on_action_state_changed (const Glib::ustring& action_name,
-                             const Glib::VariantBase& value) -> void;
+    on_action_state_changed (const glib::ustring& action_name,
+                             const glib::VariantBase& value) -> void;
   };
 
   template <typename T_Value>
   auto
-  ActionGroup::get_action_state (const Glib::ustring& action_name,
+  ActionGroup::get_action_state (const glib::ustring& action_name,
                                  T_Value& value) const -> void
   {
     value = T_Value ();
 
-    using type_glib_variant = Glib::Variant<T_Value>;
+    using type_glib_variant = glib::Variant<T_Value>;
 
     g_return_if_fail (
         g_variant_type_equal (g_action_group_get_action_state_type (
@@ -309,12 +309,12 @@ namespace Gio
 
   template <typename T_Value>
   auto
-  ActionGroup::get_action_state_hint (const Glib::ustring& action_name,
+  ActionGroup::get_action_state_hint (const glib::ustring& action_name,
                                       T_Value& value) const -> void
   {
     value = T_Value ();
 
-    using type_glib_variant = Glib::Variant<T_Value>;
+    using type_glib_variant = glib::Variant<T_Value>;
 
     const auto variantBase = get_action_state_hint_variant (action_name);
 
@@ -326,15 +326,15 @@ namespace Gio
     value = variantDerived.get ();
   }
 
-} // namespace Gio
+} // namespace gio
 
-namespace Glib
+namespace glib
 {
 
   LIBMM_GIO_SYMEXPORT
   auto
-  wrap (GActionGroup* object, bool take_copy = false) -> Glib::RefPtr<Gio::ActionGroup>;
+  wrap (GActionGroup* object, bool take_copy = false) -> glib::RefPtr<gio::ActionGroup>;
 
-} // namespace Glib
+} // namespace glib
 
 #endif

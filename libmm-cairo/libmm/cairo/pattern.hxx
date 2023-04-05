@@ -7,7 +7,7 @@
 #include <libmm/cairo/enums.hxx>
 #include <libmm/cairo/surface.hxx>
 
-namespace Cairo
+namespace cairo
 {
   struct ColorStop
   {
@@ -244,6 +244,6 @@ namespace Cairo
             double radius1) -> RefPtr<RadialGradient>;
   };
 
-} // namespace Cairo
+} // namespace cairo
 
 #endif

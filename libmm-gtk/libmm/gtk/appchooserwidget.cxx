@@ -12,7 +12,7 @@
 
   #include <gtk/gtk.h>
 
-namespace Gtk
+namespace gtk
 {
 
 }
@@ -26,27 +26,27 @@ namespace
       GAppInfo* p0,
       void* data) -> void
   {
-    using namespace Gtk;
-    using SlotType = sigc::slot<void (const Glib::RefPtr<Gio::AppInfo>&)>;
+    using namespace gtk;
+    using SlotType = sigc::slot<void (const glib::RefPtr<gio::AppInfo>&)>;
 
     auto obj = dynamic_cast<AppChooserWidget*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
     {
       try
       {
-        if (const auto slot = Glib::SignalProxyNormal::data_to_slot (data))
-          (*static_cast<SlotType*> (slot)) (Glib::wrap (p0, true));
+        if (const auto slot = glib::SignalProxyNormal::data_to_slot (data))
+          (*static_cast<SlotType*> (slot)) (glib::wrap (p0, true));
       }
       catch (...)
       {
-        Glib::exception_handlers_invoke ();
+        glib::exception_handlers_invoke ();
       }
     }
   }
 
-  static const Glib::SignalProxyInfo
+  static const glib::SignalProxyInfo
       AppChooserWidget_signal_application_selected_info = {
           "application-selected",
           (GCallback) &AppChooserWidget_signal_application_selected_callback,
@@ -58,27 +58,27 @@ namespace
       GAppInfo* p0,
       void* data) -> void
   {
-    using namespace Gtk;
-    using SlotType = sigc::slot<void (const Glib::RefPtr<Gio::AppInfo>&)>;
+    using namespace gtk;
+    using SlotType = sigc::slot<void (const glib::RefPtr<gio::AppInfo>&)>;
 
     auto obj = dynamic_cast<AppChooserWidget*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
     {
       try
       {
-        if (const auto slot = Glib::SignalProxyNormal::data_to_slot (data))
-          (*static_cast<SlotType*> (slot)) (Glib::wrap (p0, true));
+        if (const auto slot = glib::SignalProxyNormal::data_to_slot (data))
+          (*static_cast<SlotType*> (slot)) (glib::wrap (p0, true));
       }
       catch (...)
       {
-        Glib::exception_handlers_invoke ();
+        glib::exception_handlers_invoke ();
       }
     }
   }
 
-  static const Glib::SignalProxyInfo
+  static const glib::SignalProxyInfo
       AppChooserWidget_signal_application_activated_info = {
           "application-activated",
           (GCallback) &AppChooserWidget_signal_application_activated_callback,
@@ -86,23 +86,23 @@ namespace
 
 } // namespace
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GtkAppChooserWidget* object, bool take_copy) -> Gtk::AppChooserWidget*
+  wrap (GtkAppChooserWidget* object, bool take_copy) -> gtk::AppChooserWidget*
   {
-    return dynamic_cast<Gtk::AppChooserWidget*> (
-        Glib::wrap_auto ((GObject*) (object), take_copy));
+    return dynamic_cast<gtk::AppChooserWidget*> (
+        glib::wrap_auto ((GObject*) (object), take_copy));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gtk
+namespace gtk
 {
 
   auto
-  AppChooserWidget_Class::init () -> const Glib::Class&
+  AppChooserWidget_Class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -124,13 +124,13 @@ namespace Gtk
   }
 
   auto
-  AppChooserWidget_Class::wrap_new (GObject* o) -> Glib::ObjectBase*
+  AppChooserWidget_Class::wrap_new (GObject* o) -> glib::ObjectBase*
   {
     return manage (new AppChooserWidget ((GtkAppChooserWidget*) (o)));
   }
 
   AppChooserWidget::AppChooserWidget (
-      const Glib::ConstructParams& construct_params)
+      const glib::ConstructParams& construct_params)
     : Widget (construct_params)
   {
   }
@@ -173,9 +173,9 @@ namespace Gtk
     return gtk_app_chooser_widget_get_type ();
   }
 
-  AppChooserWidget::AppChooserWidget (const Glib::ustring& content_type)
-    : Glib::ObjectBase (nullptr),
-      Widget (Glib::ConstructParams (appchooserwidget_class_.init (),
+  AppChooserWidget::AppChooserWidget (const glib::ustring& content_type)
+    : glib::ObjectBase (nullptr),
+      Widget (glib::ConstructParams (appchooserwidget_class_.init (),
                                      "content_type",
                                      content_type.c_str (),
                                      nullptr))
@@ -250,106 +250,106 @@ namespace Gtk
   }
 
   auto
-  AppChooserWidget::set_default_text (const Glib::ustring& text) -> void
+  AppChooserWidget::set_default_text (const glib::ustring& text) -> void
   {
     gtk_app_chooser_widget_set_default_text (gobj (), text.c_str ());
   }
 
   auto
-  AppChooserWidget::get_default_text () -> Glib::ustring
+  AppChooserWidget::get_default_text () -> glib::ustring
   {
-    return Glib::convert_const_gchar_ptr_to_ustring (
+    return glib::convert_const_gchar_ptr_to_ustring (
         gtk_app_chooser_widget_get_default_text (gobj ()));
   }
 
   auto
-  AppChooserWidget::signal_application_selected () -> Glib::SignalProxy<void (const Glib::RefPtr<Gio::AppInfo>&)>
+  AppChooserWidget::signal_application_selected () -> glib::SignalProxy<void (const glib::RefPtr<gio::AppInfo>&)>
   {
-    return Glib::SignalProxy<void (const Glib::RefPtr<Gio::AppInfo>&)> (
+    return glib::SignalProxy<void (const glib::RefPtr<gio::AppInfo>&)> (
         this,
         &AppChooserWidget_signal_application_selected_info);
   }
 
   auto
-  AppChooserWidget::signal_application_activated () -> Glib::SignalProxy<void (const Glib::RefPtr<Gio::AppInfo>&)>
+  AppChooserWidget::signal_application_activated () -> glib::SignalProxy<void (const glib::RefPtr<gio::AppInfo>&)>
   {
-    return Glib::SignalProxy<void (const Glib::RefPtr<Gio::AppInfo>&)> (
+    return glib::SignalProxy<void (const glib::RefPtr<gio::AppInfo>&)> (
         this,
         &AppChooserWidget_signal_application_activated_info);
   }
 
   auto
-  AppChooserWidget::property_show_default () -> Glib::PropertyProxy<bool>
+  AppChooserWidget::property_show_default () -> glib::PropertyProxy<bool>
   {
-    return Glib::PropertyProxy<bool> (this, "show-default");
+    return glib::PropertyProxy<bool> (this, "show-default");
   }
 
   auto
-  AppChooserWidget::property_show_default () const -> Glib::PropertyProxy_ReadOnly<bool>
+  AppChooserWidget::property_show_default () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "show-default");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "show-default");
   }
 
   auto
-  AppChooserWidget::property_show_recommended () -> Glib::PropertyProxy<bool>
+  AppChooserWidget::property_show_recommended () -> glib::PropertyProxy<bool>
   {
-    return Glib::PropertyProxy<bool> (this, "show-recommended");
+    return glib::PropertyProxy<bool> (this, "show-recommended");
   }
 
   auto
-  AppChooserWidget::property_show_recommended () const -> Glib::PropertyProxy_ReadOnly<bool>
+  AppChooserWidget::property_show_recommended () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "show-recommended");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "show-recommended");
   }
 
   auto
-  AppChooserWidget::property_show_fallback () -> Glib::PropertyProxy<bool>
+  AppChooserWidget::property_show_fallback () -> glib::PropertyProxy<bool>
   {
-    return Glib::PropertyProxy<bool> (this, "show-fallback");
+    return glib::PropertyProxy<bool> (this, "show-fallback");
   }
 
   auto
-  AppChooserWidget::property_show_fallback () const -> Glib::PropertyProxy_ReadOnly<bool>
+  AppChooserWidget::property_show_fallback () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "show-fallback");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "show-fallback");
   }
 
   auto
-  AppChooserWidget::property_show_other () -> Glib::PropertyProxy<bool>
+  AppChooserWidget::property_show_other () -> glib::PropertyProxy<bool>
   {
-    return Glib::PropertyProxy<bool> (this, "show-other");
+    return glib::PropertyProxy<bool> (this, "show-other");
   }
 
   auto
-  AppChooserWidget::property_show_other () const -> Glib::PropertyProxy_ReadOnly<bool>
+  AppChooserWidget::property_show_other () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "show-other");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "show-other");
   }
 
   auto
-  AppChooserWidget::property_show_all () -> Glib::PropertyProxy<bool>
+  AppChooserWidget::property_show_all () -> glib::PropertyProxy<bool>
   {
-    return Glib::PropertyProxy<bool> (this, "show-all");
+    return glib::PropertyProxy<bool> (this, "show-all");
   }
 
   auto
-  AppChooserWidget::property_show_all () const -> Glib::PropertyProxy_ReadOnly<bool>
+  AppChooserWidget::property_show_all () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "show-all");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "show-all");
   }
 
   auto
-  AppChooserWidget::property_default_text () -> Glib::PropertyProxy<Glib::ustring>
+  AppChooserWidget::property_default_text () -> glib::PropertyProxy<glib::ustring>
   {
-    return Glib::PropertyProxy<Glib::ustring> (this, "default-text");
+    return glib::PropertyProxy<glib::ustring> (this, "default-text");
   }
 
   auto
-  AppChooserWidget::property_default_text () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>
+  AppChooserWidget::property_default_text () const -> glib::PropertyProxy_ReadOnly<glib::ustring>
   {
-    return Glib::PropertyProxy_ReadOnly<Glib::ustring> (this, "default-text");
+    return glib::PropertyProxy_ReadOnly<glib::ustring> (this, "default-text");
   }
 
-} // namespace Gtk
+} // namespace gtk
 
 #endif

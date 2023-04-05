@@ -12,7 +12,7 @@
 #include <libmm/glib/convert.hxx>
 #include <libmm/glib/utility.hxx>
 
-namespace Glib
+namespace glib
 {
 
   Date::Date ()
@@ -334,7 +334,7 @@ namespace Glib
       }
     } while ((bufsize *= 2) <= 65536);
 
-    g_warning ("Glib::Date::format_string(): maximum size of strftime buffer "
+    g_warning ("glib::Date::format_string(): maximum size of strftime buffer "
                "exceeded, giving up");
 
     return {};
@@ -388,7 +388,7 @@ namespace Glib
     return g_date_valid_dmy (day, (GDateMonth) month, year);
   }
 
-} // namespace Glib
+} // namespace glib
 
 namespace
 {

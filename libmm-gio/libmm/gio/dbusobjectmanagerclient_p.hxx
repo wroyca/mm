@@ -7,20 +7,20 @@
 
 #include <libmm/glib/class.hxx>
 
-namespace Gio
+namespace gio
 {
 
   namespace DBus
   {
 
-    class LIBMM_GIO_SYMEXPORT ObjectManagerClient_Class : public Glib::Class
+    class LIBMM_GIO_SYMEXPORT ObjectManagerClient_Class : public glib::Class
     {
     public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
       using CppObjectType = ObjectManagerClient;
       using BaseObjectType = GDBusObjectManagerClient;
       using BaseClassType = GDBusObjectManagerClientClass;
-      using CppClassParent = Glib::Object_Class;
+      using CppClassParent = glib::Object_Class;
       using BaseClassParent = GObjectClass;
 
       friend class ObjectManagerClient;
@@ -33,7 +33,7 @@ namespace Gio
       class_init_function (void* g_class, void* class_data) -> void;
 
       static auto
-      wrap_new (GObject*) -> Glib::ObjectBase*;
+      wrap_new (GObject*) -> glib::ObjectBase*;
 
     protected:
       static auto
@@ -54,6 +54,6 @@ namespace Gio
 
   } // namespace DBus
 
-} // namespace Gio
+} // namespace gio
 
 #endif

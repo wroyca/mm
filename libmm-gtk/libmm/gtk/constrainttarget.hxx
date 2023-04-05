@@ -23,16 +23,16 @@ using GtkConstraintTargetClass = struct _GtkConstraintTargetClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT ConstraintTarget_Class;
 }
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
-  class LIBMM_GTK_SYMEXPORT ConstraintTarget : public Glib::Interface
+  class LIBMM_GTK_SYMEXPORT ConstraintTarget : public glib::Interface
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -56,7 +56,7 @@ namespace Gtk
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
-    explicit ConstraintTarget (const Glib::Interface_Class& interface_class);
+    explicit ConstraintTarget (const glib::Interface_Class& interface_class);
 
   public:
     explicit ConstraintTarget (GtkConstraintTarget* castitem);
@@ -101,13 +101,13 @@ namespace Gtk
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkConstraintTarget* object, bool take_copy = false) -> Glib::RefPtr<Gtk::ConstraintTarget>;
+  wrap (GtkConstraintTarget* object, bool take_copy = false) -> glib::RefPtr<gtk::ConstraintTarget>;
 
-} // namespace Glib
+} // namespace glib
 
 #endif

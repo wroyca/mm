@@ -10,16 +10,16 @@
 #include <libmm/glib/error.hxx>
 #include <libmm/glib/exceptionhandler.hxx>
 
-using SpliceFlags = Gio::OutputStream::SpliceFlags;
+using SpliceFlags = gio::OutputStream::SpliceFlags;
 
-namespace Gio
+namespace gio
 {
 
   auto
   OutputStream::write_async (const void* buffer,
                              const gsize count,
                              const SlotAsyncReady& slot,
-                             const Glib::RefPtr<Cancellable>& cancellable,
+                             const glib::RefPtr<Cancellable>& cancellable,
                              const int io_priority) -> void
   {
     const auto slot_copy = new SlotAsyncReady (slot);
@@ -28,7 +28,7 @@ namespace Gio
                                  buffer,
                                  count,
                                  io_priority,
-                                 Glib::unwrap (cancellable),
+                                 glib::unwrap (cancellable),
                                  &SignalProxy_async_callback,
                                  slot_copy);
   }
@@ -54,7 +54,7 @@ namespace Gio
   OutputStream::write_all_async (const void* buffer,
                                  const gsize count,
                                  const SlotAsyncReady& slot,
-                                 const Glib::RefPtr<Cancellable>& cancellable,
+                                 const glib::RefPtr<Cancellable>& cancellable,
                                  const int io_priority) -> void
   {
     const auto slot_copy = new SlotAsyncReady (slot);
@@ -63,7 +63,7 @@ namespace Gio
                                      buffer,
                                      count,
                                      io_priority,
-                                     Glib::unwrap (cancellable),
+                                     glib::unwrap (cancellable),
                                      &SignalProxy_async_callback,
                                      slot_copy);
   }
@@ -86,25 +86,25 @@ namespace Gio
   }
 
   auto
-  OutputStream::splice_async (const Glib::RefPtr<InputStream>& source,
+  OutputStream::splice_async (const glib::RefPtr<InputStream>& source,
                               const SlotAsyncReady& slot,
-                              const Glib::RefPtr<Cancellable>& cancellable,
+                              const glib::RefPtr<Cancellable>& cancellable,
                               SpliceFlags flags,
                               const int io_priority) -> void
   {
     const auto slot_copy = new SlotAsyncReady (slot);
 
     g_output_stream_splice_async (gobj (),
-                                  Glib::unwrap (source),
+                                  glib::unwrap (source),
                                   static_cast<GOutputStreamSpliceFlags> (flags),
                                   io_priority,
-                                  Glib::unwrap (cancellable),
+                                  glib::unwrap (cancellable),
                                   &SignalProxy_async_callback,
                                   slot_copy);
   }
 
   auto
-  OutputStream::splice_async (const Glib::RefPtr<InputStream>& source,
+  OutputStream::splice_async (const glib::RefPtr<InputStream>& source,
                               const SlotAsyncReady& slot,
                               SpliceFlags flags,
                               const int io_priority) -> void
@@ -112,7 +112,7 @@ namespace Gio
     const auto slot_copy = new SlotAsyncReady (slot);
 
     g_output_stream_splice_async (gobj (),
-                                  Glib::unwrap (source),
+                                  glib::unwrap (source),
                                   static_cast<GOutputStreamSpliceFlags> (flags),
                                   io_priority,
                                   nullptr,
@@ -122,14 +122,14 @@ namespace Gio
 
   auto
   OutputStream::flush_async (const SlotAsyncReady& slot,
-                             const Glib::RefPtr<Cancellable>& cancellable,
+                             const glib::RefPtr<Cancellable>& cancellable,
                              const int io_priority) -> void
   {
     const auto slot_copy = new SlotAsyncReady (slot);
 
     g_output_stream_flush_async (gobj (),
                                  io_priority,
-                                 Glib::unwrap (cancellable),
+                                 glib::unwrap (cancellable),
                                  &SignalProxy_async_callback,
                                  slot_copy);
   }
@@ -148,14 +148,14 @@ namespace Gio
 
   auto
   OutputStream::close_async (const SlotAsyncReady& slot,
-                             const Glib::RefPtr<Cancellable>& cancellable,
+                             const glib::RefPtr<Cancellable>& cancellable,
                              const int io_priority) -> void
   {
     const auto slot_copy = new SlotAsyncReady (slot);
 
     g_output_stream_close_async (gobj (),
                                  io_priority,
-                                 Glib::unwrap (cancellable),
+                                 glib::unwrap (cancellable),
                                  &SignalProxy_async_callback,
                                  slot_copy);
   }
@@ -174,16 +174,16 @@ namespace Gio
 
   auto
   OutputStream::write (const std::string& buffer,
-                       const Glib::RefPtr<Cancellable>& cancellable) -> gssize
+                       const glib::RefPtr<Cancellable>& cancellable) -> gssize
   {
     GError* gerror = nullptr;
     const gssize retvalue = g_output_stream_write (gobj (),
                                                    buffer.data (),
                                                    buffer.size (),
-                                                   Glib::unwrap (cancellable),
+                                                   glib::unwrap (cancellable),
                                                    &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
 
     return retvalue;
   }
@@ -198,7 +198,7 @@ namespace Gio
                                                    nullptr,
                                                    &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
 
     return retvalue;
   }
@@ -206,17 +206,17 @@ namespace Gio
   auto
   OutputStream::write_all (const std::string& buffer,
                            gsize& bytes_written,
-                           const Glib::RefPtr<Cancellable>& cancellable) -> bool
+                           const glib::RefPtr<Cancellable>& cancellable) -> bool
   {
     GError* gerror = nullptr;
     const bool retvalue = g_output_stream_write_all (gobj (),
                                                      buffer.data (),
                                                      buffer.size (),
                                                      &bytes_written,
-                                                     Glib::unwrap (cancellable),
+                                                     glib::unwrap (cancellable),
                                                      &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
 
     return retvalue;
   }
@@ -232,15 +232,15 @@ namespace Gio
                                                      nullptr,
                                                      &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
 
     return retvalue;
   }
 
   auto
-  OutputStream::write_bytes_async (const Glib::RefPtr<const Glib::Bytes>& bytes,
+  OutputStream::write_bytes_async (const glib::RefPtr<const glib::Bytes>& bytes,
                                    const SlotAsyncReady& slot,
-                                   const Glib::RefPtr<Cancellable>& cancellable,
+                                   const glib::RefPtr<Cancellable>& cancellable,
                                    const int io_priority) -> void
   {
     SlotAsyncReady* slot_copy = new SlotAsyncReady (slot);
@@ -248,13 +248,13 @@ namespace Gio
     g_output_stream_write_bytes_async (gobj (),
                                        const_cast<GBytes*> (unwrap (bytes)),
                                        io_priority,
-                                       Glib::unwrap (cancellable),
+                                       glib::unwrap (cancellable),
                                        &SignalProxy_async_callback,
                                        slot_copy);
   }
 
   auto
-  OutputStream::write_bytes_async (const Glib::RefPtr<const Glib::Bytes>& bytes,
+  OutputStream::write_bytes_async (const glib::RefPtr<const glib::Bytes>& bytes,
                                    const SlotAsyncReady& slot,
                                    const int io_priority) -> void
   {
@@ -269,60 +269,60 @@ namespace Gio
   }
 
   auto
-  OutputStream::splice (const Glib::RefPtr<InputStream>& source,
-                        const Glib::RefPtr<Cancellable>& cancellable,
+  OutputStream::splice (const glib::RefPtr<InputStream>& source,
+                        const glib::RefPtr<Cancellable>& cancellable,
                         SpliceFlags flags) -> gssize
   {
     GError* gerror = nullptr;
     const gssize retvalue = g_output_stream_splice (
         gobj (),
-        Glib::unwrap (source),
+        glib::unwrap (source),
         (GOutputStreamSpliceFlags) flags,
-        Glib::unwrap (cancellable),
+        glib::unwrap (cancellable),
         &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
 
     return retvalue;
   }
 
   auto
-  OutputStream::splice (const Glib::RefPtr<InputStream>& source,
+  OutputStream::splice (const glib::RefPtr<InputStream>& source,
                         SpliceFlags flags) -> gssize
   {
     GError* gerror = nullptr;
     const gssize retvalue = g_output_stream_splice (
         gobj (),
-        Glib::unwrap (source),
+        glib::unwrap (source),
         (GOutputStreamSpliceFlags) flags,
         nullptr,
         &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
 
     return retvalue;
   }
 
-} // namespace Gio
+} // namespace gio
 
 namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GOutputStream* object, const bool take_copy) -> RefPtr<Gio::OutputStream>
+  wrap (GOutputStream* object, const bool take_copy) -> RefPtr<gio::OutputStream>
   {
-    return Glib::make_refptr_for_instance<Gio::OutputStream> (
-        dynamic_cast<Gio::OutputStream*> (
+    return glib::make_refptr_for_instance<gio::OutputStream> (
+        dynamic_cast<gio::OutputStream*> (
             wrap_auto ((GObject*) object, take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gio
+namespace gio
 {
 
   auto
@@ -358,7 +358,7 @@ namespace Gio
                                                GError** error) -> gssize
   {
     const auto obj_base =
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self);
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self);
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -369,16 +369,16 @@ namespace Gio
         {
           return obj->write_vfunc (buffer,
                                    count,
-                                   Glib::wrap (cancellable, true));
+                                   glib::wrap (cancellable, true));
         }
-        catch (Glib::Error& errormm)
+        catch (glib::Error& errormm)
         {
           errormm.propagate (error);
           return -1;
         }
         catch (...)
         {
-          Glib::exception_handlers_invoke ();
+          glib::exception_handlers_invoke ();
         }
       }
     }
@@ -401,7 +401,7 @@ namespace Gio
                                              GError** error) -> gssize
   {
     const auto obj_base =
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self);
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self);
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -410,18 +410,18 @@ namespace Gio
       {
         try
         {
-          return obj->splice_vfunc (Glib::wrap (source, true),
-                                    Glib::wrap (cancellable, true),
+          return obj->splice_vfunc (glib::wrap (source, true),
+                                    glib::wrap (cancellable, true),
                                     static_cast<SpliceFlags> (flags));
         }
-        catch (Glib::Error& errormm)
+        catch (glib::Error& errormm)
         {
           errormm.propagate (error);
           return -1;
         }
         catch (...)
         {
-          Glib::exception_handlers_invoke ();
+          glib::exception_handlers_invoke ();
         }
       }
     }
@@ -442,7 +442,7 @@ namespace Gio
                                             GError** error) -> gboolean
   {
     const auto obj_base =
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self);
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self);
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -451,9 +451,9 @@ namespace Gio
       {
         try
         {
-          return obj->flush_vfunc (Glib::wrap (cancellable, true));
+          return obj->flush_vfunc (glib::wrap (cancellable, true));
         }
-        catch (Glib::Error& errormm)
+        catch (glib::Error& errormm)
         {
           errormm.propagate (error);
           using RType = gboolean;
@@ -461,7 +461,7 @@ namespace Gio
         }
         catch (...)
         {
-          Glib::exception_handlers_invoke ();
+          glib::exception_handlers_invoke ();
         }
       }
     }
@@ -482,7 +482,7 @@ namespace Gio
                                                GError** error) -> gboolean
   {
     const auto obj_base =
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self);
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self);
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -491,9 +491,9 @@ namespace Gio
       {
         try
         {
-          return obj->close_vfunc (Glib::wrap (cancellable, true));
+          return obj->close_vfunc (glib::wrap (cancellable, true));
         }
-        catch (Glib::Error& errormm)
+        catch (glib::Error& errormm)
         {
           errormm.propagate (error);
           using RType = gboolean;
@@ -501,7 +501,7 @@ namespace Gio
         }
         catch (...)
         {
-          Glib::exception_handlers_invoke ();
+          glib::exception_handlers_invoke ();
         }
       }
     }
@@ -517,7 +517,7 @@ namespace Gio
   }
 
   auto
-  OutputStream_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  OutputStream_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new OutputStream ((GOutputStream*) object);
   }
@@ -529,7 +529,7 @@ namespace Gio
     return gobj ();
   }
 
-  OutputStream::OutputStream (const Glib::ConstructParams& construct_params)
+  OutputStream::OutputStream (const glib::ConstructParams& construct_params)
     : Object (construct_params)
   {
   }
@@ -569,23 +569,23 @@ namespace Gio
 
   OutputStream::OutputStream ()
     : ObjectBase (nullptr),
-      Object (Glib::ConstructParams (outputstream_class_.init ()))
+      Object (glib::ConstructParams (outputstream_class_.init ()))
   {
   }
 
   auto
   OutputStream::write (const void* buffer,
                        const gsize count,
-                       const Glib::RefPtr<Cancellable>& cancellable) -> gssize
+                       const glib::RefPtr<Cancellable>& cancellable) -> gssize
   {
     GError* gerror = nullptr;
     const auto retvalue = g_output_stream_write (gobj (),
                                                  buffer,
                                                  count,
-                                                 Glib::unwrap (cancellable),
+                                                 glib::unwrap (cancellable),
                                                  &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
@@ -596,7 +596,7 @@ namespace Gio
     const auto retvalue =
         g_output_stream_write (gobj (), buffer, count, nullptr, &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
@@ -604,17 +604,17 @@ namespace Gio
   OutputStream::write_all (const void* buffer,
                            const gsize count,
                            gsize& bytes_written,
-                           const Glib::RefPtr<Cancellable>& cancellable) -> bool
+                           const glib::RefPtr<Cancellable>& cancellable) -> bool
   {
     GError* gerror = nullptr;
     const auto retvalue = g_output_stream_write_all (gobj (),
                                                      buffer,
                                                      count,
                                                      &bytes_written,
-                                                     Glib::unwrap (cancellable),
+                                                     glib::unwrap (cancellable),
                                                      &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
@@ -631,60 +631,60 @@ namespace Gio
                                                      nullptr,
                                                      &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
   auto
-  OutputStream::write_bytes (const Glib::RefPtr<const Glib::Bytes>& bytes,
-                             const Glib::RefPtr<Cancellable>& cancellable) -> gssize
+  OutputStream::write_bytes (const glib::RefPtr<const glib::Bytes>& bytes,
+                             const glib::RefPtr<Cancellable>& cancellable) -> gssize
   {
     GError* gerror = nullptr;
     const auto retvalue = g_output_stream_write_bytes (
         gobj (),
-        const_cast<GBytes*> (Glib::unwrap<Glib::Bytes> (bytes)),
-        Glib::unwrap (cancellable),
+        const_cast<GBytes*> (glib::unwrap<glib::Bytes> (bytes)),
+        glib::unwrap (cancellable),
         &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
   auto
-  OutputStream::write_bytes (const Glib::RefPtr<const Glib::Bytes>& bytes) -> gssize
+  OutputStream::write_bytes (const glib::RefPtr<const glib::Bytes>& bytes) -> gssize
   {
     GError* gerror = nullptr;
     const auto retvalue = g_output_stream_write_bytes (
         gobj (),
-        const_cast<GBytes*> (Glib::unwrap<Glib::Bytes> (bytes)),
+        const_cast<GBytes*> (glib::unwrap<glib::Bytes> (bytes)),
         nullptr,
         &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
   auto
-  OutputStream::write_bytes_finish (const Glib::RefPtr<AsyncResult>& result) -> gssize
+  OutputStream::write_bytes_finish (const glib::RefPtr<AsyncResult>& result) -> gssize
   {
     GError* gerror = nullptr;
     const auto retvalue = g_output_stream_write_bytes_finish (
         gobj (),
-        Glib::unwrap (result),
+        glib::unwrap (result),
         &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
   auto
-  OutputStream::flush (const Glib::RefPtr<Cancellable>& cancellable) -> bool
+  OutputStream::flush (const glib::RefPtr<Cancellable>& cancellable) -> bool
   {
     GError* gerror = nullptr;
     const auto retvalue =
-        g_output_stream_flush (gobj (), Glib::unwrap (cancellable), &gerror);
+        g_output_stream_flush (gobj (), glib::unwrap (cancellable), &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
@@ -694,18 +694,18 @@ namespace Gio
     GError* gerror = nullptr;
     const auto retvalue = g_output_stream_flush (gobj (), nullptr, &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
   auto
-  OutputStream::close (const Glib::RefPtr<Cancellable>& cancellable) -> bool
+  OutputStream::close (const glib::RefPtr<Cancellable>& cancellable) -> bool
   {
     GError* gerror = nullptr;
     const auto retvalue =
-        g_output_stream_close (gobj (), Glib::unwrap (cancellable), &gerror);
+        g_output_stream_close (gobj (), glib::unwrap (cancellable), &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
@@ -715,66 +715,66 @@ namespace Gio
     GError* gerror = nullptr;
     const auto retvalue = g_output_stream_close (gobj (), nullptr, &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
   auto
-  OutputStream::write_finish (const Glib::RefPtr<AsyncResult>& result) -> gssize
+  OutputStream::write_finish (const glib::RefPtr<AsyncResult>& result) -> gssize
   {
     GError* gerror = nullptr;
     const auto retvalue =
-        g_output_stream_write_finish (gobj (), Glib::unwrap (result), &gerror);
+        g_output_stream_write_finish (gobj (), glib::unwrap (result), &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
   auto
-  OutputStream::write_all_finish (const Glib::RefPtr<AsyncResult>& result,
+  OutputStream::write_all_finish (const glib::RefPtr<AsyncResult>& result,
                                   gsize& bytes_written) -> bool
   {
     GError* gerror = nullptr;
     const auto retvalue = g_output_stream_write_all_finish (
         gobj (),
-        Glib::unwrap (result),
+        glib::unwrap (result),
         &bytes_written,
         &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
   auto
-  OutputStream::splice_finish (const Glib::RefPtr<AsyncResult>& result) -> gssize
+  OutputStream::splice_finish (const glib::RefPtr<AsyncResult>& result) -> gssize
   {
     GError* gerror = nullptr;
     const auto retvalue =
-        g_output_stream_splice_finish (gobj (), Glib::unwrap (result), &gerror);
+        g_output_stream_splice_finish (gobj (), glib::unwrap (result), &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
   auto
-  OutputStream::flush_finish (const Glib::RefPtr<AsyncResult>& result) -> bool
+  OutputStream::flush_finish (const glib::RefPtr<AsyncResult>& result) -> bool
   {
     GError* gerror = nullptr;
     const auto retvalue =
-        g_output_stream_flush_finish (gobj (), Glib::unwrap (result), &gerror);
+        g_output_stream_flush_finish (gobj (), glib::unwrap (result), &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
   auto
-  OutputStream::close_finish (const Glib::RefPtr<AsyncResult>& result) -> bool
+  OutputStream::close_finish (const glib::RefPtr<AsyncResult>& result) -> bool
   {
     GError* gerror = nullptr;
     const auto retvalue =
-        g_output_stream_close_finish (gobj (), Glib::unwrap (result), &gerror);
+        g_output_stream_close_finish (gobj (), glib::unwrap (result), &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
@@ -802,7 +802,7 @@ namespace Gio
     GError* gerror = nullptr;
     const auto retvalue = g_output_stream_set_pending (gobj (), &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
@@ -815,7 +815,7 @@ namespace Gio
   auto
   OutputStream::write_vfunc (const void* buffer,
                              const gsize count,
-                             const Glib::RefPtr<Cancellable>& cancellable) -> gssize
+                             const glib::RefPtr<Cancellable>& cancellable) -> gssize
   {
     const auto base = static_cast<BaseClassType*> (
         g_type_class_peek_parent (G_OBJECT_GET_CLASS (gobject_)));
@@ -826,10 +826,10 @@ namespace Gio
       const gssize retval ((*base->write_fn) (gobj (),
                                               buffer,
                                               count,
-                                              Glib::unwrap (cancellable),
+                                              glib::unwrap (cancellable),
                                               &gerror));
       if (gerror)
-        Glib::Error::throw_exception (gerror);
+        glib::Error::throw_exception (gerror);
       return retval;
     }
 
@@ -838,8 +838,8 @@ namespace Gio
   }
 
   auto
-  OutputStream::splice_vfunc (const Glib::RefPtr<InputStream>& source,
-                              const Glib::RefPtr<Cancellable>& cancellable,
+  OutputStream::splice_vfunc (const glib::RefPtr<InputStream>& source,
+                              const glib::RefPtr<Cancellable>& cancellable,
                               SpliceFlags flags) -> gssize
   {
     const auto base = static_cast<BaseClassType*> (
@@ -850,12 +850,12 @@ namespace Gio
       GError* gerror = nullptr;
       const gssize retval (
           (*base->splice) (gobj (),
-                           Glib::unwrap (source),
+                           glib::unwrap (source),
                            static_cast<GOutputStreamSpliceFlags> (flags),
-                           Glib::unwrap (cancellable),
+                           glib::unwrap (cancellable),
                            &gerror));
       if (gerror)
-        Glib::Error::throw_exception (gerror);
+        glib::Error::throw_exception (gerror);
       return retval;
     }
 
@@ -864,7 +864,7 @@ namespace Gio
   }
 
   auto
-  OutputStream::flush_vfunc (const Glib::RefPtr<Cancellable>& cancellable) -> bool
+  OutputStream::flush_vfunc (const glib::RefPtr<Cancellable>& cancellable) -> bool
   {
     const auto base = static_cast<BaseClassType*> (
         g_type_class_peek_parent (G_OBJECT_GET_CLASS (gobject_)));
@@ -873,9 +873,9 @@ namespace Gio
     {
       GError* gerror = nullptr;
       const bool retval (
-          (*base->flush) (gobj (), Glib::unwrap (cancellable), &gerror));
+          (*base->flush) (gobj (), glib::unwrap (cancellable), &gerror));
       if (gerror)
-        Glib::Error::throw_exception (gerror);
+        glib::Error::throw_exception (gerror);
       return retval;
     }
 
@@ -884,7 +884,7 @@ namespace Gio
   }
 
   auto
-  OutputStream::close_vfunc (const Glib::RefPtr<Cancellable>& cancellable) -> bool
+  OutputStream::close_vfunc (const glib::RefPtr<Cancellable>& cancellable) -> bool
   {
     const auto base = static_cast<BaseClassType*> (
         g_type_class_peek_parent (G_OBJECT_GET_CLASS (gobject_)));
@@ -893,9 +893,9 @@ namespace Gio
     {
       GError* gerror = nullptr;
       const bool retval (
-          (*base->close_fn) (gobj (), Glib::unwrap (cancellable), &gerror));
+          (*base->close_fn) (gobj (), glib::unwrap (cancellable), &gerror));
       if (gerror)
-        Glib::Error::throw_exception (gerror);
+        glib::Error::throw_exception (gerror);
       return retval;
     }
 
@@ -903,4 +903,4 @@ namespace Gio
     return RType ();
   }
 
-} // namespace Gio
+} // namespace gio

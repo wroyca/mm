@@ -14,13 +14,13 @@ using GtkExpanderClass = struct _GtkExpanderClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT Expander_Class;
 }
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
   class LIBMM_GTK_SYMEXPORT Expander : public Widget
@@ -50,7 +50,7 @@ namespace Gtk
     static CppClassType expander_class_;
 
   protected:
-    explicit Expander (const Glib::ConstructParams& construct_params);
+    explicit Expander (const glib::ConstructParams& construct_params);
     explicit Expander (GtkExpander* castitem);
 
 #endif
@@ -81,7 +81,7 @@ namespace Gtk
   public:
     Expander ();
 
-    explicit Expander (const Glib::ustring& label, bool mnemonic = false);
+    explicit Expander (const glib::ustring& label, bool mnemonic = false);
 
     auto
     set_expanded (bool expanded = true) -> void;
@@ -90,10 +90,10 @@ namespace Gtk
     get_expanded () const -> bool;
 
     auto
-    set_label (const Glib::ustring& label) -> void;
+    set_label (const glib::ustring& label) -> void;
 
     auto
-    get_label () const -> Glib::ustring;
+    get_label () const -> glib::ustring;
 
     auto
     set_use_underline (bool use_underline = true) -> void;
@@ -134,58 +134,58 @@ namespace Gtk
     get_child () const -> const Widget*;
 
     auto
-    property_expanded () -> Glib::PropertyProxy<bool>;
+    property_expanded () -> glib::PropertyProxy<bool>;
 
     auto
-    property_expanded () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_expanded () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_label () -> Glib::PropertyProxy<Glib::ustring>;
+    property_label () -> glib::PropertyProxy<glib::ustring>;
 
     auto
-    property_label () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+    property_label () const -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
     auto
-    property_use_underline () -> Glib::PropertyProxy<bool>;
+    property_use_underline () -> glib::PropertyProxy<bool>;
 
     auto
-    property_use_underline () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_use_underline () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_use_markup () -> Glib::PropertyProxy<bool>;
+    property_use_markup () -> glib::PropertyProxy<bool>;
 
     auto
-    property_use_markup () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_use_markup () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_label_widget () -> Glib::PropertyProxy<Widget*>;
+    property_label_widget () -> glib::PropertyProxy<Widget*>;
 
     auto
-    property_label_widget () const -> Glib::PropertyProxy_ReadOnly<Widget*>;
+    property_label_widget () const -> glib::PropertyProxy_ReadOnly<Widget*>;
 
     auto
-    property_resize_toplevel () -> Glib::PropertyProxy<bool>;
+    property_resize_toplevel () -> glib::PropertyProxy<bool>;
 
     auto
-    property_resize_toplevel () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_resize_toplevel () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_child () -> Glib::PropertyProxy<Widget*>;
+    property_child () -> glib::PropertyProxy<Widget*>;
 
     auto
-    property_child () const -> Glib::PropertyProxy_ReadOnly<Widget*>;
+    property_child () const -> glib::PropertyProxy_ReadOnly<Widget*>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkExpander* object, bool take_copy = false) -> Gtk::Expander*;
-} // namespace Glib
+  wrap (GtkExpander* object, bool take_copy = false) -> gtk::Expander*;
+} // namespace glib
 
 #endif

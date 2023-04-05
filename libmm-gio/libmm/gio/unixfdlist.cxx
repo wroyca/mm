@@ -8,14 +8,14 @@
 #include <gio/gunixfdlist.h>
 #include <libmm/glib/error.hxx>
 
-namespace Gio
+namespace gio
 {
 
   UnixFDList::UnixFDList (const std::vector<int>& fds)
     : ObjectBase (nullptr),
 
       Object ((GObject*) g_unix_fd_list_new_from_array (
-          Glib::ArrayHandler<int>::vector_to_array (fds).data (),
+          glib::ArrayHandler<int>::vector_to_array (fds).data (),
           fds.size ()))
   {
   }
@@ -24,7 +24,7 @@ namespace Gio
     : ObjectBase (nullptr),
 
       Object ((GObject*) g_unix_fd_list_new_from_array (
-          Glib::ArrayHandler<int>::vector_to_array (fds).data (),
+          glib::ArrayHandler<int>::vector_to_array (fds).data (),
           n_fds))
   {
   }
@@ -36,9 +36,9 @@ namespace Gio
     const auto fds =
         g_unix_fd_list_peek_fds (const_cast<GUnixFDList*> (gobj ()), &length);
 
-    return Glib::ArrayHandler<int>::array_to_vector (fds,
+    return glib::ArrayHandler<int>::array_to_vector (fds,
                                                      length,
-                                                     Glib::OWNERSHIP_NONE);
+                                                     glib::OWNERSHIP_NONE);
   }
 
   auto
@@ -47,31 +47,31 @@ namespace Gio
     int length = 0;
     const auto fds = g_unix_fd_list_steal_fds (gobj (), &length);
 
-    return Glib::ArrayHandler<int>::array_to_vector (fds,
+    return glib::ArrayHandler<int>::array_to_vector (fds,
                                                      length,
-                                                     Glib::OWNERSHIP_DEEP);
+                                                     glib::OWNERSHIP_DEEP);
   }
 
-} // namespace Gio
+} // namespace gio
 
 namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GUnixFDList* object, const bool take_copy) -> RefPtr<Gio::UnixFDList>
+  wrap (GUnixFDList* object, const bool take_copy) -> RefPtr<gio::UnixFDList>
   {
-    return Glib::make_refptr_for_instance<Gio::UnixFDList> (
-        dynamic_cast<Gio::UnixFDList*> (
+    return glib::make_refptr_for_instance<gio::UnixFDList> (
+        dynamic_cast<gio::UnixFDList*> (
             wrap_auto ((GObject*) object, take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gio
+namespace gio
 {
 
   auto
@@ -95,7 +95,7 @@ namespace Gio
   }
 
   auto
-  UnixFDList_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  UnixFDList_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new UnixFDList ((GUnixFDList*) object);
   }
@@ -107,7 +107,7 @@ namespace Gio
     return gobj ();
   }
 
-  UnixFDList::UnixFDList (const Glib::ConstructParams& construct_params)
+  UnixFDList::UnixFDList (const glib::ConstructParams& construct_params)
     : Object (construct_params)
   {
   }
@@ -147,26 +147,26 @@ namespace Gio
 
   UnixFDList::UnixFDList ()
     : ObjectBase (nullptr),
-      Object (Glib::ConstructParams (unixfdlist_class_.init ()))
+      Object (glib::ConstructParams (unixfdlist_class_.init ()))
   {
   }
 
   auto
-  UnixFDList::create () -> Glib::RefPtr<UnixFDList>
+  UnixFDList::create () -> glib::RefPtr<UnixFDList>
   {
-    return Glib::make_refptr_for_instance<UnixFDList> (new UnixFDList ());
+    return glib::make_refptr_for_instance<UnixFDList> (new UnixFDList ());
   }
 
   auto
-  UnixFDList::create (const std::vector<int>& fds) -> Glib::RefPtr<UnixFDList>
+  UnixFDList::create (const std::vector<int>& fds) -> glib::RefPtr<UnixFDList>
   {
-    return Glib::make_refptr_for_instance<UnixFDList> (new UnixFDList (fds));
+    return glib::make_refptr_for_instance<UnixFDList> (new UnixFDList (fds));
   }
 
   auto
-  UnixFDList::create (const std::vector<int>& fds, const int n_fds) -> Glib::RefPtr<UnixFDList>
+  UnixFDList::create (const std::vector<int>& fds, const int n_fds) -> glib::RefPtr<UnixFDList>
   {
-    return Glib::make_refptr_for_instance<UnixFDList> (
+    return glib::make_refptr_for_instance<UnixFDList> (
         new UnixFDList (fds, n_fds));
   }
 
@@ -183,7 +183,7 @@ namespace Gio
     const auto retvalue =
         g_unix_fd_list_get (const_cast<GUnixFDList*> (gobj ()), index, &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
@@ -193,8 +193,8 @@ namespace Gio
     GError* gerror = nullptr;
     const auto retvalue = g_unix_fd_list_append (gobj (), fd, &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
-} // namespace Gio
+} // namespace gio

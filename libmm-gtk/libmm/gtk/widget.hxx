@@ -34,24 +34,24 @@ using GtkWidgetClass = struct _GtkWidgetClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT Widget_Class;
 }
 #endif
 
-namespace Gio
+namespace gio
 {
   class LIBMM_GTK_SYMEXPORT ListModel;
 }
 
-namespace Gdk
+namespace gdk
 {
   class LIBMM_GTK_SYMEXPORT FrameClock;
   class LIBMM_GTK_SYMEXPORT Paintable;
-} // namespace Gdk
+} // namespace gdk
 
-namespace Gtk
+namespace gtk
 {
 
   class LIBMM_GTK_SYMEXPORT Adjustment;
@@ -64,7 +64,7 @@ namespace Gtk
   class LIBMM_GTK_SYMEXPORT Snapshot;
   class LIBMM_GTK_SYMEXPORT Tooltip;
 
-  typedef Gdk::Rectangle Allocation;
+  typedef gdk::Rectangle Allocation;
 
   class LIBMM_GTK_SYMEXPORT Widget : public Object,
                            public Accessible,
@@ -96,7 +96,7 @@ namespace Gtk
     static CppClassType widget_class_;
 
   protected:
-    explicit Widget (const Glib::ConstructParams& construct_params);
+    explicit Widget (const glib::ConstructParams& construct_params);
     explicit Widget (GtkWidget* castitem);
 
 #endif
@@ -126,11 +126,11 @@ namespace Gtk
   private:
   public:
     auto
-    make_refptr_constrainttarget () -> Glib::RefPtr<ConstraintTarget>;
+    make_refptr_constrainttarget () -> glib::RefPtr<ConstraintTarget>;
 
     auto
     make_refptr_constrainttarget () const
-        -> Glib::RefPtr<const ConstraintTarget>;
+        -> glib::RefPtr<const ConstraintTarget>;
 
 #ifndef GTKMM_DISABLE_DEPRECATED
 
@@ -172,17 +172,17 @@ namespace Gtk
                         Requisition& natural_size) const -> void;
 
     auto
-    set_layout_manager (const Glib::RefPtr<LayoutManager>& layout_manager)
+    set_layout_manager (const glib::RefPtr<LayoutManager>& layout_manager)
         -> void;
 
     auto
     unset_layout_manager () -> void;
 
     auto
-    get_layout_manager () -> Glib::RefPtr<LayoutManager>;
+    get_layout_manager () -> glib::RefPtr<LayoutManager>;
 
     auto
-    get_layout_manager () const -> Glib::RefPtr<const LayoutManager>;
+    get_layout_manager () const -> glib::RefPtr<const LayoutManager>;
 
     auto
     mnemonic_activate (bool group_cycling) -> bool;
@@ -236,12 +236,12 @@ namespace Gtk
     get_receives_default () const -> bool;
 
     auto
-    set_name (const Glib::ustring& name) -> void;
+    set_name (const glib::ustring& name) -> void;
     auto
     unset_name () -> void;
 
     auto
-    get_name () const -> Glib::ustring;
+    get_name () const -> glib::ustring;
 
     auto
     set_state_flags (StateFlags flags, bool clear = true) -> void;
@@ -361,25 +361,25 @@ namespace Gtk
     get_scale_factor () const -> int;
 
     auto
-    get_display () -> Glib::RefPtr<Gdk::Display>;
+    get_display () -> glib::RefPtr<gdk::Display>;
 
     auto
-    get_display () const -> Glib::RefPtr<const Gdk::Display>;
+    get_display () const -> glib::RefPtr<const gdk::Display>;
 
     auto
-    get_settings () -> Glib::RefPtr<Settings>;
+    get_settings () -> glib::RefPtr<Settings>;
 
     auto
-    get_clipboard () -> Glib::RefPtr<Gdk::Clipboard>;
+    get_clipboard () -> glib::RefPtr<gdk::Clipboard>;
 
     auto
-    get_clipboard () const -> Glib::RefPtr<const Gdk::Clipboard>;
+    get_clipboard () const -> glib::RefPtr<const gdk::Clipboard>;
 
     auto
-    get_primary_clipboard () -> Glib::RefPtr<Gdk::Clipboard>;
+    get_primary_clipboard () -> glib::RefPtr<gdk::Clipboard>;
 
     auto
-    get_primary_clipboard () const -> Glib::RefPtr<const Gdk::Clipboard>;
+    get_primary_clipboard () const -> glib::RefPtr<const gdk::Clipboard>;
 
     auto
     get_hexpand () const -> bool;
@@ -471,29 +471,29 @@ namespace Gtk
         -> const Widget*;
 
     auto
-    add_controller (const Glib::RefPtr<EventController>& controller) -> void;
+    add_controller (const glib::RefPtr<EventController>& controller) -> void;
 
     auto
-    remove_controller (const Glib::RefPtr<EventController>& controller) -> void;
+    remove_controller (const glib::RefPtr<EventController>& controller) -> void;
 
     auto
-    create_pango_context () -> Glib::RefPtr<Pango::Context>;
+    create_pango_context () -> glib::RefPtr<pango::Context>;
 
     auto
-    get_pango_context () -> Glib::RefPtr<Pango::Context>;
+    get_pango_context () -> glib::RefPtr<pango::Context>;
 
     auto
-    set_font_options (const Cairo::FontOptions& options) -> void;
+    set_font_options (const cairo::FontOptions& options) -> void;
 
     auto
     unset_font_options () -> void;
 
     auto
-    get_font_options () const -> Cairo::FontOptions;
+    get_font_options () const -> cairo::FontOptions;
 
     auto
-    create_pango_layout (const Glib::ustring& text)
-        -> Glib::RefPtr<Pango::Layout>;
+    create_pango_layout (const glib::ustring& text)
+        -> glib::RefPtr<pango::Layout>;
 
     auto
     set_direction (TextDirection dir) -> void;
@@ -508,16 +508,16 @@ namespace Gtk
     get_default_direction () -> TextDirection;
 
     auto
-    set_cursor (const Glib::RefPtr<Gdk::Cursor>& cursor) -> void;
+    set_cursor (const glib::RefPtr<gdk::Cursor>& cursor) -> void;
 
     auto
-    set_cursor (const Glib::ustring& name = {}) -> void;
+    set_cursor (const glib::ustring& name = {}) -> void;
 
     auto
-    get_cursor () -> Glib::RefPtr<Gdk::Cursor>;
+    get_cursor () -> glib::RefPtr<gdk::Cursor>;
 
     auto
-    get_cursor () const -> Glib::RefPtr<const Gdk::Cursor>;
+    get_cursor () const -> glib::RefPtr<const gdk::Cursor>;
 
     auto
     list_mnemonic_labels () -> std::vector<Widget*>;
@@ -538,10 +538,10 @@ namespace Gtk
                           int current_y) -> bool;
 
     auto
-    get_frame_clock () -> Glib::RefPtr<Gdk::FrameClock>;
+    get_frame_clock () -> glib::RefPtr<gdk::FrameClock>;
 
     auto
-    get_frame_clock () const -> Glib::RefPtr<const Gdk::FrameClock>;
+    get_frame_clock () const -> glib::RefPtr<const gdk::FrameClock>;
 
     auto
     set_parent (Widget& parent) -> void;
@@ -559,16 +559,16 @@ namespace Gtk
     trigger_tooltip_query () -> void;
 
     auto
-    set_tooltip_text (const Glib::ustring& text) -> void;
+    set_tooltip_text (const glib::ustring& text) -> void;
 
     auto
-    get_tooltip_text () const -> Glib::ustring;
+    get_tooltip_text () const -> glib::ustring;
 
     auto
-    set_tooltip_markup (const Glib::ustring& markup) -> void;
+    set_tooltip_markup (const glib::ustring& markup) -> void;
 
     auto
-    get_tooltip_markup () const -> Glib::ustring;
+    get_tooltip_markup () const -> glib::ustring;
 
     auto
     set_has_tooltip (bool has_tooltip = TRUE) -> void;
@@ -582,16 +582,16 @@ namespace Gtk
 #ifndef GTKMM_DISABLE_DEPRECATED
 
     auto
-    get_style_context () -> Glib::RefPtr<StyleContext>;
+    get_style_context () -> glib::RefPtr<StyleContext>;
 #endif
 
 #ifndef GTKMM_DISABLE_DEPRECATED
 
     auto
-    get_style_context () const -> Glib::RefPtr<const StyleContext>;
+    get_style_context () const -> glib::RefPtr<const StyleContext>;
 #endif
 
-    using SlotTick = sigc::slot<bool (const Glib::RefPtr<Gdk::FrameClock>&)>;
+    using SlotTick = sigc::slot<bool (const glib::RefPtr<gdk::FrameClock>&)>;
 
     auto
     add_tick_callback (const SlotTick& slot) -> guint;
@@ -600,27 +600,27 @@ namespace Gtk
     remove_tick_callback (guint id) -> void;
 
     auto
-    insert_action_group (const Glib::ustring& name,
-                         const Glib::RefPtr<Gio::ActionGroup>& group) -> void;
+    insert_action_group (const glib::ustring& name,
+                         const glib::RefPtr<gio::ActionGroup>& group) -> void;
 
     auto
-    remove_action_group (const Glib::ustring& name) -> void;
+    remove_action_group (const glib::ustring& name) -> void;
 
     auto
-    activate_action (const Glib::ustring& name,
-                     const Glib::VariantBase& args = {}) -> bool;
+    activate_action (const glib::ustring& name,
+                     const glib::VariantBase& args = {}) -> bool;
 
     auto
     activate_default () -> void;
 
     auto
-    set_font_map (const Glib::RefPtr<Pango::FontMap>& font_map) -> void;
+    set_font_map (const glib::RefPtr<pango::FontMap>& font_map) -> void;
 
     auto
-    get_font_map () -> Glib::RefPtr<Pango::FontMap>;
+    get_font_map () -> glib::RefPtr<pango::FontMap>;
 
     auto
-    get_font_map () const -> Glib::RefPtr<const Pango::FontMap>;
+    get_font_map () const -> glib::RefPtr<const pango::FontMap>;
 
     auto
     get_first_child () -> Widget*;
@@ -647,16 +647,16 @@ namespace Gtk
     get_prev_sibling () const -> const Widget*;
 
     auto
-    observe_children () -> Glib::RefPtr<Gio::ListModel>;
+    observe_children () -> glib::RefPtr<gio::ListModel>;
 
     auto
-    observe_children () const -> Glib::RefPtr<const Gio::ListModel>;
+    observe_children () const -> glib::RefPtr<const gio::ListModel>;
 
     auto
-    observe_controllers () -> Glib::RefPtr<Gio::ListModel>;
+    observe_controllers () -> glib::RefPtr<gio::ListModel>;
 
     auto
-    observe_controllers () const -> Glib::RefPtr<const Gio::ListModel>;
+    observe_controllers () const -> glib::RefPtr<const gio::ListModel>;
 
     auto
     insert_after (Widget& parent, const Widget& previous_sibling) -> void;
@@ -671,258 +671,258 @@ namespace Gtk
     insert_at_end (Widget& parent) -> void;
 
     auto
-    snapshot_child (Widget& child, const Glib::RefPtr<Gtk::Snapshot>& snapshot)
+    snapshot_child (Widget& child, const glib::RefPtr<gtk::Snapshot>& snapshot)
         -> void;
 
     auto
     should_layout () const -> bool;
 
     auto
-    get_css_name () const -> Glib::ustring;
+    get_css_name () const -> glib::ustring;
 
     auto
-    add_css_class (const Glib::ustring& css_class) -> void;
+    add_css_class (const glib::ustring& css_class) -> void;
 
     auto
-    remove_css_class (const Glib::ustring& css_class) -> void;
+    remove_css_class (const glib::ustring& css_class) -> void;
 
     auto
-    has_css_class (const Glib::ustring& css_class) const -> bool;
+    has_css_class (const glib::ustring& css_class) const -> bool;
 
     auto
-    get_css_classes () const -> std::vector<Glib::ustring>;
+    get_css_classes () const -> std::vector<glib::ustring>;
 
     auto
-    set_css_classes (const std::vector<Glib::ustring>& classes) -> void;
+    set_css_classes (const std::vector<glib::ustring>& classes) -> void;
 
     auto
-    get_color () const -> Gdk::RGBA;
+    get_color () const -> gdk::RGBA;
 
     auto
-    signal_show () -> Glib::SignalProxy<void ()>;
+    signal_show () -> glib::SignalProxy<void ()>;
 
     auto
-    signal_hide () -> Glib::SignalProxy<void ()>;
+    signal_hide () -> glib::SignalProxy<void ()>;
 
     auto
-    signal_map () -> Glib::SignalProxy<void ()>;
+    signal_map () -> glib::SignalProxy<void ()>;
 
     auto
-    signal_unmap () -> Glib::SignalProxy<void ()>;
+    signal_unmap () -> glib::SignalProxy<void ()>;
 
     auto
-    signal_realize () -> Glib::SignalProxy<void ()>;
+    signal_realize () -> glib::SignalProxy<void ()>;
 
     auto
-    signal_unrealize () -> Glib::SignalProxy<void ()>;
+    signal_unrealize () -> glib::SignalProxy<void ()>;
 
     auto
-    signal_state_flags_changed () -> Glib::SignalProxy<void (Gtk::StateFlags)>;
+    signal_state_flags_changed () -> glib::SignalProxy<void (gtk::StateFlags)>;
 
     auto
-    signal_direction_changed () -> Glib::SignalProxy<void (TextDirection)>;
+    signal_direction_changed () -> glib::SignalProxy<void (TextDirection)>;
 
     auto
-    signal_mnemonic_activate () -> Glib::SignalProxy<bool (bool)>;
+    signal_mnemonic_activate () -> glib::SignalProxy<bool (bool)>;
 
     auto
-    signal_destroy () -> Glib::SignalProxy<void ()>;
+    signal_destroy () -> glib::SignalProxy<void ()>;
 
     auto
-    signal_query_tooltip () -> Glib::SignalProxy<
-        bool (int, int, bool, const Glib::RefPtr<Tooltip>&)>;
+    signal_query_tooltip () -> glib::SignalProxy<
+        bool (int, int, bool, const glib::RefPtr<Tooltip>&)>;
 
     auto
-    property_name () -> Glib::PropertyProxy<Glib::ustring>;
+    property_name () -> glib::PropertyProxy<glib::ustring>;
 
     auto
-    property_name () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+    property_name () const -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
     auto
-    property_parent () const -> Glib::PropertyProxy_ReadOnly<Widget*>;
+    property_parent () const -> glib::PropertyProxy_ReadOnly<Widget*>;
 
     auto
-    property_root () const -> Glib::PropertyProxy_ReadOnly<Root*>;
+    property_root () const -> glib::PropertyProxy_ReadOnly<Root*>;
 
     auto
-    property_width_request () -> Glib::PropertyProxy<int>;
+    property_width_request () -> glib::PropertyProxy<int>;
 
     auto
-    property_width_request () const -> Glib::PropertyProxy_ReadOnly<int>;
+    property_width_request () const -> glib::PropertyProxy_ReadOnly<int>;
 
     auto
-    property_height_request () -> Glib::PropertyProxy<int>;
+    property_height_request () -> glib::PropertyProxy<int>;
 
     auto
-    property_height_request () const -> Glib::PropertyProxy_ReadOnly<int>;
+    property_height_request () const -> glib::PropertyProxy_ReadOnly<int>;
 
     auto
-    property_visible () -> Glib::PropertyProxy<bool>;
+    property_visible () -> glib::PropertyProxy<bool>;
 
     auto
-    property_visible () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_visible () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_sensitive () -> Glib::PropertyProxy<bool>;
+    property_sensitive () -> glib::PropertyProxy<bool>;
 
     auto
-    property_sensitive () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_sensitive () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_can_focus () -> Glib::PropertyProxy<bool>;
+    property_can_focus () -> glib::PropertyProxy<bool>;
 
     auto
-    property_can_focus () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_can_focus () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_has_focus () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_has_focus () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_can_target () -> Glib::PropertyProxy<bool>;
+    property_can_target () -> glib::PropertyProxy<bool>;
 
     auto
-    property_can_target () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_can_target () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_focus_on_click () -> Glib::PropertyProxy<bool>;
+    property_focus_on_click () -> glib::PropertyProxy<bool>;
 
     auto
-    property_focus_on_click () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_focus_on_click () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_focusable () -> Glib::PropertyProxy<bool>;
+    property_focusable () -> glib::PropertyProxy<bool>;
 
     auto
-    property_focusable () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_focusable () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_has_default () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_has_default () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_receives_default () -> Glib::PropertyProxy<bool>;
+    property_receives_default () -> glib::PropertyProxy<bool>;
 
     auto
-    property_receives_default () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_receives_default () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_cursor () -> Glib::PropertyProxy<Glib::RefPtr<Gdk::Cursor>>;
+    property_cursor () -> glib::PropertyProxy<glib::RefPtr<gdk::Cursor>>;
 
     auto
     property_cursor () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gdk::Cursor>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<gdk::Cursor>>;
 
     auto
-    property_has_tooltip () -> Glib::PropertyProxy<bool>;
+    property_has_tooltip () -> glib::PropertyProxy<bool>;
 
     auto
-    property_has_tooltip () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_has_tooltip () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_tooltip_markup () -> Glib::PropertyProxy<Glib::ustring>;
+    property_tooltip_markup () -> glib::PropertyProxy<glib::ustring>;
 
     auto
     property_tooltip_markup () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+        -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
     auto
-    property_tooltip_text () -> Glib::PropertyProxy<Glib::ustring>;
+    property_tooltip_text () -> glib::PropertyProxy<glib::ustring>;
 
     auto
     property_tooltip_text () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+        -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
     auto
-    property_halign () -> Glib::PropertyProxy<Align>;
+    property_halign () -> glib::PropertyProxy<Align>;
 
     auto
-    property_halign () const -> Glib::PropertyProxy_ReadOnly<Align>;
+    property_halign () const -> glib::PropertyProxy_ReadOnly<Align>;
 
     auto
-    property_valign () -> Glib::PropertyProxy<Align>;
+    property_valign () -> glib::PropertyProxy<Align>;
 
     auto
-    property_valign () const -> Glib::PropertyProxy_ReadOnly<Align>;
+    property_valign () const -> glib::PropertyProxy_ReadOnly<Align>;
 
     auto
-    property_margin_start () -> Glib::PropertyProxy<int>;
+    property_margin_start () -> glib::PropertyProxy<int>;
 
     auto
-    property_margin_start () const -> Glib::PropertyProxy_ReadOnly<int>;
+    property_margin_start () const -> glib::PropertyProxy_ReadOnly<int>;
 
     auto
-    property_margin_end () -> Glib::PropertyProxy<int>;
+    property_margin_end () -> glib::PropertyProxy<int>;
 
     auto
-    property_margin_end () const -> Glib::PropertyProxy_ReadOnly<int>;
+    property_margin_end () const -> glib::PropertyProxy_ReadOnly<int>;
 
     auto
-    property_margin_top () -> Glib::PropertyProxy<int>;
+    property_margin_top () -> glib::PropertyProxy<int>;
 
     auto
-    property_margin_top () const -> Glib::PropertyProxy_ReadOnly<int>;
+    property_margin_top () const -> glib::PropertyProxy_ReadOnly<int>;
 
     auto
-    property_margin_bottom () -> Glib::PropertyProxy<int>;
+    property_margin_bottom () -> glib::PropertyProxy<int>;
 
     auto
-    property_margin_bottom () const -> Glib::PropertyProxy_ReadOnly<int>;
+    property_margin_bottom () const -> glib::PropertyProxy_ReadOnly<int>;
 
     auto
-    property_hexpand () -> Glib::PropertyProxy<bool>;
+    property_hexpand () -> glib::PropertyProxy<bool>;
 
     auto
-    property_hexpand () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_hexpand () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_hexpand_set () -> Glib::PropertyProxy<bool>;
+    property_hexpand_set () -> glib::PropertyProxy<bool>;
 
     auto
-    property_hexpand_set () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_hexpand_set () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_vexpand () -> Glib::PropertyProxy<bool>;
+    property_vexpand () -> glib::PropertyProxy<bool>;
 
     auto
-    property_vexpand () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_vexpand () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_vexpand_set () -> Glib::PropertyProxy<bool>;
+    property_vexpand_set () -> glib::PropertyProxy<bool>;
 
     auto
-    property_vexpand_set () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_vexpand_set () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_opacity () -> Glib::PropertyProxy<double>;
+    property_opacity () -> glib::PropertyProxy<double>;
 
     auto
-    property_opacity () const -> Glib::PropertyProxy_ReadOnly<double>;
+    property_opacity () const -> glib::PropertyProxy_ReadOnly<double>;
 
     auto
-    property_overflow () -> Glib::PropertyProxy<Overflow>;
+    property_overflow () -> glib::PropertyProxy<Overflow>;
 
     auto
-    property_overflow () const -> Glib::PropertyProxy_ReadOnly<Overflow>;
+    property_overflow () const -> glib::PropertyProxy_ReadOnly<Overflow>;
 
     auto
-    property_scale_factor () const -> Glib::PropertyProxy_ReadOnly<int>;
+    property_scale_factor () const -> glib::PropertyProxy_ReadOnly<int>;
 
     auto
-    property_css_name () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+    property_css_name () const -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
     auto
-    property_css_classes () -> Glib::PropertyProxy<std::vector<Glib::ustring>>;
+    property_css_classes () -> glib::PropertyProxy<std::vector<glib::ustring>>;
 
     auto
     property_css_classes () const
-        -> Glib::PropertyProxy_ReadOnly<std::vector<Glib::ustring>>;
+        -> glib::PropertyProxy_ReadOnly<std::vector<glib::ustring>>;
 
     auto
     property_layout_manager ()
-        -> Glib::PropertyProxy<Glib::RefPtr<LayoutManager>>;
+        -> glib::PropertyProxy<glib::RefPtr<LayoutManager>>;
 
     auto
     property_layout_manager () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<LayoutManager>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<LayoutManager>>;
 
   protected:
     virtual auto
@@ -958,7 +958,7 @@ namespace Gtk
     contains_vfunc (double x, double y) const -> bool;
 
     virtual auto
-    snapshot_vfunc (const Glib::RefPtr<Gtk::Snapshot>& snapshot) -> void;
+    snapshot_vfunc (const glib::RefPtr<gtk::Snapshot>& snapshot) -> void;
 
   protected:
     Widget ();
@@ -1006,7 +1006,7 @@ namespace Gtk
     on_unrealize () -> void;
 
     virtual auto
-    on_state_flags_changed (Gtk::StateFlags previous_state_flags) -> void;
+    on_state_flags_changed (gtk::StateFlags previous_state_flags) -> void;
 
     virtual auto
     on_direction_changed (TextDirection direction) -> void;
@@ -1018,15 +1018,15 @@ namespace Gtk
     on_query_tooltip (int x,
                       int y,
                       bool keyboard_tooltip,
-                      const Glib::RefPtr<Tooltip>& tooltip) -> bool;
+                      const glib::RefPtr<Tooltip>& tooltip) -> bool;
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkWidget* object, bool take_copy = false) -> Gtk::Widget*;
-} // namespace Glib
+  wrap (GtkWidget* object, bool take_copy = false) -> gtk::Widget*;
+} // namespace glib
 
 #endif

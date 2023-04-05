@@ -8,13 +8,13 @@
 #include <gtk/gtkunixprint.h>
 #include <libmm/gtk/label.hxx>
 
-namespace Gtk
+namespace gtk
 {
 
-  PrintUnixDialog::PrintUnixDialog (Gtk::Window& parent,
-                                    const Glib::ustring& title)
-    : Glib::ObjectBase (nullptr),
-      Gtk::Dialog (Glib::ConstructParams (printunixdialog_class_.init (),
+  PrintUnixDialog::PrintUnixDialog (gtk::Window& parent,
+                                    const glib::ustring& title)
+    : glib::ObjectBase (nullptr),
+      gtk::Dialog (glib::ConstructParams (printunixdialog_class_.init (),
                                           "title",
                                           title.c_str (),
                                           nullptr))
@@ -22,9 +22,9 @@ namespace Gtk
     set_transient_for (parent);
   }
 
-  PrintUnixDialog::PrintUnixDialog (const Glib::ustring& title)
-    : Glib::ObjectBase (nullptr),
-      Gtk::Dialog (Glib::ConstructParams (printunixdialog_class_.init (),
+  PrintUnixDialog::PrintUnixDialog (const glib::ustring& title)
+    : glib::ObjectBase (nullptr),
+      gtk::Dialog (glib::ConstructParams (printunixdialog_class_.init (),
                                           "title",
                                           title.c_str (),
                                           nullptr))
@@ -33,35 +33,35 @@ namespace Gtk
 
   auto
   PrintUnixDialog::add_custom_tab (const Widget& child,
-                                   const Glib::ustring& tab_label) -> void
+                                   const glib::ustring& tab_label) -> void
   {
-    auto label = Gtk::manage (new Gtk::Label (tab_label));
+    auto label = gtk::manage (new gtk::Label (tab_label));
     add_custom_tab (child, *label);
   }
 
-} // namespace Gtk
+} // namespace gtk
 
 namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GtkPrintUnixDialog* object, bool take_copy) -> Gtk::PrintUnixDialog*
+  wrap (GtkPrintUnixDialog* object, bool take_copy) -> gtk::PrintUnixDialog*
   {
-    return dynamic_cast<Gtk::PrintUnixDialog*> (
-        Glib::wrap_auto ((GObject*) (object), take_copy));
+    return dynamic_cast<gtk::PrintUnixDialog*> (
+        glib::wrap_auto ((GObject*) (object), take_copy));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gtk
+namespace gtk
 {
 
   auto
-  PrintUnixDialog_Class::init () -> const Glib::Class&
+  PrintUnixDialog_Class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -81,31 +81,31 @@ namespace Gtk
   }
 
   auto
-  PrintUnixDialog_Class::wrap_new (GObject* o) -> Glib::ObjectBase*
+  PrintUnixDialog_Class::wrap_new (GObject* o) -> glib::ObjectBase*
   {
     return new PrintUnixDialog ((GtkPrintUnixDialog*) (o));
   }
 
   PrintUnixDialog::PrintUnixDialog (
-      const Glib::ConstructParams& construct_params)
-    : Gtk::Dialog (construct_params)
+      const glib::ConstructParams& construct_params)
+    : gtk::Dialog (construct_params)
   {
   }
 
   PrintUnixDialog::PrintUnixDialog (GtkPrintUnixDialog* castitem)
-    : Gtk::Dialog ((GtkDialog*) (castitem))
+    : gtk::Dialog ((GtkDialog*) (castitem))
   {
   }
 
   PrintUnixDialog::PrintUnixDialog (PrintUnixDialog&& src) noexcept
-    : Gtk::Dialog (std::move (src))
+    : gtk::Dialog (std::move (src))
   {
   }
 
   auto
   PrintUnixDialog::operator= (PrintUnixDialog&& src) noexcept -> PrintUnixDialog&
   {
-    Gtk::Dialog::operator= (std::move (src));
+    gtk::Dialog::operator= (std::move (src));
     return *this;
   }
 
@@ -129,22 +129,22 @@ namespace Gtk
   }
 
   auto
-  PrintUnixDialog::set_page_setup (const Glib::RefPtr<PageSetup>& page_setup) -> void
+  PrintUnixDialog::set_page_setup (const glib::RefPtr<PageSetup>& page_setup) -> void
   {
-    gtk_print_unix_dialog_set_page_setup (gobj (), Glib::unwrap (page_setup));
+    gtk_print_unix_dialog_set_page_setup (gobj (), glib::unwrap (page_setup));
   }
 
   auto
-  PrintUnixDialog::get_page_setup () -> Glib::RefPtr<PageSetup>
+  PrintUnixDialog::get_page_setup () -> glib::RefPtr<PageSetup>
   {
-    auto retvalue = Glib::wrap (gtk_print_unix_dialog_get_page_setup (gobj ()));
+    auto retvalue = glib::wrap (gtk_print_unix_dialog_get_page_setup (gobj ()));
     if (retvalue)
       retvalue->reference ();
     return retvalue;
   }
 
   auto
-  PrintUnixDialog::get_page_setup () const -> Glib::RefPtr<const PageSetup>
+  PrintUnixDialog::get_page_setup () const -> glib::RefPtr<const PageSetup>
   {
     return const_cast<PrintUnixDialog*> (this)->get_page_setup ();
   }
@@ -163,38 +163,38 @@ namespace Gtk
   }
 
   auto
-  PrintUnixDialog::set_settings (const Glib::RefPtr<PrintSettings>& settings) -> void
+  PrintUnixDialog::set_settings (const glib::RefPtr<PrintSettings>& settings) -> void
   {
-    gtk_print_unix_dialog_set_settings (gobj (), Glib::unwrap (settings));
+    gtk_print_unix_dialog_set_settings (gobj (), glib::unwrap (settings));
   }
 
   auto
-  PrintUnixDialog::get_settings () -> Glib::RefPtr<PrintSettings>
+  PrintUnixDialog::get_settings () -> glib::RefPtr<PrintSettings>
   {
-    auto retvalue = Glib::wrap (gtk_print_unix_dialog_get_settings (gobj ()));
+    auto retvalue = glib::wrap (gtk_print_unix_dialog_get_settings (gobj ()));
     if (retvalue)
       retvalue->reference ();
     return retvalue;
   }
 
   auto
-  PrintUnixDialog::get_settings () const -> Glib::RefPtr<const PrintSettings>
+  PrintUnixDialog::get_settings () const -> glib::RefPtr<const PrintSettings>
   {
     return const_cast<PrintUnixDialog*> (this)->get_settings ();
   }
 
   auto
-  PrintUnixDialog::get_selected_printer () -> Glib::RefPtr<Printer>
+  PrintUnixDialog::get_selected_printer () -> glib::RefPtr<Printer>
   {
     auto retvalue =
-        Glib::wrap (gtk_print_unix_dialog_get_selected_printer (gobj ()));
+        glib::wrap (gtk_print_unix_dialog_get_selected_printer (gobj ()));
     if (retvalue)
       retvalue->reference ();
     return retvalue;
   }
 
   auto
-  PrintUnixDialog::get_selected_printer () const -> Glib::RefPtr<const Printer>
+  PrintUnixDialog::get_selected_printer () const -> glib::RefPtr<const Printer>
   {
     return const_cast<PrintUnixDialog*> (this)->get_selected_printer ();
   }
@@ -275,117 +275,117 @@ namespace Gtk
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<
-          Glib::RefPtr<PageSetup>>::value,
-      "Type Glib::RefPtr<PageSetup> cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      glib::Traits::ValueCompatibleWithWrapProperty<
+          glib::RefPtr<PageSetup>>::value,
+      "Type glib::RefPtr<PageSetup> cannot be used in _WRAP_PROPERTY. "
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  PrintUnixDialog::property_page_setup () -> Glib::PropertyProxy<Glib::RefPtr<PageSetup>>
+  PrintUnixDialog::property_page_setup () -> glib::PropertyProxy<glib::RefPtr<PageSetup>>
   {
-    return Glib::PropertyProxy<Glib::RefPtr<PageSetup>> (this, "page-setup");
+    return glib::PropertyProxy<glib::RefPtr<PageSetup>> (this, "page-setup");
   }
 
   auto
-  PrintUnixDialog::property_page_setup () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<PageSetup>>
+  PrintUnixDialog::property_page_setup () const -> glib::PropertyProxy_ReadOnly<glib::RefPtr<PageSetup>>
   {
-    return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<PageSetup>> (this,
+    return glib::PropertyProxy_ReadOnly<glib::RefPtr<PageSetup>> (this,
                                                                   "page-setup");
   }
 
   auto
-  PrintUnixDialog::property_current_page () -> Glib::PropertyProxy<int>
+  PrintUnixDialog::property_current_page () -> glib::PropertyProxy<int>
   {
-    return Glib::PropertyProxy<int> (this, "current-page");
+    return glib::PropertyProxy<int> (this, "current-page");
   }
 
   auto
-  PrintUnixDialog::property_current_page () const -> Glib::PropertyProxy_ReadOnly<int>
+  PrintUnixDialog::property_current_page () const -> glib::PropertyProxy_ReadOnly<int>
   {
-    return Glib::PropertyProxy_ReadOnly<int> (this, "current-page");
+    return glib::PropertyProxy_ReadOnly<int> (this, "current-page");
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<
-          Glib::RefPtr<PrintSettings>>::value,
-      "Type Glib::RefPtr<PrintSettings> cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      glib::Traits::ValueCompatibleWithWrapProperty<
+          glib::RefPtr<PrintSettings>>::value,
+      "Type glib::RefPtr<PrintSettings> cannot be used in _WRAP_PROPERTY. "
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  PrintUnixDialog::property_print_settings () -> Glib::PropertyProxy<Glib::RefPtr<PrintSettings>>
+  PrintUnixDialog::property_print_settings () -> glib::PropertyProxy<glib::RefPtr<PrintSettings>>
   {
-    return Glib::PropertyProxy<Glib::RefPtr<PrintSettings>> (this,
+    return glib::PropertyProxy<glib::RefPtr<PrintSettings>> (this,
                                                              "print-settings");
   }
 
   auto
-  PrintUnixDialog::property_print_settings () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<PrintSettings>>
+  PrintUnixDialog::property_print_settings () const -> glib::PropertyProxy_ReadOnly<glib::RefPtr<PrintSettings>>
   {
-    return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<PrintSettings>> (
+    return glib::PropertyProxy_ReadOnly<glib::RefPtr<PrintSettings>> (
         this,
         "print-settings");
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<
-          Glib::RefPtr<Printer>>::value,
-      "Type Glib::RefPtr<Printer> cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      glib::Traits::ValueCompatibleWithWrapProperty<
+          glib::RefPtr<Printer>>::value,
+      "Type glib::RefPtr<Printer> cannot be used in _WRAP_PROPERTY. "
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  PrintUnixDialog::property_selected_printer () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Printer>>
+  PrintUnixDialog::property_selected_printer () const -> glib::PropertyProxy_ReadOnly<glib::RefPtr<Printer>>
   {
-    return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Printer>> (
+    return glib::PropertyProxy_ReadOnly<glib::RefPtr<Printer>> (
         this,
         "selected-printer");
   }
 
   auto
-  PrintUnixDialog::property_manual_capabilities () -> Glib::PropertyProxy<bool>
+  PrintUnixDialog::property_manual_capabilities () -> glib::PropertyProxy<bool>
   {
-    return Glib::PropertyProxy<bool> (this, "manual-capabilities");
+    return glib::PropertyProxy<bool> (this, "manual-capabilities");
   }
 
   auto
-  PrintUnixDialog::property_manual_capabilities () const -> Glib::PropertyProxy_ReadOnly<bool>
+  PrintUnixDialog::property_manual_capabilities () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "manual-capabilities");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "manual-capabilities");
   }
 
   auto
-  PrintUnixDialog::property_support_selection () -> Glib::PropertyProxy<bool>
+  PrintUnixDialog::property_support_selection () -> glib::PropertyProxy<bool>
   {
-    return Glib::PropertyProxy<bool> (this, "support-selection");
+    return glib::PropertyProxy<bool> (this, "support-selection");
   }
 
   auto
-  PrintUnixDialog::property_support_selection () const -> Glib::PropertyProxy_ReadOnly<bool>
+  PrintUnixDialog::property_support_selection () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "support-selection");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "support-selection");
   }
 
   auto
-  PrintUnixDialog::property_has_selection () -> Glib::PropertyProxy<bool>
+  PrintUnixDialog::property_has_selection () -> glib::PropertyProxy<bool>
   {
-    return Glib::PropertyProxy<bool> (this, "has-selection");
+    return glib::PropertyProxy<bool> (this, "has-selection");
   }
 
   auto
-  PrintUnixDialog::property_has_selection () const -> Glib::PropertyProxy_ReadOnly<bool>
+  PrintUnixDialog::property_has_selection () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "has-selection");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "has-selection");
   }
 
   auto
-  PrintUnixDialog::property_embed_page_setup () -> Glib::PropertyProxy<bool>
+  PrintUnixDialog::property_embed_page_setup () -> glib::PropertyProxy<bool>
   {
-    return Glib::PropertyProxy<bool> (this, "embed-page-setup");
+    return glib::PropertyProxy<bool> (this, "embed-page-setup");
   }
 
   auto
-  PrintUnixDialog::property_embed_page_setup () const -> Glib::PropertyProxy_ReadOnly<bool>
+  PrintUnixDialog::property_embed_page_setup () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "embed-page-setup");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "embed-page-setup");
   }
 
-} // namespace Gtk
+} // namespace gtk

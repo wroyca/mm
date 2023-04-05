@@ -14,7 +14,7 @@
 #include <libmm/glib/value.hxx>
 #include <vector>
 
-namespace Gdk
+namespace gdk
 {
 
   class LIBMM_GDK_SYMEXPORT ContentFormats final
@@ -53,60 +53,60 @@ namespace Gdk
   private:
   public:
     static auto
-    create (const std::vector<Glib::ustring>& mime_types = {})
-        -> Glib::RefPtr<ContentFormats>;
+    create (const std::vector<glib::ustring>& mime_types = {})
+        -> glib::RefPtr<ContentFormats>;
 
     static auto
-    create (const Glib::ustring& mime_type) -> Glib::RefPtr<ContentFormats>;
+    create (const glib::ustring& mime_type) -> glib::RefPtr<ContentFormats>;
 
     static auto
-    create (GType type) -> Glib::RefPtr<ContentFormats>;
+    create (GType type) -> glib::RefPtr<ContentFormats>;
 
     static auto
-    parse (const Glib::ustring& string) -> Glib::RefPtr<ContentFormats>;
+    parse (const glib::ustring& string) -> glib::RefPtr<ContentFormats>;
 
     auto
-    to_string () const -> Glib::ustring;
+    to_string () const -> glib::ustring;
 
     auto
     get_gtypes () const -> std::vector<GType>;
 
     auto
-    get_mime_types () const -> std::vector<Glib::ustring>;
+    get_mime_types () const -> std::vector<glib::ustring>;
 
     auto
     contain_gtype (GType type) const -> bool;
 
     auto
-    contain_mime_type (const Glib::ustring& mime_type) const -> bool;
+    contain_mime_type (const glib::ustring& mime_type) const -> bool;
 
     auto
-    join (const Glib::RefPtr<const ContentFormats>& second) const
-        -> Glib::RefPtr<ContentFormats>;
+    join (const glib::RefPtr<const ContentFormats>& second) const
+        -> glib::RefPtr<ContentFormats>;
 
     auto
-    match (const Glib::RefPtr<const ContentFormats>& second) const -> bool;
+    match (const glib::RefPtr<const ContentFormats>& second) const -> bool;
 
     auto
-    match_gtype (const Glib::RefPtr<const ContentFormats>& second) const
+    match_gtype (const glib::RefPtr<const ContentFormats>& second) const
         -> GType;
 
     auto
-    match_mime_type (const Glib::RefPtr<const ContentFormats>& second) const
-        -> Glib::ustring;
+    match_mime_type (const glib::RefPtr<const ContentFormats>& second) const
+        -> glib::ustring;
   };
 
-} // namespace Gdk
+} // namespace gdk
 
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_GDK_SYMEXPORT Value<Glib::RefPtr<Gdk::ContentFormats>>
+  class LIBMM_GDK_SYMEXPORT Value<glib::RefPtr<gdk::ContentFormats>>
     : public ValueBase_Boxed
   {
   public:
-    typedef Glib::RefPtr<Gdk::ContentFormats> CppType;
+    typedef glib::RefPtr<gdk::ContentFormats> CppType;
     typedef GdkContentFormats* CType;
 
     static auto
@@ -118,13 +118,13 @@ namespace Glib
     get () const -> CppType;
   };
 
-} // namespace Glib
+} // namespace glib
 
-namespace Glib
+namespace glib
 {
   LIBMM_GDK_SYMEXPORT auto
-  wrap (GdkContentFormats* object, bool take_copy = false) -> Glib::RefPtr<Gdk::ContentFormats>;
+  wrap (GdkContentFormats* object, bool take_copy = false) -> glib::RefPtr<gdk::ContentFormats>;
 
-} // namespace Glib
+} // namespace glib
 
 #endif

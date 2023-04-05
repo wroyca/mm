@@ -23,17 +23,17 @@ using GtkShortcutManagerClass = struct _GtkShortcutManagerClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT ShortcutManager_Class;
 }
 #endif
 
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT ShortcutController;
 
-  class LIBMM_GTK_SYMEXPORT ShortcutManager : public Glib::Interface
+  class LIBMM_GTK_SYMEXPORT ShortcutManager : public glib::Interface
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -57,7 +57,7 @@ namespace Gtk
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
-    explicit ShortcutManager (const Glib::Interface_Class& interface_class);
+    explicit ShortcutManager (const glib::Interface_Class& interface_class);
 
   public:
     explicit ShortcutManager (GtkShortcutManager* castitem);
@@ -99,11 +99,11 @@ namespace Gtk
   public:
   protected:
     virtual auto
-    add_controller_vfunc (const Glib::RefPtr<ShortcutController>& controller)
+    add_controller_vfunc (const glib::RefPtr<ShortcutController>& controller)
         -> void;
 
     virtual auto
-    remove_controller_vfunc (const Glib::RefPtr<ShortcutController>& controller)
+    remove_controller_vfunc (const glib::RefPtr<ShortcutController>& controller)
         -> void;
 
   public:
@@ -111,13 +111,13 @@ namespace Gtk
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkShortcutManager* object, bool take_copy = false) -> Glib::RefPtr<Gtk::ShortcutManager>;
+  wrap (GtkShortcutManager* object, bool take_copy = false) -> glib::RefPtr<gtk::ShortcutManager>;
 
-} // namespace Glib
+} // namespace glib
 
 #endif

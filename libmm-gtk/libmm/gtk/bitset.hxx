@@ -13,7 +13,7 @@
 
 extern "C" typedef struct _GtkBitset GtkBitset;
 
-namespace Gtk
+namespace gtk
 {
 
   class LIBMM_GTK_SYMEXPORT Bitset final
@@ -71,7 +71,7 @@ namespace Gtk
     }
 
     static auto
-    create () -> Glib::RefPtr<Bitset>;
+    create () -> glib::RefPtr<Bitset>;
 
     auto
     contains (guint value) const -> bool;
@@ -89,7 +89,7 @@ namespace Gtk
     get_nth (guint nth) const -> guint;
 
     auto
-    equals (const Glib::RefPtr<const Bitset>& other) const -> bool;
+    equals (const glib::RefPtr<const Bitset>& other) const -> bool;
 
     auto
     get_minimum () const -> guint;
@@ -98,7 +98,7 @@ namespace Gtk
     get_maximum () const -> guint;
 
     auto
-    copy () const -> Glib::RefPtr<Bitset>;
+    copy () const -> glib::RefPtr<Bitset>;
 
     auto
     remove_all () -> void;
@@ -130,16 +130,16 @@ namespace Gtk
         -> void;
 
     auto
-    join (const Glib::RefPtr<const Bitset>& other) -> void;
+    join (const glib::RefPtr<const Bitset>& other) -> void;
 
     auto
-    intersect (const Glib::RefPtr<const Bitset>& other) -> void;
+    intersect (const glib::RefPtr<const Bitset>& other) -> void;
 
     auto
-    subtract (const Glib::RefPtr<const Bitset>& other) -> void;
+    subtract (const glib::RefPtr<const Bitset>& other) -> void;
 
     auto
-    difference (const Glib::RefPtr<const Bitset>& other) -> void;
+    difference (const glib::RefPtr<const Bitset>& other) -> void;
 
     auto
     shift_left (guint amount) -> void;
@@ -151,13 +151,13 @@ namespace Gtk
     splice (guint position, guint removed, guint value) -> void;
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkBitset* object, bool take_copy = false) -> Glib::RefPtr<Gtk::Bitset>;
+  wrap (GtkBitset* object, bool take_copy = false) -> glib::RefPtr<gtk::Bitset>;
 
-} // namespace Glib
+} // namespace glib
 
 #endif

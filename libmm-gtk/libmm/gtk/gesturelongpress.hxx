@@ -14,13 +14,13 @@ using GtkGestureLongPressClass = struct _GtkGestureLongPressClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT GestureLongPress_Class;
 }
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
   class LIBMM_GTK_SYMEXPORT GestureLongPress : public GestureSingle
@@ -42,7 +42,7 @@ namespace Gtk
     static CppClassType gesturelongpress_class_;
 
   protected:
-    explicit GestureLongPress (const Glib::ConstructParams& construct_params);
+    explicit GestureLongPress (const glib::ConstructParams& construct_params);
     explicit GestureLongPress (GtkGestureLongPress* castitem);
 
 #endif
@@ -84,7 +84,7 @@ namespace Gtk
 
   public:
     static auto
-    create () -> Glib::RefPtr<GestureLongPress>;
+    create () -> glib::RefPtr<GestureLongPress>;
 
     auto
     set_delay_factor (double delay_factor) -> void;
@@ -93,28 +93,28 @@ namespace Gtk
     get_delay_factor () const -> double;
 
     auto
-    signal_pressed () -> Glib::SignalProxy<void (double, double)>;
+    signal_pressed () -> glib::SignalProxy<void (double, double)>;
 
     auto
-    signal_cancelled () -> Glib::SignalProxy<void ()>;
+    signal_cancelled () -> glib::SignalProxy<void ()>;
 
     auto
-    property_delay_factor () -> Glib::PropertyProxy<double>;
+    property_delay_factor () -> glib::PropertyProxy<double>;
 
     auto
-    property_delay_factor () const -> Glib::PropertyProxy_ReadOnly<double>;
+    property_delay_factor () const -> glib::PropertyProxy_ReadOnly<double>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkGestureLongPress* object, bool take_copy = false) -> Glib::RefPtr<Gtk::GestureLongPress>;
-} // namespace Glib
+  wrap (GtkGestureLongPress* object, bool take_copy = false) -> glib::RefPtr<gtk::GestureLongPress>;
+} // namespace glib
 
 #endif

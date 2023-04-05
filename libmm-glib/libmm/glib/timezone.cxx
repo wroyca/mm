@@ -7,7 +7,7 @@
 
 #include <libmm/glib/utility.hxx>
 
-namespace Glib
+namespace glib
 {
 
   TimeZone::operator bool () const
@@ -15,13 +15,13 @@ namespace Glib
     return gobject_ != nullptr;
   }
 
-} // namespace Glib
+} // namespace glib
 
 namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
@@ -30,9 +30,9 @@ namespace Glib
     return TimeZone (object, take_copy);
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Glib
+namespace glib
 {
 
   auto
@@ -168,4 +168,4 @@ namespace Glib
         g_time_zone_get_identifier (const_cast<GTimeZone*> (gobj ())));
   }
 
-} // namespace Glib
+} // namespace glib

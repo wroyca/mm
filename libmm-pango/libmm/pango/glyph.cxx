@@ -5,7 +5,7 @@
 #include <libmm/pango/glyph.hxx>
 #include <libmm/pango/glyph_p.hxx>
 
-namespace Pango
+namespace pango
 {
 
   GlyphInfo::GlyphInfo ()
@@ -25,42 +25,42 @@ namespace Pango
     gobject_.y_offset = src->y_offset;
   }
 
-} // namespace Pango
+} // namespace pango
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (PangoGlyphInfo* object) -> Pango::GlyphInfo&
+  wrap (PangoGlyphInfo* object) -> pango::GlyphInfo&
   {
-    return *reinterpret_cast<Pango::GlyphInfo*> (object);
+    return *reinterpret_cast<pango::GlyphInfo*> (object);
   }
 
   auto
-  wrap (const PangoGlyphInfo* object) -> const Pango::GlyphInfo&
+  wrap (const PangoGlyphInfo* object) -> const pango::GlyphInfo&
   {
-    return *reinterpret_cast<const Pango::GlyphInfo*> (object);
+    return *reinterpret_cast<const pango::GlyphInfo*> (object);
   }
 
   auto
-  wrap (PangoGlyphGeometry* object) -> Pango::GlyphGeometry&
+  wrap (PangoGlyphGeometry* object) -> pango::GlyphGeometry&
   {
-    return *reinterpret_cast<Pango::GlyphGeometry*> (object);
+    return *reinterpret_cast<pango::GlyphGeometry*> (object);
   }
 
   auto
-  wrap (const PangoGlyphGeometry* object) -> const Pango::GlyphGeometry&
+  wrap (const PangoGlyphGeometry* object) -> const pango::GlyphGeometry&
   {
-    return *reinterpret_cast<const Pango::GlyphGeometry*> (object);
+    return *reinterpret_cast<const pango::GlyphGeometry*> (object);
   }
 
-} // namespace Glib
+} // namespace glib
 
 namespace
 {
 }
 
-namespace Pango
+namespace pango
 {
 
   auto
@@ -81,9 +81,9 @@ namespace Pango
     return gobj ()->attr;
   }
 
-} // namespace Pango
+} // namespace pango
 
-namespace Pango
+namespace pango
 {
 
   auto
@@ -104,4 +104,4 @@ namespace Pango
     return gobj ()->y_offset;
   }
 
-} // namespace Pango
+} // namespace pango

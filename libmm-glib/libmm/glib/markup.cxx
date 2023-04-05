@@ -10,7 +10,7 @@
 #include <libmm/glib/markup.hxx>
 #include <libmm/glib/utility.hxx>
 
-namespace Glib::Markup
+namespace glib::Markup
 {
 
   auto
@@ -297,7 +297,7 @@ namespace Glib::Markup
                                   &error);
 
     if (error)
-      Glib::Error::throw_exception (error);
+      glib::Error::throw_exception (error);
   }
 
   auto
@@ -310,7 +310,7 @@ namespace Glib::Markup
                                   &error);
 
     if (error)
-      Glib::Error::throw_exception (error);
+      glib::Error::throw_exception (error);
   }
 
   auto
@@ -320,7 +320,7 @@ namespace Glib::Markup
     g_markup_parse_context_end_parse (gobject_, &error);
 
     if (error)
-      Glib::Error::throw_exception (error);
+      glib::Error::throw_exception (error);
   }
 
   auto
@@ -355,31 +355,31 @@ namespace Glib::Markup
     g_return_if_fail (self->parser_ == nullptr);
   }
 
-} // namespace Glib::Markup
+} // namespace glib::Markup
 
 namespace
 {
 }
 
-Glib::MarkupError::MarkupError (const Code error_code,
+glib::MarkupError::MarkupError (const Code error_code,
                                 const ustring& error_message)
   : Error (G_MARKUP_ERROR, error_code, error_message)
 {
 }
 
-Glib::MarkupError::MarkupError (GError* gobject)
+glib::MarkupError::MarkupError (GError* gobject)
   : Error (gobject)
 {
 }
 
 auto
-Glib::MarkupError::code () const -> Code
+glib::MarkupError::code () const -> Code
 {
   return static_cast<Code> (Error::code ());
 }
 
 auto
-Glib::MarkupError::throw_func (GError* gobject) -> void
+glib::MarkupError::throw_func (GError* gobject) -> void
 {
   throw MarkupError (gobject);
 }

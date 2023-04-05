@@ -16,13 +16,13 @@
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT ColorDialogButton_Class;
 }
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
   class LIBMM_GTK_SYMEXPORT ColorDialogButton : public Widget
@@ -52,7 +52,7 @@ namespace Gtk
     static CppClassType colordialogbutton_class_;
 
   protected:
-    explicit ColorDialogButton (const Glib::ConstructParams& construct_params);
+    explicit ColorDialogButton (const glib::ConstructParams& construct_params);
     explicit ColorDialogButton (GtkColorDialogButton* castitem);
 
 #endif
@@ -81,47 +81,47 @@ namespace Gtk
 
   private:
   public:
-    explicit ColorDialogButton (const Glib::RefPtr<ColorDialog>& dialog = {});
+    explicit ColorDialogButton (const glib::RefPtr<ColorDialog>& dialog = {});
 
     auto
-    get_dialog () -> Glib::RefPtr<ColorDialog>;
+    get_dialog () -> glib::RefPtr<ColorDialog>;
 
     auto
-    get_dialog () const -> Glib::RefPtr<const ColorDialog>;
+    get_dialog () const -> glib::RefPtr<const ColorDialog>;
 
     auto
-    set_dialog (const Glib::RefPtr<ColorDialog>& dialog) -> void;
+    set_dialog (const glib::RefPtr<ColorDialog>& dialog) -> void;
 
     auto
-    get_rgba () const -> Gdk::RGBA;
+    get_rgba () const -> gdk::RGBA;
 
     auto
-    set_rgba (const Gdk::RGBA& color) -> void;
+    set_rgba (const gdk::RGBA& color) -> void;
 
     auto
-    property_dialog () -> Glib::PropertyProxy<Glib::RefPtr<ColorDialog>>;
+    property_dialog () -> glib::PropertyProxy<glib::RefPtr<ColorDialog>>;
 
     auto
     property_dialog () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<ColorDialog>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<ColorDialog>>;
 
     auto
-    property_rgba () -> Glib::PropertyProxy<Gdk::RGBA>;
+    property_rgba () -> glib::PropertyProxy<gdk::RGBA>;
 
     auto
-    property_rgba () const -> Glib::PropertyProxy_ReadOnly<Gdk::RGBA>;
+    property_rgba () const -> glib::PropertyProxy_ReadOnly<gdk::RGBA>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkColorDialogButton* object, bool take_copy = false) -> Gtk::ColorDialogButton*;
-} // namespace Glib
+  wrap (GtkColorDialogButton* object, bool take_copy = false) -> gtk::ColorDialogButton*;
+} // namespace glib
 
 #endif

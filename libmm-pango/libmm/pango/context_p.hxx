@@ -7,17 +7,17 @@
 
 #include <libmm/glib/class.hxx>
 
-namespace Pango
+namespace pango
 {
 
-  class LIBMM_PANGO_SYMEXPORT Context_Class : public Glib::Class
+  class LIBMM_PANGO_SYMEXPORT Context_Class : public glib::Class
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
     using CppObjectType = Context;
     using BaseObjectType = PangoContext;
     using BaseClassType = PangoContextClass;
-    using CppClassParent = Glib::Object_Class;
+    using CppClassParent = glib::Object_Class;
     using BaseClassParent = GObjectClass;
 
     friend class Context;
@@ -30,11 +30,11 @@ namespace Pango
     class_init_function (void* g_class, void* class_data) -> void;
 
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
 
   protected:
   };
 
-} // namespace Pango
+} // namespace pango
 
 #endif

@@ -16,16 +16,16 @@
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Adw
+namespace adw
 {
   class LIBMM_ADW_SYMEXPORT ActionRow_Class;
 }
 #endif
 
-namespace Adw
+namespace adw
 {
 
-  class LIBMM_ADW_SYMEXPORT ActionRow : public Adw::PreferencesRow
+  class LIBMM_ADW_SYMEXPORT ActionRow : public adw::PreferencesRow
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -52,7 +52,7 @@ namespace Adw
     static CppClassType actionrow_class_;
 
   protected:
-    explicit ActionRow (const Glib::ConstructParams& construct_params);
+    explicit ActionRow (const glib::ConstructParams& construct_params);
     explicit ActionRow (AdwActionRow* castitem);
 
 #endif
@@ -84,13 +84,13 @@ namespace Adw
     ActionRow ();
 
     auto
-    get_icon_name () const -> Glib::ustring;
+    get_icon_name () const -> glib::ustring;
 
     auto
-    get_subtitle () const -> Glib::ustring;
+    get_subtitle () const -> glib::ustring;
 
     auto
-    get_activatable_widget () const -> Gtk::Widget*;
+    get_activatable_widget () const -> gtk::Widget*;
 
     auto
     get_subtitle_lines () const -> int;
@@ -102,19 +102,19 @@ namespace Adw
     activate () -> void;
 
     auto
-    add_prefix (Gtk::Widget& widget) -> void;
+    add_prefix (gtk::Widget& widget) -> void;
 
     auto
-    add_suffix (Gtk::Widget& widget) -> void;
+    add_suffix (gtk::Widget& widget) -> void;
 
     auto
-    set_activatable_widget (Gtk::Widget* widget) const -> void;
+    set_activatable_widget (gtk::Widget* widget) const -> void;
 
     auto
-    set_icon_name (const Glib::ustring& icon_name) -> void;
+    set_icon_name (const glib::ustring& icon_name) -> void;
 
     auto
-    set_subtitle (const Glib::ustring& subtitle) -> void;
+    set_subtitle (const glib::ustring& subtitle) -> void;
 
     auto
     set_subtitle_lines (int subtitle_lines) -> void;
@@ -123,54 +123,54 @@ namespace Adw
     set_title_lines (int title_lines) -> void;
 
     auto
-    remove (Gtk::Widget& widget) -> void;
+    remove (gtk::Widget& widget) -> void;
 
     auto
-    property_icon_name () -> Glib::PropertyProxy<Glib::ustring>;
+    property_icon_name () -> glib::PropertyProxy<glib::ustring>;
 
     auto
-    property_icon_name () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+    property_icon_name () const -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
     auto
-    property_subtitle () -> Glib::PropertyProxy<Glib::ustring>;
+    property_subtitle () -> glib::PropertyProxy<glib::ustring>;
 
     auto
-    property_subtitle () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+    property_subtitle () const -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
     auto
-    property_activatable_widget () -> Glib::PropertyProxy<Gtk::Widget*>;
+    property_activatable_widget () -> glib::PropertyProxy<gtk::Widget*>;
 
     auto
     property_activatable_widget () const
-        -> Glib::PropertyProxy_ReadOnly<Gtk::Widget*>;
+        -> glib::PropertyProxy_ReadOnly<gtk::Widget*>;
 
     auto
-    property_subtitle_lines () -> Glib::PropertyProxy<int>;
+    property_subtitle_lines () -> glib::PropertyProxy<int>;
 
     auto
-    property_subtitle_lines () const -> Glib::PropertyProxy_ReadOnly<int>;
+    property_subtitle_lines () const -> glib::PropertyProxy_ReadOnly<int>;
 
     auto
-    property_title_lines () -> Glib::PropertyProxy<int>;
+    property_title_lines () -> glib::PropertyProxy<int>;
 
     auto
-    property_title_lines () const -> Glib::PropertyProxy_ReadOnly<int>;
+    property_title_lines () const -> glib::PropertyProxy_ReadOnly<int>;
 
     auto
-    signal_activated () -> Glib::SignalProxy<void ()>;
+    signal_activated () -> glib::SignalProxy<void ()>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Adw
+} // namespace adw
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (AdwActionRow* object, bool take_copy = false) -> Adw::ActionRow*;
+  wrap (AdwActionRow* object, bool take_copy = false) -> adw::ActionRow*;
 }
 
 #endif

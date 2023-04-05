@@ -9,7 +9,7 @@
 #include <libmm/gio/dbusintrospection.hxx>
 #include <libmm/gio/dbusmethodinvocation.hxx>
 
-using Flags = Gio::DBus::InterfaceSkeleton::Flags;
+using Flags = gio::DBus::InterfaceSkeleton::Flags;
 
 namespace
 {
@@ -20,22 +20,22 @@ namespace
       GDBusMethodInvocation* p0,
       void* data) -> gboolean
   {
-    using namespace Gio::DBus;
-    using SlotType = sigc::slot<bool (const Glib::RefPtr<MethodInvocation>&)>;
+    using namespace gio::DBus;
+    using SlotType = sigc::slot<bool (const glib::RefPtr<MethodInvocation>&)>;
 
     const auto obj = dynamic_cast<InterfaceSkeleton*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
     {
       try
       {
-        if (const auto slot = Glib::SignalProxyNormal::data_to_slot (data))
-          return (*static_cast<SlotType*> (slot)) (Glib::wrap (p0, true));
+        if (const auto slot = glib::SignalProxyNormal::data_to_slot (data))
+          return (*static_cast<SlotType*> (slot)) (glib::wrap (p0, true));
       }
       catch (...)
       {
-        Glib::exception_handlers_invoke ();
+        glib::exception_handlers_invoke ();
       }
     }
 
@@ -49,22 +49,22 @@ namespace
       GDBusMethodInvocation* p0,
       void* data) -> gboolean
   {
-    using namespace Gio::DBus;
-    using SlotType = sigc::slot<void (const Glib::RefPtr<MethodInvocation>&)>;
+    using namespace gio::DBus;
+    using SlotType = sigc::slot<void (const glib::RefPtr<MethodInvocation>&)>;
 
     const auto obj = dynamic_cast<InterfaceSkeleton*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
     {
       try
       {
-        if (const auto slot = Glib::SignalProxyNormal::data_to_slot (data))
-          (*static_cast<SlotType*> (slot)) (Glib::wrap (p0, true));
+        if (const auto slot = glib::SignalProxyNormal::data_to_slot (data))
+          (*static_cast<SlotType*> (slot)) (glib::wrap (p0, true));
       }
       catch (...)
       {
-        Glib::exception_handlers_invoke ();
+        glib::exception_handlers_invoke ();
       }
     }
 
@@ -72,7 +72,7 @@ namespace
     return RType ();
   }
 
-  const Glib::SignalProxyInfo InterfaceSkeleton_signal_authorize_method_info = {
+  const glib::SignalProxyInfo InterfaceSkeleton_signal_authorize_method_info = {
       "g_authorize_method",
       (GCallback) &InterfaceSkeleton_signal_authorize_method_callback,
       (GCallback) &InterfaceSkeleton_signal_authorize_method_notify_callback};
@@ -80,25 +80,25 @@ namespace
 } // namespace
 
 auto
-Glib::Value<Gio::DBus::InterfaceSkeleton::Flags>::value_type () -> GType
+glib::Value<gio::DBus::InterfaceSkeleton::Flags>::value_type () -> GType
 {
   return g_dbus_interface_skeleton_flags_get_type ();
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GDBusInterfaceSkeleton* object, const bool take_copy) -> RefPtr<Gio::DBus::InterfaceSkeleton>
+  wrap (GDBusInterfaceSkeleton* object, const bool take_copy) -> RefPtr<gio::DBus::InterfaceSkeleton>
   {
-    return Glib::make_refptr_for_instance<Gio::DBus::InterfaceSkeleton> (
-        dynamic_cast<Gio::DBus::InterfaceSkeleton*> (
+    return glib::make_refptr_for_instance<gio::DBus::InterfaceSkeleton> (
+        dynamic_cast<gio::DBus::InterfaceSkeleton*> (
             wrap_auto ((GObject*) object, take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gio::DBus
+namespace gio::DBus
 {
 
   auto
@@ -131,7 +131,7 @@ namespace Gio::DBus
       GDBusMethodInvocation* p0) -> gboolean
   {
     const auto obj_base =
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self);
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self);
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -140,11 +140,11 @@ namespace Gio::DBus
       {
         try
         {
-          return obj->on_authorize_method (Glib::wrap (p0, true));
+          return obj->on_authorize_method (glib::wrap (p0, true));
         }
         catch (...)
         {
-          Glib::exception_handlers_invoke ();
+          glib::exception_handlers_invoke ();
         }
       }
     }
@@ -160,7 +160,7 @@ namespace Gio::DBus
   }
 
   auto
-  InterfaceSkeleton_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  InterfaceSkeleton_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new InterfaceSkeleton ((GDBusInterfaceSkeleton*) object);
   }
@@ -173,7 +173,7 @@ namespace Gio::DBus
   }
 
   InterfaceSkeleton::InterfaceSkeleton (
-      const Glib::ConstructParams& construct_params)
+      const glib::ConstructParams& construct_params)
     : Object (construct_params)
   {
   }
@@ -220,37 +220,37 @@ namespace Gio::DBus
   }
 
   auto
-  InterfaceSkeleton::get_info () -> Glib::RefPtr<InterfaceInfo>
+  InterfaceSkeleton::get_info () -> glib::RefPtr<InterfaceInfo>
   {
-    return Glib::wrap (g_dbus_interface_skeleton_get_info (gobj ()));
+    return glib::wrap (g_dbus_interface_skeleton_get_info (gobj ()));
   }
 
   auto
-  InterfaceSkeleton::get_info () const -> Glib::RefPtr<const InterfaceInfo>
+  InterfaceSkeleton::get_info () const -> glib::RefPtr<const InterfaceInfo>
   {
     return const_cast<InterfaceSkeleton*> (this)->get_info ();
   }
 
   auto
-  InterfaceSkeleton::get_properties () const -> Glib::VariantBase
+  InterfaceSkeleton::get_properties () const -> glib::VariantBase
   {
-    return Glib::wrap (g_dbus_interface_skeleton_get_properties (
+    return glib::wrap (g_dbus_interface_skeleton_get_properties (
                            const_cast<GDBusInterfaceSkeleton*> (gobj ())),
                        false);
   }
 
   auto
   InterfaceSkeleton::export_interface_skeleton (
-      const Glib::RefPtr<Connection>& connection,
-      const Glib::ustring& object_path) -> void
+      const glib::RefPtr<Connection>& connection,
+      const glib::ustring& object_path) -> void
   {
     GError* gerror = nullptr;
     g_dbus_interface_skeleton_export (gobj (),
-                                      Glib::unwrap (connection),
+                                      glib::unwrap (connection),
                                       object_path.c_str (),
                                       &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
   }
 
   auto
@@ -261,55 +261,55 @@ namespace Gio::DBus
 
   auto
   InterfaceSkeleton::unexport_from_connection (
-      const Glib::RefPtr<Connection>& connection) -> void
+      const glib::RefPtr<Connection>& connection) -> void
   {
     g_dbus_interface_skeleton_unexport_from_connection (
         gobj (),
-        Glib::unwrap (connection));
+        glib::unwrap (connection));
   }
 
   auto
-  InterfaceSkeleton::get_connection () -> Glib::RefPtr<Connection>
+  InterfaceSkeleton::get_connection () -> glib::RefPtr<Connection>
   {
-    return Glib::wrap (g_dbus_interface_skeleton_get_connection (gobj ()));
+    return glib::wrap (g_dbus_interface_skeleton_get_connection (gobj ()));
   }
 
   auto
-  InterfaceSkeleton::get_connection () const -> Glib::RefPtr<const Connection>
+  InterfaceSkeleton::get_connection () const -> glib::RefPtr<const Connection>
   {
     return const_cast<InterfaceSkeleton*> (this)->get_connection ();
   }
 
   auto
-  InterfaceSkeleton::get_connections () -> std::vector<Glib::RefPtr<Connection>>
+  InterfaceSkeleton::get_connections () -> std::vector<glib::RefPtr<Connection>>
   {
-    return Glib::ListHandler<Glib::RefPtr<Connection>>::list_to_vector (
+    return glib::ListHandler<glib::RefPtr<Connection>>::list_to_vector (
         g_dbus_interface_skeleton_get_connections (gobj ()),
-        Glib::OWNERSHIP_DEEP);
+        glib::OWNERSHIP_DEEP);
   }
 
   auto
-  InterfaceSkeleton::get_connections () const -> std::vector<Glib::RefPtr<const Connection>>
+  InterfaceSkeleton::get_connections () const -> std::vector<glib::RefPtr<const Connection>>
   {
-    return Glib::ListHandler<Glib::RefPtr<const Connection>>::list_to_vector (
+    return glib::ListHandler<glib::RefPtr<const Connection>>::list_to_vector (
         g_dbus_interface_skeleton_get_connections (
             const_cast<GDBusInterfaceSkeleton*> (gobj ())),
-        Glib::OWNERSHIP_DEEP);
+        glib::OWNERSHIP_DEEP);
   }
 
   auto
   InterfaceSkeleton::has_connection (
-      const Glib::RefPtr<const Connection>& connection) const -> bool
+      const glib::RefPtr<const Connection>& connection) const -> bool
   {
     return g_dbus_interface_skeleton_has_connection (
         const_cast<GDBusInterfaceSkeleton*> (gobj ()),
-        const_cast<GDBusConnection*> (Glib::unwrap (connection)));
+        const_cast<GDBusConnection*> (glib::unwrap (connection)));
   }
 
   auto
-  InterfaceSkeleton::get_object_path () const -> Glib::ustring
+  InterfaceSkeleton::get_object_path () const -> glib::ustring
   {
-    return Glib::convert_const_gchar_ptr_to_ustring (
+    return glib::convert_const_gchar_ptr_to_ustring (
         g_dbus_interface_skeleton_get_object_path (
             const_cast<GDBusInterfaceSkeleton*> (gobj ())));
   }
@@ -330,40 +330,40 @@ namespace Gio::DBus
   }
 
   auto
-  InterfaceSkeleton::signal_authorize_method () -> Glib::SignalProxy<bool (const Glib::RefPtr<MethodInvocation>&)>
+  InterfaceSkeleton::signal_authorize_method () -> glib::SignalProxy<bool (const glib::RefPtr<MethodInvocation>&)>
   {
     return {this, &InterfaceSkeleton_signal_authorize_method_info};
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<Flags>::value,
+      glib::Traits::ValueCompatibleWithWrapProperty<Flags>::value,
       "Type Flags cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  InterfaceSkeleton::property_g_flags () -> Glib::PropertyProxy<Flags>
+  InterfaceSkeleton::property_g_flags () -> glib::PropertyProxy<Flags>
   {
     return {this, "g-flags"};
   }
 
   auto
-  InterfaceSkeleton::property_g_flags () const -> Glib::PropertyProxy_ReadOnly<Flags>
+  InterfaceSkeleton::property_g_flags () const -> glib::PropertyProxy_ReadOnly<Flags>
   {
     return {this, "g-flags"};
   }
 
   auto
   InterfaceSkeleton::on_authorize_method (
-      const Glib::RefPtr<MethodInvocation>& invocation) -> bool
+      const glib::RefPtr<MethodInvocation>& invocation) -> bool
   {
     const auto base = static_cast<BaseClassType*> (
         g_type_class_peek_parent (G_OBJECT_GET_CLASS (gobject_)));
 
     if (base && base->g_authorize_method)
-      return (*base->g_authorize_method) (gobj (), Glib::unwrap (invocation));
+      return (*base->g_authorize_method) (gobj (), glib::unwrap (invocation));
 
     using RType = bool;
     return RType ();
   }
 
-} // namespace Gio::DBus
+} // namespace gio::DBus

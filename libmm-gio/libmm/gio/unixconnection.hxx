@@ -15,16 +15,16 @@ using GUnixConnectionClass = struct _GUnixConnectionClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gio
+namespace gio
 {
   class LIBMM_GIO_SYMEXPORT UnixConnection_Class;
 }
 #endif
 
-namespace Gio
+namespace gio
 {
 
-  class LIBMM_GIO_SYMEXPORT UnixConnection : public Gio::SocketConnection
+  class LIBMM_GIO_SYMEXPORT UnixConnection : public gio::SocketConnection
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -43,7 +43,7 @@ namespace Gio
     static CppClassType unixconnection_class_;
 
   protected:
-    explicit UnixConnection (const Glib::ConstructParams& construct_params);
+    explicit UnixConnection (const glib::ConstructParams& construct_params);
     explicit UnixConnection (GUnixConnection* castitem);
 
 #endif
@@ -82,73 +82,73 @@ namespace Gio
   private:
   public:
     auto
-    send_fd (int fd, const Glib::RefPtr<Cancellable>& cancellable) -> bool;
+    send_fd (int fd, const glib::RefPtr<Cancellable>& cancellable) -> bool;
 
     auto
     send_fd (int fd) -> bool;
 
     auto
-    receive_fd (const Glib::RefPtr<Cancellable>& cancellable) -> int;
+    receive_fd (const glib::RefPtr<Cancellable>& cancellable) -> int;
 
     auto
     receive_fd () -> int;
 
     auto
-    receive_credentials (const Glib::RefPtr<Cancellable>& cancellable)
-        -> Glib::RefPtr<Credentials>;
+    receive_credentials (const glib::RefPtr<Cancellable>& cancellable)
+        -> glib::RefPtr<Credentials>;
 
     auto
-    receive_credentials () -> Glib::RefPtr<Credentials>;
+    receive_credentials () -> glib::RefPtr<Credentials>;
 
     auto
-    receive_credentials (const Glib::RefPtr<Cancellable>& cancellable) const
-        -> Glib::RefPtr<const Credentials>;
+    receive_credentials (const glib::RefPtr<Cancellable>& cancellable) const
+        -> glib::RefPtr<const Credentials>;
 
     auto
-    receive_credentials () const -> Glib::RefPtr<const Credentials>;
+    receive_credentials () const -> glib::RefPtr<const Credentials>;
 
     auto
     receive_credentials_async (const SlotAsyncReady& slot,
-                               const Glib::RefPtr<Cancellable>& cancellable)
+                               const glib::RefPtr<Cancellable>& cancellable)
         -> void;
 
     auto
     receive_credentials_async (const SlotAsyncReady& slot) -> void;
 
     auto
-    receive_credentials_finish (const Glib::RefPtr<AsyncResult>& result)
-        -> Glib::RefPtr<Credentials>;
+    receive_credentials_finish (const glib::RefPtr<AsyncResult>& result)
+        -> glib::RefPtr<Credentials>;
 
     auto
-    send_credentials (const Glib::RefPtr<Cancellable>& cancellable) -> bool;
+    send_credentials (const glib::RefPtr<Cancellable>& cancellable) -> bool;
 
     auto
     send_credentials () -> bool;
 
     auto
     send_credentials_async (const SlotAsyncReady& slot,
-                            const Glib::RefPtr<Cancellable>& cancellable)
+                            const glib::RefPtr<Cancellable>& cancellable)
         -> void;
 
     auto
     send_credentials_async (const SlotAsyncReady& slot) -> void;
 
     auto
-    send_credentials_finish (const Glib::RefPtr<AsyncResult>& result) -> bool;
+    send_credentials_finish (const glib::RefPtr<AsyncResult>& result) -> bool;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gio
+} // namespace gio
 
-namespace Glib
+namespace glib
 {
 
   LIBMM_GIO_SYMEXPORT
   auto
-  wrap (GUnixConnection* object, bool take_copy = false) -> Glib::RefPtr<Gio::UnixConnection>;
-} // namespace Glib
+  wrap (GUnixConnection* object, bool take_copy = false) -> glib::RefPtr<gio::UnixConnection>;
+} // namespace glib
 
 #endif

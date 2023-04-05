@@ -16,13 +16,13 @@ using GtkMenuButtonClass = struct _GtkMenuButtonClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT MenuButton_Class;
 }
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
   class LIBMM_GTK_SYMEXPORT MenuButton : public Widget
@@ -52,7 +52,7 @@ namespace Gtk
     static CppClassType menubutton_class_;
 
   protected:
-    explicit MenuButton (const Glib::ConstructParams& construct_params);
+    explicit MenuButton (const glib::ConstructParams& construct_params);
     explicit MenuButton (GtkMenuButton* castitem);
 
 #endif
@@ -102,23 +102,23 @@ namespace Gtk
     get_direction () const -> ArrowType;
 
     auto
-    set_menu_model (const Glib::RefPtr<const Gio::MenuModel>& menu_model)
+    set_menu_model (const glib::RefPtr<const gio::MenuModel>& menu_model)
         -> void;
 
     auto
     unset_menu_model () -> void;
 
     auto
-    get_menu_model () -> Glib::RefPtr<Gio::MenuModel>;
+    get_menu_model () -> glib::RefPtr<gio::MenuModel>;
 
     auto
-    get_menu_model () const -> Glib::RefPtr<const Gio::MenuModel>;
+    get_menu_model () const -> glib::RefPtr<const gio::MenuModel>;
 
     auto
-    set_icon_name (const Glib::ustring& icon_name) -> void;
+    set_icon_name (const glib::ustring& icon_name) -> void;
 
     auto
-    get_icon_name () const -> Glib::ustring;
+    get_icon_name () const -> glib::ustring;
 
     auto
     set_always_show_arrow (bool always_show_arrow = true) -> void;
@@ -127,10 +127,10 @@ namespace Gtk
     get_always_show_arrow () const -> bool;
 
     auto
-    set_label (const Glib::ustring& label) -> void;
+    set_label (const glib::ustring& label) -> void;
 
     auto
-    get_label () const -> Glib::ustring;
+    get_label () const -> glib::ustring;
 
     auto
     set_use_underline (bool use_underline = true) -> void;
@@ -177,77 +177,77 @@ namespace Gtk
     get_child () const -> const Widget*;
 
     auto
-    property_menu_model () -> Glib::PropertyProxy<Glib::RefPtr<Gio::MenuModel>>;
+    property_menu_model () -> glib::PropertyProxy<glib::RefPtr<gio::MenuModel>>;
 
     auto
     property_menu_model () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gio::MenuModel>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<gio::MenuModel>>;
 
     auto
-    property_direction () -> Glib::PropertyProxy<ArrowType>;
+    property_direction () -> glib::PropertyProxy<ArrowType>;
 
     auto
-    property_direction () const -> Glib::PropertyProxy_ReadOnly<ArrowType>;
+    property_direction () const -> glib::PropertyProxy_ReadOnly<ArrowType>;
 
     auto
-    property_popover () -> Glib::PropertyProxy<Popover*>;
+    property_popover () -> glib::PropertyProxy<Popover*>;
 
     auto
-    property_popover () const -> Glib::PropertyProxy_ReadOnly<Popover*>;
+    property_popover () const -> glib::PropertyProxy_ReadOnly<Popover*>;
 
     auto
-    property_icon_name () -> Glib::PropertyProxy<Glib::ustring>;
+    property_icon_name () -> glib::PropertyProxy<glib::ustring>;
 
     auto
-    property_icon_name () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+    property_icon_name () const -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
     auto
-    property_always_show_arrow () -> Glib::PropertyProxy<bool>;
+    property_always_show_arrow () -> glib::PropertyProxy<bool>;
 
     auto
-    property_always_show_arrow () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_always_show_arrow () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_label () -> Glib::PropertyProxy<Glib::ustring>;
+    property_label () -> glib::PropertyProxy<glib::ustring>;
 
     auto
-    property_label () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+    property_label () const -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
     auto
-    property_use_underline () -> Glib::PropertyProxy<bool>;
+    property_use_underline () -> glib::PropertyProxy<bool>;
 
     auto
-    property_use_underline () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_use_underline () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_has_frame () -> Glib::PropertyProxy<bool>;
+    property_has_frame () -> glib::PropertyProxy<bool>;
 
     auto
-    property_has_frame () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_has_frame () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_primary () -> Glib::PropertyProxy<bool>;
+    property_primary () -> glib::PropertyProxy<bool>;
 
     auto
-    property_primary () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_primary () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_child () -> Glib::PropertyProxy<Widget*>;
+    property_child () -> glib::PropertyProxy<Widget*>;
 
     auto
-    property_child () const -> Glib::PropertyProxy_ReadOnly<Widget*>;
+    property_child () const -> glib::PropertyProxy_ReadOnly<Widget*>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkMenuButton* object, bool take_copy = false) -> Gtk::MenuButton*;
-} // namespace Glib
+  wrap (GtkMenuButton* object, bool take_copy = false) -> gtk::MenuButton*;
+} // namespace glib
 
 #endif

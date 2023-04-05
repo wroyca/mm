@@ -7,7 +7,7 @@
 
 #include <gio/gio.h>
 
-namespace Gio
+namespace gio
 {
 
   FileAttributeInfo::FileAttributeInfo (const GFileAttributeInfo* ginfo)
@@ -62,31 +62,31 @@ namespace Gio
     return m_flags;
   }
 
-} // namespace Gio
+} // namespace gio
 
 namespace
 {
 }
 
 auto
-Glib::Value<Gio::FileAttributeType>::value_type () -> GType
+glib::Value<gio::FileAttributeType>::value_type () -> GType
 {
   return g_file_attribute_type_get_type ();
 }
 
 auto
-Glib::Value<Gio::FileAttributeStatus>::value_type () -> GType
+glib::Value<gio::FileAttributeStatus>::value_type () -> GType
 {
   return g_file_attribute_status_get_type ();
 }
 
 auto
-Glib::Value<Gio::FileAttributeInfo::Flags>::value_type () -> GType
+glib::Value<gio::FileAttributeInfo::Flags>::value_type () -> GType
 {
   return g_file_attribute_info_flags_get_type ();
 }
 
-namespace Gio
+namespace gio
 {
 
 }

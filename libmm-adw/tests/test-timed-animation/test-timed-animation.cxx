@@ -6,7 +6,7 @@
  * Author: Alexander Mikhaylenko <alexander.mikhaylenko@puri.sm>
  */
 
-#include <libmm/adw/init.hxx> // Adw::init
+#include <libmm/adw/init.hxx> // adw::init
 #include <libmm/adw/mm-adw.hxx>
 
 int notified;
@@ -25,11 +25,11 @@ notify_cb ()
 static void
 test_adw_animation_value_from (void)
 {
-  Gtk::Button widget;
-  Glib::RefPtr<Adw::AnimationTarget> target =
-      Adw::CallbackAnimationTarget::create (sigc::ptr_fun (value_cb));
-  Glib::RefPtr<Adw::TimedAnimation> animation =
-      Adw::TimedAnimation::create (&widget, 10, 20, 100, target);
+  gtk::Button widget;
+  glib::RefPtr<adw::AnimationTarget> target =
+      adw::CallbackAnimationTarget::create (sigc::ptr_fun (value_cb));
+  glib::RefPtr<adw::TimedAnimation> animation =
+      adw::TimedAnimation::create (&widget, 10, 20, 100, target);
 
   notified = 0;
   animation->property_value_from ().signal_changed ().connect (
@@ -52,11 +52,11 @@ test_adw_animation_value_from (void)
 static void
 test_adw_animation_value_to (void)
 {
-  Gtk::Button widget;
-  Glib::RefPtr<Adw::AnimationTarget> target =
-      Adw::CallbackAnimationTarget::create (sigc::ptr_fun (value_cb));
-  Glib::RefPtr<Adw::TimedAnimation> animation =
-      Adw::TimedAnimation::create (&widget, 10, 20, 100, target);
+  gtk::Button widget;
+  glib::RefPtr<adw::AnimationTarget> target =
+      adw::CallbackAnimationTarget::create (sigc::ptr_fun (value_cb));
+  glib::RefPtr<adw::TimedAnimation> animation =
+      adw::TimedAnimation::create (&widget, 10, 20, 100, target);
 
   animation->skip ();
 
@@ -81,11 +81,11 @@ test_adw_animation_value_to (void)
 static void
 test_adw_animation_duration (void)
 {
-  Gtk::Button widget;
-  Glib::RefPtr<Adw::AnimationTarget> target =
-      Adw::CallbackAnimationTarget::create (sigc::ptr_fun (value_cb));
-  Glib::RefPtr<Adw::TimedAnimation> animation =
-      Adw::TimedAnimation::create (&widget, 10, 20, 100, target);
+  gtk::Button widget;
+  glib::RefPtr<adw::AnimationTarget> target =
+      adw::CallbackAnimationTarget::create (sigc::ptr_fun (value_cb));
+  glib::RefPtr<adw::TimedAnimation> animation =
+      adw::TimedAnimation::create (&widget, 10, 20, 100, target);
 
   notified = 0;
   animation->property_duration ().signal_changed ().connect (
@@ -108,39 +108,39 @@ test_adw_animation_duration (void)
 static void
 test_adw_animation_easing (void)
 {
-  Gtk::Button widget;
-  Glib::RefPtr<Adw::AnimationTarget> target =
-      Adw::CallbackAnimationTarget::create (sigc::ptr_fun (value_cb));
-  Glib::RefPtr<Adw::TimedAnimation> animation =
-      Adw::TimedAnimation::create (&widget, 10, 20, 100, target);
+  gtk::Button widget;
+  glib::RefPtr<adw::AnimationTarget> target =
+      adw::CallbackAnimationTarget::create (sigc::ptr_fun (value_cb));
+  glib::RefPtr<adw::TimedAnimation> animation =
+      adw::TimedAnimation::create (&widget, 10, 20, 100, target);
 
   notified = 0;
   animation->property_easing ().signal_changed ().connect (
       sigc::ptr_fun (notify_cb));
 
-  Adw::Easing easing = animation->get_property<Adw::Easing> ("easing");
-  g_assert_true (easing == Adw::Easing::EASE_OUT_CUBIC);
+  adw::Easing easing = animation->get_property<adw::Easing> ("easing");
+  g_assert_true (easing == adw::Easing::EASE_OUT_CUBIC);
   g_assert_true (notified == 0);
 
-  animation->set_easing (Adw::Easing::EASE_IN_CUBIC);
-  easing = animation->get_property<Adw::Easing> ("easing");
-  g_assert_true (easing == Adw::Easing::EASE_IN_CUBIC);
+  animation->set_easing (adw::Easing::EASE_IN_CUBIC);
+  easing = animation->get_property<adw::Easing> ("easing");
+  g_assert_true (easing == adw::Easing::EASE_IN_CUBIC);
   g_assert_true (notified == 1);
 
-  animation->set_property<Adw::Easing> ("easing",
-                                        Adw::Easing::EASE_IN_OUT_CUBIC);
-  g_assert_true (animation->get_easing () == Adw::Easing::EASE_IN_OUT_CUBIC);
+  animation->set_property<adw::Easing> ("easing",
+                                        adw::Easing::EASE_IN_OUT_CUBIC);
+  g_assert_true (animation->get_easing () == adw::Easing::EASE_IN_OUT_CUBIC);
   g_assert_true (notified == 2);
 }
 
 static void
 test_adw_animation_repeat_count (void)
 {
-  Gtk::Button widget;
-  Glib::RefPtr<Adw::AnimationTarget> target =
-      Adw::CallbackAnimationTarget::create (sigc::ptr_fun (value_cb));
-  Glib::RefPtr<Adw::TimedAnimation> animation =
-      Adw::TimedAnimation::create (&widget, 10, 20, 100, target);
+  gtk::Button widget;
+  glib::RefPtr<adw::AnimationTarget> target =
+      adw::CallbackAnimationTarget::create (sigc::ptr_fun (value_cb));
+  glib::RefPtr<adw::TimedAnimation> animation =
+      adw::TimedAnimation::create (&widget, 10, 20, 100, target);
 
   notified = 0;
   animation->property_repeat_count ().signal_changed ().connect (
@@ -163,11 +163,11 @@ test_adw_animation_repeat_count (void)
 static void
 test_adw_animation_reverse (void)
 {
-  Gtk::Button widget;
-  Glib::RefPtr<Adw::AnimationTarget> target =
-      Adw::CallbackAnimationTarget::create (sigc::ptr_fun (value_cb));
-  Glib::RefPtr<Adw::TimedAnimation> animation =
-      Adw::TimedAnimation::create (&widget, 10, 20, 100, target);
+  gtk::Button widget;
+  glib::RefPtr<adw::AnimationTarget> target =
+      adw::CallbackAnimationTarget::create (sigc::ptr_fun (value_cb));
+  glib::RefPtr<adw::TimedAnimation> animation =
+      adw::TimedAnimation::create (&widget, 10, 20, 100, target);
 
   notified = 0;
   animation->property_reverse ().signal_changed ().connect (
@@ -190,11 +190,11 @@ test_adw_animation_reverse (void)
 static void
 test_adw_animation_alternate (void)
 {
-  Gtk::Button widget;
-  Glib::RefPtr<Adw::AnimationTarget> target =
-      Adw::CallbackAnimationTarget::create (sigc::ptr_fun (value_cb));
-  Glib::RefPtr<Adw::TimedAnimation> animation =
-      Adw::TimedAnimation::create (&widget, 10, 20, 100, target);
+  gtk::Button widget;
+  glib::RefPtr<adw::AnimationTarget> target =
+      adw::CallbackAnimationTarget::create (sigc::ptr_fun (value_cb));
+  glib::RefPtr<adw::TimedAnimation> animation =
+      adw::TimedAnimation::create (&widget, 10, 20, 100, target);
 
   notified = 0;
   animation->property_alternate ().signal_changed ().connect (
@@ -218,7 +218,7 @@ int
 main (int argc, char* argv[])
 {
   gtk_test_init (&argc, &argv, NULL);
-  Adw::init ();
+  adw::init ();
 
   g_test_add_func ("/Adwaita/TimedAnimation/value_from",
                    test_adw_animation_value_from);

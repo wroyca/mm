@@ -15,13 +15,13 @@ using GtkDropControllerMotionClass = struct _GtkDropControllerMotionClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT DropControllerMotion_Class;
 }
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
   class LIBMM_GTK_SYMEXPORT DropControllerMotion : public EventController
@@ -44,7 +44,7 @@ namespace Gtk
 
   protected:
     explicit DropControllerMotion (
-        const Glib::ConstructParams& construct_params);
+        const glib::ConstructParams& construct_params);
     explicit DropControllerMotion (GtkDropControllerMotion* castitem);
 
 #endif
@@ -86,7 +86,7 @@ namespace Gtk
 
   public:
     static auto
-    create () -> Glib::RefPtr<DropControllerMotion>;
+    create () -> glib::RefPtr<DropControllerMotion>;
 
     auto
     contains_pointer () const -> bool;
@@ -95,41 +95,41 @@ namespace Gtk
     is_pointer () const -> bool;
 
     auto
-    get_drop () -> Glib::RefPtr<Gdk::Drop>;
+    get_drop () -> glib::RefPtr<gdk::Drop>;
 
     auto
-    get_drop () const -> Glib::RefPtr<const Gdk::Drop>;
+    get_drop () const -> glib::RefPtr<const gdk::Drop>;
 
     auto
-    signal_enter () -> Glib::SignalProxy<void (double, double)>;
+    signal_enter () -> glib::SignalProxy<void (double, double)>;
 
     auto
-    signal_leave () -> Glib::SignalProxy<void ()>;
+    signal_leave () -> glib::SignalProxy<void ()>;
 
     auto
-    signal_motion () -> Glib::SignalProxy<void (double, double)>;
+    signal_motion () -> glib::SignalProxy<void (double, double)>;
 
     auto
-    property_contains_pointer () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_contains_pointer () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
     property_drop () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gdk::Drop>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<gdk::Drop>>;
 
     auto
-    property_is_pointer () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_is_pointer () const -> glib::PropertyProxy_ReadOnly<bool>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkDropControllerMotion* object, bool take_copy = false) -> Glib::RefPtr<Gtk::DropControllerMotion>;
-} // namespace Glib
+  wrap (GtkDropControllerMotion* object, bool take_copy = false) -> glib::RefPtr<gtk::DropControllerMotion>;
+} // namespace glib
 
 #endif

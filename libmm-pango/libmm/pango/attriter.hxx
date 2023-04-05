@@ -8,7 +8,7 @@
 
 #include <libmm/pango/attributes.hxx>
 
-namespace Pango
+namespace pango
 {
 
   class LIBMM_PANGO_SYMEXPORT AttrIter
@@ -81,15 +81,15 @@ namespace Pango
     PangoAttrIterator* gobject_;
   };
 
-} // namespace Pango
+} // namespace pango
 
-namespace Glib
+namespace glib
 {
 
   LIBMM_PANGO_SYMEXPORT
   auto
-  wrap (PangoAttrIterator* object, bool take_copy = false) -> Pango::AttrIter;
+  wrap (PangoAttrIterator* object, bool take_copy = false) -> pango::AttrIter;
 
-} // namespace Glib
+} // namespace glib
 
 #endif

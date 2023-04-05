@@ -14,13 +14,13 @@
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT Inscription_Class;
 }
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
   class LIBMM_GTK_SYMEXPORT Inscription : public Widget
@@ -50,7 +50,7 @@ namespace Gtk
     static CppClassType inscription_class_;
 
   protected:
-    explicit Inscription (const Glib::ConstructParams& construct_params);
+    explicit Inscription (const glib::ConstructParams& construct_params);
     explicit Inscription (GtkInscription* castitem);
 
 #endif
@@ -89,22 +89,22 @@ namespace Gtk
 
     Inscription ();
 
-    explicit Inscription (const Glib::ustring& text);
+    explicit Inscription (const glib::ustring& text);
 
     auto
-    get_text () const -> Glib::ustring;
+    get_text () const -> glib::ustring;
 
     auto
-    set_text (const Glib::ustring& text) -> void;
+    set_text (const glib::ustring& text) -> void;
 
     auto
-    get_attributes () const -> Pango::AttrList;
+    get_attributes () const -> pango::AttrList;
 
     auto
-    set_attributes (Pango::AttrList& attrs) -> void;
+    set_attributes (pango::AttrList& attrs) -> void;
 
     auto
-    set_markup (const Glib::ustring& markup) -> void;
+    set_markup (const glib::ustring& markup) -> void;
 
     auto
     get_text_overflow () const -> Inscription::Overflow;
@@ -113,10 +113,10 @@ namespace Gtk
     set_text_overflow (Overflow overflow) -> void;
 
     auto
-    get_wrap_mode () const -> Pango::WrapMode;
+    get_wrap_mode () const -> pango::WrapMode;
 
     auto
-    set_wrap_mode (Pango::WrapMode wrap_mode) -> void;
+    set_wrap_mode (pango::WrapMode wrap_mode) -> void;
 
     auto
     get_min_chars () const -> unsigned int;
@@ -155,98 +155,98 @@ namespace Gtk
     set_yalign (float yalign) -> void;
 
     auto
-    property_attributes () -> Glib::PropertyProxy<Pango::AttrList>;
+    property_attributes () -> glib::PropertyProxy<pango::AttrList>;
 
     auto
     property_attributes () const
-        -> Glib::PropertyProxy_ReadOnly<Pango::AttrList>;
+        -> glib::PropertyProxy_ReadOnly<pango::AttrList>;
 
     auto
-    property_markup () -> Glib::PropertyProxy_WriteOnly<Glib::ustring>;
+    property_markup () -> glib::PropertyProxy_WriteOnly<glib::ustring>;
 
     auto
-    property_min_chars () -> Glib::PropertyProxy<unsigned int>;
+    property_min_chars () -> glib::PropertyProxy<unsigned int>;
 
     auto
-    property_min_chars () const -> Glib::PropertyProxy_ReadOnly<unsigned int>;
+    property_min_chars () const -> glib::PropertyProxy_ReadOnly<unsigned int>;
 
     auto
-    property_min_lines () -> Glib::PropertyProxy<unsigned int>;
+    property_min_lines () -> glib::PropertyProxy<unsigned int>;
 
     auto
-    property_min_lines () const -> Glib::PropertyProxy_ReadOnly<unsigned int>;
+    property_min_lines () const -> glib::PropertyProxy_ReadOnly<unsigned int>;
 
     auto
-    property_nat_chars () -> Glib::PropertyProxy<unsigned int>;
+    property_nat_chars () -> glib::PropertyProxy<unsigned int>;
 
     auto
-    property_nat_chars () const -> Glib::PropertyProxy_ReadOnly<unsigned int>;
+    property_nat_chars () const -> glib::PropertyProxy_ReadOnly<unsigned int>;
 
     auto
-    property_nat_lines () -> Glib::PropertyProxy<unsigned int>;
+    property_nat_lines () -> glib::PropertyProxy<unsigned int>;
 
     auto
-    property_nat_lines () const -> Glib::PropertyProxy_ReadOnly<unsigned int>;
+    property_nat_lines () const -> glib::PropertyProxy_ReadOnly<unsigned int>;
 
     auto
-    property_text () -> Glib::PropertyProxy<Glib::ustring>;
+    property_text () -> glib::PropertyProxy<glib::ustring>;
 
     auto
-    property_text () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+    property_text () const -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
     auto
-    property_text_overflow () -> Glib::PropertyProxy<Inscription::Overflow>;
+    property_text_overflow () -> glib::PropertyProxy<Inscription::Overflow>;
 
     auto
     property_text_overflow () const
-        -> Glib::PropertyProxy_ReadOnly<Inscription::Overflow>;
+        -> glib::PropertyProxy_ReadOnly<Inscription::Overflow>;
 
     auto
-    property_wrap_mode () -> Glib::PropertyProxy<Pango::WrapMode>;
+    property_wrap_mode () -> glib::PropertyProxy<pango::WrapMode>;
 
     auto
     property_wrap_mode () const
-        -> Glib::PropertyProxy_ReadOnly<Pango::WrapMode>;
+        -> glib::PropertyProxy_ReadOnly<pango::WrapMode>;
 
     auto
-    property_xalign () -> Glib::PropertyProxy<float>;
+    property_xalign () -> glib::PropertyProxy<float>;
 
     auto
-    property_xalign () const -> Glib::PropertyProxy_ReadOnly<float>;
+    property_xalign () const -> glib::PropertyProxy_ReadOnly<float>;
 
     auto
-    property_yalign () -> Glib::PropertyProxy<float>;
+    property_yalign () -> glib::PropertyProxy<float>;
 
     auto
-    property_yalign () const -> Glib::PropertyProxy_ReadOnly<float>;
+    property_yalign () const -> glib::PropertyProxy_ReadOnly<float>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_GTK_SYMEXPORT Value<Gtk::Inscription::Overflow>
-    : public Glib::Value_Enum<Gtk::Inscription::Overflow>
+  class LIBMM_GTK_SYMEXPORT Value<gtk::Inscription::Overflow>
+    : public glib::Value_Enum<gtk::Inscription::Overflow>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkInscription* object, bool take_copy = false) -> Gtk::Inscription*;
-} // namespace Glib
+  wrap (GtkInscription* object, bool take_copy = false) -> gtk::Inscription*;
+} // namespace glib
 
 #endif

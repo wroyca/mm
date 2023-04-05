@@ -383,98 +383,98 @@ extern "C"
 
 #endif
 
-namespace Gio
+namespace gio
 {
 
   class AppInfoMonitor_Class
   {
   public:
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
   class AppLaunchContext_Class
   {
   public:
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
   class Application_Class
   {
   public:
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
   class ApplicationCommandLine_Class
   {
   public:
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
   class BufferedInputStream_Class
   {
   public:
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
   class BufferedOutputStream_Class
   {
   public:
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
   class Cancellable_Class
   {
   public:
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
   class CharsetConverter_Class
   {
   public:
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
   class ConverterInputStream_Class
   {
   public:
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
   class ConverterOutputStream_Class
   {
   public:
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
   class Credentials_Class
   {
   public:
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
   class DataInputStream_Class
   {
   public:
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
   class DataOutputStream_Class
   {
   public:
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
   namespace DBus
@@ -483,7 +483,7 @@ namespace Gio
     {
     public:
       static auto
-      wrap_new (GObject*) -> Glib::ObjectBase*;
+      wrap_new (GObject*) -> glib::ObjectBase*;
     };
   } // namespace DBus
 
@@ -493,7 +493,7 @@ namespace Gio
     {
     public:
       static auto
-      wrap_new (GObject*) -> Glib::ObjectBase*;
+      wrap_new (GObject*) -> glib::ObjectBase*;
     };
   } // namespace DBus
 
@@ -503,7 +503,7 @@ namespace Gio
     {
     public:
       static auto
-      wrap_new (GObject*) -> Glib::ObjectBase*;
+      wrap_new (GObject*) -> glib::ObjectBase*;
     };
   } // namespace DBus
 
@@ -513,7 +513,7 @@ namespace Gio
     {
     public:
       static auto
-      wrap_new (GObject*) -> Glib::ObjectBase*;
+      wrap_new (GObject*) -> glib::ObjectBase*;
     };
   } // namespace DBus
 
@@ -523,7 +523,7 @@ namespace Gio
     {
     public:
       static auto
-      wrap_new (GObject*) -> Glib::ObjectBase*;
+      wrap_new (GObject*) -> glib::ObjectBase*;
     };
   } // namespace DBus
 
@@ -533,7 +533,7 @@ namespace Gio
     {
     public:
       static auto
-      wrap_new (GObject*) -> Glib::ObjectBase*;
+      wrap_new (GObject*) -> glib::ObjectBase*;
     };
   } // namespace DBus
 
@@ -543,7 +543,7 @@ namespace Gio
     {
     public:
       static auto
-      wrap_new (GObject*) -> Glib::ObjectBase*;
+      wrap_new (GObject*) -> glib::ObjectBase*;
     };
   } // namespace DBus
 
@@ -553,7 +553,7 @@ namespace Gio
     {
     public:
       static auto
-      wrap_new (GObject*) -> Glib::ObjectBase*;
+      wrap_new (GObject*) -> glib::ObjectBase*;
     };
   } // namespace DBus
 
@@ -563,7 +563,7 @@ namespace Gio
     {
     public:
       static auto
-      wrap_new (GObject*) -> Glib::ObjectBase*;
+      wrap_new (GObject*) -> glib::ObjectBase*;
     };
   } // namespace DBus
 
@@ -573,7 +573,7 @@ namespace Gio
     {
     public:
       static auto
-      wrap_new (GObject*) -> Glib::ObjectBase*;
+      wrap_new (GObject*) -> glib::ObjectBase*;
     };
   } // namespace DBus
 
@@ -583,7 +583,7 @@ namespace Gio
     {
     public:
       static auto
-      wrap_new (GObject*) -> Glib::ObjectBase*;
+      wrap_new (GObject*) -> glib::ObjectBase*;
     };
   } // namespace DBus
 
@@ -593,7 +593,7 @@ namespace Gio
     {
     public:
       static auto
-      wrap_new (GObject*) -> Glib::ObjectBase*;
+      wrap_new (GObject*) -> glib::ObjectBase*;
     };
   } // namespace DBus
 
@@ -603,7 +603,7 @@ namespace Gio
     {
     public:
       static auto
-      wrap_new (GObject*) -> Glib::ObjectBase*;
+      wrap_new (GObject*) -> glib::ObjectBase*;
     };
   } // namespace DBus
 
@@ -612,7 +612,7 @@ namespace Gio
   {
   public:
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
   };
 #endif
 
@@ -620,392 +620,392 @@ namespace Gio
   {
   public:
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
   class EmblemedIcon_Class
   {
   public:
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
   class FileEnumerator_Class
   {
   public:
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
   class FileIcon_Class
   {
   public:
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
   class FileInfo_Class
   {
   public:
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
   class FileInputStream_Class
   {
   public:
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
   class FileIOStream_Class
   {
   public:
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
   class FileMonitor_Class
   {
   public:
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
   class FilenameCompleter_Class
   {
   public:
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
   class FileOutputStream_Class
   {
   public:
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
   class FilterInputStream_Class
   {
   public:
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
   class FilterOutputStream_Class
   {
   public:
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
   class InetAddress_Class
   {
   public:
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
   class InetSocketAddress_Class
   {
   public:
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
   class InputStream_Class
   {
   public:
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
   class IOStream_Class
   {
   public:
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
   class ListStoreBase_Class
   {
   public:
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
   class MemoryInputStream_Class
   {
   public:
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
   class MemoryOutputStream_Class
   {
   public:
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
   class Menu_Class
   {
   public:
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
   class MenuAttributeIter_Class
   {
   public:
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
   class MenuItem_Class
   {
   public:
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
   class MenuLinkIter_Class
   {
   public:
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
   class MenuModel_Class
   {
   public:
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
   class MountOperation_Class
   {
   public:
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
   class NetworkAddress_Class
   {
   public:
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
   class NetworkService_Class
   {
   public:
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
   class Notification_Class
   {
   public:
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
   class OutputStream_Class
   {
   public:
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
   class Permission_Class
   {
   public:
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
   class PropertyAction_Class
   {
   public:
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
   class ProxyAddress_Class
   {
   public:
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
   class Resolver_Class
   {
   public:
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
   class Settings_Class
   {
   public:
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
   class SimpleAction_Class
   {
   public:
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
   class SimpleActionGroup_Class
   {
   public:
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
   class SimpleIOStream_Class
   {
   public:
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
   class SimplePermission_Class
   {
   public:
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
   class Socket_Class
   {
   public:
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
   class SocketAddress_Class
   {
   public:
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
   class SocketAddressEnumerator_Class
   {
   public:
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
   class SocketClient_Class
   {
   public:
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
   class SocketConnection_Class
   {
   public:
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
   class SocketControlMessage_Class
   {
   public:
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
   class SocketListener_Class
   {
   public:
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
   class SocketService_Class
   {
   public:
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
   class TcpConnection_Class
   {
   public:
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
   class TcpWrapperConnection_Class
   {
   public:
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
   class ThemedIcon_Class
   {
   public:
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
   class ThreadedSocketService_Class
   {
   public:
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
   class TlsCertificate_Class
   {
   public:
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
   class TlsConnection_Class
   {
   public:
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
   class TlsDatabase_Class
   {
   public:
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
   class TlsInteraction_Class
   {
   public:
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
   class TlsPassword_Class
   {
   public:
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
   };
 #ifndef G_OS_WIN32
   class UnixConnection_Class
   {
   public:
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
   };
 #endif
 #ifndef G_OS_WIN32
@@ -1013,7 +1013,7 @@ namespace Gio
   {
   public:
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
   };
 #endif
 #ifndef G_OS_WIN32
@@ -1021,7 +1021,7 @@ namespace Gio
   {
   public:
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
   };
 #endif
 #ifndef G_OS_WIN32
@@ -1029,7 +1029,7 @@ namespace Gio
   {
   public:
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
   };
 #endif
 #ifndef G_OS_WIN32
@@ -1037,7 +1037,7 @@ namespace Gio
   {
   public:
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
   };
 #endif
 #ifndef G_OS_WIN32
@@ -1045,7 +1045,7 @@ namespace Gio
   {
   public:
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
   };
 #endif
 #ifndef G_OS_WIN32
@@ -1053,28 +1053,28 @@ namespace Gio
   {
   public:
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
   };
 #endif
   class VolumeMonitor_Class
   {
   public:
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
   class ZlibCompressor_Class
   {
   public:
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
   class ZlibDecompressor_Class
   {
   public:
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
   namespace DBus
@@ -1083,7 +1083,7 @@ namespace Gio
     auto
     wrap_init () -> void
     {
-      Glib::Error::register_domain (g_dbus_error_quark (), &Error::throw_func);
+      glib::Error::register_domain (g_dbus_error_quark (), &Error::throw_func);
     }
 
   } // namespace DBus
@@ -1091,11 +1091,11 @@ namespace Gio
   auto
   wrap_init () -> void
   {
-    Glib::Error::register_domain (g_io_error_quark (), &Error::throw_func);
-    Glib::Error::register_domain (g_resolver_error_quark (),
+    glib::Error::register_domain (g_io_error_quark (), &Error::throw_func);
+    glib::Error::register_domain (g_resolver_error_quark (),
                                   &ResolverError::throw_func);
-    Glib::Error::register_domain (g_tls_error_quark (), &TlsError::throw_func);
-    Glib::Error::register_domain (g_resource_error_quark (),
+    glib::Error::register_domain (g_tls_error_quark (), &TlsError::throw_func);
+    glib::Error::register_domain (g_resource_error_quark (),
                                   &ResourceError::throw_func);
 
     DBus::wrap_init ();
@@ -1147,7 +1147,7 @@ namespace Gio
     wrap_register (g_dbus_proxy_get_type (), &DBus::Proxy_Class::wrap_new);
     wrap_register (g_dbus_server_get_type (), &DBus::Server_Class::wrap_new);
 #if !defined(G_OS_WIN32) && !defined(GLIBMM_OS_COCOA)
-    Glib::wrap_register (g_desktop_app_info_get_type (),
+    glib::wrap_register (g_desktop_app_info_get_type (),
                          &DesktopAppInfo_Class::wrap_new);
 #endif
     wrap_register (g_emblem_get_type (), &Emblem_Class::wrap_new);
@@ -1235,31 +1235,31 @@ namespace Gio
                    &TlsInteraction_Class::wrap_new);
     wrap_register (g_tls_password_get_type (), &TlsPassword_Class::wrap_new);
 #ifndef G_OS_WIN32
-    Glib::wrap_register (g_unix_connection_get_type (),
+    glib::wrap_register (g_unix_connection_get_type (),
                          &UnixConnection_Class::wrap_new);
 #endif
 #ifndef G_OS_WIN32
-    Glib::wrap_register (g_unix_credentials_message_get_type (),
+    glib::wrap_register (g_unix_credentials_message_get_type (),
                          &UnixCredentialsMessage_Class::wrap_new);
 #endif
 #ifndef G_OS_WIN32
-    Glib::wrap_register (g_unix_fd_list_get_type (),
+    glib::wrap_register (g_unix_fd_list_get_type (),
                          &UnixFDList_Class::wrap_new);
 #endif
 #ifndef G_OS_WIN32
-    Glib::wrap_register (g_unix_fd_message_get_type (),
+    glib::wrap_register (g_unix_fd_message_get_type (),
                          &UnixFDMessage_Class::wrap_new);
 #endif
 #ifndef G_OS_WIN32
-    Glib::wrap_register (g_unix_input_stream_get_type (),
+    glib::wrap_register (g_unix_input_stream_get_type (),
                          &UnixInputStream_Class::wrap_new);
 #endif
 #ifndef G_OS_WIN32
-    Glib::wrap_register (g_unix_output_stream_get_type (),
+    glib::wrap_register (g_unix_output_stream_get_type (),
                          &UnixOutputStream_Class::wrap_new);
 #endif
 #ifndef G_OS_WIN32
-    Glib::wrap_register (g_unix_socket_address_get_type (),
+    glib::wrap_register (g_unix_socket_address_get_type (),
                          &UnixSocketAddress_Class::wrap_new);
 #endif
     wrap_register (g_volume_monitor_get_type (),
@@ -1379,4 +1379,4 @@ namespace Gio
     g_type_ensure (ZlibDecompressor::get_type ());
   }
 
-} // namespace Gio
+} // namespace gio

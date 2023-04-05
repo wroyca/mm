@@ -9,7 +9,7 @@
 #include <libmm/glib/mm-glib.hxx>
 #include <libmm/gtk/mm-gtk.hxx>
 
-namespace Adw
+namespace adw
 {
 
 }
@@ -18,24 +18,24 @@ namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (AdwEnumListItem* object, bool take_copy) -> Glib::RefPtr<Adw::EnumListItem>
+  wrap (AdwEnumListItem* object, bool take_copy) -> glib::RefPtr<adw::EnumListItem>
   {
-    return Glib::make_refptr_for_instance<Adw::EnumListItem> (
-        dynamic_cast<Adw::EnumListItem*> (
-            Glib::wrap_auto ((GObject*) (object), take_copy)));
+    return glib::make_refptr_for_instance<adw::EnumListItem> (
+        dynamic_cast<adw::EnumListItem*> (
+            glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Adw
+namespace adw
 {
 
   auto
-  EnumListItem_Class::init () -> const Glib::Class&
+  EnumListItem_Class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -46,7 +46,7 @@ namespace Adw
   }
 
   auto
-  EnumListItem_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  EnumListItem_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new EnumListItem ((AdwEnumListItem*) object);
   }
@@ -58,25 +58,25 @@ namespace Adw
     return gobj ();
   }
 
-  EnumListItem::EnumListItem (const Glib::ConstructParams& construct_params)
-    : Glib::Object (construct_params)
+  EnumListItem::EnumListItem (const glib::ConstructParams& construct_params)
+    : glib::Object (construct_params)
   {
   }
 
   EnumListItem::EnumListItem (AdwEnumListItem* castitem)
-    : Glib::Object ((GObject*) (castitem))
+    : glib::Object ((GObject*) (castitem))
   {
   }
 
   EnumListItem::EnumListItem (EnumListItem&& src) noexcept
-    : Glib::Object (std::move (src))
+    : glib::Object (std::move (src))
   {
   }
 
   auto
   EnumListItem::operator= (EnumListItem&& src) noexcept -> EnumListItem&
   {
-    Glib::Object::operator= (std::move (src));
+    glib::Object::operator= (std::move (src));
     return *this;
   }
 
@@ -97,28 +97,28 @@ namespace Adw
   }
 
   EnumListItem::EnumListItem ()
-    : Glib::ObjectBase (nullptr),
-      Glib::Object (Glib::ConstructParams (enumlistitem_class_.init ()))
+    : glib::ObjectBase (nullptr),
+      glib::Object (glib::ConstructParams (enumlistitem_class_.init ()))
   {
   }
 
   auto
-  EnumListItem::create () -> Glib::RefPtr<EnumListItem>
+  EnumListItem::create () -> glib::RefPtr<EnumListItem>
   {
-    return Glib::make_refptr_for_instance<EnumListItem> (new EnumListItem ());
+    return glib::make_refptr_for_instance<EnumListItem> (new EnumListItem ());
   }
 
   auto
-  EnumListItem::get_name () const -> Glib::ustring
+  EnumListItem::get_name () const -> glib::ustring
   {
-    return Glib::convert_const_gchar_ptr_to_ustring (
+    return glib::convert_const_gchar_ptr_to_ustring (
         adw_enum_list_item_get_name (const_cast<AdwEnumListItem*> (gobj ())));
   }
 
   auto
-  EnumListItem::get_nick () const -> Glib::ustring
+  EnumListItem::get_nick () const -> glib::ustring
   {
-    return Glib::convert_const_gchar_ptr_to_ustring (
+    return glib::convert_const_gchar_ptr_to_ustring (
         adw_enum_list_item_get_nick (const_cast<AdwEnumListItem*> (gobj ())));
   }
 
@@ -130,21 +130,21 @@ namespace Adw
   }
 
   auto
-  EnumListItem::property_name () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>
+  EnumListItem::property_name () const -> glib::PropertyProxy_ReadOnly<glib::ustring>
   {
-    return Glib::PropertyProxy_ReadOnly<Glib::ustring> (this, "name");
+    return glib::PropertyProxy_ReadOnly<glib::ustring> (this, "name");
   }
 
   auto
-  EnumListItem::property_nick () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>
+  EnumListItem::property_nick () const -> glib::PropertyProxy_ReadOnly<glib::ustring>
   {
-    return Glib::PropertyProxy_ReadOnly<Glib::ustring> (this, "nick");
+    return glib::PropertyProxy_ReadOnly<glib::ustring> (this, "nick");
   }
 
   auto
-  EnumListItem::property_value () const -> Glib::PropertyProxy_ReadOnly<int>
+  EnumListItem::property_value () const -> glib::PropertyProxy_ReadOnly<int>
   {
-    return Glib::PropertyProxy_ReadOnly<int> (this, "value");
+    return glib::PropertyProxy_ReadOnly<int> (this, "value");
   }
 
-} // namespace Adw
+} // namespace adw

@@ -14,13 +14,13 @@ using GtkFlowBoxChildClass = struct _GtkFlowBoxChildClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT FlowBoxChild_Class;
 }
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
   class LIBMM_GTK_SYMEXPORT FlowBoxChild : public Widget
@@ -50,7 +50,7 @@ namespace Gtk
     static CppClassType flowboxchild_class_;
 
   protected:
-    explicit FlowBoxChild (const Glib::ConstructParams& construct_params);
+    explicit FlowBoxChild (const glib::ConstructParams& construct_params);
     explicit FlowBoxChild (GtkFlowBoxChild* castitem);
 
 #endif
@@ -102,13 +102,13 @@ namespace Gtk
     changed () -> void;
 
     auto
-    signal_activate () -> Glib::SignalProxy<void ()>;
+    signal_activate () -> glib::SignalProxy<void ()>;
 
     auto
-    property_child () -> Glib::PropertyProxy<Widget*>;
+    property_child () -> glib::PropertyProxy<Widget*>;
 
     auto
-    property_child () const -> Glib::PropertyProxy_ReadOnly<Widget*>;
+    property_child () const -> glib::PropertyProxy_ReadOnly<Widget*>;
 
   public:
   public:
@@ -117,12 +117,12 @@ namespace Gtk
     on_activate () -> void;
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkFlowBoxChild* object, bool take_copy = false) -> Gtk::FlowBoxChild*;
-} // namespace Glib
+  wrap (GtkFlowBoxChild* object, bool take_copy = false) -> gtk::FlowBoxChild*;
+} // namespace glib
 
 #endif

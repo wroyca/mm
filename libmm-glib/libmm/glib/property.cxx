@@ -17,10 +17,10 @@ namespace
   destroy_notify_obj_iface_props (void* data) -> void
   {
     const auto obj_iface_props =
-        static_cast<Glib::Class::iface_properties_type*> (data);
+        static_cast<glib::Class::iface_properties_type*> (data);
     if (obj_iface_props)
     {
-      for (Glib::Class::iface_properties_type::size_type i = 0;
+      for (glib::Class::iface_properties_type::size_type i = 0;
            i < obj_iface_props->size ();
            i++)
       {
@@ -33,7 +33,7 @@ namespace
 
   struct custom_properties_type
   {
-    std::vector<Glib::PropertyBase*> prop_base_vector;
+    std::vector<glib::PropertyBase*> prop_base_vector;
 
     std::map<unsigned int, GValue*> prop_value_map;
   };
@@ -74,7 +74,7 @@ namespace
 
 } // namespace
 
-namespace Glib
+namespace glib
 {
 
   auto
@@ -329,4 +329,4 @@ namespace Glib
     g_object_notify_by_pspec (object_->gobj (), param_spec_);
   }
 
-} // namespace Glib
+} // namespace glib

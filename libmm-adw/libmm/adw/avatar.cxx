@@ -7,7 +7,7 @@
 
 #include <libmm/gtk/mm-gtk.hxx>
 
-namespace Adw
+namespace adw
 {
 
 }
@@ -16,23 +16,23 @@ namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (AdwAvatar* object, bool take_copy) -> Adw::Avatar*
+  wrap (AdwAvatar* object, bool take_copy) -> adw::Avatar*
   {
-    return dynamic_cast<Adw::Avatar*> (
-        Glib::wrap_auto ((GObject*) (object), take_copy));
+    return dynamic_cast<adw::Avatar*> (
+        glib::wrap_auto ((GObject*) (object), take_copy));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Adw
+namespace adw
 {
 
   auto
-  Avatar_Class::init () -> const Glib::Class&
+  Avatar_Class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -43,30 +43,30 @@ namespace Adw
   }
 
   auto
-  Avatar_Class::wrap_new (GObject* o) -> Glib::ObjectBase*
+  Avatar_Class::wrap_new (GObject* o) -> glib::ObjectBase*
   {
     return manage (new Avatar ((AdwAvatar*) (o)));
   }
 
-  Avatar::Avatar (const Glib::ConstructParams& construct_params)
-    : Gtk::Widget (construct_params)
+  Avatar::Avatar (const glib::ConstructParams& construct_params)
+    : gtk::Widget (construct_params)
   {
   }
 
   Avatar::Avatar (AdwAvatar* castitem)
-    : Gtk::Widget ((GtkWidget*) (castitem))
+    : gtk::Widget ((GtkWidget*) (castitem))
   {
   }
 
   Avatar::Avatar (Avatar&& src) noexcept
-    : Gtk::Widget (std::move (src))
+    : gtk::Widget (std::move (src))
   {
   }
 
   auto
   Avatar::operator= (Avatar&& src) noexcept -> Avatar&
   {
-    Gtk::Widget::operator= (std::move (src));
+    gtk::Widget::operator= (std::move (src));
     return *this;
   }
 
@@ -90,14 +90,14 @@ namespace Adw
   }
 
   Avatar::Avatar ()
-    : Glib::ObjectBase (nullptr),
-      Gtk::Widget (Glib::ConstructParams (avatar_class_.init ()))
+    : glib::ObjectBase (nullptr),
+      gtk::Widget (glib::ConstructParams (avatar_class_.init ()))
   {
   }
 
-  Avatar::Avatar (int size, const Glib::ustring& text, bool show_initials)
-    : Glib::ObjectBase (nullptr),
-      Gtk::Widget (Glib::ConstructParams (avatar_class_.init (),
+  Avatar::Avatar (int size, const glib::ustring& text, bool show_initials)
+    : glib::ObjectBase (nullptr),
+      gtk::Widget (glib::ConstructParams (avatar_class_.init (),
                                           "size",
                                           size,
                                           "text",
@@ -109,19 +109,19 @@ namespace Adw
   }
 
   auto
-  Avatar::draw_to_texture (int scale_factor) -> Glib::RefPtr<Gdk::Texture>
+  Avatar::draw_to_texture (int scale_factor) -> glib::RefPtr<gdk::Texture>
   {
     auto retvalue =
-        Glib::wrap (adw_avatar_draw_to_texture (gobj (), scale_factor));
+        glib::wrap (adw_avatar_draw_to_texture (gobj (), scale_factor));
     if (retvalue)
       retvalue->reference ();
     return retvalue;
   }
 
   auto
-  Avatar::get_custom_image () const -> Glib::RefPtr<Gdk::Paintable>
+  Avatar::get_custom_image () const -> glib::RefPtr<gdk::Paintable>
   {
-    auto retvalue = Glib::wrap (
+    auto retvalue = glib::wrap (
         adw_avatar_get_custom_image (const_cast<AdwAvatar*> (gobj ())));
     if (retvalue)
       retvalue->reference ();
@@ -129,9 +129,9 @@ namespace Adw
   }
 
   auto
-  Avatar::get_icon_name () const -> Glib::ustring
+  Avatar::get_icon_name () const -> glib::ustring
   {
-    return Glib::convert_const_gchar_ptr_to_ustring (
+    return glib::convert_const_gchar_ptr_to_ustring (
         adw_avatar_get_icon_name (const_cast<AdwAvatar*> (gobj ())));
   }
 
@@ -148,20 +148,20 @@ namespace Adw
   }
 
   auto
-  Avatar::get_text () const -> Glib::ustring
+  Avatar::get_text () const -> glib::ustring
   {
-    return Glib::convert_const_gchar_ptr_to_ustring (
+    return glib::convert_const_gchar_ptr_to_ustring (
         adw_avatar_get_text (const_cast<AdwAvatar*> (gobj ())));
   }
 
   auto
-  Avatar::set_custom_image (const Glib::RefPtr<Gdk::Paintable>& custom_image) -> void
+  Avatar::set_custom_image (const glib::RefPtr<gdk::Paintable>& custom_image) -> void
   {
-    adw_avatar_set_custom_image (gobj (), Glib::unwrap (custom_image));
+    adw_avatar_set_custom_image (gobj (), glib::unwrap (custom_image));
   }
 
   auto
-  Avatar::set_icon_name (const Glib::ustring& icon_name) -> void
+  Avatar::set_icon_name (const glib::ustring& icon_name) -> void
   {
     adw_avatar_set_icon_name (gobj (), icon_name.c_str ());
   }
@@ -179,78 +179,78 @@ namespace Adw
   }
 
   auto
-  Avatar::set_text (const Glib::ustring& text) -> void
+  Avatar::set_text (const glib::ustring& text) -> void
   {
     adw_avatar_set_text (gobj (), text.c_str ());
   }
 
   auto
-  Avatar::property_size () -> Glib::PropertyProxy<int>
+  Avatar::property_size () -> glib::PropertyProxy<int>
   {
-    return Glib::PropertyProxy<int> (this, "size");
+    return glib::PropertyProxy<int> (this, "size");
   }
 
   auto
-  Avatar::property_size () const -> Glib::PropertyProxy_ReadOnly<int>
+  Avatar::property_size () const -> glib::PropertyProxy_ReadOnly<int>
   {
-    return Glib::PropertyProxy_ReadOnly<int> (this, "size");
+    return glib::PropertyProxy_ReadOnly<int> (this, "size");
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<
-          Glib::RefPtr<Gdk::Paintable>>::value,
-      "Type Glib::RefPtr<Gdk::Paintable> cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      glib::Traits::ValueCompatibleWithWrapProperty<
+          glib::RefPtr<gdk::Paintable>>::value,
+      "Type glib::RefPtr<gdk::Paintable> cannot be used in _WRAP_PROPERTY. "
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  Avatar::property_custom_image () -> Glib::PropertyProxy<Glib::RefPtr<Gdk::Paintable>>
+  Avatar::property_custom_image () -> glib::PropertyProxy<glib::RefPtr<gdk::Paintable>>
   {
-    return Glib::PropertyProxy<Glib::RefPtr<Gdk::Paintable>> (this,
+    return glib::PropertyProxy<glib::RefPtr<gdk::Paintable>> (this,
                                                               "custom-image");
   }
 
   auto
-  Avatar::property_custom_image () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gdk::Paintable>>
+  Avatar::property_custom_image () const -> glib::PropertyProxy_ReadOnly<glib::RefPtr<gdk::Paintable>>
   {
-    return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gdk::Paintable>> (
+    return glib::PropertyProxy_ReadOnly<glib::RefPtr<gdk::Paintable>> (
         this,
         "custom-image");
   }
 
   auto
-  Avatar::property_show_initials () -> Glib::PropertyProxy<bool>
+  Avatar::property_show_initials () -> glib::PropertyProxy<bool>
   {
-    return Glib::PropertyProxy<bool> (this, "show-initials");
+    return glib::PropertyProxy<bool> (this, "show-initials");
   }
 
   auto
-  Avatar::property_show_initials () const -> Glib::PropertyProxy_ReadOnly<bool>
+  Avatar::property_show_initials () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "show-initials");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "show-initials");
   }
 
   auto
-  Avatar::property_text () -> Glib::PropertyProxy<Glib::ustring>
+  Avatar::property_text () -> glib::PropertyProxy<glib::ustring>
   {
-    return Glib::PropertyProxy<Glib::ustring> (this, "text");
+    return glib::PropertyProxy<glib::ustring> (this, "text");
   }
 
   auto
-  Avatar::property_text () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>
+  Avatar::property_text () const -> glib::PropertyProxy_ReadOnly<glib::ustring>
   {
-    return Glib::PropertyProxy_ReadOnly<Glib::ustring> (this, "text");
+    return glib::PropertyProxy_ReadOnly<glib::ustring> (this, "text");
   }
 
   auto
-  Avatar::property_icon_name () -> Glib::PropertyProxy<Glib::ustring>
+  Avatar::property_icon_name () -> glib::PropertyProxy<glib::ustring>
   {
-    return Glib::PropertyProxy<Glib::ustring> (this, "icon-name");
+    return glib::PropertyProxy<glib::ustring> (this, "icon-name");
   }
 
   auto
-  Avatar::property_icon_name () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>
+  Avatar::property_icon_name () const -> glib::PropertyProxy_ReadOnly<glib::ustring>
   {
-    return Glib::PropertyProxy_ReadOnly<Glib::ustring> (this, "icon-name");
+    return glib::PropertyProxy_ReadOnly<glib::ustring> (this, "icon-name");
   }
 
-} // namespace Adw
+} // namespace adw

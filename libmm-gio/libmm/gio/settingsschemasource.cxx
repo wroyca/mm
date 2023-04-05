@@ -9,12 +9,12 @@
 
 #include <libmm/glib/vectorutils.hxx>
 
-namespace Gio
+namespace gio
 {
 
   auto
   SettingsSchemaSource::list_schemas (const bool relocatable,
-                                      const bool recursive) const -> std::vector<Glib::ustring>
+                                      const bool recursive) const -> std::vector<glib::ustring>
   {
     const auto gobject = const_cast<GSettingsSchemaSource*> (gobj ());
     gchar** schemas{};
@@ -30,33 +30,33 @@ namespace Gio
                                              &schemas,
                                              nullptr);
 
-    return Glib::ArrayHandler<Glib::ustring>::array_to_vector (
+    return glib::ArrayHandler<glib::ustring>::array_to_vector (
         schemas,
-        Glib::OWNERSHIP_DEEP);
+        glib::OWNERSHIP_DEEP);
   }
 
-} // namespace Gio
+} // namespace gio
 
 namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GSettingsSchemaSource* object, const bool take_copy) -> RefPtr<Gio::SettingsSchemaSource>
+  wrap (GSettingsSchemaSource* object, const bool take_copy) -> RefPtr<gio::SettingsSchemaSource>
   {
     if (take_copy && object)
       g_settings_schema_source_ref (object);
 
-    return Glib::make_refptr_for_instance<Gio::SettingsSchemaSource> (
-        reinterpret_cast<Gio::SettingsSchemaSource*> (object));
+    return glib::make_refptr_for_instance<gio::SettingsSchemaSource> (
+        reinterpret_cast<gio::SettingsSchemaSource*> (object));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gio
+namespace gio
 {
 
   auto
@@ -95,9 +95,9 @@ namespace Gio
   }
 
   auto
-  SettingsSchemaSource::get_default () -> Glib::RefPtr<SettingsSchemaSource>
+  SettingsSchemaSource::get_default () -> glib::RefPtr<SettingsSchemaSource>
   {
-    auto retvalue = Glib::wrap (g_settings_schema_source_get_default ());
+    auto retvalue = glib::wrap (g_settings_schema_source_get_default ());
     if (retvalue)
       retvalue->reference ();
     return retvalue;
@@ -107,36 +107,36 @@ namespace Gio
   SettingsSchemaSource::create (
       const std::string& directory,
       const bool trusted,
-      const Glib::RefPtr<SettingsSchemaSource>& parent) -> Glib::RefPtr<SettingsSchemaSource>
+      const glib::RefPtr<SettingsSchemaSource>& parent) -> glib::RefPtr<SettingsSchemaSource>
   {
     GError* gerror = nullptr;
-    auto retvalue = Glib::wrap (
+    auto retvalue = glib::wrap (
         g_settings_schema_source_new_from_directory (directory.c_str (),
-                                                     Glib::unwrap (parent),
+                                                     glib::unwrap (parent),
                                                      trusted,
                                                      &gerror));
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
   auto
-  SettingsSchemaSource::lookup (const Glib::ustring& schema_id,
-                                const bool recursive) -> Glib::RefPtr<SettingsSchema>
+  SettingsSchemaSource::lookup (const glib::ustring& schema_id,
+                                const bool recursive) -> glib::RefPtr<SettingsSchema>
   {
-    return Glib::wrap (g_settings_schema_source_lookup (gobj (),
+    return glib::wrap (g_settings_schema_source_lookup (gobj (),
                                                         schema_id.c_str (),
                                                         recursive));
   }
 
   auto
-  SettingsSchemaSource::lookup (const Glib::ustring& schema_id,
-                                const bool recursive) const -> Glib::RefPtr<const SettingsSchema>
+  SettingsSchemaSource::lookup (const glib::ustring& schema_id,
+                                const bool recursive) const -> glib::RefPtr<const SettingsSchema>
   {
-    return Glib::wrap (g_settings_schema_source_lookup (
+    return glib::wrap (g_settings_schema_source_lookup (
         const_cast<GSettingsSchemaSource*> (gobj ()),
         schema_id.c_str (),
         recursive));
   }
 
-} // namespace Gio
+} // namespace gio

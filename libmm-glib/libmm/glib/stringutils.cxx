@@ -8,26 +8,26 @@
 #include <stdexcept>
 
 auto
-Glib::str_has_prefix (const std::string& str, const std::string& prefix) -> bool
+glib::str_has_prefix (const std::string& str, const std::string& prefix) -> bool
 {
   return g_str_has_prefix (str.c_str (), prefix.c_str ());
 }
 
 auto
-Glib::str_has_suffix (const std::string& str, const std::string& suffix) -> bool
+glib::str_has_suffix (const std::string& str, const std::string& suffix) -> bool
 {
   return g_str_has_suffix (str.c_str (), suffix.c_str ());
 }
 
 auto
-Glib::Ascii::strtod (const std::string& str) -> double
+glib::Ascii::strtod (const std::string& str) -> double
 {
   std::string::size_type dummy;
   return Ascii::strtod (str, dummy, 0);
 }
 
 auto
-Glib::Ascii::strtod (const std::string& str,
+glib::Ascii::strtod (const std::string& str,
                      std::string::size_type& end_index,
                      const std::string::size_type start_index) -> double
 {
@@ -66,7 +66,7 @@ Glib::Ascii::strtod (const std::string& str,
 }
 
 auto
-Glib::Ascii::dtostr (const double d) -> std::string
+glib::Ascii::dtostr (const double d) -> std::string
 {
   char buf[G_ASCII_DTOSTR_BUF_SIZE];
 
@@ -74,7 +74,7 @@ Glib::Ascii::dtostr (const double d) -> std::string
 }
 
 auto
-Glib::strescape (const std::string& source) -> std::string
+glib::strescape (const std::string& source) -> std::string
 {
   const auto buf =
       make_unique_ptr_gfree (g_strescape (source.c_str (), nullptr));
@@ -82,7 +82,7 @@ Glib::strescape (const std::string& source) -> std::string
 }
 
 auto
-Glib::strescape (const std::string& source, const std::string& exceptions)
+glib::strescape (const std::string& source, const std::string& exceptions)
     -> std::string
 {
   const auto buf = make_unique_ptr_gfree (
@@ -91,20 +91,20 @@ Glib::strescape (const std::string& source, const std::string& exceptions)
 }
 
 auto
-Glib::strcompress (const std::string& source) -> std::string
+glib::strcompress (const std::string& source) -> std::string
 {
   const auto buf = make_unique_ptr_gfree (g_strcompress (source.c_str ()));
   return buf.get ();
 }
 
 auto
-Glib::strerror (const int errnum) -> ustring
+glib::strerror (const int errnum) -> ustring
 {
   return g_strerror (errnum);
 }
 
 auto
-Glib::strsignal (const int signum) -> ustring
+glib::strsignal (const int signum) -> ustring
 {
   return g_strsignal (signum);
 }

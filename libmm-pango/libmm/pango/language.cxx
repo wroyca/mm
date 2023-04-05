@@ -5,7 +5,7 @@
 #include <libmm/pango/language.hxx>
 #include <libmm/pango/language_p.hxx>
 
-namespace Pango
+namespace pango
 {
 
   inline auto
@@ -31,13 +31,13 @@ namespace Pango
   {
   }
 
-  Language::Language (const Glib::ustring& language)
+  Language::Language (const glib::ustring& language)
     : gobject_ (pango_language_from_string (language.c_str ()))
   {
   }
 
   auto
-  Language::get_string () const -> Glib::ustring
+  Language::get_string () const -> glib::ustring
   {
     if (gobject_)
       return pango_language_to_string (const_cast<PangoLanguage*> (gobj ()));
@@ -52,35 +52,35 @@ namespace Pango
     const auto* carray = pango_language_get_scripts (
         const_cast<PangoLanguage*> (gobj ()),
         &num_scripts);
-    return Glib::ArrayHandler<Script>::array_to_vector ((const Script*) carray,
+    return glib::ArrayHandler<Script>::array_to_vector ((const Script*) carray,
                                                         num_scripts,
-                                                        Glib::OWNERSHIP_NONE);
+                                                        glib::OWNERSHIP_NONE);
   }
 
-} // namespace Pango
+} // namespace pango
 
 namespace
 {
 }
 
 auto
-Glib::Value<Pango::Script>::value_type () -> GType
+glib::Value<pango::Script>::value_type () -> GType
 {
   return pango_script_get_type ();
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (PangoLanguage* object, const bool take_copy) -> Pango::Language
+  wrap (PangoLanguage* object, const bool take_copy) -> pango::Language
   {
-    return Pango::Language (object, take_copy);
+    return pango::Language (object, take_copy);
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Pango
+namespace pango
 {
 
   auto
@@ -142,7 +142,7 @@ namespace Pango
   }
 
   auto
-  Language::matches (const Glib::ustring& range_list) const -> bool
+  Language::matches (const glib::ustring& range_list) const -> bool
   {
     return pango_language_matches (const_cast<PangoLanguage*> (gobj ()),
                                    range_list.c_str ());
@@ -155,4 +155,4 @@ namespace Pango
                                            static_cast<PangoScript> (script));
   }
 
-} // namespace Pango
+} // namespace pango

@@ -3,10 +3,10 @@
 #include <libmm/gdk/toplevelsurfaceimpl.hxx>
 #include <utility>
 
-namespace Gdk
+namespace gdk
 {
   ToplevelSurfaceImpl::ToplevelSurfaceImpl (GdkSurface* castitem)
-    : Glib::ObjectBase (nullptr),
+    : glib::ObjectBase (nullptr),
       Surface (castitem)
   {
   }
@@ -27,4 +27,4 @@ namespace Gdk
 
   ToplevelSurfaceImpl::~ToplevelSurfaceImpl () noexcept {}
 
-} // namespace Gdk
+} // namespace gdk

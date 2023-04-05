@@ -16,10 +16,10 @@
   #undef HOST_NOT_FOUND
 #endif
 
-namespace Gio
+namespace gio
 {
 
-  class Error : public Glib::Error
+  class Error : public glib::Error
   {
   public:
     enum Code
@@ -77,7 +77,7 @@ namespace Gio
     };
 
     LIBMM_GIO_SYMEXPORT
-    Error (Code error_code, const Glib::ustring& error_message);
+    Error (Code error_code, const glib::ustring& error_message);
     LIBMM_GIO_SYMEXPORT explicit Error (GError* gobject);
     LIBMM_GIO_SYMEXPORT auto
     code () const -> Code;
@@ -93,7 +93,7 @@ namespace Gio
 #endif
   };
 
-  class ResolverError : public Glib::Error
+  class ResolverError : public glib::Error
   {
   public:
     enum Code
@@ -104,7 +104,7 @@ namespace Gio
     };
 
     LIBMM_GIO_SYMEXPORT
-    ResolverError (Code error_code, const Glib::ustring& error_message);
+    ResolverError (Code error_code, const glib::ustring& error_message);
     LIBMM_GIO_SYMEXPORT explicit ResolverError (GError* gobject);
     LIBMM_GIO_SYMEXPORT auto
     code () const -> Code;
@@ -120,7 +120,7 @@ namespace Gio
 #endif
   };
 
-  class TlsError : public Glib::Error
+  class TlsError : public glib::Error
   {
   public:
     enum Code
@@ -137,7 +137,7 @@ namespace Gio
     };
 
     LIBMM_GIO_SYMEXPORT
-    TlsError (Code error_code, const Glib::ustring& error_message);
+    TlsError (Code error_code, const glib::ustring& error_message);
     LIBMM_GIO_SYMEXPORT explicit TlsError (GError* gobject);
     LIBMM_GIO_SYMEXPORT auto
     code () const -> Code;
@@ -153,7 +153,7 @@ namespace Gio
 #endif
   };
 
-} // namespace Gio
+} // namespace gio
 
 #ifdef GIOMM_SAVED_HOST_NOT_FOUND
 

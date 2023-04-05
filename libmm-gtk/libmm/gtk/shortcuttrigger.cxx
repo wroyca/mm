@@ -11,24 +11,24 @@ namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GtkShortcutTrigger* object, bool take_copy) -> Glib::RefPtr<Gtk::ShortcutTrigger>
+  wrap (GtkShortcutTrigger* object, bool take_copy) -> glib::RefPtr<gtk::ShortcutTrigger>
   {
-    return Glib::make_refptr_for_instance<Gtk::ShortcutTrigger> (
-        dynamic_cast<Gtk::ShortcutTrigger*> (
-            Glib::wrap_auto ((GObject*) (object), take_copy)));
+    return glib::make_refptr_for_instance<gtk::ShortcutTrigger> (
+        dynamic_cast<gtk::ShortcutTrigger*> (
+            glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gtk
+namespace gtk
 {
 
   auto
-  ShortcutTrigger_Class::init () -> const Glib::Class&
+  ShortcutTrigger_Class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -48,7 +48,7 @@ namespace Gtk
   }
 
   auto
-  ShortcutTrigger_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  ShortcutTrigger_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new ShortcutTrigger ((GtkShortcutTrigger*) object);
   }
@@ -61,25 +61,25 @@ namespace Gtk
   }
 
   ShortcutTrigger::ShortcutTrigger (
-      const Glib::ConstructParams& construct_params)
-    : Glib::Object (construct_params)
+      const glib::ConstructParams& construct_params)
+    : glib::Object (construct_params)
   {
   }
 
   ShortcutTrigger::ShortcutTrigger (GtkShortcutTrigger* castitem)
-    : Glib::Object ((GObject*) (castitem))
+    : glib::Object ((GObject*) (castitem))
   {
   }
 
   ShortcutTrigger::ShortcutTrigger (ShortcutTrigger&& src) noexcept
-    : Glib::Object (std::move (src))
+    : glib::Object (std::move (src))
   {
   }
 
   auto
   ShortcutTrigger::operator= (ShortcutTrigger&& src) noexcept -> ShortcutTrigger&
   {
-    Glib::Object::operator= (std::move (src));
+    glib::Object::operator= (std::move (src));
     return *this;
   }
 
@@ -100,83 +100,83 @@ namespace Gtk
   }
 
   ShortcutTrigger::ShortcutTrigger ()
-    : Glib::ObjectBase (nullptr),
-      Glib::Object (Glib::ConstructParams (shortcuttrigger_class_.init ()))
+    : glib::ObjectBase (nullptr),
+      glib::Object (glib::ConstructParams (shortcuttrigger_class_.init ()))
   {
   }
 
   auto
-  ShortcutTrigger::parse_string (const Glib::ustring& string) -> Glib::RefPtr<ShortcutTrigger>
+  ShortcutTrigger::parse_string (const glib::ustring& string) -> glib::RefPtr<ShortcutTrigger>
   {
-    return Glib::wrap (gtk_shortcut_trigger_parse_string (string.c_str ()));
+    return glib::wrap (gtk_shortcut_trigger_parse_string (string.c_str ()));
   }
 
   auto
-  ShortcutTrigger::to_string () const -> Glib::ustring
+  ShortcutTrigger::to_string () const -> glib::ustring
   {
-    return Glib::convert_return_gchar_ptr_to_ustring (
+    return glib::convert_return_gchar_ptr_to_ustring (
         gtk_shortcut_trigger_to_string (
             const_cast<GtkShortcutTrigger*> (gobj ())));
   }
 
   auto
   ShortcutTrigger::to_label (
-      const Glib::RefPtr<const Gdk::Display>& display) const -> Glib::ustring
+      const glib::RefPtr<const gdk::Display>& display) const -> glib::ustring
   {
-    return Glib::convert_return_gchar_ptr_to_ustring (
+    return glib::convert_return_gchar_ptr_to_ustring (
         gtk_shortcut_trigger_to_label (
             const_cast<GtkShortcutTrigger*> (gobj ()),
-            const_cast<GdkDisplay*> (Glib::unwrap (display))));
+            const_cast<GdkDisplay*> (glib::unwrap (display))));
   }
 
   auto
   ShortcutTrigger::equal (
-      const Glib::RefPtr<const ShortcutTrigger>& trigger2) const -> bool
+      const glib::RefPtr<const ShortcutTrigger>& trigger2) const -> bool
   {
     return gtk_shortcut_trigger_equal (
         const_cast<GtkShortcutTrigger*> (gobj ()),
-        Glib::unwrap (trigger2));
+        glib::unwrap (trigger2));
   }
 
   auto
   ShortcutTrigger::compare (
-      const Glib::RefPtr<const ShortcutTrigger>& trigger2) const -> int
+      const glib::RefPtr<const ShortcutTrigger>& trigger2) const -> int
   {
     return gtk_shortcut_trigger_compare (
         const_cast<GtkShortcutTrigger*> (gobj ()),
-        Glib::unwrap (trigger2));
+        glib::unwrap (trigger2));
   }
 
   auto
-  ShortcutTrigger::trigger (const Glib::RefPtr<const Gdk::Event>& event,
-                            bool enable_mnemonics) const -> Gdk::KeyMatch
+  ShortcutTrigger::trigger (const glib::RefPtr<const gdk::Event>& event,
+                            bool enable_mnemonics) const -> gdk::KeyMatch
   {
-    return static_cast<Gdk::KeyMatch> (gtk_shortcut_trigger_trigger (
+    return static_cast<gdk::KeyMatch> (gtk_shortcut_trigger_trigger (
         const_cast<GtkShortcutTrigger*> (gobj ()),
-        const_cast<GdkEvent*> (Glib::unwrap (event)),
+        const_cast<GdkEvent*> (glib::unwrap (event)),
         static_cast<int> (enable_mnemonics)));
   }
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GtkNeverTrigger* object, bool take_copy) -> Glib::RefPtr<Gtk::NeverTrigger>
+  wrap (GtkNeverTrigger* object, bool take_copy) -> glib::RefPtr<gtk::NeverTrigger>
   {
-    return Glib::make_refptr_for_instance<Gtk::NeverTrigger> (
-        dynamic_cast<Gtk::NeverTrigger*> (
-            Glib::wrap_auto ((GObject*) (object), take_copy)));
+    return glib::make_refptr_for_instance<gtk::NeverTrigger> (
+        dynamic_cast<gtk::NeverTrigger*> (
+            glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gtk
+namespace gtk
 {
 
   auto
-  NeverTrigger_Class::init () -> const Glib::Class&
+  NeverTrigger_Class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -196,7 +196,7 @@ namespace Gtk
   }
 
   auto
-  NeverTrigger_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  NeverTrigger_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new NeverTrigger ((GtkNeverTrigger*) object);
   }
@@ -208,7 +208,7 @@ namespace Gtk
     return gobj ();
   }
 
-  NeverTrigger::NeverTrigger (const Glib::ConstructParams& construct_params)
+  NeverTrigger::NeverTrigger (const glib::ConstructParams& construct_params)
     : ShortcutTrigger (construct_params)
   {
   }
@@ -247,40 +247,40 @@ namespace Gtk
   }
 
   NeverTrigger::NeverTrigger ()
-    : Glib::ObjectBase (nullptr),
-      ShortcutTrigger (Glib::ConstructParams (nevertrigger_class_.init ()))
+    : glib::ObjectBase (nullptr),
+      ShortcutTrigger (glib::ConstructParams (nevertrigger_class_.init ()))
   {
   }
 
   auto
-  NeverTrigger::get () -> Glib::RefPtr<NeverTrigger>
+  NeverTrigger::get () -> glib::RefPtr<NeverTrigger>
   {
-    auto retvalue = Glib::wrap (GTK_NEVER_TRIGGER (gtk_never_trigger_get ()));
+    auto retvalue = glib::wrap (GTK_NEVER_TRIGGER (gtk_never_trigger_get ()));
     if (retvalue)
       retvalue->reference ();
     return retvalue;
   }
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GtkKeyvalTrigger* object, bool take_copy) -> Glib::RefPtr<Gtk::KeyvalTrigger>
+  wrap (GtkKeyvalTrigger* object, bool take_copy) -> glib::RefPtr<gtk::KeyvalTrigger>
   {
-    return Glib::make_refptr_for_instance<Gtk::KeyvalTrigger> (
-        dynamic_cast<Gtk::KeyvalTrigger*> (
-            Glib::wrap_auto ((GObject*) (object), take_copy)));
+    return glib::make_refptr_for_instance<gtk::KeyvalTrigger> (
+        dynamic_cast<gtk::KeyvalTrigger*> (
+            glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gtk
+namespace gtk
 {
 
   auto
-  KeyvalTrigger_Class::init () -> const Glib::Class&
+  KeyvalTrigger_Class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -300,7 +300,7 @@ namespace Gtk
   }
 
   auto
-  KeyvalTrigger_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  KeyvalTrigger_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new KeyvalTrigger ((GtkKeyvalTrigger*) object);
   }
@@ -312,7 +312,7 @@ namespace Gtk
     return gobj ();
   }
 
-  KeyvalTrigger::KeyvalTrigger (const Glib::ConstructParams& construct_params)
+  KeyvalTrigger::KeyvalTrigger (const glib::ConstructParams& construct_params)
     : ShortcutTrigger (construct_params)
   {
   }
@@ -350,10 +350,10 @@ namespace Gtk
     return gtk_keyval_trigger_get_type ();
   }
 
-  KeyvalTrigger::KeyvalTrigger (guint keyval, Gdk::ModifierType modifiers)
-    : Glib::ObjectBase (nullptr),
+  KeyvalTrigger::KeyvalTrigger (guint keyval, gdk::ModifierType modifiers)
+    : glib::ObjectBase (nullptr),
       ShortcutTrigger (
-          Glib::ConstructParams (keyvaltrigger_class_.init (),
+          glib::ConstructParams (keyvaltrigger_class_.init (),
                                  "keyval",
                                  keyval,
                                  "modifiers",
@@ -363,9 +363,9 @@ namespace Gtk
   }
 
   auto
-  KeyvalTrigger::create (guint keyval, Gdk::ModifierType modifiers) -> Glib::RefPtr<KeyvalTrigger>
+  KeyvalTrigger::create (guint keyval, gdk::ModifierType modifiers) -> glib::RefPtr<KeyvalTrigger>
   {
-    return Glib::make_refptr_for_instance<KeyvalTrigger> (
+    return glib::make_refptr_for_instance<KeyvalTrigger> (
         new KeyvalTrigger (keyval, modifiers));
   }
 
@@ -377,49 +377,49 @@ namespace Gtk
   }
 
   auto
-  KeyvalTrigger::get_modifiers () const -> Gdk::ModifierType
+  KeyvalTrigger::get_modifiers () const -> gdk::ModifierType
   {
-    return static_cast<Gdk::ModifierType> (gtk_keyval_trigger_get_modifiers (
+    return static_cast<gdk::ModifierType> (gtk_keyval_trigger_get_modifiers (
         const_cast<GtkKeyvalTrigger*> (gobj ())));
   }
 
   auto
-  KeyvalTrigger::property_keyval () const -> Glib::PropertyProxy_ReadOnly<guint>
+  KeyvalTrigger::property_keyval () const -> glib::PropertyProxy_ReadOnly<guint>
   {
-    return Glib::PropertyProxy_ReadOnly<guint> (this, "keyval");
+    return glib::PropertyProxy_ReadOnly<guint> (this, "keyval");
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<Gdk::ModifierType>::value,
-      "Type Gdk::ModifierType cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      glib::Traits::ValueCompatibleWithWrapProperty<gdk::ModifierType>::value,
+      "Type gdk::ModifierType cannot be used in _WRAP_PROPERTY. "
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  KeyvalTrigger::property_modifiers () const -> Glib::PropertyProxy_ReadOnly<Gdk::ModifierType>
+  KeyvalTrigger::property_modifiers () const -> glib::PropertyProxy_ReadOnly<gdk::ModifierType>
   {
-    return Glib::PropertyProxy_ReadOnly<Gdk::ModifierType> (this, "modifiers");
+    return glib::PropertyProxy_ReadOnly<gdk::ModifierType> (this, "modifiers");
   }
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GtkMnemonicTrigger* object, bool take_copy) -> Glib::RefPtr<Gtk::MnemonicTrigger>
+  wrap (GtkMnemonicTrigger* object, bool take_copy) -> glib::RefPtr<gtk::MnemonicTrigger>
   {
-    return Glib::make_refptr_for_instance<Gtk::MnemonicTrigger> (
-        dynamic_cast<Gtk::MnemonicTrigger*> (
-            Glib::wrap_auto ((GObject*) (object), take_copy)));
+    return glib::make_refptr_for_instance<gtk::MnemonicTrigger> (
+        dynamic_cast<gtk::MnemonicTrigger*> (
+            glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gtk
+namespace gtk
 {
 
   auto
-  MnemonicTrigger_Class::init () -> const Glib::Class&
+  MnemonicTrigger_Class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -439,7 +439,7 @@ namespace Gtk
   }
 
   auto
-  MnemonicTrigger_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  MnemonicTrigger_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new MnemonicTrigger ((GtkMnemonicTrigger*) object);
   }
@@ -452,7 +452,7 @@ namespace Gtk
   }
 
   MnemonicTrigger::MnemonicTrigger (
-      const Glib::ConstructParams& construct_params)
+      const glib::ConstructParams& construct_params)
     : ShortcutTrigger (construct_params)
   {
   }
@@ -491,8 +491,8 @@ namespace Gtk
   }
 
   MnemonicTrigger::MnemonicTrigger (guint keyval)
-    : Glib::ObjectBase (nullptr),
-      ShortcutTrigger (Glib::ConstructParams (mnemonictrigger_class_.init (),
+    : glib::ObjectBase (nullptr),
+      ShortcutTrigger (glib::ConstructParams (mnemonictrigger_class_.init (),
                                               "keyval",
                                               keyval,
                                               nullptr))
@@ -500,9 +500,9 @@ namespace Gtk
   }
 
   auto
-  MnemonicTrigger::create (guint keyval) -> Glib::RefPtr<MnemonicTrigger>
+  MnemonicTrigger::create (guint keyval) -> glib::RefPtr<MnemonicTrigger>
   {
-    return Glib::make_refptr_for_instance<MnemonicTrigger> (
+    return glib::make_refptr_for_instance<MnemonicTrigger> (
         new MnemonicTrigger (keyval));
   }
 
@@ -514,31 +514,31 @@ namespace Gtk
   }
 
   auto
-  MnemonicTrigger::property_keyval () const -> Glib::PropertyProxy_ReadOnly<guint>
+  MnemonicTrigger::property_keyval () const -> glib::PropertyProxy_ReadOnly<guint>
   {
-    return Glib::PropertyProxy_ReadOnly<guint> (this, "keyval");
+    return glib::PropertyProxy_ReadOnly<guint> (this, "keyval");
   }
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GtkAlternativeTrigger* object, bool take_copy) -> Glib::RefPtr<Gtk::AlternativeTrigger>
+  wrap (GtkAlternativeTrigger* object, bool take_copy) -> glib::RefPtr<gtk::AlternativeTrigger>
   {
-    return Glib::make_refptr_for_instance<Gtk::AlternativeTrigger> (
-        dynamic_cast<Gtk::AlternativeTrigger*> (
-            Glib::wrap_auto ((GObject*) (object), take_copy)));
+    return glib::make_refptr_for_instance<gtk::AlternativeTrigger> (
+        dynamic_cast<gtk::AlternativeTrigger*> (
+            glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gtk
+namespace gtk
 {
 
   auto
-  AlternativeTrigger_Class::init () -> const Glib::Class&
+  AlternativeTrigger_Class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -559,7 +559,7 @@ namespace Gtk
   }
 
   auto
-  AlternativeTrigger_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  AlternativeTrigger_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new AlternativeTrigger ((GtkAlternativeTrigger*) object);
   }
@@ -572,7 +572,7 @@ namespace Gtk
   }
 
   AlternativeTrigger::AlternativeTrigger (
-      const Glib::ConstructParams& construct_params)
+      const glib::ConstructParams& construct_params)
     : ShortcutTrigger (construct_params)
   {
   }
@@ -612,31 +612,31 @@ namespace Gtk
   }
 
   AlternativeTrigger::AlternativeTrigger (
-      const Glib::RefPtr<const ShortcutTrigger>& first,
-      const Glib::RefPtr<const ShortcutTrigger>& second)
-    : Glib::ObjectBase (nullptr),
-      ShortcutTrigger (Glib::ConstructParams (
+      const glib::RefPtr<const ShortcutTrigger>& first,
+      const glib::RefPtr<const ShortcutTrigger>& second)
+    : glib::ObjectBase (nullptr),
+      ShortcutTrigger (glib::ConstructParams (
           alternativetrigger_class_.init (),
           "first",
-          const_cast<GtkShortcutTrigger*> (Glib::unwrap (first)),
+          const_cast<GtkShortcutTrigger*> (glib::unwrap (first)),
           "second",
-          const_cast<GtkShortcutTrigger*> (Glib::unwrap (second)),
+          const_cast<GtkShortcutTrigger*> (glib::unwrap (second)),
           nullptr))
   {
   }
 
   auto
-  AlternativeTrigger::create (const Glib::RefPtr<const ShortcutTrigger>& first,
-                              const Glib::RefPtr<const ShortcutTrigger>& second) -> Glib::RefPtr<AlternativeTrigger>
+  AlternativeTrigger::create (const glib::RefPtr<const ShortcutTrigger>& first,
+                              const glib::RefPtr<const ShortcutTrigger>& second) -> glib::RefPtr<AlternativeTrigger>
   {
-    return Glib::make_refptr_for_instance<AlternativeTrigger> (
+    return glib::make_refptr_for_instance<AlternativeTrigger> (
         new AlternativeTrigger (first, second));
   }
 
   auto
-  AlternativeTrigger::get_first () const -> Glib::RefPtr<const ShortcutTrigger>
+  AlternativeTrigger::get_first () const -> glib::RefPtr<const ShortcutTrigger>
   {
-    auto retvalue = Glib::wrap (gtk_alternative_trigger_get_first (
+    auto retvalue = glib::wrap (gtk_alternative_trigger_get_first (
         const_cast<GtkAlternativeTrigger*> (gobj ())));
     if (retvalue)
       retvalue->reference ();
@@ -644,9 +644,9 @@ namespace Gtk
   }
 
   auto
-  AlternativeTrigger::get_second () const -> Glib::RefPtr<const ShortcutTrigger>
+  AlternativeTrigger::get_second () const -> glib::RefPtr<const ShortcutTrigger>
   {
-    auto retvalue = Glib::wrap (gtk_alternative_trigger_get_second (
+    auto retvalue = glib::wrap (gtk_alternative_trigger_get_second (
         const_cast<GtkAlternativeTrigger*> (gobj ())));
     if (retvalue)
       retvalue->reference ();
@@ -654,33 +654,33 @@ namespace Gtk
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<
-          Glib::RefPtr<const ShortcutTrigger>>::value,
-      "Type Glib::RefPtr<const ShortcutTrigger> cannot be used in "
+      glib::Traits::ValueCompatibleWithWrapProperty<
+          glib::RefPtr<const ShortcutTrigger>>::value,
+      "Type glib::RefPtr<const ShortcutTrigger> cannot be used in "
       "_WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  AlternativeTrigger::property_first () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<const ShortcutTrigger>>
+  AlternativeTrigger::property_first () const -> glib::PropertyProxy_ReadOnly<glib::RefPtr<const ShortcutTrigger>>
   {
-    return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<const ShortcutTrigger>> (
+    return glib::PropertyProxy_ReadOnly<glib::RefPtr<const ShortcutTrigger>> (
         this,
         "first");
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<
-          Glib::RefPtr<const ShortcutTrigger>>::value,
-      "Type Glib::RefPtr<const ShortcutTrigger> cannot be used in "
+      glib::Traits::ValueCompatibleWithWrapProperty<
+          glib::RefPtr<const ShortcutTrigger>>::value,
+      "Type glib::RefPtr<const ShortcutTrigger> cannot be used in "
       "_WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  AlternativeTrigger::property_second () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<const ShortcutTrigger>>
+  AlternativeTrigger::property_second () const -> glib::PropertyProxy_ReadOnly<glib::RefPtr<const ShortcutTrigger>>
   {
-    return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<const ShortcutTrigger>> (
+    return glib::PropertyProxy_ReadOnly<glib::RefPtr<const ShortcutTrigger>> (
         this,
         "second");
   }
 
-} // namespace Gtk
+} // namespace gtk

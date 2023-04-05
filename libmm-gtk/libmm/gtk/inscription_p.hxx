@@ -7,29 +7,29 @@
 
 #include <libmm/glib/class.hxx>
 
-namespace Gtk
+namespace gtk
 {
 
-  class LIBMM_GTK_SYMEXPORT Inscription_Class : public Glib::Class
+  class LIBMM_GTK_SYMEXPORT Inscription_Class : public glib::Class
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
     using CppObjectType = Inscription;
     using BaseObjectType = GtkInscription;
-    using CppClassParent = Gtk::Widget_Class;
+    using CppClassParent = gtk::Widget_Class;
 
     friend class Inscription;
 #endif
 
     auto
-    init () -> const Glib::Class&;
+    init () -> const glib::Class&;
 
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
 
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
 #endif

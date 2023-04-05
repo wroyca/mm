@@ -4,14 +4,14 @@
  * SPDX-License-Identifier: LGPL-2.1-or-later
  */
 
-#include <libmm/adw/init.hxx> // Adw::init
+#include <libmm/adw/init.hxx> // adw::init
 #include <libmm/adw/mm-adw.hxx>
 
 static void
 test_adw_view_switcher_bar_stack (void)
 {
-  Adw::ViewSwitcherBar bar;
-  Adw::ViewStack* stack = Gtk::make_managed<Adw::ViewStack> ();
+  adw::ViewSwitcherBar bar;
+  adw::ViewStack* stack = gtk::make_managed<adw::ViewStack> ();
 
   bar.set_stack (stack);
   g_assert_true (bar.get_stack () == stack);
@@ -23,7 +23,7 @@ test_adw_view_switcher_bar_stack (void)
 static void
 test_adw_view_switcher_bar_reveal (void)
 {
-  Adw::ViewSwitcherBar bar;
+  adw::ViewSwitcherBar bar;
 
   g_assert_false (bar.get_reveal ());
 
@@ -38,7 +38,7 @@ int
 main (int argc, char* argv[])
 {
   gtk_test_init (&argc, &argv, NULL);
-  Adw::init ();
+  adw::init ();
 
   g_test_add_func ("/Adwaita/ViewSwitcherBar/stack",
                    test_adw_view_switcher_bar_stack);

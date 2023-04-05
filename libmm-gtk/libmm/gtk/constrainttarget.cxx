@@ -11,26 +11,26 @@ namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GtkConstraintTarget* object, bool take_copy) -> Glib::RefPtr<Gtk::ConstraintTarget>
+  wrap (GtkConstraintTarget* object, bool take_copy) -> glib::RefPtr<gtk::ConstraintTarget>
   {
-    return Glib::make_refptr_for_instance<Gtk::ConstraintTarget> (
-        dynamic_cast<Gtk::ConstraintTarget*> (
-            Glib::wrap_auto_interface<Gtk::ConstraintTarget> (
+    return glib::make_refptr_for_instance<gtk::ConstraintTarget> (
+        dynamic_cast<gtk::ConstraintTarget*> (
+            glib::wrap_auto_interface<gtk::ConstraintTarget> (
                 (GObject*) (object),
                 take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gtk
+namespace gtk
 {
 
   auto
-  ConstraintTarget_Class::init () -> const Glib::Interface_Class&
+  ConstraintTarget_Class::init () -> const glib::Interface_Class&
   {
     if (!gtype_)
     {
@@ -51,36 +51,36 @@ namespace Gtk
   }
 
   auto
-  ConstraintTarget_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  ConstraintTarget_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new ConstraintTarget ((GtkConstraintTarget*) (object));
   }
 
   ConstraintTarget::ConstraintTarget ()
-    : Glib::Interface (constrainttarget_class_.init ())
+    : glib::Interface (constrainttarget_class_.init ())
   {
   }
 
   ConstraintTarget::ConstraintTarget (GtkConstraintTarget* castitem)
-    : Glib::Interface ((GObject*) (castitem))
+    : glib::Interface ((GObject*) (castitem))
   {
   }
 
   ConstraintTarget::ConstraintTarget (
-      const Glib::Interface_Class& interface_class)
-    : Glib::Interface (interface_class)
+      const glib::Interface_Class& interface_class)
+    : glib::Interface (interface_class)
   {
   }
 
   ConstraintTarget::ConstraintTarget (ConstraintTarget&& src) noexcept
-    : Glib::Interface (std::move (src))
+    : glib::Interface (std::move (src))
   {
   }
 
   auto
   ConstraintTarget::operator= (ConstraintTarget&& src) noexcept -> ConstraintTarget&
   {
-    Glib::Interface::operator= (std::move (src));
+    glib::Interface::operator= (std::move (src));
     return *this;
   }
 
@@ -106,4 +106,4 @@ namespace Gtk
     return gtk_constraint_target_get_type ();
   }
 
-} // namespace Gtk
+} // namespace gtk

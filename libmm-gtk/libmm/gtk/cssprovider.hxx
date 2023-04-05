@@ -17,16 +17,16 @@ using GtkCssProviderClass = struct _GtkCssProviderClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT CssProvider_Class;
 }
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
-  class CssParserError : public Glib::Error
+  class CssParserError : public glib::Error
   {
   public:
     enum Code
@@ -39,7 +39,7 @@ namespace Gtk
     };
 
     LIBMM_GTK_SYMEXPORT
-    CssParserError (Code error_code, const Glib::ustring& error_message);
+    CssParserError (Code error_code, const glib::ustring& error_message);
     LIBMM_GTK_SYMEXPORT explicit CssParserError (GError* gobject);
     LIBMM_GTK_SYMEXPORT auto
     code () const -> Code;
@@ -55,28 +55,28 @@ namespace Gtk
 #endif
   };
 
-} // namespace Gtk
+} // namespace gtk
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_GTK_SYMEXPORT Value<Gtk::CssParserError::Code>
-    : public Glib::Value_Enum<Gtk::CssParserError::Code>
+  class LIBMM_GTK_SYMEXPORT Value<gtk::CssParserError::Code>
+    : public glib::Value_Enum<gtk::CssParserError::Code>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
-  class CssParserWarning : public Glib::Error
+  class CssParserWarning : public glib::Error
   {
   public:
     enum Code
@@ -87,7 +87,7 @@ namespace Gtk
     };
 
     LIBMM_GTK_SYMEXPORT
-    CssParserWarning (Code error_code, const Glib::ustring& error_message);
+    CssParserWarning (Code error_code, const glib::ustring& error_message);
     LIBMM_GTK_SYMEXPORT explicit CssParserWarning (GError* gobject);
     LIBMM_GTK_SYMEXPORT auto
     code () const -> Code;
@@ -103,28 +103,28 @@ namespace Gtk
 #endif
   };
 
-} // namespace Gtk
+} // namespace gtk
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_GTK_SYMEXPORT Value<Gtk::CssParserWarning::Code>
-    : public Glib::Value_Enum<Gtk::CssParserWarning::Code>
+  class LIBMM_GTK_SYMEXPORT Value<gtk::CssParserWarning::Code>
+    : public glib::Value_Enum<gtk::CssParserWarning::Code>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
-  class LIBMM_GTK_SYMEXPORT CssProvider : public Glib::Object,
+  class LIBMM_GTK_SYMEXPORT CssProvider : public glib::Object,
                                 public StyleProvider
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -144,7 +144,7 @@ namespace Gtk
     static CppClassType cssprovider_class_;
 
   protected:
-    explicit CssProvider (const Glib::ConstructParams& construct_params);
+    explicit CssProvider (const glib::ConstructParams& construct_params);
     explicit CssProvider (GtkCssProvider* castitem);
 
 #endif
@@ -186,16 +186,16 @@ namespace Gtk
 
   public:
     static auto
-    create () -> Glib::RefPtr<CssProvider>;
+    create () -> glib::RefPtr<CssProvider>;
 
     auto
-    to_string () const -> Glib::ustring;
+    to_string () const -> glib::ustring;
 
     auto
     load_from_data (const std::string& data) -> void;
 
     auto
-    load_from_file (const Glib::RefPtr<const Gio::File>& file) -> void;
+    load_from_file (const glib::RefPtr<const gio::File>& file) -> void;
 
     auto
     load_from_path (const std::string& path) -> void;
@@ -204,25 +204,25 @@ namespace Gtk
     load_from_resource (const std::string& resource_path) -> void;
 
     auto
-    load_named (const Glib::ustring& name, const Glib::ustring& variant)
+    load_named (const glib::ustring& name, const glib::ustring& variant)
         -> void;
 
     auto
     signal_parsing_error ()
-        -> Glib::SignalProxy<void (const Glib::RefPtr<const CssSection>&,
-                                   const Glib::Error&)>;
+        -> glib::SignalProxy<void (const glib::RefPtr<const CssSection>&,
+                                   const glib::Error&)>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkCssProvider* object, bool take_copy = false) -> Glib::RefPtr<Gtk::CssProvider>;
-} // namespace Glib
+  wrap (GtkCssProvider* object, bool take_copy = false) -> glib::RefPtr<gtk::CssProvider>;
+} // namespace glib
 
 #endif

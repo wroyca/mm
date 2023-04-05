@@ -22,16 +22,16 @@ using GtkOrientableClass = struct _GtkOrientableClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT Orientable_Class;
 }
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
-  class LIBMM_GTK_SYMEXPORT Orientable : public Glib::Interface
+  class LIBMM_GTK_SYMEXPORT Orientable : public glib::Interface
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -55,7 +55,7 @@ namespace Gtk
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
-    explicit Orientable (const Glib::Interface_Class& interface_class);
+    explicit Orientable (const glib::Interface_Class& interface_class);
 
   public:
     explicit Orientable (GtkOrientable* castitem);
@@ -102,23 +102,23 @@ namespace Gtk
     get_orientation () const -> Orientation;
 
     auto
-    property_orientation () -> Glib::PropertyProxy<Orientation>;
+    property_orientation () -> glib::PropertyProxy<Orientation>;
 
     auto
-    property_orientation () const -> Glib::PropertyProxy_ReadOnly<Orientation>;
+    property_orientation () const -> glib::PropertyProxy_ReadOnly<Orientation>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkOrientable* object, bool take_copy = false) -> Glib::RefPtr<Gtk::Orientable>;
+  wrap (GtkOrientable* object, bool take_copy = false) -> glib::RefPtr<gtk::Orientable>;
 
-} // namespace Glib
+} // namespace glib
 
 #endif

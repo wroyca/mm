@@ -8,11 +8,11 @@
 #include <libmm/gio/action.hxx>
 #include <libmm/gio/simpleaction.hxx>
 
-namespace Gio
+namespace gio
 {
 
   auto
-  ActionMap::add_action (const Glib::ustring& name) -> Glib::RefPtr<SimpleAction>
+  ActionMap::add_action (const glib::ustring& name) -> glib::RefPtr<SimpleAction>
   {
     auto action = SimpleAction::create (name);
     add_action (action);
@@ -20,7 +20,7 @@ namespace Gio
   }
 
   auto
-  ActionMap::add_action (const Glib::ustring& name, const ActivateSlot& slot) -> Glib::RefPtr<SimpleAction>
+  ActionMap::add_action (const glib::ustring& name, const ActivateSlot& slot) -> glib::RefPtr<SimpleAction>
   {
     auto action = add_action (name);
     action->signal_activate ().connect (hide (slot));
@@ -28,9 +28,9 @@ namespace Gio
   }
 
   auto
-  ActionMap::add_action_with_parameter (const Glib::ustring& name,
-                                        const Glib::VariantType& parameter_type,
-                                        const ActivateWithParameterSlot& slot) -> Glib::RefPtr<SimpleAction>
+  ActionMap::add_action_with_parameter (const glib::ustring& name,
+                                        const glib::VariantType& parameter_type,
+                                        const ActivateWithParameterSlot& slot) -> glib::RefPtr<SimpleAction>
   {
     auto action = SimpleAction::create (name, parameter_type);
     action->signal_activate ().connect (slot);
@@ -39,7 +39,7 @@ namespace Gio
   }
 
   auto
-  ActionMap::add_action_bool (const Glib::ustring& name, const bool state) -> Glib::RefPtr<SimpleAction>
+  ActionMap::add_action_bool (const glib::ustring& name, const bool state) -> glib::RefPtr<SimpleAction>
   {
     auto action = SimpleAction::create_bool (name, state);
     add_action (action);
@@ -47,9 +47,9 @@ namespace Gio
   }
 
   auto
-  ActionMap::add_action_bool (const Glib::ustring& name,
+  ActionMap::add_action_bool (const glib::ustring& name,
                               const ActivateSlot& slot,
-                              const bool state) -> Glib::RefPtr<SimpleAction>
+                              const bool state) -> glib::RefPtr<SimpleAction>
   {
     auto action = add_action_bool (name, state);
     action->signal_activate ().connect (hide (slot));
@@ -57,8 +57,8 @@ namespace Gio
   }
 
   auto
-  ActionMap::add_action_radio_string (const Glib::ustring& name,
-                                      const Glib::ustring& state) -> Glib::RefPtr<SimpleAction>
+  ActionMap::add_action_radio_string (const glib::ustring& name,
+                                      const glib::ustring& state) -> glib::RefPtr<SimpleAction>
   {
     auto action = SimpleAction::create_radio_string (name, state);
     add_action (action);
@@ -70,11 +70,11 @@ namespace Gio
 
     auto
     on_action_radio_string (
-        const Glib::VariantBase& parameter,
+        const glib::VariantBase& parameter,
         const ActionMap::ActivateWithStringParameterSlot& slot) -> void
     {
       const auto variantDerived =
-          Glib::VariantBase::cast_dynamic<Glib::Variant<Glib::ustring>> (
+          glib::VariantBase::cast_dynamic<glib::Variant<glib::ustring>> (
               parameter);
       const auto str = variantDerived.get ();
       slot (str);
@@ -84,9 +84,9 @@ namespace Gio
 
   auto
   ActionMap::add_action_radio_string (
-      const Glib::ustring& name,
+      const glib::ustring& name,
       const ActivateWithStringParameterSlot& slot,
-      const Glib::ustring& state) -> Glib::RefPtr<SimpleAction>
+      const glib::ustring& state) -> glib::RefPtr<SimpleAction>
   {
     auto action = add_action_radio_string (name, state);
     action->signal_activate ().connect (
@@ -98,12 +98,12 @@ namespace Gio
   {
 
     auto
-    on_action_radio_int (const Glib::VariantBase& parameter,
+    on_action_radio_int (const glib::VariantBase& parameter,
                          const ActionMap::ActivateWithIntParameterSlot& slot)
         -> void
     {
       const auto variantDerived =
-          Glib::VariantBase::cast_dynamic<Glib::Variant<int>> (parameter);
+          glib::VariantBase::cast_dynamic<glib::Variant<int>> (parameter);
       const auto str = variantDerived.get ();
       slot (str);
     }
@@ -111,8 +111,8 @@ namespace Gio
   } // namespace
 
   auto
-  ActionMap::add_action_radio_integer (const Glib::ustring& name,
-                                       const gint32 state) -> Glib::RefPtr<SimpleAction>
+  ActionMap::add_action_radio_integer (const glib::ustring& name,
+                                       const gint32 state) -> glib::RefPtr<SimpleAction>
   {
     auto action = SimpleAction::create_radio_integer (name, state);
     add_action (action);
@@ -120,9 +120,9 @@ namespace Gio
   }
 
   auto
-  ActionMap::add_action_radio_integer (const Glib::ustring& name,
+  ActionMap::add_action_radio_integer (const glib::ustring& name,
                                        const ActivateWithIntParameterSlot& slot,
-                                       const gint32 state) -> Glib::RefPtr<SimpleAction>
+                                       const gint32 state) -> glib::RefPtr<SimpleAction>
   {
     auto action = add_action_radio_integer (name, state);
     action->signal_activate ().connect (
@@ -130,26 +130,26 @@ namespace Gio
     return action;
   }
 
-} // namespace Gio
+} // namespace gio
 
 namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GActionMap* object, const bool take_copy) -> RefPtr<Gio::ActionMap>
+  wrap (GActionMap* object, const bool take_copy) -> RefPtr<gio::ActionMap>
   {
-    return Glib::make_refptr_for_instance<Gio::ActionMap> (
-        Glib::wrap_auto_interface<Gio::ActionMap> ((GObject*) object,
+    return glib::make_refptr_for_instance<gio::ActionMap> (
+        glib::wrap_auto_interface<gio::ActionMap> ((GObject*) object,
                                                    take_copy));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gio
+namespace gio
 {
 
   auto
@@ -182,7 +182,7 @@ namespace Gio
                                                  const gchar* action_name) -> GAction*
   {
     const auto obj_base =
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self);
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self);
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -191,12 +191,12 @@ namespace Gio
       {
         try
         {
-          return Glib::unwrap (obj->lookup_action_vfunc (
-              Glib::convert_const_gchar_ptr_to_ustring (action_name)));
+          return glib::unwrap (obj->lookup_action_vfunc (
+              glib::convert_const_gchar_ptr_to_ustring (action_name)));
         }
         catch (...)
         {
-          Glib::exception_handlers_invoke ();
+          glib::exception_handlers_invoke ();
         }
       }
     }
@@ -217,7 +217,7 @@ namespace Gio
   ActionMap_Class::add_action_vfunc_callback (GActionMap* self, GAction* action) -> void
   {
     const auto obj_base =
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self);
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self);
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -226,12 +226,12 @@ namespace Gio
       {
         try
         {
-          obj->add_action_vfunc (Glib::wrap (action, true));
+          obj->add_action_vfunc (glib::wrap (action, true));
           return;
         }
         catch (...)
         {
-          Glib::exception_handlers_invoke ();
+          glib::exception_handlers_invoke ();
         }
       }
     }
@@ -250,7 +250,7 @@ namespace Gio
                                                  const gchar* action_name) -> void
   {
     const auto obj_base =
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self);
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self);
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -260,12 +260,12 @@ namespace Gio
         try
         {
           obj->remove_action_vfunc (
-              Glib::convert_const_gchar_ptr_to_ustring (action_name));
+              glib::convert_const_gchar_ptr_to_ustring (action_name));
           return;
         }
         catch (...)
         {
-          Glib::exception_handlers_invoke ();
+          glib::exception_handlers_invoke ();
         }
       }
     }
@@ -280,7 +280,7 @@ namespace Gio
   }
 
   auto
-  ActionMap_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  ActionMap_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new ActionMap ((GActionMap*) object);
   }
@@ -295,7 +295,7 @@ namespace Gio
   {
   }
 
-  ActionMap::ActionMap (const Glib::Interface_Class& interface_class)
+  ActionMap::ActionMap (const glib::Interface_Class& interface_class)
     : Interface (interface_class)
   {
   }
@@ -335,35 +335,35 @@ namespace Gio
   }
 
   auto
-  ActionMap::add_action (const Glib::RefPtr<Action>& action) -> void
+  ActionMap::add_action (const glib::RefPtr<Action>& action) -> void
   {
-    g_action_map_add_action (gobj (), Glib::unwrap (action));
+    g_action_map_add_action (gobj (), glib::unwrap (action));
   }
 
   auto
-  ActionMap::remove_action (const Glib::ustring& action_name) -> void
+  ActionMap::remove_action (const glib::ustring& action_name) -> void
   {
     g_action_map_remove_action (gobj (), action_name.c_str ());
   }
 
   auto
-  ActionMap::lookup_action (const Glib::ustring& action_name) -> Glib::RefPtr<Action>
+  ActionMap::lookup_action (const glib::ustring& action_name) -> glib::RefPtr<Action>
   {
     auto retvalue =
-        Glib::wrap (g_action_map_lookup_action (gobj (), action_name.c_str ()));
+        glib::wrap (g_action_map_lookup_action (gobj (), action_name.c_str ()));
     if (retvalue)
       retvalue->reference ();
     return retvalue;
   }
 
   auto
-  ActionMap::lookup_action (const Glib::ustring& action_name) const -> Glib::RefPtr<const Action>
+  ActionMap::lookup_action (const glib::ustring& action_name) const -> glib::RefPtr<const Action>
   {
     return const_cast<ActionMap*> (this)->lookup_action (action_name);
   }
 
   auto
-  ActionMap::lookup_action_vfunc (const Glib::ustring& name) const -> Glib::RefPtr<Action>
+  ActionMap::lookup_action_vfunc (const glib::ustring& name) const -> glib::RefPtr<Action>
   {
     const auto base =
         static_cast<BaseClassType*> (g_type_interface_peek_parent (
@@ -372,19 +372,19 @@ namespace Gio
 
     if (base && base->lookup_action)
     {
-      Glib::RefPtr<Action> retval (
-          Glib::wrap ((*base->lookup_action) (const_cast<GActionMap*> (gobj ()),
+      glib::RefPtr<Action> retval (
+          glib::wrap ((*base->lookup_action) (const_cast<GActionMap*> (gobj ()),
                                               name.c_str ()),
                       true));
       return retval;
     }
 
-    using RType = Glib::RefPtr<Action>;
+    using RType = glib::RefPtr<Action>;
     return {};
   }
 
   auto
-  ActionMap::add_action_vfunc (const Glib::RefPtr<Action>& action) const -> void
+  ActionMap::add_action_vfunc (const glib::RefPtr<Action>& action) const -> void
   {
     const auto base =
         static_cast<BaseClassType*> (g_type_interface_peek_parent (
@@ -394,12 +394,12 @@ namespace Gio
     if (base && base->add_action)
     {
       (*base->add_action) (const_cast<GActionMap*> (gobj ()),
-                           Glib::unwrap (action));
+                           glib::unwrap (action));
     }
   }
 
   auto
-  ActionMap::remove_action_vfunc (const Glib::ustring& name) -> void
+  ActionMap::remove_action_vfunc (const glib::ustring& name) -> void
   {
     const auto base =
         static_cast<BaseClassType*> (g_type_interface_peek_parent (
@@ -412,4 +412,4 @@ namespace Gio
     }
   }
 
-} // namespace Gio
+} // namespace gio

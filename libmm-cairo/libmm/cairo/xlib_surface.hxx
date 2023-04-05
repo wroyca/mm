@@ -12,7 +12,7 @@
   #endif
 #endif
 
-namespace Cairo
+namespace cairo
 {
 
 #ifdef CAIRO_HAS_XLIB_SURFACE
@@ -79,7 +79,7 @@ namespace Cairo
                                 XRenderPictFormat* format,
                                 int width,
                                 int height)
-        -> Cairo::RefPtr<Cairo::XlibSurface>;
+        -> cairo::RefPtr<cairo::XlibSurface>;
 
     auto
     get_xrender_format () const -> XRenderPictFormat*;
@@ -89,6 +89,6 @@ namespace Cairo
 
 #endif
 
-} // namespace Cairo
+} // namespace cairo
 
 #endif

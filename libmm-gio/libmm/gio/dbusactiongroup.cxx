@@ -8,7 +8,7 @@
 #include <gio/gio.h>
 #include <libmm/gio/dbusconnection.hxx>
 
-namespace Gio
+namespace gio
 {
 
 }
@@ -17,20 +17,20 @@ namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GDBusActionGroup* object, const bool take_copy) -> RefPtr<Gio::DBus::ActionGroup>
+  wrap (GDBusActionGroup* object, const bool take_copy) -> RefPtr<gio::DBus::ActionGroup>
   {
-    return Glib::make_refptr_for_instance<Gio::DBus::ActionGroup> (
-        dynamic_cast<Gio::DBus::ActionGroup*> (
+    return glib::make_refptr_for_instance<gio::DBus::ActionGroup> (
+        dynamic_cast<gio::DBus::ActionGroup*> (
             wrap_auto ((GObject*) object, take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gio::DBus
+namespace gio::DBus
 {
 
   auto
@@ -42,7 +42,7 @@ namespace Gio::DBus
 
       register_derived_type (g_dbus_action_group_get_type ());
 
-      Gio::ActionGroup::add_interface (get_type ());
+      gio::ActionGroup::add_interface (get_type ());
       RemoteActionGroup::add_interface (get_type ());
     }
 
@@ -57,7 +57,7 @@ namespace Gio::DBus
   }
 
   auto
-  ActionGroup_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  ActionGroup_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new ActionGroup ((GDBusActionGroup*) object);
   }
@@ -69,7 +69,7 @@ namespace Gio::DBus
     return gobj ();
   }
 
-  ActionGroup::ActionGroup (const Glib::ConstructParams& construct_params)
+  ActionGroup::ActionGroup (const glib::ConstructParams& construct_params)
     : Object (construct_params)
   {
   }
@@ -81,7 +81,7 @@ namespace Gio::DBus
 
   ActionGroup::ActionGroup (ActionGroup&& src) noexcept
     : Object (std::move (src)),
-      Gio::ActionGroup (std::move (src)),
+      gio::ActionGroup (std::move (src)),
       RemoteActionGroup (std::move (src))
   {
   }
@@ -90,7 +90,7 @@ namespace Gio::DBus
   ActionGroup::operator= (ActionGroup&& src) noexcept -> ActionGroup&
   {
     Object::operator= (std::move (src));
-    Gio::ActionGroup::operator= (std::move (src));
+    gio::ActionGroup::operator= (std::move (src));
     RemoteActionGroup::operator= (std::move (src));
     return *this;
   }
@@ -113,18 +113,18 @@ namespace Gio::DBus
 
   ActionGroup::ActionGroup ()
     : ObjectBase (nullptr),
-      Object (Glib::ConstructParams (actiongroup_class_.init ()))
+      Object (glib::ConstructParams (actiongroup_class_.init ()))
   {
   }
 
   auto
-  ActionGroup::get (const Glib::RefPtr<Connection>& connection,
-                    const Glib::ustring& bus_name,
-                    const Glib::ustring& object_path) -> Glib::RefPtr<ActionGroup>
+  ActionGroup::get (const glib::RefPtr<Connection>& connection,
+                    const glib::ustring& bus_name,
+                    const glib::ustring& object_path) -> glib::RefPtr<ActionGroup>
   {
-    return Glib::wrap (g_dbus_action_group_get (Glib::unwrap (connection),
+    return glib::wrap (g_dbus_action_group_get (glib::unwrap (connection),
                                                 bus_name.c_str (),
                                                 object_path.c_str ()));
   }
 
-} // namespace Gio::DBus
+} // namespace gio::DBus

@@ -7,7 +7,7 @@
 #include <libmm/glib/utility.hxx>
 #include <vector>
 
-namespace Glib
+namespace glib
 {
 
   enum class UserDirectory
@@ -83,7 +83,7 @@ namespace Glib
 
   LIBMM_GLIB_SYMEXPORT
   auto
-  get_application_name () -> Glib::ustring;
+  get_application_name () -> glib::ustring;
 
   LIBMM_GLIB_SYMEXPORT auto
   set_application_name (UStringView application_name) -> void;
@@ -124,7 +124,7 @@ namespace Glib
 
   LIBMM_GLIB_SYMEXPORT
   auto
-  get_host_name () -> Glib::ustring;
+  get_host_name () -> glib::ustring;
 
   LIBMM_GLIB_SYMEXPORT
   auto
@@ -195,7 +195,7 @@ namespace Glib
   auto
   build_filename (const Strings&... strings) -> std::string
   {
-    return Glib::convert_return_gchar_ptr_to_stdstring (
+    return glib::convert_return_gchar_ptr_to_stdstring (
         g_build_filename (StdStringView (strings).c_str ()..., nullptr));
   }
 
@@ -210,8 +210,8 @@ namespace Glib
 
   LIBMM_GLIB_SYMEXPORT
   auto
-  format_size (guint64 size, FormatSizeFlags flags = FormatSizeFlags::DEFAULT) -> Glib::ustring;
+  format_size (guint64 size, FormatSizeFlags flags = FormatSizeFlags::DEFAULT) -> glib::ustring;
 
-} // namespace Glib
+} // namespace glib
 
 #endif

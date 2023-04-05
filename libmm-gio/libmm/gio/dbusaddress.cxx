@@ -9,7 +9,7 @@
 #include <libmm/gio/slot_async.hxx>
 #include <libmm/glib/error.hxx>
 
-namespace Gio::DBus::Address
+namespace gio::DBus::Address
 {
 
   auto
@@ -24,18 +24,18 @@ namespace Gio::DBus::Address
     GError* gerror = nullptr;
     const bool result = g_dbus_is_supported_address (address.c_str (), &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return result;
   }
 
   auto
   get_stream (const std::string& address,
               const SlotAsyncReady slot,
-              const Glib::RefPtr<Cancellable>& cancellable) -> void
+              const glib::RefPtr<Cancellable>& cancellable) -> void
   {
     const auto slot_copy = new SlotAsyncReady (slot);
     g_dbus_address_get_stream (address.c_str (),
-                               Glib::unwrap (cancellable),
+                               glib::unwrap (cancellable),
                                &SignalProxy_async_callback,
                                slot_copy);
   }
@@ -51,74 +51,74 @@ namespace Gio::DBus::Address
   }
 
   auto
-  get_stream_finish (const Glib::RefPtr<AsyncResult>& res,
-                     std::string& out_guid) -> Glib::RefPtr<IOStream>
+  get_stream_finish (const glib::RefPtr<AsyncResult>& res,
+                     std::string& out_guid) -> glib::RefPtr<IOStream>
   {
     GError* gerror = nullptr;
     gchar* g_out_guid = nullptr;
 
     auto result =
-        Glib::wrap (g_dbus_address_get_stream_finish (Glib::unwrap (res),
+        glib::wrap (g_dbus_address_get_stream_finish (glib::unwrap (res),
                                                       &g_out_guid,
                                                       &gerror));
 
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
 
     out_guid = g_out_guid;
     return result;
   }
 
   auto
-  get_stream_finish (const Glib::RefPtr<AsyncResult>& res) -> Glib::RefPtr<IOStream>
+  get_stream_finish (const glib::RefPtr<AsyncResult>& res) -> glib::RefPtr<IOStream>
   {
     GError* gerror = nullptr;
 
     auto result =
-        Glib::wrap (g_dbus_address_get_stream_finish (Glib::unwrap (res),
+        glib::wrap (g_dbus_address_get_stream_finish (glib::unwrap (res),
                                                       nullptr,
                                                       &gerror));
 
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
 
     return result;
   }
 
   auto
   get_stream_sync (const std::string& address,
-                   const Glib::RefPtr<Cancellable>& cancellable,
-                   std::string& out_guid) -> Glib::RefPtr<IOStream>
+                   const glib::RefPtr<Cancellable>& cancellable,
+                   std::string& out_guid) -> glib::RefPtr<IOStream>
   {
     GError* gerror = nullptr;
     gchar* g_out_guid = nullptr;
 
     auto result =
-        Glib::wrap (g_dbus_address_get_stream_sync (address.c_str (),
+        glib::wrap (g_dbus_address_get_stream_sync (address.c_str (),
                                                     &g_out_guid,
-                                                    Glib::unwrap (cancellable),
+                                                    glib::unwrap (cancellable),
                                                     &gerror));
 
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
 
     out_guid = g_out_guid;
     return result;
   }
 
   auto
-  get_stream_sync (const std::string& address, std::string& out_guid) -> Glib::RefPtr<IOStream>
+  get_stream_sync (const std::string& address, std::string& out_guid) -> glib::RefPtr<IOStream>
   {
     GError* gerror = nullptr;
     gchar* g_out_guid = nullptr;
 
-    auto result = Glib::wrap (g_dbus_address_get_stream_sync (address.c_str (),
+    auto result = glib::wrap (g_dbus_address_get_stream_sync (address.c_str (),
                                                               &g_out_guid,
                                                               nullptr,
                                                               &gerror));
 
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
 
     out_guid = g_out_guid;
     return result;
@@ -126,51 +126,51 @@ namespace Gio::DBus::Address
 
   auto
   get_stream_sync (const std::string& address,
-                   const Glib::RefPtr<Cancellable>& cancellable) -> Glib::RefPtr<IOStream>
+                   const glib::RefPtr<Cancellable>& cancellable) -> glib::RefPtr<IOStream>
   {
     GError* gerror = nullptr;
 
     auto result =
-        Glib::wrap (g_dbus_address_get_stream_sync (address.c_str (),
+        glib::wrap (g_dbus_address_get_stream_sync (address.c_str (),
                                                     nullptr,
-                                                    Glib::unwrap (cancellable),
+                                                    glib::unwrap (cancellable),
                                                     &gerror));
 
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
 
     return result;
   }
 
   auto
-  get_stream_sync (const std::string& address) -> Glib::RefPtr<IOStream>
+  get_stream_sync (const std::string& address) -> glib::RefPtr<IOStream>
   {
     GError* gerror = nullptr;
 
-    auto result = Glib::wrap (g_dbus_address_get_stream_sync (address.c_str (),
+    auto result = glib::wrap (g_dbus_address_get_stream_sync (address.c_str (),
                                                               nullptr,
                                                               nullptr,
                                                               &gerror));
 
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
 
     return result;
   }
 
   auto
   get_for_bus_sync (BusType bus_type,
-                    const Glib::RefPtr<Cancellable>& cancellable) -> std::string
+                    const glib::RefPtr<Cancellable>& cancellable) -> std::string
   {
     GError* gerror = nullptr;
 
     std::string result (
         g_dbus_address_get_for_bus_sync (static_cast<GBusType> (bus_type),
-                                         Glib::unwrap (cancellable),
+                                         glib::unwrap (cancellable),
                                          &gerror));
 
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
 
     return result;
   }
@@ -186,12 +186,12 @@ namespace Gio::DBus::Address
                                          &gerror));
 
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
 
     return result;
   }
 
-} // namespace Gio::DBus::Address
+} // namespace gio::DBus::Address
 
 namespace
 {

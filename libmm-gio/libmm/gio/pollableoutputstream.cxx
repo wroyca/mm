@@ -8,7 +8,7 @@
 #include <gio/gio.h>
 #include <libmm/gio/cancellable.hxx>
 
-namespace Gio
+namespace gio
 {
 
 }
@@ -17,20 +17,20 @@ namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GPollableOutputStream* object, const bool take_copy) -> RefPtr<Gio::PollableOutputStream>
+  wrap (GPollableOutputStream* object, const bool take_copy) -> RefPtr<gio::PollableOutputStream>
   {
-    return Glib::make_refptr_for_instance<Gio::PollableOutputStream> (
-        Glib::wrap_auto_interface<Gio::PollableOutputStream> ((GObject*) object,
+    return glib::make_refptr_for_instance<gio::PollableOutputStream> (
+        glib::wrap_auto_interface<gio::PollableOutputStream> ((GObject*) object,
                                                               take_copy));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gio
+namespace gio
 {
 
   auto
@@ -63,7 +63,7 @@ namespace Gio
       GPollableOutputStream* self) -> gboolean
   {
     const auto obj_base =
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self);
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self);
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -76,7 +76,7 @@ namespace Gio
         }
         catch (...)
         {
-          Glib::exception_handlers_invoke ();
+          glib::exception_handlers_invoke ();
         }
       }
     }
@@ -98,7 +98,7 @@ namespace Gio
       GPollableOutputStream* self) -> gboolean
   {
     const auto obj_base =
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self);
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self);
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -111,7 +111,7 @@ namespace Gio
         }
         catch (...)
         {
-          Glib::exception_handlers_invoke ();
+          glib::exception_handlers_invoke ();
         }
       }
     }
@@ -136,7 +136,7 @@ namespace Gio
       GError** error) -> gssize
   {
     const auto obj_base =
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self);
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self);
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -147,14 +147,14 @@ namespace Gio
         {
           return obj->write_nonblocking_vfunc (buffer, count);
         }
-        catch (Glib::Error& errormm)
+        catch (glib::Error& errormm)
         {
           errormm.propagate (error);
           return -1;
         }
         catch (...)
         {
-          Glib::exception_handlers_invoke ();
+          glib::exception_handlers_invoke ();
         }
       }
     }
@@ -172,7 +172,7 @@ namespace Gio
   }
 
   auto
-  PollableOutputStream_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  PollableOutputStream_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new PollableOutputStream ((GPollableOutputStream*) object);
   }
@@ -188,7 +188,7 @@ namespace Gio
   }
 
   PollableOutputStream::PollableOutputStream (
-      const Glib::Interface_Class& interface_class)
+      const glib::Interface_Class& interface_class)
     : Interface (interface_class)
   {
   }
@@ -247,17 +247,17 @@ namespace Gio
   PollableOutputStream::write_nonblocking (
       const void* buffer,
       const gsize count,
-      const Glib::RefPtr<Cancellable>& cancellable) -> gssize
+      const glib::RefPtr<Cancellable>& cancellable) -> gssize
   {
     GError* gerror = nullptr;
     const auto retvalue = g_pollable_output_stream_write_nonblocking (
         gobj (),
         buffer,
         count,
-        Glib::unwrap (cancellable),
+        glib::unwrap (cancellable),
         &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
@@ -272,7 +272,7 @@ namespace Gio
                                                                       nullptr,
                                                                       &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
@@ -329,7 +329,7 @@ namespace Gio
       const gssize retval (
           (*base->write_nonblocking) (gobj (), buffer, count, &gerror));
       if (gerror)
-        Glib::Error::throw_exception (gerror);
+        glib::Error::throw_exception (gerror);
       return retval;
     }
 
@@ -337,4 +337,4 @@ namespace Gio
     return RType ();
   }
 
-} // namespace Gio
+} // namespace gio

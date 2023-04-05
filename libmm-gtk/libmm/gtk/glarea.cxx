@@ -7,7 +7,7 @@
 
 #include <gtk/gtk.h>
 
-namespace Gtk
+namespace gtk
 {
 
   auto
@@ -22,7 +22,7 @@ namespace Gtk
     GError* error = gtk_gl_area_get_error (const_cast<GtkGLArea*> (gobj ()));
     if (error)
     {
-      Glib::Error::throw_exception (g_error_copy (error));
+      glib::Error::throw_exception (g_error_copy (error));
     }
   }
 
@@ -32,7 +32,7 @@ namespace Gtk
     gtk_gl_area_set_error (gobj (), nullptr);
   }
 
-} // namespace Gtk
+} // namespace gtk
 
 namespace
 {
@@ -40,22 +40,22 @@ namespace
   static auto
   GLArea_signal_create_context_callback (GtkGLArea* self, void* data) -> GdkGLContext*
   {
-    using namespace Gtk;
-    using SlotType = sigc::slot<Glib::RefPtr<Gdk::GLContext> ()>;
+    using namespace gtk;
+    using SlotType = sigc::slot<glib::RefPtr<gdk::GLContext> ()>;
 
     auto obj = dynamic_cast<GLArea*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
     {
       try
       {
-        if (const auto slot = Glib::SignalProxyNormal::data_to_slot (data))
-          return Glib::unwrap_copy ((*static_cast<SlotType*> (slot)) ());
+        if (const auto slot = glib::SignalProxyNormal::data_to_slot (data))
+          return glib::unwrap_copy ((*static_cast<SlotType*> (slot)) ());
       }
       catch (...)
       {
-        Glib::exception_handlers_invoke ();
+        glib::exception_handlers_invoke ();
       }
     }
 
@@ -66,22 +66,22 @@ namespace
   static auto
   GLArea_signal_create_context_notify_callback (GtkGLArea* self, void* data) -> GdkGLContext*
   {
-    using namespace Gtk;
+    using namespace gtk;
     using SlotType = sigc::slot<void ()>;
 
     auto obj = dynamic_cast<GLArea*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
     {
       try
       {
-        if (const auto slot = Glib::SignalProxyNormal::data_to_slot (data))
+        if (const auto slot = glib::SignalProxyNormal::data_to_slot (data))
           (*static_cast<SlotType*> (slot)) ();
       }
       catch (...)
       {
-        Glib::exception_handlers_invoke ();
+        glib::exception_handlers_invoke ();
       }
     }
 
@@ -89,7 +89,7 @@ namespace
     return RType ();
   }
 
-  static const Glib::SignalProxyInfo GLArea_signal_create_context_info = {
+  static const glib::SignalProxyInfo GLArea_signal_create_context_info = {
       "create_context",
       (GCallback) &GLArea_signal_create_context_callback,
       (GCallback) &GLArea_signal_create_context_notify_callback};
@@ -97,23 +97,23 @@ namespace
   static auto
   GLArea_signal_render_callback (GtkGLArea* self, GdkGLContext* p0, void* data) -> gboolean
   {
-    using namespace Gtk;
-    using SlotType = sigc::slot<bool (const Glib::RefPtr<Gdk::GLContext>&)>;
+    using namespace gtk;
+    using SlotType = sigc::slot<bool (const glib::RefPtr<gdk::GLContext>&)>;
 
     auto obj = dynamic_cast<GLArea*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
     {
       try
       {
-        if (const auto slot = Glib::SignalProxyNormal::data_to_slot (data))
+        if (const auto slot = glib::SignalProxyNormal::data_to_slot (data))
           return static_cast<int> (
-              (*static_cast<SlotType*> (slot)) (Glib::wrap (p0, true)));
+              (*static_cast<SlotType*> (slot)) (glib::wrap (p0, true)));
       }
       catch (...)
       {
-        Glib::exception_handlers_invoke ();
+        glib::exception_handlers_invoke ();
       }
     }
 
@@ -126,22 +126,22 @@ namespace
                                         GdkGLContext* p0,
                                         void* data) -> gboolean
   {
-    using namespace Gtk;
-    using SlotType = sigc::slot<void (const Glib::RefPtr<Gdk::GLContext>&)>;
+    using namespace gtk;
+    using SlotType = sigc::slot<void (const glib::RefPtr<gdk::GLContext>&)>;
 
     auto obj = dynamic_cast<GLArea*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
     {
       try
       {
-        if (const auto slot = Glib::SignalProxyNormal::data_to_slot (data))
-          (*static_cast<SlotType*> (slot)) (Glib::wrap (p0, true));
+        if (const auto slot = glib::SignalProxyNormal::data_to_slot (data))
+          (*static_cast<SlotType*> (slot)) (glib::wrap (p0, true));
       }
       catch (...)
       {
-        Glib::exception_handlers_invoke ();
+        glib::exception_handlers_invoke ();
       }
     }
 
@@ -149,7 +149,7 @@ namespace
     return RType ();
   }
 
-  static const Glib::SignalProxyInfo GLArea_signal_render_info = {
+  static const glib::SignalProxyInfo GLArea_signal_render_info = {
       "render",
       (GCallback) &GLArea_signal_render_callback,
       (GCallback) &GLArea_signal_render_notify_callback};
@@ -157,50 +157,50 @@ namespace
   static auto
   GLArea_signal_resize_callback (GtkGLArea* self, gint p0, gint p1, void* data) -> void
   {
-    using namespace Gtk;
+    using namespace gtk;
     using SlotType = sigc::slot<void (int, int)>;
 
     auto obj = dynamic_cast<GLArea*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
     {
       try
       {
-        if (const auto slot = Glib::SignalProxyNormal::data_to_slot (data))
+        if (const auto slot = glib::SignalProxyNormal::data_to_slot (data))
           (*static_cast<SlotType*> (slot)) (p0, p1);
       }
       catch (...)
       {
-        Glib::exception_handlers_invoke ();
+        glib::exception_handlers_invoke ();
       }
     }
   }
 
-  static const Glib::SignalProxyInfo GLArea_signal_resize_info = {
+  static const glib::SignalProxyInfo GLArea_signal_resize_info = {
       "resize",
       (GCallback) &GLArea_signal_resize_callback,
       (GCallback) &GLArea_signal_resize_callback};
 
 } // namespace
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GtkGLArea* object, bool take_copy) -> Gtk::GLArea*
+  wrap (GtkGLArea* object, bool take_copy) -> gtk::GLArea*
   {
-    return dynamic_cast<Gtk::GLArea*> (
-        Glib::wrap_auto ((GObject*) (object), take_copy));
+    return dynamic_cast<gtk::GLArea*> (
+        glib::wrap_auto ((GObject*) (object), take_copy));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gtk
+namespace gtk
 {
 
   auto
-  GLArea_Class::init () -> const Glib::Class&
+  GLArea_Class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -226,8 +226,8 @@ namespace Gtk
   auto
   GLArea_Class::create_context_callback (GtkGLArea* self) -> GdkGLContext*
   {
-    const auto obj_base = static_cast<Glib::ObjectBase*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+    const auto obj_base = static_cast<glib::ObjectBase*> (
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -236,11 +236,11 @@ namespace Gtk
       {
         try
         {
-          return Glib::unwrap_copy (obj->on_create_context ());
+          return glib::unwrap_copy (obj->on_create_context ());
         }
         catch (...)
         {
-          Glib::exception_handlers_invoke ();
+          glib::exception_handlers_invoke ();
         }
       }
     }
@@ -258,8 +258,8 @@ namespace Gtk
   auto
   GLArea_Class::render_callback (GtkGLArea* self, GdkGLContext* p0) -> gboolean
   {
-    const auto obj_base = static_cast<Glib::ObjectBase*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+    const auto obj_base = static_cast<glib::ObjectBase*> (
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -268,11 +268,11 @@ namespace Gtk
       {
         try
         {
-          return static_cast<int> (obj->on_render (Glib::wrap (p0, true)));
+          return static_cast<int> (obj->on_render (glib::wrap (p0, true)));
         }
         catch (...)
         {
-          Glib::exception_handlers_invoke ();
+          glib::exception_handlers_invoke ();
         }
       }
     }
@@ -290,8 +290,8 @@ namespace Gtk
   auto
   GLArea_Class::resize_callback (GtkGLArea* self, gint p0, gint p1) -> void
   {
-    const auto obj_base = static_cast<Glib::ObjectBase*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+    const auto obj_base = static_cast<glib::ObjectBase*> (
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -305,7 +305,7 @@ namespace Gtk
         }
         catch (...)
         {
-          Glib::exception_handlers_invoke ();
+          glib::exception_handlers_invoke ();
         }
       }
     }
@@ -318,30 +318,30 @@ namespace Gtk
   }
 
   auto
-  GLArea_Class::wrap_new (GObject* o) -> Glib::ObjectBase*
+  GLArea_Class::wrap_new (GObject* o) -> glib::ObjectBase*
   {
     return manage (new GLArea ((GtkGLArea*) (o)));
   }
 
-  GLArea::GLArea (const Glib::ConstructParams& construct_params)
-    : Gtk::Widget (construct_params)
+  GLArea::GLArea (const glib::ConstructParams& construct_params)
+    : gtk::Widget (construct_params)
   {
   }
 
   GLArea::GLArea (GtkGLArea* castitem)
-    : Gtk::Widget ((GtkWidget*) (castitem))
+    : gtk::Widget ((GtkWidget*) (castitem))
   {
   }
 
   GLArea::GLArea (GLArea&& src) noexcept
-    : Gtk::Widget (std::move (src))
+    : gtk::Widget (std::move (src))
   {
   }
 
   auto
   GLArea::operator= (GLArea&& src) noexcept -> GLArea&
   {
-    Gtk::Widget::operator= (std::move (src));
+    gtk::Widget::operator= (std::move (src));
     return *this;
   }
 
@@ -365,22 +365,22 @@ namespace Gtk
   }
 
   GLArea::GLArea ()
-    : Glib::ObjectBase (nullptr),
-      Gtk::Widget (Glib::ConstructParams (glarea_class_.init ()))
+    : glib::ObjectBase (nullptr),
+      gtk::Widget (glib::ConstructParams (glarea_class_.init ()))
   {
   }
 
   auto
-  GLArea::get_context () -> Glib::RefPtr<Gdk::GLContext>
+  GLArea::get_context () -> glib::RefPtr<gdk::GLContext>
   {
-    auto retvalue = Glib::wrap (gtk_gl_area_get_context (gobj ()));
+    auto retvalue = glib::wrap (gtk_gl_area_get_context (gobj ()));
     if (retvalue)
       retvalue->reference ();
     return retvalue;
   }
 
   auto
-  GLArea::get_context () const -> Glib::RefPtr<const Gdk::GLContext>
+  GLArea::get_context () const -> glib::RefPtr<const gdk::GLContext>
   {
     return const_cast<GLArea*> (this)->get_context ();
   }
@@ -404,7 +404,7 @@ namespace Gtk
   }
 
   auto
-  GLArea::set_error (const Glib::Error& error) -> void
+  GLArea::set_error (const glib::Error& error) -> void
   {
     gtk_gl_area_set_error (gobj (), (error).gobj ());
   }
@@ -475,118 +475,118 @@ namespace Gtk
   }
 
   auto
-  GLArea::signal_create_context () -> Glib::SignalProxy<Glib::RefPtr<Gdk::GLContext> ()>
+  GLArea::signal_create_context () -> glib::SignalProxy<glib::RefPtr<gdk::GLContext> ()>
   {
-    return Glib::SignalProxy<Glib::RefPtr<Gdk::GLContext> ()> (
+    return glib::SignalProxy<glib::RefPtr<gdk::GLContext> ()> (
         this,
         &GLArea_signal_create_context_info);
   }
 
   auto
-  GLArea::signal_render () -> Glib::SignalProxy<bool (const Glib::RefPtr<Gdk::GLContext>&)>
+  GLArea::signal_render () -> glib::SignalProxy<bool (const glib::RefPtr<gdk::GLContext>&)>
   {
-    return Glib::SignalProxy<bool (const Glib::RefPtr<Gdk::GLContext>&)> (
+    return glib::SignalProxy<bool (const glib::RefPtr<gdk::GLContext>&)> (
         this,
         &GLArea_signal_render_info);
   }
 
   auto
-  GLArea::signal_resize () -> Glib::SignalProxy<void (int, int)>
+  GLArea::signal_resize () -> glib::SignalProxy<void (int, int)>
   {
-    return Glib::SignalProxy<void (int, int)> (this,
+    return glib::SignalProxy<void (int, int)> (this,
                                                &GLArea_signal_resize_info);
   }
 
   auto
-  GLArea::property_auto_render () -> Glib::PropertyProxy<bool>
+  GLArea::property_auto_render () -> glib::PropertyProxy<bool>
   {
-    return Glib::PropertyProxy<bool> (this, "auto-render");
+    return glib::PropertyProxy<bool> (this, "auto-render");
   }
 
   auto
-  GLArea::property_auto_render () const -> Glib::PropertyProxy_ReadOnly<bool>
+  GLArea::property_auto_render () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "auto-render");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "auto-render");
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<
-          Glib::RefPtr<Gdk::GLContext>>::value,
-      "Type Glib::RefPtr<Gdk::GLContext> cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      glib::Traits::ValueCompatibleWithWrapProperty<
+          glib::RefPtr<gdk::GLContext>>::value,
+      "Type glib::RefPtr<gdk::GLContext> cannot be used in _WRAP_PROPERTY. "
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  GLArea::property_context () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gdk::GLContext>>
+  GLArea::property_context () const -> glib::PropertyProxy_ReadOnly<glib::RefPtr<gdk::GLContext>>
   {
-    return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gdk::GLContext>> (
+    return glib::PropertyProxy_ReadOnly<glib::RefPtr<gdk::GLContext>> (
         this,
         "context");
   }
 
   auto
-  GLArea::property_has_depth_buffer () -> Glib::PropertyProxy<bool>
+  GLArea::property_has_depth_buffer () -> glib::PropertyProxy<bool>
   {
-    return Glib::PropertyProxy<bool> (this, "has-depth-buffer");
+    return glib::PropertyProxy<bool> (this, "has-depth-buffer");
   }
 
   auto
-  GLArea::property_has_depth_buffer () const -> Glib::PropertyProxy_ReadOnly<bool>
+  GLArea::property_has_depth_buffer () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "has-depth-buffer");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "has-depth-buffer");
   }
 
   auto
-  GLArea::property_has_stencil_buffer () -> Glib::PropertyProxy<bool>
+  GLArea::property_has_stencil_buffer () -> glib::PropertyProxy<bool>
   {
-    return Glib::PropertyProxy<bool> (this, "has-stencil-buffer");
+    return glib::PropertyProxy<bool> (this, "has-stencil-buffer");
   }
 
   auto
-  GLArea::property_has_stencil_buffer () const -> Glib::PropertyProxy_ReadOnly<bool>
+  GLArea::property_has_stencil_buffer () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "has-stencil-buffer");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "has-stencil-buffer");
   }
 
   auto
-  GLArea::property_use_es () -> Glib::PropertyProxy<bool>
+  GLArea::property_use_es () -> glib::PropertyProxy<bool>
   {
-    return Glib::PropertyProxy<bool> (this, "use-es");
+    return glib::PropertyProxy<bool> (this, "use-es");
   }
 
   auto
-  GLArea::property_use_es () const -> Glib::PropertyProxy_ReadOnly<bool>
+  GLArea::property_use_es () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "use-es");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "use-es");
   }
 
   auto
-  Gtk::GLArea::on_create_context () -> Glib::RefPtr<Gdk::GLContext>
+  gtk::GLArea::on_create_context () -> glib::RefPtr<gdk::GLContext>
   {
     const auto base = static_cast<BaseClassType*> (
         g_type_class_peek_parent (G_OBJECT_GET_CLASS (gobject_)));
 
     if (base && base->create_context)
-      return Glib::wrap ((*base->create_context) (gobj ()));
+      return glib::wrap ((*base->create_context) (gobj ()));
 
-    using RType = Glib::RefPtr<Gdk::GLContext>;
+    using RType = glib::RefPtr<gdk::GLContext>;
     return RType ();
   }
 
   auto
-  Gtk::GLArea::on_render (const Glib::RefPtr<Gdk::GLContext>& context) -> bool
+  gtk::GLArea::on_render (const glib::RefPtr<gdk::GLContext>& context) -> bool
   {
     const auto base = static_cast<BaseClassType*> (
         g_type_class_peek_parent (G_OBJECT_GET_CLASS (gobject_)));
 
     if (base && base->render)
-      return (*base->render) (gobj (), Glib::unwrap (context));
+      return (*base->render) (gobj (), glib::unwrap (context));
 
     using RType = bool;
     return RType ();
   }
 
   auto
-  Gtk::GLArea::on_resize (int width, int height) -> void
+  gtk::GLArea::on_resize (int width, int height) -> void
   {
     const auto base = static_cast<BaseClassType*> (
         g_type_class_peek_parent (G_OBJECT_GET_CLASS (gobject_)));
@@ -595,4 +595,4 @@ namespace Gtk
       (*base->resize) (gobj (), width, height);
   }
 
-} // namespace Gtk
+} // namespace gtk

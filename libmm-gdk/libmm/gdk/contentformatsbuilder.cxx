@@ -9,22 +9,22 @@ namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GdkContentFormatsBuilder* object, bool take_copy) -> Glib::RefPtr<Gdk::ContentFormatsBuilder>
+  wrap (GdkContentFormatsBuilder* object, bool take_copy) -> glib::RefPtr<gdk::ContentFormatsBuilder>
   {
     if (take_copy && object)
       gdk_content_formats_builder_ref (object);
 
-    return Glib::make_refptr_for_instance<Gdk::ContentFormatsBuilder> (
-        reinterpret_cast<Gdk::ContentFormatsBuilder*> (object));
+    return glib::make_refptr_for_instance<gdk::ContentFormatsBuilder> (
+        reinterpret_cast<gdk::ContentFormatsBuilder*> (object));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gdk
+namespace gdk
 {
 
   auto
@@ -65,20 +65,20 @@ namespace Gdk
   }
 
   auto
-  ContentFormatsBuilder::create () -> Glib::RefPtr<ContentFormatsBuilder>
+  ContentFormatsBuilder::create () -> glib::RefPtr<ContentFormatsBuilder>
   {
-    return Glib::wrap (gdk_content_formats_builder_new ());
+    return glib::wrap (gdk_content_formats_builder_new ());
   }
 
   auto
   ContentFormatsBuilder::add_formats (
-      const Glib::RefPtr<const ContentFormats>& formats) -> void
+      const glib::RefPtr<const ContentFormats>& formats) -> void
   {
-    gdk_content_formats_builder_add_formats (gobj (), Glib::unwrap (formats));
+    gdk_content_formats_builder_add_formats (gobj (), glib::unwrap (formats));
   }
 
   auto
-  ContentFormatsBuilder::add_mime_type (const Glib::ustring& mime_type) -> void
+  ContentFormatsBuilder::add_mime_type (const glib::ustring& mime_type) -> void
   {
     gdk_content_formats_builder_add_mime_type (gobj (), mime_type.c_str ());
   }
@@ -90,9 +90,9 @@ namespace Gdk
   }
 
   auto
-  ContentFormatsBuilder::to_formats () -> Glib::RefPtr<ContentFormats>
+  ContentFormatsBuilder::to_formats () -> glib::RefPtr<ContentFormats>
   {
-    return Glib::wrap (gdk_content_formats_builder_to_formats (gobj ()));
+    return glib::wrap (gdk_content_formats_builder_to_formats (gobj ()));
   }
 
-} // namespace Gdk
+} // namespace gdk

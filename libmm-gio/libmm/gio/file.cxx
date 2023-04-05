@@ -16,18 +16,18 @@ namespace
 {
 
   using CopySlots =
-      std::pair<Gio::File::SlotFileProgress*, Gio::SlotAsyncReady*>;
+      std::pair<gio::File::SlotFileProgress*, gio::SlotAsyncReady*>;
   using MeasureSlots =
-      std::pair<Gio::File::SlotFileMeasureProgress*, Gio::SlotAsyncReady*>;
+      std::pair<gio::File::SlotFileMeasureProgress*, gio::SlotAsyncReady*>;
   using LoadPartialSlots =
-      std::pair<Gio::File::SlotReadMore*, Gio::SlotAsyncReady*>;
+      std::pair<gio::File::SlotReadMore*, gio::SlotAsyncReady*>;
 
   auto
   SignalProxy_file_progress_callback (const goffset current_num_bytes,
                                       const goffset total_num_bytes,
                                       const gpointer data) -> void
   {
-    const auto the_slot = static_cast<Gio::File::SlotFileProgress*> (data);
+    const auto the_slot = static_cast<gio::File::SlotFileProgress*> (data);
 
     try
     {
@@ -35,7 +35,7 @@ namespace
     }
     catch (...)
     {
-      Glib::exception_handlers_invoke ();
+      glib::exception_handlers_invoke ();
     }
   }
 
@@ -49,13 +49,13 @@ namespace
     {
       if (*the_slot)
       {
-        auto result = Glib::wrap (res, true);
+        auto result = glib::wrap (res, true);
         (*the_slot) (result);
       }
     }
     catch (...)
     {
-      Glib::exception_handlers_invoke ();
+      glib::exception_handlers_invoke ();
     }
 
     delete the_slot;
@@ -75,13 +75,13 @@ namespace
     {
       if (*the_slot)
       {
-        auto result = Glib::wrap (res, true);
+        auto result = glib::wrap (res, true);
         (*the_slot) (result);
       }
     }
     catch (...)
     {
-      Glib::exception_handlers_invoke ();
+      glib::exception_handlers_invoke ();
     }
 
     delete the_slot;
@@ -106,7 +106,7 @@ namespace
     }
     catch (...)
     {
-      Glib::exception_handlers_invoke ();
+      glib::exception_handlers_invoke ();
     }
 
     return result;
@@ -118,16 +118,16 @@ namespace
                                                     void* data) -> void
   {
     const LoadPartialSlots* slot_pair = static_cast<LoadPartialSlots*> (data);
-    const Gio::SlotAsyncReady* the_slot = slot_pair->second;
+    const gio::SlotAsyncReady* the_slot = slot_pair->second;
 
     try
     {
-      auto result = Glib::wrap (res, true);
+      auto result = glib::wrap (res, true);
       (*the_slot) (result);
     }
     catch (...)
     {
-      Glib::exception_handlers_invoke ();
+      glib::exception_handlers_invoke ();
     }
 
     delete the_slot;
@@ -142,8 +142,8 @@ namespace
                                               const guint64 num_files,
                                               const gpointer data) -> void
   {
-    const Gio::File::SlotFileMeasureProgress* the_slot =
-        static_cast<Gio::File::SlotFileMeasureProgress*> (data);
+    const gio::File::SlotFileMeasureProgress* the_slot =
+        static_cast<gio::File::SlotFileMeasureProgress*> (data);
 
     try
     {
@@ -151,38 +151,38 @@ namespace
     }
     catch (...)
     {
-      Glib::exception_handlers_invoke ();
+      glib::exception_handlers_invoke ();
     }
   }
 
 } // namespace
 
-namespace Gio
+namespace gio
 {
 
   auto
-  File::create_for_path (const std::string& path) -> Glib::RefPtr<File>
+  File::create_for_path (const std::string& path) -> glib::RefPtr<File>
   {
     GFile* cfile = g_file_new_for_path (path.c_str ());
-    return Glib::wrap (G_FILE (cfile));
+    return glib::wrap (G_FILE (cfile));
   }
 
   auto
-  File::create_for_uri (const std::string& uri) -> Glib::RefPtr<File>
+  File::create_for_uri (const std::string& uri) -> glib::RefPtr<File>
   {
     GFile* cfile = g_file_new_for_uri (uri.c_str ());
-    return Glib::wrap (G_FILE (cfile));
+    return glib::wrap (G_FILE (cfile));
   }
 
   auto
-  File::create_for_commandline_arg (const std::string& arg) -> Glib::RefPtr<File>
+  File::create_for_commandline_arg (const std::string& arg) -> glib::RefPtr<File>
   {
     GFile* cfile = g_file_new_for_commandline_arg (arg.c_str ());
-    return Glib::wrap (G_FILE (cfile));
+    return glib::wrap (G_FILE (cfile));
   }
 
   auto
-  File::create_tmp (const std::string& tmpl) -> std::pair<Glib::RefPtr<File>, Glib::RefPtr<FileIOStream>>
+  File::create_tmp (const std::string& tmpl) -> std::pair<glib::RefPtr<File>, glib::RefPtr<FileIOStream>>
   {
     GError* gerror = nullptr;
     GFileIOStream* ciostream = nullptr;
@@ -190,16 +190,16 @@ namespace Gio
                                    &ciostream,
                                    &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
 
-    return {Glib::wrap (cfile), Glib::wrap (ciostream)};
+    return {glib::wrap (cfile), glib::wrap (ciostream)};
   }
 
   auto
-  File::create_for_parse_name (const Glib::ustring& parse_name) -> Glib::RefPtr<File>
+  File::create_for_parse_name (const glib::ustring& parse_name) -> glib::RefPtr<File>
   {
     GFile* cfile = g_file_parse_name (parse_name.c_str ());
-    return Glib::wrap (G_FILE (cfile));
+    return glib::wrap (G_FILE (cfile));
   }
 
   auto
@@ -216,21 +216,21 @@ namespace Gio
 
   auto
   File::read_async (const SlotAsyncReady& slot,
-                    const Glib::RefPtr<Cancellable>& cancellable,
+                    const glib::RefPtr<Cancellable>& cancellable,
                     const int io_priority) -> void
   {
     SlotAsyncReady* slot_copy = new SlotAsyncReady (slot);
 
     g_file_read_async (gobj (),
                        io_priority,
-                       Glib::unwrap (cancellable),
+                       glib::unwrap (cancellable),
                        &SignalProxy_async_callback,
                        slot_copy);
   }
 
   auto
   File::append_to_async (const SlotAsyncReady& slot,
-                         const Glib::RefPtr<Cancellable>& cancellable,
+                         const glib::RefPtr<Cancellable>& cancellable,
                          CreateFlags flags,
                          const int io_priority) -> void
   {
@@ -239,7 +239,7 @@ namespace Gio
     g_file_append_to_async (gobj (),
                             static_cast<GFileCreateFlags> (flags),
                             io_priority,
-                            Glib::unwrap (cancellable),
+                            glib::unwrap (cancellable),
                             &SignalProxy_async_callback,
                             slot_copy);
   }
@@ -261,7 +261,7 @@ namespace Gio
 
   auto
   File::create_file_async (const SlotAsyncReady& slot,
-                           const Glib::RefPtr<Cancellable>& cancellable,
+                           const glib::RefPtr<Cancellable>& cancellable,
                            CreateFlags flags,
                            const int io_priority) -> void
   {
@@ -270,7 +270,7 @@ namespace Gio
     g_file_create_async (gobj (),
                          static_cast<GFileCreateFlags> (flags),
                          io_priority,
-                         Glib::unwrap (cancellable),
+                         glib::unwrap (cancellable),
                          &SignalProxy_async_callback,
                          slot_copy);
   }
@@ -293,7 +293,7 @@ namespace Gio
   auto
   File::create_file_readwrite_async (
       const SlotAsyncReady& slot,
-      const Glib::RefPtr<Cancellable>& cancellable,
+      const glib::RefPtr<Cancellable>& cancellable,
       CreateFlags flags,
       const int io_priority) -> void
   {
@@ -302,7 +302,7 @@ namespace Gio
     g_file_create_async (gobj (),
                          static_cast<GFileCreateFlags> (flags),
                          io_priority,
-                         Glib::unwrap (cancellable),
+                         glib::unwrap (cancellable),
                          &SignalProxy_async_callback,
                          slot_copy);
   }
@@ -324,7 +324,7 @@ namespace Gio
 
   auto
   File::replace_async (const SlotAsyncReady& slot,
-                       const Glib::RefPtr<Cancellable>& cancellable,
+                       const glib::RefPtr<Cancellable>& cancellable,
                        const std::string& etag,
                        const bool make_backup,
                        CreateFlags flags,
@@ -333,11 +333,11 @@ namespace Gio
     SlotAsyncReady* slot_copy = new SlotAsyncReady (slot);
 
     g_file_replace_async (gobj (),
-                          Glib::c_str_or_nullptr (etag),
+                          glib::c_str_or_nullptr (etag),
                           make_backup,
                           static_cast<GFileCreateFlags> (flags),
                           io_priority,
-                          Glib::unwrap (cancellable),
+                          glib::unwrap (cancellable),
                           &SignalProxy_async_callback,
                           slot_copy);
   }
@@ -352,7 +352,7 @@ namespace Gio
     SlotAsyncReady* slot_copy = new SlotAsyncReady (slot);
 
     g_file_replace_async (gobj (),
-                          Glib::c_str_or_nullptr (etag),
+                          glib::c_str_or_nullptr (etag),
                           make_backup,
                           static_cast<GFileCreateFlags> (flags),
                           io_priority,
@@ -375,21 +375,21 @@ namespace Gio
 
   auto
   File::open_readwrite_async (const SlotAsyncReady& slot,
-                              const Glib::RefPtr<Cancellable>& cancellable,
+                              const glib::RefPtr<Cancellable>& cancellable,
                               const int io_priority) -> void
   {
     SlotAsyncReady* slot_copy = new SlotAsyncReady (slot);
 
     g_file_open_readwrite_async (gobj (),
                                  io_priority,
-                                 Glib::unwrap (cancellable),
+                                 glib::unwrap (cancellable),
                                  &SignalProxy_async_callback,
                                  slot_copy);
   }
 
   auto
   File::replace_readwrite_async (const SlotAsyncReady& slot,
-                                 const Glib::RefPtr<Cancellable>& cancellable,
+                                 const glib::RefPtr<Cancellable>& cancellable,
                                  const std::string& etag,
                                  const bool make_backup,
                                  CreateFlags flags,
@@ -398,11 +398,11 @@ namespace Gio
     SlotAsyncReady* slot_copy = new SlotAsyncReady (slot);
 
     g_file_replace_readwrite_async (gobj (),
-                                    Glib::c_str_or_nullptr (etag),
+                                    glib::c_str_or_nullptr (etag),
                                     make_backup,
                                     static_cast<GFileCreateFlags> (flags),
                                     io_priority,
-                                    Glib::unwrap (cancellable),
+                                    glib::unwrap (cancellable),
                                     &SignalProxy_async_callback,
                                     slot_copy);
   }
@@ -417,7 +417,7 @@ namespace Gio
     SlotAsyncReady* slot_copy = new SlotAsyncReady (slot);
 
     g_file_replace_readwrite_async (gobj (),
-                                    Glib::c_str_or_nullptr (etag),
+                                    glib::c_str_or_nullptr (etag),
                                     make_backup,
                                     static_cast<GFileCreateFlags> (flags),
                                     io_priority,
@@ -435,41 +435,41 @@ namespace Gio
   }
 
   auto
-  File::query_info (const Glib::RefPtr<Cancellable>& cancellable,
+  File::query_info (const glib::RefPtr<Cancellable>& cancellable,
                     const std::string& attributes,
-                    FileQueryInfoFlags flags) const -> Glib::RefPtr<FileInfo>
+                    FileQueryInfoFlags flags) const -> glib::RefPtr<FileInfo>
   {
     GError* gerror = nullptr;
-    auto retvalue = Glib::wrap (g_file_query_info (const_cast<GFile*> (gobj ()),
+    auto retvalue = glib::wrap (g_file_query_info (const_cast<GFile*> (gobj ()),
                                                    attributes.c_str (),
                                                    (GFileQueryInfoFlags) flags,
-                                                   Glib::unwrap (cancellable),
+                                                   glib::unwrap (cancellable),
                                                    &gerror));
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
 
     return retvalue;
   }
 
   auto
   File::query_info (const std::string& attributes,
-                    FileQueryInfoFlags flags) const -> Glib::RefPtr<FileInfo>
+                    FileQueryInfoFlags flags) const -> glib::RefPtr<FileInfo>
   {
     GError* gerror = nullptr;
-    auto retvalue = Glib::wrap (g_file_query_info (const_cast<GFile*> (gobj ()),
+    auto retvalue = glib::wrap (g_file_query_info (const_cast<GFile*> (gobj ()),
                                                    attributes.c_str (),
                                                    (GFileQueryInfoFlags) flags,
                                                    nullptr,
                                                    &gerror));
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
 
     return retvalue;
   }
 
   auto
   File::query_info_async (const SlotAsyncReady& slot,
-                          const Glib::RefPtr<Cancellable>& cancellable,
+                          const glib::RefPtr<Cancellable>& cancellable,
                           const std::string& attributes,
                           FileQueryInfoFlags flags,
                           const int io_priority) const -> void
@@ -480,7 +480,7 @@ namespace Gio
                              attributes.c_str (),
                              static_cast<GFileQueryInfoFlags> (flags),
                              io_priority,
-                             Glib::unwrap (cancellable),
+                             glib::unwrap (cancellable),
                              &SignalProxy_async_callback,
                              slot_copy);
   }
@@ -503,32 +503,32 @@ namespace Gio
   }
 
   auto
-  File::query_filesystem_info (const Glib::RefPtr<Cancellable>& cancellable,
-                               const std::string& attributes) -> Glib::RefPtr<FileInfo>
+  File::query_filesystem_info (const glib::RefPtr<Cancellable>& cancellable,
+                               const std::string& attributes) -> glib::RefPtr<FileInfo>
   {
     GError* gerror = nullptr;
     auto retvalue =
-        Glib::wrap (g_file_query_filesystem_info (gobj (),
+        glib::wrap (g_file_query_filesystem_info (gobj (),
                                                   attributes.c_str (),
-                                                  Glib::unwrap (cancellable),
+                                                  glib::unwrap (cancellable),
                                                   &gerror));
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
 
     return retvalue;
   }
 
   auto
-  File::query_filesystem_info (const std::string& attributes) -> Glib::RefPtr<FileInfo>
+  File::query_filesystem_info (const std::string& attributes) -> glib::RefPtr<FileInfo>
   {
     GError* gerror = nullptr;
     auto retvalue =
-        Glib::wrap (g_file_query_filesystem_info (gobj (),
+        glib::wrap (g_file_query_filesystem_info (gobj (),
                                                   attributes.c_str (),
                                                   nullptr,
                                                   &gerror));
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
 
     return retvalue;
   }
@@ -536,7 +536,7 @@ namespace Gio
   auto
   File::query_filesystem_info_async (
       const SlotAsyncReady& slot,
-      const Glib::RefPtr<Cancellable>& cancellable,
+      const glib::RefPtr<Cancellable>& cancellable,
       const std::string& attributes,
       const int io_priority) const -> void
   {
@@ -545,7 +545,7 @@ namespace Gio
     g_file_query_filesystem_info_async (const_cast<GFile*> (gobj ()),
                                         attributes.c_str (),
                                         io_priority,
-                                        Glib::unwrap (cancellable),
+                                        glib::unwrap (cancellable),
                                         &SignalProxy_async_callback,
                                         slot_copy);
   }
@@ -566,43 +566,43 @@ namespace Gio
   }
 
   auto
-  File::enumerate_children (const Glib::RefPtr<Cancellable>& cancellable,
+  File::enumerate_children (const glib::RefPtr<Cancellable>& cancellable,
                             const std::string& attributes,
-                            FileQueryInfoFlags flags) -> Glib::RefPtr<FileEnumerator>
+                            FileQueryInfoFlags flags) -> glib::RefPtr<FileEnumerator>
   {
     GError* gerror = nullptr;
     auto retvalue =
-        Glib::wrap (g_file_enumerate_children (gobj (),
+        glib::wrap (g_file_enumerate_children (gobj (),
                                                attributes.c_str (),
                                                (GFileQueryInfoFlags) flags,
-                                               Glib::unwrap (cancellable),
+                                               glib::unwrap (cancellable),
                                                &gerror));
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
 
     return retvalue;
   }
 
   auto
   File::enumerate_children (const std::string& attributes,
-                            FileQueryInfoFlags flags) -> Glib::RefPtr<FileEnumerator>
+                            FileQueryInfoFlags flags) -> glib::RefPtr<FileEnumerator>
   {
     GError* gerror = nullptr;
     auto retvalue =
-        Glib::wrap (g_file_enumerate_children (gobj (),
+        glib::wrap (g_file_enumerate_children (gobj (),
                                                attributes.c_str (),
                                                (GFileQueryInfoFlags) flags,
                                                nullptr,
                                                &gerror));
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
 
     return retvalue;
   }
 
   auto
   File::enumerate_children_async (const SlotAsyncReady& slot,
-                                  const Glib::RefPtr<Cancellable>& cancellable,
+                                  const glib::RefPtr<Cancellable>& cancellable,
                                   const std::string& attributes,
                                   FileQueryInfoFlags flags,
                                   const int io_priority) -> void
@@ -613,7 +613,7 @@ namespace Gio
                                      attributes.c_str (),
                                      static_cast<GFileQueryInfoFlags> (flags),
                                      io_priority,
-                                     Glib::unwrap (cancellable),
+                                     glib::unwrap (cancellable),
                                      &SignalProxy_async_callback,
                                      slot_copy);
   }
@@ -636,9 +636,9 @@ namespace Gio
   }
 
   auto
-  File::set_display_name_async (const Glib::ustring& display_name,
+  File::set_display_name_async (const glib::ustring& display_name,
                                 const SlotAsyncReady& slot,
-                                const Glib::RefPtr<Cancellable>& cancellable,
+                                const glib::RefPtr<Cancellable>& cancellable,
                                 const int io_priority) -> void
   {
     SlotAsyncReady* slot_copy = new SlotAsyncReady (slot);
@@ -646,13 +646,13 @@ namespace Gio
     g_file_set_display_name_async (gobj (),
                                    display_name.c_str (),
                                    io_priority,
-                                   Glib::unwrap (cancellable),
+                                   glib::unwrap (cancellable),
                                    &SignalProxy_async_callback,
                                    slot_copy);
   }
 
   auto
-  File::set_display_name_async (const Glib::ustring& display_name,
+  File::set_display_name_async (const glib::ustring& display_name,
                                 const SlotAsyncReady& slot,
                                 const int io_priority) -> void
   {
@@ -667,9 +667,9 @@ namespace Gio
   }
 
   auto
-  File::copy (const Glib::RefPtr<File>& destination,
+  File::copy (const glib::RefPtr<File>& destination,
               const SlotFileProgress& slot,
-              const Glib::RefPtr<Cancellable>& cancellable,
+              const glib::RefPtr<Cancellable>& cancellable,
               CopyFlags flags) -> bool
   {
     GError* gerror = nullptr;
@@ -678,9 +678,9 @@ namespace Gio
     SlotFileProgress* slot_copy = new SlotFileProgress (slot);
 
     res = g_file_copy (gobj (),
-                       Glib::unwrap (destination),
+                       glib::unwrap (destination),
                        static_cast<GFileCopyFlags> (flags),
-                       Glib::unwrap (cancellable),
+                       glib::unwrap (cancellable),
                        &SignalProxy_file_progress_callback,
                        slot_copy,
                        &gerror);
@@ -688,13 +688,13 @@ namespace Gio
     delete slot_copy;
 
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
 
     return res;
   }
 
   auto
-  File::copy (const Glib::RefPtr<File>& destination,
+  File::copy (const glib::RefPtr<File>& destination,
               const SlotFileProgress& slot,
               CopyFlags flags) -> bool
   {
@@ -704,7 +704,7 @@ namespace Gio
     SlotFileProgress* slot_copy = new SlotFileProgress (slot);
 
     res = g_file_copy (gobj (),
-                       Glib::unwrap (destination),
+                       glib::unwrap (destination),
                        static_cast<GFileCopyFlags> (flags),
                        nullptr,
                        &SignalProxy_file_progress_callback,
@@ -714,17 +714,17 @@ namespace Gio
     delete slot_copy;
 
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
 
     return res;
   }
 
   auto
-  File::copy (const Glib::RefPtr<File>& destination, CopyFlags flags) -> bool
+  File::copy (const glib::RefPtr<File>& destination, CopyFlags flags) -> bool
   {
     GError* gerror = nullptr;
     const bool res = g_file_copy (gobj (),
-                                  Glib::unwrap (destination),
+                                  glib::unwrap (destination),
                                   static_cast<GFileCopyFlags> (flags),
                                   nullptr,
                                   nullptr,
@@ -732,16 +732,16 @@ namespace Gio
                                   &gerror);
 
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
 
     return res;
   }
 
   auto
-  File::copy_async (const Glib::RefPtr<File>& destination,
+  File::copy_async (const glib::RefPtr<File>& destination,
                     const SlotFileProgress& slot_progress,
                     const SlotAsyncReady& slot_ready,
-                    const Glib::RefPtr<Cancellable>& cancellable,
+                    const glib::RefPtr<Cancellable>& cancellable,
                     CopyFlags flags,
                     const int io_priority) -> void
   {
@@ -753,10 +753,10 @@ namespace Gio
     slots->second = slot_ready_copy;
 
     g_file_copy_async (gobj (),
-                       Glib::unwrap (destination),
+                       glib::unwrap (destination),
                        static_cast<GFileCopyFlags> (flags),
                        io_priority,
-                       Glib::unwrap (cancellable),
+                       glib::unwrap (cancellable),
                        &SignalProxy_file_progress_callback,
                        slot_progress_copy,
                        &SignalProxy_file_copy_async_callback,
@@ -764,19 +764,19 @@ namespace Gio
   }
 
   auto
-  File::copy_async (const Glib::RefPtr<File>& destination,
+  File::copy_async (const glib::RefPtr<File>& destination,
                     const SlotAsyncReady& slot_ready,
-                    const Glib::RefPtr<Cancellable>& cancellable,
+                    const glib::RefPtr<Cancellable>& cancellable,
                     CopyFlags flags,
                     const int io_priority) -> void
   {
     SlotAsyncReady* slot_ready_copy = new SlotAsyncReady (slot_ready);
 
     g_file_copy_async (gobj (),
-                       Glib::unwrap (destination),
+                       glib::unwrap (destination),
                        static_cast<GFileCopyFlags> (flags),
                        io_priority,
-                       Glib::unwrap (cancellable),
+                       glib::unwrap (cancellable),
                        nullptr,
                        nullptr,
                        &SignalProxy_async_callback,
@@ -784,7 +784,7 @@ namespace Gio
   }
 
   auto
-  File::copy_async (const Glib::RefPtr<File>& destination,
+  File::copy_async (const glib::RefPtr<File>& destination,
                     const SlotFileProgress& slot_progress,
                     const SlotAsyncReady& slot_ready,
                     CopyFlags flags,
@@ -798,7 +798,7 @@ namespace Gio
     slots->second = slot_ready_copy;
 
     g_file_copy_async (gobj (),
-                       Glib::unwrap (destination),
+                       glib::unwrap (destination),
                        static_cast<GFileCopyFlags> (flags),
                        io_priority,
                        nullptr,
@@ -809,7 +809,7 @@ namespace Gio
   }
 
   auto
-  File::copy_async (const Glib::RefPtr<File>& destination,
+  File::copy_async (const glib::RefPtr<File>& destination,
                     const SlotAsyncReady& slot_ready,
                     CopyFlags flags,
                     const int io_priority) -> void
@@ -817,7 +817,7 @@ namespace Gio
     SlotAsyncReady* slot_ready_copy = new SlotAsyncReady (slot_ready);
 
     g_file_copy_async (gobj (),
-                       Glib::unwrap (destination),
+                       glib::unwrap (destination),
                        static_cast<GFileCopyFlags> (flags),
                        io_priority,
                        nullptr,
@@ -828,9 +828,9 @@ namespace Gio
   }
 
   auto
-  File::move (const Glib::RefPtr<File>& destination,
+  File::move (const glib::RefPtr<File>& destination,
               const SlotFileProgress& slot,
-              const Glib::RefPtr<Cancellable>& cancellable,
+              const glib::RefPtr<Cancellable>& cancellable,
               CopyFlags flags) -> bool
   {
     GError* gerror = nullptr;
@@ -839,9 +839,9 @@ namespace Gio
     SlotFileProgress* slot_copy = new SlotFileProgress (slot);
 
     res = g_file_move (gobj (),
-                       Glib::unwrap (destination),
+                       glib::unwrap (destination),
                        static_cast<GFileCopyFlags> (flags),
-                       Glib::unwrap (cancellable),
+                       glib::unwrap (cancellable),
                        &SignalProxy_file_progress_callback,
                        slot_copy,
                        &gerror);
@@ -849,13 +849,13 @@ namespace Gio
     delete slot_copy;
 
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
 
     return res;
   }
 
   auto
-  File::move (const Glib::RefPtr<File>& destination,
+  File::move (const glib::RefPtr<File>& destination,
               const SlotFileProgress& slot,
               CopyFlags flags) -> bool
   {
@@ -865,7 +865,7 @@ namespace Gio
     SlotFileProgress* slot_copy = new SlotFileProgress (slot);
 
     res = g_file_move (gobj (),
-                       Glib::unwrap (destination),
+                       glib::unwrap (destination),
                        static_cast<GFileCopyFlags> (flags),
                        nullptr,
                        &SignalProxy_file_progress_callback,
@@ -875,19 +875,19 @@ namespace Gio
     delete slot_copy;
 
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
 
     return res;
   }
 
   auto
-  File::move (const Glib::RefPtr<File>& destination, CopyFlags flags) -> bool
+  File::move (const glib::RefPtr<File>& destination, CopyFlags flags) -> bool
   {
     GError* gerror = nullptr;
     bool res;
 
     res = g_file_move (gobj (),
-                       Glib::unwrap (destination),
+                       glib::unwrap (destination),
                        static_cast<GFileCopyFlags> (flags),
                        nullptr,
                        nullptr,
@@ -895,16 +895,16 @@ namespace Gio
                        &gerror);
 
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
 
     return res;
   }
 
   auto
-  File::move_async (const Glib::RefPtr<File>& destination,
+  File::move_async (const glib::RefPtr<File>& destination,
                     const SlotFileProgress& slot_progress,
                     const SlotAsyncReady& slot_ready,
-                    const Glib::RefPtr<Cancellable>& cancellable,
+                    const glib::RefPtr<Cancellable>& cancellable,
                     CopyFlags flags,
                     const int io_priority) -> void
   {
@@ -916,10 +916,10 @@ namespace Gio
     slots->second = slot_ready_copy;
 
     g_file_move_async (gobj (),
-                       Glib::unwrap (destination),
+                       glib::unwrap (destination),
                        static_cast<GFileCopyFlags> (flags),
                        io_priority,
-                       Glib::unwrap (cancellable),
+                       glib::unwrap (cancellable),
                        &SignalProxy_file_progress_callback,
                        slot_progress_copy,
                        &SignalProxy_file_copy_async_callback,
@@ -927,19 +927,19 @@ namespace Gio
   }
 
   auto
-  File::move_async (const Glib::RefPtr<File>& destination,
+  File::move_async (const glib::RefPtr<File>& destination,
                     const SlotAsyncReady& slot_ready,
-                    const Glib::RefPtr<Cancellable>& cancellable,
+                    const glib::RefPtr<Cancellable>& cancellable,
                     CopyFlags flags,
                     const int io_priority) -> void
   {
     SlotAsyncReady* slot_ready_copy = new SlotAsyncReady (slot_ready);
 
     g_file_move_async (gobj (),
-                       Glib::unwrap (destination),
+                       glib::unwrap (destination),
                        static_cast<GFileCopyFlags> (flags),
                        io_priority,
-                       Glib::unwrap (cancellable),
+                       glib::unwrap (cancellable),
                        nullptr,
                        nullptr,
                        &SignalProxy_async_callback,
@@ -947,7 +947,7 @@ namespace Gio
   }
 
   auto
-  File::move_async (const Glib::RefPtr<File>& destination,
+  File::move_async (const glib::RefPtr<File>& destination,
                     const SlotFileProgress& slot_progress,
                     const SlotAsyncReady& slot_ready,
                     CopyFlags flags,
@@ -961,7 +961,7 @@ namespace Gio
     slots->second = slot_ready_copy;
 
     g_file_move_async (gobj (),
-                       Glib::unwrap (destination),
+                       glib::unwrap (destination),
                        static_cast<GFileCopyFlags> (flags),
                        io_priority,
                        nullptr,
@@ -972,7 +972,7 @@ namespace Gio
   }
 
   auto
-  File::move_async (const Glib::RefPtr<File>& destination,
+  File::move_async (const glib::RefPtr<File>& destination,
                     const SlotAsyncReady& slot_ready,
                     CopyFlags flags,
                     const int io_priority) -> void
@@ -980,7 +980,7 @@ namespace Gio
     SlotAsyncReady* slot_ready_copy = new SlotAsyncReady (slot_ready);
 
     g_file_move_async (gobj (),
-                       Glib::unwrap (destination),
+                       glib::unwrap (destination),
                        static_cast<GFileCopyFlags> (flags),
                        io_priority,
                        nullptr,
@@ -991,25 +991,25 @@ namespace Gio
   }
 
   auto
-  File::set_attributes_async (const Glib::RefPtr<FileInfo>& info,
+  File::set_attributes_async (const glib::RefPtr<FileInfo>& info,
                               const SlotAsyncReady& slot,
-                              const Glib::RefPtr<Cancellable>& cancellable,
+                              const glib::RefPtr<Cancellable>& cancellable,
                               FileQueryInfoFlags flags,
                               const int io_priority) -> void
   {
     SlotAsyncReady* slot_copy = new SlotAsyncReady (slot);
 
     g_file_set_attributes_async (gobj (),
-                                 Glib::unwrap (info),
+                                 glib::unwrap (info),
                                  static_cast<GFileQueryInfoFlags> (flags),
                                  io_priority,
-                                 Glib::unwrap (cancellable),
+                                 glib::unwrap (cancellable),
                                  &SignalProxy_async_callback,
                                  slot_copy);
   }
 
   auto
-  File::set_attributes_async (const Glib::RefPtr<FileInfo>& info,
+  File::set_attributes_async (const glib::RefPtr<FileInfo>& info,
                               const SlotAsyncReady& slot,
                               FileQueryInfoFlags flags,
                               const int io_priority) -> void
@@ -1017,7 +1017,7 @@ namespace Gio
     SlotAsyncReady* slot_copy = new SlotAsyncReady (slot);
 
     g_file_set_attributes_async (gobj (),
-                                 Glib::unwrap (info),
+                                 glib::unwrap (info),
                                  static_cast<GFileQueryInfoFlags> (flags),
                                  io_priority,
                                  nullptr,
@@ -1026,42 +1026,42 @@ namespace Gio
   }
 
   auto
-  File::set_attributes_finish (const Glib::RefPtr<AsyncResult>& result,
-                               const Glib::RefPtr<FileInfo>& info) -> bool
+  File::set_attributes_finish (const glib::RefPtr<AsyncResult>& result,
+                               const glib::RefPtr<FileInfo>& info) -> bool
   {
     GError* gerror = nullptr;
-    GFileInfo* cinfo = Glib::unwrap (info);
+    GFileInfo* cinfo = glib::unwrap (info);
     bool res;
 
     res = g_file_set_attributes_finish (gobj (),
-                                        Glib::unwrap (result),
+                                        glib::unwrap (result),
                                         &cinfo,
                                         &gerror);
 
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
 
     return res;
   }
 
   auto
-  File::mount_mountable (const Glib::RefPtr<MountOperation>& mount_operation,
+  File::mount_mountable (const glib::RefPtr<MountOperation>& mount_operation,
                          const SlotAsyncReady& slot,
-                         const Glib::RefPtr<Cancellable>& cancellable,
+                         const glib::RefPtr<Cancellable>& cancellable,
                          Mount::MountFlags flags) -> void
   {
     SlotAsyncReady* slot_copy = new SlotAsyncReady (slot);
 
     g_file_mount_mountable (gobj (),
                             static_cast<GMountMountFlags> (flags),
-                            Glib::unwrap (mount_operation),
-                            Glib::unwrap (cancellable),
+                            glib::unwrap (mount_operation),
+                            glib::unwrap (cancellable),
                             &SignalProxy_async_callback,
                             slot_copy);
   }
 
   auto
-  File::mount_mountable (const Glib::RefPtr<MountOperation>& mount_operation,
+  File::mount_mountable (const glib::RefPtr<MountOperation>& mount_operation,
                          const SlotAsyncReady& slot,
                          Mount::MountFlags flags) -> void
   {
@@ -1069,7 +1069,7 @@ namespace Gio
 
     g_file_mount_mountable (gobj (),
                             static_cast<GMountMountFlags> (flags),
-                            Glib::unwrap (mount_operation),
+                            glib::unwrap (mount_operation),
                             nullptr,
                             &SignalProxy_async_callback,
                             slot_copy);
@@ -1101,7 +1101,7 @@ namespace Gio
 
   auto
   File::unmount_mountable (const SlotAsyncReady& slot,
-                           const Glib::RefPtr<Cancellable>& cancellable,
+                           const glib::RefPtr<Cancellable>& cancellable,
                            Mount::UnmountFlags flags) -> void
   {
     SlotAsyncReady* slot_copy = new SlotAsyncReady (slot);
@@ -1110,7 +1110,7 @@ namespace Gio
         gobj (),
         static_cast<GMountUnmountFlags> (flags),
         nullptr,
-        Glib::unwrap (cancellable),
+        glib::unwrap (cancellable),
         &SignalProxy_async_callback,
         slot_copy);
   }
@@ -1144,8 +1144,8 @@ namespace Gio
 
   auto
   File::unmount_mountable (const SlotAsyncReady& slot,
-                           const Glib::RefPtr<Cancellable>& cancellable,
-                           const Glib::RefPtr<MountOperation>& mount_operation,
+                           const glib::RefPtr<Cancellable>& cancellable,
+                           const glib::RefPtr<MountOperation>& mount_operation,
                            Mount::UnmountFlags flags) -> void
   {
     SlotAsyncReady* slot_copy = new SlotAsyncReady (slot);
@@ -1153,15 +1153,15 @@ namespace Gio
     g_file_unmount_mountable_with_operation (
         gobj (),
         static_cast<GMountUnmountFlags> (flags),
-        Glib::unwrap (mount_operation),
-        Glib::unwrap (cancellable),
+        glib::unwrap (mount_operation),
+        glib::unwrap (cancellable),
         &SignalProxy_async_callback,
         slot_copy);
   }
 
   auto
   File::unmount_mountable (const SlotAsyncReady& slot,
-                           const Glib::RefPtr<MountOperation>& mount_operation,
+                           const glib::RefPtr<MountOperation>& mount_operation,
                            Mount::UnmountFlags flags) -> void
   {
     SlotAsyncReady* slot_copy = new SlotAsyncReady (slot);
@@ -1169,20 +1169,20 @@ namespace Gio
     g_file_unmount_mountable_with_operation (
         gobj (),
         static_cast<GMountUnmountFlags> (flags),
-        Glib::unwrap (mount_operation),
+        glib::unwrap (mount_operation),
         nullptr,
         &SignalProxy_async_callback,
         slot_copy);
   }
 
   auto
-  File::unmount_mountable (const Glib::RefPtr<MountOperation>& mount_operation,
+  File::unmount_mountable (const glib::RefPtr<MountOperation>& mount_operation,
                            Mount::UnmountFlags flags) -> void
   {
     g_file_unmount_mountable_with_operation (
         gobj (),
         static_cast<GMountUnmountFlags> (flags),
-        Glib::unwrap (mount_operation),
+        glib::unwrap (mount_operation),
         nullptr,
         nullptr,
         nullptr);
@@ -1190,24 +1190,24 @@ namespace Gio
 
   auto
   File::mount_enclosing_volume (
-      const Glib::RefPtr<MountOperation>& mount_operation,
+      const glib::RefPtr<MountOperation>& mount_operation,
       const SlotAsyncReady& slot,
-      const Glib::RefPtr<Cancellable>& cancellable,
+      const glib::RefPtr<Cancellable>& cancellable,
       Mount::MountFlags flags) -> void
   {
     SlotAsyncReady* slot_copy = new SlotAsyncReady (slot);
 
     g_file_mount_enclosing_volume (gobj (),
                                    static_cast<GMountMountFlags> (flags),
-                                   Glib::unwrap (mount_operation),
-                                   Glib::unwrap (cancellable),
+                                   glib::unwrap (mount_operation),
+                                   glib::unwrap (cancellable),
                                    &SignalProxy_async_callback,
                                    slot_copy);
   }
 
   auto
   File::mount_enclosing_volume (
-      const Glib::RefPtr<MountOperation>& mount_operation,
+      const glib::RefPtr<MountOperation>& mount_operation,
       const SlotAsyncReady& slot,
       Mount::MountFlags flags) -> void
   {
@@ -1215,7 +1215,7 @@ namespace Gio
 
     g_file_mount_enclosing_volume (gobj (),
                                    static_cast<GMountMountFlags> (flags),
-                                   Glib::unwrap (mount_operation),
+                                   glib::unwrap (mount_operation),
                                    nullptr,
                                    &SignalProxy_async_callback,
                                    slot_copy);
@@ -1248,8 +1248,8 @@ namespace Gio
 
   auto
   File::eject_mountable (const SlotAsyncReady& slot,
-                         const Glib::RefPtr<Cancellable>& cancellable,
-                         const Glib::RefPtr<MountOperation>& mount_operation,
+                         const glib::RefPtr<Cancellable>& cancellable,
+                         const glib::RefPtr<MountOperation>& mount_operation,
                          Mount::UnmountFlags flags) -> void
   {
     SlotAsyncReady* slot_copy = new SlotAsyncReady (slot);
@@ -1257,15 +1257,15 @@ namespace Gio
     g_file_eject_mountable_with_operation (
         gobj (),
         static_cast<GMountUnmountFlags> (flags),
-        Glib::unwrap (mount_operation),
-        Glib::unwrap (cancellable),
+        glib::unwrap (mount_operation),
+        glib::unwrap (cancellable),
         &SignalProxy_async_callback,
         slot_copy);
   }
 
   auto
   File::eject_mountable (const SlotAsyncReady& slot,
-                         const Glib::RefPtr<MountOperation>& mount_operation,
+                         const glib::RefPtr<MountOperation>& mount_operation,
                          Mount::UnmountFlags flags) -> void
   {
     SlotAsyncReady* slot_copy = new SlotAsyncReady (slot);
@@ -1273,20 +1273,20 @@ namespace Gio
     g_file_eject_mountable_with_operation (
         gobj (),
         static_cast<GMountUnmountFlags> (flags),
-        Glib::unwrap (mount_operation),
+        glib::unwrap (mount_operation),
         nullptr,
         &SignalProxy_async_callback,
         slot_copy);
   }
 
   auto
-  File::eject_mountable (const Glib::RefPtr<MountOperation>& mount_operation,
+  File::eject_mountable (const glib::RefPtr<MountOperation>& mount_operation,
                          Mount::UnmountFlags flags) -> void
   {
     g_file_eject_mountable_with_operation (
         gobj (),
         static_cast<GMountUnmountFlags> (flags),
-        Glib::unwrap (mount_operation),
+        glib::unwrap (mount_operation),
         nullptr,
         nullptr,
         nullptr);
@@ -1294,7 +1294,7 @@ namespace Gio
 
   auto
   File::eject_mountable (const SlotAsyncReady& slot,
-                         const Glib::RefPtr<Cancellable>& cancellable,
+                         const glib::RefPtr<Cancellable>& cancellable,
                          Mount::UnmountFlags flags) -> void
   {
     SlotAsyncReady* slot_copy = new SlotAsyncReady (slot);
@@ -1303,7 +1303,7 @@ namespace Gio
         gobj (),
         static_cast<GMountUnmountFlags> (flags),
         nullptr,
-        Glib::unwrap (cancellable),
+        glib::unwrap (cancellable),
         &SignalProxy_async_callback,
         slot_copy);
   }
@@ -1336,12 +1336,12 @@ namespace Gio
 
   auto
   File::load_contents_async (const SlotAsyncReady& slot,
-                             const Glib::RefPtr<Cancellable>& cancellable) -> void
+                             const glib::RefPtr<Cancellable>& cancellable) -> void
   {
     SlotAsyncReady* slot_copy = new SlotAsyncReady (slot);
 
     g_file_load_contents_async (gobj (),
-                                Glib::unwrap (cancellable),
+                                glib::unwrap (cancellable),
                                 &SignalProxy_async_callback,
                                 slot_copy);
   }
@@ -1361,7 +1361,7 @@ namespace Gio
   File::load_partial_contents_async (
       const SlotReadMore& slot_read_more,
       const SlotAsyncReady& slot_async_ready,
-      const Glib::RefPtr<Cancellable>& cancellable) -> void
+      const glib::RefPtr<Cancellable>& cancellable) -> void
   {
     LoadPartialSlots* slots = new LoadPartialSlots ();
     SlotReadMore* slot_read_more_copy = new SlotReadMore (slot_read_more);
@@ -1372,7 +1372,7 @@ namespace Gio
 
     g_file_load_partial_contents_async (
         gobj (),
-        Glib::unwrap (cancellable),
+        glib::unwrap (cancellable),
         &SignalProxy_load_partial_contents_read_more_callback,
         &SignalProxy_load_partial_contents_ready_callback,
         slots);
@@ -1402,7 +1402,7 @@ namespace Gio
                           const gsize length,
                           const std::string& etag,
                           std::string& new_etag,
-                          const Glib::RefPtr<Cancellable>& cancellable,
+                          const glib::RefPtr<Cancellable>& cancellable,
                           const bool make_backup,
                           CreateFlags flags) -> void
   {
@@ -1411,14 +1411,14 @@ namespace Gio
     g_file_replace_contents (gobj (),
                              contents,
                              length,
-                             Glib::c_str_or_nullptr (etag),
+                             glib::c_str_or_nullptr (etag),
                              make_backup,
                              (GFileCreateFlags) flags,
                              &c_etag_new,
-                             Glib::unwrap (cancellable),
+                             glib::unwrap (cancellable),
                              &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
 
     if (c_etag_new)
       new_etag = c_etag_new;
@@ -1439,14 +1439,14 @@ namespace Gio
     g_file_replace_contents (gobj (),
                              contents,
                              length,
-                             Glib::c_str_or_nullptr (etag),
+                             glib::c_str_or_nullptr (etag),
                              make_backup,
                              (GFileCreateFlags) flags,
                              &c_etag_new,
                              nullptr,
                              &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
 
     if (c_etag_new)
       new_etag = c_etag_new;
@@ -1458,7 +1458,7 @@ namespace Gio
   File::replace_contents (const std::string& contents,
                           const std::string& etag,
                           std::string& new_etag,
-                          const Glib::RefPtr<Cancellable>& cancellable,
+                          const glib::RefPtr<Cancellable>& cancellable,
                           const bool make_backup,
                           CreateFlags flags) -> void
   {
@@ -1467,14 +1467,14 @@ namespace Gio
     g_file_replace_contents (gobj (),
                              contents.c_str (),
                              contents.size (),
-                             Glib::c_str_or_nullptr (etag),
+                             glib::c_str_or_nullptr (etag),
                              make_backup,
                              (GFileCreateFlags) flags,
                              &c_etag_new,
-                             Glib::unwrap (cancellable),
+                             glib::unwrap (cancellable),
                              &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
 
     if (c_etag_new)
       new_etag = c_etag_new;
@@ -1494,14 +1494,14 @@ namespace Gio
     g_file_replace_contents (gobj (),
                              contents.c_str (),
                              contents.size (),
-                             Glib::c_str_or_nullptr (etag),
+                             glib::c_str_or_nullptr (etag),
                              make_backup,
                              (GFileCreateFlags) flags,
                              &c_etag_new,
                              nullptr,
                              &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
 
     if (c_etag_new)
       new_etag = c_etag_new;
@@ -1511,7 +1511,7 @@ namespace Gio
 
   auto
   File::replace_contents_async (const SlotAsyncReady& slot,
-                                const Glib::RefPtr<Cancellable>& cancellable,
+                                const glib::RefPtr<Cancellable>& cancellable,
                                 const char* contents,
                                 const gsize length,
                                 const std::string& etag,
@@ -1523,10 +1523,10 @@ namespace Gio
     g_file_replace_contents_async (gobj (),
                                    contents,
                                    length,
-                                   Glib::c_str_or_nullptr (etag),
+                                   glib::c_str_or_nullptr (etag),
                                    make_backup,
                                    static_cast<GFileCreateFlags> (flags),
-                                   Glib::unwrap (cancellable),
+                                   glib::unwrap (cancellable),
                                    &SignalProxy_async_callback,
                                    slot_copy);
   }
@@ -1544,7 +1544,7 @@ namespace Gio
     g_file_replace_contents_async (gobj (),
                                    contents,
                                    length,
-                                   Glib::c_str_or_nullptr (etag),
+                                   glib::c_str_or_nullptr (etag),
                                    make_backup,
                                    static_cast<GFileCreateFlags> (flags),
                                    nullptr,
@@ -1554,7 +1554,7 @@ namespace Gio
 
   auto
   File::replace_contents_async (const SlotAsyncReady& slot,
-                                const Glib::RefPtr<Cancellable>& cancellable,
+                                const glib::RefPtr<Cancellable>& cancellable,
                                 const std::string& contents,
                                 const std::string& etag,
                                 const bool make_backup,
@@ -1565,10 +1565,10 @@ namespace Gio
     g_file_replace_contents_async (gobj (),
                                    contents.c_str (),
                                    contents.size (),
-                                   Glib::c_str_or_nullptr (etag),
+                                   glib::c_str_or_nullptr (etag),
                                    make_backup,
                                    static_cast<GFileCreateFlags> (flags),
-                                   Glib::unwrap (cancellable),
+                                   glib::unwrap (cancellable),
                                    &SignalProxy_async_callback,
                                    slot_copy);
   }
@@ -1585,7 +1585,7 @@ namespace Gio
     g_file_replace_contents_async (gobj (),
                                    contents.c_str (),
                                    contents.size (),
-                                   Glib::c_str_or_nullptr (etag),
+                                   glib::c_str_or_nullptr (etag),
                                    make_backup,
                                    static_cast<GFileCreateFlags> (flags),
                                    nullptr,
@@ -1594,17 +1594,17 @@ namespace Gio
   }
 
   auto
-  File::replace_contents_finish (const Glib::RefPtr<AsyncResult>& result,
+  File::replace_contents_finish (const glib::RefPtr<AsyncResult>& result,
                                  std::string& new_etag) -> void
   {
     GError* gerror = nullptr;
     gchar* c_new_etag = nullptr;
     g_file_replace_contents_finish (gobj (),
-                                    Glib::unwrap (result),
+                                    glib::unwrap (result),
                                     &c_new_etag,
                                     &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
 
     if (c_new_etag)
       new_etag = c_new_etag;
@@ -1613,22 +1613,22 @@ namespace Gio
   }
 
   auto
-  File::replace_contents_finish (const Glib::RefPtr<AsyncResult>& result) -> void
+  File::replace_contents_finish (const glib::RefPtr<AsyncResult>& result) -> void
   {
     GError* gerror = nullptr;
     g_file_replace_contents_finish (gobj (),
-                                    Glib::unwrap (result),
+                                    glib::unwrap (result),
                                     nullptr,
                                     &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
   }
 
   auto
   File::replace_contents_bytes_async (
       const SlotAsyncReady& slot,
-      const Glib::RefPtr<Cancellable>& cancellable,
-      const Glib::RefPtr<const Glib::Bytes>& contents,
+      const glib::RefPtr<Cancellable>& cancellable,
+      const glib::RefPtr<const glib::Bytes>& contents,
       const std::string& etag,
       const bool make_backup,
       CreateFlags flags) -> void
@@ -1638,10 +1638,10 @@ namespace Gio
     g_file_replace_contents_bytes_async (
         gobj (),
         const_cast<GBytes*> (unwrap (contents)),
-        Glib::c_str_or_nullptr (etag),
+        glib::c_str_or_nullptr (etag),
         make_backup,
         static_cast<GFileCreateFlags> (flags),
-        Glib::unwrap (cancellable),
+        glib::unwrap (cancellable),
         &SignalProxy_async_callback,
         slot_copy);
   }
@@ -1649,7 +1649,7 @@ namespace Gio
   auto
   File::replace_contents_bytes_async (
       const SlotAsyncReady& slot,
-      const Glib::RefPtr<const Glib::Bytes>& contents,
+      const glib::RefPtr<const glib::Bytes>& contents,
       const std::string& etag,
       const bool make_backup,
       CreateFlags flags) -> void
@@ -1659,7 +1659,7 @@ namespace Gio
     g_file_replace_contents_bytes_async (
         gobj (),
         const_cast<GBytes*> (unwrap (contents)),
-        Glib::c_str_or_nullptr (etag),
+        glib::c_str_or_nullptr (etag),
         make_backup,
         static_cast<GFileCreateFlags> (flags),
         nullptr,
@@ -1668,20 +1668,20 @@ namespace Gio
   }
 
   auto
-  File::replace (const Glib::RefPtr<Cancellable>& cancellable,
+  File::replace (const glib::RefPtr<Cancellable>& cancellable,
                  const std::string& etag,
                  const bool make_backup,
-                 CreateFlags flags) -> Glib::RefPtr<FileOutputStream>
+                 CreateFlags flags) -> glib::RefPtr<FileOutputStream>
   {
     GError* gerror = nullptr;
-    auto retvalue = Glib::wrap (g_file_replace (gobj (),
-                                                Glib::c_str_or_nullptr (etag),
+    auto retvalue = glib::wrap (g_file_replace (gobj (),
+                                                glib::c_str_or_nullptr (etag),
                                                 make_backup,
                                                 (GFileCreateFlags) flags,
-                                                Glib::unwrap (cancellable),
+                                                glib::unwrap (cancellable),
                                                 &gerror));
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
 
     return retvalue;
   }
@@ -1689,37 +1689,37 @@ namespace Gio
   auto
   File::replace (const std::string& etag,
                  const bool make_backup,
-                 CreateFlags flags) -> Glib::RefPtr<FileOutputStream>
+                 CreateFlags flags) -> glib::RefPtr<FileOutputStream>
   {
     GError* gerror = nullptr;
-    auto retvalue = Glib::wrap (g_file_replace (gobj (),
-                                                Glib::c_str_or_nullptr (etag),
+    auto retvalue = glib::wrap (g_file_replace (gobj (),
+                                                glib::c_str_or_nullptr (etag),
                                                 make_backup,
                                                 (GFileCreateFlags) flags,
                                                 nullptr,
                                                 &gerror));
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
 
     return retvalue;
   }
 
   auto
-  File::replace_readwrite (const Glib::RefPtr<Cancellable>& cancellable,
+  File::replace_readwrite (const glib::RefPtr<Cancellable>& cancellable,
                            const std::string& etag,
                            const bool make_backup,
-                           CreateFlags flags) -> Glib::RefPtr<FileIOStream>
+                           CreateFlags flags) -> glib::RefPtr<FileIOStream>
   {
     GError* gerror = nullptr;
     auto retvalue =
-        Glib::wrap (g_file_replace_readwrite (gobj (),
-                                              Glib::c_str_or_nullptr (etag),
+        glib::wrap (g_file_replace_readwrite (gobj (),
+                                              glib::c_str_or_nullptr (etag),
                                               make_backup,
                                               (GFileCreateFlags) flags,
-                                              Glib::unwrap (cancellable),
+                                              glib::unwrap (cancellable),
                                               &gerror));
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
 
     return retvalue;
   }
@@ -1727,111 +1727,111 @@ namespace Gio
   auto
   File::replace_readwrite (const std::string& etag,
                            const bool make_backup,
-                           CreateFlags flags) -> Glib::RefPtr<FileIOStream>
+                           CreateFlags flags) -> glib::RefPtr<FileIOStream>
   {
     GError* gerror = nullptr;
     auto retvalue =
-        Glib::wrap (g_file_replace_readwrite (gobj (),
-                                              Glib::c_str_or_nullptr (etag),
+        glib::wrap (g_file_replace_readwrite (gobj (),
+                                              glib::c_str_or_nullptr (etag),
                                               make_backup,
                                               (GFileCreateFlags) flags,
                                               nullptr,
                                               &gerror));
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
 
     return retvalue;
   }
 
   auto
-  File::monitor_directory (const Glib::RefPtr<Cancellable>& cancellable,
-                           FileMonitorFlags flags) -> Glib::RefPtr<FileMonitor>
+  File::monitor_directory (const glib::RefPtr<Cancellable>& cancellable,
+                           FileMonitorFlags flags) -> glib::RefPtr<FileMonitor>
   {
     GError* gerror = nullptr;
     auto retvalue =
-        Glib::wrap (g_file_monitor_directory (gobj (),
+        glib::wrap (g_file_monitor_directory (gobj (),
                                               (GFileMonitorFlags) flags,
-                                              Glib::unwrap (cancellable),
+                                              glib::unwrap (cancellable),
                                               &gerror));
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
 
     return retvalue;
   }
 
   auto
-  File::monitor_directory (FileMonitorFlags flags) -> Glib::RefPtr<FileMonitor>
+  File::monitor_directory (FileMonitorFlags flags) -> glib::RefPtr<FileMonitor>
   {
     GError* gerror = nullptr;
     auto retvalue =
-        Glib::wrap (g_file_monitor_directory (gobj (),
+        glib::wrap (g_file_monitor_directory (gobj (),
                                               (GFileMonitorFlags) flags,
                                               nullptr,
                                               &gerror));
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
 
     return retvalue;
   }
 
   auto
-  File::monitor_file (const Glib::RefPtr<Cancellable>& cancellable,
-                      FileMonitorFlags flags) -> Glib::RefPtr<FileMonitor>
+  File::monitor_file (const glib::RefPtr<Cancellable>& cancellable,
+                      FileMonitorFlags flags) -> glib::RefPtr<FileMonitor>
   {
     GError* gerror = nullptr;
-    auto retvalue = Glib::wrap (g_file_monitor_file (gobj (),
+    auto retvalue = glib::wrap (g_file_monitor_file (gobj (),
                                                      (GFileMonitorFlags) flags,
-                                                     Glib::unwrap (cancellable),
+                                                     glib::unwrap (cancellable),
                                                      &gerror));
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
 
     return retvalue;
   }
 
   auto
-  File::monitor_file (FileMonitorFlags flags) -> Glib::RefPtr<FileMonitor>
+  File::monitor_file (FileMonitorFlags flags) -> glib::RefPtr<FileMonitor>
   {
     GError* gerror = nullptr;
-    auto retvalue = Glib::wrap (g_file_monitor_file (gobj (),
+    auto retvalue = glib::wrap (g_file_monitor_file (gobj (),
                                                      (GFileMonitorFlags) flags,
                                                      nullptr,
                                                      &gerror));
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
 
     return retvalue;
   }
 
   auto
-  File::monitor (const Glib::RefPtr<Cancellable>& cancellable,
-                 FileMonitorFlags flags) -> Glib::RefPtr<FileMonitor>
+  File::monitor (const glib::RefPtr<Cancellable>& cancellable,
+                 FileMonitorFlags flags) -> glib::RefPtr<FileMonitor>
   {
     GError* gerror = nullptr;
-    auto retvalue = Glib::wrap (g_file_monitor (gobj (),
+    auto retvalue = glib::wrap (g_file_monitor (gobj (),
                                                 (GFileMonitorFlags) flags,
-                                                Glib::unwrap (cancellable),
+                                                glib::unwrap (cancellable),
                                                 &gerror));
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
 
     return retvalue;
   }
 
   auto
-  File::monitor (FileMonitorFlags flags) -> Glib::RefPtr<FileMonitor>
+  File::monitor (FileMonitorFlags flags) -> glib::RefPtr<FileMonitor>
   {
     GError* gerror = nullptr;
-    auto retvalue = Glib::wrap (
+    auto retvalue = glib::wrap (
         g_file_monitor (gobj (), (GFileMonitorFlags) flags, nullptr, &gerror));
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
 
     return retvalue;
   }
 
   auto
-  File::measure_disk_usage (const Glib::RefPtr<Cancellable>& cancellable,
+  File::measure_disk_usage (const glib::RefPtr<Cancellable>& cancellable,
                             const SlotFileMeasureProgress& slot_progress,
                             guint64& disk_usage,
                             guint64& num_dirs,
@@ -1842,7 +1842,7 @@ namespace Gio
     g_file_measure_disk_usage (
         gobj (),
         (GFileMeasureFlags) flags,
-        Glib::unwrap (cancellable),
+        glib::unwrap (cancellable),
         &SignalProxy_file_measure_progress_callback,
         const_cast<SlotFileMeasureProgress*> (&slot_progress),
         &disk_usage,
@@ -1850,12 +1850,12 @@ namespace Gio
         &num_files,
         &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
   }
 
   auto
   File::measure_disk_usage_async (const SlotAsyncReady& slot_ready,
-                                  const Glib::RefPtr<Cancellable>& cancellable,
+                                  const glib::RefPtr<Cancellable>& cancellable,
                                   const SlotFileMeasureProgress& slot_progress,
                                   MeasureFlags flags,
                                   const int io_priority) -> void
@@ -1872,7 +1872,7 @@ namespace Gio
         gobj (),
         (GFileMeasureFlags) flags,
         io_priority,
-        Glib::unwrap (cancellable),
+        glib::unwrap (cancellable),
         &SignalProxy_file_measure_progress_callback,
         const_cast<SlotFileMeasureProgress*> (&slot_progress),
         &SignalProxy_file_measure_async_callback,
@@ -1881,30 +1881,30 @@ namespace Gio
 
   auto
   File::start_mountable (const SlotAsyncReady& slot,
-                         const Glib::RefPtr<Cancellable>& cancellable,
-                         const Glib::RefPtr<MountOperation>& start_operation,
+                         const glib::RefPtr<Cancellable>& cancellable,
+                         const glib::RefPtr<MountOperation>& start_operation,
                          Drive::StartFlags flags) -> void
   {
     SlotAsyncReady* slot_copy = new SlotAsyncReady (slot);
 
     g_file_start_mountable (gobj (),
                             (GDriveStartFlags) flags,
-                            Glib::unwrap (start_operation),
-                            Glib::unwrap (cancellable),
+                            glib::unwrap (start_operation),
+                            glib::unwrap (cancellable),
                             &SignalProxy_async_callback,
                             slot_copy);
   }
 
   auto
   File::start_mountable (const SlotAsyncReady& slot,
-                         const Glib::RefPtr<MountOperation>& start_operation,
+                         const glib::RefPtr<MountOperation>& start_operation,
                          Drive::StartFlags flags) -> void
   {
     SlotAsyncReady* slot_copy = new SlotAsyncReady (slot);
 
     g_file_start_mountable (gobj (),
                             (GDriveStartFlags) flags,
-                            Glib::unwrap (start_operation),
+                            glib::unwrap (start_operation),
                             nullptr,
                             &SignalProxy_async_callback,
                             slot_copy);
@@ -1912,30 +1912,30 @@ namespace Gio
 
   auto
   File::stop_mountable (const SlotAsyncReady& slot,
-                        const Glib::RefPtr<Cancellable>& cancellable,
-                        const Glib::RefPtr<MountOperation>& start_operation,
+                        const glib::RefPtr<Cancellable>& cancellable,
+                        const glib::RefPtr<MountOperation>& start_operation,
                         Mount::UnmountFlags flags) -> void
   {
     SlotAsyncReady* slot_copy = new SlotAsyncReady (slot);
 
     g_file_stop_mountable (gobj (),
                            (GMountUnmountFlags) flags,
-                           Glib::unwrap (start_operation),
-                           Glib::unwrap (cancellable),
+                           glib::unwrap (start_operation),
+                           glib::unwrap (cancellable),
                            &SignalProxy_async_callback,
                            slot_copy);
   }
 
   auto
   File::stop_mountable (const SlotAsyncReady& slot,
-                        const Glib::RefPtr<MountOperation>& start_operation,
+                        const glib::RefPtr<MountOperation>& start_operation,
                         Mount::UnmountFlags flags) -> void
   {
     SlotAsyncReady* slot_copy = new SlotAsyncReady (slot);
 
     g_file_stop_mountable (gobj (),
                            (GMountUnmountFlags) flags,
-                           Glib::unwrap (start_operation),
+                           glib::unwrap (start_operation),
                            nullptr,
                            &SignalProxy_async_callback,
                            slot_copy);
@@ -1943,12 +1943,12 @@ namespace Gio
 
   auto
   File::poll_mountable (const SlotAsyncReady& slot,
-                        const Glib::RefPtr<Cancellable>& cancellable) -> void
+                        const glib::RefPtr<Cancellable>& cancellable) -> void
   {
     SlotAsyncReady* slot_copy = new SlotAsyncReady (slot);
 
     g_file_poll_mountable (gobj (),
-                           Glib::unwrap (cancellable),
+                           glib::unwrap (cancellable),
                            &SignalProxy_async_callback,
                            slot_copy);
   }
@@ -1967,14 +1967,14 @@ namespace Gio
   auto
   File::find_enclosing_mount_async (
       const SlotAsyncReady& slot,
-      const Glib::RefPtr<Cancellable>& cancellable,
+      const glib::RefPtr<Cancellable>& cancellable,
       const int io_priority) -> void
   {
     SlotAsyncReady* slot_copy = new SlotAsyncReady (slot);
 
     g_file_find_enclosing_mount_async (gobj (),
                                        io_priority,
-                                       Glib::unwrap (cancellable),
+                                       glib::unwrap (cancellable),
                                        &SignalProxy_async_callback,
                                        slot_copy);
   }
@@ -1993,165 +1993,165 @@ namespace Gio
   }
 
   auto
-  File::set_attributes_from_info (const Glib::RefPtr<FileInfo>& info,
-                                  const Glib::RefPtr<Cancellable>& cancellable,
+  File::set_attributes_from_info (const glib::RefPtr<FileInfo>& info,
+                                  const glib::RefPtr<Cancellable>& cancellable,
                                   FileQueryInfoFlags flags) -> bool
   {
     GError* gerror = nullptr;
     const bool retvalue = g_file_set_attributes_from_info (
         gobj (),
-        Glib::unwrap (info),
+        glib::unwrap (info),
         (GFileQueryInfoFlags) flags,
-        Glib::unwrap (cancellable),
+        glib::unwrap (cancellable),
         &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
 
     return retvalue;
   }
 
   auto
-  File::set_attributes_from_info (const Glib::RefPtr<FileInfo>& info,
+  File::set_attributes_from_info (const glib::RefPtr<FileInfo>& info,
                                   FileQueryInfoFlags flags) -> bool
   {
     GError* gerror = nullptr;
     const bool retvalue = g_file_set_attributes_from_info (
         gobj (),
-        Glib::unwrap (info),
+        glib::unwrap (info),
         (GFileQueryInfoFlags) flags,
         nullptr,
         &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
 
     return retvalue;
   }
 
   auto
-  File::copy_attributes (const Glib::RefPtr<File>& destination,
-                         const Glib::RefPtr<Cancellable>& cancellable,
+  File::copy_attributes (const glib::RefPtr<File>& destination,
+                         const glib::RefPtr<Cancellable>& cancellable,
                          CopyFlags flags) -> bool
   {
     GError* gerror = nullptr;
     bool res;
 
     res = g_file_copy_attributes (gobj (),
-                                  Glib::unwrap (destination),
+                                  glib::unwrap (destination),
                                   static_cast<GFileCopyFlags> (flags),
-                                  Glib::unwrap (cancellable),
+                                  glib::unwrap (cancellable),
                                   &gerror);
 
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
 
     return res;
   }
 
   auto
-  File::copy_attributes (const Glib::RefPtr<File>& destination, CopyFlags flags) -> bool
+  File::copy_attributes (const glib::RefPtr<File>& destination, CopyFlags flags) -> bool
   {
     GError* gerror = nullptr;
     bool res;
 
     res = g_file_copy_attributes (gobj (),
-                                  Glib::unwrap (destination),
+                                  glib::unwrap (destination),
                                   static_cast<GFileCopyFlags> (flags),
                                   nullptr,
                                   &gerror);
 
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
 
     return res;
   }
 
   auto
-  File::create_file (const Glib::RefPtr<Cancellable>& cancellable,
-                     CreateFlags flags) -> Glib::RefPtr<FileOutputStream>
+  File::create_file (const glib::RefPtr<Cancellable>& cancellable,
+                     CreateFlags flags) -> glib::RefPtr<FileOutputStream>
   {
     GError* gerror = nullptr;
-    auto retvalue = Glib::wrap (g_file_create (gobj (),
+    auto retvalue = glib::wrap (g_file_create (gobj (),
                                                (GFileCreateFlags) flags,
-                                               Glib::unwrap (cancellable),
+                                               glib::unwrap (cancellable),
                                                &gerror));
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
 
     return retvalue;
   }
 
   auto
-  File::create_file (CreateFlags flags) -> Glib::RefPtr<FileOutputStream>
+  File::create_file (CreateFlags flags) -> glib::RefPtr<FileOutputStream>
   {
     GError* gerror = nullptr;
-    auto retvalue = Glib::wrap (
+    auto retvalue = glib::wrap (
         g_file_create (gobj (), (GFileCreateFlags) flags, nullptr, &gerror));
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
 
     return retvalue;
   }
 
   auto
-  File::create_file_readwrite (const Glib::RefPtr<Cancellable>& cancellable,
-                               CreateFlags flags) -> Glib::RefPtr<FileIOStream>
+  File::create_file_readwrite (const glib::RefPtr<Cancellable>& cancellable,
+                               CreateFlags flags) -> glib::RefPtr<FileIOStream>
   {
     GError* gerror = nullptr;
     auto retvalue =
-        Glib::wrap (g_file_create_readwrite (gobj (),
+        glib::wrap (g_file_create_readwrite (gobj (),
                                              (GFileCreateFlags) flags,
-                                             Glib::unwrap (cancellable),
+                                             glib::unwrap (cancellable),
                                              &gerror));
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
 
     return retvalue;
   }
 
   auto
-  File::create_file_readwrite (CreateFlags flags) -> Glib::RefPtr<FileIOStream>
+  File::create_file_readwrite (CreateFlags flags) -> glib::RefPtr<FileIOStream>
   {
     GError* gerror = nullptr;
     auto retvalue =
-        Glib::wrap (g_file_create_readwrite (gobj (),
+        glib::wrap (g_file_create_readwrite (gobj (),
                                              (GFileCreateFlags) flags,
                                              nullptr,
                                              &gerror));
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
 
     return retvalue;
   }
 
   auto
-  File::append_to (const Glib::RefPtr<Cancellable>& cancellable,
-                   CreateFlags flags) -> Glib::RefPtr<FileOutputStream>
+  File::append_to (const glib::RefPtr<Cancellable>& cancellable,
+                   CreateFlags flags) -> glib::RefPtr<FileOutputStream>
   {
     GError* gerror = nullptr;
-    auto retvalue = Glib::wrap (g_file_append_to (gobj (),
+    auto retvalue = glib::wrap (g_file_append_to (gobj (),
                                                   (GFileCreateFlags) flags,
-                                                  Glib::unwrap (cancellable),
+                                                  glib::unwrap (cancellable),
                                                   &gerror));
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
 
     return retvalue;
   }
 
   auto
-  File::append_to (CreateFlags flags) -> Glib::RefPtr<FileOutputStream>
+  File::append_to (CreateFlags flags) -> glib::RefPtr<FileOutputStream>
   {
     GError* gerror = nullptr;
-    auto retvalue = Glib::wrap (
+    auto retvalue = glib::wrap (
         g_file_append_to (gobj (), (GFileCreateFlags) flags, nullptr, &gerror));
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
 
     return retvalue;
   }
 
   auto
-  File::load_contents (const Glib::RefPtr<Cancellable>& cancellable,
+  File::load_contents (const glib::RefPtr<Cancellable>& cancellable,
                        char*& contents,
                        gsize& length,
                        std::string& etag_out) -> bool
@@ -2159,33 +2159,33 @@ namespace Gio
     GError* gerror = nullptr;
     gchar* cetag_out = nullptr;
     const bool retvalue = g_file_load_contents (gobj (),
-                                                Glib::unwrap (cancellable),
+                                                glib::unwrap (cancellable),
                                                 &contents,
                                                 &length,
                                                 &cetag_out,
                                                 &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
 
-    etag_out = Glib::convert_return_gchar_ptr_to_stdstring (cetag_out);
+    etag_out = glib::convert_return_gchar_ptr_to_stdstring (cetag_out);
 
     return retvalue;
   }
 
   auto
-  File::load_contents (const Glib::RefPtr<Cancellable>& cancellable,
+  File::load_contents (const glib::RefPtr<Cancellable>& cancellable,
                        char*& contents,
                        gsize& length) -> bool
   {
     GError* gerror = nullptr;
     const bool retvalue = g_file_load_contents (gobj (),
-                                                Glib::unwrap (cancellable),
+                                                glib::unwrap (cancellable),
                                                 &contents,
                                                 &length,
                                                 nullptr,
                                                 &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
 
     return retvalue;
   }
@@ -2202,9 +2202,9 @@ namespace Gio
                                                 &cetag_out,
                                                 &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
 
-    etag_out = Glib::convert_return_gchar_ptr_to_stdstring (cetag_out);
+    etag_out = glib::convert_return_gchar_ptr_to_stdstring (cetag_out);
 
     return retvalue;
   }
@@ -2220,13 +2220,13 @@ namespace Gio
                                                 nullptr,
                                                 &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
 
     return retvalue;
   }
 
   auto
-  File::load_contents_finish (const Glib::RefPtr<AsyncResult>& result,
+  File::load_contents_finish (const glib::RefPtr<AsyncResult>& result,
                               char*& contents,
                               gsize& length,
                               std::string& etag_out) -> bool
@@ -2234,39 +2234,39 @@ namespace Gio
     GError* gerror = nullptr;
     gchar* cetag_out = nullptr;
     const bool retvalue = g_file_load_contents_finish (gobj (),
-                                                       Glib::unwrap (result),
+                                                       glib::unwrap (result),
                                                        &contents,
                                                        &length,
                                                        &cetag_out,
                                                        &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
 
-    etag_out = Glib::convert_return_gchar_ptr_to_stdstring (cetag_out);
+    etag_out = glib::convert_return_gchar_ptr_to_stdstring (cetag_out);
 
     return retvalue;
   }
 
   auto
-  File::load_contents_finish (const Glib::RefPtr<AsyncResult>& result,
+  File::load_contents_finish (const glib::RefPtr<AsyncResult>& result,
                               char*& contents,
                               gsize& length) -> bool
   {
     GError* gerror = nullptr;
     const bool retvalue = g_file_load_contents_finish (gobj (),
-                                                       Glib::unwrap (result),
+                                                       glib::unwrap (result),
                                                        &contents,
                                                        &length,
                                                        nullptr,
                                                        &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
 
     return retvalue;
   }
 
   auto
-  File::load_partial_contents_finish (const Glib::RefPtr<AsyncResult>& result,
+  File::load_partial_contents_finish (const glib::RefPtr<AsyncResult>& result,
                                       char*& contents,
                                       gsize& length,
                                       std::string& etag_out) -> bool
@@ -2275,34 +2275,34 @@ namespace Gio
     gchar* cetag_out = nullptr;
     const bool retvalue = g_file_load_partial_contents_finish (
         gobj (),
-        Glib::unwrap (result),
+        glib::unwrap (result),
         &contents,
         &length,
         &cetag_out,
         &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
 
-    etag_out = Glib::convert_return_gchar_ptr_to_stdstring (cetag_out);
+    etag_out = glib::convert_return_gchar_ptr_to_stdstring (cetag_out);
 
     return retvalue;
   }
 
   auto
-  File::load_partial_contents_finish (const Glib::RefPtr<AsyncResult>& result,
+  File::load_partial_contents_finish (const glib::RefPtr<AsyncResult>& result,
                                       char*& contents,
                                       gsize& length) -> bool
   {
     GError* gerror = nullptr;
     const bool retvalue = g_file_load_partial_contents_finish (
         gobj (),
-        Glib::unwrap (result),
+        glib::unwrap (result),
         &contents,
         &length,
         nullptr,
         &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
 
     return retvalue;
   }
@@ -2315,14 +2315,14 @@ namespace Gio
 
   auto
   File::remove_async (const SlotAsyncReady& slot_ready,
-                      const Glib::RefPtr<Cancellable>& cancellable,
+                      const glib::RefPtr<Cancellable>& cancellable,
                       const int io_priority) -> void
   {
     SlotAsyncReady* slot_ready_copy = new SlotAsyncReady (slot_ready);
 
     g_file_delete_async (gobj (),
                          io_priority,
-                         Glib::unwrap (cancellable),
+                         glib::unwrap (cancellable),
                          &SignalProxy_async_callback,
                          slot_ready_copy);
   }
@@ -2341,14 +2341,14 @@ namespace Gio
 
   auto
   File::trash_async (const SlotAsyncReady& slot_ready,
-                     const Glib::RefPtr<Cancellable>& cancellable,
+                     const glib::RefPtr<Cancellable>& cancellable,
                      const int io_priority) -> void
   {
     SlotAsyncReady* slot_ready_copy = new SlotAsyncReady (slot_ready);
 
     g_file_trash_async (gobj (),
                         io_priority,
-                        Glib::unwrap (cancellable),
+                        glib::unwrap (cancellable),
                         &SignalProxy_async_callback,
                         slot_ready_copy);
   }
@@ -2367,14 +2367,14 @@ namespace Gio
 
   auto
   File::make_directory_async (const SlotAsyncReady& slot_ready,
-                              const Glib::RefPtr<Cancellable>& cancellable,
+                              const glib::RefPtr<Cancellable>& cancellable,
                               const int io_priority) -> void
   {
     SlotAsyncReady* slot_ready_copy = new SlotAsyncReady (slot_ready);
 
     g_file_make_directory_async (gobj (),
                                  io_priority,
-                                 Glib::unwrap (cancellable),
+                                 glib::unwrap (cancellable),
                                  &SignalProxy_async_callback,
                                  slot_ready_copy);
   }
@@ -2392,25 +2392,25 @@ namespace Gio
                                  slot_ready_copy);
   }
 
-} // namespace Gio
+} // namespace gio
 
 namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GFile* object, const bool take_copy) -> RefPtr<Gio::File>
+  wrap (GFile* object, const bool take_copy) -> RefPtr<gio::File>
   {
-    return Glib::make_refptr_for_instance<Gio::File> (
-        Glib::wrap_auto_interface<Gio::File> ((GObject*) object, take_copy));
+    return glib::make_refptr_for_instance<gio::File> (
+        glib::wrap_auto_interface<gio::File> ((GObject*) object, take_copy));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gio
+namespace gio
 {
 
   auto
@@ -2435,7 +2435,7 @@ namespace Gio
   }
 
   auto
-  File_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  File_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new File ((GFile*) object);
   }
@@ -2450,7 +2450,7 @@ namespace Gio
   {
   }
 
-  File::File (const Glib::Interface_Class& interface_class)
+  File::File (const glib::Interface_Class& interface_class)
     : Interface (interface_class)
   {
   }
@@ -2490,9 +2490,9 @@ namespace Gio
   }
 
   auto
-  File::dup () const -> Glib::RefPtr<File>
+  File::dup () const -> glib::RefPtr<File>
   {
-    return Glib::wrap (g_file_dup (const_cast<GFile*> (gobj ())));
+    return glib::wrap (g_file_dup (const_cast<GFile*> (gobj ())));
   }
 
   auto
@@ -2502,93 +2502,93 @@ namespace Gio
   }
 
   auto
-  File::equal (const Glib::RefPtr<const File>& other) const -> bool
+  File::equal (const glib::RefPtr<const File>& other) const -> bool
   {
     return g_file_equal (const_cast<GFile*> (gobj ()),
-                         const_cast<GFile*> (Glib::unwrap<File> (other)));
+                         const_cast<GFile*> (glib::unwrap<File> (other)));
   }
 
   auto
   File::get_basename () const -> std::string
   {
-    return Glib::convert_return_gchar_ptr_to_stdstring (
+    return glib::convert_return_gchar_ptr_to_stdstring (
         g_file_get_basename (const_cast<GFile*> (gobj ())));
   }
 
   auto
   File::get_path () const -> std::string
   {
-    return Glib::convert_return_gchar_ptr_to_stdstring (
+    return glib::convert_return_gchar_ptr_to_stdstring (
         g_file_get_path (const_cast<GFile*> (gobj ())));
   }
 
   auto
   File::get_uri () const -> std::string
   {
-    return Glib::convert_return_gchar_ptr_to_stdstring (
+    return glib::convert_return_gchar_ptr_to_stdstring (
         g_file_get_uri (const_cast<GFile*> (gobj ())));
   }
 
   auto
-  File::get_parse_name () const -> Glib::ustring
+  File::get_parse_name () const -> glib::ustring
   {
-    return Glib::convert_return_gchar_ptr_to_ustring (
+    return glib::convert_return_gchar_ptr_to_ustring (
         g_file_get_parse_name (const_cast<GFile*> (gobj ())));
   }
 
   auto
-  File::get_parent () const -> Glib::RefPtr<File>
+  File::get_parent () const -> glib::RefPtr<File>
   {
-    return Glib::wrap (g_file_get_parent (const_cast<GFile*> (gobj ())));
+    return glib::wrap (g_file_get_parent (const_cast<GFile*> (gobj ())));
   }
 
   auto
-  File::has_parent (const Glib::RefPtr<File>& parent) const -> bool
+  File::has_parent (const glib::RefPtr<File>& parent) const -> bool
   {
     return g_file_has_parent (const_cast<GFile*> (gobj ()),
-                              Glib::unwrap (parent));
+                              glib::unwrap (parent));
   }
 
   auto
-  File::get_child (const std::string& name) const -> Glib::RefPtr<File>
+  File::get_child (const std::string& name) const -> glib::RefPtr<File>
   {
-    return Glib::wrap (
+    return glib::wrap (
         g_file_get_child (const_cast<GFile*> (gobj ()), name.c_str ()));
   }
 
   auto
-  File::get_child_for_display_name (const Glib::ustring& display_name) const -> Glib::RefPtr<File>
+  File::get_child_for_display_name (const glib::ustring& display_name) const -> glib::RefPtr<File>
   {
     GError* gerror = nullptr;
-    auto retvalue = Glib::wrap (
+    auto retvalue = glib::wrap (
         g_file_get_child_for_display_name (const_cast<GFile*> (gobj ()),
                                            display_name.c_str (),
                                            &gerror));
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
   auto
-  File::has_prefix (const Glib::RefPtr<const File>& prefix) const -> bool
+  File::has_prefix (const glib::RefPtr<const File>& prefix) const -> bool
   {
     return g_file_has_prefix (const_cast<GFile*> (gobj ()),
-                              const_cast<GFile*> (Glib::unwrap<File> (prefix)));
+                              const_cast<GFile*> (glib::unwrap<File> (prefix)));
   }
 
   auto
-  File::get_relative_path (const Glib::RefPtr<const File>& descendant) const -> std::string
+  File::get_relative_path (const glib::RefPtr<const File>& descendant) const -> std::string
   {
-    return Glib::convert_return_gchar_ptr_to_stdstring (
+    return glib::convert_return_gchar_ptr_to_stdstring (
         g_file_get_relative_path (
             const_cast<GFile*> (gobj ()),
-            const_cast<GFile*> (Glib::unwrap<File> (descendant))));
+            const_cast<GFile*> (glib::unwrap<File> (descendant))));
   }
 
   auto
-  File::resolve_relative_path (const std::string& relative_path) const -> Glib::RefPtr<File>
+  File::resolve_relative_path (const std::string& relative_path) const -> glib::RefPtr<File>
   {
-    return Glib::wrap (
+    return glib::wrap (
         g_file_resolve_relative_path (const_cast<GFile*> (gobj ()),
                                       relative_path.c_str ()));
   }
@@ -2609,135 +2609,135 @@ namespace Gio
   auto
   File::get_uri_scheme () const -> std::string
   {
-    return Glib::convert_return_gchar_ptr_to_stdstring (
+    return glib::convert_return_gchar_ptr_to_stdstring (
         g_file_get_uri_scheme (const_cast<GFile*> (gobj ())));
   }
 
   auto
-  File::read (const Glib::RefPtr<Cancellable>& cancellable) -> Glib::RefPtr<FileInputStream>
+  File::read (const glib::RefPtr<Cancellable>& cancellable) -> glib::RefPtr<FileInputStream>
   {
     GError* gerror = nullptr;
     auto retvalue =
-        Glib::wrap (g_file_read (gobj (), Glib::unwrap (cancellable), &gerror));
+        glib::wrap (g_file_read (gobj (), glib::unwrap (cancellable), &gerror));
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
   auto
-  File::read () -> Glib::RefPtr<FileInputStream>
+  File::read () -> glib::RefPtr<FileInputStream>
   {
     GError* gerror = nullptr;
-    auto retvalue = Glib::wrap (g_file_read (gobj (), nullptr, &gerror));
+    auto retvalue = glib::wrap (g_file_read (gobj (), nullptr, &gerror));
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
   auto
-  File::read_finish (const Glib::RefPtr<AsyncResult>& res) -> Glib::RefPtr<FileInputStream>
-  {
-    GError* gerror = nullptr;
-    auto retvalue =
-        Glib::wrap (g_file_read_finish (gobj (), Glib::unwrap (res), &gerror));
-    if (gerror)
-      Glib::Error::throw_exception (gerror);
-    return retvalue;
-  }
-
-  auto
-  File::append_to_finish (const Glib::RefPtr<AsyncResult>& res) -> Glib::RefPtr<FileOutputStream>
-  {
-    GError* gerror = nullptr;
-    auto retvalue = Glib::wrap (
-        g_file_append_to_finish (gobj (), Glib::unwrap (res), &gerror));
-    if (gerror)
-      Glib::Error::throw_exception (gerror);
-    return retvalue;
-  }
-
-  auto
-  File::create_file_finish (const Glib::RefPtr<AsyncResult>& res) -> Glib::RefPtr<FileOutputStream>
-  {
-    GError* gerror = nullptr;
-    auto retvalue = Glib::wrap (
-        g_file_create_finish (gobj (), Glib::unwrap (res), &gerror));
-    if (gerror)
-      Glib::Error::throw_exception (gerror);
-    return retvalue;
-  }
-
-  auto
-  File::create_file_readwrite_finish (const Glib::RefPtr<AsyncResult>& res) -> Glib::RefPtr<FileIOStream>
-  {
-    GError* gerror = nullptr;
-    auto retvalue = Glib::wrap (
-        g_file_create_readwrite_finish (gobj (), Glib::unwrap (res), &gerror));
-    if (gerror)
-      Glib::Error::throw_exception (gerror);
-    return retvalue;
-  }
-
-  auto
-  File::replace_finish (const Glib::RefPtr<AsyncResult>& res) -> Glib::RefPtr<FileOutputStream>
-  {
-    GError* gerror = nullptr;
-    auto retvalue = Glib::wrap (
-        g_file_replace_finish (gobj (), Glib::unwrap (res), &gerror));
-    if (gerror)
-      Glib::Error::throw_exception (gerror);
-    return retvalue;
-  }
-
-  auto
-  File::open_readwrite (const Glib::RefPtr<Cancellable>& cancellable) -> Glib::RefPtr<FileIOStream>
-  {
-    GError* gerror = nullptr;
-    auto retvalue = Glib::wrap (
-        g_file_open_readwrite (gobj (), Glib::unwrap (cancellable), &gerror));
-    if (gerror)
-      Glib::Error::throw_exception (gerror);
-    return retvalue;
-  }
-
-  auto
-  File::open_readwrite () -> Glib::RefPtr<FileIOStream>
+  File::read_finish (const glib::RefPtr<AsyncResult>& res) -> glib::RefPtr<FileInputStream>
   {
     GError* gerror = nullptr;
     auto retvalue =
-        Glib::wrap (g_file_open_readwrite (gobj (), nullptr, &gerror));
+        glib::wrap (g_file_read_finish (gobj (), glib::unwrap (res), &gerror));
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
   auto
-  File::open_readwrite_finish (const Glib::RefPtr<AsyncResult>& res) -> Glib::RefPtr<FileIOStream>
+  File::append_to_finish (const glib::RefPtr<AsyncResult>& res) -> glib::RefPtr<FileOutputStream>
   {
     GError* gerror = nullptr;
-    auto retvalue = Glib::wrap (
-        g_file_open_readwrite_finish (gobj (), Glib::unwrap (res), &gerror));
+    auto retvalue = glib::wrap (
+        g_file_append_to_finish (gobj (), glib::unwrap (res), &gerror));
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
   auto
-  File::replace_readwrite_finish (const Glib::RefPtr<AsyncResult>& res) -> Glib::RefPtr<FileIOStream>
+  File::create_file_finish (const glib::RefPtr<AsyncResult>& res) -> glib::RefPtr<FileOutputStream>
   {
     GError* gerror = nullptr;
-    auto retvalue = Glib::wrap (
-        g_file_replace_readwrite_finish (gobj (), Glib::unwrap (res), &gerror));
+    auto retvalue = glib::wrap (
+        g_file_create_finish (gobj (), glib::unwrap (res), &gerror));
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
   auto
-  File::query_exists (const Glib::RefPtr<Cancellable>& cancellable) const -> bool
+  File::create_file_readwrite_finish (const glib::RefPtr<AsyncResult>& res) -> glib::RefPtr<FileIOStream>
+  {
+    GError* gerror = nullptr;
+    auto retvalue = glib::wrap (
+        g_file_create_readwrite_finish (gobj (), glib::unwrap (res), &gerror));
+    if (gerror)
+      glib::Error::throw_exception (gerror);
+    return retvalue;
+  }
+
+  auto
+  File::replace_finish (const glib::RefPtr<AsyncResult>& res) -> glib::RefPtr<FileOutputStream>
+  {
+    GError* gerror = nullptr;
+    auto retvalue = glib::wrap (
+        g_file_replace_finish (gobj (), glib::unwrap (res), &gerror));
+    if (gerror)
+      glib::Error::throw_exception (gerror);
+    return retvalue;
+  }
+
+  auto
+  File::open_readwrite (const glib::RefPtr<Cancellable>& cancellable) -> glib::RefPtr<FileIOStream>
+  {
+    GError* gerror = nullptr;
+    auto retvalue = glib::wrap (
+        g_file_open_readwrite (gobj (), glib::unwrap (cancellable), &gerror));
+    if (gerror)
+      glib::Error::throw_exception (gerror);
+    return retvalue;
+  }
+
+  auto
+  File::open_readwrite () -> glib::RefPtr<FileIOStream>
+  {
+    GError* gerror = nullptr;
+    auto retvalue =
+        glib::wrap (g_file_open_readwrite (gobj (), nullptr, &gerror));
+    if (gerror)
+      glib::Error::throw_exception (gerror);
+    return retvalue;
+  }
+
+  auto
+  File::open_readwrite_finish (const glib::RefPtr<AsyncResult>& res) -> glib::RefPtr<FileIOStream>
+  {
+    GError* gerror = nullptr;
+    auto retvalue = glib::wrap (
+        g_file_open_readwrite_finish (gobj (), glib::unwrap (res), &gerror));
+    if (gerror)
+      glib::Error::throw_exception (gerror);
+    return retvalue;
+  }
+
+  auto
+  File::replace_readwrite_finish (const glib::RefPtr<AsyncResult>& res) -> glib::RefPtr<FileIOStream>
+  {
+    GError* gerror = nullptr;
+    auto retvalue = glib::wrap (
+        g_file_replace_readwrite_finish (gobj (), glib::unwrap (res), &gerror));
+    if (gerror)
+      glib::Error::throw_exception (gerror);
+    return retvalue;
+  }
+
+  auto
+  File::query_exists (const glib::RefPtr<Cancellable>& cancellable) const -> bool
   {
     return g_file_query_exists (const_cast<GFile*> (gobj ()),
-                                Glib::unwrap (cancellable));
+                                glib::unwrap (cancellable));
   }
 
   auto
@@ -2748,135 +2748,135 @@ namespace Gio
 
   auto
   File::query_file_type (FileQueryInfoFlags flags,
-                         const Glib::RefPtr<Cancellable>& cancellable) const -> FileType
+                         const glib::RefPtr<Cancellable>& cancellable) const -> FileType
   {
     return static_cast<FileType> (
         g_file_query_file_type (const_cast<GFile*> (gobj ()),
                                 static_cast<GFileQueryInfoFlags> (flags),
-                                Glib::unwrap (cancellable)));
+                                glib::unwrap (cancellable)));
   }
 
   auto
-  File::query_info_finish (const Glib::RefPtr<AsyncResult>& res) -> Glib::RefPtr<FileInfo>
+  File::query_info_finish (const glib::RefPtr<AsyncResult>& res) -> glib::RefPtr<FileInfo>
   {
     GError* gerror = nullptr;
-    auto retvalue = Glib::wrap (
-        g_file_query_info_finish (gobj (), Glib::unwrap (res), &gerror));
+    auto retvalue = glib::wrap (
+        g_file_query_info_finish (gobj (), glib::unwrap (res), &gerror));
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
   auto
-  File::find_enclosing_mount (const Glib::RefPtr<Cancellable>& cancellable) -> Glib::RefPtr<Mount>
+  File::find_enclosing_mount (const glib::RefPtr<Cancellable>& cancellable) -> glib::RefPtr<Mount>
   {
     GError* gerror = nullptr;
     auto retvalue =
-        Glib::wrap (g_file_find_enclosing_mount (gobj (),
-                                                 Glib::unwrap (cancellable),
+        glib::wrap (g_file_find_enclosing_mount (gobj (),
+                                                 glib::unwrap (cancellable),
                                                  &gerror));
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
   auto
-  File::find_enclosing_mount () -> Glib::RefPtr<Mount>
+  File::find_enclosing_mount () -> glib::RefPtr<Mount>
   {
     GError* gerror = nullptr;
     auto retvalue =
-        Glib::wrap (g_file_find_enclosing_mount (gobj (), nullptr, &gerror));
+        glib::wrap (g_file_find_enclosing_mount (gobj (), nullptr, &gerror));
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
   auto
-  File::query_filesystem_info_finish (const Glib::RefPtr<AsyncResult>& res) -> Glib::RefPtr<FileInfo>
+  File::query_filesystem_info_finish (const glib::RefPtr<AsyncResult>& res) -> glib::RefPtr<FileInfo>
   {
     GError* gerror = nullptr;
     auto retvalue =
-        Glib::wrap (g_file_query_filesystem_info_finish (gobj (),
-                                                         Glib::unwrap (res),
+        glib::wrap (g_file_query_filesystem_info_finish (gobj (),
+                                                         glib::unwrap (res),
                                                          &gerror));
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
   auto
-  File::find_enclosing_mount_finish (const Glib::RefPtr<AsyncResult>& res) -> Glib::RefPtr<Mount>
+  File::find_enclosing_mount_finish (const glib::RefPtr<AsyncResult>& res) -> glib::RefPtr<Mount>
   {
     GError* gerror = nullptr;
     auto retvalue =
-        Glib::wrap (g_file_find_enclosing_mount_finish (gobj (),
-                                                        Glib::unwrap (res),
+        glib::wrap (g_file_find_enclosing_mount_finish (gobj (),
+                                                        glib::unwrap (res),
                                                         &gerror));
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
   auto
-  File::enumerate_children_finish (const Glib::RefPtr<AsyncResult>& res) -> Glib::RefPtr<FileEnumerator>
+  File::enumerate_children_finish (const glib::RefPtr<AsyncResult>& res) -> glib::RefPtr<FileEnumerator>
   {
     GError* gerror = nullptr;
     auto retvalue =
-        Glib::wrap (g_file_enumerate_children_finish (gobj (),
-                                                      Glib::unwrap (res),
+        glib::wrap (g_file_enumerate_children_finish (gobj (),
+                                                      glib::unwrap (res),
                                                       &gerror));
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
   auto
-  File::set_display_name (const Glib::ustring& display_name,
-                          const Glib::RefPtr<Cancellable>& cancellable) -> Glib::RefPtr<File>
+  File::set_display_name (const glib::ustring& display_name,
+                          const glib::RefPtr<Cancellable>& cancellable) -> glib::RefPtr<File>
   {
     GError* gerror = nullptr;
     auto retvalue =
-        Glib::wrap (g_file_set_display_name (gobj (),
+        glib::wrap (g_file_set_display_name (gobj (),
                                              display_name.c_str (),
-                                             Glib::unwrap (cancellable),
+                                             glib::unwrap (cancellable),
                                              &gerror));
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
   auto
-  File::set_display_name (const Glib::ustring& display_name) -> Glib::RefPtr<File>
+  File::set_display_name (const glib::ustring& display_name) -> glib::RefPtr<File>
   {
     GError* gerror = nullptr;
-    auto retvalue = Glib::wrap (g_file_set_display_name (gobj (),
+    auto retvalue = glib::wrap (g_file_set_display_name (gobj (),
                                                          display_name.c_str (),
                                                          nullptr,
                                                          &gerror));
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
   auto
-  File::set_display_name_finish (const Glib::RefPtr<AsyncResult>& res) -> Glib::RefPtr<File>
+  File::set_display_name_finish (const glib::RefPtr<AsyncResult>& res) -> glib::RefPtr<File>
   {
     GError* gerror = nullptr;
-    auto retvalue = Glib::wrap (
-        g_file_set_display_name_finish (gobj (), Glib::unwrap (res), &gerror));
+    auto retvalue = glib::wrap (
+        g_file_set_display_name_finish (gobj (), glib::unwrap (res), &gerror));
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
   auto
-  File::remove (const Glib::RefPtr<Cancellable>& cancellable) -> bool
+  File::remove (const glib::RefPtr<Cancellable>& cancellable) -> bool
   {
     GError* gerror = nullptr;
     const auto retvalue =
-        g_file_delete (gobj (), Glib::unwrap (cancellable), &gerror);
+        g_file_delete (gobj (), glib::unwrap (cancellable), &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
@@ -2886,29 +2886,29 @@ namespace Gio
     GError* gerror = nullptr;
     const auto retvalue = g_file_delete (gobj (), nullptr, &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
   auto
-  File::remove_finish (const Glib::RefPtr<AsyncResult>& result) -> bool
+  File::remove_finish (const glib::RefPtr<AsyncResult>& result) -> bool
   {
     GError* gerror = nullptr;
     const auto retvalue =
-        g_file_delete_finish (gobj (), Glib::unwrap (result), &gerror);
+        g_file_delete_finish (gobj (), glib::unwrap (result), &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
   auto
-  File::trash (const Glib::RefPtr<Cancellable>& cancellable) -> bool
+  File::trash (const glib::RefPtr<Cancellable>& cancellable) -> bool
   {
     GError* gerror = nullptr;
     const auto retvalue =
-        g_file_trash (gobj (), Glib::unwrap (cancellable), &gerror);
+        g_file_trash (gobj (), glib::unwrap (cancellable), &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
@@ -2918,51 +2918,51 @@ namespace Gio
     GError* gerror = nullptr;
     const auto retvalue = g_file_trash (gobj (), nullptr, &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
   auto
-  File::trash_finish (const Glib::RefPtr<AsyncResult>& result) -> bool
+  File::trash_finish (const glib::RefPtr<AsyncResult>& result) -> bool
   {
     GError* gerror = nullptr;
     const auto retvalue =
-        g_file_trash_finish (gobj (), Glib::unwrap (result), &gerror);
+        g_file_trash_finish (gobj (), glib::unwrap (result), &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
   auto
-  File::copy_finish (const Glib::RefPtr<AsyncResult>& res) -> bool
+  File::copy_finish (const glib::RefPtr<AsyncResult>& res) -> bool
   {
     GError* gerror = nullptr;
     const auto retvalue =
-        g_file_copy_finish (gobj (), Glib::unwrap (res), &gerror);
+        g_file_copy_finish (gobj (), glib::unwrap (res), &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
   auto
-  File::move_finish (const Glib::RefPtr<AsyncResult>& res) -> bool
+  File::move_finish (const glib::RefPtr<AsyncResult>& res) -> bool
   {
     GError* gerror = nullptr;
     const auto retvalue =
-        g_file_move_finish (gobj (), Glib::unwrap (res), &gerror);
+        g_file_move_finish (gobj (), glib::unwrap (res), &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
   auto
-  File::make_directory (const Glib::RefPtr<Cancellable>& cancellable) -> bool
+  File::make_directory (const glib::RefPtr<Cancellable>& cancellable) -> bool
   {
     GError* gerror = nullptr;
     const auto retvalue =
-        g_file_make_directory (gobj (), Glib::unwrap (cancellable), &gerror);
+        g_file_make_directory (gobj (), glib::unwrap (cancellable), &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
@@ -2972,32 +2972,32 @@ namespace Gio
     GError* gerror = nullptr;
     const auto retvalue = g_file_make_directory (gobj (), nullptr, &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
   auto
-  File::make_directory_finish (const Glib::RefPtr<AsyncResult>& result) -> bool
+  File::make_directory_finish (const glib::RefPtr<AsyncResult>& result) -> bool
   {
     GError* gerror = nullptr;
     const auto retvalue =
-        g_file_make_directory_finish (gobj (), Glib::unwrap (result), &gerror);
+        g_file_make_directory_finish (gobj (), glib::unwrap (result), &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
   auto
   File::make_directory_with_parents (
-      const Glib::RefPtr<Cancellable>& cancellable) -> bool
+      const glib::RefPtr<Cancellable>& cancellable) -> bool
   {
     GError* gerror = nullptr;
     const auto retvalue = g_file_make_directory_with_parents (
         gobj (),
-        Glib::unwrap (cancellable),
+        glib::unwrap (cancellable),
         &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
@@ -3008,21 +3008,21 @@ namespace Gio
     const auto retvalue =
         g_file_make_directory_with_parents (gobj (), nullptr, &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
   auto
   File::make_symbolic_link (const std::string& symlink_value,
-                            const Glib::RefPtr<Cancellable>& cancellable) -> bool
+                            const glib::RefPtr<Cancellable>& cancellable) -> bool
   {
     GError* gerror = nullptr;
     const auto retvalue = g_file_make_symbolic_link (gobj (),
                                                      symlink_value.c_str (),
-                                                     Glib::unwrap (cancellable),
+                                                     glib::unwrap (cancellable),
                                                      &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
@@ -3035,14 +3035,14 @@ namespace Gio
                                                      nullptr,
                                                      &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
   auto
   File::make_symbolic_link_async (const std::string& symlink_value,
                                   const SlotAsyncReady& slot,
-                                  const Glib::RefPtr<Cancellable>& cancellable,
+                                  const glib::RefPtr<Cancellable>& cancellable,
                                   const int io_priority) -> void
   {
     const auto slot_copy = new SlotAsyncReady (slot);
@@ -3050,77 +3050,77 @@ namespace Gio
     g_file_make_symbolic_link_async (gobj (),
                                      symlink_value.c_str (),
                                      io_priority,
-                                     Glib::unwrap (cancellable),
+                                     glib::unwrap (cancellable),
                                      &SignalProxy_async_callback,
                                      slot_copy);
   }
 
   auto
-  File::make_symbolic_link_finish (const Glib::RefPtr<AsyncResult>& result) -> bool
+  File::make_symbolic_link_finish (const glib::RefPtr<AsyncResult>& result) -> bool
   {
     GError* gerror = nullptr;
     const auto retvalue = g_file_make_symbolic_link_finish (
         gobj (),
-        Glib::unwrap (result),
+        glib::unwrap (result),
         &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
   auto
-  File::query_settable_attributes (const Glib::RefPtr<Cancellable>& cancellable) -> Glib::RefPtr<FileAttributeInfoList>
+  File::query_settable_attributes (const glib::RefPtr<Cancellable>& cancellable) -> glib::RefPtr<FileAttributeInfoList>
   {
     GError* gerror = nullptr;
-    auto retvalue = Glib::wrap (
+    auto retvalue = glib::wrap (
         g_file_query_settable_attributes (gobj (),
-                                          Glib::unwrap (cancellable),
+                                          glib::unwrap (cancellable),
                                           &gerror));
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
   auto
-  File::query_settable_attributes () -> Glib::RefPtr<FileAttributeInfoList>
+  File::query_settable_attributes () -> glib::RefPtr<FileAttributeInfoList>
   {
     GError* gerror = nullptr;
-    auto retvalue = Glib::wrap (
+    auto retvalue = glib::wrap (
         g_file_query_settable_attributes (gobj (), nullptr, &gerror));
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
   auto
-  File::query_writable_namespaces (const Glib::RefPtr<Cancellable>& cancellable) -> Glib::RefPtr<FileAttributeInfoList>
+  File::query_writable_namespaces (const glib::RefPtr<Cancellable>& cancellable) -> glib::RefPtr<FileAttributeInfoList>
   {
     GError* gerror = nullptr;
-    auto retvalue = Glib::wrap (
+    auto retvalue = glib::wrap (
         g_file_query_writable_namespaces (gobj (),
-                                          Glib::unwrap (cancellable),
+                                          glib::unwrap (cancellable),
                                           &gerror));
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
   auto
-  File::query_writable_namespaces () -> Glib::RefPtr<FileAttributeInfoList>
+  File::query_writable_namespaces () -> glib::RefPtr<FileAttributeInfoList>
   {
     GError* gerror = nullptr;
-    auto retvalue = Glib::wrap (
+    auto retvalue = glib::wrap (
         g_file_query_writable_namespaces (gobj (), nullptr, &gerror));
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
   auto
   File::set_attribute_string (const std::string& attribute,
-                              const Glib::ustring& value,
+                              const glib::ustring& value,
                               FileQueryInfoFlags flags,
-                              const Glib::RefPtr<Cancellable>& cancellable) -> bool
+                              const glib::RefPtr<Cancellable>& cancellable) -> bool
   {
     GError* gerror = nullptr;
     const auto retvalue = g_file_set_attribute_string (
@@ -3128,16 +3128,16 @@ namespace Gio
         attribute.c_str (),
         value.c_str (),
         static_cast<GFileQueryInfoFlags> (flags),
-        Glib::unwrap (cancellable),
+        glib::unwrap (cancellable),
         &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
   auto
   File::set_attribute_string (const std::string& attribute,
-                              const Glib::ustring& value,
+                              const glib::ustring& value,
                               FileQueryInfoFlags flags) -> bool
   {
     GError* gerror = nullptr;
@@ -3149,7 +3149,7 @@ namespace Gio
         nullptr,
         &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
@@ -3157,7 +3157,7 @@ namespace Gio
   File::set_attribute_byte_string (const std::string& attribute,
                                    const std::string& value,
                                    FileQueryInfoFlags flags,
-                                   const Glib::RefPtr<Cancellable>& cancellable) -> bool
+                                   const glib::RefPtr<Cancellable>& cancellable) -> bool
   {
     GError* gerror = nullptr;
     const auto retvalue = g_file_set_attribute_byte_string (
@@ -3165,10 +3165,10 @@ namespace Gio
         attribute.c_str (),
         value.c_str (),
         static_cast<GFileQueryInfoFlags> (flags),
-        Glib::unwrap (cancellable),
+        glib::unwrap (cancellable),
         &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
@@ -3186,7 +3186,7 @@ namespace Gio
         nullptr,
         &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
@@ -3194,7 +3194,7 @@ namespace Gio
   File::set_attribute_uint32 (const std::string& attribute,
                               const guint32 value,
                               FileQueryInfoFlags flags,
-                              const Glib::RefPtr<Cancellable>& cancellable) -> bool
+                              const glib::RefPtr<Cancellable>& cancellable) -> bool
   {
     GError* gerror = nullptr;
     const auto retvalue = g_file_set_attribute_uint32 (
@@ -3202,10 +3202,10 @@ namespace Gio
         attribute.c_str (),
         value,
         static_cast<GFileQueryInfoFlags> (flags),
-        Glib::unwrap (cancellable),
+        glib::unwrap (cancellable),
         &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
@@ -3223,7 +3223,7 @@ namespace Gio
         nullptr,
         &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
@@ -3231,7 +3231,7 @@ namespace Gio
   File::set_attribute_int32 (const std::string& attribute,
                              const gint32 value,
                              FileQueryInfoFlags flags,
-                             const Glib::RefPtr<Cancellable>& cancellable) -> bool
+                             const glib::RefPtr<Cancellable>& cancellable) -> bool
   {
     GError* gerror = nullptr;
     const auto retvalue = g_file_set_attribute_int32 (
@@ -3239,10 +3239,10 @@ namespace Gio
         attribute.c_str (),
         value,
         static_cast<GFileQueryInfoFlags> (flags),
-        Glib::unwrap (cancellable),
+        glib::unwrap (cancellable),
         &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
@@ -3260,7 +3260,7 @@ namespace Gio
         nullptr,
         &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
@@ -3268,7 +3268,7 @@ namespace Gio
   File::set_attribute_uint64 (const std::string& attribute,
                               const guint64 value,
                               FileQueryInfoFlags flags,
-                              const Glib::RefPtr<Cancellable>& cancellable) -> bool
+                              const glib::RefPtr<Cancellable>& cancellable) -> bool
   {
     GError* gerror = nullptr;
     const auto retvalue = g_file_set_attribute_uint64 (
@@ -3276,10 +3276,10 @@ namespace Gio
         attribute.c_str (),
         value,
         static_cast<GFileQueryInfoFlags> (flags),
-        Glib::unwrap (cancellable),
+        glib::unwrap (cancellable),
         &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
@@ -3297,7 +3297,7 @@ namespace Gio
         nullptr,
         &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
@@ -3305,7 +3305,7 @@ namespace Gio
   File::set_attribute_int64 (const std::string& attribute,
                              const gint64 value,
                              FileQueryInfoFlags flags,
-                             const Glib::RefPtr<Cancellable>& cancellable) -> bool
+                             const glib::RefPtr<Cancellable>& cancellable) -> bool
   {
     GError* gerror = nullptr;
     const auto retvalue = g_file_set_attribute_int64 (
@@ -3313,10 +3313,10 @@ namespace Gio
         attribute.c_str (),
         value,
         static_cast<GFileQueryInfoFlags> (flags),
-        Glib::unwrap (cancellable),
+        glib::unwrap (cancellable),
         &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
@@ -3334,64 +3334,64 @@ namespace Gio
         nullptr,
         &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
   auto
-  File::mount_enclosing_volume_finish (const Glib::RefPtr<AsyncResult>& result) -> bool
+  File::mount_enclosing_volume_finish (const glib::RefPtr<AsyncResult>& result) -> bool
   {
     GError* gerror = nullptr;
     const auto retvalue = g_file_mount_enclosing_volume_finish (
         gobj (),
-        Glib::unwrap (result),
+        glib::unwrap (result),
         &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
   auto
-  File::mount_mountable_finish (const Glib::RefPtr<AsyncResult>& result) -> Glib::RefPtr<File>
+  File::mount_mountable_finish (const glib::RefPtr<AsyncResult>& result) -> glib::RefPtr<File>
   {
     GError* gerror = nullptr;
     auto retvalue =
-        Glib::wrap (g_file_mount_mountable_finish (gobj (),
-                                                   Glib::unwrap (result),
+        glib::wrap (g_file_mount_mountable_finish (gobj (),
+                                                   glib::unwrap (result),
                                                    &gerror));
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
   auto
-  File::unmount_mountable_finish (const Glib::RefPtr<AsyncResult>& result) -> bool
+  File::unmount_mountable_finish (const glib::RefPtr<AsyncResult>& result) -> bool
   {
     GError* gerror = nullptr;
     const auto retvalue = g_file_unmount_mountable_with_operation_finish (
         gobj (),
-        Glib::unwrap (result),
+        glib::unwrap (result),
         &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
   auto
-  File::eject_mountable_finish (const Glib::RefPtr<AsyncResult>& result) -> bool
+  File::eject_mountable_finish (const glib::RefPtr<AsyncResult>& result) -> bool
   {
     GError* gerror = nullptr;
     const auto retvalue = g_file_eject_mountable_with_operation_finish (
         gobj (),
-        Glib::unwrap (result),
+        glib::unwrap (result),
         &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
   auto
-  File::measure_disk_usage_finish (const Glib::RefPtr<AsyncResult>& result,
+  File::measure_disk_usage_finish (const glib::RefPtr<AsyncResult>& result,
                                    guint64& disk_usage,
                                    guint64& num_dirs,
                                    guint64& num_files) -> bool
@@ -3399,70 +3399,70 @@ namespace Gio
     GError* gerror = nullptr;
     const auto retvalue = g_file_measure_disk_usage_finish (
         gobj (),
-        Glib::unwrap (result),
+        glib::unwrap (result),
         &disk_usage,
         &num_dirs,
         &num_files,
         &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
   auto
-  File::start_mountable_finish (const Glib::RefPtr<AsyncResult>& result) -> bool
+  File::start_mountable_finish (const glib::RefPtr<AsyncResult>& result) -> bool
   {
     GError* gerror = nullptr;
     const auto retvalue =
-        g_file_start_mountable_finish (gobj (), Glib::unwrap (result), &gerror);
+        g_file_start_mountable_finish (gobj (), glib::unwrap (result), &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
   auto
-  File::stop_mountable_finish (const Glib::RefPtr<AsyncResult>& result) -> bool
+  File::stop_mountable_finish (const glib::RefPtr<AsyncResult>& result) -> bool
   {
     GError* gerror = nullptr;
     const auto retvalue =
-        g_file_stop_mountable_finish (gobj (), Glib::unwrap (result), &gerror);
+        g_file_stop_mountable_finish (gobj (), glib::unwrap (result), &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
   auto
-  File::poll_mountable_finish (const Glib::RefPtr<AsyncResult>& result) -> bool
+  File::poll_mountable_finish (const glib::RefPtr<AsyncResult>& result) -> bool
   {
     GError* gerror = nullptr;
     const auto retvalue =
-        g_file_poll_mountable_finish (gobj (), Glib::unwrap (result), &gerror);
+        g_file_poll_mountable_finish (gobj (), glib::unwrap (result), &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
   auto
-  File::query_default_handler (const Glib::RefPtr<Cancellable>& cancellable) -> Glib::RefPtr<AppInfo>
+  File::query_default_handler (const glib::RefPtr<Cancellable>& cancellable) -> glib::RefPtr<AppInfo>
   {
     GError* gerror = nullptr;
     auto retvalue =
-        Glib::wrap (g_file_query_default_handler (gobj (),
-                                                  Glib::unwrap (cancellable),
+        glib::wrap (g_file_query_default_handler (gobj (),
+                                                  glib::unwrap (cancellable),
                                                   &gerror));
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
   auto
-  File::query_default_handler () -> Glib::RefPtr<AppInfo>
+  File::query_default_handler () -> glib::RefPtr<AppInfo>
   {
     GError* gerror = nullptr;
     auto retvalue =
-        Glib::wrap (g_file_query_default_handler (gobj (), nullptr, &gerror));
+        glib::wrap (g_file_query_default_handler (gobj (), nullptr, &gerror));
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
@@ -3472,4 +3472,4 @@ namespace Gio
     return g_file_supports_thread_contexts (const_cast<GFile*> (gobj ()));
   }
 
-} // namespace Gio
+} // namespace gio

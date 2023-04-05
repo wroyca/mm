@@ -11,20 +11,20 @@ namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GSimpleIOStream* object, const bool take_copy) -> RefPtr<Gio::SimpleIOStream>
+  wrap (GSimpleIOStream* object, const bool take_copy) -> RefPtr<gio::SimpleIOStream>
   {
-    return Glib::make_refptr_for_instance<Gio::SimpleIOStream> (
-        dynamic_cast<Gio::SimpleIOStream*> (
+    return glib::make_refptr_for_instance<gio::SimpleIOStream> (
+        dynamic_cast<gio::SimpleIOStream*> (
             wrap_auto ((GObject*) object, take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gio
+namespace gio
 {
 
   auto
@@ -48,7 +48,7 @@ namespace Gio
   }
 
   auto
-  SimpleIOStream_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  SimpleIOStream_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new SimpleIOStream ((GSimpleIOStream*) object);
   }
@@ -60,7 +60,7 @@ namespace Gio
     return gobj ();
   }
 
-  SimpleIOStream::SimpleIOStream (const Glib::ConstructParams& construct_params)
+  SimpleIOStream::SimpleIOStream (const glib::ConstructParams& construct_params)
     : IOStream (construct_params)
   {
   }
@@ -99,48 +99,48 @@ namespace Gio
   }
 
   SimpleIOStream::SimpleIOStream (
-      const Glib::RefPtr<InputStream>& input_stream,
-      const Glib::RefPtr<OutputStream>& output_stream)
+      const glib::RefPtr<InputStream>& input_stream,
+      const glib::RefPtr<OutputStream>& output_stream)
     : ObjectBase (nullptr),
-      IOStream (Glib::ConstructParams (simpleiostream_class_.init (),
+      IOStream (glib::ConstructParams (simpleiostream_class_.init (),
                                        "input_stream",
-                                       Glib::unwrap (input_stream),
+                                       glib::unwrap (input_stream),
                                        "output_stream",
-                                       Glib::unwrap (output_stream),
+                                       glib::unwrap (output_stream),
                                        nullptr))
   {
   }
 
   auto
-  SimpleIOStream::create (const Glib::RefPtr<InputStream>& input_stream,
-                          const Glib::RefPtr<OutputStream>& output_stream) -> Glib::RefPtr<SimpleIOStream>
+  SimpleIOStream::create (const glib::RefPtr<InputStream>& input_stream,
+                          const glib::RefPtr<OutputStream>& output_stream) -> glib::RefPtr<SimpleIOStream>
   {
-    return Glib::make_refptr_for_instance<SimpleIOStream> (
+    return glib::make_refptr_for_instance<SimpleIOStream> (
         new SimpleIOStream (input_stream, output_stream));
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<
-          Glib::RefPtr<InputStream>>::value,
-      "Type Glib::RefPtr<InputStream> cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      glib::Traits::ValueCompatibleWithWrapProperty<
+          glib::RefPtr<InputStream>>::value,
+      "Type glib::RefPtr<InputStream> cannot be used in _WRAP_PROPERTY. "
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  SimpleIOStream::property_input_stream () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<InputStream>>
+  SimpleIOStream::property_input_stream () const -> glib::PropertyProxy_ReadOnly<glib::RefPtr<InputStream>>
   {
     return {this, "input-stream"};
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<
-          Glib::RefPtr<OutputStream>>::value,
-      "Type Glib::RefPtr<OutputStream> cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      glib::Traits::ValueCompatibleWithWrapProperty<
+          glib::RefPtr<OutputStream>>::value,
+      "Type glib::RefPtr<OutputStream> cannot be used in _WRAP_PROPERTY. "
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  SimpleIOStream::property_output_stream () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<OutputStream>>
+  SimpleIOStream::property_output_stream () const -> glib::PropertyProxy_ReadOnly<glib::RefPtr<OutputStream>>
   {
     return {this, "output-stream"};
   }
 
-} // namespace Gio
+} // namespace gio

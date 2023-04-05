@@ -5,7 +5,7 @@
 #include <libmm/pango/attriter.hxx>
 #include <libmm/pango/attriter_p.hxx>
 
-namespace Pango
+namespace pango
 {
 
   AttrIter::AttrIter ()
@@ -116,7 +116,7 @@ namespace Pango
     return Language (language, true);
   }
 
-  using SListHandler_Attribute = Glib::SListHandler<Attribute, AttributeTraits>;
+  using SListHandler_Attribute = glib::SListHandler<Attribute, AttributeTraits>;
 
   auto
   AttrIter::get_extra_attrs () const -> std::vector<Attribute>
@@ -130,7 +130,7 @@ namespace Pango
                                   &extra_attrs);
 
     return SListHandler_Attribute::slist_to_vector (extra_attrs,
-                                                    Glib::OWNERSHIP_DEEP);
+                                                    glib::OWNERSHIP_DEEP);
   }
 
   auto
@@ -139,27 +139,27 @@ namespace Pango
     const auto attrs = pango_attr_iterator_get_attrs (
         const_cast<PangoAttrIterator*> (gobj ()));
     return SListHandler_Attribute::slist_to_vector (attrs,
-                                                    Glib::OWNERSHIP_DEEP);
+                                                    glib::OWNERSHIP_DEEP);
   }
 
-} // namespace Pango
+} // namespace pango
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (PangoAttrIterator* object, const bool take_copy) -> Pango::AttrIter
+  wrap (PangoAttrIterator* object, const bool take_copy) -> pango::AttrIter
   {
-    return Pango::AttrIter (object, take_copy);
+    return pango::AttrIter (object, take_copy);
   }
 
-} // namespace Glib
+} // namespace glib
 
 namespace
 {
 }
 
-namespace Pango
+namespace pango
 {
 
   auto
@@ -178,4 +178,4 @@ namespace Pango
                                  static_cast<PangoAttrType> (type)));
   }
 
-} // namespace Pango
+} // namespace pango

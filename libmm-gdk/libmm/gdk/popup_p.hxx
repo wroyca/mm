@@ -8,31 +8,31 @@
 
 #include <libmm/glib/interface_p.hxx>
 
-namespace Gdk
+namespace gdk
 {
 
-  class LIBMM_GDK_SYMEXPORT Popup_Class : public Glib::Interface_Class
+  class LIBMM_GDK_SYMEXPORT Popup_Class : public glib::Interface_Class
   {
   public:
     using CppObjectType = Popup;
     using BaseObjectType = GdkPopup;
     using BaseClassType = GdkPopupInterface;
-    using CppClassParent = Glib::Interface_Class;
+    using CppClassParent = glib::Interface_Class;
 
     friend class Popup;
 
     auto
-    init () -> const Glib::Interface_Class&;
+    init () -> const glib::Interface_Class&;
 
     static auto
     iface_init_function (void* g_iface, void* iface_data) -> void;
 
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
 
   protected:
   };
 
-} // namespace Gdk
+} // namespace gdk
 
 #endif

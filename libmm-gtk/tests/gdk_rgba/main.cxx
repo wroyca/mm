@@ -1,4 +1,4 @@
-// Test Gdk::RGBA
+// Test gdk::RGBA
 // https://gitlab.gnome.org/GNOME/gtkmm/issues/40
 // https://gitlab.gnome.org/GNOME/gtkmm/issues/42
 // https://gitlab.gnome.org/GNOME/gtkmm/merge_requests/7
@@ -17,7 +17,7 @@
 
 namespace
 {
-bool is_almost_equal(const Gdk::RGBA& lhs, const Gdk::RGBA& rhs)
+bool is_almost_equal(const gdk::RGBA& lhs, const gdk::RGBA& rhs)
 {
   constexpr float tolerance = 10 * std::numeric_limits<float>::epsilon();
 
@@ -31,7 +31,7 @@ bool is_almost_equal(const Gdk::RGBA& lhs, const Gdk::RGBA& rhs)
 int main()
 {
   // A default-constructed RGBA is black and fully transparent
-  auto rgba = Gdk::RGBA{};
+  auto rgba = gdk::RGBA{};
   g_assert_cmpfloat(rgba.get_red  (), ==, 0.0);
   g_assert_cmpfloat(rgba.get_green(), ==, 0.0);
   g_assert_cmpfloat(rgba.get_blue (), ==, 0.0);
@@ -48,7 +48,7 @@ int main()
   g_assert_cmpint(rgba.get_alpha_u(), ==, 0xFFFF);
 
   // Test constructor from doubles added in GitLab Issue #40
-  auto rgba2 = Gdk::RGBA{0.0, 0.0, 0.0, 1.0};
+  auto rgba2 = gdk::RGBA{0.0, 0.0, 0.0, 1.0};
   g_assert_true(rgba == rgba2);
 
   // Test our set_*_u()

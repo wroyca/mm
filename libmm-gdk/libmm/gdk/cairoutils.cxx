@@ -2,28 +2,28 @@
 
 #include <libmm/gdk/cairoutils.hxx>
 
-namespace Gdk
+namespace gdk
 {
 
-  namespace Cairo
+  namespace cairo
   {
 
     auto
     wrap (cairo_t* cobject, bool has_reference)
-        -> ::Cairo::RefPtr<::Cairo::Context>
+        -> ::cairo::RefPtr<::cairo::Context>
     {
-      return ::Cairo::make_refptr_for_instance<::Cairo::Context> (
-          cobject ? new ::Cairo::Context (cobject, has_reference) : nullptr);
+      return ::cairo::make_refptr_for_instance<::cairo::Context> (
+          cobject ? new ::cairo::Context (cobject, has_reference) : nullptr);
     }
 
     auto
     wrap (cairo_region_t* cobject, bool has_reference)
-        -> ::Cairo::RefPtr<::Cairo::Region>
+        -> ::cairo::RefPtr<::cairo::Region>
     {
-      return ::Cairo::make_refptr_for_instance<::Cairo::Region> (
-          cobject ? new ::Cairo::Region (cobject, has_reference) : nullptr);
+      return ::cairo::make_refptr_for_instance<::cairo::Region> (
+          cobject ? new ::cairo::Region (cobject, has_reference) : nullptr);
     }
 
-  } // namespace Cairo
+  } // namespace cairo
 
-} // namespace Gdk
+} // namespace gdk

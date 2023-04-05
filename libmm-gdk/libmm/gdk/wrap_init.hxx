@@ -5,7 +5,7 @@
 
 #include <libmm/gdk/mm-gdkconfig.hxx>
 
-namespace Gdk
+namespace gdk
 {
   LIBMM_GDK_SYMEXPORT auto
   wrap_init () -> void;

@@ -20,19 +20,19 @@ using GVolumeClass = struct _GVolumeClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gio
+namespace gio
 {
   class LIBMM_GIO_SYMEXPORT Volume_Class;
 }
 #endif
 
-namespace Gio
+namespace gio
 {
 
   class LIBMM_GIO_SYMEXPORT File;
   class LIBMM_GIO_SYMEXPORT Drive;
 
-  class LIBMM_GIO_SYMEXPORT Volume : public Glib::Interface
+  class LIBMM_GIO_SYMEXPORT Volume : public glib::Interface
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -56,7 +56,7 @@ namespace Gio
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
-    explicit Volume (const Glib::Interface_Class& interface_class);
+    explicit Volume (const glib::Interface_Class& interface_class);
 
   public:
     explicit Volume (GVolume* castitem);
@@ -103,28 +103,28 @@ namespace Gio
     get_uuid () const -> std::string;
 
     auto
-    get_icon () -> Glib::RefPtr<Icon>;
+    get_icon () -> glib::RefPtr<Icon>;
 
     auto
-    get_icon () const -> Glib::RefPtr<const Icon>;
+    get_icon () const -> glib::RefPtr<const Icon>;
 
     auto
-    get_symbolic_icon () -> Glib::RefPtr<Icon>;
+    get_symbolic_icon () -> glib::RefPtr<Icon>;
 
     auto
-    get_symbolic_icon () const -> Glib::RefPtr<const Icon>;
+    get_symbolic_icon () const -> glib::RefPtr<const Icon>;
 
     auto
-    get_drive () -> Glib::RefPtr<Drive>;
+    get_drive () -> glib::RefPtr<Drive>;
 
     auto
-    get_drive () const -> Glib::RefPtr<const Drive>;
+    get_drive () const -> glib::RefPtr<const Drive>;
 
     auto
-    get_mount () -> Glib::RefPtr<Mount>;
+    get_mount () -> glib::RefPtr<Mount>;
 
     auto
-    get_mount () const -> Glib::RefPtr<const Mount>;
+    get_mount () const -> glib::RefPtr<const Mount>;
 
     auto
     can_mount () const -> bool;
@@ -136,29 +136,29 @@ namespace Gio
     should_automount () const -> bool;
 
     auto
-    mount (const Glib::RefPtr<MountOperation>& mount_operation,
+    mount (const glib::RefPtr<MountOperation>& mount_operation,
            const SlotAsyncReady& slot,
-           const Glib::RefPtr<Cancellable>& cancellable,
+           const glib::RefPtr<Cancellable>& cancellable,
            Mount::MountFlags flags = Mount::MountFlags::NONE) -> void;
 
     auto
-    mount (const Glib::RefPtr<MountOperation>& mount_operation,
+    mount (const glib::RefPtr<MountOperation>& mount_operation,
            const SlotAsyncReady& slot,
            Mount::MountFlags flags = Mount::MountFlags::NONE) -> void;
 
     auto
-    mount (const Glib::RefPtr<MountOperation>& mount_operation,
+    mount (const glib::RefPtr<MountOperation>& mount_operation,
            Mount::MountFlags flags = Mount::MountFlags::NONE) -> void;
 
     auto
     mount (Mount::MountFlags flags = Mount::MountFlags::NONE) -> void;
 
     auto
-    mount_finish (const Glib::RefPtr<AsyncResult>& result) -> bool;
+    mount_finish (const glib::RefPtr<AsyncResult>& result) -> bool;
 
     auto
     eject (const SlotAsyncReady& slot,
-           const Glib::RefPtr<Cancellable>& cancellable,
+           const glib::RefPtr<Cancellable>& cancellable,
            Mount::UnmountFlags flags = Mount::UnmountFlags::NONE) -> void;
     auto
     eject (const SlotAsyncReady& slot,
@@ -166,41 +166,41 @@ namespace Gio
     auto
     eject (Mount::UnmountFlags flags = Mount::UnmountFlags::NONE) -> void;
     auto
-    eject (const Glib::RefPtr<MountOperation>& mount_operation,
+    eject (const glib::RefPtr<MountOperation>& mount_operation,
            const SlotAsyncReady& slot,
-           const Glib::RefPtr<Cancellable>& cancellable,
+           const glib::RefPtr<Cancellable>& cancellable,
            Mount::UnmountFlags flags = Mount::UnmountFlags::NONE) -> void;
     auto
-    eject (const Glib::RefPtr<MountOperation>& mount_operation,
+    eject (const glib::RefPtr<MountOperation>& mount_operation,
            const SlotAsyncReady& slot,
            Mount::UnmountFlags flags = Mount::UnmountFlags::NONE) -> void;
     auto
-    eject (const Glib::RefPtr<MountOperation>& mount_operation,
+    eject (const glib::RefPtr<MountOperation>& mount_operation,
            Mount::UnmountFlags flags = Mount::UnmountFlags::NONE) -> void;
 
     auto
-    eject_finish (const Glib::RefPtr<AsyncResult>& result) -> bool;
+    eject_finish (const glib::RefPtr<AsyncResult>& result) -> bool;
 
     auto
     get_identifier (const std::string& kind) const -> std::string;
 
     auto
-    enumerate_identifiers () const -> std::vector<Glib::ustring>;
+    enumerate_identifiers () const -> std::vector<glib::ustring>;
 
     auto
-    get_activation_root () -> Glib::RefPtr<File>;
+    get_activation_root () -> glib::RefPtr<File>;
 
     auto
-    get_activation_root () const -> Glib::RefPtr<const File>;
+    get_activation_root () const -> glib::RefPtr<const File>;
 
     auto
-    sort_key () -> Glib::ustring;
+    sort_key () -> glib::ustring;
 
     auto
-    signal_changed () -> Glib::SignalProxy<void ()>;
+    signal_changed () -> glib::SignalProxy<void ()>;
 
     auto
-    signal_removed () -> Glib::SignalProxy<void ()>;
+    signal_removed () -> glib::SignalProxy<void ()>;
 
   protected:
   public:
@@ -213,35 +213,35 @@ namespace Gio
     on_removed () -> void;
   };
 
-} // namespace Gio
+} // namespace gio
 
-namespace Glib
+namespace glib
 {
 
   LIBMM_GIO_SYMEXPORT
   auto
-  wrap (GVolume* object, bool take_copy) -> Glib::RefPtr<Gio::Volume>;
+  wrap (GVolume* object, bool take_copy) -> glib::RefPtr<gio::Volume>;
 
   namespace Container_Helpers
   {
 
     template <>
-    struct TypeTraits<Glib::RefPtr<Gio::Volume>>
+    struct TypeTraits<glib::RefPtr<gio::Volume>>
     {
-      using CppType = Glib::RefPtr<Gio::Volume>;
+      using CppType = glib::RefPtr<gio::Volume>;
       using CType = GVolume*;
       using CTypeNonConst = GVolume*;
 
       static auto
       to_c_type (const CppType& item) -> CType
       {
-        return Glib::unwrap (item);
+        return glib::unwrap (item);
       }
 
       static auto
       to_cpp_type (const CType& item) -> CppType
       {
-        return Glib::wrap (item, true);
+        return glib::wrap (item, true);
       }
 
       static auto
@@ -253,15 +253,15 @@ namespace Glib
     };
 
   } // namespace Container_Helpers
-} // namespace Glib
+} // namespace glib
 
-namespace Glib
+namespace glib
 {
 
   LIBMM_GIO_SYMEXPORT
   auto
-  wrap (GVolume* object, bool take_copy = false) -> Glib::RefPtr<Gio::Volume>;
+  wrap (GVolume* object, bool take_copy = false) -> glib::RefPtr<gio::Volume>;
 
-} // namespace Glib
+} // namespace glib
 
 #endif

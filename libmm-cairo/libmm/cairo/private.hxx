@@ -8,7 +8,7 @@
 #include <string>
 
 #ifndef DOXYGEN_IGNORE_THIS
-namespace Cairo
+namespace cairo
 {
 
   auto
@@ -28,7 +28,7 @@ namespace Cairo
     check_status_and_throw_exception (object.get_status ());
   }
 
-} // namespace Cairo
+} // namespace cairo
 #endif
 
 #endif

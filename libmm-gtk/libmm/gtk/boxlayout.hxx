@@ -13,13 +13,13 @@
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT BoxLayout_Class;
 }
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
   class LIBMM_GTK_SYMEXPORT BoxLayout : public LayoutManager,
@@ -42,7 +42,7 @@ namespace Gtk
     static CppClassType boxlayout_class_;
 
   protected:
-    explicit BoxLayout (const Glib::ConstructParams& construct_params);
+    explicit BoxLayout (const glib::ConstructParams& construct_params);
     explicit BoxLayout (GtkBoxLayout* castitem);
 
 #endif
@@ -85,7 +85,7 @@ namespace Gtk
   public:
     static auto
     create (Orientation orientation = Orientation::HORIZONTAL)
-        -> Glib::RefPtr<BoxLayout>;
+        -> glib::RefPtr<BoxLayout>;
 
     auto
     set_homogeneous (bool homogeneous = true) -> void;
@@ -106,35 +106,35 @@ namespace Gtk
     get_baseline_position () const -> BaselinePosition;
 
     auto
-    property_homogeneous () -> Glib::PropertyProxy<bool>;
+    property_homogeneous () -> glib::PropertyProxy<bool>;
 
     auto
-    property_homogeneous () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_homogeneous () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_spacing () -> Glib::PropertyProxy<int>;
+    property_spacing () -> glib::PropertyProxy<int>;
 
     auto
-    property_spacing () const -> Glib::PropertyProxy_ReadOnly<int>;
+    property_spacing () const -> glib::PropertyProxy_ReadOnly<int>;
 
     auto
-    property_baseline_position () -> Glib::PropertyProxy<BaselinePosition>;
+    property_baseline_position () -> glib::PropertyProxy<BaselinePosition>;
 
     auto
     property_baseline_position () const
-        -> Glib::PropertyProxy_ReadOnly<BaselinePosition>;
+        -> glib::PropertyProxy_ReadOnly<BaselinePosition>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkBoxLayout* object, bool take_copy = false) -> Glib::RefPtr<Gtk::BoxLayout>;
-} // namespace Glib
+  wrap (GtkBoxLayout* object, bool take_copy = false) -> glib::RefPtr<gtk::BoxLayout>;
+} // namespace glib
 
 #endif

@@ -8,7 +8,7 @@
   #include <libmm/gtk/treeview.hxx>
   #include <libmm/gtk/treeviewcolumn.hxx>
 
-namespace Gtk
+namespace gtk
 {
 
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -33,7 +33,7 @@ namespace Gtk
   } // namespace TreeView_Private
   #endif
 
-} // namespace Gtk
+} // namespace gtk
 
 #endif
 

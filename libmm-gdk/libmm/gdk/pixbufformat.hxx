@@ -17,7 +17,7 @@ extern "C"
 }
 #endif
 
-namespace Gdk
+namespace gdk
 {
 
   class LIBMM_GDK_SYMEXPORT PixbufFormat
@@ -69,19 +69,19 @@ namespace Gdk
     PixbufFormat ();
 
     auto
-    get_name () const -> Glib::ustring;
+    get_name () const -> glib::ustring;
 
     auto
-    get_description () const -> Glib::ustring;
+    get_description () const -> glib::ustring;
 
     auto
-    get_mime_types () const -> std::vector<Glib::ustring>;
+    get_mime_types () const -> std::vector<glib::ustring>;
 
     auto
-    get_extensions () const -> std::vector<Glib::ustring>;
+    get_extensions () const -> std::vector<glib::ustring>;
 
     auto
-    is_save_option_supported (const Glib::ustring& option_key) const -> bool;
+    is_save_option_supported (const glib::ustring& option_key) const -> bool;
 
     auto
     is_writable () const -> bool;
@@ -96,7 +96,7 @@ namespace Gdk
     set_disabled (bool disabled = true) -> void;
 
     auto
-    get_license () const -> Glib::ustring;
+    get_license () const -> glib::ustring;
   };
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -131,9 +131,9 @@ namespace Gdk
   };
 #endif
 
-} // namespace Gdk
+} // namespace gdk
 
-namespace Gdk
+namespace gdk
 {
 
   inline auto
@@ -142,21 +142,21 @@ namespace Gdk
     lhs.swap (rhs);
   }
 
-} // namespace Gdk
+} // namespace gdk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GDK_SYMEXPORT auto
-  wrap (GdkPixbufFormat* object, bool take_copy = false) -> Gdk::PixbufFormat;
+  wrap (GdkPixbufFormat* object, bool take_copy = false) -> gdk::PixbufFormat;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
   template <>
-  class LIBMM_GDK_SYMEXPORT Value<Gdk::PixbufFormat>
-    : public Glib::Value_Boxed<Gdk::PixbufFormat>
+  class LIBMM_GDK_SYMEXPORT Value<gdk::PixbufFormat>
+    : public glib::Value_Boxed<gdk::PixbufFormat>
   {
   };
 #endif
 
-} // namespace Glib
+} // namespace glib
 
 #endif

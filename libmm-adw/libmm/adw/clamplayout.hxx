@@ -16,17 +16,17 @@
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Adw
+namespace adw
 {
   class LIBMM_ADW_SYMEXPORT ClampLayout_Class;
 }
 #endif
 
-namespace Adw
+namespace adw
 {
 
-  class LIBMM_ADW_SYMEXPORT ClampLayout : public Gtk::LayoutManager,
-                      public Gtk::Orientable
+  class LIBMM_ADW_SYMEXPORT ClampLayout : public gtk::LayoutManager,
+                      public gtk::Orientable
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -45,7 +45,7 @@ namespace Adw
     static CppClassType clamplayout_class_;
 
   protected:
-    explicit ClampLayout (const Glib::ConstructParams& construct_params);
+    explicit ClampLayout (const glib::ConstructParams& construct_params);
     explicit ClampLayout (AdwClampLayout* castitem);
 
 #endif
@@ -87,7 +87,7 @@ namespace Adw
 
   public:
     static auto
-    create () -> Glib::RefPtr<ClampLayout>;
+    create () -> glib::RefPtr<ClampLayout>;
 
     auto
     get_maximum_size () const -> int;
@@ -102,29 +102,29 @@ namespace Adw
     get_tightening_threshold (int tightening_threshold) -> void;
 
     auto
-    property_maximum_size () -> Glib::PropertyProxy<int>;
+    property_maximum_size () -> glib::PropertyProxy<int>;
 
     auto
-    property_maximum_size () const -> Glib::PropertyProxy_ReadOnly<int>;
+    property_maximum_size () const -> glib::PropertyProxy_ReadOnly<int>;
 
     auto
-    property_tightening_threshold () -> Glib::PropertyProxy<int>;
+    property_tightening_threshold () -> glib::PropertyProxy<int>;
 
     auto
-    property_tightening_threshold () const -> Glib::PropertyProxy_ReadOnly<int>;
+    property_tightening_threshold () const -> glib::PropertyProxy_ReadOnly<int>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Adw
+} // namespace adw
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (AdwClampLayout* object, bool take_copy = false) -> Glib::RefPtr<Adw::ClampLayout>;
+  wrap (AdwClampLayout* object, bool take_copy = false) -> glib::RefPtr<adw::ClampLayout>;
 }
 
 #endif

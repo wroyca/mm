@@ -5,7 +5,7 @@
 #include <libmm/glib/bytes.hxx>
 #include <libmm/glib/bytes_p.hxx>
 
-namespace Glib
+namespace glib
 {
 
   auto
@@ -16,30 +16,30 @@ namespace Glib
   }
 
   GType
-  Value<RefPtr<Glib::Bytes>>::value_type()
+  Value<RefPtr<glib::Bytes>>::value_type()
   {
     return g_bytes_get_type();
   }
 
   void
-  Value<RefPtr<Glib::Bytes>>::set(const CppType& data)
+  Value<RefPtr<glib::Bytes>>::set(const CppType& data)
   {
-    set_boxed(Glib::unwrap(data));
+    set_boxed(glib::unwrap(data));
   }
 
-  Value<RefPtr<Glib::Bytes>>::CppType
-  Value<RefPtr<Glib::Bytes>>::get() const
+  Value<RefPtr<glib::Bytes>>::CppType
+  Value<RefPtr<glib::Bytes>>::get() const
   {
-    return Glib::wrap(static_cast<CType>(get_boxed()), true);
+    return glib::wrap(static_cast<CType>(get_boxed()), true);
   }
 
-} // namespace Glib
+} // namespace glib
 
 namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
@@ -48,13 +48,13 @@ namespace Glib
     if (take_copy && object)
       g_bytes_ref (object);
 
-    return Glib::make_refptr_for_instance<Bytes> (
+    return glib::make_refptr_for_instance<Bytes> (
         reinterpret_cast<Bytes*> (object));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Glib
+namespace glib
 {
 
   auto
@@ -119,4 +119,4 @@ namespace Glib
     return g_bytes_compare (bytes1, bytes2);
   }
 
-} // namespace Glib
+} // namespace glib

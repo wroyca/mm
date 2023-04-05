@@ -4,14 +4,14 @@
  * SPDX-License-Identifier: LGPL-2.1-or-later
  */
 
-#include <libmm/adw/init.hxx> // Adw::init
+#include <libmm/adw/init.hxx> // adw::init
 #include <libmm/adw/mm-adw.hxx>
 
 static void
 test_adw_preferences_page_add_remove (void)
 {
-  Adw::PreferencesPage page;
-  Adw::PreferencesGroup group;
+  adw::PreferencesPage page;
+  adw::PreferencesGroup group;
 
   page.add (&group);
   page.remove (&group);
@@ -20,7 +20,7 @@ test_adw_preferences_page_add_remove (void)
 static void
 test_adw_preferences_page_title (void)
 {
-  Adw::PreferencesPage page;
+  adw::PreferencesPage page;
 
   g_assert_true (page.get_title () == "");
 
@@ -34,7 +34,7 @@ test_adw_preferences_page_title (void)
 static void
 test_adw_preferences_page_icon_name (void)
 {
-  Adw::PreferencesPage page;
+  adw::PreferencesPage page;
 
   g_assert_true (page.get_icon_name () == "");
 
@@ -48,7 +48,7 @@ test_adw_preferences_page_icon_name (void)
 static void
 test_adw_preferences_page_use_underline (void)
 {
-  Adw::PreferencesPage page;
+  adw::PreferencesPage page;
 
   g_assert_false (page.get_use_underline ());
 
@@ -63,7 +63,7 @@ int
 main (int argc, char* argv[])
 {
   gtk_test_init (&argc, &argv, NULL);
-  Adw::init ();
+  adw::init ();
 
   g_test_add_func ("/Adwaita/PreferencesPage/add_remove",
                    test_adw_preferences_page_add_remove);

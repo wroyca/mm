@@ -10,14 +10,14 @@
 #include <gtk/gtk.h>
 #include <libmm/gtk/adjustment.hxx>
 
-using UpdatePolicy = Gtk::SpinButton::UpdatePolicy;
+using UpdatePolicy = gtk::SpinButton::UpdatePolicy;
 
-namespace Gtk
+namespace gtk
 {
 
   SpinButton::SpinButton (double climb_rate, guint digits)
-    : Glib::ObjectBase (nullptr),
-      Gtk::Widget (Glib::ConstructParams (spinbutton_class_.init (),
+    : glib::ObjectBase (nullptr),
+      gtk::Widget (glib::ConstructParams (spinbutton_class_.init (),
                                           "climb_rate",
                                           climb_rate,
                                           "digits",
@@ -32,7 +32,7 @@ namespace Gtk
     gtk_spin_button_set_adjustment (gobj (), nullptr);
   }
 
-} // namespace Gtk
+} // namespace gtk
 
 namespace
 {
@@ -40,22 +40,22 @@ namespace
   static auto
   SpinButton_signal_input_callback (GtkSpinButton* self, double* p0, void* data) -> gint
   {
-    using namespace Gtk;
+    using namespace gtk;
     using SlotType = sigc::slot<int (double&)>;
 
     auto obj = dynamic_cast<SpinButton*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
     {
       try
       {
-        if (const auto slot = Glib::SignalProxyNormal::data_to_slot (data))
+        if (const auto slot = glib::SignalProxyNormal::data_to_slot (data))
           return (*static_cast<SlotType*> (slot)) (*(p0));
       }
       catch (...)
       {
-        Glib::exception_handlers_invoke ();
+        glib::exception_handlers_invoke ();
       }
     }
 
@@ -68,22 +68,22 @@ namespace
                                            double* p0,
                                            void* data) -> gint
   {
-    using namespace Gtk;
+    using namespace gtk;
     using SlotType = sigc::slot<void (double&)>;
 
     auto obj = dynamic_cast<SpinButton*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
     {
       try
       {
-        if (const auto slot = Glib::SignalProxyNormal::data_to_slot (data))
+        if (const auto slot = glib::SignalProxyNormal::data_to_slot (data))
           (*static_cast<SlotType*> (slot)) (*(p0));
       }
       catch (...)
       {
-        Glib::exception_handlers_invoke ();
+        glib::exception_handlers_invoke ();
       }
     }
 
@@ -91,7 +91,7 @@ namespace
     return RType ();
   }
 
-  static const Glib::SignalProxyInfo SpinButton_signal_input_info = {
+  static const glib::SignalProxyInfo SpinButton_signal_input_info = {
       "input",
       (GCallback) &SpinButton_signal_input_callback,
       (GCallback) &SpinButton_signal_input_notify_callback};
@@ -99,22 +99,22 @@ namespace
   static auto
   SpinButton_signal_output_callback (GtkSpinButton* self, void* data) -> gboolean
   {
-    using namespace Gtk;
+    using namespace gtk;
     using SlotType = sigc::slot<bool ()>;
 
     auto obj = dynamic_cast<SpinButton*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
     {
       try
       {
-        if (const auto slot = Glib::SignalProxyNormal::data_to_slot (data))
+        if (const auto slot = glib::SignalProxyNormal::data_to_slot (data))
           return static_cast<int> ((*static_cast<SlotType*> (slot)) ());
       }
       catch (...)
       {
-        Glib::exception_handlers_invoke ();
+        glib::exception_handlers_invoke ();
       }
     }
 
@@ -125,22 +125,22 @@ namespace
   static auto
   SpinButton_signal_output_notify_callback (GtkSpinButton* self, void* data) -> gboolean
   {
-    using namespace Gtk;
+    using namespace gtk;
     using SlotType = sigc::slot<void ()>;
 
     auto obj = dynamic_cast<SpinButton*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
     {
       try
       {
-        if (const auto slot = Glib::SignalProxyNormal::data_to_slot (data))
+        if (const auto slot = glib::SignalProxyNormal::data_to_slot (data))
           (*static_cast<SlotType*> (slot)) ();
       }
       catch (...)
       {
-        Glib::exception_handlers_invoke ();
+        glib::exception_handlers_invoke ();
       }
     }
 
@@ -148,52 +148,52 @@ namespace
     return RType ();
   }
 
-  static const Glib::SignalProxyInfo SpinButton_signal_output_info = {
+  static const glib::SignalProxyInfo SpinButton_signal_output_info = {
       "output",
       (GCallback) &SpinButton_signal_output_callback,
       (GCallback) &SpinButton_signal_output_notify_callback};
 
-  static const Glib::SignalProxyInfo SpinButton_signal_wrapped_info = {
+  static const glib::SignalProxyInfo SpinButton_signal_wrapped_info = {
       "wrapped",
-      (GCallback) &Glib::SignalProxyNormal::slot0_void_callback,
-      (GCallback) &Glib::SignalProxyNormal::slot0_void_callback};
+      (GCallback) &glib::SignalProxyNormal::slot0_void_callback,
+      (GCallback) &glib::SignalProxyNormal::slot0_void_callback};
 
-  static const Glib::SignalProxyInfo SpinButton_signal_value_changed_info = {
+  static const glib::SignalProxyInfo SpinButton_signal_value_changed_info = {
       "value_changed",
-      (GCallback) &Glib::SignalProxyNormal::slot0_void_callback,
-      (GCallback) &Glib::SignalProxyNormal::slot0_void_callback};
+      (GCallback) &glib::SignalProxyNormal::slot0_void_callback,
+      (GCallback) &glib::SignalProxyNormal::slot0_void_callback};
 
 } // namespace
 
 auto
-Glib::Value<Gtk::SpinType>::value_type () -> GType
+glib::Value<gtk::SpinType>::value_type () -> GType
 {
   return gtk_spin_type_get_type ();
 }
 
 auto
-Glib::Value<Gtk::SpinButton::UpdatePolicy>::value_type () -> GType
+glib::Value<gtk::SpinButton::UpdatePolicy>::value_type () -> GType
 {
   return gtk_spin_button_update_policy_get_type ();
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GtkSpinButton* object, bool take_copy) -> Gtk::SpinButton*
+  wrap (GtkSpinButton* object, bool take_copy) -> gtk::SpinButton*
   {
-    return dynamic_cast<Gtk::SpinButton*> (
-        Glib::wrap_auto ((GObject*) (object), take_copy));
+    return dynamic_cast<gtk::SpinButton*> (
+        glib::wrap_auto ((GObject*) (object), take_copy));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gtk
+namespace gtk
 {
 
   auto
-  SpinButton_Class::init () -> const Glib::Class&
+  SpinButton_Class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -217,23 +217,23 @@ namespace Gtk
   }
 
   auto
-  SpinButton_Class::wrap_new (GObject* o) -> Glib::ObjectBase*
+  SpinButton_Class::wrap_new (GObject* o) -> glib::ObjectBase*
   {
     return manage (new SpinButton ((GtkSpinButton*) (o)));
   }
 
-  SpinButton::SpinButton (const Glib::ConstructParams& construct_params)
-    : Gtk::Widget (construct_params)
+  SpinButton::SpinButton (const glib::ConstructParams& construct_params)
+    : gtk::Widget (construct_params)
   {
   }
 
   SpinButton::SpinButton (GtkSpinButton* castitem)
-    : Gtk::Widget ((GtkWidget*) (castitem))
+    : gtk::Widget ((GtkWidget*) (castitem))
   {
   }
 
   SpinButton::SpinButton (SpinButton&& src) noexcept
-    : Gtk::Widget (std::move (src)),
+    : gtk::Widget (std::move (src)),
       Orientable (std::move (src)),
       Editable (std::move (src)),
       CellEditable (std::move (src))
@@ -243,7 +243,7 @@ namespace Gtk
   auto
   SpinButton::operator= (SpinButton&& src) noexcept -> SpinButton&
   {
-    Gtk::Widget::operator= (std::move (src));
+    gtk::Widget::operator= (std::move (src));
     Orientable::operator= (std::move (src));
     Editable::operator= (std::move (src));
     CellEditable::operator= (std::move (src));
@@ -269,13 +269,13 @@ namespace Gtk
     return gtk_spin_button_get_type ();
   }
 
-  SpinButton::SpinButton (const Glib::RefPtr<Adjustment>& adjustment,
+  SpinButton::SpinButton (const glib::RefPtr<Adjustment>& adjustment,
                           double climb_rate,
                           guint digits)
-    : Glib::ObjectBase (nullptr),
-      Gtk::Widget (Glib::ConstructParams (spinbutton_class_.init (),
+    : glib::ObjectBase (nullptr),
+      gtk::Widget (glib::ConstructParams (spinbutton_class_.init (),
                                           "adjustment",
-                                          Glib::unwrap (adjustment),
+                                          glib::unwrap (adjustment),
                                           "climb_rate",
                                           climb_rate,
                                           "digits",
@@ -285,33 +285,33 @@ namespace Gtk
   }
 
   auto
-  SpinButton::configure (const Glib::RefPtr<Adjustment>& adjustment,
+  SpinButton::configure (const glib::RefPtr<Adjustment>& adjustment,
                          double climb_rate,
                          guint digits) -> void
   {
     gtk_spin_button_configure (gobj (),
-                               Glib::unwrap (adjustment),
+                               glib::unwrap (adjustment),
                                climb_rate,
                                digits);
   }
 
   auto
-  SpinButton::set_adjustment (const Glib::RefPtr<Adjustment>& adjustment) -> void
+  SpinButton::set_adjustment (const glib::RefPtr<Adjustment>& adjustment) -> void
   {
-    gtk_spin_button_set_adjustment (gobj (), Glib::unwrap (adjustment));
+    gtk_spin_button_set_adjustment (gobj (), glib::unwrap (adjustment));
   }
 
   auto
-  SpinButton::get_adjustment () -> Glib::RefPtr<Adjustment>
+  SpinButton::get_adjustment () -> glib::RefPtr<Adjustment>
   {
-    auto retvalue = Glib::wrap (gtk_spin_button_get_adjustment (gobj ()));
+    auto retvalue = glib::wrap (gtk_spin_button_get_adjustment (gobj ()));
     if (retvalue)
       retvalue->reference ();
     return retvalue;
   }
 
   auto
-  SpinButton::get_adjustment () const -> Glib::RefPtr<const Adjustment>
+  SpinButton::get_adjustment () const -> glib::RefPtr<const Adjustment>
   {
     return const_cast<SpinButton*> (this)->get_adjustment ();
   }
@@ -456,138 +456,138 @@ namespace Gtk
   }
 
   auto
-  SpinButton::signal_input () -> Glib::SignalProxy<int (double&)>
+  SpinButton::signal_input () -> glib::SignalProxy<int (double&)>
   {
-    return Glib::SignalProxy<int (double&)> (this,
+    return glib::SignalProxy<int (double&)> (this,
                                              &SpinButton_signal_input_info);
   }
 
   auto
-  SpinButton::signal_output () -> Glib::SignalProxy<bool ()>
+  SpinButton::signal_output () -> glib::SignalProxy<bool ()>
   {
-    return Glib::SignalProxy<bool ()> (this, &SpinButton_signal_output_info);
+    return glib::SignalProxy<bool ()> (this, &SpinButton_signal_output_info);
   }
 
   auto
-  SpinButton::signal_wrapped () -> Glib::SignalProxy<void ()>
+  SpinButton::signal_wrapped () -> glib::SignalProxy<void ()>
   {
-    return Glib::SignalProxy<void ()> (this, &SpinButton_signal_wrapped_info);
+    return glib::SignalProxy<void ()> (this, &SpinButton_signal_wrapped_info);
   }
 
   auto
-  SpinButton::signal_value_changed () -> Glib::SignalProxy<void ()>
+  SpinButton::signal_value_changed () -> glib::SignalProxy<void ()>
   {
-    return Glib::SignalProxy<void ()> (this,
+    return glib::SignalProxy<void ()> (this,
                                        &SpinButton_signal_value_changed_info);
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<
-          Glib::RefPtr<Adjustment>>::value,
-      "Type Glib::RefPtr<Adjustment> cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      glib::Traits::ValueCompatibleWithWrapProperty<
+          glib::RefPtr<Adjustment>>::value,
+      "Type glib::RefPtr<Adjustment> cannot be used in _WRAP_PROPERTY. "
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  SpinButton::property_adjustment () -> Glib::PropertyProxy<Glib::RefPtr<Adjustment>>
+  SpinButton::property_adjustment () -> glib::PropertyProxy<glib::RefPtr<Adjustment>>
   {
-    return Glib::PropertyProxy<Glib::RefPtr<Adjustment>> (this, "adjustment");
+    return glib::PropertyProxy<glib::RefPtr<Adjustment>> (this, "adjustment");
   }
 
   auto
-  SpinButton::property_adjustment () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Adjustment>>
+  SpinButton::property_adjustment () const -> glib::PropertyProxy_ReadOnly<glib::RefPtr<Adjustment>>
   {
-    return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Adjustment>> (
+    return glib::PropertyProxy_ReadOnly<glib::RefPtr<Adjustment>> (
         this,
         "adjustment");
   }
 
   auto
-  SpinButton::property_climb_rate () -> Glib::PropertyProxy<double>
+  SpinButton::property_climb_rate () -> glib::PropertyProxy<double>
   {
-    return Glib::PropertyProxy<double> (this, "climb-rate");
+    return glib::PropertyProxy<double> (this, "climb-rate");
   }
 
   auto
-  SpinButton::property_climb_rate () const -> Glib::PropertyProxy_ReadOnly<double>
+  SpinButton::property_climb_rate () const -> glib::PropertyProxy_ReadOnly<double>
   {
-    return Glib::PropertyProxy_ReadOnly<double> (this, "climb-rate");
+    return glib::PropertyProxy_ReadOnly<double> (this, "climb-rate");
   }
 
   auto
-  SpinButton::property_digits () -> Glib::PropertyProxy<guint>
+  SpinButton::property_digits () -> glib::PropertyProxy<guint>
   {
-    return Glib::PropertyProxy<guint> (this, "digits");
+    return glib::PropertyProxy<guint> (this, "digits");
   }
 
   auto
-  SpinButton::property_digits () const -> Glib::PropertyProxy_ReadOnly<guint>
+  SpinButton::property_digits () const -> glib::PropertyProxy_ReadOnly<guint>
   {
-    return Glib::PropertyProxy_ReadOnly<guint> (this, "digits");
+    return glib::PropertyProxy_ReadOnly<guint> (this, "digits");
   }
 
   auto
-  SpinButton::property_snap_to_ticks () -> Glib::PropertyProxy<bool>
+  SpinButton::property_snap_to_ticks () -> glib::PropertyProxy<bool>
   {
-    return Glib::PropertyProxy<bool> (this, "snap-to-ticks");
+    return glib::PropertyProxy<bool> (this, "snap-to-ticks");
   }
 
   auto
-  SpinButton::property_snap_to_ticks () const -> Glib::PropertyProxy_ReadOnly<bool>
+  SpinButton::property_snap_to_ticks () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "snap-to-ticks");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "snap-to-ticks");
   }
 
   auto
-  SpinButton::property_numeric () -> Glib::PropertyProxy<bool>
+  SpinButton::property_numeric () -> glib::PropertyProxy<bool>
   {
-    return Glib::PropertyProxy<bool> (this, "numeric");
+    return glib::PropertyProxy<bool> (this, "numeric");
   }
 
   auto
-  SpinButton::property_numeric () const -> Glib::PropertyProxy_ReadOnly<bool>
+  SpinButton::property_numeric () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "numeric");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "numeric");
   }
 
   auto
-  SpinButton::property_wrap () -> Glib::PropertyProxy<bool>
+  SpinButton::property_wrap () -> glib::PropertyProxy<bool>
   {
-    return Glib::PropertyProxy<bool> (this, "wrap");
+    return glib::PropertyProxy<bool> (this, "wrap");
   }
 
   auto
-  SpinButton::property_wrap () const -> Glib::PropertyProxy_ReadOnly<bool>
+  SpinButton::property_wrap () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "wrap");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "wrap");
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<UpdatePolicy>::value,
+      glib::Traits::ValueCompatibleWithWrapProperty<UpdatePolicy>::value,
       "Type UpdatePolicy cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  SpinButton::property_update_policy () -> Glib::PropertyProxy<UpdatePolicy>
+  SpinButton::property_update_policy () -> glib::PropertyProxy<UpdatePolicy>
   {
-    return Glib::PropertyProxy<UpdatePolicy> (this, "update-policy");
+    return glib::PropertyProxy<UpdatePolicy> (this, "update-policy");
   }
 
   auto
-  SpinButton::property_update_policy () const -> Glib::PropertyProxy_ReadOnly<UpdatePolicy>
+  SpinButton::property_update_policy () const -> glib::PropertyProxy_ReadOnly<UpdatePolicy>
   {
-    return Glib::PropertyProxy_ReadOnly<UpdatePolicy> (this, "update-policy");
+    return glib::PropertyProxy_ReadOnly<UpdatePolicy> (this, "update-policy");
   }
 
   auto
-  SpinButton::property_value () -> Glib::PropertyProxy<double>
+  SpinButton::property_value () -> glib::PropertyProxy<double>
   {
-    return Glib::PropertyProxy<double> (this, "value");
+    return glib::PropertyProxy<double> (this, "value");
   }
 
   auto
-  SpinButton::property_value () const -> Glib::PropertyProxy_ReadOnly<double>
+  SpinButton::property_value () const -> glib::PropertyProxy_ReadOnly<double>
   {
-    return Glib::PropertyProxy_ReadOnly<double> (this, "value");
+    return glib::PropertyProxy_ReadOnly<double> (this, "value");
   }
 
-} // namespace Gtk
+} // namespace gtk

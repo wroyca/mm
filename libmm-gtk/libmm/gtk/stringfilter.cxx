@@ -7,36 +7,36 @@
 
 #include <gtk/gtk.h>
 
-using MatchMode = Gtk::StringFilter::MatchMode;
+using MatchMode = gtk::StringFilter::MatchMode;
 
 namespace
 {
 }
 
 auto
-Glib::Value<Gtk::StringFilter::MatchMode>::value_type () -> GType
+glib::Value<gtk::StringFilter::MatchMode>::value_type () -> GType
 {
   return gtk_string_filter_match_mode_get_type ();
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GtkStringFilter* object, bool take_copy) -> Glib::RefPtr<Gtk::StringFilter>
+  wrap (GtkStringFilter* object, bool take_copy) -> glib::RefPtr<gtk::StringFilter>
   {
-    return Glib::make_refptr_for_instance<Gtk::StringFilter> (
-        dynamic_cast<Gtk::StringFilter*> (
-            Glib::wrap_auto ((GObject*) (object), take_copy)));
+    return glib::make_refptr_for_instance<gtk::StringFilter> (
+        dynamic_cast<gtk::StringFilter*> (
+            glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gtk
+namespace gtk
 {
 
   auto
-  StringFilter_Class::init () -> const Glib::Class&
+  StringFilter_Class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -56,7 +56,7 @@ namespace Gtk
   }
 
   auto
-  StringFilter_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  StringFilter_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new StringFilter ((GtkStringFilter*) object);
   }
@@ -68,25 +68,25 @@ namespace Gtk
     return gobj ();
   }
 
-  StringFilter::StringFilter (const Glib::ConstructParams& construct_params)
-    : Gtk::Filter (construct_params)
+  StringFilter::StringFilter (const glib::ConstructParams& construct_params)
+    : gtk::Filter (construct_params)
   {
   }
 
   StringFilter::StringFilter (GtkStringFilter* castitem)
-    : Gtk::Filter ((GtkFilter*) (castitem))
+    : gtk::Filter ((GtkFilter*) (castitem))
   {
   }
 
   StringFilter::StringFilter (StringFilter&& src) noexcept
-    : Gtk::Filter (std::move (src))
+    : gtk::Filter (std::move (src))
   {
   }
 
   auto
   StringFilter::operator= (StringFilter&& src) noexcept -> StringFilter&
   {
-    Gtk::Filter::operator= (std::move (src));
+    gtk::Filter::operator= (std::move (src));
     return *this;
   }
 
@@ -107,9 +107,9 @@ namespace Gtk
   }
 
   StringFilter::StringFilter (
-      const Glib::RefPtr<Expression<Glib::ustring>>& expression)
-    : Glib::ObjectBase (nullptr),
-      Gtk::Filter (Glib::ConstructParams (
+      const glib::RefPtr<Expression<glib::ustring>>& expression)
+    : glib::ObjectBase (nullptr),
+      gtk::Filter (glib::ConstructParams (
           stringfilter_class_.init (),
           "expression",
           ((expression) ? (expression)->gobj () : nullptr),
@@ -119,40 +119,40 @@ namespace Gtk
 
   auto
   StringFilter::create (
-      const Glib::RefPtr<Expression<Glib::ustring>>& expression) -> Glib::RefPtr<StringFilter>
+      const glib::RefPtr<Expression<glib::ustring>>& expression) -> glib::RefPtr<StringFilter>
   {
-    return Glib::make_refptr_for_instance<StringFilter> (
+    return glib::make_refptr_for_instance<StringFilter> (
         new StringFilter (expression));
   }
 
   auto
-  StringFilter::get_search () const -> Glib::ustring
+  StringFilter::get_search () const -> glib::ustring
   {
-    return Glib::convert_const_gchar_ptr_to_ustring (
+    return glib::convert_const_gchar_ptr_to_ustring (
         gtk_string_filter_get_search (const_cast<GtkStringFilter*> (gobj ())));
   }
 
   auto
-  StringFilter::set_search (const Glib::ustring& search) -> void
+  StringFilter::set_search (const glib::ustring& search) -> void
   {
     gtk_string_filter_set_search (gobj (), search.c_str ());
   }
 
   auto
-  StringFilter::get_expression () -> Glib::RefPtr<Expression<Glib::ustring>>
+  StringFilter::get_expression () -> glib::RefPtr<Expression<glib::ustring>>
   {
     auto retvalue =
-        Glib::wrap<Glib::ustring> (gtk_string_filter_get_expression (gobj ()));
+        glib::wrap<glib::ustring> (gtk_string_filter_get_expression (gobj ()));
     if (retvalue)
       retvalue->reference ();
     return retvalue;
   }
 
   auto
-  StringFilter::get_expression () const -> Glib::RefPtr<const Expression<Glib::ustring>>
+  StringFilter::get_expression () const -> glib::RefPtr<const Expression<glib::ustring>>
   {
     auto retvalue =
-        Glib::wrap<Glib::ustring> (gtk_string_filter_get_expression (
+        glib::wrap<glib::ustring> (gtk_string_filter_get_expression (
             const_cast<GtkStringFilter*> (gobj ())));
     if (retvalue)
       retvalue->reference ();
@@ -161,7 +161,7 @@ namespace Gtk
 
   auto
   StringFilter::set_expression (
-      const Glib::RefPtr<Expression<Glib::ustring>>& expression) -> void
+      const glib::RefPtr<Expression<glib::ustring>>& expression) -> void
   {
     gtk_string_filter_set_expression (
         gobj (),
@@ -197,66 +197,66 @@ namespace Gtk
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<
-          Glib::RefPtr<Expression<Glib::ustring>>>::value,
-      "Type Glib::RefPtr<Expression<Glib::ustring>> cannot be used in "
+      glib::Traits::ValueCompatibleWithWrapProperty<
+          glib::RefPtr<Expression<glib::ustring>>>::value,
+      "Type glib::RefPtr<Expression<glib::ustring>> cannot be used in "
       "_WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  StringFilter::property_expression () -> Glib::PropertyProxy<Glib::RefPtr<Expression<Glib::ustring>>>
+  StringFilter::property_expression () -> glib::PropertyProxy<glib::RefPtr<Expression<glib::ustring>>>
   {
-    return Glib::PropertyProxy<Glib::RefPtr<Expression<Glib::ustring>>> (
+    return glib::PropertyProxy<glib::RefPtr<Expression<glib::ustring>>> (
         this,
         "expression");
   }
 
   auto
-  StringFilter::property_expression () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Expression<Glib::ustring>>>
+  StringFilter::property_expression () const -> glib::PropertyProxy_ReadOnly<glib::RefPtr<Expression<glib::ustring>>>
   {
-    return Glib::PropertyProxy_ReadOnly<
-        Glib::RefPtr<Expression<Glib::ustring>>> (this, "expression");
+    return glib::PropertyProxy_ReadOnly<
+        glib::RefPtr<Expression<glib::ustring>>> (this, "expression");
   }
 
   auto
-  StringFilter::property_ignore_case () -> Glib::PropertyProxy<bool>
+  StringFilter::property_ignore_case () -> glib::PropertyProxy<bool>
   {
-    return Glib::PropertyProxy<bool> (this, "ignore-case");
+    return glib::PropertyProxy<bool> (this, "ignore-case");
   }
 
   auto
-  StringFilter::property_ignore_case () const -> Glib::PropertyProxy_ReadOnly<bool>
+  StringFilter::property_ignore_case () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "ignore-case");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "ignore-case");
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<MatchMode>::value,
+      glib::Traits::ValueCompatibleWithWrapProperty<MatchMode>::value,
       "Type MatchMode cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  StringFilter::property_match_mode () -> Glib::PropertyProxy<MatchMode>
+  StringFilter::property_match_mode () -> glib::PropertyProxy<MatchMode>
   {
-    return Glib::PropertyProxy<MatchMode> (this, "match-mode");
+    return glib::PropertyProxy<MatchMode> (this, "match-mode");
   }
 
   auto
-  StringFilter::property_match_mode () const -> Glib::PropertyProxy_ReadOnly<MatchMode>
+  StringFilter::property_match_mode () const -> glib::PropertyProxy_ReadOnly<MatchMode>
   {
-    return Glib::PropertyProxy_ReadOnly<MatchMode> (this, "match-mode");
+    return glib::PropertyProxy_ReadOnly<MatchMode> (this, "match-mode");
   }
 
   auto
-  StringFilter::property_search () -> Glib::PropertyProxy<Glib::ustring>
+  StringFilter::property_search () -> glib::PropertyProxy<glib::ustring>
   {
-    return Glib::PropertyProxy<Glib::ustring> (this, "search");
+    return glib::PropertyProxy<glib::ustring> (this, "search");
   }
 
   auto
-  StringFilter::property_search () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>
+  StringFilter::property_search () const -> glib::PropertyProxy_ReadOnly<glib::ustring>
   {
-    return Glib::PropertyProxy_ReadOnly<Glib::ustring> (this, "search");
+    return glib::PropertyProxy_ReadOnly<glib::ustring> (this, "search");
   }
 
-} // namespace Gtk
+} // namespace gtk

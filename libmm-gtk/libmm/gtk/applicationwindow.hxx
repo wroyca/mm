@@ -19,19 +19,19 @@ using GtkApplicationWindowClass = struct _GtkApplicationWindowClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT ApplicationWindow_Class;
 }
 #endif
 
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT ShortcutsWindow;
 
-  class LIBMM_GTK_SYMEXPORT ApplicationWindow : public Gtk::Window,
-                                      public Gio::ActionGroup,
-                                      public Gio::ActionMap
+  class LIBMM_GTK_SYMEXPORT ApplicationWindow : public gtk::Window,
+                                      public gio::ActionGroup,
+                                      public gio::ActionMap
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -58,7 +58,7 @@ namespace Gtk
     static CppClassType applicationwindow_class_;
 
   protected:
-    explicit ApplicationWindow (const Glib::ConstructParams& construct_params);
+    explicit ApplicationWindow (const glib::ConstructParams& construct_params);
     explicit ApplicationWindow (GtkApplicationWindow* castitem);
 
 #endif
@@ -90,7 +90,7 @@ namespace Gtk
     using Widget::activate_action;
 
     ApplicationWindow ();
-    explicit ApplicationWindow (const Glib::RefPtr<Application>& application);
+    explicit ApplicationWindow (const glib::RefPtr<Application>& application);
 
     auto
     set_show_menubar (bool show_menubar = true) -> void;
@@ -114,22 +114,22 @@ namespace Gtk
     get_help_overlay () const -> const ShortcutsWindow*;
 
     auto
-    property_show_menubar () -> Glib::PropertyProxy<bool>;
+    property_show_menubar () -> glib::PropertyProxy<bool>;
 
     auto
-    property_show_menubar () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_show_menubar () const -> glib::PropertyProxy_ReadOnly<bool>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkApplicationWindow* object, bool take_copy = false) -> Gtk::ApplicationWindow*;
-} // namespace Glib
+  wrap (GtkApplicationWindow* object, bool take_copy = false) -> gtk::ApplicationWindow*;
+} // namespace glib
 
 #endif

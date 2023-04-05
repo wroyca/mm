@@ -14,13 +14,13 @@ using GtkScaleClass = struct _GtkScaleClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT Scale_Class;
 }
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
   class LIBMM_GTK_SYMEXPORT Scale : public Range
@@ -50,7 +50,7 @@ namespace Gtk
     static CppClassType scale_class_;
 
   protected:
-    explicit Scale (const Glib::ConstructParams& construct_params);
+    explicit Scale (const glib::ConstructParams& construct_params);
     explicit Scale (GtkScale* castitem);
 
 #endif
@@ -83,7 +83,7 @@ namespace Gtk
 
     explicit Scale (Orientation orientation);
 
-    explicit Scale (const Glib::RefPtr<Adjustment>& adjustment,
+    explicit Scale (const glib::RefPtr<Adjustment>& adjustment,
                     Orientation orientation = Orientation::HORIZONTAL);
 
     auto
@@ -111,22 +111,22 @@ namespace Gtk
     get_has_origin () const -> bool;
 
     auto
-    get_layout () -> Glib::RefPtr<Pango::Layout>;
+    get_layout () -> glib::RefPtr<pango::Layout>;
 
     auto
-    get_layout () const -> Glib::RefPtr<const Pango::Layout>;
+    get_layout () const -> glib::RefPtr<const pango::Layout>;
 
     auto
     get_layout_offsets (int& x, int& y) const -> void;
 
     auto
-    add_mark (double value, PositionType position, const Glib::ustring& markup)
+    add_mark (double value, PositionType position, const glib::ustring& markup)
         -> void;
 
     auto
     clear_marks () -> void;
 
-    using SlotFormatValue = sigc::slot<Glib::ustring (double)>;
+    using SlotFormatValue = sigc::slot<glib::ustring (double)>;
 
     auto
     set_format_value_func (const SlotFormatValue& slot) -> void;
@@ -135,40 +135,40 @@ namespace Gtk
     unset_format_value_func () -> void;
 
     auto
-    property_digits () -> Glib::PropertyProxy<int>;
+    property_digits () -> glib::PropertyProxy<int>;
 
     auto
-    property_digits () const -> Glib::PropertyProxy_ReadOnly<int>;
+    property_digits () const -> glib::PropertyProxy_ReadOnly<int>;
 
     auto
-    property_draw_value () -> Glib::PropertyProxy<bool>;
+    property_draw_value () -> glib::PropertyProxy<bool>;
 
     auto
-    property_draw_value () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_draw_value () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_value_pos () -> Glib::PropertyProxy<PositionType>;
+    property_value_pos () -> glib::PropertyProxy<PositionType>;
 
     auto
-    property_value_pos () const -> Glib::PropertyProxy_ReadOnly<PositionType>;
+    property_value_pos () const -> glib::PropertyProxy_ReadOnly<PositionType>;
 
     auto
-    property_has_origin () -> Glib::PropertyProxy<bool>;
+    property_has_origin () -> glib::PropertyProxy<bool>;
 
     auto
-    property_has_origin () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_has_origin () const -> glib::PropertyProxy_ReadOnly<bool>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkScale* object, bool take_copy = false) -> Gtk::Scale*;
-} // namespace Glib
+  wrap (GtkScale* object, bool take_copy = false) -> gtk::Scale*;
+} // namespace glib
 
 #endif

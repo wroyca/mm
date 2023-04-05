@@ -16,13 +16,13 @@
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT ColumnView_Class;
 }
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
   class LIBMM_GTK_SYMEXPORT ColumnView : public Widget,
@@ -53,7 +53,7 @@ namespace Gtk
     static CppClassType columnview_class_;
 
   protected:
-    explicit ColumnView (const Glib::ConstructParams& construct_params);
+    explicit ColumnView (const glib::ConstructParams& construct_params);
     explicit ColumnView (GtkColumnView* castitem);
 
 #endif
@@ -82,32 +82,32 @@ namespace Gtk
 
   private:
   public:
-    explicit ColumnView (const Glib::RefPtr<SelectionModel>& model = {});
+    explicit ColumnView (const glib::RefPtr<SelectionModel>& model = {});
 
     auto
-    get_columns () -> Glib::RefPtr<Gio::ListModel>;
+    get_columns () -> glib::RefPtr<gio::ListModel>;
 
     auto
-    get_columns () const -> Glib::RefPtr<const Gio::ListModel>;
+    get_columns () const -> glib::RefPtr<const gio::ListModel>;
 
     auto
-    append_column (const Glib::RefPtr<ColumnViewColumn>& column) -> void;
+    append_column (const glib::RefPtr<ColumnViewColumn>& column) -> void;
 
     auto
-    remove_column (const Glib::RefPtr<ColumnViewColumn>& column) -> void;
+    remove_column (const glib::RefPtr<ColumnViewColumn>& column) -> void;
 
     auto
-    insert_column (guint position, const Glib::RefPtr<ColumnViewColumn>& column)
+    insert_column (guint position, const glib::RefPtr<ColumnViewColumn>& column)
         -> void;
 
     auto
-    get_model () -> Glib::RefPtr<SelectionModel>;
+    get_model () -> glib::RefPtr<SelectionModel>;
 
     auto
-    get_model () const -> Glib::RefPtr<const SelectionModel>;
+    get_model () const -> glib::RefPtr<const SelectionModel>;
 
     auto
-    set_model (const Glib::RefPtr<SelectionModel>& model) -> void;
+    set_model (const glib::RefPtr<SelectionModel>& model) -> void;
 
     auto
     get_show_row_separators () const -> bool;
@@ -122,13 +122,13 @@ namespace Gtk
     set_show_column_separators (bool show_separators = true) -> void;
 
     auto
-    get_sorter () -> Glib::RefPtr<Sorter>;
+    get_sorter () -> glib::RefPtr<Sorter>;
 
     auto
-    get_sorter () const -> Glib::RefPtr<const Sorter>;
+    get_sorter () const -> glib::RefPtr<const Sorter>;
 
     auto
-    sort_by_column (const Glib::RefPtr<ColumnViewColumn>& column,
+    sort_by_column (const glib::RefPtr<ColumnViewColumn>& column,
                     SortType direction) -> void;
 
     auto
@@ -151,65 +151,65 @@ namespace Gtk
 
     auto
     property_columns () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gio::ListModel>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<gio::ListModel>>;
 
     auto
-    property_model () -> Glib::PropertyProxy<Glib::RefPtr<SelectionModel>>;
+    property_model () -> glib::PropertyProxy<glib::RefPtr<SelectionModel>>;
 
     auto
     property_model () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<SelectionModel>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<SelectionModel>>;
 
     auto
-    property_show_row_separators () -> Glib::PropertyProxy<bool>;
+    property_show_row_separators () -> glib::PropertyProxy<bool>;
 
     auto
-    property_show_row_separators () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_show_row_separators () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_show_column_separators () -> Glib::PropertyProxy<bool>;
+    property_show_column_separators () -> glib::PropertyProxy<bool>;
 
     auto
     property_show_column_separators () const
-        -> Glib::PropertyProxy_ReadOnly<bool>;
+        -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
     property_sorter () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Sorter>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<Sorter>>;
 
     auto
-    property_single_click_activate () -> Glib::PropertyProxy<bool>;
+    property_single_click_activate () -> glib::PropertyProxy<bool>;
 
     auto
     property_single_click_activate () const
-        -> Glib::PropertyProxy_ReadOnly<bool>;
+        -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_reorderable () -> Glib::PropertyProxy<bool>;
+    property_reorderable () -> glib::PropertyProxy<bool>;
 
     auto
-    property_reorderable () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_reorderable () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_enable_rubberband () -> Glib::PropertyProxy<bool>;
+    property_enable_rubberband () -> glib::PropertyProxy<bool>;
 
     auto
-    property_enable_rubberband () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_enable_rubberband () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    signal_activate () -> Glib::SignalProxy<void (guint)>;
+    signal_activate () -> glib::SignalProxy<void (guint)>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkColumnView* object, bool take_copy = false) -> Gtk::ColumnView*;
-} // namespace Glib
+  wrap (GtkColumnView* object, bool take_copy = false) -> gtk::ColumnView*;
+} // namespace glib
 
 #endif

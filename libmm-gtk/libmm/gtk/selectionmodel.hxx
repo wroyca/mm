@@ -24,16 +24,16 @@ using GtkSelectionModelClass = struct _GtkSelectionModelClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT SelectionModel_Class;
 }
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
-  class LIBMM_GTK_SYMEXPORT SelectionModel : public Glib::Interface
+  class LIBMM_GTK_SYMEXPORT SelectionModel : public glib::Interface
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -57,7 +57,7 @@ namespace Gtk
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
-    explicit SelectionModel (const Glib::Interface_Class& interface_class);
+    explicit SelectionModel (const glib::Interface_Class& interface_class);
 
   public:
     explicit SelectionModel (GtkSelectionModel* castitem);
@@ -101,11 +101,11 @@ namespace Gtk
     is_selected (guint position) const -> bool;
 
     auto
-    get_selection () const -> Glib::RefPtr<const Bitset>;
+    get_selection () const -> glib::RefPtr<const Bitset>;
 
     auto
     get_selection (guint position, guint n_items) const
-        -> Glib::RefPtr<const Bitset>;
+        -> glib::RefPtr<const Bitset>;
 
     auto
     select_item (guint position, bool unselect_rest) -> bool;
@@ -126,11 +126,11 @@ namespace Gtk
     unselect_all () -> bool;
 
     auto
-    set_selection (const Glib::RefPtr<const Bitset>& selected,
-                   const Glib::RefPtr<const Bitset>& mask) -> bool;
+    set_selection (const glib::RefPtr<const Bitset>& selected,
+                   const glib::RefPtr<const Bitset>& mask) -> bool;
 
     auto
-    signal_selection_changed () -> Glib::SignalProxy<void (guint, guint)>;
+    signal_selection_changed () -> glib::SignalProxy<void (guint, guint)>;
 
   protected:
     auto
@@ -141,7 +141,7 @@ namespace Gtk
 
     virtual auto
     get_selection_vfunc (guint position, guint n_items)
-        -> Glib::RefPtr<const Bitset>;
+        -> glib::RefPtr<const Bitset>;
 
     virtual auto
     select_item_vfunc (guint position, bool unselect_rest) -> bool;
@@ -163,21 +163,21 @@ namespace Gtk
     unselect_all_vfunc () -> bool;
 
     virtual auto
-    set_selection_vfunc (const Glib::RefPtr<const Bitset>& selected,
-                         const Glib::RefPtr<const Bitset>& mask) -> bool;
+    set_selection_vfunc (const glib::RefPtr<const Bitset>& selected,
+                         const glib::RefPtr<const Bitset>& mask) -> bool;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkSelectionModel* object, bool take_copy = false) -> Glib::RefPtr<Gtk::SelectionModel>;
+  wrap (GtkSelectionModel* object, bool take_copy = false) -> glib::RefPtr<gtk::SelectionModel>;
 
-} // namespace Glib
+} // namespace glib
 
 #endif

@@ -12,14 +12,14 @@ namespace
   auto
   GLTexture_destroy_callback (void* data) -> void
   {
-    auto the_slot = static_cast<Gdk::GLTexture::SlotGLReleased*> (data);
+    auto the_slot = static_cast<gdk::GLTexture::SlotGLReleased*> (data);
     try
     {
       (*the_slot) ();
     }
     catch (...)
     {
-      Glib::exception_handlers_invoke ();
+      glib::exception_handlers_invoke ();
     }
     delete the_slot;
   }
@@ -30,24 +30,24 @@ namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GdkGLTexture* object, bool take_copy) -> Glib::RefPtr<Gdk::GLTexture>
+  wrap (GdkGLTexture* object, bool take_copy) -> glib::RefPtr<gdk::GLTexture>
   {
-    return Glib::make_refptr_for_instance<Gdk::GLTexture> (
-        dynamic_cast<Gdk::GLTexture*> (
-            Glib::wrap_auto ((GObject*) (object), take_copy)));
+    return glib::make_refptr_for_instance<gdk::GLTexture> (
+        dynamic_cast<gdk::GLTexture*> (
+            glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gdk
+namespace gdk
 {
 
   auto
-  GLTexture_Class::init () -> const Glib::Class&
+  GLTexture_Class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -67,7 +67,7 @@ namespace Gdk
   }
 
   auto
-  GLTexture_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  GLTexture_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new GLTexture ((GdkGLTexture*) object);
   }
@@ -79,25 +79,25 @@ namespace Gdk
     return gobj ();
   }
 
-  GLTexture::GLTexture (const Glib::ConstructParams& construct_params)
-    : Gdk::Texture (construct_params)
+  GLTexture::GLTexture (const glib::ConstructParams& construct_params)
+    : gdk::Texture (construct_params)
   {
   }
 
   GLTexture::GLTexture (GdkGLTexture* castitem)
-    : Gdk::Texture ((GdkTexture*) (castitem))
+    : gdk::Texture ((GdkTexture*) (castitem))
   {
   }
 
   GLTexture::GLTexture (GLTexture&& src) noexcept
-    : Gdk::Texture (std::move (src))
+    : gdk::Texture (std::move (src))
   {
   }
 
   auto
   GLTexture::operator= (GLTexture&& src) noexcept -> GLTexture&
   {
-    Gdk::Texture::operator= (std::move (src));
+    gdk::Texture::operator= (std::move (src));
     return *this;
   }
 
@@ -118,21 +118,21 @@ namespace Gdk
   }
 
   GLTexture::GLTexture ()
-    : Glib::ObjectBase (nullptr),
-      Gdk::Texture (Glib::ConstructParams (gltexture_class_.init ()))
+    : glib::ObjectBase (nullptr),
+      gdk::Texture (glib::ConstructParams (gltexture_class_.init ()))
   {
   }
 
   auto
-  GLTexture::create (const Glib::RefPtr<GLContext>& context,
+  GLTexture::create (const glib::RefPtr<GLContext>& context,
                      guint id,
                      int width,
                      int height,
-                     const SlotGLReleased& slot) -> Glib::RefPtr<Texture>
+                     const SlotGLReleased& slot) -> glib::RefPtr<Texture>
   {
     auto slot_copy = new SlotGLReleased (slot);
 
-    return Glib::wrap (gdk_gl_texture_new (Glib::unwrap (context),
+    return glib::wrap (gdk_gl_texture_new (glib::unwrap (context),
                                            id,
                                            width,
                                            height,
@@ -146,4 +146,4 @@ namespace Gdk
     gdk_gl_texture_release (gobj ());
   }
 
-} // namespace Gdk
+} // namespace gdk

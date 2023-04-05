@@ -7,7 +7,7 @@
 
 #include <libmm/gtk/mm-gtk.hxx>
 
-namespace Adw
+namespace adw
 {
 
 }
@@ -16,23 +16,23 @@ namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (AdwWindowTitle* object, bool take_copy) -> Adw::WindowTitle*
+  wrap (AdwWindowTitle* object, bool take_copy) -> adw::WindowTitle*
   {
-    return dynamic_cast<Adw::WindowTitle*> (
-        Glib::wrap_auto ((GObject*) (object), take_copy));
+    return dynamic_cast<adw::WindowTitle*> (
+        glib::wrap_auto ((GObject*) (object), take_copy));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Adw
+namespace adw
 {
 
   auto
-  WindowTitle_Class::init () -> const Glib::Class&
+  WindowTitle_Class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -43,30 +43,30 @@ namespace Adw
   }
 
   auto
-  WindowTitle_Class::wrap_new (GObject* o) -> Glib::ObjectBase*
+  WindowTitle_Class::wrap_new (GObject* o) -> glib::ObjectBase*
   {
     return manage (new WindowTitle ((AdwWindowTitle*) (o)));
   }
 
-  WindowTitle::WindowTitle (const Glib::ConstructParams& construct_params)
-    : Gtk::Widget (construct_params)
+  WindowTitle::WindowTitle (const glib::ConstructParams& construct_params)
+    : gtk::Widget (construct_params)
   {
   }
 
   WindowTitle::WindowTitle (AdwWindowTitle* castitem)
-    : Gtk::Widget ((GtkWidget*) (castitem))
+    : gtk::Widget ((GtkWidget*) (castitem))
   {
   }
 
   WindowTitle::WindowTitle (WindowTitle&& src) noexcept
-    : Gtk::Widget (std::move (src))
+    : gtk::Widget (std::move (src))
   {
   }
 
   auto
   WindowTitle::operator= (WindowTitle&& src) noexcept -> WindowTitle&
   {
-    Gtk::Widget::operator= (std::move (src));
+    gtk::Widget::operator= (std::move (src));
     return *this;
   }
 
@@ -90,15 +90,15 @@ namespace Adw
   }
 
   WindowTitle::WindowTitle ()
-    : Glib::ObjectBase (nullptr),
-      Gtk::Widget (Glib::ConstructParams (windowtitle_class_.init ()))
+    : glib::ObjectBase (nullptr),
+      gtk::Widget (glib::ConstructParams (windowtitle_class_.init ()))
   {
   }
 
-  WindowTitle::WindowTitle (const Glib::ustring& title,
-                            const Glib::ustring& subtitle)
-    : Glib::ObjectBase (nullptr),
-      Gtk::Widget (Glib::ConstructParams (windowtitle_class_.init (),
+  WindowTitle::WindowTitle (const glib::ustring& title,
+                            const glib::ustring& subtitle)
+    : glib::ObjectBase (nullptr),
+      gtk::Widget (glib::ConstructParams (windowtitle_class_.init (),
                                           "title",
                                           title.c_str (),
                                           "subtitle",
@@ -108,53 +108,53 @@ namespace Adw
   }
 
   auto
-  WindowTitle::get_subtitle () const -> Glib::ustring
+  WindowTitle::get_subtitle () const -> glib::ustring
   {
-    return Glib::convert_const_gchar_ptr_to_ustring (
+    return glib::convert_const_gchar_ptr_to_ustring (
         adw_window_title_get_subtitle (const_cast<AdwWindowTitle*> (gobj ())));
   }
 
   auto
-  WindowTitle::get_title () const -> Glib::ustring
+  WindowTitle::get_title () const -> glib::ustring
   {
-    return Glib::convert_const_gchar_ptr_to_ustring (
+    return glib::convert_const_gchar_ptr_to_ustring (
         adw_window_title_get_title (const_cast<AdwWindowTitle*> (gobj ())));
   }
 
   auto
-  WindowTitle::set_subtitle (const Glib::ustring& str) -> void
+  WindowTitle::set_subtitle (const glib::ustring& str) -> void
   {
     adw_window_title_set_subtitle (gobj (), str.c_str ());
   }
 
   auto
-  WindowTitle::set_title (const Glib::ustring& str) -> void
+  WindowTitle::set_title (const glib::ustring& str) -> void
   {
     adw_window_title_set_title (gobj (), str.c_str ());
   }
 
   auto
-  WindowTitle::property_title () -> Glib::PropertyProxy<Glib::ustring>
+  WindowTitle::property_title () -> glib::PropertyProxy<glib::ustring>
   {
-    return Glib::PropertyProxy<Glib::ustring> (this, "title");
+    return glib::PropertyProxy<glib::ustring> (this, "title");
   }
 
   auto
-  WindowTitle::property_title () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>
+  WindowTitle::property_title () const -> glib::PropertyProxy_ReadOnly<glib::ustring>
   {
-    return Glib::PropertyProxy_ReadOnly<Glib::ustring> (this, "title");
+    return glib::PropertyProxy_ReadOnly<glib::ustring> (this, "title");
   }
 
   auto
-  WindowTitle::property_subtitle () -> Glib::PropertyProxy<Glib::ustring>
+  WindowTitle::property_subtitle () -> glib::PropertyProxy<glib::ustring>
   {
-    return Glib::PropertyProxy<Glib::ustring> (this, "subtitle");
+    return glib::PropertyProxy<glib::ustring> (this, "subtitle");
   }
 
   auto
-  WindowTitle::property_subtitle () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>
+  WindowTitle::property_subtitle () const -> glib::PropertyProxy_ReadOnly<glib::ustring>
   {
-    return Glib::PropertyProxy_ReadOnly<Glib::ustring> (this, "subtitle");
+    return glib::PropertyProxy_ReadOnly<glib::ustring> (this, "subtitle");
   }
 
-} // namespace Adw
+} // namespace adw

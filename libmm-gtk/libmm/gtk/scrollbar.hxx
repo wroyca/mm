@@ -15,13 +15,13 @@ using GtkScrollbarClass = struct _GtkScrollbarClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT Scrollbar_Class;
 }
 #endif
 
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT Adjustment;
 
@@ -53,7 +53,7 @@ namespace Gtk
     static CppClassType scrollbar_class_;
 
   protected:
-    explicit Scrollbar (const Glib::ConstructParams& construct_params);
+    explicit Scrollbar (const glib::ConstructParams& construct_params);
     explicit Scrollbar (GtkScrollbar* castitem);
 
 #endif
@@ -84,38 +84,38 @@ namespace Gtk
   public:
     Scrollbar ();
 
-    explicit Scrollbar (const Glib::RefPtr<Adjustment>& adjustment,
+    explicit Scrollbar (const glib::RefPtr<Adjustment>& adjustment,
                         Orientation orientation = Orientation::HORIZONTAL);
 
     auto
-    set_adjustment (const Glib::RefPtr<Adjustment>& adjustment) -> void;
+    set_adjustment (const glib::RefPtr<Adjustment>& adjustment) -> void;
     auto
     unset_adjustment () -> void;
 
     auto
-    get_adjustment () -> Glib::RefPtr<Adjustment>;
+    get_adjustment () -> glib::RefPtr<Adjustment>;
 
     auto
-    get_adjustment () const -> Glib::RefPtr<const Adjustment>;
+    get_adjustment () const -> glib::RefPtr<const Adjustment>;
 
     auto
-    property_adjustment () -> Glib::PropertyProxy<Glib::RefPtr<Adjustment>>;
+    property_adjustment () -> glib::PropertyProxy<glib::RefPtr<Adjustment>>;
 
     auto
     property_adjustment () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Adjustment>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<Adjustment>>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkScrollbar* object, bool take_copy = false) -> Gtk::Scrollbar*;
-} // namespace Glib
+  wrap (GtkScrollbar* object, bool take_copy = false) -> gtk::Scrollbar*;
+} // namespace glib
 
 #endif

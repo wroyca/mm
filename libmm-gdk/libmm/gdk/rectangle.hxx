@@ -11,7 +11,7 @@
 #include <gdk/gdk.h>
 #include <libmm/glib/value.hxx>
 
-namespace Gdk
+namespace gdk
 {
 
   class LIBMM_GDK_SYMEXPORT Rectangle
@@ -106,24 +106,24 @@ namespace Gdk
              const Rectangle& src2,
              bool& rectangles_intersect) -> Rectangle;
 
-} // namespace Gdk
+} // namespace gdk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GDK_SYMEXPORT auto
-  wrap (GdkRectangle* object) -> Gdk::Rectangle&;
+  wrap (GdkRectangle* object) -> gdk::Rectangle&;
 
   LIBMM_GDK_SYMEXPORT auto
-  wrap (const GdkRectangle* object) -> const Gdk::Rectangle&;
+  wrap (const GdkRectangle* object) -> const gdk::Rectangle&;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
   template <>
-  class LIBMM_GDK_SYMEXPORT Value<Gdk::Rectangle>
-    : public Glib::Value_Boxed<Gdk::Rectangle>
+  class LIBMM_GDK_SYMEXPORT Value<gdk::Rectangle>
+    : public glib::Value_Boxed<gdk::Rectangle>
   {
   };
 #endif
 
-} // namespace Glib
+} // namespace glib
 
 #endif

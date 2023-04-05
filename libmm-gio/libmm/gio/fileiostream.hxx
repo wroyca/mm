@@ -16,17 +16,17 @@ using GFileIOStreamClass = struct _GFileIOStreamClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gio
+namespace gio
 {
   class LIBMM_GIO_SYMEXPORT FileIOStream_Class;
 }
 #endif
 
-namespace Gio
+namespace gio
 {
 
-  class LIBMM_GIO_SYMEXPORT FileIOStream : public Gio::IOStream,
-                                 public Gio::Seekable
+  class LIBMM_GIO_SYMEXPORT FileIOStream : public gio::IOStream,
+                                 public gio::Seekable
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -45,7 +45,7 @@ namespace Gio
     static CppClassType fileiostream_class_;
 
   protected:
-    explicit FileIOStream (const Glib::ConstructParams& construct_params);
+    explicit FileIOStream (const glib::ConstructParams& construct_params);
     explicit FileIOStream (GFileIOStream* castitem);
 
 #endif
@@ -84,43 +84,43 @@ namespace Gio
   private:
   public:
     auto
-    query_info (const Glib::RefPtr<Cancellable>& cancellable,
-                const std::string& attributes = "*") -> Glib::RefPtr<FileInfo>;
+    query_info (const glib::RefPtr<Cancellable>& cancellable,
+                const std::string& attributes = "*") -> glib::RefPtr<FileInfo>;
 
     auto
-    query_info (const std::string& attributes = "*") -> Glib::RefPtr<FileInfo>;
-
-    auto
-    query_info_async (const SlotAsyncReady& slot,
-                      const Glib::RefPtr<Cancellable>& cancellable,
-                      const std::string& attributes = "*",
-                      int io_priority = Glib::PRIORITY_DEFAULT) -> void;
+    query_info (const std::string& attributes = "*") -> glib::RefPtr<FileInfo>;
 
     auto
     query_info_async (const SlotAsyncReady& slot,
+                      const glib::RefPtr<Cancellable>& cancellable,
                       const std::string& attributes = "*",
-                      int io_priority = Glib::PRIORITY_DEFAULT) -> void;
+                      int io_priority = glib::PRIORITY_DEFAULT) -> void;
 
     auto
-    query_info_finish (const Glib::RefPtr<AsyncResult>& result)
-        -> Glib::RefPtr<FileInfo>;
+    query_info_async (const SlotAsyncReady& slot,
+                      const std::string& attributes = "*",
+                      int io_priority = glib::PRIORITY_DEFAULT) -> void;
 
     auto
-    get_etag () const -> Glib::ustring;
+    query_info_finish (const glib::RefPtr<AsyncResult>& result)
+        -> glib::RefPtr<FileInfo>;
+
+    auto
+    get_etag () const -> glib::ustring;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gio
+} // namespace gio
 
-namespace Glib
+namespace glib
 {
 
   LIBMM_GIO_SYMEXPORT
   auto
-  wrap (GFileIOStream* object, bool take_copy = false) -> Glib::RefPtr<Gio::FileIOStream>;
-} // namespace Glib
+  wrap (GFileIOStream* object, bool take_copy = false) -> glib::RefPtr<gio::FileIOStream>;
+} // namespace glib
 
 #endif

@@ -8,7 +8,7 @@
 
 #include <libmm/gio/dbusconnection.hxx>
 
-namespace Gio::DBus
+namespace gio::DBus
 {
 
   enum class BusNameOwnerFlags
@@ -67,51 +67,51 @@ namespace Gio::DBus
                                                   static_cast<unsigned> (rhs)));
   }
 
-} // namespace Gio::DBus
+} // namespace gio::DBus
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_GIO_SYMEXPORT Value<Gio::DBus::BusNameOwnerFlags>
-    : public Glib::Value_Flags<Gio::DBus::BusNameOwnerFlags>
+  class LIBMM_GIO_SYMEXPORT Value<gio::DBus::BusNameOwnerFlags>
+    : public glib::Value_Flags<gio::DBus::BusNameOwnerFlags>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
-namespace Gio::DBus
+namespace gio::DBus
 {
 
   using SlotBusAcquired =
-      sigc::slot<void (const Glib::RefPtr<Gio::DBus::Connection>&,
-                       Glib::ustring)>;
+      sigc::slot<void (const glib::RefPtr<gio::DBus::Connection>&,
+                       glib::ustring)>;
 
   using SlotNameAcquired =
-      sigc::slot<void (const Glib::RefPtr<Gio::DBus::Connection>&,
-                       Glib::ustring)>;
+      sigc::slot<void (const glib::RefPtr<gio::DBus::Connection>&,
+                       glib::ustring)>;
 
   using SlotNameLost =
-      sigc::slot<void (const Glib::RefPtr<Gio::DBus::Connection>&,
-                       Glib::ustring)>;
+      sigc::slot<void (const glib::RefPtr<gio::DBus::Connection>&,
+                       glib::ustring)>;
 
   LIBMM_GIO_SYMEXPORT
   auto
   own_name (BusType bus_type,
-            const Glib::ustring& name,
+            const glib::ustring& name,
             const SlotBusAcquired& bus_acquired_slot = {},
             const SlotNameAcquired& name_acquired_slot = {},
             const SlotNameLost& name_lost_slot = {},
-            BusNameOwnerFlags flags = Gio::DBus::BusNameOwnerFlags::NONE) -> guint;
+            BusNameOwnerFlags flags = gio::DBus::BusNameOwnerFlags::NONE) -> guint;
 
   LIBMM_GIO_SYMEXPORT auto
   unown_name (guint owner_id) -> void;
 
-} // namespace Gio::DBus
+} // namespace gio::DBus
 
 #endif

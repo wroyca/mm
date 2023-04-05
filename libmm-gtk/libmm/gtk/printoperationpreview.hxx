@@ -24,16 +24,16 @@ using GtkPrintOperationPreviewClass = struct _GtkPrintOperationPreviewClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT PrintOperationPreview_Class;
 }
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
-  class LIBMM_GTK_SYMEXPORT PrintOperationPreview : public Glib::Interface
+  class LIBMM_GTK_SYMEXPORT PrintOperationPreview : public glib::Interface
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -58,7 +58,7 @@ namespace Gtk
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
     explicit PrintOperationPreview (
-        const Glib::Interface_Class& interface_class);
+        const glib::Interface_Class& interface_class);
 
   public:
     explicit PrintOperationPreview (GtkPrintOperationPreview* castitem);
@@ -109,12 +109,12 @@ namespace Gtk
 
     auto
     signal_ready ()
-        -> Glib::SignalProxy<void (const Glib::RefPtr<PrintContext>&)>;
+        -> glib::SignalProxy<void (const glib::RefPtr<PrintContext>&)>;
 
     auto
     signal_got_page_size ()
-        -> Glib::SignalProxy<void (const Glib::RefPtr<PrintContext>&,
-                                   const Glib::RefPtr<PageSetup>&)>;
+        -> glib::SignalProxy<void (const glib::RefPtr<PrintContext>&,
+                                   const glib::RefPtr<PageSetup>&)>;
 
   protected:
     virtual auto
@@ -130,20 +130,20 @@ namespace Gtk
   public:
   protected:
     virtual auto
-    on_ready (const Glib::RefPtr<PrintContext>& context) -> void;
+    on_ready (const glib::RefPtr<PrintContext>& context) -> void;
 
     virtual auto
-    on_got_page_size (const Glib::RefPtr<PrintContext>& context,
-                      const Glib::RefPtr<PageSetup>& page_setup) -> void;
+    on_got_page_size (const glib::RefPtr<PrintContext>& context,
+                      const glib::RefPtr<PageSetup>& page_setup) -> void;
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkPrintOperationPreview* object, bool take_copy = false) -> Glib::RefPtr<Gtk::PrintOperationPreview>;
+  wrap (GtkPrintOperationPreview* object, bool take_copy = false) -> glib::RefPtr<gtk::PrintOperationPreview>;
 
-} // namespace Glib
+} // namespace glib
 
 #endif

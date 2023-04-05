@@ -16,16 +16,16 @@ using GdkMemoryTextureClass = struct _GdkMemoryTextureClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gdk
+namespace gdk
 {
   class LIBMM_GDK_SYMEXPORT MemoryTexture_Class;
 }
 #endif
 
-namespace Gdk
+namespace gdk
 {
 
-  class LIBMM_GDK_SYMEXPORT MemoryTexture : public Gdk::Texture
+  class LIBMM_GDK_SYMEXPORT MemoryTexture : public gdk::Texture
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -44,7 +44,7 @@ namespace Gdk
     static CppClassType memorytexture_class_;
 
   protected:
-    explicit MemoryTexture (const Glib::ConstructParams& construct_params);
+    explicit MemoryTexture (const glib::ConstructParams& construct_params);
     explicit MemoryTexture (GdkMemoryTexture* castitem);
 
 #endif
@@ -115,36 +115,36 @@ namespace Gdk
     create (int width,
             int height,
             Format format,
-            const Glib::RefPtr<const Glib::Bytes>& bytes,
-            gsize stride) -> Glib::RefPtr<Texture>;
+            const glib::RefPtr<const glib::Bytes>& bytes,
+            gsize stride) -> glib::RefPtr<Texture>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gdk
+} // namespace gdk
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_GDK_SYMEXPORT Value<Gdk::MemoryTexture::Format>
-    : public Glib::Value_Enum<Gdk::MemoryTexture::Format>
+  class LIBMM_GDK_SYMEXPORT Value<gdk::MemoryTexture::Format>
+    : public glib::Value_Enum<gdk::MemoryTexture::Format>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
-namespace Glib
+namespace glib
 {
   LIBMM_GDK_SYMEXPORT auto
-  wrap (GdkMemoryTexture* object, bool take_copy = false) -> Glib::RefPtr<Gdk::MemoryTexture>;
-} // namespace Glib
+  wrap (GdkMemoryTexture* object, bool take_copy = false) -> glib::RefPtr<gdk::MemoryTexture>;
+} // namespace glib
 
 #endif

@@ -11,24 +11,24 @@ namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GtkMultiSorter* object, bool take_copy) -> Glib::RefPtr<Gtk::MultiSorter>
+  wrap (GtkMultiSorter* object, bool take_copy) -> glib::RefPtr<gtk::MultiSorter>
   {
-    return Glib::make_refptr_for_instance<Gtk::MultiSorter> (
-        dynamic_cast<Gtk::MultiSorter*> (
-            Glib::wrap_auto ((GObject*) (object), take_copy)));
+    return glib::make_refptr_for_instance<gtk::MultiSorter> (
+        dynamic_cast<gtk::MultiSorter*> (
+            glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gtk
+namespace gtk
 {
 
   auto
-  MultiSorter_Class::init () -> const Glib::Class&
+  MultiSorter_Class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -48,7 +48,7 @@ namespace Gtk
   }
 
   auto
-  MultiSorter_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  MultiSorter_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new MultiSorter ((GtkMultiSorter*) object);
   }
@@ -60,19 +60,19 @@ namespace Gtk
     return gobj ();
   }
 
-  MultiSorter::MultiSorter (const Glib::ConstructParams& construct_params)
-    : Gtk::Sorter (construct_params)
+  MultiSorter::MultiSorter (const glib::ConstructParams& construct_params)
+    : gtk::Sorter (construct_params)
   {
   }
 
   MultiSorter::MultiSorter (GtkMultiSorter* castitem)
-    : Gtk::Sorter ((GtkSorter*) (castitem))
+    : gtk::Sorter ((GtkSorter*) (castitem))
   {
   }
 
   MultiSorter::MultiSorter (MultiSorter&& src) noexcept
-    : Gtk::Sorter (std::move (src)),
-      Gio::ListModel (std::move (src)),
+    : gtk::Sorter (std::move (src)),
+      gio::ListModel (std::move (src)),
       Buildable (std::move (src))
   {
   }
@@ -80,8 +80,8 @@ namespace Gtk
   auto
   MultiSorter::operator= (MultiSorter&& src) noexcept -> MultiSorter&
   {
-    Gtk::Sorter::operator= (std::move (src));
-    Gio::ListModel::operator= (std::move (src));
+    gtk::Sorter::operator= (std::move (src));
+    gio::ListModel::operator= (std::move (src));
     Buildable::operator= (std::move (src));
     return *this;
   }
@@ -103,21 +103,21 @@ namespace Gtk
   }
 
   MultiSorter::MultiSorter ()
-    : Glib::ObjectBase (nullptr),
-      Gtk::Sorter (Glib::ConstructParams (multisorter_class_.init ()))
+    : glib::ObjectBase (nullptr),
+      gtk::Sorter (glib::ConstructParams (multisorter_class_.init ()))
   {
   }
 
   auto
-  MultiSorter::create () -> Glib::RefPtr<MultiSorter>
+  MultiSorter::create () -> glib::RefPtr<MultiSorter>
   {
-    return Glib::make_refptr_for_instance<MultiSorter> (new MultiSorter ());
+    return glib::make_refptr_for_instance<MultiSorter> (new MultiSorter ());
   }
 
   auto
-  MultiSorter::append (const Glib::RefPtr<Sorter>& sorter) -> void
+  MultiSorter::append (const glib::RefPtr<Sorter>& sorter) -> void
   {
-    gtk_multi_sorter_append (gobj (), Glib::unwrap_copy (sorter));
+    gtk_multi_sorter_append (gobj (), glib::unwrap_copy (sorter));
   }
 
   auto
@@ -127,20 +127,20 @@ namespace Gtk
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<GType>::value,
+      glib::Traits::ValueCompatibleWithWrapProperty<GType>::value,
       "Type GType cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  MultiSorter::property_item_type () const -> Glib::PropertyProxy_ReadOnly<GType>
+  MultiSorter::property_item_type () const -> glib::PropertyProxy_ReadOnly<GType>
   {
-    return Glib::PropertyProxy_ReadOnly<GType> (this, "item-type");
+    return glib::PropertyProxy_ReadOnly<GType> (this, "item-type");
   }
 
   auto
-  MultiSorter::property_n_items () const -> Glib::PropertyProxy_ReadOnly<unsigned int>
+  MultiSorter::property_n_items () const -> glib::PropertyProxy_ReadOnly<unsigned int>
   {
-    return Glib::PropertyProxy_ReadOnly<unsigned int> (this, "n-items");
+    return glib::PropertyProxy_ReadOnly<unsigned int> (this, "n-items");
   }
 
-} // namespace Gtk
+} // namespace gtk

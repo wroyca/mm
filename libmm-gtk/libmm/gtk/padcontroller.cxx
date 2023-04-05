@@ -8,20 +8,20 @@
 #include <gtk/gtk.h>
 #include <memory>
 
-namespace Gtk
+namespace gtk
 {
 
   PadController::PadController (
-      const Glib::RefPtr<Gio::ActionGroup>& action_group,
-      const Glib::RefPtr<Gdk::Device>& pad)
-    : Glib::ObjectBase (nullptr),
-      EventController (Glib::ConstructParams (padcontroller_class_.init (),
+      const glib::RefPtr<gio::ActionGroup>& action_group,
+      const glib::RefPtr<gdk::Device>& pad)
+    : glib::ObjectBase (nullptr),
+      EventController (glib::ConstructParams (padcontroller_class_.init (),
                                               "propagation-phase",
                                               GTK_PHASE_CAPTURE,
                                               "action-group",
-                                              Glib::unwrap (action_group),
+                                              glib::unwrap (action_group),
                                               "pad",
-                                              Glib::unwrap (pad),
+                                              glib::unwrap (pad),
                                               nullptr))
   {
   }
@@ -42,30 +42,30 @@ namespace Gtk
                                            entries.size ());
   }
 
-} // namespace Gtk
+} // namespace gtk
 
 namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GtkPadController* object, bool take_copy) -> Glib::RefPtr<Gtk::PadController>
+  wrap (GtkPadController* object, bool take_copy) -> glib::RefPtr<gtk::PadController>
   {
-    return Glib::make_refptr_for_instance<Gtk::PadController> (
-        dynamic_cast<Gtk::PadController*> (
-            Glib::wrap_auto ((GObject*) (object), take_copy)));
+    return glib::make_refptr_for_instance<gtk::PadController> (
+        dynamic_cast<gtk::PadController*> (
+            glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gtk
+namespace gtk
 {
 
   auto
-  PadController_Class::init () -> const Glib::Class&
+  PadController_Class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -85,7 +85,7 @@ namespace Gtk
   }
 
   auto
-  PadController_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  PadController_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new PadController ((GtkPadController*) object);
   }
@@ -97,7 +97,7 @@ namespace Gtk
     return gobj ();
   }
 
-  PadController::PadController (const Glib::ConstructParams& construct_params)
+  PadController::PadController (const glib::ConstructParams& construct_params)
     : EventController (construct_params)
   {
   }
@@ -136,10 +136,10 @@ namespace Gtk
   }
 
   auto
-  PadController::create (const Glib::RefPtr<Gio::ActionGroup>& action_group,
-                         const Glib::RefPtr<Gdk::Device>& pad) -> Glib::RefPtr<PadController>
+  PadController::create (const glib::RefPtr<gio::ActionGroup>& action_group,
+                         const glib::RefPtr<gdk::Device>& pad) -> glib::RefPtr<PadController>
   {
-    return Glib::make_refptr_for_instance<PadController> (
+    return glib::make_refptr_for_instance<PadController> (
         new PadController (action_group, pad));
   }
 
@@ -147,8 +147,8 @@ namespace Gtk
   PadController::set_action (PadActionType type,
                              int index,
                              int mode,
-                             const Glib::ustring& label,
-                             const Glib::ustring& action_name) -> void
+                             const glib::ustring& label,
+                             const glib::ustring& action_name) -> void
   {
     gtk_pad_controller_set_action (gobj (),
                                    static_cast<GtkPadActionType> (type),
@@ -159,30 +159,30 @@ namespace Gtk
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<
-          Glib::RefPtr<Gio::ActionGroup>>::value,
-      "Type Glib::RefPtr<Gio::ActionGroup> cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      glib::Traits::ValueCompatibleWithWrapProperty<
+          glib::RefPtr<gio::ActionGroup>>::value,
+      "Type glib::RefPtr<gio::ActionGroup> cannot be used in _WRAP_PROPERTY. "
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  PadController::property_action_group () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gio::ActionGroup>>
+  PadController::property_action_group () const -> glib::PropertyProxy_ReadOnly<glib::RefPtr<gio::ActionGroup>>
   {
-    return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gio::ActionGroup>> (
+    return glib::PropertyProxy_ReadOnly<glib::RefPtr<gio::ActionGroup>> (
         this,
         "action-group");
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<
-          Glib::RefPtr<Gdk::Device>>::value,
-      "Type Glib::RefPtr<Gdk::Device> cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      glib::Traits::ValueCompatibleWithWrapProperty<
+          glib::RefPtr<gdk::Device>>::value,
+      "Type glib::RefPtr<gdk::Device> cannot be used in _WRAP_PROPERTY. "
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  PadController::property_pad () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gdk::Device>>
+  PadController::property_pad () const -> glib::PropertyProxy_ReadOnly<glib::RefPtr<gdk::Device>>
   {
-    return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gdk::Device>> (this,
+    return glib::PropertyProxy_ReadOnly<glib::RefPtr<gdk::Device>> (this,
                                                                     "pad");
   }
 
-} // namespace Gtk
+} // namespace gtk

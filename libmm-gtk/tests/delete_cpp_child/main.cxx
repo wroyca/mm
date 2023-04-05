@@ -5,7 +5,7 @@
 #include <libmm/gtk/window.hxx>
 
 class AppWindow
-    : public Gtk::Window
+    : public gtk::Window
 {
 public:
     AppWindow();
@@ -13,20 +13,20 @@ public:
 private:
     void on_button_clicked();
 
-    Gtk::Label* m_label;
+    gtk::Label* m_label;
 };
 
 AppWindow::AppWindow()
     : m_label (nullptr)
 {
-    auto vbox = Gtk::make_managed<Gtk::Box>(Gtk::Orientation::VERTICAL, 5);
+    auto vbox = gtk::make_managed<gtk::Box>(gtk::Orientation::VERTICAL, 5);
     set_child(*vbox);
 
-    auto button = Gtk::make_managed<Gtk::Button>("Delete Label");
+    auto button = gtk::make_managed<gtk::Button>("Delete Label");
     vbox->append(*button);
 
-    //m_label = Gtk::make_managed<Gtk::Label>("test");
-    m_label = new Gtk::Label("test");
+    //m_label = gtk::make_managed<gtk::Label>("test");
+    m_label = new gtk::Label("test");
     g_warning("m_label -> ref_count: %d\n", G_OBJECT(m_label->gobj())->ref_count);
     vbox->append(*m_label);
     g_warning("m_label -> ref_count: %d\n", G_OBJECT(m_label->gobj())->ref_count);
@@ -46,6 +46,6 @@ void AppWindow::on_button_clicked()
 
 int main(int argc, char *argv[])
 {
-  auto app = Gtk::Application::create();
+  auto app = gtk::Application::create();
   return app->make_window_and_run<AppWindow>(argc, argv);
 }

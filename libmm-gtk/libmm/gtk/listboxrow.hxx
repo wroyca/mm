@@ -15,13 +15,13 @@ using GtkListBoxRowClass = struct _GtkListBoxRowClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT ListBoxRow_Class;
 }
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
   class LIBMM_GTK_SYMEXPORT ListBoxRow : public Widget,
@@ -52,7 +52,7 @@ namespace Gtk
     static CppClassType listboxrow_class_;
 
   protected:
-    explicit ListBoxRow (const Glib::ConstructParams& construct_params);
+    explicit ListBoxRow (const glib::ConstructParams& construct_params);
     explicit ListBoxRow (GtkListBoxRow* castitem);
 
 #endif
@@ -128,34 +128,34 @@ namespace Gtk
     get_activatable () const -> bool;
 
     auto
-    property_selectable () -> Glib::PropertyProxy<bool>;
+    property_selectable () -> glib::PropertyProxy<bool>;
 
     auto
-    property_selectable () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_selectable () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_activatable () -> Glib::PropertyProxy<bool>;
+    property_activatable () -> glib::PropertyProxy<bool>;
 
     auto
-    property_activatable () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_activatable () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_child () -> Glib::PropertyProxy<Widget*>;
+    property_child () -> glib::PropertyProxy<Widget*>;
 
     auto
-    property_child () const -> Glib::PropertyProxy_ReadOnly<Widget*>;
+    property_child () const -> glib::PropertyProxy_ReadOnly<Widget*>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkListBoxRow* object, bool take_copy = false) -> Gtk::ListBoxRow*;
-} // namespace Glib
+  wrap (GtkListBoxRow* object, bool take_copy = false) -> gtk::ListBoxRow*;
+} // namespace glib
 
 #endif

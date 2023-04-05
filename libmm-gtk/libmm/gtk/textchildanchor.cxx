@@ -9,7 +9,7 @@
 
 #include <gtk/gtk.h>
 
-namespace Gtk
+namespace gtk
 {
 
   auto
@@ -17,10 +17,10 @@ namespace Gtk
   {
     guint len = 0;
     GtkWidget** widgets = gtk_text_child_anchor_get_widgets (gobj (), &len);
-    return Glib::ArrayHandler<Widget*>::array_to_vector (
+    return glib::ArrayHandler<Widget*>::array_to_vector (
         widgets,
         len,
-        Glib::OWNERSHIP_SHALLOW);
+        glib::OWNERSHIP_SHALLOW);
   }
 
   auto
@@ -30,36 +30,36 @@ namespace Gtk
     GtkWidget** widgets = gtk_text_child_anchor_get_widgets (
         const_cast<GtkTextChildAnchor*> (gobj ()),
         &len);
-    return Glib::ArrayHandler<const Widget*>::array_to_vector (
+    return glib::ArrayHandler<const Widget*>::array_to_vector (
         widgets,
         len,
-        Glib::OWNERSHIP_SHALLOW);
+        glib::OWNERSHIP_SHALLOW);
   }
 
-} // namespace Gtk
+} // namespace gtk
 
 namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GtkTextChildAnchor* object, bool take_copy) -> Glib::RefPtr<Gtk::TextChildAnchor>
+  wrap (GtkTextChildAnchor* object, bool take_copy) -> glib::RefPtr<gtk::TextChildAnchor>
   {
-    return Glib::make_refptr_for_instance<Gtk::TextChildAnchor> (
-        dynamic_cast<Gtk::TextChildAnchor*> (
-            Glib::wrap_auto ((GObject*) (object), take_copy)));
+    return glib::make_refptr_for_instance<gtk::TextChildAnchor> (
+        dynamic_cast<gtk::TextChildAnchor*> (
+            glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gtk
+namespace gtk
 {
 
   auto
-  TextChildAnchor_Class::init () -> const Glib::Class&
+  TextChildAnchor_Class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -79,7 +79,7 @@ namespace Gtk
   }
 
   auto
-  TextChildAnchor_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  TextChildAnchor_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new TextChildAnchor ((GtkTextChildAnchor*) object);
   }
@@ -92,25 +92,25 @@ namespace Gtk
   }
 
   TextChildAnchor::TextChildAnchor (
-      const Glib::ConstructParams& construct_params)
-    : Glib::Object (construct_params)
+      const glib::ConstructParams& construct_params)
+    : glib::Object (construct_params)
   {
   }
 
   TextChildAnchor::TextChildAnchor (GtkTextChildAnchor* castitem)
-    : Glib::Object ((GObject*) (castitem))
+    : glib::Object ((GObject*) (castitem))
   {
   }
 
   TextChildAnchor::TextChildAnchor (TextChildAnchor&& src) noexcept
-    : Glib::Object (std::move (src))
+    : glib::Object (std::move (src))
   {
   }
 
   auto
   TextChildAnchor::operator= (TextChildAnchor&& src) noexcept -> TextChildAnchor&
   {
-    Glib::Object::operator= (std::move (src));
+    glib::Object::operator= (std::move (src));
     return *this;
   }
 
@@ -131,22 +131,22 @@ namespace Gtk
   }
 
   TextChildAnchor::TextChildAnchor ()
-    : Glib::ObjectBase (nullptr),
-      Glib::Object (Glib::ConstructParams (textchildanchor_class_.init ()))
+    : glib::ObjectBase (nullptr),
+      glib::Object (glib::ConstructParams (textchildanchor_class_.init ()))
   {
   }
 
   auto
-  TextChildAnchor::create () -> Glib::RefPtr<TextChildAnchor>
+  TextChildAnchor::create () -> glib::RefPtr<TextChildAnchor>
   {
-    return Glib::make_refptr_for_instance<TextChildAnchor> (
+    return glib::make_refptr_for_instance<TextChildAnchor> (
         new TextChildAnchor ());
   }
 
   auto
-  TextChildAnchor::create (const Glib::ustring& replacement_character) -> Glib::RefPtr<TextChildAnchor>
+  TextChildAnchor::create (const glib::ustring& replacement_character) -> glib::RefPtr<TextChildAnchor>
   {
-    return Glib::wrap (gtk_text_child_anchor_new_with_replacement (
+    return glib::wrap (gtk_text_child_anchor_new_with_replacement (
         replacement_character.c_str ()));
   }
 
@@ -157,4 +157,4 @@ namespace Gtk
         const_cast<GtkTextChildAnchor*> (gobj ()));
   }
 
-} // namespace Gtk
+} // namespace gtk

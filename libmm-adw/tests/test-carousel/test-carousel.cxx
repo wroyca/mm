@@ -4,7 +4,7 @@
  * SPDX-License-Identifier: LGPL-2.1-or-later
  */
 
-#include <libmm/adw/init.hxx> // Adw::init
+#include <libmm/adw/init.hxx> // adw::init
 #include <libmm/adw/mm-adw.hxx>
 
 int notified;
@@ -16,19 +16,19 @@ notify_cb ()
 }
 
 static void
-allocate_carousel (Adw::Carousel& carousel)
+allocate_carousel (adw::Carousel& carousel)
 {
   int width, height;
 
   int _minimum, _minimum_baseline, _natural_baseline;
-  carousel.measure (Gtk::Orientation::HORIZONTAL,
+  carousel.measure (gtk::Orientation::HORIZONTAL,
                     -1,
                     _minimum,
                     width,
                     _minimum_baseline,
                     _natural_baseline);
 
-  carousel.measure (Gtk::Orientation::VERTICAL,
+  carousel.measure (gtk::Orientation::VERTICAL,
                     -1,
                     _minimum,
                     height,
@@ -42,11 +42,11 @@ allocate_carousel (Adw::Carousel& carousel)
 static void
 test_adw_carousel_add_remove (void)
 {
-  Adw::Carousel carousel;
+  adw::Carousel carousel;
 
-  Gtk::Label child1;
-  Gtk::Label child2;
-  Gtk::Label child3;
+  gtk::Label child1;
+  gtk::Label child2;
+  gtk::Label child3;
 
   notified = 0;
   carousel.property_n_pages ().signal_changed ().connect (
@@ -94,11 +94,11 @@ test_adw_carousel_add_remove (void)
 }
 
 static void
-assert_carousel_positions (Adw::Carousel& carousel,
-                           Gtk::Widget& child1,
-                           Gtk::Widget& child2,
-                           Gtk::Widget& child3,
-                           Gtk::Widget& child4,
+assert_carousel_positions (adw::Carousel& carousel,
+                           gtk::Widget& child1,
+                           gtk::Widget& child2,
+                           gtk::Widget& child3,
+                           gtk::Widget& child4,
                            double position)
 {
   allocate_carousel (carousel);
@@ -112,11 +112,11 @@ assert_carousel_positions (Adw::Carousel& carousel,
 static void
 test_adw_carousel_reorder (void)
 {
-  Adw::Carousel carousel;
-  Gtk::Label child1;
-  Gtk::Label child2;
-  Gtk::Label child3;
-  Gtk::Label child4;
+  adw::Carousel carousel;
+  gtk::Label child1;
+  gtk::Label child2;
+  gtk::Label child3;
+  gtk::Label child4;
 
   carousel.append (&child1);
   carousel.append (&child2);
@@ -174,7 +174,7 @@ test_adw_carousel_reorder (void)
 static void
 test_adw_carousel_interactive (void)
 {
-  Adw::Carousel carousel;
+  adw::Carousel carousel;
 
   notified = 0;
   carousel.property_interactive ().signal_changed ().connect (
@@ -200,7 +200,7 @@ test_adw_carousel_interactive (void)
 static void
 test_adw_carousel_spacing (void)
 {
-  Adw::Carousel carousel;
+  adw::Carousel carousel;
 
   notified = 0;
   carousel.property_spacing ().signal_changed ().connect (
@@ -226,7 +226,7 @@ test_adw_carousel_spacing (void)
 static void
 test_adw_carousel_allow_mouse_drag (void)
 {
-  Adw::Carousel carousel;
+  adw::Carousel carousel;
 
   notified = 0;
   carousel.property_allow_mouse_drag ().signal_changed ().connect (
@@ -252,7 +252,7 @@ test_adw_carousel_allow_mouse_drag (void)
 static void
 test_adw_carousel_allow_long_swipes (void)
 {
-  Adw::Carousel carousel;
+  adw::Carousel carousel;
 
   notified = 0;
   carousel.property_allow_long_swipes ().signal_changed ().connect (
@@ -278,7 +278,7 @@ test_adw_carousel_allow_long_swipes (void)
 static void
 test_adw_carousel_reveal_duration (void)
 {
-  Adw::Carousel carousel;
+  adw::Carousel carousel;
 
   notified = 0;
   carousel.property_reveal_duration ().signal_changed ().connect (
@@ -305,7 +305,7 @@ int
 main (int argc, char* argv[])
 {
   gtk_test_init (&argc, &argv, NULL);
-  Adw::init ();
+  adw::init ();
 
   g_test_add_func ("/Adwaita/Carousel/add_remove",
                    test_adw_carousel_add_remove);

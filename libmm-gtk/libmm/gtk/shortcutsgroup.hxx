@@ -14,13 +14,13 @@ using GtkShortcutsGroupClass = struct _GtkShortcutsGroupClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT ShortcutsGroup_Class;
 }
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
   class LIBMM_GTK_SYMEXPORT ShortcutsGroup : public Box
@@ -50,7 +50,7 @@ namespace Gtk
     static CppClassType shortcutsgroup_class_;
 
   protected:
-    explicit ShortcutsGroup (const Glib::ConstructParams& construct_params);
+    explicit ShortcutsGroup (const glib::ConstructParams& construct_params);
     explicit ShortcutsGroup (GtkShortcutsGroup* castitem);
 
 #endif
@@ -85,28 +85,28 @@ namespace Gtk
     unset_view () -> void;
 
     auto
-    property_title () -> Glib::PropertyProxy<Glib::ustring>;
+    property_title () -> glib::PropertyProxy<glib::ustring>;
 
     auto
-    property_title () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+    property_title () const -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
     auto
-    property_view () -> Glib::PropertyProxy<Glib::ustring>;
+    property_view () -> glib::PropertyProxy<glib::ustring>;
 
     auto
-    property_view () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+    property_view () const -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkShortcutsGroup* object, bool take_copy = false) -> Gtk::ShortcutsGroup*;
-} // namespace Glib
+  wrap (GtkShortcutsGroup* object, bool take_copy = false) -> gtk::ShortcutsGroup*;
+} // namespace glib
 
 #endif

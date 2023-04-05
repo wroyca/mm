@@ -13,24 +13,24 @@ namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GtkMediaFile* object, bool take_copy) -> Glib::RefPtr<Gtk::MediaFile>
+  wrap (GtkMediaFile* object, bool take_copy) -> glib::RefPtr<gtk::MediaFile>
   {
-    return Glib::make_refptr_for_instance<Gtk::MediaFile> (
-        dynamic_cast<Gtk::MediaFile*> (
-            Glib::wrap_auto ((GObject*) (object), take_copy)));
+    return glib::make_refptr_for_instance<gtk::MediaFile> (
+        dynamic_cast<gtk::MediaFile*> (
+            glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gtk
+namespace gtk
 {
 
   auto
-  MediaFile_Class::init () -> const Glib::Class&
+  MediaFile_Class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -55,8 +55,8 @@ namespace Gtk
   auto
   MediaFile_Class::open_vfunc_callback (GtkMediaFile* self) -> void
   {
-    const auto obj_base = static_cast<Glib::ObjectBase*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+    const auto obj_base = static_cast<glib::ObjectBase*> (
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -70,7 +70,7 @@ namespace Gtk
         }
         catch (...)
         {
-          Glib::exception_handlers_invoke ();
+          glib::exception_handlers_invoke ();
         }
       }
     }
@@ -85,8 +85,8 @@ namespace Gtk
   auto
   MediaFile_Class::close_vfunc_callback (GtkMediaFile* self) -> void
   {
-    const auto obj_base = static_cast<Glib::ObjectBase*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+    const auto obj_base = static_cast<glib::ObjectBase*> (
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -100,7 +100,7 @@ namespace Gtk
         }
         catch (...)
         {
-          Glib::exception_handlers_invoke ();
+          glib::exception_handlers_invoke ();
         }
       }
     }
@@ -113,7 +113,7 @@ namespace Gtk
   }
 
   auto
-  MediaFile_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  MediaFile_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new MediaFile ((GtkMediaFile*) object);
   }
@@ -125,25 +125,25 @@ namespace Gtk
     return gobj ();
   }
 
-  MediaFile::MediaFile (const Glib::ConstructParams& construct_params)
-    : Gtk::MediaStream (construct_params)
+  MediaFile::MediaFile (const glib::ConstructParams& construct_params)
+    : gtk::MediaStream (construct_params)
   {
   }
 
   MediaFile::MediaFile (GtkMediaFile* castitem)
-    : Gtk::MediaStream ((GtkMediaStream*) (castitem))
+    : gtk::MediaStream ((GtkMediaStream*) (castitem))
   {
   }
 
   MediaFile::MediaFile (MediaFile&& src) noexcept
-    : Gtk::MediaStream (std::move (src))
+    : gtk::MediaStream (std::move (src))
   {
   }
 
   auto
   MediaFile::operator= (MediaFile&& src) noexcept -> MediaFile&
   {
-    Gtk::MediaStream::operator= (std::move (src));
+    gtk::MediaStream::operator= (std::move (src));
     return *this;
   }
 
@@ -164,43 +164,43 @@ namespace Gtk
   }
 
   MediaFile::MediaFile ()
-    : Glib::ObjectBase (nullptr),
-      Gtk::MediaStream (Glib::ConstructParams (mediafile_class_.init ()))
+    : glib::ObjectBase (nullptr),
+      gtk::MediaStream (glib::ConstructParams (mediafile_class_.init ()))
   {
   }
 
   auto
-  MediaFile::create () -> Glib::RefPtr<MediaFile>
+  MediaFile::create () -> glib::RefPtr<MediaFile>
   {
-    return Glib::wrap (GTK_MEDIA_FILE (gtk_media_file_new ()));
+    return glib::wrap (GTK_MEDIA_FILE (gtk_media_file_new ()));
   }
 
   auto
-  MediaFile::create_for_filename (const std::string& filename) -> Glib::RefPtr<MediaFile>
+  MediaFile::create_for_filename (const std::string& filename) -> glib::RefPtr<MediaFile>
   {
-    return Glib::wrap (
+    return glib::wrap (
         GTK_MEDIA_FILE (gtk_media_file_new_for_filename (filename.c_str ())));
   }
 
   auto
-  MediaFile::create_for_resource (const std::string& resource_path) -> Glib::RefPtr<MediaFile>
+  MediaFile::create_for_resource (const std::string& resource_path) -> glib::RefPtr<MediaFile>
   {
-    return Glib::wrap (GTK_MEDIA_FILE (
+    return glib::wrap (GTK_MEDIA_FILE (
         gtk_media_file_new_for_resource (resource_path.c_str ())));
   }
 
   auto
-  MediaFile::create (const Glib::RefPtr<Gio::File>& file) -> Glib::RefPtr<MediaFile>
+  MediaFile::create (const glib::RefPtr<gio::File>& file) -> glib::RefPtr<MediaFile>
   {
-    return Glib::wrap (GTK_MEDIA_FILE (gtk_media_file_new_for_file (
-        const_cast<GFile*> (Glib::unwrap<Gio::File> (file)))));
+    return glib::wrap (GTK_MEDIA_FILE (gtk_media_file_new_for_file (
+        const_cast<GFile*> (glib::unwrap<gio::File> (file)))));
   }
 
   auto
-  MediaFile::create (const Glib::RefPtr<Gio::InputStream>& stream) -> Glib::RefPtr<MediaFile>
+  MediaFile::create (const glib::RefPtr<gio::InputStream>& stream) -> glib::RefPtr<MediaFile>
   {
-    return Glib::wrap (GTK_MEDIA_FILE (gtk_media_file_new_for_input_stream (
-        const_cast<GInputStream*> (Glib::unwrap (stream)))));
+    return glib::wrap (GTK_MEDIA_FILE (gtk_media_file_new_for_input_stream (
+        const_cast<GInputStream*> (glib::unwrap (stream)))));
   }
 
   auto
@@ -222,92 +222,92 @@ namespace Gtk
   }
 
   auto
-  MediaFile::set_file (const Glib::RefPtr<Gio::File>& file) -> void
+  MediaFile::set_file (const glib::RefPtr<gio::File>& file) -> void
   {
     gtk_media_file_set_file (
         gobj (),
-        const_cast<GFile*> (Glib::unwrap<Gio::File> (file)));
+        const_cast<GFile*> (glib::unwrap<gio::File> (file)));
   }
 
   auto
-  MediaFile::get_file () -> Glib::RefPtr<Gio::File>
+  MediaFile::get_file () -> glib::RefPtr<gio::File>
   {
-    auto retvalue = Glib::wrap (gtk_media_file_get_file (gobj ()));
+    auto retvalue = glib::wrap (gtk_media_file_get_file (gobj ()));
     if (retvalue)
       retvalue->reference ();
     return retvalue;
   }
 
   auto
-  MediaFile::get_file () const -> Glib::RefPtr<const Gio::File>
+  MediaFile::get_file () const -> glib::RefPtr<const gio::File>
   {
     return const_cast<MediaFile*> (this)->get_file ();
   }
 
   auto
-  MediaFile::set_input_stream (const Glib::RefPtr<Gio::InputStream>& stream) -> void
+  MediaFile::set_input_stream (const glib::RefPtr<gio::InputStream>& stream) -> void
   {
     gtk_media_file_set_input_stream (
         gobj (),
-        const_cast<GInputStream*> (Glib::unwrap (stream)));
+        const_cast<GInputStream*> (glib::unwrap (stream)));
   }
 
   auto
-  MediaFile::get_input_stream () -> Glib::RefPtr<Gio::InputStream>
+  MediaFile::get_input_stream () -> glib::RefPtr<gio::InputStream>
   {
-    auto retvalue = Glib::wrap (gtk_media_file_get_input_stream (gobj ()));
+    auto retvalue = glib::wrap (gtk_media_file_get_input_stream (gobj ()));
     if (retvalue)
       retvalue->reference ();
     return retvalue;
   }
 
   auto
-  MediaFile::get_input_stream () const -> Glib::RefPtr<const Gio::InputStream>
+  MediaFile::get_input_stream () const -> glib::RefPtr<const gio::InputStream>
   {
     return const_cast<MediaFile*> (this)->get_input_stream ();
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<
-          Glib::RefPtr<Gio::File>>::value,
-      "Type Glib::RefPtr<Gio::File> cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      glib::Traits::ValueCompatibleWithWrapProperty<
+          glib::RefPtr<gio::File>>::value,
+      "Type glib::RefPtr<gio::File> cannot be used in _WRAP_PROPERTY. "
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  MediaFile::property_file () -> Glib::PropertyProxy<Glib::RefPtr<Gio::File>>
+  MediaFile::property_file () -> glib::PropertyProxy<glib::RefPtr<gio::File>>
   {
-    return Glib::PropertyProxy<Glib::RefPtr<Gio::File>> (this, "file");
+    return glib::PropertyProxy<glib::RefPtr<gio::File>> (this, "file");
   }
 
   auto
-  MediaFile::property_file () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gio::File>>
+  MediaFile::property_file () const -> glib::PropertyProxy_ReadOnly<glib::RefPtr<gio::File>>
   {
-    return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gio::File>> (this, "file");
+    return glib::PropertyProxy_ReadOnly<glib::RefPtr<gio::File>> (this, "file");
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<
-          Glib::RefPtr<Gio::InputStream>>::value,
-      "Type Glib::RefPtr<Gio::InputStream> cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      glib::Traits::ValueCompatibleWithWrapProperty<
+          glib::RefPtr<gio::InputStream>>::value,
+      "Type glib::RefPtr<gio::InputStream> cannot be used in _WRAP_PROPERTY. "
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  MediaFile::property_input_stream () -> Glib::PropertyProxy<Glib::RefPtr<Gio::InputStream>>
+  MediaFile::property_input_stream () -> glib::PropertyProxy<glib::RefPtr<gio::InputStream>>
   {
-    return Glib::PropertyProxy<Glib::RefPtr<Gio::InputStream>> (this,
+    return glib::PropertyProxy<glib::RefPtr<gio::InputStream>> (this,
                                                                 "input-stream");
   }
 
   auto
-  MediaFile::property_input_stream () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gio::InputStream>>
+  MediaFile::property_input_stream () const -> glib::PropertyProxy_ReadOnly<glib::RefPtr<gio::InputStream>>
   {
-    return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gio::InputStream>> (
+    return glib::PropertyProxy_ReadOnly<glib::RefPtr<gio::InputStream>> (
         this,
         "input-stream");
   }
 
   auto
-  Gtk::MediaFile::open_vfunc () -> void
+  gtk::MediaFile::open_vfunc () -> void
   {
     const auto base = static_cast<BaseClassType*> (
         g_type_class_peek_parent (G_OBJECT_GET_CLASS (gobject_)));
@@ -319,7 +319,7 @@ namespace Gtk
   }
 
   auto
-  Gtk::MediaFile::close_vfunc () -> void
+  gtk::MediaFile::close_vfunc () -> void
   {
     const auto base = static_cast<BaseClassType*> (
         g_type_class_peek_parent (G_OBJECT_GET_CLASS (gobject_)));
@@ -330,4 +330,4 @@ namespace Gtk
     }
   }
 
-} // namespace Gtk
+} // namespace gtk

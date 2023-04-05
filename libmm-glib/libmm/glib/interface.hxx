@@ -5,14 +5,14 @@
 
 #include <libmm/glib/object.hxx>
 
-namespace Glib
+namespace glib
 {
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
   class LIBMM_GLIB_SYMEXPORT Interface_Class;
 #endif
 
-  class LIBMM_GLIB_SYMEXPORT Interface : virtual public Glib::ObjectBase
+  class LIBMM_GLIB_SYMEXPORT Interface : virtual public glib::ObjectBase
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -27,7 +27,7 @@ namespace Glib
     auto
     operator= (Interface&& src) noexcept -> Interface&;
 
-    explicit Interface (const Glib::Interface_Class& interface_class);
+    explicit Interface (const glib::Interface_Class& interface_class);
 
     explicit Interface (GObject* castitem);
     ~Interface () noexcept override;
@@ -59,6 +59,6 @@ namespace Glib
   auto
   wrap_interface (GObject* object, bool take_copy = false) -> RefPtr<ObjectBase>;
 
-} // namespace Glib
+} // namespace glib
 
 #endif

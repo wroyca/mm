@@ -7,7 +7,7 @@
 
 #include <gtk/gtk.h>
 
-namespace Gtk
+namespace gtk
 {
 
   auto
@@ -16,7 +16,7 @@ namespace Gtk
     gtk_overlay_set_child (gobj (), nullptr);
   }
 
-} // namespace Gtk
+} // namespace gtk
 
 namespace
 {
@@ -27,23 +27,23 @@ namespace
                                               GdkRectangle* p1,
                                               void* data) -> gboolean
   {
-    using namespace Gtk;
-    using SlotType = sigc::slot<bool (Gtk::Widget*, Gdk::Rectangle&)>;
+    using namespace gtk;
+    using SlotType = sigc::slot<bool (gtk::Widget*, gdk::Rectangle&)>;
 
     auto obj = dynamic_cast<Overlay*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
     {
       try
       {
-        if (const auto slot = Glib::SignalProxyNormal::data_to_slot (data))
+        if (const auto slot = glib::SignalProxyNormal::data_to_slot (data))
           return static_cast<int> ((*static_cast<SlotType*> (
-              slot)) (Glib::wrap (p0), Glib::wrap (p1)));
+              slot)) (glib::wrap (p0), glib::wrap (p1)));
       }
       catch (...)
       {
-        Glib::exception_handlers_invoke ();
+        glib::exception_handlers_invoke ();
       }
     }
 
@@ -57,22 +57,22 @@ namespace
                                                      GdkRectangle* p1,
                                                      void* data) -> gboolean
   {
-    using namespace Gtk;
-    using SlotType = sigc::slot<void (Gtk::Widget*, Gdk::Rectangle&)>;
+    using namespace gtk;
+    using SlotType = sigc::slot<void (gtk::Widget*, gdk::Rectangle&)>;
 
     auto obj = dynamic_cast<Overlay*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
     {
       try
       {
-        if (const auto slot = Glib::SignalProxyNormal::data_to_slot (data))
-          (*static_cast<SlotType*> (slot)) (Glib::wrap (p0), Glib::wrap (p1));
+        if (const auto slot = glib::SignalProxyNormal::data_to_slot (data))
+          (*static_cast<SlotType*> (slot)) (glib::wrap (p0), glib::wrap (p1));
       }
       catch (...)
       {
-        Glib::exception_handlers_invoke ();
+        glib::exception_handlers_invoke ();
       }
     }
 
@@ -80,30 +80,30 @@ namespace
     return RType ();
   }
 
-  static const Glib::SignalProxyInfo Overlay_signal_get_child_position_info = {
+  static const glib::SignalProxyInfo Overlay_signal_get_child_position_info = {
       "get-child-position",
       (GCallback) &Overlay_signal_get_child_position_callback,
       (GCallback) &Overlay_signal_get_child_position_notify_callback};
 
 } // namespace
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GtkOverlay* object, bool take_copy) -> Gtk::Overlay*
+  wrap (GtkOverlay* object, bool take_copy) -> gtk::Overlay*
   {
-    return dynamic_cast<Gtk::Overlay*> (
-        Glib::wrap_auto ((GObject*) (object), take_copy));
+    return dynamic_cast<gtk::Overlay*> (
+        glib::wrap_auto ((GObject*) (object), take_copy));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gtk
+namespace gtk
 {
 
   auto
-  Overlay_Class::init () -> const Glib::Class&
+  Overlay_Class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -123,30 +123,30 @@ namespace Gtk
   }
 
   auto
-  Overlay_Class::wrap_new (GObject* o) -> Glib::ObjectBase*
+  Overlay_Class::wrap_new (GObject* o) -> glib::ObjectBase*
   {
     return manage (new Overlay ((GtkOverlay*) (o)));
   }
 
-  Overlay::Overlay (const Glib::ConstructParams& construct_params)
-    : Gtk::Widget (construct_params)
+  Overlay::Overlay (const glib::ConstructParams& construct_params)
+    : gtk::Widget (construct_params)
   {
   }
 
   Overlay::Overlay (GtkOverlay* castitem)
-    : Gtk::Widget ((GtkWidget*) (castitem))
+    : gtk::Widget ((GtkWidget*) (castitem))
   {
   }
 
   Overlay::Overlay (Overlay&& src) noexcept
-    : Gtk::Widget (std::move (src))
+    : gtk::Widget (std::move (src))
   {
   }
 
   auto
   Overlay::operator= (Overlay&& src) noexcept -> Overlay&
   {
-    Gtk::Widget::operator= (std::move (src));
+    gtk::Widget::operator= (std::move (src));
     return *this;
   }
 
@@ -170,19 +170,19 @@ namespace Gtk
   }
 
   Overlay::Overlay ()
-    : Glib::ObjectBase (nullptr),
-      Gtk::Widget (Glib::ConstructParams (overlay_class_.init ()))
+    : glib::ObjectBase (nullptr),
+      gtk::Widget (glib::ConstructParams (overlay_class_.init ()))
   {
   }
 
   auto
-  Overlay::add_overlay (Gtk::Widget& widget) -> void
+  Overlay::add_overlay (gtk::Widget& widget) -> void
   {
     gtk_overlay_add_overlay (gobj (), (widget).gobj ());
   }
 
   auto
-  Overlay::remove_overlay (Gtk::Widget& widget) -> void
+  Overlay::remove_overlay (gtk::Widget& widget) -> void
   {
     gtk_overlay_remove_overlay (gobj (), (widget).gobj ());
   }
@@ -196,7 +196,7 @@ namespace Gtk
   auto
   Overlay::get_child () -> Widget*
   {
-    return Glib::wrap (gtk_overlay_get_child (gobj ()));
+    return glib::wrap (gtk_overlay_get_child (gobj ()));
   }
 
   auto
@@ -237,23 +237,23 @@ namespace Gtk
   }
 
   auto
-  Overlay::signal_get_child_position () -> Glib::SignalProxy<bool (Gtk::Widget*, Gdk::Rectangle&)>
+  Overlay::signal_get_child_position () -> glib::SignalProxy<bool (gtk::Widget*, gdk::Rectangle&)>
   {
-    return Glib::SignalProxy<bool (Gtk::Widget*, Gdk::Rectangle&)> (
+    return glib::SignalProxy<bool (gtk::Widget*, gdk::Rectangle&)> (
         this,
         &Overlay_signal_get_child_position_info);
   }
 
   auto
-  Overlay::property_child () -> Glib::PropertyProxy<Widget*>
+  Overlay::property_child () -> glib::PropertyProxy<Widget*>
   {
-    return Glib::PropertyProxy<Widget*> (this, "child");
+    return glib::PropertyProxy<Widget*> (this, "child");
   }
 
   auto
-  Overlay::property_child () const -> Glib::PropertyProxy_ReadOnly<Widget*>
+  Overlay::property_child () const -> glib::PropertyProxy_ReadOnly<Widget*>
   {
-    return Glib::PropertyProxy_ReadOnly<Widget*> (this, "child");
+    return glib::PropertyProxy_ReadOnly<Widget*> (this, "child");
   }
 
-} // namespace Gtk
+} // namespace gtk

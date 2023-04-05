@@ -9,15 +9,15 @@
 
 #include <gtk/gtk.h>
 
-namespace Gtk
+namespace gtk
 {
 
-  Scrollbar::Scrollbar (const Glib::RefPtr<Adjustment>& adjustment,
+  Scrollbar::Scrollbar (const glib::RefPtr<Adjustment>& adjustment,
                         Orientation orientation)
-    : Glib::ObjectBase (nullptr),
-      Gtk::Widget (Glib::ConstructParams (scrollbar_class_.init (),
+    : glib::ObjectBase (nullptr),
+      gtk::Widget (glib::ConstructParams (scrollbar_class_.init (),
                                           "adjustment",
-                                          Glib::unwrap (adjustment),
+                                          glib::unwrap (adjustment),
                                           "orientation",
                                           (GtkOrientation) orientation,
                                           nullptr))
@@ -30,29 +30,29 @@ namespace Gtk
     gtk_scrollbar_set_adjustment (gobj (), nullptr);
   }
 
-} // namespace Gtk
+} // namespace gtk
 
 namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GtkScrollbar* object, bool take_copy) -> Gtk::Scrollbar*
+  wrap (GtkScrollbar* object, bool take_copy) -> gtk::Scrollbar*
   {
-    return dynamic_cast<Gtk::Scrollbar*> (
-        Glib::wrap_auto ((GObject*) (object), take_copy));
+    return dynamic_cast<gtk::Scrollbar*> (
+        glib::wrap_auto ((GObject*) (object), take_copy));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gtk
+namespace gtk
 {
 
   auto
-  Scrollbar_Class::init () -> const Glib::Class&
+  Scrollbar_Class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -74,23 +74,23 @@ namespace Gtk
   }
 
   auto
-  Scrollbar_Class::wrap_new (GObject* o) -> Glib::ObjectBase*
+  Scrollbar_Class::wrap_new (GObject* o) -> glib::ObjectBase*
   {
     return manage (new Scrollbar ((GtkScrollbar*) (o)));
   }
 
-  Scrollbar::Scrollbar (const Glib::ConstructParams& construct_params)
-    : Gtk::Widget (construct_params)
+  Scrollbar::Scrollbar (const glib::ConstructParams& construct_params)
+    : gtk::Widget (construct_params)
   {
   }
 
   Scrollbar::Scrollbar (GtkScrollbar* castitem)
-    : Gtk::Widget ((GtkWidget*) (castitem))
+    : gtk::Widget ((GtkWidget*) (castitem))
   {
   }
 
   Scrollbar::Scrollbar (Scrollbar&& src) noexcept
-    : Gtk::Widget (std::move (src)),
+    : gtk::Widget (std::move (src)),
       Orientable (std::move (src))
   {
   }
@@ -98,7 +98,7 @@ namespace Gtk
   auto
   Scrollbar::operator= (Scrollbar&& src) noexcept -> Scrollbar&
   {
-    Gtk::Widget::operator= (std::move (src));
+    gtk::Widget::operator= (std::move (src));
     Orientable::operator= (std::move (src));
     return *this;
   }
@@ -123,50 +123,50 @@ namespace Gtk
   }
 
   Scrollbar::Scrollbar ()
-    : Glib::ObjectBase (nullptr),
-      Gtk::Widget (Glib::ConstructParams (scrollbar_class_.init ()))
+    : glib::ObjectBase (nullptr),
+      gtk::Widget (glib::ConstructParams (scrollbar_class_.init ()))
   {
   }
 
   auto
-  Scrollbar::set_adjustment (const Glib::RefPtr<Adjustment>& adjustment) -> void
+  Scrollbar::set_adjustment (const glib::RefPtr<Adjustment>& adjustment) -> void
   {
-    gtk_scrollbar_set_adjustment (gobj (), Glib::unwrap (adjustment));
+    gtk_scrollbar_set_adjustment (gobj (), glib::unwrap (adjustment));
   }
 
   auto
-  Scrollbar::get_adjustment () -> Glib::RefPtr<Adjustment>
+  Scrollbar::get_adjustment () -> glib::RefPtr<Adjustment>
   {
-    auto retvalue = Glib::wrap (gtk_scrollbar_get_adjustment (gobj ()));
+    auto retvalue = glib::wrap (gtk_scrollbar_get_adjustment (gobj ()));
     if (retvalue)
       retvalue->reference ();
     return retvalue;
   }
 
   auto
-  Scrollbar::get_adjustment () const -> Glib::RefPtr<const Adjustment>
+  Scrollbar::get_adjustment () const -> glib::RefPtr<const Adjustment>
   {
     return const_cast<Scrollbar*> (this)->get_adjustment ();
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<
-          Glib::RefPtr<Adjustment>>::value,
-      "Type Glib::RefPtr<Adjustment> cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      glib::Traits::ValueCompatibleWithWrapProperty<
+          glib::RefPtr<Adjustment>>::value,
+      "Type glib::RefPtr<Adjustment> cannot be used in _WRAP_PROPERTY. "
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  Scrollbar::property_adjustment () -> Glib::PropertyProxy<Glib::RefPtr<Adjustment>>
+  Scrollbar::property_adjustment () -> glib::PropertyProxy<glib::RefPtr<Adjustment>>
   {
-    return Glib::PropertyProxy<Glib::RefPtr<Adjustment>> (this, "adjustment");
+    return glib::PropertyProxy<glib::RefPtr<Adjustment>> (this, "adjustment");
   }
 
   auto
-  Scrollbar::property_adjustment () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Adjustment>>
+  Scrollbar::property_adjustment () const -> glib::PropertyProxy_ReadOnly<glib::RefPtr<Adjustment>>
   {
-    return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Adjustment>> (
+    return glib::PropertyProxy_ReadOnly<glib::RefPtr<Adjustment>> (
         this,
         "adjustment");
   }
 
-} // namespace Gtk
+} // namespace gtk

@@ -13,13 +13,13 @@
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT NumericSorterBase_Class;
 }
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
   class LIBMM_GTK_SYMEXPORT NumericSorterBase : public Sorter
@@ -41,7 +41,7 @@ namespace Gtk
     static CppClassType numericsorterbase_class_;
 
   protected:
-    explicit NumericSorterBase (const Glib::ConstructParams& construct_params);
+    explicit NumericSorterBase (const glib::ConstructParams& construct_params);
     explicit NumericSorterBase (GtkNumericSorter* castitem);
 
 #endif
@@ -79,7 +79,7 @@ namespace Gtk
 
   private:
   protected:
-    explicit NumericSorterBase (const Glib::RefPtr<ExpressionBase>& expression);
+    explicit NumericSorterBase (const glib::RefPtr<ExpressionBase>& expression);
 
   public:
     auto
@@ -89,10 +89,10 @@ namespace Gtk
     set_sort_order (SortType sort_order) -> void;
 
     auto
-    property_sort_order () -> Glib::PropertyProxy<SortType>;
+    property_sort_order () -> glib::PropertyProxy<SortType>;
 
     auto
-    property_sort_order () const -> Glib::PropertyProxy_ReadOnly<SortType>;
+    property_sort_order () const -> glib::PropertyProxy_ReadOnly<SortType>;
 
   public:
   public:
@@ -105,51 +105,51 @@ namespace Gtk
     static_assert (std::is_arithmetic<T>::value);
 
   protected:
-    NumericSorter (const Glib::RefPtr<Expression<T>>& expression);
+    NumericSorter (const glib::RefPtr<Expression<T>>& expression);
 
   public:
     static auto
-    create (const Glib::RefPtr<Expression<T>>& expression)
-        -> Glib::RefPtr<NumericSorter>;
+    create (const glib::RefPtr<Expression<T>>& expression)
+        -> glib::RefPtr<NumericSorter>;
 
     auto
-    get_expression () -> Glib::RefPtr<Expression<T>>;
+    get_expression () -> glib::RefPtr<Expression<T>>;
 
     auto
-    get_expression () const -> Glib::RefPtr<const Expression<T>>;
+    get_expression () const -> glib::RefPtr<const Expression<T>>;
 
     auto
-    set_expression (const Glib::RefPtr<Expression<T>>& expression) -> void;
+    set_expression (const glib::RefPtr<Expression<T>>& expression) -> void;
 
     auto
-    property_expression () -> Glib::PropertyProxy<Glib::RefPtr<Expression<T>>>;
+    property_expression () -> glib::PropertyProxy<glib::RefPtr<Expression<T>>>;
 
     auto
     property_expression () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Expression<T>>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<Expression<T>>>;
   };
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   template <class T>
   NumericSorter<T>::NumericSorter (
-      const Glib::RefPtr<Expression<T>>& expression)
+      const glib::RefPtr<Expression<T>>& expression)
     : NumericSorterBase (expression)
   {
   }
 
   template <class T>
   auto
-  NumericSorter<T>::create (const Glib::RefPtr<Expression<T>>& expression) -> Glib::RefPtr<NumericSorter<T>>
+  NumericSorter<T>::create (const glib::RefPtr<Expression<T>>& expression) -> glib::RefPtr<NumericSorter<T>>
   {
-    return Glib::make_refptr_for_instance<NumericSorter> (
+    return glib::make_refptr_for_instance<NumericSorter> (
         new NumericSorter (expression));
   }
 
   template <class T>
   auto
   NumericSorter<T>::set_expression (
-      const Glib::RefPtr<Expression<T>>& expression) -> void
+      const glib::RefPtr<Expression<T>>& expression) -> void
   {
     gtk_numeric_sorter_set_expression (
         gobj (),
@@ -158,45 +158,45 @@ namespace Gtk
 
   template <class T>
   auto
-  NumericSorter<T>::get_expression () -> Glib::RefPtr<Expression<T>>
+  NumericSorter<T>::get_expression () -> glib::RefPtr<Expression<T>>
   {
-    return Glib::wrap<T> (gtk_numeric_sorter_get_expression (gobj ()), true);
+    return glib::wrap<T> (gtk_numeric_sorter_get_expression (gobj ()), true);
   }
 
   template <class T>
   auto
-  NumericSorter<T>::get_expression () const -> Glib::RefPtr<const Expression<T>>
+  NumericSorter<T>::get_expression () const -> glib::RefPtr<const Expression<T>>
   {
-    return Glib::wrap<T> (gtk_numeric_sorter_get_expression (
+    return glib::wrap<T> (gtk_numeric_sorter_get_expression (
                               const_cast<GtkNumericSorter*> (gobj ())),
                           true);
   }
 
   template <class T>
   auto
-  NumericSorter<T>::property_expression () -> Glib::PropertyProxy<Glib::RefPtr<Expression<T>>>
+  NumericSorter<T>::property_expression () -> glib::PropertyProxy<glib::RefPtr<Expression<T>>>
   {
-    return Glib::PropertyProxy<Glib::RefPtr<Expression<T>>> (this,
+    return glib::PropertyProxy<glib::RefPtr<Expression<T>>> (this,
                                                              "expression");
   }
 
   template <class T>
   auto
-  NumericSorter<T>::property_expression () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Expression<T>>>
+  NumericSorter<T>::property_expression () const -> glib::PropertyProxy_ReadOnly<glib::RefPtr<Expression<T>>>
   {
-    return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Expression<T>>> (
+    return glib::PropertyProxy_ReadOnly<glib::RefPtr<Expression<T>>> (
         this,
         "expression");
   }
 
 #endif
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkNumericSorter* object, bool take_copy = false) -> Glib::RefPtr<Gtk::NumericSorterBase>;
-} // namespace Glib
+  wrap (GtkNumericSorter* object, bool take_copy = false) -> glib::RefPtr<gtk::NumericSorterBase>;
+} // namespace glib
 
 #endif

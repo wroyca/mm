@@ -14,13 +14,13 @@ using GtkEventControllerMotionClass = struct _GtkEventControllerMotionClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT EventControllerMotion_Class;
 }
 #endif
 
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT Widget;
 
@@ -44,7 +44,7 @@ namespace Gtk
 
   protected:
     explicit EventControllerMotion (
-        const Glib::ConstructParams& construct_params);
+        const glib::ConstructParams& construct_params);
     explicit EventControllerMotion (GtkEventControllerMotion* castitem);
 
 #endif
@@ -86,7 +86,7 @@ namespace Gtk
 
   public:
     static auto
-    create () -> Glib::RefPtr<EventControllerMotion>;
+    create () -> glib::RefPtr<EventControllerMotion>;
 
     auto
     contains_pointer () const -> bool;
@@ -95,31 +95,31 @@ namespace Gtk
     is_pointer () const -> bool;
 
     auto
-    signal_enter () -> Glib::SignalProxy<void (double, double)>;
+    signal_enter () -> glib::SignalProxy<void (double, double)>;
 
     auto
-    signal_leave () -> Glib::SignalProxy<void ()>;
+    signal_leave () -> glib::SignalProxy<void ()>;
 
     auto
-    signal_motion () -> Glib::SignalProxy<void (double, double)>;
+    signal_motion () -> glib::SignalProxy<void (double, double)>;
 
     auto
-    property_is_pointer () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_is_pointer () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_contains_pointer () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_contains_pointer () const -> glib::PropertyProxy_ReadOnly<bool>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkEventControllerMotion* object, bool take_copy = false) -> Glib::RefPtr<Gtk::EventControllerMotion>;
-} // namespace Glib
+  wrap (GtkEventControllerMotion* object, bool take_copy = false) -> glib::RefPtr<gtk::EventControllerMotion>;
+} // namespace glib
 
 #endif

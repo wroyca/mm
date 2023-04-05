@@ -4,7 +4,7 @@
 #include <libmm/cairo/private.hxx>
 #include <libmm/cairo/region.hxx>
 
-namespace Cairo
+namespace cairo
 {
 
   Region::Region ()
@@ -204,4 +204,4 @@ namespace Cairo
     check_status_and_throw_exception (status);
   }
 
-} // namespace Cairo
+} // namespace cairo

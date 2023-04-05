@@ -12,41 +12,41 @@
 
   #include <gtk/gtk.h>
 
-namespace Gtk
+namespace gtk
 {
 
-  FontChooserDialog::FontChooserDialog (const Glib::ustring& title)
-    : Glib::ObjectBase (nullptr),
-      Gtk::Dialog (Glib::ConstructParams (fontchooserdialog_class_.init (),
+  FontChooserDialog::FontChooserDialog (const glib::ustring& title)
+    : glib::ObjectBase (nullptr),
+      gtk::Dialog (glib::ConstructParams (fontchooserdialog_class_.init (),
                                           "title",
                                           title.c_str (),
                                           nullptr))
   {
   }
 
-} // namespace Gtk
+} // namespace gtk
 
 namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GtkFontChooserDialog* object, bool take_copy) -> Gtk::FontChooserDialog*
+  wrap (GtkFontChooserDialog* object, bool take_copy) -> gtk::FontChooserDialog*
   {
-    return dynamic_cast<Gtk::FontChooserDialog*> (
-        Glib::wrap_auto ((GObject*) (object), take_copy));
+    return dynamic_cast<gtk::FontChooserDialog*> (
+        glib::wrap_auto ((GObject*) (object), take_copy));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gtk
+namespace gtk
 {
 
   auto
-  FontChooserDialog_Class::init () -> const Glib::Class&
+  FontChooserDialog_Class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -68,24 +68,24 @@ namespace Gtk
   }
 
   auto
-  FontChooserDialog_Class::wrap_new (GObject* o) -> Glib::ObjectBase*
+  FontChooserDialog_Class::wrap_new (GObject* o) -> glib::ObjectBase*
   {
     return new FontChooserDialog ((GtkFontChooserDialog*) (o));
   }
 
   FontChooserDialog::FontChooserDialog (
-      const Glib::ConstructParams& construct_params)
-    : Gtk::Dialog (construct_params)
+      const glib::ConstructParams& construct_params)
+    : gtk::Dialog (construct_params)
   {
   }
 
   FontChooserDialog::FontChooserDialog (GtkFontChooserDialog* castitem)
-    : Gtk::Dialog ((GtkDialog*) (castitem))
+    : gtk::Dialog ((GtkDialog*) (castitem))
   {
   }
 
   FontChooserDialog::FontChooserDialog (FontChooserDialog&& src) noexcept
-    : Gtk::Dialog (std::move (src)),
+    : gtk::Dialog (std::move (src)),
       FontChooser (std::move (src))
   {
   }
@@ -93,7 +93,7 @@ namespace Gtk
   auto
   FontChooserDialog::operator= (FontChooserDialog&& src) noexcept -> FontChooserDialog&
   {
-    Gtk::Dialog::operator= (std::move (src));
+    gtk::Dialog::operator= (std::move (src));
     FontChooser::operator= (std::move (src));
     return *this;
   }
@@ -118,15 +118,15 @@ namespace Gtk
   }
 
   FontChooserDialog::FontChooserDialog ()
-    : Glib::ObjectBase (nullptr),
-      Gtk::Dialog (Glib::ConstructParams (fontchooserdialog_class_.init ()))
+    : glib::ObjectBase (nullptr),
+      gtk::Dialog (glib::ConstructParams (fontchooserdialog_class_.init ()))
   {
   }
 
-  FontChooserDialog::FontChooserDialog (const Glib::ustring& title,
+  FontChooserDialog::FontChooserDialog (const glib::ustring& title,
                                         Window& transient_for)
-    : Glib::ObjectBase (nullptr),
-      Gtk::Dialog (Glib::ConstructParams (fontchooserdialog_class_.init (),
+    : glib::ObjectBase (nullptr),
+      gtk::Dialog (glib::ConstructParams (fontchooserdialog_class_.init (),
                                           "title",
                                           title.c_str (),
                                           "transient_for",
@@ -135,6 +135,6 @@ namespace Gtk
   {
   }
 
-} // namespace Gtk
+} // namespace gtk
 
 #endif

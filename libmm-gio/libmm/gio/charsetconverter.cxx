@@ -7,13 +7,13 @@
 
 #include <gio/gio.h>
 
-namespace Gio
+namespace gio
 {
 
-  CharsetConverter::CharsetConverter (const Glib::ustring& to_charset,
-                                      const Glib::ustring& from_charset)
+  CharsetConverter::CharsetConverter (const glib::ustring& to_charset,
+                                      const glib::ustring& from_charset)
     : ObjectBase (nullptr),
-      Object (Glib::ConstructParams (charsetconverter_class_.init (),
+      Object (glib::ConstructParams (charsetconverter_class_.init (),
                                      "to-charset",
                                      to_charset.c_str (),
                                      "from-charset",
@@ -23,26 +23,26 @@ namespace Gio
     init ();
   }
 
-} // namespace Gio
+} // namespace gio
 
 namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GCharsetConverter* object, const bool take_copy) -> RefPtr<Gio::CharsetConverter>
+  wrap (GCharsetConverter* object, const bool take_copy) -> RefPtr<gio::CharsetConverter>
   {
-    return Glib::make_refptr_for_instance<Gio::CharsetConverter> (
-        dynamic_cast<Gio::CharsetConverter*> (
+    return glib::make_refptr_for_instance<gio::CharsetConverter> (
+        dynamic_cast<gio::CharsetConverter*> (
             wrap_auto ((GObject*) object, take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gio
+namespace gio
 {
 
   auto
@@ -69,7 +69,7 @@ namespace Gio
   }
 
   auto
-  CharsetConverter_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  CharsetConverter_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new CharsetConverter ((GCharsetConverter*) object);
   }
@@ -82,7 +82,7 @@ namespace Gio
   }
 
   CharsetConverter::CharsetConverter (
-      const Glib::ConstructParams& construct_params)
+      const glib::ConstructParams& construct_params)
     : Object (construct_params)
   {
   }
@@ -125,10 +125,10 @@ namespace Gio
   }
 
   auto
-  CharsetConverter::create (const Glib::ustring& to_charset,
-                            const Glib::ustring& from_charset) -> Glib::RefPtr<CharsetConverter>
+  CharsetConverter::create (const glib::ustring& to_charset,
+                            const glib::ustring& from_charset) -> glib::RefPtr<CharsetConverter>
   {
-    return Glib::make_refptr_for_instance<CharsetConverter> (
+    return glib::make_refptr_for_instance<CharsetConverter> (
         new CharsetConverter (to_charset, from_charset));
   }
 
@@ -153,27 +153,27 @@ namespace Gio
   }
 
   auto
-  CharsetConverter::property_from_charset () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>
+  CharsetConverter::property_from_charset () const -> glib::PropertyProxy_ReadOnly<glib::ustring>
   {
     return {this, "from-charset"};
   }
 
   auto
-  CharsetConverter::property_to_charset () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>
+  CharsetConverter::property_to_charset () const -> glib::PropertyProxy_ReadOnly<glib::ustring>
   {
     return {this, "to-charset"};
   }
 
   auto
-  CharsetConverter::property_use_fallback () -> Glib::PropertyProxy<bool>
+  CharsetConverter::property_use_fallback () -> glib::PropertyProxy<bool>
   {
     return {this, "use-fallback"};
   }
 
   auto
-  CharsetConverter::property_use_fallback () const -> Glib::PropertyProxy_ReadOnly<bool>
+  CharsetConverter::property_use_fallback () const -> glib::PropertyProxy_ReadOnly<bool>
   {
     return {this, "use-fallback"};
   }
 
-} // namespace Gio
+} // namespace gio

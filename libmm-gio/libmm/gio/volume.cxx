@@ -12,27 +12,27 @@
 #include <libmm/glib/error.hxx>
 #include <libmm/glib/exceptionhandler.hxx>
 
-namespace Gio
+namespace gio
 {
 
   auto
-  Volume::mount (const Glib::RefPtr<MountOperation>& mount_operation,
+  Volume::mount (const glib::RefPtr<MountOperation>& mount_operation,
                  const SlotAsyncReady& slot,
-                 const Glib::RefPtr<Cancellable>& cancellable,
+                 const glib::RefPtr<Cancellable>& cancellable,
                  Mount::MountFlags flags) -> void
   {
     const auto slot_copy = new SlotAsyncReady (slot);
 
     g_volume_mount (gobj (),
                     static_cast<GMountMountFlags> (flags),
-                    Glib::unwrap (mount_operation),
-                    Glib::unwrap (cancellable),
+                    glib::unwrap (mount_operation),
+                    glib::unwrap (cancellable),
                     &SignalProxy_async_callback,
                     slot_copy);
   }
 
   auto
-  Volume::mount (const Glib::RefPtr<MountOperation>& mount_operation,
+  Volume::mount (const glib::RefPtr<MountOperation>& mount_operation,
                  const SlotAsyncReady& slot,
                  Mount::MountFlags flags) -> void
   {
@@ -40,19 +40,19 @@ namespace Gio
 
     g_volume_mount (gobj (),
                     static_cast<GMountMountFlags> (flags),
-                    Glib::unwrap (mount_operation),
+                    glib::unwrap (mount_operation),
                     nullptr,
                     &SignalProxy_async_callback,
                     slot_copy);
   }
 
   auto
-  Volume::mount (const Glib::RefPtr<MountOperation>& mount_operation,
+  Volume::mount (const glib::RefPtr<MountOperation>& mount_operation,
                  Mount::MountFlags flags) -> void
   {
     g_volume_mount (gobj (),
                     static_cast<GMountMountFlags> (flags),
-                    Glib::unwrap (mount_operation),
+                    glib::unwrap (mount_operation),
                     nullptr,
                     nullptr,
                     nullptr);
@@ -71,7 +71,7 @@ namespace Gio
 
   auto
   Volume::eject (const SlotAsyncReady& slot,
-                 const Glib::RefPtr<Cancellable>& cancellable,
+                 const glib::RefPtr<Cancellable>& cancellable,
                  Mount::UnmountFlags flags) -> void
   {
     const auto slot_copy = new SlotAsyncReady (slot);
@@ -79,7 +79,7 @@ namespace Gio
     g_volume_eject_with_operation (gobj (),
                                    static_cast<GMountUnmountFlags> (flags),
                                    nullptr,
-                                   Glib::unwrap (cancellable),
+                                   glib::unwrap (cancellable),
                                    &SignalProxy_async_callback,
                                    slot_copy);
   }
@@ -109,23 +109,23 @@ namespace Gio
   }
 
   auto
-  Volume::eject (const Glib::RefPtr<MountOperation>& mount_operation,
+  Volume::eject (const glib::RefPtr<MountOperation>& mount_operation,
                  const SlotAsyncReady& slot,
-                 const Glib::RefPtr<Cancellable>& cancellable,
+                 const glib::RefPtr<Cancellable>& cancellable,
                  Mount::UnmountFlags flags) -> void
   {
     const auto slot_copy = new SlotAsyncReady (slot);
 
     g_volume_eject_with_operation (gobj (),
                                    static_cast<GMountUnmountFlags> (flags),
-                                   Glib::unwrap (mount_operation),
-                                   Glib::unwrap (cancellable),
+                                   glib::unwrap (mount_operation),
+                                   glib::unwrap (cancellable),
                                    &SignalProxy_async_callback,
                                    slot_copy);
   }
 
   auto
-  Volume::eject (const Glib::RefPtr<MountOperation>& mount_operation,
+  Volume::eject (const glib::RefPtr<MountOperation>& mount_operation,
                  const SlotAsyncReady& slot,
                  Mount::UnmountFlags flags) -> void
   {
@@ -133,54 +133,54 @@ namespace Gio
 
     g_volume_eject_with_operation (gobj (),
                                    static_cast<GMountUnmountFlags> (flags),
-                                   Glib::unwrap (mount_operation),
+                                   glib::unwrap (mount_operation),
                                    nullptr,
                                    &SignalProxy_async_callback,
                                    slot_copy);
   }
 
   auto
-  Volume::eject (const Glib::RefPtr<MountOperation>& mount_operation,
+  Volume::eject (const glib::RefPtr<MountOperation>& mount_operation,
                  Mount::UnmountFlags flags) -> void
   {
     g_volume_eject_with_operation (gobj (),
                                    static_cast<GMountUnmountFlags> (flags),
-                                   Glib::unwrap (mount_operation),
+                                   glib::unwrap (mount_operation),
                                    nullptr,
                                    nullptr,
                                    nullptr);
   }
 
-} // namespace Gio
+} // namespace gio
 
 namespace
 {
 
-  const Glib::SignalProxyInfo Volume_signal_changed_info = {
+  const glib::SignalProxyInfo Volume_signal_changed_info = {
       "changed",
-      (GCallback) &Glib::SignalProxyNormal::slot0_void_callback,
-      (GCallback) &Glib::SignalProxyNormal::slot0_void_callback};
+      (GCallback) &glib::SignalProxyNormal::slot0_void_callback,
+      (GCallback) &glib::SignalProxyNormal::slot0_void_callback};
 
-  const Glib::SignalProxyInfo Volume_signal_removed_info = {
+  const glib::SignalProxyInfo Volume_signal_removed_info = {
       "removed",
-      (GCallback) &Glib::SignalProxyNormal::slot0_void_callback,
-      (GCallback) &Glib::SignalProxyNormal::slot0_void_callback};
+      (GCallback) &glib::SignalProxyNormal::slot0_void_callback,
+      (GCallback) &glib::SignalProxyNormal::slot0_void_callback};
 
 } // namespace
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GVolume* object, const bool take_copy) -> RefPtr<Gio::Volume>
+  wrap (GVolume* object, const bool take_copy) -> RefPtr<gio::Volume>
   {
-    return Glib::make_refptr_for_instance<Gio::Volume> (
-        Glib::wrap_auto_interface<Gio::Volume> ((GObject*) object, take_copy));
+    return glib::make_refptr_for_instance<gio::Volume> (
+        glib::wrap_auto_interface<gio::Volume> ((GObject*) object, take_copy));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gio
+namespace gio
 {
 
   auto
@@ -211,7 +211,7 @@ namespace Gio
   Volume_Class::changed_callback (GVolume* self) -> void
   {
     const auto obj_base =
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self);
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self);
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -225,7 +225,7 @@ namespace Gio
         }
         catch (...)
         {
-          Glib::exception_handlers_invoke ();
+          glib::exception_handlers_invoke ();
         }
       }
     }
@@ -243,7 +243,7 @@ namespace Gio
   Volume_Class::removed_callback (GVolume* self) -> void
   {
     const auto obj_base =
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self);
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self);
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -257,7 +257,7 @@ namespace Gio
         }
         catch (...)
         {
-          Glib::exception_handlers_invoke ();
+          glib::exception_handlers_invoke ();
         }
       }
     }
@@ -272,7 +272,7 @@ namespace Gio
   }
 
   auto
-  Volume_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  Volume_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new Volume ((GVolume*) object);
   }
@@ -287,7 +287,7 @@ namespace Gio
   {
   }
 
-  Volume::Volume (const Glib::Interface_Class& interface_class)
+  Volume::Volume (const glib::Interface_Class& interface_class)
     : Interface (interface_class)
   {
   }
@@ -329,73 +329,73 @@ namespace Gio
   auto
   Volume::get_name () const -> std::string
   {
-    return Glib::convert_return_gchar_ptr_to_stdstring (
+    return glib::convert_return_gchar_ptr_to_stdstring (
         g_volume_get_name (const_cast<GVolume*> (gobj ())));
   }
 
   auto
   Volume::get_uuid () const -> std::string
   {
-    return Glib::convert_return_gchar_ptr_to_stdstring (
+    return glib::convert_return_gchar_ptr_to_stdstring (
         g_volume_get_uuid (const_cast<GVolume*> (gobj ())));
   }
 
   auto
-  Volume::get_icon () -> Glib::RefPtr<Icon>
+  Volume::get_icon () -> glib::RefPtr<Icon>
   {
-    auto retvalue = Glib::wrap (g_volume_get_icon (gobj ()));
+    auto retvalue = glib::wrap (g_volume_get_icon (gobj ()));
     if (retvalue)
       retvalue->reference ();
     return retvalue;
   }
 
   auto
-  Volume::get_icon () const -> Glib::RefPtr<const Icon>
+  Volume::get_icon () const -> glib::RefPtr<const Icon>
   {
     return const_cast<Volume*> (this)->get_icon ();
   }
 
   auto
-  Volume::get_symbolic_icon () -> Glib::RefPtr<Icon>
+  Volume::get_symbolic_icon () -> glib::RefPtr<Icon>
   {
-    auto retvalue = Glib::wrap (g_volume_get_symbolic_icon (gobj ()));
+    auto retvalue = glib::wrap (g_volume_get_symbolic_icon (gobj ()));
     if (retvalue)
       retvalue->reference ();
     return retvalue;
   }
 
   auto
-  Volume::get_symbolic_icon () const -> Glib::RefPtr<const Icon>
+  Volume::get_symbolic_icon () const -> glib::RefPtr<const Icon>
   {
     return const_cast<Volume*> (this)->get_symbolic_icon ();
   }
 
   auto
-  Volume::get_drive () -> Glib::RefPtr<Drive>
+  Volume::get_drive () -> glib::RefPtr<Drive>
   {
-    auto retvalue = Glib::wrap (g_volume_get_drive (gobj ()));
+    auto retvalue = glib::wrap (g_volume_get_drive (gobj ()));
     if (retvalue)
       retvalue->reference ();
     return retvalue;
   }
 
   auto
-  Volume::get_drive () const -> Glib::RefPtr<const Drive>
+  Volume::get_drive () const -> glib::RefPtr<const Drive>
   {
     return const_cast<Volume*> (this)->get_drive ();
   }
 
   auto
-  Volume::get_mount () -> Glib::RefPtr<Mount>
+  Volume::get_mount () -> glib::RefPtr<Mount>
   {
-    auto retvalue = Glib::wrap (g_volume_get_mount (gobj ()));
+    auto retvalue = glib::wrap (g_volume_get_mount (gobj ()));
     if (retvalue)
       retvalue->reference ();
     return retvalue;
   }
 
   auto
-  Volume::get_mount () const -> Glib::RefPtr<const Mount>
+  Volume::get_mount () const -> glib::RefPtr<const Mount>
   {
     return const_cast<Volume*> (this)->get_mount ();
   }
@@ -419,73 +419,73 @@ namespace Gio
   }
 
   auto
-  Volume::mount_finish (const Glib::RefPtr<AsyncResult>& result) -> bool
+  Volume::mount_finish (const glib::RefPtr<AsyncResult>& result) -> bool
   {
     GError* gerror = nullptr;
     const auto retvalue =
-        g_volume_mount_finish (gobj (), Glib::unwrap (result), &gerror);
+        g_volume_mount_finish (gobj (), glib::unwrap (result), &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
   auto
-  Volume::eject_finish (const Glib::RefPtr<AsyncResult>& result) -> bool
+  Volume::eject_finish (const glib::RefPtr<AsyncResult>& result) -> bool
   {
     GError* gerror = nullptr;
     const auto retvalue = g_volume_eject_with_operation_finish (
         gobj (),
-        Glib::unwrap (result),
+        glib::unwrap (result),
         &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
   auto
   Volume::get_identifier (const std::string& kind) const -> std::string
   {
-    return Glib::convert_return_gchar_ptr_to_stdstring (
+    return glib::convert_return_gchar_ptr_to_stdstring (
         g_volume_get_identifier (const_cast<GVolume*> (gobj ()),
                                  kind.c_str ()));
   }
 
   auto
-  Volume::enumerate_identifiers () const -> std::vector<Glib::ustring>
+  Volume::enumerate_identifiers () const -> std::vector<glib::ustring>
   {
-    return Glib::ArrayHandler<Glib::ustring>::array_to_vector (
+    return glib::ArrayHandler<glib::ustring>::array_to_vector (
         g_volume_enumerate_identifiers (const_cast<GVolume*> (gobj ())),
-        Glib::OWNERSHIP_DEEP);
+        glib::OWNERSHIP_DEEP);
   }
 
   auto
-  Volume::get_activation_root () -> Glib::RefPtr<File>
+  Volume::get_activation_root () -> glib::RefPtr<File>
   {
-    return Glib::wrap (g_volume_get_activation_root (gobj ()));
+    return glib::wrap (g_volume_get_activation_root (gobj ()));
   }
 
   auto
-  Volume::get_activation_root () const -> Glib::RefPtr<const File>
+  Volume::get_activation_root () const -> glib::RefPtr<const File>
   {
-    return Glib::wrap (
+    return glib::wrap (
         g_volume_get_activation_root (const_cast<GVolume*> (gobj ())));
   }
 
   auto
-  Volume::sort_key () -> Glib::ustring
+  Volume::sort_key () -> glib::ustring
   {
-    return Glib::convert_const_gchar_ptr_to_ustring (
+    return glib::convert_const_gchar_ptr_to_ustring (
         g_volume_get_sort_key (gobj ()));
   }
 
   auto
-  Volume::signal_changed () -> Glib::SignalProxy<void ()>
+  Volume::signal_changed () -> glib::SignalProxy<void ()>
   {
     return {this, &Volume_signal_changed_info};
   }
 
   auto
-  Volume::signal_removed () -> Glib::SignalProxy<void ()>
+  Volume::signal_removed () -> glib::SignalProxy<void ()>
   {
     return {this, &Volume_signal_removed_info};
   }
@@ -514,4 +514,4 @@ namespace Gio
       (*base->removed) (gobj ());
   }
 
-} // namespace Gio
+} // namespace gio

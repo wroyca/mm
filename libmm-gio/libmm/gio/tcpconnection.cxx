@@ -7,7 +7,7 @@
 
 #include <gio/gio.h>
 
-namespace Gio
+namespace gio
 {
 }
 
@@ -15,20 +15,20 @@ namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GTcpConnection* object, const bool take_copy) -> RefPtr<Gio::TcpConnection>
+  wrap (GTcpConnection* object, const bool take_copy) -> RefPtr<gio::TcpConnection>
   {
-    return Glib::make_refptr_for_instance<Gio::TcpConnection> (
-        dynamic_cast<Gio::TcpConnection*> (
+    return glib::make_refptr_for_instance<gio::TcpConnection> (
+        dynamic_cast<gio::TcpConnection*> (
             wrap_auto ((GObject*) object, take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gio
+namespace gio
 {
 
   auto
@@ -52,7 +52,7 @@ namespace Gio
   }
 
   auto
-  TcpConnection_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  TcpConnection_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new TcpConnection ((GTcpConnection*) object);
   }
@@ -64,7 +64,7 @@ namespace Gio
     return gobj ();
   }
 
-  TcpConnection::TcpConnection (const Glib::ConstructParams& construct_params)
+  TcpConnection::TcpConnection (const glib::ConstructParams& construct_params)
     : SocketConnection (construct_params)
   {
   }
@@ -116,15 +116,15 @@ namespace Gio
   }
 
   auto
-  TcpConnection::property_graceful_disconnect () -> Glib::PropertyProxy<bool>
+  TcpConnection::property_graceful_disconnect () -> glib::PropertyProxy<bool>
   {
     return {this, "graceful-disconnect"};
   }
 
   auto
-  TcpConnection::property_graceful_disconnect () const -> Glib::PropertyProxy_ReadOnly<bool>
+  TcpConnection::property_graceful_disconnect () const -> glib::PropertyProxy_ReadOnly<bool>
   {
     return {this, "graceful-disconnect"};
   }
 
-} // namespace Gio
+} // namespace gio

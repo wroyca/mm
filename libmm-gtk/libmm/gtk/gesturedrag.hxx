@@ -14,13 +14,13 @@ using GtkGestureDragClass = struct _GtkGestureDragClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT GestureDrag_Class;
 }
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
   class LIBMM_GTK_SYMEXPORT GestureDrag : public GestureSingle
@@ -42,7 +42,7 @@ namespace Gtk
     static CppClassType gesturedrag_class_;
 
   protected:
-    explicit GestureDrag (const Glib::ConstructParams& construct_params);
+    explicit GestureDrag (const glib::ConstructParams& construct_params);
     explicit GestureDrag (GtkGestureDrag* castitem);
 
 #endif
@@ -84,7 +84,7 @@ namespace Gtk
 
   public:
     static auto
-    create () -> Glib::RefPtr<GestureDrag>;
+    create () -> glib::RefPtr<GestureDrag>;
 
     auto
     get_start_point (double& x, double& y) const -> bool;
@@ -93,25 +93,25 @@ namespace Gtk
     get_offset (double& x, double& y) const -> bool;
 
     auto
-    signal_drag_begin () -> Glib::SignalProxy<void (double, double)>;
+    signal_drag_begin () -> glib::SignalProxy<void (double, double)>;
 
     auto
-    signal_drag_update () -> Glib::SignalProxy<void (double, double)>;
+    signal_drag_update () -> glib::SignalProxy<void (double, double)>;
 
     auto
-    signal_drag_end () -> Glib::SignalProxy<void (double, double)>;
+    signal_drag_end () -> glib::SignalProxy<void (double, double)>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkGestureDrag* object, bool take_copy = false) -> Glib::RefPtr<Gtk::GestureDrag>;
-} // namespace Glib
+  wrap (GtkGestureDrag* object, bool take_copy = false) -> glib::RefPtr<gtk::GestureDrag>;
+} // namespace glib
 
 #endif

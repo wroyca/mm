@@ -17,16 +17,16 @@ using GdkDisplayManagerClass = struct _GdkDisplayManagerClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gdk
+namespace gdk
 {
   class LIBMM_GDK_SYMEXPORT DisplayManager_Class;
 }
 #endif
 
-namespace Gdk
+namespace gdk
 {
 
-  class LIBMM_GDK_SYMEXPORT DisplayManager : public Glib::Object
+  class LIBMM_GDK_SYMEXPORT DisplayManager : public glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -45,7 +45,7 @@ namespace Gdk
     static CppClassType displaymanager_class_;
 
   protected:
-    explicit DisplayManager (const Glib::ConstructParams& construct_params);
+    explicit DisplayManager (const glib::ConstructParams& construct_params);
     explicit DisplayManager (GdkDisplayManager* castitem);
 
 #endif
@@ -85,45 +85,45 @@ namespace Gdk
   protected:
   public:
     static auto
-    get () -> Glib::RefPtr<DisplayManager>;
+    get () -> glib::RefPtr<DisplayManager>;
 
     auto
-    get_default_display () -> Glib::RefPtr<Display>;
+    get_default_display () -> glib::RefPtr<Display>;
 
     auto
-    get_default_display () const -> Glib::RefPtr<const Display>;
+    get_default_display () const -> glib::RefPtr<const Display>;
 
     auto
-    set_default_display (const Glib::RefPtr<Display>& display) -> void;
+    set_default_display (const glib::RefPtr<Display>& display) -> void;
 
     auto
-    list_displays () -> std::vector<Glib::RefPtr<Display>>;
+    list_displays () -> std::vector<glib::RefPtr<Display>>;
 
     auto
-    open_display (const Glib::ustring& name) -> Glib::RefPtr<Display>;
+    open_display (const glib::ustring& name) -> glib::RefPtr<Display>;
 
     auto
-    property_default_display () -> Glib::PropertyProxy<Glib::RefPtr<Display>>;
+    property_default_display () -> glib::PropertyProxy<glib::RefPtr<Display>>;
 
     auto
     property_default_display () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Display>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<Display>>;
 
     auto
     signal_display_opened ()
-        -> Glib::SignalProxy<void (const Glib::RefPtr<Display>&)>;
+        -> glib::SignalProxy<void (const glib::RefPtr<Display>&)>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gdk
+} // namespace gdk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GDK_SYMEXPORT auto
-  wrap (GdkDisplayManager* object, bool take_copy = false) -> Glib::RefPtr<Gdk::DisplayManager>;
-} // namespace Glib
+  wrap (GdkDisplayManager* object, bool take_copy = false) -> glib::RefPtr<gdk::DisplayManager>;
+} // namespace glib
 
 #endif

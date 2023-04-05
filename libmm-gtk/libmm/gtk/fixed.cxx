@@ -7,7 +7,7 @@
 
 #include <gtk/gtk.h>
 
-namespace Gtk
+namespace gtk
 {
 }
 
@@ -15,23 +15,23 @@ namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GtkFixed* object, bool take_copy) -> Gtk::Fixed*
+  wrap (GtkFixed* object, bool take_copy) -> gtk::Fixed*
   {
-    return dynamic_cast<Gtk::Fixed*> (
-        Glib::wrap_auto ((GObject*) (object), take_copy));
+    return dynamic_cast<gtk::Fixed*> (
+        glib::wrap_auto ((GObject*) (object), take_copy));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gtk
+namespace gtk
 {
 
   auto
-  Fixed_Class::init () -> const Glib::Class&
+  Fixed_Class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -51,30 +51,30 @@ namespace Gtk
   }
 
   auto
-  Fixed_Class::wrap_new (GObject* o) -> Glib::ObjectBase*
+  Fixed_Class::wrap_new (GObject* o) -> glib::ObjectBase*
   {
     return manage (new Fixed ((GtkFixed*) (o)));
   }
 
-  Fixed::Fixed (const Glib::ConstructParams& construct_params)
-    : Gtk::Widget (construct_params)
+  Fixed::Fixed (const glib::ConstructParams& construct_params)
+    : gtk::Widget (construct_params)
   {
   }
 
   Fixed::Fixed (GtkFixed* castitem)
-    : Gtk::Widget ((GtkWidget*) (castitem))
+    : gtk::Widget ((GtkWidget*) (castitem))
   {
   }
 
   Fixed::Fixed (Fixed&& src) noexcept
-    : Gtk::Widget (std::move (src))
+    : gtk::Widget (std::move (src))
   {
   }
 
   auto
   Fixed::operator= (Fixed&& src) noexcept -> Fixed&
   {
-    Gtk::Widget::operator= (std::move (src));
+    gtk::Widget::operator= (std::move (src));
     return *this;
   }
 
@@ -98,8 +98,8 @@ namespace Gtk
   }
 
   Fixed::Fixed ()
-    : Glib::ObjectBase (nullptr),
-      Gtk::Widget (Glib::ConstructParams (fixed_class_.init ()))
+    : glib::ObjectBase (nullptr),
+      gtk::Widget (glib::ConstructParams (fixed_class_.init ()))
   {
   }
 
@@ -130,4 +130,4 @@ namespace Gtk
                                   &(y));
   }
 
-} // namespace Gtk
+} // namespace gtk

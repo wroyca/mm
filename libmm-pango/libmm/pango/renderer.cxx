@@ -7,9 +7,9 @@
 
 #include <pango/pango.h>
 
-using Part = Pango::Renderer::Part;
+using Part = pango::Renderer::Part;
 
-namespace Pango
+namespace pango
 {
 
   auto
@@ -26,32 +26,32 @@ namespace Pango
     }
   }
 
-} // namespace Pango
+} // namespace pango
 
 namespace
 {
 }
 
 auto
-Glib::Value<Pango::Renderer::Part>::value_type () -> GType
+glib::Value<pango::Renderer::Part>::value_type () -> GType
 {
   return pango_render_part_get_type ();
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (PangoRenderer* object, const bool take_copy) -> RefPtr<Pango::Renderer>
+  wrap (PangoRenderer* object, const bool take_copy) -> RefPtr<pango::Renderer>
   {
-    return Glib::make_refptr_for_instance<Pango::Renderer> (
-        dynamic_cast<Pango::Renderer*> (
+    return glib::make_refptr_for_instance<pango::Renderer> (
+        dynamic_cast<pango::Renderer*> (
             wrap_auto ((GObject*) object, take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Pango
+namespace pango
 {
 
   auto
@@ -94,7 +94,7 @@ namespace Pango
                                               const int y) -> void
   {
     const auto obj_base =
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self);
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self);
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -103,15 +103,15 @@ namespace Pango
       {
         try
         {
-          obj->draw_glyphs_vfunc (Glib::wrap (font, true),
-                                  Glib::wrap (glyphs, true),
+          obj->draw_glyphs_vfunc (glib::wrap (font, true),
+                                  glib::wrap (glyphs, true),
                                   x,
                                   y);
           return;
         }
         catch (...)
         {
-          Glib::exception_handlers_invoke ();
+          glib::exception_handlers_invoke ();
         }
       }
     }
@@ -132,7 +132,7 @@ namespace Pango
                                                  const int height) -> void
   {
     const auto obj_base =
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self);
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self);
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -150,7 +150,7 @@ namespace Pango
         }
         catch (...)
         {
-          Glib::exception_handlers_invoke ();
+          glib::exception_handlers_invoke ();
         }
       }
     }
@@ -170,7 +170,7 @@ namespace Pango
                                                        const int height) -> void
   {
     const auto obj_base =
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self);
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self);
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -184,7 +184,7 @@ namespace Pango
         }
         catch (...)
         {
-          Glib::exception_handlers_invoke ();
+          glib::exception_handlers_invoke ();
         }
       }
     }
@@ -203,7 +203,7 @@ namespace Pango
                                              const int y) -> void
   {
     const auto obj_base =
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self);
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self);
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -212,12 +212,12 @@ namespace Pango
       {
         try
         {
-          obj->draw_shape_vfunc (Glib::wrap (attr, true), x, y);
+          obj->draw_shape_vfunc (glib::wrap (attr, true), x, y);
           return;
         }
         catch (...)
         {
-          Glib::exception_handlers_invoke ();
+          glib::exception_handlers_invoke ();
         }
       }
     }
@@ -240,7 +240,7 @@ namespace Pango
                                                  const double x22) -> void
   {
     const auto obj_base =
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self);
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self);
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -260,7 +260,7 @@ namespace Pango
         }
         catch (...)
         {
-          Glib::exception_handlers_invoke ();
+          glib::exception_handlers_invoke ();
         }
       }
     }
@@ -280,7 +280,7 @@ namespace Pango
                                              const double y) -> void
   {
     const auto obj_base =
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self);
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self);
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -289,12 +289,12 @@ namespace Pango
       {
         try
         {
-          obj->draw_glyph_vfunc (Glib::wrap (font, true), glyph, x, y);
+          obj->draw_glyph_vfunc (glib::wrap (font, true), glyph, x, y);
           return;
         }
         catch (...)
         {
-          Glib::exception_handlers_invoke ();
+          glib::exception_handlers_invoke ();
         }
       }
     }
@@ -311,7 +311,7 @@ namespace Pango
                                                PangoRenderPart part) -> void
   {
     const auto obj_base =
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self);
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self);
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -325,7 +325,7 @@ namespace Pango
         }
         catch (...)
         {
-          Glib::exception_handlers_invoke ();
+          glib::exception_handlers_invoke ();
         }
       }
     }
@@ -341,7 +341,7 @@ namespace Pango
   Renderer_Class::begin_vfunc_callback (PangoRenderer* self) -> void
   {
     const auto obj_base =
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self);
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self);
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -355,7 +355,7 @@ namespace Pango
         }
         catch (...)
         {
-          Glib::exception_handlers_invoke ();
+          glib::exception_handlers_invoke ();
         }
       }
     }
@@ -371,7 +371,7 @@ namespace Pango
   Renderer_Class::end_vfunc_callback (PangoRenderer* self) -> void
   {
     const auto obj_base =
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self);
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self);
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -385,7 +385,7 @@ namespace Pango
         }
         catch (...)
         {
-          Glib::exception_handlers_invoke ();
+          glib::exception_handlers_invoke ();
         }
       }
     }
@@ -402,7 +402,7 @@ namespace Pango
                                               PangoGlyphItem* run) -> void
   {
     const auto obj_base =
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self);
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self);
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -411,12 +411,12 @@ namespace Pango
       {
         try
         {
-          obj->prepare_run_vfunc (Glib::wrap (run, true));
+          obj->prepare_run_vfunc (glib::wrap (run, true));
           return;
         }
         catch (...)
         {
-          Glib::exception_handlers_invoke ();
+          glib::exception_handlers_invoke ();
         }
       }
     }
@@ -436,7 +436,7 @@ namespace Pango
                                                   const int y) -> void
   {
     const auto obj_base =
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self);
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self);
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -446,15 +446,15 @@ namespace Pango
         try
         {
           obj->draw_glyph_item_vfunc (
-              Glib::convert_const_gchar_ptr_to_ustring (text),
-              Glib::wrap (glyph_item, true),
+              glib::convert_const_gchar_ptr_to_ustring (text),
+              glib::wrap (glyph_item, true),
               x,
               y);
           return;
         }
         catch (...)
         {
-          Glib::exception_handlers_invoke ();
+          glib::exception_handlers_invoke ();
         }
       }
     }
@@ -467,7 +467,7 @@ namespace Pango
   }
 
   auto
-  Renderer_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  Renderer_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new Renderer ((PangoRenderer*) object);
   }
@@ -479,7 +479,7 @@ namespace Pango
     return gobj ();
   }
 
-  Renderer::Renderer (const Glib::ConstructParams& construct_params)
+  Renderer::Renderer (const glib::ConstructParams& construct_params)
     : Object (construct_params)
   {
   }
@@ -518,36 +518,36 @@ namespace Pango
   }
 
   auto
-  Renderer::draw_layout (const Glib::RefPtr<Layout>& layout,
+  Renderer::draw_layout (const glib::RefPtr<Layout>& layout,
                          const int x,
                          const int y) -> void
   {
-    pango_renderer_draw_layout (gobj (), Glib::unwrap (layout), x, y);
+    pango_renderer_draw_layout (gobj (), glib::unwrap (layout), x, y);
   }
 
   auto
-  Renderer::draw_layout_line (const Glib::RefPtr<LayoutLine>& line,
+  Renderer::draw_layout_line (const glib::RefPtr<LayoutLine>& line,
                               const int x,
                               const int y) -> void
   {
-    pango_renderer_draw_layout_line (gobj (), Glib::unwrap (line), x, y);
+    pango_renderer_draw_layout_line (gobj (), glib::unwrap (line), x, y);
   }
 
   auto
-  Renderer::draw_glyphs (const Glib::RefPtr<Font>& font,
+  Renderer::draw_glyphs (const glib::RefPtr<Font>& font,
                          const GlyphString& glyphs,
                          const int x,
                          const int y) -> void
   {
     pango_renderer_draw_glyphs (gobj (),
-                                Glib::unwrap (font),
+                                glib::unwrap (font),
                                 const_cast<PangoGlyphString*> (glyphs.gobj ()),
                                 x,
                                 y);
   }
 
   auto
-  Renderer::draw_glyph_item (const Glib::ustring& text,
+  Renderer::draw_glyph_item (const glib::ustring& text,
                              const GlyphItem& glyph_item,
                              const int x,
                              const int y) -> void
@@ -604,12 +604,12 @@ namespace Pango
   }
 
   auto
-  Renderer::draw_glyph (const Glib::RefPtr<Font>& font,
+  Renderer::draw_glyph (const glib::RefPtr<Font>& font,
                         const Glyph glyph,
                         const double x,
                         const double y) -> void
   {
-    pango_renderer_draw_glyph (gobj (), Glib::unwrap (font), glyph, x, y);
+    pango_renderer_draw_glyph (gobj (), glib::unwrap (font), glyph, x, y);
   }
 
   auto
@@ -668,37 +668,37 @@ namespace Pango
   }
 
   auto
-  Renderer::get_layout () -> Glib::RefPtr<Layout>
+  Renderer::get_layout () -> glib::RefPtr<Layout>
   {
-    auto retvalue = Glib::wrap (pango_renderer_get_layout (gobj ()));
+    auto retvalue = glib::wrap (pango_renderer_get_layout (gobj ()));
     if (retvalue)
       retvalue->reference ();
     return retvalue;
   }
 
   auto
-  Renderer::get_layout () const -> Glib::RefPtr<const Layout>
+  Renderer::get_layout () const -> glib::RefPtr<const Layout>
   {
     return const_cast<Renderer*> (this)->get_layout ();
   }
 
   auto
-  Renderer::get_layout_line () -> Glib::RefPtr<LayoutLine>
+  Renderer::get_layout_line () -> glib::RefPtr<LayoutLine>
   {
-    auto retvalue = Glib::wrap (pango_renderer_get_layout_line (gobj ()));
+    auto retvalue = glib::wrap (pango_renderer_get_layout_line (gobj ()));
     if (retvalue)
       retvalue->reference ();
     return retvalue;
   }
 
   auto
-  Renderer::get_layout_line () const -> Glib::RefPtr<const LayoutLine>
+  Renderer::get_layout_line () const -> glib::RefPtr<const LayoutLine>
   {
     return const_cast<Renderer*> (this)->get_layout_line ();
   }
 
   auto
-  Renderer::draw_glyphs_vfunc (const Glib::RefPtr<Font>& font,
+  Renderer::draw_glyphs_vfunc (const glib::RefPtr<Font>& font,
                                const GlyphString& glyphs,
                                const int x,
                                const int y) -> void
@@ -709,7 +709,7 @@ namespace Pango
     if (base && base->draw_glyphs)
     {
       (*base->draw_glyphs) (gobj (),
-                            Glib::unwrap (font),
+                            glib::unwrap (font),
                             const_cast<PangoGlyphString*> (glyphs.gobj ()),
                             x,
                             y);
@@ -793,7 +793,7 @@ namespace Pango
   }
 
   auto
-  Renderer::draw_glyph_vfunc (const Glib::RefPtr<Font>& font,
+  Renderer::draw_glyph_vfunc (const glib::RefPtr<Font>& font,
                               const Glyph glyph,
                               const double x,
                               const double y) -> void
@@ -803,7 +803,7 @@ namespace Pango
 
     if (base && base->draw_glyph)
     {
-      (*base->draw_glyph) (gobj (), Glib::unwrap (font), glyph, x, y);
+      (*base->draw_glyph) (gobj (), glib::unwrap (font), glyph, x, y);
     }
   }
 
@@ -856,7 +856,7 @@ namespace Pango
   }
 
   auto
-  Renderer::draw_glyph_item_vfunc (const Glib::ustring& text,
+  Renderer::draw_glyph_item_vfunc (const glib::ustring& text,
                                    const GlyphItem& glyph_item,
                                    const int x,
                                    const int y) -> void
@@ -875,4 +875,4 @@ namespace Pango
     }
   }
 
-} // namespace Pango
+} // namespace pango

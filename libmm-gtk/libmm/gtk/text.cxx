@@ -11,23 +11,23 @@ namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GtkText* object, bool take_copy) -> Gtk::Text*
+  wrap (GtkText* object, bool take_copy) -> gtk::Text*
   {
-    return dynamic_cast<Gtk::Text*> (
-        Glib::wrap_auto ((GObject*) (object), take_copy));
+    return dynamic_cast<gtk::Text*> (
+        glib::wrap_auto ((GObject*) (object), take_copy));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gtk
+namespace gtk
 {
 
   auto
-  Text_Class::init () -> const Glib::Class&
+  Text_Class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -49,23 +49,23 @@ namespace Gtk
   }
 
   auto
-  Text_Class::wrap_new (GObject* o) -> Glib::ObjectBase*
+  Text_Class::wrap_new (GObject* o) -> glib::ObjectBase*
   {
     return manage (new Text ((GtkText*) (o)));
   }
 
-  Text::Text (const Glib::ConstructParams& construct_params)
-    : Gtk::Widget (construct_params)
+  Text::Text (const glib::ConstructParams& construct_params)
+    : gtk::Widget (construct_params)
   {
   }
 
   Text::Text (GtkText* castitem)
-    : Gtk::Widget ((GtkWidget*) (castitem))
+    : gtk::Widget ((GtkWidget*) (castitem))
   {
   }
 
   Text::Text (Text&& src) noexcept
-    : Gtk::Widget (std::move (src)),
+    : gtk::Widget (std::move (src)),
       Editable (std::move (src))
   {
   }
@@ -73,7 +73,7 @@ namespace Gtk
   auto
   Text::operator= (Text&& src) noexcept -> Text&
   {
-    Gtk::Widget::operator= (std::move (src));
+    gtk::Widget::operator= (std::move (src));
     Editable::operator= (std::move (src));
     return *this;
   }
@@ -98,39 +98,39 @@ namespace Gtk
   }
 
   Text::Text ()
-    : Glib::ObjectBase (nullptr),
-      Gtk::Widget (Glib::ConstructParams (text_class_.init ()))
+    : glib::ObjectBase (nullptr),
+      gtk::Widget (glib::ConstructParams (text_class_.init ()))
   {
   }
 
-  Text::Text (const Glib::RefPtr<EntryBuffer>& buffer)
-    : Glib::ObjectBase (nullptr),
-      Gtk::Widget (Glib::ConstructParams (text_class_.init (),
+  Text::Text (const glib::RefPtr<EntryBuffer>& buffer)
+    : glib::ObjectBase (nullptr),
+      gtk::Widget (glib::ConstructParams (text_class_.init (),
                                           "buffer",
-                                          Glib::unwrap (buffer),
+                                          glib::unwrap (buffer),
                                           nullptr))
   {
   }
 
   auto
-  Text::get_buffer () -> Glib::RefPtr<EntryBuffer>
+  Text::get_buffer () -> glib::RefPtr<EntryBuffer>
   {
-    auto retvalue = Glib::wrap (gtk_text_get_buffer (gobj ()));
+    auto retvalue = glib::wrap (gtk_text_get_buffer (gobj ()));
     if (retvalue)
       retvalue->reference ();
     return retvalue;
   }
 
   auto
-  Text::get_buffer () const -> Glib::RefPtr<const EntryBuffer>
+  Text::get_buffer () const -> glib::RefPtr<const EntryBuffer>
   {
     return const_cast<Text*> (this)->get_buffer ();
   }
 
   auto
-  Text::set_buffer (const Glib::RefPtr<EntryBuffer>& buffer) -> void
+  Text::set_buffer (const glib::RefPtr<EntryBuffer>& buffer) -> void
   {
-    gtk_text_set_buffer (gobj (), Glib::unwrap (buffer));
+    gtk_text_set_buffer (gobj (), glib::unwrap (buffer));
   }
 
   auto
@@ -206,14 +206,14 @@ namespace Gtk
   }
 
   auto
-  Text::get_placeholder_text () const -> Glib::ustring
+  Text::get_placeholder_text () const -> glib::ustring
   {
-    return Glib::convert_const_gchar_ptr_to_ustring (
+    return glib::convert_const_gchar_ptr_to_ustring (
         gtk_text_get_placeholder_text (const_cast<GtkText*> (gobj ())));
   }
 
   auto
-  Text::set_placeholder_text (const Glib::ustring& text) -> void
+  Text::set_placeholder_text (const glib::ustring& text) -> void
   {
     gtk_text_set_placeholder_text (gobj (), text.c_str ());
   }
@@ -246,28 +246,28 @@ namespace Gtk
   }
 
   auto
-  Text::set_attributes (Pango::AttrList& attrs) -> void
+  Text::set_attributes (pango::AttrList& attrs) -> void
   {
     gtk_text_set_attributes (gobj (), (attrs).gobj ());
   }
 
   auto
-  Text::get_attributes () const -> Pango::AttrList
+  Text::get_attributes () const -> pango::AttrList
   {
-    return Pango::AttrList (
+    return pango::AttrList (
         (gtk_text_get_attributes (const_cast<GtkText*> (gobj ()))));
   }
 
   auto
-  Text::set_tabs (const Pango::TabArray& tabs) -> void
+  Text::set_tabs (const pango::TabArray& tabs) -> void
   {
-    gtk_text_set_tabs (gobj (), const_cast<Pango::TabArray&> (tabs).gobj ());
+    gtk_text_set_tabs (gobj (), const_cast<pango::TabArray&> (tabs).gobj ());
   }
 
   auto
-  Text::get_tabs () const -> Pango::TabArray
+  Text::get_tabs () const -> pango::TabArray
   {
-    return Pango::TabArray (
+    return pango::TabArray (
         (gtk_text_get_tabs (const_cast<GtkText*> (gobj ()))));
   }
 
@@ -278,22 +278,22 @@ namespace Gtk
   }
 
   auto
-  Text::set_extra_menu (const Glib::RefPtr<Gio::MenuModel>& model) -> void
+  Text::set_extra_menu (const glib::RefPtr<gio::MenuModel>& model) -> void
   {
-    gtk_text_set_extra_menu (gobj (), Glib::unwrap (model));
+    gtk_text_set_extra_menu (gobj (), glib::unwrap (model));
   }
 
   auto
-  Text::get_extra_menu () -> Glib::RefPtr<Gio::MenuModel>
+  Text::get_extra_menu () -> glib::RefPtr<gio::MenuModel>
   {
-    auto retvalue = Glib::wrap (gtk_text_get_extra_menu (gobj ()));
+    auto retvalue = glib::wrap (gtk_text_get_extra_menu (gobj ()));
     if (retvalue)
       retvalue->reference ();
     return retvalue;
   }
 
   auto
-  Text::get_extra_menu () const -> Glib::RefPtr<const Gio::MenuModel>
+  Text::get_extra_menu () const -> glib::RefPtr<const gio::MenuModel>
   {
     return const_cast<Text*> (this)->get_extra_menu ();
   }
@@ -340,255 +340,255 @@ namespace Gtk
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<
-          Glib::RefPtr<EntryBuffer>>::value,
-      "Type Glib::RefPtr<EntryBuffer> cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      glib::Traits::ValueCompatibleWithWrapProperty<
+          glib::RefPtr<EntryBuffer>>::value,
+      "Type glib::RefPtr<EntryBuffer> cannot be used in _WRAP_PROPERTY. "
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  Text::property_buffer () -> Glib::PropertyProxy<Glib::RefPtr<EntryBuffer>>
+  Text::property_buffer () -> glib::PropertyProxy<glib::RefPtr<EntryBuffer>>
   {
-    return Glib::PropertyProxy<Glib::RefPtr<EntryBuffer>> (this, "buffer");
+    return glib::PropertyProxy<glib::RefPtr<EntryBuffer>> (this, "buffer");
   }
 
   auto
-  Text::property_buffer () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<EntryBuffer>>
+  Text::property_buffer () const -> glib::PropertyProxy_ReadOnly<glib::RefPtr<EntryBuffer>>
   {
-    return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<EntryBuffer>> (this,
+    return glib::PropertyProxy_ReadOnly<glib::RefPtr<EntryBuffer>> (this,
                                                                     "buffer");
   }
 
   auto
-  Text::property_max_length () -> Glib::PropertyProxy<int>
+  Text::property_max_length () -> glib::PropertyProxy<int>
   {
-    return Glib::PropertyProxy<int> (this, "max-length");
+    return glib::PropertyProxy<int> (this, "max-length");
   }
 
   auto
-  Text::property_max_length () const -> Glib::PropertyProxy_ReadOnly<int>
+  Text::property_max_length () const -> glib::PropertyProxy_ReadOnly<int>
   {
-    return Glib::PropertyProxy_ReadOnly<int> (this, "max-length");
+    return glib::PropertyProxy_ReadOnly<int> (this, "max-length");
   }
 
   auto
-  Text::property_visibility () -> Glib::PropertyProxy<bool>
+  Text::property_visibility () -> glib::PropertyProxy<bool>
   {
-    return Glib::PropertyProxy<bool> (this, "visibility");
+    return glib::PropertyProxy<bool> (this, "visibility");
   }
 
   auto
-  Text::property_visibility () const -> Glib::PropertyProxy_ReadOnly<bool>
+  Text::property_visibility () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "visibility");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "visibility");
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<gunichar>::value,
+      glib::Traits::ValueCompatibleWithWrapProperty<gunichar>::value,
       "Type gunichar cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  Text::property_invisible_char () -> Glib::PropertyProxy<gunichar>
+  Text::property_invisible_char () -> glib::PropertyProxy<gunichar>
   {
-    return Glib::PropertyProxy<gunichar> (this, "invisible-char");
+    return glib::PropertyProxy<gunichar> (this, "invisible-char");
   }
 
   auto
-  Text::property_invisible_char () const -> Glib::PropertyProxy_ReadOnly<gunichar>
+  Text::property_invisible_char () const -> glib::PropertyProxy_ReadOnly<gunichar>
   {
-    return Glib::PropertyProxy_ReadOnly<gunichar> (this, "invisible-char");
+    return glib::PropertyProxy_ReadOnly<gunichar> (this, "invisible-char");
   }
 
   auto
-  Text::property_invisible_char_set () -> Glib::PropertyProxy<bool>
+  Text::property_invisible_char_set () -> glib::PropertyProxy<bool>
   {
-    return Glib::PropertyProxy<bool> (this, "invisible-char-set");
+    return glib::PropertyProxy<bool> (this, "invisible-char-set");
   }
 
   auto
-  Text::property_invisible_char_set () const -> Glib::PropertyProxy_ReadOnly<bool>
+  Text::property_invisible_char_set () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "invisible-char-set");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "invisible-char-set");
   }
 
   auto
-  Text::property_activates_default () -> Glib::PropertyProxy<bool>
+  Text::property_activates_default () -> glib::PropertyProxy<bool>
   {
-    return Glib::PropertyProxy<bool> (this, "activates-default");
+    return glib::PropertyProxy<bool> (this, "activates-default");
   }
 
   auto
-  Text::property_activates_default () const -> Glib::PropertyProxy_ReadOnly<bool>
+  Text::property_activates_default () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "activates-default");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "activates-default");
   }
 
   auto
-  Text::property_scroll_offset () const -> Glib::PropertyProxy_ReadOnly<int>
+  Text::property_scroll_offset () const -> glib::PropertyProxy_ReadOnly<int>
   {
-    return Glib::PropertyProxy_ReadOnly<int> (this, "scroll-offset");
+    return glib::PropertyProxy_ReadOnly<int> (this, "scroll-offset");
   }
 
   auto
-  Text::property_truncate_multiline () -> Glib::PropertyProxy<bool>
+  Text::property_truncate_multiline () -> glib::PropertyProxy<bool>
   {
-    return Glib::PropertyProxy<bool> (this, "truncate-multiline");
+    return glib::PropertyProxy<bool> (this, "truncate-multiline");
   }
 
   auto
-  Text::property_truncate_multiline () const -> Glib::PropertyProxy_ReadOnly<bool>
+  Text::property_truncate_multiline () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "truncate-multiline");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "truncate-multiline");
   }
 
   auto
-  Text::property_overwrite_mode () -> Glib::PropertyProxy<bool>
+  Text::property_overwrite_mode () -> glib::PropertyProxy<bool>
   {
-    return Glib::PropertyProxy<bool> (this, "overwrite-mode");
+    return glib::PropertyProxy<bool> (this, "overwrite-mode");
   }
 
   auto
-  Text::property_overwrite_mode () const -> Glib::PropertyProxy_ReadOnly<bool>
+  Text::property_overwrite_mode () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "overwrite-mode");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "overwrite-mode");
   }
 
   auto
-  Text::property_im_module () -> Glib::PropertyProxy<Glib::ustring>
+  Text::property_im_module () -> glib::PropertyProxy<glib::ustring>
   {
-    return Glib::PropertyProxy<Glib::ustring> (this, "im-module");
+    return glib::PropertyProxy<glib::ustring> (this, "im-module");
   }
 
   auto
-  Text::property_im_module () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>
+  Text::property_im_module () const -> glib::PropertyProxy_ReadOnly<glib::ustring>
   {
-    return Glib::PropertyProxy_ReadOnly<Glib::ustring> (this, "im-module");
+    return glib::PropertyProxy_ReadOnly<glib::ustring> (this, "im-module");
   }
 
   auto
-  Text::property_placeholder_text () -> Glib::PropertyProxy<Glib::ustring>
+  Text::property_placeholder_text () -> glib::PropertyProxy<glib::ustring>
   {
-    return Glib::PropertyProxy<Glib::ustring> (this, "placeholder-text");
+    return glib::PropertyProxy<glib::ustring> (this, "placeholder-text");
   }
 
   auto
-  Text::property_placeholder_text () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>
+  Text::property_placeholder_text () const -> glib::PropertyProxy_ReadOnly<glib::ustring>
   {
-    return Glib::PropertyProxy_ReadOnly<Glib::ustring> (this,
+    return glib::PropertyProxy_ReadOnly<glib::ustring> (this,
                                                         "placeholder-text");
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<InputPurpose>::value,
+      glib::Traits::ValueCompatibleWithWrapProperty<InputPurpose>::value,
       "Type InputPurpose cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  Text::property_input_purpose () -> Glib::PropertyProxy<InputPurpose>
+  Text::property_input_purpose () -> glib::PropertyProxy<InputPurpose>
   {
-    return Glib::PropertyProxy<InputPurpose> (this, "input-purpose");
+    return glib::PropertyProxy<InputPurpose> (this, "input-purpose");
   }
 
   auto
-  Text::property_input_purpose () const -> Glib::PropertyProxy_ReadOnly<InputPurpose>
+  Text::property_input_purpose () const -> glib::PropertyProxy_ReadOnly<InputPurpose>
   {
-    return Glib::PropertyProxy_ReadOnly<InputPurpose> (this, "input-purpose");
+    return glib::PropertyProxy_ReadOnly<InputPurpose> (this, "input-purpose");
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<InputHints>::value,
+      glib::Traits::ValueCompatibleWithWrapProperty<InputHints>::value,
       "Type InputHints cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  Text::property_input_hints () -> Glib::PropertyProxy<InputHints>
+  Text::property_input_hints () -> glib::PropertyProxy<InputHints>
   {
-    return Glib::PropertyProxy<InputHints> (this, "input-hints");
+    return glib::PropertyProxy<InputHints> (this, "input-hints");
   }
 
   auto
-  Text::property_input_hints () const -> Glib::PropertyProxy_ReadOnly<InputHints>
+  Text::property_input_hints () const -> glib::PropertyProxy_ReadOnly<InputHints>
   {
-    return Glib::PropertyProxy_ReadOnly<InputHints> (this, "input-hints");
-  }
-
-  static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<Pango::AttrList>::value,
-      "Type Pango::AttrList cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
-
-  auto
-  Text::property_attributes () -> Glib::PropertyProxy<Pango::AttrList>
-  {
-    return Glib::PropertyProxy<Pango::AttrList> (this, "attributes");
-  }
-
-  auto
-  Text::property_attributes () const -> Glib::PropertyProxy_ReadOnly<Pango::AttrList>
-  {
-    return Glib::PropertyProxy_ReadOnly<Pango::AttrList> (this, "attributes");
+    return glib::PropertyProxy_ReadOnly<InputHints> (this, "input-hints");
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<Pango::TabArray>::value,
-      "Type Pango::TabArray cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      glib::Traits::ValueCompatibleWithWrapProperty<pango::AttrList>::value,
+      "Type pango::AttrList cannot be used in _WRAP_PROPERTY. "
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  Text::property_tabs () -> Glib::PropertyProxy<Pango::TabArray>
+  Text::property_attributes () -> glib::PropertyProxy<pango::AttrList>
   {
-    return Glib::PropertyProxy<Pango::TabArray> (this, "tabs");
+    return glib::PropertyProxy<pango::AttrList> (this, "attributes");
   }
 
   auto
-  Text::property_tabs () const -> Glib::PropertyProxy_ReadOnly<Pango::TabArray>
+  Text::property_attributes () const -> glib::PropertyProxy_ReadOnly<pango::AttrList>
   {
-    return Glib::PropertyProxy_ReadOnly<Pango::TabArray> (this, "tabs");
-  }
-
-  auto
-  Text::property_enable_emoji_completion () -> Glib::PropertyProxy<bool>
-  {
-    return Glib::PropertyProxy<bool> (this, "enable-emoji-completion");
-  }
-
-  auto
-  Text::property_enable_emoji_completion () const -> Glib::PropertyProxy_ReadOnly<bool>
-  {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "enable-emoji-completion");
-  }
-
-  auto
-  Text::property_propagate_text_width () -> Glib::PropertyProxy<bool>
-  {
-    return Glib::PropertyProxy<bool> (this, "propagate-text-width");
-  }
-
-  auto
-  Text::property_propagate_text_width () const -> Glib::PropertyProxy_ReadOnly<bool>
-  {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "propagate-text-width");
+    return glib::PropertyProxy_ReadOnly<pango::AttrList> (this, "attributes");
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<
-          Glib::RefPtr<Gio::MenuModel>>::value,
-      "Type Glib::RefPtr<Gio::MenuModel> cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      glib::Traits::ValueCompatibleWithWrapProperty<pango::TabArray>::value,
+      "Type pango::TabArray cannot be used in _WRAP_PROPERTY. "
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  Text::property_extra_menu () -> Glib::PropertyProxy<Glib::RefPtr<Gio::MenuModel>>
+  Text::property_tabs () -> glib::PropertyProxy<pango::TabArray>
   {
-    return Glib::PropertyProxy<Glib::RefPtr<Gio::MenuModel>> (this,
+    return glib::PropertyProxy<pango::TabArray> (this, "tabs");
+  }
+
+  auto
+  Text::property_tabs () const -> glib::PropertyProxy_ReadOnly<pango::TabArray>
+  {
+    return glib::PropertyProxy_ReadOnly<pango::TabArray> (this, "tabs");
+  }
+
+  auto
+  Text::property_enable_emoji_completion () -> glib::PropertyProxy<bool>
+  {
+    return glib::PropertyProxy<bool> (this, "enable-emoji-completion");
+  }
+
+  auto
+  Text::property_enable_emoji_completion () const -> glib::PropertyProxy_ReadOnly<bool>
+  {
+    return glib::PropertyProxy_ReadOnly<bool> (this, "enable-emoji-completion");
+  }
+
+  auto
+  Text::property_propagate_text_width () -> glib::PropertyProxy<bool>
+  {
+    return glib::PropertyProxy<bool> (this, "propagate-text-width");
+  }
+
+  auto
+  Text::property_propagate_text_width () const -> glib::PropertyProxy_ReadOnly<bool>
+  {
+    return glib::PropertyProxy_ReadOnly<bool> (this, "propagate-text-width");
+  }
+
+  static_assert (
+      glib::Traits::ValueCompatibleWithWrapProperty<
+          glib::RefPtr<gio::MenuModel>>::value,
+      "Type glib::RefPtr<gio::MenuModel> cannot be used in _WRAP_PROPERTY. "
+      "There is no suitable template specialization of glib::Value<>.");
+
+  auto
+  Text::property_extra_menu () -> glib::PropertyProxy<glib::RefPtr<gio::MenuModel>>
+  {
+    return glib::PropertyProxy<glib::RefPtr<gio::MenuModel>> (this,
                                                               "extra-menu");
   }
 
   auto
-  Text::property_extra_menu () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gio::MenuModel>>
+  Text::property_extra_menu () const -> glib::PropertyProxy_ReadOnly<glib::RefPtr<gio::MenuModel>>
   {
-    return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gio::MenuModel>> (
+    return glib::PropertyProxy_ReadOnly<glib::RefPtr<gio::MenuModel>> (
         this,
         "extra-menu");
   }
 
-} // namespace Gtk
+} // namespace gtk

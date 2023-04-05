@@ -5,7 +5,7 @@
 
 #include <pango/pango.h>
 
-namespace Pango
+namespace pango
 {
 
   typedef PangoMatrix Matrix;

@@ -10,7 +10,7 @@
 
 #include <gdk/gdk.h>
 
-namespace Gdk
+namespace gdk
 {
 
   class LIBMM_GDK_SYMEXPORT ToplevelSize
@@ -65,6 +65,6 @@ namespace Gdk
     GdkToplevelSize* gobject_;
   };
 
-} // namespace Gdk
+} // namespace gdk
 
 #endif

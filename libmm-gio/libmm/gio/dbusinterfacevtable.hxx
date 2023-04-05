@@ -9,7 +9,7 @@
 #include <gio/gio.h>
 #include <libmm/gio/dbusmethodinvocation.hxx>
 
-namespace Gio::DBus
+namespace gio::DBus
 {
 
   class LIBMM_GIO_SYMEXPORT InterfaceVTable
@@ -23,29 +23,29 @@ namespace Gio::DBus
   private:
   public:
     using SlotInterfaceMethodCall =
-        sigc::slot<void (const Glib::RefPtr<Connection>&,
-                         const Glib::ustring&,
-                         const Glib::ustring&,
-                         const Glib::ustring&,
-                         const Glib::ustring&,
-                         const Glib::VariantContainerBase&,
-                         const Glib::RefPtr<MethodInvocation>&)>;
+        sigc::slot<void (const glib::RefPtr<Connection>&,
+                         const glib::ustring&,
+                         const glib::ustring&,
+                         const glib::ustring&,
+                         const glib::ustring&,
+                         const glib::VariantContainerBase&,
+                         const glib::RefPtr<MethodInvocation>&)>;
 
     using SlotInterfaceGetProperty =
-        sigc::slot<void (Glib::VariantBase&,
-                         const Glib::RefPtr<Connection>&,
-                         const Glib::ustring&,
-                         const Glib::ustring&,
-                         const Glib::ustring&,
-                         const Glib::ustring&)>;
+        sigc::slot<void (glib::VariantBase&,
+                         const glib::RefPtr<Connection>&,
+                         const glib::ustring&,
+                         const glib::ustring&,
+                         const glib::ustring&,
+                         const glib::ustring&)>;
 
     using SlotInterfaceSetProperty =
-        sigc::slot<bool (const Glib::RefPtr<Connection>&,
-                         const Glib::ustring&,
-                         const Glib::ustring&,
-                         const Glib::ustring&,
-                         const Glib::ustring&,
-                         const Glib::VariantBase&)>;
+        sigc::slot<bool (const glib::RefPtr<Connection>&,
+                         const glib::ustring&,
+                         const glib::ustring&,
+                         const glib::ustring&,
+                         const glib::ustring&,
+                         const glib::VariantBase&)>;
 
     explicit InterfaceVTable (
         const SlotInterfaceMethodCall& slot_method_call,
@@ -92,6 +92,6 @@ namespace Gio::DBus
     SlotInterfaceSetProperty* slot_set_property_;
   };
 
-} // namespace Gio::DBus
+} // namespace gio::DBus
 
 #endif

@@ -15,13 +15,13 @@
   #endif
 
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT FileChooserNative_Class;
 }
   #endif
 
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT Window;
 
@@ -45,7 +45,7 @@ namespace Gtk
     static CppClassType filechoosernative_class_;
 
   protected:
-    explicit FileChooserNative (const Glib::ConstructParams& construct_params);
+    explicit FileChooserNative (const glib::ConstructParams& construct_params);
     explicit FileChooserNative (GtkFileChooserNative* castitem);
 
   #endif
@@ -85,71 +85,71 @@ namespace Gtk
   protected:
     FileChooserNative ();
 
-    FileChooserNative (const Glib::ustring& title,
+    FileChooserNative (const glib::ustring& title,
                        Window& parent,
                        FileChooser::Action action,
-                       const Glib::ustring& accept_label,
-                       const Glib::ustring& cancel_label);
+                       const glib::ustring& accept_label,
+                       const glib::ustring& cancel_label);
 
-    FileChooserNative (const Glib::ustring& title,
+    FileChooserNative (const glib::ustring& title,
                        FileChooser::Action action,
-                       const Glib::ustring& accept_label,
-                       const Glib::ustring& cancel_label);
+                       const glib::ustring& accept_label,
+                       const glib::ustring& cancel_label);
 
   public:
     static auto
-    create (const Glib::ustring& title,
+    create (const glib::ustring& title,
             Window& parent,
             FileChooser::Action action,
-            const Glib::ustring& accept_label = {},
-            const Glib::ustring& cancel_label = {})
-        -> Glib::RefPtr<FileChooserNative>;
+            const glib::ustring& accept_label = {},
+            const glib::ustring& cancel_label = {})
+        -> glib::RefPtr<FileChooserNative>;
 
     static auto
-    create (const Glib::ustring& title,
+    create (const glib::ustring& title,
             FileChooser::Action action,
-            const Glib::ustring& accept_label = {},
-            const Glib::ustring& cancel_label = {})
-        -> Glib::RefPtr<FileChooserNative>;
+            const glib::ustring& accept_label = {},
+            const glib::ustring& cancel_label = {})
+        -> glib::RefPtr<FileChooserNative>;
 
     auto
-    get_accept_label () const -> Glib::ustring;
+    get_accept_label () const -> glib::ustring;
 
     auto
-    set_accept_label (const Glib::ustring& accept_label = {}) -> void;
+    set_accept_label (const glib::ustring& accept_label = {}) -> void;
 
     auto
-    get_cancel_label () const -> Glib::ustring;
+    get_cancel_label () const -> glib::ustring;
 
     auto
-    set_cancel_label (const Glib::ustring& cancel_label = {}) -> void;
+    set_cancel_label (const glib::ustring& cancel_label = {}) -> void;
 
     auto
-    property_accept_label () -> Glib::PropertyProxy<Glib::ustring>;
+    property_accept_label () -> glib::PropertyProxy<glib::ustring>;
 
     auto
     property_accept_label () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+        -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
     auto
-    property_cancel_label () -> Glib::PropertyProxy<Glib::ustring>;
+    property_cancel_label () -> glib::PropertyProxy<glib::ustring>;
 
     auto
     property_cancel_label () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+        -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkFileChooserNative* object, bool take_copy = false) -> Glib::RefPtr<Gtk::FileChooserNative>;
-} // namespace Glib
+  wrap (GtkFileChooserNative* object, bool take_copy = false) -> glib::RefPtr<gtk::FileChooserNative>;
+} // namespace glib
 
 #endif
 

@@ -8,35 +8,35 @@
 #include <glib.h>
 #include <gtk/gtk.h>
 
-namespace Gtk
+namespace gtk
 {
 
-  EntryBuffer::EntryBuffer (const Glib::ustring& text)
-    : Glib::ObjectBase (nullptr),
-      Glib::Object (Glib::ConstructParams (entrybuffer_class_.init ()))
+  EntryBuffer::EntryBuffer (const glib::ustring& text)
+    : glib::ObjectBase (nullptr),
+      glib::Object (glib::ConstructParams (entrybuffer_class_.init ()))
   {
     set_text (text);
   }
 
   auto
-  EntryBuffer::set_text (const Glib::ustring& text) -> void
+  EntryBuffer::set_text (const glib::ustring& text) -> void
   {
     gtk_entry_buffer_set_text (gobj (), text.c_str (), -1);
   }
 
   auto
-  EntryBuffer::insert_text (guint position, const Glib::ustring& text) -> guint
+  EntryBuffer::insert_text (guint position, const glib::ustring& text) -> guint
   {
     return gtk_entry_buffer_insert_text (gobj (), position, text.c_str (), -1);
   }
 
   auto
-  EntryBuffer::emit_inserted_text (guint position, const Glib::ustring& text) -> void
+  EntryBuffer::emit_inserted_text (guint position, const glib::ustring& text) -> void
   {
     gtk_entry_buffer_emit_inserted_text (gobj (), position, text.c_str (), -1);
   }
 
-} // namespace Gtk
+} // namespace gtk
 
 namespace
 {
@@ -48,27 +48,27 @@ namespace
                                              guint p2,
                                              void* data) -> void
   {
-    using namespace Gtk;
+    using namespace gtk;
     using SlotType = sigc::slot<void (guint, const char*, guint)>;
 
     auto obj = dynamic_cast<EntryBuffer*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
     {
       try
       {
-        if (const auto slot = Glib::SignalProxyNormal::data_to_slot (data))
+        if (const auto slot = glib::SignalProxyNormal::data_to_slot (data))
           (*static_cast<SlotType*> (slot)) (p0, p1, p2);
       }
       catch (...)
       {
-        Glib::exception_handlers_invoke ();
+        glib::exception_handlers_invoke ();
       }
     }
   }
 
-  static const Glib::SignalProxyInfo EntryBuffer_signal_inserted_text_info = {
+  static const glib::SignalProxyInfo EntryBuffer_signal_inserted_text_info = {
       "inserted-text",
       (GCallback) &EntryBuffer_signal_inserted_text_callback,
       (GCallback) &EntryBuffer_signal_inserted_text_callback};
@@ -79,51 +79,51 @@ namespace
                                             guint p1,
                                             void* data) -> void
   {
-    using namespace Gtk;
+    using namespace gtk;
     using SlotType = sigc::slot<void (guint, guint)>;
 
     auto obj = dynamic_cast<EntryBuffer*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
     {
       try
       {
-        if (const auto slot = Glib::SignalProxyNormal::data_to_slot (data))
+        if (const auto slot = glib::SignalProxyNormal::data_to_slot (data))
           (*static_cast<SlotType*> (slot)) (p0, p1);
       }
       catch (...)
       {
-        Glib::exception_handlers_invoke ();
+        glib::exception_handlers_invoke ();
       }
     }
   }
 
-  static const Glib::SignalProxyInfo EntryBuffer_signal_deleted_text_info = {
+  static const glib::SignalProxyInfo EntryBuffer_signal_deleted_text_info = {
       "deleted-text",
       (GCallback) &EntryBuffer_signal_deleted_text_callback,
       (GCallback) &EntryBuffer_signal_deleted_text_callback};
 
 } // namespace
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GtkEntryBuffer* object, bool take_copy) -> Glib::RefPtr<Gtk::EntryBuffer>
+  wrap (GtkEntryBuffer* object, bool take_copy) -> glib::RefPtr<gtk::EntryBuffer>
   {
-    return Glib::make_refptr_for_instance<Gtk::EntryBuffer> (
-        dynamic_cast<Gtk::EntryBuffer*> (
-            Glib::wrap_auto ((GObject*) (object), take_copy)));
+    return glib::make_refptr_for_instance<gtk::EntryBuffer> (
+        dynamic_cast<gtk::EntryBuffer*> (
+            glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gtk
+namespace gtk
 {
 
   auto
-  EntryBuffer_Class::init () -> const Glib::Class&
+  EntryBuffer_Class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -151,8 +151,8 @@ namespace Gtk
                                              const gchar* p1,
                                              guint p2) -> void
   {
-    const auto obj_base = static_cast<Glib::ObjectBase*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+    const auto obj_base = static_cast<glib::ObjectBase*> (
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -166,7 +166,7 @@ namespace Gtk
         }
         catch (...)
         {
-          Glib::exception_handlers_invoke ();
+          glib::exception_handlers_invoke ();
         }
       }
     }
@@ -183,8 +183,8 @@ namespace Gtk
                                             guint p0,
                                             guint p1) -> void
   {
-    const auto obj_base = static_cast<Glib::ObjectBase*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+    const auto obj_base = static_cast<glib::ObjectBase*> (
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -198,7 +198,7 @@ namespace Gtk
         }
         catch (...)
         {
-          Glib::exception_handlers_invoke ();
+          glib::exception_handlers_invoke ();
         }
       }
     }
@@ -211,7 +211,7 @@ namespace Gtk
   }
 
   auto
-  EntryBuffer_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  EntryBuffer_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new EntryBuffer ((GtkEntryBuffer*) object);
   }
@@ -223,25 +223,25 @@ namespace Gtk
     return gobj ();
   }
 
-  EntryBuffer::EntryBuffer (const Glib::ConstructParams& construct_params)
-    : Glib::Object (construct_params)
+  EntryBuffer::EntryBuffer (const glib::ConstructParams& construct_params)
+    : glib::Object (construct_params)
   {
   }
 
   EntryBuffer::EntryBuffer (GtkEntryBuffer* castitem)
-    : Glib::Object ((GObject*) (castitem))
+    : glib::Object ((GObject*) (castitem))
   {
   }
 
   EntryBuffer::EntryBuffer (EntryBuffer&& src) noexcept
-    : Glib::Object (std::move (src))
+    : glib::Object (std::move (src))
   {
   }
 
   auto
   EntryBuffer::operator= (EntryBuffer&& src) noexcept -> EntryBuffer&
   {
-    Glib::Object::operator= (std::move (src));
+    glib::Object::operator= (std::move (src));
     return *this;
   }
 
@@ -262,21 +262,21 @@ namespace Gtk
   }
 
   EntryBuffer::EntryBuffer ()
-    : Glib::ObjectBase (nullptr),
-      Glib::Object (Glib::ConstructParams (entrybuffer_class_.init ()))
+    : glib::ObjectBase (nullptr),
+      glib::Object (glib::ConstructParams (entrybuffer_class_.init ()))
   {
   }
 
   auto
-  EntryBuffer::create () -> Glib::RefPtr<EntryBuffer>
+  EntryBuffer::create () -> glib::RefPtr<EntryBuffer>
   {
-    return Glib::make_refptr_for_instance<EntryBuffer> (new EntryBuffer ());
+    return glib::make_refptr_for_instance<EntryBuffer> (new EntryBuffer ());
   }
 
   auto
-  EntryBuffer::create (const Glib::ustring& text) -> Glib::RefPtr<EntryBuffer>
+  EntryBuffer::create (const glib::ustring& text) -> glib::RefPtr<EntryBuffer>
   {
-    return Glib::make_refptr_for_instance<EntryBuffer> (new EntryBuffer (text));
+    return glib::make_refptr_for_instance<EntryBuffer> (new EntryBuffer (text));
   }
 
   auto
@@ -292,9 +292,9 @@ namespace Gtk
   }
 
   auto
-  EntryBuffer::get_text () const -> Glib::ustring
+  EntryBuffer::get_text () const -> glib::ustring
   {
-    return Glib::convert_const_gchar_ptr_to_ustring (
+    return glib::convert_const_gchar_ptr_to_ustring (
         gtk_entry_buffer_get_text (const_cast<GtkEntryBuffer*> (gobj ())));
   }
 
@@ -324,53 +324,53 @@ namespace Gtk
   }
 
   auto
-  EntryBuffer::signal_inserted_text () -> Glib::SignalProxy<void (guint, const char*, guint)>
+  EntryBuffer::signal_inserted_text () -> glib::SignalProxy<void (guint, const char*, guint)>
   {
-    return Glib::SignalProxy<void (guint, const char*, guint)> (
+    return glib::SignalProxy<void (guint, const char*, guint)> (
         this,
         &EntryBuffer_signal_inserted_text_info);
   }
 
   auto
-  EntryBuffer::signal_deleted_text () -> Glib::SignalProxy<void (guint, guint)>
+  EntryBuffer::signal_deleted_text () -> glib::SignalProxy<void (guint, guint)>
   {
-    return Glib::SignalProxy<void (guint, guint)> (
+    return glib::SignalProxy<void (guint, guint)> (
         this,
         &EntryBuffer_signal_deleted_text_info);
   }
 
   auto
-  EntryBuffer::property_text () -> Glib::PropertyProxy<Glib::ustring>
+  EntryBuffer::property_text () -> glib::PropertyProxy<glib::ustring>
   {
-    return Glib::PropertyProxy<Glib::ustring> (this, "text");
+    return glib::PropertyProxy<glib::ustring> (this, "text");
   }
 
   auto
-  EntryBuffer::property_text () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>
+  EntryBuffer::property_text () const -> glib::PropertyProxy_ReadOnly<glib::ustring>
   {
-    return Glib::PropertyProxy_ReadOnly<Glib::ustring> (this, "text");
+    return glib::PropertyProxy_ReadOnly<glib::ustring> (this, "text");
   }
 
   auto
-  EntryBuffer::property_length () const -> Glib::PropertyProxy_ReadOnly<guint>
+  EntryBuffer::property_length () const -> glib::PropertyProxy_ReadOnly<guint>
   {
-    return Glib::PropertyProxy_ReadOnly<guint> (this, "length");
+    return glib::PropertyProxy_ReadOnly<guint> (this, "length");
   }
 
   auto
-  EntryBuffer::property_max_length () -> Glib::PropertyProxy<int>
+  EntryBuffer::property_max_length () -> glib::PropertyProxy<int>
   {
-    return Glib::PropertyProxy<int> (this, "max-length");
+    return glib::PropertyProxy<int> (this, "max-length");
   }
 
   auto
-  EntryBuffer::property_max_length () const -> Glib::PropertyProxy_ReadOnly<int>
+  EntryBuffer::property_max_length () const -> glib::PropertyProxy_ReadOnly<int>
   {
-    return Glib::PropertyProxy_ReadOnly<int> (this, "max-length");
+    return glib::PropertyProxy_ReadOnly<int> (this, "max-length");
   }
 
   auto
-  Gtk::EntryBuffer::on_inserted_text (guint position,
+  gtk::EntryBuffer::on_inserted_text (guint position,
                                       const char* chars,
                                       guint n_chars) -> void
   {
@@ -382,7 +382,7 @@ namespace Gtk
   }
 
   auto
-  Gtk::EntryBuffer::on_deleted_text (guint position, guint n_chars) -> void
+  gtk::EntryBuffer::on_deleted_text (guint position, guint n_chars) -> void
   {
     const auto base = static_cast<BaseClassType*> (
         g_type_class_peek_parent (G_OBJECT_GET_CLASS (gobject_)));
@@ -391,4 +391,4 @@ namespace Gtk
       (*base->deleted_text) (gobj (), position, n_chars);
   }
 
-} // namespace Gtk
+} // namespace gtk

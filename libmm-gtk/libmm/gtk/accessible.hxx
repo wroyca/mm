@@ -24,17 +24,17 @@ using GtkAccessibleClass = struct _GtkAccessibleClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT Accessible_Class;
 }
 #endif
 
-namespace Gtk
+namespace gtk
 {
   class ATContext;
 
-  class LIBMM_GTK_SYMEXPORT Accessible : public Glib::Interface
+  class LIBMM_GTK_SYMEXPORT Accessible : public glib::Interface
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -58,7 +58,7 @@ namespace Gtk
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
-    explicit Accessible (const Glib::Interface_Class& interface_class);
+    explicit Accessible (const glib::Interface_Class& interface_class);
 
   public:
     explicit Accessible (GtkAccessible* castitem);
@@ -245,31 +245,31 @@ namespace Gtk
     };
 
     auto
-    get_at_context () -> Glib::RefPtr<ATContext>;
+    get_at_context () -> glib::RefPtr<ATContext>;
 
     auto
-    get_at_context () const -> Glib::RefPtr<const ATContext>;
+    get_at_context () const -> glib::RefPtr<const ATContext>;
 
     auto
     get_platform_state (PlatformState state) const -> bool;
 
     auto
-    get_accessible_parent () -> Glib::RefPtr<Accessible>;
+    get_accessible_parent () -> glib::RefPtr<Accessible>;
 
     auto
-    get_accessible_parent () const -> Glib::RefPtr<const Accessible>;
+    get_accessible_parent () const -> glib::RefPtr<const Accessible>;
 
     auto
-    get_first_accessible_child () -> Glib::RefPtr<Accessible>;
+    get_first_accessible_child () -> glib::RefPtr<Accessible>;
 
     auto
-    get_first_accessible_child () const -> Glib::RefPtr<const Accessible>;
+    get_first_accessible_child () const -> glib::RefPtr<const Accessible>;
 
     auto
-    get_next_accessible_sibling () -> Glib::RefPtr<Accessible>;
+    get_next_accessible_sibling () -> glib::RefPtr<Accessible>;
 
     auto
-    get_next_accessible_sibling () const -> Glib::RefPtr<const Accessible>;
+    get_next_accessible_sibling () const -> glib::RefPtr<const Accessible>;
 
     auto
     get_bounds (int& x, int& y, int& width, int& height) const -> bool;
@@ -278,13 +278,13 @@ namespace Gtk
     get_accessible_role () const -> Role;
 
     auto
-    update_state (State state, const Glib::ValueBase& value) -> void;
+    update_state (State state, const glib::ValueBase& value) -> void;
 
     auto
-    update_property (Property property, const Glib::ValueBase& value) -> void;
+    update_property (Property property, const glib::ValueBase& value) -> void;
 
     auto
-    update_relation (Relation relation, const Glib::ValueBase& value) -> void;
+    update_relation (Relation relation, const glib::ValueBase& value) -> void;
 
     auto
     reset_state (State state) -> void;
@@ -296,103 +296,103 @@ namespace Gtk
     reset_relation (Relation relation) -> void;
 
     auto
-    property_accessible_role () -> Glib::PropertyProxy<Role>;
+    property_accessible_role () -> glib::PropertyProxy<Role>;
 
     auto
-    property_accessible_role () const -> Glib::PropertyProxy_ReadOnly<Role>;
+    property_accessible_role () const -> glib::PropertyProxy_ReadOnly<Role>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_GTK_SYMEXPORT Value<Gtk::Accessible::Role>
-    : public Glib::Value_Enum<Gtk::Accessible::Role>
+  class LIBMM_GTK_SYMEXPORT Value<gtk::Accessible::Role>
+    : public glib::Value_Enum<gtk::Accessible::Role>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_GTK_SYMEXPORT Value<Gtk::Accessible::State>
-    : public Glib::Value_Enum<Gtk::Accessible::State>
+  class LIBMM_GTK_SYMEXPORT Value<gtk::Accessible::State>
+    : public glib::Value_Enum<gtk::Accessible::State>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_GTK_SYMEXPORT Value<Gtk::Accessible::Property>
-    : public Glib::Value_Enum<Gtk::Accessible::Property>
+  class LIBMM_GTK_SYMEXPORT Value<gtk::Accessible::Property>
+    : public glib::Value_Enum<gtk::Accessible::Property>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_GTK_SYMEXPORT Value<Gtk::Accessible::Relation>
-    : public Glib::Value_Enum<Gtk::Accessible::Relation>
+  class LIBMM_GTK_SYMEXPORT Value<gtk::Accessible::Relation>
+    : public glib::Value_Enum<gtk::Accessible::Relation>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_GTK_SYMEXPORT Value<Gtk::Accessible::PlatformState>
-    : public Glib::Value_Enum<Gtk::Accessible::PlatformState>
+  class LIBMM_GTK_SYMEXPORT Value<gtk::Accessible::PlatformState>
+    : public glib::Value_Enum<gtk::Accessible::PlatformState>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkAccessible* object, bool take_copy = false) -> Glib::RefPtr<Gtk::Accessible>;
+  wrap (GtkAccessible* object, bool take_copy = false) -> glib::RefPtr<gtk::Accessible>;
 
-} // namespace Glib
+} // namespace glib
 
 #endif

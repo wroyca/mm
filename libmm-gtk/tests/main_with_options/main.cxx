@@ -19,73 +19,73 @@
 #include <iostream>
 
 
-class ExampleOptionGroup : public Glib::OptionGroup
+class ExampleOptionGroup : public glib::OptionGroup
 {
 public:
   ExampleOptionGroup();
 
-  bool on_pre_parse(Glib::OptionContext& context) override;
-  bool on_post_parse(Glib::OptionContext& context) override;
-  void on_error(Glib::OptionContext& context, const Glib::Error& error) override;
+  bool on_pre_parse(glib::OptionContext& context) override;
+  bool on_post_parse(glib::OptionContext& context) override;
+  void on_error(glib::OptionContext& context, const glib::Error& error) override;
 
   //These int instances should live as long as the OptionGroup to which they are added,
   //and as long as the OptionContext to which those OptionGroups are added.
   int m_arg_foo;
   std::string m_arg_filename;
-  Glib::ustring m_arg_goo;
+  glib::ustring m_arg_goo;
   bool m_arg_boolean;
-  Glib::OptionGroup::vecustrings m_arg_list;
+  glib::OptionGroup::vecustrings m_arg_list;
 };
 
 ExampleOptionGroup::ExampleOptionGroup()
-: Glib::OptionGroup("example_group", "description of example group", "help description of example group"),
+: glib::OptionGroup("example_group", "description of example group", "help description of example group"),
   m_arg_foo(0), m_arg_boolean(false)
 {
-  Glib::OptionEntry entry1;
+  glib::OptionEntry entry1;
   entry1.set_long_name("foo");
   entry1.set_short_name('f');
   entry1.set_description("The Foo");
   add_entry(entry1, m_arg_foo);
 
-  Glib::OptionEntry entry2;
+  glib::OptionEntry entry2;
   entry2.set_long_name("file");
   entry2.set_short_name('F');
   entry2.set_description("The Filename");
   add_entry_filename(entry2, m_arg_filename);
 
-  Glib::OptionEntry entry3;
+  glib::OptionEntry entry3;
   entry3.set_long_name("goo");
   entry3.set_short_name('g');
   entry3.set_description("The Goo");
   add_entry(entry3, m_arg_goo);
 
-  Glib::OptionEntry entry4;
+  glib::OptionEntry entry4;
   entry4.set_long_name("activate_something");
   entry4.set_description("Activate something");
   add_entry(entry4, m_arg_boolean);
 
-  Glib::OptionEntry entry5;
+  glib::OptionEntry entry5;
   entry5.set_long_name("list");
   entry5.set_short_name('l');
   entry5.set_description("The List");
   add_entry(entry5, m_arg_list);
 }
 
-bool ExampleOptionGroup::on_pre_parse(Glib::OptionContext& context)
+bool ExampleOptionGroup::on_pre_parse(glib::OptionContext& context)
 {
   //This is called before the m_arg_* instances are given their values.
-  return Glib::OptionGroup::on_pre_parse(context);
+  return glib::OptionGroup::on_pre_parse(context);
 }
 
-bool ExampleOptionGroup::on_post_parse(Glib::OptionContext& context)
+bool ExampleOptionGroup::on_post_parse(glib::OptionContext& context)
 {
   //This is called after the m_arg_* instances are given their values.
-  return Glib::OptionGroup::on_post_parse(context);
+  return glib::OptionGroup::on_post_parse(context);
 }
 
-void ExampleOptionGroup::on_error(Glib::OptionContext& context, const Glib::Error& error)
+void ExampleOptionGroup::on_error(glib::OptionContext& context, const glib::Error& error)
 {
-  Glib::OptionGroup::on_error(context, error);
+  glib::OptionGroup::on_error(context, error);
 }
 
 int main(int argc, char *argv[])
@@ -94,16 +94,16 @@ int main(int argc, char *argv[])
   //./example --foo=1 --bar=2 --goo=abc
   //./example --help
 
-  Glib::OptionContext context;
+  glib::OptionContext context;
 
   ExampleOptionGroup group;
   context.set_main_group(group);
 
   try
   {
-    auto app = Gtk::Application::create();
+    auto app = gtk::Application::create();
 
-    // For a better example of command-line handling with Gtk::Application,
+    // For a better example of command-line handling with gtk::Application,
     // see gtkmm-documentation/examples/book/application/command_line_handling.
     context.parse(argc, argv);
 
@@ -122,9 +122,9 @@ int main(int argc, char *argv[])
     }
     std::cout << std::endl;
 
-    return app->make_window_and_run<Gtk::Window>(0, nullptr); //Shows the window and returns when it is closed.
+    return app->make_window_and_run<gtk::Window>(0, nullptr); //Shows the window and returns when it is closed.
   }
-  catch(const Glib::Error& ex)
+  catch(const glib::Error& ex)
   {
     std::cerr << "Exception: " << ex.what() << std::endl;
   }

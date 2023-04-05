@@ -18,11 +18,11 @@
 #include <utility>
 #include <vector>
 
-namespace Glib
+namespace glib
 {
   class Bytes;
 
-  class VariantParseError : public Glib::Error
+  class VariantParseError : public glib::Error
   {
   public:
     enum Code
@@ -49,7 +49,7 @@ namespace Glib
     };
 
     LIBMM_GLIB_SYMEXPORT
-    VariantParseError (Code error_code, const Glib::ustring& error_message);
+    VariantParseError (Code error_code, const glib::ustring& error_message);
     LIBMM_GLIB_SYMEXPORT explicit VariantParseError (GError* gobject);
     LIBMM_GLIB_SYMEXPORT auto
     code () const -> Code;
@@ -140,13 +140,13 @@ namespace Glib
     get_data () const -> gconstpointer;
 
     auto
-    get_data_as_bytes () const -> Glib::RefPtr<const Glib::Bytes>;
+    get_data_as_bytes () const -> glib::RefPtr<const glib::Bytes>;
 
     auto
     store (gpointer data) const -> void;
 
     auto
-    print (bool type_annotate = false) const -> Glib::ustring;
+    print (bool type_annotate = false) const -> glib::ustring;
 
     auto
     hash () const -> guint;
@@ -363,18 +363,18 @@ namespace Glib
   };
 
   template <>
-  class LIBMM_GLIB_SYMEXPORT Variant<Glib::ustring> : public VariantStringBase
+  class LIBMM_GLIB_SYMEXPORT Variant<glib::ustring> : public VariantStringBase
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-    using CppObjectType = Variant<Glib::ustring>;
+    using CppObjectType = Variant<glib::ustring>;
     using BaseObjectType = GVariant;
 #endif
 
   private:
   public:
     using CType = char*;
-    using CppType = Glib::ustring;
+    using CppType = glib::ustring;
 
     Variant ();
 
@@ -384,26 +384,26 @@ namespace Glib
     variant_type () -> const VariantType& G_GNUC_CONST;
 
     static auto
-    create (const Glib::ustring& data) -> Variant<Glib::ustring>;
+    create (const glib::ustring& data) -> Variant<glib::ustring>;
 
     auto
-    get () const -> Glib::ustring;
+    get () const -> glib::ustring;
   };
 
   template <>
-  class LIBMM_GLIB_SYMEXPORT Variant<Glib::DBusObjectPathString>
+  class LIBMM_GLIB_SYMEXPORT Variant<glib::DBusObjectPathString>
     : public VariantStringBase
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-    using CppObjectType = Variant<Glib::DBusObjectPathString>;
+    using CppObjectType = Variant<glib::DBusObjectPathString>;
     using BaseObjectType = GVariant;
 #endif
 
   private:
   public:
     using CType = char*;
-    using CppType = Glib::DBusObjectPathString;
+    using CppType = glib::DBusObjectPathString;
 
     Variant ();
 
@@ -420,18 +420,18 @@ namespace Glib
   };
 
   template <>
-  class LIBMM_GLIB_SYMEXPORT Variant<Glib::DBusSignatureString> : public VariantStringBase
+  class LIBMM_GLIB_SYMEXPORT Variant<glib::DBusSignatureString> : public VariantStringBase
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-    using CppObjectType = Variant<Glib::DBusSignatureString>;
+    using CppObjectType = Variant<glib::DBusSignatureString>;
     using BaseObjectType = GVariant;
 #endif
 
   private:
   public:
     using CType = char*;
-    using CppType = Glib::DBusSignatureString;
+    using CppType = glib::DBusSignatureString;
 
     Variant ();
 
@@ -536,12 +536,12 @@ namespace Glib
   };
 
   template <>
-  class LIBMM_GLIB_SYMEXPORT Variant<std::vector<Glib::ustring>>
+  class LIBMM_GLIB_SYMEXPORT Variant<std::vector<glib::ustring>>
     : public VariantContainerBase
   {
   public:
-    using CppType = Glib::ustring;
-    using CppContainerType = std::vector<Glib::ustring>;
+    using CppType = glib::ustring;
+    using CppContainerType = std::vector<glib::ustring>;
 
     Variant ();
 
@@ -551,26 +551,26 @@ namespace Glib
     variant_type () -> const VariantType& G_GNUC_CONST;
 
     static auto
-    create (const std::vector<Glib::ustring>& data)
-        -> Variant<std::vector<Glib::ustring>>;
+    create (const std::vector<glib::ustring>& data)
+        -> Variant<std::vector<glib::ustring>>;
 
     auto
-    get_child (gsize index) const -> Glib::ustring;
+    get_child (gsize index) const -> glib::ustring;
 
     auto
-    get () const -> std::vector<Glib::ustring>;
+    get () const -> std::vector<glib::ustring>;
 
     auto
     get_iter () const -> VariantIter;
   };
 
   template <>
-  class LIBMM_GLIB_SYMEXPORT Variant<std::vector<Glib::DBusObjectPathString>>
+  class LIBMM_GLIB_SYMEXPORT Variant<std::vector<glib::DBusObjectPathString>>
     : public VariantContainerBase
   {
   public:
-    using CppType = Glib::DBusObjectPathString;
-    using CppContainerType = std::vector<Glib::DBusObjectPathString>;
+    using CppType = glib::DBusObjectPathString;
+    using CppContainerType = std::vector<glib::DBusObjectPathString>;
 
     Variant ();
 
@@ -698,13 +698,13 @@ namespace Glib
     get_iter () const -> VariantIter;
   };
 
-} // namespace Glib
+} // namespace glib
 
 #define _GLIBMM_VARIANT_H_INCLUDE_VARIANT_BASICTYPES_H
 #include <libmm/glib/variant_basictypes.hxx>
 #undef _GLIBMM_VARIANT_H_INCLUDE_VARIANT_BASICTYPES_H
 
-namespace Glib
+namespace glib
 {
 
   template <class T>
@@ -803,7 +803,7 @@ namespace Glib
 
     for (const auto& element : data)
     {
-      Glib::Variant<T> variant = Glib::Variant<T>::create (element);
+      glib::Variant<T> variant = glib::Variant<T>::create (element);
       g_variant_builder_add_value (builder, variant.gobj ());
     }
 
@@ -824,7 +824,7 @@ namespace Glib
       throw std::out_of_range (
           "Variant< std::vector<T> >::get_child(): Index out of bounds.");
 
-    Glib::Variant<T> variant;
+    glib::Variant<T> variant;
 
     GVariant* gvariant =
         g_variant_get_child_value (const_cast<GVariant*> (gobj ()), index);
@@ -841,7 +841,7 @@ namespace Glib
 
     for (gsize i = 0, n_children = get_n_children (); i < n_children; ++i)
     {
-      Glib::Variant<T> variant;
+      glib::Variant<T> variant;
 
       GVariant* gvariant =
           g_variant_get_child_value (const_cast<GVariant*> (gobj ()), i);
@@ -996,7 +996,7 @@ namespace Glib
   auto
   Variant<std::tuple<Types...>>::create (const std::tuple<Types...>& data) -> Variant<std::tuple<Types...>>
   {
-    std::vector<Glib::VariantBase> variants;
+    std::vector<glib::VariantBase> variants;
     detail::expand_tuple (variants, data, std::index_sequence_for<Types...>{});
 
     using var_ptr = GVariant*;
@@ -1092,10 +1092,10 @@ namespace Glib
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   template <>
-  class LIBMM_GLIB_SYMEXPORT Value<Glib::VariantBase> : public ValueBase_Variant
+  class LIBMM_GLIB_SYMEXPORT Value<glib::VariantBase> : public ValueBase_Variant
   {
   public:
-    using CppType = Glib::VariantBase;
+    using CppType = glib::VariantBase;
 
     auto
     set (CppType data) -> void;
@@ -1104,9 +1104,9 @@ namespace Glib
   };
 #endif
 
-} // namespace Glib
+} // namespace glib
 
-namespace Glib
+namespace glib
 {
 
   inline auto
@@ -1115,15 +1115,15 @@ namespace Glib
     lhs.swap (rhs);
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Glib
+namespace glib
 {
 
   LIBMM_GLIB_SYMEXPORT
   auto
-  wrap (GVariant* object, bool take_copy = false) -> Glib::VariantBase;
+  wrap (GVariant* object, bool take_copy = false) -> glib::VariantBase;
 
-} // namespace Glib
+} // namespace glib
 
 #endif

@@ -21,16 +21,16 @@ using GtkFileChooserClass = struct _GtkFileChooserClass;
   #endif
 
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT FileChooser_Class;
 }
   #endif
 
-namespace Gtk
+namespace gtk
 {
 
-  class FileChooserError : public Glib::Error
+  class FileChooserError : public glib::Error
   {
   public:
     enum Code
@@ -42,7 +42,7 @@ namespace Gtk
     };
 
     LIBMM_GTK_SYMEXPORT
-    FileChooserError (Code error_code, const Glib::ustring& error_message);
+    FileChooserError (Code error_code, const glib::ustring& error_message);
     LIBMM_GTK_SYMEXPORT explicit FileChooserError (GError* gobject);
     LIBMM_GTK_SYMEXPORT auto
     code () const -> Code;
@@ -58,28 +58,28 @@ namespace Gtk
   #endif
   };
 
-} // namespace Gtk
+} // namespace gtk
 
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_GTK_SYMEXPORT Value<Gtk::FileChooserError::Code>
-    : public Glib::Value_Enum<Gtk::FileChooserError::Code>
+  class LIBMM_GTK_SYMEXPORT Value<gtk::FileChooserError::Code>
+    : public glib::Value_Enum<gtk::FileChooserError::Code>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
   #endif
 
-namespace Gtk
+namespace gtk
 {
 
-  class LIBMM_GTK_SYMEXPORT FileChooser : public Glib::Interface
+  class LIBMM_GTK_SYMEXPORT FileChooser : public glib::Interface
   {
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -103,7 +103,7 @@ namespace Gtk
 
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
-    explicit FileChooser (const Glib::Interface_Class& interface_class);
+    explicit FileChooser (const glib::Interface_Class& interface_class);
 
   public:
     explicit FileChooser (GtkFileChooser* castitem);
@@ -169,142 +169,142 @@ namespace Gtk
     get_create_folders () const -> bool;
 
     auto
-    set_current_name (const Glib::ustring& name) -> void;
+    set_current_name (const glib::ustring& name) -> void;
 
     auto
-    get_current_name () const -> Glib::ustring;
+    get_current_name () const -> glib::ustring;
 
     auto
-    set_file (const Glib::RefPtr<const Gio::File>& file) -> bool;
+    set_file (const glib::RefPtr<const gio::File>& file) -> bool;
 
     auto
-    get_files () -> Glib::RefPtr<Gio::ListModel>;
+    get_files () -> glib::RefPtr<gio::ListModel>;
 
     auto
-    get_files () const -> Glib::RefPtr<const Gio::ListModel>;
+    get_files () const -> glib::RefPtr<const gio::ListModel>;
 
     auto
-    set_current_folder (const Glib::RefPtr<const Gio::File>& file) -> bool;
+    set_current_folder (const glib::RefPtr<const gio::File>& file) -> bool;
 
     auto
-    get_current_folder () -> Glib::RefPtr<Gio::File>;
+    get_current_folder () -> glib::RefPtr<gio::File>;
 
     auto
-    get_current_folder () const -> Glib::RefPtr<const Gio::File>;
+    get_current_folder () const -> glib::RefPtr<const gio::File>;
 
     auto
-    get_file () -> Glib::RefPtr<Gio::File>;
+    get_file () -> glib::RefPtr<gio::File>;
 
     auto
-    get_file () const -> Glib::RefPtr<const Gio::File>;
+    get_file () const -> glib::RefPtr<const gio::File>;
 
     auto
-    add_filter (const Glib::RefPtr<FileFilter>& filter) -> void;
+    add_filter (const glib::RefPtr<FileFilter>& filter) -> void;
 
     auto
-    remove_filter (const Glib::RefPtr<FileFilter>& filter) -> void;
+    remove_filter (const glib::RefPtr<FileFilter>& filter) -> void;
 
     auto
-    get_filters () const -> Glib::RefPtr<const Gio::ListModel>;
+    get_filters () const -> glib::RefPtr<const gio::ListModel>;
 
     auto
-    set_filter (const Glib::RefPtr<FileFilter>& filter) -> void;
+    set_filter (const glib::RefPtr<FileFilter>& filter) -> void;
 
     auto
-    get_filter () -> Glib::RefPtr<FileFilter>;
+    get_filter () -> glib::RefPtr<FileFilter>;
 
     auto
-    get_filter () const -> Glib::RefPtr<const FileFilter>;
+    get_filter () const -> glib::RefPtr<const FileFilter>;
 
     auto
-    add_shortcut_folder (const Glib::RefPtr<Gio::File>& folder) -> bool;
+    add_shortcut_folder (const glib::RefPtr<gio::File>& folder) -> bool;
 
     auto
-    remove_shortcut_folder (const Glib::RefPtr<Gio::File>& folder) -> bool;
+    remove_shortcut_folder (const glib::RefPtr<gio::File>& folder) -> bool;
 
     auto
-    get_shortcut_folders () const -> Glib::RefPtr<const Gio::ListModel>;
+    get_shortcut_folders () const -> glib::RefPtr<const gio::ListModel>;
 
     auto
-    add_choice (const Glib::ustring& id,
-                const Glib::ustring& label,
-                const std::vector<Glib::ustring>& options,
-                const std::vector<Glib::ustring>& option_labels) -> void;
+    add_choice (const glib::ustring& id,
+                const glib::ustring& label,
+                const std::vector<glib::ustring>& options,
+                const std::vector<glib::ustring>& option_labels) -> void;
 
     auto
-    add_choice (const Glib::ustring& id, const Glib::ustring& label) -> void;
+    add_choice (const glib::ustring& id, const glib::ustring& label) -> void;
 
     auto
-    remove_choice (const Glib::ustring& id) -> void;
+    remove_choice (const glib::ustring& id) -> void;
 
     auto
-    set_choice (const Glib::ustring& id, const Glib::ustring& option) -> void;
+    set_choice (const glib::ustring& id, const glib::ustring& option) -> void;
 
     auto
-    get_choice (const Glib::ustring& id) const -> Glib::ustring;
+    get_choice (const glib::ustring& id) const -> glib::ustring;
 
     auto
-    property_action () -> Glib::PropertyProxy<Action>;
+    property_action () -> glib::PropertyProxy<Action>;
 
     auto
-    property_action () const -> Glib::PropertyProxy_ReadOnly<Action>;
+    property_action () const -> glib::PropertyProxy_ReadOnly<Action>;
 
     auto
-    property_filter () -> Glib::PropertyProxy<Glib::RefPtr<FileFilter>>;
+    property_filter () -> glib::PropertyProxy<glib::RefPtr<FileFilter>>;
 
     auto
     property_filter () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<FileFilter>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<FileFilter>>;
 
     auto
-    property_select_multiple () -> Glib::PropertyProxy<bool>;
+    property_select_multiple () -> glib::PropertyProxy<bool>;
 
     auto
-    property_select_multiple () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_select_multiple () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
     property_filters () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gio::ListModel>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<gio::ListModel>>;
 
     auto
     property_shortcut_folders () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gio::ListModel>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<gio::ListModel>>;
 
     auto
-    property_create_folders () -> Glib::PropertyProxy<bool>;
+    property_create_folders () -> glib::PropertyProxy<bool>;
 
     auto
-    property_create_folders () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_create_folders () const -> glib::PropertyProxy_ReadOnly<bool>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_GTK_SYMEXPORT Value<Gtk::FileChooser::Action>
-    : public Glib::Value_Enum<Gtk::FileChooser::Action>
+  class LIBMM_GTK_SYMEXPORT Value<gtk::FileChooser::Action>
+    : public glib::Value_Enum<gtk::FileChooser::Action>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
   #endif
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkFileChooser* object, bool take_copy = false) -> Glib::RefPtr<Gtk::FileChooser>;
+  wrap (GtkFileChooser* object, bool take_copy = false) -> glib::RefPtr<gtk::FileChooser>;
 
-} // namespace Glib
+} // namespace glib
 
 #endif
 

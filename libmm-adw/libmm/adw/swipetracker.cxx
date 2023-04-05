@@ -9,7 +9,7 @@
 #include <libmm/glib/mm-glib.hxx>
 #include <libmm/gtk/mm-gtk.hxx>
 
-namespace Adw
+namespace adw
 {
 
 }
@@ -17,10 +17,10 @@ namespace Adw
 namespace
 {
 
-  static const Glib::SignalProxyInfo SwipeTracker_signal_begin_swipe_info = {
+  static const glib::SignalProxyInfo SwipeTracker_signal_begin_swipe_info = {
       "begin-swipe",
-      (GCallback) &Glib::SignalProxyNormal::slot0_void_callback,
-      (GCallback) &Glib::SignalProxyNormal::slot0_void_callback};
+      (GCallback) &glib::SignalProxyNormal::slot0_void_callback,
+      (GCallback) &glib::SignalProxyNormal::slot0_void_callback};
 
   static auto
   SwipeTracker_signal_end_swipe_callback (AdwSwipeTracker* self,
@@ -28,27 +28,27 @@ namespace
                                           gdouble p1,
                                           void* data) -> void
   {
-    using namespace Adw;
+    using namespace adw;
     using SlotType = sigc::slot<void (double, double)>;
 
     auto obj = dynamic_cast<SwipeTracker*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
     {
       try
       {
-        if (const auto slot = Glib::SignalProxyNormal::data_to_slot (data))
+        if (const auto slot = glib::SignalProxyNormal::data_to_slot (data))
           (*static_cast<SlotType*> (slot)) (p0, p1);
       }
       catch (...)
       {
-        Glib::exception_handlers_invoke ();
+        glib::exception_handlers_invoke ();
       }
     }
   }
 
-  static const Glib::SignalProxyInfo SwipeTracker_signal_end_swipe_info = {
+  static const glib::SignalProxyInfo SwipeTracker_signal_end_swipe_info = {
       "end-swipe",
       (GCallback) &SwipeTracker_signal_end_swipe_callback,
       (GCallback) &SwipeTracker_signal_end_swipe_callback};
@@ -58,28 +58,28 @@ namespace
                                         AdwNavigationDirection p0,
                                         void* data) -> void
   {
-    using namespace Adw;
+    using namespace adw;
     using SlotType = sigc::slot<void (NavigationDirection)>;
 
     auto obj = dynamic_cast<SwipeTracker*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
     {
       try
       {
-        if (const auto slot = Glib::SignalProxyNormal::data_to_slot (data))
+        if (const auto slot = glib::SignalProxyNormal::data_to_slot (data))
           (*static_cast<SlotType*> (slot)) (
               static_cast<NavigationDirection> (p0));
       }
       catch (...)
       {
-        Glib::exception_handlers_invoke ();
+        glib::exception_handlers_invoke ();
       }
     }
   }
 
-  static const Glib::SignalProxyInfo SwipeTracker_signal_prepare_info = {
+  static const glib::SignalProxyInfo SwipeTracker_signal_prepare_info = {
       "prepare",
       (GCallback) &SwipeTracker_signal_prepare_callback,
       (GCallback) &SwipeTracker_signal_prepare_callback};
@@ -89,51 +89,51 @@ namespace
                                              gdouble p0,
                                              void* data) -> void
   {
-    using namespace Adw;
+    using namespace adw;
     using SlotType = sigc::slot<void (double)>;
 
     auto obj = dynamic_cast<SwipeTracker*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
     {
       try
       {
-        if (const auto slot = Glib::SignalProxyNormal::data_to_slot (data))
+        if (const auto slot = glib::SignalProxyNormal::data_to_slot (data))
           (*static_cast<SlotType*> (slot)) (p0);
       }
       catch (...)
       {
-        Glib::exception_handlers_invoke ();
+        glib::exception_handlers_invoke ();
       }
     }
   }
 
-  static const Glib::SignalProxyInfo SwipeTracker_signal_update_swipe_info = {
+  static const glib::SignalProxyInfo SwipeTracker_signal_update_swipe_info = {
       "update-swipe",
       (GCallback) &SwipeTracker_signal_update_swipe_callback,
       (GCallback) &SwipeTracker_signal_update_swipe_callback};
 
 } // namespace
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (AdwSwipeTracker* object, bool take_copy) -> Glib::RefPtr<Adw::SwipeTracker>
+  wrap (AdwSwipeTracker* object, bool take_copy) -> glib::RefPtr<adw::SwipeTracker>
   {
-    return Glib::make_refptr_for_instance<Adw::SwipeTracker> (
-        dynamic_cast<Adw::SwipeTracker*> (
-            Glib::wrap_auto ((GObject*) (object), take_copy)));
+    return glib::make_refptr_for_instance<adw::SwipeTracker> (
+        dynamic_cast<adw::SwipeTracker*> (
+            glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Adw
+namespace adw
 {
 
   auto
-  SwipeTracker_Class::init () -> const Glib::Class&
+  SwipeTracker_Class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -144,7 +144,7 @@ namespace Adw
   }
 
   auto
-  SwipeTracker_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  SwipeTracker_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new SwipeTracker ((AdwSwipeTracker*) object);
   }
@@ -156,27 +156,27 @@ namespace Adw
     return gobj ();
   }
 
-  SwipeTracker::SwipeTracker (const Glib::ConstructParams& construct_params)
-    : Glib::Object (construct_params)
+  SwipeTracker::SwipeTracker (const glib::ConstructParams& construct_params)
+    : glib::Object (construct_params)
   {
   }
 
   SwipeTracker::SwipeTracker (AdwSwipeTracker* castitem)
-    : Glib::Object ((GObject*) (castitem))
+    : glib::Object ((GObject*) (castitem))
   {
   }
 
   SwipeTracker::SwipeTracker (SwipeTracker&& src) noexcept
-    : Glib::Object (std::move (src)),
-      Gtk::Orientable (std::move (src))
+    : glib::Object (std::move (src)),
+      gtk::Orientable (std::move (src))
   {
   }
 
   auto
   SwipeTracker::operator= (SwipeTracker&& src) noexcept -> SwipeTracker&
   {
-    Glib::Object::operator= (std::move (src));
-    Gtk::Orientable::operator= (std::move (src));
+    glib::Object::operator= (std::move (src));
+    gtk::Orientable::operator= (std::move (src));
     return *this;
   }
 
@@ -197,24 +197,24 @@ namespace Adw
   }
 
   SwipeTracker::SwipeTracker ()
-    : Glib::ObjectBase (nullptr),
-      Glib::Object (Glib::ConstructParams (swipetracker_class_.init ()))
+    : glib::ObjectBase (nullptr),
+      glib::Object (glib::ConstructParams (swipetracker_class_.init ()))
   {
   }
 
-  SwipeTracker::SwipeTracker (const Glib::RefPtr<Swipeable>& swipeable)
-    : Glib::ObjectBase (nullptr),
-      Glib::Object (Glib::ConstructParams (swipetracker_class_.init (),
+  SwipeTracker::SwipeTracker (const glib::RefPtr<Swipeable>& swipeable)
+    : glib::ObjectBase (nullptr),
+      glib::Object (glib::ConstructParams (swipetracker_class_.init (),
                                            "swipeable",
-                                           Glib::unwrap (swipeable),
+                                           glib::unwrap (swipeable),
                                            nullptr))
   {
   }
 
   auto
-  SwipeTracker::create (const Glib::RefPtr<Swipeable>& swipeable) -> Glib::RefPtr<SwipeTracker>
+  SwipeTracker::create (const glib::RefPtr<Swipeable>& swipeable) -> glib::RefPtr<SwipeTracker>
   {
-    return Glib::make_refptr_for_instance<SwipeTracker> (
+    return glib::make_refptr_for_instance<SwipeTracker> (
         new SwipeTracker (swipeable));
   }
 
@@ -247,9 +247,9 @@ namespace Adw
   }
 
   auto
-  SwipeTracker::get_swipeable () const -> Glib::RefPtr<Swipeable>
+  SwipeTracker::get_swipeable () const -> glib::RefPtr<Swipeable>
   {
-    auto retvalue = Glib::wrap (adw_swipe_tracker_get_swipeable (
+    auto retvalue = glib::wrap (adw_swipe_tracker_get_swipeable (
         const_cast<AdwSwipeTracker*> (gobj ())));
     if (retvalue)
       retvalue->reference ();
@@ -291,95 +291,95 @@ namespace Adw
   }
 
   auto
-  SwipeTracker::signal_begin_swipe () -> Glib::SignalProxy<void ()>
+  SwipeTracker::signal_begin_swipe () -> glib::SignalProxy<void ()>
   {
-    return Glib::SignalProxy<void ()> (this,
+    return glib::SignalProxy<void ()> (this,
                                        &SwipeTracker_signal_begin_swipe_info);
   }
 
   auto
-  SwipeTracker::signal_end_swipe () -> Glib::SignalProxy<void (double, double)>
+  SwipeTracker::signal_end_swipe () -> glib::SignalProxy<void (double, double)>
   {
-    return Glib::SignalProxy<void (double, double)> (
+    return glib::SignalProxy<void (double, double)> (
         this,
         &SwipeTracker_signal_end_swipe_info);
   }
 
   auto
-  SwipeTracker::signal_prepare () -> Glib::SignalProxy<void (NavigationDirection)>
+  SwipeTracker::signal_prepare () -> glib::SignalProxy<void (NavigationDirection)>
   {
-    return Glib::SignalProxy<void (NavigationDirection)> (
+    return glib::SignalProxy<void (NavigationDirection)> (
         this,
         &SwipeTracker_signal_prepare_info);
   }
 
   auto
-  SwipeTracker::signal_update_swipe () -> Glib::SignalProxy<void (double)>
+  SwipeTracker::signal_update_swipe () -> glib::SignalProxy<void (double)>
   {
-    return Glib::SignalProxy<void (double)> (
+    return glib::SignalProxy<void (double)> (
         this,
         &SwipeTracker_signal_update_swipe_info);
   }
 
   auto
-  SwipeTracker::property_allow_long_swipes () -> Glib::PropertyProxy<bool>
+  SwipeTracker::property_allow_long_swipes () -> glib::PropertyProxy<bool>
   {
-    return Glib::PropertyProxy<bool> (this, "allow-long-swipes");
+    return glib::PropertyProxy<bool> (this, "allow-long-swipes");
   }
 
   auto
-  SwipeTracker::property_allow_long_swipes () const -> Glib::PropertyProxy_ReadOnly<bool>
+  SwipeTracker::property_allow_long_swipes () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "allow-long-swipes");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "allow-long-swipes");
   }
 
   auto
-  SwipeTracker::property_allow_mouse_drag () -> Glib::PropertyProxy<bool>
+  SwipeTracker::property_allow_mouse_drag () -> glib::PropertyProxy<bool>
   {
-    return Glib::PropertyProxy<bool> (this, "allow-mouse-drag");
+    return glib::PropertyProxy<bool> (this, "allow-mouse-drag");
   }
 
   auto
-  SwipeTracker::property_allow_mouse_drag () const -> Glib::PropertyProxy_ReadOnly<bool>
+  SwipeTracker::property_allow_mouse_drag () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "allow-mouse-drag");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "allow-mouse-drag");
   }
 
   auto
-  SwipeTracker::property_enabled () -> Glib::PropertyProxy<bool>
+  SwipeTracker::property_enabled () -> glib::PropertyProxy<bool>
   {
-    return Glib::PropertyProxy<bool> (this, "enabled");
+    return glib::PropertyProxy<bool> (this, "enabled");
   }
 
   auto
-  SwipeTracker::property_enabled () const -> Glib::PropertyProxy_ReadOnly<bool>
+  SwipeTracker::property_enabled () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "enabled");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "enabled");
   }
 
   auto
-  SwipeTracker::property_reversed () -> Glib::PropertyProxy<bool>
+  SwipeTracker::property_reversed () -> glib::PropertyProxy<bool>
   {
-    return Glib::PropertyProxy<bool> (this, "reversed");
+    return glib::PropertyProxy<bool> (this, "reversed");
   }
 
   auto
-  SwipeTracker::property_reversed () const -> Glib::PropertyProxy_ReadOnly<bool>
+  SwipeTracker::property_reversed () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "reversed");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "reversed");
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<
-          Glib::RefPtr<Swipeable>>::value,
-      "Type Glib::RefPtr<Swipeable> cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      glib::Traits::ValueCompatibleWithWrapProperty<
+          glib::RefPtr<Swipeable>>::value,
+      "Type glib::RefPtr<Swipeable> cannot be used in _WRAP_PROPERTY. "
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  SwipeTracker::property_swipeable () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Swipeable>>
+  SwipeTracker::property_swipeable () const -> glib::PropertyProxy_ReadOnly<glib::RefPtr<Swipeable>>
   {
-    return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Swipeable>> (this,
+    return glib::PropertyProxy_ReadOnly<glib::RefPtr<Swipeable>> (this,
                                                                   "swipeable");
   }
 
-} // namespace Adw
+} // namespace adw

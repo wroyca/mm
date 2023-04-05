@@ -3,7 +3,7 @@
 #include <libmm/cairo/fontoptions.hxx>
 #include <libmm/cairo/private.hxx>
 
-namespace Cairo
+namespace cairo
 {
 
   FontOptions::FontOptions ()
@@ -169,4 +169,4 @@ namespace Cairo
   #endif
 #endif
 
-} // namespace Cairo
+} // namespace cairo

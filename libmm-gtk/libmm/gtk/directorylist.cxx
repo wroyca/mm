@@ -11,24 +11,24 @@ namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GtkDirectoryList* object, bool take_copy) -> Glib::RefPtr<Gtk::DirectoryList>
+  wrap (GtkDirectoryList* object, bool take_copy) -> glib::RefPtr<gtk::DirectoryList>
   {
-    return Glib::make_refptr_for_instance<Gtk::DirectoryList> (
-        dynamic_cast<Gtk::DirectoryList*> (
-            Glib::wrap_auto ((GObject*) (object), take_copy)));
+    return glib::make_refptr_for_instance<gtk::DirectoryList> (
+        dynamic_cast<gtk::DirectoryList*> (
+            glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gtk
+namespace gtk
 {
 
   auto
-  DirectoryList_Class::init () -> const Glib::Class&
+  DirectoryList_Class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -48,7 +48,7 @@ namespace Gtk
   }
 
   auto
-  DirectoryList_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  DirectoryList_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new DirectoryList ((GtkDirectoryList*) object);
   }
@@ -60,27 +60,27 @@ namespace Gtk
     return gobj ();
   }
 
-  DirectoryList::DirectoryList (const Glib::ConstructParams& construct_params)
-    : Glib::Object (construct_params)
+  DirectoryList::DirectoryList (const glib::ConstructParams& construct_params)
+    : glib::Object (construct_params)
   {
   }
 
   DirectoryList::DirectoryList (GtkDirectoryList* castitem)
-    : Glib::Object ((GObject*) (castitem))
+    : glib::Object ((GObject*) (castitem))
   {
   }
 
   DirectoryList::DirectoryList (DirectoryList&& src) noexcept
-    : Glib::Object (std::move (src)),
-      Gio::ListModel (std::move (src))
+    : glib::Object (std::move (src)),
+      gio::ListModel (std::move (src))
   {
   }
 
   auto
   DirectoryList::operator= (DirectoryList&& src) noexcept -> DirectoryList&
   {
-    Glib::Object::operator= (std::move (src));
-    Gio::ListModel::operator= (std::move (src));
+    glib::Object::operator= (std::move (src));
+    gio::ListModel::operator= (std::move (src));
     return *this;
   }
 
@@ -101,45 +101,45 @@ namespace Gtk
   }
 
   DirectoryList::DirectoryList (const std::string& attributes,
-                                const Glib::RefPtr<Gio::File>& file)
-    : Glib::ObjectBase (nullptr),
-      Glib::Object (Glib::ConstructParams (
+                                const glib::RefPtr<gio::File>& file)
+    : glib::ObjectBase (nullptr),
+      glib::Object (glib::ConstructParams (
           directorylist_class_.init (),
           "attributes",
           attributes.c_str (),
           "file",
-          const_cast<GFile*> (Glib::unwrap<Gio::File> (file)),
+          const_cast<GFile*> (glib::unwrap<gio::File> (file)),
           nullptr))
   {
   }
 
   auto
   DirectoryList::create (const std::string& attributes,
-                         const Glib::RefPtr<Gio::File>& file) -> Glib::RefPtr<DirectoryList>
+                         const glib::RefPtr<gio::File>& file) -> glib::RefPtr<DirectoryList>
   {
-    return Glib::make_refptr_for_instance<DirectoryList> (
+    return glib::make_refptr_for_instance<DirectoryList> (
         new DirectoryList (attributes, file));
   }
 
   auto
-  DirectoryList::set_file (const Glib::RefPtr<Gio::File>& file) -> void
+  DirectoryList::set_file (const glib::RefPtr<gio::File>& file) -> void
   {
     gtk_directory_list_set_file (
         gobj (),
-        const_cast<GFile*> (Glib::unwrap<Gio::File> (file)));
+        const_cast<GFile*> (glib::unwrap<gio::File> (file)));
   }
 
   auto
-  DirectoryList::get_file () -> Glib::RefPtr<Gio::File>
+  DirectoryList::get_file () -> glib::RefPtr<gio::File>
   {
-    auto retvalue = Glib::wrap (gtk_directory_list_get_file (gobj ()));
+    auto retvalue = glib::wrap (gtk_directory_list_get_file (gobj ()));
     if (retvalue)
       retvalue->reference ();
     return retvalue;
   }
 
   auto
-  DirectoryList::get_file () const -> Glib::RefPtr<const Gio::File>
+  DirectoryList::get_file () const -> glib::RefPtr<const gio::File>
   {
     return const_cast<DirectoryList*> (this)->get_file ();
   }
@@ -153,7 +153,7 @@ namespace Gtk
   auto
   DirectoryList::get_attributes () const -> std::string
   {
-    return Glib::convert_const_gchar_ptr_to_stdstring (
+    return glib::convert_const_gchar_ptr_to_stdstring (
         gtk_directory_list_get_attributes (
             const_cast<GtkDirectoryList*> (gobj ())));
   }
@@ -179,9 +179,9 @@ namespace Gtk
   }
 
   auto
-  DirectoryList::get_error () const -> Glib::Error
+  DirectoryList::get_error () const -> glib::Error
   {
-    return Glib::Error (const_cast<GError*> (gtk_directory_list_get_error (
+    return glib::Error (const_cast<GError*> (gtk_directory_list_get_error (
                             const_cast<GtkDirectoryList*> (gobj ()))),
                         true);
   }
@@ -200,91 +200,91 @@ namespace Gtk
   }
 
   auto
-  DirectoryList::property_attributes () -> Glib::PropertyProxy<std::string>
+  DirectoryList::property_attributes () -> glib::PropertyProxy<std::string>
   {
-    return Glib::PropertyProxy<std::string> (this, "attributes");
+    return glib::PropertyProxy<std::string> (this, "attributes");
   }
 
   auto
-  DirectoryList::property_attributes () const -> Glib::PropertyProxy_ReadOnly<std::string>
+  DirectoryList::property_attributes () const -> glib::PropertyProxy_ReadOnly<std::string>
   {
-    return Glib::PropertyProxy_ReadOnly<std::string> (this, "attributes");
+    return glib::PropertyProxy_ReadOnly<std::string> (this, "attributes");
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<Glib::Error>::value,
-      "Type Glib::Error cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      glib::Traits::ValueCompatibleWithWrapProperty<glib::Error>::value,
+      "Type glib::Error cannot be used in _WRAP_PROPERTY. "
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  DirectoryList::property_error () const -> Glib::PropertyProxy_ReadOnly<Glib::Error>
+  DirectoryList::property_error () const -> glib::PropertyProxy_ReadOnly<glib::Error>
   {
-    return Glib::PropertyProxy_ReadOnly<Glib::Error> (this, "error");
+    return glib::PropertyProxy_ReadOnly<glib::Error> (this, "error");
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<
-          Glib::RefPtr<Gio::File>>::value,
-      "Type Glib::RefPtr<Gio::File> cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      glib::Traits::ValueCompatibleWithWrapProperty<
+          glib::RefPtr<gio::File>>::value,
+      "Type glib::RefPtr<gio::File> cannot be used in _WRAP_PROPERTY. "
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  DirectoryList::property_file () -> Glib::PropertyProxy<Glib::RefPtr<Gio::File>>
+  DirectoryList::property_file () -> glib::PropertyProxy<glib::RefPtr<gio::File>>
   {
-    return Glib::PropertyProxy<Glib::RefPtr<Gio::File>> (this, "file");
+    return glib::PropertyProxy<glib::RefPtr<gio::File>> (this, "file");
   }
 
   auto
-  DirectoryList::property_file () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gio::File>>
+  DirectoryList::property_file () const -> glib::PropertyProxy_ReadOnly<glib::RefPtr<gio::File>>
   {
-    return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gio::File>> (this, "file");
+    return glib::PropertyProxy_ReadOnly<glib::RefPtr<gio::File>> (this, "file");
   }
 
   auto
-  DirectoryList::property_io_priority () -> Glib::PropertyProxy<int>
+  DirectoryList::property_io_priority () -> glib::PropertyProxy<int>
   {
-    return Glib::PropertyProxy<int> (this, "io-priority");
+    return glib::PropertyProxy<int> (this, "io-priority");
   }
 
   auto
-  DirectoryList::property_io_priority () const -> Glib::PropertyProxy_ReadOnly<int>
+  DirectoryList::property_io_priority () const -> glib::PropertyProxy_ReadOnly<int>
   {
-    return Glib::PropertyProxy_ReadOnly<int> (this, "io-priority");
+    return glib::PropertyProxy_ReadOnly<int> (this, "io-priority");
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<GType>::value,
+      glib::Traits::ValueCompatibleWithWrapProperty<GType>::value,
       "Type GType cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  DirectoryList::property_item_type () const -> Glib::PropertyProxy_ReadOnly<GType>
+  DirectoryList::property_item_type () const -> glib::PropertyProxy_ReadOnly<GType>
   {
-    return Glib::PropertyProxy_ReadOnly<GType> (this, "item-type");
+    return glib::PropertyProxy_ReadOnly<GType> (this, "item-type");
   }
 
   auto
-  DirectoryList::property_loading () const -> Glib::PropertyProxy_ReadOnly<bool>
+  DirectoryList::property_loading () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "loading");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "loading");
   }
 
   auto
-  DirectoryList::property_monitored () -> Glib::PropertyProxy<bool>
+  DirectoryList::property_monitored () -> glib::PropertyProxy<bool>
   {
-    return Glib::PropertyProxy<bool> (this, "monitored");
+    return glib::PropertyProxy<bool> (this, "monitored");
   }
 
   auto
-  DirectoryList::property_monitored () const -> Glib::PropertyProxy_ReadOnly<bool>
+  DirectoryList::property_monitored () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "monitored");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "monitored");
   }
 
   auto
-  DirectoryList::property_n_items () const -> Glib::PropertyProxy_ReadOnly<unsigned int>
+  DirectoryList::property_n_items () const -> glib::PropertyProxy_ReadOnly<unsigned int>
   {
-    return Glib::PropertyProxy_ReadOnly<unsigned int> (this, "n-items");
+    return glib::PropertyProxy_ReadOnly<unsigned int> (this, "n-items");
   }
 
-} // namespace Gtk
+} // namespace gtk

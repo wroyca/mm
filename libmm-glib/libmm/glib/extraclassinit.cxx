@@ -2,7 +2,7 @@
 
 #include <libmm/glib/extraclassinit.hxx>
 
-namespace Glib
+namespace glib
 {
 
   ExtraClassInit::ExtraClassInit (const GClassInitFunc class_init_func,
@@ -16,4 +16,4 @@ namespace Glib
       set_custom_instance_init_function (instance_init_func);
   }
 
-} // namespace Glib
+} // namespace glib

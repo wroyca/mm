@@ -11,12 +11,12 @@
 #include <libmm/pango/language.hxx>
 #include <vector>
 
-namespace Gdk
+namespace gdk
 {
   class Paintable;
 }
 
-namespace Gtk
+namespace gtk
 {
 
   enum class TextSearchFlags
@@ -74,25 +74,25 @@ namespace Gtk
                                                 static_cast<unsigned> (rhs)));
   }
 
-} // namespace Gtk
+} // namespace gtk
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_GTK_SYMEXPORT Value<Gtk::TextSearchFlags>
-    : public Glib::Value_Flags<Gtk::TextSearchFlags>
+  class LIBMM_GTK_SYMEXPORT Value<gtk::TextSearchFlags>
+    : public glib::Value_Flags<gtk::TextSearchFlags>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
   class LIBMM_GTK_SYMEXPORT TextBuffer;
@@ -172,28 +172,28 @@ namespace Gtk
     get_char () const -> gunichar;
 
     auto
-    get_slice (const TextIterBase& end) const -> Glib::ustring;
+    get_slice (const TextIterBase& end) const -> glib::ustring;
 
     auto
-    get_text (const TextIterBase& end) const -> Glib::ustring;
+    get_text (const TextIterBase& end) const -> glib::ustring;
 
     auto
-    get_visible_slice (const TextIterBase& end) const -> Glib::ustring;
+    get_visible_slice (const TextIterBase& end) const -> glib::ustring;
 
     auto
-    get_visible_text (const TextIterBase& end) const -> Glib::ustring;
+    get_visible_text (const TextIterBase& end) const -> glib::ustring;
 
     auto
-    starts_tag (const Glib::RefPtr<const TextTag>& tag = {}) const -> bool;
+    starts_tag (const glib::RefPtr<const TextTag>& tag = {}) const -> bool;
 
     auto
-    ends_tag (const Glib::RefPtr<const TextTag>& tag = {}) const -> bool;
+    ends_tag (const glib::RefPtr<const TextTag>& tag = {}) const -> bool;
 
     auto
-    toggles_tag (const Glib::RefPtr<const TextTag>& tag = {}) const -> bool;
+    toggles_tag (const glib::RefPtr<const TextTag>& tag = {}) const -> bool;
 
     auto
-    has_tag (const Glib::RefPtr<const TextTag>& tag) const -> bool;
+    has_tag (const glib::RefPtr<const TextTag>& tag) const -> bool;
 
     auto
     editable (bool default_setting = true) const -> bool;
@@ -235,7 +235,7 @@ namespace Gtk
     get_bytes_in_line () const -> int;
 
     auto
-    get_language () const -> Pango::Language;
+    get_language () const -> pango::Language;
 
     auto
     is_end () const -> bool;
@@ -364,10 +364,10 @@ namespace Gtk
     set_visible_line_index (int byte_on_line) -> void;
 
     auto
-    forward_to_tag_toggle (const Glib::RefPtr<const TextTag>& tag = {}) -> bool;
+    forward_to_tag_toggle (const glib::RefPtr<const TextTag>& tag = {}) -> bool;
 
     auto
-    backward_to_tag_toggle (const Glib::RefPtr<const TextTag>& tag = {})
+    backward_to_tag_toggle (const glib::RefPtr<const TextTag>& tag = {})
         -> bool;
 
     using SlotFindChar = sigc::slot<bool (gunichar)>;
@@ -414,46 +414,46 @@ namespace Gtk
     operator-- (int) -> TextIter;
 
     auto
-    get_buffer () const -> Glib::RefPtr<TextBuffer>;
+    get_buffer () const -> glib::RefPtr<TextBuffer>;
 
     auto
-    get_paintable () const -> Glib::RefPtr<Gdk::Paintable>;
+    get_paintable () const -> glib::RefPtr<gdk::Paintable>;
 
     auto
-    get_marks () const -> std::vector<Glib::RefPtr<TextMark>>;
+    get_marks () const -> std::vector<glib::RefPtr<TextMark>>;
 
     auto
-    get_child_anchor () const -> Glib::RefPtr<TextChildAnchor>;
+    get_child_anchor () const -> glib::RefPtr<TextChildAnchor>;
 
     auto
     get_toggled_tags (bool toggled_on = true) const
-        -> std::vector<Glib::RefPtr<TextTag>>;
+        -> std::vector<glib::RefPtr<TextTag>>;
 
     auto
-    get_tags () const -> std::vector<Glib::RefPtr<TextTag>>;
+    get_tags () const -> std::vector<glib::RefPtr<TextTag>>;
 
     auto
-    forward_search (const Glib::ustring& str,
+    forward_search (const glib::ustring& str,
                     TextSearchFlags flags,
                     TextIter& match_start,
                     TextIter& match_end,
                     const TextIterBase& limit) const -> bool;
 
     auto
-    forward_search (const Glib::ustring& str,
+    forward_search (const glib::ustring& str,
                     TextSearchFlags flags,
                     TextIter& match_start,
                     TextIter& match_end) const -> bool;
 
     auto
-    backward_search (const Glib::ustring& str,
+    backward_search (const glib::ustring& str,
                      TextSearchFlags flags,
                      TextIter& match_start,
                      TextIter& match_end,
                      const TextIterBase& limit) const -> bool;
 
     auto
-    backward_search (const Glib::ustring& str,
+    backward_search (const glib::ustring& str,
                      TextSearchFlags flags,
                      TextIter& match_start,
                      TextIter& match_end) const -> bool;
@@ -490,46 +490,46 @@ namespace Gtk
     operator-- (int) -> TextConstIter;
 
     auto
-    get_buffer () const -> Glib::RefPtr<const TextBuffer>;
+    get_buffer () const -> glib::RefPtr<const TextBuffer>;
 
     auto
-    get_paintable () const -> Glib::RefPtr<const Gdk::Paintable>;
+    get_paintable () const -> glib::RefPtr<const gdk::Paintable>;
 
     auto
-    get_marks () const -> std::vector<Glib::RefPtr<const TextMark>>;
+    get_marks () const -> std::vector<glib::RefPtr<const TextMark>>;
 
     auto
-    get_child_anchor () const -> Glib::RefPtr<const TextChildAnchor>;
+    get_child_anchor () const -> glib::RefPtr<const TextChildAnchor>;
 
     auto
     get_toggled_tags (bool toggled_on = true) const
-        -> std::vector<Glib::RefPtr<const TextTag>>;
+        -> std::vector<glib::RefPtr<const TextTag>>;
 
     auto
-    get_tags () const -> std::vector<Glib::RefPtr<const TextTag>>;
+    get_tags () const -> std::vector<glib::RefPtr<const TextTag>>;
 
     auto
-    forward_search (const Glib::ustring& str,
+    forward_search (const glib::ustring& str,
                     TextSearchFlags flags,
                     TextConstIter& match_start,
                     TextConstIter& match_end,
                     const TextIterBase& limit) const -> bool;
 
     auto
-    forward_search (const Glib::ustring& str,
+    forward_search (const glib::ustring& str,
                     TextSearchFlags flags,
                     TextConstIter& match_start,
                     TextConstIter& match_end) const -> bool;
 
     auto
-    backward_search (const Glib::ustring& str,
+    backward_search (const glib::ustring& str,
                      TextSearchFlags flags,
                      TextConstIter& match_start,
                      TextConstIter& match_end,
                      const TextIterBase& limit) const -> bool;
 
     auto
-    backward_search (const Glib::ustring& str,
+    backward_search (const glib::ustring& str,
                      TextSearchFlags flags,
                      TextConstIter& match_start,
                      TextConstIter& match_end) const -> bool;
@@ -627,25 +627,25 @@ namespace Gtk
 
 #endif
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap_iter (GtkTextIter* object) -> Gtk::TextIter&;
+  wrap_iter (GtkTextIter* object) -> gtk::TextIter&;
 
   LIBMM_GTK_SYMEXPORT auto
-  wrap_iter (const GtkTextIter* object) -> const Gtk::TextIter&;
+  wrap_iter (const GtkTextIter* object) -> const gtk::TextIter&;
 
   LIBMM_GTK_SYMEXPORT auto
-  wrap_const_iter (GtkTextIter* object) -> Gtk::TextConstIter&;
+  wrap_const_iter (GtkTextIter* object) -> gtk::TextConstIter&;
 
   LIBMM_GTK_SYMEXPORT auto
-  wrap_const_iter (const GtkTextIter* object) -> const Gtk::TextConstIter&;
+  wrap_const_iter (const GtkTextIter* object) -> const gtk::TextConstIter&;
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gtk
+namespace gtk
 {
   LIBMM_GTK_SYMEXPORT auto
   operator== (const TextIterBase& lhs, const TextIterBase& rhs) -> bool;
@@ -665,24 +665,24 @@ namespace Gtk
   LIBMM_GTK_SYMEXPORT auto
   operator>= (const TextIterBase& lhs, const TextIterBase& rhs) -> bool;
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkTextIter* object) -> Gtk::TextIterBase&;
+  wrap (GtkTextIter* object) -> gtk::TextIterBase&;
 
   LIBMM_GTK_SYMEXPORT auto
-  wrap (const GtkTextIter* object) -> const Gtk::TextIterBase&;
+  wrap (const GtkTextIter* object) -> const gtk::TextIterBase&;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
   template <>
-  class LIBMM_GTK_SYMEXPORT Value<Gtk::TextIterBase>
-    : public Glib::Value_Boxed<Gtk::TextIterBase>
+  class LIBMM_GTK_SYMEXPORT Value<gtk::TextIterBase>
+    : public glib::Value_Boxed<gtk::TextIterBase>
   {
   };
 #endif
 
-} // namespace Glib
+} // namespace glib
 
 #endif

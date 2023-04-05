@@ -20,21 +20,21 @@ using GdkContentProviderClass = struct _GdkContentProviderClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gdk
+namespace gdk
 {
   class LIBMM_GDK_SYMEXPORT ContentProvider_Class;
 }
 #endif
 
-namespace Gio
+namespace gio
 {
   class LIBMM_GDK_SYMEXPORT OutputStream;
 }
 
-namespace Gdk
+namespace gdk
 {
 
-  class LIBMM_GDK_SYMEXPORT ContentProvider : public Glib::Object
+  class LIBMM_GDK_SYMEXPORT ContentProvider : public glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -53,7 +53,7 @@ namespace Gdk
     static CppClassType contentprovider_class_;
 
   protected:
-    explicit ContentProvider (const Glib::ConstructParams& construct_params);
+    explicit ContentProvider (const glib::ConstructParams& construct_params);
     explicit ContentProvider (GdkContentProvider* castitem);
 
 #endif
@@ -95,57 +95,57 @@ namespace Gdk
 
   public:
     static auto
-    create (const Glib::ValueBase& value) -> Glib::RefPtr<ContentProvider>;
+    create (const glib::ValueBase& value) -> glib::RefPtr<ContentProvider>;
 
     static auto
-    create (const std::vector<Glib::RefPtr<ContentProvider>>& providers)
-        -> Glib::RefPtr<ContentProvider>;
+    create (const std::vector<glib::RefPtr<ContentProvider>>& providers)
+        -> glib::RefPtr<ContentProvider>;
 
     static auto
-    create (const Glib::ustring& mime_type,
-            const Glib::RefPtr<const Glib::Bytes>& bytes)
-        -> Glib::RefPtr<ContentProvider>;
+    create (const glib::ustring& mime_type,
+            const glib::RefPtr<const glib::Bytes>& bytes)
+        -> glib::RefPtr<ContentProvider>;
 
     auto
-    ref_formats () const -> Glib::RefPtr<ContentFormats>;
+    ref_formats () const -> glib::RefPtr<ContentFormats>;
 
     auto
-    ref_storable_formats () const -> Glib::RefPtr<ContentFormats>;
+    ref_storable_formats () const -> glib::RefPtr<ContentFormats>;
 
     auto
     content_changed () -> void;
 
     auto
     write_mime_type_async (
-        const Glib::ustring& mime_type,
-        const Glib::RefPtr<Gio::OutputStream>& stream,
+        const glib::ustring& mime_type,
+        const glib::RefPtr<gio::OutputStream>& stream,
         int io_priority,
-        const Gio::SlotAsyncReady& slot,
-        const Glib::RefPtr<Gio::Cancellable>& cancellable) const -> void;
+        const gio::SlotAsyncReady& slot,
+        const glib::RefPtr<gio::Cancellable>& cancellable) const -> void;
 
     auto
-    write_mime_type_async (const Glib::ustring& mime_type,
-                           const Glib::RefPtr<Gio::OutputStream>& stream,
+    write_mime_type_async (const glib::ustring& mime_type,
+                           const glib::RefPtr<gio::OutputStream>& stream,
                            int io_priority,
-                           const Gio::SlotAsyncReady& slot) const -> void;
+                           const gio::SlotAsyncReady& slot) const -> void;
 
     auto
-    write_mime_type_finish (const Glib::RefPtr<Gio::AsyncResult>& result) const
+    write_mime_type_finish (const glib::RefPtr<gio::AsyncResult>& result) const
         -> void;
 
     auto
-    get_value (Glib::ValueBase& value) const -> void;
+    get_value (glib::ValueBase& value) const -> void;
 
     auto
     property_formats () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<ContentFormats>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<ContentFormats>>;
 
     auto
     property_storable_formats () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<ContentFormats>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<ContentFormats>>;
 
     auto
-    signal_content_changed () -> Glib::SignalProxy<void ()>;
+    signal_content_changed () -> glib::SignalProxy<void ()>;
 
   public:
   public:
@@ -154,12 +154,12 @@ namespace Gdk
     on_content_changed () -> void;
   };
 
-} // namespace Gdk
+} // namespace gdk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GDK_SYMEXPORT auto
-  wrap (GdkContentProvider* object, bool take_copy = false) -> Glib::RefPtr<Gdk::ContentProvider>;
-} // namespace Glib
+  wrap (GdkContentProvider* object, bool take_copy = false) -> glib::RefPtr<gdk::ContentProvider>;
+} // namespace glib
 
 #endif

@@ -12,7 +12,7 @@
 
 #include <string.h>
 
-namespace Glib
+namespace glib
 {
 
   ConstructParams::ConstructParams (const Class& glibmm_class_)
@@ -47,7 +47,7 @@ namespace Glib
 
       if (!pspec)
       {
-        g_warning ("Glib::ConstructParams::ConstructParams(): "
+        g_warning ("glib::ConstructParams::ConstructParams(): "
                    "object class \"%s\" has no property named \"%s\"",
                    g_type_name (glibmm_class.get_type ()),
                    name);
@@ -72,7 +72,7 @@ namespace Glib
 
       if (collect_error)
       {
-        g_warning ("Glib::ConstructParams::ConstructParams(): %s",
+        g_warning ("glib::ConstructParams::ConstructParams(): %s",
                    collect_error);
         g_free (collect_error);
         g_value_unset (&param_value);
@@ -237,4 +237,4 @@ namespace Glib
     return g_object_steal_qdata (gobj (), id);
   }
 
-} // namespace Glib
+} // namespace glib

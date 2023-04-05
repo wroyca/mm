@@ -4,57 +4,57 @@
 #include <libmm/glib/utility.hxx>
 #include <libmm/gtk/accelerator.hxx>
 
-namespace Gtk
+namespace gtk
 {
 
   namespace Accelerator
   {
 
     auto
-    valid (guint keyval, Gdk::ModifierType modifiers) -> bool
+    valid (guint keyval, gdk::ModifierType modifiers) -> bool
     {
       return gtk_accelerator_valid (keyval, (GdkModifierType) modifiers);
     }
 
     auto
-    parse (const Glib::ustring& accelerator,
+    parse (const glib::ustring& accelerator,
            guint& accelerator_key,
-           Gdk::ModifierType& accelerator_mods) -> bool
+           gdk::ModifierType& accelerator_mods) -> bool
     {
       auto mods = GdkModifierType (0);
       const auto result =
           gtk_accelerator_parse (accelerator.c_str (), &accelerator_key, &mods);
 
-      accelerator_mods = static_cast<Gdk::ModifierType> (mods);
+      accelerator_mods = static_cast<gdk::ModifierType> (mods);
       return result;
     }
 
     auto
-    name (guint accelerator_key, Gdk::ModifierType accelerator_mods)
-        -> Glib::ustring
+    name (guint accelerator_key, gdk::ModifierType accelerator_mods)
+        -> glib::ustring
     {
-      return Glib::convert_return_gchar_ptr_to_ustring (gtk_accelerator_name (
+      return glib::convert_return_gchar_ptr_to_ustring (gtk_accelerator_name (
           accelerator_key,
           static_cast<GdkModifierType> (accelerator_mods)));
     }
 
     auto
-    get_label (guint accelerator_key, Gdk::ModifierType accelerator_mods)
-        -> Glib::ustring
+    get_label (guint accelerator_key, gdk::ModifierType accelerator_mods)
+        -> glib::ustring
     {
-      return Glib::convert_return_gchar_ptr_to_ustring (
+      return glib::convert_return_gchar_ptr_to_ustring (
           gtk_accelerator_get_label (
               accelerator_key,
               static_cast<GdkModifierType> (accelerator_mods)));
     }
 
     auto
-    get_default_mod_mask () -> Gdk::ModifierType
+    get_default_mod_mask () -> gdk::ModifierType
     {
-      return static_cast<Gdk::ModifierType> (
+      return static_cast<gdk::ModifierType> (
           gtk_accelerator_get_default_mod_mask ());
     }
 
   } // namespace Accelerator
 
-} // namespace Gtk
+} // namespace gtk

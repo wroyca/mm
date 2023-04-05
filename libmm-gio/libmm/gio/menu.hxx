@@ -15,16 +15,16 @@ using GMenuClass = struct _GMenuClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gio
+namespace gio
 {
   class LIBMM_GIO_SYMEXPORT Menu_Class;
 }
 #endif
 
-namespace Gio
+namespace gio
 {
 
-  class LIBMM_GIO_SYMEXPORT Menu : public Gio::MenuModel
+  class LIBMM_GIO_SYMEXPORT Menu : public gio::MenuModel
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -43,7 +43,7 @@ namespace Gio
     static CppClassType menu_class_;
 
   protected:
-    explicit Menu (const Glib::ConstructParams& construct_params);
+    explicit Menu (const glib::ConstructParams& construct_params);
     explicit Menu (GMenu* castitem);
 
 #endif
@@ -85,20 +85,20 @@ namespace Gio
 
   public:
     static auto
-    create () -> Glib::RefPtr<Menu>;
+    create () -> glib::RefPtr<Menu>;
 
     auto
     freeze () -> void;
 
     auto
-    insert_item (int position, const Glib::RefPtr<const MenuItem>& item)
+    insert_item (int position, const glib::RefPtr<const MenuItem>& item)
         -> void;
 
     auto
-    prepend_item (const Glib::RefPtr<const MenuItem>& item) -> void;
+    prepend_item (const glib::RefPtr<const MenuItem>& item) -> void;
 
     auto
-    append_item (const Glib::RefPtr<const MenuItem>& item) -> void;
+    append_item (const glib::RefPtr<const MenuItem>& item) -> void;
 
     auto
     remove (int position) -> void;
@@ -108,75 +108,75 @@ namespace Gio
 
     auto
     insert (int position,
-            const Glib::ustring& label,
-            const Glib::ustring& detailed_action) -> void;
+            const glib::ustring& label,
+            const glib::ustring& detailed_action) -> void;
 
     auto
-    insert (int position, const Glib::ustring& label) -> void;
+    insert (int position, const glib::ustring& label) -> void;
 
     auto
-    prepend (const Glib::ustring& label, const Glib::ustring& detailed_action)
+    prepend (const glib::ustring& label, const glib::ustring& detailed_action)
         -> void;
 
     auto
-    prepend (const Glib::ustring& label) -> void;
+    prepend (const glib::ustring& label) -> void;
 
     auto
-    append (const Glib::ustring& label, const Glib::ustring& detailed_action)
+    append (const glib::ustring& label, const glib::ustring& detailed_action)
         -> void;
 
     auto
-    append (const Glib::ustring& label) -> void;
+    append (const glib::ustring& label) -> void;
 
     auto
     insert_section (int position,
-                    const Glib::ustring& label,
-                    const Glib::RefPtr<MenuModel>& section) -> void;
+                    const glib::ustring& label,
+                    const glib::RefPtr<MenuModel>& section) -> void;
 
     auto
-    insert_section (int position, const Glib::RefPtr<MenuModel>& section)
+    insert_section (int position, const glib::RefPtr<MenuModel>& section)
         -> void;
 
     auto
-    prepend_section (const Glib::ustring& label,
-                     const Glib::RefPtr<MenuModel>& section) -> void;
+    prepend_section (const glib::ustring& label,
+                     const glib::RefPtr<MenuModel>& section) -> void;
 
     auto
-    prepend_section (const Glib::RefPtr<MenuModel>& section) -> void;
+    prepend_section (const glib::RefPtr<MenuModel>& section) -> void;
 
     auto
-    append_section (const Glib::ustring& label,
-                    const Glib::RefPtr<MenuModel>& section) -> void;
+    append_section (const glib::ustring& label,
+                    const glib::RefPtr<MenuModel>& section) -> void;
 
     auto
-    append_section (const Glib::RefPtr<MenuModel>& section) -> void;
+    append_section (const glib::RefPtr<MenuModel>& section) -> void;
 
     auto
     insert_submenu (int position,
-                    const Glib::ustring& label,
-                    const Glib::RefPtr<MenuModel>& submenu) -> void;
+                    const glib::ustring& label,
+                    const glib::RefPtr<MenuModel>& submenu) -> void;
 
     auto
-    prepend_submenu (const Glib::ustring& label,
-                     const Glib::RefPtr<MenuModel>& submenu) -> void;
+    prepend_submenu (const glib::ustring& label,
+                     const glib::RefPtr<MenuModel>& submenu) -> void;
 
     auto
-    append_submenu (const Glib::ustring& label,
-                    const Glib::RefPtr<MenuModel>& submenu) -> void;
+    append_submenu (const glib::ustring& label,
+                    const glib::RefPtr<MenuModel>& submenu) -> void;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gio
+} // namespace gio
 
-namespace Glib
+namespace glib
 {
 
   LIBMM_GIO_SYMEXPORT
   auto
-  wrap (GMenu* object, bool take_copy = false) -> Glib::RefPtr<Gio::Menu>;
-} // namespace Glib
+  wrap (GMenu* object, bool take_copy = false) -> glib::RefPtr<gio::Menu>;
+} // namespace glib
 
 #endif

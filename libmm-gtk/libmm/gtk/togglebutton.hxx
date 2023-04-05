@@ -14,13 +14,13 @@ using GtkToggleButtonClass = struct _GtkToggleButtonClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT ToggleButton_Class;
 }
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
   class LIBMM_GTK_SYMEXPORT ToggleButton : public Button
@@ -50,7 +50,7 @@ namespace Gtk
     static CppClassType togglebutton_class_;
 
   protected:
-    explicit ToggleButton (const Glib::ConstructParams& construct_params);
+    explicit ToggleButton (const glib::ConstructParams& construct_params);
     explicit ToggleButton (GtkToggleButton* castitem);
 
 #endif
@@ -81,7 +81,7 @@ namespace Gtk
   public:
     ToggleButton ();
 
-    explicit ToggleButton (const Glib::ustring& label, bool mnemonic = false);
+    explicit ToggleButton (const glib::ustring& label, bool mnemonic = false);
 
     auto
     set_active (bool is_active = true) -> void;
@@ -101,16 +101,16 @@ namespace Gtk
     unset_group () -> void;
 
     auto
-    signal_toggled () -> Glib::SignalProxy<void ()>;
+    signal_toggled () -> glib::SignalProxy<void ()>;
 
     auto
-    property_active () -> Glib::PropertyProxy<bool>;
+    property_active () -> glib::PropertyProxy<bool>;
 
     auto
-    property_active () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_active () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_group () -> Glib::PropertyProxy_WriteOnly<ToggleButton*>;
+    property_group () -> glib::PropertyProxy_WriteOnly<ToggleButton*>;
 
   public:
   public:
@@ -119,12 +119,12 @@ namespace Gtk
     on_toggled () -> void;
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkToggleButton* object, bool take_copy = false) -> Gtk::ToggleButton*;
-} // namespace Glib
+  wrap (GtkToggleButton* object, bool take_copy = false) -> gtk::ToggleButton*;
+} // namespace glib
 
 #endif

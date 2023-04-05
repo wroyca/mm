@@ -5,7 +5,7 @@
 #include <libmm/glib/object.hxx>
 #include <libmm/glib/signalproxy.hxx>
 
-namespace Glib
+namespace glib
 {
 
   SignalProxyBase::SignalProxyBase (ObjectBase* obj)
@@ -139,4 +139,4 @@ namespace Glib
     g_signal_stop_emission_by_name (obj_->gobj (), detailed_name_.c_str ());
   }
 
-} // namespace Glib
+} // namespace glib

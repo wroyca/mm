@@ -5,7 +5,7 @@
 #ifdef CAIRO_HAS_QUARTZ_FONT
   #include <libmm/cairo/private.hxx>
 
-namespace Cairo
+namespace cairo
 {
 
   QuartzFontFace::QuartzFontFace (CGFontRef font)
@@ -35,6 +35,6 @@ namespace Cairo
   }
   #endif
 
-} // namespace Cairo
+} // namespace cairo
 
 #endif

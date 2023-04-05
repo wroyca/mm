@@ -8,38 +8,38 @@
 #include <gio/gio.h>
 #include <libmm/gio/slot_async.hxx>
 
-namespace Gio
+namespace gio
 {
 
   auto
   BufferedOutputStream::create_sized (
-      const Glib::RefPtr<OutputStream>& base_stream,
-      const gsize size) -> Glib::RefPtr<BufferedOutputStream>
+      const glib::RefPtr<OutputStream>& base_stream,
+      const gsize size) -> glib::RefPtr<BufferedOutputStream>
   {
-    return Glib::make_refptr_for_instance<BufferedOutputStream> (
+    return glib::make_refptr_for_instance<BufferedOutputStream> (
         new BufferedOutputStream (base_stream, size));
   }
 
-} // namespace Gio
+} // namespace gio
 
 namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GBufferedOutputStream* object, const bool take_copy) -> RefPtr<Gio::BufferedOutputStream>
+  wrap (GBufferedOutputStream* object, const bool take_copy) -> RefPtr<gio::BufferedOutputStream>
   {
-    return Glib::make_refptr_for_instance<Gio::BufferedOutputStream> (
-        dynamic_cast<Gio::BufferedOutputStream*> (
+    return glib::make_refptr_for_instance<gio::BufferedOutputStream> (
+        dynamic_cast<gio::BufferedOutputStream*> (
             wrap_auto ((GObject*) object, take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gio
+namespace gio
 {
 
   auto
@@ -66,7 +66,7 @@ namespace Gio
   }
 
   auto
-  BufferedOutputStream_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  BufferedOutputStream_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new BufferedOutputStream ((GBufferedOutputStream*) object);
   }
@@ -79,7 +79,7 @@ namespace Gio
   }
 
   BufferedOutputStream::BufferedOutputStream (
-      const Glib::ConstructParams& construct_params)
+      const glib::ConstructParams& construct_params)
     : FilterOutputStream (construct_params)
   {
   }
@@ -122,24 +122,24 @@ namespace Gio
   }
 
   BufferedOutputStream::BufferedOutputStream (
-      const Glib::RefPtr<OutputStream>& base_stream)
+      const glib::RefPtr<OutputStream>& base_stream)
     : ObjectBase (nullptr),
       FilterOutputStream (
-          Glib::ConstructParams (bufferedoutputstream_class_.init (),
+          glib::ConstructParams (bufferedoutputstream_class_.init (),
                                  "base_stream",
-                                 Glib::unwrap (base_stream),
+                                 glib::unwrap (base_stream),
                                  nullptr))
   {
   }
 
   BufferedOutputStream::BufferedOutputStream (
-      const Glib::RefPtr<OutputStream>& base_stream,
+      const glib::RefPtr<OutputStream>& base_stream,
       const gsize buffer_size)
     : ObjectBase (nullptr),
       FilterOutputStream (
-          Glib::ConstructParams (bufferedoutputstream_class_.init (),
+          glib::ConstructParams (bufferedoutputstream_class_.init (),
                                  "base_stream",
-                                 Glib::unwrap (base_stream),
+                                 glib::unwrap (base_stream),
                                  "buffer_size",
                                  buffer_size,
                                  nullptr))
@@ -147,9 +147,9 @@ namespace Gio
   }
 
   auto
-  BufferedOutputStream::create (const Glib::RefPtr<OutputStream>& base_stream) -> Glib::RefPtr<BufferedOutputStream>
+  BufferedOutputStream::create (const glib::RefPtr<OutputStream>& base_stream) -> glib::RefPtr<BufferedOutputStream>
   {
-    return Glib::make_refptr_for_instance<BufferedOutputStream> (
+    return glib::make_refptr_for_instance<BufferedOutputStream> (
         new BufferedOutputStream (base_stream));
   }
 
@@ -180,27 +180,27 @@ namespace Gio
   }
 
   auto
-  BufferedOutputStream::property_buffer_size () -> Glib::PropertyProxy<guint>
+  BufferedOutputStream::property_buffer_size () -> glib::PropertyProxy<guint>
   {
     return {this, "buffer-size"};
   }
 
   auto
-  BufferedOutputStream::property_buffer_size () const -> Glib::PropertyProxy_ReadOnly<guint>
+  BufferedOutputStream::property_buffer_size () const -> glib::PropertyProxy_ReadOnly<guint>
   {
     return {this, "buffer-size"};
   }
 
   auto
-  BufferedOutputStream::property_auto_grow () -> Glib::PropertyProxy<bool>
+  BufferedOutputStream::property_auto_grow () -> glib::PropertyProxy<bool>
   {
     return {this, "auto-grow"};
   }
 
   auto
-  BufferedOutputStream::property_auto_grow () const -> Glib::PropertyProxy_ReadOnly<bool>
+  BufferedOutputStream::property_auto_grow () const -> glib::PropertyProxy_ReadOnly<bool>
   {
     return {this, "auto-grow"};
   }
 
-} // namespace Gio
+} // namespace gio

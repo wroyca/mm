@@ -21,18 +21,18 @@ using GtkTreeSelectionClass = struct _GtkTreeSelectionClass;
   #endif
 
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT TreeSelection_Class;
 }
   #endif
 
-namespace Gtk
+namespace gtk
 {
 
   class LIBMM_GTK_SYMEXPORT TreeView;
 
-  class LIBMM_GTK_SYMEXPORT TreeSelection : public Glib::Object
+  class LIBMM_GTK_SYMEXPORT TreeSelection : public glib::Object
   {
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -51,7 +51,7 @@ namespace Gtk
     static CppClassType treeselection_class_;
 
   protected:
-    explicit TreeSelection (const Glib::ConstructParams& construct_params);
+    explicit TreeSelection (const glib::ConstructParams& construct_params);
     explicit TreeSelection (GtkTreeSelection* castitem);
 
   #endif
@@ -96,7 +96,7 @@ namespace Gtk
     get_mode () const -> SelectionMode;
 
     using SlotSelect = sigc::slot<
-        bool (const Glib::RefPtr<TreeModel>&, const TreeModel::Path&, bool)>;
+        bool (const glib::RefPtr<TreeModel>&, const TreeModel::Path&, bool)>;
 
     auto
     set_select_function (const SlotSelect& slot) -> void;
@@ -108,9 +108,9 @@ namespace Gtk
     get_tree_view () const -> const TreeView*;
 
     auto
-    get_model () -> Glib::RefPtr<TreeModel>;
+    get_model () -> glib::RefPtr<TreeModel>;
     auto
-    get_model () const -> Glib::RefPtr<const TreeModel>;
+    get_model () const -> glib::RefPtr<const TreeModel>;
 
     auto
     get_selected () -> TreeModel::iterator;
@@ -119,17 +119,17 @@ namespace Gtk
     get_selected () const -> TreeModel::const_iterator;
 
     auto
-    get_selected (Glib::RefPtr<TreeModel>& model) -> TreeModel::iterator;
+    get_selected (glib::RefPtr<TreeModel>& model) -> TreeModel::iterator;
 
     auto
-    get_selected (Glib::RefPtr<const TreeModel>& model) const
+    get_selected (glib::RefPtr<const TreeModel>& model) const
         -> TreeModel::const_iterator;
 
     auto
     get_selected_rows () const -> std::vector<TreeModel::Path>;
 
     auto
-    get_selected_rows (Glib::RefPtr<TreeModel>& model)
+    get_selected_rows (glib::RefPtr<TreeModel>& model)
         -> std::vector<TreeModel::Path>;
 
     auto
@@ -185,26 +185,26 @@ namespace Gtk
     unselect_all () -> void;
 
     auto
-    property_mode () -> Glib::PropertyProxy<SelectionMode>;
+    property_mode () -> glib::PropertyProxy<SelectionMode>;
 
     auto
-    property_mode () const -> Glib::PropertyProxy_ReadOnly<SelectionMode>;
+    property_mode () const -> glib::PropertyProxy_ReadOnly<SelectionMode>;
 
     auto
-    signal_changed () -> Glib::SignalProxy<void ()>;
+    signal_changed () -> glib::SignalProxy<void ()>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkTreeSelection* object, bool take_copy = false) -> Glib::RefPtr<Gtk::TreeSelection>;
-} // namespace Glib
+  wrap (GtkTreeSelection* object, bool take_copy = false) -> glib::RefPtr<gtk::TreeSelection>;
+} // namespace glib
 
 #endif
 

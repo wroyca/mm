@@ -21,16 +21,16 @@ using GProxyResolverClass = struct _GProxyResolverClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gio
+namespace gio
 {
   class LIBMM_GIO_SYMEXPORT ProxyResolver_Class;
 }
 #endif
 
-namespace Gio
+namespace gio
 {
 
-  class LIBMM_GIO_SYMEXPORT ProxyResolver : public Glib::Interface
+  class LIBMM_GIO_SYMEXPORT ProxyResolver : public glib::Interface
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -54,7 +54,7 @@ namespace Gio
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
-    explicit ProxyResolver (const Glib::Interface_Class& interface_class);
+    explicit ProxyResolver (const glib::Interface_Class& interface_class);
 
   public:
     explicit ProxyResolver (GProxyResolver* castitem);
@@ -95,45 +95,45 @@ namespace Gio
   private:
   public:
     static auto
-    get_default () -> Glib::RefPtr<ProxyResolver>;
+    get_default () -> glib::RefPtr<ProxyResolver>;
 
     auto
     is_supported () const -> bool;
 
     auto
-    lookup (const Glib::ustring& uri,
-            const Glib::RefPtr<Cancellable>& cancellable)
-        -> std::vector<Glib::ustring>;
+    lookup (const glib::ustring& uri,
+            const glib::RefPtr<Cancellable>& cancellable)
+        -> std::vector<glib::ustring>;
 
     auto
-    lookup (const Glib::ustring& uri) -> std::vector<Glib::ustring>;
+    lookup (const glib::ustring& uri) -> std::vector<glib::ustring>;
 
     auto
-    lookup_async (const Glib::ustring& uri,
+    lookup_async (const glib::ustring& uri,
                   const SlotAsyncReady& slot,
-                  const Glib::RefPtr<Cancellable>& cancellable) -> void;
+                  const glib::RefPtr<Cancellable>& cancellable) -> void;
 
     auto
-    lookup_async (const Glib::ustring& uri, const SlotAsyncReady& slot) -> void;
+    lookup_async (const glib::ustring& uri, const SlotAsyncReady& slot) -> void;
 
     auto
-    lookup_finish (const Glib::RefPtr<AsyncResult>& result)
-        -> std::vector<Glib::ustring>;
+    lookup_finish (const glib::RefPtr<AsyncResult>& result)
+        -> std::vector<glib::ustring>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gio
+} // namespace gio
 
-namespace Glib
+namespace glib
 {
 
   LIBMM_GIO_SYMEXPORT
   auto
-  wrap (GProxyResolver* object, bool take_copy = false) -> Glib::RefPtr<Gio::ProxyResolver>;
+  wrap (GProxyResolver* object, bool take_copy = false) -> glib::RefPtr<gio::ProxyResolver>;
 
-} // namespace Glib
+} // namespace glib
 
 #endif

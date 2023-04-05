@@ -7,17 +7,17 @@
 
 #include <libmm/glib/class.hxx>
 
-namespace Gio
+namespace gio
 {
 
-  class LIBMM_GIO_SYMEXPORT VolumeMonitor_Class : public Glib::Class
+  class LIBMM_GIO_SYMEXPORT VolumeMonitor_Class : public glib::Class
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
     using CppObjectType = VolumeMonitor;
     using BaseObjectType = GVolumeMonitor;
     using BaseClassType = GVolumeMonitorClass;
-    using CppClassParent = Glib::Object_Class;
+    using CppClassParent = glib::Object_Class;
     using BaseClassParent = GObjectClass;
 
     friend class VolumeMonitor;
@@ -30,7 +30,7 @@ namespace Gio
     class_init_function (void* g_class, void* class_data) -> void;
 
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
 
   protected:
     static auto
@@ -59,6 +59,6 @@ namespace Gio
     drive_stop_button_callback (GVolumeMonitor* self, GDrive* p0) -> void;
   };
 
-} // namespace Gio
+} // namespace gio
 
 #endif

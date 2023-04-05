@@ -18,13 +18,13 @@ using GtkEventControllerClass = struct _GtkEventControllerClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT EventController_Class;
 }
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
   enum class PropagationPhase
@@ -35,25 +35,25 @@ namespace Gtk
     TARGET
   };
 
-} // namespace Gtk
+} // namespace gtk
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_GTK_SYMEXPORT Value<Gtk::PropagationPhase>
-    : public Glib::Value_Enum<Gtk::PropagationPhase>
+  class LIBMM_GTK_SYMEXPORT Value<gtk::PropagationPhase>
+    : public glib::Value_Enum<gtk::PropagationPhase>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
   enum class PropagationLimit
@@ -62,28 +62,28 @@ namespace Gtk
     SAME_NATIVE
   };
 
-} // namespace Gtk
+} // namespace gtk
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_GTK_SYMEXPORT Value<Gtk::PropagationLimit>
-    : public Glib::Value_Enum<Gtk::PropagationLimit>
+  class LIBMM_GTK_SYMEXPORT Value<gtk::PropagationLimit>
+    : public glib::Value_Enum<gtk::PropagationLimit>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
-  class LIBMM_GTK_SYMEXPORT EventController : public Glib::Object
+  class LIBMM_GTK_SYMEXPORT EventController : public glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -102,7 +102,7 @@ namespace Gtk
     static CppClassType eventcontroller_class_;
 
   protected:
-    explicit EventController (const Glib::ConstructParams& construct_params);
+    explicit EventController (const glib::ConstructParams& construct_params);
     explicit EventController (GtkEventController* castitem);
 
 #endif
@@ -165,60 +165,60 @@ namespace Gtk
     set_propagation_limit (PropagationLimit limit) -> void;
 
     auto
-    get_name () const -> Glib::ustring;
+    get_name () const -> glib::ustring;
 
     auto
-    set_name (const Glib::ustring& name) -> void;
+    set_name (const glib::ustring& name) -> void;
 
     auto
-    get_current_event () const -> Glib::RefPtr<const Gdk::Event>;
+    get_current_event () const -> glib::RefPtr<const gdk::Event>;
 
     auto
     get_current_event_time () const -> guint32;
 
     auto
-    get_current_event_device () -> Glib::RefPtr<Gdk::Device>;
+    get_current_event_device () -> glib::RefPtr<gdk::Device>;
 
     auto
-    get_current_event_device () const -> Glib::RefPtr<const Gdk::Device>;
+    get_current_event_device () const -> glib::RefPtr<const gdk::Device>;
 
     auto
-    get_current_event_state () const -> Gdk::ModifierType;
+    get_current_event_state () const -> gdk::ModifierType;
 
     auto
-    property_widget () const -> Glib::PropertyProxy_ReadOnly<Widget*>;
+    property_widget () const -> glib::PropertyProxy_ReadOnly<Widget*>;
 
     auto
-    property_propagation_phase () -> Glib::PropertyProxy<PropagationPhase>;
+    property_propagation_phase () -> glib::PropertyProxy<PropagationPhase>;
 
     auto
     property_propagation_phase () const
-        -> Glib::PropertyProxy_ReadOnly<PropagationPhase>;
+        -> glib::PropertyProxy_ReadOnly<PropagationPhase>;
 
     auto
-    property_propagation_limit () -> Glib::PropertyProxy<PropagationLimit>;
+    property_propagation_limit () -> glib::PropertyProxy<PropagationLimit>;
 
     auto
     property_propagation_limit () const
-        -> Glib::PropertyProxy_ReadOnly<PropagationLimit>;
+        -> glib::PropertyProxy_ReadOnly<PropagationLimit>;
 
     auto
-    property_name () -> Glib::PropertyProxy<Glib::ustring>;
+    property_name () -> glib::PropertyProxy<glib::ustring>;
 
     auto
-    property_name () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+    property_name () const -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkEventController* object, bool take_copy = false) -> Glib::RefPtr<Gtk::EventController>;
-} // namespace Glib
+  wrap (GtkEventController* object, bool take_copy = false) -> glib::RefPtr<gtk::EventController>;
+} // namespace glib
 
 #endif

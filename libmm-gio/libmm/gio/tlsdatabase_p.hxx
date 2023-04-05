@@ -7,17 +7,17 @@
 
 #include <libmm/glib/class.hxx>
 
-namespace Gio
+namespace gio
 {
 
-  class LIBMM_GIO_SYMEXPORT TlsDatabase_Class : public Glib::Class
+  class LIBMM_GIO_SYMEXPORT TlsDatabase_Class : public glib::Class
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
     using CppObjectType = TlsDatabase;
     using BaseObjectType = GTlsDatabase;
     using BaseClassType = GTlsDatabaseClass;
-    using CppClassParent = Glib::Object_Class;
+    using CppClassParent = glib::Object_Class;
     using BaseClassParent = GObjectClass;
 
     friend class TlsDatabase;
@@ -30,7 +30,7 @@ namespace Gio
     class_init_function (void* g_class, void* class_data) -> void;
 
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
 
   protected:
     static auto
@@ -127,6 +127,6 @@ namespace Gio
         -> GList*;
   };
 
-} // namespace Gio
+} // namespace gio
 
 #endif

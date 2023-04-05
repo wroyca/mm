@@ -23,16 +23,16 @@ using GActionClass = struct _GActionClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gio
+namespace gio
 {
   class LIBMM_GIO_SYMEXPORT Action_Class;
 }
 #endif
 
-namespace Gio
+namespace gio
 {
 
-  class LIBMM_GIO_SYMEXPORT Action : public Glib::Interface
+  class LIBMM_GIO_SYMEXPORT Action : public glib::Interface
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -56,7 +56,7 @@ namespace Gio
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
-    explicit Action (const Glib::Interface_Class& interface_class);
+    explicit Action (const glib::Interface_Class& interface_class);
 
   public:
     explicit Action (GAction* castitem);
@@ -97,20 +97,20 @@ namespace Gio
   private:
   public:
     auto
-    get_name () const -> Glib::ustring;
+    get_name () const -> glib::ustring;
 
     auto
-    get_parameter_type () const -> Glib::VariantType;
+    get_parameter_type () const -> glib::VariantType;
 
     auto
-    get_state_type () const -> Glib::VariantType;
+    get_state_type () const -> glib::VariantType;
 
     template <typename T_Value>
     auto
     get_state_hint (T_Value& value) const -> void;
 
     auto
-    get_state_hint_variant () const -> Glib::VariantContainerBase;
+    get_state_hint_variant () const -> glib::VariantContainerBase;
 
     auto
     get_enabled () const -> bool;
@@ -121,17 +121,17 @@ namespace Gio
 
     template <typename T_Value>
     auto
-    change_state (const Glib::Variant<T_Value>& value) -> void;
+    change_state (const glib::Variant<T_Value>& value) -> void;
 
     auto
-    change_state_variant (const Glib::VariantBase& value) -> void;
+    change_state_variant (const glib::VariantBase& value) -> void;
 
     template <typename T_Value>
     auto
     get_state (T_Value& value) const -> void;
 
     auto
-    get_state_variant () const -> Glib::VariantBase;
+    get_state_variant () const -> glib::VariantBase;
 
     auto
     activate () -> void;
@@ -142,75 +142,75 @@ namespace Gio
 
     template <typename T_Value>
     auto
-    activate (const Glib::Variant<T_Value>& parameter) -> void;
+    activate (const glib::Variant<T_Value>& parameter) -> void;
 
     auto
-    activate_variant (const Glib::VariantBase& parameter) -> void;
+    activate_variant (const glib::VariantBase& parameter) -> void;
 
     static auto
-    name_is_valid (const Glib::ustring& action_name) -> bool;
+    name_is_valid (const glib::ustring& action_name) -> bool;
 
     template <typename T_Value>
     static auto
-    parse_detailed_name (const Glib::ustring& detailed_name,
-                         Glib::ustring& action_name,
+    parse_detailed_name (const glib::ustring& detailed_name,
+                         glib::ustring& action_name,
                          T_Value& target_value) -> void;
 
     static auto
-    parse_detailed_name_variant (const Glib::ustring& detailed_name,
-                                 Glib::ustring& action_name,
-                                 Glib::VariantBase& target_value) -> void;
+    parse_detailed_name_variant (const glib::ustring& detailed_name,
+                                 glib::ustring& action_name,
+                                 glib::VariantBase& target_value) -> void;
 
     template <typename T_Value>
     auto
-    print_detailed_name (const T_Value& target_value) -> Glib::ustring;
+    print_detailed_name (const T_Value& target_value) -> glib::ustring;
 
     static auto
-    print_detailed_name_variant (const Glib::ustring& action_name,
-                                 const Glib::VariantBase& target_value)
-        -> Glib::ustring;
+    print_detailed_name_variant (const glib::ustring& action_name,
+                                 const glib::VariantBase& target_value)
+        -> glib::ustring;
 
     auto
-    property_enabled () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_enabled () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_name () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+    property_name () const -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
     auto
     property_parameter_type () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::VariantType>;
+        -> glib::PropertyProxy_ReadOnly<glib::VariantType>;
 
     auto
-    property_state () const -> Glib::PropertyProxy_ReadOnly<Glib::VariantBase>;
+    property_state () const -> glib::PropertyProxy_ReadOnly<glib::VariantBase>;
 
     auto
     property_state_type () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::VariantType>;
+        -> glib::PropertyProxy_ReadOnly<glib::VariantType>;
 
   protected:
     virtual auto
-    get_name_vfunc () const -> Glib::ustring;
+    get_name_vfunc () const -> glib::ustring;
 
     virtual auto
-    get_parameter_type_vfunc () const -> Glib::VariantType;
+    get_parameter_type_vfunc () const -> glib::VariantType;
 
     virtual auto
-    get_state_type_vfunc () const -> Glib::VariantType;
+    get_state_type_vfunc () const -> glib::VariantType;
 
     virtual auto
-    get_state_hint_vfunc () const -> Glib::VariantBase;
+    get_state_hint_vfunc () const -> glib::VariantBase;
 
     virtual auto
     get_enabled_vfunc () const -> bool;
 
     virtual auto
-    get_state_vfunc () const -> Glib::VariantBase;
+    get_state_vfunc () const -> glib::VariantBase;
 
     virtual auto
-    change_state_vfunc (const Glib::VariantBase& value) -> void;
+    change_state_vfunc (const glib::VariantBase& value) -> void;
 
     virtual auto
-    activate_vfunc (const Glib::VariantBase& parameter) -> void;
+    activate_vfunc (const glib::VariantBase& parameter) -> void;
 
   public:
   public:
@@ -223,7 +223,7 @@ namespace Gio
   {
     value = T_Value ();
 
-    using type_glib_variant = Glib::Variant<T_Value>;
+    using type_glib_variant = glib::Variant<T_Value>;
 
     g_return_if_fail (g_variant_type_equal (
         g_action_get_state_type (const_cast<GAction*> (gobj ())),
@@ -241,7 +241,7 @@ namespace Gio
   {
     value = T_Value ();
 
-    using type_glib_variant = Glib::Variant<T_Value>;
+    using type_glib_variant = glib::Variant<T_Value>;
 
     const auto variantBase = get_state_hint_variant ();
 
@@ -258,31 +258,31 @@ namespace Gio
   template <typename T_Value>
 
   auto
-  Action::parse_detailed_name (const Glib::ustring& detailed_name,
-                               Glib::ustring& action_name,
+  Action::parse_detailed_name (const glib::ustring& detailed_name,
+                               glib::ustring& action_name,
                                T_Value& target_value) -> void
   {
     action_name.clear ();
     target_value = T_Value ();
 
-    using type_glib_variant = Glib::Variant<T_Value>;
+    using type_glib_variant = glib::Variant<T_Value>;
 
-    Glib::VariantBase target_value_variantBase;
+    glib::VariantBase target_value_variantBase;
     parse_detailed_name_variant (detailed_name,
                                  action_name,
                                  target_value_variantBase);
 
     if (!target_value_variantBase)
-      throw Glib::VariantParseError (
-          Glib::VariantParseError::TYPE_ERROR,
+      throw glib::VariantParseError (
+          glib::VariantParseError::TYPE_ERROR,
           "Detailed action name '" + detailed_name +
               "' has no target. Expected a target of type " +
               type_glib_variant::variant_type ().get_string ());
 
     if (!target_value_variantBase.is_of_type (
             type_glib_variant::variant_type ()))
-      throw Glib::VariantParseError (
-          Glib::VariantParseError::TYPE_ERROR,
+      throw glib::VariantParseError (
+          glib::VariantParseError::TYPE_ERROR,
           "Detailed action name '" + detailed_name + "' has a target of type " +
               target_value_variantBase.get_type_string () + ". Expected " +
               type_glib_variant::variant_type ().get_string ());
@@ -296,15 +296,15 @@ namespace Gio
 
   template <typename T_Value>
   auto
-  Action::print_detailed_name (const T_Value& target_value) -> Glib::ustring
+  Action::print_detailed_name (const T_Value& target_value) -> glib::ustring
   {
-    using type_glib_variant = Glib::Variant<T_Value>;
+    using type_glib_variant = glib::Variant<T_Value>;
 
     g_return_val_if_fail (
         g_variant_type_equal (
             g_action_get_parameter_type (const_cast<GAction*> (gobj ())),
             type_glib_variant::variant_type ().gobj ()),
-        Glib::ustring ());
+        glib::ustring ());
     return print_detailed_name_variant (
         get_name (),
         type_glib_variant::create (target_value));
@@ -314,7 +314,7 @@ namespace Gio
   auto
   Action::change_state (const T_Value& value) -> void
   {
-    using type_glib_variant = Glib::Variant<T_Value>;
+    using type_glib_variant = glib::Variant<T_Value>;
 
     g_return_if_fail (g_variant_type_equal (
         g_action_get_state_type (const_cast<GAction*> (gobj ())),
@@ -325,7 +325,7 @@ namespace Gio
 
   template <typename T_Value>
   auto
-  Action::change_state (const Glib::Variant<T_Value>& value) -> void
+  Action::change_state (const glib::Variant<T_Value>& value) -> void
   {
     change_state_variant (value);
   }
@@ -334,7 +334,7 @@ namespace Gio
   auto
   Action::activate (const T_Value& parameter) -> void
   {
-    using type_glib_variant = Glib::Variant<T_Value>;
+    using type_glib_variant = glib::Variant<T_Value>;
 
     g_return_if_fail (g_variant_type_equal (
         g_action_get_parameter_type (const_cast<GAction*> (gobj ())),
@@ -345,20 +345,20 @@ namespace Gio
 
   template <typename T_Value>
   auto
-  Action::activate (const Glib::Variant<T_Value>& value) -> void
+  Action::activate (const glib::Variant<T_Value>& value) -> void
   {
     activate_variant (value);
   }
 
-} // namespace Gio
+} // namespace gio
 
-namespace Glib
+namespace glib
 {
 
   LIBMM_GIO_SYMEXPORT
   auto
-  wrap (GAction* object, bool take_copy = false) -> Glib::RefPtr<Gio::Action>;
+  wrap (GAction* object, bool take_copy = false) -> glib::RefPtr<gio::Action>;
 
-} // namespace Glib
+} // namespace glib
 
 #endif

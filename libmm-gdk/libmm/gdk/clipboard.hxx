@@ -18,22 +18,22 @@ using GdkClipboardClass = struct _GdkClipboardClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gdk
+namespace gdk
 {
   class LIBMM_GDK_SYMEXPORT Clipboard_Class;
 }
 #endif
 
-namespace Gio
+namespace gio
 {
   class LIBMM_GDK_SYMEXPORT Cancellable;
   class LIBMM_GDK_SYMEXPORT InputStream;
-} // namespace Gio
+} // namespace gio
 
-namespace Gdk
+namespace gdk
 {
 
-  class LIBMM_GDK_SYMEXPORT Clipboard : public Glib::Object
+  class LIBMM_GDK_SYMEXPORT Clipboard : public glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -52,7 +52,7 @@ namespace Gdk
     static CppClassType clipboard_class_;
 
   protected:
-    explicit Clipboard (const Glib::ConstructParams& construct_params);
+    explicit Clipboard (const glib::ConstructParams& construct_params);
     explicit Clipboard (GdkClipboard* castitem);
 
 #endif
@@ -91,106 +91,106 @@ namespace Gdk
   private:
   public:
     auto
-    get_display () -> Glib::RefPtr<Display>;
+    get_display () -> glib::RefPtr<Display>;
 
     auto
-    get_display () const -> Glib::RefPtr<const Display>;
+    get_display () const -> glib::RefPtr<const Display>;
 
     auto
-    get_formats () -> Glib::RefPtr<ContentFormats>;
+    get_formats () -> glib::RefPtr<ContentFormats>;
 
     auto
-    get_formats () const -> Glib::RefPtr<const ContentFormats>;
+    get_formats () const -> glib::RefPtr<const ContentFormats>;
 
     auto
     is_local () const -> bool;
 
     auto
-    get_content () -> Glib::RefPtr<ContentProvider>;
+    get_content () -> glib::RefPtr<ContentProvider>;
 
     auto
-    get_content () const -> Glib::RefPtr<const ContentProvider>;
+    get_content () const -> glib::RefPtr<const ContentProvider>;
 
     auto
-    read_async (const std::vector<Glib::ustring>& mime_types,
+    read_async (const std::vector<glib::ustring>& mime_types,
                 int io_priority,
-                const Gio::SlotAsyncReady& slot,
-                const Glib::RefPtr<Gio::Cancellable>& cancellable) -> void;
+                const gio::SlotAsyncReady& slot,
+                const glib::RefPtr<gio::Cancellable>& cancellable) -> void;
 
     auto
-    read_async (const std::vector<Glib::ustring>& mime_types,
+    read_async (const std::vector<glib::ustring>& mime_types,
                 int io_priority,
-                const Gio::SlotAsyncReady& slot) -> void;
+                const gio::SlotAsyncReady& slot) -> void;
 
     auto
-    read_finish (const Glib::RefPtr<Gio::AsyncResult>& result,
-                 Glib::ustring& out_mime_type)
-        -> Glib::RefPtr<Gio::InputStream>;
+    read_finish (const glib::RefPtr<gio::AsyncResult>& result,
+                 glib::ustring& out_mime_type)
+        -> glib::RefPtr<gio::InputStream>;
 
     auto
-    read_texture_async (const Gio::SlotAsyncReady& slot,
-                        const Glib::RefPtr<Gio::Cancellable>& cancellable)
+    read_texture_async (const gio::SlotAsyncReady& slot,
+                        const glib::RefPtr<gio::Cancellable>& cancellable)
         -> void;
 
     auto
-    read_texture_async (const Gio::SlotAsyncReady& slot) -> void;
+    read_texture_async (const gio::SlotAsyncReady& slot) -> void;
 
     auto
-    read_texture_finish (const Glib::RefPtr<Gio::AsyncResult>& result)
-        -> Glib::RefPtr<Texture>;
+    read_texture_finish (const glib::RefPtr<gio::AsyncResult>& result)
+        -> glib::RefPtr<Texture>;
 
     auto
-    read_text_async (const Gio::SlotAsyncReady& slot,
-                     const Glib::RefPtr<Gio::Cancellable>& cancellable) -> void;
+    read_text_async (const gio::SlotAsyncReady& slot,
+                     const glib::RefPtr<gio::Cancellable>& cancellable) -> void;
 
     auto
-    read_text_async (const Gio::SlotAsyncReady& slot) -> void;
+    read_text_async (const gio::SlotAsyncReady& slot) -> void;
 
     auto
-    read_text_finish (const Glib::RefPtr<Gio::AsyncResult>& result)
-        -> Glib::ustring;
+    read_text_finish (const glib::RefPtr<gio::AsyncResult>& result)
+        -> glib::ustring;
 
     auto
-    set_content (const Glib::RefPtr<const ContentProvider>& provider) -> bool;
+    set_content (const glib::RefPtr<const ContentProvider>& provider) -> bool;
 
     auto
     unset_content () -> bool;
 
     auto
-    set_text (const Glib::ustring& text) -> void;
+    set_text (const glib::ustring& text) -> void;
 
     auto
-    set_texture (const Glib::RefPtr<const Texture>& texture) -> void;
+    set_texture (const glib::RefPtr<const Texture>& texture) -> void;
 
     auto
     property_display () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Display>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<Display>>;
 
     auto
     property_formats () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<ContentFormats>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<ContentFormats>>;
 
     auto
-    property_local () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_local () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
     property_content () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<ContentProvider>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<ContentProvider>>;
 
     auto
-    signal_changed () -> Glib::SignalProxy<void ()>;
+    signal_changed () -> glib::SignalProxy<void ()>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gdk
+} // namespace gdk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GDK_SYMEXPORT auto
-  wrap (GdkClipboard* object, bool take_copy = false) -> Glib::RefPtr<Gdk::Clipboard>;
-} // namespace Glib
+  wrap (GdkClipboard* object, bool take_copy = false) -> glib::RefPtr<gdk::Clipboard>;
+} // namespace glib
 
 #endif

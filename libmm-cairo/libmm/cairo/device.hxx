@@ -8,7 +8,7 @@
 #include <libmm/cairo/refptr.hxx>
 #include <libmm/cairo/types.hxx>
 
-namespace Cairo
+namespace cairo
 {
 
   class LIBMM_CAIRO_SYMEXPORT Device
@@ -91,6 +91,6 @@ namespace Cairo
     cobject* m_cobject;
   };
 
-} // namespace Cairo
+} // namespace cairo
 
 #endif

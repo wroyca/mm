@@ -13,13 +13,13 @@
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT StringSorter_Class;
 }
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
   enum class Collation
@@ -29,25 +29,25 @@ namespace Gtk
     FILENAME
   };
 
-} // namespace Gtk
+} // namespace gtk
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_GTK_SYMEXPORT Value<Gtk::Collation>
-    : public Glib::Value_Enum<Gtk::Collation>
+  class LIBMM_GTK_SYMEXPORT Value<gtk::Collation>
+    : public glib::Value_Enum<gtk::Collation>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
   class LIBMM_GTK_SYMEXPORT StringSorter : public Sorter
@@ -69,7 +69,7 @@ namespace Gtk
     static CppClassType stringsorter_class_;
 
   protected:
-    explicit StringSorter (const Glib::ConstructParams& construct_params);
+    explicit StringSorter (const glib::ConstructParams& construct_params);
     explicit StringSorter (GtkStringSorter* castitem);
 
 #endif
@@ -108,21 +108,21 @@ namespace Gtk
   private:
   protected:
     explicit StringSorter (
-        const Glib::RefPtr<Expression<Glib::ustring>>& expression);
+        const glib::RefPtr<Expression<glib::ustring>>& expression);
 
   public:
     static auto
-    create (const Glib::RefPtr<Expression<Glib::ustring>>& expression)
-        -> Glib::RefPtr<StringSorter>;
+    create (const glib::RefPtr<Expression<glib::ustring>>& expression)
+        -> glib::RefPtr<StringSorter>;
 
     auto
-    get_expression () -> Glib::RefPtr<Expression<Glib::ustring>>;
+    get_expression () -> glib::RefPtr<Expression<glib::ustring>>;
 
     auto
-    get_expression () const -> Glib::RefPtr<const Expression<Glib::ustring>>;
+    get_expression () const -> glib::RefPtr<const Expression<glib::ustring>>;
 
     auto
-    set_expression (const Glib::RefPtr<Expression<Glib::ustring>>& expression)
+    set_expression (const glib::RefPtr<Expression<glib::ustring>>& expression)
         -> void;
 
     auto
@@ -139,35 +139,35 @@ namespace Gtk
 
     auto
     property_expression ()
-        -> Glib::PropertyProxy<Glib::RefPtr<Expression<Glib::ustring>>>;
+        -> glib::PropertyProxy<glib::RefPtr<Expression<glib::ustring>>>;
 
     auto
-    property_expression () const -> Glib::PropertyProxy_ReadOnly<
-        Glib::RefPtr<Expression<Glib::ustring>>>;
+    property_expression () const -> glib::PropertyProxy_ReadOnly<
+        glib::RefPtr<Expression<glib::ustring>>>;
 
     auto
-    property_ignore_case () -> Glib::PropertyProxy<bool>;
+    property_ignore_case () -> glib::PropertyProxy<bool>;
 
     auto
-    property_ignore_case () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_ignore_case () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_collation () -> Glib::PropertyProxy<Collation>;
+    property_collation () -> glib::PropertyProxy<Collation>;
 
     auto
-    property_collation () const -> Glib::PropertyProxy_ReadOnly<Collation>;
+    property_collation () const -> glib::PropertyProxy_ReadOnly<Collation>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkStringSorter* object, bool take_copy = false) -> Glib::RefPtr<Gtk::StringSorter>;
-} // namespace Glib
+  wrap (GtkStringSorter* object, bool take_copy = false) -> glib::RefPtr<gtk::StringSorter>;
+} // namespace glib
 
 #endif

@@ -12,7 +12,7 @@
 #include <libmm/glib/object.hxx>
 #include <optional>
 
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT ExpressionWatchBase
   {
@@ -65,46 +65,46 @@ namespace Gtk
   auto
   ExpressionWatch<T>::evaluate () -> std::optional<T>
   {
-    Glib::Value<T> value;
+    glib::Value<T> value;
     bool result = gtk_expression_watch_evaluate (gobj (), value.gobj ());
     if (!result)
       return {};
 
-    if (!G_VALUE_HOLDS (value.gobj (), Glib::Value<T>::value_type ()))
+    if (!G_VALUE_HOLDS (value.gobj (), glib::Value<T>::value_type ()))
     {
       g_warning ("%s: The evaluated expression has type '%s', expected '%s'",
                  G_STRLOC,
                  g_type_name (G_VALUE_TYPE (value.gobj ())),
-                 g_type_name (Glib::Value<T>::value_type ()));
+                 g_type_name (glib::Value<T>::value_type ()));
       return {};
     }
 
     return value.get ();
   }
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
 
   template <class T>
   auto
-  wrap (GtkExpressionWatch* object, bool take_copy = false) -> RefPtr<Gtk::ExpressionWatch<T>>
+  wrap (GtkExpressionWatch* object, bool take_copy = false) -> RefPtr<gtk::ExpressionWatch<T>>
   {
     if (take_copy && object)
       gtk_expression_watch_ref (object);
 
-    return Glib::make_refptr_for_instance<Gtk::ExpressionWatch<T>> (
-        reinterpret_cast<Gtk::ExpressionWatch<T>*> (object));
+    return glib::make_refptr_for_instance<gtk::ExpressionWatch<T>> (
+        reinterpret_cast<gtk::ExpressionWatch<T>*> (object));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkExpressionWatch* object, bool take_copy = false) -> Glib::RefPtr<Gtk::ExpressionWatchBase>;
+  wrap (GtkExpressionWatch* object, bool take_copy = false) -> glib::RefPtr<gtk::ExpressionWatchBase>;
 
-} // namespace Glib
+} // namespace glib
 
 #endif

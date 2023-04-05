@@ -9,42 +9,42 @@
 #include <libmm/gio/icon.hxx>
 #include <libmm/glib/variant.hxx>
 
-namespace Gio
+namespace gio
 {
 
-  Notification::Notification (const Glib::ustring& title)
+  Notification::Notification (const glib::ustring& title)
     : ObjectBase (nullptr),
-      Object (Glib::ConstructParams (notification_class_.init ()))
+      Object (glib::ConstructParams (notification_class_.init ()))
   {
     set_title (title);
   }
 
-} // namespace Gio
+} // namespace gio
 
 namespace
 {
 }
 
 auto
-Glib::Value<Gio::Notification::Priority>::value_type () -> GType
+glib::Value<gio::Notification::Priority>::value_type () -> GType
 {
   return g_notification_priority_get_type ();
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GNotification* object, const bool take_copy) -> RefPtr<Gio::Notification>
+  wrap (GNotification* object, const bool take_copy) -> RefPtr<gio::Notification>
   {
-    return Glib::make_refptr_for_instance<Gio::Notification> (
-        dynamic_cast<Gio::Notification*> (
+    return glib::make_refptr_for_instance<gio::Notification> (
+        dynamic_cast<gio::Notification*> (
             wrap_auto ((GObject*) object, take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gio
+namespace gio
 {
 
   auto
@@ -68,7 +68,7 @@ namespace Gio
   }
 
   auto
-  Notification_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  Notification_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new Notification ((GNotification*) object);
   }
@@ -80,7 +80,7 @@ namespace Gio
     return gobj ();
   }
 
-  Notification::Notification (const Glib::ConstructParams& construct_params)
+  Notification::Notification (const glib::ConstructParams& construct_params)
     : Object (construct_params)
   {
   }
@@ -119,28 +119,28 @@ namespace Gio
   }
 
   auto
-  Notification::create (const Glib::ustring& title) -> Glib::RefPtr<Notification>
+  Notification::create (const glib::ustring& title) -> glib::RefPtr<Notification>
   {
-    return Glib::make_refptr_for_instance<Notification> (
+    return glib::make_refptr_for_instance<Notification> (
         new Notification (title));
   }
 
   auto
-  Notification::set_title (const Glib::ustring& title) -> void
+  Notification::set_title (const glib::ustring& title) -> void
   {
     g_notification_set_title (gobj (), title.c_str ());
   }
 
   auto
-  Notification::set_body (const Glib::ustring& body) -> void
+  Notification::set_body (const glib::ustring& body) -> void
   {
     g_notification_set_body (gobj (), body.c_str ());
   }
 
   auto
-  Notification::set_icon (const Glib::RefPtr<Icon>& icon) -> void
+  Notification::set_icon (const glib::RefPtr<Icon>& icon) -> void
   {
-    g_notification_set_icon (gobj (), Glib::unwrap (icon));
+    g_notification_set_icon (gobj (), glib::unwrap (icon));
   }
 
   auto
@@ -151,14 +151,14 @@ namespace Gio
   }
 
   auto
-  Notification::set_category (const Glib::ustring& category) -> void
+  Notification::set_category (const glib::ustring& category) -> void
   {
     g_notification_set_category (gobj (), category.c_str ());
   }
 
   auto
-  Notification::add_button (const Glib::ustring& label,
-                            const Glib::ustring& detailed_action) -> void
+  Notification::add_button (const glib::ustring& label,
+                            const glib::ustring& detailed_action) -> void
   {
     g_notification_add_button (gobj (),
                                label.c_str (),
@@ -166,9 +166,9 @@ namespace Gio
   }
 
   auto
-  Notification::add_button_variant (const Glib::ustring& label,
-                                    const Glib::ustring& action,
-                                    const Glib::VariantBase& target) -> void
+  Notification::add_button_variant (const glib::ustring& label,
+                                    const glib::ustring& action,
+                                    const glib::VariantBase& target) -> void
   {
     g_notification_add_button_with_target_value (
         gobj (),
@@ -178,14 +178,14 @@ namespace Gio
   }
 
   auto
-  Notification::set_default_action (const Glib::ustring& detailed_action) -> void
+  Notification::set_default_action (const glib::ustring& detailed_action) -> void
   {
     g_notification_set_default_action (gobj (), detailed_action.c_str ());
   }
 
   auto
-  Notification::set_default_action_variant (const Glib::ustring& action,
-                                            const Glib::VariantBase& target) -> void
+  Notification::set_default_action_variant (const glib::ustring& action,
+                                            const glib::VariantBase& target) -> void
   {
     g_notification_set_default_action_and_target_value (
         gobj (),
@@ -193,4 +193,4 @@ namespace Gio
         const_cast<GVariant*> (target.gobj ()));
   }
 
-} // namespace Gio
+} // namespace gio

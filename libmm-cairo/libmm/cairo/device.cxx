@@ -3,7 +3,7 @@
 #include <libmm/cairo/device.hxx>
 #include <libmm/cairo/private.hxx>
 
-namespace Cairo
+namespace cairo
 {
 
   Device::Device (cairo_device_t* cobject, const bool has_reference)
@@ -86,4 +86,4 @@ namespace Cairo
     m_device->release ();
   }
 
-} // namespace Cairo
+} // namespace cairo

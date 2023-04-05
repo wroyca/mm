@@ -14,13 +14,13 @@ using GtkDrawingAreaClass = struct _GtkDrawingAreaClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT DrawingArea_Class;
 }
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
   class LIBMM_GTK_SYMEXPORT DrawingArea : public Widget
@@ -50,7 +50,7 @@ namespace Gtk
     static CppClassType drawingarea_class_;
 
   protected:
-    explicit DrawingArea (const Glib::ConstructParams& construct_params);
+    explicit DrawingArea (const glib::ConstructParams& construct_params);
     explicit DrawingArea (GtkDrawingArea* castitem);
 
 #endif
@@ -82,7 +82,7 @@ namespace Gtk
     DrawingArea ();
 
     using SlotDraw =
-        sigc::slot<void (const Cairo::RefPtr<Cairo::Context>&, int, int)>;
+        sigc::slot<void (const cairo::RefPtr<cairo::Context>&, int, int)>;
 
     auto
     set_content_width (int width) -> void;
@@ -100,19 +100,19 @@ namespace Gtk
     set_draw_func (const SlotDraw& slot) -> void;
 
     auto
-    signal_resize () -> Glib::SignalProxy<void (int, int)>;
+    signal_resize () -> glib::SignalProxy<void (int, int)>;
 
     auto
-    property_content_width () -> Glib::PropertyProxy<int>;
+    property_content_width () -> glib::PropertyProxy<int>;
 
     auto
-    property_content_width () const -> Glib::PropertyProxy_ReadOnly<int>;
+    property_content_width () const -> glib::PropertyProxy_ReadOnly<int>;
 
     auto
-    property_content_height () -> Glib::PropertyProxy<int>;
+    property_content_height () -> glib::PropertyProxy<int>;
 
     auto
-    property_content_height () const -> Glib::PropertyProxy_ReadOnly<int>;
+    property_content_height () const -> glib::PropertyProxy_ReadOnly<int>;
 
   public:
   public:
@@ -121,12 +121,12 @@ namespace Gtk
     on_resize (int width, int height) -> void;
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkDrawingArea* object, bool take_copy = false) -> Gtk::DrawingArea*;
-} // namespace Glib
+  wrap (GtkDrawingArea* object, bool take_copy = false) -> gtk::DrawingArea*;
+} // namespace glib
 
 #endif

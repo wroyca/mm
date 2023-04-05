@@ -7,29 +7,29 @@
 
 #include <libmm/glib/class.hxx>
 
-namespace Adw
+namespace adw
 {
 
-  class LIBMM_ADW_SYMEXPORT StyleManager_Class : public Glib::Class
+  class LIBMM_ADW_SYMEXPORT StyleManager_Class : public glib::Class
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
     using CppObjectType = StyleManager;
     using BaseObjectType = AdwStyleManager;
-    using CppClassParent = Glib::Object_Class;
+    using CppClassParent = glib::Object_Class;
 
     friend class StyleManager;
 #endif
 
     auto
-    init () -> const Glib::Class&;
+    init () -> const glib::Class&;
 
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
 
   protected:
   };
 
-} // namespace Adw
+} // namespace adw
 
 #endif

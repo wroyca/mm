@@ -15,16 +15,16 @@ using GNetworkAddressClass = struct _GNetworkAddressClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gio
+namespace gio
 {
   class LIBMM_GIO_SYMEXPORT NetworkAddress_Class;
 }
 #endif
 
-namespace Gio
+namespace gio
 {
 
-  class LIBMM_GIO_SYMEXPORT NetworkAddress : public Glib::Object,
+  class LIBMM_GIO_SYMEXPORT NetworkAddress : public glib::Object,
                                    public SocketConnectable
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -44,7 +44,7 @@ namespace Gio
     static CppClassType networkaddress_class_;
 
   protected:
-    explicit NetworkAddress (const Glib::ConstructParams& construct_params);
+    explicit NetworkAddress (const glib::ConstructParams& construct_params);
     explicit NetworkAddress (GNetworkAddress* castitem);
 
 #endif
@@ -86,7 +86,7 @@ namespace Gio
   public:
     static auto
     create (const std::string& hostname, guint16 port)
-        -> Glib::RefPtr<NetworkAddress>;
+        -> glib::RefPtr<NetworkAddress>;
 
     auto
     get_hostname () const -> std::string;
@@ -99,30 +99,30 @@ namespace Gio
 
     static auto
     parse (const std::string& host_and_port, guint16 default_port)
-        -> Glib::RefPtr<NetworkAddress>;
+        -> glib::RefPtr<NetworkAddress>;
 
     auto
-    property_hostname () const -> Glib::PropertyProxy_ReadOnly<std::string>;
+    property_hostname () const -> glib::PropertyProxy_ReadOnly<std::string>;
 
     auto
-    property_port () const -> Glib::PropertyProxy_ReadOnly<guint>;
+    property_port () const -> glib::PropertyProxy_ReadOnly<guint>;
 
     auto
-    property_scheme () const -> Glib::PropertyProxy_ReadOnly<std::string>;
+    property_scheme () const -> glib::PropertyProxy_ReadOnly<std::string>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gio
+} // namespace gio
 
-namespace Glib
+namespace glib
 {
 
   LIBMM_GIO_SYMEXPORT
   auto
-  wrap (GNetworkAddress* object, bool take_copy = false) -> Glib::RefPtr<Gio::NetworkAddress>;
-} // namespace Glib
+  wrap (GNetworkAddress* object, bool take_copy = false) -> glib::RefPtr<gio::NetworkAddress>;
+} // namespace glib
 
 #endif

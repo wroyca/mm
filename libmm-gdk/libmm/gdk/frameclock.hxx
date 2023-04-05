@@ -17,16 +17,16 @@ using GdkFrameClockClass = struct _GdkFrameClockClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gdk
+namespace gdk
 {
   class LIBMM_GDK_SYMEXPORT FrameClock_Class;
 }
 #endif
 
-namespace Gdk
+namespace gdk
 {
 
-  class LIBMM_GDK_SYMEXPORT FrameClock : public Glib::Object
+  class LIBMM_GDK_SYMEXPORT FrameClock : public glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -45,7 +45,7 @@ namespace Gdk
     static CppClassType frameclock_class_;
 
   protected:
-    explicit FrameClock (const Glib::ConstructParams& construct_params);
+    explicit FrameClock (const glib::ConstructParams& construct_params);
     explicit FrameClock (GdkFrameClock* castitem);
 
 #endif
@@ -114,17 +114,17 @@ namespace Gdk
     get_history_start () const -> gint64;
 
     auto
-    get_timings (gint64 frame_counter) -> Glib::RefPtr<FrameTimings>;
+    get_timings (gint64 frame_counter) -> glib::RefPtr<FrameTimings>;
 
     auto
     get_timings (gint64 frame_counter) const
-        -> Glib::RefPtr<const FrameTimings>;
+        -> glib::RefPtr<const FrameTimings>;
 
     auto
-    get_current_timings () -> Glib::RefPtr<FrameTimings>;
+    get_current_timings () -> glib::RefPtr<FrameTimings>;
 
     auto
-    get_current_timings () const -> Glib::RefPtr<const FrameTimings>;
+    get_current_timings () const -> glib::RefPtr<const FrameTimings>;
 
     auto
     get_refresh_info (gint64 base_time,
@@ -135,22 +135,22 @@ namespace Gdk
     get_fps () const -> double;
 
     auto
-    signal_update () -> Glib::SignalProxy<void ()>;
+    signal_update () -> glib::SignalProxy<void ()>;
 
     auto
-    signal_layout () -> Glib::SignalProxy<void ()>;
+    signal_layout () -> glib::SignalProxy<void ()>;
 
     auto
-    signal_paint () -> Glib::SignalProxy<void ()>;
+    signal_paint () -> glib::SignalProxy<void ()>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gdk
+} // namespace gdk
 
-namespace Gdk
+namespace gdk
 {
 
   inline auto
@@ -200,28 +200,28 @@ namespace Gdk
     return (lhs = static_cast<FrameClock::Phase> (static_cast<unsigned> (lhs) ^
                                                   static_cast<unsigned> (rhs)));
   }
-} // namespace Gdk
+} // namespace gdk
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_GDK_SYMEXPORT Value<Gdk::FrameClock::Phase>
-    : public Glib::Value_Flags<Gdk::FrameClock::Phase>
+  class LIBMM_GDK_SYMEXPORT Value<gdk::FrameClock::Phase>
+    : public glib::Value_Flags<gdk::FrameClock::Phase>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
-namespace Glib
+namespace glib
 {
   LIBMM_GDK_SYMEXPORT auto
-  wrap (GdkFrameClock* object, bool take_copy = false) -> Glib::RefPtr<Gdk::FrameClock>;
-} // namespace Glib
+  wrap (GdkFrameClock* object, bool take_copy = false) -> glib::RefPtr<gdk::FrameClock>;
+} // namespace glib
 
 #endif

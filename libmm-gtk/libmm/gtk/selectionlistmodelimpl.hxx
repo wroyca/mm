@@ -8,12 +8,12 @@
 #include <libmm/gtk/mm-gtkconfig.hxx>
 #include <libmm/gtk/selectionmodel.hxx>
 
-namespace Gtk
+namespace gtk
 {
 
-  class LIBMM_GTK_SYMEXPORT SelectionListModelImpl : public Gio::ListModel,
+  class LIBMM_GTK_SYMEXPORT SelectionListModelImpl : public gio::ListModel,
                                            public SelectionModel,
-                                           public Glib::Object
+                                           public glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
   public:
@@ -37,6 +37,6 @@ namespace Gtk
     ~SelectionListModelImpl () noexcept override;
   };
 
-} // namespace Gtk
+} // namespace gtk
 
 #endif

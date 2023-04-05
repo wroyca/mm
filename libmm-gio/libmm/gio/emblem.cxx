@@ -7,9 +7,9 @@
 
 #include <gio/gio.h>
 
-using Origin = Gio::Emblem::Origin;
+using Origin = gio::Emblem::Origin;
 
-namespace Gio
+namespace gio
 {
 
 }
@@ -18,19 +18,19 @@ namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GEmblem* object, const bool take_copy) -> RefPtr<Gio::Emblem>
+  wrap (GEmblem* object, const bool take_copy) -> RefPtr<gio::Emblem>
   {
-    return Glib::make_refptr_for_instance<Gio::Emblem> (
-        dynamic_cast<Gio::Emblem*> (wrap_auto ((GObject*) object, take_copy)));
+    return glib::make_refptr_for_instance<gio::Emblem> (
+        dynamic_cast<gio::Emblem*> (wrap_auto ((GObject*) object, take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gio
+namespace gio
 {
 
   auto
@@ -56,7 +56,7 @@ namespace Gio
   }
 
   auto
-  Emblem_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  Emblem_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new Emblem ((GEmblem*) object);
   }
@@ -68,7 +68,7 @@ namespace Gio
     return gobj ();
   }
 
-  Emblem::Emblem (const Glib::ConstructParams& construct_params)
+  Emblem::Emblem (const glib::ConstructParams& construct_params)
     : Object (construct_params)
   {
   }
@@ -108,20 +108,20 @@ namespace Gio
     return g_emblem_get_type ();
   }
 
-  Emblem::Emblem (const Glib::RefPtr<Icon>& icon)
+  Emblem::Emblem (const glib::RefPtr<Icon>& icon)
     : ObjectBase (nullptr),
-      Object (Glib::ConstructParams (emblem_class_.init (),
+      Object (glib::ConstructParams (emblem_class_.init (),
                                      "icon",
-                                     Glib::unwrap (icon),
+                                     glib::unwrap (icon),
                                      nullptr))
   {
   }
 
-  Emblem::Emblem (const Glib::RefPtr<Icon>& icon, const Origin origin)
+  Emblem::Emblem (const glib::RefPtr<Icon>& icon, const Origin origin)
     : ObjectBase (nullptr),
-      Object (Glib::ConstructParams (emblem_class_.init (),
+      Object (glib::ConstructParams (emblem_class_.init (),
                                      "icon",
-                                     Glib::unwrap (icon),
+                                     glib::unwrap (icon),
                                      "origin",
                                      origin,
                                      nullptr))
@@ -129,25 +129,25 @@ namespace Gio
   }
 
   auto
-  Emblem::create (const Glib::RefPtr<Icon>& icon) -> Glib::RefPtr<Emblem>
+  Emblem::create (const glib::RefPtr<Icon>& icon) -> glib::RefPtr<Emblem>
   {
-    return Glib::make_refptr_for_instance<Emblem> (new Emblem (icon));
+    return glib::make_refptr_for_instance<Emblem> (new Emblem (icon));
   }
 
   auto
-  Emblem::create (const Glib::RefPtr<Icon>& icon, const Origin origin) -> Glib::RefPtr<Emblem>
+  Emblem::create (const glib::RefPtr<Icon>& icon, const Origin origin) -> glib::RefPtr<Emblem>
   {
-    return Glib::make_refptr_for_instance<Emblem> (new Emblem (icon, origin));
+    return glib::make_refptr_for_instance<Emblem> (new Emblem (icon, origin));
   }
 
   auto
-  Emblem::get_icon () -> Glib::RefPtr<Icon>
+  Emblem::get_icon () -> glib::RefPtr<Icon>
   {
-    return Glib::wrap (g_emblem_get_icon (gobj ()));
+    return glib::wrap (g_emblem_get_icon (gobj ()));
   }
 
   auto
-  Emblem::get_icon () const -> Glib::RefPtr<const Icon>
+  Emblem::get_icon () const -> glib::RefPtr<const Icon>
   {
     return const_cast<Emblem*> (this)->get_icon ();
   }
@@ -159,4 +159,4 @@ namespace Gio
         g_emblem_get_origin (const_cast<GEmblem*> (gobj ())));
   }
 
-} // namespace Gio
+} // namespace gio

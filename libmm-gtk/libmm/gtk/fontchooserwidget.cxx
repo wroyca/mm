@@ -12,7 +12,7 @@
 
   #include <gtk/gtk.h>
 
-namespace Gtk
+namespace gtk
 {
 
 }
@@ -21,23 +21,23 @@ namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GtkFontChooserWidget* object, bool take_copy) -> Gtk::FontChooserWidget*
+  wrap (GtkFontChooserWidget* object, bool take_copy) -> gtk::FontChooserWidget*
   {
-    return dynamic_cast<Gtk::FontChooserWidget*> (
-        Glib::wrap_auto ((GObject*) (object), take_copy));
+    return dynamic_cast<gtk::FontChooserWidget*> (
+        glib::wrap_auto ((GObject*) (object), take_copy));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gtk
+namespace gtk
 {
 
   auto
-  FontChooserWidget_Class::init () -> const Glib::Class&
+  FontChooserWidget_Class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -59,24 +59,24 @@ namespace Gtk
   }
 
   auto
-  FontChooserWidget_Class::wrap_new (GObject* o) -> Glib::ObjectBase*
+  FontChooserWidget_Class::wrap_new (GObject* o) -> glib::ObjectBase*
   {
     return manage (new FontChooserWidget ((GtkFontChooserWidget*) (o)));
   }
 
   FontChooserWidget::FontChooserWidget (
-      const Glib::ConstructParams& construct_params)
-    : Gtk::Widget (construct_params)
+      const glib::ConstructParams& construct_params)
+    : gtk::Widget (construct_params)
   {
   }
 
   FontChooserWidget::FontChooserWidget (GtkFontChooserWidget* castitem)
-    : Gtk::Widget ((GtkWidget*) (castitem))
+    : gtk::Widget ((GtkWidget*) (castitem))
   {
   }
 
   FontChooserWidget::FontChooserWidget (FontChooserWidget&& src) noexcept
-    : Gtk::Widget (std::move (src)),
+    : gtk::Widget (std::move (src)),
       FontChooser (std::move (src))
   {
   }
@@ -84,7 +84,7 @@ namespace Gtk
   auto
   FontChooserWidget::operator= (FontChooserWidget&& src) noexcept -> FontChooserWidget&
   {
-    Gtk::Widget::operator= (std::move (src));
+    gtk::Widget::operator= (std::move (src));
     FontChooser::operator= (std::move (src));
     return *this;
   }
@@ -109,11 +109,11 @@ namespace Gtk
   }
 
   FontChooserWidget::FontChooserWidget ()
-    : Glib::ObjectBase (nullptr),
-      Gtk::Widget (Glib::ConstructParams (fontchooserwidget_class_.init ()))
+    : glib::ObjectBase (nullptr),
+      gtk::Widget (glib::ConstructParams (fontchooserwidget_class_.init ()))
   {
   }
 
-} // namespace Gtk
+} // namespace gtk
 
 #endif

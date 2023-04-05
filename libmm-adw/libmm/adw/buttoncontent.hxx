@@ -16,16 +16,16 @@
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Adw
+namespace adw
 {
   class LIBMM_ADW_SYMEXPORT ButtonContent_Class;
 }
 #endif
 
-namespace Adw
+namespace adw
 {
 
-  class LIBMM_ADW_SYMEXPORT ButtonContent : public Gtk::Widget
+  class LIBMM_ADW_SYMEXPORT ButtonContent : public gtk::Widget
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -52,7 +52,7 @@ namespace Adw
     static CppClassType buttoncontent_class_;
 
   protected:
-    explicit ButtonContent (const Glib::ConstructParams& construct_params);
+    explicit ButtonContent (const glib::ConstructParams& construct_params);
     explicit ButtonContent (AdwButtonContent* castitem);
 
 #endif
@@ -84,53 +84,53 @@ namespace Adw
     ButtonContent ();
 
     auto
-    get_icon_name () const -> Glib::ustring;
+    get_icon_name () const -> glib::ustring;
 
     auto
-    get_label () const -> Glib::ustring;
+    get_label () const -> glib::ustring;
 
     auto
     get_use_underline () const -> bool;
 
     auto
-    set_icon_name (const Glib::ustring& icon_name) -> void;
+    set_icon_name (const glib::ustring& icon_name) -> void;
 
     auto
-    set_label (const Glib::ustring& label) -> void;
+    set_label (const glib::ustring& label) -> void;
 
     auto
     set_use_underline (bool use_underline) -> void;
 
     auto
-    property_icon_name () -> Glib::PropertyProxy<Glib::ustring>;
+    property_icon_name () -> glib::PropertyProxy<glib::ustring>;
 
     auto
-    property_icon_name () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+    property_icon_name () const -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
     auto
-    property_label () -> Glib::PropertyProxy<Glib::ustring>;
+    property_label () -> glib::PropertyProxy<glib::ustring>;
 
     auto
-    property_label () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+    property_label () const -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
     auto
-    property_use_underline () -> Glib::PropertyProxy<bool>;
+    property_use_underline () -> glib::PropertyProxy<bool>;
 
     auto
-    property_use_underline () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_use_underline () const -> glib::PropertyProxy_ReadOnly<bool>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Adw
+} // namespace adw
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (AdwButtonContent* object, bool take_copy = false) -> Adw::ButtonContent*;
+  wrap (AdwButtonContent* object, bool take_copy = false) -> adw::ButtonContent*;
 }
 
 #endif

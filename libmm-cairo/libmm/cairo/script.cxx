@@ -3,7 +3,7 @@
 #include <libmm/cairo/private.hxx>
 #include <libmm/cairo/script_surface.hxx>
 
-namespace Cairo
+namespace cairo
 {
 
 #ifdef CAIRO_HAS_SCRIPT_SURFACE
@@ -94,4 +94,4 @@ namespace Cairo
 
 #endif
 
-} // namespace Cairo
+} // namespace cairo

@@ -8,7 +8,7 @@
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
-namespace Gio
+namespace gio
 {
   LIBMM_GIO_SYMEXPORT auto
   SignalProxy_async_callback (GObject*, GAsyncResult* res, void* data) -> void;

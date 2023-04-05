@@ -17,16 +17,16 @@ using GdkPixbufLoaderClass = struct _GdkPixbufLoaderClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gdk
+namespace gdk
 {
   class LIBMM_GDK_SYMEXPORT PixbufLoader_Class;
 }
 #endif
 
-namespace Gdk
+namespace gdk
 {
 
-  class LIBMM_GDK_SYMEXPORT PixbufLoader : public Glib::Object
+  class LIBMM_GDK_SYMEXPORT PixbufLoader : public glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -45,7 +45,7 @@ namespace Gdk
     static CppClassType pixbufloader_class_;
 
   protected:
-    explicit PixbufLoader (const Glib::ConstructParams& construct_params);
+    explicit PixbufLoader (const glib::ConstructParams& construct_params);
     explicit PixbufLoader (GdkPixbufLoader* castitem);
 
 #endif
@@ -85,16 +85,16 @@ namespace Gdk
   protected:
     PixbufLoader ();
 
-    explicit PixbufLoader (const Glib::ustring& image_type,
+    explicit PixbufLoader (const glib::ustring& image_type,
                            bool mime_type = false);
 
   public:
     static auto
-    create () -> Glib::RefPtr<PixbufLoader>;
+    create () -> glib::RefPtr<PixbufLoader>;
 
     static auto
-    create (const Glib::ustring& image_type, bool mime_type = false)
-        -> Glib::RefPtr<PixbufLoader>;
+    create (const glib::ustring& image_type, bool mime_type = false)
+        -> glib::RefPtr<PixbufLoader>;
 
     auto
     set_size (int width, int height) -> void;
@@ -106,25 +106,25 @@ namespace Gdk
     close () -> void;
 
     auto
-    get_pixbuf () -> Glib::RefPtr<Gdk::Pixbuf>;
+    get_pixbuf () -> glib::RefPtr<gdk::Pixbuf>;
 
     auto
-    get_animation () -> Glib::RefPtr<Gdk::PixbufAnimation>;
+    get_animation () -> glib::RefPtr<gdk::PixbufAnimation>;
 
     auto
     get_format () const -> PixbufFormat;
 
     auto
-    signal_area_prepared () -> Glib::SignalProxy<void ()>;
+    signal_area_prepared () -> glib::SignalProxy<void ()>;
 
     auto
-    signal_area_updated () -> Glib::SignalProxy<void (int, int, int, int)>;
+    signal_area_updated () -> glib::SignalProxy<void (int, int, int, int)>;
 
     auto
-    signal_closed () -> Glib::SignalProxy<void ()>;
+    signal_closed () -> glib::SignalProxy<void ()>;
 
     auto
-    signal_size_prepared () -> Glib::SignalProxy<void (int, int)>;
+    signal_size_prepared () -> glib::SignalProxy<void (int, int)>;
 
   public:
   public:
@@ -142,12 +142,12 @@ namespace Gdk
     on_size_prepared (int width, int height) -> void;
   };
 
-} // namespace Gdk
+} // namespace gdk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GDK_SYMEXPORT auto
-  wrap (GdkPixbufLoader* object, bool take_copy = false) -> Glib::RefPtr<Gdk::PixbufLoader>;
-} // namespace Glib
+  wrap (GdkPixbufLoader* object, bool take_copy = false) -> glib::RefPtr<gdk::PixbufLoader>;
+} // namespace glib
 
 #endif

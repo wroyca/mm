@@ -17,7 +17,7 @@ extern "C"
 }
 #endif
 
-namespace Gio
+namespace gio
 {
 
   class LIBMM_GIO_SYMEXPORT SrvTarget
@@ -68,13 +68,13 @@ namespace Gio
 
   private:
   public:
-    SrvTarget (const Glib::ustring& hostname,
+    SrvTarget (const glib::ustring& hostname,
                guint16 port,
                guint16 priority,
                guint16 weight);
 
     auto
-    get_hostname () const -> Glib::ustring;
+    get_hostname () const -> glib::ustring;
 
     auto
     get_port () const -> guint16;
@@ -86,9 +86,9 @@ namespace Gio
     get_weight () const -> guint16;
   };
 
-} // namespace Gio
+} // namespace gio
 
-namespace Gio
+namespace gio
 {
 
   inline auto
@@ -97,23 +97,23 @@ namespace Gio
     lhs.swap (rhs);
   }
 
-} // namespace Gio
+} // namespace gio
 
-namespace Glib
+namespace glib
 {
 
   LIBMM_GIO_SYMEXPORT
   auto
-  wrap (GSrvTarget* object, bool take_copy = false) -> Gio::SrvTarget;
+  wrap (GSrvTarget* object, bool take_copy = false) -> gio::SrvTarget;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
   template <>
-  class LIBMM_GIO_SYMEXPORT Value<Gio::SrvTarget>
-    : public Glib::Value_Boxed<Gio::SrvTarget>
+  class LIBMM_GIO_SYMEXPORT Value<gio::SrvTarget>
+    : public glib::Value_Boxed<gio::SrvTarget>
   {
   };
 #endif
 
-} // namespace Glib
+} // namespace glib
 
 #endif

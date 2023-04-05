@@ -17,7 +17,7 @@ extern "C"
 }
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
   class LIBMM_GTK_SYMEXPORT Border
@@ -93,9 +93,9 @@ namespace Gtk
     set_bottom (const int& value) -> void;
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Gtk
+namespace gtk
 {
 
   inline auto
@@ -104,20 +104,20 @@ namespace Gtk
     lhs.swap (rhs);
   }
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkBorder* object, bool take_copy = false) -> Gtk::Border;
+  wrap (GtkBorder* object, bool take_copy = false) -> gtk::Border;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
   template <>
-  class LIBMM_GTK_SYMEXPORT Value<Gtk::Border> : public Glib::Value_Boxed<Gtk::Border>
+  class LIBMM_GTK_SYMEXPORT Value<gtk::Border> : public glib::Value_Boxed<gtk::Border>
   {
   };
 #endif
 
-} // namespace Glib
+} // namespace glib
 
 #endif

@@ -11,7 +11,7 @@
 #include <gtk/gtk.h>
 #include <libmm/glib/value.hxx>
 
-namespace Gtk
+namespace gtk
 {
 
   class LIBMM_GTK_SYMEXPORT Requisition
@@ -66,24 +66,24 @@ namespace Gtk
     set_height (const int& value) -> void;
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkRequisition* object) -> Gtk::Requisition&;
+  wrap (GtkRequisition* object) -> gtk::Requisition&;
 
   LIBMM_GTK_SYMEXPORT auto
-  wrap (const GtkRequisition* object) -> const Gtk::Requisition&;
+  wrap (const GtkRequisition* object) -> const gtk::Requisition&;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
   template <>
-  class LIBMM_GTK_SYMEXPORT Value<Gtk::Requisition>
-    : public Glib::Value_Boxed<Gtk::Requisition>
+  class LIBMM_GTK_SYMEXPORT Value<gtk::Requisition>
+    : public glib::Value_Boxed<gtk::Requisition>
   {
   };
 #endif
 
-} // namespace Glib
+} // namespace glib
 
 #endif

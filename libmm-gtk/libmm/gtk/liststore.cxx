@@ -14,12 +14,12 @@
 
   #include <gtk/gtk.h>
 
-namespace Gtk
+namespace gtk
 {
 
   ListStore::ListStore (const TreeModelColumnRecord& columns)
-    : Glib::ObjectBase (nullptr),
-      Glib::Object (Glib::ConstructParams (liststore_class_.init ()))
+    : glib::ObjectBase (nullptr),
+      glib::Object (glib::ConstructParams (liststore_class_.init ()))
   {
     gtk_list_store_set_column_types (gobj (),
                                      columns.size (),
@@ -111,13 +111,13 @@ namespace Gtk
     gtk_list_store_reorder (
         gobj (),
         const_cast<int*> (
-            Glib::ArrayHandler<int>::vector_to_array (new_order).data ()));
+            glib::ArrayHandler<int>::vector_to_array (new_order).data ()));
   }
 
   auto
   ListStore::set_value_impl (const iterator& row,
                              int column,
-                             const Glib::ValueBase& value) -> void
+                             const glib::ValueBase& value) -> void
   {
     gtk_list_store_set_value (gobj (),
                               const_cast<GtkTreeIter*> (row.gobj ()),
@@ -125,30 +125,30 @@ namespace Gtk
                               const_cast<GValue*> (value.gobj ()));
   }
 
-} // namespace Gtk
+} // namespace gtk
 
 namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GtkListStore* object, bool take_copy) -> Glib::RefPtr<Gtk::ListStore>
+  wrap (GtkListStore* object, bool take_copy) -> glib::RefPtr<gtk::ListStore>
   {
-    return Glib::make_refptr_for_instance<Gtk::ListStore> (
-        dynamic_cast<Gtk::ListStore*> (
-            Glib::wrap_auto ((GObject*) (object), take_copy)));
+    return glib::make_refptr_for_instance<gtk::ListStore> (
+        dynamic_cast<gtk::ListStore*> (
+            glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gtk
+namespace gtk
 {
 
   auto
-  ListStore_Class::init () -> const Glib::Class&
+  ListStore_Class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -174,7 +174,7 @@ namespace Gtk
   }
 
   auto
-  ListStore_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  ListStore_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new ListStore ((GtkListStore*) object);
   }
@@ -186,18 +186,18 @@ namespace Gtk
     return gobj ();
   }
 
-  ListStore::ListStore (const Glib::ConstructParams& construct_params)
-    : Glib::Object (construct_params)
+  ListStore::ListStore (const glib::ConstructParams& construct_params)
+    : glib::Object (construct_params)
   {
   }
 
   ListStore::ListStore (GtkListStore* castitem)
-    : Glib::Object ((GObject*) (castitem))
+    : glib::Object ((GObject*) (castitem))
   {
   }
 
   ListStore::ListStore (ListStore&& src) noexcept
-    : Glib::Object (std::move (src)),
+    : glib::Object (std::move (src)),
       TreeModel (std::move (src)),
       TreeSortable (std::move (src)),
       TreeDragSource (std::move (src)),
@@ -209,7 +209,7 @@ namespace Gtk
   auto
   ListStore::operator= (ListStore&& src) noexcept -> ListStore&
   {
-    Glib::Object::operator= (std::move (src));
+    glib::Object::operator= (std::move (src));
     TreeModel::operator= (std::move (src));
     TreeSortable::operator= (std::move (src));
     TreeDragSource::operator= (std::move (src));
@@ -235,15 +235,15 @@ namespace Gtk
   }
 
   ListStore::ListStore ()
-    : Glib::ObjectBase (nullptr),
-      Glib::Object (Glib::ConstructParams (liststore_class_.init ()))
+    : glib::ObjectBase (nullptr),
+      glib::Object (glib::ConstructParams (liststore_class_.init ()))
   {
   }
 
   auto
-  ListStore::create (const TreeModelColumnRecord& columns) -> Glib::RefPtr<ListStore>
+  ListStore::create (const TreeModelColumnRecord& columns) -> glib::RefPtr<ListStore>
   {
-    return Glib::make_refptr_for_instance<ListStore> (new ListStore (columns));
+    return glib::make_refptr_for_instance<ListStore> (new ListStore (columns));
   }
 
   auto
@@ -268,6 +268,6 @@ namespace Gtk
         const_cast<GtkTreeIter*> ((iter).gobj ()));
   }
 
-} // namespace Gtk
+} // namespace gtk
 
 #endif

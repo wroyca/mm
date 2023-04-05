@@ -12,13 +12,13 @@
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT BinLayout_Class;
 }
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
   class LIBMM_GTK_SYMEXPORT BinLayout : public LayoutManager
@@ -40,7 +40,7 @@ namespace Gtk
     static CppClassType binlayout_class_;
 
   protected:
-    explicit BinLayout (const Glib::ConstructParams& construct_params);
+    explicit BinLayout (const glib::ConstructParams& construct_params);
     explicit BinLayout (GtkBinLayout* castitem);
 
 #endif
@@ -82,19 +82,19 @@ namespace Gtk
 
   public:
     static auto
-    create () -> Glib::RefPtr<BinLayout>;
+    create () -> glib::RefPtr<BinLayout>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkBinLayout* object, bool take_copy = false) -> Glib::RefPtr<Gtk::BinLayout>;
-} // namespace Glib
+  wrap (GtkBinLayout* object, bool take_copy = false) -> glib::RefPtr<gtk::BinLayout>;
+} // namespace glib
 
 #endif

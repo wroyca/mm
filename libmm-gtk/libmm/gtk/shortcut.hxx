@@ -17,16 +17,16 @@
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT Shortcut_Class;
 }
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
-  class LIBMM_GTK_SYMEXPORT Shortcut : public Glib::Object
+  class LIBMM_GTK_SYMEXPORT Shortcut : public glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -45,7 +45,7 @@ namespace Gtk
     static CppClassType shortcut_class_;
 
   protected:
-    explicit Shortcut (const Glib::ConstructParams& construct_params);
+    explicit Shortcut (const glib::ConstructParams& construct_params);
     explicit Shortcut (GtkShortcut* castitem);
 
 #endif
@@ -83,65 +83,65 @@ namespace Gtk
 
   private:
   protected:
-    explicit Shortcut (const Glib::RefPtr<const ShortcutTrigger>& trigger,
-                       const Glib::RefPtr<const ShortcutAction>& action);
+    explicit Shortcut (const glib::RefPtr<const ShortcutTrigger>& trigger,
+                       const glib::RefPtr<const ShortcutAction>& action);
 
   public:
     static auto
-    create (const Glib::RefPtr<const ShortcutTrigger>& trigger,
-            const Glib::RefPtr<const ShortcutAction>& action)
-        -> Glib::RefPtr<Shortcut>;
+    create (const glib::RefPtr<const ShortcutTrigger>& trigger,
+            const glib::RefPtr<const ShortcutAction>& action)
+        -> glib::RefPtr<Shortcut>;
 
     auto
-    get_trigger () const -> Glib::RefPtr<ShortcutTrigger>;
+    get_trigger () const -> glib::RefPtr<ShortcutTrigger>;
 
     auto
-    set_trigger (const Glib::RefPtr<const ShortcutTrigger>& trigger) -> void;
+    set_trigger (const glib::RefPtr<const ShortcutTrigger>& trigger) -> void;
 
     auto
-    get_action () const -> Glib::RefPtr<ShortcutAction>;
+    get_action () const -> glib::RefPtr<ShortcutAction>;
 
     auto
-    set_trigger (const Glib::RefPtr<const ShortcutAction>& action) -> void;
+    set_trigger (const glib::RefPtr<const ShortcutAction>& action) -> void;
 
     auto
-    get_arguments () const -> Glib::VariantBase;
+    get_arguments () const -> glib::VariantBase;
 
     auto
-    set_arguments (const Glib::VariantBase& args) const -> void;
+    set_arguments (const glib::VariantBase& args) const -> void;
 
     auto
-    property_trigger () -> Glib::PropertyProxy<Glib::RefPtr<ShortcutTrigger>>;
+    property_trigger () -> glib::PropertyProxy<glib::RefPtr<ShortcutTrigger>>;
 
     auto
     property_trigger () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<ShortcutTrigger>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<ShortcutTrigger>>;
 
     auto
-    property_action () -> Glib::PropertyProxy<Glib::RefPtr<ShortcutAction>>;
+    property_action () -> glib::PropertyProxy<glib::RefPtr<ShortcutAction>>;
 
     auto
     property_action () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<ShortcutAction>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<ShortcutAction>>;
 
     auto
-    property_arguments () -> Glib::PropertyProxy<Glib::VariantBase>;
+    property_arguments () -> glib::PropertyProxy<glib::VariantBase>;
 
     auto
     property_arguments () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::VariantBase>;
+        -> glib::PropertyProxy_ReadOnly<glib::VariantBase>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkShortcut* object, bool take_copy = false) -> Glib::RefPtr<Gtk::Shortcut>;
-} // namespace Glib
+  wrap (GtkShortcut* object, bool take_copy = false) -> glib::RefPtr<gtk::Shortcut>;
+} // namespace glib
 
 #endif

@@ -18,7 +18,7 @@ extern "C"
 }
 #endif
 
-namespace Pango
+namespace pango
 {
 
   enum class Script
@@ -143,25 +143,25 @@ namespace Pango
     SIGNWRITING
   };
 
-} // namespace Pango
+} // namespace pango
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_PANGO_SYMEXPORT Value<Pango::Script>
-    : public Glib::Value_Enum<Pango::Script>
+  class LIBMM_PANGO_SYMEXPORT Value<pango::Script>
+    : public glib::Value_Enum<pango::Script>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
-namespace Pango
+namespace pango
 {
 
   class LIBMM_PANGO_SYMEXPORT Language
@@ -212,13 +212,13 @@ namespace Pango
   public:
     Language ();
 
-    Language (const Glib::ustring& language);
+    Language (const glib::ustring& language);
 
     auto
-    get_string () const -> Glib::ustring;
+    get_string () const -> glib::ustring;
 
     auto
-    matches (const Glib::ustring& range_list) const -> bool;
+    matches (const glib::ustring& range_list) const -> bool;
 
     auto
     includes_script (Script script) const -> bool;
@@ -227,9 +227,9 @@ namespace Pango
     get_scripts () const -> std::vector<Script>;
   };
 
-} // namespace Pango
+} // namespace pango
 
-namespace Pango
+namespace pango
 {
 
   inline auto
@@ -238,23 +238,23 @@ namespace Pango
     lhs.swap (rhs);
   }
 
-} // namespace Pango
+} // namespace pango
 
-namespace Glib
+namespace glib
 {
 
   LIBMM_PANGO_SYMEXPORT
   auto
-  wrap (PangoLanguage* object, bool take_copy = false) -> Pango::Language;
+  wrap (PangoLanguage* object, bool take_copy = false) -> pango::Language;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
   template <>
-  class LIBMM_PANGO_SYMEXPORT Value<Pango::Language>
-    : public Glib::Value_Boxed<Pango::Language>
+  class LIBMM_PANGO_SYMEXPORT Value<pango::Language>
+    : public glib::Value_Boxed<pango::Language>
   {
   };
 #endif
 
-} // namespace Glib
+} // namespace glib
 
 #endif

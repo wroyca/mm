@@ -14,36 +14,36 @@
   #include <gtk/gtk.h>
   #include <libmm/gtk/widget.hxx>
 
-using Type = Gtk::AssistantPage::Type;
+using Type = gtk::AssistantPage::Type;
 
 namespace
 {
 }
 
 auto
-Glib::Value<Gtk::AssistantPage::Type>::value_type () -> GType
+glib::Value<gtk::AssistantPage::Type>::value_type () -> GType
 {
   return gtk_assistant_page_type_get_type ();
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GtkAssistantPage* object, bool take_copy) -> Glib::RefPtr<Gtk::AssistantPage>
+  wrap (GtkAssistantPage* object, bool take_copy) -> glib::RefPtr<gtk::AssistantPage>
   {
-    return Glib::make_refptr_for_instance<Gtk::AssistantPage> (
-        dynamic_cast<Gtk::AssistantPage*> (
-            Glib::wrap_auto ((GObject*) (object), take_copy)));
+    return glib::make_refptr_for_instance<gtk::AssistantPage> (
+        dynamic_cast<gtk::AssistantPage*> (
+            glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gtk
+namespace gtk
 {
 
   auto
-  AssistantPage_Class::init () -> const Glib::Class&
+  AssistantPage_Class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -63,7 +63,7 @@ namespace Gtk
   }
 
   auto
-  AssistantPage_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  AssistantPage_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new AssistantPage ((GtkAssistantPage*) object);
   }
@@ -75,25 +75,25 @@ namespace Gtk
     return gobj ();
   }
 
-  AssistantPage::AssistantPage (const Glib::ConstructParams& construct_params)
-    : Glib::Object (construct_params)
+  AssistantPage::AssistantPage (const glib::ConstructParams& construct_params)
+    : glib::Object (construct_params)
   {
   }
 
   AssistantPage::AssistantPage (GtkAssistantPage* castitem)
-    : Glib::Object ((GObject*) (castitem))
+    : glib::Object ((GObject*) (castitem))
   {
   }
 
   AssistantPage::AssistantPage (AssistantPage&& src) noexcept
-    : Glib::Object (std::move (src))
+    : glib::Object (std::move (src))
   {
   }
 
   auto
   AssistantPage::operator= (AssistantPage&& src) noexcept -> AssistantPage&
   {
-    Glib::Object::operator= (std::move (src));
+    glib::Object::operator= (std::move (src));
     return *this;
   }
 
@@ -116,7 +116,7 @@ namespace Gtk
   auto
   AssistantPage::get_child () -> Widget*
   {
-    return Glib::wrap (gtk_assistant_page_get_child (gobj ()));
+    return glib::wrap (gtk_assistant_page_get_child (gobj ()));
   }
 
   auto
@@ -126,52 +126,52 @@ namespace Gtk
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<Type>::value,
+      glib::Traits::ValueCompatibleWithWrapProperty<Type>::value,
       "Type Type cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  AssistantPage::property_page_type () -> Glib::PropertyProxy<Type>
+  AssistantPage::property_page_type () -> glib::PropertyProxy<Type>
   {
-    return Glib::PropertyProxy<Type> (this, "page-type");
+    return glib::PropertyProxy<Type> (this, "page-type");
   }
 
   auto
-  AssistantPage::property_page_type () const -> Glib::PropertyProxy_ReadOnly<Type>
+  AssistantPage::property_page_type () const -> glib::PropertyProxy_ReadOnly<Type>
   {
-    return Glib::PropertyProxy_ReadOnly<Type> (this, "page-type");
+    return glib::PropertyProxy_ReadOnly<Type> (this, "page-type");
   }
 
   auto
-  AssistantPage::property_title () -> Glib::PropertyProxy<Glib::ustring>
+  AssistantPage::property_title () -> glib::PropertyProxy<glib::ustring>
   {
-    return Glib::PropertyProxy<Glib::ustring> (this, "title");
+    return glib::PropertyProxy<glib::ustring> (this, "title");
   }
 
   auto
-  AssistantPage::property_title () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>
+  AssistantPage::property_title () const -> glib::PropertyProxy_ReadOnly<glib::ustring>
   {
-    return Glib::PropertyProxy_ReadOnly<Glib::ustring> (this, "title");
+    return glib::PropertyProxy_ReadOnly<glib::ustring> (this, "title");
   }
 
   auto
-  AssistantPage::property_complete () -> Glib::PropertyProxy<bool>
+  AssistantPage::property_complete () -> glib::PropertyProxy<bool>
   {
-    return Glib::PropertyProxy<bool> (this, "complete");
+    return glib::PropertyProxy<bool> (this, "complete");
   }
 
   auto
-  AssistantPage::property_complete () const -> Glib::PropertyProxy_ReadOnly<bool>
+  AssistantPage::property_complete () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "complete");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "complete");
   }
 
   auto
-  AssistantPage::property_child () const -> Glib::PropertyProxy_ReadOnly<Widget*>
+  AssistantPage::property_child () const -> glib::PropertyProxy_ReadOnly<Widget*>
   {
-    return Glib::PropertyProxy_ReadOnly<Widget*> (this, "child");
+    return glib::PropertyProxy_ReadOnly<Widget*> (this, "child");
   }
 
-} // namespace Gtk
+} // namespace gtk
 
 #endif

@@ -9,7 +9,7 @@
 #include <libmm/glib/mm-glib.hxx>
 #include <libmm/gtk/mm-gtk.hxx>
 
-namespace Adw
+namespace adw
 {
 
 }
@@ -18,24 +18,24 @@ namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (AdwSqueezerPage* object, bool take_copy) -> Glib::RefPtr<Adw::SqueezerPage>
+  wrap (AdwSqueezerPage* object, bool take_copy) -> glib::RefPtr<adw::SqueezerPage>
   {
-    return Glib::make_refptr_for_instance<Adw::SqueezerPage> (
-        dynamic_cast<Adw::SqueezerPage*> (
-            Glib::wrap_auto ((GObject*) (object), take_copy)));
+    return glib::make_refptr_for_instance<adw::SqueezerPage> (
+        dynamic_cast<adw::SqueezerPage*> (
+            glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Adw
+namespace adw
 {
 
   auto
-  SqueezerPage_Class::init () -> const Glib::Class&
+  SqueezerPage_Class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -46,7 +46,7 @@ namespace Adw
   }
 
   auto
-  SqueezerPage_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  SqueezerPage_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new SqueezerPage ((AdwSqueezerPage*) object);
   }
@@ -58,25 +58,25 @@ namespace Adw
     return gobj ();
   }
 
-  SqueezerPage::SqueezerPage (const Glib::ConstructParams& construct_params)
-    : Glib::Object (construct_params)
+  SqueezerPage::SqueezerPage (const glib::ConstructParams& construct_params)
+    : glib::Object (construct_params)
   {
   }
 
   SqueezerPage::SqueezerPage (AdwSqueezerPage* castitem)
-    : Glib::Object ((GObject*) (castitem))
+    : glib::Object ((GObject*) (castitem))
   {
   }
 
   SqueezerPage::SqueezerPage (SqueezerPage&& src) noexcept
-    : Glib::Object (std::move (src))
+    : glib::Object (std::move (src))
   {
   }
 
   auto
   SqueezerPage::operator= (SqueezerPage&& src) noexcept -> SqueezerPage&
   {
-    Glib::Object::operator= (std::move (src));
+    glib::Object::operator= (std::move (src));
     return *this;
   }
 
@@ -97,21 +97,21 @@ namespace Adw
   }
 
   SqueezerPage::SqueezerPage ()
-    : Glib::ObjectBase (nullptr),
-      Glib::Object (Glib::ConstructParams (squeezerpage_class_.init ()))
+    : glib::ObjectBase (nullptr),
+      glib::Object (glib::ConstructParams (squeezerpage_class_.init ()))
   {
   }
 
   auto
-  SqueezerPage::create () -> Glib::RefPtr<SqueezerPage>
+  SqueezerPage::create () -> glib::RefPtr<SqueezerPage>
   {
-    return Glib::make_refptr_for_instance<SqueezerPage> (new SqueezerPage ());
+    return glib::make_refptr_for_instance<SqueezerPage> (new SqueezerPage ());
   }
 
   auto
-  SqueezerPage::get_child () const -> Gtk::Widget*
+  SqueezerPage::get_child () const -> gtk::Widget*
   {
-    return Glib::wrap (
+    return glib::wrap (
         adw_squeezer_page_get_child (const_cast<AdwSqueezerPage*> (gobj ())));
   }
 
@@ -129,21 +129,21 @@ namespace Adw
   }
 
   auto
-  SqueezerPage::property_child () const -> Glib::PropertyProxy_ReadOnly<Gtk::Widget*>
+  SqueezerPage::property_child () const -> glib::PropertyProxy_ReadOnly<gtk::Widget*>
   {
-    return Glib::PropertyProxy_ReadOnly<Gtk::Widget*> (this, "child");
+    return glib::PropertyProxy_ReadOnly<gtk::Widget*> (this, "child");
   }
 
   auto
-  SqueezerPage::property_enabled () -> Glib::PropertyProxy<bool>
+  SqueezerPage::property_enabled () -> glib::PropertyProxy<bool>
   {
-    return Glib::PropertyProxy<bool> (this, "enabled");
+    return glib::PropertyProxy<bool> (this, "enabled");
   }
 
   auto
-  SqueezerPage::property_enabled () const -> Glib::PropertyProxy_ReadOnly<bool>
+  SqueezerPage::property_enabled () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "enabled");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "enabled");
   }
 
-} // namespace Adw
+} // namespace adw

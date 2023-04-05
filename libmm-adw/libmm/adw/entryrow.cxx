@@ -5,7 +5,7 @@
 #include <libmm/adw/entryrow.hxx>
 #include <libmm/adw/entryrow_p.hxx>
 
-namespace Adw
+namespace adw
 {
 
 }
@@ -13,35 +13,35 @@ namespace Adw
 namespace
 {
 
-  static const Glib::SignalProxyInfo EntryRow_signal_apply_info = {
+  static const glib::SignalProxyInfo EntryRow_signal_apply_info = {
       "apply",
-      (GCallback) &Glib::SignalProxyNormal::slot0_void_callback,
-      (GCallback) &Glib::SignalProxyNormal::slot0_void_callback};
+      (GCallback) &glib::SignalProxyNormal::slot0_void_callback,
+      (GCallback) &glib::SignalProxyNormal::slot0_void_callback};
 
-  static const Glib::SignalProxyInfo EntryRow_signal_entry_activated_info = {
+  static const glib::SignalProxyInfo EntryRow_signal_entry_activated_info = {
       "entry-activated",
-      (GCallback) &Glib::SignalProxyNormal::slot0_void_callback,
-      (GCallback) &Glib::SignalProxyNormal::slot0_void_callback};
+      (GCallback) &glib::SignalProxyNormal::slot0_void_callback,
+      (GCallback) &glib::SignalProxyNormal::slot0_void_callback};
 
 } // namespace
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (AdwEntryRow* object, bool take_copy) -> Adw::EntryRow*
+  wrap (AdwEntryRow* object, bool take_copy) -> adw::EntryRow*
   {
-    return dynamic_cast<Adw::EntryRow*> (
-        Glib::wrap_auto ((GObject*) (object), take_copy));
+    return dynamic_cast<adw::EntryRow*> (
+        glib::wrap_auto ((GObject*) (object), take_copy));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Adw
+namespace adw
 {
 
   auto
-  EntryRow_Class::init () -> const Glib::Class&
+  EntryRow_Class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -49,7 +49,7 @@ namespace Adw
 
       register_derived_type (adw_entry_row_get_type ());
 
-      Gtk::Editable::add_interface (get_type ());
+      gtk::Editable::add_interface (get_type ());
     }
 
     return *this;
@@ -63,32 +63,32 @@ namespace Adw
   }
 
   auto
-  EntryRow_Class::wrap_new (GObject* o) -> Glib::ObjectBase*
+  EntryRow_Class::wrap_new (GObject* o) -> glib::ObjectBase*
   {
     return manage (new EntryRow ((AdwEntryRow*) (o)));
   }
 
-  EntryRow::EntryRow (const Glib::ConstructParams& construct_params)
-    : Adw::PreferencesRow (construct_params)
+  EntryRow::EntryRow (const glib::ConstructParams& construct_params)
+    : adw::PreferencesRow (construct_params)
   {
   }
 
   EntryRow::EntryRow (AdwEntryRow* castitem)
-    : Adw::PreferencesRow ((AdwPreferencesRow*) (castitem))
+    : adw::PreferencesRow ((AdwPreferencesRow*) (castitem))
   {
   }
 
   EntryRow::EntryRow (EntryRow&& src) noexcept
-    : Adw::PreferencesRow (std::move (src)),
-      Gtk::Editable (std::move (src))
+    : adw::PreferencesRow (std::move (src)),
+      gtk::Editable (std::move (src))
   {
   }
 
   auto
   EntryRow::operator= (EntryRow&& src) noexcept -> EntryRow&
   {
-    Adw::PreferencesRow::operator= (std::move (src));
-    Gtk::Editable::operator= (std::move (src));
+    adw::PreferencesRow::operator= (std::move (src));
+    gtk::Editable::operator= (std::move (src));
     return *this;
   }
 
@@ -112,21 +112,21 @@ namespace Adw
   }
 
   EntryRow::EntryRow ()
-    : Glib::ObjectBase (nullptr),
-      Adw::PreferencesRow (Glib::ConstructParams (entryrow_class_.init ()))
+    : glib::ObjectBase (nullptr),
+      adw::PreferencesRow (glib::ConstructParams (entryrow_class_.init ()))
   {
   }
 
   auto
-  EntryRow::add_prefix (Gtk::Widget* widget) -> void
+  EntryRow::add_prefix (gtk::Widget* widget) -> void
   {
-    adw_entry_row_add_prefix (gobj (), (GtkWidget*) Glib::unwrap (widget));
+    adw_entry_row_add_prefix (gobj (), (GtkWidget*) glib::unwrap (widget));
   }
 
   auto
-  EntryRow::add_suffix (Gtk::Widget* widget) -> void
+  EntryRow::add_suffix (gtk::Widget* widget) -> void
   {
-    adw_entry_row_add_suffix (gobj (), (GtkWidget*) Glib::unwrap (widget));
+    adw_entry_row_add_suffix (gobj (), (GtkWidget*) glib::unwrap (widget));
   }
 
   auto
@@ -137,9 +137,9 @@ namespace Adw
   }
 
   auto
-  EntryRow::get_attributes () const -> Pango::AttrList
+  EntryRow::get_attributes () const -> pango::AttrList
   {
-    return Pango::AttrList (
+    return pango::AttrList (
         (adw_entry_row_get_attributes (const_cast<AdwEntryRow*> (gobj ()))));
   }
 
@@ -151,16 +151,16 @@ namespace Adw
   }
 
   auto
-  EntryRow::get_input_hints () const -> Gtk::InputHints
+  EntryRow::get_input_hints () const -> gtk::InputHints
   {
-    return static_cast<Gtk::InputHints> (
+    return static_cast<gtk::InputHints> (
         adw_entry_row_get_input_hints (const_cast<AdwEntryRow*> (gobj ())));
   }
 
   auto
-  EntryRow::get_input_purpose () const -> Gtk::InputPurpose
+  EntryRow::get_input_purpose () const -> gtk::InputPurpose
   {
-    return static_cast<Gtk::InputPurpose> (
+    return static_cast<gtk::InputPurpose> (
         adw_entry_row_get_input_purpose (const_cast<AdwEntryRow*> (gobj ())));
   }
 
@@ -172,9 +172,9 @@ namespace Adw
   }
 
   auto
-  EntryRow::remove (Gtk::Widget* widget) -> void
+  EntryRow::remove (gtk::Widget* widget) -> void
   {
-    adw_entry_row_remove (gobj (), (GtkWidget*) Glib::unwrap (widget));
+    adw_entry_row_remove (gobj (), (GtkWidget*) glib::unwrap (widget));
   }
 
   auto
@@ -184,7 +184,7 @@ namespace Adw
   }
 
   auto
-  EntryRow::set_attributes (Pango::AttrList& attributes) -> void
+  EntryRow::set_attributes (pango::AttrList& attributes) -> void
   {
     adw_entry_row_set_attributes (gobj (), (attributes).gobj ());
   }
@@ -197,13 +197,13 @@ namespace Adw
   }
 
   auto
-  EntryRow::set_input_hints (Gtk::InputHints hints) -> void
+  EntryRow::set_input_hints (gtk::InputHints hints) -> void
   {
     adw_entry_row_set_input_hints (gobj (), static_cast<GtkInputHints> (hints));
   }
 
   auto
-  EntryRow::set_input_purpose (Gtk::InputPurpose purpose) -> void
+  EntryRow::set_input_purpose (gtk::InputPurpose purpose) -> void
   {
     adw_entry_row_set_input_purpose (gobj (),
                                      static_cast<GtkInputPurpose> (purpose));
@@ -216,104 +216,104 @@ namespace Adw
   }
 
   auto
-  EntryRow::signal_apply () -> Glib::SignalProxy<void ()>
+  EntryRow::signal_apply () -> glib::SignalProxy<void ()>
   {
-    return Glib::SignalProxy<void ()> (this, &EntryRow_signal_apply_info);
+    return glib::SignalProxy<void ()> (this, &EntryRow_signal_apply_info);
   }
 
   auto
-  EntryRow::signal_entry_activated () -> Glib::SignalProxy<void ()>
+  EntryRow::signal_entry_activated () -> glib::SignalProxy<void ()>
   {
-    return Glib::SignalProxy<void ()> (this,
+    return glib::SignalProxy<void ()> (this,
                                        &EntryRow_signal_entry_activated_info);
   }
 
   auto
-  EntryRow::property_activates_default () -> Glib::PropertyProxy<bool>
+  EntryRow::property_activates_default () -> glib::PropertyProxy<bool>
   {
-    return Glib::PropertyProxy<bool> (this, "activates-default");
+    return glib::PropertyProxy<bool> (this, "activates-default");
   }
 
   auto
-  EntryRow::property_activates_default () const -> Glib::PropertyProxy_ReadOnly<bool>
+  EntryRow::property_activates_default () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "activates-default");
-  }
-
-  static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<Pango::AttrList>::value,
-      "Type Pango::AttrList cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
-
-  auto
-  EntryRow::property_attributes () -> Glib::PropertyProxy<Pango::AttrList>
-  {
-    return Glib::PropertyProxy<Pango::AttrList> (this, "attributes");
-  }
-
-  auto
-  EntryRow::property_attributes () const -> Glib::PropertyProxy_ReadOnly<Pango::AttrList>
-  {
-    return Glib::PropertyProxy_ReadOnly<Pango::AttrList> (this, "attributes");
-  }
-
-  auto
-  EntryRow::property_enable_emoji_completion () -> Glib::PropertyProxy<bool>
-  {
-    return Glib::PropertyProxy<bool> (this, "enable-emoji-completion");
-  }
-
-  auto
-  EntryRow::property_enable_emoji_completion () const -> Glib::PropertyProxy_ReadOnly<bool>
-  {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "enable-emoji-completion");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "activates-default");
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<Gtk::InputHints>::value,
-      "Type Gtk::InputHints cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      glib::Traits::ValueCompatibleWithWrapProperty<pango::AttrList>::value,
+      "Type pango::AttrList cannot be used in _WRAP_PROPERTY. "
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  EntryRow::property_input_hints () -> Glib::PropertyProxy<Gtk::InputHints>
+  EntryRow::property_attributes () -> glib::PropertyProxy<pango::AttrList>
   {
-    return Glib::PropertyProxy<Gtk::InputHints> (this, "input-hints");
+    return glib::PropertyProxy<pango::AttrList> (this, "attributes");
   }
 
   auto
-  EntryRow::property_input_hints () const -> Glib::PropertyProxy_ReadOnly<Gtk::InputHints>
+  EntryRow::property_attributes () const -> glib::PropertyProxy_ReadOnly<pango::AttrList>
   {
-    return Glib::PropertyProxy_ReadOnly<Gtk::InputHints> (this, "input-hints");
+    return glib::PropertyProxy_ReadOnly<pango::AttrList> (this, "attributes");
+  }
+
+  auto
+  EntryRow::property_enable_emoji_completion () -> glib::PropertyProxy<bool>
+  {
+    return glib::PropertyProxy<bool> (this, "enable-emoji-completion");
+  }
+
+  auto
+  EntryRow::property_enable_emoji_completion () const -> glib::PropertyProxy_ReadOnly<bool>
+  {
+    return glib::PropertyProxy_ReadOnly<bool> (this, "enable-emoji-completion");
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<Gtk::InputPurpose>::value,
-      "Type Gtk::InputPurpose cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      glib::Traits::ValueCompatibleWithWrapProperty<gtk::InputHints>::value,
+      "Type gtk::InputHints cannot be used in _WRAP_PROPERTY. "
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  EntryRow::property_input_purpose () -> Glib::PropertyProxy<Gtk::InputPurpose>
+  EntryRow::property_input_hints () -> glib::PropertyProxy<gtk::InputHints>
   {
-    return Glib::PropertyProxy<Gtk::InputPurpose> (this, "input-purpose");
+    return glib::PropertyProxy<gtk::InputHints> (this, "input-hints");
   }
 
   auto
-  EntryRow::property_input_purpose () const -> Glib::PropertyProxy_ReadOnly<Gtk::InputPurpose>
+  EntryRow::property_input_hints () const -> glib::PropertyProxy_ReadOnly<gtk::InputHints>
   {
-    return Glib::PropertyProxy_ReadOnly<Gtk::InputPurpose> (this,
+    return glib::PropertyProxy_ReadOnly<gtk::InputHints> (this, "input-hints");
+  }
+
+  static_assert (
+      glib::Traits::ValueCompatibleWithWrapProperty<gtk::InputPurpose>::value,
+      "Type gtk::InputPurpose cannot be used in _WRAP_PROPERTY. "
+      "There is no suitable template specialization of glib::Value<>.");
+
+  auto
+  EntryRow::property_input_purpose () -> glib::PropertyProxy<gtk::InputPurpose>
+  {
+    return glib::PropertyProxy<gtk::InputPurpose> (this, "input-purpose");
+  }
+
+  auto
+  EntryRow::property_input_purpose () const -> glib::PropertyProxy_ReadOnly<gtk::InputPurpose>
+  {
+    return glib::PropertyProxy_ReadOnly<gtk::InputPurpose> (this,
                                                             "input-purpose");
   }
 
   auto
-  EntryRow::property_show_apply_button () -> Glib::PropertyProxy<bool>
+  EntryRow::property_show_apply_button () -> glib::PropertyProxy<bool>
   {
-    return Glib::PropertyProxy<bool> (this, "show-apply-button");
+    return glib::PropertyProxy<bool> (this, "show-apply-button");
   }
 
   auto
-  EntryRow::property_show_apply_button () const -> Glib::PropertyProxy_ReadOnly<bool>
+  EntryRow::property_show_apply_button () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "show-apply-button");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "show-apply-button");
   }
 
-} // namespace Adw
+} // namespace adw

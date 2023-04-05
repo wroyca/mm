@@ -7,7 +7,7 @@
 
 #include <pango/pangocairo.h>
 
-namespace Pango
+namespace pango
 {
 
   namespace
@@ -15,14 +15,14 @@ namespace Pango
 
     struct LayoutLineTraits
     {
-      typedef Glib::RefPtr<LayoutLine> CppType;
+      typedef glib::RefPtr<LayoutLine> CppType;
       typedef PangoLayoutLine* CType;
       typedef PangoLayoutLine* CTypeNonConst;
 
       static auto
       to_c_type (const CppType& ptr) -> CType
       {
-        return Glib::unwrap (ptr);
+        return glib::unwrap (ptr);
       }
 
       static auto
@@ -34,7 +34,7 @@ namespace Pango
       static auto
       to_cpp_type (const CType ptr) -> CppType
       {
-        return Glib::wrap (ptr, true);
+        return glib::wrap (ptr, true);
       }
 
       static auto
@@ -45,44 +45,44 @@ namespace Pango
     };
 
     using SListHandler_LayoutLine =
-        Glib::SListHandler<Glib::RefPtr<LayoutLine>, LayoutLineTraits>;
+        glib::SListHandler<glib::RefPtr<LayoutLine>, LayoutLineTraits>;
     using SListHandler_ConstLayoutLine =
-        Glib::SListHandler<Glib::RefPtr<const LayoutLine>, LayoutLineTraits>;
+        glib::SListHandler<glib::RefPtr<const LayoutLine>, LayoutLineTraits>;
 
   } // namespace
 
-  Layout::Layout (const Glib::RefPtr<Context>& context)
+  Layout::Layout (const glib::RefPtr<Context>& context)
     : Object (G_OBJECT (pango_layout_new (context->gobj ())))
   {
   }
 
   auto
-  Layout::create (const Cairo::RefPtr<Cairo::Context>& context) -> Glib::RefPtr<Layout>
+  Layout::create (const cairo::RefPtr<cairo::Context>& context) -> glib::RefPtr<Layout>
   {
-    return Glib::wrap (pango_cairo_create_layout (context->cobj ()));
+    return glib::wrap (pango_cairo_create_layout (context->cobj ()));
   }
 
   auto
   Layout::update_from_cairo_context (
-      const Cairo::RefPtr<Cairo::Context>& context) -> void
+      const cairo::RefPtr<cairo::Context>& context) -> void
   {
     pango_cairo_update_layout (context->cobj (), gobj ());
   }
 
   auto
-  Layout::set_text (const Glib::ustring& text) -> void
+  Layout::set_text (const glib::ustring& text) -> void
   {
     pango_layout_set_text (gobj (), text.c_str (), text.bytes ());
   }
 
   auto
-  Layout::set_markup (const Glib::ustring& markup) -> void
+  Layout::set_markup (const glib::ustring& markup) -> void
   {
     return pango_layout_set_markup (gobj (), markup.c_str (), markup.bytes ());
   }
 
   auto
-  Layout::set_markup (const Glib::ustring& markup,
+  Layout::set_markup (const glib::ustring& markup,
                       const gunichar accel_marker,
                       gunichar& accel_char) -> void
   {
@@ -101,10 +101,10 @@ namespace Pango
         const_cast<PangoLayout*> (gobj ()),
         &n_attrs);
 
-    return Glib::ArrayHandler<PangoLogAttr>::array_to_vector (
+    return glib::ArrayHandler<PangoLogAttr>::array_to_vector (
         pAttrs,
         n_attrs,
-        Glib::OWNERSHIP_NONE);
+        glib::OWNERSHIP_NONE);
   }
 
   auto
@@ -183,7 +183,7 @@ namespace Pango
   Layout::get_iter () -> LayoutIter
   {
     auto* cobject = pango_layout_get_iter (gobj ());
-    return Glib::wrap (cobject, false);
+    return glib::wrap (cobject, false);
   }
 
   auto
@@ -193,55 +193,55 @@ namespace Pango
   }
 
   auto
-  Layout::add_to_cairo_context (const Cairo::RefPtr<Cairo::Context>& context) -> void
+  Layout::add_to_cairo_context (const cairo::RefPtr<cairo::Context>& context) -> void
   {
     pango_cairo_layout_path (context->cobj (), gobj ());
   }
 
   auto
-  Layout::show_in_cairo_context (const Cairo::RefPtr<Cairo::Context>& context) -> void
+  Layout::show_in_cairo_context (const cairo::RefPtr<cairo::Context>& context) -> void
   {
     pango_cairo_show_layout (context->cobj (), gobj ());
   }
 
-} // namespace Pango
+} // namespace pango
 
 namespace
 {
 }
 
 auto
-Glib::Value<Pango::Alignment>::value_type () -> GType
+glib::Value<pango::Alignment>::value_type () -> GType
 {
   return pango_alignment_get_type ();
 }
 
 auto
-Glib::Value<Pango::WrapMode>::value_type () -> GType
+glib::Value<pango::WrapMode>::value_type () -> GType
 {
   return pango_wrap_mode_get_type ();
 }
 
 auto
-Glib::Value<Pango::EllipsizeMode>::value_type () -> GType
+glib::Value<pango::EllipsizeMode>::value_type () -> GType
 {
   return pango_ellipsize_mode_get_type ();
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (PangoLayout* object, const bool take_copy) -> RefPtr<Pango::Layout>
+  wrap (PangoLayout* object, const bool take_copy) -> RefPtr<pango::Layout>
   {
-    return Glib::make_refptr_for_instance<Pango::Layout> (
-        dynamic_cast<Pango::Layout*> (
+    return glib::make_refptr_for_instance<pango::Layout> (
+        dynamic_cast<pango::Layout*> (
             wrap_auto ((GObject*) object, take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Pango
+namespace pango
 {
 
   auto
@@ -265,7 +265,7 @@ namespace Pango
   }
 
   auto
-  Layout_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  Layout_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new Layout ((PangoLayout*) object);
   }
@@ -277,7 +277,7 @@ namespace Pango
     return gobj ();
   }
 
-  Layout::Layout (const Glib::ConstructParams& construct_params)
+  Layout::Layout (const glib::ConstructParams& construct_params)
     : Object (construct_params)
   {
   }
@@ -316,21 +316,21 @@ namespace Pango
   }
 
   auto
-  Layout::create (const Glib::RefPtr<Context>& context) -> Glib::RefPtr<Layout>
+  Layout::create (const glib::RefPtr<Context>& context) -> glib::RefPtr<Layout>
   {
-    return Glib::make_refptr_for_instance<Layout> (new Layout (context));
+    return glib::make_refptr_for_instance<Layout> (new Layout (context));
   }
 
   auto
-  Layout::copy () -> Glib::RefPtr<Layout>
+  Layout::copy () -> glib::RefPtr<Layout>
   {
-    return Glib::wrap (pango_layout_copy (gobj ()));
+    return glib::wrap (pango_layout_copy (gobj ()));
   }
 
   auto
-  Layout::get_context () const -> Glib::RefPtr<Context>
+  Layout::get_context () const -> glib::RefPtr<Context>
   {
-    auto retvalue = Glib::wrap (
+    auto retvalue = glib::wrap (
         pango_layout_get_context (const_cast<PangoLayout*> (gobj ())));
     if (retvalue)
       retvalue->reference ();
@@ -351,9 +351,9 @@ namespace Pango
   }
 
   auto
-  Layout::get_text () const -> Glib::ustring
+  Layout::get_text () const -> glib::ustring
   {
-    return Glib::convert_const_gchar_ptr_to_ustring (
+    return glib::convert_const_gchar_ptr_to_ustring (
         pango_layout_get_text (const_cast<PangoLayout*> (gobj ())));
   }
 
@@ -657,18 +657,18 @@ namespace Pango
   }
 
   auto
-  Layout::get_line (const int line) -> Glib::RefPtr<LayoutLine>
+  Layout::get_line (const int line) -> glib::RefPtr<LayoutLine>
   {
-    auto retvalue = Glib::wrap (pango_layout_get_line (gobj (), line));
+    auto retvalue = glib::wrap (pango_layout_get_line (gobj (), line));
     if (retvalue)
       retvalue->reference ();
     return retvalue;
   }
 
   auto
-  Layout::get_line (const int line) const -> Glib::RefPtr<const LayoutLine>
+  Layout::get_line (const int line) const -> glib::RefPtr<const LayoutLine>
   {
-    auto retvalue = Glib::wrap (
+    auto retvalue = glib::wrap (
         pango_layout_get_line_readonly (const_cast<PangoLayout*> (gobj ()),
                                         line));
     if (retvalue)
@@ -677,9 +677,9 @@ namespace Pango
   }
 
   auto
-  Layout::get_const_line (const int line) const -> Glib::RefPtr<const LayoutLine>
+  Layout::get_const_line (const int line) const -> glib::RefPtr<const LayoutLine>
   {
-    auto retvalue = Glib::wrap (
+    auto retvalue = glib::wrap (
         pango_layout_get_line_readonly (const_cast<PangoLayout*> (gobj ()),
                                         line));
     if (retvalue)
@@ -688,27 +688,27 @@ namespace Pango
   }
 
   auto
-  Layout::get_lines () -> std::vector<Glib::RefPtr<LayoutLine>>
+  Layout::get_lines () -> std::vector<glib::RefPtr<LayoutLine>>
   {
     return SListHandler_LayoutLine::slist_to_vector (
         pango_layout_get_lines (gobj ()),
-        Glib::OWNERSHIP_NONE);
+        glib::OWNERSHIP_NONE);
   }
 
   auto
-  Layout::get_lines () const -> std::vector<Glib::RefPtr<const LayoutLine>>
+  Layout::get_lines () const -> std::vector<glib::RefPtr<const LayoutLine>>
   {
     return SListHandler_ConstLayoutLine::slist_to_vector (
         pango_layout_get_lines_readonly (const_cast<PangoLayout*> (gobj ())),
-        Glib::OWNERSHIP_NONE);
+        glib::OWNERSHIP_NONE);
   }
 
   auto
-  Layout::get_const_lines () const -> std::vector<Glib::RefPtr<const LayoutLine>>
+  Layout::get_const_lines () const -> std::vector<glib::RefPtr<const LayoutLine>>
   {
     return SListHandler_ConstLayoutLine::slist_to_vector (
         pango_layout_get_lines_readonly (const_cast<PangoLayout*> (gobj ())),
-        Glib::OWNERSHIP_NONE);
+        glib::OWNERSHIP_NONE);
   }
 
-} // namespace Pango
+} // namespace pango

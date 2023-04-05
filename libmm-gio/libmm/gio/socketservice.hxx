@@ -14,16 +14,16 @@ using GSocketServiceClass = struct _GSocketServiceClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gio
+namespace gio
 {
   class LIBMM_GIO_SYMEXPORT SocketService_Class;
 }
 #endif
 
-namespace Gio
+namespace gio
 {
 
-  class LIBMM_GIO_SYMEXPORT SocketService : public Gio::SocketListener
+  class LIBMM_GIO_SYMEXPORT SocketService : public gio::SocketListener
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -42,7 +42,7 @@ namespace Gio
     static CppClassType socketservice_class_;
 
   protected:
-    explicit SocketService (const Glib::ConstructParams& construct_params);
+    explicit SocketService (const glib::ConstructParams& construct_params);
     explicit SocketService (GSocketService* castitem);
 
 #endif
@@ -84,7 +84,7 @@ namespace Gio
 
   public:
     static auto
-    create () -> Glib::RefPtr<SocketService>;
+    create () -> glib::RefPtr<SocketService>;
 
     auto
     start () -> void;
@@ -97,31 +97,31 @@ namespace Gio
 
     auto
     signal_incoming ()
-        -> Glib::SignalProxy<bool (const Glib::RefPtr<SocketConnection>&,
-                                   const Glib::RefPtr<Glib::Object>&)>;
+        -> glib::SignalProxy<bool (const glib::RefPtr<SocketConnection>&,
+                                   const glib::RefPtr<glib::Object>&)>;
 
     auto
-    property_active () -> Glib::PropertyProxy<bool>;
+    property_active () -> glib::PropertyProxy<bool>;
 
     auto
-    property_active () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_active () const -> glib::PropertyProxy_ReadOnly<bool>;
 
   public:
   public:
   protected:
     virtual auto
-    on_incoming (const Glib::RefPtr<SocketConnection>& connection,
-                 const Glib::RefPtr<Glib::Object>& source_object) -> bool;
+    on_incoming (const glib::RefPtr<SocketConnection>& connection,
+                 const glib::RefPtr<glib::Object>& source_object) -> bool;
   };
 
-} // namespace Gio
+} // namespace gio
 
-namespace Glib
+namespace glib
 {
 
   LIBMM_GIO_SYMEXPORT
   auto
-  wrap (GSocketService* object, bool take_copy = false) -> Glib::RefPtr<Gio::SocketService>;
-} // namespace Glib
+  wrap (GSocketService* object, bool take_copy = false) -> glib::RefPtr<gio::SocketService>;
+} // namespace glib
 
 #endif

@@ -14,16 +14,16 @@
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT Constraint_Class;
 }
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
-  class LIBMM_GTK_SYMEXPORT Constraint : public Glib::Object
+  class LIBMM_GTK_SYMEXPORT Constraint : public glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -42,7 +42,7 @@ namespace Gtk
     static CppClassType constraint_class_;
 
   protected:
-    explicit Constraint (const Glib::ConstructParams& construct_params);
+    explicit Constraint (const glib::ConstructParams& construct_params);
     explicit Constraint (GtkConstraint* castitem);
 
 #endif
@@ -121,16 +121,16 @@ namespace Gtk
     using Strength = Strength_Wrapper::Strength;
 
   protected:
-    explicit Constraint (const Glib::RefPtr<ConstraintTarget>& target,
+    explicit Constraint (const glib::RefPtr<ConstraintTarget>& target,
                          Attribute target_attribute,
                          Relation relation,
-                         const Glib::RefPtr<ConstraintTarget>& source,
+                         const glib::RefPtr<ConstraintTarget>& source,
                          Attribute source_attribute,
                          double multiplier,
                          double constant,
                          int strength);
 
-    explicit Constraint (const Glib::RefPtr<ConstraintTarget>& target,
+    explicit Constraint (const glib::RefPtr<ConstraintTarget>& target,
                          Attribute target_attribute,
                          Relation relation,
                          double constant,
@@ -138,36 +138,36 @@ namespace Gtk
 
   public:
     static auto
-    create (const Glib::RefPtr<ConstraintTarget>& target,
+    create (const glib::RefPtr<ConstraintTarget>& target,
             Attribute target_attribute,
             Relation relation,
-            const Glib::RefPtr<ConstraintTarget>& source,
+            const glib::RefPtr<ConstraintTarget>& source,
             Attribute source_attribute,
             double multiplier,
             double constant,
-            int strength) -> Glib::RefPtr<Constraint>;
+            int strength) -> glib::RefPtr<Constraint>;
 
     static auto
-    create (const Glib::RefPtr<ConstraintTarget>& target,
+    create (const glib::RefPtr<ConstraintTarget>& target,
             Attribute target_attribute,
             Relation relation,
             double constant,
-            int strength) -> Glib::RefPtr<Constraint>;
+            int strength) -> glib::RefPtr<Constraint>;
 
     auto
-    get_target () -> Glib::RefPtr<ConstraintTarget>;
+    get_target () -> glib::RefPtr<ConstraintTarget>;
 
     auto
-    get_target () const -> Glib::RefPtr<const ConstraintTarget>;
+    get_target () const -> glib::RefPtr<const ConstraintTarget>;
 
     auto
     get_target_attribute () const -> Attribute;
 
     auto
-    get_source () -> Glib::RefPtr<ConstraintTarget>;
+    get_source () -> glib::RefPtr<ConstraintTarget>;
 
     auto
-    get_source () const -> Glib::RefPtr<const ConstraintTarget>;
+    get_source () const -> glib::RefPtr<const ConstraintTarget>;
 
     auto
     get_source_attribute () const -> Attribute;
@@ -195,91 +195,91 @@ namespace Gtk
 
     auto
     property_target () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<ConstraintTarget>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<ConstraintTarget>>;
 
     auto
     property_target_attribute () const
-        -> Glib::PropertyProxy_ReadOnly<Attribute>;
+        -> glib::PropertyProxy_ReadOnly<Attribute>;
 
     auto
-    property_relation () const -> Glib::PropertyProxy_ReadOnly<Relation>;
+    property_relation () const -> glib::PropertyProxy_ReadOnly<Relation>;
 
     auto
     property_source () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<ConstraintTarget>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<ConstraintTarget>>;
 
     auto
     property_source_attribute () const
-        -> Glib::PropertyProxy_ReadOnly<Attribute>;
+        -> glib::PropertyProxy_ReadOnly<Attribute>;
 
     auto
-    property_multiplier () const -> Glib::PropertyProxy_ReadOnly<double>;
+    property_multiplier () const -> glib::PropertyProxy_ReadOnly<double>;
 
     auto
-    property_constant () const -> Glib::PropertyProxy_ReadOnly<double>;
+    property_constant () const -> glib::PropertyProxy_ReadOnly<double>;
 
     auto
-    property_strength () const -> Glib::PropertyProxy_ReadOnly<int>;
+    property_strength () const -> glib::PropertyProxy_ReadOnly<int>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_GTK_SYMEXPORT Value<Gtk::Constraint::Attribute>
-    : public Glib::Value_Enum<Gtk::Constraint::Attribute>
+  class LIBMM_GTK_SYMEXPORT Value<gtk::Constraint::Attribute>
+    : public glib::Value_Enum<gtk::Constraint::Attribute>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_GTK_SYMEXPORT Value<Gtk::Constraint::Relation>
-    : public Glib::Value_Enum<Gtk::Constraint::Relation>
+  class LIBMM_GTK_SYMEXPORT Value<gtk::Constraint::Relation>
+    : public glib::Value_Enum<gtk::Constraint::Relation>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_GTK_SYMEXPORT Value<Gtk::Constraint::Strength>
-    : public Glib::Value_Enum<Gtk::Constraint::Strength>
+  class LIBMM_GTK_SYMEXPORT Value<gtk::Constraint::Strength>
+    : public glib::Value_Enum<gtk::Constraint::Strength>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkConstraint* object, bool take_copy = false) -> Glib::RefPtr<Gtk::Constraint>;
-} // namespace Glib
+  wrap (GtkConstraint* object, bool take_copy = false) -> glib::RefPtr<gtk::Constraint>;
+} // namespace glib
 
 #endif

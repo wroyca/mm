@@ -86,7 +86,7 @@ namespace
 
   struct SourceCallbackData
   {
-    explicit inline SourceCallbackData (Glib::Source* wrapper_);
+    explicit inline SourceCallbackData (glib::Source* wrapper_);
 
     auto
     set_node (SourceConnectionNode* node_) -> void;
@@ -94,11 +94,11 @@ namespace
     static auto
     destroy_notify_callback (void* data) -> void;
 
-    Glib::Source* wrapper;
+    glib::Source* wrapper;
     SourceConnectionNode* node;
   };
 
-  inline SourceCallbackData::SourceCallbackData (Glib::Source* wrapper_)
+  inline SourceCallbackData::SourceCallbackData (glib::Source* wrapper_)
     : wrapper (wrapper_),
       node (nullptr)
   {
@@ -122,7 +122,7 @@ namespace
     if (self->node)
       SourceConnectionNode::destroy_notify_callback (self->node);
 
-    Glib::Source::destroy_notify_callback2 (self->wrapper);
+    glib::Source::destroy_notify_callback2 (self->wrapper);
 
     delete self;
   }
@@ -165,7 +165,7 @@ namespace
     }
     catch (...)
     {
-      Glib::exception_handlers_invoke ();
+      glib::exception_handlers_invoke ();
     }
     return 0;
   }
@@ -182,7 +182,7 @@ namespace
     }
     catch (...)
     {
-      Glib::exception_handlers_invoke ();
+      glib::exception_handlers_invoke ();
     }
     return 0;
   }
@@ -204,12 +204,12 @@ namespace
 
     try
     {
-      return (*static_cast<sigc::slot<bool (Glib::IOCondition)>*> (
-          callback_data->node->get_slot ())) ((Glib::IOCondition) condition);
+      return (*static_cast<sigc::slot<bool (glib::IOCondition)>*> (
+          callback_data->node->get_slot ())) ((glib::IOCondition) condition);
     }
     catch (...)
     {
-      Glib::exception_handlers_invoke ();
+      glib::exception_handlers_invoke ();
     }
     return 0;
   }
@@ -229,7 +229,7 @@ namespace
     }
     catch (...)
     {
-      Glib::exception_handlers_invoke ();
+      glib::exception_handlers_invoke ();
     }
     return 0;
   }
@@ -266,7 +266,7 @@ namespace
     }
     catch (...)
     {
-      Glib::exception_handlers_invoke ();
+      glib::exception_handlers_invoke ();
     }
     return 0;
   }
@@ -281,7 +281,7 @@ namespace
 
 } // namespace
 
-namespace Glib
+namespace glib
 {
 
   PollFD::PollFD ()
@@ -492,7 +492,7 @@ namespace Glib
 
     g_source_set_callback (
         source,
-        Glib::function_pointer_cast<GSourceFunc> (&glibmm_child_watch_callback),
+        glib::function_pointer_cast<GSourceFunc> (&glibmm_child_watch_callback),
         conn_node,
         &glibmm_source_destroy_notify_callback);
 
@@ -512,14 +512,14 @@ namespace Glib
   auto
   MainContext::create () -> RefPtr<MainContext>
   {
-    return Glib::make_refptr_for_instance<MainContext> (
+    return glib::make_refptr_for_instance<MainContext> (
         reinterpret_cast<MainContext*> (g_main_context_new ()));
   }
 
   auto
   MainContext::create (MainContextFlags flags) -> RefPtr<MainContext>
   {
-    return Glib::make_refptr_for_instance<MainContext> (
+    return glib::make_refptr_for_instance<MainContext> (
         reinterpret_cast<MainContext*> (g_main_context_new_with_flags (
             static_cast<GMainContextFlags> (flags))));
   }
@@ -733,21 +733,21 @@ namespace Glib
     if (take_copy && gobject)
       g_main_context_ref (gobject);
 
-    return Glib::make_refptr_for_instance<MainContext> (
+    return glib::make_refptr_for_instance<MainContext> (
         reinterpret_cast<MainContext*> (gobject));
   }
 
   auto
   MainLoop::create (const bool is_running) -> RefPtr<MainLoop>
   {
-    return Glib::make_refptr_for_instance<MainLoop> (
+    return glib::make_refptr_for_instance<MainLoop> (
         reinterpret_cast<MainLoop*> (g_main_loop_new (nullptr, is_running)));
   }
 
   auto
   MainLoop::create (const RefPtr<MainContext>& context, const bool is_running) -> RefPtr<MainLoop>
   {
-    return Glib::make_refptr_for_instance<MainLoop> (
+    return glib::make_refptr_for_instance<MainLoop> (
         reinterpret_cast<MainLoop*> (
             g_main_loop_new (unwrap (context), is_running)));
   }
@@ -821,7 +821,7 @@ namespace Glib
     if (take_copy && gobject)
       g_main_loop_ref (gobject);
 
-    return Glib::make_refptr_for_instance<MainLoop> (
+    return glib::make_refptr_for_instance<MainLoop> (
         reinterpret_cast<MainLoop*> (gobject));
   }
 
@@ -1111,7 +1111,7 @@ namespace Glib
   auto
   TimeoutSource::create (const unsigned int interval) -> RefPtr<TimeoutSource>
   {
-    return Glib::make_refptr_for_instance<TimeoutSource> (
+    return glib::make_refptr_for_instance<TimeoutSource> (
         new TimeoutSource (interval));
   }
 
@@ -1172,7 +1172,7 @@ namespace Glib
   auto
   IdleSource::create () -> RefPtr<IdleSource>
   {
-    return Glib::make_refptr_for_instance<IdleSource> (new IdleSource ());
+    return glib::make_refptr_for_instance<IdleSource> (new IdleSource ());
   }
 
   auto
@@ -1210,7 +1210,7 @@ namespace Glib
   auto
   IOSource::create (const PollFD::fd_t fd, const IOCondition condition) -> RefPtr<IOSource>
   {
-    return Glib::make_refptr_for_instance<IOSource> (
+    return glib::make_refptr_for_instance<IOSource> (
         new IOSource (fd, condition));
   }
 
@@ -1218,14 +1218,14 @@ namespace Glib
   IOSource::create (const RefPtr<IOChannel>& channel,
                     const IOCondition condition) -> RefPtr<IOSource>
   {
-    return Glib::make_refptr_for_instance<IOSource> (
+    return glib::make_refptr_for_instance<IOSource> (
         new IOSource (channel, condition));
   }
 
   auto
   IOSource::create (GIOChannel* channel, const IOCondition condition) -> RefPtr<IOSource>
   {
-    return Glib::make_refptr_for_instance<IOSource> (
+    return glib::make_refptr_for_instance<IOSource> (
         new IOSource (channel, condition));
   }
 
@@ -1244,14 +1244,14 @@ namespace Glib
   IOSource::IOSource (const RefPtr<IOChannel>& channel, IOCondition condition)
     : Source (
           g_io_create_watch (channel->gobj (), (GIOCondition) condition),
-          Glib::function_pointer_cast<GSourceFunc> (&glibmm_iosource_callback))
+          glib::function_pointer_cast<GSourceFunc> (&glibmm_iosource_callback))
   {
   }
 
   IOSource::IOSource (GIOChannel* channel, IOCondition condition)
     : Source (
           g_io_create_watch (channel, (GIOCondition) condition),
-          Glib::function_pointer_cast<GSourceFunc> (&glibmm_iosource_callback))
+          glib::function_pointer_cast<GSourceFunc> (&glibmm_iosource_callback))
   {
   }
 
@@ -1283,4 +1283,4 @@ namespace Glib
         poll_fd_.get_revents ());
   }
 
-} // namespace Glib
+} // namespace glib

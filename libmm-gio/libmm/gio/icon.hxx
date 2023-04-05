@@ -21,16 +21,16 @@ using GIconClass = struct _GIconClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gio
+namespace gio
 {
   class LIBMM_GIO_SYMEXPORT Icon_Class;
 }
 #endif
 
-namespace Gio
+namespace gio
 {
 
-  class LIBMM_GIO_SYMEXPORT Icon : public Glib::Interface
+  class LIBMM_GIO_SYMEXPORT Icon : public glib::Interface
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -54,7 +54,7 @@ namespace Gio
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
-    explicit Icon (const Glib::Interface_Class& interface_class);
+    explicit Icon (const glib::Interface_Class& interface_class);
 
   public:
     explicit Icon (GIcon* castitem);
@@ -95,7 +95,7 @@ namespace Gio
   private:
   public:
     static auto
-    create (const std::string& str) -> Glib::RefPtr<Icon>;
+    create (const std::string& str) -> glib::RefPtr<Icon>;
 
     auto
     hash () const -> guint;
@@ -104,13 +104,13 @@ namespace Gio
     to_string () const -> std::string;
 
     auto
-    equal (const Glib::RefPtr<Icon>& other) const -> bool;
+    equal (const glib::RefPtr<Icon>& other) const -> bool;
 
     auto
-    serialize () const -> Glib::VariantBase;
+    serialize () const -> glib::VariantBase;
 
     static auto
-    deserialize (const Glib::VariantBase& value) -> Glib::RefPtr<Icon>;
+    deserialize (const glib::VariantBase& value) -> glib::RefPtr<Icon>;
 
   protected:
   public:
@@ -118,15 +118,15 @@ namespace Gio
   protected:
   };
 
-} // namespace Gio
+} // namespace gio
 
-namespace Glib
+namespace glib
 {
 
   LIBMM_GIO_SYMEXPORT
   auto
-  wrap (GIcon* object, bool take_copy = false) -> Glib::RefPtr<Gio::Icon>;
+  wrap (GIcon* object, bool take_copy = false) -> glib::RefPtr<gio::Icon>;
 
-} // namespace Glib
+} // namespace glib
 
 #endif

@@ -13,13 +13,13 @@
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT GridLayoutChild_Class;
 }
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
   class LIBMM_GTK_SYMEXPORT GridLayoutChild : public LayoutChild
@@ -41,7 +41,7 @@ namespace Gtk
     static CppClassType gridlayoutchild_class_;
 
   protected:
-    explicit GridLayoutChild (const Glib::ConstructParams& construct_params);
+    explicit GridLayoutChild (const glib::ConstructParams& construct_params);
     explicit GridLayoutChild (GtkGridLayoutChild* castitem);
 
 #endif
@@ -107,40 +107,40 @@ namespace Gtk
     get_row_span () const -> int;
 
     auto
-    property_column () -> Glib::PropertyProxy<int>;
+    property_column () -> glib::PropertyProxy<int>;
 
     auto
-    property_column () const -> Glib::PropertyProxy_ReadOnly<int>;
+    property_column () const -> glib::PropertyProxy_ReadOnly<int>;
 
     auto
-    property_row () -> Glib::PropertyProxy<int>;
+    property_row () -> glib::PropertyProxy<int>;
 
     auto
-    property_row () const -> Glib::PropertyProxy_ReadOnly<int>;
+    property_row () const -> glib::PropertyProxy_ReadOnly<int>;
 
     auto
-    property_column_span () -> Glib::PropertyProxy<int>;
+    property_column_span () -> glib::PropertyProxy<int>;
 
     auto
-    property_column_span () const -> Glib::PropertyProxy_ReadOnly<int>;
+    property_column_span () const -> glib::PropertyProxy_ReadOnly<int>;
 
     auto
-    property_row_span () -> Glib::PropertyProxy<int>;
+    property_row_span () -> glib::PropertyProxy<int>;
 
     auto
-    property_row_span () const -> Glib::PropertyProxy_ReadOnly<int>;
+    property_row_span () const -> glib::PropertyProxy_ReadOnly<int>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkGridLayoutChild* object, bool take_copy = false) -> Glib::RefPtr<Gtk::GridLayoutChild>;
-} // namespace Glib
+  wrap (GtkGridLayoutChild* object, bool take_copy = false) -> glib::RefPtr<gtk::GridLayoutChild>;
+} // namespace glib
 
 #endif

@@ -24,16 +24,16 @@ using GtkCellEditableClass = struct _GtkCellEditableClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT CellEditable_Class;
 }
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
-  class LIBMM_GTK_SYMEXPORT CellEditable : public Glib::Interface
+  class LIBMM_GTK_SYMEXPORT CellEditable : public glib::Interface
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -57,7 +57,7 @@ namespace Gtk
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
-    explicit CellEditable (const Glib::Interface_Class& interface_class);
+    explicit CellEditable (const glib::Interface_Class& interface_class);
 
   public:
     explicit CellEditable (GtkCellEditable* castitem);
@@ -100,7 +100,7 @@ namespace Gtk
 #ifndef GTKMM_DISABLE_DEPRECATED
 
     auto
-    start_editing (const Glib::RefPtr<const Gdk::Event>& event) -> void;
+    start_editing (const glib::RefPtr<const gdk::Event>& event) -> void;
 #endif
 
 #ifndef GTKMM_DISABLE_DEPRECATED
@@ -118,28 +118,28 @@ namespace Gtk
 #ifndef GTKMM_DISABLE_DEPRECATED
 
     auto
-    signal_editing_done () -> Glib::SignalProxy<void ()>;
+    signal_editing_done () -> glib::SignalProxy<void ()>;
 #endif
 
 #ifndef GTKMM_DISABLE_DEPRECATED
 
     auto
-    signal_remove_widget () -> Glib::SignalProxy<void ()>;
+    signal_remove_widget () -> glib::SignalProxy<void ()>;
 #endif
 
 #ifndef GTKMM_DISABLE_DEPRECATED
 
     auto
-    property_editing_canceled () -> Glib::PropertyProxy<bool>;
+    property_editing_canceled () -> glib::PropertyProxy<bool>;
 
     auto
-    property_editing_canceled () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_editing_canceled () const -> glib::PropertyProxy_ReadOnly<bool>;
 
 #endif
 
   protected:
     virtual auto
-    start_editing_vfunc (const Glib::RefPtr<const Gdk::Event>& event) -> void;
+    start_editing_vfunc (const glib::RefPtr<const gdk::Event>& event) -> void;
 
   public:
   public:
@@ -151,13 +151,13 @@ namespace Gtk
     on_remove_widget () -> void;
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkCellEditable* object, bool take_copy = false) -> Glib::RefPtr<Gtk::CellEditable>;
+  wrap (GtkCellEditable* object, bool take_copy = false) -> glib::RefPtr<gtk::CellEditable>;
 
-} // namespace Glib
+} // namespace glib
 
 #endif

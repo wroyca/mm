@@ -20,13 +20,13 @@ using GtkCellRendererTextClass = struct _GtkCellRendererTextClass;
   #endif
 
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT CellRendererText_Class;
 }
   #endif
 
-namespace Gtk
+namespace gtk
 {
 
   class LIBMM_GTK_SYMEXPORT CellRendererText : public CellRenderer
@@ -56,7 +56,7 @@ namespace Gtk
     static CppClassType cellrenderertext_class_;
 
   protected:
-    explicit CellRendererText (const Glib::ConstructParams& construct_params);
+    explicit CellRendererText (const glib::ConstructParams& construct_params);
     explicit CellRendererText (GtkCellRendererText* castitem);
 
   #endif
@@ -92,307 +92,307 @@ namespace Gtk
 
     auto
     signal_edited ()
-        -> Glib::SignalProxy<void (const Glib::ustring&, const Glib::ustring&)>;
+        -> glib::SignalProxy<void (const glib::ustring&, const glib::ustring&)>;
 
     auto
-    property_text () -> Glib::PropertyProxy<Glib::ustring>;
+    property_text () -> glib::PropertyProxy<glib::ustring>;
 
     auto
-    property_text () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+    property_text () const -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
     auto
-    property_markup () -> Glib::PropertyProxy_WriteOnly<Glib::ustring>;
+    property_markup () -> glib::PropertyProxy_WriteOnly<glib::ustring>;
 
     auto
-    property_attributes () -> Glib::PropertyProxy<Pango::AttrList>;
+    property_attributes () -> glib::PropertyProxy<pango::AttrList>;
 
     auto
     property_attributes () const
-        -> Glib::PropertyProxy_ReadOnly<Pango::AttrList>;
+        -> glib::PropertyProxy_ReadOnly<pango::AttrList>;
 
     auto
-    property_background () -> Glib::PropertyProxy_WriteOnly<Glib::ustring>;
+    property_background () -> glib::PropertyProxy_WriteOnly<glib::ustring>;
 
     auto
-    property_foreground () -> Glib::PropertyProxy_WriteOnly<Glib::ustring>;
+    property_foreground () -> glib::PropertyProxy_WriteOnly<glib::ustring>;
 
     auto
-    property_background_rgba () -> Glib::PropertyProxy<Gdk::RGBA>;
+    property_background_rgba () -> glib::PropertyProxy<gdk::RGBA>;
 
     auto
     property_background_rgba () const
-        -> Glib::PropertyProxy_ReadOnly<Gdk::RGBA>;
+        -> glib::PropertyProxy_ReadOnly<gdk::RGBA>;
 
     auto
-    property_foreground_rgba () -> Glib::PropertyProxy<Gdk::RGBA>;
+    property_foreground_rgba () -> glib::PropertyProxy<gdk::RGBA>;
 
     auto
     property_foreground_rgba () const
-        -> Glib::PropertyProxy_ReadOnly<Gdk::RGBA>;
+        -> glib::PropertyProxy_ReadOnly<gdk::RGBA>;
 
     auto
-    property_font () -> Glib::PropertyProxy<Glib::ustring>;
+    property_font () -> glib::PropertyProxy<glib::ustring>;
 
     auto
-    property_font () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+    property_font () const -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
     auto
-    property_font_desc () -> Glib::PropertyProxy<Pango::FontDescription>;
+    property_font_desc () -> glib::PropertyProxy<pango::FontDescription>;
 
     auto
     property_font_desc () const
-        -> Glib::PropertyProxy_ReadOnly<Pango::FontDescription>;
+        -> glib::PropertyProxy_ReadOnly<pango::FontDescription>;
 
     auto
-    property_family () -> Glib::PropertyProxy<Glib::ustring>;
+    property_family () -> glib::PropertyProxy<glib::ustring>;
 
     auto
-    property_family () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+    property_family () const -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
     auto
-    property_style () -> Glib::PropertyProxy<Pango::Style>;
+    property_style () -> glib::PropertyProxy<pango::Style>;
 
     auto
-    property_style () const -> Glib::PropertyProxy_ReadOnly<Pango::Style>;
+    property_style () const -> glib::PropertyProxy_ReadOnly<pango::Style>;
 
     auto
-    property_variant () -> Glib::PropertyProxy<Pango::Variant>;
+    property_variant () -> glib::PropertyProxy<pango::Variant>;
 
     auto
-    property_variant () const -> Glib::PropertyProxy_ReadOnly<Pango::Variant>;
+    property_variant () const -> glib::PropertyProxy_ReadOnly<pango::Variant>;
 
     auto
-    property_weight () -> Glib::PropertyProxy<int>;
+    property_weight () -> glib::PropertyProxy<int>;
 
     auto
-    property_weight () const -> Glib::PropertyProxy_ReadOnly<int>;
+    property_weight () const -> glib::PropertyProxy_ReadOnly<int>;
 
     auto
-    property_stretch () -> Glib::PropertyProxy<Pango::Stretch>;
+    property_stretch () -> glib::PropertyProxy<pango::Stretch>;
 
     auto
-    property_stretch () const -> Glib::PropertyProxy_ReadOnly<Pango::Stretch>;
+    property_stretch () const -> glib::PropertyProxy_ReadOnly<pango::Stretch>;
 
     auto
-    property_size () -> Glib::PropertyProxy<int>;
+    property_size () -> glib::PropertyProxy<int>;
 
     auto
-    property_size () const -> Glib::PropertyProxy_ReadOnly<int>;
+    property_size () const -> glib::PropertyProxy_ReadOnly<int>;
 
     auto
-    property_size_points () -> Glib::PropertyProxy<double>;
+    property_size_points () -> glib::PropertyProxy<double>;
 
     auto
-    property_size_points () const -> Glib::PropertyProxy_ReadOnly<double>;
+    property_size_points () const -> glib::PropertyProxy_ReadOnly<double>;
 
     auto
-    property_scale () -> Glib::PropertyProxy<double>;
+    property_scale () -> glib::PropertyProxy<double>;
 
     auto
-    property_scale () const -> Glib::PropertyProxy_ReadOnly<double>;
+    property_scale () const -> glib::PropertyProxy_ReadOnly<double>;
 
     auto
-    property_editable () -> Glib::PropertyProxy<bool>;
+    property_editable () -> glib::PropertyProxy<bool>;
 
     auto
-    property_editable () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_editable () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_strikethrough () -> Glib::PropertyProxy<bool>;
+    property_strikethrough () -> glib::PropertyProxy<bool>;
 
     auto
-    property_strikethrough () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_strikethrough () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_underline () -> Glib::PropertyProxy<Pango::Underline>;
+    property_underline () -> glib::PropertyProxy<pango::Underline>;
 
     auto
     property_underline () const
-        -> Glib::PropertyProxy_ReadOnly<Pango::Underline>;
+        -> glib::PropertyProxy_ReadOnly<pango::Underline>;
 
     auto
-    property_rise () -> Glib::PropertyProxy<int>;
+    property_rise () -> glib::PropertyProxy<int>;
 
     auto
-    property_rise () const -> Glib::PropertyProxy_ReadOnly<int>;
+    property_rise () const -> glib::PropertyProxy_ReadOnly<int>;
 
     auto
-    property_language () -> Glib::PropertyProxy<Glib::ustring>;
+    property_language () -> glib::PropertyProxy<glib::ustring>;
 
     auto
-    property_language () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+    property_language () const -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
     auto
-    property_ellipsize () -> Glib::PropertyProxy<Pango::EllipsizeMode>;
+    property_ellipsize () -> glib::PropertyProxy<pango::EllipsizeMode>;
 
     auto
     property_ellipsize () const
-        -> Glib::PropertyProxy_ReadOnly<Pango::EllipsizeMode>;
+        -> glib::PropertyProxy_ReadOnly<pango::EllipsizeMode>;
 
     auto
-    property_width_chars () -> Glib::PropertyProxy<int>;
+    property_width_chars () -> glib::PropertyProxy<int>;
 
     auto
-    property_width_chars () const -> Glib::PropertyProxy_ReadOnly<int>;
+    property_width_chars () const -> glib::PropertyProxy_ReadOnly<int>;
 
     auto
-    property_max_width_chars () -> Glib::PropertyProxy<int>;
+    property_max_width_chars () -> glib::PropertyProxy<int>;
 
     auto
-    property_max_width_chars () const -> Glib::PropertyProxy_ReadOnly<int>;
+    property_max_width_chars () const -> glib::PropertyProxy_ReadOnly<int>;
 
     auto
-    property_wrap_mode () -> Glib::PropertyProxy<Pango::WrapMode>;
+    property_wrap_mode () -> glib::PropertyProxy<pango::WrapMode>;
 
     auto
     property_wrap_mode () const
-        -> Glib::PropertyProxy_ReadOnly<Pango::WrapMode>;
+        -> glib::PropertyProxy_ReadOnly<pango::WrapMode>;
 
     auto
-    property_wrap_width () -> Glib::PropertyProxy<int>;
+    property_wrap_width () -> glib::PropertyProxy<int>;
 
     auto
-    property_wrap_width () const -> Glib::PropertyProxy_ReadOnly<int>;
+    property_wrap_width () const -> glib::PropertyProxy_ReadOnly<int>;
 
     auto
-    property_alignment () -> Glib::PropertyProxy<Pango::Alignment>;
+    property_alignment () -> glib::PropertyProxy<pango::Alignment>;
 
     auto
     property_alignment () const
-        -> Glib::PropertyProxy_ReadOnly<Pango::Alignment>;
+        -> glib::PropertyProxy_ReadOnly<pango::Alignment>;
 
     auto
-    property_background_set () -> Glib::PropertyProxy<bool>;
+    property_background_set () -> glib::PropertyProxy<bool>;
 
     auto
-    property_background_set () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_background_set () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_foreground_set () -> Glib::PropertyProxy<bool>;
+    property_foreground_set () -> glib::PropertyProxy<bool>;
 
     auto
-    property_foreground_set () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_foreground_set () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_family_set () -> Glib::PropertyProxy<bool>;
+    property_family_set () -> glib::PropertyProxy<bool>;
 
     auto
-    property_family_set () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_family_set () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_style_set () -> Glib::PropertyProxy<bool>;
+    property_style_set () -> glib::PropertyProxy<bool>;
 
     auto
-    property_style_set () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_style_set () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_variant_set () -> Glib::PropertyProxy<bool>;
+    property_variant_set () -> glib::PropertyProxy<bool>;
 
     auto
-    property_variant_set () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_variant_set () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_weight_set () -> Glib::PropertyProxy<bool>;
+    property_weight_set () -> glib::PropertyProxy<bool>;
 
     auto
-    property_weight_set () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_weight_set () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_stretch_set () -> Glib::PropertyProxy<bool>;
+    property_stretch_set () -> glib::PropertyProxy<bool>;
 
     auto
-    property_stretch_set () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_stretch_set () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_size_set () -> Glib::PropertyProxy<bool>;
+    property_size_set () -> glib::PropertyProxy<bool>;
 
     auto
-    property_size_set () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_size_set () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_scale_set () -> Glib::PropertyProxy<bool>;
+    property_scale_set () -> glib::PropertyProxy<bool>;
 
     auto
-    property_scale_set () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_scale_set () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_editable_set () -> Glib::PropertyProxy<bool>;
+    property_editable_set () -> glib::PropertyProxy<bool>;
 
     auto
-    property_editable_set () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_editable_set () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_strikethrough_set () -> Glib::PropertyProxy<bool>;
+    property_strikethrough_set () -> glib::PropertyProxy<bool>;
 
     auto
-    property_strikethrough_set () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_strikethrough_set () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_underline_set () -> Glib::PropertyProxy<bool>;
+    property_underline_set () -> glib::PropertyProxy<bool>;
 
     auto
-    property_underline_set () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_underline_set () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_rise_set () -> Glib::PropertyProxy<bool>;
+    property_rise_set () -> glib::PropertyProxy<bool>;
 
     auto
-    property_rise_set () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_rise_set () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_language_set () -> Glib::PropertyProxy<bool>;
+    property_language_set () -> glib::PropertyProxy<bool>;
 
     auto
-    property_language_set () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_language_set () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_ellipsize_set () -> Glib::PropertyProxy<bool>;
+    property_ellipsize_set () -> glib::PropertyProxy<bool>;
 
     auto
-    property_ellipsize_set () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_ellipsize_set () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_single_paragraph_mode () -> Glib::PropertyProxy<bool>;
+    property_single_paragraph_mode () -> glib::PropertyProxy<bool>;
 
     auto
     property_single_paragraph_mode () const
-        -> Glib::PropertyProxy_ReadOnly<bool>;
+        -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_align_set () -> Glib::PropertyProxy<bool>;
+    property_align_set () -> glib::PropertyProxy<bool>;
 
     auto
-    property_align_set () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_align_set () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_placeholder_text () -> Glib::PropertyProxy<Glib::ustring>;
+    property_placeholder_text () -> glib::PropertyProxy<glib::ustring>;
 
     auto
     property_placeholder_text () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+        -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
     auto
-    _property_renderable () -> Glib::PropertyProxy_Base override;
+    _property_renderable () -> glib::PropertyProxy_Base override;
 
   protected:
     auto
-    edited (const Glib::ustring& path, const Glib::ustring& new_text) -> void;
+    edited (const glib::ustring& path, const glib::ustring& new_text) -> void;
 
   public:
   public:
   protected:
     virtual auto
-    on_edited (const Glib::ustring& path, const Glib::ustring& new_text)
+    on_edited (const glib::ustring& path, const glib::ustring& new_text)
         -> void;
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkCellRendererText* object, bool take_copy = false) -> Gtk::CellRendererText*;
-} // namespace Glib
+  wrap (GtkCellRendererText* object, bool take_copy = false) -> gtk::CellRendererText*;
+} // namespace glib
 
 #endif
 

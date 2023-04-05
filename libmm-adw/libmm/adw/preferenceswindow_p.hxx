@@ -7,34 +7,34 @@
 
 #include <libmm/glib/class.hxx>
 
-namespace Adw
+namespace adw
 {
 
-  class LIBMM_ADW_SYMEXPORT PreferencesWindow_Class : public Glib::Class
+  class LIBMM_ADW_SYMEXPORT PreferencesWindow_Class : public glib::Class
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
     using CppObjectType = PreferencesWindow;
     using BaseObjectType = AdwPreferencesWindow;
     using BaseClassType = AdwPreferencesWindowClass;
-    using CppClassParent = Adw::Window_Class;
+    using CppClassParent = adw::Window_Class;
     using BaseClassParent = AdwWindowClass;
 
     friend class PreferencesWindow;
 #endif
 
     auto
-    init () -> const Glib::Class&;
+    init () -> const glib::Class&;
 
     static auto
     class_init_function (void* g_class, void* class_data) -> void;
 
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
 
   protected:
   };
 
-} // namespace Adw
+} // namespace adw
 
 #endif

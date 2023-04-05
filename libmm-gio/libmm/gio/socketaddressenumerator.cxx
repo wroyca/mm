@@ -10,42 +10,42 @@
 #include <libmm/gio/socketaddress.hxx>
 #include <libmm/glib/error.hxx>
 
-namespace Gio
+namespace gio
 {
 
   auto
   SocketAddressEnumerator::next_async (
-      const Glib::RefPtr<Cancellable>& cancellable,
+      const glib::RefPtr<Cancellable>& cancellable,
       const SlotAsyncReady& slot) -> void
   {
     const auto slot_copy = new SlotAsyncReady (slot);
 
     g_socket_address_enumerator_next_async (gobj (),
-                                            Glib::unwrap (cancellable),
+                                            glib::unwrap (cancellable),
                                             &SignalProxy_async_callback,
                                             slot_copy);
   }
 
-} // namespace Gio
+} // namespace gio
 
 namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GSocketAddressEnumerator* object, const bool take_copy) -> RefPtr<Gio::SocketAddressEnumerator>
+  wrap (GSocketAddressEnumerator* object, const bool take_copy) -> RefPtr<gio::SocketAddressEnumerator>
   {
-    return Glib::make_refptr_for_instance<Gio::SocketAddressEnumerator> (
-        dynamic_cast<Gio::SocketAddressEnumerator*> (
+    return glib::make_refptr_for_instance<gio::SocketAddressEnumerator> (
+        dynamic_cast<gio::SocketAddressEnumerator*> (
             wrap_auto ((GObject*) object, take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gio
+namespace gio
 {
 
   auto
@@ -70,7 +70,7 @@ namespace Gio
   }
 
   auto
-  SocketAddressEnumerator_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  SocketAddressEnumerator_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new SocketAddressEnumerator ((GSocketAddressEnumerator*) object);
   }
@@ -83,7 +83,7 @@ namespace Gio
   }
 
   SocketAddressEnumerator::SocketAddressEnumerator (
-      const Glib::ConstructParams& construct_params)
+      const glib::ConstructParams& construct_params)
     : Object (construct_params)
   {
   }
@@ -125,40 +125,40 @@ namespace Gio
   }
 
   auto
-  SocketAddressEnumerator::next (const Glib::RefPtr<Cancellable>& cancellable) -> Glib::RefPtr<SocketAddress>
+  SocketAddressEnumerator::next (const glib::RefPtr<Cancellable>& cancellable) -> glib::RefPtr<SocketAddress>
   {
     GError* gerror = nullptr;
-    auto retvalue = Glib::wrap (
+    auto retvalue = glib::wrap (
         g_socket_address_enumerator_next (gobj (),
-                                          Glib::unwrap (cancellable),
+                                          glib::unwrap (cancellable),
                                           &gerror));
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
   auto
-  SocketAddressEnumerator::next () -> Glib::RefPtr<SocketAddress>
+  SocketAddressEnumerator::next () -> glib::RefPtr<SocketAddress>
   {
     GError* gerror = nullptr;
-    auto retvalue = Glib::wrap (
+    auto retvalue = glib::wrap (
         g_socket_address_enumerator_next (gobj (), nullptr, &gerror));
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
   auto
-  SocketAddressEnumerator::next_finish (const Glib::RefPtr<AsyncResult>& result) -> Glib::RefPtr<SocketAddress>
+  SocketAddressEnumerator::next_finish (const glib::RefPtr<AsyncResult>& result) -> glib::RefPtr<SocketAddress>
   {
     GError* gerror = nullptr;
-    auto retvalue = Glib::wrap (
+    auto retvalue = glib::wrap (
         g_socket_address_enumerator_next_finish (gobj (),
-                                                 Glib::unwrap (result),
+                                                 glib::unwrap (result),
                                                  &gerror));
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
-} // namespace Gio
+} // namespace gio

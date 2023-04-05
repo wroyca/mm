@@ -6,35 +6,35 @@
 
 #include <libmm/glib/class.hxx>
 
-namespace Gio
+namespace gio
 {
 
-  class LIBMM_GIO_SYMEXPORT BytesIcon_Class : public Glib::Class
+  class LIBMM_GIO_SYMEXPORT BytesIcon_Class : public glib::Class
   {
   public:
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
     using CppObjectType = BytesIcon;
     using BaseObjectType = GBytesIcon;
     using BaseClassType = GBytesIconClass;
-    using CppClassParent = Glib::Object_Class;
+    using CppClassParent = glib::Object_Class;
     using BaseClassParent = GObjectClass;
 
     friend class BytesIcon;
   #endif
 
-    const Glib::Class&
+    const glib::Class&
     init ();
 
     static void
     class_init_function (void* g_class, void* class_data);
 
-    static Glib::ObjectBase*
+    static glib::ObjectBase*
     wrap_new (GObject*);
 
   protected:
   };
 
-} // namespace Gio
+} // namespace gio
 
 
 #endif

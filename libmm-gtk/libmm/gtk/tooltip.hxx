@@ -18,16 +18,16 @@ using GtkTooltipClass = struct _GtkTooltipClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT Tooltip_Class;
 }
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
-  class LIBMM_GTK_SYMEXPORT Tooltip : public Glib::Object
+  class LIBMM_GTK_SYMEXPORT Tooltip : public glib::Object
   {
   protected:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -47,7 +47,7 @@ namespace Gtk
     static CppClassType tooltip_class_;
 
   protected:
-    explicit Tooltip (const Glib::ConstructParams& construct_params);
+    explicit Tooltip (const glib::ConstructParams& construct_params);
     explicit Tooltip (GtkTooltip* castitem);
 
 #endif
@@ -86,25 +86,25 @@ namespace Gtk
   private:
   public:
     auto
-    set_markup (const Glib::ustring& markup) -> void;
+    set_markup (const glib::ustring& markup) -> void;
 
     auto
     unset_markup () -> void;
 
     auto
-    set_text (const Glib::ustring& text) -> void;
+    set_text (const glib::ustring& text) -> void;
 
     auto
     unset_text () -> void;
 
     auto
-    set_icon (const Glib::RefPtr<Gdk::Paintable>& paintable) -> void;
+    set_icon (const glib::RefPtr<gdk::Paintable>& paintable) -> void;
 
     auto
-    set_icon (const Glib::RefPtr<Gio::Icon>& gicon) -> void;
+    set_icon (const glib::RefPtr<gio::Icon>& gicon) -> void;
 
     auto
-    set_icon (const Glib::ustring& icon_name) -> void;
+    set_icon (const glib::ustring& icon_name) -> void;
 
     auto
     unset_icon () -> void;
@@ -116,19 +116,19 @@ namespace Gtk
     unset_custom () -> void;
 
     auto
-    set_tip_area (const Gdk::Rectangle& rect) -> void;
+    set_tip_area (const gdk::Rectangle& rect) -> void;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkTooltip* object, bool take_copy = false) -> Glib::RefPtr<Gtk::Tooltip>;
-} // namespace Glib
+  wrap (GtkTooltip* object, bool take_copy = false) -> glib::RefPtr<gtk::Tooltip>;
+} // namespace glib
 
 #endif

@@ -9,11 +9,11 @@
 #include <libmm/pango/context.hxx>
 #include <pango/pangocairo.h>
 
-namespace Pango
+namespace pango
 {
 
   auto
-  FontMap_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  FontMap_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     if (PANGO_IS_CAIRO_FONT_MAP (object))
       return new CairoFontMapImpl ((PangoFontMap*) object);
@@ -21,7 +21,7 @@ namespace Pango
   }
 
   auto
-  FontMap::list_families () const -> std::vector<Glib::RefPtr<FontFamily>>
+  FontMap::list_families () const -> std::vector<glib::RefPtr<FontFamily>>
   {
     PangoFontFamily** pFamilies = nullptr;
     int n_families = 0;
@@ -29,32 +29,32 @@ namespace Pango
                                   &pFamilies,
                                   &n_families);
 
-    return Glib::ArrayHandler<Glib::RefPtr<FontFamily>>::array_to_vector (
+    return glib::ArrayHandler<glib::RefPtr<FontFamily>>::array_to_vector (
         pFamilies,
         n_families,
-        Glib::OWNERSHIP_SHALLOW);
+        glib::OWNERSHIP_SHALLOW);
   }
 
-} // namespace Pango
+} // namespace pango
 
 namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (PangoFontMap* object, const bool take_copy) -> RefPtr<Pango::FontMap>
+  wrap (PangoFontMap* object, const bool take_copy) -> RefPtr<pango::FontMap>
   {
-    return Glib::make_refptr_for_instance<Pango::FontMap> (
-        dynamic_cast<Pango::FontMap*> (
+    return glib::make_refptr_for_instance<pango::FontMap> (
+        dynamic_cast<pango::FontMap*> (
             wrap_auto ((GObject*) object, take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Pango
+namespace pango
 {
 
   auto
@@ -66,7 +66,7 @@ namespace Pango
 
       register_derived_type (pango_font_map_get_type ());
 
-      Gio::ListModel::add_interface (get_type ());
+      gio::ListModel::add_interface (get_type ());
     }
 
     return *this;
@@ -86,7 +86,7 @@ namespace Pango
     return gobj ();
   }
 
-  FontMap::FontMap (const Glib::ConstructParams& construct_params)
+  FontMap::FontMap (const glib::ConstructParams& construct_params)
     : Object (construct_params)
   {
   }
@@ -127,31 +127,31 @@ namespace Pango
   }
 
   auto
-  FontMap::load_font (const Glib::RefPtr<Context>& context,
-                      const FontDescription& desc) const -> Glib::RefPtr<Font>
+  FontMap::load_font (const glib::RefPtr<Context>& context,
+                      const FontDescription& desc) const -> glib::RefPtr<Font>
   {
-    return Glib::wrap (
+    return glib::wrap (
         pango_font_map_load_font (const_cast<PangoFontMap*> (gobj ()),
-                                  Glib::unwrap (context),
+                                  glib::unwrap (context),
                                   desc.gobj ()));
   }
 
   auto
-  FontMap::load_fontset (const Glib::RefPtr<Context>& context,
+  FontMap::load_fontset (const glib::RefPtr<Context>& context,
                          const FontDescription& desc,
-                         const Language& language) const -> Glib::RefPtr<Fontset>
+                         const Language& language) const -> glib::RefPtr<Fontset>
   {
-    return Glib::wrap (pango_font_map_load_fontset (
+    return glib::wrap (pango_font_map_load_fontset (
         const_cast<PangoFontMap*> (gobj ()),
-        Glib::unwrap (context),
+        glib::unwrap (context),
         desc.gobj (),
         const_cast<PangoLanguage*> (language.gobj ())));
   }
 
   auto
-  FontMap::create_context () -> Glib::RefPtr<Context>
+  FontMap::create_context () -> glib::RefPtr<Context>
   {
-    return Glib::wrap (pango_font_map_create_context (gobj ()));
+    return glib::wrap (pango_font_map_create_context (gobj ()));
   }
 
   auto
@@ -161,19 +161,19 @@ namespace Pango
   }
 
   auto
-  FontMap::get_family (const Glib::ustring& name) -> Glib::RefPtr<FontFamily>
+  FontMap::get_family (const glib::ustring& name) -> glib::RefPtr<FontFamily>
   {
     auto retvalue =
-        Glib::wrap (pango_font_map_get_family (gobj (), name.c_str ()));
+        glib::wrap (pango_font_map_get_family (gobj (), name.c_str ()));
     if (retvalue)
       retvalue->reference ();
     return retvalue;
   }
 
   auto
-  FontMap::get_family (const Glib::ustring& name) const -> Glib::RefPtr<const FontFamily>
+  FontMap::get_family (const glib::ustring& name) const -> glib::RefPtr<const FontFamily>
   {
     return const_cast<FontMap*> (this)->get_family (name);
   }
 
-} // namespace Pango
+} // namespace pango

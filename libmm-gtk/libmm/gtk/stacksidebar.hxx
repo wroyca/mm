@@ -15,13 +15,13 @@ using GtkStackSidebarClass = struct _GtkStackSidebarClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT StackSidebar_Class;
 }
 #endif
 
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT Stack;
 
@@ -52,7 +52,7 @@ namespace Gtk
     static CppClassType stacksidebar_class_;
 
   protected:
-    explicit StackSidebar (const Glib::ConstructParams& construct_params);
+    explicit StackSidebar (const glib::ConstructParams& construct_params);
     explicit StackSidebar (GtkStackSidebar* castitem);
 
 #endif
@@ -96,22 +96,22 @@ namespace Gtk
     get_stack () const -> const Stack*;
 
     auto
-    property_stack () -> Glib::PropertyProxy<Stack*>;
+    property_stack () -> glib::PropertyProxy<Stack*>;
 
     auto
-    property_stack () const -> Glib::PropertyProxy_ReadOnly<Stack*>;
+    property_stack () const -> glib::PropertyProxy_ReadOnly<Stack*>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkStackSidebar* object, bool take_copy = false) -> Gtk::StackSidebar*;
-} // namespace Glib
+  wrap (GtkStackSidebar* object, bool take_copy = false) -> gtk::StackSidebar*;
+} // namespace glib
 
 #endif

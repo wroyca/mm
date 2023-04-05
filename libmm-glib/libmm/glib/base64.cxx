@@ -3,7 +3,7 @@
 #include <libmm/glib/base64.hxx>
 #include <libmm/glib/utility.hxx>
 
-namespace Glib
+namespace glib
 {
 
   auto
@@ -33,4 +33,4 @@ namespace Glib
     return std::string (buf.get (), buf.get () + size);
   }
 
-} // namespace Glib
+} // namespace glib

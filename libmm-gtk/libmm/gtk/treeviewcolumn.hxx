@@ -23,13 +23,13 @@ using GtkTreeViewColumnClass = struct _GtkTreeViewColumnClass;
   #endif
 
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT TreeViewColumn_Class;
 }
   #endif
 
-namespace Gtk
+namespace gtk
 {
 
   class CellArea;
@@ -64,7 +64,7 @@ namespace Gtk
     static CppClassType treeviewcolumn_class_;
 
   protected:
-    explicit TreeViewColumn (const Glib::ConstructParams& construct_params);
+    explicit TreeViewColumn (const glib::ConstructParams& construct_params);
     explicit TreeViewColumn (GtkTreeViewColumn* castitem);
 
   #endif
@@ -104,11 +104,11 @@ namespace Gtk
 
     TreeViewColumn ();
 
-    explicit TreeViewColumn (const Glib::ustring& title);
-    TreeViewColumn (const Glib::ustring& title, CellRenderer& cell);
+    explicit TreeViewColumn (const glib::ustring& title);
+    TreeViewColumn (const glib::ustring& title, CellRenderer& cell);
 
     template <class T_ModelColumnType>
-    TreeViewColumn (const Glib::ustring& title,
+    TreeViewColumn (const glib::ustring& title,
                     const TreeModelColumn<T_ModelColumnType>& column);
 
     auto
@@ -132,24 +132,24 @@ namespace Gtk
 
     auto
     add_attribute (CellRenderer& cell_renderer,
-                   const Glib::ustring& attribute,
+                   const glib::ustring& attribute,
                    int column) -> void;
 
     auto
-    add_attribute (const Glib::PropertyProxy_Base& property,
+    add_attribute (const glib::PropertyProxy_Base& property,
                    const TreeModelColumnBase& column) -> void;
 
     auto
-    add_attribute (Gtk::CellRenderer& cell,
-                   const Glib::ustring& property_name,
+    add_attribute (gtk::CellRenderer& cell,
+                   const glib::ustring& property_name,
                    const TreeModelColumnBase& column) -> void;
 
     auto
-    set_renderer (Gtk::CellRenderer& renderer,
+    set_renderer (gtk::CellRenderer& renderer,
                   const TreeModelColumnBase& column) -> void;
 
     typedef sigc::slot<void (CellRenderer*,
-                             const Gtk::TreeModel::const_iterator&)>
+                             const gtk::TreeModel::const_iterator&)>
         SlotTreeCellData;
 
     auto
@@ -214,10 +214,10 @@ namespace Gtk
     clicked () -> void;
 
     auto
-    set_title (const Glib::ustring& title) -> void;
+    set_title (const glib::ustring& title) -> void;
 
     auto
-    get_title () const -> Glib::ustring;
+    get_title () const -> glib::ustring;
 
     auto
     set_expand (bool expand = true) -> void;
@@ -232,7 +232,7 @@ namespace Gtk
     get_clickable () const -> bool;
 
     auto
-    set_widget (Gtk::Widget& widget) -> void;
+    set_widget (gtk::Widget& widget) -> void;
 
     auto
     get_widget () -> Widget*;
@@ -277,7 +277,7 @@ namespace Gtk
     get_sort_order () const -> SortType;
 
     auto
-    cell_set_cell_data (const Glib::RefPtr<TreeModel>& tree_model,
+    cell_set_cell_data (const glib::RefPtr<TreeModel>& tree_model,
                         const TreeModel::iterator& iter,
                         bool is_expander,
                         bool is_expanded) -> void;
@@ -313,118 +313,118 @@ namespace Gtk
     get_button () const -> const Button*;
 
     auto
-    signal_clicked () -> Glib::SignalProxy<void ()>;
+    signal_clicked () -> glib::SignalProxy<void ()>;
 
     auto
-    property_visible () -> Glib::PropertyProxy<bool>;
+    property_visible () -> glib::PropertyProxy<bool>;
 
     auto
-    property_visible () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_visible () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_resizable () -> Glib::PropertyProxy<bool>;
+    property_resizable () -> glib::PropertyProxy<bool>;
 
     auto
-    property_resizable () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_resizable () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_x_offset () const -> Glib::PropertyProxy_ReadOnly<int>;
+    property_x_offset () const -> glib::PropertyProxy_ReadOnly<int>;
 
     auto
-    property_width () const -> Glib::PropertyProxy_ReadOnly<int>;
+    property_width () const -> glib::PropertyProxy_ReadOnly<int>;
 
     auto
-    property_spacing () -> Glib::PropertyProxy<int>;
+    property_spacing () -> glib::PropertyProxy<int>;
 
     auto
-    property_spacing () const -> Glib::PropertyProxy_ReadOnly<int>;
+    property_spacing () const -> glib::PropertyProxy_ReadOnly<int>;
 
     auto
-    property_sizing () -> Glib::PropertyProxy<Sizing>;
+    property_sizing () -> glib::PropertyProxy<Sizing>;
 
     auto
-    property_sizing () const -> Glib::PropertyProxy_ReadOnly<Sizing>;
+    property_sizing () const -> glib::PropertyProxy_ReadOnly<Sizing>;
 
     auto
-    property_fixed_width () -> Glib::PropertyProxy<int>;
+    property_fixed_width () -> glib::PropertyProxy<int>;
 
     auto
-    property_fixed_width () const -> Glib::PropertyProxy_ReadOnly<int>;
+    property_fixed_width () const -> glib::PropertyProxy_ReadOnly<int>;
 
     auto
-    property_min_width () -> Glib::PropertyProxy<int>;
+    property_min_width () -> glib::PropertyProxy<int>;
 
     auto
-    property_min_width () const -> Glib::PropertyProxy_ReadOnly<int>;
+    property_min_width () const -> glib::PropertyProxy_ReadOnly<int>;
 
     auto
-    property_max_width () -> Glib::PropertyProxy<int>;
+    property_max_width () -> glib::PropertyProxy<int>;
 
     auto
-    property_max_width () const -> Glib::PropertyProxy_ReadOnly<int>;
+    property_max_width () const -> glib::PropertyProxy_ReadOnly<int>;
 
     auto
-    property_title () -> Glib::PropertyProxy<Glib::ustring>;
+    property_title () -> glib::PropertyProxy<glib::ustring>;
 
     auto
-    property_title () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+    property_title () const -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
     auto
-    property_expand () -> Glib::PropertyProxy<bool>;
+    property_expand () -> glib::PropertyProxy<bool>;
 
     auto
-    property_expand () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_expand () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_clickable () -> Glib::PropertyProxy<bool>;
+    property_clickable () -> glib::PropertyProxy<bool>;
 
     auto
-    property_clickable () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_clickable () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_widget () -> Glib::PropertyProxy<Widget*>;
+    property_widget () -> glib::PropertyProxy<Widget*>;
 
     auto
-    property_widget () const -> Glib::PropertyProxy_ReadOnly<Widget*>;
+    property_widget () const -> glib::PropertyProxy_ReadOnly<Widget*>;
 
     auto
-    property_alignment () -> Glib::PropertyProxy<float>;
+    property_alignment () -> glib::PropertyProxy<float>;
 
     auto
-    property_alignment () const -> Glib::PropertyProxy_ReadOnly<float>;
+    property_alignment () const -> glib::PropertyProxy_ReadOnly<float>;
 
     auto
-    property_reorderable () -> Glib::PropertyProxy<bool>;
+    property_reorderable () -> glib::PropertyProxy<bool>;
 
     auto
-    property_reorderable () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_reorderable () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_sort_indicator () -> Glib::PropertyProxy<bool>;
+    property_sort_indicator () -> glib::PropertyProxy<bool>;
 
     auto
-    property_sort_indicator () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_sort_indicator () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_sort_order () -> Glib::PropertyProxy<SortType>;
+    property_sort_order () -> glib::PropertyProxy<SortType>;
 
     auto
-    property_sort_order () const -> Glib::PropertyProxy_ReadOnly<SortType>;
+    property_sort_order () const -> glib::PropertyProxy_ReadOnly<SortType>;
 
     auto
-    property_sort_column_id () -> Glib::PropertyProxy<int>;
+    property_sort_column_id () -> glib::PropertyProxy<int>;
 
     auto
-    property_sort_column_id () const -> Glib::PropertyProxy_ReadOnly<int>;
+    property_sort_column_id () const -> glib::PropertyProxy_ReadOnly<int>;
 
     auto
     property_cell_area () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<CellArea>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<CellArea>>;
 
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
   private:
     static auto
-    class_init_ () -> const Glib::Class&;
+    class_init_ () -> const glib::Class&;
   #endif
 
   public:
@@ -460,10 +460,10 @@ namespace Gtk
 
   template <class T_ModelColumnType>
   inline TreeViewColumn::TreeViewColumn (
-      const Glib::ustring& title,
+      const glib::ustring& title,
       const TreeModelColumn<T_ModelColumnType>& column)
-    : Glib::ObjectBase (nullptr),
-      Gtk::Object (Glib::ConstructParams (class_init_ (),
+    : glib::ObjectBase (nullptr),
+      gtk::Object (glib::ConstructParams (class_init_ (),
                                           "title",
                                           title.c_str (),
                                           nullptr))
@@ -473,29 +473,29 @@ namespace Gtk
 
   #endif
 
-} // namespace Gtk
+} // namespace gtk
 
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_GTK_SYMEXPORT Value<Gtk::TreeViewColumn::Sizing>
-    : public Glib::Value_Enum<Gtk::TreeViewColumn::Sizing>
+  class LIBMM_GTK_SYMEXPORT Value<gtk::TreeViewColumn::Sizing>
+    : public glib::Value_Enum<gtk::TreeViewColumn::Sizing>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
   #endif
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkTreeViewColumn* object, bool take_copy = false) -> Gtk::TreeViewColumn*;
-} // namespace Glib
+  wrap (GtkTreeViewColumn* object, bool take_copy = false) -> gtk::TreeViewColumn*;
+} // namespace glib
 
 #endif
 

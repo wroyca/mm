@@ -14,7 +14,7 @@
 typedef struct _GSettingsSchema GSettingsSchema;
 #endif
 
-namespace Gio
+namespace gio
 {
 
   class LIBMM_GIO_SYMEXPORT SettingsSchema final
@@ -57,51 +57,51 @@ namespace Gio
   protected:
   public:
     auto
-    get_id () const -> Glib::ustring;
+    get_id () const -> glib::ustring;
 
     auto
-    get_path () const -> Glib::ustring;
+    get_path () const -> glib::ustring;
 
     auto
-    get_key (const Glib::ustring& name) -> Glib::RefPtr<SettingsSchemaKey>;
+    get_key (const glib::ustring& name) -> glib::RefPtr<SettingsSchemaKey>;
 
     auto
-    get_key (const Glib::ustring& name) const
-        -> Glib::RefPtr<const SettingsSchemaKey>;
+    get_key (const glib::ustring& name) const
+        -> glib::RefPtr<const SettingsSchemaKey>;
 
     auto
-    has_key (const Glib::ustring& name) const -> bool;
+    has_key (const glib::ustring& name) const -> bool;
 
     auto
-    list_keys () const -> std::vector<Glib::ustring>;
+    list_keys () const -> std::vector<glib::ustring>;
 
     auto
-    list_children () const -> std::vector<Glib::ustring>;
+    list_children () const -> std::vector<glib::ustring>;
   };
 
-} // namespace Gio
+} // namespace gio
 
-namespace Glib
+namespace glib
 {
 
   LIBMM_GIO_SYMEXPORT
   auto
-  wrap (GSettingsSchema* object, bool take_copy = false) -> Glib::RefPtr<Gio::SettingsSchema>;
+  wrap (GSettingsSchema* object, bool take_copy = false) -> glib::RefPtr<gio::SettingsSchema>;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
   template <>
-  class LIBMM_GIO_SYMEXPORT Value<Glib::RefPtr<Gio::SettingsSchema>>
-    : public Glib::Value_RefPtrBoxed<Gio::SettingsSchema>
+  class LIBMM_GIO_SYMEXPORT Value<glib::RefPtr<gio::SettingsSchema>>
+    : public glib::Value_RefPtrBoxed<gio::SettingsSchema>
   {
   public:
     auto
     get () const -> CppType
     {
-      return Glib::wrap (static_cast<GSettingsSchema*> (get_boxed ()), true);
+      return glib::wrap (static_cast<GSettingsSchema*> (get_boxed ()), true);
     }
   };
 #endif
 
-} // namespace Glib
+} // namespace glib
 
 #endif

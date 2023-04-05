@@ -14,13 +14,13 @@ using GtkSearchEntryClass = struct _GtkSearchEntryClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT SearchEntry_Class;
 }
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
   class LIBMM_GTK_SYMEXPORT SearchEntry : public Entry
@@ -50,7 +50,7 @@ namespace Gtk
     static CppClassType searchentry_class_;
 
   protected:
-    explicit SearchEntry (const Glib::ConstructParams& construct_params);
+    explicit SearchEntry (const glib::ConstructParams& construct_params);
     explicit SearchEntry (GtkSearchEntry* castitem);
 
 #endif
@@ -99,51 +99,51 @@ namespace Gtk
     get_search_delay () const -> unsigned int;
 
     auto
-    signal_search_changed () -> Glib::SignalProxy<void ()>;
+    signal_search_changed () -> glib::SignalProxy<void ()>;
 
     auto
-    signal_next_match () -> Glib::SignalProxy<void ()>;
+    signal_next_match () -> glib::SignalProxy<void ()>;
 
     auto
-    signal_previous_match () -> Glib::SignalProxy<void ()>;
+    signal_previous_match () -> glib::SignalProxy<void ()>;
 
     auto
-    signal_stop_search () -> Glib::SignalProxy<void ()>;
+    signal_stop_search () -> glib::SignalProxy<void ()>;
 
     auto
-    signal_search_started () -> Glib::SignalProxy<void ()>;
+    signal_search_started () -> glib::SignalProxy<void ()>;
 
     auto
-    property_placeholder_text () -> Glib::PropertyProxy<Glib::ustring>;
+    property_placeholder_text () -> glib::PropertyProxy<glib::ustring>;
 
     auto
     property_placeholder_text () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+        -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
     auto
-    property_activates_default () -> Glib::PropertyProxy<bool>;
+    property_activates_default () -> glib::PropertyProxy<bool>;
 
     auto
-    property_activates_default () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_activates_default () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_search_delay () -> Glib::PropertyProxy<unsigned int>;
+    property_search_delay () -> glib::PropertyProxy<unsigned int>;
 
     auto
     property_search_delay () const
-        -> Glib::PropertyProxy_ReadOnly<unsigned int>;
+        -> glib::PropertyProxy_ReadOnly<unsigned int>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkSearchEntry* object, bool take_copy = false) -> Gtk::SearchEntry*;
-} // namespace Glib
+  wrap (GtkSearchEntry* object, bool take_copy = false) -> gtk::SearchEntry*;
+} // namespace glib
 
 #endif

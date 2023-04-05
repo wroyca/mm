@@ -16,16 +16,16 @@ using GtkPageSetupClass = struct _GtkPageSetupClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT PageSetup_Class;
 }
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
-  class LIBMM_GTK_SYMEXPORT PageSetup : public Glib::Object
+  class LIBMM_GTK_SYMEXPORT PageSetup : public glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -44,7 +44,7 @@ namespace Gtk
     static CppClassType pagesetup_class_;
 
   protected:
-    explicit PageSetup (const Glib::ConstructParams& construct_params);
+    explicit PageSetup (const glib::ConstructParams& construct_params);
     explicit PageSetup (GtkPageSetup* castitem);
 
 #endif
@@ -86,32 +86,32 @@ namespace Gtk
 
   public:
     static auto
-    create () -> Glib::RefPtr<PageSetup>;
+    create () -> glib::RefPtr<PageSetup>;
 
     static auto
-    create_from_key_file (const Glib::RefPtr<const Glib::KeyFile>& key_file)
-        -> Glib::RefPtr<PageSetup>;
+    create_from_key_file (const glib::RefPtr<const glib::KeyFile>& key_file)
+        -> glib::RefPtr<PageSetup>;
 
     static auto
-    create_from_key_file (const Glib::RefPtr<const Glib::KeyFile>& key_file,
-                          const Glib::ustring& group_name)
-        -> Glib::RefPtr<PageSetup>;
+    create_from_key_file (const glib::RefPtr<const glib::KeyFile>& key_file,
+                          const glib::ustring& group_name)
+        -> glib::RefPtr<PageSetup>;
 
     static auto
-    create_from_file (const std::string& file_name) -> Glib::RefPtr<PageSetup>;
+    create_from_file (const std::string& file_name) -> glib::RefPtr<PageSetup>;
 
     auto
-    copy () const -> Glib::RefPtr<PageSetup>;
+    copy () const -> glib::RefPtr<PageSetup>;
 
     auto
     load_from_file (const std::string& file_name) -> bool;
 
     auto
-    load_from_key_file (const Glib::RefPtr<const Glib::KeyFile>& key_file,
-                        const Glib::ustring& group_name) -> bool;
+    load_from_key_file (const glib::RefPtr<const glib::KeyFile>& key_file,
+                        const glib::ustring& group_name) -> bool;
 
     auto
-    load_from_key_file (const Glib::RefPtr<const Glib::KeyFile>& key_file)
+    load_from_key_file (const glib::RefPtr<const glib::KeyFile>& key_file)
         -> bool;
 
     auto
@@ -172,11 +172,11 @@ namespace Gtk
     save_to_file (const std::string& file_name) const -> bool;
 
     auto
-    save_to_key_file (const Glib::RefPtr<Glib::KeyFile>& key_file,
-                      const Glib::ustring& group_name) const -> void;
+    save_to_key_file (const glib::RefPtr<glib::KeyFile>& key_file,
+                      const glib::ustring& group_name) const -> void;
 
     auto
-    save_to_key_file (const Glib::RefPtr<Glib::KeyFile>& key_file) const
+    save_to_key_file (const glib::RefPtr<glib::KeyFile>& key_file) const
         -> void;
 
   public:
@@ -184,12 +184,12 @@ namespace Gtk
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkPageSetup* object, bool take_copy = false) -> Glib::RefPtr<Gtk::PageSetup>;
-} // namespace Glib
+  wrap (GtkPageSetup* object, bool take_copy = false) -> glib::RefPtr<gtk::PageSetup>;
+} // namespace glib
 
 #endif

@@ -10,9 +10,9 @@
 
 #include <libmm/glib/error.hxx>
 
-namespace Gtk
+namespace gtk
 {
-  class DialogError : public Glib::Error
+  class DialogError : public glib::Error
   {
   public:
     enum Code
@@ -23,7 +23,7 @@ namespace Gtk
     };
 
     LIBMM_GTK_SYMEXPORT
-    DialogError (Code error_code, const Glib::ustring& error_message);
+    DialogError (Code error_code, const glib::ustring& error_message);
     LIBMM_GTK_SYMEXPORT explicit DialogError (GError* gobject);
     LIBMM_GTK_SYMEXPORT auto
     code () const -> Code;
@@ -39,25 +39,25 @@ namespace Gtk
 #endif
   };
 
-} // namespace Gtk
+} // namespace gtk
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_GTK_SYMEXPORT Value<Gtk::DialogError::Code>
-    : public Glib::Value_Enum<Gtk::DialogError::Code>
+  class LIBMM_GTK_SYMEXPORT Value<gtk::DialogError::Code>
+    : public glib::Value_Enum<gtk::DialogError::Code>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
 }

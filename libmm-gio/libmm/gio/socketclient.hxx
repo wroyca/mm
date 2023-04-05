@@ -21,13 +21,13 @@ using GSocketClientClass = struct _GSocketClientClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gio
+namespace gio
 {
   class LIBMM_GIO_SYMEXPORT SocketClient_Class;
 }
 #endif
 
-namespace Gio
+namespace gio
 {
 
   enum class SocketClientEvent
@@ -43,28 +43,28 @@ namespace Gio
     COMPLETE
   };
 
-} // namespace Gio
+} // namespace gio
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_GIO_SYMEXPORT Value<Gio::SocketClientEvent>
-    : public Glib::Value_Enum<Gio::SocketClientEvent>
+  class LIBMM_GIO_SYMEXPORT Value<gio::SocketClientEvent>
+    : public glib::Value_Enum<gio::SocketClientEvent>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
-namespace Gio
+namespace gio
 {
 
-  class LIBMM_GIO_SYMEXPORT SocketClient : public Glib::Object
+  class LIBMM_GIO_SYMEXPORT SocketClient : public glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -83,7 +83,7 @@ namespace Gio
     static CppClassType socketclient_class_;
 
   protected:
-    explicit SocketClient (const Glib::ConstructParams& construct_params);
+    explicit SocketClient (const glib::ConstructParams& construct_params);
     explicit SocketClient (GSocketClient* castitem);
 
 #endif
@@ -125,7 +125,7 @@ namespace Gio
 
   public:
     static auto
-    create () -> Glib::RefPtr<SocketClient>;
+    create () -> glib::RefPtr<SocketClient>;
 
     auto
     get_family () const -> SocketFamily;
@@ -146,111 +146,111 @@ namespace Gio
     set_protocol (Socket::Protocol protocol) -> void;
 
     auto
-    get_local_address () -> Glib::RefPtr<SocketAddress>;
+    get_local_address () -> glib::RefPtr<SocketAddress>;
 
     auto
-    get_local_address () const -> Glib::RefPtr<const SocketAddress>;
+    get_local_address () const -> glib::RefPtr<const SocketAddress>;
 
     auto
-    set_local_address (const Glib::RefPtr<SocketAddress>& address) -> void;
+    set_local_address (const glib::RefPtr<SocketAddress>& address) -> void;
 
     auto
-    connect (const Glib::RefPtr<SocketConnectable>& connectable,
-             const Glib::RefPtr<Cancellable>& cancellable)
-        -> Glib::RefPtr<SocketConnection>;
+    connect (const glib::RefPtr<SocketConnectable>& connectable,
+             const glib::RefPtr<Cancellable>& cancellable)
+        -> glib::RefPtr<SocketConnection>;
 
     auto
-    connect (const Glib::RefPtr<SocketConnectable>& connectable)
-        -> Glib::RefPtr<SocketConnection>;
+    connect (const glib::RefPtr<SocketConnectable>& connectable)
+        -> glib::RefPtr<SocketConnection>;
 
     auto
-    connect_to_host (const Glib::ustring& host_and_port,
+    connect_to_host (const glib::ustring& host_and_port,
                      guint16 default_port,
-                     const Glib::RefPtr<Cancellable>& cancellable)
-        -> Glib::RefPtr<SocketConnection>;
+                     const glib::RefPtr<Cancellable>& cancellable)
+        -> glib::RefPtr<SocketConnection>;
 
     auto
-    connect_to_host (const Glib::ustring& host_and_port, guint16 default_port)
-        -> Glib::RefPtr<SocketConnection>;
+    connect_to_host (const glib::ustring& host_and_port, guint16 default_port)
+        -> glib::RefPtr<SocketConnection>;
 
     auto
-    connect_to_service (const Glib::ustring& domain,
-                        const Glib::ustring& service,
-                        const Glib::RefPtr<Cancellable>& cancellable)
-        -> Glib::RefPtr<SocketConnection>;
+    connect_to_service (const glib::ustring& domain,
+                        const glib::ustring& service,
+                        const glib::RefPtr<Cancellable>& cancellable)
+        -> glib::RefPtr<SocketConnection>;
 
     auto
-    connect_to_service (const Glib::ustring& domain,
-                        const Glib::ustring& service)
-        -> Glib::RefPtr<SocketConnection>;
+    connect_to_service (const glib::ustring& domain,
+                        const glib::ustring& service)
+        -> glib::RefPtr<SocketConnection>;
 
     auto
-    connect_to_uri (const Glib::ustring& uri,
+    connect_to_uri (const glib::ustring& uri,
                     guint16 default_port,
-                    const Glib::RefPtr<Cancellable>& cancellable)
-        -> Glib::RefPtr<SocketConnection>;
+                    const glib::RefPtr<Cancellable>& cancellable)
+        -> glib::RefPtr<SocketConnection>;
 
     auto
-    connect_to_uri (const Glib::ustring& uri, guint16 default_port)
-        -> Glib::RefPtr<SocketConnection>;
+    connect_to_uri (const glib::ustring& uri, guint16 default_port)
+        -> glib::RefPtr<SocketConnection>;
 
     auto
-    connect_async (const Glib::RefPtr<SocketConnectable>& connectable,
-                   const Glib::RefPtr<Cancellable>& cancellable,
+    connect_async (const glib::RefPtr<SocketConnectable>& connectable,
+                   const glib::RefPtr<Cancellable>& cancellable,
                    const SlotAsyncReady& slot) -> void;
 
     auto
-    connect_async (const Glib::RefPtr<SocketConnectable>& connectable,
+    connect_async (const glib::RefPtr<SocketConnectable>& connectable,
                    const SlotAsyncReady& slot) -> void;
 
     auto
-    connect_finish (const Glib::RefPtr<AsyncResult>& result)
-        -> Glib::RefPtr<SocketConnection>;
+    connect_finish (const glib::RefPtr<AsyncResult>& result)
+        -> glib::RefPtr<SocketConnection>;
 
     auto
-    connect_to_host_async (const Glib::ustring& host_and_port,
+    connect_to_host_async (const glib::ustring& host_and_port,
                            guint16 default_port,
-                           const Glib::RefPtr<Cancellable>& cancellable,
+                           const glib::RefPtr<Cancellable>& cancellable,
                            const SlotAsyncReady& slot) -> void;
 
     auto
-    connect_to_host_async (const Glib::ustring& host_and_port,
+    connect_to_host_async (const glib::ustring& host_and_port,
                            guint16 default_port,
                            const SlotAsyncReady& slot) -> void;
 
     auto
-    connect_to_host_finish (const Glib::RefPtr<AsyncResult>& result)
-        -> Glib::RefPtr<SocketConnection>;
+    connect_to_host_finish (const glib::RefPtr<AsyncResult>& result)
+        -> glib::RefPtr<SocketConnection>;
 
     auto
-    connect_to_service_async (const Glib::ustring& domain,
-                              const Glib::ustring& service,
-                              const Glib::RefPtr<Cancellable>& cancellable,
+    connect_to_service_async (const glib::ustring& domain,
+                              const glib::ustring& service,
+                              const glib::RefPtr<Cancellable>& cancellable,
                               const SlotAsyncReady& slot) -> void;
 
     auto
-    connect_to_service_async (const Glib::ustring& domain,
-                              const Glib::ustring& service,
+    connect_to_service_async (const glib::ustring& domain,
+                              const glib::ustring& service,
                               const SlotAsyncReady& slot) -> void;
 
     auto
-    connect_to_service_finish (const Glib::RefPtr<AsyncResult>& result)
-        -> Glib::RefPtr<SocketConnection>;
+    connect_to_service_finish (const glib::RefPtr<AsyncResult>& result)
+        -> glib::RefPtr<SocketConnection>;
 
     auto
-    connect_to_uri_async (const Glib::ustring& uri,
+    connect_to_uri_async (const glib::ustring& uri,
                           guint16 default_port,
-                          const Glib::RefPtr<Cancellable>& cancellable,
+                          const glib::RefPtr<Cancellable>& cancellable,
                           const SlotAsyncReady& slot) -> void;
 
     auto
-    connect_to_uri_async (const Glib::ustring& uri,
+    connect_to_uri_async (const glib::ustring& uri,
                           guint16 default_port,
                           const SlotAsyncReady& slot) -> void;
 
     auto
-    connect_to_uri_finish (const Glib::RefPtr<AsyncResult>& result)
-        -> Glib::RefPtr<SocketConnection>;
+    connect_to_uri_finish (const glib::RefPtr<AsyncResult>& result)
+        -> glib::RefPtr<SocketConnection>;
 
     auto
     get_enable_proxy () const -> bool;
@@ -277,13 +277,13 @@ namespace Gio
 #endif
 
     auto
-    get_proxy_resolver () -> Glib::RefPtr<ProxyResolver>;
+    get_proxy_resolver () -> glib::RefPtr<ProxyResolver>;
 
     auto
-    get_proxy_resolver () const -> Glib::RefPtr<const ProxyResolver>;
+    get_proxy_resolver () const -> glib::RefPtr<const ProxyResolver>;
 
     auto
-    set_proxy_resolver (const Glib::RefPtr<ProxyResolver>& proxy_resolver)
+    set_proxy_resolver (const glib::RefPtr<ProxyResolver>& proxy_resolver)
         -> void;
 
     auto
@@ -293,96 +293,96 @@ namespace Gio
     set_timeout (guint timeout) -> void;
 
     auto
-    add_application_proxy (const Glib::ustring& protocol) -> void;
+    add_application_proxy (const glib::ustring& protocol) -> void;
 
     auto
-    property_family () -> Glib::PropertyProxy<SocketFamily>;
+    property_family () -> glib::PropertyProxy<SocketFamily>;
 
     auto
-    property_family () const -> Glib::PropertyProxy_ReadOnly<SocketFamily>;
+    property_family () const -> glib::PropertyProxy_ReadOnly<SocketFamily>;
 
     auto
     property_local_address ()
-        -> Glib::PropertyProxy<Glib::RefPtr<SocketAddress>>;
+        -> glib::PropertyProxy<glib::RefPtr<SocketAddress>>;
 
     auto
     property_local_address () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<SocketAddress>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<SocketAddress>>;
 
     auto
-    property_protocol () -> Glib::PropertyProxy<Socket::Protocol>;
+    property_protocol () -> glib::PropertyProxy<Socket::Protocol>;
 
     auto
     property_protocol () const
-        -> Glib::PropertyProxy_ReadOnly<Socket::Protocol>;
+        -> glib::PropertyProxy_ReadOnly<Socket::Protocol>;
 
     auto
-    property_type () -> Glib::PropertyProxy<Socket::Type>;
+    property_type () -> glib::PropertyProxy<Socket::Type>;
 
     auto
-    property_type () const -> Glib::PropertyProxy_ReadOnly<Socket::Type>;
+    property_type () const -> glib::PropertyProxy_ReadOnly<Socket::Type>;
 
     auto
-    property_timeout () -> Glib::PropertyProxy<guint>;
+    property_timeout () -> glib::PropertyProxy<guint>;
 
     auto
-    property_timeout () const -> Glib::PropertyProxy_ReadOnly<guint>;
+    property_timeout () const -> glib::PropertyProxy_ReadOnly<guint>;
 
     auto
-    property_enable_proxy () -> Glib::PropertyProxy<bool>;
+    property_enable_proxy () -> glib::PropertyProxy<bool>;
 
     auto
-    property_enable_proxy () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_enable_proxy () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_tls () -> Glib::PropertyProxy<bool>;
+    property_tls () -> glib::PropertyProxy<bool>;
 
     auto
-    property_tls () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_tls () const -> glib::PropertyProxy_ReadOnly<bool>;
 
 #ifndef GIOMM_DISABLE_DEPRECATED
 
     auto
     property_tls_validation_flags ()
-        -> Glib::PropertyProxy<TlsCertificateFlags>;
+        -> glib::PropertyProxy<TlsCertificateFlags>;
 
     auto
     property_tls_validation_flags () const
-        -> Glib::PropertyProxy_ReadOnly<TlsCertificateFlags>;
+        -> glib::PropertyProxy_ReadOnly<TlsCertificateFlags>;
 
 #endif
 
     auto
     property_proxy_resolver ()
-        -> Glib::PropertyProxy<Glib::RefPtr<ProxyResolver>>;
+        -> glib::PropertyProxy<glib::RefPtr<ProxyResolver>>;
 
     auto
     property_proxy_resolver () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<ProxyResolver>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<ProxyResolver>>;
 
     auto
     signal_event ()
-        -> Glib::SignalProxy<void (SocketClientEvent,
-                                   const Glib::RefPtr<SocketConnectable>&,
-                                   const Glib::RefPtr<IOStream>&)>;
+        -> glib::SignalProxy<void (SocketClientEvent,
+                                   const glib::RefPtr<SocketConnectable>&,
+                                   const glib::RefPtr<IOStream>&)>;
 
   public:
   public:
   protected:
     virtual auto
     on_event (SocketClientEvent event,
-              const Glib::RefPtr<SocketConnectable>& connectable,
-              const Glib::RefPtr<IOStream>& connection) -> void;
+              const glib::RefPtr<SocketConnectable>& connectable,
+              const glib::RefPtr<IOStream>& connection) -> void;
   };
 
-} // namespace Gio
+} // namespace gio
 
-namespace Glib
+namespace glib
 {
 
   LIBMM_GIO_SYMEXPORT
   auto
-  wrap (GSocketClient* object, bool take_copy = false) -> Glib::RefPtr<Gio::SocketClient>;
-} // namespace Glib
+  wrap (GSocketClient* object, bool take_copy = false) -> glib::RefPtr<gio::SocketClient>;
+} // namespace glib
 
 #endif

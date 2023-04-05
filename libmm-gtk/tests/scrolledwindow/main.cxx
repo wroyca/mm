@@ -13,14 +13,14 @@ void on_gtklabel_destroyed(GtkWidget*, gpointer)
 }
 
 
-class DerivedLabel : public Gtk::Label
+class DerivedLabel : public gtk::Label
 {
 public:
   DerivedLabel() {}
   ~DerivedLabel() override { printf("~DerivedLabel\n");}
 };
 
-class DerivedScrolledWindow : public Gtk::ScrolledWindow
+class DerivedScrolledWindow : public gtk::ScrolledWindow
 {
 public:
   DerivedScrolledWindow() {}
@@ -57,7 +57,7 @@ protected:
 
 int main(int /* argc */, char** /* argv */)
 {
-  auto app = Gtk::Application::create();
+  auto app = gtk::Application::create();
   app->register_application();
 
   Instance instance;

@@ -15,10 +15,10 @@ extern "C"
 }
 #endif
 
-namespace Glib
+namespace glib
 {
 
-  class ConvertError : public Glib::Error
+  class ConvertError : public glib::Error
   {
   public:
     enum Code
@@ -34,7 +34,7 @@ namespace Glib
     };
 
     LIBMM_GLIB_SYMEXPORT
-    ConvertError (Code error_code, const Glib::ustring& error_message);
+    ConvertError (Code error_code, const glib::ustring& error_message);
     LIBMM_GLIB_SYMEXPORT explicit ConvertError (GError* gobject);
     LIBMM_GLIB_SYMEXPORT auto
     code () const -> Code;
@@ -110,48 +110,48 @@ namespace Glib
   convert_with_fallback (const std::string& str,
                          const std::string& to_codeset,
                          const std::string& from_codeset,
-                         const Glib::ustring& fallback) -> std::string;
+                         const glib::ustring& fallback) -> std::string;
 
   LIBMM_GLIB_SYMEXPORT
   auto
-  locale_to_utf8 (const std::string& opsys_string) -> Glib::ustring;
+  locale_to_utf8 (const std::string& opsys_string) -> glib::ustring;
 
   LIBMM_GLIB_SYMEXPORT
   auto
-  locale_from_utf8 (const Glib::ustring& utf8_string) -> std::string;
+  locale_from_utf8 (const glib::ustring& utf8_string) -> std::string;
 
   LIBMM_GLIB_SYMEXPORT
   auto
-  filename_to_utf8 (const std::string& opsys_string) -> Glib::ustring;
+  filename_to_utf8 (const std::string& opsys_string) -> glib::ustring;
 
   LIBMM_GLIB_SYMEXPORT
   auto
-  filename_from_utf8 (const Glib::ustring& utf8_string) -> std::string;
+  filename_from_utf8 (const glib::ustring& utf8_string) -> std::string;
 
   LIBMM_GLIB_SYMEXPORT
   auto
-  filename_from_uri (const Glib::ustring& uri, Glib::ustring& hostname) -> std::string;
+  filename_from_uri (const glib::ustring& uri, glib::ustring& hostname) -> std::string;
 
   LIBMM_GLIB_SYMEXPORT
   auto
-  filename_from_uri (const Glib::ustring& uri) -> std::string;
+  filename_from_uri (const glib::ustring& uri) -> std::string;
 
   LIBMM_GLIB_SYMEXPORT
   auto
-  filename_to_uri (const std::string& filename, const Glib::ustring& hostname) -> Glib::ustring;
+  filename_to_uri (const std::string& filename, const glib::ustring& hostname) -> glib::ustring;
 
   LIBMM_GLIB_SYMEXPORT
   auto
-  filename_to_uri (const std::string& filename) -> Glib::ustring;
+  filename_to_uri (const std::string& filename) -> glib::ustring;
 
   LIBMM_GLIB_SYMEXPORT
   auto
-  filename_display_basename (const std::string& filename) -> Glib::ustring;
+  filename_display_basename (const std::string& filename) -> glib::ustring;
 
   LIBMM_GLIB_SYMEXPORT
   auto
-  filename_display_name (const std::string& filename) -> Glib::ustring;
+  filename_display_name (const std::string& filename) -> glib::ustring;
 
-} // namespace Glib
+} // namespace glib
 
 #endif

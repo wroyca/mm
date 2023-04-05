@@ -14,16 +14,16 @@
 
   #include <gtk/gtk.h>
 
-namespace Gtk
+namespace gtk
 {
 
-  MessageDialog::MessageDialog (const Glib::ustring& message,
+  MessageDialog::MessageDialog (const glib::ustring& message,
                                 bool use_markup,
                                 MessageType type,
                                 ButtonsType buttons,
                                 bool modal)
-    : Glib::ObjectBase (nullptr),
-      Gtk::Dialog (Glib::ConstructParams (messagedialog_class_.init (),
+    : glib::ObjectBase (nullptr),
+      gtk::Dialog (glib::ConstructParams (messagedialog_class_.init (),
                                           "message_type",
                                           (GtkMessageType) type,
                                           "buttons",
@@ -34,14 +34,14 @@ namespace Gtk
     set_message (message, use_markup);
   }
 
-  MessageDialog::MessageDialog (Gtk::Window& parent,
-                                const Glib::ustring& message,
+  MessageDialog::MessageDialog (gtk::Window& parent,
+                                const glib::ustring& message,
                                 bool use_markup,
                                 MessageType type,
                                 ButtonsType buttons,
                                 bool modal)
-    : Glib::ObjectBase (nullptr),
-      Gtk::Dialog (Glib::ConstructParams (messagedialog_class_.init (),
+    : glib::ObjectBase (nullptr),
+      gtk::Dialog (glib::ConstructParams (messagedialog_class_.init (),
                                           "message_type",
                                           (GtkMessageType) type,
                                           "buttons",
@@ -54,7 +54,7 @@ namespace Gtk
   }
 
   auto
-  MessageDialog::set_message (const Glib::ustring& message, bool use_markup) -> void
+  MessageDialog::set_message (const glib::ustring& message, bool use_markup) -> void
   {
     if (use_markup)
       gtk_message_dialog_set_markup (gobj (), message.c_str ());
@@ -66,7 +66,7 @@ namespace Gtk
   }
 
   auto
-  MessageDialog::set_secondary_text (const Glib::ustring& text, bool use_markup) -> void
+  MessageDialog::set_secondary_text (const glib::ustring& text, bool use_markup) -> void
   {
     if (use_markup)
       gtk_message_dialog_format_secondary_markup (gobj (), "%s", text.c_str ());
@@ -74,35 +74,35 @@ namespace Gtk
       gtk_message_dialog_format_secondary_text (gobj (), "%s", text.c_str ());
   }
 
-} // namespace Gtk
+} // namespace gtk
 
 namespace
 {
 }
 
 auto
-Glib::Value<Gtk::ButtonsType>::value_type () -> GType
+glib::Value<gtk::ButtonsType>::value_type () -> GType
 {
   return gtk_buttons_type_get_type ();
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GtkMessageDialog* object, bool take_copy) -> Gtk::MessageDialog*
+  wrap (GtkMessageDialog* object, bool take_copy) -> gtk::MessageDialog*
   {
-    return dynamic_cast<Gtk::MessageDialog*> (
-        Glib::wrap_auto ((GObject*) (object), take_copy));
+    return dynamic_cast<gtk::MessageDialog*> (
+        glib::wrap_auto ((GObject*) (object), take_copy));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gtk
+namespace gtk
 {
 
   auto
-  MessageDialog_Class::init () -> const Glib::Class&
+  MessageDialog_Class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -122,30 +122,30 @@ namespace Gtk
   }
 
   auto
-  MessageDialog_Class::wrap_new (GObject* o) -> Glib::ObjectBase*
+  MessageDialog_Class::wrap_new (GObject* o) -> glib::ObjectBase*
   {
     return new MessageDialog ((GtkMessageDialog*) (o));
   }
 
-  MessageDialog::MessageDialog (const Glib::ConstructParams& construct_params)
-    : Gtk::Dialog (construct_params)
+  MessageDialog::MessageDialog (const glib::ConstructParams& construct_params)
+    : gtk::Dialog (construct_params)
   {
   }
 
   MessageDialog::MessageDialog (GtkMessageDialog* castitem)
-    : Gtk::Dialog ((GtkDialog*) (castitem))
+    : gtk::Dialog ((GtkDialog*) (castitem))
   {
   }
 
   MessageDialog::MessageDialog (MessageDialog&& src) noexcept
-    : Gtk::Dialog (std::move (src))
+    : gtk::Dialog (std::move (src))
   {
   }
 
   auto
   MessageDialog::operator= (MessageDialog&& src) noexcept -> MessageDialog&
   {
-    Gtk::Dialog::operator= (std::move (src));
+    gtk::Dialog::operator= (std::move (src));
     return *this;
   }
 
@@ -171,7 +171,7 @@ namespace Gtk
   auto
   MessageDialog::get_message_area () -> Box*
   {
-    return Glib::wrap (
+    return glib::wrap (
         (GtkBox*) (gtk_message_dialog_get_message_area (gobj ())));
   }
 
@@ -182,81 +182,81 @@ namespace Gtk
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<MessageType>::value,
+      glib::Traits::ValueCompatibleWithWrapProperty<MessageType>::value,
       "Type MessageType cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  MessageDialog::property_message_type () -> Glib::PropertyProxy<MessageType>
+  MessageDialog::property_message_type () -> glib::PropertyProxy<MessageType>
   {
-    return Glib::PropertyProxy<MessageType> (this, "message-type");
+    return glib::PropertyProxy<MessageType> (this, "message-type");
   }
 
   auto
-  MessageDialog::property_message_type () const -> Glib::PropertyProxy_ReadOnly<MessageType>
+  MessageDialog::property_message_type () const -> glib::PropertyProxy_ReadOnly<MessageType>
   {
-    return Glib::PropertyProxy_ReadOnly<MessageType> (this, "message-type");
+    return glib::PropertyProxy_ReadOnly<MessageType> (this, "message-type");
   }
 
   auto
-  MessageDialog::property_text () -> Glib::PropertyProxy<Glib::ustring>
+  MessageDialog::property_text () -> glib::PropertyProxy<glib::ustring>
   {
-    return Glib::PropertyProxy<Glib::ustring> (this, "text");
+    return glib::PropertyProxy<glib::ustring> (this, "text");
   }
 
   auto
-  MessageDialog::property_text () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>
+  MessageDialog::property_text () const -> glib::PropertyProxy_ReadOnly<glib::ustring>
   {
-    return Glib::PropertyProxy_ReadOnly<Glib::ustring> (this, "text");
+    return glib::PropertyProxy_ReadOnly<glib::ustring> (this, "text");
   }
 
   auto
-  MessageDialog::property_use_markup () -> Glib::PropertyProxy<bool>
+  MessageDialog::property_use_markup () -> glib::PropertyProxy<bool>
   {
-    return Glib::PropertyProxy<bool> (this, "use-markup");
+    return glib::PropertyProxy<bool> (this, "use-markup");
   }
 
   auto
-  MessageDialog::property_use_markup () const -> Glib::PropertyProxy_ReadOnly<bool>
+  MessageDialog::property_use_markup () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "use-markup");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "use-markup");
   }
 
   auto
-  MessageDialog::property_secondary_text () -> Glib::PropertyProxy<Glib::ustring>
+  MessageDialog::property_secondary_text () -> glib::PropertyProxy<glib::ustring>
   {
-    return Glib::PropertyProxy<Glib::ustring> (this, "secondary-text");
+    return glib::PropertyProxy<glib::ustring> (this, "secondary-text");
   }
 
   auto
-  MessageDialog::property_secondary_text () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>
+  MessageDialog::property_secondary_text () const -> glib::PropertyProxy_ReadOnly<glib::ustring>
   {
-    return Glib::PropertyProxy_ReadOnly<Glib::ustring> (this, "secondary-text");
+    return glib::PropertyProxy_ReadOnly<glib::ustring> (this, "secondary-text");
   }
 
   auto
-  MessageDialog::property_secondary_use_markup () -> Glib::PropertyProxy<bool>
+  MessageDialog::property_secondary_use_markup () -> glib::PropertyProxy<bool>
   {
-    return Glib::PropertyProxy<bool> (this, "secondary-use-markup");
+    return glib::PropertyProxy<bool> (this, "secondary-use-markup");
   }
 
   auto
-  MessageDialog::property_secondary_use_markup () const -> Glib::PropertyProxy_ReadOnly<bool>
+  MessageDialog::property_secondary_use_markup () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "secondary-use-markup");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "secondary-use-markup");
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<Box*>::value,
+      glib::Traits::ValueCompatibleWithWrapProperty<Box*>::value,
       "Type Box* cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  MessageDialog::property_message_area () const -> Glib::PropertyProxy_ReadOnly<Box*>
+  MessageDialog::property_message_area () const -> glib::PropertyProxy_ReadOnly<Box*>
   {
-    return Glib::PropertyProxy_ReadOnly<Box*> (this, "message-area");
+    return glib::PropertyProxy_ReadOnly<Box*> (this, "message-area");
   }
 
-} // namespace Gtk
+} // namespace gtk
 
 #endif

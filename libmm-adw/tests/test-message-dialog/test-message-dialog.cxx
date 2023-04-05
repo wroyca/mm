@@ -6,7 +6,7 @@
  * Author: Alexander Mikhaylenko <alexander.mikhaylenko@puri.sm>
  */
 
-#include <libmm/adw/init.hxx> // Adw::init
+#include <libmm/adw/init.hxx> // adw::init
 #include <libmm/adw/mm-adw.hxx>
 
 int notified;
@@ -21,7 +21,7 @@ notify_cb ()
 }
 
 static void
-response_cb (const Glib::ustring& response)
+response_cb (const glib::ustring& response)
 {
   responses++;
   if (response == "cancel")
@@ -41,20 +41,20 @@ response_cb (const Glib::ustring& response)
 static void
 test_adw_message_dialog_heading (void)
 {
-  Adw::MessageDialog dialog (nullptr, "", "");
+  adw::MessageDialog dialog (nullptr, "", "");
 
   notified = 0;
   dialog.property_heading ().signal_changed ().connect (
       sigc::ptr_fun (notify_cb));
 
-  Glib::ustring heading = dialog.get_property<Glib::ustring> ("heading");
+  glib::ustring heading = dialog.get_property<glib::ustring> ("heading");
   g_assert_true (heading == "");
 
   dialog.set_heading ("Heading");
   g_assert_true (dialog.get_heading () == "Heading");
   g_assert_true (notified == 1);
 
-  dialog.set_property<Glib::ustring> ("heading", "Heading 2");
+  dialog.set_property<glib::ustring> ("heading", "Heading 2");
   g_assert_true (dialog.get_heading () == "Heading 2");
   g_assert_true (notified == 2);
 }
@@ -62,7 +62,7 @@ test_adw_message_dialog_heading (void)
 static void
 test_adw_message_dialog_heading_use_markup (void)
 {
-  Adw::MessageDialog dialog (nullptr, "", "");
+  adw::MessageDialog dialog (nullptr, "", "");
 
   notified = 0;
   dialog.property_heading_use_markup ().signal_changed ().connect (
@@ -83,19 +83,19 @@ test_adw_message_dialog_heading_use_markup (void)
 static void
 test_adw_message_dialog_body (void)
 {
-  Adw::MessageDialog dialog (nullptr, "", "");
+  adw::MessageDialog dialog (nullptr, "", "");
 
   notified = 0;
   dialog.property_body ().signal_changed ().connect (sigc::ptr_fun (notify_cb));
 
-  Glib::ustring body = dialog.get_property<Glib::ustring> ("body");
+  glib::ustring body = dialog.get_property<glib::ustring> ("body");
   g_assert_true (body == "");
 
   dialog.set_body ("Body");
   g_assert_true (dialog.get_body () == "Body");
   g_assert_true (notified == 1);
 
-  dialog.set_property<Glib::ustring> ("body", "Body 2");
+  dialog.set_property<glib::ustring> ("body", "Body 2");
   g_assert_true (dialog.get_body () == "Body 2");
   g_assert_true (notified == 2);
 }
@@ -103,7 +103,7 @@ test_adw_message_dialog_body (void)
 static void
 test_adw_message_dialog_body_use_markup (void)
 {
-  Adw::MessageDialog dialog (nullptr, "", "");
+  adw::MessageDialog dialog (nullptr, "", "");
 
   notified = 0;
   dialog.property_body_use_markup ().signal_changed ().connect (
@@ -124,34 +124,34 @@ test_adw_message_dialog_body_use_markup (void)
 static void
 test_adw_message_dialog_format (void)
 {
-  Adw::MessageDialog dialog (nullptr, "", "");
+  adw::MessageDialog dialog (nullptr, "", "");
 
   // FIXME: We are not currently wrapping the format_* conveniences of
   // Adw.MessageDialog. Emulate here.
   // --
   dialog.set_heading_use_markup (true);
-  dialog.set_heading (Glib::ustring::sprintf ("Heading <b>%d</b>", 42));
+  dialog.set_heading (glib::ustring::sprintf ("Heading <b>%d</b>", 42));
   // --
   g_assert_true (dialog.get_heading () == "Heading <b>42</b>");
   g_assert_true (dialog.get_heading_use_markup ());
 
   // --
   dialog.set_heading_use_markup (false);
-  dialog.set_heading (Glib::ustring::sprintf ("Heading %d", 42));
+  dialog.set_heading (glib::ustring::sprintf ("Heading %d", 42));
   // --
   g_assert_true (dialog.get_heading () == "Heading 42");
   g_assert_false (dialog.get_heading_use_markup ());
 
   // --
   dialog.set_body_use_markup (true);
-  dialog.set_body (Glib::ustring::sprintf ("Body <b>%d</b>", 42));
+  dialog.set_body (glib::ustring::sprintf ("Body <b>%d</b>", 42));
   // --
   g_assert_true (dialog.get_body () == "Body <b>42</b>");
   g_assert_true (dialog.get_body_use_markup ());
 
   // --
   dialog.set_body_use_markup (false);
-  dialog.set_body (Glib::ustring::sprintf ("Body %d", 42));
+  dialog.set_body (glib::ustring::sprintf ("Body %d", 42));
   // --
   g_assert_true (dialog.get_body () == "Body 42");
   g_assert_false (dialog.get_body_use_markup ());
@@ -160,24 +160,24 @@ test_adw_message_dialog_format (void)
 static void
 test_adw_message_dialog_extra_child (void)
 {
-  Adw::MessageDialog dialog (nullptr, "", "");
+  adw::MessageDialog dialog (nullptr, "", "");
 
   notified = 0;
   dialog.property_extra_child ().signal_changed ().connect (
       sigc::ptr_fun (notify_cb));
 
-  Gtk::Widget* widget = dialog.get_property<Gtk::Widget*> ("extra-child");
+  gtk::Widget* widget = dialog.get_property<gtk::Widget*> ("extra-child");
   g_assert_true (widget == nullptr);
 
   dialog.set_extra_child (nullptr);
   g_assert_true (notified == 0);
 
-  widget = Gtk::make_managed<Gtk::Button> ();
+  widget = gtk::make_managed<gtk::Button> ();
   dialog.set_extra_child (widget);
   g_assert_true (dialog.get_extra_child () == widget);
   g_assert_true (notified == 1);
 
-  dialog.set_property<Gtk::Widget*> ("extra-child", nullptr);
+  dialog.set_property<gtk::Widget*> ("extra-child", nullptr);
   g_assert_true (dialog.get_extra_child () == nullptr);
   g_assert_true (notified == 2);
 }
@@ -185,7 +185,7 @@ test_adw_message_dialog_extra_child (void)
 static void
 test_adw_message_dialog_add_response (void)
 {
-  Adw::MessageDialog dialog (nullptr, "", "");
+  adw::MessageDialog dialog (nullptr, "", "");
 
   dialog.add_response ("response1", "Response 1");
   dialog.add_response ("response2", "Response 2");
@@ -193,18 +193,18 @@ test_adw_message_dialog_add_response (void)
   g_assert_true (dialog.get_response_label ("response1") == "Response 1");
   g_assert_true (dialog.get_response_enabled ("response1"));
   g_assert_true (dialog.get_response_appearance ("response1") ==
-                 Adw::ResponseAppearance::DEFAULT);
+                 adw::ResponseAppearance::DEFAULT);
 
   g_assert_true (dialog.get_response_label ("response2") == "Response 2");
   g_assert_true (dialog.get_response_enabled ("response2"));
   g_assert_true (dialog.get_response_appearance ("response2") ==
-                 Adw::ResponseAppearance::DEFAULT);
+                 adw::ResponseAppearance::DEFAULT);
 }
 
 static void
 test_adw_message_dialog_add_responses (void)
 {
-  Adw::MessageDialog dialog (nullptr, "", "");
+  adw::MessageDialog dialog (nullptr, "", "");
 
   // FIXME: The convenience to add many responses at once has not been
   // wrapped. Emulate.
@@ -216,18 +216,18 @@ test_adw_message_dialog_add_responses (void)
   g_assert_true (dialog.get_response_label ("response1") == "Response 1");
   g_assert_true (dialog.get_response_enabled ("response1"));
   g_assert_true (dialog.get_response_appearance ("response1") ==
-                 Adw::ResponseAppearance::DEFAULT);
+                 adw::ResponseAppearance::DEFAULT);
 
   g_assert_true (dialog.get_response_label ("response2") == "Response 2");
   g_assert_true (dialog.get_response_enabled ("response2"));
   g_assert_true (dialog.get_response_appearance ("response2") ==
-                 Adw::ResponseAppearance::DEFAULT);
+                 adw::ResponseAppearance::DEFAULT);
 }
 
 static void
 test_adw_message_dialog_response_label (void)
 {
-  Adw::MessageDialog dialog (nullptr, "", "");
+  adw::MessageDialog dialog (nullptr, "", "");
 
   dialog.add_response ("response", "Response");
   g_assert_true (dialog.get_response_label ("response") == "Response");
@@ -239,7 +239,7 @@ test_adw_message_dialog_response_label (void)
 static void
 test_adw_message_dialog_response_enabled (void)
 {
-  Adw::MessageDialog dialog (nullptr, "", "");
+  adw::MessageDialog dialog (nullptr, "", "");
 
   dialog.add_response ("response", "Response");
   g_assert_true (dialog.get_response_enabled ("response"));
@@ -254,22 +254,22 @@ test_adw_message_dialog_response_enabled (void)
 static void
 test_adw_message_dialog_response_appearance (void)
 {
-  Adw::MessageDialog dialog (nullptr, "", "");
+  adw::MessageDialog dialog (nullptr, "", "");
 
   dialog.add_response ("response", "Response");
   g_assert_true (dialog.get_response_appearance ("response") ==
-                 Adw::ResponseAppearance::DEFAULT);
+                 adw::ResponseAppearance::DEFAULT);
 
   dialog.set_response_appearance ("response",
-                                  Adw::ResponseAppearance::DESTRUCTIVE);
+                                  adw::ResponseAppearance::DESTRUCTIVE);
   g_assert_true (dialog.get_response_appearance ("response") ==
-                 Adw::ResponseAppearance::DESTRUCTIVE);
+                 adw::ResponseAppearance::DESTRUCTIVE);
 }
 
 static void
 test_adw_message_dialog_response_signal (void)
 {
-  Adw::MessageDialog dialog (nullptr, "", "");
+  adw::MessageDialog dialog (nullptr, "", "");
 
   responses = responses_cancel = responses_save = 0;
   dialog.signal_response ().connect (sigc::ptr_fun (response_cb));
@@ -291,21 +291,21 @@ test_adw_message_dialog_response_signal (void)
 static void
 test_adw_message_dialog_default_response (void)
 {
-  Adw::MessageDialog dialog (nullptr, "", "");
+  adw::MessageDialog dialog (nullptr, "", "");
 
   notified = 0;
   dialog.property_default_response ().signal_changed ().connect (
       sigc::ptr_fun (notify_cb));
 
-  Glib::ustring response =
-      dialog.get_property<Glib::ustring> ("default-response");
+  glib::ustring response =
+      dialog.get_property<glib::ustring> ("default-response");
   g_assert_true (response == "");
 
   dialog.set_default_response ("save");
   g_assert_true (dialog.get_default_response () == "save");
   g_assert_true (notified == 1);
 
-  dialog.set_property<Glib::ustring> ("default-response", "load");
+  dialog.set_property<glib::ustring> ("default-response", "load");
   g_assert_true (dialog.get_default_response () == "load");
   g_assert_true (notified == 2);
 }
@@ -313,21 +313,21 @@ test_adw_message_dialog_default_response (void)
 static void
 test_adw_message_dialog_close_response (void)
 {
-  Adw::MessageDialog dialog (nullptr, "", "");
+  adw::MessageDialog dialog (nullptr, "", "");
 
   notified = 0;
   dialog.property_close_response ().signal_changed ().connect (
       sigc::ptr_fun (notify_cb));
 
-  Glib::ustring response =
-      dialog.get_property<Glib::ustring> ("close-response");
+  glib::ustring response =
+      dialog.get_property<glib::ustring> ("close-response");
   g_assert_true (response == "close");
 
   dialog.set_close_response ("save");
   g_assert_true (dialog.get_close_response () == "save");
   g_assert_true (notified == 1);
 
-  dialog.set_property<Glib::ustring> ("close-response", "cancel");
+  dialog.set_property<glib::ustring> ("close-response", "cancel");
   g_assert_true (dialog.get_close_response () == "cancel");
   g_assert_true (notified == 2);
 }
@@ -336,7 +336,7 @@ int
 main (int argc, char* argv[])
 {
   gtk_test_init (&argc, &argv, NULL);
-  Adw::init ();
+  adw::init ();
 
   g_test_add_func ("/Adwaita/MessageDialog/heading",
                    test_adw_message_dialog_heading);

@@ -11,18 +11,18 @@ namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GtkBorder* object, bool take_copy) -> Gtk::Border
+  wrap (GtkBorder* object, bool take_copy) -> gtk::Border
   {
-    return Gtk::Border (object, take_copy);
+    return gtk::Border (object, take_copy);
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gtk
+namespace gtk
 {
 
   auto
@@ -134,4 +134,4 @@ namespace Gtk
     gobj ()->bottom = value;
   }
 
-} // namespace Gtk
+} // namespace gtk

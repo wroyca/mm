@@ -5,13 +5,13 @@
 
 #include <libmm/pango/mm-pangoconfig.hxx>
 
-namespace Pango
+namespace pango
 {
 
   LIBMM_PANGO_SYMEXPORT
   void
   init ();
 
-} // namespace Pango
+} // namespace pango
 
 #endif

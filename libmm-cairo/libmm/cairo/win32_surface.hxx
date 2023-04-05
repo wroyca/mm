@@ -10,7 +10,7 @@
 #ifdef CAIRO_HAS_WIN32_SURFACE
   #include <cairo-win32.h>
 
-namespace Cairo
+namespace cairo
 {
 
   class LIBMM_CAIRO_SYMEXPORT Win32Surface : public Surface
@@ -49,7 +49,7 @@ namespace Cairo
     create (HDC hdc) -> RefPtr<Win32PrintingSurface>;
   };
 
-} // namespace Cairo
+} // namespace cairo
 
 #endif
 #endif

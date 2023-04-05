@@ -19,13 +19,13 @@ using GtkAboutDialogClass = struct _GtkAboutDialogClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT AboutDialog_Class;
 }
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
   enum class License
@@ -50,24 +50,24 @@ namespace Gtk
     MPL_2_0
   };
 
-} // namespace Gtk
+} // namespace gtk
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_GTK_SYMEXPORT Value<Gtk::License> : public Glib::Value_Enum<Gtk::License>
+  class LIBMM_GTK_SYMEXPORT Value<gtk::License> : public glib::Value_Enum<gtk::License>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
   class LIBMM_GTK_SYMEXPORT AboutDialog : public Window
@@ -97,7 +97,7 @@ namespace Gtk
     static CppClassType aboutdialog_class_;
 
   protected:
-    explicit AboutDialog (const Glib::ConstructParams& construct_params);
+    explicit AboutDialog (const glib::ConstructParams& construct_params);
     explicit AboutDialog (GtkAboutDialog* castitem);
 
 #endif
@@ -131,34 +131,34 @@ namespace Gtk
     explicit AboutDialog (bool use_header_bar);
 
     auto
-    get_program_name () const -> Glib::ustring;
+    get_program_name () const -> glib::ustring;
 
     auto
-    set_program_name (const Glib::ustring& name) -> void;
+    set_program_name (const glib::ustring& name) -> void;
 
     auto
-    get_version () const -> Glib::ustring;
+    get_version () const -> glib::ustring;
 
     auto
-    set_version (const Glib::ustring& version) -> void;
+    set_version (const glib::ustring& version) -> void;
 
     auto
-    get_copyright () const -> Glib::ustring;
+    get_copyright () const -> glib::ustring;
 
     auto
-    set_copyright (const Glib::ustring& copyright) -> void;
+    set_copyright (const glib::ustring& copyright) -> void;
 
     auto
-    get_comments () const -> Glib::ustring;
+    get_comments () const -> glib::ustring;
 
     auto
-    set_comments (const Glib::ustring& comments) -> void;
+    set_comments (const glib::ustring& comments) -> void;
 
     auto
-    get_license () const -> Glib::ustring;
+    get_license () const -> glib::ustring;
 
     auto
-    set_license (const Glib::ustring& license) -> void;
+    set_license (const glib::ustring& license) -> void;
 
     auto
     get_license_type () const -> License;
@@ -167,64 +167,64 @@ namespace Gtk
     set_license_type (License license_type) -> void;
 
     auto
-    get_system_information () const -> Glib::ustring;
+    get_system_information () const -> glib::ustring;
 
     auto
-    set_system_information (const Glib::ustring& system_information) -> void;
+    set_system_information (const glib::ustring& system_information) -> void;
 
     auto
-    get_website () const -> Glib::ustring;
+    get_website () const -> glib::ustring;
 
     auto
-    set_website (const Glib::ustring& website) -> void;
+    set_website (const glib::ustring& website) -> void;
 
     auto
-    get_website_label () const -> Glib::ustring;
+    get_website_label () const -> glib::ustring;
 
     auto
-    set_website_label (const Glib::ustring& website_label) -> void;
+    set_website_label (const glib::ustring& website_label) -> void;
 
     auto
-    get_authors () const -> std::vector<Glib::ustring>;
+    get_authors () const -> std::vector<glib::ustring>;
 
     auto
-    set_authors (const std::vector<Glib::ustring>& authors) const -> void;
+    set_authors (const std::vector<glib::ustring>& authors) const -> void;
 
     auto
-    get_documenters () const -> std::vector<Glib::ustring>;
+    get_documenters () const -> std::vector<glib::ustring>;
 
     auto
-    set_documenters (const std::vector<Glib::ustring>& documenters) -> void;
+    set_documenters (const std::vector<glib::ustring>& documenters) -> void;
 
     auto
-    get_artists () const -> std::vector<Glib::ustring>;
+    get_artists () const -> std::vector<glib::ustring>;
 
     auto
-    set_artists (const std::vector<Glib::ustring>& artists) -> void;
+    set_artists (const std::vector<glib::ustring>& artists) -> void;
 
     auto
-    get_translator_credits () const -> Glib::ustring;
+    get_translator_credits () const -> glib::ustring;
 
     auto
-    set_translator_credits (const Glib::ustring& translator_credits) -> void;
+    set_translator_credits (const glib::ustring& translator_credits) -> void;
 
     auto
-    get_logo () -> Glib::RefPtr<Gdk::Paintable>;
+    get_logo () -> glib::RefPtr<gdk::Paintable>;
 
     auto
-    get_logo () const -> Glib::RefPtr<const Gdk::Paintable>;
+    get_logo () const -> glib::RefPtr<const gdk::Paintable>;
 
     auto
-    set_logo (const Glib::RefPtr<const Gdk::Paintable>& logo) -> void;
+    set_logo (const glib::RefPtr<const gdk::Paintable>& logo) -> void;
 
     auto
     set_logo_default () -> void;
 
     auto
-    get_logo_icon_name () const -> Glib::ustring;
+    get_logo_icon_name () const -> glib::ustring;
 
     auto
-    set_logo_icon_name (const Glib::ustring& icon_name) -> void;
+    set_logo_icon_name (const glib::ustring& icon_name) -> void;
 
     auto
     get_wrap_license () const -> bool;
@@ -233,129 +233,129 @@ namespace Gtk
     set_wrap_license (bool wrap_license) -> void;
 
     auto
-    add_credit_section (const Glib::ustring& section_name,
-                        const std::vector<Glib::ustring>& people) -> void;
+    add_credit_section (const glib::ustring& section_name,
+                        const std::vector<glib::ustring>& people) -> void;
 
     auto
-    property_program_name () -> Glib::PropertyProxy<Glib::ustring>;
+    property_program_name () -> glib::PropertyProxy<glib::ustring>;
 
     auto
     property_program_name () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+        -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
     auto
-    property_version () -> Glib::PropertyProxy<Glib::ustring>;
+    property_version () -> glib::PropertyProxy<glib::ustring>;
 
     auto
-    property_version () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+    property_version () const -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
     auto
-    property_copyright () -> Glib::PropertyProxy<Glib::ustring>;
+    property_copyright () -> glib::PropertyProxy<glib::ustring>;
 
     auto
-    property_copyright () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+    property_copyright () const -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
     auto
-    property_comments () -> Glib::PropertyProxy<Glib::ustring>;
+    property_comments () -> glib::PropertyProxy<glib::ustring>;
 
     auto
-    property_comments () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+    property_comments () const -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
     auto
-    property_website () -> Glib::PropertyProxy<Glib::ustring>;
+    property_website () -> glib::PropertyProxy<glib::ustring>;
 
     auto
-    property_website () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+    property_website () const -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
     auto
-    property_website_label () -> Glib::PropertyProxy<Glib::ustring>;
+    property_website_label () -> glib::PropertyProxy<glib::ustring>;
 
     auto
     property_website_label () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+        -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
     auto
-    property_license () -> Glib::PropertyProxy<Glib::ustring>;
+    property_license () -> glib::PropertyProxy<glib::ustring>;
 
     auto
-    property_license () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+    property_license () const -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
     auto
-    property_license_type () -> Glib::PropertyProxy<License>;
+    property_license_type () -> glib::PropertyProxy<License>;
 
     auto
-    property_license_type () const -> Glib::PropertyProxy_ReadOnly<License>;
+    property_license_type () const -> glib::PropertyProxy_ReadOnly<License>;
 
     auto
-    property_system_information () -> Glib::PropertyProxy<Glib::ustring>;
+    property_system_information () -> glib::PropertyProxy<glib::ustring>;
 
     auto
     property_system_information () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+        -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
     auto
-    property_authors () -> Glib::PropertyProxy<std::vector<Glib::ustring>>;
+    property_authors () -> glib::PropertyProxy<std::vector<glib::ustring>>;
 
     auto
     property_authors () const
-        -> Glib::PropertyProxy_ReadOnly<std::vector<Glib::ustring>>;
+        -> glib::PropertyProxy_ReadOnly<std::vector<glib::ustring>>;
 
     auto
-    property_documenters () -> Glib::PropertyProxy<std::vector<Glib::ustring>>;
+    property_documenters () -> glib::PropertyProxy<std::vector<glib::ustring>>;
 
     auto
     property_documenters () const
-        -> Glib::PropertyProxy_ReadOnly<std::vector<Glib::ustring>>;
+        -> glib::PropertyProxy_ReadOnly<std::vector<glib::ustring>>;
 
     auto
     property_translator_credits ()
-        -> Glib::PropertyProxy<std::vector<Glib::ustring>>;
+        -> glib::PropertyProxy<std::vector<glib::ustring>>;
 
     auto
     property_translator_credits () const
-        -> Glib::PropertyProxy_ReadOnly<std::vector<Glib::ustring>>;
+        -> glib::PropertyProxy_ReadOnly<std::vector<glib::ustring>>;
 
     auto
-    property_artists () -> Glib::PropertyProxy<std::vector<Glib::ustring>>;
+    property_artists () -> glib::PropertyProxy<std::vector<glib::ustring>>;
 
     auto
     property_artists () const
-        -> Glib::PropertyProxy_ReadOnly<std::vector<Glib::ustring>>;
+        -> glib::PropertyProxy_ReadOnly<std::vector<glib::ustring>>;
 
     auto
-    property_logo () -> Glib::PropertyProxy<Glib::RefPtr<Gdk::Paintable>>;
+    property_logo () -> glib::PropertyProxy<glib::RefPtr<gdk::Paintable>>;
 
     auto
     property_logo () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gdk::Paintable>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<gdk::Paintable>>;
 
     auto
-    property_logo_icon_name () -> Glib::PropertyProxy<Glib::ustring>;
+    property_logo_icon_name () -> glib::PropertyProxy<glib::ustring>;
 
     auto
     property_logo_icon_name () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+        -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
     auto
-    property_wrap_license () -> Glib::PropertyProxy<bool>;
+    property_wrap_license () -> glib::PropertyProxy<bool>;
 
     auto
-    property_wrap_license () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_wrap_license () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    signal_activate_link () -> Glib::SignalProxy<bool (const std::string&)>;
+    signal_activate_link () -> glib::SignalProxy<bool (const std::string&)>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkAboutDialog* object, bool take_copy = false) -> Gtk::AboutDialog*;
-} // namespace Glib
+  wrap (GtkAboutDialog* object, bool take_copy = false) -> gtk::AboutDialog*;
+} // namespace glib
 
 #endif

@@ -18,13 +18,13 @@ using GtkAppChooserDialogClass = struct _GtkAppChooserDialogClass;
   #endif
 
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT AppChooserDialog_Class;
 }
   #endif
 
-namespace Gtk
+namespace gtk
 {
 
   class LIBMM_GTK_SYMEXPORT AppChooserDialog : public Dialog,
@@ -55,7 +55,7 @@ namespace Gtk
     static CppClassType appchooserdialog_class_;
 
   protected:
-    explicit AppChooserDialog (const Glib::ConstructParams& construct_params);
+    explicit AppChooserDialog (const glib::ConstructParams& construct_params);
     explicit AppChooserDialog (GtkAppChooserDialog* castitem);
 
   #endif
@@ -84,13 +84,13 @@ namespace Gtk
 
   private:
   public:
-    explicit AppChooserDialog (const Glib::ustring& content_type);
+    explicit AppChooserDialog (const glib::ustring& content_type);
 
-    AppChooserDialog (const Glib::ustring& content_type, Gtk::Window& parent);
+    AppChooserDialog (const glib::ustring& content_type, gtk::Window& parent);
 
-    explicit AppChooserDialog (const Glib::RefPtr<Gio::File>& file);
+    explicit AppChooserDialog (const glib::RefPtr<gio::File>& file);
 
-    AppChooserDialog (const Glib::RefPtr<Gio::File>& file, Gtk::Window& parent);
+    AppChooserDialog (const glib::RefPtr<gio::File>& file, gtk::Window& parent);
 
     auto
     get_widget () -> Widget*;
@@ -99,33 +99,33 @@ namespace Gtk
     get_widget () const -> const Widget*;
 
     auto
-    set_heading (const Glib::ustring& heading) -> void;
+    set_heading (const glib::ustring& heading) -> void;
 
     auto
-    get_heading () const -> Glib::ustring;
+    get_heading () const -> glib::ustring;
 
     auto
     property_gfile () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gio::File>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<gio::File>>;
 
     auto
-    property_heading () -> Glib::PropertyProxy<Glib::ustring>;
+    property_heading () -> glib::PropertyProxy<glib::ustring>;
 
     auto
-    property_heading () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+    property_heading () const -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkAppChooserDialog* object, bool take_copy = false) -> Gtk::AppChooserDialog*;
-} // namespace Glib
+  wrap (GtkAppChooserDialog* object, bool take_copy = false) -> gtk::AppChooserDialog*;
+} // namespace glib
 
 #endif
 

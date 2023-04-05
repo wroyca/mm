@@ -21,17 +21,17 @@ using GSocketClass = struct _GSocketClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gio
+namespace gio
 {
   class LIBMM_GIO_SYMEXPORT Socket_Class;
 }
 #endif
 
-namespace Gio
+namespace gio
 {
   class SocketSource;
 
-  class LIBMM_GIO_SYMEXPORT Socket : public Glib::Object,
+  class LIBMM_GIO_SYMEXPORT Socket : public glib::Object,
                            public Initable
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -51,7 +51,7 @@ namespace Gio
     static CppClassType socket_class_;
 
   protected:
-    explicit Socket (const Glib::ConstructParams& construct_params);
+    explicit Socket (const glib::ConstructParams& construct_params);
     explicit Socket (GSocket* castitem);
 
 #endif
@@ -118,41 +118,41 @@ namespace Gio
     Socket (SocketFamily family,
             Type type,
             Protocol protocol,
-            const Glib::RefPtr<Cancellable>& cancellable);
+            const glib::RefPtr<Cancellable>& cancellable);
 
-    Socket (int fd, const Glib::RefPtr<Cancellable>& cancellable);
+    Socket (int fd, const glib::RefPtr<Cancellable>& cancellable);
 
   public:
     static auto
     create (SocketFamily family,
             Type type,
             Protocol protocol,
-            const Glib::RefPtr<Cancellable>& cancellable = {})
-        -> Glib::RefPtr<Socket>;
+            const glib::RefPtr<Cancellable>& cancellable = {})
+        -> glib::RefPtr<Socket>;
 
     static auto
-    create_from_fd (int fd, const Glib::RefPtr<Cancellable>& cancellable = {})
-        -> Glib::RefPtr<Socket>;
+    create_from_fd (int fd, const glib::RefPtr<Cancellable>& cancellable = {})
+        -> glib::RefPtr<Socket>;
 
     auto
-    bind (const Glib::RefPtr<SocketAddress>& address, bool allow_reuse) -> void;
+    bind (const glib::RefPtr<SocketAddress>& address, bool allow_reuse) -> void;
 
     auto
     listen () -> void;
 
     auto
-    accept (const Glib::RefPtr<Cancellable>& cancellable)
-        -> Glib::RefPtr<Socket>;
+    accept (const glib::RefPtr<Cancellable>& cancellable)
+        -> glib::RefPtr<Socket>;
 
     auto
-    accept () -> Glib::RefPtr<Socket>;
+    accept () -> glib::RefPtr<Socket>;
 
     auto
-    connect (const Glib::RefPtr<SocketAddress>& address,
-             const Glib::RefPtr<Cancellable>& cancellable) -> void;
+    connect (const glib::RefPtr<SocketAddress>& address,
+             const glib::RefPtr<Cancellable>& cancellable) -> void;
 
     auto
-    connect (const Glib::RefPtr<SocketAddress>& address) -> void;
+    connect (const glib::RefPtr<SocketAddress>& address) -> void;
 
     auto
     check_connect_result () -> void;
@@ -160,37 +160,37 @@ namespace Gio
     auto
     receive (char* buffer,
              gsize size,
-             const Glib::RefPtr<Cancellable>& cancellable) -> gssize;
+             const glib::RefPtr<Cancellable>& cancellable) -> gssize;
 
     auto
     receive (char* buffer, gsize size) -> gssize;
 
     auto
-    receive_from (Glib::RefPtr<SocketAddress>& address,
+    receive_from (glib::RefPtr<SocketAddress>& address,
                   char* buffer,
                   gsize size,
-                  const Glib::RefPtr<Cancellable>& cancellable) -> gssize;
+                  const glib::RefPtr<Cancellable>& cancellable) -> gssize;
     auto
-    receive_from (Glib::RefPtr<SocketAddress>& address,
+    receive_from (glib::RefPtr<SocketAddress>& address,
                   char* buffer,
                   gsize size) -> gssize;
 
     auto
     send (const gchar* buffer,
           gsize size,
-          const Glib::RefPtr<Cancellable>& cancellable) -> gssize;
+          const glib::RefPtr<Cancellable>& cancellable) -> gssize;
 
     auto
     send (const gchar* buffer, gsize size) -> gssize;
 
     auto
-    send_to (const Glib::RefPtr<SocketAddress>& address,
+    send_to (const glib::RefPtr<SocketAddress>& address,
              const char* buffer,
              gsize size,
-             const Glib::RefPtr<Cancellable>& cancellable) -> gssize;
+             const glib::RefPtr<Cancellable>& cancellable) -> gssize;
 
     auto
-    send_to (const Glib::RefPtr<SocketAddress>& address,
+    send_to (const glib::RefPtr<SocketAddress>& address,
              const char* buffer,
              gsize size) -> gssize;
 
@@ -201,9 +201,9 @@ namespace Gio
     is_closed () -> bool;
 
     auto
-    create_source (Glib::IOCondition condition,
-                   const Glib::RefPtr<Cancellable>& cancellable = {})
-        -> Glib::RefPtr<SocketSource>;
+    create_source (glib::IOCondition condition,
+                   const glib::RefPtr<Cancellable>& cancellable = {})
+        -> glib::RefPtr<SocketSource>;
 
     auto
     shutdown (bool shutdown_read, bool shutdown_write) -> void;
@@ -215,22 +215,22 @@ namespace Gio
     get_available_bytes () const -> gssize;
 
     auto
-    condition_check (Glib::IOCondition condition) -> Glib::IOCondition;
+    condition_check (glib::IOCondition condition) -> glib::IOCondition;
 
     auto
-    condition_wait (Glib::IOCondition condition,
-                    const Glib::RefPtr<Cancellable>& cancellable) -> void;
+    condition_wait (glib::IOCondition condition,
+                    const glib::RefPtr<Cancellable>& cancellable) -> void;
 
     auto
-    condition_wait (Glib::IOCondition condition) -> void;
+    condition_wait (glib::IOCondition condition) -> void;
 
     auto
-    condition_timed_wait (Glib::IOCondition condition,
+    condition_timed_wait (glib::IOCondition condition,
                           gint64 timeout,
-                          const Glib::RefPtr<Cancellable>& cancellable) -> void;
+                          const glib::RefPtr<Cancellable>& cancellable) -> void;
 
     auto
-    condition_timed_wait (Glib::IOCondition condition, gint64 timeout) -> void;
+    condition_timed_wait (glib::IOCondition condition, gint64 timeout) -> void;
 
     auto
     set_listen_backlog (int backlog) -> void;
@@ -257,10 +257,10 @@ namespace Gio
     get_fd () const -> int;
 
     auto
-    get_local_address () const -> Glib::RefPtr<SocketAddress>;
+    get_local_address () const -> glib::RefPtr<SocketAddress>;
 
     auto
-    get_remote_address () const -> Glib::RefPtr<SocketAddress>;
+    get_remote_address () const -> glib::RefPtr<SocketAddress>;
 
     auto
     get_protocol () const -> Protocol;
@@ -272,10 +272,10 @@ namespace Gio
     speaks_ipv4 () const -> bool;
 
     auto
-    get_credentials () -> Glib::RefPtr<Credentials>;
+    get_credentials () -> glib::RefPtr<Credentials>;
 
     auto
-    get_credentials () const -> Glib::RefPtr<const Credentials>;
+    get_credentials () const -> glib::RefPtr<const Credentials>;
 
     auto
     get_timeout () const -> guint;
@@ -287,14 +287,14 @@ namespace Gio
     receive_with_blocking (gchar* buffer,
                            gsize size,
                            bool blocking,
-                           const Glib::RefPtr<Cancellable>& cancellable = {})
+                           const glib::RefPtr<Cancellable>& cancellable = {})
         -> gssize;
 
     auto
     send_with_blocking (gchar* buffer,
                         gsize size,
                         bool blocking,
-                        const Glib::RefPtr<Cancellable>& cancellable = {})
+                        const glib::RefPtr<Cancellable>& cancellable = {})
         -> gssize;
 
     auto
@@ -328,131 +328,131 @@ namespace Gio
     set_multicast_ttl (guint ttl) -> void;
 
     auto
-    join_multicast_group (const Glib::RefPtr<InetAddress>& group,
+    join_multicast_group (const glib::RefPtr<InetAddress>& group,
                           bool source_specific,
                           const std::string& iface) -> bool;
 
     auto
-    join_multicast_group (const Glib::RefPtr<InetAddress>& group,
+    join_multicast_group (const glib::RefPtr<InetAddress>& group,
                           bool source_specific) -> bool;
 
     auto
-    leave_multicast_group (const Glib::RefPtr<InetAddress>& group,
+    leave_multicast_group (const glib::RefPtr<InetAddress>& group,
                            bool source_specific,
                            const std::string& iface) -> bool;
 
     auto
-    leave_multicast_group (const Glib::RefPtr<InetAddress>& group,
+    leave_multicast_group (const glib::RefPtr<InetAddress>& group,
                            bool source_specific) -> bool;
 
     auto
-    property_blocking () -> Glib::PropertyProxy<bool>;
+    property_blocking () -> glib::PropertyProxy<bool>;
 
     auto
-    property_blocking () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_blocking () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_family () const -> Glib::PropertyProxy_ReadOnly<SocketFamily>;
+    property_family () const -> glib::PropertyProxy_ReadOnly<SocketFamily>;
 
     auto
-    property_fd () const -> Glib::PropertyProxy_ReadOnly<int>;
+    property_fd () const -> glib::PropertyProxy_ReadOnly<int>;
 
     auto
-    property_keepalive () -> Glib::PropertyProxy<bool>;
+    property_keepalive () -> glib::PropertyProxy<bool>;
 
     auto
-    property_keepalive () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_keepalive () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_listen_backlog () -> Glib::PropertyProxy<int>;
+    property_listen_backlog () -> glib::PropertyProxy<int>;
 
     auto
-    property_listen_backlog () const -> Glib::PropertyProxy_ReadOnly<int>;
+    property_listen_backlog () const -> glib::PropertyProxy_ReadOnly<int>;
 
     auto
     property_local_address () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<SocketAddress>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<SocketAddress>>;
 
     auto
     property_remote_address () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<SocketAddress>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<SocketAddress>>;
 
     auto
-    property_timeout () -> Glib::PropertyProxy<guint>;
+    property_timeout () -> glib::PropertyProxy<guint>;
 
     auto
-    property_timeout () const -> Glib::PropertyProxy_ReadOnly<guint>;
+    property_timeout () const -> glib::PropertyProxy_ReadOnly<guint>;
 
     auto
-    property_protocol () const -> Glib::PropertyProxy_ReadOnly<Protocol>;
+    property_protocol () const -> glib::PropertyProxy_ReadOnly<Protocol>;
 
     auto
-    property_broadcast () -> Glib::PropertyProxy<bool>;
+    property_broadcast () -> glib::PropertyProxy<bool>;
 
     auto
-    property_broadcast () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_broadcast () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_type () const -> Glib::PropertyProxy_ReadOnly<Type>;
+    property_type () const -> glib::PropertyProxy_ReadOnly<Type>;
 
     auto
-    property_ttl () -> Glib::PropertyProxy<guint>;
+    property_ttl () -> glib::PropertyProxy<guint>;
 
     auto
-    property_ttl () const -> Glib::PropertyProxy_ReadOnly<guint>;
+    property_ttl () const -> glib::PropertyProxy_ReadOnly<guint>;
 
     auto
-    property_multicast_loopback () -> Glib::PropertyProxy<bool>;
+    property_multicast_loopback () -> glib::PropertyProxy<bool>;
 
     auto
-    property_multicast_loopback () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_multicast_loopback () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_multicast_ttl () -> Glib::PropertyProxy<guint>;
+    property_multicast_ttl () -> glib::PropertyProxy<guint>;
 
     auto
-    property_multicast_ttl () const -> Glib::PropertyProxy_ReadOnly<guint>;
+    property_multicast_ttl () const -> glib::PropertyProxy_ReadOnly<guint>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gio
+} // namespace gio
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_GIO_SYMEXPORT Value<Gio::Socket::Type>
-    : public Glib::Value_Enum<Gio::Socket::Type>
+  class LIBMM_GIO_SYMEXPORT Value<gio::Socket::Type>
+    : public glib::Value_Enum<gio::Socket::Type>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_GIO_SYMEXPORT Value<Gio::Socket::Protocol>
-    : public Glib::Value_Enum<Gio::Socket::Protocol>
+  class LIBMM_GIO_SYMEXPORT Value<gio::Socket::Protocol>
+    : public glib::Value_Enum<gio::Socket::Protocol>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
-namespace Gio
+namespace gio
 {
 
   inline auto
@@ -502,30 +502,30 @@ namespace Gio
     return (lhs = static_cast<Socket::MsgFlags> (static_cast<unsigned> (lhs) ^
                                                  static_cast<unsigned> (rhs)));
   }
-} // namespace Gio
+} // namespace gio
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_GIO_SYMEXPORT Value<Gio::Socket::MsgFlags>
-    : public Glib::Value_Flags<Gio::Socket::MsgFlags>
+  class LIBMM_GIO_SYMEXPORT Value<gio::Socket::MsgFlags>
+    : public glib::Value_Flags<gio::Socket::MsgFlags>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
-namespace Glib
+namespace glib
 {
 
   LIBMM_GIO_SYMEXPORT
   auto
-  wrap (GSocket* object, bool take_copy = false) -> Glib::RefPtr<Gio::Socket>;
-} // namespace Glib
+  wrap (GSocket* object, bool take_copy = false) -> glib::RefPtr<gio::Socket>;
+} // namespace glib
 
 #endif

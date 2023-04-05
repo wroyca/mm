@@ -12,7 +12,7 @@
 
   #include <gtk/gtk.h>
 
-namespace Gtk
+namespace gtk
 {
 
 }
@@ -23,50 +23,50 @@ namespace
   static auto
   InfoBar_signal_response_callback (GtkInfoBar* self, gint p0, void* data) -> void
   {
-    using namespace Gtk;
+    using namespace gtk;
     using SlotType = sigc::slot<void (int)>;
 
     auto obj = dynamic_cast<InfoBar*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
     {
       try
       {
-        if (const auto slot = Glib::SignalProxyNormal::data_to_slot (data))
+        if (const auto slot = glib::SignalProxyNormal::data_to_slot (data))
           (*static_cast<SlotType*> (slot)) (p0);
       }
       catch (...)
       {
-        Glib::exception_handlers_invoke ();
+        glib::exception_handlers_invoke ();
       }
     }
   }
 
-  static const Glib::SignalProxyInfo InfoBar_signal_response_info = {
+  static const glib::SignalProxyInfo InfoBar_signal_response_info = {
       "response",
       (GCallback) &InfoBar_signal_response_callback,
       (GCallback) &InfoBar_signal_response_callback};
 
 } // namespace
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GtkInfoBar* object, bool take_copy) -> Gtk::InfoBar*
+  wrap (GtkInfoBar* object, bool take_copy) -> gtk::InfoBar*
   {
-    return dynamic_cast<Gtk::InfoBar*> (
-        Glib::wrap_auto ((GObject*) (object), take_copy));
+    return dynamic_cast<gtk::InfoBar*> (
+        glib::wrap_auto ((GObject*) (object), take_copy));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gtk
+namespace gtk
 {
 
   auto
-  InfoBar_Class::init () -> const Glib::Class&
+  InfoBar_Class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -86,30 +86,30 @@ namespace Gtk
   }
 
   auto
-  InfoBar_Class::wrap_new (GObject* o) -> Glib::ObjectBase*
+  InfoBar_Class::wrap_new (GObject* o) -> glib::ObjectBase*
   {
     return manage (new InfoBar ((GtkInfoBar*) (o)));
   }
 
-  InfoBar::InfoBar (const Glib::ConstructParams& construct_params)
-    : Gtk::Widget (construct_params)
+  InfoBar::InfoBar (const glib::ConstructParams& construct_params)
+    : gtk::Widget (construct_params)
   {
   }
 
   InfoBar::InfoBar (GtkInfoBar* castitem)
-    : Gtk::Widget ((GtkWidget*) (castitem))
+    : gtk::Widget ((GtkWidget*) (castitem))
   {
   }
 
   InfoBar::InfoBar (InfoBar&& src) noexcept
-    : Gtk::Widget (std::move (src))
+    : gtk::Widget (std::move (src))
   {
   }
 
   auto
   InfoBar::operator= (InfoBar&& src) noexcept -> InfoBar&
   {
-    Gtk::Widget::operator= (std::move (src));
+    gtk::Widget::operator= (std::move (src));
     return *this;
   }
 
@@ -133,8 +133,8 @@ namespace Gtk
   }
 
   InfoBar::InfoBar ()
-    : Glib::ObjectBase (nullptr),
-      Gtk::Widget (Glib::ConstructParams (infobar_class_.init ()))
+    : glib::ObjectBase (nullptr),
+      gtk::Widget (glib::ConstructParams (infobar_class_.init ()))
   {
   }
 
@@ -151,9 +151,9 @@ namespace Gtk
   }
 
   auto
-  InfoBar::add_button (const Glib::ustring& button_text, int response_id) -> Button*
+  InfoBar::add_button (const glib::ustring& button_text, int response_id) -> Button*
   {
-    return Glib::wrap (
+    return glib::wrap (
         (GtkButton*) (gtk_info_bar_add_button (gobj (),
                                                button_text.c_str (),
                                                response_id)));
@@ -231,52 +231,52 @@ namespace Gtk
   }
 
   auto
-  InfoBar::signal_response () -> Glib::SignalProxy<void (int)>
+  InfoBar::signal_response () -> glib::SignalProxy<void (int)>
   {
-    return Glib::SignalProxy<void (int)> (this, &InfoBar_signal_response_info);
+    return glib::SignalProxy<void (int)> (this, &InfoBar_signal_response_info);
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<MessageType>::value,
+      glib::Traits::ValueCompatibleWithWrapProperty<MessageType>::value,
       "Type MessageType cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  InfoBar::property_message_type () -> Glib::PropertyProxy<MessageType>
+  InfoBar::property_message_type () -> glib::PropertyProxy<MessageType>
   {
-    return Glib::PropertyProxy<MessageType> (this, "message-type");
+    return glib::PropertyProxy<MessageType> (this, "message-type");
   }
 
   auto
-  InfoBar::property_message_type () const -> Glib::PropertyProxy_ReadOnly<MessageType>
+  InfoBar::property_message_type () const -> glib::PropertyProxy_ReadOnly<MessageType>
   {
-    return Glib::PropertyProxy_ReadOnly<MessageType> (this, "message-type");
+    return glib::PropertyProxy_ReadOnly<MessageType> (this, "message-type");
   }
 
   auto
-  InfoBar::property_show_close_button () -> Glib::PropertyProxy<bool>
+  InfoBar::property_show_close_button () -> glib::PropertyProxy<bool>
   {
-    return Glib::PropertyProxy<bool> (this, "show-close-button");
+    return glib::PropertyProxy<bool> (this, "show-close-button");
   }
 
   auto
-  InfoBar::property_show_close_button () const -> Glib::PropertyProxy_ReadOnly<bool>
+  InfoBar::property_show_close_button () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "show-close-button");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "show-close-button");
   }
 
   auto
-  InfoBar::property_revealed () -> Glib::PropertyProxy<bool>
+  InfoBar::property_revealed () -> glib::PropertyProxy<bool>
   {
-    return Glib::PropertyProxy<bool> (this, "revealed");
+    return glib::PropertyProxy<bool> (this, "revealed");
   }
 
   auto
-  InfoBar::property_revealed () const -> Glib::PropertyProxy_ReadOnly<bool>
+  InfoBar::property_revealed () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "revealed");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "revealed");
   }
 
-} // namespace Gtk
+} // namespace gtk
 
 #endif

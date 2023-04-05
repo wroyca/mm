@@ -16,16 +16,16 @@ using GdkSnapshotClass = struct _GdkSnapshotClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gdk
+namespace gdk
 {
   class LIBMM_GDK_SYMEXPORT Snapshot_Class;
 }
 #endif
 
-namespace Gdk
+namespace gdk
 {
 
-  class LIBMM_GDK_SYMEXPORT Snapshot : public Glib::Object
+  class LIBMM_GDK_SYMEXPORT Snapshot : public glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -44,7 +44,7 @@ namespace Gdk
     static CppClassType snapshot_class_;
 
   protected:
-    explicit Snapshot (const Glib::ConstructParams& construct_params);
+    explicit Snapshot (const glib::ConstructParams& construct_params);
     explicit Snapshot (GdkSnapshot* castitem);
 
 #endif
@@ -87,12 +87,12 @@ namespace Gdk
   protected:
   };
 
-} // namespace Gdk
+} // namespace gdk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GDK_SYMEXPORT auto
-  wrap (GdkSnapshot* object, bool take_copy = false) -> Glib::RefPtr<Gdk::Snapshot>;
-} // namespace Glib
+  wrap (GdkSnapshot* object, bool take_copy = false) -> glib::RefPtr<gdk::Snapshot>;
+} // namespace glib
 
 #endif

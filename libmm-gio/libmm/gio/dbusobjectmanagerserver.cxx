@@ -11,20 +11,20 @@ namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GDBusObjectManagerServer* object, const bool take_copy) -> RefPtr<Gio::DBus::ObjectManagerServer>
+  wrap (GDBusObjectManagerServer* object, const bool take_copy) -> RefPtr<gio::DBus::ObjectManagerServer>
   {
-    return Glib::make_refptr_for_instance<Gio::DBus::ObjectManagerServer> (
-        dynamic_cast<Gio::DBus::ObjectManagerServer*> (
+    return glib::make_refptr_for_instance<gio::DBus::ObjectManagerServer> (
+        dynamic_cast<gio::DBus::ObjectManagerServer*> (
             wrap_auto ((GObject*) object, take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gio::DBus
+namespace gio::DBus
 {
 
   auto
@@ -51,7 +51,7 @@ namespace Gio::DBus
   }
 
   auto
-  ObjectManagerServer_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  ObjectManagerServer_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new ObjectManagerServer ((GDBusObjectManagerServer*) object);
   }
@@ -64,7 +64,7 @@ namespace Gio::DBus
   }
 
   ObjectManagerServer::ObjectManagerServer (
-      const Glib::ConstructParams& construct_params)
+      const glib::ConstructParams& construct_params)
     : Object (construct_params)
   {
   }
@@ -105,9 +105,9 @@ namespace Gio::DBus
     return g_dbus_object_manager_server_get_type ();
   }
 
-  ObjectManagerServer::ObjectManagerServer (const Glib::ustring& object_path)
+  ObjectManagerServer::ObjectManagerServer (const glib::ustring& object_path)
     : ObjectBase (nullptr),
-      Object (Glib::ConstructParams (objectmanagerserver_class_.init (),
+      Object (glib::ConstructParams (objectmanagerserver_class_.init (),
                                      "object_path",
                                      object_path.c_str (),
                                      nullptr))
@@ -115,85 +115,85 @@ namespace Gio::DBus
   }
 
   auto
-  ObjectManagerServer::create (const Glib::ustring& object_path) -> Glib::RefPtr<ObjectManagerServer>
+  ObjectManagerServer::create (const glib::ustring& object_path) -> glib::RefPtr<ObjectManagerServer>
   {
-    return Glib::make_refptr_for_instance<ObjectManagerServer> (
+    return glib::make_refptr_for_instance<ObjectManagerServer> (
         new ObjectManagerServer (object_path));
   }
 
   auto
-  ObjectManagerServer::get_connection () -> Glib::RefPtr<Connection>
+  ObjectManagerServer::get_connection () -> glib::RefPtr<Connection>
   {
-    return Glib::wrap (g_dbus_object_manager_server_get_connection (gobj ()));
+    return glib::wrap (g_dbus_object_manager_server_get_connection (gobj ()));
   }
 
   auto
-  ObjectManagerServer::get_connection () const -> Glib::RefPtr<const Connection>
+  ObjectManagerServer::get_connection () const -> glib::RefPtr<const Connection>
   {
     return const_cast<ObjectManagerServer*> (this)->get_connection ();
   }
 
   auto
   ObjectManagerServer::set_connection (
-      const Glib::RefPtr<Connection>& connection) -> void
+      const glib::RefPtr<Connection>& connection) -> void
   {
     g_dbus_object_manager_server_set_connection (gobj (),
-                                                 Glib::unwrap (connection));
+                                                 glib::unwrap (connection));
   }
 
   auto
   ObjectManagerServer::export_object (
-      const Glib::RefPtr<ObjectSkeleton>& object) -> void
+      const glib::RefPtr<ObjectSkeleton>& object) -> void
   {
-    g_dbus_object_manager_server_export (gobj (), Glib::unwrap (object));
+    g_dbus_object_manager_server_export (gobj (), glib::unwrap (object));
   }
 
   auto
   ObjectManagerServer::export_uniquely (
-      const Glib::RefPtr<ObjectSkeleton>& object) -> void
+      const glib::RefPtr<ObjectSkeleton>& object) -> void
   {
     g_dbus_object_manager_server_export_uniquely (gobj (),
-                                                  Glib::unwrap (object));
+                                                  glib::unwrap (object));
   }
 
   auto
   ObjectManagerServer::is_exported (
-      const Glib::RefPtr<ObjectSkeleton>& object) const -> bool
+      const glib::RefPtr<ObjectSkeleton>& object) const -> bool
   {
     return g_dbus_object_manager_server_is_exported (
         const_cast<GDBusObjectManagerServer*> (gobj ()),
-        Glib::unwrap (object));
+        glib::unwrap (object));
   }
 
   auto
-  ObjectManagerServer::unexport (const Glib::ustring& object_path) -> bool
+  ObjectManagerServer::unexport (const glib::ustring& object_path) -> bool
   {
     return g_dbus_object_manager_server_unexport (gobj (),
                                                   object_path.c_str ());
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<
-          Glib::RefPtr<Connection>>::value,
-      "Type Glib::RefPtr<Connection> cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      glib::Traits::ValueCompatibleWithWrapProperty<
+          glib::RefPtr<Connection>>::value,
+      "Type glib::RefPtr<Connection> cannot be used in _WRAP_PROPERTY. "
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  ObjectManagerServer::property_connection () -> Glib::PropertyProxy<Glib::RefPtr<Connection>>
+  ObjectManagerServer::property_connection () -> glib::PropertyProxy<glib::RefPtr<Connection>>
   {
     return {this, "connection"};
   }
 
   auto
-  ObjectManagerServer::property_connection () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Connection>>
+  ObjectManagerServer::property_connection () const -> glib::PropertyProxy_ReadOnly<glib::RefPtr<Connection>>
   {
     return {this, "connection"};
   }
 
   auto
-  ObjectManagerServer::property_object_path () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>
+  ObjectManagerServer::property_object_path () const -> glib::PropertyProxy_ReadOnly<glib::ustring>
   {
     return {this, "object-path"};
   }
 
-} // namespace Gio::DBus
+} // namespace gio::DBus

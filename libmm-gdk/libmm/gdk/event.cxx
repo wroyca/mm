@@ -12,9 +12,9 @@
 #include <libmm/gdk/seat.hxx>
 #include <libmm/gdk/surface.hxx>
 
-using Type = Gdk::Event::Type;
+using Type = gdk::Event::Type;
 
-namespace Gdk
+namespace gdk
 {
 
   auto
@@ -34,46 +34,46 @@ namespace Gdk
     guint n_coords = 0;
     GdkTimeCoord* coords =
         gdk_event_get_history (const_cast<GdkEvent*> (gobj ()), &n_coords);
-    return Glib::ArrayHandler<TimeCoord, TimeCoordTraits>::array_to_vector (
+    return glib::ArrayHandler<TimeCoord, TimeCoordTraits>::array_to_vector (
         coords,
         n_coords,
-        Glib::OWNERSHIP_DEEP);
+        glib::OWNERSHIP_DEEP);
   }
 
-} // namespace Gdk
+} // namespace gdk
 
 namespace
 {
 }
 
 auto
-Glib::Value<Gdk::KeyMatch>::value_type () -> GType
+glib::Value<gdk::KeyMatch>::value_type () -> GType
 {
   return gdk_key_match_get_type ();
 }
 
 auto
-Glib::Value<Gdk::Event::Type>::value_type () -> GType
+glib::Value<gdk::Event::Type>::value_type () -> GType
 {
   return gdk_event_type_get_type ();
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GdkEvent* object, bool take_copy) -> Glib::RefPtr<Gdk::Event>
+  wrap (GdkEvent* object, bool take_copy) -> glib::RefPtr<gdk::Event>
   {
     if (take_copy && object)
       gdk_event_ref (object);
 
-    return Glib::make_refptr_for_instance<Gdk::Event> (
-        reinterpret_cast<Gdk::Event*> (object));
+    return glib::make_refptr_for_instance<gdk::Event> (
+        reinterpret_cast<gdk::Event*> (object));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gdk
+namespace gdk
 {
 
   auto
@@ -117,61 +117,61 @@ namespace Gdk
   }
 
   auto
-  Event::get_surface () -> Glib::RefPtr<Surface>
+  Event::get_surface () -> glib::RefPtr<Surface>
   {
-    auto retvalue = Glib::wrap (gdk_event_get_surface (gobj ()));
+    auto retvalue = glib::wrap (gdk_event_get_surface (gobj ()));
     if (retvalue)
       retvalue->reference ();
     return retvalue;
   }
 
   auto
-  Event::get_surface () const -> Glib::RefPtr<const Surface>
+  Event::get_surface () const -> glib::RefPtr<const Surface>
   {
     return const_cast<Event*> (this)->get_surface ();
   }
 
   auto
-  Event::get_seat () -> Glib::RefPtr<Seat>
+  Event::get_seat () -> glib::RefPtr<Seat>
   {
-    auto retvalue = Glib::wrap (gdk_event_get_seat (gobj ()));
+    auto retvalue = glib::wrap (gdk_event_get_seat (gobj ()));
     if (retvalue)
       retvalue->reference ();
     return retvalue;
   }
 
   auto
-  Event::get_seat () const -> Glib::RefPtr<const Seat>
+  Event::get_seat () const -> glib::RefPtr<const Seat>
   {
     return const_cast<Event*> (this)->get_seat ();
   }
 
   auto
-  Event::get_device () -> Glib::RefPtr<Device>
+  Event::get_device () -> glib::RefPtr<Device>
   {
-    auto retvalue = Glib::wrap (gdk_event_get_device (gobj ()));
+    auto retvalue = glib::wrap (gdk_event_get_device (gobj ()));
     if (retvalue)
       retvalue->reference ();
     return retvalue;
   }
 
   auto
-  Event::get_device () const -> Glib::RefPtr<const Device>
+  Event::get_device () const -> glib::RefPtr<const Device>
   {
     return const_cast<Event*> (this)->get_device ();
   }
 
   auto
-  Event::get_device_tool () -> Glib::RefPtr<DeviceTool>
+  Event::get_device_tool () -> glib::RefPtr<DeviceTool>
   {
-    auto retvalue = Glib::wrap (gdk_event_get_device_tool (gobj ()));
+    auto retvalue = glib::wrap (gdk_event_get_device_tool (gobj ()));
     if (retvalue)
       retvalue->reference ();
     return retvalue;
   }
 
   auto
-  Event::get_device_tool () const -> Glib::RefPtr<const DeviceTool>
+  Event::get_device_tool () const -> glib::RefPtr<const DeviceTool>
   {
     return const_cast<Event*> (this)->get_device_tool ();
   }
@@ -183,16 +183,16 @@ namespace Gdk
   }
 
   auto
-  Event::get_display () -> Glib::RefPtr<Display>
+  Event::get_display () -> glib::RefPtr<Display>
   {
-    auto retvalue = Glib::wrap (gdk_event_get_display (gobj ()));
+    auto retvalue = glib::wrap (gdk_event_get_display (gobj ()));
     if (retvalue)
       retvalue->reference ();
     return retvalue;
   }
 
   auto
-  Event::get_display () const -> Glib::RefPtr<const Display>
+  Event::get_display () const -> glib::RefPtr<const Display>
   {
     return const_cast<Event*> (this)->get_display ();
   }
@@ -218,7 +218,7 @@ namespace Gdk
   }
 
   auto
-  Event::get_axis (Gdk::AxisUse axis_use, double& value) const -> bool
+  Event::get_axis (gdk::AxisUse axis_use, double& value) const -> bool
   {
     return gdk_event_get_axis (const_cast<GdkEvent*> (gobj ()),
                                static_cast<GdkAxisUse> (axis_use),
@@ -392,32 +392,32 @@ namespace Gdk
   }
 
   auto
-  Event::get_dnd_drop () -> Glib::RefPtr<Drop>
+  Event::get_dnd_drop () -> glib::RefPtr<Drop>
   {
-    auto retvalue = Glib::wrap (gdk_dnd_event_get_drop (gobj ()));
+    auto retvalue = glib::wrap (gdk_dnd_event_get_drop (gobj ()));
     if (retvalue)
       retvalue->reference ();
     return retvalue;
   }
 
   auto
-  Event::get_dnd_drop () const -> Glib::RefPtr<const Drop>
+  Event::get_dnd_drop () const -> glib::RefPtr<const Drop>
   {
     return const_cast<Event*> (this)->get_dnd_drop ();
   }
 
   auto
-  Event::get_grab_broken_grab_surface () -> Glib::RefPtr<Surface>
+  Event::get_grab_broken_grab_surface () -> glib::RefPtr<Surface>
   {
     auto retvalue =
-        Glib::wrap (gdk_grab_broken_event_get_grab_surface (gobj ()));
+        glib::wrap (gdk_grab_broken_event_get_grab_surface (gobj ()));
     if (retvalue)
       retvalue->reference ();
     return retvalue;
   }
 
   auto
-  Event::get_grab_broken_grab_surface () const -> Glib::RefPtr<const Surface>
+  Event::get_grab_broken_grab_surface () const -> glib::RefPtr<const Surface>
   {
     return const_cast<Event*> (this)->get_grab_broken_grab_surface ();
   }
@@ -435,31 +435,31 @@ namespace Gdk
   }
 
   auto
-  Event::get_distance (const Glib::RefPtr<const Event>& event2,
+  Event::get_distance (const glib::RefPtr<const Event>& event2,
                        double& distance) const -> bool
   {
     return gdk_events_get_distance (
         const_cast<GdkEvent*> (gobj ()),
-        const_cast<GdkEvent*> (Glib::unwrap (event2)),
+        const_cast<GdkEvent*> (glib::unwrap (event2)),
         &(distance));
   }
 
   auto
-  Event::get_angle (const Glib::RefPtr<const Event>& event2,
+  Event::get_angle (const glib::RefPtr<const Event>& event2,
                     double& angle) const -> bool
   {
     return gdk_events_get_angle (const_cast<GdkEvent*> (gobj ()),
-                                 const_cast<GdkEvent*> (Glib::unwrap (event2)),
+                                 const_cast<GdkEvent*> (glib::unwrap (event2)),
                                  &(angle));
   }
 
   auto
-  Event::get_center (const Glib::RefPtr<const Event>& event2,
+  Event::get_center (const glib::RefPtr<const Event>& event2,
                      double& x,
                      double& y) const -> bool
   {
     return gdk_events_get_center (const_cast<GdkEvent*> (gobj ()),
-                                  const_cast<GdkEvent*> (Glib::unwrap (event2)),
+                                  const_cast<GdkEvent*> (glib::unwrap (event2)),
                                   &(x),
                                   &(y));
   }
@@ -481,4 +481,4 @@ namespace Gdk
                                     ((GdkModifierType*) &(modifiers)));
   }
 
-} // namespace Gdk
+} // namespace gdk

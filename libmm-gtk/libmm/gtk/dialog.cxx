@@ -12,15 +12,15 @@
 
 #include <gtk/gtk.h>
 
-namespace Gtk
+namespace gtk
 {
 
-  Dialog::Dialog (const Glib::ustring& title,
-                  Gtk::Window& parent,
+  Dialog::Dialog (const glib::ustring& title,
+                  gtk::Window& parent,
                   bool modal,
                   bool use_header_bar)
-    : Glib::ObjectBase (nullptr),
-      Gtk::Window (Glib::ConstructParams (dialog_class_.init (),
+    : glib::ObjectBase (nullptr),
+      gtk::Window (glib::ConstructParams (dialog_class_.init (),
                                           "title",
                                           title.c_str (),
                                           "use-header-bar",
@@ -31,9 +31,9 @@ namespace Gtk
     set_transient_for (parent);
   }
 
-  Dialog::Dialog (const Glib::ustring& title, bool modal, bool use_header_bar)
-    : Glib::ObjectBase (nullptr),
-      Gtk::Window (Glib::ConstructParams (dialog_class_.init (),
+  Dialog::Dialog (const glib::ustring& title, bool modal, bool use_header_bar)
+    : glib::ObjectBase (nullptr),
+      gtk::Window (glib::ConstructParams (dialog_class_.init (),
                                           "title",
                                           title.c_str (),
                                           "use-header-bar",
@@ -43,7 +43,7 @@ namespace Gtk
     set_modal (modal);
   }
 
-} // namespace Gtk
+} // namespace gtk
 
 namespace
 {
@@ -51,27 +51,27 @@ namespace
   static auto
   Dialog_signal_response_callback (GtkDialog* self, gint p0, void* data) -> void
   {
-    using namespace Gtk;
+    using namespace gtk;
     using SlotType = sigc::slot<void (int)>;
 
     auto obj = dynamic_cast<Dialog*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
     {
       try
       {
-        if (const auto slot = Glib::SignalProxyNormal::data_to_slot (data))
+        if (const auto slot = glib::SignalProxyNormal::data_to_slot (data))
           (*static_cast<SlotType*> (slot)) (p0);
       }
       catch (...)
       {
-        Glib::exception_handlers_invoke ();
+        glib::exception_handlers_invoke ();
       }
     }
   }
 
-  static const Glib::SignalProxyInfo Dialog_signal_response_info = {
+  static const glib::SignalProxyInfo Dialog_signal_response_info = {
       "response",
       (GCallback) &Dialog_signal_response_callback,
       (GCallback) &Dialog_signal_response_callback};
@@ -79,28 +79,28 @@ namespace
 } // namespace
 
 auto
-Glib::Value<Gtk::ResponseType>::value_type () -> GType
+glib::Value<gtk::ResponseType>::value_type () -> GType
 {
   return gtk_response_type_get_type ();
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GtkDialog* object, bool take_copy) -> Gtk::Dialog*
+  wrap (GtkDialog* object, bool take_copy) -> gtk::Dialog*
   {
-    return dynamic_cast<Gtk::Dialog*> (
-        Glib::wrap_auto ((GObject*) (object), take_copy));
+    return dynamic_cast<gtk::Dialog*> (
+        glib::wrap_auto ((GObject*) (object), take_copy));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gtk
+namespace gtk
 {
 
   auto
-  Dialog_Class::init () -> const Glib::Class&
+  Dialog_Class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -124,8 +124,8 @@ namespace Gtk
   auto
   Dialog_Class::response_callback (GtkDialog* self, gint p0) -> void
   {
-    const auto obj_base = static_cast<Glib::ObjectBase*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+    const auto obj_base = static_cast<glib::ObjectBase*> (
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -139,7 +139,7 @@ namespace Gtk
         }
         catch (...)
         {
-          Glib::exception_handlers_invoke ();
+          glib::exception_handlers_invoke ();
         }
       }
     }
@@ -152,30 +152,30 @@ namespace Gtk
   }
 
   auto
-  Dialog_Class::wrap_new (GObject* o) -> Glib::ObjectBase*
+  Dialog_Class::wrap_new (GObject* o) -> glib::ObjectBase*
   {
     return new Dialog ((GtkDialog*) (o));
   }
 
-  Dialog::Dialog (const Glib::ConstructParams& construct_params)
-    : Gtk::Window (construct_params)
+  Dialog::Dialog (const glib::ConstructParams& construct_params)
+    : gtk::Window (construct_params)
   {
   }
 
   Dialog::Dialog (GtkDialog* castitem)
-    : Gtk::Window ((GtkWindow*) (castitem))
+    : gtk::Window ((GtkWindow*) (castitem))
   {
   }
 
   Dialog::Dialog (Dialog&& src) noexcept
-    : Gtk::Window (std::move (src))
+    : gtk::Window (std::move (src))
   {
   }
 
   auto
   Dialog::operator= (Dialog&& src) noexcept -> Dialog&
   {
-    Gtk::Window::operator= (std::move (src));
+    gtk::Window::operator= (std::move (src));
     return *this;
   }
 
@@ -199,8 +199,8 @@ namespace Gtk
   }
 
   Dialog::Dialog ()
-    : Glib::ObjectBase (nullptr),
-      Gtk::Window (Glib::ConstructParams (dialog_class_.init ()))
+    : glib::ObjectBase (nullptr),
+      gtk::Window (glib::ConstructParams (dialog_class_.init ()))
   {
   }
 
@@ -211,9 +211,9 @@ namespace Gtk
   }
 
   auto
-  Dialog::add_button (const Glib::ustring& button_text, int response_id) -> Button*
+  Dialog::add_button (const glib::ustring& button_text, int response_id) -> Button*
   {
-    return Glib::wrap (
+    return glib::wrap (
         (GtkButton*) (gtk_dialog_add_button (gobj (),
                                              button_text.c_str (),
                                              response_id)));
@@ -236,7 +236,7 @@ namespace Gtk
   auto
   Dialog::get_widget_for_response (int response_id) -> Widget*
   {
-    return Glib::wrap (
+    return glib::wrap (
         gtk_dialog_get_widget_for_response (gobj (), response_id));
   }
 
@@ -247,7 +247,7 @@ namespace Gtk
   }
 
   auto
-  Dialog::get_response_for_widget (const Gtk::Widget& widget) const -> int
+  Dialog::get_response_for_widget (const gtk::Widget& widget) const -> int
   {
     return gtk_dialog_get_response_for_widget (
         const_cast<GtkDialog*> (gobj ()),
@@ -263,7 +263,7 @@ namespace Gtk
   auto
   Dialog::get_content_area () -> Box*
   {
-    return Glib::wrap ((GtkBox*) (gtk_dialog_get_content_area (gobj ())));
+    return glib::wrap ((GtkBox*) (gtk_dialog_get_content_area (gobj ())));
   }
 
   auto
@@ -275,7 +275,7 @@ namespace Gtk
   auto
   Dialog::get_header_bar () -> HeaderBar*
   {
-    return Glib::wrap ((GtkHeaderBar*) (gtk_dialog_get_header_bar (gobj ())));
+    return glib::wrap ((GtkHeaderBar*) (gtk_dialog_get_header_bar (gobj ())));
   }
 
   auto
@@ -285,19 +285,19 @@ namespace Gtk
   }
 
   auto
-  Dialog::signal_response () -> Glib::SignalProxy<void (int)>
+  Dialog::signal_response () -> glib::SignalProxy<void (int)>
   {
-    return Glib::SignalProxy<void (int)> (this, &Dialog_signal_response_info);
+    return glib::SignalProxy<void (int)> (this, &Dialog_signal_response_info);
   }
 
   auto
-  Dialog::property_use_header_bar () const -> Glib::PropertyProxy_ReadOnly<bool>
+  Dialog::property_use_header_bar () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "use-header-bar");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "use-header-bar");
   }
 
   auto
-  Gtk::Dialog::on_response (int response_id) -> void
+  gtk::Dialog::on_response (int response_id) -> void
   {
     const auto base = static_cast<BaseClassType*> (
         g_type_class_peek_parent (G_OBJECT_GET_CLASS (gobject_)));
@@ -306,4 +306,4 @@ namespace Gtk
       (*base->response) (gobj (), response_id);
   }
 
-} // namespace Gtk
+} // namespace gtk

@@ -7,7 +7,7 @@
 
 #include <libmm/gtk/mm-gtk.hxx>
 
-namespace Adw
+namespace adw
 {
 
 }
@@ -16,23 +16,23 @@ namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (AdwToastOverlay* object, bool take_copy) -> Adw::ToastOverlay*
+  wrap (AdwToastOverlay* object, bool take_copy) -> adw::ToastOverlay*
   {
-    return dynamic_cast<Adw::ToastOverlay*> (
-        Glib::wrap_auto ((GObject*) (object), take_copy));
+    return dynamic_cast<adw::ToastOverlay*> (
+        glib::wrap_auto ((GObject*) (object), take_copy));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Adw
+namespace adw
 {
 
   auto
-  ToastOverlay_Class::init () -> const Glib::Class&
+  ToastOverlay_Class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -43,30 +43,30 @@ namespace Adw
   }
 
   auto
-  ToastOverlay_Class::wrap_new (GObject* o) -> Glib::ObjectBase*
+  ToastOverlay_Class::wrap_new (GObject* o) -> glib::ObjectBase*
   {
     return manage (new ToastOverlay ((AdwToastOverlay*) (o)));
   }
 
-  ToastOverlay::ToastOverlay (const Glib::ConstructParams& construct_params)
-    : Gtk::Widget (construct_params)
+  ToastOverlay::ToastOverlay (const glib::ConstructParams& construct_params)
+    : gtk::Widget (construct_params)
   {
   }
 
   ToastOverlay::ToastOverlay (AdwToastOverlay* castitem)
-    : Gtk::Widget ((GtkWidget*) (castitem))
+    : gtk::Widget ((GtkWidget*) (castitem))
   {
   }
 
   ToastOverlay::ToastOverlay (ToastOverlay&& src) noexcept
-    : Gtk::Widget (std::move (src))
+    : gtk::Widget (std::move (src))
   {
   }
 
   auto
   ToastOverlay::operator= (ToastOverlay&& src) noexcept -> ToastOverlay&
   {
-    Gtk::Widget::operator= (std::move (src));
+    gtk::Widget::operator= (std::move (src));
     return *this;
   }
 
@@ -90,40 +90,40 @@ namespace Adw
   }
 
   ToastOverlay::ToastOverlay ()
-    : Glib::ObjectBase (nullptr),
-      Gtk::Widget (Glib::ConstructParams (toastoverlay_class_.init ()))
+    : glib::ObjectBase (nullptr),
+      gtk::Widget (glib::ConstructParams (toastoverlay_class_.init ()))
   {
   }
 
   auto
   ToastOverlay::add_toast (Toast* toast) -> void
   {
-    adw_toast_overlay_add_toast (gobj (), (AdwToast*) Glib::unwrap (toast));
+    adw_toast_overlay_add_toast (gobj (), (AdwToast*) glib::unwrap (toast));
   }
 
   auto
-  ToastOverlay::get_child () const -> Gtk::Widget*
+  ToastOverlay::get_child () const -> gtk::Widget*
   {
-    return Glib::wrap (
+    return glib::wrap (
         adw_toast_overlay_get_child (const_cast<AdwToastOverlay*> (gobj ())));
   }
 
   auto
-  ToastOverlay::set_child (Gtk::Widget* child) -> void
+  ToastOverlay::set_child (gtk::Widget* child) -> void
   {
-    adw_toast_overlay_set_child (gobj (), (GtkWidget*) Glib::unwrap (child));
+    adw_toast_overlay_set_child (gobj (), (GtkWidget*) glib::unwrap (child));
   }
 
   auto
-  ToastOverlay::property_child () -> Glib::PropertyProxy<Gtk::Widget*>
+  ToastOverlay::property_child () -> glib::PropertyProxy<gtk::Widget*>
   {
-    return Glib::PropertyProxy<Gtk::Widget*> (this, "child");
+    return glib::PropertyProxy<gtk::Widget*> (this, "child");
   }
 
   auto
-  ToastOverlay::property_child () const -> Glib::PropertyProxy_ReadOnly<Gtk::Widget*>
+  ToastOverlay::property_child () const -> glib::PropertyProxy_ReadOnly<gtk::Widget*>
   {
-    return Glib::PropertyProxy_ReadOnly<Gtk::Widget*> (this, "child");
+    return glib::PropertyProxy_ReadOnly<gtk::Widget*> (this, "child");
   }
 
-} // namespace Adw
+} // namespace adw

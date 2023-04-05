@@ -8,7 +8,7 @@
 #include <gio/gio.h>
 #include <libmm/glib/error.hxx>
 
-namespace Gio
+namespace gio
 {
 
 }
@@ -17,20 +17,20 @@ namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GCredentials* object, const bool take_copy) -> RefPtr<Gio::Credentials>
+  wrap (GCredentials* object, const bool take_copy) -> RefPtr<gio::Credentials>
   {
-    return Glib::make_refptr_for_instance<Gio::Credentials> (
-        dynamic_cast<Gio::Credentials*> (
+    return glib::make_refptr_for_instance<gio::Credentials> (
+        dynamic_cast<gio::Credentials*> (
             wrap_auto ((GObject*) object, take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gio
+namespace gio
 {
 
   auto
@@ -54,7 +54,7 @@ namespace Gio
   }
 
   auto
-  Credentials_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  Credentials_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new Credentials ((GCredentials*) object);
   }
@@ -66,7 +66,7 @@ namespace Gio
     return gobj ();
   }
 
-  Credentials::Credentials (const Glib::ConstructParams& construct_params)
+  Credentials::Credentials (const glib::ConstructParams& construct_params)
     : Object (construct_params)
   {
   }
@@ -106,20 +106,20 @@ namespace Gio
 
   Credentials::Credentials ()
     : ObjectBase (nullptr),
-      Object (Glib::ConstructParams (credentials_class_.init ()))
+      Object (glib::ConstructParams (credentials_class_.init ()))
   {
   }
 
   auto
-  Credentials::create () -> Glib::RefPtr<Credentials>
+  Credentials::create () -> glib::RefPtr<Credentials>
   {
-    return Glib::make_refptr_for_instance<Credentials> (new Credentials ());
+    return glib::make_refptr_for_instance<Credentials> (new Credentials ());
   }
 
   auto
-  Credentials::to_string () const -> Glib::ustring
+  Credentials::to_string () const -> glib::ustring
   {
-    return Glib::convert_return_gchar_ptr_to_ustring (
+    return glib::convert_return_gchar_ptr_to_ustring (
         g_credentials_to_string (const_cast<GCredentials*> (gobj ())));
   }
 
@@ -141,16 +141,16 @@ namespace Gio
 
   auto
   Credentials::is_same_user (
-      const Glib::RefPtr<const Credentials>& other_credentials) -> bool
+      const glib::RefPtr<const Credentials>& other_credentials) -> bool
   {
     GError* gerror = nullptr;
     const auto retvalue = g_credentials_is_same_user (
         gobj (),
         const_cast<GCredentials*> (
-            Glib::unwrap<Credentials> (other_credentials)),
+            glib::unwrap<Credentials> (other_credentials)),
         &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
@@ -161,7 +161,7 @@ namespace Gio
     GError* gerror = nullptr;
     auto retvalue = g_credentials_get_unix_user (gobj (), &(gerror));
     if (gerror)
-      ::Glib::Error::throw_exception (gerror);
+      ::glib::Error::throw_exception (gerror);
     return retvalue;
   }
 #endif
@@ -173,7 +173,7 @@ namespace Gio
     GError* gerror = nullptr;
     auto retvalue = g_credentials_set_unix_user (gobj (), uid, &(gerror));
     if (gerror)
-      ::Glib::Error::throw_exception (gerror);
+      ::glib::Error::throw_exception (gerror);
     return retvalue;
   }
 #endif
@@ -187,9 +187,9 @@ namespace Gio
         const_cast<GCredentials*> (gobj ()),
         &(gerror));
     if (gerror)
-      ::Glib::Error::throw_exception (gerror);
+      ::glib::Error::throw_exception (gerror);
     return retvalue;
   }
 #endif
 
-} // namespace Gio
+} // namespace gio

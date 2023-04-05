@@ -11,7 +11,7 @@
 #include <libmm/gio/dbusmessage.hxx>
 #include <libmm/glib/error.hxx>
 
-namespace Gio::DBus
+namespace gio::DBus
 {
 
 }
@@ -20,20 +20,20 @@ namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GDBusMethodInvocation* object, const bool take_copy) -> RefPtr<Gio::DBus::MethodInvocation>
+  wrap (GDBusMethodInvocation* object, const bool take_copy) -> RefPtr<gio::DBus::MethodInvocation>
   {
-    return Glib::make_refptr_for_instance<Gio::DBus::MethodInvocation> (
-        dynamic_cast<Gio::DBus::MethodInvocation*> (
+    return glib::make_refptr_for_instance<gio::DBus::MethodInvocation> (
+        dynamic_cast<gio::DBus::MethodInvocation*> (
             wrap_auto ((GObject*) object, take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gio::DBus
+namespace gio::DBus
 {
 
   auto
@@ -57,7 +57,7 @@ namespace Gio::DBus
   }
 
   auto
-  MethodInvocation_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  MethodInvocation_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new MethodInvocation ((GDBusMethodInvocation*) object);
   }
@@ -70,7 +70,7 @@ namespace Gio::DBus
   }
 
   MethodInvocation::MethodInvocation (
-      const Glib::ConstructParams& construct_params)
+      const glib::ConstructParams& construct_params)
     : Object (construct_params)
   {
   }
@@ -109,41 +109,41 @@ namespace Gio::DBus
   }
 
   auto
-  MethodInvocation::get_sender () const -> Glib::ustring
+  MethodInvocation::get_sender () const -> glib::ustring
   {
-    return Glib::convert_const_gchar_ptr_to_ustring (
+    return glib::convert_const_gchar_ptr_to_ustring (
         g_dbus_method_invocation_get_sender (
             const_cast<GDBusMethodInvocation*> (gobj ())));
   }
 
   auto
-  MethodInvocation::get_object_path () const -> Glib::ustring
+  MethodInvocation::get_object_path () const -> glib::ustring
   {
-    return Glib::convert_const_gchar_ptr_to_ustring (
+    return glib::convert_const_gchar_ptr_to_ustring (
         g_dbus_method_invocation_get_object_path (
             const_cast<GDBusMethodInvocation*> (gobj ())));
   }
 
   auto
-  MethodInvocation::get_interface_name () const -> Glib::ustring
+  MethodInvocation::get_interface_name () const -> glib::ustring
   {
-    return Glib::convert_const_gchar_ptr_to_ustring (
+    return glib::convert_const_gchar_ptr_to_ustring (
         g_dbus_method_invocation_get_interface_name (
             const_cast<GDBusMethodInvocation*> (gobj ())));
   }
 
   auto
-  MethodInvocation::get_method_name () const -> Glib::ustring
+  MethodInvocation::get_method_name () const -> glib::ustring
   {
-    return Glib::convert_const_gchar_ptr_to_ustring (
+    return glib::convert_const_gchar_ptr_to_ustring (
         g_dbus_method_invocation_get_method_name (
             const_cast<GDBusMethodInvocation*> (gobj ())));
   }
 
   auto
-  MethodInvocation::get_method_info () const -> Glib::RefPtr<const MethodInfo>
+  MethodInvocation::get_method_info () const -> glib::RefPtr<const MethodInfo>
   {
-    auto retvalue = Glib::wrap (
+    auto retvalue = glib::wrap (
         const_cast<GDBusMethodInfo*> (g_dbus_method_invocation_get_method_info (
             const_cast<GDBusMethodInvocation*> (gobj ()))));
     if (retvalue)
@@ -152,47 +152,47 @@ namespace Gio::DBus
   }
 
   auto
-  MethodInvocation::get_connection () -> Glib::RefPtr<Connection>
+  MethodInvocation::get_connection () -> glib::RefPtr<Connection>
   {
     auto retvalue =
-        Glib::wrap (g_dbus_method_invocation_get_connection (gobj ()));
+        glib::wrap (g_dbus_method_invocation_get_connection (gobj ()));
     if (retvalue)
       retvalue->reference ();
     return retvalue;
   }
 
   auto
-  MethodInvocation::get_connection () const -> Glib::RefPtr<const Connection>
+  MethodInvocation::get_connection () const -> glib::RefPtr<const Connection>
   {
     return const_cast<MethodInvocation*> (this)->get_connection ();
   }
 
   auto
-  MethodInvocation::get_message () -> Glib::RefPtr<Message>
+  MethodInvocation::get_message () -> glib::RefPtr<Message>
   {
-    auto retvalue = Glib::wrap (g_dbus_method_invocation_get_message (gobj ()));
+    auto retvalue = glib::wrap (g_dbus_method_invocation_get_message (gobj ()));
     if (retvalue)
       retvalue->reference ();
     return retvalue;
   }
 
   auto
-  MethodInvocation::get_message () const -> Glib::RefPtr<const Message>
+  MethodInvocation::get_message () const -> glib::RefPtr<const Message>
   {
     return const_cast<MethodInvocation*> (this)->get_message ();
   }
 
   auto
-  MethodInvocation::get_parameters () const -> Glib::VariantContainerBase
+  MethodInvocation::get_parameters () const -> glib::VariantContainerBase
   {
-    return Glib::VariantContainerBase (
+    return glib::VariantContainerBase (
         g_dbus_method_invocation_get_parameters (
             const_cast<GDBusMethodInvocation*> (gobj ())),
         false);
   }
 
   auto
-  MethodInvocation::return_value (const Glib::VariantContainerBase& parameters) -> void
+  MethodInvocation::return_value (const glib::VariantContainerBase& parameters) -> void
   {
     g_dbus_method_invocation_return_value (
         gobj (),
@@ -201,41 +201,41 @@ namespace Gio::DBus
 
 #ifdef G_OS_UNIX
   void
-  MethodInvocation::return_value (const Glib::VariantContainerBase& parameters,
-                                  const Glib::RefPtr<UnixFDList>& fd_list)
+  MethodInvocation::return_value (const glib::VariantContainerBase& parameters,
+                                  const glib::RefPtr<UnixFDList>& fd_list)
   {
     g_dbus_method_invocation_return_value_with_unix_fd_list (
         gobj (),
         const_cast<GVariant*> ((parameters).gobj ()),
-        Glib::unwrap (fd_list));
+        glib::unwrap (fd_list));
   }
 #endif
 
   auto
-  MethodInvocation::return_error (const Glib::ustring& domain,
+  MethodInvocation::return_error (const glib::ustring& domain,
                                   const int code,
-                                  const Glib::ustring& message) -> void
+                                  const glib::ustring& message) -> void
   {
     g_dbus_method_invocation_return_error_literal (
         gobj (),
-        Glib::QueryQuark (domain).id (),
+        glib::QueryQuark (domain).id (),
         code,
         message.c_str ());
   }
 
   auto
-  MethodInvocation::return_error (const Glib::Error& error) -> void
+  MethodInvocation::return_error (const glib::Error& error) -> void
   {
     g_dbus_method_invocation_return_gerror (gobj (), error.gobj ());
   }
 
   auto
-  MethodInvocation::return_dbus_error (const Glib::ustring& error_name,
-                                       const Glib::ustring& error_message) -> void
+  MethodInvocation::return_dbus_error (const glib::ustring& error_name,
+                                       const glib::ustring& error_message) -> void
   {
     g_dbus_method_invocation_return_dbus_error (gobj (),
                                                 error_name.c_str (),
                                                 error_message.c_str ());
   }
 
-} // namespace Gio::DBus
+} // namespace gio::DBus

@@ -28,7 +28,7 @@
   #include <cairo-glitz.h>
 #endif
 
-namespace Cairo
+namespace cairo
 {
 
   class LIBMM_CAIRO_SYMEXPORT Surface
@@ -466,6 +466,6 @@ namespace Cairo
 
 #endif
 
-} // namespace Cairo
+} // namespace cairo
 
 #endif

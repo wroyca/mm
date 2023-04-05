@@ -14,10 +14,10 @@
 typedef struct _GRegex GRegex;
 #endif
 
-namespace Glib
+namespace glib
 {
 
-  class RegexError : public Glib::Error
+  class RegexError : public glib::Error
   {
   public:
     enum Code
@@ -82,7 +82,7 @@ namespace Glib
     };
 
     LIBMM_GLIB_SYMEXPORT
-    RegexError (Code error_code, const Glib::ustring& error_message);
+    RegexError (Code error_code, const glib::ustring& error_message);
     LIBMM_GLIB_SYMEXPORT explicit RegexError (GError* gobject);
     LIBMM_GLIB_SYMEXPORT auto
     code () const -> Code;
@@ -179,13 +179,13 @@ namespace Glib
     };
 
     static auto
-    create (Glib::UStringView pattern,
+    create (glib::UStringView pattern,
             CompileFlags compile_options = static_cast<CompileFlags> (0),
             MatchFlags match_options = static_cast<MatchFlags> (0))
-        -> Glib::RefPtr<Glib::Regex>;
+        -> glib::RefPtr<glib::Regex>;
 
     auto
-    get_pattern () const -> Glib::ustring;
+    get_pattern () const -> glib::ustring;
 
     auto
     get_max_backref () const -> int;
@@ -200,7 +200,7 @@ namespace Glib
     get_max_lookbehind () const -> int;
 
     auto
-    get_string_number (Glib::UStringView name) const -> int;
+    get_string_number (glib::UStringView name) const -> int;
 
     auto
     get_compile_flags () const -> CompileFlags;
@@ -209,144 +209,144 @@ namespace Glib
     get_match_flags () const -> MatchFlags;
 
     static auto
-    escape_string (const Glib::ustring& string) -> Glib::ustring;
+    escape_string (const glib::ustring& string) -> glib::ustring;
 
     static auto
-    match_simple (Glib::UStringView pattern,
-                  Glib::UStringView string,
+    match_simple (glib::UStringView pattern,
+                  glib::UStringView string,
                   CompileFlags compile_options = static_cast<CompileFlags> (0),
                   MatchFlags match_options = static_cast<MatchFlags> (0))
         -> bool;
 
     auto
-    match (Glib::UStringView string,
-           Glib::MatchInfo& match_info,
+    match (glib::UStringView string,
+           glib::MatchInfo& match_info,
            MatchFlags match_options = static_cast<MatchFlags> (0)) -> bool;
 
     auto
-    match (Glib::UStringView string,
+    match (glib::UStringView string,
            MatchFlags match_options = static_cast<MatchFlags> (0)) -> bool;
 
     auto
-    match (Glib::UStringView string,
+    match (glib::UStringView string,
            int start_position,
-           Glib::MatchInfo& match_info,
+           glib::MatchInfo& match_info,
            MatchFlags match_options = static_cast<MatchFlags> (0)) -> bool;
 
     auto
-    match (Glib::UStringView string,
+    match (glib::UStringView string,
            gssize string_len,
            int start_position,
-           Glib::MatchInfo& match_info,
+           glib::MatchInfo& match_info,
            MatchFlags match_options = static_cast<MatchFlags> (0)) -> bool;
 
     auto
-    match (Glib::UStringView string,
+    match (glib::UStringView string,
            int start_position,
            MatchFlags match_options) -> bool;
 
     auto
-    match (Glib::UStringView string,
+    match (glib::UStringView string,
            gssize string_len,
            int start_position,
            MatchFlags match_options) -> bool;
 
     auto
-    match_all (Glib::UStringView string,
-               Glib::MatchInfo& match_info,
+    match_all (glib::UStringView string,
+               glib::MatchInfo& match_info,
                MatchFlags match_options = static_cast<MatchFlags> (0)) -> bool;
 
     auto
-    match_all (Glib::UStringView string,
+    match_all (glib::UStringView string,
                MatchFlags match_options = static_cast<MatchFlags> (0)) -> bool;
 
     auto
-    match_all (Glib::UStringView string,
+    match_all (glib::UStringView string,
                int start_position,
-               Glib::MatchInfo& match_info,
+               glib::MatchInfo& match_info,
                MatchFlags match_options = static_cast<MatchFlags> (0)) -> bool;
 
     auto
-    match_all (Glib::UStringView string,
+    match_all (glib::UStringView string,
                gssize string_len,
                int start_position,
-               Glib::MatchInfo& match_info,
+               glib::MatchInfo& match_info,
                MatchFlags match_options = static_cast<MatchFlags> (0)) -> bool;
 
     auto
-    match_all (Glib::UStringView string,
+    match_all (glib::UStringView string,
                int start_position,
                MatchFlags match_options) -> bool;
 
     auto
-    match_all (Glib::UStringView string,
+    match_all (glib::UStringView string,
                gssize string_len,
                int start_position,
                MatchFlags match_options) -> bool;
 
     static auto
-    split_simple (Glib::UStringView pattern,
-                  Glib::UStringView string,
+    split_simple (glib::UStringView pattern,
+                  glib::UStringView string,
                   CompileFlags compile_options = static_cast<CompileFlags> (0),
                   MatchFlags match_options = static_cast<MatchFlags> (0))
-        -> std::vector<Glib::ustring>;
+        -> std::vector<glib::ustring>;
 
     auto
-    split (Glib::UStringView string,
+    split (glib::UStringView string,
            MatchFlags match_options = static_cast<MatchFlags> (0))
-        -> std::vector<Glib::ustring>;
+        -> std::vector<glib::ustring>;
 
     auto
     split (const gchar* string,
            gssize string_len,
            int start_position,
            MatchFlags match_options = static_cast<MatchFlags> (0),
-           int max_tokens = 0) const -> std::vector<Glib::ustring>;
+           int max_tokens = 0) const -> std::vector<glib::ustring>;
 
     auto
-    split (Glib::UStringView string,
+    split (glib::UStringView string,
            int start_position,
            MatchFlags match_options,
-           int max_tokens) const -> std::vector<Glib::ustring>;
+           int max_tokens) const -> std::vector<glib::ustring>;
 
     auto
     replace (const gchar* string,
              gssize string_len,
              int start_position,
-             Glib::UStringView replacement,
+             glib::UStringView replacement,
              MatchFlags match_options = static_cast<MatchFlags> (0))
-        -> Glib::ustring;
+        -> glib::ustring;
 
     auto
-    replace (Glib::UStringView string,
+    replace (glib::UStringView string,
              int start_position,
-             Glib::UStringView replacement,
-             MatchFlags match_options) -> Glib::ustring;
+             glib::UStringView replacement,
+             MatchFlags match_options) -> glib::ustring;
 
     auto
     replace_literal (const gchar* string,
                      gssize string_len,
                      int start_position,
-                     Glib::UStringView replacement,
+                     glib::UStringView replacement,
                      MatchFlags match_options = static_cast<MatchFlags> (0))
-        -> Glib::ustring;
+        -> glib::ustring;
 
     auto
-    replace_literal (Glib::UStringView string,
+    replace_literal (glib::UStringView string,
                      int start_position,
-                     Glib::UStringView replacement,
-                     MatchFlags match_options) -> Glib::ustring;
+                     glib::UStringView replacement,
+                     MatchFlags match_options) -> glib::ustring;
 
     auto
-    replace_eval (Glib::UStringView string,
+    replace_eval (glib::UStringView string,
                   gssize string_len,
                   int start_position,
                   MatchFlags match_options,
                   GRegexEvalCallback eval,
-                  gpointer user_data) -> Glib::ustring;
+                  gpointer user_data) -> glib::ustring;
 
     static auto
-    check_replacement (Glib::UStringView replacement, gboolean* has_references)
+    check_replacement (glib::UStringView replacement, gboolean* has_references)
         -> bool;
   };
 
@@ -391,13 +391,13 @@ namespace Glib
 
   public:
     auto
-    get_regex () -> Glib::RefPtr<Regex>;
+    get_regex () -> glib::RefPtr<Regex>;
 
     auto
-    get_regex () const -> Glib::RefPtr<const Regex>;
+    get_regex () const -> glib::RefPtr<const Regex>;
 
     auto
-    get_string () const -> Glib::ustring;
+    get_string () const -> glib::ustring;
 
     auto
     matches () const -> bool;
@@ -412,23 +412,23 @@ namespace Glib
     is_partial_match () const -> bool;
 
     auto
-    expand_references (Glib::UStringView string_to_expand) -> Glib::ustring;
+    expand_references (glib::UStringView string_to_expand) -> glib::ustring;
 
     auto
-    fetch (int match_num) -> Glib::ustring;
+    fetch (int match_num) -> glib::ustring;
 
     auto
     fetch_pos (int match_num, int& start_pos, int& end_pos) -> bool;
 
     auto
-    fetch_named (Glib::UStringView name) -> Glib::ustring;
+    fetch_named (glib::UStringView name) -> glib::ustring;
 
     auto
-    fetch_named_pos (Glib::UStringView name, int& start_pos, int& end_pos)
+    fetch_named_pos (glib::UStringView name, int& start_pos, int& end_pos)
         -> bool;
 
     auto
-    fetch_all () -> std::vector<Glib::ustring>;
+    fetch_all () -> std::vector<glib::ustring>;
 
   protected:
     GMatchInfo* gobject_;
@@ -439,9 +439,9 @@ namespace Glib
     set_gobject (GMatchInfo* castitem, bool take_ownership = true) -> void;
   };
 
-} // namespace Glib
+} // namespace glib
 
-namespace Glib
+namespace glib
 {
 
   inline auto
@@ -491,9 +491,9 @@ namespace Glib
     return (lhs = static_cast<Regex::CompileFlags> (
                 static_cast<unsigned> (lhs) ^ static_cast<unsigned> (rhs)));
   }
-} // namespace Glib
+} // namespace glib
 
-namespace Glib
+namespace glib
 {
 
   inline auto
@@ -543,15 +543,15 @@ namespace Glib
     return (lhs = static_cast<Regex::MatchFlags> (static_cast<unsigned> (lhs) ^
                                                   static_cast<unsigned> (rhs)));
   }
-} // namespace Glib
+} // namespace glib
 
-namespace Glib
+namespace glib
 {
 
   LIBMM_GLIB_SYMEXPORT
   auto
-  wrap (GRegex* object, bool take_copy = false) -> Glib::RefPtr<Glib::Regex>;
+  wrap (GRegex* object, bool take_copy = false) -> glib::RefPtr<glib::Regex>;
 
-} // namespace Glib
+} // namespace glib
 
 #endif

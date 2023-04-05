@@ -23,16 +23,16 @@ using GdkDevicePadClass = struct _GdkDevicePadClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gdk
+namespace gdk
 {
   class LIBMM_GDK_SYMEXPORT DevicePad_Class;
 }
 #endif
 
-namespace Gdk
+namespace gdk
 {
 
-  class LIBMM_GDK_SYMEXPORT DevicePad : public Glib::Interface
+  class LIBMM_GDK_SYMEXPORT DevicePad : public glib::Interface
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -56,7 +56,7 @@ namespace Gdk
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
-    explicit DevicePad (const Glib::Interface_Class& interface_class);
+    explicit DevicePad (const glib::Interface_Class& interface_class);
 
   public:
     explicit DevicePad (GdkDevicePad* castitem);
@@ -120,29 +120,29 @@ namespace Gdk
   protected:
   };
 
-} // namespace Gdk
+} // namespace gdk
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_GDK_SYMEXPORT Value<Gdk::DevicePad::Feature>
-    : public Glib::Value_Enum<Gdk::DevicePad::Feature>
+  class LIBMM_GDK_SYMEXPORT Value<gdk::DevicePad::Feature>
+    : public glib::Value_Enum<gdk::DevicePad::Feature>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
-namespace Glib
+namespace glib
 {
   LIBMM_GDK_SYMEXPORT auto
-  wrap (GdkDevicePad* object, bool take_copy = false) -> Glib::RefPtr<Gdk::DevicePad>;
+  wrap (GdkDevicePad* object, bool take_copy = false) -> glib::RefPtr<gdk::DevicePad>;
 
-} // namespace Glib
+} // namespace glib
 
 #endif

@@ -7,7 +7,7 @@
 
 #include <gtk/gtk.h>
 
-namespace Gtk
+namespace gtk
 {
 
 }
@@ -18,22 +18,22 @@ namespace
   static auto
   Switch_signal_state_set_callback (GtkSwitch* self, gboolean p0, void* data) -> gboolean
   {
-    using namespace Gtk;
+    using namespace gtk;
     using SlotType = sigc::slot<bool (bool)>;
 
     auto obj = dynamic_cast<Switch*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
     {
       try
       {
-        if (const auto slot = Glib::SignalProxyNormal::data_to_slot (data))
+        if (const auto slot = glib::SignalProxyNormal::data_to_slot (data))
           return static_cast<int> ((*static_cast<SlotType*> (slot)) (p0));
       }
       catch (...)
       {
-        Glib::exception_handlers_invoke ();
+        glib::exception_handlers_invoke ();
       }
     }
 
@@ -46,22 +46,22 @@ namespace
                                            gboolean p0,
                                            void* data) -> gboolean
   {
-    using namespace Gtk;
+    using namespace gtk;
     using SlotType = sigc::slot<void (bool)>;
 
     auto obj = dynamic_cast<Switch*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
     {
       try
       {
-        if (const auto slot = Glib::SignalProxyNormal::data_to_slot (data))
+        if (const auto slot = glib::SignalProxyNormal::data_to_slot (data))
           (*static_cast<SlotType*> (slot)) (p0);
       }
       catch (...)
       {
-        Glib::exception_handlers_invoke ();
+        glib::exception_handlers_invoke ();
       }
     }
 
@@ -69,30 +69,30 @@ namespace
     return RType ();
   }
 
-  static const Glib::SignalProxyInfo Switch_signal_state_set_info = {
+  static const glib::SignalProxyInfo Switch_signal_state_set_info = {
       "state-set",
       (GCallback) &Switch_signal_state_set_callback,
       (GCallback) &Switch_signal_state_set_notify_callback};
 
 } // namespace
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GtkSwitch* object, bool take_copy) -> Gtk::Switch*
+  wrap (GtkSwitch* object, bool take_copy) -> gtk::Switch*
   {
-    return dynamic_cast<Gtk::Switch*> (
-        Glib::wrap_auto ((GObject*) (object), take_copy));
+    return dynamic_cast<gtk::Switch*> (
+        glib::wrap_auto ((GObject*) (object), take_copy));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gtk
+namespace gtk
 {
 
   auto
-  Switch_Class::init () -> const Glib::Class&
+  Switch_Class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -114,23 +114,23 @@ namespace Gtk
   }
 
   auto
-  Switch_Class::wrap_new (GObject* o) -> Glib::ObjectBase*
+  Switch_Class::wrap_new (GObject* o) -> glib::ObjectBase*
   {
     return manage (new Switch ((GtkSwitch*) (o)));
   }
 
-  Switch::Switch (const Glib::ConstructParams& construct_params)
-    : Gtk::Widget (construct_params)
+  Switch::Switch (const glib::ConstructParams& construct_params)
+    : gtk::Widget (construct_params)
   {
   }
 
   Switch::Switch (GtkSwitch* castitem)
-    : Gtk::Widget ((GtkWidget*) (castitem))
+    : gtk::Widget ((GtkWidget*) (castitem))
   {
   }
 
   Switch::Switch (Switch&& src) noexcept
-    : Gtk::Widget (std::move (src)),
+    : gtk::Widget (std::move (src)),
       Actionable (std::move (src))
   {
   }
@@ -138,7 +138,7 @@ namespace Gtk
   auto
   Switch::operator= (Switch&& src) noexcept -> Switch&
   {
-    Gtk::Widget::operator= (std::move (src));
+    gtk::Widget::operator= (std::move (src));
     Actionable::operator= (std::move (src));
     return *this;
   }
@@ -163,8 +163,8 @@ namespace Gtk
   }
 
   Switch::Switch ()
-    : Glib::ObjectBase (nullptr),
-      Gtk::Widget (Glib::ConstructParams (switch_class_.init ()))
+    : glib::ObjectBase (nullptr),
+      gtk::Widget (glib::ConstructParams (switch_class_.init ()))
   {
   }
 
@@ -193,33 +193,33 @@ namespace Gtk
   }
 
   auto
-  Switch::signal_state_set () -> Glib::SignalProxy<bool (bool)>
+  Switch::signal_state_set () -> glib::SignalProxy<bool (bool)>
   {
-    return Glib::SignalProxy<bool (bool)> (this, &Switch_signal_state_set_info);
+    return glib::SignalProxy<bool (bool)> (this, &Switch_signal_state_set_info);
   }
 
   auto
-  Switch::property_active () -> Glib::PropertyProxy<bool>
+  Switch::property_active () -> glib::PropertyProxy<bool>
   {
-    return Glib::PropertyProxy<bool> (this, "active");
+    return glib::PropertyProxy<bool> (this, "active");
   }
 
   auto
-  Switch::property_active () const -> Glib::PropertyProxy_ReadOnly<bool>
+  Switch::property_active () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "active");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "active");
   }
 
   auto
-  Switch::property_state () -> Glib::PropertyProxy<bool>
+  Switch::property_state () -> glib::PropertyProxy<bool>
   {
-    return Glib::PropertyProxy<bool> (this, "state");
+    return glib::PropertyProxy<bool> (this, "state");
   }
 
   auto
-  Switch::property_state () const -> Glib::PropertyProxy_ReadOnly<bool>
+  Switch::property_state () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "state");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "state");
   }
 
-} // namespace Gtk
+} // namespace gtk

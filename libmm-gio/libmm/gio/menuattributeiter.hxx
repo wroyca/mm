@@ -16,16 +16,16 @@ using GMenuAttributeIterClass = struct _GMenuAttributeIterClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gio
+namespace gio
 {
   class LIBMM_GIO_SYMEXPORT MenuAttributeIter_Class;
 }
 #endif
 
-namespace Gio
+namespace gio
 {
 
-  class LIBMM_GIO_SYMEXPORT MenuAttributeIter : public Glib::Object
+  class LIBMM_GIO_SYMEXPORT MenuAttributeIter : public glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -44,7 +44,7 @@ namespace Gio
     static CppClassType menuattributeiter_class_;
 
   protected:
-    explicit MenuAttributeIter (const Glib::ConstructParams& construct_params);
+    explicit MenuAttributeIter (const glib::ConstructParams& construct_params);
     explicit MenuAttributeIter (GMenuAttributeIter* castitem);
 
 #endif
@@ -86,13 +86,13 @@ namespace Gio
 
   public:
     auto
-    get_next (Glib::ustring& out_name, Glib::VariantBase& value) -> bool;
+    get_next (glib::ustring& out_name, glib::VariantBase& value) -> bool;
 
     auto
-    get_name () const -> Glib::ustring;
+    get_name () const -> glib::ustring;
 
     auto
-    get_value () const -> Glib::VariantBase;
+    get_value () const -> glib::VariantBase;
 
     auto
     next () -> bool;
@@ -102,14 +102,14 @@ namespace Gio
   protected:
   };
 
-} // namespace Gio
+} // namespace gio
 
-namespace Glib
+namespace glib
 {
 
   LIBMM_GIO_SYMEXPORT
   auto
-  wrap (GMenuAttributeIter* object, bool take_copy = false) -> Glib::RefPtr<Gio::MenuAttributeIter>;
-} // namespace Glib
+  wrap (GMenuAttributeIter* object, bool take_copy = false) -> glib::RefPtr<gio::MenuAttributeIter>;
+} // namespace glib
 
 #endif

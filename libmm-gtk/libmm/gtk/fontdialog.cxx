@@ -8,11 +8,11 @@
 #include <libmm/gio/slot_async.hxx>
 #include <libmm/gtk/window.hxx>
 
-namespace Gtk
+namespace gtk
 {
   auto
   FontDialog::choose_font_and_features_finish (
-      const Glib::RefPtr<Gio::AsyncResult>& result) const -> std::tuple<Pango::FontDescription, Glib::ustring, Pango::Language>
+      const glib::RefPtr<gio::AsyncResult>& result) const -> std::tuple<pango::FontDescription, glib::ustring, pango::Language>
   {
     GError* gerror = nullptr;
     PangoFontDescription* font_desc = nullptr;
@@ -21,42 +21,42 @@ namespace Gtk
 
     (void) gtk_font_dialog_choose_font_and_features_finish (
         const_cast<GtkFontDialog*> (gobj ()),
-        Glib::unwrap (result),
+        glib::unwrap (result),
         &font_desc,
         &font_features,
         &language,
         &gerror);
     if (gerror)
-      ::Glib::Error::throw_exception (gerror);
+      ::glib::Error::throw_exception (gerror);
 
-    return {Glib::wrap (font_desc),
-            Glib::convert_return_gchar_ptr_to_ustring (font_features),
-            Glib::wrap (language)};
+    return {glib::wrap (font_desc),
+            glib::convert_return_gchar_ptr_to_ustring (font_features),
+            glib::wrap (language)};
   }
-} // namespace Gtk
+} // namespace gtk
 
 namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GtkFontDialog* object, bool take_copy) -> Glib::RefPtr<Gtk::FontDialog>
+  wrap (GtkFontDialog* object, bool take_copy) -> glib::RefPtr<gtk::FontDialog>
   {
-    return Glib::make_refptr_for_instance<Gtk::FontDialog> (
-        dynamic_cast<Gtk::FontDialog*> (
-            Glib::wrap_auto ((GObject*) (object), take_copy)));
+    return glib::make_refptr_for_instance<gtk::FontDialog> (
+        dynamic_cast<gtk::FontDialog*> (
+            glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gtk
+namespace gtk
 {
 
   auto
-  FontDialog_Class::init () -> const Glib::Class&
+  FontDialog_Class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -67,7 +67,7 @@ namespace Gtk
   }
 
   auto
-  FontDialog_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  FontDialog_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new FontDialog ((GtkFontDialog*) object);
   }
@@ -79,25 +79,25 @@ namespace Gtk
     return gobj ();
   }
 
-  FontDialog::FontDialog (const Glib::ConstructParams& construct_params)
-    : Glib::Object (construct_params)
+  FontDialog::FontDialog (const glib::ConstructParams& construct_params)
+    : glib::Object (construct_params)
   {
   }
 
   FontDialog::FontDialog (GtkFontDialog* castitem)
-    : Glib::Object ((GObject*) (castitem))
+    : glib::Object ((GObject*) (castitem))
   {
   }
 
   FontDialog::FontDialog (FontDialog&& src) noexcept
-    : Glib::Object (std::move (src))
+    : glib::Object (std::move (src))
   {
   }
 
   auto
   FontDialog::operator= (FontDialog&& src) noexcept -> FontDialog&
   {
-    Glib::Object::operator= (std::move (src));
+    glib::Object::operator= (std::move (src));
     return *this;
   }
 
@@ -118,26 +118,26 @@ namespace Gtk
   }
 
   FontDialog::FontDialog ()
-    : Glib::ObjectBase (nullptr),
-      Glib::Object (Glib::ConstructParams (fontdialog_class_.init ()))
+    : glib::ObjectBase (nullptr),
+      glib::Object (glib::ConstructParams (fontdialog_class_.init ()))
   {
   }
 
   auto
-  FontDialog::create () -> Glib::RefPtr<FontDialog>
+  FontDialog::create () -> glib::RefPtr<FontDialog>
   {
-    return Glib::make_refptr_for_instance<FontDialog> (new FontDialog ());
+    return glib::make_refptr_for_instance<FontDialog> (new FontDialog ());
   }
 
   auto
-  FontDialog::get_title () const -> Glib::ustring
+  FontDialog::get_title () const -> glib::ustring
   {
-    return Glib::convert_const_gchar_ptr_to_ustring (
+    return glib::convert_const_gchar_ptr_to_ustring (
         gtk_font_dialog_get_title (const_cast<GtkFontDialog*> (gobj ())));
   }
 
   auto
-  FontDialog::set_title (const Glib::ustring& title) -> void
+  FontDialog::set_title (const glib::ustring& title) -> void
   {
     gtk_font_dialog_set_title (gobj (), title.c_str ());
   }
@@ -155,14 +155,14 @@ namespace Gtk
   }
 
   auto
-  FontDialog::get_language () const -> Pango::Language
+  FontDialog::get_language () const -> pango::Language
   {
-    return Pango::Language (
+    return pango::Language (
         gtk_font_dialog_get_language (const_cast<GtkFontDialog*> (gobj ())));
   }
 
   auto
-  FontDialog::set_language (const Pango::Language& language) -> void
+  FontDialog::set_language (const pango::Language& language) -> void
   {
     gtk_font_dialog_set_language (
         gobj (),
@@ -170,373 +170,373 @@ namespace Gtk
   }
 
   auto
-  FontDialog::get_font_map () -> Glib::RefPtr<Pango::FontMap>
+  FontDialog::get_font_map () -> glib::RefPtr<pango::FontMap>
   {
-    auto retvalue = Glib::wrap (gtk_font_dialog_get_font_map (gobj ()));
+    auto retvalue = glib::wrap (gtk_font_dialog_get_font_map (gobj ()));
     if (retvalue)
       retvalue->reference ();
     return retvalue;
   }
 
   auto
-  FontDialog::get_font_map () const -> Glib::RefPtr<const Pango::FontMap>
+  FontDialog::get_font_map () const -> glib::RefPtr<const pango::FontMap>
   {
     return const_cast<FontDialog*> (this)->get_font_map ();
   }
 
   auto
-  FontDialog::set_font_map (const Glib::RefPtr<Pango::FontMap>& fontmap) -> void
+  FontDialog::set_font_map (const glib::RefPtr<pango::FontMap>& fontmap) -> void
   {
-    gtk_font_dialog_set_font_map (gobj (), Glib::unwrap (fontmap));
+    gtk_font_dialog_set_font_map (gobj (), glib::unwrap (fontmap));
   }
 
   auto
-  FontDialog::get_filter () -> Glib::RefPtr<Filter>
+  FontDialog::get_filter () -> glib::RefPtr<Filter>
   {
-    auto retvalue = Glib::wrap (gtk_font_dialog_get_filter (gobj ()));
+    auto retvalue = glib::wrap (gtk_font_dialog_get_filter (gobj ()));
     if (retvalue)
       retvalue->reference ();
     return retvalue;
   }
 
   auto
-  FontDialog::get_filter () const -> Glib::RefPtr<const Filter>
+  FontDialog::get_filter () const -> glib::RefPtr<const Filter>
   {
     return const_cast<FontDialog*> (this)->get_filter ();
   }
 
   auto
-  FontDialog::set_filter (const Glib::RefPtr<Filter>& filter) -> void
+  FontDialog::set_filter (const glib::RefPtr<Filter>& filter) -> void
   {
-    gtk_font_dialog_set_filter (gobj (), Glib::unwrap (filter));
+    gtk_font_dialog_set_filter (gobj (), glib::unwrap (filter));
   }
 
   auto
   FontDialog::choose_family (
       Window& parent,
-      const Gio::SlotAsyncReady& slot,
-      const Glib::RefPtr<Pango::FontFamily>& initial_value,
-      const Glib::RefPtr<Gio::Cancellable>& cancellable) const -> void
+      const gio::SlotAsyncReady& slot,
+      const glib::RefPtr<pango::FontFamily>& initial_value,
+      const glib::RefPtr<gio::Cancellable>& cancellable) const -> void
   {
-    auto slot_copy = new Gio::SlotAsyncReady (slot);
+    auto slot_copy = new gio::SlotAsyncReady (slot);
 
     gtk_font_dialog_choose_family (
         const_cast<GtkFontDialog*> (gobj ()),
         (parent).gobj (),
-        Glib::unwrap (initial_value),
-        const_cast<GCancellable*> (Glib::unwrap (cancellable)),
-        &Gio::SignalProxy_async_callback,
+        glib::unwrap (initial_value),
+        const_cast<GCancellable*> (glib::unwrap (cancellable)),
+        &gio::SignalProxy_async_callback,
         slot_copy);
   }
 
   auto
   FontDialog::choose_family (
-      const Gio::SlotAsyncReady& slot,
-      const Glib::RefPtr<Pango::FontFamily>& initial_value,
-      const Glib::RefPtr<Gio::Cancellable>& cancellable) const -> void
+      const gio::SlotAsyncReady& slot,
+      const glib::RefPtr<pango::FontFamily>& initial_value,
+      const glib::RefPtr<gio::Cancellable>& cancellable) const -> void
   {
-    auto slot_copy = new Gio::SlotAsyncReady (slot);
+    auto slot_copy = new gio::SlotAsyncReady (slot);
 
     gtk_font_dialog_choose_family (
         const_cast<GtkFontDialog*> (gobj ()),
         nullptr,
-        Glib::unwrap (initial_value),
-        const_cast<GCancellable*> (Glib::unwrap (cancellable)),
-        &Gio::SignalProxy_async_callback,
+        glib::unwrap (initial_value),
+        const_cast<GCancellable*> (glib::unwrap (cancellable)),
+        &gio::SignalProxy_async_callback,
         slot_copy);
   }
 
   auto
   FontDialog::choose_family_finish (
-      const Glib::RefPtr<Gio::AsyncResult>& result) const -> Glib::RefPtr<Pango::FontFamily>
+      const glib::RefPtr<gio::AsyncResult>& result) const -> glib::RefPtr<pango::FontFamily>
   {
     GError* gerror = nullptr;
-    auto retvalue = Glib::wrap (gtk_font_dialog_choose_family_finish (
+    auto retvalue = glib::wrap (gtk_font_dialog_choose_family_finish (
         const_cast<GtkFontDialog*> (gobj ()),
-        Glib::unwrap (result),
+        glib::unwrap (result),
         &(gerror)));
     if (gerror)
-      ::Glib::Error::throw_exception (gerror);
+      ::glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
   auto
   FontDialog::choose_face (
       Window& parent,
-      const Gio::SlotAsyncReady& slot,
-      const Glib::RefPtr<Pango::FontFace>& initial_value,
-      const Glib::RefPtr<Gio::Cancellable>& cancellable) const -> void
+      const gio::SlotAsyncReady& slot,
+      const glib::RefPtr<pango::FontFace>& initial_value,
+      const glib::RefPtr<gio::Cancellable>& cancellable) const -> void
   {
-    auto slot_copy = new Gio::SlotAsyncReady (slot);
+    auto slot_copy = new gio::SlotAsyncReady (slot);
 
     gtk_font_dialog_choose_face (
         const_cast<GtkFontDialog*> (gobj ()),
         (parent).gobj (),
-        Glib::unwrap (initial_value),
-        const_cast<GCancellable*> (Glib::unwrap (cancellable)),
-        &Gio::SignalProxy_async_callback,
+        glib::unwrap (initial_value),
+        const_cast<GCancellable*> (glib::unwrap (cancellable)),
+        &gio::SignalProxy_async_callback,
         slot_copy);
   }
 
   auto
   FontDialog::choose_face (
-      const Gio::SlotAsyncReady& slot,
-      const Glib::RefPtr<Pango::FontFace>& initial_value,
-      const Glib::RefPtr<Gio::Cancellable>& cancellable) const -> void
+      const gio::SlotAsyncReady& slot,
+      const glib::RefPtr<pango::FontFace>& initial_value,
+      const glib::RefPtr<gio::Cancellable>& cancellable) const -> void
   {
-    auto slot_copy = new Gio::SlotAsyncReady (slot);
+    auto slot_copy = new gio::SlotAsyncReady (slot);
 
     gtk_font_dialog_choose_face (
         const_cast<GtkFontDialog*> (gobj ()),
         nullptr,
-        Glib::unwrap (initial_value),
-        const_cast<GCancellable*> (Glib::unwrap (cancellable)),
-        &Gio::SignalProxy_async_callback,
+        glib::unwrap (initial_value),
+        const_cast<GCancellable*> (glib::unwrap (cancellable)),
+        &gio::SignalProxy_async_callback,
         slot_copy);
   }
 
   auto
-  FontDialog::choose_face_finish (const Glib::RefPtr<Gio::AsyncResult>& result)
-      const -> Glib::RefPtr<Pango::FontFace>
+  FontDialog::choose_face_finish (const glib::RefPtr<gio::AsyncResult>& result)
+      const -> glib::RefPtr<pango::FontFace>
   {
     GError* gerror = nullptr;
-    auto retvalue = Glib::wrap (gtk_font_dialog_choose_face_finish (
+    auto retvalue = glib::wrap (gtk_font_dialog_choose_face_finish (
         const_cast<GtkFontDialog*> (gobj ()),
-        Glib::unwrap (result),
+        glib::unwrap (result),
         &(gerror)));
     if (gerror)
-      ::Glib::Error::throw_exception (gerror);
+      ::glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
   auto
   FontDialog::choose_font (
       Window& parent,
-      const Gio::SlotAsyncReady& slot,
-      const Pango::FontDescription& initial_value,
-      const Glib::RefPtr<Gio::Cancellable>& cancellable) const -> void
+      const gio::SlotAsyncReady& slot,
+      const pango::FontDescription& initial_value,
+      const glib::RefPtr<gio::Cancellable>& cancellable) const -> void
   {
-    auto slot_copy = new Gio::SlotAsyncReady (slot);
+    auto slot_copy = new gio::SlotAsyncReady (slot);
 
     gtk_font_dialog_choose_font (
         const_cast<GtkFontDialog*> (gobj ()),
         (parent).gobj (),
         const_cast<PangoFontDescription*> ((initial_value).gobj ()),
-        const_cast<GCancellable*> (Glib::unwrap (cancellable)),
-        &Gio::SignalProxy_async_callback,
+        const_cast<GCancellable*> (glib::unwrap (cancellable)),
+        &gio::SignalProxy_async_callback,
         slot_copy);
   }
 
   auto
   FontDialog::choose_font (
       Window& parent,
-      const Gio::SlotAsyncReady& slot,
-      const Glib::RefPtr<Gio::Cancellable>& cancellable) const -> void
+      const gio::SlotAsyncReady& slot,
+      const glib::RefPtr<gio::Cancellable>& cancellable) const -> void
   {
-    auto slot_copy = new Gio::SlotAsyncReady (slot);
+    auto slot_copy = new gio::SlotAsyncReady (slot);
 
     gtk_font_dialog_choose_font (
         const_cast<GtkFontDialog*> (gobj ()),
         (parent).gobj (),
         nullptr,
-        const_cast<GCancellable*> (Glib::unwrap (cancellable)),
-        &Gio::SignalProxy_async_callback,
+        const_cast<GCancellable*> (glib::unwrap (cancellable)),
+        &gio::SignalProxy_async_callback,
         slot_copy);
   }
 
   auto
   FontDialog::choose_font (
-      const Gio::SlotAsyncReady& slot,
-      const Pango::FontDescription& initial_value,
-      const Glib::RefPtr<Gio::Cancellable>& cancellable) const -> void
+      const gio::SlotAsyncReady& slot,
+      const pango::FontDescription& initial_value,
+      const glib::RefPtr<gio::Cancellable>& cancellable) const -> void
   {
-    auto slot_copy = new Gio::SlotAsyncReady (slot);
+    auto slot_copy = new gio::SlotAsyncReady (slot);
 
     gtk_font_dialog_choose_font (
         const_cast<GtkFontDialog*> (gobj ()),
         nullptr,
         const_cast<PangoFontDescription*> ((initial_value).gobj ()),
-        const_cast<GCancellable*> (Glib::unwrap (cancellable)),
-        &Gio::SignalProxy_async_callback,
+        const_cast<GCancellable*> (glib::unwrap (cancellable)),
+        &gio::SignalProxy_async_callback,
         slot_copy);
   }
 
   auto
   FontDialog::choose_font (
-      const Gio::SlotAsyncReady& slot,
-      const Glib::RefPtr<Gio::Cancellable>& cancellable) const -> void
+      const gio::SlotAsyncReady& slot,
+      const glib::RefPtr<gio::Cancellable>& cancellable) const -> void
   {
-    auto slot_copy = new Gio::SlotAsyncReady (slot);
+    auto slot_copy = new gio::SlotAsyncReady (slot);
 
     gtk_font_dialog_choose_font (
         const_cast<GtkFontDialog*> (gobj ()),
         nullptr,
         nullptr,
-        const_cast<GCancellable*> (Glib::unwrap (cancellable)),
-        &Gio::SignalProxy_async_callback,
+        const_cast<GCancellable*> (glib::unwrap (cancellable)),
+        &gio::SignalProxy_async_callback,
         slot_copy);
   }
 
   auto
-  FontDialog::choose_font_finish (const Glib::RefPtr<Gio::AsyncResult>& result)
-      const -> Pango::FontDescription
+  FontDialog::choose_font_finish (const glib::RefPtr<gio::AsyncResult>& result)
+      const -> pango::FontDescription
   {
     GError* gerror = nullptr;
-    auto retvalue = Glib::wrap (gtk_font_dialog_choose_font_finish (
+    auto retvalue = glib::wrap (gtk_font_dialog_choose_font_finish (
                                     const_cast<GtkFontDialog*> (gobj ()),
-                                    Glib::unwrap (result),
+                                    glib::unwrap (result),
                                     &(gerror)),
                                 false);
     if (gerror)
-      ::Glib::Error::throw_exception (gerror);
+      ::glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
   auto
   FontDialog::choose_font_and_features (
       Window& parent,
-      const Gio::SlotAsyncReady& slot,
-      const Pango::FontDescription& initial_value,
-      const Glib::RefPtr<Gio::Cancellable>& cancellable) const -> void
+      const gio::SlotAsyncReady& slot,
+      const pango::FontDescription& initial_value,
+      const glib::RefPtr<gio::Cancellable>& cancellable) const -> void
   {
-    auto slot_copy = new Gio::SlotAsyncReady (slot);
+    auto slot_copy = new gio::SlotAsyncReady (slot);
 
     gtk_font_dialog_choose_font_and_features (
         const_cast<GtkFontDialog*> (gobj ()),
         (parent).gobj (),
         const_cast<PangoFontDescription*> ((initial_value).gobj ()),
-        const_cast<GCancellable*> (Glib::unwrap (cancellable)),
-        &Gio::SignalProxy_async_callback,
+        const_cast<GCancellable*> (glib::unwrap (cancellable)),
+        &gio::SignalProxy_async_callback,
         slot_copy);
   }
 
   auto
   FontDialog::choose_font_and_features (
       Window& parent,
-      const Gio::SlotAsyncReady& slot,
-      const Glib::RefPtr<Gio::Cancellable>& cancellable) const -> void
+      const gio::SlotAsyncReady& slot,
+      const glib::RefPtr<gio::Cancellable>& cancellable) const -> void
   {
-    auto slot_copy = new Gio::SlotAsyncReady (slot);
+    auto slot_copy = new gio::SlotAsyncReady (slot);
 
     gtk_font_dialog_choose_font_and_features (
         const_cast<GtkFontDialog*> (gobj ()),
         (parent).gobj (),
         nullptr,
-        const_cast<GCancellable*> (Glib::unwrap (cancellable)),
-        &Gio::SignalProxy_async_callback,
+        const_cast<GCancellable*> (glib::unwrap (cancellable)),
+        &gio::SignalProxy_async_callback,
         slot_copy);
   }
 
   auto
   FontDialog::choose_font_and_features (
-      const Gio::SlotAsyncReady& slot,
-      const Pango::FontDescription& initial_value,
-      const Glib::RefPtr<Gio::Cancellable>& cancellable) const -> void
+      const gio::SlotAsyncReady& slot,
+      const pango::FontDescription& initial_value,
+      const glib::RefPtr<gio::Cancellable>& cancellable) const -> void
   {
-    auto slot_copy = new Gio::SlotAsyncReady (slot);
+    auto slot_copy = new gio::SlotAsyncReady (slot);
 
     gtk_font_dialog_choose_font_and_features (
         const_cast<GtkFontDialog*> (gobj ()),
         nullptr,
         const_cast<PangoFontDescription*> ((initial_value).gobj ()),
-        const_cast<GCancellable*> (Glib::unwrap (cancellable)),
-        &Gio::SignalProxy_async_callback,
+        const_cast<GCancellable*> (glib::unwrap (cancellable)),
+        &gio::SignalProxy_async_callback,
         slot_copy);
   }
 
   auto
   FontDialog::choose_font_and_features (
-      const Gio::SlotAsyncReady& slot,
-      const Glib::RefPtr<Gio::Cancellable>& cancellable) const -> void
+      const gio::SlotAsyncReady& slot,
+      const glib::RefPtr<gio::Cancellable>& cancellable) const -> void
   {
-    auto slot_copy = new Gio::SlotAsyncReady (slot);
+    auto slot_copy = new gio::SlotAsyncReady (slot);
 
     gtk_font_dialog_choose_font_and_features (
         const_cast<GtkFontDialog*> (gobj ()),
         nullptr,
         nullptr,
-        const_cast<GCancellable*> (Glib::unwrap (cancellable)),
-        &Gio::SignalProxy_async_callback,
+        const_cast<GCancellable*> (glib::unwrap (cancellable)),
+        &gio::SignalProxy_async_callback,
         slot_copy);
   }
 
   auto
-  FontDialog::property_title () -> Glib::PropertyProxy<Glib::ustring>
+  FontDialog::property_title () -> glib::PropertyProxy<glib::ustring>
   {
-    return Glib::PropertyProxy<Glib::ustring> (this, "title");
+    return glib::PropertyProxy<glib::ustring> (this, "title");
   }
 
   auto
-  FontDialog::property_title () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>
+  FontDialog::property_title () const -> glib::PropertyProxy_ReadOnly<glib::ustring>
   {
-    return Glib::PropertyProxy_ReadOnly<Glib::ustring> (this, "title");
+    return glib::PropertyProxy_ReadOnly<glib::ustring> (this, "title");
   }
 
   auto
-  FontDialog::property_modal () -> Glib::PropertyProxy<bool>
+  FontDialog::property_modal () -> glib::PropertyProxy<bool>
   {
-    return Glib::PropertyProxy<bool> (this, "modal");
+    return glib::PropertyProxy<bool> (this, "modal");
   }
 
   auto
-  FontDialog::property_modal () const -> Glib::PropertyProxy_ReadOnly<bool>
+  FontDialog::property_modal () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "modal");
-  }
-
-  static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<Pango::Language>::value,
-      "Type Pango::Language cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
-
-  auto
-  FontDialog::property_language () -> Glib::PropertyProxy<Pango::Language>
-  {
-    return Glib::PropertyProxy<Pango::Language> (this, "language");
-  }
-
-  auto
-  FontDialog::property_language () const -> Glib::PropertyProxy_ReadOnly<Pango::Language>
-  {
-    return Glib::PropertyProxy_ReadOnly<Pango::Language> (this, "language");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "modal");
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<
-          Glib::RefPtr<Pango::FontMap>>::value,
-      "Type Glib::RefPtr<Pango::FontMap> cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      glib::Traits::ValueCompatibleWithWrapProperty<pango::Language>::value,
+      "Type pango::Language cannot be used in _WRAP_PROPERTY. "
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  FontDialog::property_font_map () -> Glib::PropertyProxy<Glib::RefPtr<Pango::FontMap>>
+  FontDialog::property_language () -> glib::PropertyProxy<pango::Language>
   {
-    return Glib::PropertyProxy<Glib::RefPtr<Pango::FontMap>> (this, "font-map");
+    return glib::PropertyProxy<pango::Language> (this, "language");
   }
 
   auto
-  FontDialog::property_font_map () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Pango::FontMap>>
+  FontDialog::property_language () const -> glib::PropertyProxy_ReadOnly<pango::Language>
   {
-    return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Pango::FontMap>> (
+    return glib::PropertyProxy_ReadOnly<pango::Language> (this, "language");
+  }
+
+  static_assert (
+      glib::Traits::ValueCompatibleWithWrapProperty<
+          glib::RefPtr<pango::FontMap>>::value,
+      "Type glib::RefPtr<pango::FontMap> cannot be used in _WRAP_PROPERTY. "
+      "There is no suitable template specialization of glib::Value<>.");
+
+  auto
+  FontDialog::property_font_map () -> glib::PropertyProxy<glib::RefPtr<pango::FontMap>>
+  {
+    return glib::PropertyProxy<glib::RefPtr<pango::FontMap>> (this, "font-map");
+  }
+
+  auto
+  FontDialog::property_font_map () const -> glib::PropertyProxy_ReadOnly<glib::RefPtr<pango::FontMap>>
+  {
+    return glib::PropertyProxy_ReadOnly<glib::RefPtr<pango::FontMap>> (
         this,
         "font-map");
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<
-          Glib::RefPtr<Filter>>::value,
-      "Type Glib::RefPtr<Filter> cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      glib::Traits::ValueCompatibleWithWrapProperty<
+          glib::RefPtr<Filter>>::value,
+      "Type glib::RefPtr<Filter> cannot be used in _WRAP_PROPERTY. "
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  FontDialog::property_filter () -> Glib::PropertyProxy<Glib::RefPtr<Filter>>
+  FontDialog::property_filter () -> glib::PropertyProxy<glib::RefPtr<Filter>>
   {
-    return Glib::PropertyProxy<Glib::RefPtr<Filter>> (this, "filter");
+    return glib::PropertyProxy<glib::RefPtr<Filter>> (this, "filter");
   }
 
   auto
-  FontDialog::property_filter () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Filter>>
+  FontDialog::property_filter () const -> glib::PropertyProxy_ReadOnly<glib::RefPtr<Filter>>
   {
-    return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Filter>> (this, "filter");
+    return glib::PropertyProxy_ReadOnly<glib::RefPtr<Filter>> (this, "filter");
   }
 
-} // namespace Gtk
+} // namespace gtk

@@ -5,7 +5,7 @@
 
 #include <libmm/pango/mm-pangoconfig.hxx>
 
-namespace Pango
+namespace pango
 {
   LIBMM_PANGO_SYMEXPORT auto
   wrap_init () -> void;

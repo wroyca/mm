@@ -16,17 +16,17 @@
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT SingleSelection_Class;
 }
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
-  class LIBMM_GTK_SYMEXPORT SingleSelection : public Glib::Object,
-                                    public Gio::ListModel,
+  class LIBMM_GTK_SYMEXPORT SingleSelection : public glib::Object,
+                                    public gio::ListModel,
                                     public SelectionModel
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -46,7 +46,7 @@ namespace Gtk
     static CppClassType singleselection_class_;
 
   protected:
-    explicit SingleSelection (const Glib::ConstructParams& construct_params);
+    explicit SingleSelection (const glib::ConstructParams& construct_params);
     explicit SingleSelection (GtkSingleSelection* castitem);
 
 #endif
@@ -85,24 +85,24 @@ namespace Gtk
   private:
   protected:
     SingleSelection ();
-    explicit SingleSelection (const Glib::RefPtr<Gio::ListModel>& model);
+    explicit SingleSelection (const glib::RefPtr<gio::ListModel>& model);
 
   public:
     static auto
-    create () -> Glib::RefPtr<SingleSelection>;
+    create () -> glib::RefPtr<SingleSelection>;
 
     static auto
-    create (const Glib::RefPtr<Gio::ListModel>& model)
-        -> Glib::RefPtr<SingleSelection>;
+    create (const glib::RefPtr<gio::ListModel>& model)
+        -> glib::RefPtr<SingleSelection>;
 
     auto
-    get_model () -> Glib::RefPtr<Gio::ListModel>;
+    get_model () -> glib::RefPtr<gio::ListModel>;
 
     auto
-    get_model () const -> Glib::RefPtr<const Gio::ListModel>;
+    get_model () const -> glib::RefPtr<const gio::ListModel>;
 
     auto
-    set_model (const Glib::RefPtr<Gio::ListModel>& model) -> void;
+    set_model (const glib::RefPtr<gio::ListModel>& model) -> void;
 
     auto
     get_selected () const -> guint;
@@ -111,10 +111,10 @@ namespace Gtk
     set_selected (guint position) -> void;
 
     auto
-    get_selected_item () -> Glib::RefPtr<Glib::ObjectBase>;
+    get_selected_item () -> glib::RefPtr<glib::ObjectBase>;
 
     auto
-    get_selected_item () const -> Glib::RefPtr<const Glib::ObjectBase>;
+    get_selected_item () const -> glib::RefPtr<const glib::ObjectBase>;
 
     auto
     get_autoselect () const -> bool;
@@ -129,51 +129,51 @@ namespace Gtk
     set_can_unselect (bool can_unselect = true) -> void;
 
     auto
-    property_autoselect () -> Glib::PropertyProxy<bool>;
+    property_autoselect () -> glib::PropertyProxy<bool>;
 
     auto
-    property_autoselect () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_autoselect () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_can_unselect () -> Glib::PropertyProxy<bool>;
+    property_can_unselect () -> glib::PropertyProxy<bool>;
 
     auto
-    property_can_unselect () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_can_unselect () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_selected () -> Glib::PropertyProxy<guint>;
+    property_selected () -> glib::PropertyProxy<guint>;
 
     auto
-    property_selected () const -> Glib::PropertyProxy_ReadOnly<guint>;
+    property_selected () const -> glib::PropertyProxy_ReadOnly<guint>;
 
     auto
     property_selected_item () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Glib::ObjectBase>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<glib::ObjectBase>>;
 
     auto
-    property_item_type () const -> Glib::PropertyProxy_ReadOnly<GType>;
+    property_item_type () const -> glib::PropertyProxy_ReadOnly<GType>;
 
     auto
-    property_model () -> Glib::PropertyProxy<Glib::RefPtr<Gio::ListModel>>;
+    property_model () -> glib::PropertyProxy<glib::RefPtr<gio::ListModel>>;
 
     auto
     property_model () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gio::ListModel>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<gio::ListModel>>;
 
     auto
-    property_n_items () const -> Glib::PropertyProxy_ReadOnly<unsigned int>;
+    property_n_items () const -> glib::PropertyProxy_ReadOnly<unsigned int>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkSingleSelection* object, bool take_copy = false) -> Glib::RefPtr<Gtk::SingleSelection>;
-} // namespace Glib
+  wrap (GtkSingleSelection* object, bool take_copy = false) -> glib::RefPtr<gtk::SingleSelection>;
+} // namespace glib
 
 #endif

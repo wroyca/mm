@@ -18,20 +18,20 @@ using GdkSeatClass = struct _GdkSeatClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gdk
+namespace gdk
 {
   class LIBMM_GDK_SYMEXPORT Seat_Class;
 }
 #endif
 
-namespace Gdk
+namespace gdk
 {
 
   class LIBMM_GDK_SYMEXPORT DeviceTool;
   class LIBMM_GDK_SYMEXPORT Display;
   class LIBMM_GDK_SYMEXPORT Surface;
 
-  class LIBMM_GDK_SYMEXPORT Seat : public Glib::Object
+  class LIBMM_GDK_SYMEXPORT Seat : public glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -50,7 +50,7 @@ namespace Gdk
     static CppClassType seat_class_;
 
   protected:
-    explicit Seat (const Glib::ConstructParams& construct_params);
+    explicit Seat (const glib::ConstructParams& construct_params);
     explicit Seat (GdkSeat* castitem);
 
 #endif
@@ -104,68 +104,68 @@ namespace Gdk
     };
 
     auto
-    get_display () -> Glib::RefPtr<Display>;
+    get_display () -> glib::RefPtr<Display>;
 
     auto
-    get_display () const -> Glib::RefPtr<const Display>;
+    get_display () const -> glib::RefPtr<const Display>;
 
     auto
     get_capabilities () const -> Capabilities;
 
     auto
     get_devices (Capabilities capabilities)
-        -> std::vector<Glib::RefPtr<Device>>;
+        -> std::vector<glib::RefPtr<Device>>;
 
     auto
     get_devices (Capabilities capabilities) const
-        -> std::vector<Glib::RefPtr<const Device>>;
+        -> std::vector<glib::RefPtr<const Device>>;
 
     auto
-    get_tools () -> std::vector<Glib::RefPtr<DeviceTool>>;
+    get_tools () -> std::vector<glib::RefPtr<DeviceTool>>;
 
     auto
-    get_tools () const -> std::vector<Glib::RefPtr<const DeviceTool>>;
+    get_tools () const -> std::vector<glib::RefPtr<const DeviceTool>>;
 
     auto
-    get_pointer () -> Glib::RefPtr<Device>;
+    get_pointer () -> glib::RefPtr<Device>;
 
     auto
-    get_pointer () const -> Glib::RefPtr<const Device>;
+    get_pointer () const -> glib::RefPtr<const Device>;
 
     auto
-    get_keyboard () -> Glib::RefPtr<Device>;
+    get_keyboard () -> glib::RefPtr<Device>;
 
     auto
-    get_keyboard () const -> Glib::RefPtr<const Device>;
+    get_keyboard () const -> glib::RefPtr<const Device>;
 
     auto
     signal_device_added ()
-        -> Glib::SignalProxy<void (const Glib::RefPtr<Device>&)>;
+        -> glib::SignalProxy<void (const glib::RefPtr<Device>&)>;
 
     auto
     signal_device_removed ()
-        -> Glib::SignalProxy<void (const Glib::RefPtr<Device>&)>;
+        -> glib::SignalProxy<void (const glib::RefPtr<Device>&)>;
 
     auto
     signal_tool_added ()
-        -> Glib::SignalProxy<void (const Glib::RefPtr<DeviceTool>&)>;
+        -> glib::SignalProxy<void (const glib::RefPtr<DeviceTool>&)>;
 
     auto
     signal_tool_removed ()
-        -> Glib::SignalProxy<void (const Glib::RefPtr<DeviceTool>&)>;
+        -> glib::SignalProxy<void (const glib::RefPtr<DeviceTool>&)>;
 
     auto
     property_display () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Display>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<Display>>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gdk
+} // namespace gdk
 
-namespace Gdk
+namespace gdk
 {
 
   inline auto
@@ -215,28 +215,28 @@ namespace Gdk
     return (lhs = static_cast<Seat::Capabilities> (
                 static_cast<unsigned> (lhs) ^ static_cast<unsigned> (rhs)));
   }
-} // namespace Gdk
+} // namespace gdk
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_GDK_SYMEXPORT Value<Gdk::Seat::Capabilities>
-    : public Glib::Value_Flags<Gdk::Seat::Capabilities>
+  class LIBMM_GDK_SYMEXPORT Value<gdk::Seat::Capabilities>
+    : public glib::Value_Flags<gdk::Seat::Capabilities>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
-namespace Glib
+namespace glib
 {
   LIBMM_GDK_SYMEXPORT auto
-  wrap (GdkSeat* object, bool take_copy = false) -> Glib::RefPtr<Gdk::Seat>;
-} // namespace Glib
+  wrap (GdkSeat* object, bool take_copy = false) -> glib::RefPtr<gdk::Seat>;
+} // namespace glib
 
 #endif

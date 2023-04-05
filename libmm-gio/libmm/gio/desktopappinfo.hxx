@@ -17,23 +17,23 @@ using GDesktopAppInfoClass = struct _GDesktopAppInfoClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gio
+namespace gio
 {
   class LIBMM_GIO_SYMEXPORT DesktopAppInfo_Class;
 }
 #endif
 
-namespace Glib
+namespace glib
 {
 
   class LIBMM_GLIB_SYMEXPORT KeyFile;
 
 }
 
-namespace Gio
+namespace gio
 {
 
-  class LIBMM_GIO_SYMEXPORT DesktopAppInfo : public Glib::Object,
+  class LIBMM_GIO_SYMEXPORT DesktopAppInfo : public glib::Object,
                                    public AppInfo
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -53,7 +53,7 @@ namespace Gio
     static CppClassType desktopappinfo_class_;
 
   protected:
-    explicit DesktopAppInfo (const Glib::ConstructParams& construct_params);
+    explicit DesktopAppInfo (const glib::ConstructParams& construct_params);
     explicit DesktopAppInfo (GDesktopAppInfo* castitem);
 
 #endif
@@ -92,15 +92,15 @@ namespace Gio
   private:
   public:
     static auto
-    create (const std::string& desktop_id) -> Glib::RefPtr<DesktopAppInfo>;
+    create (const std::string& desktop_id) -> glib::RefPtr<DesktopAppInfo>;
 
     static auto
-    create_from_keyfile (const Glib::RefPtr<Glib::KeyFile>& key_file)
-        -> Glib::RefPtr<DesktopAppInfo>;
+    create_from_keyfile (const glib::RefPtr<glib::KeyFile>& key_file)
+        -> glib::RefPtr<DesktopAppInfo>;
 
     static auto
     create_from_filename (const std::string& filename)
-        -> Glib::RefPtr<DesktopAppInfo>;
+        -> glib::RefPtr<DesktopAppInfo>;
 
     auto
     get_filename () const -> std::string;
@@ -109,7 +109,7 @@ namespace Gio
     is_hidden () const -> bool;
 
     auto
-    get_keywords () const -> std::vector<Glib::ustring>;
+    get_keywords () const -> std::vector<glib::ustring>;
 
     auto
     get_startup_wm_class () const -> std::string;
@@ -127,44 +127,44 @@ namespace Gio
     get_categories () const -> std::string;
 
     auto
-    has_key (const Glib::ustring& key) const -> bool;
+    has_key (const glib::ustring& key) const -> bool;
 
     auto
-    get_string (const Glib::ustring& key) -> Glib::ustring;
+    get_string (const glib::ustring& key) -> glib::ustring;
 
     auto
-    get_locale_string (const Glib::ustring& key) -> Glib::ustring;
+    get_locale_string (const glib::ustring& key) -> glib::ustring;
 
     auto
-    get_boolean (const Glib::ustring& key) const -> bool;
+    get_boolean (const glib::ustring& key) const -> bool;
 
     auto
-    list_actions () const -> std::vector<Glib::ustring>;
+    list_actions () const -> std::vector<glib::ustring>;
 
     auto
-    launch_action (const Glib::ustring& action_name,
-                   const Glib::RefPtr<AppLaunchContext>& launch_context)
+    launch_action (const glib::ustring& action_name,
+                   const glib::RefPtr<AppLaunchContext>& launch_context)
         -> void;
 
     auto
-    launch_action (const Glib::ustring& action_name) -> void;
+    launch_action (const glib::ustring& action_name) -> void;
 
     auto
-    get_action_name (const Glib::ustring& action_name) const -> Glib::ustring;
+    get_action_name (const glib::ustring& action_name) const -> glib::ustring;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gio
+} // namespace gio
 
-namespace Glib
+namespace glib
 {
 
   LIBMM_GIO_SYMEXPORT
   auto
-  wrap (GDesktopAppInfo* object, bool take_copy = false) -> Glib::RefPtr<Gio::DesktopAppInfo>;
-} // namespace Glib
+  wrap (GDesktopAppInfo* object, bool take_copy = false) -> glib::RefPtr<gio::DesktopAppInfo>;
+} // namespace glib
 
 #endif

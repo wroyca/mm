@@ -7,7 +7,7 @@
 
 #include <gtk/gtk.h>
 
-namespace Gtk
+namespace gtk
 {
   auto
   CenterBox::unset_start_widget () -> void
@@ -26,29 +26,29 @@ namespace Gtk
   {
     gtk_center_box_set_end_widget (gobj (), nullptr);
   }
-} // namespace Gtk
+} // namespace gtk
 
 namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GtkCenterBox* object, bool take_copy) -> Gtk::CenterBox*
+  wrap (GtkCenterBox* object, bool take_copy) -> gtk::CenterBox*
   {
-    return dynamic_cast<Gtk::CenterBox*> (
-        Glib::wrap_auto ((GObject*) (object), take_copy));
+    return dynamic_cast<gtk::CenterBox*> (
+        glib::wrap_auto ((GObject*) (object), take_copy));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gtk
+namespace gtk
 {
 
   auto
-  CenterBox_Class::init () -> const Glib::Class&
+  CenterBox_Class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -70,12 +70,12 @@ namespace Gtk
   }
 
   auto
-  CenterBox_Class::wrap_new (GObject* o) -> Glib::ObjectBase*
+  CenterBox_Class::wrap_new (GObject* o) -> glib::ObjectBase*
   {
     return manage (new CenterBox ((GtkCenterBox*) (o)));
   }
 
-  CenterBox::CenterBox (const Glib::ConstructParams& construct_params)
+  CenterBox::CenterBox (const glib::ConstructParams& construct_params)
     : Widget (construct_params)
   {
   }
@@ -119,8 +119,8 @@ namespace Gtk
   }
 
   CenterBox::CenterBox ()
-    : Glib::ObjectBase (nullptr),
-      Widget (Glib::ConstructParams (centerbox_class_.init ()))
+    : glib::ObjectBase (nullptr),
+      Widget (glib::ConstructParams (centerbox_class_.init ()))
   {
   }
 
@@ -133,7 +133,7 @@ namespace Gtk
   auto
   CenterBox::get_start_widget () -> Widget*
   {
-    return Glib::wrap (gtk_center_box_get_start_widget (gobj ()));
+    return glib::wrap (gtk_center_box_get_start_widget (gobj ()));
   }
 
   auto
@@ -151,7 +151,7 @@ namespace Gtk
   auto
   CenterBox::get_center_widget () -> Widget*
   {
-    return Glib::wrap (gtk_center_box_get_center_widget (gobj ()));
+    return glib::wrap (gtk_center_box_get_center_widget (gobj ()));
   }
 
   auto
@@ -169,7 +169,7 @@ namespace Gtk
   auto
   CenterBox::get_end_widget () -> Widget*
   {
-    return Glib::wrap (gtk_center_box_get_end_widget (gobj ()));
+    return glib::wrap (gtk_center_box_get_end_widget (gobj ()));
   }
 
   auto
@@ -194,57 +194,57 @@ namespace Gtk
   }
 
   auto
-  CenterBox::property_start_widget () -> Glib::PropertyProxy<Widget*>
+  CenterBox::property_start_widget () -> glib::PropertyProxy<Widget*>
   {
-    return Glib::PropertyProxy<Widget*> (this, "start-widget");
+    return glib::PropertyProxy<Widget*> (this, "start-widget");
   }
 
   auto
-  CenterBox::property_start_widget () const -> Glib::PropertyProxy_ReadOnly<Widget*>
+  CenterBox::property_start_widget () const -> glib::PropertyProxy_ReadOnly<Widget*>
   {
-    return Glib::PropertyProxy_ReadOnly<Widget*> (this, "start-widget");
+    return glib::PropertyProxy_ReadOnly<Widget*> (this, "start-widget");
   }
 
   auto
-  CenterBox::property_center_widget () -> Glib::PropertyProxy<Widget*>
+  CenterBox::property_center_widget () -> glib::PropertyProxy<Widget*>
   {
-    return Glib::PropertyProxy<Widget*> (this, "center-widget");
+    return glib::PropertyProxy<Widget*> (this, "center-widget");
   }
 
   auto
-  CenterBox::property_center_widget () const -> Glib::PropertyProxy_ReadOnly<Widget*>
+  CenterBox::property_center_widget () const -> glib::PropertyProxy_ReadOnly<Widget*>
   {
-    return Glib::PropertyProxy_ReadOnly<Widget*> (this, "center-widget");
+    return glib::PropertyProxy_ReadOnly<Widget*> (this, "center-widget");
   }
 
   auto
-  CenterBox::property_end_widget () -> Glib::PropertyProxy<Widget*>
+  CenterBox::property_end_widget () -> glib::PropertyProxy<Widget*>
   {
-    return Glib::PropertyProxy<Widget*> (this, "end-widget");
+    return glib::PropertyProxy<Widget*> (this, "end-widget");
   }
 
   auto
-  CenterBox::property_end_widget () const -> Glib::PropertyProxy_ReadOnly<Widget*>
+  CenterBox::property_end_widget () const -> glib::PropertyProxy_ReadOnly<Widget*>
   {
-    return Glib::PropertyProxy_ReadOnly<Widget*> (this, "end-widget");
+    return glib::PropertyProxy_ReadOnly<Widget*> (this, "end-widget");
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<BaselinePosition>::value,
+      glib::Traits::ValueCompatibleWithWrapProperty<BaselinePosition>::value,
       "Type BaselinePosition cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  CenterBox::property_baseline_position () -> Glib::PropertyProxy<BaselinePosition>
+  CenterBox::property_baseline_position () -> glib::PropertyProxy<BaselinePosition>
   {
-    return Glib::PropertyProxy<BaselinePosition> (this, "baseline-position");
+    return glib::PropertyProxy<BaselinePosition> (this, "baseline-position");
   }
 
   auto
-  CenterBox::property_baseline_position () const -> Glib::PropertyProxy_ReadOnly<BaselinePosition>
+  CenterBox::property_baseline_position () const -> glib::PropertyProxy_ReadOnly<BaselinePosition>
   {
-    return Glib::PropertyProxy_ReadOnly<BaselinePosition> (this,
+    return glib::PropertyProxy_ReadOnly<BaselinePosition> (this,
                                                            "baseline-position");
   }
 
-} // namespace Gtk
+} // namespace gtk

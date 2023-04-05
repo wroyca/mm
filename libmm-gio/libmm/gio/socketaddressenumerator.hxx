@@ -16,18 +16,18 @@ using GSocketAddressEnumeratorClass = struct _GSocketAddressEnumeratorClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gio
+namespace gio
 {
   class LIBMM_GIO_SYMEXPORT SocketAddressEnumerator_Class;
 }
 #endif
 
-namespace Gio
+namespace gio
 {
 
   class LIBMM_GIO_SYMEXPORT SocketAddress;
 
-  class LIBMM_GIO_SYMEXPORT SocketAddressEnumerator : public Glib::Object
+  class LIBMM_GIO_SYMEXPORT SocketAddressEnumerator : public glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -48,7 +48,7 @@ namespace Gio
 
   protected:
     explicit SocketAddressEnumerator (
-        const Glib::ConstructParams& construct_params);
+        const glib::ConstructParams& construct_params);
     explicit SocketAddressEnumerator (GSocketAddressEnumerator* castitem);
 
 #endif
@@ -88,36 +88,36 @@ namespace Gio
   private:
   public:
     auto
-    next (const Glib::RefPtr<Cancellable>& cancellable)
-        -> Glib::RefPtr<SocketAddress>;
+    next (const glib::RefPtr<Cancellable>& cancellable)
+        -> glib::RefPtr<SocketAddress>;
 
     auto
-    next () -> Glib::RefPtr<SocketAddress>;
+    next () -> glib::RefPtr<SocketAddress>;
 
     auto
-    next_async (const Glib::RefPtr<Cancellable>& cancellable,
+    next_async (const glib::RefPtr<Cancellable>& cancellable,
                 const SlotAsyncReady& slot) -> void;
 
     auto
     next_async (const SlotAsyncReady& slot) -> void;
 
     auto
-    next_finish (const Glib::RefPtr<AsyncResult>& result)
-        -> Glib::RefPtr<SocketAddress>;
+    next_finish (const glib::RefPtr<AsyncResult>& result)
+        -> glib::RefPtr<SocketAddress>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gio
+} // namespace gio
 
-namespace Glib
+namespace glib
 {
 
   LIBMM_GIO_SYMEXPORT
   auto
-  wrap (GSocketAddressEnumerator* object, bool take_copy = false) -> Glib::RefPtr<Gio::SocketAddressEnumerator>;
-} // namespace Glib
+  wrap (GSocketAddressEnumerator* object, bool take_copy = false) -> glib::RefPtr<gio::SocketAddressEnumerator>;
+} // namespace glib
 
 #endif

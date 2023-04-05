@@ -14,13 +14,13 @@ using GtkShortcutLabelClass = struct _GtkShortcutLabelClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT ShortcutLabel_Class;
 }
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
   class LIBMM_GTK_SYMEXPORT ShortcutLabel : public Widget
@@ -50,7 +50,7 @@ namespace Gtk
     static CppClassType shortcutlabel_class_;
 
   protected:
-    explicit ShortcutLabel (const Glib::ConstructParams& construct_params);
+    explicit ShortcutLabel (const glib::ConstructParams& construct_params);
     explicit ShortcutLabel (GtkShortcutLabel* castitem);
 
 #endif
@@ -81,45 +81,45 @@ namespace Gtk
   public:
     ShortcutLabel ();
 
-    explicit ShortcutLabel (const Glib::ustring& accelerator);
+    explicit ShortcutLabel (const glib::ustring& accelerator);
 
     auto
-    get_accelerator () const -> Glib::ustring;
+    get_accelerator () const -> glib::ustring;
 
     auto
-    set_accelerator (const Glib::ustring& accelerator) -> void;
+    set_accelerator (const glib::ustring& accelerator) -> void;
 
     auto
-    get_disabled_text () const -> Glib::ustring;
+    get_disabled_text () const -> glib::ustring;
 
     auto
-    set_disabled_text (const Glib::ustring& disabled_text) -> void;
+    set_disabled_text (const glib::ustring& disabled_text) -> void;
 
     auto
-    property_accelerator () -> Glib::PropertyProxy<Glib::ustring>;
+    property_accelerator () -> glib::PropertyProxy<glib::ustring>;
 
     auto
     property_accelerator () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+        -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
     auto
-    property_disabled_text () -> Glib::PropertyProxy<Glib::ustring>;
+    property_disabled_text () -> glib::PropertyProxy<glib::ustring>;
 
     auto
     property_disabled_text () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+        -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkShortcutLabel* object, bool take_copy = false) -> Gtk::ShortcutLabel*;
-} // namespace Glib
+  wrap (GtkShortcutLabel* object, bool take_copy = false) -> gtk::ShortcutLabel*;
+} // namespace glib
 
 #endif

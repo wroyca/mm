@@ -11,23 +11,23 @@ namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GtkSeparator* object, bool take_copy) -> Gtk::Separator*
+  wrap (GtkSeparator* object, bool take_copy) -> gtk::Separator*
   {
-    return dynamic_cast<Gtk::Separator*> (
-        Glib::wrap_auto ((GObject*) (object), take_copy));
+    return dynamic_cast<gtk::Separator*> (
+        glib::wrap_auto ((GObject*) (object), take_copy));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gtk
+namespace gtk
 {
 
   auto
-  Separator_Class::init () -> const Glib::Class&
+  Separator_Class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -49,23 +49,23 @@ namespace Gtk
   }
 
   auto
-  Separator_Class::wrap_new (GObject* o) -> Glib::ObjectBase*
+  Separator_Class::wrap_new (GObject* o) -> glib::ObjectBase*
   {
     return manage (new Separator ((GtkSeparator*) (o)));
   }
 
-  Separator::Separator (const Glib::ConstructParams& construct_params)
-    : Gtk::Widget (construct_params)
+  Separator::Separator (const glib::ConstructParams& construct_params)
+    : gtk::Widget (construct_params)
   {
   }
 
   Separator::Separator (GtkSeparator* castitem)
-    : Gtk::Widget ((GtkWidget*) (castitem))
+    : gtk::Widget ((GtkWidget*) (castitem))
   {
   }
 
   Separator::Separator (Separator&& src) noexcept
-    : Gtk::Widget (std::move (src)),
+    : gtk::Widget (std::move (src)),
       Orientable (std::move (src))
   {
   }
@@ -73,7 +73,7 @@ namespace Gtk
   auto
   Separator::operator= (Separator&& src) noexcept -> Separator&
   {
-    Gtk::Widget::operator= (std::move (src));
+    gtk::Widget::operator= (std::move (src));
     Orientable::operator= (std::move (src));
     return *this;
   }
@@ -98,13 +98,13 @@ namespace Gtk
   }
 
   Separator::Separator (Orientation orientation)
-    : Glib::ObjectBase (nullptr),
-      Gtk::Widget (
-          Glib::ConstructParams (separator_class_.init (),
+    : glib::ObjectBase (nullptr),
+      gtk::Widget (
+          glib::ConstructParams (separator_class_.init (),
                                  "orientation",
                                  static_cast<GtkOrientation> (orientation),
                                  nullptr))
   {
   }
 
-} // namespace Gtk
+} // namespace gtk

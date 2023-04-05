@@ -7,7 +7,7 @@
 
 #include <libmm/gtk/mm-gtk.hxx>
 
-namespace Adw
+namespace adw
 {
 
 }
@@ -16,23 +16,23 @@ namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (AdwViewSwitcherBar* object, bool take_copy) -> Adw::ViewSwitcherBar*
+  wrap (AdwViewSwitcherBar* object, bool take_copy) -> adw::ViewSwitcherBar*
   {
-    return dynamic_cast<Adw::ViewSwitcherBar*> (
-        Glib::wrap_auto ((GObject*) (object), take_copy));
+    return dynamic_cast<adw::ViewSwitcherBar*> (
+        glib::wrap_auto ((GObject*) (object), take_copy));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Adw
+namespace adw
 {
 
   auto
-  ViewSwitcherBar_Class::init () -> const Glib::Class&
+  ViewSwitcherBar_Class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -43,31 +43,31 @@ namespace Adw
   }
 
   auto
-  ViewSwitcherBar_Class::wrap_new (GObject* o) -> Glib::ObjectBase*
+  ViewSwitcherBar_Class::wrap_new (GObject* o) -> glib::ObjectBase*
   {
     return manage (new ViewSwitcherBar ((AdwViewSwitcherBar*) (o)));
   }
 
   ViewSwitcherBar::ViewSwitcherBar (
-      const Glib::ConstructParams& construct_params)
-    : Gtk::Widget (construct_params)
+      const glib::ConstructParams& construct_params)
+    : gtk::Widget (construct_params)
   {
   }
 
   ViewSwitcherBar::ViewSwitcherBar (AdwViewSwitcherBar* castitem)
-    : Gtk::Widget ((GtkWidget*) (castitem))
+    : gtk::Widget ((GtkWidget*) (castitem))
   {
   }
 
   ViewSwitcherBar::ViewSwitcherBar (ViewSwitcherBar&& src) noexcept
-    : Gtk::Widget (std::move (src))
+    : gtk::Widget (std::move (src))
   {
   }
 
   auto
   ViewSwitcherBar::operator= (ViewSwitcherBar&& src) noexcept -> ViewSwitcherBar&
   {
-    Gtk::Widget::operator= (std::move (src));
+    gtk::Widget::operator= (std::move (src));
     return *this;
   }
 
@@ -91,8 +91,8 @@ namespace Adw
   }
 
   ViewSwitcherBar::ViewSwitcherBar ()
-    : Glib::ObjectBase (nullptr),
-      Gtk::Widget (Glib::ConstructParams (viewswitcherbar_class_.init ()))
+    : glib::ObjectBase (nullptr),
+      gtk::Widget (glib::ConstructParams (viewswitcherbar_class_.init ()))
   {
   }
 
@@ -106,7 +106,7 @@ namespace Adw
   auto
   ViewSwitcherBar::get_stack () const -> ViewStack*
   {
-    return Glib::wrap (adw_view_switcher_bar_get_stack (
+    return glib::wrap (adw_view_switcher_bar_get_stack (
         const_cast<AdwViewSwitcherBar*> (gobj ())));
   }
 
@@ -120,36 +120,36 @@ namespace Adw
   ViewSwitcherBar::set_stack (ViewStack* stack) -> void
   {
     adw_view_switcher_bar_set_stack (gobj (),
-                                     (AdwViewStack*) Glib::unwrap (stack));
+                                     (AdwViewStack*) glib::unwrap (stack));
   }
 
   auto
-  ViewSwitcherBar::property_reveal () -> Glib::PropertyProxy<bool>
+  ViewSwitcherBar::property_reveal () -> glib::PropertyProxy<bool>
   {
-    return Glib::PropertyProxy<bool> (this, "reveal");
+    return glib::PropertyProxy<bool> (this, "reveal");
   }
 
   auto
-  ViewSwitcherBar::property_reveal () const -> Glib::PropertyProxy_ReadOnly<bool>
+  ViewSwitcherBar::property_reveal () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "reveal");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "reveal");
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<ViewStack*>::value,
+      glib::Traits::ValueCompatibleWithWrapProperty<ViewStack*>::value,
       "Type ViewStack* cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  ViewSwitcherBar::property_stack () -> Glib::PropertyProxy<ViewStack*>
+  ViewSwitcherBar::property_stack () -> glib::PropertyProxy<ViewStack*>
   {
-    return Glib::PropertyProxy<ViewStack*> (this, "stack");
+    return glib::PropertyProxy<ViewStack*> (this, "stack");
   }
 
   auto
-  ViewSwitcherBar::property_stack () const -> Glib::PropertyProxy_ReadOnly<ViewStack*>
+  ViewSwitcherBar::property_stack () const -> glib::PropertyProxy_ReadOnly<ViewStack*>
   {
-    return Glib::PropertyProxy_ReadOnly<ViewStack*> (this, "stack");
+    return glib::PropertyProxy_ReadOnly<ViewStack*> (this, "stack");
   }
 
-} // namespace Adw
+} // namespace adw

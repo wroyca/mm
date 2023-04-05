@@ -8,49 +8,49 @@
 #include <gio/gio.h>
 #include <libmm/glib/exceptionhandler.hxx>
 
-namespace Gio
+namespace gio
 {
 
   static auto
-  unwrap_objectbase_custom (const Glib::RefPtr<Glib::ObjectBase>& cpp_instance) -> GObject*
+  unwrap_objectbase_custom (const glib::RefPtr<glib::ObjectBase>& cpp_instance) -> GObject*
   {
     return cpp_instance ? cpp_instance->gobj () : nullptr;
   }
 
   auto
-  AsyncResult::get_source_object_base () -> Glib::RefPtr<ObjectBase>
+  AsyncResult::get_source_object_base () -> glib::RefPtr<ObjectBase>
   {
     const auto cobj = g_async_result_get_source_object (gobj ());
-    const auto cppobj = Glib::wrap_auto (cobj);
-    return Glib::make_refptr_for_instance<ObjectBase> (cppobj);
+    const auto cppobj = glib::wrap_auto (cobj);
+    return glib::make_refptr_for_instance<ObjectBase> (cppobj);
   }
 
   auto
-  AsyncResult::get_source_object_base () const -> Glib::RefPtr<const ObjectBase>
+  AsyncResult::get_source_object_base () const -> glib::RefPtr<const ObjectBase>
   {
     return const_cast<AsyncResult*> (this)->get_source_object_base ();
   }
 
-} // namespace Gio
+} // namespace gio
 
 namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GAsyncResult* object, const bool take_copy) -> RefPtr<Gio::AsyncResult>
+  wrap (GAsyncResult* object, const bool take_copy) -> RefPtr<gio::AsyncResult>
   {
-    return Glib::make_refptr_for_instance<Gio::AsyncResult> (
-        Glib::wrap_auto_interface<Gio::AsyncResult> ((GObject*) object,
+    return glib::make_refptr_for_instance<gio::AsyncResult> (
+        glib::wrap_auto_interface<gio::AsyncResult> ((GObject*) object,
                                                      take_copy));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gio
+namespace gio
 {
 
   auto
@@ -81,7 +81,7 @@ namespace Gio
   AsyncResult_Class::get_source_object_vfunc_callback (GAsyncResult* self) -> GObject*
   {
     const auto obj_base =
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self);
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self);
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -94,7 +94,7 @@ namespace Gio
         }
         catch (...)
         {
-          Glib::exception_handlers_invoke ();
+          glib::exception_handlers_invoke ();
         }
       }
     }
@@ -116,7 +116,7 @@ namespace Gio
                                                const gpointer source_tag) -> gboolean
   {
     const auto obj_base =
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self);
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self);
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -129,7 +129,7 @@ namespace Gio
         }
         catch (...)
         {
-          Glib::exception_handlers_invoke ();
+          glib::exception_handlers_invoke ();
         }
       }
     }
@@ -147,7 +147,7 @@ namespace Gio
   }
 
   auto
-  AsyncResult_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  AsyncResult_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new AsyncResult ((GAsyncResult*) object);
   }
@@ -162,7 +162,7 @@ namespace Gio
   {
   }
 
-  AsyncResult::AsyncResult (const Glib::Interface_Class& interface_class)
+  AsyncResult::AsyncResult (const glib::Interface_Class& interface_class)
     : Interface (interface_class)
   {
   }
@@ -209,7 +209,7 @@ namespace Gio
   }
 
   auto
-  AsyncResult::get_source_object_vfunc () -> Glib::RefPtr<ObjectBase>
+  AsyncResult::get_source_object_vfunc () -> glib::RefPtr<ObjectBase>
   {
     const auto base =
         static_cast<BaseClassType*> (g_type_interface_peek_parent (
@@ -218,12 +218,12 @@ namespace Gio
 
     if (base && base->get_source_object)
     {
-      Glib::RefPtr<ObjectBase> retval (
-          Glib::wrap ((*base->get_source_object) (gobj ())));
+      glib::RefPtr<ObjectBase> retval (
+          glib::wrap ((*base->get_source_object) (gobj ())));
       return retval;
     }
 
-    using RType = Glib::RefPtr<ObjectBase>;
+    using RType = glib::RefPtr<ObjectBase>;
     return {};
   }
 
@@ -245,4 +245,4 @@ namespace Gio
     return RType ();
   }
 
-} // namespace Gio
+} // namespace gio

@@ -17,16 +17,16 @@
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Adw
+namespace adw
 {
   class LIBMM_ADW_SYMEXPORT ViewSwitcherBar_Class;
 }
 #endif
 
-namespace Adw
+namespace adw
 {
 
-  class LIBMM_ADW_SYMEXPORT ViewSwitcherBar : public Gtk::Widget
+  class LIBMM_ADW_SYMEXPORT ViewSwitcherBar : public gtk::Widget
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -53,7 +53,7 @@ namespace Adw
     static CppClassType viewswitcherbar_class_;
 
   protected:
-    explicit ViewSwitcherBar (const Glib::ConstructParams& construct_params);
+    explicit ViewSwitcherBar (const glib::ConstructParams& construct_params);
     explicit ViewSwitcherBar (AdwViewSwitcherBar* castitem);
 
 #endif
@@ -97,29 +97,29 @@ namespace Adw
     set_stack (ViewStack* stack) -> void;
 
     auto
-    property_reveal () -> Glib::PropertyProxy<bool>;
+    property_reveal () -> glib::PropertyProxy<bool>;
 
     auto
-    property_reveal () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_reveal () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_stack () -> Glib::PropertyProxy<ViewStack*>;
+    property_stack () -> glib::PropertyProxy<ViewStack*>;
 
     auto
-    property_stack () const -> Glib::PropertyProxy_ReadOnly<ViewStack*>;
+    property_stack () const -> glib::PropertyProxy_ReadOnly<ViewStack*>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Adw
+} // namespace adw
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (AdwViewSwitcherBar* object, bool take_copy = false) -> Adw::ViewSwitcherBar*;
+  wrap (AdwViewSwitcherBar* object, bool take_copy = false) -> adw::ViewSwitcherBar*;
 }
 
 #endif

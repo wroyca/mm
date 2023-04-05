@@ -8,7 +8,7 @@
 #include <gtk/gtk.h>
 #include <libmm/gdk/cairoutils.hxx>
 
-namespace Gtk
+namespace gtk
 {
 
 }
@@ -17,24 +17,24 @@ namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GtkPrintContext* object, bool take_copy) -> Glib::RefPtr<Gtk::PrintContext>
+  wrap (GtkPrintContext* object, bool take_copy) -> glib::RefPtr<gtk::PrintContext>
   {
-    return Glib::make_refptr_for_instance<Gtk::PrintContext> (
-        dynamic_cast<Gtk::PrintContext*> (
-            Glib::wrap_auto ((GObject*) (object), take_copy)));
+    return glib::make_refptr_for_instance<gtk::PrintContext> (
+        dynamic_cast<gtk::PrintContext*> (
+            glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gtk
+namespace gtk
 {
 
   auto
-  PrintContext_Class::init () -> const Glib::Class&
+  PrintContext_Class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -54,7 +54,7 @@ namespace Gtk
   }
 
   auto
-  PrintContext_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  PrintContext_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new PrintContext ((GtkPrintContext*) object);
   }
@@ -66,25 +66,25 @@ namespace Gtk
     return gobj ();
   }
 
-  PrintContext::PrintContext (const Glib::ConstructParams& construct_params)
-    : Glib::Object (construct_params)
+  PrintContext::PrintContext (const glib::ConstructParams& construct_params)
+    : glib::Object (construct_params)
   {
   }
 
   PrintContext::PrintContext (GtkPrintContext* castitem)
-    : Glib::Object ((GObject*) (castitem))
+    : glib::Object ((GObject*) (castitem))
   {
   }
 
   PrintContext::PrintContext (PrintContext&& src) noexcept
-    : Glib::Object (std::move (src))
+    : glib::Object (std::move (src))
   {
   }
 
   auto
   PrintContext::operator= (PrintContext&& src) noexcept -> PrintContext&
   {
-    Glib::Object::operator= (std::move (src));
+    glib::Object::operator= (std::move (src));
     return *this;
   }
 
@@ -105,32 +105,32 @@ namespace Gtk
   }
 
   auto
-  PrintContext::get_cairo_context () -> Cairo::RefPtr<Cairo::Context>
+  PrintContext::get_cairo_context () -> cairo::RefPtr<cairo::Context>
   {
     auto retvalue =
-        Gdk::Cairo::wrap (gtk_print_context_get_cairo_context (gobj ()));
+        gdk::cairo::wrap (gtk_print_context_get_cairo_context (gobj ()));
     if (retvalue)
       retvalue->reference ();
     return retvalue;
   }
 
   auto
-  PrintContext::get_cairo_context () const -> Cairo::RefPtr<const Cairo::Context>
+  PrintContext::get_cairo_context () const -> cairo::RefPtr<const cairo::Context>
   {
     return const_cast<PrintContext*> (this)->get_cairo_context ();
   }
 
   auto
-  PrintContext::get_page_setup () -> Glib::RefPtr<PageSetup>
+  PrintContext::get_page_setup () -> glib::RefPtr<PageSetup>
   {
-    auto retvalue = Glib::wrap (gtk_print_context_get_page_setup (gobj ()));
+    auto retvalue = glib::wrap (gtk_print_context_get_page_setup (gobj ()));
     if (retvalue)
       retvalue->reference ();
     return retvalue;
   }
 
   auto
-  PrintContext::get_page_setup () const -> Glib::RefPtr<const PageSetup>
+  PrintContext::get_page_setup () const -> glib::RefPtr<const PageSetup>
   {
     return const_cast<PrintContext*> (this)->get_page_setup ();
   }
@@ -175,42 +175,42 @@ namespace Gtk
   }
 
   auto
-  PrintContext::get_pango_fontmap () -> Glib::RefPtr<Pango::FontMap>
+  PrintContext::get_pango_fontmap () -> glib::RefPtr<pango::FontMap>
   {
-    auto retvalue = Glib::wrap (gtk_print_context_get_pango_fontmap (gobj ()));
+    auto retvalue = glib::wrap (gtk_print_context_get_pango_fontmap (gobj ()));
     if (retvalue)
       retvalue->reference ();
     return retvalue;
   }
 
   auto
-  PrintContext::get_pango_fontmap () const -> Glib::RefPtr<const Pango::FontMap>
+  PrintContext::get_pango_fontmap () const -> glib::RefPtr<const pango::FontMap>
   {
     return const_cast<PrintContext*> (this)->get_pango_fontmap ();
   }
 
   auto
-  PrintContext::create_pango_context () -> Glib::RefPtr<Pango::Context>
+  PrintContext::create_pango_context () -> glib::RefPtr<pango::Context>
   {
     auto retvalue =
-        Glib::wrap (gtk_print_context_create_pango_context (gobj ()));
+        glib::wrap (gtk_print_context_create_pango_context (gobj ()));
     if (retvalue)
       retvalue->reference ();
     return retvalue;
   }
 
   auto
-  PrintContext::create_pango_layout () -> Glib::RefPtr<Pango::Layout>
+  PrintContext::create_pango_layout () -> glib::RefPtr<pango::Layout>
   {
     auto retvalue =
-        Glib::wrap (gtk_print_context_create_pango_layout (gobj ()));
+        glib::wrap (gtk_print_context_create_pango_layout (gobj ()));
     if (retvalue)
       retvalue->reference ();
     return retvalue;
   }
 
   auto
-  PrintContext::set_cairo_context (const Cairo::RefPtr<Cairo::Context>& cr,
+  PrintContext::set_cairo_context (const cairo::RefPtr<cairo::Context>& cr,
                                    double dpi_x,
                                    double dpi_y) -> void
   {
@@ -220,4 +220,4 @@ namespace Gtk
                                          dpi_y);
   }
 
-} // namespace Gtk
+} // namespace gtk

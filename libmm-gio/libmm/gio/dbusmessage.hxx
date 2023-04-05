@@ -22,13 +22,13 @@ using GDBusMessageClass = struct _GDBusMessageClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gio::DBus
+namespace gio::DBus
 {
   class LIBMM_GIO_SYMEXPORT Message_Class;
 }
 #endif
 
-namespace Gio::DBus
+namespace gio::DBus
 {
 
   enum class MessageType
@@ -164,28 +164,28 @@ namespace Gio::DBus
                                                 static_cast<unsigned> (rhs)));
   }
 
-} // namespace Gio::DBus
+} // namespace gio::DBus
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_GIO_SYMEXPORT Value<Gio::DBus::CapabilityFlags>
-    : public Glib::Value_Flags<Gio::DBus::CapabilityFlags>
+  class LIBMM_GIO_SYMEXPORT Value<gio::DBus::CapabilityFlags>
+    : public glib::Value_Flags<gio::DBus::CapabilityFlags>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
-namespace Gio::DBus
+namespace gio::DBus
 {
 
-  class LIBMM_GIO_SYMEXPORT Message : public Glib::Object
+  class LIBMM_GIO_SYMEXPORT Message : public glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -204,7 +204,7 @@ namespace Gio::DBus
     static CppClassType message_class_;
 
   protected:
-    explicit Message (const Glib::ConstructParams& construct_params);
+    explicit Message (const glib::ConstructParams& construct_params);
     explicit Message (GDBusMessage* castitem);
 
 #endif
@@ -246,37 +246,37 @@ namespace Gio::DBus
 
   public:
     static auto
-    create () -> Glib::RefPtr<Message>;
+    create () -> glib::RefPtr<Message>;
 
     static auto
-    create_signal (const Glib::ustring& path,
-                   const Glib::ustring& iface,
-                   const Glib::ustring& signal) -> Glib::RefPtr<Message>;
+    create_signal (const glib::ustring& path,
+                   const glib::ustring& iface,
+                   const glib::ustring& signal) -> glib::RefPtr<Message>;
 
     static auto
-    create_method_call (const Glib::ustring& name,
-                        const Glib::ustring& path,
-                        const Glib::ustring& iface,
-                        const Glib::ustring& method) -> Glib::RefPtr<Message>;
+    create_method_call (const glib::ustring& name,
+                        const glib::ustring& path,
+                        const glib::ustring& iface,
+                        const glib::ustring& method) -> glib::RefPtr<Message>;
 
     static auto
-    create_method_reply (const Glib::RefPtr<Message>& method_call_message)
-        -> Glib::RefPtr<Message>;
+    create_method_reply (const glib::RefPtr<Message>& method_call_message)
+        -> glib::RefPtr<Message>;
 
     static auto
     create_method_error_literal (
-        const Glib::RefPtr<const Message>& method_call_message,
-        const Glib::ustring& error_name,
-        const Glib::ustring& error_message) -> Glib::RefPtr<Message>;
+        const glib::RefPtr<const Message>& method_call_message,
+        const glib::ustring& error_name,
+        const glib::ustring& error_message) -> glib::RefPtr<Message>;
 
     static auto
     create_from_blob (const guchar* blob,
                       gsize blob_len,
                       CapabilityFlags capabilities = CapabilityFlags::NONE)
-        -> Glib::RefPtr<Message>;
+        -> glib::RefPtr<Message>;
 
     auto
-    print (guint indent) -> Glib::ustring;
+    print (guint indent) -> glib::ustring;
 
     auto
     get_locked () const -> bool;
@@ -285,7 +285,7 @@ namespace Gio::DBus
     lock () -> void;
 
     auto
-    copy () const -> Glib::RefPtr<Message>;
+    copy () const -> glib::RefPtr<Message>;
 
     auto
     get_message_type () const -> MessageType;
@@ -318,27 +318,27 @@ namespace Gio::DBus
     set_flags (MessageFlags flags) -> void;
 
     auto
-    get_body (Glib::VariantBase& value) const -> void;
+    get_body (glib::VariantBase& value) const -> void;
 
     auto
-    set_body (const Glib::VariantBase& body) -> void;
+    set_body (const glib::VariantBase& body) -> void;
 
 #ifdef G_OS_UNIX
 
     auto
-    get_unix_fd_list () -> Glib::RefPtr<UnixFDList>;
+    get_unix_fd_list () -> glib::RefPtr<UnixFDList>;
 #endif
 
 #ifdef G_OS_UNIX
 
     auto
-    get_unix_fd_list () const -> Glib::RefPtr<const UnixFDList>;
+    get_unix_fd_list () const -> glib::RefPtr<const UnixFDList>;
 #endif
 
 #ifdef G_OS_UNIX
 
     void
-    set_unix_fd_list (const Glib::RefPtr<UnixFDList>& fd_list);
+    set_unix_fd_list (const glib::RefPtr<UnixFDList>& fd_list);
 #endif
 
 #ifdef G_OS_UNIX
@@ -354,45 +354,45 @@ namespace Gio::DBus
     set_num_unix_fds (guint32 value) -> void;
 
     auto
-    get_header (Glib::VariantBase& value, MessageHeaderField header_field) const
+    get_header (glib::VariantBase& value, MessageHeaderField header_field) const
         -> void;
 
     auto
-    set_header (MessageHeaderField header_field, const Glib::VariantBase& value)
+    set_header (MessageHeaderField header_field, const glib::VariantBase& value)
         -> void;
 
     auto
     get_header_fields () const -> std::vector<guchar>;
 
     auto
-    get_destination () const -> Glib::ustring;
+    get_destination () const -> glib::ustring;
 
     auto
-    set_destination (const Glib::ustring& value) -> void;
+    set_destination (const glib::ustring& value) -> void;
 
     auto
-    get_error_name () const -> Glib::ustring;
+    get_error_name () const -> glib::ustring;
 
     auto
-    set_error_name (const Glib::ustring& value) -> void;
+    set_error_name (const glib::ustring& value) -> void;
 
     auto
-    get_interface () const -> Glib::ustring;
+    get_interface () const -> glib::ustring;
 
     auto
-    set_interface (const Glib::ustring& value) -> void;
+    set_interface (const glib::ustring& value) -> void;
 
     auto
-    get_member () const -> Glib::ustring;
+    get_member () const -> glib::ustring;
 
     auto
-    set_member (const Glib::ustring& value) -> void;
+    set_member (const glib::ustring& value) -> void;
 
     auto
-    get_path () const -> Glib::ustring;
+    get_path () const -> glib::ustring;
 
     auto
-    set_path (const Glib::ustring& value) -> void;
+    set_path (const glib::ustring& value) -> void;
 
     auto
     get_reply_serial () const -> guint32;
@@ -401,19 +401,19 @@ namespace Gio::DBus
     set_reply_serial (guint32 value) -> void;
 
     auto
-    get_sender () const -> Glib::ustring;
+    get_sender () const -> glib::ustring;
 
     auto
-    set_sender (const Glib::ustring& value) -> void;
+    set_sender (const glib::ustring& value) -> void;
 
     auto
-    get_signature () const -> Glib::ustring;
+    get_signature () const -> glib::ustring;
 
     auto
-    set_signature (const Glib::ustring& value) -> void;
+    set_signature (const glib::ustring& value) -> void;
 
     auto
-    get_arg0 () const -> Glib::ustring;
+    get_arg0 () const -> glib::ustring;
 
     static auto
     bytes_needed (const guchar* blob, gsize blob_len) -> gssize;
@@ -426,21 +426,21 @@ namespace Gio::DBus
     to_exception () -> void;
 
     auto
-    property_locked () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_locked () const -> glib::PropertyProxy_ReadOnly<bool>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gio::DBus
+} // namespace gio::DBus
 
-namespace Glib
+namespace glib
 {
 
   LIBMM_GIO_SYMEXPORT
   auto
-  wrap (GDBusMessage* object, bool take_copy = false) -> Glib::RefPtr<Gio::DBus::Message>;
-} // namespace Glib
+  wrap (GDBusMessage* object, bool take_copy = false) -> glib::RefPtr<gio::DBus::Message>;
+} // namespace glib
 
 #endif

@@ -9,7 +9,7 @@
 #include <string>
 #include <vector>
 
-namespace Glib
+namespace glib
 {
 
   using Pid = GPid;
@@ -79,7 +79,7 @@ namespace Glib
                                            static_cast<unsigned> (rhs)));
   }
 
-  class SpawnError : public Glib::Error
+  class SpawnError : public glib::Error
   {
   public:
     enum Code
@@ -108,7 +108,7 @@ namespace Glib
     };
 
     LIBMM_GLIB_SYMEXPORT
-    SpawnError (Code error_code, const Glib::ustring& error_message);
+    SpawnError (Code error_code, const glib::ustring& error_message);
     LIBMM_GLIB_SYMEXPORT explicit SpawnError (GError* gobject);
     LIBMM_GLIB_SYMEXPORT auto
     code () const -> Code;
@@ -193,6 +193,6 @@ namespace Glib
   LIBMM_GLIB_SYMEXPORT auto
   spawn_close_pid (Pid pid) -> void;
 
-} // namespace Glib
+} // namespace glib
 
 #endif

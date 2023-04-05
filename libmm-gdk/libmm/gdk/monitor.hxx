@@ -15,13 +15,13 @@ using GdkMonitorClass = struct _GdkMonitorClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gdk
+namespace gdk
 {
   class LIBMM_GDK_SYMEXPORT Monitor_Class;
 }
 #endif
 
-namespace Gdk
+namespace gdk
 {
 
   enum class SubpixelLayout
@@ -34,30 +34,30 @@ namespace Gdk
     VERTICAL_BGR
   };
 
-} // namespace Gdk
+} // namespace gdk
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_GDK_SYMEXPORT Value<Gdk::SubpixelLayout>
-    : public Glib::Value_Enum<Gdk::SubpixelLayout>
+  class LIBMM_GDK_SYMEXPORT Value<gdk::SubpixelLayout>
+    : public glib::Value_Enum<gdk::SubpixelLayout>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
-namespace Gdk
+namespace gdk
 {
 
   class LIBMM_GDK_SYMEXPORT Display;
 
-  class LIBMM_GDK_SYMEXPORT Monitor : public Glib::Object
+  class LIBMM_GDK_SYMEXPORT Monitor : public glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -76,7 +76,7 @@ namespace Gdk
     static CppClassType monitor_class_;
 
   protected:
-    explicit Monitor (const Glib::ConstructParams& construct_params);
+    explicit Monitor (const glib::ConstructParams& construct_params);
     explicit Monitor (GdkMonitor* castitem);
 
 #endif
@@ -118,10 +118,10 @@ namespace Gdk
 
   public:
     auto
-    get_display () -> Glib::RefPtr<Display>;
+    get_display () -> glib::RefPtr<Display>;
 
     auto
-    get_display () const -> Glib::RefPtr<const Display>;
+    get_display () const -> glib::RefPtr<const Display>;
 
     auto
     get_geometry (Rectangle& geometry) const -> void;
@@ -133,13 +133,13 @@ namespace Gdk
     get_height_mm () const -> int;
 
     auto
-    get_manufacturer () const -> Glib::ustring;
+    get_manufacturer () const -> glib::ustring;
 
     auto
-    get_model () const -> Glib::ustring;
+    get_model () const -> glib::ustring;
 
     auto
-    get_connector () const -> Glib::ustring;
+    get_connector () const -> glib::ustring;
 
     auto
     get_scale_factor () const -> int;
@@ -154,62 +154,62 @@ namespace Gdk
     is_valid () const -> bool;
 
     auto
-    get_description () const -> Glib::ustring;
+    get_description () const -> glib::ustring;
 
     auto
-    signal_invalidate () -> Glib::SignalProxy<void ()>;
+    signal_invalidate () -> glib::SignalProxy<void ()>;
 
     auto
     property_description () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+        -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
     auto
     property_display () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Display>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<Display>>;
 
     auto
     property_manufacturer () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+        -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
     auto
-    property_model () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+    property_model () const -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
     auto
-    property_connector () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+    property_connector () const -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
     auto
-    property_scale_factor () const -> Glib::PropertyProxy_ReadOnly<int>;
+    property_scale_factor () const -> glib::PropertyProxy_ReadOnly<int>;
 
     auto
-    property_geometry () const -> Glib::PropertyProxy_ReadOnly<Gdk::Rectangle>;
+    property_geometry () const -> glib::PropertyProxy_ReadOnly<gdk::Rectangle>;
 
     auto
-    property_width_mm () const -> Glib::PropertyProxy_ReadOnly<int>;
+    property_width_mm () const -> glib::PropertyProxy_ReadOnly<int>;
 
     auto
-    property_height_mm () const -> Glib::PropertyProxy_ReadOnly<int>;
+    property_height_mm () const -> glib::PropertyProxy_ReadOnly<int>;
 
     auto
-    property_refresh_rate () const -> Glib::PropertyProxy_ReadOnly<int>;
+    property_refresh_rate () const -> glib::PropertyProxy_ReadOnly<int>;
 
     auto
     property_subpixel_layout () const
-        -> Glib::PropertyProxy_ReadOnly<SubpixelLayout>;
+        -> glib::PropertyProxy_ReadOnly<SubpixelLayout>;
 
     auto
-    property_valid () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_valid () const -> glib::PropertyProxy_ReadOnly<bool>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gdk
+} // namespace gdk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GDK_SYMEXPORT auto
-  wrap (GdkMonitor* object, bool take_copy = false) -> Glib::RefPtr<Gdk::Monitor>;
-} // namespace Glib
+  wrap (GdkMonitor* object, bool take_copy = false) -> glib::RefPtr<gdk::Monitor>;
+} // namespace glib
 
 #endif

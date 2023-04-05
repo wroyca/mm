@@ -13,7 +13,7 @@
 #include <libmm/glib/value.hxx>
 #include <vector>
 
-namespace Gio::DBus
+namespace gio::DBus
 {
 
   enum class PropertyInfoFlags
@@ -107,8 +107,8 @@ namespace Gio::DBus
   private:
   public:
     static auto
-    info_lookup (const std::vector<Glib::RefPtr<AnnotationInfo>>& annotations,
-                 const Glib::ustring& name) -> Glib::ustring;
+    info_lookup (const std::vector<glib::RefPtr<AnnotationInfo>>& annotations,
+                 const glib::ustring& name) -> glib::ustring;
   };
 
   class LIBMM_GIO_SYMEXPORT ArgInfo final
@@ -298,25 +298,25 @@ namespace Gio::DBus
   private:
   public:
     auto
-    lookup_method (const Glib::ustring& name) -> Glib::RefPtr<MethodInfo>;
+    lookup_method (const glib::ustring& name) -> glib::RefPtr<MethodInfo>;
 
     auto
-    lookup_method (const Glib::ustring& name) const
-        -> Glib::RefPtr<const MethodInfo>;
+    lookup_method (const glib::ustring& name) const
+        -> glib::RefPtr<const MethodInfo>;
 
     auto
-    lookup_signal (const Glib::ustring& name) -> Glib::RefPtr<SignalInfo>;
+    lookup_signal (const glib::ustring& name) -> glib::RefPtr<SignalInfo>;
 
     auto
-    lookup_signal (const Glib::ustring& name) const
-        -> Glib::RefPtr<const SignalInfo>;
+    lookup_signal (const glib::ustring& name) const
+        -> glib::RefPtr<const SignalInfo>;
 
     auto
-    lookup_property (const Glib::ustring& name) -> Glib::RefPtr<PropertyInfo>;
+    lookup_property (const glib::ustring& name) -> glib::RefPtr<PropertyInfo>;
 
     auto
-    lookup_property (const Glib::ustring& name) const
-        -> Glib::RefPtr<const PropertyInfo>;
+    lookup_property (const glib::ustring& name) const
+        -> glib::RefPtr<const PropertyInfo>;
 
     auto
     cache_build () -> void;
@@ -361,99 +361,99 @@ namespace Gio::DBus
   private:
   public:
     static auto
-    create_for_xml (const Glib::ustring& xml_data) -> Glib::RefPtr<NodeInfo>;
+    create_for_xml (const glib::ustring& xml_data) -> glib::RefPtr<NodeInfo>;
 
     auto
-    lookup_interface (const Glib::ustring& name) -> Glib::RefPtr<InterfaceInfo>;
+    lookup_interface (const glib::ustring& name) -> glib::RefPtr<InterfaceInfo>;
 
     auto
-    lookup_interface (const Glib::ustring& name) const
-        -> Glib::RefPtr<const InterfaceInfo>;
+    lookup_interface (const glib::ustring& name) const
+        -> glib::RefPtr<const InterfaceInfo>;
 
     auto
-    lookup_interface () -> Glib::RefPtr<InterfaceInfo>;
+    lookup_interface () -> glib::RefPtr<InterfaceInfo>;
 
     auto
-    lookup_interface () const -> Glib::RefPtr<const InterfaceInfo>;
+    lookup_interface () const -> glib::RefPtr<const InterfaceInfo>;
   };
 
-} // namespace Gio::DBus
+} // namespace gio::DBus
 
-namespace Glib
+namespace glib
 {
 
   LIBMM_GIO_SYMEXPORT
   auto
-  wrap (GDBusAnnotationInfo* object, bool take_copy = false) -> Glib::RefPtr<Gio::DBus::AnnotationInfo>;
+  wrap (GDBusAnnotationInfo* object, bool take_copy = false) -> glib::RefPtr<gio::DBus::AnnotationInfo>;
 
-} // namespace Glib
+} // namespace glib
 
-namespace Glib
+namespace glib
 {
 
   LIBMM_GIO_SYMEXPORT
   auto
-  wrap (GDBusArgInfo* object, bool take_copy = false) -> Glib::RefPtr<Gio::DBus::ArgInfo>;
+  wrap (GDBusArgInfo* object, bool take_copy = false) -> glib::RefPtr<gio::DBus::ArgInfo>;
 
-} // namespace Glib
+} // namespace glib
 
-namespace Glib
+namespace glib
 {
 
   LIBMM_GIO_SYMEXPORT
   auto
-  wrap (GDBusMethodInfo* object, bool take_copy = false) -> Glib::RefPtr<Gio::DBus::MethodInfo>;
+  wrap (GDBusMethodInfo* object, bool take_copy = false) -> glib::RefPtr<gio::DBus::MethodInfo>;
 
-} // namespace Glib
+} // namespace glib
 
-namespace Glib
+namespace glib
 {
 
   LIBMM_GIO_SYMEXPORT
   auto
-  wrap (GDBusSignalInfo* object, bool take_copy = false) -> Glib::RefPtr<Gio::DBus::SignalInfo>;
+  wrap (GDBusSignalInfo* object, bool take_copy = false) -> glib::RefPtr<gio::DBus::SignalInfo>;
 
-} // namespace Glib
+} // namespace glib
 
-namespace Glib
+namespace glib
 {
 
   LIBMM_GIO_SYMEXPORT
   auto
-  wrap (GDBusPropertyInfo* object, bool take_copy = false) -> Glib::RefPtr<Gio::DBus::PropertyInfo>;
+  wrap (GDBusPropertyInfo* object, bool take_copy = false) -> glib::RefPtr<gio::DBus::PropertyInfo>;
 
-} // namespace Glib
+} // namespace glib
 
-namespace Glib
+namespace glib
 {
 
   LIBMM_GIO_SYMEXPORT
   auto
-  wrap (GDBusInterfaceInfo* object, bool take_copy = false) -> Glib::RefPtr<Gio::DBus::InterfaceInfo>;
+  wrap (GDBusInterfaceInfo* object, bool take_copy = false) -> glib::RefPtr<gio::DBus::InterfaceInfo>;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
   template <>
-  class LIBMM_GIO_SYMEXPORT Value<Glib::RefPtr<Gio::DBus::InterfaceInfo>>
-    : public Glib::Value_RefPtrBoxed<Gio::DBus::InterfaceInfo>
+  class LIBMM_GIO_SYMEXPORT Value<glib::RefPtr<gio::DBus::InterfaceInfo>>
+    : public glib::Value_RefPtrBoxed<gio::DBus::InterfaceInfo>
   {
   public:
     auto
     get () const -> CppType
     {
-      return Glib::wrap (static_cast<GDBusInterfaceInfo*> (get_boxed ()), true);
+      return glib::wrap (static_cast<GDBusInterfaceInfo*> (get_boxed ()), true);
     }
   };
 #endif
 
-} // namespace Glib
+} // namespace glib
 
-namespace Glib
+namespace glib
 {
 
   LIBMM_GIO_SYMEXPORT
   auto
-  wrap (GDBusNodeInfo* object, bool take_copy = false) -> Glib::RefPtr<Gio::DBus::NodeInfo>;
+  wrap (GDBusNodeInfo* object, bool take_copy = false) -> glib::RefPtr<gio::DBus::NodeInfo>;
 
-} // namespace Glib
+} // namespace glib
 
 #endif

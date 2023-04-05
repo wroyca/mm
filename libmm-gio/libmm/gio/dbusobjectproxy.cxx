@@ -11,20 +11,20 @@ namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GDBusObjectProxy* object, const bool take_copy) -> RefPtr<Gio::DBus::ObjectProxy>
+  wrap (GDBusObjectProxy* object, const bool take_copy) -> RefPtr<gio::DBus::ObjectProxy>
   {
-    return Glib::make_refptr_for_instance<Gio::DBus::ObjectProxy> (
-        dynamic_cast<Gio::DBus::ObjectProxy*> (
+    return glib::make_refptr_for_instance<gio::DBus::ObjectProxy> (
+        dynamic_cast<gio::DBus::ObjectProxy*> (
             wrap_auto ((GObject*) object, take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gio::DBus
+namespace gio::DBus
 {
 
   auto
@@ -50,7 +50,7 @@ namespace Gio::DBus
   }
 
   auto
-  ObjectProxy_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  ObjectProxy_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new ObjectProxy ((GDBusObjectProxy*) object);
   }
@@ -62,18 +62,18 @@ namespace Gio::DBus
     return gobj ();
   }
 
-  ObjectProxy::ObjectProxy (const Glib::ConstructParams& construct_params)
-    : Glib::Object (construct_params)
+  ObjectProxy::ObjectProxy (const glib::ConstructParams& construct_params)
+    : glib::Object (construct_params)
   {
   }
 
   ObjectProxy::ObjectProxy (GDBusObjectProxy* castitem)
-    : Glib::Object ((GObject*) castitem)
+    : glib::Object ((GObject*) castitem)
   {
   }
 
   ObjectProxy::ObjectProxy (ObjectProxy&& src) noexcept
-    : Glib::Object (std::move (src)),
+    : glib::Object (std::move (src)),
       DBus::Object (std::move (src))
   {
   }
@@ -81,7 +81,7 @@ namespace Gio::DBus
   auto
   ObjectProxy::operator= (ObjectProxy&& src) noexcept -> ObjectProxy&
   {
-    Glib::Object::operator= (std::move (src));
+    glib::Object::operator= (std::move (src));
     DBus::Object::operator= (std::move (src));
     return *this;
   }
@@ -102,12 +102,12 @@ namespace Gio::DBus
     return g_dbus_object_proxy_get_type ();
   }
 
-  ObjectProxy::ObjectProxy (const Glib::RefPtr<Connection>& connection,
-                            const Glib::ustring& object_path)
+  ObjectProxy::ObjectProxy (const glib::RefPtr<Connection>& connection,
+                            const glib::ustring& object_path)
     : ObjectBase (nullptr),
-      Glib::Object (Glib::ConstructParams (objectproxy_class_.init (),
+      glib::Object (glib::ConstructParams (objectproxy_class_.init (),
                                            "connection",
-                                           Glib::unwrap (connection),
+                                           glib::unwrap (connection),
                                            "object_path",
                                            object_path.c_str (),
                                            nullptr))
@@ -115,44 +115,44 @@ namespace Gio::DBus
   }
 
   auto
-  ObjectProxy::create (const Glib::RefPtr<Connection>& connection,
-                       const Glib::ustring& object_path) -> Glib::RefPtr<ObjectProxy>
+  ObjectProxy::create (const glib::RefPtr<Connection>& connection,
+                       const glib::ustring& object_path) -> glib::RefPtr<ObjectProxy>
   {
-    return Glib::make_refptr_for_instance<ObjectProxy> (
+    return glib::make_refptr_for_instance<ObjectProxy> (
         new ObjectProxy (connection, object_path));
   }
 
   auto
-  ObjectProxy::get_connection () -> Glib::RefPtr<Connection>
+  ObjectProxy::get_connection () -> glib::RefPtr<Connection>
   {
-    auto retvalue = Glib::wrap (g_dbus_object_proxy_get_connection (gobj ()));
+    auto retvalue = glib::wrap (g_dbus_object_proxy_get_connection (gobj ()));
     if (retvalue)
       retvalue->reference ();
     return retvalue;
   }
 
   auto
-  ObjectProxy::get_connection () const -> Glib::RefPtr<const Connection>
+  ObjectProxy::get_connection () const -> glib::RefPtr<const Connection>
   {
     return const_cast<ObjectProxy*> (this)->get_connection ();
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<
-          Glib::RefPtr<Connection>>::value,
-      "Type Glib::RefPtr<Connection> cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      glib::Traits::ValueCompatibleWithWrapProperty<
+          glib::RefPtr<Connection>>::value,
+      "Type glib::RefPtr<Connection> cannot be used in _WRAP_PROPERTY. "
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  ObjectProxy::property_g_connection () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Connection>>
+  ObjectProxy::property_g_connection () const -> glib::PropertyProxy_ReadOnly<glib::RefPtr<Connection>>
   {
     return {this, "g-connection"};
   }
 
   auto
-  ObjectProxy::property_g_object_path () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>
+  ObjectProxy::property_g_object_path () const -> glib::PropertyProxy_ReadOnly<glib::ustring>
   {
     return {this, "g-object-path"};
   }
 
-} // namespace Gio::DBus
+} // namespace gio::DBus

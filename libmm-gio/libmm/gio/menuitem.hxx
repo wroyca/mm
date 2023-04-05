@@ -18,16 +18,16 @@ using GMenuItemClass = struct _GMenuItemClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gio
+namespace gio
 {
   class LIBMM_GIO_SYMEXPORT MenuItem_Class;
 }
 #endif
 
-namespace Gio
+namespace gio
 {
 
-  class LIBMM_GIO_SYMEXPORT MenuItem : public Glib::Object
+  class LIBMM_GIO_SYMEXPORT MenuItem : public glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -46,7 +46,7 @@ namespace Gio
     static CppClassType menuitem_class_;
 
   protected:
-    explicit MenuItem (const Glib::ConstructParams& construct_params);
+    explicit MenuItem (const glib::ConstructParams& construct_params);
     explicit MenuItem (GMenuItem* castitem);
 
 #endif
@@ -84,60 +84,60 @@ namespace Gio
 
   private:
   protected:
-    explicit MenuItem (const Glib::ustring& label = {},
-                       const Glib::ustring& detailed_action = {});
+    explicit MenuItem (const glib::ustring& label = {},
+                       const glib::ustring& detailed_action = {});
 
-    explicit MenuItem (const Glib::ustring& label,
-                       const Glib::RefPtr<MenuModel>& submenu);
+    explicit MenuItem (const glib::ustring& label,
+                       const glib::RefPtr<MenuModel>& submenu);
 
-    explicit MenuItem (const Glib::RefPtr<MenuModel>& submenu);
+    explicit MenuItem (const glib::RefPtr<MenuModel>& submenu);
 
   public:
     static auto
-    create (const Glib::ustring& label, const Glib::ustring& detailed_action)
-        -> Glib::RefPtr<MenuItem>;
+    create (const glib::ustring& label, const glib::ustring& detailed_action)
+        -> glib::RefPtr<MenuItem>;
 
     static auto
-    create (const Glib::ustring& label, const Glib::RefPtr<MenuModel>& submenu)
-        -> Glib::RefPtr<MenuItem>;
+    create (const glib::ustring& label, const glib::RefPtr<MenuModel>& submenu)
+        -> glib::RefPtr<MenuItem>;
 
     static auto
-    create (const Glib::RefPtr<MenuModel>& submenu) -> Glib::RefPtr<MenuItem>;
+    create (const glib::RefPtr<MenuModel>& submenu) -> glib::RefPtr<MenuItem>;
 
     auto
-    set_attribute_value (const Glib::ustring& attribute,
-                         const Glib::VariantBase& value) -> void;
+    set_attribute_value (const glib::ustring& attribute,
+                         const glib::VariantBase& value) -> void;
 
     auto
-    get_link (const Glib::ustring& link) -> Glib::RefPtr<MenuModel>;
+    get_link (const glib::ustring& link) -> glib::RefPtr<MenuModel>;
 
     auto
-    get_link (const Glib::ustring& link) const -> Glib::RefPtr<const MenuModel>;
+    get_link (const glib::ustring& link) const -> glib::RefPtr<const MenuModel>;
 
     auto
-    set_link (const Glib::ustring& link, const Glib::RefPtr<MenuModel>& model)
+    set_link (const glib::ustring& link, const glib::RefPtr<MenuModel>& model)
         -> void;
 
     auto
-    set_label (const Glib::ustring& label) -> void;
+    set_label (const glib::ustring& label) -> void;
 
     auto
-    set_submenu (const Glib::RefPtr<MenuModel>& submenu) -> void;
+    set_submenu (const glib::RefPtr<MenuModel>& submenu) -> void;
 
     auto
-    set_section (const Glib::RefPtr<MenuModel>& section) -> void;
+    set_section (const glib::RefPtr<MenuModel>& section) -> void;
 
     auto
-    get_attribute_value (const Glib::ustring& attribute,
-                         const Glib::VariantType& expected_type) const
-        -> Glib::VariantBase;
+    get_attribute_value (const glib::ustring& attribute,
+                         const glib::VariantType& expected_type) const
+        -> glib::VariantBase;
 
     auto
-    get_attribute_value (const Glib::ustring& attribute) const
-        -> Glib::VariantBase;
+    get_attribute_value (const glib::ustring& attribute) const
+        -> glib::VariantBase;
 
     auto
-    set_action (const Glib::ustring& action) -> void;
+    set_action (const glib::ustring& action) -> void;
 
     auto
     unset_target () -> void;
@@ -146,14 +146,14 @@ namespace Gio
     unset_action_and_target () -> void;
 
     auto
-    set_action_and_target (const Glib::ustring& action,
-                           const Glib::VariantBase& target_value) -> void;
+    set_action_and_target (const glib::ustring& action,
+                           const glib::VariantBase& target_value) -> void;
 
     auto
-    set_detailed_action (const Glib::ustring& detailed_action) -> void;
+    set_detailed_action (const glib::ustring& detailed_action) -> void;
 
     auto
-    set_icon (const Glib::RefPtr<Icon>& icon) -> void;
+    set_icon (const glib::RefPtr<Icon>& icon) -> void;
 
     auto
     unset_icon () -> void;
@@ -163,14 +163,14 @@ namespace Gio
   protected:
   };
 
-} // namespace Gio
+} // namespace gio
 
-namespace Glib
+namespace glib
 {
 
   LIBMM_GIO_SYMEXPORT
   auto
-  wrap (GMenuItem* object, bool take_copy = false) -> Glib::RefPtr<Gio::MenuItem>;
-} // namespace Glib
+  wrap (GMenuItem* object, bool take_copy = false) -> glib::RefPtr<gio::MenuItem>;
+} // namespace glib
 
 #endif

@@ -7,7 +7,7 @@
 
 #include <gio/gio.h>
 
-namespace Gio
+namespace gio
 {
 }
 
@@ -15,20 +15,20 @@ namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GSimplePermission* object, const bool take_copy) -> RefPtr<Gio::SimplePermission>
+  wrap (GSimplePermission* object, const bool take_copy) -> RefPtr<gio::SimplePermission>
   {
-    return Glib::make_refptr_for_instance<Gio::SimplePermission> (
-        dynamic_cast<Gio::SimplePermission*> (
+    return glib::make_refptr_for_instance<gio::SimplePermission> (
+        dynamic_cast<gio::SimplePermission*> (
             wrap_auto ((GObject*) object, take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gio
+namespace gio
 {
 
   auto
@@ -52,7 +52,7 @@ namespace Gio
   }
 
   auto
-  SimplePermission_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  SimplePermission_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new SimplePermission ((GSimplePermission*) object);
   }
@@ -65,7 +65,7 @@ namespace Gio
   }
 
   SimplePermission::SimplePermission (
-      const Glib::ConstructParams& construct_params)
+      const glib::ConstructParams& construct_params)
     : Permission (construct_params)
   {
   }
@@ -105,7 +105,7 @@ namespace Gio
 
   SimplePermission::SimplePermission (const bool allowed)
     : ObjectBase (nullptr),
-      Permission (Glib::ConstructParams (simplepermission_class_.init (),
+      Permission (glib::ConstructParams (simplepermission_class_.init (),
                                          "allowed",
                                          allowed,
                                          nullptr))
@@ -113,10 +113,10 @@ namespace Gio
   }
 
   auto
-  SimplePermission::create (const bool allowed) -> Glib::RefPtr<SimplePermission>
+  SimplePermission::create (const bool allowed) -> glib::RefPtr<SimplePermission>
   {
-    return Glib::make_refptr_for_instance<SimplePermission> (
+    return glib::make_refptr_for_instance<SimplePermission> (
         new SimplePermission (allowed));
   }
 
-} // namespace Gio
+} // namespace gio

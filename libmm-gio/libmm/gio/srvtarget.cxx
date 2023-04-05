@@ -8,7 +8,7 @@
 #include <gio/gio.h>
 #include <libmm/glib/utility.hxx>
 
-namespace Gio
+namespace gio
 {
 
 }
@@ -17,18 +17,18 @@ namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GSrvTarget* object, const bool take_copy) -> Gio::SrvTarget
+  wrap (GSrvTarget* object, const bool take_copy) -> gio::SrvTarget
   {
-    return Gio::SrvTarget (object, take_copy);
+    return gio::SrvTarget (object, take_copy);
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gio
+namespace gio
 {
 
   auto
@@ -93,9 +93,9 @@ namespace Gio
   }
 
   auto
-  SrvTarget::get_hostname () const -> Glib::ustring
+  SrvTarget::get_hostname () const -> glib::ustring
   {
-    return Glib::convert_const_gchar_ptr_to_ustring (
+    return glib::convert_const_gchar_ptr_to_ustring (
         g_srv_target_get_hostname (const_cast<GSrvTarget*> (gobj ())));
   }
 
@@ -117,4 +117,4 @@ namespace Gio
     return g_srv_target_get_weight (const_cast<GSrvTarget*> (gobj ()));
   }
 
-} // namespace Gio
+} // namespace gio

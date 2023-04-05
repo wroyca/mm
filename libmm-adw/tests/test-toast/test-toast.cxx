@@ -6,7 +6,7 @@
  * Author: Alexander Mikhaylenko <alexander.mikhaylenko@puri.sm>
  */
 
-#include <libmm/adw/init.hxx> // Adw::init
+#include <libmm/adw/init.hxx> // adw::init
 #include <libmm/adw/mm-adw.hxx>
 
 int notified;
@@ -20,20 +20,20 @@ notify_cb ()
 static void
 test_adw_toast_title (void)
 {
-  std::unique_ptr<Adw::Toast> toast = std::make_unique<Adw::Toast> ("Title");
+  std::unique_ptr<adw::Toast> toast = std::make_unique<adw::Toast> ("Title");
 
   notified = 0;
   toast->property_title ().signal_changed ().connect (
       sigc::ptr_fun (notify_cb));
 
-  Glib::ustring title = toast->get_property<Glib::ustring> ("title");
+  glib::ustring title = toast->get_property<glib::ustring> ("title");
   g_assert_true (title == "Title");
 
   toast->set_title ("Another title");
   g_assert_true (toast->get_title () == "Another title");
   g_assert_true (notified == 1);
 
-  toast->set_property<Glib::ustring> ("title", "Title");
+  toast->set_property<glib::ustring> ("title", "Title");
   g_assert_true (toast->get_title () == "Title");
   g_assert_true (notified == 2);
 }
@@ -41,7 +41,7 @@ test_adw_toast_title (void)
 static void
 test_adw_toast_button_label (void)
 {
-  std::unique_ptr<Adw::Toast> toast = std::make_unique<Adw::Toast> ("Title");
+  std::unique_ptr<adw::Toast> toast = std::make_unique<adw::Toast> ("Title");
 
   g_assert_nonnull (toast);
 
@@ -49,15 +49,15 @@ test_adw_toast_button_label (void)
   toast->property_button_label ().signal_changed ().connect (
       sigc::ptr_fun (notify_cb));
 
-  Glib::ustring button_label =
-      toast->get_property<Glib::ustring> ("button-label");
+  glib::ustring button_label =
+      toast->get_property<glib::ustring> ("button-label");
   g_assert_true (button_label == "");
 
   toast->set_button_label ("Button");
   g_assert_true (toast->get_button_label () == "Button");
   g_assert_true (notified == 1);
 
-  toast->set_property<Glib::ustring> ("button-label", "Button 2");
+  toast->set_property<glib::ustring> ("button-label", "Button 2");
   g_assert_true (toast->get_button_label () == "Button 2");
   g_assert_true (notified == 2);
 }
@@ -65,21 +65,21 @@ test_adw_toast_button_label (void)
 static void
 test_adw_toast_action_name (void)
 {
-  std::unique_ptr<Adw::Toast> toast = std::make_unique<Adw::Toast> ("Title");
+  std::unique_ptr<adw::Toast> toast = std::make_unique<adw::Toast> ("Title");
 
   notified = 0;
   toast->property_action_name ().signal_changed ().connect (
       sigc::ptr_fun (notify_cb));
 
-  Glib::ustring action_name =
-      toast->get_property<Glib::ustring> ("action-name");
+  glib::ustring action_name =
+      toast->get_property<glib::ustring> ("action-name");
   g_assert_true (action_name == "");
 
   toast->set_action_name ("win.something");
   g_assert_true (toast->get_action_name () == "win.something");
   g_assert_true (notified == 1);
 
-  toast->set_property<Glib::ustring> ("action-name", "win.something-else");
+  toast->set_property<glib::ustring> ("action-name", "win.something-else");
   g_assert_true (toast->get_action_name () == "win.something-else");
   g_assert_true (notified == 2);
 }
@@ -87,24 +87,24 @@ test_adw_toast_action_name (void)
 static void
 test_adw_toast_action_target (void)
 {
-  std::unique_ptr<Adw::Toast> toast = std::make_unique<Adw::Toast> ("Title");
+  std::unique_ptr<adw::Toast> toast = std::make_unique<adw::Toast> ("Title");
 
   notified = 0;
   toast->property_action_target ().signal_changed ().connect (
       sigc::ptr_fun (notify_cb));
 
-  Glib::VariantBase action_target =
-      toast->get_property<Glib::VariantBase> ("action-target");
+  glib::VariantBase action_target =
+      toast->get_property<glib::VariantBase> ("action-target");
   g_assert_false (action_target);
 
-  Glib::VariantBase variant = Glib::Variant<gint32>::create (1);
-  toast->set_action_target_value (Glib::Variant<gint32>::create (1));
+  glib::VariantBase variant = glib::Variant<gint32>::create (1);
+  toast->set_action_target_value (glib::Variant<gint32>::create (1));
   g_assert_true (toast->get_action_target_value () == variant);
   g_assert_true (notified == 1);
 
-  variant = Glib::Variant<gint32>::create (2);
-  toast->set_property<Glib::VariantBase> ("action-target",
-                                          Glib::Variant<gint32>::create (2));
+  variant = glib::Variant<gint32>::create (2);
+  toast->set_property<glib::VariantBase> ("action-target",
+                                          glib::Variant<gint32>::create (2));
   g_assert_true (toast->get_action_target_value () == variant);
   g_assert_true (notified == 2);
 }
@@ -112,7 +112,7 @@ test_adw_toast_action_target (void)
 static void
 test_adw_toast_detailed_action_name (void)
 {
-  std::unique_ptr<Adw::Toast> toast = std::make_unique<Adw::Toast> ("Title");
+  std::unique_ptr<adw::Toast> toast = std::make_unique<adw::Toast> ("Title");
 
   g_assert_true (toast->get_action_name () == "");
   g_assert_false (toast->get_action_target_value ());
@@ -123,37 +123,37 @@ test_adw_toast_detailed_action_name (void)
 
   toast->set_detailed_action_name ("win.something(2)");
   g_assert_true (toast->get_action_name () == "win.something");
-  Glib::VariantBase variant = Glib::Variant<gint32>::create (2);
+  glib::VariantBase variant = glib::Variant<gint32>::create (2);
   g_assert_true (toast->get_action_target_value () == variant);
 }
 
 static void
 test_adw_toast_priority (void)
 {
-  std::unique_ptr<Adw::Toast> toast = std::make_unique<Adw::Toast> ("Title");
+  std::unique_ptr<adw::Toast> toast = std::make_unique<adw::Toast> ("Title");
 
   notified = 0;
   toast->property_priority ().signal_changed ().connect (
       sigc::ptr_fun (notify_cb));
 
-  Adw::ToastPriority priority =
-      toast->get_property<Adw::ToastPriority> ("priority");
-  g_assert_true (priority == Adw::ToastPriority::NORMAL);
+  adw::ToastPriority priority =
+      toast->get_property<adw::ToastPriority> ("priority");
+  g_assert_true (priority == adw::ToastPriority::NORMAL);
 
-  toast->set_priority (Adw::ToastPriority::HIGH);
-  g_assert_true (toast->get_priority () == Adw::ToastPriority::HIGH);
+  toast->set_priority (adw::ToastPriority::HIGH);
+  g_assert_true (toast->get_priority () == adw::ToastPriority::HIGH);
   g_assert_true (notified == 1);
 
-  toast->set_property<Adw::ToastPriority> ("priority",
-                                           Adw::ToastPriority::NORMAL);
-  g_assert_true (toast->get_priority () == Adw::ToastPriority::NORMAL);
+  toast->set_property<adw::ToastPriority> ("priority",
+                                           adw::ToastPriority::NORMAL);
+  g_assert_true (toast->get_priority () == adw::ToastPriority::NORMAL);
   g_assert_true (notified == 2);
 }
 
 static void
 test_adw_toast_timeout (void)
 {
-  std::unique_ptr<Adw::Toast> toast = std::make_unique<Adw::Toast> ("Title");
+  std::unique_ptr<adw::Toast> toast = std::make_unique<adw::Toast> ("Title");
 
   notified = 0;
   toast->property_timeout ().signal_changed ().connect (
@@ -174,8 +174,8 @@ test_adw_toast_timeout (void)
 static void
 test_adw_toast_dismiss (void)
 {
-  std::unique_ptr<Adw::Toast> toast = std::make_unique<Adw::Toast> ("Title");
-  Adw::ToastOverlay overlay;
+  std::unique_ptr<adw::Toast> toast = std::make_unique<adw::Toast> ("Title");
+  adw::ToastOverlay overlay;
 
   // This is not obvious: dismiss will emit the "dismiss" signal. When a toast
   // is added to an overlay, it stays in a queue until dismissed. At that point
@@ -197,21 +197,21 @@ test_adw_toast_dismiss (void)
 static void
 test_adw_toast_custom_title (void)
 {
-  std::unique_ptr<Adw::Toast> toast = std::make_unique<Adw::Toast> ("Title");
+  std::unique_ptr<adw::Toast> toast = std::make_unique<adw::Toast> ("Title");
 
   notified = 0;
   toast->property_custom_title ().signal_changed ().connect (
       sigc::ptr_fun (notify_cb));
 
-  Glib::ustring title = toast->get_property<Glib::ustring> ("title");
+  glib::ustring title = toast->get_property<glib::ustring> ("title");
   g_assert_true (title == "Title");
-  Gtk::Widget* widget = toast->get_property<Gtk::Widget*> ("custom-title");
+  gtk::Widget* widget = toast->get_property<gtk::Widget*> ("custom-title");
   g_assert_true (widget == nullptr);
 
   toast->set_title ("Another title");
   g_assert_true (notified == 0);
 
-  widget = Gtk::make_managed<Gtk::Button> ("Custom title");
+  widget = gtk::make_managed<gtk::Button> ("Custom title");
   toast->set_custom_title (widget);
   g_assert_true (toast->get_custom_title () == widget);
   g_assert_true (toast->get_title () == "");
@@ -226,11 +226,11 @@ test_adw_toast_custom_title (void)
 static void
 test_adw_toast_custom_title_overlay (void)
 {
-  Adw::ToastOverlay first_overlay;
-  Adw::ToastOverlay second_overlay;
-  std::unique_ptr<Gtk::Widget> widget =
-      std::make_unique<Gtk::Label> ("Custom title");
-  std::unique_ptr<Adw::Toast> toast = std::make_unique<Adw::Toast> ("");
+  adw::ToastOverlay first_overlay;
+  adw::ToastOverlay second_overlay;
+  std::unique_ptr<gtk::Widget> widget =
+      std::make_unique<gtk::Label> ("Custom title");
+  std::unique_ptr<adw::Toast> toast = std::make_unique<adw::Toast> ("");
 
   toast->set_custom_title (widget.get ());
 
@@ -246,7 +246,7 @@ int
 main (int argc, char* argv[])
 {
   gtk_test_init (&argc, &argv, NULL);
-  Adw::init ();
+  adw::init ();
 
   g_test_add_func ("/Adwaita/Toast/title", test_adw_toast_title);
   g_test_add_func ("/Adwaita/Toast/button_label", test_adw_toast_button_label);

@@ -24,16 +24,16 @@ using GdkPopupClass = struct _GdkPopupClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gdk
+namespace gdk
 {
   class LIBMM_GDK_SYMEXPORT Popup_Class;
 }
 #endif
 
-namespace Gdk
+namespace gdk
 {
 
-  class LIBMM_GDK_SYMEXPORT Popup : public Glib::Interface
+  class LIBMM_GDK_SYMEXPORT Popup : public glib::Interface
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -57,7 +57,7 @@ namespace Gdk
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
-    explicit Popup (const Glib::Interface_Class& interface_class);
+    explicit Popup (const glib::Interface_Class& interface_class);
 
   public:
     explicit Popup (GdkPopup* castitem);
@@ -98,7 +98,7 @@ namespace Gdk
   private:
   public:
     auto
-    present (int width, int height, const Glib::RefPtr<PopupLayout>& layout)
+    present (int width, int height, const glib::RefPtr<PopupLayout>& layout)
         -> bool;
 
     auto
@@ -108,10 +108,10 @@ namespace Gdk
     get_rect_anchor () const -> Gravity;
 
     auto
-    get_parent () -> Glib::RefPtr<Surface>;
+    get_parent () -> glib::RefPtr<Surface>;
 
     auto
-    get_parent () const -> Glib::RefPtr<const Surface>;
+    get_parent () const -> glib::RefPtr<const Surface>;
 
     auto
     get_position_x () const -> int;
@@ -124,23 +124,23 @@ namespace Gdk
 
     auto
     property_parent () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Surface>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<Surface>>;
 
     auto
-    property_autohide () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_autohide () const -> glib::PropertyProxy_ReadOnly<bool>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gdk
+} // namespace gdk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GDK_SYMEXPORT auto
-  wrap (GdkPopup* object, bool take_copy = false) -> Glib::RefPtr<Gdk::Popup>;
+  wrap (GdkPopup* object, bool take_copy = false) -> glib::RefPtr<gdk::Popup>;
 
-} // namespace Glib
+} // namespace glib
 
 #endif

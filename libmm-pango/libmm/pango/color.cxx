@@ -7,7 +7,7 @@
 
 #include <cstring>
 
-namespace Pango
+namespace pango
 {
 
   auto
@@ -21,30 +21,30 @@ namespace Pango
     return gobj () != nullptr;
   }
 
-} // namespace Pango
+} // namespace pango
 
 namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (PangoColor* object) -> Pango::Color&
+  wrap (PangoColor* object) -> pango::Color&
   {
-    return *reinterpret_cast<Pango::Color*> (object);
+    return *reinterpret_cast<pango::Color*> (object);
   }
 
   auto
-  wrap (const PangoColor* object) -> const Pango::Color&
+  wrap (const PangoColor* object) -> const pango::Color&
   {
-    return *reinterpret_cast<const Pango::Color*> (object);
+    return *reinterpret_cast<const pango::Color*> (object);
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Pango
+namespace pango
 {
 
   Color::Color (const Color& other) noexcept = default;
@@ -120,16 +120,16 @@ namespace Pango
   }
 
   auto
-  Color::parse (const Glib::ustring& spec) -> bool
+  Color::parse (const glib::ustring& spec) -> bool
   {
     return pango_color_parse (gobj (), spec.c_str ());
   }
 
   auto
-  Color::to_string () const -> Glib::ustring
+  Color::to_string () const -> glib::ustring
   {
-    return Glib::convert_return_gchar_ptr_to_ustring (
+    return glib::convert_return_gchar_ptr_to_ustring (
         pango_color_to_string (gobj ()));
   }
 
-} // namespace Pango
+} // namespace pango

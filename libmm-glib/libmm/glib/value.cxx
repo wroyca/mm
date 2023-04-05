@@ -7,7 +7,7 @@
 #include <libmm/glib/vectorutils.hxx>
 #include <libmm/glib/wrap.hxx>
 
-namespace Glib
+namespace glib
 {
 
   ValueBase::ValueBase ()
@@ -112,7 +112,7 @@ namespace Glib
   {
     GObject* const data =
         static_cast<GObject*> (g_value_get_object (&gobject_));
-    return Glib::make_refptr_for_instance<ObjectBase> (wrap_auto (data, true));
+    return glib::make_refptr_for_instance<ObjectBase> (wrap_auto (data, true));
   }
 
   auto
@@ -326,4 +326,4 @@ namespace Glib
         OWNERSHIP_NONE);
   }
 
-} // namespace Glib
+} // namespace glib

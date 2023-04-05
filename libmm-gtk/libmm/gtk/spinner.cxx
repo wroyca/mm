@@ -11,23 +11,23 @@ namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GtkSpinner* object, bool take_copy) -> Gtk::Spinner*
+  wrap (GtkSpinner* object, bool take_copy) -> gtk::Spinner*
   {
-    return dynamic_cast<Gtk::Spinner*> (
-        Glib::wrap_auto ((GObject*) (object), take_copy));
+    return dynamic_cast<gtk::Spinner*> (
+        glib::wrap_auto ((GObject*) (object), take_copy));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gtk
+namespace gtk
 {
 
   auto
-  Spinner_Class::init () -> const Glib::Class&
+  Spinner_Class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -47,30 +47,30 @@ namespace Gtk
   }
 
   auto
-  Spinner_Class::wrap_new (GObject* o) -> Glib::ObjectBase*
+  Spinner_Class::wrap_new (GObject* o) -> glib::ObjectBase*
   {
     return manage (new Spinner ((GtkSpinner*) (o)));
   }
 
-  Spinner::Spinner (const Glib::ConstructParams& construct_params)
-    : Gtk::Widget (construct_params)
+  Spinner::Spinner (const glib::ConstructParams& construct_params)
+    : gtk::Widget (construct_params)
   {
   }
 
   Spinner::Spinner (GtkSpinner* castitem)
-    : Gtk::Widget ((GtkWidget*) (castitem))
+    : gtk::Widget ((GtkWidget*) (castitem))
   {
   }
 
   Spinner::Spinner (Spinner&& src) noexcept
-    : Gtk::Widget (std::move (src))
+    : gtk::Widget (std::move (src))
   {
   }
 
   auto
   Spinner::operator= (Spinner&& src) noexcept -> Spinner&
   {
-    Gtk::Widget::operator= (std::move (src));
+    gtk::Widget::operator= (std::move (src));
     return *this;
   }
 
@@ -94,8 +94,8 @@ namespace Gtk
   }
 
   Spinner::Spinner ()
-    : Glib::ObjectBase (nullptr),
-      Gtk::Widget (Glib::ConstructParams (spinner_class_.init ()))
+    : glib::ObjectBase (nullptr),
+      gtk::Widget (glib::ConstructParams (spinner_class_.init ()))
   {
   }
 
@@ -124,15 +124,15 @@ namespace Gtk
   }
 
   auto
-  Spinner::property_spinning () -> Glib::PropertyProxy<bool>
+  Spinner::property_spinning () -> glib::PropertyProxy<bool>
   {
-    return Glib::PropertyProxy<bool> (this, "spinning");
+    return glib::PropertyProxy<bool> (this, "spinning");
   }
 
   auto
-  Spinner::property_spinning () const -> Glib::PropertyProxy_ReadOnly<bool>
+  Spinner::property_spinning () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "spinning");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "spinning");
   }
 
-} // namespace Gtk
+} // namespace gtk

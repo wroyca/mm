@@ -18,17 +18,17 @@ using GtkBuilderClass = struct _GtkBuilderClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT Builder_Class;
 }
 #endif
 
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT Application;
 
-  class BuilderError : public Glib::Error
+  class BuilderError : public glib::Error
   {
   public:
     enum Code
@@ -51,7 +51,7 @@ namespace Gtk
     };
 
     LIBMM_GTK_SYMEXPORT
-    BuilderError (Code error_code, const Glib::ustring& error_message);
+    BuilderError (Code error_code, const glib::ustring& error_message);
     LIBMM_GTK_SYMEXPORT explicit BuilderError (GError* gobject);
     LIBMM_GTK_SYMEXPORT auto
     code () const -> Code;
@@ -67,28 +67,28 @@ namespace Gtk
 #endif
   };
 
-} // namespace Gtk
+} // namespace gtk
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_GTK_SYMEXPORT Value<Gtk::BuilderError::Code>
-    : public Glib::Value_Enum<Gtk::BuilderError::Code>
+  class LIBMM_GTK_SYMEXPORT Value<gtk::BuilderError::Code>
+    : public glib::Value_Enum<gtk::BuilderError::Code>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
-  class LIBMM_GTK_SYMEXPORT Builder : public Glib::Object
+  class LIBMM_GTK_SYMEXPORT Builder : public glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -107,7 +107,7 @@ namespace Gtk
     static CppClassType builder_class_;
 
   protected:
-    explicit Builder (const Glib::ConstructParams& construct_params);
+    explicit Builder (const glib::ConstructParams& construct_params);
     explicit Builder (GtkBuilder* castitem);
 
 #endif
@@ -149,58 +149,58 @@ namespace Gtk
 
   public:
     static auto
-    create () -> Glib::RefPtr<Builder>;
+    create () -> glib::RefPtr<Builder>;
 
     static auto
-    create_from_file (const std::string& filename) -> Glib::RefPtr<Builder>;
+    create_from_file (const std::string& filename) -> glib::RefPtr<Builder>;
 
     static auto
     create_from_file (const std::string& filename,
-                      const Glib::ustring& object_id) -> Glib::RefPtr<Builder>;
+                      const glib::ustring& object_id) -> glib::RefPtr<Builder>;
 
     static auto
     create_from_file (const std::string& filename, const char* object_id)
-        -> Glib::RefPtr<Builder>;
+        -> glib::RefPtr<Builder>;
 
     static auto
     create_from_file (const std::string& filename,
-                      const std::vector<Glib::ustring>& object_ids)
-        -> Glib::RefPtr<Builder>;
+                      const std::vector<glib::ustring>& object_ids)
+        -> glib::RefPtr<Builder>;
 
     static auto
     create_from_resource (const std::string& resource_path)
-        -> Glib::RefPtr<Builder>;
+        -> glib::RefPtr<Builder>;
 
     static auto
     create_from_resource (const std::string& resource_path,
-                          const Glib::ustring& object_id)
-        -> Glib::RefPtr<Builder>;
+                          const glib::ustring& object_id)
+        -> glib::RefPtr<Builder>;
 
     static auto
     create_from_resource (const std::string& resource_path,
-                          const char* object_id) -> Glib::RefPtr<Builder>;
+                          const char* object_id) -> glib::RefPtr<Builder>;
 
     static auto
     create_from_resource (const std::string& resource_path,
-                          const std::vector<Glib::ustring>& object_ids)
-        -> Glib::RefPtr<Builder>;
+                          const std::vector<glib::ustring>& object_ids)
+        -> glib::RefPtr<Builder>;
 
     static auto
-    create_from_string (const Glib::ustring& buffer) -> Glib::RefPtr<Builder>;
+    create_from_string (const glib::ustring& buffer) -> glib::RefPtr<Builder>;
 
     static auto
-    create_from_string (const Glib::ustring& buffer, const char* object_id)
-        -> Glib::RefPtr<Builder>;
+    create_from_string (const glib::ustring& buffer, const char* object_id)
+        -> glib::RefPtr<Builder>;
 
     static auto
-    create_from_string (const Glib::ustring& buffer,
-                        const Glib::ustring& object_id)
-        -> Glib::RefPtr<Builder>;
+    create_from_string (const glib::ustring& buffer,
+                        const glib::ustring& object_id)
+        -> glib::RefPtr<Builder>;
 
     static auto
-    create_from_string (const Glib::ustring& buffer,
-                        const std::vector<Glib::ustring>& object_ids)
-        -> Glib::RefPtr<Builder>;
+    create_from_string (const glib::ustring& buffer,
+                        const std::vector<glib::ustring>& object_ids)
+        -> glib::RefPtr<Builder>;
 
     auto
     add_from_file (const std::string& filename) -> bool;
@@ -209,12 +209,12 @@ namespace Gtk
     add_from_file (const std::string& filename, const char* object_id) -> bool;
 
     auto
-    add_from_file (const std::string& filename, const Glib::ustring& object_id)
+    add_from_file (const std::string& filename, const glib::ustring& object_id)
         -> bool;
 
     auto
     add_from_file (const std::string& filename,
-                   const std::vector<Glib::ustring>& object_ids) -> bool;
+                   const std::vector<glib::ustring>& object_ids) -> bool;
 
     auto
     add_from_resource (const std::string& resource_path) -> bool;
@@ -225,61 +225,61 @@ namespace Gtk
 
     auto
     add_from_resource (const std::string& resource_path,
-                       const Glib::ustring& object_id) -> bool;
+                       const glib::ustring& object_id) -> bool;
 
     auto
     add_from_resource (const std::string& resource_path,
-                       const std::vector<Glib::ustring>& object_ids) -> bool;
+                       const std::vector<glib::ustring>& object_ids) -> bool;
 
     auto
-    add_from_string (const Glib::ustring& buffer) -> bool;
+    add_from_string (const glib::ustring& buffer) -> bool;
 
     auto
-    add_from_string (const Glib::ustring& buffer, const char* object_id)
+    add_from_string (const glib::ustring& buffer, const char* object_id)
         -> bool;
 
     auto
-    add_from_string (const Glib::ustring& buffer,
-                     const Glib::ustring& object_id) -> bool;
+    add_from_string (const glib::ustring& buffer,
+                     const glib::ustring& object_id) -> bool;
 
     auto
-    add_from_string (const Glib::ustring& buffer,
-                     const std::vector<Glib::ustring>& object_ids) -> bool;
+    add_from_string (const glib::ustring& buffer,
+                     const std::vector<glib::ustring>& object_ids) -> bool;
 
     auto
     add_from_string (const char* buffer, gssize length) -> bool;
 
     auto
-    expose_object (const Glib::ustring& name,
-                   const Glib::RefPtr<Glib::Object>& object) -> void;
+    expose_object (const glib::ustring& name,
+                   const glib::RefPtr<glib::Object>& object) -> void;
 
     auto
-    expose_widget (const Glib::ustring& name, Widget& widget) -> void;
+    expose_widget (const glib::ustring& name, Widget& widget) -> void;
 
     auto
-    get_object (const Glib::ustring& name) -> Glib::RefPtr<Glib::Object>;
+    get_object (const glib::ustring& name) -> glib::RefPtr<glib::Object>;
 
     auto
-    get_object (const Glib::ustring& name) const
-        -> Glib::RefPtr<const Glib::Object>;
+    get_object (const glib::ustring& name) const
+        -> glib::RefPtr<const glib::Object>;
 
     template <class T_Object>
     inline auto
-    get_object (const Glib::ustring& name) -> Glib::RefPtr<T_Object>
+    get_object (const glib::ustring& name) -> glib::RefPtr<T_Object>
     {
       return std::dynamic_pointer_cast<T_Object> (get_object (name));
     }
 
     template <class T_Object>
     inline auto
-    get_object (const Glib::ustring& name) const -> Glib::RefPtr<const T_Object>
+    get_object (const glib::ustring& name) const -> glib::RefPtr<const T_Object>
     {
       return const_cast<Builder*> (this)->get_object<const T_Object> (name);
     }
 
     template <class T_Widget>
     inline auto
-    get_widget (const Glib::ustring& name) -> T_Widget*
+    get_widget (const glib::ustring& name) -> T_Widget*
     {
       T_Widget* widget = nullptr;
 
@@ -287,22 +287,22 @@ namespace Gtk
           this->get_widget_checked (name, T_Widget::get_base_type ()));
 
       if (!widget)
-        g_critical ("Gtk::Builder::get_widget(): dynamic_cast<> failed.");
+        g_critical ("gtk::Builder::get_widget(): dynamic_cast<> failed.");
 
       return widget;
     }
 
     template <class T_Widget>
     inline auto
-    get_widget (const Glib::ustring& name) const -> const T_Widget*
+    get_widget (const glib::ustring& name) const -> const T_Widget*
     {
       return const_cast<Builder*> (this)->get_widget<const T_Widget> (name);
     }
 
     template <typename T_Widget, typename... Args>
     inline static auto
-    get_widget_derived (const Glib::RefPtr<Gtk::Builder>& builder,
-                        const Glib::ustring& name,
+    get_widget_derived (const glib::RefPtr<gtk::Builder>& builder,
+                        const glib::ustring& name,
                         Args&&... args) -> T_Widget*
     {
       using cwidget_type = typename T_Widget::BaseObjectType;
@@ -313,15 +313,15 @@ namespace Gtk
 
       T_Widget* widget = nullptr;
 
-      Glib::ObjectBase* pObjectBase =
+      glib::ObjectBase* pObjectBase =
           ObjectBase::_get_current_wrapper ((GObject*) pCWidget);
 
       if (pObjectBase)
       {
-        widget = dynamic_cast<T_Widget*> (Glib::wrap ((GtkWidget*) pCWidget));
+        widget = dynamic_cast<T_Widget*> (glib::wrap ((GtkWidget*) pCWidget));
 
         if (!widget)
-          g_critical ("Gtk::Builder::get_widget_derived(): dynamic_cast<> "
+          g_critical ("gtk::Builder::get_widget_derived(): dynamic_cast<> "
                       "failed. An existing C++ "
                       "instance, of a different type, seems to exist.");
       }
@@ -335,40 +335,40 @@ namespace Gtk
 
     template <typename T_Widget, typename... Args>
     inline static auto
-    get_widget_derived (const Glib::RefPtr<const Gtk::Builder>& builder,
-                        const Glib::ustring& name,
+    get_widget_derived (const glib::RefPtr<const gtk::Builder>& builder,
+                        const glib::ustring& name,
                         Args&&... args) -> const T_Widget*
     {
       return get_widget_derived<const T_Widget> (
-          std::const_pointer_cast<Gtk::Builder> (builder),
+          std::const_pointer_cast<gtk::Builder> (builder),
           name,
           std::forward<Args> (args)...);
     }
 
     auto
-    get_objects () -> std::vector<Glib::RefPtr<Glib::Object>>;
+    get_objects () -> std::vector<glib::RefPtr<glib::Object>>;
 
     auto
-    get_objects () const -> std::vector<Glib::RefPtr<const Glib::Object>>;
+    get_objects () const -> std::vector<glib::RefPtr<const glib::Object>>;
 
     auto
-    set_translation_domain (const Glib::ustring& domain) -> void;
+    set_translation_domain (const glib::ustring& domain) -> void;
 
     auto
-    get_translation_domain () const -> Glib::ustring;
+    get_translation_domain () const -> glib::ustring;
 
     auto
-    property_translation_domain () -> Glib::PropertyProxy<Glib::ustring>;
+    property_translation_domain () -> glib::PropertyProxy<glib::ustring>;
 
     auto
     property_translation_domain () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+        -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
   protected:
     auto
-    get_widget_checked (const Glib::ustring& name, GType type) -> Gtk::Widget*;
+    get_widget_checked (const glib::ustring& name, GType type) -> gtk::Widget*;
     auto
-    get_cwidget (const Glib::ustring& name) -> GtkWidget*;
+    get_cwidget (const glib::ustring& name) -> GtkWidget*;
 
   private:
     bool no_gtkmm_derived_types{false};
@@ -384,12 +384,12 @@ namespace Gtk
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkBuilder* object, bool take_copy = false) -> Glib::RefPtr<Gtk::Builder>;
-} // namespace Glib
+  wrap (GtkBuilder* object, bool take_copy = false) -> glib::RefPtr<gtk::Builder>;
+} // namespace glib
 
 #endif

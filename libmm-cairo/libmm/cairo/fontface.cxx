@@ -13,7 +13,7 @@ namespace
 
 }
 
-namespace Cairo
+namespace cairo
 {
 
   FontFace::FontFace (cairo_font_face_t* cobject, const bool has_reference)
@@ -378,4 +378,4 @@ namespace Cairo
 
 #endif
 
-} // namespace Cairo
+} // namespace cairo

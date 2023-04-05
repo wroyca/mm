@@ -3,7 +3,7 @@
 #include <libmm/gio/tlsserverconnectionimpl.hxx>
 #include <utility>
 
-namespace Gio
+namespace gio
 {
   TlsServerConnectionImpl::TlsServerConnectionImpl (GTlsConnection* castitem)
     : ObjectBase (nullptr),
@@ -27,4 +27,4 @@ namespace Gio
   }
 
   TlsServerConnectionImpl::~TlsServerConnectionImpl () noexcept = default;
-} // namespace Gio
+} // namespace gio

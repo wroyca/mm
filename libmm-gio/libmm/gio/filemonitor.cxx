@@ -9,9 +9,9 @@
 #include <libmm/gio/file.hxx>
 #include <libmm/glib/exceptionhandler.hxx>
 
-using Event = Gio::FileMonitor::Event;
+using Event = gio::FileMonitor::Event;
 
-namespace Gio
+namespace gio
 {
 
 }
@@ -26,50 +26,50 @@ namespace
                                        GFileMonitorEvent p2,
                                        void* data) -> void
   {
-    using namespace Gio;
+    using namespace gio;
     using SlotType = sigc::slot<
-        void (const Glib::RefPtr<File>&, const Glib::RefPtr<File>&, Event)>;
+        void (const glib::RefPtr<File>&, const glib::RefPtr<File>&, Event)>;
 
     const auto obj = dynamic_cast<FileMonitor*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
     {
       try
       {
-        if (const auto slot = Glib::SignalProxyNormal::data_to_slot (data))
-          (*static_cast<SlotType*> (slot)) (Glib::wrap (p0, true),
-                                            Glib::wrap (p1, true),
+        if (const auto slot = glib::SignalProxyNormal::data_to_slot (data))
+          (*static_cast<SlotType*> (slot)) (glib::wrap (p0, true),
+                                            glib::wrap (p1, true),
                                             static_cast<Event> (p2));
       }
       catch (...)
       {
-        Glib::exception_handlers_invoke ();
+        glib::exception_handlers_invoke ();
       }
     }
   }
 
-  const Glib::SignalProxyInfo FileMonitor_signal_changed_info = {
+  const glib::SignalProxyInfo FileMonitor_signal_changed_info = {
       "changed",
       (GCallback) &FileMonitor_signal_changed_callback,
       (GCallback) &FileMonitor_signal_changed_callback};
 
 } // namespace
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GFileMonitor* object, const bool take_copy) -> RefPtr<Gio::FileMonitor>
+  wrap (GFileMonitor* object, const bool take_copy) -> RefPtr<gio::FileMonitor>
   {
-    return Glib::make_refptr_for_instance<Gio::FileMonitor> (
-        dynamic_cast<Gio::FileMonitor*> (
+    return glib::make_refptr_for_instance<gio::FileMonitor> (
+        dynamic_cast<gio::FileMonitor*> (
             wrap_auto ((GObject*) object, take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gio
+namespace gio
 {
 
   auto
@@ -101,7 +101,7 @@ namespace Gio
                                        GFileMonitorEvent p2) -> void
   {
     const auto obj_base =
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self);
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self);
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -110,14 +110,14 @@ namespace Gio
       {
         try
         {
-          obj->on_changed (Glib::wrap (p0, true),
-                           Glib::wrap (p1, true),
+          obj->on_changed (glib::wrap (p0, true),
+                           glib::wrap (p1, true),
                            static_cast<Event> (p2));
           return;
         }
         catch (...)
         {
-          Glib::exception_handlers_invoke ();
+          glib::exception_handlers_invoke ();
         }
       }
     }
@@ -130,7 +130,7 @@ namespace Gio
   }
 
   auto
-  FileMonitor_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  FileMonitor_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new FileMonitor ((GFileMonitor*) object);
   }
@@ -142,7 +142,7 @@ namespace Gio
     return gobj ();
   }
 
-  FileMonitor::FileMonitor (const Glib::ConstructParams& construct_params)
+  FileMonitor::FileMonitor (const glib::ConstructParams& construct_params)
     : Object (construct_params)
   {
   }
@@ -199,33 +199,33 @@ namespace Gio
   }
 
   auto
-  FileMonitor::signal_changed () -> Glib::SignalProxy<
-      void (const Glib::RefPtr<File>&, const Glib::RefPtr<File>&, Event)>
+  FileMonitor::signal_changed () -> glib::SignalProxy<
+      void (const glib::RefPtr<File>&, const glib::RefPtr<File>&, Event)>
   {
     return {this, &FileMonitor_signal_changed_info};
   }
 
   auto
-  FileMonitor::property_rate_limit () -> Glib::PropertyProxy<int>
+  FileMonitor::property_rate_limit () -> glib::PropertyProxy<int>
   {
     return {this, "rate-limit"};
   }
 
   auto
-  FileMonitor::property_rate_limit () const -> Glib::PropertyProxy_ReadOnly<int>
+  FileMonitor::property_rate_limit () const -> glib::PropertyProxy_ReadOnly<int>
   {
     return {this, "rate-limit"};
   }
 
   auto
-  FileMonitor::property_cancelled () const -> Glib::PropertyProxy_ReadOnly<bool>
+  FileMonitor::property_cancelled () const -> glib::PropertyProxy_ReadOnly<bool>
   {
     return {this, "cancelled"};
   }
 
   auto
-  FileMonitor::on_changed (const Glib::RefPtr<File>& file,
-                           const Glib::RefPtr<File>& other_file,
+  FileMonitor::on_changed (const glib::RefPtr<File>& file,
+                           const glib::RefPtr<File>& other_file,
                            Event event_type) -> void
   {
     const auto base = static_cast<BaseClassType*> (
@@ -233,9 +233,9 @@ namespace Gio
 
     if (base && base->changed)
       (*base->changed) (gobj (),
-                        Glib::unwrap (file),
-                        Glib::unwrap (other_file),
+                        glib::unwrap (file),
+                        glib::unwrap (other_file),
                         static_cast<GFileMonitorEvent> (event_type));
   }
 
-} // namespace Gio
+} // namespace gio

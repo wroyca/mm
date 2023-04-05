@@ -11,7 +11,7 @@ namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
 }

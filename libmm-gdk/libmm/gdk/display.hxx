@@ -17,18 +17,18 @@ using GdkDisplayClass = struct _GdkDisplayClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gdk
+namespace gdk
 {
   class LIBMM_GDK_SYMEXPORT Display_Class;
 }
 #endif
 
-namespace Gio
+namespace gio
 {
   class LIBMM_GDK_SYMEXPORT ListModel;
 }
 
-namespace Gdk
+namespace gdk
 {
 
   class LIBMM_GDK_SYMEXPORT Clipboard;
@@ -38,7 +38,7 @@ namespace Gdk
   class LIBMM_GDK_SYMEXPORT Monitor;
   class LIBMM_GDK_SYMEXPORT Surface;
 
-  class LIBMM_GDK_SYMEXPORT Display : public Glib::Object
+  class LIBMM_GDK_SYMEXPORT Display : public glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -57,7 +57,7 @@ namespace Gdk
     static CppClassType display_class_;
 
   protected:
-    explicit Display (const Glib::ConstructParams& construct_params);
+    explicit Display (const glib::ConstructParams& construct_params);
     explicit Display (GdkDisplay* castitem);
 
 #endif
@@ -99,13 +99,13 @@ namespace Gdk
 
   public:
     static auto
-    open (const Glib::ustring& display_name) -> Glib::RefPtr<Display>;
+    open (const glib::ustring& display_name) -> glib::RefPtr<Display>;
 
     auto
-    get_name () const -> Glib::ustring;
+    get_name () const -> glib::ustring;
 
     auto
-    device_is_grabbed (const Glib::RefPtr<const Gdk::Device>& device) const
+    device_is_grabbed (const glib::RefPtr<const gdk::Device>& device) const
         -> bool;
 
     auto
@@ -129,26 +129,26 @@ namespace Gdk
 #ifndef GDKMM_DISABLE_DEPRECATED
 
     auto
-    put_event (const Glib::RefPtr<const Event>& event) -> void;
+    put_event (const glib::RefPtr<const Event>& event) -> void;
 #endif
 
     static auto
-    get_default () -> Glib::RefPtr<Display>;
+    get_default () -> glib::RefPtr<Display>;
 
     auto
     flush () -> void;
 
     auto
-    get_clipboard () -> Glib::RefPtr<Clipboard>;
+    get_clipboard () -> glib::RefPtr<Clipboard>;
 
     auto
-    get_clipboard () const -> Glib::RefPtr<const Clipboard>;
+    get_clipboard () const -> glib::RefPtr<const Clipboard>;
 
     auto
-    get_primary_clipboard () -> Glib::RefPtr<Clipboard>;
+    get_primary_clipboard () -> glib::RefPtr<Clipboard>;
 
     auto
-    get_primary_clipboard () const -> Glib::RefPtr<const Clipboard>;
+    get_primary_clipboard () const -> glib::RefPtr<const Clipboard>;
 
     auto
     supports_input_shapes () const -> bool;
@@ -157,80 +157,80 @@ namespace Gdk
     prepare_gl () -> void;
 
     auto
-    create_gl_context () -> Glib::RefPtr<GLContext>;
+    create_gl_context () -> glib::RefPtr<GLContext>;
 
 #ifndef GDKMM_DISABLE_DEPRECATED
 
     auto
-    notify_startup_complete (const Glib::ustring& startup_id) -> void;
+    notify_startup_complete (const glib::ustring& startup_id) -> void;
 #endif
 
 #ifndef GDKMM_DISABLE_DEPRECATED
 
     auto
-    get_startup_notification_id () const -> Glib::ustring;
+    get_startup_notification_id () const -> glib::ustring;
 #endif
 
     auto
-    get_app_launch_context () -> Glib::RefPtr<AppLaunchContext>;
+    get_app_launch_context () -> glib::RefPtr<AppLaunchContext>;
 
     auto
-    get_app_launch_context () const -> Glib::RefPtr<const AppLaunchContext>;
+    get_app_launch_context () const -> glib::RefPtr<const AppLaunchContext>;
 
     auto
-    get_default_seat () -> Glib::RefPtr<Seat>;
+    get_default_seat () -> glib::RefPtr<Seat>;
 
     auto
-    get_default_seat () const -> Glib::RefPtr<const Seat>;
+    get_default_seat () const -> glib::RefPtr<const Seat>;
 
     auto
-    list_seats () -> std::vector<Glib::RefPtr<Seat>>;
+    list_seats () -> std::vector<glib::RefPtr<Seat>>;
 
     auto
-    list_seats () const -> std::vector<Glib::RefPtr<const Seat>>;
+    list_seats () const -> std::vector<glib::RefPtr<const Seat>>;
 
     auto
-    get_monitors () -> Glib::RefPtr<Gio::ListModel>;
+    get_monitors () -> glib::RefPtr<gio::ListModel>;
 
     auto
-    get_monitors () const -> Glib::RefPtr<const Gio::ListModel>;
+    get_monitors () const -> glib::RefPtr<const gio::ListModel>;
 
     auto
-    get_monitor_at_surface (const Glib::RefPtr<Surface>& surface)
-        -> Glib::RefPtr<Monitor>;
+    get_monitor_at_surface (const glib::RefPtr<Surface>& surface)
+        -> glib::RefPtr<Monitor>;
 
     auto
-    get_monitor_at_surface (const Glib::RefPtr<Surface>& surface) const
-        -> Glib::RefPtr<const Monitor>;
+    get_monitor_at_surface (const glib::RefPtr<Surface>& surface) const
+        -> glib::RefPtr<const Monitor>;
 
     template <class ValueType>
     auto
-    get_setting (const Glib::ustring& name, ValueType& value) const -> bool;
+    get_setting (const glib::ustring& name, ValueType& value) const -> bool;
 
     auto
-    signal_closed () -> Glib::SignalProxy<void (bool)>;
+    signal_closed () -> glib::SignalProxy<void (bool)>;
 
     auto
-    signal_opened () -> Glib::SignalProxy<void ()>;
+    signal_opened () -> glib::SignalProxy<void ()>;
 
     auto
-    signal_seat_added () -> Glib::SignalProxy<void (const Glib::RefPtr<Seat>&)>;
+    signal_seat_added () -> glib::SignalProxy<void (const glib::RefPtr<Seat>&)>;
 
     auto
     signal_seat_removed ()
-        -> Glib::SignalProxy<void (const Glib::RefPtr<Seat>&)>;
+        -> glib::SignalProxy<void (const glib::RefPtr<Seat>&)>;
 
     auto
-    signal_setting_changed () -> Glib::SignalProxy<void (const Glib::ustring&)>;
+    signal_setting_changed () -> glib::SignalProxy<void (const glib::ustring&)>;
 
     auto
-    property_composited () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_composited () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_rgba () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_rgba () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_input_shapes () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_input_shapes () const -> glib::PropertyProxy_ReadOnly<bool>;
 
   public:
   public:
@@ -239,10 +239,10 @@ namespace Gdk
 
   template <class ValueType>
   auto
-  Display::get_setting (const Glib::ustring& name, ValueType& value) const -> bool
+  Display::get_setting (const glib::ustring& name, ValueType& value) const -> bool
   {
-    Glib::Value<ValueType> glibmmvalue;
-    glibmmvalue.init (Glib::Value<ValueType>::value_type ());
+    glib::Value<ValueType> glibmmvalue;
+    glibmmvalue.init (glib::Value<ValueType>::value_type ());
 
     gboolean result = gdk_display_get_setting (
         const_cast<GdkDisplay*> (gobj ()),
@@ -253,12 +253,12 @@ namespace Gdk
     return result;
   }
 
-} // namespace Gdk
+} // namespace gdk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GDK_SYMEXPORT auto
-  wrap (GdkDisplay* object, bool take_copy = false) -> Glib::RefPtr<Gdk::Display>;
-} // namespace Glib
+  wrap (GdkDisplay* object, bool take_copy = false) -> glib::RefPtr<gdk::Display>;
+} // namespace glib
 
 #endif

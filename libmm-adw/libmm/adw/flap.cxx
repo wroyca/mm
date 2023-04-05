@@ -7,7 +7,7 @@
 
 #include <libmm/gtk/mm-gtk.hxx>
 
-namespace Adw
+namespace adw
 {
 
 }
@@ -17,34 +17,34 @@ namespace
 }
 
 auto
-Glib::Value<Adw::FlapFoldPolicy>::value_type () -> GType
+glib::Value<adw::FlapFoldPolicy>::value_type () -> GType
 {
   return adw_flap_fold_policy_get_type ();
 }
 
 auto
-Glib::Value<Adw::FlapTransitionType>::value_type () -> GType
+glib::Value<adw::FlapTransitionType>::value_type () -> GType
 {
   return adw_flap_transition_type_get_type ();
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (AdwFlap* object, bool take_copy) -> Adw::Flap*
+  wrap (AdwFlap* object, bool take_copy) -> adw::Flap*
   {
-    return dynamic_cast<Adw::Flap*> (
-        Glib::wrap_auto ((GObject*) (object), take_copy));
+    return dynamic_cast<adw::Flap*> (
+        glib::wrap_auto ((GObject*) (object), take_copy));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Adw
+namespace adw
 {
 
   auto
-  Flap_Class::init () -> const Glib::Class&
+  Flap_Class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -55,34 +55,34 @@ namespace Adw
   }
 
   auto
-  Flap_Class::wrap_new (GObject* o) -> Glib::ObjectBase*
+  Flap_Class::wrap_new (GObject* o) -> glib::ObjectBase*
   {
     return manage (new Flap ((AdwFlap*) (o)));
   }
 
-  Flap::Flap (const Glib::ConstructParams& construct_params)
-    : Gtk::Widget (construct_params)
+  Flap::Flap (const glib::ConstructParams& construct_params)
+    : gtk::Widget (construct_params)
   {
   }
 
   Flap::Flap (AdwFlap* castitem)
-    : Gtk::Widget ((GtkWidget*) (castitem))
+    : gtk::Widget ((GtkWidget*) (castitem))
   {
   }
 
   Flap::Flap (Flap&& src) noexcept
-    : Gtk::Widget (std::move (src)),
-      Gtk::Orientable (std::move (src)),
-      Adw::Swipeable (std::move (src))
+    : gtk::Widget (std::move (src)),
+      gtk::Orientable (std::move (src)),
+      adw::Swipeable (std::move (src))
   {
   }
 
   auto
   Flap::operator= (Flap&& src) noexcept -> Flap&
   {
-    Gtk::Widget::operator= (std::move (src));
-    Gtk::Orientable::operator= (std::move (src));
-    Adw::Swipeable::operator= (std::move (src));
+    gtk::Widget::operator= (std::move (src));
+    gtk::Orientable::operator= (std::move (src));
+    adw::Swipeable::operator= (std::move (src));
     return *this;
   }
 
@@ -106,27 +106,27 @@ namespace Adw
   }
 
   Flap::Flap ()
-    : Glib::ObjectBase (nullptr),
-      Gtk::Widget (Glib::ConstructParams (flap_class_.init ()))
+    : glib::ObjectBase (nullptr),
+      gtk::Widget (glib::ConstructParams (flap_class_.init ()))
   {
   }
 
   auto
-  Flap::get_content () const -> Gtk::Widget*
+  Flap::get_content () const -> gtk::Widget*
   {
-    return Glib::wrap (adw_flap_get_content (const_cast<AdwFlap*> (gobj ())));
+    return glib::wrap (adw_flap_get_content (const_cast<AdwFlap*> (gobj ())));
   }
 
   auto
-  Flap::get_flap () const -> Gtk::Widget*
+  Flap::get_flap () const -> gtk::Widget*
   {
-    return Glib::wrap (adw_flap_get_flap (const_cast<AdwFlap*> (gobj ())));
+    return glib::wrap (adw_flap_get_flap (const_cast<AdwFlap*> (gobj ())));
   }
 
   auto
-  Flap::get_flap_position () const -> Gtk::PackType
+  Flap::get_flap_position () const -> gtk::PackType
   {
-    return static_cast<Gtk::PackType> (
+    return static_cast<gtk::PackType> (
         adw_flap_get_flap_position (const_cast<AdwFlap*> (gobj ())));
   }
 
@@ -175,9 +175,9 @@ namespace Adw
   }
 
   auto
-  Flap::get_reveal_params () const -> Glib::RefPtr<SpringParams>
+  Flap::get_reveal_params () const -> glib::RefPtr<SpringParams>
   {
-    return Glib::wrap (
+    return glib::wrap (
         adw_flap_get_reveal_params (const_cast<AdwFlap*> (gobj ())));
   }
 
@@ -188,9 +188,9 @@ namespace Adw
   }
 
   auto
-  Flap::get_separator () const -> Gtk::Widget*
+  Flap::get_separator () const -> gtk::Widget*
   {
-    return Glib::wrap (adw_flap_get_separator (const_cast<AdwFlap*> (gobj ())));
+    return glib::wrap (adw_flap_get_separator (const_cast<AdwFlap*> (gobj ())));
   }
 
   auto
@@ -213,19 +213,19 @@ namespace Adw
   }
 
   auto
-  Flap::set_content (Gtk::Widget* widget) -> void
+  Flap::set_content (gtk::Widget* widget) -> void
   {
-    adw_flap_set_content (gobj (), (GtkWidget*) Glib::unwrap (widget));
+    adw_flap_set_content (gobj (), (GtkWidget*) glib::unwrap (widget));
   }
 
   auto
-  Flap::set_flap (Gtk::Widget* widget) -> void
+  Flap::set_flap (gtk::Widget* widget) -> void
   {
-    adw_flap_set_flap (gobj (), (GtkWidget*) Glib::unwrap (widget));
+    adw_flap_set_flap (gobj (), (GtkWidget*) glib::unwrap (widget));
   }
 
   auto
-  Flap::set_flap_position (Gtk::PackType position) -> void
+  Flap::set_flap_position (gtk::PackType position) -> void
   {
     adw_flap_set_flap_position (gobj (), static_cast<GtkPackType> (position));
   }
@@ -269,15 +269,15 @@ namespace Adw
   }
 
   auto
-  Flap::set_reveal_params (const Glib::RefPtr<SpringParams>& params) -> void
+  Flap::set_reveal_params (const glib::RefPtr<SpringParams>& params) -> void
   {
-    adw_flap_set_reveal_params (gobj (), Glib::unwrap (params));
+    adw_flap_set_reveal_params (gobj (), glib::unwrap (params));
   }
 
   auto
-  Flap::set_separator (Gtk::Widget* separator) -> void
+  Flap::set_separator (gtk::Widget* separator) -> void
   {
-    adw_flap_set_separator (gobj (), (GtkWidget*) Glib::unwrap (separator));
+    adw_flap_set_separator (gobj (), (GtkWidget*) glib::unwrap (separator));
   }
 
   auto
@@ -301,216 +301,216 @@ namespace Adw
   }
 
   auto
-  Flap::property_content () -> Glib::PropertyProxy<Gtk::Widget*>
+  Flap::property_content () -> glib::PropertyProxy<gtk::Widget*>
   {
-    return Glib::PropertyProxy<Gtk::Widget*> (this, "content");
+    return glib::PropertyProxy<gtk::Widget*> (this, "content");
   }
 
   auto
-  Flap::property_content () const -> Glib::PropertyProxy_ReadOnly<Gtk::Widget*>
+  Flap::property_content () const -> glib::PropertyProxy_ReadOnly<gtk::Widget*>
   {
-    return Glib::PropertyProxy_ReadOnly<Gtk::Widget*> (this, "content");
+    return glib::PropertyProxy_ReadOnly<gtk::Widget*> (this, "content");
   }
 
   auto
-  Flap::property_flap () -> Glib::PropertyProxy<Gtk::Widget*>
+  Flap::property_flap () -> glib::PropertyProxy<gtk::Widget*>
   {
-    return Glib::PropertyProxy<Gtk::Widget*> (this, "flap");
+    return glib::PropertyProxy<gtk::Widget*> (this, "flap");
   }
 
   auto
-  Flap::property_flap () const -> Glib::PropertyProxy_ReadOnly<Gtk::Widget*>
+  Flap::property_flap () const -> glib::PropertyProxy_ReadOnly<gtk::Widget*>
   {
-    return Glib::PropertyProxy_ReadOnly<Gtk::Widget*> (this, "flap");
+    return glib::PropertyProxy_ReadOnly<gtk::Widget*> (this, "flap");
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<Gtk::PackType>::value,
-      "Type Gtk::PackType cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      glib::Traits::ValueCompatibleWithWrapProperty<gtk::PackType>::value,
+      "Type gtk::PackType cannot be used in _WRAP_PROPERTY. "
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  Flap::property_flap_position () -> Glib::PropertyProxy<Gtk::PackType>
+  Flap::property_flap_position () -> glib::PropertyProxy<gtk::PackType>
   {
-    return Glib::PropertyProxy<Gtk::PackType> (this, "flap-position");
+    return glib::PropertyProxy<gtk::PackType> (this, "flap-position");
   }
 
   auto
-  Flap::property_flap_position () const -> Glib::PropertyProxy_ReadOnly<Gtk::PackType>
+  Flap::property_flap_position () const -> glib::PropertyProxy_ReadOnly<gtk::PackType>
   {
-    return Glib::PropertyProxy_ReadOnly<Gtk::PackType> (this, "flap-position");
+    return glib::PropertyProxy_ReadOnly<gtk::PackType> (this, "flap-position");
   }
 
   auto
-  Flap::property_fold_duration () -> Glib::PropertyProxy<guint>
+  Flap::property_fold_duration () -> glib::PropertyProxy<guint>
   {
-    return Glib::PropertyProxy<guint> (this, "fold-duration");
+    return glib::PropertyProxy<guint> (this, "fold-duration");
   }
 
   auto
-  Flap::property_fold_duration () const -> Glib::PropertyProxy_ReadOnly<guint>
+  Flap::property_fold_duration () const -> glib::PropertyProxy_ReadOnly<guint>
   {
-    return Glib::PropertyProxy_ReadOnly<guint> (this, "fold-duration");
+    return glib::PropertyProxy_ReadOnly<guint> (this, "fold-duration");
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<FlapFoldPolicy>::value,
+      glib::Traits::ValueCompatibleWithWrapProperty<FlapFoldPolicy>::value,
       "Type FlapFoldPolicy cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  Flap::property_fold_policy () -> Glib::PropertyProxy<FlapFoldPolicy>
+  Flap::property_fold_policy () -> glib::PropertyProxy<FlapFoldPolicy>
   {
-    return Glib::PropertyProxy<FlapFoldPolicy> (this, "fold-policy");
+    return glib::PropertyProxy<FlapFoldPolicy> (this, "fold-policy");
   }
 
   auto
-  Flap::property_fold_policy () const -> Glib::PropertyProxy_ReadOnly<FlapFoldPolicy>
+  Flap::property_fold_policy () const -> glib::PropertyProxy_ReadOnly<FlapFoldPolicy>
   {
-    return Glib::PropertyProxy_ReadOnly<FlapFoldPolicy> (this, "fold-policy");
+    return glib::PropertyProxy_ReadOnly<FlapFoldPolicy> (this, "fold-policy");
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<FoldThresholdPolicy>::value,
+      glib::Traits::ValueCompatibleWithWrapProperty<FoldThresholdPolicy>::value,
       "Type FoldThresholdPolicy cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  Flap::property_fold_threshold_policy () -> Glib::PropertyProxy<FoldThresholdPolicy>
+  Flap::property_fold_threshold_policy () -> glib::PropertyProxy<FoldThresholdPolicy>
   {
-    return Glib::PropertyProxy<FoldThresholdPolicy> (this,
+    return glib::PropertyProxy<FoldThresholdPolicy> (this,
                                                      "fold-threshold-policy");
   }
 
   auto
-  Flap::property_fold_threshold_policy () const -> Glib::PropertyProxy_ReadOnly<FoldThresholdPolicy>
+  Flap::property_fold_threshold_policy () const -> glib::PropertyProxy_ReadOnly<FoldThresholdPolicy>
   {
-    return Glib::PropertyProxy_ReadOnly<FoldThresholdPolicy> (
+    return glib::PropertyProxy_ReadOnly<FoldThresholdPolicy> (
         this,
         "fold-threshold-policy");
   }
 
   auto
-  Flap::property_folded () const -> Glib::PropertyProxy_ReadOnly<bool>
+  Flap::property_folded () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "folded");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "folded");
   }
 
   auto
-  Flap::property_locked () -> Glib::PropertyProxy<bool>
+  Flap::property_locked () -> glib::PropertyProxy<bool>
   {
-    return Glib::PropertyProxy<bool> (this, "locked");
+    return glib::PropertyProxy<bool> (this, "locked");
   }
 
   auto
-  Flap::property_locked () const -> Glib::PropertyProxy_ReadOnly<bool>
+  Flap::property_locked () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "locked");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "locked");
   }
 
   auto
-  Flap::property_modal () -> Glib::PropertyProxy<bool>
+  Flap::property_modal () -> glib::PropertyProxy<bool>
   {
-    return Glib::PropertyProxy<bool> (this, "modal");
+    return glib::PropertyProxy<bool> (this, "modal");
   }
 
   auto
-  Flap::property_modal () const -> Glib::PropertyProxy_ReadOnly<bool>
+  Flap::property_modal () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "modal");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "modal");
   }
 
   auto
-  Flap::property_reveal_flap () -> Glib::PropertyProxy<bool>
+  Flap::property_reveal_flap () -> glib::PropertyProxy<bool>
   {
-    return Glib::PropertyProxy<bool> (this, "reveal-flap");
+    return glib::PropertyProxy<bool> (this, "reveal-flap");
   }
 
   auto
-  Flap::property_reveal_flap () const -> Glib::PropertyProxy_ReadOnly<bool>
+  Flap::property_reveal_flap () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "reveal-flap");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "reveal-flap");
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<
-          Glib::RefPtr<SpringParams>>::value,
-      "Type Glib::RefPtr<SpringParams> cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      glib::Traits::ValueCompatibleWithWrapProperty<
+          glib::RefPtr<SpringParams>>::value,
+      "Type glib::RefPtr<SpringParams> cannot be used in _WRAP_PROPERTY. "
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  Flap::property_reveal_params () -> Glib::PropertyProxy<Glib::RefPtr<SpringParams>>
+  Flap::property_reveal_params () -> glib::PropertyProxy<glib::RefPtr<SpringParams>>
   {
-    return Glib::PropertyProxy<Glib::RefPtr<SpringParams>> (this,
+    return glib::PropertyProxy<glib::RefPtr<SpringParams>> (this,
                                                             "reveal-params");
   }
 
   auto
-  Flap::property_reveal_params () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<SpringParams>>
+  Flap::property_reveal_params () const -> glib::PropertyProxy_ReadOnly<glib::RefPtr<SpringParams>>
   {
-    return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<SpringParams>> (
+    return glib::PropertyProxy_ReadOnly<glib::RefPtr<SpringParams>> (
         this,
         "reveal-params");
   }
 
   auto
-  Flap::property_reveal_progress () const -> Glib::PropertyProxy_ReadOnly<double>
+  Flap::property_reveal_progress () const -> glib::PropertyProxy_ReadOnly<double>
   {
-    return Glib::PropertyProxy_ReadOnly<double> (this, "reveal-progress");
+    return glib::PropertyProxy_ReadOnly<double> (this, "reveal-progress");
   }
 
   auto
-  Flap::property_separator () -> Glib::PropertyProxy<Gtk::Widget*>
+  Flap::property_separator () -> glib::PropertyProxy<gtk::Widget*>
   {
-    return Glib::PropertyProxy<Gtk::Widget*> (this, "separator");
+    return glib::PropertyProxy<gtk::Widget*> (this, "separator");
   }
 
   auto
-  Flap::property_separator () const -> Glib::PropertyProxy_ReadOnly<Gtk::Widget*>
+  Flap::property_separator () const -> glib::PropertyProxy_ReadOnly<gtk::Widget*>
   {
-    return Glib::PropertyProxy_ReadOnly<Gtk::Widget*> (this, "separator");
+    return glib::PropertyProxy_ReadOnly<gtk::Widget*> (this, "separator");
   }
 
   auto
-  Flap::property_swipe_to_close () -> Glib::PropertyProxy<bool>
+  Flap::property_swipe_to_close () -> glib::PropertyProxy<bool>
   {
-    return Glib::PropertyProxy<bool> (this, "swipe-to-close");
+    return glib::PropertyProxy<bool> (this, "swipe-to-close");
   }
 
   auto
-  Flap::property_swipe_to_close () const -> Glib::PropertyProxy_ReadOnly<bool>
+  Flap::property_swipe_to_close () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "swipe-to-close");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "swipe-to-close");
   }
 
   auto
-  Flap::property_swipe_to_open () -> Glib::PropertyProxy<bool>
+  Flap::property_swipe_to_open () -> glib::PropertyProxy<bool>
   {
-    return Glib::PropertyProxy<bool> (this, "swipe-to-open");
+    return glib::PropertyProxy<bool> (this, "swipe-to-open");
   }
 
   auto
-  Flap::property_swipe_to_open () const -> Glib::PropertyProxy_ReadOnly<bool>
+  Flap::property_swipe_to_open () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "swipe-to-open");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "swipe-to-open");
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<FlapTransitionType>::value,
+      glib::Traits::ValueCompatibleWithWrapProperty<FlapTransitionType>::value,
       "Type FlapTransitionType cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  Flap::property_transition_type () -> Glib::PropertyProxy<FlapTransitionType>
+  Flap::property_transition_type () -> glib::PropertyProxy<FlapTransitionType>
   {
-    return Glib::PropertyProxy<FlapTransitionType> (this, "transition-type");
+    return glib::PropertyProxy<FlapTransitionType> (this, "transition-type");
   }
 
   auto
-  Flap::property_transition_type () const -> Glib::PropertyProxy_ReadOnly<FlapTransitionType>
+  Flap::property_transition_type () const -> glib::PropertyProxy_ReadOnly<FlapTransitionType>
   {
-    return Glib::PropertyProxy_ReadOnly<FlapTransitionType> (this,
+    return glib::PropertyProxy_ReadOnly<FlapTransitionType> (this,
                                                              "transition-type");
   }
 
-} // namespace Adw
+} // namespace adw

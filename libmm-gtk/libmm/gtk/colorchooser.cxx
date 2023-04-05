@@ -12,32 +12,32 @@
 
   #include <gtk/gtk.h>
 
-namespace Gtk
+namespace gtk
 {
 
   auto
-  ColorChooser::get_rgba () const -> Gdk::RGBA
+  ColorChooser::get_rgba () const -> gdk::RGBA
   {
     GdkRGBA crgba;
     gtk_color_chooser_get_rgba (const_cast<GtkColorChooser*> (gobj ()), &crgba);
-    return Glib::wrap (&crgba, true);
+    return glib::wrap (&crgba, true);
   }
 
   auto
   ColorChooser::add_palette (Orientation orientation,
                              int colors_per_line,
-                             const std::vector<Gdk::RGBA>& colors) -> void
+                             const std::vector<gdk::RGBA>& colors) -> void
   {
     gtk_color_chooser_add_palette (
         gobj (),
         (GtkOrientation) orientation,
         colors_per_line,
         colors.size (),
-        Glib::ArrayHandler<Gdk::RGBA, Gdk::RGBATraits>::vector_to_array (colors)
+        glib::ArrayHandler<gdk::RGBA, gdk::RGBATraits>::vector_to_array (colors)
             .data ());
   }
 
-} // namespace Gtk
+} // namespace gtk
 
 namespace
 {
@@ -47,53 +47,53 @@ namespace
                                                 const GdkRGBA* p0,
                                                 void* data) -> void
   {
-    using namespace Gtk;
-    using SlotType = sigc::slot<void (const Gdk::RGBA&)>;
+    using namespace gtk;
+    using SlotType = sigc::slot<void (const gdk::RGBA&)>;
 
     auto obj = dynamic_cast<ColorChooser*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
     {
       try
       {
-        if (const auto slot = Glib::SignalProxyNormal::data_to_slot (data))
+        if (const auto slot = glib::SignalProxyNormal::data_to_slot (data))
           (*static_cast<SlotType*> (slot)) (
-              Glib::wrap (const_cast<GdkRGBA*> (p0), true));
+              glib::wrap (const_cast<GdkRGBA*> (p0), true));
       }
       catch (...)
       {
-        Glib::exception_handlers_invoke ();
+        glib::exception_handlers_invoke ();
       }
     }
   }
 
-  static const Glib::SignalProxyInfo ColorChooser_signal_color_activated_info =
+  static const glib::SignalProxyInfo ColorChooser_signal_color_activated_info =
       {"color-activated",
        (GCallback) &ColorChooser_signal_color_activated_callback,
        (GCallback) &ColorChooser_signal_color_activated_callback};
 
 } // namespace
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GtkColorChooser* object, bool take_copy) -> Glib::RefPtr<Gtk::ColorChooser>
+  wrap (GtkColorChooser* object, bool take_copy) -> glib::RefPtr<gtk::ColorChooser>
   {
-    return Glib::make_refptr_for_instance<Gtk::ColorChooser> (
-        dynamic_cast<Gtk::ColorChooser*> (
-            Glib::wrap_auto_interface<Gtk::ColorChooser> ((GObject*) (object),
+    return glib::make_refptr_for_instance<gtk::ColorChooser> (
+        dynamic_cast<gtk::ColorChooser*> (
+            glib::wrap_auto_interface<gtk::ColorChooser> ((GObject*) (object),
                                                           take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gtk
+namespace gtk
 {
 
   auto
-  ColorChooser_Class::init () -> const Glib::Interface_Class&
+  ColorChooser_Class::init () -> const glib::Interface_Class&
   {
     if (!gtype_)
     {
@@ -119,8 +119,8 @@ namespace Gtk
   ColorChooser_Class::color_activated_callback (GtkColorChooser* self,
                                                 const GdkRGBA* p0) -> void
   {
-    const auto obj_base = static_cast<Glib::ObjectBase*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+    const auto obj_base = static_cast<glib::ObjectBase*> (
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -130,12 +130,12 @@ namespace Gtk
         try
         {
           obj->on_color_activated (
-              Glib::wrap (const_cast<GdkRGBA*> (p0), true));
+              glib::wrap (const_cast<GdkRGBA*> (p0), true));
           return;
         }
         catch (...)
         {
-          Glib::exception_handlers_invoke ();
+          glib::exception_handlers_invoke ();
         }
       }
     }
@@ -150,35 +150,35 @@ namespace Gtk
   }
 
   auto
-  ColorChooser_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  ColorChooser_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new ColorChooser ((GtkColorChooser*) (object));
   }
 
   ColorChooser::ColorChooser ()
-    : Glib::Interface (colorchooser_class_.init ())
+    : glib::Interface (colorchooser_class_.init ())
   {
   }
 
   ColorChooser::ColorChooser (GtkColorChooser* castitem)
-    : Glib::Interface ((GObject*) (castitem))
+    : glib::Interface ((GObject*) (castitem))
   {
   }
 
-  ColorChooser::ColorChooser (const Glib::Interface_Class& interface_class)
-    : Glib::Interface (interface_class)
+  ColorChooser::ColorChooser (const glib::Interface_Class& interface_class)
+    : glib::Interface (interface_class)
   {
   }
 
   ColorChooser::ColorChooser (ColorChooser&& src) noexcept
-    : Glib::Interface (std::move (src))
+    : glib::Interface (std::move (src))
   {
   }
 
   auto
   ColorChooser::operator= (ColorChooser&& src) noexcept -> ColorChooser&
   {
-    Glib::Interface::operator= (std::move (src));
+    glib::Interface::operator= (std::move (src));
     return *this;
   }
 
@@ -205,7 +205,7 @@ namespace Gtk
   }
 
   auto
-  ColorChooser::set_rgba (const Gdk::RGBA& color) -> void
+  ColorChooser::set_rgba (const gdk::RGBA& color) -> void
   {
     gtk_color_chooser_set_rgba (gobj (), (color).gobj ());
   }
@@ -224,44 +224,44 @@ namespace Gtk
   }
 
   auto
-  ColorChooser::signal_color_activated () -> Glib::SignalProxy<void (const Gdk::RGBA&)>
+  ColorChooser::signal_color_activated () -> glib::SignalProxy<void (const gdk::RGBA&)>
   {
-    return Glib::SignalProxy<void (const Gdk::RGBA&)> (
+    return glib::SignalProxy<void (const gdk::RGBA&)> (
         this,
         &ColorChooser_signal_color_activated_info);
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<Gdk::RGBA>::value,
-      "Type Gdk::RGBA cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      glib::Traits::ValueCompatibleWithWrapProperty<gdk::RGBA>::value,
+      "Type gdk::RGBA cannot be used in _WRAP_PROPERTY. "
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  ColorChooser::property_rgba () -> Glib::PropertyProxy<Gdk::RGBA>
+  ColorChooser::property_rgba () -> glib::PropertyProxy<gdk::RGBA>
   {
-    return Glib::PropertyProxy<Gdk::RGBA> (this, "rgba");
+    return glib::PropertyProxy<gdk::RGBA> (this, "rgba");
   }
 
   auto
-  ColorChooser::property_rgba () const -> Glib::PropertyProxy_ReadOnly<Gdk::RGBA>
+  ColorChooser::property_rgba () const -> glib::PropertyProxy_ReadOnly<gdk::RGBA>
   {
-    return Glib::PropertyProxy_ReadOnly<Gdk::RGBA> (this, "rgba");
+    return glib::PropertyProxy_ReadOnly<gdk::RGBA> (this, "rgba");
   }
 
   auto
-  ColorChooser::property_use_alpha () -> Glib::PropertyProxy<bool>
+  ColorChooser::property_use_alpha () -> glib::PropertyProxy<bool>
   {
-    return Glib::PropertyProxy<bool> (this, "use-alpha");
+    return glib::PropertyProxy<bool> (this, "use-alpha");
   }
 
   auto
-  ColorChooser::property_use_alpha () const -> Glib::PropertyProxy_ReadOnly<bool>
+  ColorChooser::property_use_alpha () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "use-alpha");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "use-alpha");
   }
 
   auto
-  Gtk::ColorChooser::on_color_activated (const Gdk::RGBA& color) -> void
+  gtk::ColorChooser::on_color_activated (const gdk::RGBA& color) -> void
   {
     const auto base =
         static_cast<BaseClassType*> (g_type_interface_peek_parent (
@@ -272,6 +272,6 @@ namespace Gtk
       (*base->color_activated) (gobj (), (color).gobj ());
   }
 
-} // namespace Gtk
+} // namespace gtk
 
 #endif

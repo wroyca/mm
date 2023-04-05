@@ -18,7 +18,7 @@ extern "C"
 }
 #endif
 
-namespace Pango
+namespace pango
 {
 
   class LIBMM_PANGO_SYMEXPORT FontMetrics
@@ -97,9 +97,9 @@ namespace Pango
     get_strikethrough_thickness () const -> int;
   };
 
-} // namespace Pango
+} // namespace pango
 
-namespace Pango
+namespace pango
 {
 
   inline auto
@@ -108,23 +108,23 @@ namespace Pango
     lhs.swap (rhs);
   }
 
-} // namespace Pango
+} // namespace pango
 
-namespace Glib
+namespace glib
 {
 
   LIBMM_PANGO_SYMEXPORT
   auto
-  wrap (PangoFontMetrics* object, bool take_copy = false) -> Pango::FontMetrics;
+  wrap (PangoFontMetrics* object, bool take_copy = false) -> pango::FontMetrics;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
   template <>
-  class LIBMM_PANGO_SYMEXPORT Value<Pango::FontMetrics>
-    : public Glib::Value_Boxed<Pango::FontMetrics>
+  class LIBMM_PANGO_SYMEXPORT Value<pango::FontMetrics>
+    : public glib::Value_Boxed<pango::FontMetrics>
   {
   };
 #endif
 
-} // namespace Glib
+} // namespace glib
 
 #endif

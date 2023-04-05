@@ -8,7 +8,7 @@
 #include <gio/gio.h>
 #include <libmm/glib/exceptionhandler.hxx>
 
-namespace Gio
+namespace gio
 {
 }
 
@@ -21,24 +21,24 @@ namespace
                                           GObject* p1,
                                           void* data) -> gboolean
   {
-    using namespace Gio;
-    using SlotType = sigc::slot<bool (const Glib::RefPtr<SocketConnection>&,
-                                      const Glib::RefPtr<Glib::Object>&)>;
+    using namespace gio;
+    using SlotType = sigc::slot<bool (const glib::RefPtr<SocketConnection>&,
+                                      const glib::RefPtr<glib::Object>&)>;
 
     const auto obj = dynamic_cast<SocketService*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
     {
       try
       {
-        if (const auto slot = Glib::SignalProxyNormal::data_to_slot (data))
-          return (*static_cast<SlotType*> (slot)) (Glib::wrap (p0, true),
-                                                   Glib::wrap (p1, true));
+        if (const auto slot = glib::SignalProxyNormal::data_to_slot (data))
+          return (*static_cast<SlotType*> (slot)) (glib::wrap (p0, true),
+                                                   glib::wrap (p1, true));
       }
       catch (...)
       {
-        Glib::exception_handlers_invoke ();
+        glib::exception_handlers_invoke ();
       }
     }
 
@@ -52,24 +52,24 @@ namespace
                                                  GObject* p1,
                                                  void* data) -> gboolean
   {
-    using namespace Gio;
-    using SlotType = sigc::slot<void (const Glib::RefPtr<SocketConnection>&,
-                                      const Glib::RefPtr<Glib::Object>&)>;
+    using namespace gio;
+    using SlotType = sigc::slot<void (const glib::RefPtr<SocketConnection>&,
+                                      const glib::RefPtr<glib::Object>&)>;
 
     const auto obj = dynamic_cast<SocketService*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
     {
       try
       {
-        if (const auto slot = Glib::SignalProxyNormal::data_to_slot (data))
-          (*static_cast<SlotType*> (slot)) (Glib::wrap (p0, true),
-                                            Glib::wrap (p1, true));
+        if (const auto slot = glib::SignalProxyNormal::data_to_slot (data))
+          (*static_cast<SlotType*> (slot)) (glib::wrap (p0, true),
+                                            glib::wrap (p1, true));
       }
       catch (...)
       {
-        Glib::exception_handlers_invoke ();
+        glib::exception_handlers_invoke ();
       }
     }
 
@@ -77,27 +77,27 @@ namespace
     return RType ();
   }
 
-  const Glib::SignalProxyInfo SocketService_signal_incoming_info = {
+  const glib::SignalProxyInfo SocketService_signal_incoming_info = {
       "incoming",
       (GCallback) &SocketService_signal_incoming_callback,
       (GCallback) &SocketService_signal_incoming_notify_callback};
 
 } // namespace
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GSocketService* object, const bool take_copy) -> RefPtr<Gio::SocketService>
+  wrap (GSocketService* object, const bool take_copy) -> RefPtr<gio::SocketService>
   {
-    return Glib::make_refptr_for_instance<Gio::SocketService> (
-        dynamic_cast<Gio::SocketService*> (
+    return glib::make_refptr_for_instance<gio::SocketService> (
+        dynamic_cast<gio::SocketService*> (
             wrap_auto ((GObject*) object, take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gio
+namespace gio
 {
 
   auto
@@ -128,7 +128,7 @@ namespace Gio
                                           GObject* p1) -> gboolean
   {
     const auto obj_base =
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self);
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self);
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -137,12 +137,12 @@ namespace Gio
       {
         try
         {
-          return obj->on_incoming (Glib::wrap (p0, true),
-                                   Glib::wrap (p1, true));
+          return obj->on_incoming (glib::wrap (p0, true),
+                                   glib::wrap (p1, true));
         }
         catch (...)
         {
-          Glib::exception_handlers_invoke ();
+          glib::exception_handlers_invoke ();
         }
       }
     }
@@ -158,7 +158,7 @@ namespace Gio
   }
 
   auto
-  SocketService_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  SocketService_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new SocketService ((GSocketService*) object);
   }
@@ -170,7 +170,7 @@ namespace Gio
     return gobj ();
   }
 
-  SocketService::SocketService (const Glib::ConstructParams& construct_params)
+  SocketService::SocketService (const glib::ConstructParams& construct_params)
     : SocketListener (construct_params)
   {
   }
@@ -210,14 +210,14 @@ namespace Gio
 
   SocketService::SocketService ()
     : ObjectBase (nullptr),
-      SocketListener (Glib::ConstructParams (socketservice_class_.init ()))
+      SocketListener (glib::ConstructParams (socketservice_class_.init ()))
   {
   }
 
   auto
-  SocketService::create () -> Glib::RefPtr<SocketService>
+  SocketService::create () -> glib::RefPtr<SocketService>
   {
-    return Glib::make_refptr_for_instance<SocketService> (new SocketService ());
+    return glib::make_refptr_for_instance<SocketService> (new SocketService ());
   }
 
   auto
@@ -239,38 +239,38 @@ namespace Gio
   }
 
   auto
-  SocketService::signal_incoming () -> Glib::SignalProxy<bool (const Glib::RefPtr<SocketConnection>&,
-                                 const Glib::RefPtr<Object>&)>
+  SocketService::signal_incoming () -> glib::SignalProxy<bool (const glib::RefPtr<SocketConnection>&,
+                                 const glib::RefPtr<Object>&)>
   {
     return {this, &SocketService_signal_incoming_info};
   }
 
   auto
-  SocketService::property_active () -> Glib::PropertyProxy<bool>
+  SocketService::property_active () -> glib::PropertyProxy<bool>
   {
     return {this, "active"};
   }
 
   auto
-  SocketService::property_active () const -> Glib::PropertyProxy_ReadOnly<bool>
+  SocketService::property_active () const -> glib::PropertyProxy_ReadOnly<bool>
   {
     return {this, "active"};
   }
 
   auto
-  SocketService::on_incoming (const Glib::RefPtr<SocketConnection>& connection,
-                              const Glib::RefPtr<Object>& source_object) -> bool
+  SocketService::on_incoming (const glib::RefPtr<SocketConnection>& connection,
+                              const glib::RefPtr<Object>& source_object) -> bool
   {
     const auto base = static_cast<BaseClassType*> (
         g_type_class_peek_parent (G_OBJECT_GET_CLASS (gobject_)));
 
     if (base && base->incoming)
       return (*base->incoming) (gobj (),
-                                Glib::unwrap (connection),
-                                Glib::unwrap (source_object));
+                                glib::unwrap (connection),
+                                glib::unwrap (source_object));
 
     using RType = bool;
     return RType ();
   }
 
-} // namespace Gio
+} // namespace gio

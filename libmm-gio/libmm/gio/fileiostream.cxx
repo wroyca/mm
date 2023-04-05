@@ -9,43 +9,43 @@
 #include <libmm/gio/slot_async.hxx>
 #include <libmm/glib/exceptionhandler.hxx>
 
-namespace Gio
+namespace gio
 {
 
   auto
-  FileIOStream::query_info (const Glib::RefPtr<Cancellable>& cancellable,
-                            const std::string& attributes) -> Glib::RefPtr<FileInfo>
+  FileIOStream::query_info (const glib::RefPtr<Cancellable>& cancellable,
+                            const std::string& attributes) -> glib::RefPtr<FileInfo>
   {
     GError* gerror = nullptr;
     auto retvalue =
-        Glib::wrap (g_file_io_stream_query_info (gobj (),
+        glib::wrap (g_file_io_stream_query_info (gobj (),
                                                  g_strdup (attributes.c_str ()),
-                                                 Glib::unwrap (cancellable),
+                                                 glib::unwrap (cancellable),
                                                  &gerror));
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
 
     return retvalue;
   }
 
   auto
-  FileIOStream::query_info (const std::string& attributes) -> Glib::RefPtr<FileInfo>
+  FileIOStream::query_info (const std::string& attributes) -> glib::RefPtr<FileInfo>
   {
     GError* gerror = nullptr;
     auto retvalue =
-        Glib::wrap (g_file_io_stream_query_info (gobj (),
+        glib::wrap (g_file_io_stream_query_info (gobj (),
                                                  g_strdup (attributes.c_str ()),
                                                  nullptr,
                                                  &gerror));
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
 
     return retvalue;
   }
 
   auto
   FileIOStream::query_info_async (const SlotAsyncReady& slot,
-                                  const Glib::RefPtr<Cancellable>& cancellable,
+                                  const glib::RefPtr<Cancellable>& cancellable,
                                   const std::string& attributes,
                                   const int io_priority) -> void
   {
@@ -54,7 +54,7 @@ namespace Gio
     g_file_io_stream_query_info_async (gobj (),
                                        attributes.c_str (),
                                        io_priority,
-                                       Glib::unwrap (cancellable),
+                                       glib::unwrap (cancellable),
                                        &SignalProxy_async_callback,
                                        slot_copy);
   }
@@ -74,26 +74,26 @@ namespace Gio
                                        slot_copy);
   }
 
-} // namespace Gio
+} // namespace gio
 
 namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GFileIOStream* object, const bool take_copy) -> RefPtr<Gio::FileIOStream>
+  wrap (GFileIOStream* object, const bool take_copy) -> RefPtr<gio::FileIOStream>
   {
-    return Glib::make_refptr_for_instance<Gio::FileIOStream> (
-        dynamic_cast<Gio::FileIOStream*> (
+    return glib::make_refptr_for_instance<gio::FileIOStream> (
+        dynamic_cast<gio::FileIOStream*> (
             wrap_auto ((GObject*) object, take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gio
+namespace gio
 {
 
   auto
@@ -119,7 +119,7 @@ namespace Gio
   }
 
   auto
-  FileIOStream_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  FileIOStream_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new FileIOStream ((GFileIOStream*) object);
   }
@@ -131,7 +131,7 @@ namespace Gio
     return gobj ();
   }
 
-  FileIOStream::FileIOStream (const Glib::ConstructParams& construct_params)
+  FileIOStream::FileIOStream (const glib::ConstructParams& construct_params)
     : IOStream (construct_params)
   {
   }
@@ -172,23 +172,23 @@ namespace Gio
   }
 
   auto
-  FileIOStream::query_info_finish (const Glib::RefPtr<AsyncResult>& result) -> Glib::RefPtr<FileInfo>
+  FileIOStream::query_info_finish (const glib::RefPtr<AsyncResult>& result) -> glib::RefPtr<FileInfo>
   {
     GError* gerror = nullptr;
     auto retvalue =
-        Glib::wrap (g_file_io_stream_query_info_finish (gobj (),
-                                                        Glib::unwrap (result),
+        glib::wrap (g_file_io_stream_query_info_finish (gobj (),
+                                                        glib::unwrap (result),
                                                         &gerror));
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
   auto
-  FileIOStream::get_etag () const -> Glib::ustring
+  FileIOStream::get_etag () const -> glib::ustring
   {
-    return Glib::convert_return_gchar_ptr_to_ustring (
+    return glib::convert_return_gchar_ptr_to_ustring (
         g_file_io_stream_get_etag (const_cast<GFileIOStream*> (gobj ())));
   }
 
-} // namespace Gio
+} // namespace gio

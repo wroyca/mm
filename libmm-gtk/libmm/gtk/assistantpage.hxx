@@ -19,17 +19,17 @@ using GtkAssistantPageClass = struct _GtkAssistantPageClass;
   #endif
 
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT AssistantPage_Class;
 }
   #endif
 
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT Widget;
 
-  class LIBMM_GTK_SYMEXPORT AssistantPage : public Glib::Object
+  class LIBMM_GTK_SYMEXPORT AssistantPage : public glib::Object
   {
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -48,7 +48,7 @@ namespace Gtk
     static CppClassType assistantpage_class_;
 
   protected:
-    explicit AssistantPage (const Glib::ConstructParams& construct_params);
+    explicit AssistantPage (const glib::ConstructParams& construct_params);
     explicit AssistantPage (GtkAssistantPage* castitem);
 
   #endif
@@ -103,54 +103,54 @@ namespace Gtk
     get_child () const -> const Widget*;
 
     auto
-    property_page_type () -> Glib::PropertyProxy<Type>;
+    property_page_type () -> glib::PropertyProxy<Type>;
 
     auto
-    property_page_type () const -> Glib::PropertyProxy_ReadOnly<Type>;
+    property_page_type () const -> glib::PropertyProxy_ReadOnly<Type>;
 
     auto
-    property_title () -> Glib::PropertyProxy<Glib::ustring>;
+    property_title () -> glib::PropertyProxy<glib::ustring>;
 
     auto
-    property_title () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+    property_title () const -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
     auto
-    property_complete () -> Glib::PropertyProxy<bool>;
+    property_complete () -> glib::PropertyProxy<bool>;
 
     auto
-    property_complete () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_complete () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_child () const -> Glib::PropertyProxy_ReadOnly<Widget*>;
+    property_child () const -> glib::PropertyProxy_ReadOnly<Widget*>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_GTK_SYMEXPORT Value<Gtk::AssistantPage::Type>
-    : public Glib::Value_Enum<Gtk::AssistantPage::Type>
+  class LIBMM_GTK_SYMEXPORT Value<gtk::AssistantPage::Type>
+    : public glib::Value_Enum<gtk::AssistantPage::Type>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
   #endif
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkAssistantPage* object, bool take_copy = false) -> Glib::RefPtr<Gtk::AssistantPage>;
-} // namespace Glib
+  wrap (GtkAssistantPage* object, bool take_copy = false) -> glib::RefPtr<gtk::AssistantPage>;
+} // namespace glib
 
 #endif
 

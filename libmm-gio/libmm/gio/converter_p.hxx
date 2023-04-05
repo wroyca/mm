@@ -8,10 +8,10 @@
 
 #include <libmm/glib/interface_p.hxx>
 
-namespace Gio
+namespace gio
 {
 
-  class LIBMM_GIO_SYMEXPORT Converter_Class : public Glib::Interface_Class
+  class LIBMM_GIO_SYMEXPORT Converter_Class : public glib::Interface_Class
   {
   public:
     using CppObjectType = Converter;
@@ -28,7 +28,7 @@ namespace Gio
     iface_init_function (void* g_iface, void* iface_data) -> void;
 
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
 
   protected:
     static auto
@@ -45,6 +45,6 @@ namespace Gio
     reset_vfunc_callback (GConverter* self) -> void;
   };
 
-} // namespace Gio
+} // namespace gio
 
 #endif

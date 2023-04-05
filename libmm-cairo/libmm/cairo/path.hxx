@@ -9,7 +9,7 @@
 #include <libmm/cairo/enums.hxx>
 #include <string>
 
-namespace Cairo
+namespace cairo
 {
 
   class LIBMM_CAIRO_SYMEXPORT Path
@@ -45,6 +45,6 @@ namespace Cairo
     cobject* m_cobject;
   };
 
-} // namespace Cairo
+} // namespace cairo
 
 #endif

@@ -16,18 +16,18 @@ using GMenuLinkIterClass = struct _GMenuLinkIterClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gio
+namespace gio
 {
   class LIBMM_GIO_SYMEXPORT MenuLinkIter_Class;
 }
 #endif
 
-namespace Gio
+namespace gio
 {
 
   class LIBMM_GIO_SYMEXPORT MenuModel;
 
-  class LIBMM_GIO_SYMEXPORT MenuLinkIter : public Glib::Object
+  class LIBMM_GIO_SYMEXPORT MenuLinkIter : public glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -46,7 +46,7 @@ namespace Gio
     static CppClassType menulinkiter_class_;
 
   protected:
-    explicit MenuLinkIter (const Glib::ConstructParams& construct_params);
+    explicit MenuLinkIter (const glib::ConstructParams& construct_params);
     explicit MenuLinkIter (GMenuLinkIter* castitem);
 
 #endif
@@ -88,16 +88,16 @@ namespace Gio
 
   public:
     auto
-    get_name () const -> Glib::ustring;
+    get_name () const -> glib::ustring;
 
     auto
-    get_next (Glib::ustring& out_link, Glib::RefPtr<MenuModel>& value) -> bool;
+    get_next (glib::ustring& out_link, glib::RefPtr<MenuModel>& value) -> bool;
 
     auto
-    get_value () -> Glib::RefPtr<MenuModel>;
+    get_value () -> glib::RefPtr<MenuModel>;
 
     auto
-    get_value () const -> Glib::RefPtr<const MenuModel>;
+    get_value () const -> glib::RefPtr<const MenuModel>;
 
     auto
     next () -> bool;
@@ -107,14 +107,14 @@ namespace Gio
   protected:
   };
 
-} // namespace Gio
+} // namespace gio
 
-namespace Glib
+namespace glib
 {
 
   LIBMM_GIO_SYMEXPORT
   auto
-  wrap (GMenuLinkIter* object, bool take_copy = false) -> Glib::RefPtr<Gio::MenuLinkIter>;
-} // namespace Glib
+  wrap (GMenuLinkIter* object, bool take_copy = false) -> glib::RefPtr<gio::MenuLinkIter>;
+} // namespace glib
 
 #endif

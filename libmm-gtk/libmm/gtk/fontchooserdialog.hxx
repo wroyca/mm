@@ -17,13 +17,13 @@ using GtkFontChooserDialogClass = struct _GtkFontChooserDialogClass;
   #endif
 
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT FontChooserDialog_Class;
 }
   #endif
 
-namespace Gtk
+namespace gtk
 {
 
   class LIBMM_GTK_SYMEXPORT FontChooserDialog : public Dialog,
@@ -54,7 +54,7 @@ namespace Gtk
     static CppClassType fontchooserdialog_class_;
 
   protected:
-    explicit FontChooserDialog (const Glib::ConstructParams& construct_params);
+    explicit FontChooserDialog (const glib::ConstructParams& construct_params);
     explicit FontChooserDialog (GtkFontChooserDialog* castitem);
 
   #endif
@@ -84,9 +84,9 @@ namespace Gtk
   private:
   public:
     FontChooserDialog ();
-    explicit FontChooserDialog (const Glib::ustring& title);
+    explicit FontChooserDialog (const glib::ustring& title);
 
-    explicit FontChooserDialog (const Glib::ustring& title,
+    explicit FontChooserDialog (const glib::ustring& title,
                                 Window& transient_for);
 
   public:
@@ -94,13 +94,13 @@ namespace Gtk
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkFontChooserDialog* object, bool take_copy = false) -> Gtk::FontChooserDialog*;
-} // namespace Glib
+  wrap (GtkFontChooserDialog* object, bool take_copy = false) -> gtk::FontChooserDialog*;
+} // namespace glib
 
 #endif
 

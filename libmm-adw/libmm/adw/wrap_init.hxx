@@ -3,7 +3,7 @@
 #ifndef LIBADWAITAMM_WRAP_INIT_H_INCLUDED
 #define LIBADWAITAMM_WRAP_INIT_H_INCLUDED
 
-namespace Adw
+namespace adw
 {
   auto
   wrap_init () -> void;

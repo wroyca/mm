@@ -7,7 +7,7 @@
 
 #include <gio/gio.h>
 
-namespace Gio
+namespace gio
 {
 
   FileAttributeInfoList::operator bool () const
@@ -32,34 +32,34 @@ namespace Gio
     return info;
   }
 
-} // namespace Gio
+} // namespace gio
 
 namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GFileAttributeInfoList* object, const bool take_copy) -> RefPtr<Gio::FileAttributeInfoList>
+  wrap (GFileAttributeInfoList* object, const bool take_copy) -> RefPtr<gio::FileAttributeInfoList>
   {
     if (take_copy && object)
       g_file_attribute_info_list_ref (object);
 
-    return Glib::make_refptr_for_instance<Gio::FileAttributeInfoList> (
-        reinterpret_cast<Gio::FileAttributeInfoList*> (object));
+    return glib::make_refptr_for_instance<gio::FileAttributeInfoList> (
+        reinterpret_cast<gio::FileAttributeInfoList*> (object));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gio
+namespace gio
 {
 
   auto
-  FileAttributeInfoList::create () -> Glib::RefPtr<FileAttributeInfoList>
+  FileAttributeInfoList::create () -> glib::RefPtr<FileAttributeInfoList>
   {
-    return Glib::make_refptr_for_instance<FileAttributeInfoList> (
+    return glib::make_refptr_for_instance<FileAttributeInfoList> (
         reinterpret_cast<FileAttributeInfoList*> (
             g_file_attribute_info_list_new ()));
   }
@@ -101,9 +101,9 @@ namespace Gio
   }
 
   auto
-  FileAttributeInfoList::dup () const -> Glib::RefPtr<FileAttributeInfoList>
+  FileAttributeInfoList::dup () const -> glib::RefPtr<FileAttributeInfoList>
   {
-    return Glib::wrap (g_file_attribute_info_list_dup (
+    return glib::wrap (g_file_attribute_info_list_dup (
         const_cast<GFileAttributeInfoList*> (gobj ())));
   }
 
@@ -119,4 +119,4 @@ namespace Gio
         static_cast<GFileAttributeInfoFlags> (flags));
   }
 
-} // namespace Gio
+} // namespace gio

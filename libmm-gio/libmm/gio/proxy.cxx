@@ -11,61 +11,61 @@
 #include <libmm/glib/exceptionhandler.hxx>
 #include <utility>
 
-namespace Gio
+namespace gio
 {
 
   auto
-  Proxy::connect_async (const Glib::RefPtr<IOStream>& connection,
-                        const Glib::RefPtr<const ProxyAddress>& proxy_address,
+  Proxy::connect_async (const glib::RefPtr<IOStream>& connection,
+                        const glib::RefPtr<const ProxyAddress>& proxy_address,
                         const SlotAsyncReady& slot,
-                        const Glib::RefPtr<Cancellable>& cancellable) -> void
+                        const glib::RefPtr<Cancellable>& cancellable) -> void
   {
     const auto slot_copy = new SlotAsyncReady (slot);
 
     g_proxy_connect_async (
         gobj (),
-        Glib::unwrap (connection),
-        const_cast<GProxyAddress*> (Glib::unwrap (proxy_address)),
-        Glib::unwrap (cancellable),
+        glib::unwrap (connection),
+        const_cast<GProxyAddress*> (glib::unwrap (proxy_address)),
+        glib::unwrap (cancellable),
         &SignalProxy_async_callback,
         slot_copy);
   }
 
   auto
-  Proxy::connect_async (const Glib::RefPtr<IOStream>& connection,
-                        const Glib::RefPtr<const ProxyAddress>& proxy_address,
+  Proxy::connect_async (const glib::RefPtr<IOStream>& connection,
+                        const glib::RefPtr<const ProxyAddress>& proxy_address,
                         const SlotAsyncReady& slot) -> void
   {
     const auto slot_copy = new SlotAsyncReady (slot);
 
     g_proxy_connect_async (
         gobj (),
-        Glib::unwrap (connection),
-        const_cast<GProxyAddress*> (Glib::unwrap (proxy_address)),
+        glib::unwrap (connection),
+        const_cast<GProxyAddress*> (glib::unwrap (proxy_address)),
         nullptr,
         &SignalProxy_async_callback,
         slot_copy);
   }
 
-} // namespace Gio
+} // namespace gio
 
 namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GProxy* object, const bool take_copy) -> RefPtr<Gio::Proxy>
+  wrap (GProxy* object, const bool take_copy) -> RefPtr<gio::Proxy>
   {
-    return Glib::make_refptr_for_instance<Gio::Proxy> (
-        Glib::wrap_auto_interface<Gio::Proxy> ((GObject*) object, take_copy));
+    return glib::make_refptr_for_instance<gio::Proxy> (
+        glib::wrap_auto_interface<gio::Proxy> ((GObject*) object, take_copy));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gio
+namespace gio
 {
 
   auto
@@ -90,7 +90,7 @@ namespace Gio
   }
 
   auto
-  Proxy_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  Proxy_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new Proxy ((GProxy*) object);
   }
@@ -105,7 +105,7 @@ namespace Gio
   {
   }
 
-  Proxy::Proxy (const Glib::Interface_Class& interface_class)
+  Proxy::Proxy (const glib::Interface_Class& interface_class)
     : Interface (interface_class)
   {
   }
@@ -145,36 +145,36 @@ namespace Gio
   }
 
   auto
-  Proxy::get_default_for_protocol (const Glib::ustring& protocol) -> Glib::RefPtr<Proxy>
+  Proxy::get_default_for_protocol (const glib::ustring& protocol) -> glib::RefPtr<Proxy>
   {
-    return Glib::wrap (g_proxy_get_default_for_protocol (protocol.c_str ()));
+    return glib::wrap (g_proxy_get_default_for_protocol (protocol.c_str ()));
   }
 
   auto
-  Proxy::connect (const Glib::RefPtr<IOStream>& connection,
-                  const Glib::RefPtr<const ProxyAddress>& proxy_address,
-                  const Glib::RefPtr<Cancellable>& cancellable) -> Glib::RefPtr<IOStream>
+  Proxy::connect (const glib::RefPtr<IOStream>& connection,
+                  const glib::RefPtr<const ProxyAddress>& proxy_address,
+                  const glib::RefPtr<Cancellable>& cancellable) -> glib::RefPtr<IOStream>
   {
     GError* gerror = nullptr;
-    auto retvalue = Glib::wrap (g_proxy_connect (
+    auto retvalue = glib::wrap (g_proxy_connect (
         gobj (),
-        Glib::unwrap (connection),
-        const_cast<GProxyAddress*> (Glib::unwrap (proxy_address)),
-        Glib::unwrap (cancellable),
+        glib::unwrap (connection),
+        const_cast<GProxyAddress*> (glib::unwrap (proxy_address)),
+        glib::unwrap (cancellable),
         &gerror));
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
   auto
-  Proxy::connect_finish (const Glib::RefPtr<AsyncResult>& result) -> Glib::RefPtr<IOStream>
+  Proxy::connect_finish (const glib::RefPtr<AsyncResult>& result) -> glib::RefPtr<IOStream>
   {
     GError* gerror = nullptr;
-    auto retvalue = Glib::wrap (
-        g_proxy_connect_finish (gobj (), Glib::unwrap (result), &gerror));
+    auto retvalue = glib::wrap (
+        g_proxy_connect_finish (gobj (), glib::unwrap (result), &gerror));
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
@@ -184,4 +184,4 @@ namespace Gio
     return g_proxy_supports_hostname (const_cast<GProxy*> (gobj ()));
   }
 
-} // namespace Gio
+} // namespace gio

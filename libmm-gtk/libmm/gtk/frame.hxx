@@ -14,13 +14,13 @@ using GtkFrameClass = struct _GtkFrameClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT Frame_Class;
 }
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
   class LIBMM_GTK_SYMEXPORT Frame : public Widget
@@ -50,7 +50,7 @@ namespace Gtk
     static CppClassType frame_class_;
 
   protected:
-    explicit Frame (const Glib::ConstructParams& construct_params);
+    explicit Frame (const glib::ConstructParams& construct_params);
     explicit Frame (GtkFrame* castitem);
 
 #endif
@@ -80,15 +80,15 @@ namespace Gtk
   private:
   public:
     Frame ();
-    explicit Frame (const Glib::ustring& label);
+    explicit Frame (const glib::ustring& label);
 
     auto
-    set_label (const Glib::ustring& label) -> void;
+    set_label (const glib::ustring& label) -> void;
     auto
     unset_label () -> void;
 
     auto
-    get_label () const -> Glib::ustring;
+    get_label () const -> glib::ustring;
 
     auto
     set_label_widget (Widget& label_widget) -> void;
@@ -120,28 +120,28 @@ namespace Gtk
     get_child () const -> const Widget*;
 
     auto
-    property_label () -> Glib::PropertyProxy<Glib::ustring>;
+    property_label () -> glib::PropertyProxy<glib::ustring>;
 
     auto
-    property_label () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+    property_label () const -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
     auto
-    property_label_xalign () -> Glib::PropertyProxy<double>;
+    property_label_xalign () -> glib::PropertyProxy<double>;
 
     auto
-    property_label_xalign () const -> Glib::PropertyProxy_ReadOnly<double>;
+    property_label_xalign () const -> glib::PropertyProxy_ReadOnly<double>;
 
     auto
-    property_label_widget () -> Glib::PropertyProxy<Widget*>;
+    property_label_widget () -> glib::PropertyProxy<Widget*>;
 
     auto
-    property_label_widget () const -> Glib::PropertyProxy_ReadOnly<Widget*>;
+    property_label_widget () const -> glib::PropertyProxy_ReadOnly<Widget*>;
 
     auto
-    property_child () -> Glib::PropertyProxy<Widget*>;
+    property_child () -> glib::PropertyProxy<Widget*>;
 
     auto
-    property_child () const -> Glib::PropertyProxy_ReadOnly<Widget*>;
+    property_child () const -> glib::PropertyProxy_ReadOnly<Widget*>;
 
   protected:
     virtual auto
@@ -152,12 +152,12 @@ namespace Gtk
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkFrame* object, bool take_copy = false) -> Gtk::Frame*;
-} // namespace Glib
+  wrap (GtkFrame* object, bool take_copy = false) -> gtk::Frame*;
+} // namespace glib
 
 #endif

@@ -16,17 +16,17 @@
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT DirectoryList_Class;
 }
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
-  class LIBMM_GTK_SYMEXPORT DirectoryList : public Glib::Object,
-                                  public Gio::ListModel
+  class LIBMM_GTK_SYMEXPORT DirectoryList : public glib::Object,
+                                  public gio::ListModel
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -45,7 +45,7 @@ namespace Gtk
     static CppClassType directorylist_class_;
 
   protected:
-    explicit DirectoryList (const Glib::ConstructParams& construct_params);
+    explicit DirectoryList (const glib::ConstructParams& construct_params);
     explicit DirectoryList (GtkDirectoryList* castitem);
 
 #endif
@@ -84,22 +84,22 @@ namespace Gtk
   private:
   protected:
     explicit DirectoryList (const std::string& attributes,
-                            const Glib::RefPtr<Gio::File>& file = {});
+                            const glib::RefPtr<gio::File>& file = {});
 
   public:
     static auto
     create (const std::string& attributes,
-            const Glib::RefPtr<Gio::File>& file = {})
-        -> Glib::RefPtr<DirectoryList>;
+            const glib::RefPtr<gio::File>& file = {})
+        -> glib::RefPtr<DirectoryList>;
 
     auto
-    set_file (const Glib::RefPtr<Gio::File>& file) -> void;
+    set_file (const glib::RefPtr<gio::File>& file) -> void;
 
     auto
-    get_file () -> Glib::RefPtr<Gio::File>;
+    get_file () -> glib::RefPtr<gio::File>;
 
     auto
-    get_file () const -> Glib::RefPtr<const Gio::File>;
+    get_file () const -> glib::RefPtr<const gio::File>;
 
     auto
     set_attributes (const std::string& attributes) -> void;
@@ -117,7 +117,7 @@ namespace Gtk
     is_loading () const -> bool;
 
     auto
-    get_error () const -> Glib::Error;
+    get_error () const -> glib::Error;
 
     auto
     set_monitored (bool monitored = true) -> void;
@@ -126,53 +126,53 @@ namespace Gtk
     get_monitored () const -> bool;
 
     auto
-    property_attributes () -> Glib::PropertyProxy<std::string>;
+    property_attributes () -> glib::PropertyProxy<std::string>;
 
     auto
-    property_attributes () const -> Glib::PropertyProxy_ReadOnly<std::string>;
+    property_attributes () const -> glib::PropertyProxy_ReadOnly<std::string>;
 
     auto
-    property_error () const -> Glib::PropertyProxy_ReadOnly<Glib::Error>;
+    property_error () const -> glib::PropertyProxy_ReadOnly<glib::Error>;
 
     auto
-    property_file () -> Glib::PropertyProxy<Glib::RefPtr<Gio::File>>;
+    property_file () -> glib::PropertyProxy<glib::RefPtr<gio::File>>;
 
     auto
     property_file () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gio::File>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<gio::File>>;
 
     auto
-    property_io_priority () -> Glib::PropertyProxy<int>;
+    property_io_priority () -> glib::PropertyProxy<int>;
 
     auto
-    property_io_priority () const -> Glib::PropertyProxy_ReadOnly<int>;
+    property_io_priority () const -> glib::PropertyProxy_ReadOnly<int>;
 
     auto
-    property_item_type () const -> Glib::PropertyProxy_ReadOnly<GType>;
+    property_item_type () const -> glib::PropertyProxy_ReadOnly<GType>;
 
     auto
-    property_loading () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_loading () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_monitored () -> Glib::PropertyProxy<bool>;
+    property_monitored () -> glib::PropertyProxy<bool>;
 
     auto
-    property_monitored () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_monitored () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_n_items () const -> Glib::PropertyProxy_ReadOnly<unsigned int>;
+    property_n_items () const -> glib::PropertyProxy_ReadOnly<unsigned int>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkDirectoryList* object, bool take_copy = false) -> Glib::RefPtr<Gtk::DirectoryList>;
-} // namespace Glib
+  wrap (GtkDirectoryList* object, bool take_copy = false) -> glib::RefPtr<gtk::DirectoryList>;
+} // namespace glib
 
 #endif

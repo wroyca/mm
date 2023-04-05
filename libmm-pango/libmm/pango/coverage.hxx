@@ -11,7 +11,7 @@
 #include <libmm/glib/value.hxx>
 #include <pango/pango.h>
 
-namespace Pango
+namespace pango
 {
 
   class LIBMM_PANGO_SYMEXPORT Coverage final
@@ -23,7 +23,7 @@ namespace Pango
 #endif
 
     static auto
-    create () -> Glib::RefPtr<Coverage>;
+    create () -> glib::RefPtr<Coverage>;
 
     auto
     reference () const -> void;
@@ -67,31 +67,31 @@ namespace Pango
     set (int index, Level level) -> void;
   };
 
-} // namespace Pango
+} // namespace pango
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_PANGO_SYMEXPORT Value<Pango::Coverage::Level>
-    : public Glib::Value_Enum<Pango::Coverage::Level>
+  class LIBMM_PANGO_SYMEXPORT Value<pango::Coverage::Level>
+    : public glib::Value_Enum<pango::Coverage::Level>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
-namespace Glib
+namespace glib
 {
 
   LIBMM_PANGO_SYMEXPORT
   auto
-  wrap (PangoCoverage* object, bool take_copy = false) -> Glib::RefPtr<Pango::Coverage>;
+  wrap (PangoCoverage* object, bool take_copy = false) -> glib::RefPtr<pango::Coverage>;
 
-} // namespace Glib
+} // namespace glib
 
 #endif

@@ -20,18 +20,18 @@ using GAsyncInitableClass = struct _GAsyncInitableClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gio
+namespace gio
 {
   class LIBMM_GIO_SYMEXPORT AsyncInitable_Class;
 }
 #endif
 
-namespace Gio
+namespace gio
 {
 
   class LIBMM_GIO_SYMEXPORT Cancellable;
 
-  class LIBMM_GIO_SYMEXPORT AsyncInitable : public Glib::Interface
+  class LIBMM_GIO_SYMEXPORT AsyncInitable : public glib::Interface
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -55,7 +55,7 @@ namespace Gio
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
-    explicit AsyncInitable (const Glib::Interface_Class& interface_class);
+    explicit AsyncInitable (const glib::Interface_Class& interface_class);
 
   public:
     explicit AsyncInitable (GAsyncInitable* castitem);
@@ -97,27 +97,27 @@ namespace Gio
   protected:
     auto
     init_async (const SlotAsyncReady& slot,
-                const Glib::RefPtr<Cancellable>& cancellable,
-                int io_priority = Glib::PRIORITY_DEFAULT) -> void;
+                const glib::RefPtr<Cancellable>& cancellable,
+                int io_priority = glib::PRIORITY_DEFAULT) -> void;
 
     auto
     init_async (const SlotAsyncReady& slot,
-                int io_priority = Glib::PRIORITY_DEFAULT) -> void;
+                int io_priority = glib::PRIORITY_DEFAULT) -> void;
 
     auto
-    init_finish (const Glib::RefPtr<AsyncResult>& res) -> bool;
+    init_finish (const glib::RefPtr<AsyncResult>& res) -> bool;
 
     auto
-    create_finish (const Glib::RefPtr<AsyncResult>& res)
-        -> Glib::RefPtr<Glib::Object>;
+    create_finish (const glib::RefPtr<AsyncResult>& res)
+        -> glib::RefPtr<glib::Object>;
 
     virtual auto
     init_async_vfunc (const SlotAsyncReady& slot,
-                      const Glib::RefPtr<Cancellable>& cancellable,
-                      int io_priority = Glib::PRIORITY_DEFAULT) -> void;
+                      const glib::RefPtr<Cancellable>& cancellable,
+                      int io_priority = glib::PRIORITY_DEFAULT) -> void;
 
     virtual auto
-    init_finish_vfunc (const Glib::RefPtr<AsyncResult>& res) -> bool;
+    init_finish_vfunc (const glib::RefPtr<AsyncResult>& res) -> bool;
 
   protected:
   public:
@@ -125,15 +125,15 @@ namespace Gio
   protected:
   };
 
-} // namespace Gio
+} // namespace gio
 
-namespace Glib
+namespace glib
 {
 
   LIBMM_GIO_SYMEXPORT
   auto
-  wrap (GAsyncInitable* object, bool take_copy = false) -> Glib::RefPtr<Gio::AsyncInitable>;
+  wrap (GAsyncInitable* object, bool take_copy = false) -> glib::RefPtr<gio::AsyncInitable>;
 
-} // namespace Glib
+} // namespace glib
 
 #endif

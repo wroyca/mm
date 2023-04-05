@@ -14,13 +14,13 @@ using GUnixCredentialsMessageClass = struct _GUnixCredentialsMessageClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gio
+namespace gio
 {
   class LIBMM_GIO_SYMEXPORT UnixCredentialsMessage_Class;
 }
 #endif
 
-namespace Gio
+namespace gio
 {
 
   class LIBMM_GIO_SYMEXPORT Credentials;
@@ -46,7 +46,7 @@ namespace Gio
 
   protected:
     explicit UnixCredentialsMessage (
-        const Glib::ConstructParams& construct_params);
+        const glib::ConstructParams& construct_params);
     explicit UnixCredentialsMessage (GUnixCredentialsMessage* castitem);
 
 #endif
@@ -87,42 +87,42 @@ namespace Gio
   protected:
     UnixCredentialsMessage ();
     explicit UnixCredentialsMessage (
-        const Glib::RefPtr<Credentials>& credentials);
+        const glib::RefPtr<Credentials>& credentials);
 
   public:
     static auto
-    create () -> Glib::RefPtr<UnixCredentialsMessage>;
+    create () -> glib::RefPtr<UnixCredentialsMessage>;
 
     static auto
-    create (const Glib::RefPtr<Credentials>& credentials)
-        -> Glib::RefPtr<UnixCredentialsMessage>;
+    create (const glib::RefPtr<Credentials>& credentials)
+        -> glib::RefPtr<UnixCredentialsMessage>;
 
     auto
-    get_credentials () -> Glib::RefPtr<Credentials>;
+    get_credentials () -> glib::RefPtr<Credentials>;
 
     auto
-    get_credentials () const -> Glib::RefPtr<const Credentials>;
+    get_credentials () const -> glib::RefPtr<const Credentials>;
 
     static auto
     is_supported () -> bool;
 
     auto
     property_credentials () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Credentials>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<Credentials>>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gio
+} // namespace gio
 
-namespace Glib
+namespace glib
 {
 
   LIBMM_GIO_SYMEXPORT
   auto
-  wrap (GUnixCredentialsMessage* object, bool take_copy = false) -> Glib::RefPtr<Gio::UnixCredentialsMessage>;
-} // namespace Glib
+  wrap (GUnixCredentialsMessage* object, bool take_copy = false) -> glib::RefPtr<gio::UnixCredentialsMessage>;
+} // namespace glib
 
 #endif

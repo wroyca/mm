@@ -16,7 +16,7 @@ namespace
   static auto
   pixbuf_destroy_data_callback (guint8* pixels, void* user_data) -> void
   {
-    const auto slot = static_cast<Gdk::Pixbuf::SlotDestroyData*> (user_data);
+    const auto slot = static_cast<gdk::Pixbuf::SlotDestroyData*> (user_data);
     g_return_if_fail (slot != nullptr);
 
     try
@@ -25,7 +25,7 @@ namespace
     }
     catch (...)
     {
-      Glib::exception_handlers_invoke ();
+      glib::exception_handlers_invoke ();
     }
 
     delete slot;
@@ -33,10 +33,10 @@ namespace
 
 } // namespace
 
-namespace Gdk
+namespace gdk
 {
 
-  Pixbuf::Pixbuf (const ::Cairo::RefPtr<::Cairo::Surface>& src,
+  Pixbuf::Pixbuf (const ::cairo::RefPtr<::cairo::Surface>& src,
                   int src_x,
                   int src_y,
                   int width,
@@ -49,7 +49,7 @@ namespace Gdk
   {
     if (!gobj ())
       throw PixbufError (PixbufError::FAILED,
-                         "Could not construct Pixbuf from Cairo::Surface");
+                         "Could not construct Pixbuf from cairo::Surface");
   }
 
   auto
@@ -59,7 +59,7 @@ namespace Gdk
                             int bits_per_sample,
                             int width,
                             int height,
-                            int rowstride) -> Glib::RefPtr<Pixbuf>
+                            int rowstride) -> glib::RefPtr<Pixbuf>
   {
     const auto pixbuf = gdk_pixbuf_new_from_data (data,
                                                   (GdkColorspace) colorspace,
@@ -71,7 +71,7 @@ namespace Gdk
                                                   nullptr,
                                                   nullptr);
 
-    return Glib::wrap (pixbuf);
+    return glib::wrap (pixbuf);
   }
 
   auto
@@ -82,7 +82,7 @@ namespace Gdk
                             int width,
                             int height,
                             int rowstride,
-                            const Pixbuf::SlotDestroyData& destroy_slot) -> Glib::RefPtr<Pixbuf>
+                            const Pixbuf::SlotDestroyData& destroy_slot) -> glib::RefPtr<Pixbuf>
   {
     const auto pixbuf = gdk_pixbuf_new_from_data (
         data,
@@ -95,34 +95,34 @@ namespace Gdk
         &pixbuf_destroy_data_callback,
         new SlotDestroyData (destroy_slot));
 
-    return Glib::wrap (pixbuf);
+    return glib::wrap (pixbuf);
   }
 
   auto
-  Pixbuf::create_from_stream (const Glib::RefPtr<Gio::InputStream>& stream) -> Glib::RefPtr<Pixbuf>
+  Pixbuf::create_from_stream (const glib::RefPtr<gio::InputStream>& stream) -> glib::RefPtr<Pixbuf>
   {
     GError* gerror = nullptr;
-    auto retvalue = Glib::wrap (gdk_pixbuf_new_from_stream (
-        const_cast<GInputStream*> (Glib::unwrap (stream)),
+    auto retvalue = glib::wrap (gdk_pixbuf_new_from_stream (
+        const_cast<GInputStream*> (glib::unwrap (stream)),
         nullptr,
         &(gerror)));
 
     if (gerror)
-      ::Glib::Error::throw_exception (gerror);
+      ::glib::Error::throw_exception (gerror);
 
     return retvalue;
   }
 
   auto
   Pixbuf::create_from_stream_at_scale (
-      const Glib::RefPtr<Gio::InputStream>& stream,
+      const glib::RefPtr<gio::InputStream>& stream,
       int width,
       int height,
-      bool preserve_aspect_ratio) -> Glib::RefPtr<Pixbuf>
+      bool preserve_aspect_ratio) -> glib::RefPtr<Pixbuf>
   {
     GError* gerror = nullptr;
-    auto retvalue = Glib::wrap (gdk_pixbuf_new_from_stream_at_scale (
-        const_cast<GInputStream*> (Glib::unwrap (stream)),
+    auto retvalue = glib::wrap (gdk_pixbuf_new_from_stream_at_scale (
+        const_cast<GInputStream*> (glib::unwrap (stream)),
         width,
         height,
         static_cast<int> (preserve_aspect_ratio),
@@ -130,13 +130,13 @@ namespace Gdk
         &(gerror)));
 
     if (gerror)
-      ::Glib::Error::throw_exception (gerror);
+      ::glib::Error::throw_exception (gerror);
 
     return retvalue;
   }
 
   auto
-  Pixbuf::save (const std::string& filename, const Glib::ustring& type) const -> void
+  Pixbuf::save (const std::string& filename, const glib::ustring& type) const -> void
   {
     GError* gerror = nullptr;
     gdk_pixbuf_savev (const_cast<GdkPixbuf*> (gobj ()),
@@ -147,14 +147,14 @@ namespace Gdk
                       &gerror);
 
     if (gerror)
-      ::Glib::Error::throw_exception (gerror);
+      ::glib::Error::throw_exception (gerror);
   }
 
   auto
   Pixbuf::save (const std::string& filename,
-                const Glib::ustring& type,
-                const std::vector<Glib::ustring>& option_keys,
-                const std::vector<Glib::ustring>& option_values) const -> void
+                const glib::ustring& type,
+                const std::vector<glib::ustring>& option_keys,
+                const std::vector<glib::ustring>& option_values) const -> void
   {
     GError* gerror = nullptr;
 
@@ -163,21 +163,21 @@ namespace Gdk
         filename.c_str (),
         type.c_str (),
         const_cast<char**> (
-            Glib::ArrayHandler<Glib::ustring>::vector_to_array (option_keys)
+            glib::ArrayHandler<glib::ustring>::vector_to_array (option_keys)
                 .data ()),
         const_cast<char**> (
-            Glib::ArrayHandler<Glib::ustring>::vector_to_array (option_values)
+            glib::ArrayHandler<glib::ustring>::vector_to_array (option_values)
                 .data ()),
         &gerror);
 
     if (gerror)
-      ::Glib::Error::throw_exception (gerror);
+      ::glib::Error::throw_exception (gerror);
   }
 
   auto
   Pixbuf::save_to_buffer (gchar*& buffer,
                           gsize& buffer_size,
-                          const Glib::ustring& type) const -> void
+                          const glib::ustring& type) const -> void
   {
     GError* gerror = nullptr;
 
@@ -189,15 +189,15 @@ namespace Gdk
                                nullptr);
 
     if (gerror)
-      ::Glib::Error::throw_exception (gerror);
+      ::glib::Error::throw_exception (gerror);
   }
 
   auto
   Pixbuf::save_to_buffer (gchar*& buffer,
                           gsize& buffer_size,
-                          const Glib::ustring& type,
-                          const std::vector<Glib::ustring>& option_keys,
-                          const std::vector<Glib::ustring>& option_values) const -> void
+                          const glib::ustring& type,
+                          const std::vector<glib::ustring>& option_keys,
+                          const std::vector<glib::ustring>& option_values) const -> void
   {
     GError* gerror = nullptr;
 
@@ -207,22 +207,22 @@ namespace Gdk
         &buffer_size,
         type.c_str (),
         const_cast<char**> (
-            Glib::ArrayHandler<Glib::ustring>::vector_to_array (option_keys)
+            glib::ArrayHandler<glib::ustring>::vector_to_array (option_keys)
                 .data ()),
         const_cast<char**> (
-            Glib::ArrayHandler<Glib::ustring>::vector_to_array (option_values)
+            glib::ArrayHandler<glib::ustring>::vector_to_array (option_values)
                 .data ()),
         &gerror);
 
     if (gerror)
-      ::Glib::Error::throw_exception (gerror);
+      ::glib::Error::throw_exception (gerror);
   }
 
   auto
   Pixbuf::get_formats () -> std::vector<PixbufFormat>
   {
-    return Glib::SListHandler<PixbufFormat, PixbufFormatTraits>::
-        slist_to_vector (gdk_pixbuf_get_formats (), Glib::OWNERSHIP_SHALLOW);
+    return glib::SListHandler<PixbufFormat, PixbufFormatTraits>::
+        slist_to_vector (gdk_pixbuf_get_formats (), glib::OWNERSHIP_SHALLOW);
   }
 
   auto
@@ -232,77 +232,77 @@ namespace Gdk
     return gdk_pixbuf_read_pixels (const_cast<GdkPixbuf*> (gobj ()));
   }
 
-} // namespace Gdk
+} // namespace gdk
 
 namespace
 {
 }
 
 auto
-Glib::Value<Gdk::Colorspace>::value_type () -> GType
+glib::Value<gdk::Colorspace>::value_type () -> GType
 {
   return gdk_colorspace_get_type ();
 }
 
 auto
-Glib::Value<Gdk::InterpType>::value_type () -> GType
+glib::Value<gdk::InterpType>::value_type () -> GType
 {
   return gdk_interp_type_get_type ();
 }
 
-Gdk::PixbufError::PixbufError (Gdk::PixbufError::Code error_code,
-                               const Glib::ustring& error_message)
-  : Glib::Error (GDK_PIXBUF_ERROR, error_code, error_message)
+gdk::PixbufError::PixbufError (gdk::PixbufError::Code error_code,
+                               const glib::ustring& error_message)
+  : glib::Error (GDK_PIXBUF_ERROR, error_code, error_message)
 {
 }
 
-Gdk::PixbufError::PixbufError (GError* gobject)
-  : Glib::Error (gobject)
+gdk::PixbufError::PixbufError (GError* gobject)
+  : glib::Error (gobject)
 {
 }
 
 auto
-Gdk::PixbufError::code () const -> Gdk::PixbufError::Code
+gdk::PixbufError::code () const -> gdk::PixbufError::Code
 {
-  return static_cast<Code> (Glib::Error::code ());
+  return static_cast<Code> (glib::Error::code ());
 }
 
 auto
-Gdk::PixbufError::throw_func (GError* gobject) -> void
+gdk::PixbufError::throw_func (GError* gobject) -> void
 {
-  throw Gdk::PixbufError (gobject);
+  throw gdk::PixbufError (gobject);
 }
 
 auto
-Glib::Value<Gdk::PixbufError::Code>::value_type () -> GType
+glib::Value<gdk::PixbufError::Code>::value_type () -> GType
 {
   return gdk_pixbuf_error_get_type ();
 }
 
 auto
-Glib::Value<Gdk::Pixbuf::Rotation>::value_type () -> GType
+glib::Value<gdk::Pixbuf::Rotation>::value_type () -> GType
 {
   return gdk_pixbuf_rotation_get_type ();
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GdkPixbuf* object, bool take_copy) -> Glib::RefPtr<Gdk::Pixbuf>
+  wrap (GdkPixbuf* object, bool take_copy) -> glib::RefPtr<gdk::Pixbuf>
   {
-    return Glib::make_refptr_for_instance<Gdk::Pixbuf> (
-        dynamic_cast<Gdk::Pixbuf*> (
-            Glib::wrap_auto ((GObject*) (object), take_copy)));
+    return glib::make_refptr_for_instance<gdk::Pixbuf> (
+        dynamic_cast<gdk::Pixbuf*> (
+            glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gdk
+namespace gdk
 {
 
   auto
-  Pixbuf_Class::init () -> const Glib::Class&
+  Pixbuf_Class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -310,8 +310,8 @@ namespace Gdk
 
       register_derived_type (gdk_pixbuf_get_type ());
 
-      Gio::Icon::add_interface (get_type ());
-      Gio::LoadableIcon::add_interface (get_type ());
+      gio::Icon::add_interface (get_type ());
+      gio::LoadableIcon::add_interface (get_type ());
     }
 
     return *this;
@@ -325,7 +325,7 @@ namespace Gdk
   }
 
   auto
-  Pixbuf_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  Pixbuf_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new Pixbuf ((GdkPixbuf*) object);
   }
@@ -337,29 +337,29 @@ namespace Gdk
     return gobj ();
   }
 
-  Pixbuf::Pixbuf (const Glib::ConstructParams& construct_params)
-    : Glib::Object (construct_params)
+  Pixbuf::Pixbuf (const glib::ConstructParams& construct_params)
+    : glib::Object (construct_params)
   {
   }
 
   Pixbuf::Pixbuf (GdkPixbuf* castitem)
-    : Glib::Object ((GObject*) (castitem))
+    : glib::Object ((GObject*) (castitem))
   {
   }
 
   Pixbuf::Pixbuf (Pixbuf&& src) noexcept
-    : Glib::Object (std::move (src)),
-      Gio::Icon (std::move (src)),
-      Gio::LoadableIcon (std::move (src))
+    : glib::Object (std::move (src)),
+      gio::Icon (std::move (src)),
+      gio::LoadableIcon (std::move (src))
   {
   }
 
   auto
   Pixbuf::operator= (Pixbuf&& src) noexcept -> Pixbuf&
   {
-    Glib::Object::operator= (std::move (src));
-    Gio::Icon::operator= (std::move (src));
-    Gio::LoadableIcon::operator= (std::move (src));
+    glib::Object::operator= (std::move (src));
+    gio::Icon::operator= (std::move (src));
+    gio::LoadableIcon::operator= (std::move (src));
     return *this;
   }
 
@@ -380,20 +380,20 @@ namespace Gdk
   }
 
   auto
-  Pixbuf::create (const ::Cairo::RefPtr<::Cairo::Surface>& src,
+  Pixbuf::create (const ::cairo::RefPtr<::cairo::Surface>& src,
                   int src_x,
                   int src_y,
                   int width,
-                  int height) -> Glib::RefPtr<Pixbuf>
+                  int height) -> glib::RefPtr<Pixbuf>
   {
-    return Glib::make_refptr_for_instance<Pixbuf> (
+    return glib::make_refptr_for_instance<Pixbuf> (
         new Pixbuf (src, src_x, src_y, width, height));
   }
 
   auto
-  Pixbuf::copy () const -> Glib::RefPtr<Pixbuf>
+  Pixbuf::copy () const -> glib::RefPtr<Pixbuf>
   {
-    return Glib::wrap (gdk_pixbuf_copy (const_cast<GdkPixbuf*> (gobj ())));
+    return glib::wrap (gdk_pixbuf_copy (const_cast<GdkPixbuf*> (gobj ())));
   }
 
   auto
@@ -401,9 +401,9 @@ namespace Gdk
                   bool has_alpha,
                   int bits_per_sample,
                   int width,
-                  int height) -> Glib::RefPtr<Pixbuf>
+                  int height) -> glib::RefPtr<Pixbuf>
   {
-    return Glib::wrap (gdk_pixbuf_new (static_cast<GdkColorspace> (colorspace),
+    return glib::wrap (gdk_pixbuf_new (static_cast<GdkColorspace> (colorspace),
                                        static_cast<int> (has_alpha),
                                        bits_per_sample,
                                        width,
@@ -411,13 +411,13 @@ namespace Gdk
   }
 
   auto
-  Pixbuf::create_subpixbuf (const Glib::RefPtr<Pixbuf>& src_pixbuf,
+  Pixbuf::create_subpixbuf (const glib::RefPtr<Pixbuf>& src_pixbuf,
                             int src_x,
                             int src_y,
                             int width,
-                            int height) -> Glib::RefPtr<Pixbuf>
+                            int height) -> glib::RefPtr<Pixbuf>
   {
-    return Glib::wrap (gdk_pixbuf_new_subpixbuf (Glib::unwrap (src_pixbuf),
+    return glib::wrap (gdk_pixbuf_new_subpixbuf (glib::unwrap (src_pixbuf),
                                                  src_x,
                                                  src_y,
                                                  width,
@@ -425,13 +425,13 @@ namespace Gdk
   }
 
   auto
-  Pixbuf::create_from_file (const std::string& filename) -> Glib::RefPtr<Pixbuf>
+  Pixbuf::create_from_file (const std::string& filename) -> glib::RefPtr<Pixbuf>
   {
     GError* gerror = nullptr;
     auto retvalue =
-        Glib::wrap (gdk_pixbuf_new_from_file (filename.c_str (), &(gerror)));
+        glib::wrap (gdk_pixbuf_new_from_file (filename.c_str (), &(gerror)));
     if (gerror)
-      ::Glib::Error::throw_exception (gerror);
+      ::glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
@@ -439,28 +439,28 @@ namespace Gdk
   Pixbuf::create_from_file (const std::string& filename,
                             int width,
                             int height,
-                            bool preserve_aspect_ratio) -> Glib::RefPtr<Pixbuf>
+                            bool preserve_aspect_ratio) -> glib::RefPtr<Pixbuf>
   {
     GError* gerror = nullptr;
-    auto retvalue = Glib::wrap (gdk_pixbuf_new_from_file_at_scale (
+    auto retvalue = glib::wrap (gdk_pixbuf_new_from_file_at_scale (
         filename.c_str (),
         width,
         height,
         static_cast<int> (preserve_aspect_ratio),
         &(gerror)));
     if (gerror)
-      ::Glib::Error::throw_exception (gerror);
+      ::glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
   auto
-  Pixbuf::create_from_resource (const std::string& resource_path) -> Glib::RefPtr<Pixbuf>
+  Pixbuf::create_from_resource (const std::string& resource_path) -> glib::RefPtr<Pixbuf>
   {
     GError* gerror = nullptr;
-    auto retvalue = Glib::wrap (
+    auto retvalue = glib::wrap (
         gdk_pixbuf_new_from_resource (resource_path.c_str (), &(gerror)));
     if (gerror)
-      ::Glib::Error::throw_exception (gerror);
+      ::glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
@@ -468,59 +468,59 @@ namespace Gdk
   Pixbuf::create_from_resource (const std::string& resource_path,
                                 int width,
                                 int height,
-                                bool preserve_aspect_ratio) -> Glib::RefPtr<Pixbuf>
+                                bool preserve_aspect_ratio) -> glib::RefPtr<Pixbuf>
   {
     GError* gerror = nullptr;
-    auto retvalue = Glib::wrap (gdk_pixbuf_new_from_resource_at_scale (
+    auto retvalue = glib::wrap (gdk_pixbuf_new_from_resource_at_scale (
         resource_path.c_str (),
         width,
         height,
         static_cast<int> (preserve_aspect_ratio),
         &(gerror)));
     if (gerror)
-      ::Glib::Error::throw_exception (gerror);
+      ::glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
   auto
-  Pixbuf::create_from_xpm_data (const char* const* data) -> Glib::RefPtr<Pixbuf>
+  Pixbuf::create_from_xpm_data (const char* const* data) -> glib::RefPtr<Pixbuf>
   {
-    return Glib::wrap (
+    return glib::wrap (
         gdk_pixbuf_new_from_xpm_data (const_cast<const char**> (data)));
   }
 
   auto
-  Pixbuf::create_from_stream (const Glib::RefPtr<Gio::InputStream>& stream,
-                              const Glib::RefPtr<Gio::Cancellable>& cancellable) -> Glib::RefPtr<Pixbuf>
+  Pixbuf::create_from_stream (const glib::RefPtr<gio::InputStream>& stream,
+                              const glib::RefPtr<gio::Cancellable>& cancellable) -> glib::RefPtr<Pixbuf>
   {
     GError* gerror = nullptr;
-    auto retvalue = Glib::wrap (gdk_pixbuf_new_from_stream (
-        const_cast<GInputStream*> (Glib::unwrap (stream)),
-        const_cast<GCancellable*> (Glib::unwrap (cancellable)),
+    auto retvalue = glib::wrap (gdk_pixbuf_new_from_stream (
+        const_cast<GInputStream*> (glib::unwrap (stream)),
+        const_cast<GCancellable*> (glib::unwrap (cancellable)),
         &(gerror)));
     if (gerror)
-      ::Glib::Error::throw_exception (gerror);
+      ::glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
   auto
   Pixbuf::create_from_stream_at_scale (
-      const Glib::RefPtr<Gio::InputStream>& stream,
+      const glib::RefPtr<gio::InputStream>& stream,
       int width,
       int height,
       bool preserve_aspect_ratio,
-      const Glib::RefPtr<Gio::Cancellable>& cancellable) -> Glib::RefPtr<Pixbuf>
+      const glib::RefPtr<gio::Cancellable>& cancellable) -> glib::RefPtr<Pixbuf>
   {
     GError* gerror = nullptr;
-    auto retvalue = Glib::wrap (gdk_pixbuf_new_from_stream_at_scale (
-        const_cast<GInputStream*> (Glib::unwrap (stream)),
+    auto retvalue = glib::wrap (gdk_pixbuf_new_from_stream_at_scale (
+        const_cast<GInputStream*> (glib::unwrap (stream)),
         width,
         height,
         static_cast<int> (preserve_aspect_ratio),
-        const_cast<GCancellable*> (Glib::unwrap (cancellable)),
+        const_cast<GCancellable*> (glib::unwrap (cancellable)),
         &(gerror)));
     if (gerror)
-      ::Glib::Error::throw_exception (gerror);
+      ::glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
@@ -598,9 +598,9 @@ namespace Gdk
   }
 
   auto
-  Pixbuf::add_alpha (bool substitute_color, guint8 r, guint8 g, guint8 b) const -> Glib::RefPtr<Gdk::Pixbuf>
+  Pixbuf::add_alpha (bool substitute_color, guint8 r, guint8 g, guint8 b) const -> glib::RefPtr<gdk::Pixbuf>
   {
-    return Glib::wrap (
+    return glib::wrap (
         gdk_pixbuf_add_alpha (const_cast<GdkPixbuf*> (gobj ()),
                               static_cast<int> (substitute_color),
                               r,
@@ -613,7 +613,7 @@ namespace Gdk
                      int src_y,
                      int width,
                      int height,
-                     const Glib::RefPtr<Gdk::Pixbuf>& dest_pixbuf,
+                     const glib::RefPtr<gdk::Pixbuf>& dest_pixbuf,
                      int dest_x,
                      int dest_y) const -> void
   {
@@ -622,24 +622,24 @@ namespace Gdk
                           src_y,
                           width,
                           height,
-                          Glib::unwrap (dest_pixbuf),
+                          glib::unwrap (dest_pixbuf),
                           dest_x,
                           dest_y);
   }
 
   auto
-  Pixbuf::saturate_and_pixelate (const Glib::RefPtr<Gdk::Pixbuf>& dest,
+  Pixbuf::saturate_and_pixelate (const glib::RefPtr<gdk::Pixbuf>& dest,
                                  float saturation,
                                  bool pixelate) const -> void
   {
     gdk_pixbuf_saturate_and_pixelate (const_cast<GdkPixbuf*> (gobj ()),
-                                      Glib::unwrap (dest),
+                                      glib::unwrap (dest),
                                       saturation,
                                       static_cast<int> (pixelate));
   }
 
   auto
-  Pixbuf::scale (const Glib::RefPtr<Gdk::Pixbuf>& dest,
+  Pixbuf::scale (const glib::RefPtr<gdk::Pixbuf>& dest,
                  int dest_x,
                  int dest_y,
                  int dest_width,
@@ -651,7 +651,7 @@ namespace Gdk
                  InterpType interp_type) const -> void
   {
     gdk_pixbuf_scale (const_cast<GdkPixbuf*> (gobj ()),
-                      Glib::unwrap (dest),
+                      glib::unwrap (dest),
                       dest_x,
                       dest_y,
                       dest_width,
@@ -664,7 +664,7 @@ namespace Gdk
   }
 
   auto
-  Pixbuf::composite (const Glib::RefPtr<Gdk::Pixbuf>& dest,
+  Pixbuf::composite (const glib::RefPtr<gdk::Pixbuf>& dest,
                      int dest_x,
                      int dest_y,
                      int dest_width,
@@ -677,7 +677,7 @@ namespace Gdk
                      int overall_alpha) const -> void
   {
     gdk_pixbuf_composite (const_cast<GdkPixbuf*> (gobj ()),
-                          Glib::unwrap (dest),
+                          glib::unwrap (dest),
                           dest_x,
                           dest_y,
                           dest_width,
@@ -691,7 +691,7 @@ namespace Gdk
   }
 
   auto
-  Pixbuf::composite_color (const Glib::RefPtr<Gdk::Pixbuf>& dest,
+  Pixbuf::composite_color (const glib::RefPtr<gdk::Pixbuf>& dest,
                            int dest_x,
                            int dest_y,
                            int dest_width,
@@ -709,7 +709,7 @@ namespace Gdk
                            guint32 color2) const -> void
   {
     gdk_pixbuf_composite_color (const_cast<GdkPixbuf*> (gobj ()),
-                                Glib::unwrap (dest),
+                                glib::unwrap (dest),
                                 dest_x,
                                 dest_y,
                                 dest_width,
@@ -730,9 +730,9 @@ namespace Gdk
   auto
   Pixbuf::scale_simple (int dest_width,
                         int dest_height,
-                        InterpType interp_type) const -> Glib::RefPtr<Gdk::Pixbuf>
+                        InterpType interp_type) const -> glib::RefPtr<gdk::Pixbuf>
   {
-    return Glib::wrap (
+    return glib::wrap (
         gdk_pixbuf_scale_simple (const_cast<GdkPixbuf*> (gobj ()),
                                  dest_width,
                                  dest_height,
@@ -746,9 +746,9 @@ namespace Gdk
                                   int overall_alpha,
                                   int check_size,
                                   guint32 color1,
-                                  guint32 color2) const -> Glib::RefPtr<Gdk::Pixbuf>
+                                  guint32 color2) const -> glib::RefPtr<gdk::Pixbuf>
   {
-    return Glib::wrap (gdk_pixbuf_composite_color_simple (
+    return glib::wrap (gdk_pixbuf_composite_color_simple (
         const_cast<GdkPixbuf*> (gobj ()),
         dest_width,
         dest_height,
@@ -760,108 +760,108 @@ namespace Gdk
   }
 
   auto
-  Pixbuf::rotate_simple (Rotation angle) const -> Glib::RefPtr<Gdk::Pixbuf>
+  Pixbuf::rotate_simple (Rotation angle) const -> glib::RefPtr<gdk::Pixbuf>
   {
-    return Glib::wrap (
+    return glib::wrap (
         gdk_pixbuf_rotate_simple (const_cast<GdkPixbuf*> (gobj ()),
                                   static_cast<GdkPixbufRotation> (angle)));
   }
 
   auto
-  Pixbuf::flip (bool horizontal) const -> Glib::RefPtr<Gdk::Pixbuf>
+  Pixbuf::flip (bool horizontal) const -> glib::RefPtr<gdk::Pixbuf>
   {
-    return Glib::wrap (gdk_pixbuf_flip (const_cast<GdkPixbuf*> (gobj ()),
+    return glib::wrap (gdk_pixbuf_flip (const_cast<GdkPixbuf*> (gobj ()),
                                         static_cast<int> (horizontal)));
   }
 
   auto
-  Pixbuf::get_option (const Glib::ustring& key) const -> Glib::ustring
+  Pixbuf::get_option (const glib::ustring& key) const -> glib::ustring
   {
-    return Glib::convert_const_gchar_ptr_to_ustring (
+    return glib::convert_const_gchar_ptr_to_ustring (
         gdk_pixbuf_get_option (const_cast<GdkPixbuf*> (gobj ()), key.c_str ()));
   }
 
   auto
-  Pixbuf::set_option (const Glib::ustring& key, const Glib::ustring& value) -> bool
+  Pixbuf::set_option (const glib::ustring& key, const glib::ustring& value) -> bool
   {
     return gdk_pixbuf_set_option (gobj (), key.c_str (), value.c_str ());
   }
 
   auto
-  Pixbuf::remove_option (const Glib::ustring& key) -> bool
+  Pixbuf::remove_option (const glib::ustring& key) -> bool
   {
     return gdk_pixbuf_remove_option (gobj (), key.c_str ());
   }
 
   auto
-  Pixbuf::copy_options (const Glib::RefPtr<Pixbuf>& dest_pixbuf) const -> bool
+  Pixbuf::copy_options (const glib::RefPtr<Pixbuf>& dest_pixbuf) const -> bool
   {
     return gdk_pixbuf_copy_options (const_cast<GdkPixbuf*> (gobj ()),
-                                    Glib::unwrap (dest_pixbuf));
+                                    glib::unwrap (dest_pixbuf));
   }
 
   auto
-  Pixbuf::apply_embedded_orientation () -> Glib::RefPtr<Pixbuf>
+  Pixbuf::apply_embedded_orientation () -> glib::RefPtr<Pixbuf>
   {
-    return Glib::wrap (gdk_pixbuf_apply_embedded_orientation (gobj ()));
+    return glib::wrap (gdk_pixbuf_apply_embedded_orientation (gobj ()));
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<Colorspace>::value,
+      glib::Traits::ValueCompatibleWithWrapProperty<Colorspace>::value,
       "Type Colorspace cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  Pixbuf::property_colorspace () const -> Glib::PropertyProxy_ReadOnly<Colorspace>
+  Pixbuf::property_colorspace () const -> glib::PropertyProxy_ReadOnly<Colorspace>
   {
-    return Glib::PropertyProxy_ReadOnly<Colorspace> (this, "colorspace");
+    return glib::PropertyProxy_ReadOnly<Colorspace> (this, "colorspace");
   }
 
   auto
-  Pixbuf::property_n_channels () const -> Glib::PropertyProxy_ReadOnly<int>
+  Pixbuf::property_n_channels () const -> glib::PropertyProxy_ReadOnly<int>
   {
-    return Glib::PropertyProxy_ReadOnly<int> (this, "n-channels");
+    return glib::PropertyProxy_ReadOnly<int> (this, "n-channels");
   }
 
   auto
-  Pixbuf::property_has_alpha () const -> Glib::PropertyProxy_ReadOnly<bool>
+  Pixbuf::property_has_alpha () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "has-alpha");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "has-alpha");
   }
 
   auto
-  Pixbuf::property_bits_per_sample () const -> Glib::PropertyProxy_ReadOnly<int>
+  Pixbuf::property_bits_per_sample () const -> glib::PropertyProxy_ReadOnly<int>
   {
-    return Glib::PropertyProxy_ReadOnly<int> (this, "bits-per-sample");
+    return glib::PropertyProxy_ReadOnly<int> (this, "bits-per-sample");
   }
 
   auto
-  Pixbuf::property_width () const -> Glib::PropertyProxy_ReadOnly<int>
+  Pixbuf::property_width () const -> glib::PropertyProxy_ReadOnly<int>
   {
-    return Glib::PropertyProxy_ReadOnly<int> (this, "width");
+    return glib::PropertyProxy_ReadOnly<int> (this, "width");
   }
 
   auto
-  Pixbuf::property_height () const -> Glib::PropertyProxy_ReadOnly<int>
+  Pixbuf::property_height () const -> glib::PropertyProxy_ReadOnly<int>
   {
-    return Glib::PropertyProxy_ReadOnly<int> (this, "height");
+    return glib::PropertyProxy_ReadOnly<int> (this, "height");
   }
 
   auto
-  Pixbuf::property_rowstride () const -> Glib::PropertyProxy_ReadOnly<int>
+  Pixbuf::property_rowstride () const -> glib::PropertyProxy_ReadOnly<int>
   {
-    return Glib::PropertyProxy_ReadOnly<int> (this, "rowstride");
+    return glib::PropertyProxy_ReadOnly<int> (this, "rowstride");
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<void*>::value,
+      glib::Traits::ValueCompatibleWithWrapProperty<void*>::value,
       "Type void* cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  Pixbuf::property_pixels () const -> Glib::PropertyProxy_ReadOnly<void*>
+  Pixbuf::property_pixels () const -> glib::PropertyProxy_ReadOnly<void*>
   {
-    return Glib::PropertyProxy_ReadOnly<void*> (this, "pixels");
+    return glib::PropertyProxy_ReadOnly<void*> (this, "pixels");
   }
 
-} // namespace Gdk
+} // namespace gdk

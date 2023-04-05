@@ -25,17 +25,17 @@ using GtkTreeStoreClass = struct _GtkTreeStoreClass;
   #endif
 
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT TreeStore_Class;
 }
   #endif
 
-namespace Gtk
+namespace gtk
 {
 
-  class LIBMM_GTK_SYMEXPORT TreeStore : public Glib::Object,
-                              public Gtk::TreeModel,
+  class LIBMM_GTK_SYMEXPORT TreeStore : public glib::Object,
+                              public gtk::TreeModel,
                               public TreeSortable,
                               public TreeDragSource,
                               public TreeDragDest,
@@ -58,7 +58,7 @@ namespace Gtk
     static CppClassType treestore_class_;
 
   protected:
-    explicit TreeStore (const Glib::ConstructParams& construct_params);
+    explicit TreeStore (const glib::ConstructParams& construct_params);
     explicit TreeStore (GtkTreeStore* castitem);
 
   #endif
@@ -102,7 +102,7 @@ namespace Gtk
 
   public:
     static auto
-    create (const TreeModelColumnRecord& columns) -> Glib::RefPtr<TreeStore>;
+    create (const TreeModelColumnRecord& columns) -> glib::RefPtr<TreeStore>;
 
     auto
     set_column_types (const TreeModelColumnRecord& columns) -> void;
@@ -155,20 +155,20 @@ namespace Gtk
     auto
     set_value_impl (const iterator& row,
                     int column,
-                    const Glib::ValueBase& value) -> void override;
+                    const glib::ValueBase& value) -> void override;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkTreeStore* object, bool take_copy = false) -> Glib::RefPtr<Gtk::TreeStore>;
-} // namespace Glib
+  wrap (GtkTreeStore* object, bool take_copy = false) -> glib::RefPtr<gtk::TreeStore>;
+} // namespace glib
 
 #endif
 

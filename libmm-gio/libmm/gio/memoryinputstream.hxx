@@ -18,16 +18,16 @@ using GMemoryInputStreamClass = struct _GMemoryInputStreamClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gio
+namespace gio
 {
   class LIBMM_GIO_SYMEXPORT MemoryInputStream_Class;
 }
 #endif
 
-namespace Gio
+namespace gio
 {
 
-  class LIBMM_GIO_SYMEXPORT MemoryInputStream : public Gio::InputStream,
+  class LIBMM_GIO_SYMEXPORT MemoryInputStream : public gio::InputStream,
                                       public Seekable,
                                       public PollableInputStream
   {
@@ -48,7 +48,7 @@ namespace Gio
     static CppClassType memoryinputstream_class_;
 
   protected:
-    explicit MemoryInputStream (const Glib::ConstructParams& construct_params);
+    explicit MemoryInputStream (const glib::ConstructParams& construct_params);
     explicit MemoryInputStream (GMemoryInputStream* castitem);
 
 #endif
@@ -90,7 +90,7 @@ namespace Gio
 
   public:
     static auto
-    create () -> Glib::RefPtr<MemoryInputStream>;
+    create () -> glib::RefPtr<MemoryInputStream>;
 
     auto
     add_data (const void* data, gssize len, GDestroyNotify destroy) -> void;
@@ -102,21 +102,21 @@ namespace Gio
         -> void;
 
     auto
-    add_bytes (const Glib::RefPtr<const Glib::Bytes>& bytes) -> void;
+    add_bytes (const glib::RefPtr<const glib::Bytes>& bytes) -> void;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gio
+} // namespace gio
 
-namespace Glib
+namespace glib
 {
 
   LIBMM_GIO_SYMEXPORT
   auto
-  wrap (GMemoryInputStream* object, bool take_copy = false) -> Glib::RefPtr<Gio::MemoryInputStream>;
-} // namespace Glib
+  wrap (GMemoryInputStream* object, bool take_copy = false) -> glib::RefPtr<gio::MemoryInputStream>;
+} // namespace glib
 
 #endif

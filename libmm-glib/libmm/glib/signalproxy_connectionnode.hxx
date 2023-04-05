@@ -13,7 +13,7 @@ using GObject = struct _GObject;
 using GClosure = struct _GClosure;
 #endif
 
-namespace Glib
+namespace glib
 {
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -40,6 +40,6 @@ namespace Glib
 
 #endif
 
-} // namespace Glib
+} // namespace glib
 
 #endif

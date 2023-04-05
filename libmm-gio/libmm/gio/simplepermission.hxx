@@ -14,13 +14,13 @@ using GSimplePermissionClass = struct _GSimplePermissionClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gio
+namespace gio
 {
   class LIBMM_GIO_SYMEXPORT SimplePermission_Class;
 }
 #endif
 
-namespace Gio
+namespace gio
 {
 
   class LIBMM_GIO_SYMEXPORT SimplePermission : public Permission
@@ -42,7 +42,7 @@ namespace Gio
     static CppClassType simplepermission_class_;
 
   protected:
-    explicit SimplePermission (const Glib::ConstructParams& construct_params);
+    explicit SimplePermission (const glib::ConstructParams& construct_params);
     explicit SimplePermission (GSimplePermission* castitem);
 
 #endif
@@ -84,21 +84,21 @@ namespace Gio
 
   public:
     static auto
-    create (bool allowed) -> Glib::RefPtr<SimplePermission>;
+    create (bool allowed) -> glib::RefPtr<SimplePermission>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gio
+} // namespace gio
 
-namespace Glib
+namespace glib
 {
 
   LIBMM_GIO_SYMEXPORT
   auto
-  wrap (GSimplePermission* object, bool take_copy = false) -> Glib::RefPtr<Gio::SimplePermission>;
-} // namespace Glib
+  wrap (GSimplePermission* object, bool take_copy = false) -> glib::RefPtr<gio::SimplePermission>;
+} // namespace glib
 
 #endif

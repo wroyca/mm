@@ -7,32 +7,32 @@
 
 #include <libmm/glib/class.hxx>
 
-namespace Gtk
+namespace gtk
 {
 
-  class LIBMM_GTK_SYMEXPORT Object_Class : public Glib::Class
+  class LIBMM_GTK_SYMEXPORT Object_Class : public glib::Class
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
     typedef Object CppObjectType;
     typedef GObject BaseObjectType;
     typedef GObjectClass BaseClassType;
-    typedef Glib::Object_Class CppClassParent;
+    typedef glib::Object_Class CppClassParent;
     typedef GObjectClass BaseClassParent;
 
     friend class Object;
 #endif
 
     auto
-    init () -> const Glib::Class&;
+    init () -> const glib::Class&;
 
     static auto
     class_init_function (void* g_class, void* class_data) -> void;
 
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
-} // namespace Gtk
+} // namespace gtk
 
 #endif

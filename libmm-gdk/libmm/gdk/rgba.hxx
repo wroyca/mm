@@ -18,7 +18,7 @@ extern "C"
 }
 #endif
 
-namespace Gdk
+namespace gdk
 {
 
   class LIBMM_GDK_SYMEXPORT RGBA
@@ -69,7 +69,7 @@ namespace Gdk
   public:
     RGBA ();
 
-    explicit RGBA (const Glib::ustring& value);
+    explicit RGBA (const glib::ustring& value);
 
     RGBA (float red_, float green_, float blue_, float alpha_ = 1.0);
 
@@ -96,7 +96,7 @@ namespace Gdk
     set_hsl (float h, float s, float l, float alpha = 1.0) -> void;
 
     auto
-    set (const Glib::ustring& spec) -> bool;
+    set (const glib::ustring& spec) -> bool;
 
     auto
     get_red_u () const -> gushort;
@@ -147,7 +147,7 @@ namespace Gdk
     set_alpha (float value) -> void;
 
     auto
-    to_string () const -> Glib::ustring;
+    to_string () const -> glib::ustring;
 
     auto
     is_clear () const -> bool;
@@ -160,7 +160,7 @@ namespace Gdk
 
   struct RGBATraits
   {
-    typedef Gdk::RGBA CppType;
+    typedef gdk::RGBA CppType;
     typedef GdkRGBA CType;
     typedef GdkRGBA CTypeNonConst;
 
@@ -189,9 +189,9 @@ namespace Gdk
   };
 #endif
 
-} // namespace Gdk
+} // namespace gdk
 
-namespace Gdk
+namespace gdk
 {
   LIBMM_GDK_SYMEXPORT auto
   operator== (const RGBA& lhs, const RGBA& rhs) -> bool;
@@ -199,9 +199,9 @@ namespace Gdk
   LIBMM_GDK_SYMEXPORT auto
   operator!= (const RGBA& lhs, const RGBA& rhs) -> bool;
 
-} // namespace Gdk
+} // namespace gdk
 
-namespace Gdk
+namespace gdk
 {
 
   inline auto
@@ -210,20 +210,20 @@ namespace Gdk
     lhs.swap (rhs);
   }
 
-} // namespace Gdk
+} // namespace gdk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GDK_SYMEXPORT auto
-  wrap (GdkRGBA* object, bool take_copy = false) -> Gdk::RGBA;
+  wrap (GdkRGBA* object, bool take_copy = false) -> gdk::RGBA;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
   template <>
-  class LIBMM_GDK_SYMEXPORT Value<Gdk::RGBA> : public Glib::Value_Boxed<Gdk::RGBA>
+  class LIBMM_GDK_SYMEXPORT Value<gdk::RGBA> : public glib::Value_Boxed<gdk::RGBA>
   {
   };
 #endif
 
-} // namespace Glib
+} // namespace glib
 
 #endif

@@ -14,13 +14,13 @@ using GtkShortcutsSectionClass = struct _GtkShortcutsSectionClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT ShortcutsSection_Class;
 }
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
   class LIBMM_GTK_SYMEXPORT ShortcutsSection : public Box
@@ -50,7 +50,7 @@ namespace Gtk
     static CppClassType shortcutssection_class_;
 
   protected:
-    explicit ShortcutsSection (const Glib::ConstructParams& construct_params);
+    explicit ShortcutsSection (const glib::ConstructParams& construct_params);
     explicit ShortcutsSection (GtkShortcutsSection* castitem);
 
 #endif
@@ -82,35 +82,35 @@ namespace Gtk
     ShortcutsSection ();
 
     auto
-    property_section_name () -> Glib::PropertyProxy<Glib::ustring>;
+    property_section_name () -> glib::PropertyProxy<glib::ustring>;
 
     auto
     property_section_name () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+        -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
     auto
-    property_title () -> Glib::PropertyProxy<Glib::ustring>;
+    property_title () -> glib::PropertyProxy<glib::ustring>;
 
     auto
-    property_title () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+    property_title () const -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
     auto
-    property_max_height () -> Glib::PropertyProxy<unsigned int>;
+    property_max_height () -> glib::PropertyProxy<unsigned int>;
 
     auto
-    property_max_height () const -> Glib::PropertyProxy_ReadOnly<unsigned int>;
+    property_max_height () const -> glib::PropertyProxy_ReadOnly<unsigned int>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkShortcutsSection* object, bool take_copy = false) -> Gtk::ShortcutsSection*;
-} // namespace Glib
+  wrap (GtkShortcutsSection* object, bool take_copy = false) -> gtk::ShortcutsSection*;
+} // namespace glib
 
 #endif

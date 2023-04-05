@@ -18,16 +18,16 @@ using GApplicationCommandLineClass = struct _GApplicationCommandLineClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gio
+namespace gio
 {
   class LIBMM_GIO_SYMEXPORT ApplicationCommandLine_Class;
 }
 #endif
 
-namespace Gio
+namespace gio
 {
 
-  class LIBMM_GIO_SYMEXPORT ApplicationCommandLine : public Glib::Object
+  class LIBMM_GIO_SYMEXPORT ApplicationCommandLine : public glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -48,7 +48,7 @@ namespace Gio
 
   protected:
     explicit ApplicationCommandLine (
-        const Glib::ConstructParams& construct_params);
+        const glib::ConstructParams& construct_params);
     explicit ApplicationCommandLine (GApplicationCommandLine* castitem);
 
 #endif
@@ -94,16 +94,16 @@ namespace Gio
     get_arguments (int& argc) const -> char**;
 
     auto
-    get_options_dict () -> Glib::RefPtr<Glib::VariantDict>;
+    get_options_dict () -> glib::RefPtr<glib::VariantDict>;
 
     auto
-    get_options_dict () const -> Glib::RefPtr<const Glib::VariantDict>;
+    get_options_dict () const -> glib::RefPtr<const glib::VariantDict>;
 
     auto
-    get_stdin () -> Glib::RefPtr<InputStream>;
+    get_stdin () -> glib::RefPtr<InputStream>;
 
     auto
-    get_stdin () const -> Glib::RefPtr<const InputStream>;
+    get_stdin () const -> glib::RefPtr<const InputStream>;
 
     auto
     get_cwd () const -> std::string;
@@ -112,14 +112,14 @@ namespace Gio
     get_environ () const -> std::vector<std::string>;
 
     auto
-    getenv (const Glib::ustring& name) const -> std::string;
+    getenv (const glib::ustring& name) const -> std::string;
 
     auto
     is_remote () const -> bool;
 
     auto
     get_platform_data () const
-        -> Glib::Variant<std::map<Glib::ustring, Glib::VariantBase>>;
+        -> glib::Variant<std::map<glib::ustring, glib::VariantBase>>;
 
     auto
     set_exit_status (int exit_status) -> void;
@@ -128,27 +128,27 @@ namespace Gio
     get_exit_status () const -> int;
 
     auto
-    print (const Glib::ustring& message) -> void;
+    print (const glib::ustring& message) -> void;
 
     auto
-    printerr (const Glib::ustring& message) -> void;
+    printerr (const glib::ustring& message) -> void;
 
     auto
-    create_file_for_arg (const Glib::ustring& arg) const -> Glib::RefPtr<File>;
+    create_file_for_arg (const glib::ustring& arg) const -> glib::RefPtr<File>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gio
+} // namespace gio
 
-namespace Glib
+namespace glib
 {
 
   LIBMM_GIO_SYMEXPORT
   auto
-  wrap (GApplicationCommandLine* object, bool take_copy = false) -> Glib::RefPtr<Gio::ApplicationCommandLine>;
-} // namespace Glib
+  wrap (GApplicationCommandLine* object, bool take_copy = false) -> glib::RefPtr<gio::ApplicationCommandLine>;
+} // namespace glib
 
 #endif

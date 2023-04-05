@@ -11,25 +11,25 @@ namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GtkStyleProvider* object, bool take_copy) -> Glib::RefPtr<Gtk::StyleProvider>
+  wrap (GtkStyleProvider* object, bool take_copy) -> glib::RefPtr<gtk::StyleProvider>
   {
-    return Glib::make_refptr_for_instance<Gtk::StyleProvider> (
-        dynamic_cast<Gtk::StyleProvider*> (
-            Glib::wrap_auto_interface<Gtk::StyleProvider> ((GObject*) (object),
+    return glib::make_refptr_for_instance<gtk::StyleProvider> (
+        dynamic_cast<gtk::StyleProvider*> (
+            glib::wrap_auto_interface<gtk::StyleProvider> ((GObject*) (object),
                                                            take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gtk
+namespace gtk
 {
 
   auto
-  StyleProvider_Class::init () -> const Glib::Interface_Class&
+  StyleProvider_Class::init () -> const glib::Interface_Class&
   {
     if (!gtype_)
     {
@@ -50,35 +50,35 @@ namespace Gtk
   }
 
   auto
-  StyleProvider_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  StyleProvider_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new StyleProvider ((GtkStyleProvider*) (object));
   }
 
   StyleProvider::StyleProvider ()
-    : Glib::Interface (styleprovider_class_.init ())
+    : glib::Interface (styleprovider_class_.init ())
   {
   }
 
   StyleProvider::StyleProvider (GtkStyleProvider* castitem)
-    : Glib::Interface ((GObject*) (castitem))
+    : glib::Interface ((GObject*) (castitem))
   {
   }
 
-  StyleProvider::StyleProvider (const Glib::Interface_Class& interface_class)
-    : Glib::Interface (interface_class)
+  StyleProvider::StyleProvider (const glib::Interface_Class& interface_class)
+    : glib::Interface (interface_class)
   {
   }
 
   StyleProvider::StyleProvider (StyleProvider&& src) noexcept
-    : Glib::Interface (std::move (src))
+    : glib::Interface (std::move (src))
   {
   }
 
   auto
   StyleProvider::operator= (StyleProvider&& src) noexcept -> StyleProvider&
   {
-    Glib::Interface::operator= (std::move (src));
+    glib::Interface::operator= (std::move (src));
     return *this;
   }
 
@@ -106,22 +106,22 @@ namespace Gtk
 
   auto
   StyleProvider::add_provider_for_display (
-      const Glib::RefPtr<Gdk::Display>& display,
-      const Glib::RefPtr<StyleProvider>& provider,
+      const glib::RefPtr<gdk::Display>& display,
+      const glib::RefPtr<StyleProvider>& provider,
       guint priority) -> void
   {
-    gtk_style_context_add_provider_for_display (Glib::unwrap (display),
-                                                Glib::unwrap (provider),
+    gtk_style_context_add_provider_for_display (glib::unwrap (display),
+                                                glib::unwrap (provider),
                                                 priority);
   }
 
   auto
   StyleProvider::remove_provider_for_display (
-      const Glib::RefPtr<Gdk::Display>& display,
-      const Glib::RefPtr<StyleProvider>& provider) -> void
+      const glib::RefPtr<gdk::Display>& display,
+      const glib::RefPtr<StyleProvider>& provider) -> void
   {
-    gtk_style_context_remove_provider_for_display (Glib::unwrap (display),
-                                                   Glib::unwrap (provider));
+    gtk_style_context_remove_provider_for_display (glib::unwrap (display),
+                                                   glib::unwrap (provider));
   }
 
-} // namespace Gtk
+} // namespace gtk

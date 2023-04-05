@@ -16,17 +16,17 @@ using GBufferedOutputStreamClass = struct _GBufferedOutputStreamClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gio
+namespace gio
 {
   class LIBMM_GIO_SYMEXPORT BufferedOutputStream_Class;
 }
 #endif
 
-namespace Gio
+namespace gio
 {
 
-  class LIBMM_GIO_SYMEXPORT BufferedOutputStream : public Gio::FilterOutputStream,
-                                         public Gio::Seekable
+  class LIBMM_GIO_SYMEXPORT BufferedOutputStream : public gio::FilterOutputStream,
+                                         public gio::Seekable
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -46,7 +46,7 @@ namespace Gio
 
   protected:
     explicit BufferedOutputStream (
-        const Glib::ConstructParams& construct_params);
+        const glib::ConstructParams& construct_params);
     explicit BufferedOutputStream (GBufferedOutputStream* castitem);
 
 #endif
@@ -85,20 +85,20 @@ namespace Gio
   private:
   protected:
     explicit BufferedOutputStream (
-        const Glib::RefPtr<OutputStream>& base_stream);
+        const glib::RefPtr<OutputStream>& base_stream);
 
     explicit BufferedOutputStream (
-        const Glib::RefPtr<OutputStream>& base_stream,
+        const glib::RefPtr<OutputStream>& base_stream,
         gsize buffer_size);
 
   public:
     static auto
-    create (const Glib::RefPtr<OutputStream>& base_stream)
-        -> Glib::RefPtr<BufferedOutputStream>;
+    create (const glib::RefPtr<OutputStream>& base_stream)
+        -> glib::RefPtr<BufferedOutputStream>;
 
     static auto
-    create_sized (const Glib::RefPtr<OutputStream>& base_stream,
-                  gsize buffer_size) -> Glib::RefPtr<BufferedOutputStream>;
+    create_sized (const glib::RefPtr<OutputStream>& base_stream,
+                  gsize buffer_size) -> glib::RefPtr<BufferedOutputStream>;
 
     auto
     get_buffer_size () const -> gsize;
@@ -113,30 +113,30 @@ namespace Gio
     get_auto_grow () const -> bool;
 
     auto
-    property_buffer_size () -> Glib::PropertyProxy<guint>;
+    property_buffer_size () -> glib::PropertyProxy<guint>;
 
     auto
-    property_buffer_size () const -> Glib::PropertyProxy_ReadOnly<guint>;
+    property_buffer_size () const -> glib::PropertyProxy_ReadOnly<guint>;
 
     auto
-    property_auto_grow () -> Glib::PropertyProxy<bool>;
+    property_auto_grow () -> glib::PropertyProxy<bool>;
 
     auto
-    property_auto_grow () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_auto_grow () const -> glib::PropertyProxy_ReadOnly<bool>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gio
+} // namespace gio
 
-namespace Glib
+namespace glib
 {
 
   LIBMM_GIO_SYMEXPORT
   auto
-  wrap (GBufferedOutputStream* object, bool take_copy = false) -> Glib::RefPtr<Gio::BufferedOutputStream>;
-} // namespace Glib
+  wrap (GBufferedOutputStream* object, bool take_copy = false) -> glib::RefPtr<gio::BufferedOutputStream>;
+} // namespace glib
 
 #endif

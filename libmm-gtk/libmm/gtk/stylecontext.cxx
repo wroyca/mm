@@ -14,16 +14,16 @@
   #include <libmm/gdk/texture.hxx>
   #include <libmm/gtk/widget.hxx>
 
-namespace Gtk
+namespace gtk
 {
 
   auto
-  StyleContext::get_color () const -> Gdk::RGBA
+  StyleContext::get_color () const -> gdk::RGBA
   {
     GdkRGBA crgba;
     gtk_style_context_get_color (const_cast<GtkStyleContext*> (gobj ()),
                                  &crgba);
-    return Gdk::RGBA (&crgba, true);
+    return gdk::RGBA (&crgba, true);
   }
 
   auto
@@ -53,36 +53,36 @@ namespace Gtk
     return Border (&cborder, true);
   }
 
-} // namespace Gtk
+} // namespace gtk
 
 namespace
 {
 }
 
 auto
-Glib::Value<Gtk::StyleContext::PrintFlags>::value_type () -> GType
+glib::Value<gtk::StyleContext::PrintFlags>::value_type () -> GType
 {
   return gtk_style_context_print_flags_get_type ();
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GtkStyleContext* object, bool take_copy) -> Glib::RefPtr<Gtk::StyleContext>
+  wrap (GtkStyleContext* object, bool take_copy) -> glib::RefPtr<gtk::StyleContext>
   {
-    return Glib::make_refptr_for_instance<Gtk::StyleContext> (
-        dynamic_cast<Gtk::StyleContext*> (
-            Glib::wrap_auto ((GObject*) (object), take_copy)));
+    return glib::make_refptr_for_instance<gtk::StyleContext> (
+        dynamic_cast<gtk::StyleContext*> (
+            glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gtk
+namespace gtk
 {
 
   auto
-  StyleContext_Class::init () -> const Glib::Class&
+  StyleContext_Class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -102,7 +102,7 @@ namespace Gtk
   }
 
   auto
-  StyleContext_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  StyleContext_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new StyleContext ((GtkStyleContext*) object);
   }
@@ -114,25 +114,25 @@ namespace Gtk
     return gobj ();
   }
 
-  StyleContext::StyleContext (const Glib::ConstructParams& construct_params)
-    : Glib::Object (construct_params)
+  StyleContext::StyleContext (const glib::ConstructParams& construct_params)
+    : glib::Object (construct_params)
   {
   }
 
   StyleContext::StyleContext (GtkStyleContext* castitem)
-    : Glib::Object ((GObject*) (castitem))
+    : glib::Object ((GObject*) (castitem))
   {
   }
 
   StyleContext::StyleContext (StyleContext&& src) noexcept
-    : Glib::Object (std::move (src))
+    : glib::Object (std::move (src))
   {
   }
 
   auto
   StyleContext::operator= (StyleContext&& src) noexcept -> StyleContext&
   {
-    Glib::Object::operator= (std::move (src));
+    glib::Object::operator= (std::move (src));
     return *this;
   }
 
@@ -153,8 +153,8 @@ namespace Gtk
   }
 
   StyleContext::StyleContext ()
-    : Glib::ObjectBase (nullptr),
-      Glib::Object (Glib::ConstructParams (stylecontext_class_.init ()))
+    : glib::ObjectBase (nullptr),
+      glib::Object (glib::ConstructParams (stylecontext_class_.init ()))
   {
   }
 
@@ -162,12 +162,12 @@ namespace Gtk
   G_GNUC_BEGIN_IGNORE_DEPRECATIONS
   auto
   StyleContext::add_provider_for_display (
-      const Glib::RefPtr<Gdk::Display>& display,
-      const Glib::RefPtr<StyleProvider>& provider,
+      const glib::RefPtr<gdk::Display>& display,
+      const glib::RefPtr<StyleProvider>& provider,
       guint priority) -> void
   {
-    gtk_style_context_add_provider_for_display (Glib::unwrap (display),
-                                                Glib::unwrap (provider),
+    gtk_style_context_add_provider_for_display (glib::unwrap (display),
+                                                glib::unwrap (provider),
                                                 priority);
   }
 
@@ -178,27 +178,27 @@ namespace Gtk
   G_GNUC_BEGIN_IGNORE_DEPRECATIONS
   auto
   StyleContext::remove_provider_for_display (
-      const Glib::RefPtr<Gdk::Display>& display,
-      const Glib::RefPtr<StyleProvider>& provider) -> void
+      const glib::RefPtr<gdk::Display>& display,
+      const glib::RefPtr<StyleProvider>& provider) -> void
   {
-    gtk_style_context_remove_provider_for_display (Glib::unwrap (display),
-                                                   Glib::unwrap (provider));
+    gtk_style_context_remove_provider_for_display (glib::unwrap (display),
+                                                   glib::unwrap (provider));
   }
 
   G_GNUC_END_IGNORE_DEPRECATIONS
   #endif
 
   auto
-  StyleContext::add_provider (const Glib::RefPtr<StyleProvider>& provider,
+  StyleContext::add_provider (const glib::RefPtr<StyleProvider>& provider,
                               guint priority) -> void
   {
-    gtk_style_context_add_provider (gobj (), Glib::unwrap (provider), priority);
+    gtk_style_context_add_provider (gobj (), glib::unwrap (provider), priority);
   }
 
   auto
-  StyleContext::remove_provider (const Glib::RefPtr<StyleProvider>& provider) -> void
+  StyleContext::remove_provider (const glib::RefPtr<StyleProvider>& provider) -> void
   {
-    gtk_style_context_remove_provider (gobj (), Glib::unwrap (provider));
+    gtk_style_context_remove_provider (gobj (), glib::unwrap (provider));
   }
 
   auto
@@ -261,7 +261,7 @@ namespace Gtk
   #ifndef GTKMM_DISABLE_DEPRECATED
   G_GNUC_BEGIN_IGNORE_DEPRECATIONS
   auto
-  StyleContext::add_class (const Glib::ustring& class_name) -> void
+  StyleContext::add_class (const glib::ustring& class_name) -> void
   {
     gtk_style_context_add_class (gobj (), class_name.c_str ());
   }
@@ -272,7 +272,7 @@ namespace Gtk
   #ifndef GTKMM_DISABLE_DEPRECATED
   G_GNUC_BEGIN_IGNORE_DEPRECATIONS
   auto
-  StyleContext::remove_class (const Glib::ustring& class_name) -> void
+  StyleContext::remove_class (const glib::ustring& class_name) -> void
   {
     gtk_style_context_remove_class (gobj (), class_name.c_str ());
   }
@@ -283,7 +283,7 @@ namespace Gtk
   #ifndef GTKMM_DISABLE_DEPRECATED
   G_GNUC_BEGIN_IGNORE_DEPRECATIONS
   auto
-  StyleContext::has_class (const Glib::ustring& class_name) -> bool
+  StyleContext::has_class (const glib::ustring& class_name) -> bool
   {
     return gtk_style_context_has_class (gobj (), class_name.c_str ());
   }
@@ -294,9 +294,9 @@ namespace Gtk
   #ifndef GTKMM_DISABLE_DEPRECATED
   G_GNUC_BEGIN_IGNORE_DEPRECATIONS
   auto
-  StyleContext::set_display (const Glib::RefPtr<Gdk::Display>& display) -> void
+  StyleContext::set_display (const glib::RefPtr<gdk::Display>& display) -> void
   {
-    gtk_style_context_set_display (gobj (), Glib::unwrap (display));
+    gtk_style_context_set_display (gobj (), glib::unwrap (display));
   }
 
   G_GNUC_END_IGNORE_DEPRECATIONS
@@ -305,9 +305,9 @@ namespace Gtk
   #ifndef GTKMM_DISABLE_DEPRECATED
   G_GNUC_BEGIN_IGNORE_DEPRECATIONS
   auto
-  StyleContext::get_display () -> Glib::RefPtr<Gdk::Display>
+  StyleContext::get_display () -> glib::RefPtr<gdk::Display>
   {
-    auto retvalue = Glib::wrap (gtk_style_context_get_display (gobj ()));
+    auto retvalue = glib::wrap (gtk_style_context_get_display (gobj ()));
     if (retvalue)
       retvalue->reference ();
     return retvalue;
@@ -319,7 +319,7 @@ namespace Gtk
   #ifndef GTKMM_DISABLE_DEPRECATED
   G_GNUC_BEGIN_IGNORE_DEPRECATIONS
   auto
-  StyleContext::get_display () const -> Glib::RefPtr<const Gdk::Display>
+  StyleContext::get_display () const -> glib::RefPtr<const gdk::Display>
   {
     return const_cast<StyleContext*> (this)->get_display ();
   }
@@ -328,7 +328,7 @@ namespace Gtk
   #endif
 
   auto
-  StyleContext::lookup_color (const Glib::ustring& color_name, Gdk::RGBA& color) -> bool
+  StyleContext::lookup_color (const glib::ustring& color_name, gdk::RGBA& color) -> bool
   {
     return gtk_style_context_lookup_color (gobj (),
                                            color_name.c_str (),
@@ -336,7 +336,7 @@ namespace Gtk
   }
 
   auto
-  StyleContext::render_check (const Cairo::RefPtr<Cairo::Context>& cr,
+  StyleContext::render_check (const cairo::RefPtr<cairo::Context>& cr,
                               double x,
                               double y,
                               double width,
@@ -351,7 +351,7 @@ namespace Gtk
   }
 
   auto
-  StyleContext::render_option (const Cairo::RefPtr<Cairo::Context>& cr,
+  StyleContext::render_option (const cairo::RefPtr<cairo::Context>& cr,
                                double x,
                                double y,
                                double width,
@@ -366,7 +366,7 @@ namespace Gtk
   }
 
   auto
-  StyleContext::render_arrow (const Cairo::RefPtr<Cairo::Context>& cr,
+  StyleContext::render_arrow (const cairo::RefPtr<cairo::Context>& cr,
                               double angle,
                               double x,
                               double y,
@@ -381,7 +381,7 @@ namespace Gtk
   }
 
   auto
-  StyleContext::render_background (const Cairo::RefPtr<Cairo::Context>& cr,
+  StyleContext::render_background (const cairo::RefPtr<cairo::Context>& cr,
                                    double x,
                                    double y,
                                    double width,
@@ -396,7 +396,7 @@ namespace Gtk
   }
 
   auto
-  StyleContext::render_frame (const Cairo::RefPtr<Cairo::Context>& cr,
+  StyleContext::render_frame (const cairo::RefPtr<cairo::Context>& cr,
                               double x,
                               double y,
                               double width,
@@ -411,7 +411,7 @@ namespace Gtk
   }
 
   auto
-  StyleContext::render_expander (const Cairo::RefPtr<Cairo::Context>& cr,
+  StyleContext::render_expander (const cairo::RefPtr<cairo::Context>& cr,
                                  double x,
                                  double y,
                                  double width,
@@ -426,7 +426,7 @@ namespace Gtk
   }
 
   auto
-  StyleContext::render_focus (const Cairo::RefPtr<Cairo::Context>& cr,
+  StyleContext::render_focus (const cairo::RefPtr<cairo::Context>& cr,
                               double x,
                               double y,
                               double width,
@@ -441,20 +441,20 @@ namespace Gtk
   }
 
   auto
-  StyleContext::render_layout (const Cairo::RefPtr<Cairo::Context>& cr,
+  StyleContext::render_layout (const cairo::RefPtr<cairo::Context>& cr,
                                double x,
                                double y,
-                               const Glib::RefPtr<Pango::Layout>& layout) -> void
+                               const glib::RefPtr<pango::Layout>& layout) -> void
   {
     gtk_render_layout (gobj (),
                        ((cr) ? (cr)->cobj () : nullptr),
                        x,
                        y,
-                       Glib::unwrap (layout));
+                       glib::unwrap (layout));
   }
 
   auto
-  StyleContext::render_line (const Cairo::RefPtr<Cairo::Context>& cr,
+  StyleContext::render_line (const cairo::RefPtr<cairo::Context>& cr,
                              double x0,
                              double y0,
                              double x1,
@@ -464,7 +464,7 @@ namespace Gtk
   }
 
   auto
-  StyleContext::render_handle (const Cairo::RefPtr<Cairo::Context>& cr,
+  StyleContext::render_handle (const cairo::RefPtr<cairo::Context>& cr,
                                double x,
                                double y,
                                double width,
@@ -479,7 +479,7 @@ namespace Gtk
   }
 
   auto
-  StyleContext::render_activity (const Cairo::RefPtr<Cairo::Context>& cr,
+  StyleContext::render_activity (const cairo::RefPtr<cairo::Context>& cr,
                                  double x,
                                  double y,
                                  double width,
@@ -494,46 +494,46 @@ namespace Gtk
   }
 
   auto
-  StyleContext::render_icon (const Cairo::RefPtr<Cairo::Context>& cr,
-                             const Glib::RefPtr<Gdk::Texture>& texture,
+  StyleContext::render_icon (const cairo::RefPtr<cairo::Context>& cr,
+                             const glib::RefPtr<gdk::Texture>& texture,
                              double x,
                              double y) -> void
   {
     gtk_render_icon (gobj (),
                      ((cr) ? (cr)->cobj () : nullptr),
-                     Glib::unwrap (texture),
+                     glib::unwrap (texture),
                      x,
                      y);
   }
 
   auto
-  StyleContext::to_string (PrintFlags flags) const -> Glib::ustring
+  StyleContext::to_string (PrintFlags flags) const -> glib::ustring
   {
-    return Glib::convert_return_gchar_ptr_to_ustring (
+    return glib::convert_return_gchar_ptr_to_ustring (
         gtk_style_context_to_string (
             const_cast<GtkStyleContext*> (gobj ()),
             static_cast<GtkStyleContextPrintFlags> (flags)));
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<
-          Glib::RefPtr<Gdk::Display>>::value,
-      "Type Glib::RefPtr<Gdk::Display> cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      glib::Traits::ValueCompatibleWithWrapProperty<
+          glib::RefPtr<gdk::Display>>::value,
+      "Type glib::RefPtr<gdk::Display> cannot be used in _WRAP_PROPERTY. "
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  StyleContext::property_display () -> Glib::PropertyProxy<Glib::RefPtr<Gdk::Display>>
+  StyleContext::property_display () -> glib::PropertyProxy<glib::RefPtr<gdk::Display>>
   {
-    return Glib::PropertyProxy<Glib::RefPtr<Gdk::Display>> (this, "display");
+    return glib::PropertyProxy<glib::RefPtr<gdk::Display>> (this, "display");
   }
 
   auto
-  StyleContext::property_display () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gdk::Display>>
+  StyleContext::property_display () const -> glib::PropertyProxy_ReadOnly<glib::RefPtr<gdk::Display>>
   {
-    return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gdk::Display>> (this,
+    return glib::PropertyProxy_ReadOnly<glib::RefPtr<gdk::Display>> (this,
                                                                      "display");
   }
 
-} // namespace Gtk
+} // namespace gtk
 
 #endif

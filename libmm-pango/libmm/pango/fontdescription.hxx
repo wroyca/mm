@@ -18,7 +18,7 @@ extern "C"
 }
 #endif
 
-namespace Pango
+namespace pango
 {
 
   enum class Style
@@ -28,24 +28,24 @@ namespace Pango
     ITALIC
   };
 
-} // namespace Pango
+} // namespace pango
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_PANGO_SYMEXPORT Value<Pango::Style> : public Glib::Value_Enum<Pango::Style>
+  class LIBMM_PANGO_SYMEXPORT Value<pango::Style> : public glib::Value_Enum<pango::Style>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
-namespace Pango
+namespace pango
 {
 
   enum class Variant
@@ -59,25 +59,25 @@ namespace Pango
     TITLE_CAPS
   };
 
-} // namespace Pango
+} // namespace pango
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_PANGO_SYMEXPORT Value<Pango::Variant>
-    : public Glib::Value_Enum<Pango::Variant>
+  class LIBMM_PANGO_SYMEXPORT Value<pango::Variant>
+    : public glib::Value_Enum<pango::Variant>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
-namespace Pango
+namespace pango
 {
 
   enum class Stretch
@@ -93,25 +93,25 @@ namespace Pango
     ULTRA_EXPANDED
   };
 
-} // namespace Pango
+} // namespace pango
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_PANGO_SYMEXPORT Value<Pango::Stretch>
-    : public Glib::Value_Enum<Pango::Stretch>
+  class LIBMM_PANGO_SYMEXPORT Value<pango::Stretch>
+    : public glib::Value_Enum<pango::Stretch>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
-namespace Pango
+namespace pango
 {
 
   class Weight_Wrapper final
@@ -139,25 +139,25 @@ namespace Pango
 
   using Weight = Weight_Wrapper::Weight;
 
-} // namespace Pango
+} // namespace pango
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_PANGO_SYMEXPORT Value<Pango::Weight>
-    : public Glib::Value_Enum<Pango::Weight>
+  class LIBMM_PANGO_SYMEXPORT Value<pango::Weight>
+    : public glib::Value_Enum<pango::Weight>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
-namespace Pango
+namespace pango
 {
 
   enum class FontMask
@@ -220,25 +220,25 @@ namespace Pango
                                          static_cast<unsigned> (rhs)));
   }
 
-} // namespace Pango
+} // namespace pango
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_PANGO_SYMEXPORT Value<Pango::FontMask>
-    : public Glib::Value_Flags<Pango::FontMask>
+  class LIBMM_PANGO_SYMEXPORT Value<pango::FontMask>
+    : public glib::Value_Flags<pango::FontMask>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
-namespace Pango
+namespace pango
 {
 
   enum class Gravity
@@ -250,25 +250,25 @@ namespace Pango
     AUTO
   };
 
-} // namespace Pango
+} // namespace pango
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_PANGO_SYMEXPORT Value<Pango::Gravity>
-    : public Glib::Value_Enum<Pango::Gravity>
+  class LIBMM_PANGO_SYMEXPORT Value<pango::Gravity>
+    : public glib::Value_Enum<pango::Gravity>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
-namespace Pango
+namespace pango
 {
 
   class LIBMM_PANGO_SYMEXPORT FontDescription
@@ -320,16 +320,16 @@ namespace Pango
 
   private:
   public:
-    explicit FontDescription (const Glib::ustring& font_name);
+    explicit FontDescription (const glib::ustring& font_name);
 
     auto
     hash () const -> guint;
 
     auto
-    set_family (const Glib::ustring& family) -> void;
+    set_family (const glib::ustring& family) -> void;
 
     auto
-    get_family () const -> Glib::ustring;
+    get_family () const -> glib::ustring;
 
     auto
     set_style (Style style) -> void;
@@ -374,10 +374,10 @@ namespace Pango
     get_gravity () const -> Gravity;
 
     auto
-    set_variations (const Glib::ustring& settings) -> void;
+    set_variations (const glib::ustring& settings) -> void;
 
     auto
-    get_variations () const -> Glib::ustring;
+    get_variations () const -> glib::ustring;
 
     auto
     get_set_fields () const -> FontMask;
@@ -393,15 +393,15 @@ namespace Pango
                   const FontDescription& new_match) const -> bool;
 
     auto
-    to_string () const -> Glib::ustring;
+    to_string () const -> glib::ustring;
 
     auto
-    to_filename () const -> Glib::ustring;
+    to_filename () const -> glib::ustring;
   };
 
-} // namespace Pango
+} // namespace pango
 
-namespace Pango
+namespace pango
 {
 
   LIBMM_PANGO_SYMEXPORT
@@ -412,9 +412,9 @@ namespace Pango
   auto
   operator!= (const FontDescription& lhs, const FontDescription& rhs) -> bool;
 
-} // namespace Pango
+} // namespace pango
 
-namespace Pango
+namespace pango
 {
 
   inline auto
@@ -423,23 +423,23 @@ namespace Pango
     lhs.swap (rhs);
   }
 
-} // namespace Pango
+} // namespace pango
 
-namespace Glib
+namespace glib
 {
 
   LIBMM_PANGO_SYMEXPORT
   auto
-  wrap (PangoFontDescription* object, bool take_copy = false) -> Pango::FontDescription;
+  wrap (PangoFontDescription* object, bool take_copy = false) -> pango::FontDescription;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
   template <>
-  class LIBMM_PANGO_SYMEXPORT Value<Pango::FontDescription>
-    : public Glib::Value_Boxed<Pango::FontDescription>
+  class LIBMM_PANGO_SYMEXPORT Value<pango::FontDescription>
+    : public glib::Value_Boxed<pango::FontDescription>
   {
   };
 #endif
 
-} // namespace Glib
+} // namespace glib
 
 #endif

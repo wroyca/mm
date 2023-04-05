@@ -23,17 +23,17 @@ using GtkBuilderScopeClass = struct _GtkBuilderScopeClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT BuilderScope_Class;
 }
 #endif
 
-namespace Gtk
+namespace gtk
 {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
-  class LIBMM_GTK_SYMEXPORT BuilderScope : public Glib::Interface
+  class LIBMM_GTK_SYMEXPORT BuilderScope : public glib::Interface
   {
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -57,7 +57,7 @@ namespace Gtk
 
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
-    explicit BuilderScope (const Glib::Interface_Class& interface_class);
+    explicit BuilderScope (const glib::Interface_Class& interface_class);
 
   public:
     explicit BuilderScope (GtkBuilderScope* castitem);
@@ -103,13 +103,13 @@ namespace Gtk
   };
 #endif
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkBuilderScope* object, bool take_copy = false) -> Glib::RefPtr<Gtk::BuilderScope>;
+  wrap (GtkBuilderScope* object, bool take_copy = false) -> glib::RefPtr<gtk::BuilderScope>;
 
-} // namespace Glib
+} // namespace glib
 
 #endif

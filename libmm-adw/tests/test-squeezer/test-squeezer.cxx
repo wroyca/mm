@@ -5,10 +5,10 @@
  */
 
 #include <libmm/adw/mm-adw.hxx>
-#include <libmm/adw/init.hxx> // Adw::init
+#include <libmm/adw/init.hxx> // adw::init
 
 static void test_adw_squeezer_homogeneous(void) {
-  Adw::Squeezer squeezer;
+  adw::Squeezer squeezer;
 
   g_assert_true(squeezer.get_homogeneous());
 
@@ -20,7 +20,7 @@ static void test_adw_squeezer_homogeneous(void) {
 }
 
 static void test_adw_squeezer_allow_none(void) {
-  Adw::Squeezer squeezer;
+  adw::Squeezer squeezer;
 
   g_assert_false(squeezer.get_allow_none());
 
@@ -32,7 +32,7 @@ static void test_adw_squeezer_allow_none(void) {
 }
 
 static void test_adw_squeezer_transition_duration(void) {
-  Adw::Squeezer squeezer;
+  adw::Squeezer squeezer;
 
   g_assert_true(squeezer.get_transition_duration() == 200);
 
@@ -44,30 +44,30 @@ static void test_adw_squeezer_transition_duration(void) {
 }
 
 static void test_adw_squeezer_transition_type(void) {
-  Adw::Squeezer squeezer;
+  adw::Squeezer squeezer;
 
-  g_assert_true(squeezer.get_transition_type() == Adw::SqueezerTransitionType::NONE);
+  g_assert_true(squeezer.get_transition_type() == adw::SqueezerTransitionType::NONE);
 
-  squeezer.set_transition_type(Adw::SqueezerTransitionType::CROSSFADE);
+  squeezer.set_transition_type(adw::SqueezerTransitionType::CROSSFADE);
   g_assert_true(squeezer.get_transition_type() ==
-           Adw::SqueezerTransitionType::CROSSFADE);
+           adw::SqueezerTransitionType::CROSSFADE);
 
-  squeezer.set_transition_type(Adw::SqueezerTransitionType::NONE);
-  g_assert_true(squeezer.get_transition_type() == Adw::SqueezerTransitionType::NONE);
+  squeezer.set_transition_type(adw::SqueezerTransitionType::NONE);
+  g_assert_true(squeezer.get_transition_type() == adw::SqueezerTransitionType::NONE);
 }
 
 static void test_adw_squeezer_transition_running(void) {
-  Adw::Squeezer squeezer;
+  adw::Squeezer squeezer;
 
   g_assert_false(squeezer.get_transition_running());
 }
 
 static void test_adw_squeezer_show_hide_child(void) {
-  Adw::Squeezer squeezer;
+  adw::Squeezer squeezer;
 
   g_assert_true(squeezer.get_visible_child() == nullptr);
 
-  Gtk::Label *child = Gtk::make_managed<Gtk::Label>("");
+  gtk::Label *child = gtk::make_managed<gtk::Label>("");
 
   squeezer.add(child);
   g_assert_true(squeezer.get_visible_child() == child);
@@ -83,7 +83,7 @@ static void test_adw_squeezer_show_hide_child(void) {
 }
 
 static void test_adw_squeezer_interpolate_size(void) {
-  Adw::Squeezer squeezer;
+  adw::Squeezer squeezer;
 
   g_assert_false(squeezer.get_interpolate_size());
 
@@ -95,11 +95,11 @@ static void test_adw_squeezer_interpolate_size(void) {
 }
 
 static void test_adw_squeezer_page_enabled(void) {
-  Adw::Squeezer squeezer;
+  adw::Squeezer squeezer;
 
-  Gtk::Label *child = Gtk::make_managed<Gtk::Label>();
+  gtk::Label *child = gtk::make_managed<gtk::Label>();
 
-  Glib::RefPtr<Adw::SqueezerPage> page = squeezer.add(child);
+  glib::RefPtr<adw::SqueezerPage> page = squeezer.add(child);
   g_assert_true(page->get_enabled());
 
   page->set_enabled(false);
@@ -111,7 +111,7 @@ static void test_adw_squeezer_page_enabled(void) {
 
 int main(int argc, char *argv[]) {
   gtk_test_init(&argc, &argv, NULL);
-  Adw::init();
+  adw::init();
 
   g_test_add_func("/Adwaita/ViewSwitcher/homogeneous",
                   test_adw_squeezer_homogeneous);

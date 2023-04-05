@@ -8,7 +8,7 @@
 #include <libmm/glib/checksum.hxx>
 #include <libmm/glib/utility.hxx>
 
-namespace Glib
+namespace glib
 {
 
   Checksum::Checksum (Type type)
@@ -42,13 +42,13 @@ namespace Glib
     g_checksum_update (gobj (), (const guchar*) data.c_str (), data.size ());
   }
 
-} // namespace Glib
+} // namespace glib
 
 namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
@@ -57,9 +57,9 @@ namespace Glib
     return Checksum (object, take_copy);
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Glib
+namespace glib
 {
 
   auto
@@ -161,4 +161,4 @@ namespace Glib
                                      length));
   }
 
-} // namespace Glib
+} // namespace glib

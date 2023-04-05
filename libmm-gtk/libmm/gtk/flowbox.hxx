@@ -20,13 +20,13 @@ using GtkFlowBoxClass = struct _GtkFlowBoxClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT FlowBox_Class;
 }
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
   class LIBMM_GTK_SYMEXPORT FlowBox : public Widget,
@@ -57,7 +57,7 @@ namespace Gtk
     static CppClassType flowbox_class_;
 
   protected:
-    explicit FlowBox (const Glib::ConstructParams& construct_params);
+    explicit FlowBox (const glib::ConstructParams& construct_params);
     explicit FlowBox (GtkFlowBox* castitem);
 
 #endif
@@ -158,10 +158,10 @@ namespace Gtk
     selected_foreach (const SlotSelectedForeach& slot) -> void;
 
     auto
-    get_selected_children () -> std::vector<Gtk::FlowBoxChild*>;
+    get_selected_children () -> std::vector<gtk::FlowBoxChild*>;
 
     auto
-    get_selected_children () const -> std::vector<const Gtk::FlowBoxChild*>;
+    get_selected_children () const -> std::vector<const gtk::FlowBoxChild*>;
 
     auto
     select_child (FlowBoxChild& child) -> void;
@@ -182,10 +182,10 @@ namespace Gtk
     get_selection_mode () const -> SelectionMode;
 
     auto
-    set_hadjustment (const Glib::RefPtr<Adjustment>& adjustment) -> void;
+    set_hadjustment (const glib::RefPtr<Adjustment>& adjustment) -> void;
 
     auto
-    set_vadjustment (const Glib::RefPtr<Adjustment>& adjustment) -> void;
+    set_vadjustment (const glib::RefPtr<Adjustment>& adjustment) -> void;
 
     auto
     set_filter_func (const SlotFilter& slot) -> void;
@@ -207,76 +207,76 @@ namespace Gtk
 
     template <typename T_item>
     using SlotCreateWidget =
-        sigc::slot<Gtk::Widget*(const Glib::RefPtr<T_item>&)>;
+        sigc::slot<gtk::Widget*(const glib::RefPtr<T_item>&)>;
 
     auto
-    bind_model (const Glib::RefPtr<Gio::ListModel>& model,
-                const SlotCreateWidget<Glib::Object>& slot_create_widget)
+    bind_model (const glib::RefPtr<gio::ListModel>& model,
+                const SlotCreateWidget<glib::Object>& slot_create_widget)
         -> void;
 
     template <typename T_item, typename T_slot>
     auto
-    bind_list_store (const Glib::RefPtr<Gio::ListStore<T_item>>& store,
+    bind_list_store (const glib::RefPtr<gio::ListStore<T_item>>& store,
                      T_slot&& slot_create_widget) -> void;
 
     auto
-    property_selection_mode () -> Glib::PropertyProxy<SelectionMode>;
+    property_selection_mode () -> glib::PropertyProxy<SelectionMode>;
 
     auto
     property_selection_mode () const
-        -> Glib::PropertyProxy_ReadOnly<SelectionMode>;
+        -> glib::PropertyProxy_ReadOnly<SelectionMode>;
 
     auto
-    property_activate_on_single_click () -> Glib::PropertyProxy<bool>;
+    property_activate_on_single_click () -> glib::PropertyProxy<bool>;
 
     auto
     property_activate_on_single_click () const
-        -> Glib::PropertyProxy_ReadOnly<bool>;
+        -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_accept_unpaired_release () -> Glib::PropertyProxy<bool>;
+    property_accept_unpaired_release () -> glib::PropertyProxy<bool>;
 
     auto
     property_accept_unpaired_release () const
-        -> Glib::PropertyProxy_ReadOnly<bool>;
+        -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_homogeneous () -> Glib::PropertyProxy<bool>;
+    property_homogeneous () -> glib::PropertyProxy<bool>;
 
     auto
-    property_homogeneous () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_homogeneous () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_min_children_per_line () -> Glib::PropertyProxy<guint>;
+    property_min_children_per_line () -> glib::PropertyProxy<guint>;
 
     auto
     property_min_children_per_line () const
-        -> Glib::PropertyProxy_ReadOnly<guint>;
+        -> glib::PropertyProxy_ReadOnly<guint>;
 
     auto
-    property_max_children_per_line () -> Glib::PropertyProxy<guint>;
+    property_max_children_per_line () -> glib::PropertyProxy<guint>;
 
     auto
     property_max_children_per_line () const
-        -> Glib::PropertyProxy_ReadOnly<guint>;
+        -> glib::PropertyProxy_ReadOnly<guint>;
 
     auto
-    property_row_spacing () -> Glib::PropertyProxy<guint>;
+    property_row_spacing () -> glib::PropertyProxy<guint>;
 
     auto
-    property_row_spacing () const -> Glib::PropertyProxy_ReadOnly<guint>;
+    property_row_spacing () const -> glib::PropertyProxy_ReadOnly<guint>;
 
     auto
-    property_column_spacing () -> Glib::PropertyProxy<guint>;
+    property_column_spacing () -> glib::PropertyProxy<guint>;
 
     auto
-    property_column_spacing () const -> Glib::PropertyProxy_ReadOnly<guint>;
+    property_column_spacing () const -> glib::PropertyProxy_ReadOnly<guint>;
 
     auto
-    signal_child_activated () -> Glib::SignalProxy<void (FlowBoxChild*)>;
+    signal_child_activated () -> glib::SignalProxy<void (FlowBoxChild*)>;
 
     auto
-    signal_selected_children_changed () -> Glib::SignalProxy<void ()>;
+    signal_selected_children_changed () -> glib::SignalProxy<void ()>;
 
   private:
     template <typename T_item>
@@ -293,7 +293,7 @@ namespace Gtk
 
   template <typename T_item, typename T_slot>
   auto
-  FlowBox::bind_list_store (const Glib::RefPtr<Gio::ListStore<T_item>>& store,
+  FlowBox::bind_list_store (const glib::RefPtr<gio::ListStore<T_item>>& store,
                             T_slot&& slot_create_widget) -> void
   {
     auto slot_copy = new SlotCreateWidget<T_item> (
@@ -301,10 +301,10 @@ namespace Gtk
 
     gtk_flow_box_bind_model (
         gobj (),
-        store ? store->Gio::ListModel::gobj () : nullptr,
+        store ? store->gio::ListModel::gobj () : nullptr,
         &proxy_bind_list_store_create_widget_callback<T_item>,
         slot_copy,
-        &Glib::destroy_notify_delete<SlotCreateWidget<T_item>>);
+        &glib::destroy_notify_delete<SlotCreateWidget<T_item>>);
   }
 
   template <typename T_item>
@@ -316,26 +316,26 @@ namespace Gtk
 
     try
     {
-      Gtk::Widget* widget =
-          slot (std::dynamic_pointer_cast<T_item> (Glib::wrap (cobject, true)));
+      gtk::Widget* widget =
+          slot (std::dynamic_pointer_cast<T_item> (glib::wrap (cobject, true)));
       if (widget)
         return widget->gobj ();
     }
     catch (...)
     {
-      Glib::exception_handlers_invoke ();
+      glib::exception_handlers_invoke ();
     }
     return nullptr;
   }
 
 #endif
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkFlowBox* object, bool take_copy = false) -> Gtk::FlowBox*;
-} // namespace Glib
+  wrap (GtkFlowBox* object, bool take_copy = false) -> gtk::FlowBox*;
+} // namespace glib
 
 #endif

@@ -11,23 +11,23 @@ namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GtkEditableLabel* object, bool take_copy) -> Gtk::EditableLabel*
+  wrap (GtkEditableLabel* object, bool take_copy) -> gtk::EditableLabel*
   {
-    return dynamic_cast<Gtk::EditableLabel*> (
-        Glib::wrap_auto ((GObject*) (object), take_copy));
+    return dynamic_cast<gtk::EditableLabel*> (
+        glib::wrap_auto ((GObject*) (object), take_copy));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gtk
+namespace gtk
 {
 
   auto
-  EditableLabel_Class::init () -> const Glib::Class&
+  EditableLabel_Class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -47,23 +47,23 @@ namespace Gtk
   }
 
   auto
-  EditableLabel_Class::wrap_new (GObject* o) -> Glib::ObjectBase*
+  EditableLabel_Class::wrap_new (GObject* o) -> glib::ObjectBase*
   {
     return manage (new EditableLabel ((GtkEditableLabel*) (o)));
   }
 
-  EditableLabel::EditableLabel (const Glib::ConstructParams& construct_params)
-    : Gtk::Widget (construct_params)
+  EditableLabel::EditableLabel (const glib::ConstructParams& construct_params)
+    : gtk::Widget (construct_params)
   {
   }
 
   EditableLabel::EditableLabel (GtkEditableLabel* castitem)
-    : Gtk::Widget ((GtkWidget*) (castitem))
+    : gtk::Widget ((GtkWidget*) (castitem))
   {
   }
 
   EditableLabel::EditableLabel (EditableLabel&& src) noexcept
-    : Gtk::Widget (std::move (src)),
+    : gtk::Widget (std::move (src)),
       Editable (std::move (src))
   {
   }
@@ -71,7 +71,7 @@ namespace Gtk
   auto
   EditableLabel::operator= (EditableLabel&& src) noexcept -> EditableLabel&
   {
-    Gtk::Widget::operator= (std::move (src));
+    gtk::Widget::operator= (std::move (src));
     Editable::operator= (std::move (src));
     return *this;
   }
@@ -96,14 +96,14 @@ namespace Gtk
   }
 
   EditableLabel::EditableLabel ()
-    : Glib::ObjectBase (nullptr),
-      Gtk::Widget (Glib::ConstructParams (editablelabel_class_.init ()))
+    : glib::ObjectBase (nullptr),
+      gtk::Widget (glib::ConstructParams (editablelabel_class_.init ()))
   {
   }
 
-  EditableLabel::EditableLabel (const Glib::ustring& text)
-    : Glib::ObjectBase (nullptr),
-      Gtk::Widget (Glib::ConstructParams (editablelabel_class_.init (),
+  EditableLabel::EditableLabel (const glib::ustring& text)
+    : glib::ObjectBase (nullptr),
+      gtk::Widget (glib::ConstructParams (editablelabel_class_.init (),
                                           "text",
                                           text.c_str (),
                                           nullptr))
@@ -130,15 +130,15 @@ namespace Gtk
   }
 
   auto
-  EditableLabel::property_editing () -> Glib::PropertyProxy<bool>
+  EditableLabel::property_editing () -> glib::PropertyProxy<bool>
   {
-    return Glib::PropertyProxy<bool> (this, "editing");
+    return glib::PropertyProxy<bool> (this, "editing");
   }
 
   auto
-  EditableLabel::property_editing () const -> Glib::PropertyProxy_ReadOnly<bool>
+  EditableLabel::property_editing () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "editing");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "editing");
   }
 
-} // namespace Gtk
+} // namespace gtk

@@ -15,13 +15,13 @@ using GtkPopoverMenuBarClass = struct _GtkPopoverMenuBarClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT PopoverMenuBar_Class;
 }
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
   class LIBMM_GTK_SYMEXPORT PopoverMenuBar : public Widget
@@ -51,7 +51,7 @@ namespace Gtk
     static CppClassType popovermenubar_class_;
 
   protected:
-    explicit PopoverMenuBar (const Glib::ConstructParams& construct_params);
+    explicit PopoverMenuBar (const glib::ConstructParams& construct_params);
     explicit PopoverMenuBar (GtkPopoverMenuBar* castitem);
 
 #endif
@@ -81,41 +81,41 @@ namespace Gtk
   private:
   public:
     explicit PopoverMenuBar (
-        const Glib::RefPtr<Gio::MenuModel>& menu_model = {});
+        const glib::RefPtr<gio::MenuModel>& menu_model = {});
 
     auto
-    set_menu_model (const Glib::RefPtr<Gio::MenuModel>& model) -> void;
+    set_menu_model (const glib::RefPtr<gio::MenuModel>& model) -> void;
 
     auto
-    get_menu_model () -> Glib::RefPtr<Gio::MenuModel>;
+    get_menu_model () -> glib::RefPtr<gio::MenuModel>;
 
     auto
-    get_menu_model () const -> Glib::RefPtr<const Gio::MenuModel>;
+    get_menu_model () const -> glib::RefPtr<const gio::MenuModel>;
 
     auto
-    add_child (Widget& child, const Glib::ustring& id) -> bool;
+    add_child (Widget& child, const glib::ustring& id) -> bool;
 
     auto
     remove_child (Widget& child) -> bool;
 
     auto
-    property_menu_model () -> Glib::PropertyProxy<Glib::RefPtr<Gio::MenuModel>>;
+    property_menu_model () -> glib::PropertyProxy<glib::RefPtr<gio::MenuModel>>;
 
     auto
     property_menu_model () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gio::MenuModel>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<gio::MenuModel>>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkPopoverMenuBar* object, bool take_copy = false) -> Gtk::PopoverMenuBar*;
-} // namespace Glib
+  wrap (GtkPopoverMenuBar* object, bool take_copy = false) -> gtk::PopoverMenuBar*;
+} // namespace glib
 
 #endif

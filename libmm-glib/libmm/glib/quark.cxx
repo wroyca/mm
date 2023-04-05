@@ -2,7 +2,7 @@
 
 #include <libmm/glib/quark.hxx>
 
-namespace Glib
+namespace glib
 {
 
   QueryQuark::QueryQuark (const GQuark& q)
@@ -43,4 +43,4 @@ namespace Glib
   GQuark quark_ = 0;
   GQuark quark_cpp_wrapper_deleted_ = 0;
 
-} // namespace Glib
+} // namespace glib

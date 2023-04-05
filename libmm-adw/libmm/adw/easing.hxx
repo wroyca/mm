@@ -13,7 +13,7 @@
 #include <libmm/gtk/mm-gtk.hxx>
 #include <libmm/adw/export.hxx>
 
-namespace Adw
+namespace adw
 {
 
   enum class LIBMM_ADW_SYMEXPORT Easing
@@ -51,28 +51,28 @@ namespace Adw
     EASE_IN_OUT_BOUNCE
   };
 
-} // namespace Adw
+} // namespace adw
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_ADW_SYMEXPORT Value<Adw::Easing> : public Glib::Value_Enum<Adw::Easing>
+  class LIBMM_ADW_SYMEXPORT Value<adw::Easing> : public glib::Value_Enum<adw::Easing>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
-namespace Adw
+namespace adw
 {
 
   LIBMM_ADW_SYMEXPORT auto
-  ease (Adw::Easing ease, double) -> double;
+  ease (adw::Easing ease, double) -> double;
 
 }
 

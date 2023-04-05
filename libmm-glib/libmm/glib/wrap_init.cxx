@@ -35,7 +35,7 @@
 #include <libmm/glib/variantiter.hxx>
 #include <libmm/glib/varianttype.hxx>
 
-namespace Glib
+namespace glib
 {
 
   class Binding_Class
@@ -68,4 +68,4 @@ namespace Glib
     g_type_ensure (Binding::get_type ());
   }
 
-} // namespace Glib
+} // namespace glib

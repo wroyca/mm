@@ -15,23 +15,23 @@ namespace
                                                GdkEvent* p0,
                                                void* data) -> gboolean
   {
-    using namespace Gtk;
-    using SlotType = sigc::slot<bool (const Glib::RefPtr<const Gdk::Event>&)>;
+    using namespace gtk;
+    using SlotType = sigc::slot<bool (const glib::RefPtr<const gdk::Event>&)>;
 
     auto obj = dynamic_cast<EventControllerLegacy*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
     {
       try
       {
-        if (const auto slot = Glib::SignalProxyNormal::data_to_slot (data))
+        if (const auto slot = glib::SignalProxyNormal::data_to_slot (data))
           return static_cast<int> (
-              (*static_cast<SlotType*> (slot)) (Glib::wrap (p0, true)));
+              (*static_cast<SlotType*> (slot)) (glib::wrap (p0, true)));
       }
       catch (...)
       {
-        Glib::exception_handlers_invoke ();
+        glib::exception_handlers_invoke ();
       }
     }
 
@@ -45,22 +45,22 @@ namespace
       GdkEvent* p0,
       void* data) -> gboolean
   {
-    using namespace Gtk;
-    using SlotType = sigc::slot<void (const Glib::RefPtr<const Gdk::Event>&)>;
+    using namespace gtk;
+    using SlotType = sigc::slot<void (const glib::RefPtr<const gdk::Event>&)>;
 
     auto obj = dynamic_cast<EventControllerLegacy*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
     {
       try
       {
-        if (const auto slot = Glib::SignalProxyNormal::data_to_slot (data))
-          (*static_cast<SlotType*> (slot)) (Glib::wrap (p0, true));
+        if (const auto slot = glib::SignalProxyNormal::data_to_slot (data))
+          (*static_cast<SlotType*> (slot)) (glib::wrap (p0, true));
       }
       catch (...)
       {
-        Glib::exception_handlers_invoke ();
+        glib::exception_handlers_invoke ();
       }
     }
 
@@ -68,31 +68,31 @@ namespace
     return RType ();
   }
 
-  static const Glib::SignalProxyInfo EventControllerLegacy_signal_event_info = {
+  static const glib::SignalProxyInfo EventControllerLegacy_signal_event_info = {
       "event",
       (GCallback) &EventControllerLegacy_signal_event_callback,
       (GCallback) &EventControllerLegacy_signal_event_notify_callback};
 
 } // namespace
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GtkEventControllerLegacy* object, bool take_copy) -> Glib::RefPtr<Gtk::EventControllerLegacy>
+  wrap (GtkEventControllerLegacy* object, bool take_copy) -> glib::RefPtr<gtk::EventControllerLegacy>
   {
-    return Glib::make_refptr_for_instance<Gtk::EventControllerLegacy> (
-        dynamic_cast<Gtk::EventControllerLegacy*> (
-            Glib::wrap_auto ((GObject*) (object), take_copy)));
+    return glib::make_refptr_for_instance<gtk::EventControllerLegacy> (
+        dynamic_cast<gtk::EventControllerLegacy*> (
+            glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gtk
+namespace gtk
 {
 
   auto
-  EventControllerLegacy_Class::init () -> const Glib::Class&
+  EventControllerLegacy_Class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -113,7 +113,7 @@ namespace Gtk
   }
 
   auto
-  EventControllerLegacy_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  EventControllerLegacy_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new EventControllerLegacy ((GtkEventControllerLegacy*) object);
   }
@@ -126,7 +126,7 @@ namespace Gtk
   }
 
   EventControllerLegacy::EventControllerLegacy (
-      const Glib::ConstructParams& construct_params)
+      const glib::ConstructParams& construct_params)
     : EventController (construct_params)
   {
   }
@@ -168,25 +168,25 @@ namespace Gtk
   }
 
   EventControllerLegacy::EventControllerLegacy ()
-    : Glib::ObjectBase (nullptr),
+    : glib::ObjectBase (nullptr),
       EventController (
-          Glib::ConstructParams (eventcontrollerlegacy_class_.init ()))
+          glib::ConstructParams (eventcontrollerlegacy_class_.init ()))
   {
   }
 
   auto
-  EventControllerLegacy::create () -> Glib::RefPtr<EventControllerLegacy>
+  EventControllerLegacy::create () -> glib::RefPtr<EventControllerLegacy>
   {
-    return Glib::make_refptr_for_instance<EventControllerLegacy> (
+    return glib::make_refptr_for_instance<EventControllerLegacy> (
         new EventControllerLegacy ());
   }
 
   auto
-  EventControllerLegacy::signal_event () -> Glib::SignalProxy<bool (const Glib::RefPtr<const Gdk::Event>&)>
+  EventControllerLegacy::signal_event () -> glib::SignalProxy<bool (const glib::RefPtr<const gdk::Event>&)>
   {
-    return Glib::SignalProxy<bool (const Glib::RefPtr<const Gdk::Event>&)> (
+    return glib::SignalProxy<bool (const glib::RefPtr<const gdk::Event>&)> (
         this,
         &EventControllerLegacy_signal_event_info);
   }
 
-} // namespace Gtk
+} // namespace gtk

@@ -20,7 +20,7 @@ extern "C"
 }
 #endif
 
-namespace Glib
+namespace glib
 {
 
   using TimeSpan = GTimeSpan;
@@ -89,11 +89,11 @@ namespace Glib
     create_now_utc (gint64 t) -> DateTime;
 
     static auto
-    create_from_iso8601 (const Glib::ustring& text, const TimeZone& default_tz)
+    create_from_iso8601 (const glib::ustring& text, const TimeZone& default_tz)
         -> DateTime;
 
     static auto
-    create_from_iso8601 (const Glib::ustring& text) -> DateTime;
+    create_from_iso8601 (const glib::ustring& text) -> DateTime;
 
     static auto
     create (const TimeZone& tz,
@@ -215,7 +215,7 @@ namespace Glib
     get_timezone () const -> TimeZone;
 
     auto
-    get_timezone_abbreviation () const -> Glib::ustring;
+    get_timezone_abbreviation () const -> glib::ustring;
 
     auto
     is_daylight_savings () const -> bool;
@@ -230,15 +230,15 @@ namespace Glib
     to_utc () const -> DateTime;
 
     auto
-    format (const Glib::ustring& format_str) const -> Glib::ustring;
+    format (const glib::ustring& format_str) const -> glib::ustring;
 
     auto
-    format_iso8601 () const -> Glib::ustring;
+    format_iso8601 () const -> glib::ustring;
   };
 
-} // namespace Glib
+} // namespace glib
 
-namespace Glib
+namespace glib
 {
 
   inline auto
@@ -247,23 +247,23 @@ namespace Glib
     lhs.swap (rhs);
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Glib
+namespace glib
 {
 
   LIBMM_GLIB_SYMEXPORT
   auto
-  wrap (GDateTime* object, bool take_copy = false) -> Glib::DateTime;
+  wrap (GDateTime* object, bool take_copy = false) -> glib::DateTime;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
   template <>
-  class LIBMM_GLIB_SYMEXPORT Value<Glib::DateTime>
-    : public Glib::Value_Boxed<Glib::DateTime>
+  class LIBMM_GLIB_SYMEXPORT Value<glib::DateTime>
+    : public glib::Value_Boxed<glib::DateTime>
   {
   };
 #endif
 
-} // namespace Glib
+} // namespace glib
 
 #endif

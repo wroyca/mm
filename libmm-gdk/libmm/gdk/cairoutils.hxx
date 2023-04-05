@@ -11,43 +11,43 @@
 #include <libmm/glib/containerhandle_shared.hxx>
 #include <type_traits>
 
-namespace Gdk
+namespace gdk
 {
-  namespace Cairo
+  namespace cairo
   {
     LIBMM_GDK_SYMEXPORT auto
     wrap (cairo_t* cobject, bool has_reference = true)
-        -> ::Cairo::RefPtr<::Cairo::Context>;
+        -> ::cairo::RefPtr<::cairo::Context>;
 
     LIBMM_GDK_SYMEXPORT auto
     wrap (cairo_region_t* cobject, bool has_reference = true)
-        -> ::Cairo::RefPtr<::Cairo::Region>;
+        -> ::cairo::RefPtr<::cairo::Region>;
 
     template <
-        typename T = ::Cairo::Surface,
-        typename = std::enable_if<std::is_base_of<::Cairo::Surface, T>::value>>
+        typename T = ::cairo::Surface,
+        typename = std::enable_if<std::is_base_of<::cairo::Surface, T>::value>>
     auto
     wrap (cairo_surface_t* cobject, bool has_reference = true)
-        -> ::Cairo::RefPtr<T>
+        -> ::cairo::RefPtr<T>
     {
-      return ::Cairo::make_refptr_for_instance<T> (
+      return ::cairo::make_refptr_for_instance<T> (
           cobject ? new T (cobject, has_reference) : nullptr);
     }
 
-  } // namespace Cairo
-} // namespace Gdk
+  } // namespace cairo
+} // namespace gdk
 
-namespace Glib
+namespace glib
 {
   namespace Container_Helpers
   {
 
     template <>
-    struct TypeTraits<::Cairo::RefPtr<::Cairo::Surface>>
+    struct TypeTraits<::cairo::RefPtr<::cairo::Surface>>
     {
-      using CppType = ::Cairo::RefPtr<::Cairo::Surface>;
-      using CType = ::Cairo::Surface::cobject*;
-      using CTypeNonConst = ::Cairo::Surface::cobject*;
+      using CppType = ::cairo::RefPtr<::cairo::Surface>;
+      using CType = ::cairo::Surface::cobject*;
+      using CTypeNonConst = ::cairo::Surface::cobject*;
 
       static auto
       to_c_type (const CppType& ptr) -> CType
@@ -64,7 +64,7 @@ namespace Glib
       static auto
       to_cpp_type (CType ptr) -> CppType
       {
-        return Gdk::Cairo::wrap (ptr, false);
+        return gdk::cairo::wrap (ptr, false);
       }
 
       static auto
@@ -75,11 +75,11 @@ namespace Glib
     };
 
     template <>
-    struct TypeTraits<::Cairo::RefPtr<const ::Cairo::Surface>>
+    struct TypeTraits<::cairo::RefPtr<const ::cairo::Surface>>
     {
-      using CppType = Cairo::RefPtr<const ::Cairo::Surface>;
-      using CType = const ::Cairo::Surface::cobject*;
-      using CTypeNonConst = ::Cairo::Surface::cobject*;
+      using CppType = cairo::RefPtr<const ::cairo::Surface>;
+      using CType = const ::cairo::Surface::cobject*;
+      using CTypeNonConst = ::cairo::Surface::cobject*;
 
       static auto
       to_c_type (const CppType& ptr) -> CType
@@ -96,7 +96,7 @@ namespace Glib
       static auto
       to_cpp_type (CType ptr) -> CppType
       {
-        return Gdk::Cairo::wrap (const_cast<CTypeNonConst> (ptr), false);
+        return gdk::cairo::wrap (const_cast<CTypeNonConst> (ptr), false);
       }
 
       static auto
@@ -107,6 +107,6 @@ namespace Glib
     };
 
   } // namespace Container_Helpers
-} // namespace Glib
+} // namespace glib
 
 #endif

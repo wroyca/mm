@@ -19,34 +19,34 @@ namespace
                                                GAskPasswordFlags p3,
                                                void* data) -> void
   {
-    using namespace Gio;
-    using SlotType = sigc::slot<void (const Glib::ustring&,
-                                      const Glib::ustring&,
-                                      const Glib::ustring&,
+    using namespace gio;
+    using SlotType = sigc::slot<void (const glib::ustring&,
+                                      const glib::ustring&,
+                                      const glib::ustring&,
                                       AskPasswordFlags)>;
 
     const auto obj = dynamic_cast<MountOperation*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
     {
       try
       {
-        if (const auto slot = Glib::SignalProxyNormal::data_to_slot (data))
+        if (const auto slot = glib::SignalProxyNormal::data_to_slot (data))
           (*static_cast<SlotType*> (slot)) (
-              Glib::convert_const_gchar_ptr_to_ustring (p0),
-              Glib::convert_const_gchar_ptr_to_ustring (p1),
-              Glib::convert_const_gchar_ptr_to_ustring (p2),
+              glib::convert_const_gchar_ptr_to_ustring (p0),
+              glib::convert_const_gchar_ptr_to_ustring (p1),
+              glib::convert_const_gchar_ptr_to_ustring (p2),
               static_cast<AskPasswordFlags> (p3));
       }
       catch (...)
       {
-        Glib::exception_handlers_invoke ();
+        glib::exception_handlers_invoke ();
       }
     }
   }
 
-  const Glib::SignalProxyInfo MountOperation_signal_ask_password_info = {
+  const glib::SignalProxyInfo MountOperation_signal_ask_password_info = {
       "ask_password",
       (GCallback) &MountOperation_signal_ask_password_callback,
       (GCallback) &MountOperation_signal_ask_password_callback};
@@ -57,32 +57,32 @@ namespace
                                                const gchar** p1,
                                                void* data) -> void
   {
-    using namespace Gio;
-    using SlotType = sigc::slot<void (const Glib::ustring&,
-                                      const std::vector<Glib::ustring>&)>;
+    using namespace gio;
+    using SlotType = sigc::slot<void (const glib::ustring&,
+                                      const std::vector<glib::ustring>&)>;
 
     const auto obj = dynamic_cast<MountOperation*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
     {
       try
       {
-        if (const auto slot = Glib::SignalProxyNormal::data_to_slot (data))
+        if (const auto slot = glib::SignalProxyNormal::data_to_slot (data))
           (*static_cast<SlotType*> (slot)) (
-              Glib::convert_const_gchar_ptr_to_ustring (p0),
-              Glib::ArrayHandler<Glib::ustring>::array_to_vector (
+              glib::convert_const_gchar_ptr_to_ustring (p0),
+              glib::ArrayHandler<glib::ustring>::array_to_vector (
                   p1,
-                  Glib::OWNERSHIP_NONE));
+                  glib::OWNERSHIP_NONE));
       }
       catch (...)
       {
-        Glib::exception_handlers_invoke ();
+        glib::exception_handlers_invoke ();
       }
     }
   }
 
-  const Glib::SignalProxyInfo MountOperation_signal_ask_question_info = {
+  const glib::SignalProxyInfo MountOperation_signal_ask_question_info = {
       "ask_question",
       (GCallback) &MountOperation_signal_ask_question_callback,
       (GCallback) &MountOperation_signal_ask_question_callback};
@@ -92,36 +92,36 @@ namespace
                                         GMountOperationResult p0,
                                         void* data) -> void
   {
-    using namespace Gio;
+    using namespace gio;
     using SlotType = sigc::slot<void (MountOperationResult)>;
 
     const auto obj = dynamic_cast<MountOperation*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
     {
       try
       {
-        if (const auto slot = Glib::SignalProxyNormal::data_to_slot (data))
+        if (const auto slot = glib::SignalProxyNormal::data_to_slot (data))
           (*static_cast<SlotType*> (slot)) (
               static_cast<MountOperationResult> (p0));
       }
       catch (...)
       {
-        Glib::exception_handlers_invoke ();
+        glib::exception_handlers_invoke ();
       }
     }
   }
 
-  const Glib::SignalProxyInfo MountOperation_signal_reply_info = {
+  const glib::SignalProxyInfo MountOperation_signal_reply_info = {
       "reply",
       (GCallback) &MountOperation_signal_reply_callback,
       (GCallback) &MountOperation_signal_reply_callback};
 
-  const Glib::SignalProxyInfo MountOperation_signal_aborted_info = {
+  const glib::SignalProxyInfo MountOperation_signal_aborted_info = {
       "aborted",
-      (GCallback) &Glib::SignalProxyNormal::slot0_void_callback,
-      (GCallback) &Glib::SignalProxyNormal::slot0_void_callback};
+      (GCallback) &glib::SignalProxyNormal::slot0_void_callback,
+      (GCallback) &glib::SignalProxyNormal::slot0_void_callback};
 
   auto
   MountOperation_signal_show_unmount_progress_callback (GMountOperation* self,
@@ -130,28 +130,28 @@ namespace
                                                         const gint64 p2,
                                                         void* data) -> void
   {
-    using namespace Gio;
-    using SlotType = sigc::slot<void (const Glib::ustring&, gint64, gint64)>;
+    using namespace gio;
+    using SlotType = sigc::slot<void (const glib::ustring&, gint64, gint64)>;
 
     const auto obj = dynamic_cast<MountOperation*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
     {
       try
       {
-        if (const auto slot = Glib::SignalProxyNormal::data_to_slot (data))
+        if (const auto slot = glib::SignalProxyNormal::data_to_slot (data))
           (*static_cast<SlotType*> (
-              slot)) (Glib::convert_const_gchar_ptr_to_ustring (p0), p1, p2);
+              slot)) (glib::convert_const_gchar_ptr_to_ustring (p0), p1, p2);
       }
       catch (...)
       {
-        Glib::exception_handlers_invoke ();
+        glib::exception_handlers_invoke ();
       }
     }
   }
 
-  const Glib::SignalProxyInfo MountOperation_signal_show_unmount_progress_info =
+  const glib::SignalProxyInfo MountOperation_signal_show_unmount_progress_info =
       {"show_unmount_progress",
        (GCallback) &MountOperation_signal_show_unmount_progress_callback,
        (GCallback) &MountOperation_signal_show_unmount_progress_callback};
@@ -159,25 +159,25 @@ namespace
 } // namespace
 
 auto
-Glib::Value<Gio::PasswordSave>::value_type () -> GType
+glib::Value<gio::PasswordSave>::value_type () -> GType
 {
   return g_password_save_get_type ();
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GMountOperation* object, const bool take_copy) -> RefPtr<Gio::MountOperation>
+  wrap (GMountOperation* object, const bool take_copy) -> RefPtr<gio::MountOperation>
   {
-    return Glib::make_refptr_for_instance<Gio::MountOperation> (
-        dynamic_cast<Gio::MountOperation*> (
+    return glib::make_refptr_for_instance<gio::MountOperation> (
+        dynamic_cast<gio::MountOperation*> (
             wrap_auto ((GObject*) object, take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gio
+namespace gio
 {
 
   auto
@@ -214,7 +214,7 @@ namespace Gio
                                                GAskPasswordFlags p3) -> void
   {
     const auto obj_base =
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self);
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self);
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -223,15 +223,15 @@ namespace Gio
       {
         try
         {
-          obj->on_ask_password (Glib::convert_const_gchar_ptr_to_ustring (p0),
-                                Glib::convert_const_gchar_ptr_to_ustring (p1),
-                                Glib::convert_const_gchar_ptr_to_ustring (p2),
+          obj->on_ask_password (glib::convert_const_gchar_ptr_to_ustring (p0),
+                                glib::convert_const_gchar_ptr_to_ustring (p1),
+                                glib::convert_const_gchar_ptr_to_ustring (p2),
                                 static_cast<AskPasswordFlags> (p3));
           return;
         }
         catch (...)
         {
-          Glib::exception_handlers_invoke ();
+          glib::exception_handlers_invoke ();
         }
       }
     }
@@ -249,7 +249,7 @@ namespace Gio
                                                const gchar** p1) -> void
   {
     const auto obj_base =
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self);
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self);
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -259,15 +259,15 @@ namespace Gio
         try
         {
           obj->on_ask_question (
-              Glib::convert_const_gchar_ptr_to_ustring (p0),
-              Glib::ArrayHandler<Glib::ustring>::array_to_vector (
+              glib::convert_const_gchar_ptr_to_ustring (p0),
+              glib::ArrayHandler<glib::ustring>::array_to_vector (
                   p1,
-                  Glib::OWNERSHIP_NONE));
+                  glib::OWNERSHIP_NONE));
           return;
         }
         catch (...)
         {
-          Glib::exception_handlers_invoke ();
+          glib::exception_handlers_invoke ();
         }
       }
     }
@@ -284,7 +284,7 @@ namespace Gio
                                         GMountOperationResult p0) -> void
   {
     const auto obj_base =
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self);
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self);
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -298,7 +298,7 @@ namespace Gio
         }
         catch (...)
         {
-          Glib::exception_handlers_invoke ();
+          glib::exception_handlers_invoke ();
         }
       }
     }
@@ -314,7 +314,7 @@ namespace Gio
   MountOperation_Class::aborted_callback (GMountOperation* self) -> void
   {
     const auto obj_base =
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self);
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self);
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -328,7 +328,7 @@ namespace Gio
         }
         catch (...)
         {
-          Glib::exception_handlers_invoke ();
+          glib::exception_handlers_invoke ();
         }
       }
     }
@@ -347,7 +347,7 @@ namespace Gio
                                                         const gint64 p2) -> void
   {
     const auto obj_base =
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self);
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self);
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -357,14 +357,14 @@ namespace Gio
         try
         {
           obj->on_show_unmount_progress (
-              Glib::convert_const_gchar_ptr_to_ustring (p0),
+              glib::convert_const_gchar_ptr_to_ustring (p0),
               p1,
               p2);
           return;
         }
         catch (...)
         {
-          Glib::exception_handlers_invoke ();
+          glib::exception_handlers_invoke ();
         }
       }
     }
@@ -377,7 +377,7 @@ namespace Gio
   }
 
   auto
-  MountOperation_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  MountOperation_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new MountOperation ((GMountOperation*) object);
   }
@@ -389,7 +389,7 @@ namespace Gio
     return gobj ();
   }
 
-  MountOperation::MountOperation (const Glib::ConstructParams& construct_params)
+  MountOperation::MountOperation (const glib::ConstructParams& construct_params)
     : Object (construct_params)
   {
   }
@@ -429,41 +429,41 @@ namespace Gio
 
   MountOperation::MountOperation ()
     : ObjectBase (nullptr),
-      Object (Glib::ConstructParams (mountoperation_class_.init ()))
+      Object (glib::ConstructParams (mountoperation_class_.init ()))
   {
   }
 
   auto
-  MountOperation::create () -> Glib::RefPtr<MountOperation>
+  MountOperation::create () -> glib::RefPtr<MountOperation>
   {
-    return Glib::make_refptr_for_instance<MountOperation> (
+    return glib::make_refptr_for_instance<MountOperation> (
         new MountOperation ());
   }
 
   auto
-  MountOperation::get_username () const -> Glib::ustring
+  MountOperation::get_username () const -> glib::ustring
   {
-    return Glib::convert_const_gchar_ptr_to_ustring (
+    return glib::convert_const_gchar_ptr_to_ustring (
         g_mount_operation_get_username (
             const_cast<GMountOperation*> (gobj ())));
   }
 
   auto
-  MountOperation::set_username (const Glib::ustring& username) -> void
+  MountOperation::set_username (const glib::ustring& username) -> void
   {
     g_mount_operation_set_username (gobj (), username.c_str ());
   }
 
   auto
-  MountOperation::get_password () const -> Glib::ustring
+  MountOperation::get_password () const -> glib::ustring
   {
-    return Glib::convert_const_gchar_ptr_to_ustring (
+    return glib::convert_const_gchar_ptr_to_ustring (
         g_mount_operation_get_password (
             const_cast<GMountOperation*> (gobj ())));
   }
 
   auto
-  MountOperation::set_password (const Glib::ustring& password) -> void
+  MountOperation::set_password (const glib::ustring& password) -> void
   {
     g_mount_operation_set_password (gobj (), password.c_str ());
   }
@@ -482,14 +482,14 @@ namespace Gio
   }
 
   auto
-  MountOperation::get_domain () const -> Glib::ustring
+  MountOperation::get_domain () const -> glib::ustring
   {
-    return Glib::convert_const_gchar_ptr_to_ustring (
+    return glib::convert_const_gchar_ptr_to_ustring (
         g_mount_operation_get_domain (const_cast<GMountOperation*> (gobj ())));
   }
 
   auto
-  MountOperation::set_domain (const Glib::ustring& domain) -> void
+  MountOperation::set_domain (const glib::ustring& domain) -> void
   {
     g_mount_operation_set_domain (gobj (), domain.c_str ());
   }
@@ -528,120 +528,120 @@ namespace Gio
   }
 
   auto
-  MountOperation::signal_ask_password () -> Glib::SignalProxy<void (const Glib::ustring&,
-                                 const Glib::ustring&,
-                                 const Glib::ustring&,
+  MountOperation::signal_ask_password () -> glib::SignalProxy<void (const glib::ustring&,
+                                 const glib::ustring&,
+                                 const glib::ustring&,
                                  AskPasswordFlags)>
   {
     return {this, &MountOperation_signal_ask_password_info};
   }
 
   auto
-  MountOperation::signal_ask_question () -> Glib::SignalProxy<void (const Glib::ustring&,
-                                 const std::vector<Glib::ustring>&)>
+  MountOperation::signal_ask_question () -> glib::SignalProxy<void (const glib::ustring&,
+                                 const std::vector<glib::ustring>&)>
   {
     return {this, &MountOperation_signal_ask_question_info};
   }
 
   auto
-  MountOperation::signal_reply () -> Glib::SignalProxy<void (MountOperationResult)>
+  MountOperation::signal_reply () -> glib::SignalProxy<void (MountOperationResult)>
   {
     return {this, &MountOperation_signal_reply_info};
   }
 
   auto
-  MountOperation::signal_aborted () -> Glib::SignalProxy<void ()>
+  MountOperation::signal_aborted () -> glib::SignalProxy<void ()>
   {
     return {this, &MountOperation_signal_aborted_info};
   }
 
   auto
-  MountOperation::signal_show_unmount_progress () -> Glib::SignalProxy<void (const Glib::ustring&, gint64, gint64)>
+  MountOperation::signal_show_unmount_progress () -> glib::SignalProxy<void (const glib::ustring&, gint64, gint64)>
   {
     return {this, &MountOperation_signal_show_unmount_progress_info};
   }
 
   auto
-  MountOperation::property_username () -> Glib::PropertyProxy<Glib::ustring>
+  MountOperation::property_username () -> glib::PropertyProxy<glib::ustring>
   {
     return {this, "username"};
   }
 
   auto
-  MountOperation::property_username () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>
+  MountOperation::property_username () const -> glib::PropertyProxy_ReadOnly<glib::ustring>
   {
     return {this, "username"};
   }
 
   auto
-  MountOperation::property_password () -> Glib::PropertyProxy<Glib::ustring>
+  MountOperation::property_password () -> glib::PropertyProxy<glib::ustring>
   {
     return {this, "password"};
   }
 
   auto
-  MountOperation::property_password () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>
+  MountOperation::property_password () const -> glib::PropertyProxy_ReadOnly<glib::ustring>
   {
     return {this, "password"};
   }
 
   auto
-  MountOperation::property_anonymous () -> Glib::PropertyProxy<bool>
+  MountOperation::property_anonymous () -> glib::PropertyProxy<bool>
   {
     return {this, "anonymous"};
   }
 
   auto
-  MountOperation::property_anonymous () const -> Glib::PropertyProxy_ReadOnly<bool>
+  MountOperation::property_anonymous () const -> glib::PropertyProxy_ReadOnly<bool>
   {
     return {this, "anonymous"};
   }
 
   auto
-  MountOperation::property_domain () -> Glib::PropertyProxy<Glib::ustring>
+  MountOperation::property_domain () -> glib::PropertyProxy<glib::ustring>
   {
     return {this, "domain"};
   }
 
   auto
-  MountOperation::property_domain () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>
+  MountOperation::property_domain () const -> glib::PropertyProxy_ReadOnly<glib::ustring>
   {
     return {this, "domain"};
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<PasswordSave>::value,
+      glib::Traits::ValueCompatibleWithWrapProperty<PasswordSave>::value,
       "Type PasswordSave cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  MountOperation::property_password_save () -> Glib::PropertyProxy<PasswordSave>
+  MountOperation::property_password_save () -> glib::PropertyProxy<PasswordSave>
   {
     return {this, "password-save"};
   }
 
   auto
-  MountOperation::property_password_save () const -> Glib::PropertyProxy_ReadOnly<PasswordSave>
+  MountOperation::property_password_save () const -> glib::PropertyProxy_ReadOnly<PasswordSave>
   {
     return {this, "password-save"};
   }
 
   auto
-  MountOperation::property_choice () -> Glib::PropertyProxy<int>
+  MountOperation::property_choice () -> glib::PropertyProxy<int>
   {
     return {this, "choice"};
   }
 
   auto
-  MountOperation::property_choice () const -> Glib::PropertyProxy_ReadOnly<int>
+  MountOperation::property_choice () const -> glib::PropertyProxy_ReadOnly<int>
   {
     return {this, "choice"};
   }
 
   auto
-  MountOperation::on_ask_password (const Glib::ustring& message,
-                                   const Glib::ustring& default_user,
-                                   const Glib::ustring& default_domain,
+  MountOperation::on_ask_password (const glib::ustring& message,
+                                   const glib::ustring& default_user,
+                                   const glib::ustring& default_domain,
                                    AskPasswordFlags flags) -> void
   {
     const auto base = static_cast<BaseClassType*> (
@@ -656,8 +656,8 @@ namespace Gio
   }
 
   auto
-  MountOperation::on_ask_question (const Glib::ustring& message,
-                                   const std::vector<Glib::ustring>& choices) -> void
+  MountOperation::on_ask_question (const glib::ustring& message,
+                                   const std::vector<glib::ustring>& choices) -> void
   {
     const auto base = static_cast<BaseClassType*> (
         g_type_class_peek_parent (G_OBJECT_GET_CLASS (gobject_)));
@@ -666,7 +666,7 @@ namespace Gio
       (*base->ask_question) (
           gobj (),
           message.c_str (),
-          Glib::ArrayHandler<Glib::ustring>::vector_to_array (choices).data ());
+          glib::ArrayHandler<glib::ustring>::vector_to_array (choices).data ());
   }
 
   auto
@@ -690,7 +690,7 @@ namespace Gio
   }
 
   auto
-  MountOperation::on_show_unmount_progress (const Glib::ustring& message,
+  MountOperation::on_show_unmount_progress (const glib::ustring& message,
                                             const gint64 time_left,
                                             const gint64 bytes_left) -> void
   {
@@ -704,4 +704,4 @@ namespace Gio
                                       bytes_left);
   }
 
-} // namespace Gio
+} // namespace gio

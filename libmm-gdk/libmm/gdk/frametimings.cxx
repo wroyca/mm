@@ -11,22 +11,22 @@ namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GdkFrameTimings* object, bool take_copy) -> Glib::RefPtr<Gdk::FrameTimings>
+  wrap (GdkFrameTimings* object, bool take_copy) -> glib::RefPtr<gdk::FrameTimings>
   {
     if (take_copy && object)
       gdk_frame_timings_ref (object);
 
-    return Glib::make_refptr_for_instance<Gdk::FrameTimings> (
-        reinterpret_cast<Gdk::FrameTimings*> (object));
+    return glib::make_refptr_for_instance<gdk::FrameTimings> (
+        reinterpret_cast<gdk::FrameTimings*> (object));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gdk
+namespace gdk
 {
 
   auto
@@ -106,4 +106,4 @@ namespace Gdk
         const_cast<GdkFrameTimings*> (gobj ()));
   }
 
-} // namespace Gdk
+} // namespace gdk

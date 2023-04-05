@@ -16,7 +16,7 @@ extern "C"
 }
 #endif
 
-namespace Pango
+namespace pango
 {
 
   class LIBMM_PANGO_SYMEXPORT Item;
@@ -71,10 +71,10 @@ namespace Pango
   private:
   public:
     auto
-    split (const Glib::ustring& text, int split_index) -> GlyphItem;
+    split (const glib::ustring& text, int split_index) -> GlyphItem;
 
     auto
-    letter_space (const Glib::ustring& text,
+    letter_space (const glib::ustring& text,
                   const LogAttr& log_attrs,
                   int letter_spacing = 0) -> void;
 
@@ -85,9 +85,9 @@ namespace Pango
     get_glyphs () const -> GlyphString;
   };
 
-} // namespace Pango
+} // namespace pango
 
-namespace Pango
+namespace pango
 {
 
   inline auto
@@ -96,23 +96,23 @@ namespace Pango
     lhs.swap (rhs);
   }
 
-} // namespace Pango
+} // namespace pango
 
-namespace Glib
+namespace glib
 {
 
   LIBMM_PANGO_SYMEXPORT
   auto
-  wrap (PangoGlyphItem* object, bool take_copy = false) -> Pango::GlyphItem;
+  wrap (PangoGlyphItem* object, bool take_copy = false) -> pango::GlyphItem;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
   template <>
-  class LIBMM_PANGO_SYMEXPORT Value<Pango::GlyphItem>
-    : public Glib::Value_Boxed<Pango::GlyphItem>
+  class LIBMM_PANGO_SYMEXPORT Value<pango::GlyphItem>
+    : public glib::Value_Boxed<pango::GlyphItem>
   {
   };
 #endif
 
-} // namespace Glib
+} // namespace glib
 
 #endif

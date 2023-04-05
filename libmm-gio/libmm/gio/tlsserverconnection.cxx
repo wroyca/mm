@@ -12,20 +12,20 @@ namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GTlsServerConnection* object, const bool take_copy) -> RefPtr<Gio::TlsServerConnection>
+  wrap (GTlsServerConnection* object, const bool take_copy) -> RefPtr<gio::TlsServerConnection>
   {
-    return Glib::make_refptr_for_instance<Gio::TlsServerConnection> (
-        Glib::wrap_auto_interface<Gio::TlsServerConnection> ((GObject*) object,
+    return glib::make_refptr_for_instance<gio::TlsServerConnection> (
+        glib::wrap_auto_interface<gio::TlsServerConnection> ((GObject*) object,
                                                              take_copy));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gio
+namespace gio
 {
 
   auto
@@ -50,7 +50,7 @@ namespace Gio
   }
 
   auto
-  TlsServerConnection_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  TlsServerConnection_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new TlsServerConnection ((GTlsServerConnection*) object);
   }
@@ -66,7 +66,7 @@ namespace Gio
   }
 
   TlsServerConnection::TlsServerConnection (
-      const Glib::Interface_Class& interface_class)
+      const glib::Interface_Class& interface_class)
     : Interface (interface_class)
   {
   }
@@ -107,36 +107,36 @@ namespace Gio
   }
 
   auto
-  TlsServerConnection::create (const Glib::RefPtr<IOStream>& base_io_stream,
-                               const Glib::RefPtr<TlsCertificate>& certificate) -> Glib::RefPtr<TlsServerConnectionImpl>
+  TlsServerConnection::create (const glib::RefPtr<IOStream>& base_io_stream,
+                               const glib::RefPtr<TlsCertificate>& certificate) -> glib::RefPtr<TlsServerConnectionImpl>
   {
     GError* gerror = nullptr;
     auto retvalue = std::dynamic_pointer_cast<TlsServerConnectionImpl> (
-        Glib::wrap (G_TLS_CONNECTION (
-            g_tls_server_connection_new (Glib::unwrap (base_io_stream),
-                                         Glib::unwrap (certificate),
+        glib::wrap (G_TLS_CONNECTION (
+            g_tls_server_connection_new (glib::unwrap (base_io_stream),
+                                         glib::unwrap (certificate),
                                          &gerror))));
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<
+      glib::Traits::ValueCompatibleWithWrapProperty<
           TlsAuthenticationMode>::value,
       "Type TlsAuthenticationMode cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  TlsServerConnection::property_authentication_mode () -> Glib::PropertyProxy<TlsAuthenticationMode>
+  TlsServerConnection::property_authentication_mode () -> glib::PropertyProxy<TlsAuthenticationMode>
   {
     return {this, "authentication-mode"};
   }
 
   auto
-  TlsServerConnection::property_authentication_mode () const -> Glib::PropertyProxy_ReadOnly<TlsAuthenticationMode>
+  TlsServerConnection::property_authentication_mode () const -> glib::PropertyProxy_ReadOnly<TlsAuthenticationMode>
   {
     return {this, "authentication-mode"};
   }
 
-} // namespace Gio
+} // namespace gio

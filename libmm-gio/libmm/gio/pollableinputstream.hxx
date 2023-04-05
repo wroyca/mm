@@ -20,18 +20,18 @@ using GPollableInputStreamClass = struct _GPollableInputStreamClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gio
+namespace gio
 {
   class LIBMM_GIO_SYMEXPORT PollableInputStream_Class;
 }
 #endif
 
-namespace Gio
+namespace gio
 {
 
   class LIBMM_GIO_SYMEXPORT Cancellable;
 
-  class LIBMM_GIO_SYMEXPORT PollableInputStream : public Glib::Interface
+  class LIBMM_GIO_SYMEXPORT PollableInputStream : public glib::Interface
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -55,7 +55,7 @@ namespace Gio
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
-    explicit PollableInputStream (const Glib::Interface_Class& interface_class);
+    explicit PollableInputStream (const glib::Interface_Class& interface_class);
 
   public:
     explicit PollableInputStream (GPollableInputStream* castitem);
@@ -104,7 +104,7 @@ namespace Gio
     auto
     read_nonblocking (void* buffer,
                       gsize count,
-                      const Glib::RefPtr<Cancellable>& cancellable) -> gssize;
+                      const glib::RefPtr<Cancellable>& cancellable) -> gssize;
 
     auto
     read_nonblocking (void* buffer, gsize count) -> gssize;
@@ -124,15 +124,15 @@ namespace Gio
   protected:
   };
 
-} // namespace Gio
+} // namespace gio
 
-namespace Glib
+namespace glib
 {
 
   LIBMM_GIO_SYMEXPORT
   auto
-  wrap (GPollableInputStream* object, bool take_copy = false) -> Glib::RefPtr<Gio::PollableInputStream>;
+  wrap (GPollableInputStream* object, bool take_copy = false) -> glib::RefPtr<gio::PollableInputStream>;
 
-} // namespace Glib
+} // namespace glib
 
 #endif

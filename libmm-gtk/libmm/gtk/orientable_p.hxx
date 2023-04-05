@@ -7,31 +7,31 @@
 
 #include <libmm/glib/interface_p.hxx>
 
-namespace Gtk
+namespace gtk
 {
 
-  class LIBMM_GTK_SYMEXPORT Orientable_Class : public Glib::Interface_Class
+  class LIBMM_GTK_SYMEXPORT Orientable_Class : public glib::Interface_Class
   {
   public:
     using CppObjectType = Orientable;
     using BaseObjectType = GtkOrientable;
     using BaseClassType = GtkOrientableIface;
-    using CppClassParent = Glib::Interface_Class;
+    using CppClassParent = glib::Interface_Class;
 
     friend class Orientable;
 
     auto
-    init () -> const Glib::Interface_Class&;
+    init () -> const glib::Interface_Class&;
 
     static auto
     iface_init_function (void* g_iface, void* iface_data) -> void;
 
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
 
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
 #endif

@@ -9,7 +9,7 @@
 #include <libmm/gio/file.hxx>
 #include <libmm/glib/exceptionhandler.hxx>
 
-namespace Gio
+namespace gio
 {
 
 }
@@ -17,28 +17,28 @@ namespace Gio
 namespace
 {
 
-  const Glib::SignalProxyInfo
+  const glib::SignalProxyInfo
       FilenameCompleter_signal_got_completion_data_info = {
           "got_completion_data",
-          (GCallback) &Glib::SignalProxyNormal::slot0_void_callback,
-          (GCallback) &Glib::SignalProxyNormal::slot0_void_callback};
+          (GCallback) &glib::SignalProxyNormal::slot0_void_callback,
+          (GCallback) &glib::SignalProxyNormal::slot0_void_callback};
 
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GFilenameCompleter* object, const bool take_copy) -> RefPtr<Gio::FilenameCompleter>
+  wrap (GFilenameCompleter* object, const bool take_copy) -> RefPtr<gio::FilenameCompleter>
   {
-    return Glib::make_refptr_for_instance<Gio::FilenameCompleter> (
-        dynamic_cast<Gio::FilenameCompleter*> (
+    return glib::make_refptr_for_instance<gio::FilenameCompleter> (
+        dynamic_cast<gio::FilenameCompleter*> (
             wrap_auto ((GObject*) object, take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gio
+namespace gio
 {
 
   auto
@@ -68,7 +68,7 @@ namespace Gio
       GFilenameCompleter* self) -> void
   {
     const auto obj_base =
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self);
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self);
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -82,7 +82,7 @@ namespace Gio
         }
         catch (...)
         {
-          Glib::exception_handlers_invoke ();
+          glib::exception_handlers_invoke ();
         }
       }
     }
@@ -95,7 +95,7 @@ namespace Gio
   }
 
   auto
-  FilenameCompleter_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  FilenameCompleter_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new FilenameCompleter ((GFilenameCompleter*) object);
   }
@@ -108,7 +108,7 @@ namespace Gio
   }
 
   FilenameCompleter::FilenameCompleter (
-      const Glib::ConstructParams& construct_params)
+      const glib::ConstructParams& construct_params)
     : Object (construct_params)
   {
   }
@@ -148,14 +148,14 @@ namespace Gio
 
   FilenameCompleter::FilenameCompleter ()
     : ObjectBase (nullptr),
-      Object (Glib::ConstructParams (filenamecompleter_class_.init ()))
+      Object (glib::ConstructParams (filenamecompleter_class_.init ()))
   {
   }
 
   auto
-  FilenameCompleter::create () -> Glib::RefPtr<FilenameCompleter>
+  FilenameCompleter::create () -> glib::RefPtr<FilenameCompleter>
   {
-    return Glib::make_refptr_for_instance<FilenameCompleter> (
+    return glib::make_refptr_for_instance<FilenameCompleter> (
         new FilenameCompleter ());
   }
 
@@ -163,20 +163,20 @@ namespace Gio
   FilenameCompleter::get_completion_suffix (
       const std::string& initial_text) const -> std::string
   {
-    return Glib::convert_return_gchar_ptr_to_stdstring (
+    return glib::convert_return_gchar_ptr_to_stdstring (
         g_filename_completer_get_completion_suffix (
             const_cast<GFilenameCompleter*> (gobj ()),
             initial_text.c_str ()));
   }
 
   auto
-  FilenameCompleter::get_completions (const std::string& initial_text) const -> std::vector<Glib::ustring>
+  FilenameCompleter::get_completions (const std::string& initial_text) const -> std::vector<glib::ustring>
   {
-    return Glib::ArrayHandler<Glib::ustring>::array_to_vector (
+    return glib::ArrayHandler<glib::ustring>::array_to_vector (
         g_filename_completer_get_completions (
             const_cast<GFilenameCompleter*> (gobj ()),
             initial_text.c_str ()),
-        Glib::OWNERSHIP_DEEP);
+        glib::OWNERSHIP_DEEP);
   }
 
   auto
@@ -186,7 +186,7 @@ namespace Gio
   }
 
   auto
-  FilenameCompleter::signal_got_completion_data () -> Glib::SignalProxy<void ()>
+  FilenameCompleter::signal_got_completion_data () -> glib::SignalProxy<void ()>
   {
     return {this, &FilenameCompleter_signal_got_completion_data_info};
   }
@@ -201,4 +201,4 @@ namespace Gio
       (*base->got_completion_data) (gobj ());
   }
 
-} // namespace Gio
+} // namespace gio

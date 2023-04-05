@@ -7,20 +7,20 @@
  */
 
 #include <libmm/adw/mm-adw.hxx>
-#include <libmm/adw/init.hxx> // Adw::init
+#include <libmm/adw/init.hxx> // adw::init
 
 int notified;
 
 static void notify_cb() { notified++; }
 
 static void test_adw_split_button_icon_name(void) {
-  Adw::SplitButton button;
+  adw::SplitButton button;
 
   notified = 0;
   button.property_icon_name().signal_changed().connect(
       sigc::ptr_fun(notify_cb));
 
-  Glib::ustring icon_name = button.get_property<Glib::ustring>("icon-name");
+  glib::ustring icon_name = button.get_property<glib::ustring>("icon-name");
   g_assert_true(icon_name == "");
 
   button.set_icon_name("document-open-symbolic");
@@ -30,7 +30,7 @@ static void test_adw_split_button_icon_name(void) {
   g_assert_true(button.get_icon_name() == "document-open-symbolic");
   g_assert_true(notified == 1);
 
-  button.set_property<Glib::ustring>("icon-name", "edit-find-symbolic");
+  button.set_property<glib::ustring>("icon-name", "edit-find-symbolic");
   g_assert_true(button.get_icon_name() == "edit-find-symbolic");
   g_assert_true(notified == 2);
 
@@ -42,18 +42,18 @@ static void test_adw_split_button_icon_name(void) {
   g_assert_true(button.get_icon_name() == "document-open-symbolic");
   g_assert_true(notified == 4);
 
-  button.set_child(Gtk::make_managed<Gtk::Button>());
+  button.set_child(gtk::make_managed<gtk::Button>());
   g_assert_true(button.get_icon_name() == "");
   g_assert_true(notified == 5);
 }
 
 static void test_adw_split_button_label(void) {
-  Adw::SplitButton button;
+  adw::SplitButton button;
 
   notified = 0;
   button.property_label().signal_changed().connect(sigc::ptr_fun(notify_cb));
 
-  Glib::ustring label = button.get_property<Glib::ustring>("label");
+  glib::ustring label = button.get_property<glib::ustring>("label");
   g_assert_true(label == "");
 
   button.set_label("Open");
@@ -63,7 +63,7 @@ static void test_adw_split_button_label(void) {
   g_assert_true(button.get_label() == "Open");
   g_assert_true(notified == 1);
 
-  button.set_property<Glib::ustring>("label", "Find");
+  button.set_property<glib::ustring>("label", "Find");
   g_assert_true(button.get_label() == "Find");
   g_assert_true(notified == 2);
 
@@ -75,13 +75,13 @@ static void test_adw_split_button_label(void) {
   g_assert_true(button.get_label() == "Open");
   g_assert_true(notified == 4);
 
-  button.set_child(Gtk::make_managed<Gtk::Button>());
+  button.set_child(gtk::make_managed<gtk::Button>());
   g_assert_true(button.get_label() == "");
   g_assert_true(notified == 5);
 }
 
 static void test_adw_split_button_use_underline(void) {
-  Adw::SplitButton button;
+  adw::SplitButton button;
 
   notified = 0;
   button.property_use_underline().signal_changed().connect(
@@ -103,16 +103,16 @@ static void test_adw_split_button_use_underline(void) {
 }
 
 static void test_adw_split_button_child(void) {
-  Adw::SplitButton button;
+  adw::SplitButton button;
 
-  Gtk::Button *child1 = new Gtk::Button();
-  Gtk::Button *child2 = new Gtk::Button();
-  Gtk::Button *child3 = new Gtk::Button();
+  gtk::Button *child1 = new gtk::Button();
+  gtk::Button *child2 = new gtk::Button();
+  gtk::Button *child3 = new gtk::Button();
 
   notified = 0;
   button.property_child().signal_changed().connect(sigc::ptr_fun(notify_cb));
 
-  Gtk::Widget *child = button.get_property<Gtk::Widget *>("child");
+  gtk::Widget *child = button.get_property<gtk::Widget *>("child");
   g_assert_true(child == nullptr);
 
   button.set_child(nullptr);
@@ -122,7 +122,7 @@ static void test_adw_split_button_child(void) {
   g_assert_true(button.get_child() == child1);
   g_assert_true(notified == 1);
 
-  button.set_property<Gtk::Widget *>("child", child2);
+  button.set_property<gtk::Widget *>("child", child2);
   g_assert_true(button.get_child() == child2);
   g_assert_true(notified == 2);
 
@@ -144,17 +144,17 @@ static void test_adw_split_button_child(void) {
 }
 
 static void test_adw_split_button_menu_model(void) {
-  Adw::SplitButton button;
+  adw::SplitButton button;
 
-  Glib::RefPtr<Gio::MenuModel> model1 = Gio::Menu::create();
-  Glib::RefPtr<Gio::MenuModel> model2 = Gio::Menu::create();
+  glib::RefPtr<gio::MenuModel> model1 = gio::Menu::create();
+  glib::RefPtr<gio::MenuModel> model2 = gio::Menu::create();
 
   notified = 0;
   button.property_menu_model().signal_changed().connect(
       sigc::ptr_fun(notify_cb));
 
-  Glib::RefPtr<Gio::MenuModel> model =
-      button.get_property<Glib::RefPtr<Gio::MenuModel>>("menu-model");
+  glib::RefPtr<gio::MenuModel> model =
+      button.get_property<glib::RefPtr<gio::MenuModel>>("menu-model");
   g_assert_true(model == nullptr);
   g_assert_true(notified == 0);
 
@@ -162,25 +162,25 @@ static void test_adw_split_button_menu_model(void) {
   g_assert_true(button.get_menu_model() == model1);
   g_assert_true(notified == 1);
 
-  button.set_property<Glib::RefPtr<Gio::MenuModel>>("menu-model", model2);
+  button.set_property<glib::RefPtr<gio::MenuModel>>("menu-model", model2);
   g_assert_true(button.get_menu_model() == model2);
   g_assert_true(notified == 2);
 
-  button.set_popover(Gtk::make_managed<Gtk::Popover>());
+  button.set_popover(gtk::make_managed<gtk::Popover>());
   g_assert_true(button.get_menu_model() == nullptr);
   g_assert_true(notified == 3);
 }
 
 static void test_adw_split_button_popover(void) {
-  Adw::SplitButton button;
+  adw::SplitButton button;
 
-  Gtk::Popover *popover1 = new Gtk::Popover();
-  Gtk::Popover *popover2 = new Gtk::Popover();
+  gtk::Popover *popover1 = new gtk::Popover();
+  gtk::Popover *popover2 = new gtk::Popover();
 
   notified = 0;
   button.property_popover().signal_changed().connect(sigc::ptr_fun(notify_cb));
 
-  Gtk::Popover *popover = button.get_property<Gtk::Popover *>("popover");
+  gtk::Popover *popover = button.get_property<gtk::Popover *>("popover");
   g_assert_true(popover == nullptr);
   g_assert_true(notified == 0);
 
@@ -188,11 +188,11 @@ static void test_adw_split_button_popover(void) {
   g_assert_true(button.get_popover() == popover1);
   g_assert_true(notified == 1);
 
-  button.set_property<Gtk::Popover *>("popover", popover2);
+  button.set_property<gtk::Popover *>("popover", popover2);
   g_assert_true(button.get_popover() == popover2);
   g_assert_true(notified == 2);
 
-  Glib::RefPtr<Gio::MenuModel> model = Gio::Menu::create();
+  glib::RefPtr<gio::MenuModel> model = gio::Menu::create();
   button.set_menu_model(model);
   g_assert_false(button.get_popover() == popover2);
   g_assert_true(notified == 3);
@@ -202,36 +202,36 @@ static void test_adw_split_button_popover(void) {
 }
 
 static void test_adw_split_button_direction(void) {
-  Adw::SplitButton button;
+  adw::SplitButton button;
 
   notified = 0;
   button.property_direction().signal_changed().connect(
       sigc::ptr_fun(notify_cb));
 
-  Gtk::ArrowType direction = button.get_property<Gtk::ArrowType>("direction");
-  g_assert_true(direction == Gtk::ArrowType::DOWN);
+  gtk::ArrowType direction = button.get_property<gtk::ArrowType>("direction");
+  g_assert_true(direction == gtk::ArrowType::DOWN);
 
-  button.set_direction(Gtk::ArrowType::DOWN);
+  button.set_direction(gtk::ArrowType::DOWN);
   g_assert_true(notified == 0);
 
-  button.set_direction(Gtk::ArrowType::UP);
-  g_assert_true(button.get_direction() == Gtk::ArrowType::UP);
+  button.set_direction(gtk::ArrowType::UP);
+  g_assert_true(button.get_direction() == gtk::ArrowType::UP);
   g_assert_true(notified == 1);
 
-  button.set_property<Gtk::ArrowType>("direction", Gtk::ArrowType::DOWN);
-  g_assert_true(button.get_direction() == Gtk::ArrowType::DOWN);
+  button.set_property<gtk::ArrowType>("direction", gtk::ArrowType::DOWN);
+  g_assert_true(button.get_direction() == gtk::ArrowType::DOWN);
   g_assert_true(notified == 2);
 }
 
 static void test_adw_split_button_dropdown_tooltip(void) {
-  Adw::SplitButton button;
+  adw::SplitButton button;
 
   notified = 0;
   button.property_dropdown_tooltip().signal_changed().connect(
       sigc::ptr_fun(notify_cb));
 
-  Glib::ustring tooltip =
-      button.get_property<Glib::ustring>("dropdown-tooltip");
+  glib::ustring tooltip =
+      button.get_property<glib::ustring>("dropdown-tooltip");
   g_assert_true(tooltip == "");
   g_assert_true(notified == 0);
 
@@ -239,14 +239,14 @@ static void test_adw_split_button_dropdown_tooltip(void) {
   g_assert_true(button.get_dropdown_tooltip() == "Some tooltip");
   g_assert_true(notified == 1);
 
-  button.set_property<Glib::ustring>("dropdown-tooltip", "Some other tooltip");
+  button.set_property<glib::ustring>("dropdown-tooltip", "Some other tooltip");
   g_assert_true(button.get_dropdown_tooltip() == "Some other tooltip");
   g_assert_true(notified == 2);
 }
 
 int main(int argc, char *argv[]) {
   gtk_test_init(&argc, &argv, NULL);
-  Adw::init();
+  adw::init();
 
   g_test_add_func("/Adwaita/SplitButton/icon_name",
                   test_adw_split_button_icon_name);

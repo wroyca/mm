@@ -17,13 +17,13 @@ using GtkFontButtonClass = struct _GtkFontButtonClass;
   #endif
 
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT FontButton_Class;
 }
   #endif
 
-namespace Gtk
+namespace gtk
 {
 
   class LIBMM_GTK_SYMEXPORT FontButton : public Widget,
@@ -54,7 +54,7 @@ namespace Gtk
     static CppClassType fontbutton_class_;
 
   protected:
-    explicit FontButton (const Glib::ConstructParams& construct_params);
+    explicit FontButton (const glib::ConstructParams& construct_params);
     explicit FontButton (GtkFontButton* castitem);
 
   #endif
@@ -84,13 +84,13 @@ namespace Gtk
   private:
   public:
     FontButton ();
-    explicit FontButton (const Glib::ustring& font);
+    explicit FontButton (const glib::ustring& font);
 
     auto
-    get_title () const -> Glib::ustring;
+    get_title () const -> glib::ustring;
 
     auto
-    set_title (const Glib::ustring& title) -> void;
+    set_title (const glib::ustring& title) -> void;
 
     auto
     get_modal () const -> bool;
@@ -111,44 +111,44 @@ namespace Gtk
     set_use_size (bool use_size = true) -> void;
 
     auto
-    property_title () -> Glib::PropertyProxy<Glib::ustring>;
+    property_title () -> glib::PropertyProxy<glib::ustring>;
 
     auto
-    property_title () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+    property_title () const -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
     auto
-    property_modal () -> Glib::PropertyProxy<bool>;
+    property_modal () -> glib::PropertyProxy<bool>;
 
     auto
-    property_modal () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_modal () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_use_font () -> Glib::PropertyProxy<bool>;
+    property_use_font () -> glib::PropertyProxy<bool>;
 
     auto
-    property_use_font () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_use_font () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_use_size () -> Glib::PropertyProxy<bool>;
+    property_use_size () -> glib::PropertyProxy<bool>;
 
     auto
-    property_use_size () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_use_size () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    signal_font_set () -> Glib::SignalProxy<void ()>;
+    signal_font_set () -> glib::SignalProxy<void ()>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkFontButton* object, bool take_copy = false) -> Gtk::FontButton*;
-} // namespace Glib
+  wrap (GtkFontButton* object, bool take_copy = false) -> gtk::FontButton*;
+} // namespace glib
 
 #endif
 

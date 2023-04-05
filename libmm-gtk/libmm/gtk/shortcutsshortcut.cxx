@@ -7,7 +7,7 @@
 
 #include <gtk/gtk.h>
 
-namespace Gtk
+namespace gtk
 {
 }
 
@@ -16,28 +16,28 @@ namespace
 }
 
 auto
-Glib::Value<Gtk::ShortcutType>::value_type () -> GType
+glib::Value<gtk::ShortcutType>::value_type () -> GType
 {
   return gtk_shortcut_type_get_type ();
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GtkShortcutsShortcut* object, bool take_copy) -> Gtk::ShortcutsShortcut*
+  wrap (GtkShortcutsShortcut* object, bool take_copy) -> gtk::ShortcutsShortcut*
   {
-    return dynamic_cast<Gtk::ShortcutsShortcut*> (
-        Glib::wrap_auto ((GObject*) (object), take_copy));
+    return dynamic_cast<gtk::ShortcutsShortcut*> (
+        glib::wrap_auto ((GObject*) (object), take_copy));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gtk
+namespace gtk
 {
 
   auto
-  ShortcutsShortcut_Class::init () -> const Glib::Class&
+  ShortcutsShortcut_Class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -57,13 +57,13 @@ namespace Gtk
   }
 
   auto
-  ShortcutsShortcut_Class::wrap_new (GObject* o) -> Glib::ObjectBase*
+  ShortcutsShortcut_Class::wrap_new (GObject* o) -> glib::ObjectBase*
   {
     return manage (new ShortcutsShortcut ((GtkShortcutsShortcut*) (o)));
   }
 
   ShortcutsShortcut::ShortcutsShortcut (
-      const Glib::ConstructParams& construct_params)
+      const glib::ConstructParams& construct_params)
     : Widget (construct_params)
   {
   }
@@ -105,133 +105,133 @@ namespace Gtk
   }
 
   ShortcutsShortcut::ShortcutsShortcut ()
-    : Glib::ObjectBase (nullptr),
-      Widget (Glib::ConstructParams (shortcutsshortcut_class_.init ()))
+    : glib::ObjectBase (nullptr),
+      Widget (glib::ConstructParams (shortcutsshortcut_class_.init ()))
   {
   }
 
   auto
-  ShortcutsShortcut::property_accelerator () -> Glib::PropertyProxy<Glib::ustring>
+  ShortcutsShortcut::property_accelerator () -> glib::PropertyProxy<glib::ustring>
   {
-    return Glib::PropertyProxy<Glib::ustring> (this, "accelerator");
+    return glib::PropertyProxy<glib::ustring> (this, "accelerator");
   }
 
   auto
-  ShortcutsShortcut::property_accelerator () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>
+  ShortcutsShortcut::property_accelerator () const -> glib::PropertyProxy_ReadOnly<glib::ustring>
   {
-    return Glib::PropertyProxy_ReadOnly<Glib::ustring> (this, "accelerator");
+    return glib::PropertyProxy_ReadOnly<glib::ustring> (this, "accelerator");
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<
-          Glib::RefPtr<Gio::Icon>>::value,
-      "Type Glib::RefPtr<Gio::Icon> cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      glib::Traits::ValueCompatibleWithWrapProperty<
+          glib::RefPtr<gio::Icon>>::value,
+      "Type glib::RefPtr<gio::Icon> cannot be used in _WRAP_PROPERTY. "
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  ShortcutsShortcut::property_icon () -> Glib::PropertyProxy<Glib::RefPtr<Gio::Icon>>
+  ShortcutsShortcut::property_icon () -> glib::PropertyProxy<glib::RefPtr<gio::Icon>>
   {
-    return Glib::PropertyProxy<Glib::RefPtr<Gio::Icon>> (this, "icon");
+    return glib::PropertyProxy<glib::RefPtr<gio::Icon>> (this, "icon");
   }
 
   auto
-  ShortcutsShortcut::property_icon () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gio::Icon>>
+  ShortcutsShortcut::property_icon () const -> glib::PropertyProxy_ReadOnly<glib::RefPtr<gio::Icon>>
   {
-    return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gio::Icon>> (this, "icon");
+    return glib::PropertyProxy_ReadOnly<glib::RefPtr<gio::Icon>> (this, "icon");
   }
 
   auto
-  ShortcutsShortcut::property_icon_set () -> Glib::PropertyProxy<bool>
+  ShortcutsShortcut::property_icon_set () -> glib::PropertyProxy<bool>
   {
-    return Glib::PropertyProxy<bool> (this, "icon-set");
+    return glib::PropertyProxy<bool> (this, "icon-set");
   }
 
   auto
-  ShortcutsShortcut::property_icon_set () const -> Glib::PropertyProxy_ReadOnly<bool>
+  ShortcutsShortcut::property_icon_set () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "icon-set");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "icon-set");
   }
 
   auto
-  ShortcutsShortcut::property_title () -> Glib::PropertyProxy<Glib::ustring>
+  ShortcutsShortcut::property_title () -> glib::PropertyProxy<glib::ustring>
   {
-    return Glib::PropertyProxy<Glib::ustring> (this, "title");
+    return glib::PropertyProxy<glib::ustring> (this, "title");
   }
 
   auto
-  ShortcutsShortcut::property_title () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>
+  ShortcutsShortcut::property_title () const -> glib::PropertyProxy_ReadOnly<glib::ustring>
   {
-    return Glib::PropertyProxy_ReadOnly<Glib::ustring> (this, "title");
+    return glib::PropertyProxy_ReadOnly<glib::ustring> (this, "title");
   }
 
   auto
-  ShortcutsShortcut::property_subtitle () -> Glib::PropertyProxy<Glib::ustring>
+  ShortcutsShortcut::property_subtitle () -> glib::PropertyProxy<glib::ustring>
   {
-    return Glib::PropertyProxy<Glib::ustring> (this, "subtitle");
+    return glib::PropertyProxy<glib::ustring> (this, "subtitle");
   }
 
   auto
-  ShortcutsShortcut::property_subtitle () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>
+  ShortcutsShortcut::property_subtitle () const -> glib::PropertyProxy_ReadOnly<glib::ustring>
   {
-    return Glib::PropertyProxy_ReadOnly<Glib::ustring> (this, "subtitle");
+    return glib::PropertyProxy_ReadOnly<glib::ustring> (this, "subtitle");
   }
 
   auto
-  ShortcutsShortcut::property_subtitle_set () -> Glib::PropertyProxy<bool>
+  ShortcutsShortcut::property_subtitle_set () -> glib::PropertyProxy<bool>
   {
-    return Glib::PropertyProxy<bool> (this, "subtitle-set");
+    return glib::PropertyProxy<bool> (this, "subtitle-set");
   }
 
   auto
-  ShortcutsShortcut::property_subtitle_set () const -> Glib::PropertyProxy_ReadOnly<bool>
+  ShortcutsShortcut::property_subtitle_set () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "subtitle-set");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "subtitle-set");
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<TextDirection>::value,
+      glib::Traits::ValueCompatibleWithWrapProperty<TextDirection>::value,
       "Type TextDirection cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  ShortcutsShortcut::property_direction () -> Glib::PropertyProxy<TextDirection>
+  ShortcutsShortcut::property_direction () -> glib::PropertyProxy<TextDirection>
   {
-    return Glib::PropertyProxy<TextDirection> (this, "direction");
+    return glib::PropertyProxy<TextDirection> (this, "direction");
   }
 
   auto
-  ShortcutsShortcut::property_direction () const -> Glib::PropertyProxy_ReadOnly<TextDirection>
+  ShortcutsShortcut::property_direction () const -> glib::PropertyProxy_ReadOnly<TextDirection>
   {
-    return Glib::PropertyProxy_ReadOnly<TextDirection> (this, "direction");
+    return glib::PropertyProxy_ReadOnly<TextDirection> (this, "direction");
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<ShortcutType>::value,
+      glib::Traits::ValueCompatibleWithWrapProperty<ShortcutType>::value,
       "Type ShortcutType cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  ShortcutsShortcut::property_shortcut_type () -> Glib::PropertyProxy<ShortcutType>
+  ShortcutsShortcut::property_shortcut_type () -> glib::PropertyProxy<ShortcutType>
   {
-    return Glib::PropertyProxy<ShortcutType> (this, "shortcut-type");
+    return glib::PropertyProxy<ShortcutType> (this, "shortcut-type");
   }
 
   auto
-  ShortcutsShortcut::property_shortcut_type () const -> Glib::PropertyProxy_ReadOnly<ShortcutType>
+  ShortcutsShortcut::property_shortcut_type () const -> glib::PropertyProxy_ReadOnly<ShortcutType>
   {
-    return Glib::PropertyProxy_ReadOnly<ShortcutType> (this, "shortcut-type");
+    return glib::PropertyProxy_ReadOnly<ShortcutType> (this, "shortcut-type");
   }
 
   auto
-  ShortcutsShortcut::property_action_name () -> Glib::PropertyProxy<Glib::ustring>
+  ShortcutsShortcut::property_action_name () -> glib::PropertyProxy<glib::ustring>
   {
-    return Glib::PropertyProxy<Glib::ustring> (this, "action-name");
+    return glib::PropertyProxy<glib::ustring> (this, "action-name");
   }
 
   auto
-  ShortcutsShortcut::property_action_name () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>
+  ShortcutsShortcut::property_action_name () const -> glib::PropertyProxy_ReadOnly<glib::ustring>
   {
-    return Glib::PropertyProxy_ReadOnly<Glib::ustring> (this, "action-name");
+    return glib::PropertyProxy_ReadOnly<glib::ustring> (this, "action-name");
   }
 
-} // namespace Gtk
+} // namespace gtk

@@ -9,21 +9,21 @@
 #include <libmm/gio/slot_async.hxx>
 #include <libmm/glib/error.hxx>
 
-namespace Gio
+namespace gio
 {
   auto
   BufferedInputStream::create_sized (
-      const Glib::RefPtr<InputStream>& base_stream,
-      const gsize buffer_size) -> Glib::RefPtr<BufferedInputStream>
+      const glib::RefPtr<InputStream>& base_stream,
+      const gsize buffer_size) -> glib::RefPtr<BufferedInputStream>
   {
-    return Glib::make_refptr_for_instance<BufferedInputStream> (
+    return glib::make_refptr_for_instance<BufferedInputStream> (
         new BufferedInputStream (base_stream, buffer_size));
   }
 
   auto
   BufferedInputStream::fill_async (const SlotAsyncReady& slot,
                                    const gssize count,
-                                   const Glib::RefPtr<Cancellable>& cancellable,
+                                   const glib::RefPtr<Cancellable>& cancellable,
                                    const int io_priority) -> void
   {
     const auto slot_copy = new SlotAsyncReady (slot);
@@ -31,7 +31,7 @@ namespace Gio
     g_buffered_input_stream_fill_async (gobj (),
                                         count,
                                         io_priority,
-                                        Glib::unwrap (cancellable),
+                                        glib::unwrap (cancellable),
                                         &SignalProxy_async_callback,
                                         slot_copy);
   }
@@ -51,26 +51,26 @@ namespace Gio
                                         slot_copy);
   }
 
-} // namespace Gio
+} // namespace gio
 
 namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GBufferedInputStream* object, const bool take_copy) -> RefPtr<Gio::BufferedInputStream>
+  wrap (GBufferedInputStream* object, const bool take_copy) -> RefPtr<gio::BufferedInputStream>
   {
-    return Glib::make_refptr_for_instance<Gio::BufferedInputStream> (
-        dynamic_cast<Gio::BufferedInputStream*> (
+    return glib::make_refptr_for_instance<gio::BufferedInputStream> (
+        dynamic_cast<gio::BufferedInputStream*> (
             wrap_auto ((GObject*) object, take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gio
+namespace gio
 {
 
   auto
@@ -105,7 +105,7 @@ namespace Gio
                                                   GError** error) -> gssize
   {
     const auto obj_base =
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self);
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self);
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -114,16 +114,16 @@ namespace Gio
       {
         try
         {
-          return obj->fill_vfunc (count, Glib::wrap (cancellable, true));
+          return obj->fill_vfunc (count, glib::wrap (cancellable, true));
         }
-        catch (Glib::Error& errormm)
+        catch (glib::Error& errormm)
         {
           errormm.propagate (error);
           return -1;
         }
         catch (...)
         {
-          Glib::exception_handlers_invoke ();
+          glib::exception_handlers_invoke ();
         }
       }
     }
@@ -139,7 +139,7 @@ namespace Gio
   }
 
   auto
-  BufferedInputStream_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  BufferedInputStream_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new BufferedInputStream ((GBufferedInputStream*) object);
   }
@@ -152,7 +152,7 @@ namespace Gio
   }
 
   BufferedInputStream::BufferedInputStream (
-      const Glib::ConstructParams& construct_params)
+      const glib::ConstructParams& construct_params)
     : FilterInputStream (construct_params)
   {
   }
@@ -194,24 +194,24 @@ namespace Gio
   }
 
   BufferedInputStream::BufferedInputStream (
-      const Glib::RefPtr<InputStream>& base_stream)
+      const glib::RefPtr<InputStream>& base_stream)
     : ObjectBase (nullptr),
       FilterInputStream (
-          Glib::ConstructParams (bufferedinputstream_class_.init (),
+          glib::ConstructParams (bufferedinputstream_class_.init (),
                                  "base_stream",
-                                 Glib::unwrap (base_stream),
+                                 glib::unwrap (base_stream),
                                  nullptr))
   {
   }
 
   BufferedInputStream::BufferedInputStream (
-      const Glib::RefPtr<InputStream>& base_stream,
+      const glib::RefPtr<InputStream>& base_stream,
       const gsize buffer_size)
     : ObjectBase (nullptr),
       FilterInputStream (
-          Glib::ConstructParams (bufferedinputstream_class_.init (),
+          glib::ConstructParams (bufferedinputstream_class_.init (),
                                  "base_stream",
-                                 Glib::unwrap (base_stream),
+                                 glib::unwrap (base_stream),
                                  "buffer_size",
                                  buffer_size,
                                  nullptr))
@@ -219,9 +219,9 @@ namespace Gio
   }
 
   auto
-  BufferedInputStream::create (const Glib::RefPtr<InputStream>& base_stream) -> Glib::RefPtr<BufferedInputStream>
+  BufferedInputStream::create (const glib::RefPtr<InputStream>& base_stream) -> glib::RefPtr<BufferedInputStream>
   {
-    return Glib::make_refptr_for_instance<BufferedInputStream> (
+    return glib::make_refptr_for_instance<BufferedInputStream> (
         new BufferedInputStream (base_stream));
   }
 
@@ -267,16 +267,16 @@ namespace Gio
 
   auto
   BufferedInputStream::fill (const gssize count,
-                             const Glib::RefPtr<Cancellable>& cancellable) -> gssize
+                             const glib::RefPtr<Cancellable>& cancellable) -> gssize
   {
     GError* gerror = nullptr;
     const auto retvalue = g_buffered_input_stream_fill (
         gobj (),
         count,
-        Glib::unwrap (cancellable),
+        glib::unwrap (cancellable),
         &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
@@ -287,33 +287,33 @@ namespace Gio
     const auto retvalue =
         g_buffered_input_stream_fill (gobj (), count, nullptr, &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
   auto
-  BufferedInputStream::fill_finish (const Glib::RefPtr<AsyncResult>& result) -> gssize
+  BufferedInputStream::fill_finish (const glib::RefPtr<AsyncResult>& result) -> gssize
   {
     GError* gerror = nullptr;
     const auto retvalue = g_buffered_input_stream_fill_finish (
         gobj (),
-        Glib::unwrap (result),
+        glib::unwrap (result),
         &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
   auto
-  BufferedInputStream::read_byte (const Glib::RefPtr<Cancellable>& cancellable) -> int
+  BufferedInputStream::read_byte (const glib::RefPtr<Cancellable>& cancellable) -> int
   {
     GError* gerror = nullptr;
     const auto retvalue = g_buffered_input_stream_read_byte (
         gobj (),
-        Glib::unwrap (cancellable),
+        glib::unwrap (cancellable),
         &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
@@ -324,25 +324,25 @@ namespace Gio
     const auto retvalue =
         g_buffered_input_stream_read_byte (gobj (), nullptr, &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
   auto
-  BufferedInputStream::property_buffer_size () -> Glib::PropertyProxy<guint>
+  BufferedInputStream::property_buffer_size () -> glib::PropertyProxy<guint>
   {
     return {this, "buffer-size"};
   }
 
   auto
-  BufferedInputStream::property_buffer_size () const -> Glib::PropertyProxy_ReadOnly<guint>
+  BufferedInputStream::property_buffer_size () const -> glib::PropertyProxy_ReadOnly<guint>
   {
     return {this, "buffer-size"};
   }
 
   auto
   BufferedInputStream::fill_vfunc (const gssize count,
-                                   const Glib::RefPtr<Cancellable>& cancellable) -> gssize
+                                   const glib::RefPtr<Cancellable>& cancellable) -> gssize
   {
     const auto base = static_cast<BaseClassType*> (
         g_type_class_peek_parent (G_OBJECT_GET_CLASS (gobject_)));
@@ -351,9 +351,9 @@ namespace Gio
     {
       GError* gerror = nullptr;
       const gssize retval (
-          (*base->fill) (gobj (), count, Glib::unwrap (cancellable), &gerror));
+          (*base->fill) (gobj (), count, glib::unwrap (cancellable), &gerror));
       if (gerror)
-        Glib::Error::throw_exception (gerror);
+        glib::Error::throw_exception (gerror);
       return retval;
     }
 
@@ -361,4 +361,4 @@ namespace Gio
     return RType ();
   }
 
-} // namespace Gio
+} // namespace gio

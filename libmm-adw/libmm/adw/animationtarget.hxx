@@ -16,16 +16,16 @@ using AdwAnimationTargetClass = struct _AdwAnimationTargetClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Adw
+namespace adw
 {
   class LIBMM_ADW_SYMEXPORT AnimationTarget_Class;
 }
 #endif
 
-namespace Adw
+namespace adw
 {
 
-  class LIBMM_ADW_SYMEXPORT AnimationTarget : public Glib::Object
+  class LIBMM_ADW_SYMEXPORT AnimationTarget : public glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -44,7 +44,7 @@ namespace Adw
     static CppClassType animationtarget_class_;
 
   protected:
-    explicit AnimationTarget (const Glib::ConstructParams& construct_params);
+    explicit AnimationTarget (const glib::ConstructParams& construct_params);
     explicit AnimationTarget (AdwAnimationTarget* castitem);
 
 #endif
@@ -89,13 +89,13 @@ namespace Adw
   protected:
   };
 
-} // namespace Adw
+} // namespace adw
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (AdwAnimationTarget* object, bool take_copy = false) -> Glib::RefPtr<Adw::AnimationTarget>;
+  wrap (AdwAnimationTarget* object, bool take_copy = false) -> glib::RefPtr<adw::AnimationTarget>;
 }
 
 #endif

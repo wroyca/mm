@@ -18,16 +18,16 @@ using GtkEntryBufferClass = struct _GtkEntryBufferClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT EntryBuffer_Class;
 }
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
-  class LIBMM_GTK_SYMEXPORT EntryBuffer : public Glib::Object
+  class LIBMM_GTK_SYMEXPORT EntryBuffer : public glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -46,7 +46,7 @@ namespace Gtk
     static CppClassType entrybuffer_class_;
 
   protected:
-    explicit EntryBuffer (const Glib::ConstructParams& construct_params);
+    explicit EntryBuffer (const glib::ConstructParams& construct_params);
     explicit EntryBuffer (GtkEntryBuffer* castitem);
 
 #endif
@@ -86,14 +86,14 @@ namespace Gtk
   protected:
     EntryBuffer ();
 
-    explicit EntryBuffer (const Glib::ustring& text);
+    explicit EntryBuffer (const glib::ustring& text);
 
   public:
     static auto
-    create () -> Glib::RefPtr<EntryBuffer>;
+    create () -> glib::RefPtr<EntryBuffer>;
 
     static auto
-    create (const Glib::ustring& text) -> Glib::RefPtr<EntryBuffer>;
+    create (const glib::ustring& text) -> glib::RefPtr<EntryBuffer>;
 
     auto
     get_bytes () const -> gsize;
@@ -102,10 +102,10 @@ namespace Gtk
     get_length () const -> guint;
 
     auto
-    get_text () const -> Glib::ustring;
+    get_text () const -> glib::ustring;
 
     auto
-    set_text (const Glib::ustring& text) -> void;
+    set_text (const glib::ustring& text) -> void;
 
     auto
     set_max_length (int max_length) -> void;
@@ -114,38 +114,38 @@ namespace Gtk
     get_max_length () const -> int;
 
     auto
-    insert_text (guint position, const Glib::ustring& text) -> guint;
+    insert_text (guint position, const glib::ustring& text) -> guint;
 
     auto
     delete_text (guint position, int n_chars) -> guint;
 
     auto
-    emit_inserted_text (guint position, const Glib::ustring& text) -> void;
+    emit_inserted_text (guint position, const glib::ustring& text) -> void;
 
     auto
     emit_deleted_text (guint position, guint n_chars) -> void;
 
     auto
     signal_inserted_text ()
-        -> Glib::SignalProxy<void (guint, const char*, guint)>;
+        -> glib::SignalProxy<void (guint, const char*, guint)>;
 
     auto
-    signal_deleted_text () -> Glib::SignalProxy<void (guint, guint)>;
+    signal_deleted_text () -> glib::SignalProxy<void (guint, guint)>;
 
     auto
-    property_text () -> Glib::PropertyProxy<Glib::ustring>;
+    property_text () -> glib::PropertyProxy<glib::ustring>;
 
     auto
-    property_text () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+    property_text () const -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
     auto
-    property_length () const -> Glib::PropertyProxy_ReadOnly<guint>;
+    property_length () const -> glib::PropertyProxy_ReadOnly<guint>;
 
     auto
-    property_max_length () -> Glib::PropertyProxy<int>;
+    property_max_length () -> glib::PropertyProxy<int>;
 
     auto
-    property_max_length () const -> Glib::PropertyProxy_ReadOnly<int>;
+    property_max_length () const -> glib::PropertyProxy_ReadOnly<int>;
 
   public:
   public:
@@ -157,12 +157,12 @@ namespace Gtk
     on_deleted_text (guint position, guint n_chars) -> void;
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkEntryBuffer* object, bool take_copy = false) -> Glib::RefPtr<Gtk::EntryBuffer>;
-} // namespace Glib
+  wrap (GtkEntryBuffer* object, bool take_copy = false) -> glib::RefPtr<gtk::EntryBuffer>;
+} // namespace glib
 
 #endif

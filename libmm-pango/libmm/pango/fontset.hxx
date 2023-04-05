@@ -18,16 +18,16 @@ using PangoFontsetClass = struct _PangoFontsetClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Pango
+namespace pango
 {
   class LIBMM_PANGO_SYMEXPORT Fontset_Class;
 }
 #endif
 
-namespace Pango
+namespace pango
 {
 
-  class LIBMM_PANGO_SYMEXPORT Fontset : public Glib::Object
+  class LIBMM_PANGO_SYMEXPORT Fontset : public glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -46,7 +46,7 @@ namespace Pango
     static CppClassType fontset_class_;
 
   protected:
-    explicit Fontset (const Glib::ConstructParams& construct_params);
+    explicit Fontset (const glib::ConstructParams& construct_params);
     explicit Fontset (PangoFontset* castitem);
 
 #endif
@@ -85,12 +85,12 @@ namespace Pango
   private:
   public:
     auto
-    get_font (guint wc) const -> Glib::RefPtr<Font>;
+    get_font (guint wc) const -> glib::RefPtr<Font>;
 
     auto
     get_metrics () const -> FontMetrics;
 
-    typedef sigc::slot<bool (const Glib::RefPtr<Font>&)> ForeachSlot;
+    typedef sigc::slot<bool (const glib::RefPtr<Font>&)> ForeachSlot;
 
     auto foreach (const ForeachSlot& slot) -> void;
 
@@ -99,14 +99,14 @@ namespace Pango
   protected:
   };
 
-} // namespace Pango
+} // namespace pango
 
-namespace Glib
+namespace glib
 {
 
   LIBMM_PANGO_SYMEXPORT
   auto
-  wrap (PangoFontset* object, bool take_copy = false) -> Glib::RefPtr<Pango::Fontset>;
-} // namespace Glib
+  wrap (PangoFontset* object, bool take_copy = false) -> glib::RefPtr<pango::Fontset>;
+} // namespace glib
 
 #endif

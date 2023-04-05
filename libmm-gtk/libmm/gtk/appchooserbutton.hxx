@@ -17,13 +17,13 @@ using GtkAppChooserButtonClass = struct _GtkAppChooserButtonClass;
   #endif
 
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT AppChooserButton_Class;
 }
   #endif
 
-namespace Gtk
+namespace gtk
 {
 
   class LIBMM_GTK_SYMEXPORT AppChooserButton : public Widget,
@@ -54,7 +54,7 @@ namespace Gtk
     static CppClassType appchooserbutton_class_;
 
   protected:
-    explicit AppChooserButton (const Glib::ConstructParams& construct_params);
+    explicit AppChooserButton (const glib::ConstructParams& construct_params);
     explicit AppChooserButton (GtkAppChooserButton* castitem);
 
   #endif
@@ -83,18 +83,18 @@ namespace Gtk
 
   private:
   public:
-    explicit AppChooserButton (const Glib::ustring& content_type);
+    explicit AppChooserButton (const glib::ustring& content_type);
 
     auto
     append_separator () -> void;
 
     auto
-    append_custom_item (const Glib::ustring& name,
-                        const Glib::ustring& label,
-                        const Glib::RefPtr<Gio::Icon>& icon) -> void;
+    append_custom_item (const glib::ustring& name,
+                        const glib::ustring& label,
+                        const glib::RefPtr<gio::Icon>& icon) -> void;
 
     auto
-    set_active_custom_item (const Glib::ustring& name) -> void;
+    set_active_custom_item (const glib::ustring& name) -> void;
 
     auto
     set_show_dialog_item (bool setting = true) -> void;
@@ -103,10 +103,10 @@ namespace Gtk
     get_show_dialog_item () const -> bool;
 
     auto
-    set_heading (const Glib::ustring& heading) -> void;
+    set_heading (const glib::ustring& heading) -> void;
 
     auto
-    get_heading () const -> Glib::ustring;
+    get_heading () const -> glib::ustring;
 
     auto
     set_show_default_item (bool setting = true) -> void;
@@ -121,48 +121,48 @@ namespace Gtk
     get_modal () const -> bool;
 
     auto
-    signal_changed () -> Glib::SignalProxy<void ()>;
+    signal_changed () -> glib::SignalProxy<void ()>;
 
     auto
-    signal_custom_item_activated (const Glib::ustring& custom_item_name = {})
-        -> Glib::SignalProxyDetailed<void (const Glib::ustring&)>;
+    signal_custom_item_activated (const glib::ustring& custom_item_name = {})
+        -> glib::SignalProxyDetailed<void (const glib::ustring&)>;
 
     auto
-    property_show_dialog_item () -> Glib::PropertyProxy<bool>;
+    property_show_dialog_item () -> glib::PropertyProxy<bool>;
 
     auto
-    property_show_dialog_item () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_show_dialog_item () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_heading () -> Glib::PropertyProxy<Glib::ustring>;
+    property_heading () -> glib::PropertyProxy<glib::ustring>;
 
     auto
-    property_heading () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+    property_heading () const -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
     auto
-    property_show_default_item () -> Glib::PropertyProxy<bool>;
+    property_show_default_item () -> glib::PropertyProxy<bool>;
 
     auto
-    property_show_default_item () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_show_default_item () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_modal () -> Glib::PropertyProxy<bool>;
+    property_modal () -> glib::PropertyProxy<bool>;
 
     auto
-    property_modal () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_modal () const -> glib::PropertyProxy_ReadOnly<bool>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkAppChooserButton* object, bool take_copy = false) -> Gtk::AppChooserButton*;
-} // namespace Glib
+  wrap (GtkAppChooserButton* object, bool take_copy = false) -> gtk::AppChooserButton*;
+} // namespace glib
 
 #endif
 

@@ -20,16 +20,16 @@ using GFileDescriptorBasedClass = struct _GFileDescriptorBasedClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gio
+namespace gio
 {
   class LIBMM_GIO_SYMEXPORT FileDescriptorBased_Class;
 }
 #endif
 
-namespace Gio
+namespace gio
 {
 
-  class FileDescriptorBased : public Glib::Interface
+  class FileDescriptorBased : public glib::Interface
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -53,7 +53,7 @@ namespace Gio
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
-    explicit FileDescriptorBased (const Glib::Interface_Class& interface_class);
+    explicit FileDescriptorBased (const glib::Interface_Class& interface_class);
 
   public:
     explicit FileDescriptorBased (GFileDescriptorBased* castitem);
@@ -105,15 +105,15 @@ namespace Gio
   protected:
   };
 
-} // namespace Gio
+} // namespace gio
 
-namespace Glib
+namespace glib
 {
 
   LIBMM_GIO_SYMEXPORT
   auto
-  wrap (GFileDescriptorBased* object, bool take_copy = false) -> Glib::RefPtr<Gio::FileDescriptorBased>;
+  wrap (GFileDescriptorBased* object, bool take_copy = false) -> glib::RefPtr<gio::FileDescriptorBased>;
 
-} // namespace Glib
+} // namespace glib
 
 #endif

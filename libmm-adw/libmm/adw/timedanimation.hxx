@@ -21,13 +21,13 @@ using AdwTimedAnimationClass = struct _AdwTimedAnimationClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Adw
+namespace adw
 {
   class LIBMM_ADW_SYMEXPORT TimedAnimation_Class;
 }
 #endif
 
-namespace Adw
+namespace adw
 {
 
   class LIBMM_ADW_SYMEXPORT TimedAnimation : public Animation
@@ -49,7 +49,7 @@ namespace Adw
     static CppClassType timedanimation_class_;
 
   protected:
-    explicit TimedAnimation (const Glib::ConstructParams& construct_params);
+    explicit TimedAnimation (const glib::ConstructParams& construct_params);
     explicit TimedAnimation (AdwTimedAnimation* castitem);
 
 #endif
@@ -88,20 +88,20 @@ namespace Adw
   private:
   protected:
     TimedAnimation ();
-    explicit TimedAnimation (Gtk::Widget* widget,
+    explicit TimedAnimation (gtk::Widget* widget,
                              double value_from,
                              double value_to,
                              guint duration,
-                             const Glib::RefPtr<AnimationTarget>& target);
+                             const glib::RefPtr<AnimationTarget>& target);
 
   public:
     static auto
-    create (Gtk::Widget* widget,
+    create (gtk::Widget* widget,
             double value_from,
             double value_to,
             guint duration,
-            const Glib::RefPtr<AnimationTarget>& target)
-        -> Glib::RefPtr<TimedAnimation>;
+            const glib::RefPtr<AnimationTarget>& target)
+        -> glib::RefPtr<TimedAnimation>;
 
     auto
     get_alternate () const -> bool;
@@ -146,59 +146,59 @@ namespace Adw
     set_value_to (double to) const -> void;
 
     auto
-    property_alternate () -> Glib::PropertyProxy<bool>;
+    property_alternate () -> glib::PropertyProxy<bool>;
 
     auto
-    property_alternate () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_alternate () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_duration () -> Glib::PropertyProxy<guint>;
+    property_duration () -> glib::PropertyProxy<guint>;
 
     auto
-    property_duration () const -> Glib::PropertyProxy_ReadOnly<guint>;
+    property_duration () const -> glib::PropertyProxy_ReadOnly<guint>;
 
     auto
-    property_easing () -> Glib::PropertyProxy<Easing>;
+    property_easing () -> glib::PropertyProxy<Easing>;
 
     auto
-    property_easing () const -> Glib::PropertyProxy_ReadOnly<Easing>;
+    property_easing () const -> glib::PropertyProxy_ReadOnly<Easing>;
 
     auto
-    property_repeat_count () -> Glib::PropertyProxy<guint>;
+    property_repeat_count () -> glib::PropertyProxy<guint>;
 
     auto
-    property_repeat_count () const -> Glib::PropertyProxy_ReadOnly<guint>;
+    property_repeat_count () const -> glib::PropertyProxy_ReadOnly<guint>;
 
     auto
-    property_reverse () -> Glib::PropertyProxy<bool>;
+    property_reverse () -> glib::PropertyProxy<bool>;
 
     auto
-    property_reverse () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_reverse () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_value_from () -> Glib::PropertyProxy<double>;
+    property_value_from () -> glib::PropertyProxy<double>;
 
     auto
-    property_value_from () const -> Glib::PropertyProxy_ReadOnly<double>;
+    property_value_from () const -> glib::PropertyProxy_ReadOnly<double>;
 
     auto
-    property_value_to () -> Glib::PropertyProxy<double>;
+    property_value_to () -> glib::PropertyProxy<double>;
 
     auto
-    property_value_to () const -> Glib::PropertyProxy_ReadOnly<double>;
+    property_value_to () const -> glib::PropertyProxy_ReadOnly<double>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Adw
+} // namespace adw
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (AdwTimedAnimation* object, bool take_copy = false) -> Glib::RefPtr<Adw::TimedAnimation>;
+  wrap (AdwTimedAnimation* object, bool take_copy = false) -> glib::RefPtr<adw::TimedAnimation>;
 }
 
 #endif

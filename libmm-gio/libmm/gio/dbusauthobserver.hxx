@@ -16,16 +16,16 @@ using GDBusAuthObserverClass = struct _GDBusAuthObserverClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gio::DBus
+namespace gio::DBus
 {
   class LIBMM_GIO_SYMEXPORT AuthObserver_Class;
 }
 #endif
 
-namespace Gio::DBus
+namespace gio::DBus
 {
 
-  class LIBMM_GIO_SYMEXPORT AuthObserver : public Glib::Object
+  class LIBMM_GIO_SYMEXPORT AuthObserver : public glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -44,7 +44,7 @@ namespace Gio::DBus
     static CppClassType authobserver_class_;
 
   protected:
-    explicit AuthObserver (const Glib::ConstructParams& construct_params);
+    explicit AuthObserver (const glib::ConstructParams& construct_params);
     explicit AuthObserver (GDBusAuthObserver* castitem);
 
 #endif
@@ -86,37 +86,37 @@ namespace Gio::DBus
 
   public:
     static auto
-    create () -> Glib::RefPtr<AuthObserver>;
+    create () -> glib::RefPtr<AuthObserver>;
 
     auto
     authorize_authenticated_peer (
-        const Glib::RefPtr<const IOStream>& stream,
-        const Glib::RefPtr<const Credentials>& credentials) -> bool;
+        const glib::RefPtr<const IOStream>& stream,
+        const glib::RefPtr<const Credentials>& credentials) -> bool;
 
     auto
     allow_mechanism (const std::string& mechanism) -> bool;
 
     auto
     signal_authorize_authenticated_peer ()
-        -> Glib::SignalProxy<bool (const Glib::RefPtr<const IOStream>&,
-                                   const Glib::RefPtr<const Credentials>&)>;
+        -> glib::SignalProxy<bool (const glib::RefPtr<const IOStream>&,
+                                   const glib::RefPtr<const Credentials>&)>;
 
     auto
-    signal_allow_mechanism () -> Glib::SignalProxy<bool (const std::string&)>;
+    signal_allow_mechanism () -> glib::SignalProxy<bool (const std::string&)>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gio::DBus
+} // namespace gio::DBus
 
-namespace Glib
+namespace glib
 {
 
   LIBMM_GIO_SYMEXPORT
   auto
-  wrap (GDBusAuthObserver* object, bool take_copy = false) -> Glib::RefPtr<Gio::DBus::AuthObserver>;
-} // namespace Glib
+  wrap (GDBusAuthObserver* object, bool take_copy = false) -> glib::RefPtr<gio::DBus::AuthObserver>;
+} // namespace glib
 
 #endif

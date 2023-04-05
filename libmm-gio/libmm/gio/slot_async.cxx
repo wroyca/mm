@@ -4,7 +4,7 @@
 #include <libmm/gio/slot_async.hxx>
 #include <libmm/glib/exceptionhandler.hxx>
 
-namespace Gio
+namespace gio
 {
 
   auto
@@ -14,15 +14,15 @@ namespace Gio
 
     try
     {
-      auto result = Glib::wrap (res, true);
+      auto result = glib::wrap (res, true);
       (*the_slot) (result);
     }
     catch (...)
     {
-      Glib::exception_handlers_invoke ();
+      glib::exception_handlers_invoke ();
     }
 
     delete the_slot;
   }
 
-} // namespace Gio
+} // namespace gio

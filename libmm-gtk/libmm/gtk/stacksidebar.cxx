@@ -7,7 +7,7 @@
 
 #include <gtk/gtk.h>
 
-namespace Gtk
+namespace gtk
 {
 
   auto
@@ -16,29 +16,29 @@ namespace Gtk
     gtk_stack_sidebar_set_stack (gobj (), nullptr);
   }
 
-} // namespace Gtk
+} // namespace gtk
 
 namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GtkStackSidebar* object, bool take_copy) -> Gtk::StackSidebar*
+  wrap (GtkStackSidebar* object, bool take_copy) -> gtk::StackSidebar*
   {
-    return dynamic_cast<Gtk::StackSidebar*> (
-        Glib::wrap_auto ((GObject*) (object), take_copy));
+    return dynamic_cast<gtk::StackSidebar*> (
+        glib::wrap_auto ((GObject*) (object), take_copy));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gtk
+namespace gtk
 {
 
   auto
-  StackSidebar_Class::init () -> const Glib::Class&
+  StackSidebar_Class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -58,30 +58,30 @@ namespace Gtk
   }
 
   auto
-  StackSidebar_Class::wrap_new (GObject* o) -> Glib::ObjectBase*
+  StackSidebar_Class::wrap_new (GObject* o) -> glib::ObjectBase*
   {
     return manage (new StackSidebar ((GtkStackSidebar*) (o)));
   }
 
-  StackSidebar::StackSidebar (const Glib::ConstructParams& construct_params)
-    : Gtk::Widget (construct_params)
+  StackSidebar::StackSidebar (const glib::ConstructParams& construct_params)
+    : gtk::Widget (construct_params)
   {
   }
 
   StackSidebar::StackSidebar (GtkStackSidebar* castitem)
-    : Gtk::Widget ((GtkWidget*) (castitem))
+    : gtk::Widget ((GtkWidget*) (castitem))
   {
   }
 
   StackSidebar::StackSidebar (StackSidebar&& src) noexcept
-    : Gtk::Widget (std::move (src))
+    : gtk::Widget (std::move (src))
   {
   }
 
   auto
   StackSidebar::operator= (StackSidebar&& src) noexcept -> StackSidebar&
   {
-    Gtk::Widget::operator= (std::move (src));
+    gtk::Widget::operator= (std::move (src));
     return *this;
   }
 
@@ -105,8 +105,8 @@ namespace Gtk
   }
 
   StackSidebar::StackSidebar ()
-    : Glib::ObjectBase (nullptr),
-      Gtk::Widget (Glib::ConstructParams (stacksidebar_class_.init ()))
+    : glib::ObjectBase (nullptr),
+      gtk::Widget (glib::ConstructParams (stacksidebar_class_.init ()))
   {
   }
 
@@ -119,7 +119,7 @@ namespace Gtk
   auto
   StackSidebar::get_stack () -> Stack*
   {
-    return Glib::wrap (gtk_stack_sidebar_get_stack (gobj ()));
+    return glib::wrap (gtk_stack_sidebar_get_stack (gobj ()));
   }
 
   auto
@@ -129,20 +129,20 @@ namespace Gtk
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<Stack*>::value,
+      glib::Traits::ValueCompatibleWithWrapProperty<Stack*>::value,
       "Type Stack* cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  StackSidebar::property_stack () -> Glib::PropertyProxy<Stack*>
+  StackSidebar::property_stack () -> glib::PropertyProxy<Stack*>
   {
-    return Glib::PropertyProxy<Stack*> (this, "stack");
+    return glib::PropertyProxy<Stack*> (this, "stack");
   }
 
   auto
-  StackSidebar::property_stack () const -> Glib::PropertyProxy_ReadOnly<Stack*>
+  StackSidebar::property_stack () const -> glib::PropertyProxy_ReadOnly<Stack*>
   {
-    return Glib::PropertyProxy_ReadOnly<Stack*> (this, "stack");
+    return glib::PropertyProxy_ReadOnly<Stack*> (this, "stack");
   }
 
-} // namespace Gtk
+} // namespace gtk

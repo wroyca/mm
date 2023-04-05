@@ -9,7 +9,7 @@
 #include <libmm/gdk/display.hxx>
 #include <libmm/gdk/surface.hxx>
 
-using Capabilities = Gdk::Seat::Capabilities;
+using Capabilities = gdk::Seat::Capabilities;
 
 namespace
 {
@@ -17,27 +17,27 @@ namespace
   static auto
   Seat_signal_device_added_callback (GdkSeat* self, GdkDevice* p0, void* data) -> void
   {
-    using namespace Gdk;
-    using SlotType = sigc::slot<void (const Glib::RefPtr<Device>&)>;
+    using namespace gdk;
+    using SlotType = sigc::slot<void (const glib::RefPtr<Device>&)>;
 
     auto obj = dynamic_cast<Seat*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
     {
       try
       {
-        if (const auto slot = Glib::SignalProxyNormal::data_to_slot (data))
-          (*static_cast<SlotType*> (slot)) (Glib::wrap (p0, true));
+        if (const auto slot = glib::SignalProxyNormal::data_to_slot (data))
+          (*static_cast<SlotType*> (slot)) (glib::wrap (p0, true));
       }
       catch (...)
       {
-        Glib::exception_handlers_invoke ();
+        glib::exception_handlers_invoke ();
       }
     }
   }
 
-  static const Glib::SignalProxyInfo Seat_signal_device_added_info = {
+  static const glib::SignalProxyInfo Seat_signal_device_added_info = {
       "device-added",
       (GCallback) &Seat_signal_device_added_callback,
       (GCallback) &Seat_signal_device_added_callback};
@@ -45,27 +45,27 @@ namespace
   static auto
   Seat_signal_device_removed_callback (GdkSeat* self, GdkDevice* p0, void* data) -> void
   {
-    using namespace Gdk;
-    using SlotType = sigc::slot<void (const Glib::RefPtr<Device>&)>;
+    using namespace gdk;
+    using SlotType = sigc::slot<void (const glib::RefPtr<Device>&)>;
 
     auto obj = dynamic_cast<Seat*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
     {
       try
       {
-        if (const auto slot = Glib::SignalProxyNormal::data_to_slot (data))
-          (*static_cast<SlotType*> (slot)) (Glib::wrap (p0, true));
+        if (const auto slot = glib::SignalProxyNormal::data_to_slot (data))
+          (*static_cast<SlotType*> (slot)) (glib::wrap (p0, true));
       }
       catch (...)
       {
-        Glib::exception_handlers_invoke ();
+        glib::exception_handlers_invoke ();
       }
     }
   }
 
-  static const Glib::SignalProxyInfo Seat_signal_device_removed_info = {
+  static const glib::SignalProxyInfo Seat_signal_device_removed_info = {
       "device-removed",
       (GCallback) &Seat_signal_device_removed_callback,
       (GCallback) &Seat_signal_device_removed_callback};
@@ -73,27 +73,27 @@ namespace
   static auto
   Seat_signal_tool_added_callback (GdkSeat* self, GdkDeviceTool* p0, void* data) -> void
   {
-    using namespace Gdk;
-    using SlotType = sigc::slot<void (const Glib::RefPtr<DeviceTool>&)>;
+    using namespace gdk;
+    using SlotType = sigc::slot<void (const glib::RefPtr<DeviceTool>&)>;
 
     auto obj = dynamic_cast<Seat*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
     {
       try
       {
-        if (const auto slot = Glib::SignalProxyNormal::data_to_slot (data))
-          (*static_cast<SlotType*> (slot)) (Glib::wrap (p0, true));
+        if (const auto slot = glib::SignalProxyNormal::data_to_slot (data))
+          (*static_cast<SlotType*> (slot)) (glib::wrap (p0, true));
       }
       catch (...)
       {
-        Glib::exception_handlers_invoke ();
+        glib::exception_handlers_invoke ();
       }
     }
   }
 
-  static const Glib::SignalProxyInfo Seat_signal_tool_added_info = {
+  static const glib::SignalProxyInfo Seat_signal_tool_added_info = {
       "tool-added",
       (GCallback) &Seat_signal_tool_added_callback,
       (GCallback) &Seat_signal_tool_added_callback};
@@ -103,27 +103,27 @@ namespace
                                      GdkDeviceTool* p0,
                                      void* data) -> void
   {
-    using namespace Gdk;
-    using SlotType = sigc::slot<void (const Glib::RefPtr<DeviceTool>&)>;
+    using namespace gdk;
+    using SlotType = sigc::slot<void (const glib::RefPtr<DeviceTool>&)>;
 
     auto obj = dynamic_cast<Seat*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
     {
       try
       {
-        if (const auto slot = Glib::SignalProxyNormal::data_to_slot (data))
-          (*static_cast<SlotType*> (slot)) (Glib::wrap (p0, true));
+        if (const auto slot = glib::SignalProxyNormal::data_to_slot (data))
+          (*static_cast<SlotType*> (slot)) (glib::wrap (p0, true));
       }
       catch (...)
       {
-        Glib::exception_handlers_invoke ();
+        glib::exception_handlers_invoke ();
       }
     }
   }
 
-  static const Glib::SignalProxyInfo Seat_signal_tool_removed_info = {
+  static const glib::SignalProxyInfo Seat_signal_tool_removed_info = {
       "tool-removed",
       (GCallback) &Seat_signal_tool_removed_callback,
       (GCallback) &Seat_signal_tool_removed_callback};
@@ -131,28 +131,28 @@ namespace
 } // namespace
 
 auto
-Glib::Value<Gdk::Seat::Capabilities>::value_type () -> GType
+glib::Value<gdk::Seat::Capabilities>::value_type () -> GType
 {
   return gdk_seat_capabilities_get_type ();
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GdkSeat* object, bool take_copy) -> Glib::RefPtr<Gdk::Seat>
+  wrap (GdkSeat* object, bool take_copy) -> glib::RefPtr<gdk::Seat>
   {
-    return Glib::make_refptr_for_instance<Gdk::Seat> (dynamic_cast<Gdk::Seat*> (
-        Glib::wrap_auto ((GObject*) (object), take_copy)));
+    return glib::make_refptr_for_instance<gdk::Seat> (dynamic_cast<gdk::Seat*> (
+        glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gdk
+namespace gdk
 {
 
   auto
-  Seat_Class::init () -> const Glib::Class&
+  Seat_Class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -172,7 +172,7 @@ namespace Gdk
   }
 
   auto
-  Seat_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  Seat_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new Seat ((GdkSeat*) object);
   }
@@ -184,25 +184,25 @@ namespace Gdk
     return gobj ();
   }
 
-  Seat::Seat (const Glib::ConstructParams& construct_params)
-    : Glib::Object (construct_params)
+  Seat::Seat (const glib::ConstructParams& construct_params)
+    : glib::Object (construct_params)
   {
   }
 
   Seat::Seat (GdkSeat* castitem)
-    : Glib::Object ((GObject*) (castitem))
+    : glib::Object ((GObject*) (castitem))
   {
   }
 
   Seat::Seat (Seat&& src) noexcept
-    : Glib::Object (std::move (src))
+    : glib::Object (std::move (src))
   {
   }
 
   auto
   Seat::operator= (Seat&& src) noexcept -> Seat&
   {
-    Glib::Object::operator= (std::move (src));
+    glib::Object::operator= (std::move (src));
     return *this;
   }
 
@@ -223,22 +223,22 @@ namespace Gdk
   }
 
   Seat::Seat ()
-    : Glib::ObjectBase (nullptr),
-      Glib::Object (Glib::ConstructParams (seat_class_.init ()))
+    : glib::ObjectBase (nullptr),
+      glib::Object (glib::ConstructParams (seat_class_.init ()))
   {
   }
 
   auto
-  Seat::get_display () -> Glib::RefPtr<Display>
+  Seat::get_display () -> glib::RefPtr<Display>
   {
-    auto retvalue = Glib::wrap (gdk_seat_get_display (gobj ()));
+    auto retvalue = glib::wrap (gdk_seat_get_display (gobj ()));
     if (retvalue)
       retvalue->reference ();
     return retvalue;
   }
 
   auto
-  Seat::get_display () const -> Glib::RefPtr<const Display>
+  Seat::get_display () const -> glib::RefPtr<const Display>
   {
     return const_cast<Seat*> (this)->get_display ();
   }
@@ -251,112 +251,112 @@ namespace Gdk
   }
 
   auto
-  Seat::get_devices (Capabilities capabilities) -> std::vector<Glib::RefPtr<Device>>
+  Seat::get_devices (Capabilities capabilities) -> std::vector<glib::RefPtr<Device>>
   {
-    return Glib::ListHandler<Glib::RefPtr<Device>>::list_to_vector (
+    return glib::ListHandler<glib::RefPtr<Device>>::list_to_vector (
         gdk_seat_get_devices (gobj (),
                               static_cast<GdkSeatCapabilities> (capabilities)),
-        Glib::OWNERSHIP_SHALLOW);
+        glib::OWNERSHIP_SHALLOW);
   }
 
   auto
-  Seat::get_devices (Capabilities capabilities) const -> std::vector<Glib::RefPtr<const Device>>
+  Seat::get_devices (Capabilities capabilities) const -> std::vector<glib::RefPtr<const Device>>
   {
-    return Glib::ListHandler<Glib::RefPtr<const Device>>::list_to_vector (
+    return glib::ListHandler<glib::RefPtr<const Device>>::list_to_vector (
         gdk_seat_get_devices (const_cast<GdkSeat*> (gobj ()),
                               static_cast<GdkSeatCapabilities> (capabilities)),
-        Glib::OWNERSHIP_SHALLOW);
+        glib::OWNERSHIP_SHALLOW);
   }
 
   auto
-  Seat::get_tools () -> std::vector<Glib::RefPtr<DeviceTool>>
+  Seat::get_tools () -> std::vector<glib::RefPtr<DeviceTool>>
   {
-    return Glib::ListHandler<Glib::RefPtr<DeviceTool>>::list_to_vector (
+    return glib::ListHandler<glib::RefPtr<DeviceTool>>::list_to_vector (
         gdk_seat_get_tools (gobj ()),
-        Glib::OWNERSHIP_SHALLOW);
+        glib::OWNERSHIP_SHALLOW);
   }
 
   auto
-  Seat::get_tools () const -> std::vector<Glib::RefPtr<const DeviceTool>>
+  Seat::get_tools () const -> std::vector<glib::RefPtr<const DeviceTool>>
   {
-    return Glib::ListHandler<Glib::RefPtr<const DeviceTool>>::list_to_vector (
+    return glib::ListHandler<glib::RefPtr<const DeviceTool>>::list_to_vector (
         gdk_seat_get_tools (const_cast<GdkSeat*> (gobj ())),
-        Glib::OWNERSHIP_SHALLOW);
+        glib::OWNERSHIP_SHALLOW);
   }
 
   auto
-  Seat::get_pointer () -> Glib::RefPtr<Device>
+  Seat::get_pointer () -> glib::RefPtr<Device>
   {
-    auto retvalue = Glib::wrap (gdk_seat_get_pointer (gobj ()));
+    auto retvalue = glib::wrap (gdk_seat_get_pointer (gobj ()));
     if (retvalue)
       retvalue->reference ();
     return retvalue;
   }
 
   auto
-  Seat::get_pointer () const -> Glib::RefPtr<const Device>
+  Seat::get_pointer () const -> glib::RefPtr<const Device>
   {
     return const_cast<Seat*> (this)->get_pointer ();
   }
 
   auto
-  Seat::get_keyboard () -> Glib::RefPtr<Device>
+  Seat::get_keyboard () -> glib::RefPtr<Device>
   {
-    auto retvalue = Glib::wrap (gdk_seat_get_keyboard (gobj ()));
+    auto retvalue = glib::wrap (gdk_seat_get_keyboard (gobj ()));
     if (retvalue)
       retvalue->reference ();
     return retvalue;
   }
 
   auto
-  Seat::get_keyboard () const -> Glib::RefPtr<const Device>
+  Seat::get_keyboard () const -> glib::RefPtr<const Device>
   {
     return const_cast<Seat*> (this)->get_keyboard ();
   }
 
   auto
-  Seat::signal_device_added () -> Glib::SignalProxy<void (const Glib::RefPtr<Device>&)>
+  Seat::signal_device_added () -> glib::SignalProxy<void (const glib::RefPtr<Device>&)>
   {
-    return Glib::SignalProxy<void (const Glib::RefPtr<Device>&)> (
+    return glib::SignalProxy<void (const glib::RefPtr<Device>&)> (
         this,
         &Seat_signal_device_added_info);
   }
 
   auto
-  Seat::signal_device_removed () -> Glib::SignalProxy<void (const Glib::RefPtr<Device>&)>
+  Seat::signal_device_removed () -> glib::SignalProxy<void (const glib::RefPtr<Device>&)>
   {
-    return Glib::SignalProxy<void (const Glib::RefPtr<Device>&)> (
+    return glib::SignalProxy<void (const glib::RefPtr<Device>&)> (
         this,
         &Seat_signal_device_removed_info);
   }
 
   auto
-  Seat::signal_tool_added () -> Glib::SignalProxy<void (const Glib::RefPtr<DeviceTool>&)>
+  Seat::signal_tool_added () -> glib::SignalProxy<void (const glib::RefPtr<DeviceTool>&)>
   {
-    return Glib::SignalProxy<void (const Glib::RefPtr<DeviceTool>&)> (
+    return glib::SignalProxy<void (const glib::RefPtr<DeviceTool>&)> (
         this,
         &Seat_signal_tool_added_info);
   }
 
   auto
-  Seat::signal_tool_removed () -> Glib::SignalProxy<void (const Glib::RefPtr<DeviceTool>&)>
+  Seat::signal_tool_removed () -> glib::SignalProxy<void (const glib::RefPtr<DeviceTool>&)>
   {
-    return Glib::SignalProxy<void (const Glib::RefPtr<DeviceTool>&)> (
+    return glib::SignalProxy<void (const glib::RefPtr<DeviceTool>&)> (
         this,
         &Seat_signal_tool_removed_info);
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<
-          Glib::RefPtr<Display>>::value,
-      "Type Glib::RefPtr<Display> cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      glib::Traits::ValueCompatibleWithWrapProperty<
+          glib::RefPtr<Display>>::value,
+      "Type glib::RefPtr<Display> cannot be used in _WRAP_PROPERTY. "
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  Seat::property_display () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Display>>
+  Seat::property_display () const -> glib::PropertyProxy_ReadOnly<glib::RefPtr<Display>>
   {
-    return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Display>> (this,
+    return glib::PropertyProxy_ReadOnly<glib::RefPtr<Display>> (this,
                                                                 "display");
   }
 
-} // namespace Gdk
+} // namespace gdk

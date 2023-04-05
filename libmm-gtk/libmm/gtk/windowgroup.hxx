@@ -16,18 +16,18 @@ using GtkWindowGroupClass = struct _GtkWindowGroupClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT WindowGroup_Class;
 }
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
   class LIBMM_GTK_SYMEXPORT Window;
 
-  class LIBMM_GTK_SYMEXPORT WindowGroup : public Glib::Object
+  class LIBMM_GTK_SYMEXPORT WindowGroup : public glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -46,7 +46,7 @@ namespace Gtk
     static CppClassType windowgroup_class_;
 
   protected:
-    explicit WindowGroup (const Glib::ConstructParams& construct_params);
+    explicit WindowGroup (const glib::ConstructParams& construct_params);
     explicit WindowGroup (GtkWindowGroup* castitem);
 
 #endif
@@ -88,7 +88,7 @@ namespace Gtk
 
   public:
     static auto
-    create () -> Glib::RefPtr<WindowGroup>;
+    create () -> glib::RefPtr<WindowGroup>;
 
     auto
     add_window (Window& window) -> void;
@@ -107,12 +107,12 @@ namespace Gtk
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkWindowGroup* object, bool take_copy = false) -> Glib::RefPtr<Gtk::WindowGroup>;
-} // namespace Glib
+  wrap (GtkWindowGroup* object, bool take_copy = false) -> glib::RefPtr<gtk::WindowGroup>;
+} // namespace glib
 
 #endif

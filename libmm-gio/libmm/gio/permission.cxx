@@ -8,7 +8,7 @@
 #include <gio/gio.h>
 #include <libmm/gio/slot_async.hxx>
 
-namespace Gio
+namespace gio
 {
 }
 
@@ -16,20 +16,20 @@ namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GPermission* object, const bool take_copy) -> RefPtr<Gio::Permission>
+  wrap (GPermission* object, const bool take_copy) -> RefPtr<gio::Permission>
   {
-    return Glib::make_refptr_for_instance<Gio::Permission> (
-        dynamic_cast<Gio::Permission*> (
+    return glib::make_refptr_for_instance<gio::Permission> (
+        dynamic_cast<gio::Permission*> (
             wrap_auto ((GObject*) object, take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gio
+namespace gio
 {
 
   auto
@@ -65,7 +65,7 @@ namespace Gio
                                             GError** error) -> gboolean
   {
     const auto obj_base =
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self);
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self);
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -74,9 +74,9 @@ namespace Gio
       {
         try
         {
-          return obj->acquire_vfunc (Glib::wrap (cancellable, true));
+          return obj->acquire_vfunc (glib::wrap (cancellable, true));
         }
-        catch (Glib::Error& errormm)
+        catch (glib::Error& errormm)
         {
           errormm.propagate (error);
           using RType = gboolean;
@@ -84,7 +84,7 @@ namespace Gio
         }
         catch (...)
         {
-          Glib::exception_handlers_invoke ();
+          glib::exception_handlers_invoke ();
         }
       }
     }
@@ -109,7 +109,7 @@ namespace Gio
     const auto slot = static_cast<SlotAsyncReady*> (user_data);
 
     const auto obj_base =
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self);
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self);
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -118,12 +118,12 @@ namespace Gio
       {
         try
         {
-          obj->acquire_async_vfunc (*slot, Glib::wrap (cancellable, true));
+          obj->acquire_async_vfunc (*slot, glib::wrap (cancellable, true));
           return;
         }
         catch (...)
         {
-          Glib::exception_handlers_invoke ();
+          glib::exception_handlers_invoke ();
         }
       }
     }
@@ -141,7 +141,7 @@ namespace Gio
                                                    GError** error) -> gboolean
   {
     const auto obj_base =
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self);
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self);
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -150,9 +150,9 @@ namespace Gio
       {
         try
         {
-          return obj->acquire_finish_vfunc (Glib::wrap (result, true));
+          return obj->acquire_finish_vfunc (glib::wrap (result, true));
         }
-        catch (Glib::Error& errormm)
+        catch (glib::Error& errormm)
         {
           errormm.propagate (error);
           using RType = gboolean;
@@ -160,7 +160,7 @@ namespace Gio
         }
         catch (...)
         {
-          Glib::exception_handlers_invoke ();
+          glib::exception_handlers_invoke ();
         }
       }
     }
@@ -181,7 +181,7 @@ namespace Gio
                                             GError** error) -> gboolean
   {
     const auto obj_base =
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self);
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self);
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -190,9 +190,9 @@ namespace Gio
       {
         try
         {
-          return obj->release_vfunc (Glib::wrap (cancellable, true));
+          return obj->release_vfunc (glib::wrap (cancellable, true));
         }
-        catch (Glib::Error& errormm)
+        catch (glib::Error& errormm)
         {
           errormm.propagate (error);
           using RType = gboolean;
@@ -200,7 +200,7 @@ namespace Gio
         }
         catch (...)
         {
-          Glib::exception_handlers_invoke ();
+          glib::exception_handlers_invoke ();
         }
       }
     }
@@ -225,7 +225,7 @@ namespace Gio
     const auto slot = static_cast<SlotAsyncReady*> (user_data);
 
     const auto obj_base =
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self);
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self);
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -234,12 +234,12 @@ namespace Gio
       {
         try
         {
-          obj->release_async_vfunc (*slot, Glib::wrap (cancellable, true));
+          obj->release_async_vfunc (*slot, glib::wrap (cancellable, true));
           return;
         }
         catch (...)
         {
-          Glib::exception_handlers_invoke ();
+          glib::exception_handlers_invoke ();
         }
       }
     }
@@ -257,7 +257,7 @@ namespace Gio
                                                    GError** error) -> gboolean
   {
     const auto obj_base =
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self);
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self);
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -266,9 +266,9 @@ namespace Gio
       {
         try
         {
-          return obj->release_finish_vfunc (Glib::wrap (result, true));
+          return obj->release_finish_vfunc (glib::wrap (result, true));
         }
-        catch (Glib::Error& errormm)
+        catch (glib::Error& errormm)
         {
           errormm.propagate (error);
           using RType = gboolean;
@@ -276,7 +276,7 @@ namespace Gio
         }
         catch (...)
         {
-          Glib::exception_handlers_invoke ();
+          glib::exception_handlers_invoke ();
         }
       }
     }
@@ -292,7 +292,7 @@ namespace Gio
   }
 
   auto
-  Permission_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  Permission_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new Permission ((GPermission*) object);
   }
@@ -304,7 +304,7 @@ namespace Gio
     return gobj ();
   }
 
-  Permission::Permission (const Glib::ConstructParams& construct_params)
+  Permission::Permission (const glib::ConstructParams& construct_params)
     : Object (construct_params)
   {
   }
@@ -343,13 +343,13 @@ namespace Gio
   }
 
   auto
-  Permission::acquire (const Glib::RefPtr<Cancellable>& cancellable) -> bool
+  Permission::acquire (const glib::RefPtr<Cancellable>& cancellable) -> bool
   {
     GError* gerror = nullptr;
     const auto retvalue =
-        g_permission_acquire (gobj (), Glib::unwrap (cancellable), &gerror);
+        g_permission_acquire (gobj (), glib::unwrap (cancellable), &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
@@ -359,18 +359,18 @@ namespace Gio
     GError* gerror = nullptr;
     const auto retvalue = g_permission_acquire (gobj (), nullptr, &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
   auto
   Permission::acquire_async (const SlotAsyncReady& slot,
-                             const Glib::RefPtr<Cancellable>& cancellable) -> void
+                             const glib::RefPtr<Cancellable>& cancellable) -> void
   {
     const auto slot_copy = new SlotAsyncReady (slot);
 
     g_permission_acquire_async (gobj (),
-                                Glib::unwrap (cancellable),
+                                glib::unwrap (cancellable),
                                 &SignalProxy_async_callback,
                                 slot_copy);
   }
@@ -387,24 +387,24 @@ namespace Gio
   }
 
   auto
-  Permission::acquire_finish (const Glib::RefPtr<AsyncResult>& result) -> bool
+  Permission::acquire_finish (const glib::RefPtr<AsyncResult>& result) -> bool
   {
     GError* gerror = nullptr;
     const auto retvalue =
-        g_permission_acquire_finish (gobj (), Glib::unwrap (result), &gerror);
+        g_permission_acquire_finish (gobj (), glib::unwrap (result), &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
   auto
-  Permission::release (const Glib::RefPtr<Cancellable>& cancellable) -> bool
+  Permission::release (const glib::RefPtr<Cancellable>& cancellable) -> bool
   {
     GError* gerror = nullptr;
     const auto retvalue =
-        g_permission_release (gobj (), Glib::unwrap (cancellable), &gerror);
+        g_permission_release (gobj (), glib::unwrap (cancellable), &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
@@ -414,18 +414,18 @@ namespace Gio
     GError* gerror = nullptr;
     const auto retvalue = g_permission_release (gobj (), nullptr, &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
   auto
   Permission::release_async (const SlotAsyncReady& slot,
-                             const Glib::RefPtr<Cancellable>& cancellable) -> void
+                             const glib::RefPtr<Cancellable>& cancellable) -> void
   {
     const auto slot_copy = new SlotAsyncReady (slot);
 
     g_permission_release_async (gobj (),
-                                Glib::unwrap (cancellable),
+                                glib::unwrap (cancellable),
                                 &SignalProxy_async_callback,
                                 slot_copy);
   }
@@ -442,13 +442,13 @@ namespace Gio
   }
 
   auto
-  Permission::release_finish (const Glib::RefPtr<AsyncResult>& result) -> bool
+  Permission::release_finish (const glib::RefPtr<AsyncResult>& result) -> bool
   {
     GError* gerror = nullptr;
     const auto retvalue =
-        g_permission_release_finish (gobj (), Glib::unwrap (result), &gerror);
+        g_permission_release_finish (gobj (), glib::unwrap (result), &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
@@ -472,7 +472,7 @@ namespace Gio
 
   Permission::Permission ()
     : ObjectBase (nullptr),
-      Object (Glib::ConstructParams (permission_class_.init ()))
+      Object (glib::ConstructParams (permission_class_.init ()))
   {
   }
 
@@ -485,25 +485,25 @@ namespace Gio
   }
 
   auto
-  Permission::property_allowed () const -> Glib::PropertyProxy_ReadOnly<bool>
+  Permission::property_allowed () const -> glib::PropertyProxy_ReadOnly<bool>
   {
     return {this, "allowed"};
   }
 
   auto
-  Permission::property_can_acquire () const -> Glib::PropertyProxy_ReadOnly<bool>
+  Permission::property_can_acquire () const -> glib::PropertyProxy_ReadOnly<bool>
   {
     return {this, "can-acquire"};
   }
 
   auto
-  Permission::property_can_release () const -> Glib::PropertyProxy_ReadOnly<bool>
+  Permission::property_can_release () const -> glib::PropertyProxy_ReadOnly<bool>
   {
     return {this, "can-release"};
   }
 
   auto
-  Permission::acquire_vfunc (const Glib::RefPtr<Cancellable>& cancellable) -> bool
+  Permission::acquire_vfunc (const glib::RefPtr<Cancellable>& cancellable) -> bool
   {
     const auto base = static_cast<BaseClassType*> (
         g_type_class_peek_parent (G_OBJECT_GET_CLASS (gobject_)));
@@ -512,9 +512,9 @@ namespace Gio
     {
       GError* gerror = nullptr;
       const bool retval (
-          (*base->acquire) (gobj (), Glib::unwrap (cancellable), &gerror));
+          (*base->acquire) (gobj (), glib::unwrap (cancellable), &gerror));
       if (gerror)
-        Glib::Error::throw_exception (gerror);
+        glib::Error::throw_exception (gerror);
       return retval;
     }
 
@@ -524,7 +524,7 @@ namespace Gio
 
   auto
   Permission::acquire_async_vfunc (const SlotAsyncReady& slot,
-                                   const Glib::RefPtr<Cancellable>& cancellable) -> void
+                                   const glib::RefPtr<Cancellable>& cancellable) -> void
   {
     const auto slot_copy = new SlotAsyncReady (slot);
 
@@ -534,14 +534,14 @@ namespace Gio
     if (base && base->acquire_async)
     {
       (*base->acquire_async) (gobj (),
-                              Glib::unwrap (cancellable),
+                              glib::unwrap (cancellable),
                               &SignalProxy_async_callback,
                               slot_copy);
     }
   }
 
   auto
-  Permission::acquire_finish_vfunc (const Glib::RefPtr<AsyncResult>& result) -> bool
+  Permission::acquire_finish_vfunc (const glib::RefPtr<AsyncResult>& result) -> bool
   {
     const auto base = static_cast<BaseClassType*> (
         g_type_class_peek_parent (G_OBJECT_GET_CLASS (gobject_)));
@@ -550,9 +550,9 @@ namespace Gio
     {
       GError* gerror = nullptr;
       const bool retval (
-          (*base->acquire_finish) (gobj (), Glib::unwrap (result), &gerror));
+          (*base->acquire_finish) (gobj (), glib::unwrap (result), &gerror));
       if (gerror)
-        Glib::Error::throw_exception (gerror);
+        glib::Error::throw_exception (gerror);
       return retval;
     }
 
@@ -561,7 +561,7 @@ namespace Gio
   }
 
   auto
-  Permission::release_vfunc (const Glib::RefPtr<Cancellable>& cancellable) -> bool
+  Permission::release_vfunc (const glib::RefPtr<Cancellable>& cancellable) -> bool
   {
     const auto base = static_cast<BaseClassType*> (
         g_type_class_peek_parent (G_OBJECT_GET_CLASS (gobject_)));
@@ -570,9 +570,9 @@ namespace Gio
     {
       GError* gerror = nullptr;
       const bool retval (
-          (*base->release) (gobj (), Glib::unwrap (cancellable), &gerror));
+          (*base->release) (gobj (), glib::unwrap (cancellable), &gerror));
       if (gerror)
-        Glib::Error::throw_exception (gerror);
+        glib::Error::throw_exception (gerror);
       return retval;
     }
 
@@ -582,7 +582,7 @@ namespace Gio
 
   auto
   Permission::release_async_vfunc (const SlotAsyncReady& slot,
-                                   const Glib::RefPtr<Cancellable>& cancellable) -> void
+                                   const glib::RefPtr<Cancellable>& cancellable) -> void
   {
     const auto slot_copy = new SlotAsyncReady (slot);
 
@@ -592,14 +592,14 @@ namespace Gio
     if (base && base->release_async)
     {
       (*base->release_async) (gobj (),
-                              Glib::unwrap (cancellable),
+                              glib::unwrap (cancellable),
                               &SignalProxy_async_callback,
                               slot_copy);
     }
   }
 
   auto
-  Permission::release_finish_vfunc (const Glib::RefPtr<AsyncResult>& result) -> bool
+  Permission::release_finish_vfunc (const glib::RefPtr<AsyncResult>& result) -> bool
   {
     const auto base = static_cast<BaseClassType*> (
         g_type_class_peek_parent (G_OBJECT_GET_CLASS (gobject_)));
@@ -608,9 +608,9 @@ namespace Gio
     {
       GError* gerror = nullptr;
       const bool retval (
-          (*base->release_finish) (gobj (), Glib::unwrap (result), &gerror));
+          (*base->release_finish) (gobj (), glib::unwrap (result), &gerror));
       if (gerror)
-        Glib::Error::throw_exception (gerror);
+        glib::Error::throw_exception (gerror);
       return retval;
     }
 
@@ -618,4 +618,4 @@ namespace Gio
     return RType ();
   }
 
-} // namespace Gio
+} // namespace gio

@@ -16,17 +16,17 @@
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT SortListModel_Class;
 }
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
-  class LIBMM_GTK_SYMEXPORT SortListModel : public Glib::Object,
-                                  public Gio::ListModel
+  class LIBMM_GTK_SYMEXPORT SortListModel : public glib::Object,
+                                  public gio::ListModel
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -45,7 +45,7 @@ namespace Gtk
     static CppClassType sortlistmodel_class_;
 
   protected:
-    explicit SortListModel (const Glib::ConstructParams& construct_params);
+    explicit SortListModel (const glib::ConstructParams& construct_params);
     explicit SortListModel (GtkSortListModel* castitem);
 
 #endif
@@ -83,31 +83,31 @@ namespace Gtk
 
   private:
   protected:
-    explicit SortListModel (const Glib::RefPtr<Gio::ListModel>& model,
-                            const Glib::RefPtr<Sorter>& sorter);
+    explicit SortListModel (const glib::RefPtr<gio::ListModel>& model,
+                            const glib::RefPtr<Sorter>& sorter);
 
   public:
     static auto
-    create (const Glib::RefPtr<Gio::ListModel>& model,
-            const Glib::RefPtr<Sorter>& sorter) -> Glib::RefPtr<SortListModel>;
+    create (const glib::RefPtr<gio::ListModel>& model,
+            const glib::RefPtr<Sorter>& sorter) -> glib::RefPtr<SortListModel>;
 
     auto
-    set_sorter (const Glib::RefPtr<Sorter>& sorter) -> void;
+    set_sorter (const glib::RefPtr<Sorter>& sorter) -> void;
 
     auto
-    get_sorter () -> Glib::RefPtr<Sorter>;
+    get_sorter () -> glib::RefPtr<Sorter>;
 
     auto
-    get_sorter () const -> Glib::RefPtr<const Sorter>;
+    get_sorter () const -> glib::RefPtr<const Sorter>;
 
     auto
-    set_model (const Glib::RefPtr<Gio::ListModel>& model) -> void;
+    set_model (const glib::RefPtr<gio::ListModel>& model) -> void;
 
     auto
-    get_model () -> Glib::RefPtr<Gio::ListModel>;
+    get_model () -> glib::RefPtr<gio::ListModel>;
 
     auto
-    get_model () const -> Glib::RefPtr<const Gio::ListModel>;
+    get_model () const -> glib::RefPtr<const gio::ListModel>;
 
     auto
     set_incremental (bool incremental = true) -> void;
@@ -119,45 +119,45 @@ namespace Gtk
     get_pending () const -> guint;
 
     auto
-    property_incremental () -> Glib::PropertyProxy<bool>;
+    property_incremental () -> glib::PropertyProxy<bool>;
 
     auto
-    property_incremental () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_incremental () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_item_type () const -> Glib::PropertyProxy_ReadOnly<GType>;
+    property_item_type () const -> glib::PropertyProxy_ReadOnly<GType>;
 
     auto
-    property_model () -> Glib::PropertyProxy<Glib::RefPtr<Gio::ListModel>>;
+    property_model () -> glib::PropertyProxy<glib::RefPtr<gio::ListModel>>;
 
     auto
     property_model () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gio::ListModel>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<gio::ListModel>>;
 
     auto
-    property_n_items () const -> Glib::PropertyProxy_ReadOnly<unsigned int>;
+    property_n_items () const -> glib::PropertyProxy_ReadOnly<unsigned int>;
 
     auto
-    property_pending () const -> Glib::PropertyProxy_ReadOnly<guint>;
+    property_pending () const -> glib::PropertyProxy_ReadOnly<guint>;
 
     auto
-    property_sorter () -> Glib::PropertyProxy<Glib::RefPtr<Sorter>>;
+    property_sorter () -> glib::PropertyProxy<glib::RefPtr<Sorter>>;
 
     auto
     property_sorter () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Sorter>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<Sorter>>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkSortListModel* object, bool take_copy = false) -> Glib::RefPtr<Gtk::SortListModel>;
-} // namespace Glib
+  wrap (GtkSortListModel* object, bool take_copy = false) -> glib::RefPtr<gtk::SortListModel>;
+} // namespace glib
 
 #endif

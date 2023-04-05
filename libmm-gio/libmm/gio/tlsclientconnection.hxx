@@ -20,24 +20,24 @@ using GTlsClientConnectionClass = struct _GTlsClientConnectionClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gio
+namespace gio
 {
   class LIBMM_GIO_SYMEXPORT TlsClientConnection_Class;
 }
 #endif
 
-namespace Glib
+namespace glib
 {
   class LIBMM_GLIB_SYMEXPORT ByteArray;
 }
 
-namespace Gio
+namespace gio
 {
 
   class LIBMM_GIO_SYMEXPORT SocketConnectable;
   class LIBMM_GIO_SYMEXPORT TlsClientConnectionImpl;
 
-  class LIBMM_GIO_SYMEXPORT TlsClientConnection : public Glib::Interface
+  class LIBMM_GIO_SYMEXPORT TlsClientConnection : public glib::Interface
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -61,7 +61,7 @@ namespace Gio
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
-    explicit TlsClientConnection (const Glib::Interface_Class& interface_class);
+    explicit TlsClientConnection (const glib::Interface_Class& interface_class);
 
   public:
     explicit TlsClientConnection (GTlsClientConnection* castitem);
@@ -102,23 +102,23 @@ namespace Gio
   private:
   public:
     static auto
-    create (const Glib::RefPtr<IOStream>& base_io_stream,
-            const Glib::RefPtr<const SocketConnectable>& server_identity)
-        -> Glib::RefPtr<TlsClientConnectionImpl>;
+    create (const glib::RefPtr<IOStream>& base_io_stream,
+            const glib::RefPtr<const SocketConnectable>& server_identity)
+        -> glib::RefPtr<TlsClientConnectionImpl>;
 
     static auto
-    create (const Glib::RefPtr<IOStream>& base_io_stream)
-        -> Glib::RefPtr<TlsClientConnectionImpl>;
+    create (const glib::RefPtr<IOStream>& base_io_stream)
+        -> glib::RefPtr<TlsClientConnectionImpl>;
 
     auto
-    set_server_identity (const Glib::RefPtr<SocketConnectable>& identity)
+    set_server_identity (const glib::RefPtr<SocketConnectable>& identity)
         -> void;
 
     auto
-    get_server_identity () -> Glib::RefPtr<SocketConnectable>;
+    get_server_identity () -> glib::RefPtr<SocketConnectable>;
 
     auto
-    get_server_identity () const -> Glib::RefPtr<const SocketConnectable>;
+    get_server_identity () const -> glib::RefPtr<const SocketConnectable>;
 
 #ifndef GIOMM_DISABLE_DEPRECATED
 
@@ -133,32 +133,32 @@ namespace Gio
 #endif
 
     auto
-    get_accepted_cas () -> std::vector<Glib::RefPtr<Glib::ByteArray>>;
+    get_accepted_cas () -> std::vector<glib::RefPtr<glib::ByteArray>>;
 
     auto
     get_accepted_cas () const
-        -> std::vector<Glib::RefPtr<const Glib::ByteArray>>;
+        -> std::vector<glib::RefPtr<const glib::ByteArray>>;
 
     auto
-    copy_session_state (const Glib::RefPtr<TlsClientConnection>& source)
+    copy_session_state (const glib::RefPtr<TlsClientConnection>& source)
         -> void;
 
     auto
     property_server_identity ()
-        -> Glib::PropertyProxy<Glib::RefPtr<SocketConnectable>>;
+        -> glib::PropertyProxy<glib::RefPtr<SocketConnectable>>;
 
     auto
     property_server_identity () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<SocketConnectable>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<SocketConnectable>>;
 
 #ifndef GIOMM_DISABLE_DEPRECATED
 
     auto
-    property_validation_flags () -> Glib::PropertyProxy<TlsCertificateFlags>;
+    property_validation_flags () -> glib::PropertyProxy<TlsCertificateFlags>;
 
     auto
     property_validation_flags () const
-        -> Glib::PropertyProxy_ReadOnly<TlsCertificateFlags>;
+        -> glib::PropertyProxy_ReadOnly<TlsCertificateFlags>;
 
 #endif
 
@@ -167,15 +167,15 @@ namespace Gio
   protected:
   };
 
-} // namespace Gio
+} // namespace gio
 
-namespace Glib
+namespace glib
 {
 
   LIBMM_GIO_SYMEXPORT
   auto
-  wrap (GTlsClientConnection* object, bool take_copy = false) -> Glib::RefPtr<Gio::TlsClientConnection>;
+  wrap (GTlsClientConnection* object, bool take_copy = false) -> glib::RefPtr<gio::TlsClientConnection>;
 
-} // namespace Glib
+} // namespace glib
 
 #endif

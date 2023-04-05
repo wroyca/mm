@@ -16,13 +16,13 @@ using GtkStatusbarClass = struct _GtkStatusbarClass;
   #endif
 
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT Statusbar_Class;
 }
   #endif
 
-namespace Gtk
+namespace gtk
 {
 
   class LIBMM_GTK_SYMEXPORT Statusbar : public Widget
@@ -52,7 +52,7 @@ namespace Gtk
     static CppClassType statusbar_class_;
 
   protected:
-    explicit Statusbar (const Glib::ConstructParams& construct_params);
+    explicit Statusbar (const glib::ConstructParams& construct_params);
     explicit Statusbar (GtkStatusbar* castitem);
 
   #endif
@@ -84,10 +84,10 @@ namespace Gtk
     Statusbar ();
 
     auto
-    get_context_id (const Glib::ustring& context_description) -> guint;
+    get_context_id (const glib::ustring& context_description) -> guint;
 
     auto
-    push (const Glib::ustring& text, guint context_id = 0) -> guint;
+    push (const glib::ustring& text, guint context_id = 0) -> guint;
 
     auto
     pop (guint context_id = 0) -> void;
@@ -100,24 +100,24 @@ namespace Gtk
 
     auto
     signal_text_pushed ()
-        -> Glib::SignalProxy<void (guint, const Glib::ustring&)>;
+        -> glib::SignalProxy<void (guint, const glib::ustring&)>;
 
     auto
     signal_text_popped ()
-        -> Glib::SignalProxy<void (guint, const Glib::ustring&)>;
+        -> glib::SignalProxy<void (guint, const glib::ustring&)>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkStatusbar* object, bool take_copy = false) -> Gtk::Statusbar*;
-} // namespace Glib
+  wrap (GtkStatusbar* object, bool take_copy = false) -> gtk::Statusbar*;
+} // namespace glib
 
 #endif
 

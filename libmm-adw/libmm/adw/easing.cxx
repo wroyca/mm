@@ -8,23 +8,23 @@
 #include <libmm/glib/mm-glib.hxx>
 #include <libmm/gtk/mm-gtk.hxx>
 
-namespace Adw
+namespace adw
 {
 
   auto
-  ease (Adw::Easing ease, double d) -> double
+  ease (adw::Easing ease, double d) -> double
   {
     return adw_easing_ease (static_cast<AdwEasing> (ease), d);
   }
 
-} // namespace Adw
+} // namespace adw
 
 namespace
 {
 }
 
 auto
-Glib::Value<Adw::Easing>::value_type () -> GType
+glib::Value<adw::Easing>::value_type () -> GType
 {
   return adw_easing_get_type ();
 }

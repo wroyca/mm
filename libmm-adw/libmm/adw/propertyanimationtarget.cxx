@@ -8,17 +8,17 @@
 #include <adwaita.h>
 #include <libmm/glib/mm-glib.hxx>
 
-namespace Adw
+namespace adw
 {
 
   PropertyAnimationTarget::PropertyAnimationTarget (
-      const Glib::RefPtr<Glib::Object>& object,
-      const Glib::ustring& property_name)
-    : Glib::ObjectBase (nullptr),
-      AnimationTarget (Glib::ConstructParams (
+      const glib::RefPtr<glib::Object>& object,
+      const glib::ustring& property_name)
+    : glib::ObjectBase (nullptr),
+      AnimationTarget (glib::ConstructParams (
           propertyanimationtarget_class_.init (),
           "object",
-          Glib::unwrap (object),
+          glib::unwrap (object),
           "pspec",
           g_object_class_find_property (G_OBJECT_GET_CLASS (object->gobj ()),
                                         property_name.c_str ()),
@@ -26,30 +26,30 @@ namespace Adw
   {
   }
 
-} // namespace Adw
+} // namespace adw
 
 namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (AdwPropertyAnimationTarget* object, bool take_copy) -> Glib::RefPtr<Adw::PropertyAnimationTarget>
+  wrap (AdwPropertyAnimationTarget* object, bool take_copy) -> glib::RefPtr<adw::PropertyAnimationTarget>
   {
-    return Glib::make_refptr_for_instance<Adw::PropertyAnimationTarget> (
-        dynamic_cast<Adw::PropertyAnimationTarget*> (
-            Glib::wrap_auto ((GObject*) (object), take_copy)));
+    return glib::make_refptr_for_instance<adw::PropertyAnimationTarget> (
+        dynamic_cast<adw::PropertyAnimationTarget*> (
+            glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Adw
+namespace adw
 {
 
   auto
-  PropertyAnimationTarget_Class::init () -> const Glib::Class&
+  PropertyAnimationTarget_Class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -60,7 +60,7 @@ namespace Adw
   }
 
   auto
-  PropertyAnimationTarget_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  PropertyAnimationTarget_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new PropertyAnimationTarget ((AdwPropertyAnimationTarget*) object);
   }
@@ -73,7 +73,7 @@ namespace Adw
   }
 
   PropertyAnimationTarget::PropertyAnimationTarget (
-      const Glib::ConstructParams& construct_params)
+      const glib::ConstructParams& construct_params)
     : AnimationTarget (construct_params)
   {
   }
@@ -115,13 +115,13 @@ namespace Adw
   }
 
   PropertyAnimationTarget::PropertyAnimationTarget (
-      const Glib::RefPtr<Glib::Object>& object,
+      const glib::RefPtr<glib::Object>& object,
       GParamSpec* pspec)
-    : Glib::ObjectBase (nullptr),
+    : glib::ObjectBase (nullptr),
       AnimationTarget (
-          Glib::ConstructParams (propertyanimationtarget_class_.init (),
+          glib::ConstructParams (propertyanimationtarget_class_.init (),
                                  "object",
-                                 Glib::unwrap (object),
+                                 glib::unwrap (object),
                                  "pspec",
                                  pspec,
                                  nullptr))
@@ -129,32 +129,32 @@ namespace Adw
   }
 
   PropertyAnimationTarget::PropertyAnimationTarget ()
-    : Glib::ObjectBase (nullptr),
+    : glib::ObjectBase (nullptr),
       AnimationTarget (
-          Glib::ConstructParams (propertyanimationtarget_class_.init ()))
+          glib::ConstructParams (propertyanimationtarget_class_.init ()))
   {
   }
 
   auto
-  PropertyAnimationTarget::create (const Glib::RefPtr<Glib::Object>& object,
-                                   const Glib::ustring& property_name) -> Glib::RefPtr<PropertyAnimationTarget>
+  PropertyAnimationTarget::create (const glib::RefPtr<glib::Object>& object,
+                                   const glib::ustring& property_name) -> glib::RefPtr<PropertyAnimationTarget>
   {
-    return Glib::make_refptr_for_instance<PropertyAnimationTarget> (
+    return glib::make_refptr_for_instance<PropertyAnimationTarget> (
         new PropertyAnimationTarget (object, property_name));
   }
 
   auto
-  PropertyAnimationTarget::create (const Glib::RefPtr<Glib::Object>& object,
-                                   GParamSpec* pspec) -> Glib::RefPtr<PropertyAnimationTarget>
+  PropertyAnimationTarget::create (const glib::RefPtr<glib::Object>& object,
+                                   GParamSpec* pspec) -> glib::RefPtr<PropertyAnimationTarget>
   {
-    return Glib::make_refptr_for_instance<PropertyAnimationTarget> (
+    return glib::make_refptr_for_instance<PropertyAnimationTarget> (
         new PropertyAnimationTarget (object, pspec));
   }
 
   auto
-  PropertyAnimationTarget::get_object () const -> Glib::RefPtr<Glib::Object>
+  PropertyAnimationTarget::get_object () const -> glib::RefPtr<glib::Object>
   {
-    auto retvalue = Glib::wrap (adw_property_animation_target_get_object (
+    auto retvalue = glib::wrap (adw_property_animation_target_get_object (
         const_cast<AdwPropertyAnimationTarget*> (gobj ())));
     if (retvalue)
       retvalue->reference ();
@@ -169,27 +169,27 @@ namespace Adw
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<
-          Glib::RefPtr<Glib::Object>>::value,
-      "Type Glib::RefPtr<Glib::Object> cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      glib::Traits::ValueCompatibleWithWrapProperty<
+          glib::RefPtr<glib::Object>>::value,
+      "Type glib::RefPtr<glib::Object> cannot be used in _WRAP_PROPERTY. "
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  PropertyAnimationTarget::property_object () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Glib::Object>>
+  PropertyAnimationTarget::property_object () const -> glib::PropertyProxy_ReadOnly<glib::RefPtr<glib::Object>>
   {
-    return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Glib::Object>> (this,
+    return glib::PropertyProxy_ReadOnly<glib::RefPtr<glib::Object>> (this,
                                                                      "object");
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<GParamSpec*>::value,
+      glib::Traits::ValueCompatibleWithWrapProperty<GParamSpec*>::value,
       "Type GParamSpec* cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  PropertyAnimationTarget::property_pspec () const -> Glib::PropertyProxy_ReadOnly<GParamSpec*>
+  PropertyAnimationTarget::property_pspec () const -> glib::PropertyProxy_ReadOnly<GParamSpec*>
   {
-    return Glib::PropertyProxy_ReadOnly<GParamSpec*> (this, "pspec");
+    return glib::PropertyProxy_ReadOnly<GParamSpec*> (this, "pspec");
   }
 
-} // namespace Adw
+} // namespace adw

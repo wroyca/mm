@@ -18,20 +18,20 @@ using GMemoryOutputStreamClass = struct _GMemoryOutputStreamClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gio
+namespace gio
 {
   class LIBMM_GIO_SYMEXPORT MemoryOutputStream_Class;
 }
 #endif
 
-namespace Glib
+namespace glib
 {
 
   class LIBMM_GLIB_SYMEXPORT Bytes;
 
 }
 
-namespace Gio
+namespace gio
 {
 
   class LIBMM_GIO_SYMEXPORT MemoryOutputStream : public OutputStream,
@@ -55,7 +55,7 @@ namespace Gio
     static CppClassType memoryoutputstream_class_;
 
   protected:
-    explicit MemoryOutputStream (const Glib::ConstructParams& construct_params);
+    explicit MemoryOutputStream (const glib::ConstructParams& construct_params);
     explicit MemoryOutputStream (GMemoryOutputStream* castitem);
 
 #endif
@@ -102,14 +102,14 @@ namespace Gio
 
   public:
     static auto
-    create () -> Glib::RefPtr<MemoryOutputStream>;
+    create () -> glib::RefPtr<MemoryOutputStream>;
 
     static auto
     create (void* data,
             gsize size,
             GReallocFunc realloc_function,
             GDestroyNotify destroy_function)
-        -> Glib::RefPtr<MemoryOutputStream>;
+        -> glib::RefPtr<MemoryOutputStream>;
 
     auto
     get_data () -> void*;
@@ -127,30 +127,30 @@ namespace Gio
     get_data_size () const -> gsize;
 
     auto
-    steal_as_bytes () -> Glib::RefPtr<Glib::Bytes>;
+    steal_as_bytes () -> glib::RefPtr<glib::Bytes>;
 
     auto
-    property_data () const -> Glib::PropertyProxy_ReadOnly<void*>;
+    property_data () const -> glib::PropertyProxy_ReadOnly<void*>;
 
     auto
-    property_data_size () const -> Glib::PropertyProxy_ReadOnly<gulong>;
+    property_data_size () const -> glib::PropertyProxy_ReadOnly<gulong>;
 
     auto
-    property_size () const -> Glib::PropertyProxy_ReadOnly<gulong>;
+    property_size () const -> glib::PropertyProxy_ReadOnly<gulong>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gio
+} // namespace gio
 
-namespace Glib
+namespace glib
 {
 
   LIBMM_GIO_SYMEXPORT
   auto
-  wrap (GMemoryOutputStream* object, bool take_copy = false) -> Glib::RefPtr<Gio::MemoryOutputStream>;
-} // namespace Glib
+  wrap (GMemoryOutputStream* object, bool take_copy = false) -> glib::RefPtr<gio::MemoryOutputStream>;
+} // namespace glib
 
 #endif

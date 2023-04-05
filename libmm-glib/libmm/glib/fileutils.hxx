@@ -14,7 +14,7 @@ extern "C"
 #include <libmm/glib/error.hxx>
 #include <string>
 
-namespace Glib
+namespace glib
 {
 
   enum class FileTest
@@ -74,7 +74,7 @@ namespace Glib
                                          static_cast<unsigned> (rhs)));
   }
 
-  class FileError : public Glib::Error
+  class FileError : public glib::Error
   {
   public:
     enum Code
@@ -107,7 +107,7 @@ namespace Glib
     };
 
     LIBMM_GLIB_SYMEXPORT
-    FileError (Code error_code, const Glib::ustring& error_message);
+    FileError (Code error_code, const glib::ustring& error_message);
     LIBMM_GLIB_SYMEXPORT explicit FileError (GError* gobject);
     LIBMM_GLIB_SYMEXPORT auto
     code () const -> Code;
@@ -223,6 +223,6 @@ namespace Glib
   LIBMM_GLIB_SYMEXPORT auto
   file_set_contents (const std::string& filename, const std::string& contents) -> void;
 
-} // namespace Glib
+} // namespace glib
 
 #endif

@@ -11,13 +11,13 @@
 namespace
 {
 
-  using WrapFuncTable = std::vector<Glib::WrapNewFunction>;
+  using WrapFuncTable = std::vector<glib::WrapNewFunction>;
 
   WrapFuncTable* wrap_func_table = nullptr;
 
 } // namespace
 
-namespace Glib
+namespace glib
 {
 
   auto
@@ -25,9 +25,9 @@ namespace Glib
   {
     if (!quark_)
     {
-      quark_ = g_quark_from_string ("glibmm__Glib::quark_");
+      quark_ = g_quark_from_string ("glibmm__glib::quark_");
       quark_cpp_wrapper_deleted_ =
-          g_quark_from_string ("glibmm__Glib::quark_cpp_wrapper_deleted_");
+          g_quark_from_string ("glibmm__glib::quark_cpp_wrapper_deleted_");
     }
 
     if (!wrap_func_table)
@@ -67,7 +67,7 @@ namespace Glib
         (bool) g_object_get_qdata (object, quark_cpp_wrapper_deleted_);
     if (gtkmm_wrapper_already_deleted)
     {
-      g_warning ("Glib::wrap_create_new_wrapper: Attempted to create a 2nd C++ "
+      g_warning ("glib::wrap_create_new_wrapper: Attempted to create a 2nd C++ "
                  "wrapper for a C "
                  "instance whose C++ wrapper has been deleted.");
       return nullptr;
@@ -114,7 +114,7 @@ namespace Glib
         (bool) g_object_get_qdata (object, quark_cpp_wrapper_deleted_);
     if (gtkmm_wrapper_already_deleted)
     {
-      g_warning ("Glib::wrap_create_new_wrapper: Attempted to create a 2nd C++ "
+      g_warning ("glib::wrap_create_new_wrapper: Attempted to create a 2nd C++ "
                  "wrapper for a C "
                  "instance whose C++ wrapper has been deleted.");
       return nullptr;
@@ -165,8 +165,8 @@ namespace Glib
   auto
   wrap (GObject* object, const bool take_copy) -> RefPtr<Object>
   {
-    return Glib::make_refptr_for_instance<Object> (
+    return glib::make_refptr_for_instance<Object> (
         dynamic_cast<Object*> (wrap_auto (object, take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib

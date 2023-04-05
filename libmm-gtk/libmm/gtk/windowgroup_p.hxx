@@ -7,34 +7,34 @@
 
 #include <libmm/glib/class.hxx>
 
-namespace Gtk
+namespace gtk
 {
 
-  class LIBMM_GTK_SYMEXPORT WindowGroup_Class : public Glib::Class
+  class LIBMM_GTK_SYMEXPORT WindowGroup_Class : public glib::Class
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
     using CppObjectType = WindowGroup;
     using BaseObjectType = GtkWindowGroup;
     using BaseClassType = GtkWindowGroupClass;
-    using CppClassParent = Glib::Object_Class;
+    using CppClassParent = glib::Object_Class;
     using BaseClassParent = GObjectClass;
 
     friend class WindowGroup;
 #endif
 
     auto
-    init () -> const Glib::Class&;
+    init () -> const glib::Class&;
 
     static auto
     class_init_function (void* g_class, void* class_data) -> void;
 
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
 
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
 #endif

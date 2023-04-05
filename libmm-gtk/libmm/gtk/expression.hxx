@@ -8,7 +8,7 @@
 
 #include <libmm/gtk/expressionwatch.hxx>
 
-namespace Gtk
+namespace gtk
 {
 
   class LIBMM_GTK_SYMEXPORT ExpressionBase
@@ -62,23 +62,23 @@ namespace Gtk
     using ValueType = T;
 
     auto
-    evaluate (const Glib::RefPtr<Glib::ObjectBase>& this_) -> std::optional<T>;
+    evaluate (const glib::RefPtr<glib::ObjectBase>& this_) -> std::optional<T>;
 
     auto
-    watch (const Glib::RefPtr<Glib::ObjectBase>& this_,
-           const SlotNotify& notify) -> Glib::RefPtr<ExpressionWatch<T>>;
-
-    template <class T2>
-    auto
-    bind (const Glib::PropertyProxy<T2>& property,
-          const Glib::RefPtr<Glib::ObjectBase>& this_ = nullptr)
-        -> Glib::RefPtr<ExpressionWatch<T>>;
+    watch (const glib::RefPtr<glib::ObjectBase>& this_,
+           const SlotNotify& notify) -> glib::RefPtr<ExpressionWatch<T>>;
 
     template <class T2>
     auto
-    bind (const Glib::PropertyProxy_WriteOnly<T2>& property,
-          const Glib::RefPtr<Glib::ObjectBase>& this_ = nullptr)
-        -> Glib::RefPtr<ExpressionWatch<T>>;
+    bind (const glib::PropertyProxy<T2>& property,
+          const glib::RefPtr<glib::ObjectBase>& this_ = nullptr)
+        -> glib::RefPtr<ExpressionWatch<T>>;
+
+    template <class T2>
+    auto
+    bind (const glib::PropertyProxy_WriteOnly<T2>& property,
+          const glib::RefPtr<glib::ObjectBase>& this_ = nullptr)
+        -> glib::RefPtr<ExpressionWatch<T>>;
   };
 
   template <class T>
@@ -89,21 +89,21 @@ namespace Gtk
     get_type () -> GType G_GNUC_CONST;
 
     static auto
-    create (GType this_type, const Glib::ustring& property_name)
-        -> Glib::RefPtr<PropertyExpression>;
+    create (GType this_type, const glib::ustring& property_name)
+        -> glib::RefPtr<PropertyExpression>;
 
     template <class OT>
     static auto
-    create (const Glib::RefPtr<OT>& expression,
-            const Glib::ustring& property_name)
-        -> Glib::RefPtr<PropertyExpression>;
+    create (const glib::RefPtr<OT>& expression,
+            const glib::ustring& property_name)
+        -> glib::RefPtr<PropertyExpression>;
 
     template <class OT>
     static auto
     create (GType this_type,
-            const Glib::RefPtr<OT>& expression,
-            const Glib::ustring& property_name)
-        -> Glib::RefPtr<PropertyExpression>;
+            const glib::RefPtr<OT>& expression,
+            const glib::ustring& property_name)
+        -> glib::RefPtr<PropertyExpression>;
   };
 
   template <class T>
@@ -115,11 +115,11 @@ namespace Gtk
 
     template <class... T_Args>
     static auto
-    create (T_Args&&... args) -> Glib::RefPtr<ConstantExpression<T>>;
+    create (T_Args&&... args) -> glib::RefPtr<ConstantExpression<T>>;
 
     static auto
-    create_for_value (const Glib::Value<T>& value)
-        -> Glib::RefPtr<ConstantExpression<T>>;
+    create_for_value (const glib::Value<T>& value)
+        -> glib::RefPtr<ConstantExpression<T>>;
   };
 
   template <class T>
@@ -130,7 +130,7 @@ namespace Gtk
     get_type () -> GType G_GNUC_CONST;
 
     static auto
-    create (const T& object) -> Glib::RefPtr<ObjectExpression<T>>;
+    create (const T& object) -> glib::RefPtr<ObjectExpression<T>>;
   };
 
   template <class T>
@@ -142,15 +142,15 @@ namespace Gtk
 
     template <class S, class... ATs>
     static auto
-    create (S slot, const Glib::RefPtr<ATs>&... params)
-        -> Glib::RefPtr<ClosureExpression<T>>;
+    create (S slot, const glib::RefPtr<ATs>&... params)
+        -> glib::RefPtr<ClosureExpression<T>>;
 
   private:
     template <class A1, class... ATs>
     static auto
     fill_params (GtkExpression** gparams,
-                 const Glib::RefPtr<A1>& a1,
-                 const Glib::RefPtr<ATs>&... eas) -> void;
+                 const glib::RefPtr<A1>& a1,
+                 const glib::RefPtr<ATs>&... eas) -> void;
 
     static auto
     fill_params (GtkExpression** gparams) -> void;
@@ -205,21 +205,21 @@ namespace Gtk
 
   template <class T>
   auto
-  Expression<T>::evaluate (const Glib::RefPtr<Glib::ObjectBase>& this_) -> std::optional<T>
+  Expression<T>::evaluate (const glib::RefPtr<glib::ObjectBase>& this_) -> std::optional<T>
   {
-    Glib::Value<T> value;
+    glib::Value<T> value;
     bool result = gtk_expression_evaluate (gobj (),
                                            this_ ? this_->gobj () : nullptr,
                                            value.gobj ());
     if (!result)
       return {};
 
-    if (!G_VALUE_HOLDS (value.gobj (), Glib::Value<T>::value_type ()))
+    if (!G_VALUE_HOLDS (value.gobj (), glib::Value<T>::value_type ()))
     {
       g_warning ("%s: The evaluated expression has type '%s', expected '%s'",
                  G_STRLOC,
                  g_type_name (G_VALUE_TYPE (value.gobj ())),
-                 g_type_name (Glib::Value<T>::value_type ()));
+                 g_type_name (glib::Value<T>::value_type ()));
       return {};
     }
 
@@ -228,26 +228,26 @@ namespace Gtk
 
   template <class T>
   auto
-  Expression<T>::watch (const Glib::RefPtr<Glib::ObjectBase>& this_,
-                        const SlotNotify& notify) -> Glib::RefPtr<ExpressionWatch<T>>
+  Expression<T>::watch (const glib::RefPtr<glib::ObjectBase>& this_,
+                        const SlotNotify& notify) -> glib::RefPtr<ExpressionWatch<T>>
   {
     auto slot_copy = new SlotNotify (notify);
-    return Glib::wrap<T> (
+    return glib::wrap<T> (
         gtk_expression_watch (gobj (),
                               this_ ? this_->gobj () : nullptr,
                               &Expression_Private::watch_callback,
                               slot_copy,
-                              &Glib::destroy_notify_delete<SlotNotify>),
+                              &glib::destroy_notify_delete<SlotNotify>),
         true);
   }
 
   template <class T>
   template <class T2>
   auto
-  Expression<T>::bind (const Glib::PropertyProxy<T2>& property,
-                       const Glib::RefPtr<Glib::ObjectBase>& this_) -> Glib::RefPtr<ExpressionWatch<T>>
+  Expression<T>::bind (const glib::PropertyProxy<T2>& property,
+                       const glib::RefPtr<glib::ObjectBase>& this_) -> glib::RefPtr<ExpressionWatch<T>>
   {
-    return Glib::wrap<T> (
+    return glib::wrap<T> (
         gtk_expression_bind (gobj_copy (),
                              property.get_object ()->gobj (),
                              property.get_name (),
@@ -258,10 +258,10 @@ namespace Gtk
   template <class T>
   template <class T2>
   auto
-  Expression<T>::bind (const Glib::PropertyProxy_WriteOnly<T2>& property,
-                       const Glib::RefPtr<Glib::ObjectBase>& this_) -> Glib::RefPtr<ExpressionWatch<T>>
+  Expression<T>::bind (const glib::PropertyProxy_WriteOnly<T2>& property,
+                       const glib::RefPtr<glib::ObjectBase>& this_) -> glib::RefPtr<ExpressionWatch<T>>
   {
-    return Glib::wrap<T> (
+    return glib::wrap<T> (
         gtk_expression_bind (gobj_copy (),
                              property.get_object ()->gobj (),
                              property.get_name (),
@@ -279,10 +279,10 @@ namespace Gtk
   template <class T>
   auto
   PropertyExpression<T>::create (GType this_type,
-                                 const Glib::ustring& property_name) -> Glib::RefPtr<PropertyExpression<T>>
+                                 const glib::ustring& property_name) -> glib::RefPtr<PropertyExpression<T>>
   {
-    return Glib::make_refptr_for_instance<Gtk::PropertyExpression<T>> (
-        reinterpret_cast<Gtk::PropertyExpression<T>*> (
+    return glib::make_refptr_for_instance<gtk::PropertyExpression<T>> (
+        reinterpret_cast<gtk::PropertyExpression<T>*> (
             gtk_property_expression_new (this_type,
                                          nullptr,
                                          property_name.c_str ())));
@@ -291,13 +291,13 @@ namespace Gtk
   template <class T>
   template <class OT>
   auto
-  PropertyExpression<T>::create (const Glib::RefPtr<OT>& expression,
-                                 const Glib::ustring& property_name) -> Glib::RefPtr<PropertyExpression<T>>
+  PropertyExpression<T>::create (const glib::RefPtr<OT>& expression,
+                                 const glib::ustring& property_name) -> glib::RefPtr<PropertyExpression<T>>
   {
-    return Glib::make_refptr_for_instance<Gtk::PropertyExpression<T>> (
-        reinterpret_cast<Gtk::PropertyExpression<T>*> (
+    return glib::make_refptr_for_instance<gtk::PropertyExpression<T>> (
+        reinterpret_cast<gtk::PropertyExpression<T>*> (
             gtk_property_expression_new (
-                Glib::Value<typename OT::ValueType>::value_type (),
+                glib::Value<typename OT::ValueType>::value_type (),
                 expression->gobj_copy (),
                 property_name.c_str ())));
   }
@@ -306,11 +306,11 @@ namespace Gtk
   template <class OT>
   auto
   PropertyExpression<T>::create (GType this_type,
-                                 const Glib::RefPtr<OT>& expression,
-                                 const Glib::ustring& property_name) -> Glib::RefPtr<PropertyExpression<T>>
+                                 const glib::RefPtr<OT>& expression,
+                                 const glib::ustring& property_name) -> glib::RefPtr<PropertyExpression<T>>
   {
-    return Glib::make_refptr_for_instance<Gtk::PropertyExpression<T>> (
-        reinterpret_cast<Gtk::PropertyExpression<T>*> (
+    return glib::make_refptr_for_instance<gtk::PropertyExpression<T>> (
+        reinterpret_cast<gtk::PropertyExpression<T>*> (
             gtk_property_expression_new (this_type,
                                          expression->gobj_copy (),
                                          property_name.c_str ())));
@@ -326,20 +326,20 @@ namespace Gtk
   template <class T>
   template <class... T_Args>
   auto
-  ConstantExpression<T>::create (T_Args&&... args) -> Glib::RefPtr<ConstantExpression<T>>
+  ConstantExpression<T>::create (T_Args&&... args) -> glib::RefPtr<ConstantExpression<T>>
   {
-    Glib::Value<T> value;
-    value.init (Glib::Value<T>::value_type ());
+    glib::Value<T> value;
+    value.init (glib::Value<T>::value_type ());
     value.set (T (std::forward<T_Args> (args)...));
     return create_for_value (value);
   }
 
   template <class T>
   auto
-  ConstantExpression<T>::create_for_value (const Glib::Value<T>& value) -> Glib::RefPtr<ConstantExpression<T>>
+  ConstantExpression<T>::create_for_value (const glib::Value<T>& value) -> glib::RefPtr<ConstantExpression<T>>
   {
-    return Glib::make_refptr_for_instance<Gtk::ConstantExpression<T>> (
-        reinterpret_cast<Gtk::ConstantExpression<T>*> (
+    return glib::make_refptr_for_instance<gtk::ConstantExpression<T>> (
+        reinterpret_cast<gtk::ConstantExpression<T>*> (
             gtk_constant_expression_new_for_value (value.gobj ())));
   }
 
@@ -352,10 +352,10 @@ namespace Gtk
 
   template <class T>
   auto
-  ObjectExpression<T>::create (const T& object) -> Glib::RefPtr<ObjectExpression<T>>
+  ObjectExpression<T>::create (const T& object) -> glib::RefPtr<ObjectExpression<T>>
   {
-    return Glib::make_refptr_for_instance<Gtk::ObjectExpression<T>> (
-        reinterpret_cast<Gtk::ObjectExpression<T>*> (
+    return glib::make_refptr_for_instance<gtk::ObjectExpression<T>> (
+        reinterpret_cast<gtk::ObjectExpression<T>*> (
             gtk_object_expression_new (G_OBJECT (object->gobj ()))));
   }
 
@@ -369,17 +369,17 @@ namespace Gtk
   template <class T>
   template <class S, class... ATs>
   auto
-  ClosureExpression<T>::create (S slot, const Glib::RefPtr<ATs>&... params) -> Glib::RefPtr<ClosureExpression<T>>
+  ClosureExpression<T>::create (S slot, const glib::RefPtr<ATs>&... params) -> glib::RefPtr<ClosureExpression<T>>
   {
     using TI = Expression_Private::
-        Invoker<T, Glib::RefPtr<Glib::ObjectBase>, typename ATs::ValueType...>;
+        Invoker<T, glib::RefPtr<glib::ObjectBase>, typename ATs::ValueType...>;
     auto invoker = new TI (slot);
     guint n_params = sizeof...(params);
     auto gparams = new GtkExpression*[n_params];
     fill_params (gparams, params...);
 
     auto object = gtk_cclosure_expression_new (
-        Glib::Value<T>::value_type (),
+        glib::Value<T>::value_type (),
         Expression_Private::closure_marshal<TI>,
         n_params,
         gparams,
@@ -388,16 +388,16 @@ namespace Gtk
         Expression_Private::closure_destroy<TI>);
     delete[] gparams;
 
-    return Glib::make_refptr_for_instance<Gtk::ClosureExpression<T>> (
-        reinterpret_cast<Gtk::ClosureExpression<T>*> (object));
+    return glib::make_refptr_for_instance<gtk::ClosureExpression<T>> (
+        reinterpret_cast<gtk::ClosureExpression<T>*> (object));
   }
 
   template <class T>
   template <class A1, class... ATs>
   auto
   ClosureExpression<T>::fill_params (GtkExpression** gparams,
-                                     const Glib::RefPtr<A1>& a1,
-                                     const Glib::RefPtr<ATs>&... eas) -> void
+                                     const glib::RefPtr<A1>& a1,
+                                     const glib::RefPtr<ATs>&... eas) -> void
   {
     gparams[0] = a1->gobj_copy ();
     fill_params (gparams + 1, eas...);
@@ -423,7 +423,7 @@ namespace Gtk
     auto
     Invoker<T, ATs...>::eval_param (const GValue* gv) -> PT
     {
-      Glib::Value<PT> v;
+      glib::Value<PT> v;
       v.init (gv);
       return v.get ();
     }
@@ -436,8 +436,8 @@ namespace Gtk
                                 std::index_sequence<I...>) -> void
     {
       T res = the_slot (eval_param<ATs> (&param_values[I])...);
-      Glib::Value<T> rv;
-      rv.init (Glib::Value<T>::value_type ());
+      glib::Value<T> rv;
+      rv.init (glib::Value<T>::value_type ());
       rv.set (res);
       g_value_copy (rv.gobj (), return_value);
     }
@@ -475,27 +475,27 @@ namespace Gtk
 
 #endif
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
 
   template <class T>
   auto
-  wrap (GtkExpression* object, bool take_copy = false) -> RefPtr<Gtk::Expression<T>>
+  wrap (GtkExpression* object, bool take_copy = false) -> RefPtr<gtk::Expression<T>>
   {
     if (take_copy && object)
       gtk_expression_ref (object);
 
-    return Glib::make_refptr_for_instance<Gtk::Expression<T>> (
-        reinterpret_cast<Gtk::Expression<T>*> (object));
+    return glib::make_refptr_for_instance<gtk::Expression<T>> (
+        reinterpret_cast<gtk::Expression<T>*> (object));
   }
 
   template <class T>
-  class Value<RefPtr<Gtk::Expression<T>>> : public ValueBase
+  class Value<RefPtr<gtk::Expression<T>>> : public ValueBase
   {
   public:
-    using CppType = RefPtr<Gtk::Expression<T>>;
+    using CppType = RefPtr<gtk::Expression<T>>;
 
     static auto
     value_type () -> GType;
@@ -508,14 +508,14 @@ namespace Glib
 
   template <class T>
   auto
-  Value<RefPtr<Gtk::Expression<T>>>::value_type () -> GType
+  Value<RefPtr<gtk::Expression<T>>>::value_type () -> GType
   {
     return gtk_expression_get_type ();
   }
 
   template <class T>
   auto
-  Value<RefPtr<Gtk::Expression<T>>>::set (const CppType& data) -> void
+  Value<RefPtr<gtk::Expression<T>>>::set (const CppType& data) -> void
   {
     gtk_value_set_expression (&gobject_,
                               const_cast<GtkExpression*> (data->gobj ()));
@@ -523,19 +523,19 @@ namespace Glib
 
   template <class T>
   auto
-  Value<RefPtr<Gtk::Expression<T>>>::get () const ->
-      typename Value<RefPtr<Gtk::Expression<T>>>::CppType
+  Value<RefPtr<gtk::Expression<T>>>::get () const ->
+      typename Value<RefPtr<gtk::Expression<T>>>::CppType
   {
     return wrap<T> (gtk_value_get_expression (&gobject_), true);
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkExpression* object, bool take_copy = false) -> Glib::RefPtr<Gtk::ExpressionBase>;
+  wrap (GtkExpression* object, bool take_copy = false) -> glib::RefPtr<gtk::ExpressionBase>;
 
-} // namespace Glib
+} // namespace glib
 
 #endif

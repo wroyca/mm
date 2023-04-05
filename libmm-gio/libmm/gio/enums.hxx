@@ -11,7 +11,7 @@
 #include <gio/gio.h>
 #include <libmm/glib/value.hxx>
 
-namespace Gio
+namespace gio
 {
 
   enum class DataStreamByteOrder
@@ -21,25 +21,25 @@ namespace Gio
     HOST_ENDIAN_ORDER
   };
 
-} // namespace Gio
+} // namespace gio
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_GIO_SYMEXPORT Value<Gio::DataStreamByteOrder>
-    : public Glib::Value_Enum<Gio::DataStreamByteOrder>
+  class LIBMM_GIO_SYMEXPORT Value<gio::DataStreamByteOrder>
+    : public glib::Value_Enum<gio::DataStreamByteOrder>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
-namespace Gio
+namespace gio
 {
 
   enum class DataStreamNewlineType
@@ -50,25 +50,25 @@ namespace Gio
     ANY
   };
 
-} // namespace Gio
+} // namespace gio
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_GIO_SYMEXPORT Value<Gio::DataStreamNewlineType>
-    : public Glib::Value_Enum<Gio::DataStreamNewlineType>
+  class LIBMM_GIO_SYMEXPORT Value<gio::DataStreamNewlineType>
+    : public glib::Value_Enum<gio::DataStreamNewlineType>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
-namespace Gio
+namespace gio
 {
 
   enum class SocketFamily
@@ -79,25 +79,25 @@ namespace Gio
     IPV6 = GLIB_SYSDEF_AF_INET6
   };
 
-} // namespace Gio
+} // namespace gio
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_GIO_SYMEXPORT Value<Gio::SocketFamily>
-    : public Glib::Value_Enum<Gio::SocketFamily>
+  class LIBMM_GIO_SYMEXPORT Value<gio::SocketFamily>
+    : public glib::Value_Enum<gio::SocketFamily>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
-namespace Gio
+namespace gio
 {
 
   enum class TlsAuthenticationMode
@@ -107,25 +107,25 @@ namespace Gio
     REQUIRED
   };
 
-} // namespace Gio
+} // namespace gio
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_GIO_SYMEXPORT Value<Gio::TlsAuthenticationMode>
-    : public Glib::Value_Enum<Gio::TlsAuthenticationMode>
+  class LIBMM_GIO_SYMEXPORT Value<gio::TlsAuthenticationMode>
+    : public glib::Value_Enum<gio::TlsAuthenticationMode>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
-namespace Gio
+namespace gio
 {
 
   enum class TlsCertificateFlags
@@ -189,25 +189,25 @@ namespace Gio
                 static_cast<unsigned> (lhs) ^ static_cast<unsigned> (rhs)));
   }
 
-} // namespace Gio
+} // namespace gio
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_GIO_SYMEXPORT Value<Gio::TlsCertificateFlags>
-    : public Glib::Value_Flags<Gio::TlsCertificateFlags>
+  class LIBMM_GIO_SYMEXPORT Value<gio::TlsCertificateFlags>
+    : public glib::Value_Flags<gio::TlsCertificateFlags>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
-namespace Gio
+namespace gio
 {
 
 }

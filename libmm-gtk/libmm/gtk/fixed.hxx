@@ -14,13 +14,13 @@ using GtkFixedClass = struct _GtkFixedClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT Fixed_Class;
 }
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
   class LIBMM_GTK_SYMEXPORT Fixed : public Widget
@@ -50,7 +50,7 @@ namespace Gtk
     static CppClassType fixed_class_;
 
   protected:
-    explicit Fixed (const Glib::ConstructParams& construct_params);
+    explicit Fixed (const glib::ConstructParams& construct_params);
     explicit Fixed (GtkFixed* castitem);
 
 #endif
@@ -98,12 +98,12 @@ namespace Gtk
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkFixed* object, bool take_copy = false) -> Gtk::Fixed*;
-} // namespace Glib
+  wrap (GtkFixed* object, bool take_copy = false) -> gtk::Fixed*;
+} // namespace glib
 
 #endif

@@ -7,7 +7,7 @@
 
 #include <libmm/gtk/mm-gtk.hxx>
 
-namespace Adw
+namespace adw
 {
 
 }
@@ -16,23 +16,23 @@ namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (AdwViewSwitcherTitle* object, bool take_copy) -> Adw::ViewSwitcherTitle*
+  wrap (AdwViewSwitcherTitle* object, bool take_copy) -> adw::ViewSwitcherTitle*
   {
-    return dynamic_cast<Adw::ViewSwitcherTitle*> (
-        Glib::wrap_auto ((GObject*) (object), take_copy));
+    return dynamic_cast<adw::ViewSwitcherTitle*> (
+        glib::wrap_auto ((GObject*) (object), take_copy));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Adw
+namespace adw
 {
 
   auto
-  ViewSwitcherTitle_Class::init () -> const Glib::Class&
+  ViewSwitcherTitle_Class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -43,31 +43,31 @@ namespace Adw
   }
 
   auto
-  ViewSwitcherTitle_Class::wrap_new (GObject* o) -> Glib::ObjectBase*
+  ViewSwitcherTitle_Class::wrap_new (GObject* o) -> glib::ObjectBase*
   {
     return manage (new ViewSwitcherTitle ((AdwViewSwitcherTitle*) (o)));
   }
 
   ViewSwitcherTitle::ViewSwitcherTitle (
-      const Glib::ConstructParams& construct_params)
-    : Gtk::Widget (construct_params)
+      const glib::ConstructParams& construct_params)
+    : gtk::Widget (construct_params)
   {
   }
 
   ViewSwitcherTitle::ViewSwitcherTitle (AdwViewSwitcherTitle* castitem)
-    : Gtk::Widget ((GtkWidget*) (castitem))
+    : gtk::Widget ((GtkWidget*) (castitem))
   {
   }
 
   ViewSwitcherTitle::ViewSwitcherTitle (ViewSwitcherTitle&& src) noexcept
-    : Gtk::Widget (std::move (src))
+    : gtk::Widget (std::move (src))
   {
   }
 
   auto
   ViewSwitcherTitle::operator= (ViewSwitcherTitle&& src) noexcept -> ViewSwitcherTitle&
   {
-    Gtk::Widget::operator= (std::move (src));
+    gtk::Widget::operator= (std::move (src));
     return *this;
   }
 
@@ -91,30 +91,30 @@ namespace Adw
   }
 
   ViewSwitcherTitle::ViewSwitcherTitle ()
-    : Glib::ObjectBase (nullptr),
-      Gtk::Widget (Glib::ConstructParams (viewswitchertitle_class_.init ()))
+    : glib::ObjectBase (nullptr),
+      gtk::Widget (glib::ConstructParams (viewswitchertitle_class_.init ()))
   {
   }
 
   auto
   ViewSwitcherTitle::get_stack () const -> ViewStack*
   {
-    return Glib::wrap (adw_view_switcher_title_get_stack (
+    return glib::wrap (adw_view_switcher_title_get_stack (
         const_cast<AdwViewSwitcherTitle*> (gobj ())));
   }
 
   auto
-  ViewSwitcherTitle::get_subtitle () const -> Glib::ustring
+  ViewSwitcherTitle::get_subtitle () const -> glib::ustring
   {
-    return Glib::convert_const_gchar_ptr_to_ustring (
+    return glib::convert_const_gchar_ptr_to_ustring (
         adw_view_switcher_title_get_subtitle (
             const_cast<AdwViewSwitcherTitle*> (gobj ())));
   }
 
   auto
-  ViewSwitcherTitle::get_title () const -> Glib::ustring
+  ViewSwitcherTitle::get_title () const -> glib::ustring
   {
-    return Glib::convert_const_gchar_ptr_to_ustring (
+    return glib::convert_const_gchar_ptr_to_ustring (
         adw_view_switcher_title_get_title (
             const_cast<AdwViewSwitcherTitle*> (gobj ())));
   }
@@ -137,17 +137,17 @@ namespace Adw
   ViewSwitcherTitle::set_stack (ViewStack* stack) -> void
   {
     adw_view_switcher_title_set_stack (gobj (),
-                                       (AdwViewStack*) Glib::unwrap (stack));
+                                       (AdwViewStack*) glib::unwrap (stack));
   }
 
   auto
-  ViewSwitcherTitle::set_subtitle (const Glib::ustring& subtitle) -> void
+  ViewSwitcherTitle::set_subtitle (const glib::ustring& subtitle) -> void
   {
     adw_view_switcher_title_set_subtitle (gobj (), subtitle.c_str ());
   }
 
   auto
-  ViewSwitcherTitle::set_title (const Glib::ustring& title) -> void
+  ViewSwitcherTitle::set_title (const glib::ustring& title) -> void
   {
     adw_view_switcher_title_set_title (gobj (), title.c_str ());
   }
@@ -161,62 +161,62 @@ namespace Adw
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<ViewStack*>::value,
+      glib::Traits::ValueCompatibleWithWrapProperty<ViewStack*>::value,
       "Type ViewStack* cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  ViewSwitcherTitle::property_stack () -> Glib::PropertyProxy<ViewStack*>
+  ViewSwitcherTitle::property_stack () -> glib::PropertyProxy<ViewStack*>
   {
-    return Glib::PropertyProxy<ViewStack*> (this, "stack");
+    return glib::PropertyProxy<ViewStack*> (this, "stack");
   }
 
   auto
-  ViewSwitcherTitle::property_stack () const -> Glib::PropertyProxy_ReadOnly<ViewStack*>
+  ViewSwitcherTitle::property_stack () const -> glib::PropertyProxy_ReadOnly<ViewStack*>
   {
-    return Glib::PropertyProxy_ReadOnly<ViewStack*> (this, "stack");
+    return glib::PropertyProxy_ReadOnly<ViewStack*> (this, "stack");
   }
 
   auto
-  ViewSwitcherTitle::property_subtitle () -> Glib::PropertyProxy<Glib::ustring>
+  ViewSwitcherTitle::property_subtitle () -> glib::PropertyProxy<glib::ustring>
   {
-    return Glib::PropertyProxy<Glib::ustring> (this, "subtitle");
+    return glib::PropertyProxy<glib::ustring> (this, "subtitle");
   }
 
   auto
-  ViewSwitcherTitle::property_subtitle () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>
+  ViewSwitcherTitle::property_subtitle () const -> glib::PropertyProxy_ReadOnly<glib::ustring>
   {
-    return Glib::PropertyProxy_ReadOnly<Glib::ustring> (this, "subtitle");
+    return glib::PropertyProxy_ReadOnly<glib::ustring> (this, "subtitle");
   }
 
   auto
-  ViewSwitcherTitle::property_title () -> Glib::PropertyProxy<Glib::ustring>
+  ViewSwitcherTitle::property_title () -> glib::PropertyProxy<glib::ustring>
   {
-    return Glib::PropertyProxy<Glib::ustring> (this, "title");
+    return glib::PropertyProxy<glib::ustring> (this, "title");
   }
 
   auto
-  ViewSwitcherTitle::property_title () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>
+  ViewSwitcherTitle::property_title () const -> glib::PropertyProxy_ReadOnly<glib::ustring>
   {
-    return Glib::PropertyProxy_ReadOnly<Glib::ustring> (this, "title");
+    return glib::PropertyProxy_ReadOnly<glib::ustring> (this, "title");
   }
 
   auto
-  ViewSwitcherTitle::property_title_visible () const -> Glib::PropertyProxy_ReadOnly<bool>
+  ViewSwitcherTitle::property_title_visible () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "title-visible");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "title-visible");
   }
 
   auto
-  ViewSwitcherTitle::property_view_switcher_enabled () -> Glib::PropertyProxy<bool>
+  ViewSwitcherTitle::property_view_switcher_enabled () -> glib::PropertyProxy<bool>
   {
-    return Glib::PropertyProxy<bool> (this, "view-switcher-enabled");
+    return glib::PropertyProxy<bool> (this, "view-switcher-enabled");
   }
 
   auto
-  ViewSwitcherTitle::property_view_switcher_enabled () const -> Glib::PropertyProxy_ReadOnly<bool>
+  ViewSwitcherTitle::property_view_switcher_enabled () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "view-switcher-enabled");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "view-switcher-enabled");
   }
 
-} // namespace Adw
+} // namespace adw

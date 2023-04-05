@@ -15,16 +15,16 @@
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT StringObject_Class;
 }
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
-  class LIBMM_GTK_SYMEXPORT StringObject : public Glib::Object
+  class LIBMM_GTK_SYMEXPORT StringObject : public glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -43,7 +43,7 @@ namespace Gtk
     static CppClassType stringobject_class_;
 
   protected:
-    explicit StringObject (const Glib::ConstructParams& construct_params);
+    explicit StringObject (const glib::ConstructParams& construct_params);
     explicit StringObject (GtkStringObject* castitem);
 
 #endif
@@ -82,25 +82,25 @@ namespace Gtk
   private:
   public:
     static auto
-    create (const Glib::ustring& string) -> Glib::RefPtr<StringObject>;
+    create (const glib::ustring& string) -> glib::RefPtr<StringObject>;
 
     auto
-    get_string () const -> Glib::ustring;
+    get_string () const -> glib::ustring;
 
     auto
-    property_string () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+    property_string () const -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkStringObject* object, bool take_copy = false) -> Glib::RefPtr<Gtk::StringObject>;
-} // namespace Glib
+  wrap (GtkStringObject* object, bool take_copy = false) -> glib::RefPtr<gtk::StringObject>;
+} // namespace glib
 
 #endif

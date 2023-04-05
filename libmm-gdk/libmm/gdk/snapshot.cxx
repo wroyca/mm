@@ -11,24 +11,24 @@ namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GdkSnapshot* object, bool take_copy) -> Glib::RefPtr<Gdk::Snapshot>
+  wrap (GdkSnapshot* object, bool take_copy) -> glib::RefPtr<gdk::Snapshot>
   {
-    return Glib::make_refptr_for_instance<Gdk::Snapshot> (
-        dynamic_cast<Gdk::Snapshot*> (
-            Glib::wrap_auto ((GObject*) (object), take_copy)));
+    return glib::make_refptr_for_instance<gdk::Snapshot> (
+        dynamic_cast<gdk::Snapshot*> (
+            glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gdk
+namespace gdk
 {
 
   auto
-  Snapshot_Class::init () -> const Glib::Class&
+  Snapshot_Class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -48,7 +48,7 @@ namespace Gdk
   }
 
   auto
-  Snapshot_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  Snapshot_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new Snapshot ((GdkSnapshot*) object);
   }
@@ -60,25 +60,25 @@ namespace Gdk
     return gobj ();
   }
 
-  Snapshot::Snapshot (const Glib::ConstructParams& construct_params)
-    : Glib::Object (construct_params)
+  Snapshot::Snapshot (const glib::ConstructParams& construct_params)
+    : glib::Object (construct_params)
   {
   }
 
   Snapshot::Snapshot (GdkSnapshot* castitem)
-    : Glib::Object ((GObject*) (castitem))
+    : glib::Object ((GObject*) (castitem))
   {
   }
 
   Snapshot::Snapshot (Snapshot&& src) noexcept
-    : Glib::Object (std::move (src))
+    : glib::Object (std::move (src))
   {
   }
 
   auto
   Snapshot::operator= (Snapshot&& src) noexcept -> Snapshot&
   {
-    Glib::Object::operator= (std::move (src));
+    glib::Object::operator= (std::move (src));
     return *this;
   }
 
@@ -98,4 +98,4 @@ namespace Gdk
     return gdk_snapshot_get_type ();
   }
 
-} // namespace Gdk
+} // namespace gdk

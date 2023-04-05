@@ -17,16 +17,16 @@ using GdkPixbufAnimationIterClass = struct _GdkPixbufAnimationIterClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gdk
+namespace gdk
 {
   class LIBMM_GDK_SYMEXPORT PixbufAnimationIter_Class;
 }
 #endif
 
-namespace Gdk
+namespace gdk
 {
 
-  class LIBMM_GDK_SYMEXPORT PixbufAnimationIter : public Glib::Object
+  class LIBMM_GDK_SYMEXPORT PixbufAnimationIter : public glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -46,7 +46,7 @@ namespace Gdk
 
   protected:
     explicit PixbufAnimationIter (
-        const Glib::ConstructParams& construct_params);
+        const glib::ConstructParams& construct_params);
     explicit PixbufAnimationIter (GdkPixbufAnimationIter* castitem);
 
 #endif
@@ -89,10 +89,10 @@ namespace Gdk
     get_delay_time () const -> int;
 
     auto
-    get_pixbuf () -> Glib::RefPtr<Gdk::Pixbuf>;
+    get_pixbuf () -> glib::RefPtr<gdk::Pixbuf>;
 
     auto
-    get_pixbuf () const -> Glib::RefPtr<const Gdk::Pixbuf>;
+    get_pixbuf () const -> glib::RefPtr<const gdk::Pixbuf>;
 
     auto
     on_currently_loading_frame () const -> bool;
@@ -105,12 +105,12 @@ namespace Gdk
   protected:
   };
 
-} // namespace Gdk
+} // namespace gdk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GDK_SYMEXPORT auto
-  wrap (GdkPixbufAnimationIter* object, bool take_copy = false) -> Glib::RefPtr<Gdk::PixbufAnimationIter>;
-} // namespace Glib
+  wrap (GdkPixbufAnimationIter* object, bool take_copy = false) -> glib::RefPtr<gdk::PixbufAnimationIter>;
+} // namespace glib
 
 #endif

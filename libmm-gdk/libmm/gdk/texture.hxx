@@ -15,27 +15,27 @@ using GdkTextureClass = struct _GdkTextureClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gdk
+namespace gdk
 {
   class LIBMM_GDK_SYMEXPORT Texture_Class;
 }
 #endif
 
-namespace Glib
+namespace glib
 {
   class LIBMM_GDK_SYMEXPORT Bytes;
 }
 
-namespace Gio
+namespace gio
 {
   class LIBMM_GDK_SYMEXPORT File;
 }
 
-namespace Gdk
+namespace gdk
 {
   class LIBMM_GDK_SYMEXPORT Pixbuf;
 
-  class TextureError : public Glib::Error
+  class TextureError : public glib::Error
   {
   public:
     enum Code
@@ -47,7 +47,7 @@ namespace Gdk
     };
 
     LIBMM_GDK_SYMEXPORT
-    TextureError (Code error_code, const Glib::ustring& error_message);
+    TextureError (Code error_code, const glib::ustring& error_message);
     LIBMM_GDK_SYMEXPORT explicit TextureError (GError* gobject);
     LIBMM_GDK_SYMEXPORT auto
     code () const -> Code;
@@ -63,28 +63,28 @@ namespace Gdk
 #endif
   };
 
-} // namespace Gdk
+} // namespace gdk
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_GDK_SYMEXPORT Value<Gdk::TextureError::Code>
-    : public Glib::Value_Enum<Gdk::TextureError::Code>
+  class LIBMM_GDK_SYMEXPORT Value<gdk::TextureError::Code>
+    : public glib::Value_Enum<gdk::TextureError::Code>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
-namespace Gdk
+namespace gdk
 {
 
-  class LIBMM_GDK_SYMEXPORT Texture : public Glib::Object,
+  class LIBMM_GDK_SYMEXPORT Texture : public glib::Object,
                             public Paintable
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -104,7 +104,7 @@ namespace Gdk
     static CppClassType texture_class_;
 
   protected:
-    explicit Texture (const Glib::ConstructParams& construct_params);
+    explicit Texture (const glib::ConstructParams& construct_params);
     explicit Texture (GdkTexture* castitem);
 
 #endif
@@ -146,23 +146,23 @@ namespace Gdk
 
   public:
     static auto
-    create_for_pixbuf (const Glib::RefPtr<Pixbuf>& pixbuf)
-        -> Glib::RefPtr<Texture>;
+    create_for_pixbuf (const glib::RefPtr<Pixbuf>& pixbuf)
+        -> glib::RefPtr<Texture>;
 
     static auto
     create_from_resource (const std::string& resource_path)
-        -> Glib::RefPtr<Texture>;
+        -> glib::RefPtr<Texture>;
 
     static auto
-    create_from_file (const Glib::RefPtr<Gio::File>& file)
-        -> Glib::RefPtr<Texture>;
+    create_from_file (const glib::RefPtr<gio::File>& file)
+        -> glib::RefPtr<Texture>;
 
     static auto
-    create_from_filename (const std::string& path) -> Glib::RefPtr<Texture>;
+    create_from_filename (const std::string& path) -> glib::RefPtr<Texture>;
 
     static auto
-    create_from_bytes (const Glib::RefPtr<const Glib::Bytes>& bytes)
-        -> Glib::RefPtr<Texture>;
+    create_from_bytes (const glib::RefPtr<const glib::Bytes>& bytes)
+        -> glib::RefPtr<Texture>;
 
     auto
     get_width () const -> int;
@@ -174,34 +174,34 @@ namespace Gdk
     download (guchar* data, gsize stride) const -> void;
 
     auto
-    save_to_png (const Glib::ustring& filename) const -> bool;
+    save_to_png (const glib::ustring& filename) const -> bool;
 
     auto
-    save_to_png_bytes () const -> Glib::RefPtr<Glib::Bytes>;
+    save_to_png_bytes () const -> glib::RefPtr<glib::Bytes>;
 
     auto
     save_to_tiff (const std::string& filename) const -> bool;
 
     auto
-    save_to_tiff_bytes () const -> Glib::RefPtr<Glib::Bytes>;
+    save_to_tiff_bytes () const -> glib::RefPtr<glib::Bytes>;
 
     auto
-    property_width () const -> Glib::PropertyProxy_ReadOnly<int>;
+    property_width () const -> glib::PropertyProxy_ReadOnly<int>;
 
     auto
-    property_height () const -> Glib::PropertyProxy_ReadOnly<int>;
+    property_height () const -> glib::PropertyProxy_ReadOnly<int>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gdk
+} // namespace gdk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GDK_SYMEXPORT auto
-  wrap (GdkTexture* object, bool take_copy = false) -> Glib::RefPtr<Gdk::Texture>;
-} // namespace Glib
+  wrap (GdkTexture* object, bool take_copy = false) -> glib::RefPtr<gdk::Texture>;
+} // namespace glib
 
 #endif

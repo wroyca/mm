@@ -21,16 +21,16 @@ using GListModelClass = struct _GListModelClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gio
+namespace gio
 {
   class LIBMM_GIO_SYMEXPORT ListModel_Class;
 }
 #endif
 
-namespace Gio
+namespace gio
 {
 
-  class LIBMM_GIO_SYMEXPORT ListModel : public Glib::Interface
+  class LIBMM_GIO_SYMEXPORT ListModel : public glib::Interface
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -54,7 +54,7 @@ namespace Gio
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
-    explicit ListModel (const Glib::Interface_Class& interface_class);
+    explicit ListModel (const glib::Interface_Class& interface_class);
 
   public:
     explicit ListModel (GListModel* castitem);
@@ -105,13 +105,13 @@ namespace Gio
     get_n_items () const -> guint;
 
     auto
-    get_object (guint position) -> Glib::RefPtr<Glib::ObjectBase>;
+    get_object (guint position) -> glib::RefPtr<glib::ObjectBase>;
 
     auto
-    get_object (guint position) const -> Glib::RefPtr<const Glib::ObjectBase>;
+    get_object (guint position) const -> glib::RefPtr<const glib::ObjectBase>;
 
     auto
-    signal_items_changed () -> Glib::SignalProxy<void (guint, guint, guint)>;
+    signal_items_changed () -> glib::SignalProxy<void (guint, guint, guint)>;
 
   protected:
     virtual auto
@@ -128,15 +128,15 @@ namespace Gio
   protected:
   };
 
-} // namespace Gio
+} // namespace gio
 
-namespace Glib
+namespace glib
 {
 
   LIBMM_GIO_SYMEXPORT
   auto
-  wrap (GListModel* object, bool take_copy = false) -> Glib::RefPtr<Gio::ListModel>;
+  wrap (GListModel* object, bool take_copy = false) -> glib::RefPtr<gio::ListModel>;
 
-} // namespace Glib
+} // namespace glib
 
 #endif

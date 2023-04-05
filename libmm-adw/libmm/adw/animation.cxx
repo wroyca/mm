@@ -10,7 +10,7 @@
 #include <libmm/glib/mm-glib.hxx>
 #include <libmm/gtk/mm-gtk.hxx>
 
-namespace Adw
+namespace adw
 {
 
 }
@@ -18,37 +18,37 @@ namespace Adw
 namespace
 {
 
-  static const Glib::SignalProxyInfo Animation_signal_done_info = {
+  static const glib::SignalProxyInfo Animation_signal_done_info = {
       "done",
-      (GCallback) &Glib::SignalProxyNormal::slot0_void_callback,
-      (GCallback) &Glib::SignalProxyNormal::slot0_void_callback};
+      (GCallback) &glib::SignalProxyNormal::slot0_void_callback,
+      (GCallback) &glib::SignalProxyNormal::slot0_void_callback};
 
 }
 
 auto
-Glib::Value<Adw::AnimationState>::value_type () -> GType
+glib::Value<adw::AnimationState>::value_type () -> GType
 {
   return adw_animation_state_get_type ();
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (AdwAnimation* object, bool take_copy) -> Glib::RefPtr<Adw::Animation>
+  wrap (AdwAnimation* object, bool take_copy) -> glib::RefPtr<adw::Animation>
   {
-    return Glib::make_refptr_for_instance<Adw::Animation> (
-        dynamic_cast<Adw::Animation*> (
-            Glib::wrap_auto ((GObject*) (object), take_copy)));
+    return glib::make_refptr_for_instance<adw::Animation> (
+        dynamic_cast<adw::Animation*> (
+            glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Adw
+namespace adw
 {
 
   auto
-  Animation_Class::init () -> const Glib::Class&
+  Animation_Class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -68,7 +68,7 @@ namespace Adw
   }
 
   auto
-  Animation_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  Animation_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new Animation ((AdwAnimation*) object);
   }
@@ -80,25 +80,25 @@ namespace Adw
     return gobj ();
   }
 
-  Animation::Animation (const Glib::ConstructParams& construct_params)
-    : Glib::Object (construct_params)
+  Animation::Animation (const glib::ConstructParams& construct_params)
+    : glib::Object (construct_params)
   {
   }
 
   Animation::Animation (AdwAnimation* castitem)
-    : Glib::Object ((GObject*) (castitem))
+    : glib::Object ((GObject*) (castitem))
   {
   }
 
   Animation::Animation (Animation&& src) noexcept
-    : Glib::Object (std::move (src))
+    : glib::Object (std::move (src))
   {
   }
 
   auto
   Animation::operator= (Animation&& src) noexcept -> Animation&
   {
-    Glib::Object::operator= (std::move (src));
+    glib::Object::operator= (std::move (src));
     return *this;
   }
 
@@ -119,15 +119,15 @@ namespace Adw
   }
 
   Animation::Animation ()
-    : Glib::ObjectBase (nullptr),
-      Glib::Object (Glib::ConstructParams (animation_class_.init ()))
+    : glib::ObjectBase (nullptr),
+      glib::Object (glib::ConstructParams (animation_class_.init ()))
   {
   }
 
   auto
-  Animation::create () -> Glib::RefPtr<Animation>
+  Animation::create () -> glib::RefPtr<Animation>
   {
-    return Glib::make_refptr_for_instance<Animation> (new Animation ());
+    return glib::make_refptr_for_instance<Animation> (new Animation ());
   }
 
   auto
@@ -144,9 +144,9 @@ namespace Adw
   }
 
   auto
-  Animation::get_target () const -> Glib::RefPtr<AnimationTarget>
+  Animation::get_target () const -> glib::RefPtr<AnimationTarget>
   {
-    auto retvalue = Glib::wrap (
+    auto retvalue = glib::wrap (
         adw_animation_get_target (const_cast<AdwAnimation*> (gobj ())));
     if (retvalue)
       retvalue->reference ();
@@ -154,9 +154,9 @@ namespace Adw
   }
 
   auto
-  Animation::get_widget () const -> Gtk::Widget*
+  Animation::get_widget () const -> gtk::Widget*
   {
-    return Glib::wrap (
+    return glib::wrap (
         adw_animation_get_widget (const_cast<AdwAnimation*> (gobj ())));
   }
 
@@ -185,10 +185,10 @@ namespace Adw
   }
 
   auto
-  Animation::set_target (Glib::RefPtr<AnimationTarget> target) -> void
+  Animation::set_target (glib::RefPtr<AnimationTarget> target) -> void
   {
     adw_animation_set_target (gobj (),
-                              (AdwAnimationTarget*) Glib::unwrap (target));
+                              (AdwAnimationTarget*) glib::unwrap (target));
   }
 
   auto
@@ -198,52 +198,52 @@ namespace Adw
   }
 
   auto
-  Animation::signal_done () -> Glib::SignalProxy<void ()>
+  Animation::signal_done () -> glib::SignalProxy<void ()>
   {
-    return Glib::SignalProxy<void ()> (this, &Animation_signal_done_info);
+    return glib::SignalProxy<void ()> (this, &Animation_signal_done_info);
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<AnimationState>::value,
+      glib::Traits::ValueCompatibleWithWrapProperty<AnimationState>::value,
       "Type AnimationState cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  Animation::property_state () const -> Glib::PropertyProxy_ReadOnly<AnimationState>
+  Animation::property_state () const -> glib::PropertyProxy_ReadOnly<AnimationState>
   {
-    return Glib::PropertyProxy_ReadOnly<AnimationState> (this, "state");
+    return glib::PropertyProxy_ReadOnly<AnimationState> (this, "state");
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<
-          Glib::RefPtr<AnimationTarget>>::value,
-      "Type Glib::RefPtr<AnimationTarget> cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      glib::Traits::ValueCompatibleWithWrapProperty<
+          glib::RefPtr<AnimationTarget>>::value,
+      "Type glib::RefPtr<AnimationTarget> cannot be used in _WRAP_PROPERTY. "
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  Animation::property_target () -> Glib::PropertyProxy<Glib::RefPtr<AnimationTarget>>
+  Animation::property_target () -> glib::PropertyProxy<glib::RefPtr<AnimationTarget>>
   {
-    return Glib::PropertyProxy<Glib::RefPtr<AnimationTarget>> (this, "target");
+    return glib::PropertyProxy<glib::RefPtr<AnimationTarget>> (this, "target");
   }
 
   auto
-  Animation::property_target () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<AnimationTarget>>
+  Animation::property_target () const -> glib::PropertyProxy_ReadOnly<glib::RefPtr<AnimationTarget>>
   {
-    return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<AnimationTarget>> (
+    return glib::PropertyProxy_ReadOnly<glib::RefPtr<AnimationTarget>> (
         this,
         "target");
   }
 
   auto
-  Animation::property_value () const -> Glib::PropertyProxy_ReadOnly<double>
+  Animation::property_value () const -> glib::PropertyProxy_ReadOnly<double>
   {
-    return Glib::PropertyProxy_ReadOnly<double> (this, "value");
+    return glib::PropertyProxy_ReadOnly<double> (this, "value");
   }
 
   auto
-  Animation::property_widget () const -> Glib::PropertyProxy_ReadOnly<Gtk::Widget*>
+  Animation::property_widget () const -> glib::PropertyProxy_ReadOnly<gtk::Widget*>
   {
-    return Glib::PropertyProxy_ReadOnly<Gtk::Widget*> (this, "widget");
+    return glib::PropertyProxy_ReadOnly<gtk::Widget*> (this, "widget");
   }
 
-} // namespace Adw
+} // namespace adw

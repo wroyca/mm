@@ -17,16 +17,16 @@ using GThemedIconClass = struct _GThemedIconClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gio
+namespace gio
 {
   class LIBMM_GIO_SYMEXPORT ThemedIcon_Class;
 }
 #endif
 
-namespace Gio
+namespace gio
 {
 
-  class LIBMM_GIO_SYMEXPORT ThemedIcon : public Glib::Object,
+  class LIBMM_GIO_SYMEXPORT ThemedIcon : public glib::Object,
                                public Icon
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -46,7 +46,7 @@ namespace Gio
     static CppClassType themedicon_class_;
 
   protected:
-    explicit ThemedIcon (const Glib::ConstructParams& construct_params);
+    explicit ThemedIcon (const glib::ConstructParams& construct_params);
     explicit ThemedIcon (GThemedIcon* castitem);
 
 #endif
@@ -84,50 +84,50 @@ namespace Gio
 
   private:
   protected:
-    explicit ThemedIcon (const Glib::ustring& iconname,
+    explicit ThemedIcon (const glib::ustring& iconname,
                          bool use_default_fallbacks = false);
 
-    explicit ThemedIcon (const std::vector<Glib::ustring>& iconnames);
+    explicit ThemedIcon (const std::vector<glib::ustring>& iconnames);
 
   public:
     static auto
-    create (const Glib::ustring& iconname, bool use_default_fallbacks = false)
-        -> Glib::RefPtr<ThemedIcon>;
+    create (const glib::ustring& iconname, bool use_default_fallbacks = false)
+        -> glib::RefPtr<ThemedIcon>;
 
     static auto
-    create (const std::vector<Glib::ustring>& iconnames)
-        -> Glib::RefPtr<ThemedIcon>;
+    create (const std::vector<glib::ustring>& iconnames)
+        -> glib::RefPtr<ThemedIcon>;
 
     auto
-    prepend_name (const Glib::ustring& iconname) -> void;
+    prepend_name (const glib::ustring& iconname) -> void;
 
     auto
-    append_name (const Glib::ustring& iconname) -> void;
+    append_name (const glib::ustring& iconname) -> void;
 
     auto
-    get_names () const -> std::vector<Glib::ustring>;
+    get_names () const -> std::vector<glib::ustring>;
 
     auto
     property_names () const
-        -> Glib::PropertyProxy_ReadOnly<std::vector<Glib::ustring>>;
+        -> glib::PropertyProxy_ReadOnly<std::vector<glib::ustring>>;
 
     auto
     property_use_default_fallbacks () const
-        -> Glib::PropertyProxy_ReadOnly<bool>;
+        -> glib::PropertyProxy_ReadOnly<bool>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gio
+} // namespace gio
 
-namespace Glib
+namespace glib
 {
 
   LIBMM_GIO_SYMEXPORT
   auto
-  wrap (GThemedIcon* object, bool take_copy = false) -> Glib::RefPtr<Gio::ThemedIcon>;
-} // namespace Glib
+  wrap (GThemedIcon* object, bool take_copy = false) -> glib::RefPtr<gio::ThemedIcon>;
+} // namespace glib
 
 #endif

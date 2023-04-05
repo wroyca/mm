@@ -8,7 +8,7 @@
 #include <glib.h>
 #include <libmm/glib/utility.hxx>
 
-namespace Glib
+namespace glib
 {
 
   using Flags = OptionEntry::Flags;
@@ -89,13 +89,13 @@ namespace Glib
     return *this;
   }
 
-} // namespace Glib
+} // namespace glib
 
 namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
@@ -161,4 +161,4 @@ namespace Glib
     gobj ()->arg_description = g_strdup (c_str_or_nullptr (value));
   }
 
-} // namespace Glib
+} // namespace glib

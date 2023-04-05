@@ -7,11 +7,11 @@
 
 #include <pango/pangocairo.h>
 
-namespace Pango
+namespace pango
 {
 
   auto
-  Context::list_families () const -> std::vector<Glib::RefPtr<FontFamily>>
+  Context::list_families () const -> std::vector<glib::RefPtr<FontFamily>>
   {
     PangoFontFamily** pFamilies = nullptr;
     int n_families = 0;
@@ -19,10 +19,10 @@ namespace Pango
                                  &pFamilies,
                                  &n_families);
 
-    return Glib::ArrayHandler<Glib::RefPtr<FontFamily>>::array_to_vector (
+    return glib::ArrayHandler<glib::RefPtr<FontFamily>>::array_to_vector (
         pFamilies,
         n_families,
-        Glib::OWNERSHIP_SHALLOW);
+        glib::OWNERSHIP_SHALLOW);
   }
 
   auto
@@ -65,10 +65,10 @@ namespace Pango
     }
   };
 
-  using ListHandler_Item = Glib::ListHandler<Item, ItemTraits>;
+  using ListHandler_Item = glib::ListHandler<Item, ItemTraits>;
 
   auto
-  Context::itemize (const Glib::ustring& text, const AttrList& attrs) const -> std::vector<Item>
+  Context::itemize (const glib::ustring& text, const AttrList& attrs) const -> std::vector<Item>
   {
     return ListHandler_Item::list_to_vector (
         pango_itemize (const_cast<PangoContext*> (gobj ()),
@@ -77,11 +77,11 @@ namespace Pango
                        text.bytes (),
                        const_cast<PangoAttrList*> (attrs.gobj ()),
                        nullptr),
-        Glib::OWNERSHIP_DEEP);
+        glib::OWNERSHIP_DEEP);
   }
 
   auto
-  Context::itemize (const Glib::ustring& text,
+  Context::itemize (const glib::ustring& text,
                     const int start_index,
                     const int length,
                     const AttrList& attrs,
@@ -94,12 +94,12 @@ namespace Pango
                        length,
                        const_cast<PangoAttrList*> (attrs.gobj ()),
                        cached_iter.gobj ()),
-        Glib::OWNERSHIP_DEEP);
+        glib::OWNERSHIP_DEEP);
   }
 
   auto
   Context::update_from_cairo_context (
-      const Cairo::RefPtr<Cairo::Context>& context) -> void
+      const cairo::RefPtr<cairo::Context>& context) -> void
   {
     pango_cairo_update_context (context->cobj (), gobj ());
   }
@@ -118,38 +118,38 @@ namespace Pango
     }
   }
 
-} // namespace Pango
+} // namespace pango
 
 namespace
 {
 }
 
 auto
-Glib::Value<Pango::Direction>::value_type () -> GType
+glib::Value<pango::Direction>::value_type () -> GType
 {
   return pango_direction_get_type ();
 }
 
 auto
-Glib::Value<Pango::GravityHint>::value_type () -> GType
+glib::Value<pango::GravityHint>::value_type () -> GType
 {
   return pango_gravity_hint_get_type ();
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (PangoContext* object, const bool take_copy) -> RefPtr<Pango::Context>
+  wrap (PangoContext* object, const bool take_copy) -> RefPtr<pango::Context>
   {
-    return Glib::make_refptr_for_instance<Pango::Context> (
-        dynamic_cast<Pango::Context*> (
+    return glib::make_refptr_for_instance<pango::Context> (
+        dynamic_cast<pango::Context*> (
             wrap_auto ((GObject*) object, take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Pango
+namespace pango
 {
 
   auto
@@ -173,7 +173,7 @@ namespace Pango
   }
 
   auto
-  Context_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  Context_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new Context ((PangoContext*) object);
   }
@@ -185,7 +185,7 @@ namespace Pango
     return gobj ();
   }
 
-  Context::Context (const Glib::ConstructParams& construct_params)
+  Context::Context (const glib::ConstructParams& construct_params)
     : Object (construct_params)
   {
   }
@@ -225,27 +225,27 @@ namespace Pango
 
   Context::Context ()
     : ObjectBase (nullptr),
-      Object (Glib::ConstructParams (context_class_.init ()))
+      Object (glib::ConstructParams (context_class_.init ()))
   {
   }
 
   auto
-  Context::set_font_map (const Glib::RefPtr<FontMap>& font_map) -> void
+  Context::set_font_map (const glib::RefPtr<FontMap>& font_map) -> void
   {
-    pango_context_set_font_map (gobj (), Glib::unwrap (font_map));
+    pango_context_set_font_map (gobj (), glib::unwrap (font_map));
   }
 
   auto
-  Context::get_font_map () -> Glib::RefPtr<FontMap>
+  Context::get_font_map () -> glib::RefPtr<FontMap>
   {
-    auto retvalue = Glib::wrap (pango_context_get_font_map (gobj ()));
+    auto retvalue = glib::wrap (pango_context_get_font_map (gobj ()));
     if (retvalue)
       retvalue->reference ();
     return retvalue;
   }
 
   auto
-  Context::get_font_map () const -> Glib::RefPtr<const FontMap>
+  Context::get_font_map () const -> glib::RefPtr<const FontMap>
   {
     return const_cast<Context*> (this)->get_font_map ();
   }
@@ -257,18 +257,18 @@ namespace Pango
   }
 
   auto
-  Context::load_font (const FontDescription& desc) const -> Glib::RefPtr<Font>
+  Context::load_font (const FontDescription& desc) const -> glib::RefPtr<Font>
   {
-    return Glib::wrap (
+    return glib::wrap (
         pango_context_load_font (const_cast<PangoContext*> (gobj ()),
                                  desc.gobj ()));
   }
 
   auto
   Context::load_fontset (const FontDescription& desc,
-                         const Language& language) const -> Glib::RefPtr<Fontset>
+                         const Language& language) const -> glib::RefPtr<Fontset>
   {
-    return Glib::wrap (pango_context_load_fontset (
+    return glib::wrap (pango_context_load_fontset (
         const_cast<PangoContext*> (gobj ()),
         desc.gobj (),
         const_cast<PangoLanguage*> (language.gobj ())));
@@ -367,15 +367,15 @@ namespace Pango
   }
 
   auto
-  Context::set_cairo_font_options (const Cairo::FontOptions& options) -> void
+  Context::set_cairo_font_options (const cairo::FontOptions& options) -> void
   {
     pango_cairo_context_set_font_options (gobj (), options.cobj ());
   }
 
   auto
-  Context::get_font_options () const -> Cairo::FontOptions
+  Context::get_font_options () const -> cairo::FontOptions
   {
-    return Cairo::FontOptions (const_cast<cairo_font_options_t*> (
+    return cairo::FontOptions (const_cast<cairo_font_options_t*> (
                                    pango_cairo_context_get_font_options (
                                        const_cast<PangoContext*> (gobj ()))),
                                false);
@@ -394,4 +394,4 @@ namespace Pango
         const_cast<PangoContext*> (gobj ()));
   }
 
-} // namespace Pango
+} // namespace pango

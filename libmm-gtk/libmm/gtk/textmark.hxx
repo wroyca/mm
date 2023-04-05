@@ -16,20 +16,20 @@ using GtkTextMarkClass = struct _GtkTextMarkClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT TextMark_Class;
 }
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
   class LIBMM_GTK_SYMEXPORT TextBuffer;
   class LIBMM_GTK_SYMEXPORT TextIter;
   class LIBMM_GTK_SYMEXPORT TextConstIter;
 
-  class LIBMM_GTK_SYMEXPORT TextMark : public Glib::Object
+  class LIBMM_GTK_SYMEXPORT TextMark : public glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -48,7 +48,7 @@ namespace Gtk
     static CppClassType textmark_class_;
 
   protected:
-    explicit TextMark (const Glib::ConstructParams& construct_params);
+    explicit TextMark (const glib::ConstructParams& construct_params);
     explicit TextMark (GtkTextMark* castitem);
 
 #endif
@@ -88,15 +88,15 @@ namespace Gtk
   protected:
     explicit TextMark (bool left_gravity = true);
 
-    explicit TextMark (const Glib::ustring& name, bool left_gravity = true);
+    explicit TextMark (const glib::ustring& name, bool left_gravity = true);
 
   public:
     static auto
-    create (bool left_gravity = true) -> Glib::RefPtr<TextMark>;
+    create (bool left_gravity = true) -> glib::RefPtr<TextMark>;
 
     static auto
-    create (const Glib::ustring& name, bool left_gravity = true)
-        -> Glib::RefPtr<TextMark>;
+    create (const glib::ustring& name, bool left_gravity = true)
+        -> glib::RefPtr<TextMark>;
 
     auto
     set_visible (bool setting = true) -> void;
@@ -105,16 +105,16 @@ namespace Gtk
     get_visible () const -> bool;
 
     auto
-    get_name () const -> Glib::ustring;
+    get_name () const -> glib::ustring;
 
     auto
     get_deleted () const -> bool;
 
     auto
-    get_buffer () -> Glib::RefPtr<TextBuffer>;
+    get_buffer () -> glib::RefPtr<TextBuffer>;
 
     auto
-    get_buffer () const -> Glib::RefPtr<const TextBuffer>;
+    get_buffer () const -> glib::RefPtr<const TextBuffer>;
 
     auto
     get_left_gravity () const -> bool;
@@ -125,22 +125,22 @@ namespace Gtk
     get_iter () const -> TextConstIter;
 
     auto
-    property_name () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+    property_name () const -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
     auto
-    property_left_gravity () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_left_gravity () const -> glib::PropertyProxy_ReadOnly<bool>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkTextMark* object, bool take_copy = false) -> Glib::RefPtr<Gtk::TextMark>;
-} // namespace Glib
+  wrap (GtkTextMark* object, bool take_copy = false) -> glib::RefPtr<gtk::TextMark>;
+} // namespace glib
 
 #endif

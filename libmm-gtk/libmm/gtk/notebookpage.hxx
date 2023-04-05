@@ -17,17 +17,17 @@ using GtkNotebookPageClass = struct _GtkNotebookPageClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT NotebookPage_Class;
 }
 #endif
 
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT Widget;
 
-  class LIBMM_GTK_SYMEXPORT NotebookPage : public Glib::Object
+  class LIBMM_GTK_SYMEXPORT NotebookPage : public glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -46,7 +46,7 @@ namespace Gtk
     static CppClassType notebookpage_class_;
 
   protected:
-    explicit NotebookPage (const Glib::ConstructParams& construct_params);
+    explicit NotebookPage (const glib::ConstructParams& construct_params);
     explicit NotebookPage (GtkNotebookPage* castitem);
 
 #endif
@@ -91,67 +91,67 @@ namespace Gtk
     get_child () const -> const Widget*;
 
     auto
-    property_child () const -> Glib::PropertyProxy_ReadOnly<Widget*>;
+    property_child () const -> glib::PropertyProxy_ReadOnly<Widget*>;
 
     auto
-    property_tab () const -> Glib::PropertyProxy_ReadOnly<Widget*>;
+    property_tab () const -> glib::PropertyProxy_ReadOnly<Widget*>;
 
     auto
-    property_menu () const -> Glib::PropertyProxy_ReadOnly<Widget*>;
+    property_menu () const -> glib::PropertyProxy_ReadOnly<Widget*>;
 
     auto
-    property_tab_label () -> Glib::PropertyProxy<Glib::ustring>;
+    property_tab_label () -> glib::PropertyProxy<glib::ustring>;
 
     auto
-    property_tab_label () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+    property_tab_label () const -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
     auto
-    property_menu_label () -> Glib::PropertyProxy<Glib::ustring>;
+    property_menu_label () -> glib::PropertyProxy<glib::ustring>;
 
     auto
-    property_menu_label () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+    property_menu_label () const -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
     auto
-    property_position () -> Glib::PropertyProxy<int>;
+    property_position () -> glib::PropertyProxy<int>;
 
     auto
-    property_position () const -> Glib::PropertyProxy_ReadOnly<int>;
+    property_position () const -> glib::PropertyProxy_ReadOnly<int>;
 
     auto
-    property_tab_expand () -> Glib::PropertyProxy<bool>;
+    property_tab_expand () -> glib::PropertyProxy<bool>;
 
     auto
-    property_tab_expand () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_tab_expand () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_tab_fill () -> Glib::PropertyProxy<bool>;
+    property_tab_fill () -> glib::PropertyProxy<bool>;
 
     auto
-    property_tab_fill () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_tab_fill () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_reorderable () -> Glib::PropertyProxy<bool>;
+    property_reorderable () -> glib::PropertyProxy<bool>;
 
     auto
-    property_reorderable () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_reorderable () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_detachable () -> Glib::PropertyProxy<bool>;
+    property_detachable () -> glib::PropertyProxy<bool>;
 
     auto
-    property_detachable () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_detachable () const -> glib::PropertyProxy_ReadOnly<bool>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkNotebookPage* object, bool take_copy = false) -> Glib::RefPtr<Gtk::NotebookPage>;
-} // namespace Glib
+  wrap (GtkNotebookPage* object, bool take_copy = false) -> glib::RefPtr<gtk::NotebookPage>;
+} // namespace glib
 
 #endif

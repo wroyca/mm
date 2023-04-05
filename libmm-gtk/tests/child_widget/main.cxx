@@ -19,7 +19,7 @@
 
 int main(int argc, char* argv[])
 {
-  auto app = Gtk::Application::create();
+  auto app = gtk::Application::create();
 
   return app->make_window_and_run<TestWindow>(argc, argv); //Shows the window and returns when it is closed.
 }

@@ -13,7 +13,7 @@ extern "C"
 }
 #endif
 
-namespace Glib
+namespace glib
 {
 
   class LIBMM_GLIB_SYMEXPORT Module
@@ -82,9 +82,9 @@ namespace Glib
     GModule* gobject_;
   };
 
-} // namespace Glib
+} // namespace glib
 
-namespace Glib
+namespace glib
 {
 
   inline auto
@@ -134,6 +134,6 @@ namespace Glib
     return (lhs = static_cast<Module::Flags> (static_cast<unsigned> (lhs) ^
                                               static_cast<unsigned> (rhs)));
   }
-} // namespace Glib
+} // namespace glib
 
 #endif

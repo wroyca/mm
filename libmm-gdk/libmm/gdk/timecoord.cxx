@@ -24,7 +24,7 @@ namespace
 
 } // namespace
 
-namespace Gdk
+namespace gdk
 {
 
   TimeCoord::TimeCoord (GdkTimeCoord* gobject, bool make_a_copy)
@@ -74,13 +74,13 @@ namespace Gdk
     return 0;
   }
 
-} // namespace Gdk
+} // namespace gdk
 
 namespace
 {
 }
 
-namespace Gdk
+namespace gdk
 {
 
   auto
@@ -89,4 +89,4 @@ namespace Gdk
     return gobj ()->time;
   }
 
-} // namespace Gdk
+} // namespace gdk

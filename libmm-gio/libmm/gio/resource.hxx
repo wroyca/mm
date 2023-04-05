@@ -17,10 +17,10 @@
 typedef struct _GResource GResource;
 #endif
 
-namespace Gio
+namespace gio
 {
 
-  class ResourceError : public Glib::Error
+  class ResourceError : public glib::Error
   {
   public:
     enum Code
@@ -30,7 +30,7 @@ namespace Gio
     };
 
     LIBMM_GIO_SYMEXPORT
-    ResourceError (Code error_code, const Glib::ustring& error_message);
+    ResourceError (Code error_code, const glib::ustring& error_message);
     LIBMM_GIO_SYMEXPORT explicit ResourceError (GError* gobject);
     LIBMM_GIO_SYMEXPORT auto
     code () const -> Code;
@@ -93,21 +93,21 @@ namespace Gio
     };
 
     static auto
-    create_from_data (const Glib::RefPtr<const Glib::Bytes>& data)
-        -> Glib::RefPtr<Resource>;
+    create_from_data (const glib::RefPtr<const glib::Bytes>& data)
+        -> glib::RefPtr<Resource>;
 
     static auto
-    create_from_file (const std::string& filename) -> Glib::RefPtr<Resource>;
+    create_from_file (const std::string& filename) -> glib::RefPtr<Resource>;
 
     auto
     open_stream (const std::string& path,
                  LookupFlags lookup_flags = LookupFlags::NONE) const
-        -> Glib::RefPtr<InputStream>;
+        -> glib::RefPtr<InputStream>;
 
     auto
     lookup_data (const std::string& path,
                  LookupFlags lookup_flags = LookupFlags::NONE) const
-        -> Glib::RefPtr<const Glib::Bytes>;
+        -> glib::RefPtr<const glib::Bytes>;
 
     auto
     enumerate_children (const std::string& path,
@@ -139,12 +139,12 @@ namespace Gio
     static auto
     open_stream_global (const std::string& path,
                         LookupFlags lookup_flags = LookupFlags::NONE)
-        -> Glib::RefPtr<InputStream>;
+        -> glib::RefPtr<InputStream>;
 
     static auto
     lookup_data_global (const std::string& path,
                         LookupFlags lookup_flags = LookupFlags::NONE)
-        -> Glib::RefPtr<const Glib::Bytes>;
+        -> glib::RefPtr<const glib::Bytes>;
 
     static auto
     enumerate_children_global (const std::string& path,
@@ -168,9 +168,9 @@ namespace Gio
         LookupFlags lookup_flags = LookupFlags::NONE) -> bool;
   };
 
-} // namespace Gio
+} // namespace gio
 
-namespace Gio
+namespace gio
 {
 
   inline auto
@@ -220,25 +220,25 @@ namespace Gio
     return (lhs = static_cast<Resource::Flags> (static_cast<unsigned> (lhs) ^
                                                 static_cast<unsigned> (rhs)));
   }
-} // namespace Gio
+} // namespace gio
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_GIO_SYMEXPORT Value<Gio::Resource::Flags>
-    : public Glib::Value_Flags<Gio::Resource::Flags>
+  class LIBMM_GIO_SYMEXPORT Value<gio::Resource::Flags>
+    : public glib::Value_Flags<gio::Resource::Flags>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
-namespace Gio
+namespace gio
 {
 
   inline auto
@@ -288,31 +288,31 @@ namespace Gio
     return (lhs = static_cast<Resource::LookupFlags> (
                 static_cast<unsigned> (lhs) ^ static_cast<unsigned> (rhs)));
   }
-} // namespace Gio
+} // namespace gio
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_GIO_SYMEXPORT Value<Gio::Resource::LookupFlags>
-    : public Glib::Value_Flags<Gio::Resource::LookupFlags>
+  class LIBMM_GIO_SYMEXPORT Value<gio::Resource::LookupFlags>
+    : public glib::Value_Flags<gio::Resource::LookupFlags>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
-namespace Glib
+namespace glib
 {
 
   LIBMM_GIO_SYMEXPORT
   auto
-  wrap (GResource* object, bool take_copy = false) -> Glib::RefPtr<Gio::Resource>;
+  wrap (GResource* object, bool take_copy = false) -> glib::RefPtr<gio::Resource>;
 
-} // namespace Glib
+} // namespace glib
 
 #endif

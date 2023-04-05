@@ -17,16 +17,16 @@ using GtkCellAreaBoxClass = struct _GtkCellAreaBoxClass;
   #endif
 
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT CellAreaBox_Class;
 }
   #endif
 
-namespace Gtk
+namespace gtk
 {
 
-  class LIBMM_GTK_SYMEXPORT CellAreaBox : public Gtk::CellArea,
+  class LIBMM_GTK_SYMEXPORT CellAreaBox : public gtk::CellArea,
                                 public Orientable
   {
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -46,7 +46,7 @@ namespace Gtk
     static CppClassType cellareabox_class_;
 
   protected:
-    explicit CellAreaBox (const Glib::ConstructParams& construct_params);
+    explicit CellAreaBox (const glib::ConstructParams& construct_params);
     explicit CellAreaBox (GtkCellAreaBox* castitem);
 
   #endif
@@ -88,7 +88,7 @@ namespace Gtk
 
   public:
     static auto
-    create () -> Glib::RefPtr<CellAreaBox>;
+    create () -> glib::RefPtr<CellAreaBox>;
 
     auto
     pack_start (CellRenderer& renderer,
@@ -109,23 +109,23 @@ namespace Gtk
     set_spacing (int spacing) -> void;
 
     auto
-    property_spacing () -> Glib::PropertyProxy<int>;
+    property_spacing () -> glib::PropertyProxy<int>;
 
     auto
-    property_spacing () const -> Glib::PropertyProxy_ReadOnly<int>;
+    property_spacing () const -> glib::PropertyProxy_ReadOnly<int>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkCellAreaBox* object, bool take_copy = false) -> Glib::RefPtr<Gtk::CellAreaBox>;
-} // namespace Glib
+  wrap (GtkCellAreaBox* object, bool take_copy = false) -> glib::RefPtr<gtk::CellAreaBox>;
+} // namespace glib
 
 #endif
 

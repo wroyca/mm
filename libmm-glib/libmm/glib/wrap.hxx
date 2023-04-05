@@ -7,7 +7,7 @@
 #include <libmm/glib/objectbase.hxx>
 #include <libmm/glib/refptr.hxx>
 
-namespace Glib
+namespace glib
 {
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -15,7 +15,7 @@ namespace Glib
   class LIBMM_GLIB_SYMEXPORT ObjectBase;
   class LIBMM_GLIB_SYMEXPORT Object;
 
-  using WrapNewFunction = Glib::ObjectBase* (*) (GObject*);
+  using WrapNewFunction = glib::ObjectBase* (*) (GObject*);
 
   LIBMM_GLIB_SYMEXPORT auto
   wrap_register_init () -> void;
@@ -28,11 +28,11 @@ namespace Glib
 
   LIBMM_GLIB_SYMEXPORT
   auto
-  wrap_auto (GObject* object, bool take_copy = false) -> Glib::ObjectBase*;
+  wrap_auto (GObject* object, bool take_copy = false) -> glib::ObjectBase*;
 
   LIBMM_GLIB_SYMEXPORT
   auto
-  wrap_create_new_wrapper_for_interface (GObject* object, GType interface_gtype) -> Glib::ObjectBase*;
+  wrap_create_new_wrapper_for_interface (GObject* object, GType interface_gtype) -> glib::ObjectBase*;
 
   template <class TInterface>
   auto
@@ -56,7 +56,7 @@ namespace Glib
       result = dynamic_cast<TInterface*> (pCppObject);
       if (!result)
       {
-        g_warning ("Glib::wrap_auto_interface(): The C++ instance (%s) does "
+        g_warning ("glib::wrap_auto_interface(): The C++ instance (%s) does "
                    "not dynamic_cast to the "
                    "interface.\n",
                    typeid (*pCppObject).name ());
@@ -75,7 +75,7 @@ namespace Glib
 
   LIBMM_GLIB_SYMEXPORT
   auto
-  wrap (GObject* object, bool take_copy = false) -> Glib::RefPtr<Glib::Object>;
+  wrap (GObject* object, bool take_copy = false) -> glib::RefPtr<glib::Object>;
 
   template <class T>
   inline auto
@@ -93,14 +93,14 @@ namespace Glib
 
   template <class T>
   inline auto
-  unwrap (const Glib::RefPtr<T>& ptr) -> typename T::BaseObjectType*
+  unwrap (const glib::RefPtr<T>& ptr) -> typename T::BaseObjectType*
   {
     return (ptr) ? ptr->gobj () : nullptr;
   }
 
   template <class T>
   inline auto
-  unwrap (const Glib::RefPtr<const T>& ptr) -> const typename T::BaseObjectType*
+  unwrap (const glib::RefPtr<const T>& ptr) -> const typename T::BaseObjectType*
   {
     return (ptr) ? ptr->gobj () : nullptr;
   }
@@ -114,19 +114,19 @@ namespace Glib
 
   template <class T>
   inline auto
-  unwrap_copy (const Glib::RefPtr<T>& ptr) -> typename T::BaseObjectType*
+  unwrap_copy (const glib::RefPtr<T>& ptr) -> typename T::BaseObjectType*
   {
     return (ptr) ? ptr->gobj_copy () : nullptr;
   }
 
   template <class T>
   inline auto
-  unwrap_copy (const Glib::RefPtr<const T>& ptr) -> const
+  unwrap_copy (const glib::RefPtr<const T>& ptr) -> const
       typename T::BaseObjectType*
   {
     return (ptr) ? ptr->gobj_copy () : nullptr;
   }
 
-} // namespace Glib
+} // namespace glib
 
 #endif

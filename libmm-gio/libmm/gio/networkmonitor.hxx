@@ -22,13 +22,13 @@ using GNetworkMonitorClass = struct _GNetworkMonitorClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gio
+namespace gio
 {
   class LIBMM_GIO_SYMEXPORT NetworkMonitor_Class;
 }
 #endif
 
-namespace Gio
+namespace gio
 {
 
   enum class NetworkConnectivity
@@ -39,28 +39,28 @@ namespace Gio
     FULL
   };
 
-} // namespace Gio
+} // namespace gio
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_GIO_SYMEXPORT Value<Gio::NetworkConnectivity>
-    : public Glib::Value_Enum<Gio::NetworkConnectivity>
+  class LIBMM_GIO_SYMEXPORT Value<gio::NetworkConnectivity>
+    : public glib::Value_Enum<gio::NetworkConnectivity>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
-namespace Gio
+namespace gio
 {
 
-  class LIBMM_GIO_SYMEXPORT NetworkMonitor : public Glib::Interface
+  class LIBMM_GIO_SYMEXPORT NetworkMonitor : public glib::Interface
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -84,7 +84,7 @@ namespace Gio
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
-    explicit NetworkMonitor (const Glib::Interface_Class& interface_class);
+    explicit NetworkMonitor (const glib::Interface_Class& interface_class);
 
   public:
     explicit NetworkMonitor (GNetworkMonitor* castitem);
@@ -125,7 +125,7 @@ namespace Gio
   private:
   public:
     static auto
-    get_default () -> Glib::RefPtr<NetworkMonitor>;
+    get_default () -> glib::RefPtr<NetworkMonitor>;
 
     auto
     get_network_available () const -> bool;
@@ -137,32 +137,32 @@ namespace Gio
     get_connectivity () const -> NetworkConnectivity;
 
     auto
-    can_reach (const Glib::RefPtr<SocketConnectable>& connectable,
-               const Glib::RefPtr<Cancellable>& cancellable) -> bool;
+    can_reach (const glib::RefPtr<SocketConnectable>& connectable,
+               const glib::RefPtr<Cancellable>& cancellable) -> bool;
 
     auto
-    can_reach (const Glib::RefPtr<SocketConnectable>& connectable) -> bool;
+    can_reach (const glib::RefPtr<SocketConnectable>& connectable) -> bool;
 
     auto
-    can_reach_async (const Glib::RefPtr<SocketConnectable>& connectable,
+    can_reach_async (const glib::RefPtr<SocketConnectable>& connectable,
                      const SlotAsyncReady& slot,
-                     const Glib::RefPtr<Cancellable>& cancellable) -> void;
+                     const glib::RefPtr<Cancellable>& cancellable) -> void;
 
     auto
-    can_reach_finish (const Glib::RefPtr<AsyncResult>& result) -> bool;
+    can_reach_finish (const glib::RefPtr<AsyncResult>& result) -> bool;
 
     auto
-    signal_network_changed () -> Glib::SignalProxy<void (bool)>;
+    signal_network_changed () -> glib::SignalProxy<void (bool)>;
 
     auto
-    property_network_available () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_network_available () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
     property_connectivity () const
-        -> Glib::PropertyProxy_ReadOnly<NetworkConnectivity>;
+        -> glib::PropertyProxy_ReadOnly<NetworkConnectivity>;
 
     auto
-    property_network_metered () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_network_metered () const -> glib::PropertyProxy_ReadOnly<bool>;
 
   public:
   public:
@@ -171,15 +171,15 @@ namespace Gio
     on_network_changed (bool available) -> void;
   };
 
-} // namespace Gio
+} // namespace gio
 
-namespace Glib
+namespace glib
 {
 
   LIBMM_GIO_SYMEXPORT
   auto
-  wrap (GNetworkMonitor* object, bool take_copy = false) -> Glib::RefPtr<Gio::NetworkMonitor>;
+  wrap (GNetworkMonitor* object, bool take_copy = false) -> glib::RefPtr<gio::NetworkMonitor>;
 
-} // namespace Glib
+} // namespace glib
 
 #endif

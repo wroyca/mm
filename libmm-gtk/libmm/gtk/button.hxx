@@ -15,13 +15,13 @@ using GtkButtonClass = struct _GtkButtonClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT Button_Class;
 }
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
   class LIBMM_GTK_SYMEXPORT Button : public Widget,
@@ -52,7 +52,7 @@ namespace Gtk
     static CppClassType button_class_;
 
   protected:
-    explicit Button (const Glib::ConstructParams& construct_params);
+    explicit Button (const glib::ConstructParams& construct_params);
     explicit Button (GtkButton* castitem);
 
 #endif
@@ -83,7 +83,7 @@ namespace Gtk
   public:
     Button ();
 
-    explicit Button (const Glib::ustring& label, bool mnemonic = false);
+    explicit Button (const glib::ustring& label, bool mnemonic = false);
 
     auto
     set_has_frame (bool has_frame = true) -> void;
@@ -92,10 +92,10 @@ namespace Gtk
     get_has_frame () const -> bool;
 
     auto
-    set_label (const Glib::ustring& label) -> void;
+    set_label (const glib::ustring& label) -> void;
 
     auto
-    get_label () const -> Glib::ustring;
+    get_label () const -> glib::ustring;
 
     auto
     set_use_underline (bool use_underline = true) -> void;
@@ -104,13 +104,13 @@ namespace Gtk
     get_use_underline () const -> bool;
 
     auto
-    set_icon_name (const Glib::ustring& icon_name) -> void;
+    set_icon_name (const glib::ustring& icon_name) -> void;
 
     auto
-    get_icon_name () const -> Glib::ustring;
+    get_icon_name () const -> glib::ustring;
 
     auto
-    set_image_from_icon_name (const Glib::ustring& icon_name,
+    set_image_from_icon_name (const glib::ustring& icon_name,
                               IconSize size = IconSize::INHERIT,
                               bool use_fallback = false) -> void;
 
@@ -126,37 +126,37 @@ namespace Gtk
     get_child () const -> const Widget*;
 
     auto
-    signal_clicked () -> Glib::SignalProxy<void ()>;
+    signal_clicked () -> glib::SignalProxy<void ()>;
 
     auto
-    property_label () -> Glib::PropertyProxy<Glib::ustring>;
+    property_label () -> glib::PropertyProxy<glib::ustring>;
 
     auto
-    property_label () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+    property_label () const -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
     auto
-    property_has_frame () -> Glib::PropertyProxy<bool>;
+    property_has_frame () -> glib::PropertyProxy<bool>;
 
     auto
-    property_has_frame () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_has_frame () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_use_underline () -> Glib::PropertyProxy<bool>;
+    property_use_underline () -> glib::PropertyProxy<bool>;
 
     auto
-    property_use_underline () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_use_underline () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_icon_name () -> Glib::PropertyProxy<Glib::ustring>;
+    property_icon_name () -> glib::PropertyProxy<glib::ustring>;
 
     auto
-    property_icon_name () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+    property_icon_name () const -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
     auto
-    property_child () -> Glib::PropertyProxy<Widget*>;
+    property_child () -> glib::PropertyProxy<Widget*>;
 
     auto
-    property_child () const -> Glib::PropertyProxy_ReadOnly<Widget*>;
+    property_child () const -> glib::PropertyProxy_ReadOnly<Widget*>;
 
   public:
   public:
@@ -165,12 +165,12 @@ namespace Gtk
     on_clicked () -> void;
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkButton* object, bool take_copy = false) -> Gtk::Button*;
-} // namespace Glib
+  wrap (GtkButton* object, bool take_copy = false) -> gtk::Button*;
+} // namespace glib
 
 #endif

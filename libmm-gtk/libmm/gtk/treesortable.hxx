@@ -29,16 +29,16 @@ using GtkTreeSortableClass = struct _GtkTreeSortableClass;
   #endif
 
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT TreeSortable_Class;
 }
   #endif
 
-namespace Gtk
+namespace gtk
 {
 
-  class LIBMM_GTK_SYMEXPORT TreeSortable : public Glib::Interface
+  class LIBMM_GTK_SYMEXPORT TreeSortable : public glib::Interface
   {
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -62,7 +62,7 @@ namespace Gtk
 
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
-    explicit TreeSortable (const Glib::Interface_Class& interface_class);
+    explicit TreeSortable (const glib::Interface_Class& interface_class);
 
   public:
     explicit TreeSortable (GtkTreeSortable* castitem);
@@ -118,8 +118,8 @@ namespace Gtk
     auto
     set_sort_column (int sort_column_id, SortType order) -> void;
 
-    typedef sigc::slot<int (const Gtk::TreeModel::const_iterator&,
-                            const Gtk::TreeModel::const_iterator&)>
+    typedef sigc::slot<int (const gtk::TreeModel::const_iterator&,
+                            const gtk::TreeModel::const_iterator&)>
         SlotCompare;
 
     auto
@@ -142,7 +142,7 @@ namespace Gtk
     sort_column_changed () -> void;
 
     auto
-    signal_sort_column_changed () -> Glib::SignalProxy<void ()>;
+    signal_sort_column_changed () -> glib::SignalProxy<void ()>;
 
   protected:
     virtual auto
@@ -176,14 +176,14 @@ namespace Gtk
     on_sort_column_changed () -> void;
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkTreeSortable* object, bool take_copy = false) -> Glib::RefPtr<Gtk::TreeSortable>;
+  wrap (GtkTreeSortable* object, bool take_copy = false) -> glib::RefPtr<gtk::TreeSortable>;
 
-} // namespace Glib
+} // namespace glib
 
 #endif
 

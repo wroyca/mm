@@ -4,7 +4,7 @@
  * SPDX-License-Identifier: LGPL-2.1-or-later
  */
 
-#include <libmm/adw/init.hxx> // Adw::init
+#include <libmm/adw/init.hxx> // adw::init
 #include <libmm/adw/mm-adw.hxx>
 
 int notified;
@@ -18,14 +18,14 @@ notify_cb ()
 static void
 test_adw_status_page_icon_name (void)
 {
-  Adw::StatusPage status_page;
+  adw::StatusPage status_page;
 
   notified = 0;
   status_page.property_icon_name ().signal_changed ().connect (
       sigc::ptr_fun (notify_cb));
 
-  Glib::ustring icon_name =
-      status_page.get_property<Glib::ustring> ("icon-name");
+  glib::ustring icon_name =
+      status_page.get_property<glib::ustring> ("icon-name");
   g_assert_true (icon_name == "");
 
   status_page.set_icon_name ("");
@@ -35,7 +35,7 @@ test_adw_status_page_icon_name (void)
   g_assert_true (status_page.get_icon_name () == "some-icon-symbolic");
   g_assert_true (notified == 1);
 
-  status_page.set_property<Glib::ustring> ("icon-name", "other-icon-symbolic");
+  status_page.set_property<glib::ustring> ("icon-name", "other-icon-symbolic");
   g_assert_true (status_page.get_icon_name () == "other-icon-symbolic");
   g_assert_true (notified == 2);
 }
@@ -43,13 +43,13 @@ test_adw_status_page_icon_name (void)
 static void
 test_adw_status_page_title (void)
 {
-  Adw::StatusPage status_page;
+  adw::StatusPage status_page;
 
   notified = 0;
   status_page.property_title ().signal_changed ().connect (
       sigc::ptr_fun (notify_cb));
 
-  Glib::ustring title = status_page.get_property<Glib::ustring> ("title");
+  glib::ustring title = status_page.get_property<glib::ustring> ("title");
   g_assert_true (title == "");
 
   status_page.set_title ("");
@@ -59,7 +59,7 @@ test_adw_status_page_title (void)
   g_assert_true (status_page.get_title () == "Some Title");
   g_assert_true (notified == 1);
 
-  status_page.set_property<Glib::ustring> ("title", "Other Title");
+  status_page.set_property<glib::ustring> ("title", "Other Title");
   g_assert_true (status_page.get_title () == "Other Title");
   g_assert_true (notified == 2);
 }
@@ -67,14 +67,14 @@ test_adw_status_page_title (void)
 static void
 test_adw_status_page_description (void)
 {
-  Adw::StatusPage status_page;
+  adw::StatusPage status_page;
 
   notified = 0;
   status_page.property_description ().signal_changed ().connect (
       sigc::ptr_fun (notify_cb));
 
-  Glib::ustring description =
-      status_page.get_property<Glib::ustring> ("description");
+  glib::ustring description =
+      status_page.get_property<glib::ustring> ("description");
   g_assert_true (description == "");
 
   status_page.set_description ("");
@@ -84,7 +84,7 @@ test_adw_status_page_description (void)
   g_assert_true (status_page.get_description () == "Some description");
   g_assert_true (notified == 1);
 
-  status_page.set_property<Glib::ustring> ("description", "Other description");
+  status_page.set_property<glib::ustring> ("description", "Other description");
   g_assert_true (status_page.get_description () == "Other description");
   g_assert_true (notified == 2);
 }
@@ -93,7 +93,7 @@ int
 main (int argc, char* argv[])
 {
   gtk_test_init (&argc, &argv, NULL);
-  Adw::init ();
+  adw::init ();
 
   g_test_add_func ("/Adwaita/StatusPage/icon_name",
                    test_adw_status_page_icon_name);

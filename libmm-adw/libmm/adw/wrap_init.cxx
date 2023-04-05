@@ -173,464 +173,464 @@ extern "C"
   adw_window_title_get_type (void) -> GType;
 }
 
-namespace Adw
+namespace adw
 {
 
   class LIBMM_ADW_SYMEXPORT AboutWindow_Class
   {
   public:
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
   class LIBMM_ADW_SYMEXPORT ActionRow_Class
   {
   public:
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
   class LIBMM_ADW_SYMEXPORT Animation_Class
   {
   public:
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
   class LIBMM_ADW_SYMEXPORT AnimationTarget_Class
   {
   public:
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
   class LIBMM_ADW_SYMEXPORT Application_Class
   {
   public:
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
   class LIBMM_ADW_SYMEXPORT ApplicationWindow_Class
   {
   public:
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
   class LIBMM_ADW_SYMEXPORT Avatar_Class
   {
   public:
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
   class LIBMM_ADW_SYMEXPORT Bin_Class
   {
   public:
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
   class LIBMM_ADW_SYMEXPORT ButtonContent_Class
   {
   public:
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
   class LIBMM_ADW_SYMEXPORT CallbackAnimationTarget_Class
   {
   public:
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
   class LIBMM_ADW_SYMEXPORT Carousel_Class
   {
   public:
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
   class LIBMM_ADW_SYMEXPORT CarouselIndicatorDots_Class
   {
   public:
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
   class LIBMM_ADW_SYMEXPORT CarouselIndicatorLines_Class
   {
   public:
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
   class LIBMM_ADW_SYMEXPORT Clamp_Class
   {
   public:
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
   class LIBMM_ADW_SYMEXPORT ClampLayout_Class
   {
   public:
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
   class LIBMM_ADW_SYMEXPORT ClampScrollable_Class
   {
   public:
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
   class LIBMM_ADW_SYMEXPORT ComboRow_Class
   {
   public:
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
   class LIBMM_ADW_SYMEXPORT EntryRow_Class
   {
   public:
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
   class LIBMM_ADW_SYMEXPORT EnumListItem_Class
   {
   public:
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
   class LIBMM_ADW_SYMEXPORT EnumListModel_Class
   {
   public:
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
   class LIBMM_ADW_SYMEXPORT ExpanderRow_Class
   {
   public:
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
   class LIBMM_ADW_SYMEXPORT Flap_Class
   {
   public:
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
   class LIBMM_ADW_SYMEXPORT HeaderBar_Class
   {
   public:
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
   class LIBMM_ADW_SYMEXPORT Leaflet_Class
   {
   public:
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
   class LIBMM_ADW_SYMEXPORT LeafletPage_Class
   {
   public:
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
   class LIBMM_ADW_SYMEXPORT MessageDialog_Class
   {
   public:
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
   class LIBMM_ADW_SYMEXPORT PasswordEntryRow_Class
   {
   public:
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
   class LIBMM_ADW_SYMEXPORT PreferencesGroup_Class
   {
   public:
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
   class LIBMM_ADW_SYMEXPORT PreferencesPage_Class
   {
   public:
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
   class LIBMM_ADW_SYMEXPORT PreferencesRow_Class
   {
   public:
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
   class LIBMM_ADW_SYMEXPORT PreferencesWindow_Class
   {
   public:
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
   class LIBMM_ADW_SYMEXPORT PropertyAnimationTarget_Class
   {
   public:
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
   class LIBMM_ADW_SYMEXPORT SplitButton_Class
   {
   public:
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
   class LIBMM_ADW_SYMEXPORT SpringAnimation_Class
   {
   public:
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
   class LIBMM_ADW_SYMEXPORT Squeezer_Class
   {
   public:
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
   class LIBMM_ADW_SYMEXPORT SqueezerPage_Class
   {
   public:
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
   class LIBMM_ADW_SYMEXPORT StatusPage_Class
   {
   public:
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
   class LIBMM_ADW_SYMEXPORT StyleManager_Class
   {
   public:
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
   class LIBMM_ADW_SYMEXPORT SwipeTracker_Class
   {
   public:
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
   class LIBMM_ADW_SYMEXPORT TabBar_Class
   {
   public:
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
   class LIBMM_ADW_SYMEXPORT TabPage_Class
   {
   public:
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
   class LIBMM_ADW_SYMEXPORT TabView_Class
   {
   public:
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
   class LIBMM_ADW_SYMEXPORT TimedAnimation_Class
   {
   public:
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
   class LIBMM_ADW_SYMEXPORT Toast_Class
   {
   public:
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
   class LIBMM_ADW_SYMEXPORT ToastOverlay_Class
   {
   public:
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
   class LIBMM_ADW_SYMEXPORT ViewStack_Class
   {
   public:
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
   class LIBMM_ADW_SYMEXPORT ViewStackPage_Class
   {
   public:
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
   class LIBMM_ADW_SYMEXPORT ViewSwitcher_Class
   {
   public:
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
   class LIBMM_ADW_SYMEXPORT ViewSwitcherBar_Class
   {
   public:
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
   class LIBMM_ADW_SYMEXPORT ViewSwitcherTitle_Class
   {
   public:
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
   class LIBMM_ADW_SYMEXPORT Window_Class
   {
   public:
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
   class LIBMM_ADW_SYMEXPORT WindowTitle_Class
   {
   public:
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
   auto
   wrap_init () -> void
   {
-    Glib::wrap_register (adw_about_window_get_type (),
+    glib::wrap_register (adw_about_window_get_type (),
                          &AboutWindow_Class::wrap_new);
-    Glib::wrap_register (adw_action_row_get_type (),
+    glib::wrap_register (adw_action_row_get_type (),
                          &ActionRow_Class::wrap_new);
-    Glib::wrap_register (adw_animation_get_type (), &Animation_Class::wrap_new);
-    Glib::wrap_register (adw_animation_target_get_type (),
+    glib::wrap_register (adw_animation_get_type (), &Animation_Class::wrap_new);
+    glib::wrap_register (adw_animation_target_get_type (),
                          &AnimationTarget_Class::wrap_new);
-    Glib::wrap_register (adw_application_get_type (),
+    glib::wrap_register (adw_application_get_type (),
                          &Application_Class::wrap_new);
-    Glib::wrap_register (adw_application_window_get_type (),
+    glib::wrap_register (adw_application_window_get_type (),
                          &ApplicationWindow_Class::wrap_new);
-    Glib::wrap_register (adw_avatar_get_type (), &Avatar_Class::wrap_new);
-    Glib::wrap_register (adw_bin_get_type (), &Bin_Class::wrap_new);
-    Glib::wrap_register (adw_button_content_get_type (),
+    glib::wrap_register (adw_avatar_get_type (), &Avatar_Class::wrap_new);
+    glib::wrap_register (adw_bin_get_type (), &Bin_Class::wrap_new);
+    glib::wrap_register (adw_button_content_get_type (),
                          &ButtonContent_Class::wrap_new);
-    Glib::wrap_register (adw_callback_animation_target_get_type (),
+    glib::wrap_register (adw_callback_animation_target_get_type (),
                          &CallbackAnimationTarget_Class::wrap_new);
-    Glib::wrap_register (adw_carousel_get_type (), &Carousel_Class::wrap_new);
-    Glib::wrap_register (adw_carousel_indicator_dots_get_type (),
+    glib::wrap_register (adw_carousel_get_type (), &Carousel_Class::wrap_new);
+    glib::wrap_register (adw_carousel_indicator_dots_get_type (),
                          &CarouselIndicatorDots_Class::wrap_new);
-    Glib::wrap_register (adw_carousel_indicator_lines_get_type (),
+    glib::wrap_register (adw_carousel_indicator_lines_get_type (),
                          &CarouselIndicatorLines_Class::wrap_new);
-    Glib::wrap_register (adw_clamp_get_type (), &Clamp_Class::wrap_new);
-    Glib::wrap_register (adw_clamp_layout_get_type (),
+    glib::wrap_register (adw_clamp_get_type (), &Clamp_Class::wrap_new);
+    glib::wrap_register (adw_clamp_layout_get_type (),
                          &ClampLayout_Class::wrap_new);
-    Glib::wrap_register (adw_clamp_scrollable_get_type (),
+    glib::wrap_register (adw_clamp_scrollable_get_type (),
                          &ClampScrollable_Class::wrap_new);
-    Glib::wrap_register (adw_combo_row_get_type (), &ComboRow_Class::wrap_new);
-    Glib::wrap_register (adw_entry_row_get_type (), &EntryRow_Class::wrap_new);
-    Glib::wrap_register (adw_enum_list_item_get_type (),
+    glib::wrap_register (adw_combo_row_get_type (), &ComboRow_Class::wrap_new);
+    glib::wrap_register (adw_entry_row_get_type (), &EntryRow_Class::wrap_new);
+    glib::wrap_register (adw_enum_list_item_get_type (),
                          &EnumListItem_Class::wrap_new);
-    Glib::wrap_register (adw_enum_list_model_get_type (),
+    glib::wrap_register (adw_enum_list_model_get_type (),
                          &EnumListModel_Class::wrap_new);
-    Glib::wrap_register (adw_expander_row_get_type (),
+    glib::wrap_register (adw_expander_row_get_type (),
                          &ExpanderRow_Class::wrap_new);
-    Glib::wrap_register (adw_flap_get_type (), &Flap_Class::wrap_new);
-    Glib::wrap_register (adw_header_bar_get_type (),
+    glib::wrap_register (adw_flap_get_type (), &Flap_Class::wrap_new);
+    glib::wrap_register (adw_header_bar_get_type (),
                          &HeaderBar_Class::wrap_new);
-    Glib::wrap_register (adw_leaflet_get_type (), &Leaflet_Class::wrap_new);
-    Glib::wrap_register (adw_leaflet_page_get_type (),
+    glib::wrap_register (adw_leaflet_get_type (), &Leaflet_Class::wrap_new);
+    glib::wrap_register (adw_leaflet_page_get_type (),
                          &LeafletPage_Class::wrap_new);
-    Glib::wrap_register (adw_message_dialog_get_type (),
+    glib::wrap_register (adw_message_dialog_get_type (),
                          &MessageDialog_Class::wrap_new);
-    Glib::wrap_register (adw_password_entry_row_get_type (),
+    glib::wrap_register (adw_password_entry_row_get_type (),
                          &PasswordEntryRow_Class::wrap_new);
-    Glib::wrap_register (adw_preferences_group_get_type (),
+    glib::wrap_register (adw_preferences_group_get_type (),
                          &PreferencesGroup_Class::wrap_new);
-    Glib::wrap_register (adw_preferences_page_get_type (),
+    glib::wrap_register (adw_preferences_page_get_type (),
                          &PreferencesPage_Class::wrap_new);
-    Glib::wrap_register (adw_preferences_row_get_type (),
+    glib::wrap_register (adw_preferences_row_get_type (),
                          &PreferencesRow_Class::wrap_new);
-    Glib::wrap_register (adw_preferences_window_get_type (),
+    glib::wrap_register (adw_preferences_window_get_type (),
                          &PreferencesWindow_Class::wrap_new);
-    Glib::wrap_register (adw_property_animation_target_get_type (),
+    glib::wrap_register (adw_property_animation_target_get_type (),
                          &PropertyAnimationTarget_Class::wrap_new);
-    Glib::wrap_register (adw_split_button_get_type (),
+    glib::wrap_register (adw_split_button_get_type (),
                          &SplitButton_Class::wrap_new);
-    Glib::wrap_register (adw_spring_animation_get_type (),
+    glib::wrap_register (adw_spring_animation_get_type (),
                          &SpringAnimation_Class::wrap_new);
-    Glib::wrap_register (adw_squeezer_get_type (), &Squeezer_Class::wrap_new);
-    Glib::wrap_register (adw_squeezer_page_get_type (),
+    glib::wrap_register (adw_squeezer_get_type (), &Squeezer_Class::wrap_new);
+    glib::wrap_register (adw_squeezer_page_get_type (),
                          &SqueezerPage_Class::wrap_new);
-    Glib::wrap_register (adw_status_page_get_type (),
+    glib::wrap_register (adw_status_page_get_type (),
                          &StatusPage_Class::wrap_new);
-    Glib::wrap_register (adw_style_manager_get_type (),
+    glib::wrap_register (adw_style_manager_get_type (),
                          &StyleManager_Class::wrap_new);
-    Glib::wrap_register (adw_swipe_tracker_get_type (),
+    glib::wrap_register (adw_swipe_tracker_get_type (),
                          &SwipeTracker_Class::wrap_new);
-    Glib::wrap_register (adw_tab_bar_get_type (), &TabBar_Class::wrap_new);
-    Glib::wrap_register (adw_tab_page_get_type (), &TabPage_Class::wrap_new);
-    Glib::wrap_register (adw_tab_view_get_type (), &TabView_Class::wrap_new);
-    Glib::wrap_register (adw_timed_animation_get_type (),
+    glib::wrap_register (adw_tab_bar_get_type (), &TabBar_Class::wrap_new);
+    glib::wrap_register (adw_tab_page_get_type (), &TabPage_Class::wrap_new);
+    glib::wrap_register (adw_tab_view_get_type (), &TabView_Class::wrap_new);
+    glib::wrap_register (adw_timed_animation_get_type (),
                          &TimedAnimation_Class::wrap_new);
-    Glib::wrap_register (adw_toast_get_type (), &Toast_Class::wrap_new);
-    Glib::wrap_register (adw_toast_overlay_get_type (),
+    glib::wrap_register (adw_toast_get_type (), &Toast_Class::wrap_new);
+    glib::wrap_register (adw_toast_overlay_get_type (),
                          &ToastOverlay_Class::wrap_new);
-    Glib::wrap_register (adw_view_stack_get_type (),
+    glib::wrap_register (adw_view_stack_get_type (),
                          &ViewStack_Class::wrap_new);
-    Glib::wrap_register (adw_view_stack_page_get_type (),
+    glib::wrap_register (adw_view_stack_page_get_type (),
                          &ViewStackPage_Class::wrap_new);
-    Glib::wrap_register (adw_view_switcher_get_type (),
+    glib::wrap_register (adw_view_switcher_get_type (),
                          &ViewSwitcher_Class::wrap_new);
-    Glib::wrap_register (adw_view_switcher_bar_get_type (),
+    glib::wrap_register (adw_view_switcher_bar_get_type (),
                          &ViewSwitcherBar_Class::wrap_new);
-    Glib::wrap_register (adw_view_switcher_title_get_type (),
+    glib::wrap_register (adw_view_switcher_title_get_type (),
                          &ViewSwitcherTitle_Class::wrap_new);
-    Glib::wrap_register (adw_window_get_type (), &Window_Class::wrap_new);
-    Glib::wrap_register (adw_window_title_get_type (),
+    glib::wrap_register (adw_window_get_type (), &Window_Class::wrap_new);
+    glib::wrap_register (adw_window_title_get_type (),
                          &WindowTitle_Class::wrap_new);
 
     g_type_ensure (AboutWindow::get_type ());
@@ -687,4 +687,4 @@ namespace Adw
     g_type_ensure (WindowTitle::get_type ());
   }
 
-} // namespace Adw
+} // namespace adw

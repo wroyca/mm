@@ -3,7 +3,7 @@
 #include <libmm/glib/interface.hxx>
 #include <libmm/glib/interface_p.hxx>
 
-namespace Glib
+namespace glib
 {
 
   auto
@@ -121,8 +121,8 @@ namespace Glib
   auto
   wrap_interface (GObject* object, const bool take_copy) -> RefPtr<ObjectBase>
   {
-    return Glib::make_refptr_for_instance<ObjectBase> (
+    return glib::make_refptr_for_instance<ObjectBase> (
         wrap_auto (object, take_copy));
   }
 
-} // namespace Glib
+} // namespace glib

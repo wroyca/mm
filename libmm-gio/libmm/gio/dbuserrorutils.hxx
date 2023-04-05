@@ -8,28 +8,28 @@
 #include <libmm/glib/ustring.hxx>
 #include <sigc++/sigc++.h>
 
-namespace Glib
+namespace glib
 {
 
   class Error;
 
 }
 
-namespace Gio::DBus::ErrorUtils
+namespace gio::DBus::ErrorUtils
 {
 
   LIBMM_GIO_SYMEXPORT
   auto
-  is_remote_error (const Glib::Error& error) -> bool;
+  is_remote_error (const glib::Error& error) -> bool;
 
   LIBMM_GIO_SYMEXPORT
   auto
-  get_remote_error (const Glib::Error& error) -> Glib::ustring;
+  get_remote_error (const glib::Error& error) -> glib::ustring;
 
   LIBMM_GIO_SYMEXPORT
   auto
-  strip_remote_error (Glib::Error& error) -> bool;
+  strip_remote_error (glib::Error& error) -> bool;
 
-} // namespace Gio::DBus::ErrorUtils
+} // namespace gio::DBus::ErrorUtils
 
 #endif

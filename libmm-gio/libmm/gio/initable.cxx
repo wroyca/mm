@@ -9,7 +9,7 @@
 #include <libmm/glib/error.hxx>
 #include <libmm/glib/exceptionhandler.hxx>
 
-namespace Gio
+namespace gio
 {
 
 }
@@ -18,20 +18,20 @@ namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GInitable* object, const bool take_copy) -> RefPtr<Gio::Initable>
+  wrap (GInitable* object, const bool take_copy) -> RefPtr<gio::Initable>
   {
-    return Glib::make_refptr_for_instance<Gio::Initable> (
-        Glib::wrap_auto_interface<Gio::Initable> ((GObject*) object,
+    return glib::make_refptr_for_instance<gio::Initable> (
+        glib::wrap_auto_interface<gio::Initable> ((GObject*) object,
                                                   take_copy));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gio
+namespace gio
 {
 
   auto
@@ -63,7 +63,7 @@ namespace Gio
                                        GError** error) -> gboolean
   {
     const auto obj_base =
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self);
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self);
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -72,11 +72,11 @@ namespace Gio
       {
         try
         {
-          return obj->init_vfunc (Glib::wrap (cancellable), error);
+          return obj->init_vfunc (glib::wrap (cancellable), error);
         }
         catch (...)
         {
-          Glib::exception_handlers_invoke ();
+          glib::exception_handlers_invoke ();
         }
       }
     }
@@ -94,7 +94,7 @@ namespace Gio
   }
 
   auto
-  Initable_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  Initable_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new Initable ((GInitable*) object);
   }
@@ -109,7 +109,7 @@ namespace Gio
   {
   }
 
-  Initable::Initable (const Glib::Interface_Class& interface_class)
+  Initable::Initable (const glib::Interface_Class& interface_class)
     : Interface (interface_class)
   {
   }
@@ -149,12 +149,12 @@ namespace Gio
   }
 
   auto
-  Initable::init (const Glib::RefPtr<Cancellable>& cancellable) -> void
+  Initable::init (const glib::RefPtr<Cancellable>& cancellable) -> void
   {
     GError* gerror = nullptr;
-    g_initable_init (gobj (), Glib::unwrap (cancellable), &gerror);
+    g_initable_init (gobj (), glib::unwrap (cancellable), &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
   }
 
   auto
@@ -163,11 +163,11 @@ namespace Gio
     GError* gerror = nullptr;
     g_initable_init (gobj (), nullptr, &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
   }
 
   auto
-  Initable::init_vfunc (const Glib::RefPtr<Cancellable>& cancellable,
+  Initable::init_vfunc (const glib::RefPtr<Cancellable>& cancellable,
                         GError** error) -> bool
   {
     const auto base =
@@ -178,7 +178,7 @@ namespace Gio
     if (base && base->init)
     {
       const bool retval (
-          (*base->init) (gobj (), Glib::unwrap (cancellable), error));
+          (*base->init) (gobj (), glib::unwrap (cancellable), error));
       return retval;
     }
 
@@ -186,4 +186,4 @@ namespace Gio
     return RType ();
   }
 
-} // namespace Gio
+} // namespace gio

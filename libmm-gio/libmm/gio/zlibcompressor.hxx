@@ -17,13 +17,13 @@ using GZlibCompressorClass = struct _GZlibCompressorClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gio
+namespace gio
 {
   class LIBMM_GIO_SYMEXPORT ZlibCompressor_Class;
 }
 #endif
 
-namespace Gio
+namespace gio
 {
 
   enum class ZlibCompressorFormat
@@ -33,30 +33,30 @@ namespace Gio
     RAW
   };
 
-} // namespace Gio
+} // namespace gio
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_GIO_SYMEXPORT Value<Gio::ZlibCompressorFormat>
-    : public Glib::Value_Enum<Gio::ZlibCompressorFormat>
+  class LIBMM_GIO_SYMEXPORT Value<gio::ZlibCompressorFormat>
+    : public glib::Value_Enum<gio::ZlibCompressorFormat>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
-namespace Gio
+namespace gio
 {
 
   class LIBMM_GIO_SYMEXPORT FileInfo;
 
-  class LIBMM_GIO_SYMEXPORT ZlibCompressor : public Glib::Object,
+  class LIBMM_GIO_SYMEXPORT ZlibCompressor : public glib::Object,
                                    public Converter
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -76,7 +76,7 @@ namespace Gio
     static CppClassType zlibcompressor_class_;
 
   protected:
-    explicit ZlibCompressor (const Glib::ConstructParams& construct_params);
+    explicit ZlibCompressor (const glib::ConstructParams& construct_params);
     explicit ZlibCompressor (GZlibCompressor* castitem);
 
 #endif
@@ -119,44 +119,44 @@ namespace Gio
   public:
     static auto
     create (ZlibCompressorFormat format, int level)
-        -> Glib::RefPtr<ZlibCompressor>;
+        -> glib::RefPtr<ZlibCompressor>;
 
     auto
-    get_file_info () -> Glib::RefPtr<FileInfo>;
+    get_file_info () -> glib::RefPtr<FileInfo>;
 
     auto
-    get_file_info () const -> Glib::RefPtr<const FileInfo>;
+    get_file_info () const -> glib::RefPtr<const FileInfo>;
 
     auto
-    set_file_info (const Glib::RefPtr<FileInfo>& file_info) -> void;
+    set_file_info (const glib::RefPtr<FileInfo>& file_info) -> void;
 
     auto
-    property_file_info () -> Glib::PropertyProxy<Glib::RefPtr<FileInfo>>;
+    property_file_info () -> glib::PropertyProxy<glib::RefPtr<FileInfo>>;
 
     auto
     property_file_info () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<FileInfo>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<FileInfo>>;
 
     auto
     property_format () const
-        -> Glib::PropertyProxy_ReadOnly<ZlibCompressorFormat>;
+        -> glib::PropertyProxy_ReadOnly<ZlibCompressorFormat>;
 
     auto
-    property_level () const -> Glib::PropertyProxy_ReadOnly<int>;
+    property_level () const -> glib::PropertyProxy_ReadOnly<int>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gio
+} // namespace gio
 
-namespace Glib
+namespace glib
 {
 
   LIBMM_GIO_SYMEXPORT
   auto
-  wrap (GZlibCompressor* object, bool take_copy = false) -> Glib::RefPtr<Gio::ZlibCompressor>;
-} // namespace Glib
+  wrap (GZlibCompressor* object, bool take_copy = false) -> glib::RefPtr<gio::ZlibCompressor>;
+} // namespace glib
 
 #endif

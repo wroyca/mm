@@ -16,13 +16,13 @@ using GtkGridClass = struct _GtkGridClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT Grid_Class;
 }
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
   class LIBMM_GTK_SYMEXPORT Grid : public Widget,
@@ -53,7 +53,7 @@ namespace Gtk
     static CppClassType grid_class_;
 
   protected:
-    explicit Grid (const Glib::ConstructParams& construct_params);
+    explicit Grid (const glib::ConstructParams& construct_params);
     explicit Grid (GtkGrid* castitem);
 
 #endif
@@ -169,46 +169,46 @@ namespace Gtk
                  int& height) const -> void;
 
     auto
-    property_row_spacing () -> Glib::PropertyProxy<guint>;
+    property_row_spacing () -> glib::PropertyProxy<guint>;
 
     auto
-    property_row_spacing () const -> Glib::PropertyProxy_ReadOnly<guint>;
+    property_row_spacing () const -> glib::PropertyProxy_ReadOnly<guint>;
 
     auto
-    property_column_spacing () -> Glib::PropertyProxy<guint>;
+    property_column_spacing () -> glib::PropertyProxy<guint>;
 
     auto
-    property_column_spacing () const -> Glib::PropertyProxy_ReadOnly<guint>;
+    property_column_spacing () const -> glib::PropertyProxy_ReadOnly<guint>;
 
     auto
-    property_row_homogeneous () -> Glib::PropertyProxy<bool>;
+    property_row_homogeneous () -> glib::PropertyProxy<bool>;
 
     auto
-    property_row_homogeneous () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_row_homogeneous () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_column_homogeneous () -> Glib::PropertyProxy<bool>;
+    property_column_homogeneous () -> glib::PropertyProxy<bool>;
 
     auto
-    property_column_homogeneous () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_column_homogeneous () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_baseline_row () -> Glib::PropertyProxy<int>;
+    property_baseline_row () -> glib::PropertyProxy<int>;
 
     auto
-    property_baseline_row () const -> Glib::PropertyProxy_ReadOnly<int>;
+    property_baseline_row () const -> glib::PropertyProxy_ReadOnly<int>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkGrid* object, bool take_copy = false) -> Gtk::Grid*;
-} // namespace Glib
+  wrap (GtkGrid* object, bool take_copy = false) -> gtk::Grid*;
+} // namespace glib
 
 #endif

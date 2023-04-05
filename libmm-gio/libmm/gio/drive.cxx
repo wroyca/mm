@@ -11,14 +11,14 @@
 #include <libmm/glib/error.hxx>
 #include <libmm/glib/exceptionhandler.hxx>
 
-using StartStopType = Gio::Drive::StartStopType;
+using StartStopType = gio::Drive::StartStopType;
 
-namespace Gio
+namespace gio
 {
 
   auto
   Drive::eject (const SlotAsyncReady& slot,
-                const Glib::RefPtr<Cancellable>& cancellable,
+                const glib::RefPtr<Cancellable>& cancellable,
                 Mount::UnmountFlags flags) -> void
   {
     const auto slot_copy = new SlotAsyncReady (slot);
@@ -26,7 +26,7 @@ namespace Gio
     g_drive_eject_with_operation (gobj (),
                                   static_cast<GMountUnmountFlags> (flags),
                                   nullptr,
-                                  Glib::unwrap (cancellable),
+                                  glib::unwrap (cancellable),
                                   &SignalProxy_async_callback,
                                   slot_copy);
   }
@@ -45,23 +45,23 @@ namespace Gio
   }
 
   auto
-  Drive::eject (const Glib::RefPtr<MountOperation>& mount_operation,
+  Drive::eject (const glib::RefPtr<MountOperation>& mount_operation,
                 const SlotAsyncReady& slot,
-                const Glib::RefPtr<Cancellable>& cancellable,
+                const glib::RefPtr<Cancellable>& cancellable,
                 Mount::UnmountFlags flags) -> void
   {
     const auto slot_copy = new SlotAsyncReady (slot);
 
     g_drive_eject_with_operation (gobj (),
                                   static_cast<GMountUnmountFlags> (flags),
-                                  Glib::unwrap (mount_operation),
-                                  Glib::unwrap (cancellable),
+                                  glib::unwrap (mount_operation),
+                                  glib::unwrap (cancellable),
                                   &SignalProxy_async_callback,
                                   slot_copy);
   }
 
   auto
-  Drive::eject (const Glib::RefPtr<MountOperation>& mount_operation,
+  Drive::eject (const glib::RefPtr<MountOperation>& mount_operation,
                 const SlotAsyncReady& slot,
                 Mount::UnmountFlags flags) -> void
   {
@@ -69,19 +69,19 @@ namespace Gio
 
     g_drive_eject_with_operation (gobj (),
                                   static_cast<GMountUnmountFlags> (flags),
-                                  Glib::unwrap (mount_operation),
+                                  glib::unwrap (mount_operation),
                                   nullptr,
                                   &SignalProxy_async_callback,
                                   slot_copy);
   }
 
   auto
-  Drive::eject (const Glib::RefPtr<MountOperation>& mount_operation,
+  Drive::eject (const glib::RefPtr<MountOperation>& mount_operation,
                 Mount::UnmountFlags flags) -> void
   {
     g_drive_eject_with_operation (gobj (),
                                   static_cast<GMountUnmountFlags> (flags),
-                                  Glib::unwrap (mount_operation),
+                                  glib::unwrap (mount_operation),
                                   nullptr,
                                   nullptr,
                                   nullptr);
@@ -100,12 +100,12 @@ namespace Gio
 
   auto
   Drive::poll_for_media (const SlotAsyncReady& slot,
-                         const Glib::RefPtr<Cancellable>& cancellable) -> void
+                         const glib::RefPtr<Cancellable>& cancellable) -> void
   {
     const auto slot_copy = new SlotAsyncReady (slot);
 
     g_drive_poll_for_media (gobj (),
-                            Glib::unwrap (cancellable),
+                            glib::unwrap (cancellable),
                             &SignalProxy_async_callback,
                             slot_copy);
   }
@@ -128,8 +128,8 @@ namespace Gio
   }
 
   auto
-  Drive::stop (const Glib::RefPtr<MountOperation>& mount_operation,
-               const Glib::RefPtr<Cancellable>& cancellable,
+  Drive::stop (const glib::RefPtr<MountOperation>& mount_operation,
+               const glib::RefPtr<Cancellable>& cancellable,
                const SlotAsyncReady& slot,
                Mount::UnmountFlags flags) -> void
   {
@@ -137,14 +137,14 @@ namespace Gio
 
     g_drive_stop (gobj (),
                   static_cast<GMountUnmountFlags> (flags),
-                  Glib::unwrap (mount_operation),
-                  Glib::unwrap (cancellable),
+                  glib::unwrap (mount_operation),
+                  glib::unwrap (cancellable),
                   &SignalProxy_async_callback,
                   slot_copy);
   }
 
   auto
-  Drive::stop (const Glib::RefPtr<MountOperation>& mount_operation,
+  Drive::stop (const glib::RefPtr<MountOperation>& mount_operation,
                const SlotAsyncReady& slot,
                Mount::UnmountFlags flags) -> void
   {
@@ -152,15 +152,15 @@ namespace Gio
 
     g_drive_stop (gobj (),
                   static_cast<GMountUnmountFlags> (flags),
-                  Glib::unwrap (mount_operation),
+                  glib::unwrap (mount_operation),
                   nullptr,
                   &SignalProxy_async_callback,
                   slot_copy);
   }
 
   auto
-  Drive::start (const Glib::RefPtr<MountOperation>& mount_operation,
-                const Glib::RefPtr<Cancellable>& cancellable,
+  Drive::start (const glib::RefPtr<MountOperation>& mount_operation,
+                const glib::RefPtr<Cancellable>& cancellable,
                 const SlotAsyncReady& slot,
                 StartFlags flags) -> void
   {
@@ -168,14 +168,14 @@ namespace Gio
 
     g_drive_start (gobj (),
                    static_cast<GDriveStartFlags> (flags),
-                   Glib::unwrap (mount_operation),
-                   Glib::unwrap (cancellable),
+                   glib::unwrap (mount_operation),
+                   glib::unwrap (cancellable),
                    &SignalProxy_async_callback,
                    slot_copy);
   }
 
   auto
-  Drive::start (const Glib::RefPtr<MountOperation>& mount_operation,
+  Drive::start (const glib::RefPtr<MountOperation>& mount_operation,
                 const SlotAsyncReady& slot,
                 StartFlags flags) -> void
   {
@@ -183,64 +183,64 @@ namespace Gio
 
     g_drive_start (gobj (),
                    static_cast<GDriveStartFlags> (flags),
-                   Glib::unwrap (mount_operation),
+                   glib::unwrap (mount_operation),
                    nullptr,
                    &SignalProxy_async_callback,
                    slot_copy);
   }
 
-} // namespace Gio
+} // namespace gio
 
 namespace
 {
 
-  const Glib::SignalProxyInfo Drive_signal_changed_info = {
+  const glib::SignalProxyInfo Drive_signal_changed_info = {
       "changed",
-      (GCallback) &Glib::SignalProxyNormal::slot0_void_callback,
-      (GCallback) &Glib::SignalProxyNormal::slot0_void_callback};
+      (GCallback) &glib::SignalProxyNormal::slot0_void_callback,
+      (GCallback) &glib::SignalProxyNormal::slot0_void_callback};
 
-  const Glib::SignalProxyInfo Drive_signal_disconnected_info = {
+  const glib::SignalProxyInfo Drive_signal_disconnected_info = {
       "disconnected",
-      (GCallback) &Glib::SignalProxyNormal::slot0_void_callback,
-      (GCallback) &Glib::SignalProxyNormal::slot0_void_callback};
+      (GCallback) &glib::SignalProxyNormal::slot0_void_callback,
+      (GCallback) &glib::SignalProxyNormal::slot0_void_callback};
 
-  const Glib::SignalProxyInfo Drive_signal_eject_button_info = {
+  const glib::SignalProxyInfo Drive_signal_eject_button_info = {
       "eject_button",
-      (GCallback) &Glib::SignalProxyNormal::slot0_void_callback,
-      (GCallback) &Glib::SignalProxyNormal::slot0_void_callback};
+      (GCallback) &glib::SignalProxyNormal::slot0_void_callback,
+      (GCallback) &glib::SignalProxyNormal::slot0_void_callback};
 
-  const Glib::SignalProxyInfo Drive_signal_stop_button_info = {
+  const glib::SignalProxyInfo Drive_signal_stop_button_info = {
       "stop_button",
-      (GCallback) &Glib::SignalProxyNormal::slot0_void_callback,
-      (GCallback) &Glib::SignalProxyNormal::slot0_void_callback};
+      (GCallback) &glib::SignalProxyNormal::slot0_void_callback,
+      (GCallback) &glib::SignalProxyNormal::slot0_void_callback};
 
 } // namespace
 
 auto
-Glib::Value<Gio::Drive::StartFlags>::value_type () -> GType
+glib::Value<gio::Drive::StartFlags>::value_type () -> GType
 {
   return g_drive_start_flags_get_type ();
 }
 
 auto
-Glib::Value<Gio::Drive::StartStopType>::value_type () -> GType
+glib::Value<gio::Drive::StartStopType>::value_type () -> GType
 {
   return g_drive_start_stop_type_get_type ();
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GDrive* object, const bool take_copy) -> RefPtr<Gio::Drive>
+  wrap (GDrive* object, const bool take_copy) -> RefPtr<gio::Drive>
   {
-    return Glib::make_refptr_for_instance<Gio::Drive> (
-        Glib::wrap_auto_interface<Gio::Drive> ((GObject*) object, take_copy));
+    return glib::make_refptr_for_instance<gio::Drive> (
+        glib::wrap_auto_interface<gio::Drive> ((GObject*) object, take_copy));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gio
+namespace gio
 {
 
   auto
@@ -273,7 +273,7 @@ namespace Gio
   Drive_Class::changed_callback (GDrive* self) -> void
   {
     const auto obj_base =
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self);
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self);
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -287,7 +287,7 @@ namespace Gio
         }
         catch (...)
         {
-          Glib::exception_handlers_invoke ();
+          glib::exception_handlers_invoke ();
         }
       }
     }
@@ -305,7 +305,7 @@ namespace Gio
   Drive_Class::disconnected_callback (GDrive* self) -> void
   {
     const auto obj_base =
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self);
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self);
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -319,7 +319,7 @@ namespace Gio
         }
         catch (...)
         {
-          Glib::exception_handlers_invoke ();
+          glib::exception_handlers_invoke ();
         }
       }
     }
@@ -337,7 +337,7 @@ namespace Gio
   Drive_Class::eject_button_callback (GDrive* self) -> void
   {
     const auto obj_base =
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self);
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self);
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -351,7 +351,7 @@ namespace Gio
         }
         catch (...)
         {
-          Glib::exception_handlers_invoke ();
+          glib::exception_handlers_invoke ();
         }
       }
     }
@@ -369,7 +369,7 @@ namespace Gio
   Drive_Class::stop_button_callback (GDrive* self) -> void
   {
     const auto obj_base =
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self);
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self);
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -383,7 +383,7 @@ namespace Gio
         }
         catch (...)
         {
-          Glib::exception_handlers_invoke ();
+          glib::exception_handlers_invoke ();
         }
       }
     }
@@ -398,7 +398,7 @@ namespace Gio
   }
 
   auto
-  Drive_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  Drive_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new Drive ((GDrive*) object);
   }
@@ -413,7 +413,7 @@ namespace Gio
   {
   }
 
-  Drive::Drive (const Glib::Interface_Class& interface_class)
+  Drive::Drive (const glib::Interface_Class& interface_class)
     : Interface (interface_class)
   {
   }
@@ -453,38 +453,38 @@ namespace Gio
   }
 
   auto
-  Drive::get_name () const -> Glib::ustring
+  Drive::get_name () const -> glib::ustring
   {
-    return Glib::convert_return_gchar_ptr_to_ustring (
+    return glib::convert_return_gchar_ptr_to_ustring (
         g_drive_get_name (const_cast<GDrive*> (gobj ())));
   }
 
   auto
-  Drive::get_icon () -> Glib::RefPtr<Icon>
+  Drive::get_icon () -> glib::RefPtr<Icon>
   {
-    auto retvalue = Glib::wrap (g_drive_get_icon (gobj ()));
+    auto retvalue = glib::wrap (g_drive_get_icon (gobj ()));
     if (retvalue)
       retvalue->reference ();
     return retvalue;
   }
 
   auto
-  Drive::get_icon () const -> Glib::RefPtr<const Icon>
+  Drive::get_icon () const -> glib::RefPtr<const Icon>
   {
     return const_cast<Drive*> (this)->get_icon ();
   }
 
   auto
-  Drive::get_symbolic_icon () -> Glib::RefPtr<Icon>
+  Drive::get_symbolic_icon () -> glib::RefPtr<Icon>
   {
-    auto retvalue = Glib::wrap (g_drive_get_symbolic_icon (gobj ()));
+    auto retvalue = glib::wrap (g_drive_get_symbolic_icon (gobj ()));
     if (retvalue)
       retvalue->reference ();
     return retvalue;
   }
 
   auto
-  Drive::get_symbolic_icon () const -> Glib::RefPtr<const Icon>
+  Drive::get_symbolic_icon () const -> glib::RefPtr<const Icon>
   {
     return const_cast<Drive*> (this)->get_symbolic_icon ();
   }
@@ -496,11 +496,11 @@ namespace Gio
   }
 
   auto
-  Drive::get_volumes () -> std::vector<Glib::RefPtr<Volume>>
+  Drive::get_volumes () -> std::vector<glib::RefPtr<Volume>>
   {
-    return Glib::ListHandler<Glib::RefPtr<Volume>>::list_to_vector (
+    return glib::ListHandler<glib::RefPtr<Volume>>::list_to_vector (
         g_drive_get_volumes (gobj ()),
-        Glib::OWNERSHIP_DEEP);
+        glib::OWNERSHIP_DEEP);
   }
 
   auto
@@ -540,52 +540,52 @@ namespace Gio
   }
 
   auto
-  Drive::eject_finish (const Glib::RefPtr<AsyncResult>& result) -> bool
+  Drive::eject_finish (const glib::RefPtr<AsyncResult>& result) -> bool
   {
     GError* gerror = nullptr;
     const auto retvalue = g_drive_eject_with_operation_finish (
         gobj (),
-        Glib::unwrap (result),
+        glib::unwrap (result),
         &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
   auto
-  Drive::poll_for_media_finish (const Glib::RefPtr<AsyncResult>& result) -> bool
+  Drive::poll_for_media_finish (const glib::RefPtr<AsyncResult>& result) -> bool
   {
     GError* gerror = nullptr;
     const auto retvalue =
-        g_drive_poll_for_media_finish (gobj (), Glib::unwrap (result), &gerror);
+        g_drive_poll_for_media_finish (gobj (), glib::unwrap (result), &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
   auto
   Drive::get_identifier (const std::string& kind) const -> std::string
   {
-    return Glib::convert_return_gchar_ptr_to_stdstring (
+    return glib::convert_return_gchar_ptr_to_stdstring (
         g_drive_get_identifier (const_cast<GDrive*> (gobj ()), kind.c_str ()));
   }
 
   auto
-  Drive::enumerate_identifiers () const -> std::vector<Glib::ustring>
+  Drive::enumerate_identifiers () const -> std::vector<glib::ustring>
   {
-    return Glib::ArrayHandler<Glib::ustring>::array_to_vector (
+    return glib::ArrayHandler<glib::ustring>::array_to_vector (
         g_drive_enumerate_identifiers (const_cast<GDrive*> (gobj ())),
-        Glib::OWNERSHIP_DEEP);
+        glib::OWNERSHIP_DEEP);
   }
 
   auto
-  Drive::start_finish (const Glib::RefPtr<AsyncResult>& result) -> bool
+  Drive::start_finish (const glib::RefPtr<AsyncResult>& result) -> bool
   {
     GError* gerror = nullptr;
     const auto retvalue =
-        g_drive_start_finish (gobj (), Glib::unwrap (result), &gerror);
+        g_drive_start_finish (gobj (), glib::unwrap (result), &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
@@ -602,13 +602,13 @@ namespace Gio
   }
 
   auto
-  Drive::stop_finish (const Glib::RefPtr<AsyncResult>& result) -> bool
+  Drive::stop_finish (const glib::RefPtr<AsyncResult>& result) -> bool
   {
     GError* gerror = nullptr;
     const auto retvalue =
-        g_drive_stop_finish (gobj (), Glib::unwrap (result), &gerror);
+        g_drive_stop_finish (gobj (), glib::unwrap (result), &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
@@ -626,32 +626,32 @@ namespace Gio
   }
 
   auto
-  Drive::get_sort_key () const -> Glib::ustring
+  Drive::get_sort_key () const -> glib::ustring
   {
-    return Glib::convert_const_gchar_ptr_to_ustring (
+    return glib::convert_const_gchar_ptr_to_ustring (
         g_drive_get_sort_key (const_cast<GDrive*> (gobj ())));
   }
 
   auto
-  Drive::signal_changed () -> Glib::SignalProxy<void ()>
+  Drive::signal_changed () -> glib::SignalProxy<void ()>
   {
     return {this, &Drive_signal_changed_info};
   }
 
   auto
-  Drive::signal_disconnected () -> Glib::SignalProxy<void ()>
+  Drive::signal_disconnected () -> glib::SignalProxy<void ()>
   {
     return {this, &Drive_signal_disconnected_info};
   }
 
   auto
-  Drive::signal_eject_button () -> Glib::SignalProxy<void ()>
+  Drive::signal_eject_button () -> glib::SignalProxy<void ()>
   {
     return {this, &Drive_signal_eject_button_info};
   }
 
   auto
-  Drive::signal_stop_button () -> Glib::SignalProxy<void ()>
+  Drive::signal_stop_button () -> glib::SignalProxy<void ()>
   {
     return {this, &Drive_signal_stop_button_info};
   }
@@ -704,4 +704,4 @@ namespace Gio
       (*base->stop_button) (gobj ());
   }
 
-} // namespace Gio
+} // namespace gio

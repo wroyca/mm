@@ -8,7 +8,7 @@
 #include <adwaita.h>
 #include <libmm/gtk/mm-gtk.hxx>
 
-namespace Adw
+namespace adw
 {
 
 }
@@ -17,23 +17,23 @@ namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (AdwApplicationWindow* object, bool take_copy) -> Adw::ApplicationWindow*
+  wrap (AdwApplicationWindow* object, bool take_copy) -> adw::ApplicationWindow*
   {
-    return dynamic_cast<Adw::ApplicationWindow*> (
-        Glib::wrap_auto ((GObject*) (object), take_copy));
+    return dynamic_cast<adw::ApplicationWindow*> (
+        glib::wrap_auto ((GObject*) (object), take_copy));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Adw
+namespace adw
 {
 
   auto
-  ApplicationWindow_Class::init () -> const Glib::Class&
+  ApplicationWindow_Class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -53,31 +53,31 @@ namespace Adw
   }
 
   auto
-  ApplicationWindow_Class::wrap_new (GObject* o) -> Glib::ObjectBase*
+  ApplicationWindow_Class::wrap_new (GObject* o) -> glib::ObjectBase*
   {
     return new ApplicationWindow ((AdwApplicationWindow*) (o));
   }
 
   ApplicationWindow::ApplicationWindow (
-      const Glib::ConstructParams& construct_params)
-    : Gtk::ApplicationWindow (construct_params)
+      const glib::ConstructParams& construct_params)
+    : gtk::ApplicationWindow (construct_params)
   {
   }
 
   ApplicationWindow::ApplicationWindow (AdwApplicationWindow* castitem)
-    : Gtk::ApplicationWindow ((GtkApplicationWindow*) (castitem))
+    : gtk::ApplicationWindow ((GtkApplicationWindow*) (castitem))
   {
   }
 
   ApplicationWindow::ApplicationWindow (ApplicationWindow&& src) noexcept
-    : Gtk::ApplicationWindow (std::move (src))
+    : gtk::ApplicationWindow (std::move (src))
   {
   }
 
   auto
   ApplicationWindow::operator= (ApplicationWindow&& src) noexcept -> ApplicationWindow&
   {
-    Gtk::ApplicationWindow::operator= (std::move (src));
+    gtk::ApplicationWindow::operator= (std::move (src));
     return *this;
   }
 
@@ -101,47 +101,47 @@ namespace Adw
   }
 
   ApplicationWindow::ApplicationWindow ()
-    : Glib::ObjectBase (nullptr),
-      Gtk::ApplicationWindow (
-          Glib::ConstructParams (applicationwindow_class_.init ()))
+    : glib::ObjectBase (nullptr),
+      gtk::ApplicationWindow (
+          glib::ConstructParams (applicationwindow_class_.init ()))
   {
   }
 
   ApplicationWindow::ApplicationWindow (
-      const Glib::RefPtr<Gtk::Application>& application)
-    : Glib::ObjectBase (nullptr),
-      Gtk::ApplicationWindow (
-          Glib::ConstructParams (applicationwindow_class_.init (),
+      const glib::RefPtr<gtk::Application>& application)
+    : glib::ObjectBase (nullptr),
+      gtk::ApplicationWindow (
+          glib::ConstructParams (applicationwindow_class_.init (),
                                  "application",
-                                 Glib::unwrap (application),
+                                 glib::unwrap (application),
                                  nullptr))
   {
   }
 
   auto
-  ApplicationWindow::get_content () const -> Gtk::Widget*
+  ApplicationWindow::get_content () const -> gtk::Widget*
   {
-    return Glib::wrap (adw_application_window_get_content (
+    return glib::wrap (adw_application_window_get_content (
         const_cast<AdwApplicationWindow*> (gobj ())));
   }
 
   auto
-  ApplicationWindow::set_content (Gtk::Widget* content) -> void
+  ApplicationWindow::set_content (gtk::Widget* content) -> void
   {
     adw_application_window_set_content (gobj (),
-                                        (GtkWidget*) Glib::unwrap (content));
+                                        (GtkWidget*) glib::unwrap (content));
   }
 
   auto
-  ApplicationWindow::property_content () -> Glib::PropertyProxy<Gtk::Widget*>
+  ApplicationWindow::property_content () -> glib::PropertyProxy<gtk::Widget*>
   {
-    return Glib::PropertyProxy<Gtk::Widget*> (this, "content");
+    return glib::PropertyProxy<gtk::Widget*> (this, "content");
   }
 
   auto
-  ApplicationWindow::property_content () const -> Glib::PropertyProxy_ReadOnly<Gtk::Widget*>
+  ApplicationWindow::property_content () const -> glib::PropertyProxy_ReadOnly<gtk::Widget*>
   {
-    return Glib::PropertyProxy_ReadOnly<Gtk::Widget*> (this, "content");
+    return glib::PropertyProxy_ReadOnly<gtk::Widget*> (this, "content");
   }
 
-} // namespace Adw
+} // namespace adw

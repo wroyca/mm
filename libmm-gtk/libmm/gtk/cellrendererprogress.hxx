@@ -17,13 +17,13 @@ using GtkCellRendererProgressClass = struct _GtkCellRendererProgressClass;
   #endif
 
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT CellRendererProgress_Class;
 }
   #endif
 
-namespace Gtk
+namespace gtk
 {
 
   class LIBMM_GTK_SYMEXPORT CellRendererProgress : public CellRenderer,
@@ -55,7 +55,7 @@ namespace Gtk
 
   protected:
     explicit CellRendererProgress (
-        const Glib::ConstructParams& construct_params);
+        const glib::ConstructParams& construct_params);
     explicit CellRendererProgress (GtkCellRendererProgress* castitem);
 
   #endif
@@ -87,56 +87,56 @@ namespace Gtk
     CellRendererProgress ();
 
     auto
-    property_value () -> Glib::PropertyProxy<int>;
+    property_value () -> glib::PropertyProxy<int>;
 
     auto
-    property_value () const -> Glib::PropertyProxy_ReadOnly<int>;
+    property_value () const -> glib::PropertyProxy_ReadOnly<int>;
 
     auto
-    property_text () -> Glib::PropertyProxy<Glib::ustring>;
+    property_text () -> glib::PropertyProxy<glib::ustring>;
 
     auto
-    property_text () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+    property_text () const -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
     auto
-    property_pulse () -> Glib::PropertyProxy<int>;
+    property_pulse () -> glib::PropertyProxy<int>;
 
     auto
-    property_pulse () const -> Glib::PropertyProxy_ReadOnly<int>;
+    property_pulse () const -> glib::PropertyProxy_ReadOnly<int>;
 
     auto
-    property_text_xalign () -> Glib::PropertyProxy<float>;
+    property_text_xalign () -> glib::PropertyProxy<float>;
 
     auto
-    property_text_xalign () const -> Glib::PropertyProxy_ReadOnly<float>;
+    property_text_xalign () const -> glib::PropertyProxy_ReadOnly<float>;
 
     auto
-    property_text_yalign () -> Glib::PropertyProxy<float>;
+    property_text_yalign () -> glib::PropertyProxy<float>;
 
     auto
-    property_text_yalign () const -> Glib::PropertyProxy_ReadOnly<float>;
+    property_text_yalign () const -> glib::PropertyProxy_ReadOnly<float>;
 
     auto
-    property_inverted () -> Glib::PropertyProxy<bool>;
+    property_inverted () -> glib::PropertyProxy<bool>;
 
     auto
-    property_inverted () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_inverted () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    _property_renderable () -> Glib::PropertyProxy_Base override;
+    _property_renderable () -> glib::PropertyProxy_Base override;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkCellRendererProgress* object, bool take_copy = false) -> Gtk::CellRendererProgress*;
-} // namespace Glib
+  wrap (GtkCellRendererProgress* object, bool take_copy = false) -> gtk::CellRendererProgress*;
+} // namespace glib
 
 #endif
 

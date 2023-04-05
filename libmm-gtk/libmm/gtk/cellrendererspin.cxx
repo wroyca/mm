@@ -13,38 +13,38 @@
   #include <gtk/gtk.h>
   #include <libmm/gtk/adjustment.hxx>
 
-namespace Gtk
+namespace gtk
 {
 
   auto
-  CellRendererSpin::_property_renderable () -> Glib::PropertyProxy_Base
+  CellRendererSpin::_property_renderable () -> glib::PropertyProxy_Base
   {
     return CellRendererText::_property_renderable ();
   }
 
-} // namespace Gtk
+} // namespace gtk
 
 namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GtkCellRendererSpin* object, bool take_copy) -> Gtk::CellRendererSpin*
+  wrap (GtkCellRendererSpin* object, bool take_copy) -> gtk::CellRendererSpin*
   {
-    return dynamic_cast<Gtk::CellRendererSpin*> (
-        Glib::wrap_auto ((GObject*) (object), take_copy));
+    return dynamic_cast<gtk::CellRendererSpin*> (
+        glib::wrap_auto ((GObject*) (object), take_copy));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gtk
+namespace gtk
 {
 
   auto
-  CellRendererSpin_Class::init () -> const Glib::Class&
+  CellRendererSpin_Class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -64,31 +64,31 @@ namespace Gtk
   }
 
   auto
-  CellRendererSpin_Class::wrap_new (GObject* o) -> Glib::ObjectBase*
+  CellRendererSpin_Class::wrap_new (GObject* o) -> glib::ObjectBase*
   {
     return manage (new CellRendererSpin ((GtkCellRendererSpin*) (o)));
   }
 
   CellRendererSpin::CellRendererSpin (
-      const Glib::ConstructParams& construct_params)
-    : Gtk::CellRendererText (construct_params)
+      const glib::ConstructParams& construct_params)
+    : gtk::CellRendererText (construct_params)
   {
   }
 
   CellRendererSpin::CellRendererSpin (GtkCellRendererSpin* castitem)
-    : Gtk::CellRendererText ((GtkCellRendererText*) (castitem))
+    : gtk::CellRendererText ((GtkCellRendererText*) (castitem))
   {
   }
 
   CellRendererSpin::CellRendererSpin (CellRendererSpin&& src) noexcept
-    : Gtk::CellRendererText (std::move (src))
+    : gtk::CellRendererText (std::move (src))
   {
   }
 
   auto
   CellRendererSpin::operator= (CellRendererSpin&& src) noexcept -> CellRendererSpin&
   {
-    Gtk::CellRendererText::operator= (std::move (src));
+    gtk::CellRendererText::operator= (std::move (src));
     return *this;
   }
 
@@ -112,56 +112,56 @@ namespace Gtk
   }
 
   CellRendererSpin::CellRendererSpin ()
-    : Glib::ObjectBase (nullptr),
-      Gtk::CellRendererText (
-          Glib::ConstructParams (cellrendererspin_class_.init ()))
+    : glib::ObjectBase (nullptr),
+      gtk::CellRendererText (
+          glib::ConstructParams (cellrendererspin_class_.init ()))
   {
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<
-          Glib::RefPtr<Adjustment>>::value,
-      "Type Glib::RefPtr<Adjustment> cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      glib::Traits::ValueCompatibleWithWrapProperty<
+          glib::RefPtr<Adjustment>>::value,
+      "Type glib::RefPtr<Adjustment> cannot be used in _WRAP_PROPERTY. "
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  CellRendererSpin::property_adjustment () -> Glib::PropertyProxy<Glib::RefPtr<Adjustment>>
+  CellRendererSpin::property_adjustment () -> glib::PropertyProxy<glib::RefPtr<Adjustment>>
   {
-    return Glib::PropertyProxy<Glib::RefPtr<Adjustment>> (this, "adjustment");
+    return glib::PropertyProxy<glib::RefPtr<Adjustment>> (this, "adjustment");
   }
 
   auto
-  CellRendererSpin::property_adjustment () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Adjustment>>
+  CellRendererSpin::property_adjustment () const -> glib::PropertyProxy_ReadOnly<glib::RefPtr<Adjustment>>
   {
-    return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Adjustment>> (
+    return glib::PropertyProxy_ReadOnly<glib::RefPtr<Adjustment>> (
         this,
         "adjustment");
   }
 
   auto
-  CellRendererSpin::property_climb_rate () -> Glib::PropertyProxy<double>
+  CellRendererSpin::property_climb_rate () -> glib::PropertyProxy<double>
   {
-    return Glib::PropertyProxy<double> (this, "climb-rate");
+    return glib::PropertyProxy<double> (this, "climb-rate");
   }
 
   auto
-  CellRendererSpin::property_climb_rate () const -> Glib::PropertyProxy_ReadOnly<double>
+  CellRendererSpin::property_climb_rate () const -> glib::PropertyProxy_ReadOnly<double>
   {
-    return Glib::PropertyProxy_ReadOnly<double> (this, "climb-rate");
+    return glib::PropertyProxy_ReadOnly<double> (this, "climb-rate");
   }
 
   auto
-  CellRendererSpin::property_digits () -> Glib::PropertyProxy<guint>
+  CellRendererSpin::property_digits () -> glib::PropertyProxy<guint>
   {
-    return Glib::PropertyProxy<guint> (this, "digits");
+    return glib::PropertyProxy<guint> (this, "digits");
   }
 
   auto
-  CellRendererSpin::property_digits () const -> Glib::PropertyProxy_ReadOnly<guint>
+  CellRendererSpin::property_digits () const -> glib::PropertyProxy_ReadOnly<guint>
   {
-    return Glib::PropertyProxy_ReadOnly<guint> (this, "digits");
+    return glib::PropertyProxy_ReadOnly<guint> (this, "digits");
   }
 
-} // namespace Gtk
+} // namespace gtk
 
 #endif

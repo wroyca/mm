@@ -16,13 +16,13 @@ using GMountOperationClass = struct _GMountOperationClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gio
+namespace gio
 {
   class LIBMM_GIO_SYMEXPORT MountOperation_Class;
 }
 #endif
 
-namespace Gio
+namespace gio
 {
 
   enum class AskPasswordFlags
@@ -90,25 +90,25 @@ namespace Gio
     PERMANENTLY
   };
 
-} // namespace Gio
+} // namespace gio
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_GIO_SYMEXPORT Value<Gio::PasswordSave>
-    : public Glib::Value_Enum<Gio::PasswordSave>
+  class LIBMM_GIO_SYMEXPORT Value<gio::PasswordSave>
+    : public glib::Value_Enum<gio::PasswordSave>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
-namespace Gio
+namespace gio
 {
 
   enum class MountOperationResult
@@ -118,7 +118,7 @@ namespace Gio
     UNHANDLED
   };
 
-  class LIBMM_GIO_SYMEXPORT MountOperation : public Glib::Object
+  class LIBMM_GIO_SYMEXPORT MountOperation : public glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -137,7 +137,7 @@ namespace Gio
     static CppClassType mountoperation_class_;
 
   protected:
-    explicit MountOperation (const Glib::ConstructParams& construct_params);
+    explicit MountOperation (const glib::ConstructParams& construct_params);
     explicit MountOperation (GMountOperation* castitem);
 
 #endif
@@ -179,19 +179,19 @@ namespace Gio
 
   public:
     static auto
-    create () -> Glib::RefPtr<MountOperation>;
+    create () -> glib::RefPtr<MountOperation>;
 
     auto
-    get_username () const -> Glib::ustring;
+    get_username () const -> glib::ustring;
 
     auto
-    set_username (const Glib::ustring& username) -> void;
+    set_username (const glib::ustring& username) -> void;
 
     auto
-    get_password () const -> Glib::ustring;
+    get_password () const -> glib::ustring;
 
     auto
-    set_password (const Glib::ustring& password) -> void;
+    set_password (const glib::ustring& password) -> void;
 
     auto
     get_anonymous () const -> bool;
@@ -200,10 +200,10 @@ namespace Gio
     set_anonymous (bool anonymous = true) -> void;
 
     auto
-    get_domain () const -> Glib::ustring;
+    get_domain () const -> glib::ustring;
 
     auto
-    set_domain (const Glib::ustring& domain) -> void;
+    set_domain (const glib::ustring& domain) -> void;
 
     auto
     get_password_save () const -> PasswordSave;
@@ -221,75 +221,75 @@ namespace Gio
     reply (MountOperationResult result) -> void;
 
     auto
-    signal_ask_password () -> Glib::SignalProxy<void (const Glib::ustring&,
-                                                      const Glib::ustring&,
-                                                      const Glib::ustring&,
+    signal_ask_password () -> glib::SignalProxy<void (const glib::ustring&,
+                                                      const glib::ustring&,
+                                                      const glib::ustring&,
                                                       AskPasswordFlags)>;
 
     auto
     signal_ask_question ()
-        -> Glib::SignalProxy<void (const Glib::ustring&,
-                                   const std::vector<Glib::ustring>&)>;
+        -> glib::SignalProxy<void (const glib::ustring&,
+                                   const std::vector<glib::ustring>&)>;
 
     auto
-    signal_reply () -> Glib::SignalProxy<void (MountOperationResult)>;
+    signal_reply () -> glib::SignalProxy<void (MountOperationResult)>;
 
     auto
-    signal_aborted () -> Glib::SignalProxy<void ()>;
+    signal_aborted () -> glib::SignalProxy<void ()>;
 
     auto
     signal_show_unmount_progress ()
-        -> Glib::SignalProxy<void (const Glib::ustring&, gint64, gint64)>;
+        -> glib::SignalProxy<void (const glib::ustring&, gint64, gint64)>;
 
     auto
-    property_username () -> Glib::PropertyProxy<Glib::ustring>;
+    property_username () -> glib::PropertyProxy<glib::ustring>;
 
     auto
-    property_username () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+    property_username () const -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
     auto
-    property_password () -> Glib::PropertyProxy<Glib::ustring>;
+    property_password () -> glib::PropertyProxy<glib::ustring>;
 
     auto
-    property_password () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+    property_password () const -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
     auto
-    property_anonymous () -> Glib::PropertyProxy<bool>;
+    property_anonymous () -> glib::PropertyProxy<bool>;
 
     auto
-    property_anonymous () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_anonymous () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_domain () -> Glib::PropertyProxy<Glib::ustring>;
+    property_domain () -> glib::PropertyProxy<glib::ustring>;
 
     auto
-    property_domain () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+    property_domain () const -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
     auto
-    property_password_save () -> Glib::PropertyProxy<PasswordSave>;
+    property_password_save () -> glib::PropertyProxy<PasswordSave>;
 
     auto
     property_password_save () const
-        -> Glib::PropertyProxy_ReadOnly<PasswordSave>;
+        -> glib::PropertyProxy_ReadOnly<PasswordSave>;
 
     auto
-    property_choice () -> Glib::PropertyProxy<int>;
+    property_choice () -> glib::PropertyProxy<int>;
 
     auto
-    property_choice () const -> Glib::PropertyProxy_ReadOnly<int>;
+    property_choice () const -> glib::PropertyProxy_ReadOnly<int>;
 
   public:
   public:
   protected:
     virtual auto
-    on_ask_password (const Glib::ustring& message,
-                     const Glib::ustring& default_user,
-                     const Glib::ustring& default_domain,
+    on_ask_password (const glib::ustring& message,
+                     const glib::ustring& default_user,
+                     const glib::ustring& default_domain,
                      AskPasswordFlags flags) -> void;
 
     virtual auto
-    on_ask_question (const Glib::ustring& message,
-                     const std::vector<Glib::ustring>& choices) -> void;
+    on_ask_question (const glib::ustring& message,
+                     const std::vector<glib::ustring>& choices) -> void;
 
     virtual auto
     on_reply (MountOperationResult result) -> void;
@@ -298,19 +298,19 @@ namespace Gio
     on_aborted () -> void;
 
     virtual auto
-    on_show_unmount_progress (const Glib::ustring& message,
+    on_show_unmount_progress (const glib::ustring& message,
                               gint64 time_left,
                               gint64 bytes_left) -> void;
   };
 
-} // namespace Gio
+} // namespace gio
 
-namespace Glib
+namespace glib
 {
 
   LIBMM_GIO_SYMEXPORT
   auto
-  wrap (GMountOperation* object, bool take_copy = false) -> Glib::RefPtr<Gio::MountOperation>;
-} // namespace Glib
+  wrap (GMountOperation* object, bool take_copy = false) -> glib::RefPtr<gio::MountOperation>;
+} // namespace glib
 
 #endif

@@ -5,21 +5,21 @@
 
 #include <libmm/glib/ustring.hxx>
 
-namespace Glib
+namespace glib
 {
 
-  class DBusObjectPathString : public Glib::ustring
+  class DBusObjectPathString : public glib::ustring
   {
   public:
-    using Glib::ustring::ustring;
+    using glib::ustring::ustring;
   };
 
-  class DBusSignatureString : public Glib::ustring
+  class DBusSignatureString : public glib::ustring
   {
   public:
-    using Glib::ustring::ustring;
+    using glib::ustring::ustring;
   };
 
-} // namespace Glib
+} // namespace glib
 
 #endif

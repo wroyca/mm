@@ -12,24 +12,24 @@ namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GtkFileLauncher* object, bool take_copy) -> Glib::RefPtr<Gtk::FileLauncher>
+  wrap (GtkFileLauncher* object, bool take_copy) -> glib::RefPtr<gtk::FileLauncher>
   {
-    return Glib::make_refptr_for_instance<Gtk::FileLauncher> (
-        dynamic_cast<Gtk::FileLauncher*> (
-            Glib::wrap_auto ((GObject*) (object), take_copy)));
+    return glib::make_refptr_for_instance<gtk::FileLauncher> (
+        dynamic_cast<gtk::FileLauncher*> (
+            glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gtk
+namespace gtk
 {
 
   auto
-  FileLauncher_Class::init () -> const Glib::Class&
+  FileLauncher_Class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -40,7 +40,7 @@ namespace Gtk
   }
 
   auto
-  FileLauncher_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  FileLauncher_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new FileLauncher ((GtkFileLauncher*) object);
   }
@@ -52,25 +52,25 @@ namespace Gtk
     return gobj ();
   }
 
-  FileLauncher::FileLauncher (const Glib::ConstructParams& construct_params)
-    : Glib::Object (construct_params)
+  FileLauncher::FileLauncher (const glib::ConstructParams& construct_params)
+    : glib::Object (construct_params)
   {
   }
 
   FileLauncher::FileLauncher (GtkFileLauncher* castitem)
-    : Glib::Object ((GObject*) (castitem))
+    : glib::Object ((GObject*) (castitem))
   {
   }
 
   FileLauncher::FileLauncher (FileLauncher&& src) noexcept
-    : Glib::Object (std::move (src))
+    : glib::Object (std::move (src))
   {
   }
 
   auto
   FileLauncher::operator= (FileLauncher&& src) noexcept -> FileLauncher&
   {
-    Glib::Object::operator= (std::move (src));
+    glib::Object::operator= (std::move (src));
     return *this;
   }
 
@@ -90,150 +90,150 @@ namespace Gtk
     return gtk_file_launcher_get_type ();
   }
 
-  FileLauncher::FileLauncher (const Glib::RefPtr<Gio::File>& file)
-    : Glib::ObjectBase (nullptr),
-      Glib::Object (Glib::ConstructParams (
+  FileLauncher::FileLauncher (const glib::RefPtr<gio::File>& file)
+    : glib::ObjectBase (nullptr),
+      glib::Object (glib::ConstructParams (
           filelauncher_class_.init (),
           "file",
-          const_cast<GFile*> (Glib::unwrap<Gio::File> (file)),
+          const_cast<GFile*> (glib::unwrap<gio::File> (file)),
           nullptr))
   {
   }
 
   auto
-  FileLauncher::create (const Glib::RefPtr<Gio::File>& file) -> Glib::RefPtr<FileLauncher>
+  FileLauncher::create (const glib::RefPtr<gio::File>& file) -> glib::RefPtr<FileLauncher>
   {
-    return Glib::make_refptr_for_instance<FileLauncher> (
+    return glib::make_refptr_for_instance<FileLauncher> (
         new FileLauncher (file));
   }
 
   auto
-  FileLauncher::get_file () -> Glib::RefPtr<Gio::File>
+  FileLauncher::get_file () -> glib::RefPtr<gio::File>
   {
-    auto retvalue = Glib::wrap (gtk_file_launcher_get_file (gobj ()));
+    auto retvalue = glib::wrap (gtk_file_launcher_get_file (gobj ()));
     if (retvalue)
       retvalue->reference ();
     return retvalue;
   }
 
   auto
-  FileLauncher::get_file () const -> Glib::RefPtr<const Gio::File>
+  FileLauncher::get_file () const -> glib::RefPtr<const gio::File>
   {
     return const_cast<FileLauncher*> (this)->get_file ();
   }
 
   auto
-  FileLauncher::set_file (const Glib::RefPtr<Gio::File>& file) -> void
+  FileLauncher::set_file (const glib::RefPtr<gio::File>& file) -> void
   {
     gtk_file_launcher_set_file (
         gobj (),
-        const_cast<GFile*> (Glib::unwrap<Gio::File> (file)));
+        const_cast<GFile*> (glib::unwrap<gio::File> (file)));
   }
 
   auto
   FileLauncher::launch (Window& parent,
-                        const Gio::SlotAsyncReady& slot,
-                        const Glib::RefPtr<Gio::Cancellable>& cancellable) const -> void
+                        const gio::SlotAsyncReady& slot,
+                        const glib::RefPtr<gio::Cancellable>& cancellable) const -> void
   {
-    auto slot_copy = new Gio::SlotAsyncReady (slot);
+    auto slot_copy = new gio::SlotAsyncReady (slot);
 
     gtk_file_launcher_launch (
         const_cast<GtkFileLauncher*> (gobj ()),
         (parent).gobj (),
-        const_cast<GCancellable*> (Glib::unwrap (cancellable)),
-        &Gio::SignalProxy_async_callback,
+        const_cast<GCancellable*> (glib::unwrap (cancellable)),
+        &gio::SignalProxy_async_callback,
         slot_copy);
   }
 
   auto
-  FileLauncher::launch (const Gio::SlotAsyncReady& slot,
-                        const Glib::RefPtr<Gio::Cancellable>& cancellable) const -> void
+  FileLauncher::launch (const gio::SlotAsyncReady& slot,
+                        const glib::RefPtr<gio::Cancellable>& cancellable) const -> void
   {
-    auto slot_copy = new Gio::SlotAsyncReady (slot);
+    auto slot_copy = new gio::SlotAsyncReady (slot);
 
     gtk_file_launcher_launch (
         const_cast<GtkFileLauncher*> (gobj ()),
         nullptr,
-        const_cast<GCancellable*> (Glib::unwrap (cancellable)),
-        &Gio::SignalProxy_async_callback,
+        const_cast<GCancellable*> (glib::unwrap (cancellable)),
+        &gio::SignalProxy_async_callback,
         slot_copy);
   }
 
   auto
   FileLauncher::launch_finish (
-      const Glib::RefPtr<Gio::AsyncResult>& result) const -> bool
+      const glib::RefPtr<gio::AsyncResult>& result) const -> bool
   {
     GError* gerror = nullptr;
     auto retvalue = gtk_file_launcher_launch_finish (
         const_cast<GtkFileLauncher*> (gobj ()),
-        Glib::unwrap (result),
+        glib::unwrap (result),
         &(gerror));
     if (gerror)
-      ::Glib::Error::throw_exception (gerror);
+      ::glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
   auto
   FileLauncher::open_containing_folder (
       Window& parent,
-      const Gio::SlotAsyncReady& slot,
-      const Glib::RefPtr<Gio::Cancellable>& cancellable) const -> void
+      const gio::SlotAsyncReady& slot,
+      const glib::RefPtr<gio::Cancellable>& cancellable) const -> void
   {
-    auto slot_copy = new Gio::SlotAsyncReady (slot);
+    auto slot_copy = new gio::SlotAsyncReady (slot);
 
     gtk_file_launcher_open_containing_folder (
         const_cast<GtkFileLauncher*> (gobj ()),
         (parent).gobj (),
-        const_cast<GCancellable*> (Glib::unwrap (cancellable)),
-        &Gio::SignalProxy_async_callback,
+        const_cast<GCancellable*> (glib::unwrap (cancellable)),
+        &gio::SignalProxy_async_callback,
         slot_copy);
   }
 
   auto
   FileLauncher::open_containing_folder (
-      const Gio::SlotAsyncReady& slot,
-      const Glib::RefPtr<Gio::Cancellable>& cancellable) const -> void
+      const gio::SlotAsyncReady& slot,
+      const glib::RefPtr<gio::Cancellable>& cancellable) const -> void
   {
-    auto slot_copy = new Gio::SlotAsyncReady (slot);
+    auto slot_copy = new gio::SlotAsyncReady (slot);
 
     gtk_file_launcher_open_containing_folder (
         const_cast<GtkFileLauncher*> (gobj ()),
         nullptr,
-        const_cast<GCancellable*> (Glib::unwrap (cancellable)),
-        &Gio::SignalProxy_async_callback,
+        const_cast<GCancellable*> (glib::unwrap (cancellable)),
+        &gio::SignalProxy_async_callback,
         slot_copy);
   }
 
   auto
   FileLauncher::open_containing_folder_finish (
-      const Glib::RefPtr<Gio::AsyncResult>& result) const -> bool
+      const glib::RefPtr<gio::AsyncResult>& result) const -> bool
   {
     GError* gerror = nullptr;
     auto retvalue = gtk_file_launcher_open_containing_folder_finish (
         const_cast<GtkFileLauncher*> (gobj ()),
-        Glib::unwrap (result),
+        glib::unwrap (result),
         &(gerror));
     if (gerror)
-      ::Glib::Error::throw_exception (gerror);
+      ::glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<
-          Glib::RefPtr<Gio::File>>::value,
-      "Type Glib::RefPtr<Gio::File> cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      glib::Traits::ValueCompatibleWithWrapProperty<
+          glib::RefPtr<gio::File>>::value,
+      "Type glib::RefPtr<gio::File> cannot be used in _WRAP_PROPERTY. "
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  FileLauncher::property_file () -> Glib::PropertyProxy<Glib::RefPtr<Gio::File>>
+  FileLauncher::property_file () -> glib::PropertyProxy<glib::RefPtr<gio::File>>
   {
-    return Glib::PropertyProxy<Glib::RefPtr<Gio::File>> (this, "file");
+    return glib::PropertyProxy<glib::RefPtr<gio::File>> (this, "file");
   }
 
   auto
-  FileLauncher::property_file () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gio::File>>
+  FileLauncher::property_file () const -> glib::PropertyProxy_ReadOnly<glib::RefPtr<gio::File>>
   {
-    return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gio::File>> (this, "file");
+    return glib::PropertyProxy_ReadOnly<glib::RefPtr<gio::File>> (this, "file");
   }
 
-} // namespace Gtk
+} // namespace gtk

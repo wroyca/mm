@@ -16,16 +16,16 @@
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Adw
+namespace adw
 {
   class LIBMM_ADW_SYMEXPORT ExpanderRow_Class;
 }
 #endif
 
-namespace Adw
+namespace adw
 {
 
-  class LIBMM_ADW_SYMEXPORT ExpanderRow : public Adw::PreferencesRow
+  class LIBMM_ADW_SYMEXPORT ExpanderRow : public adw::PreferencesRow
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -52,7 +52,7 @@ namespace Adw
     static CppClassType expanderrow_class_;
 
   protected:
-    explicit ExpanderRow (const Glib::ConstructParams& construct_params);
+    explicit ExpanderRow (const glib::ConstructParams& construct_params);
     explicit ExpanderRow (AdwExpanderRow* castitem);
 
 #endif
@@ -84,13 +84,13 @@ namespace Adw
     ExpanderRow ();
 
     auto
-    add_action (Gtk::Widget* widget) -> void;
+    add_action (gtk::Widget* widget) -> void;
 
     auto
-    add_prefix (Gtk::Widget* widget) -> void;
+    add_prefix (gtk::Widget* widget) -> void;
 
     auto
-    add_row (Gtk::Widget* child) -> void;
+    add_row (gtk::Widget* child) -> void;
 
     auto
     get_enable_expansion () const -> bool;
@@ -99,16 +99,16 @@ namespace Adw
     get_expanded () const -> bool;
 
     auto
-    get_icon_name () const -> Glib::ustring;
+    get_icon_name () const -> glib::ustring;
 
     auto
     get_show_enable_switch () const -> bool;
 
     auto
-    get_subtitle () const -> Glib::ustring;
+    get_subtitle () const -> glib::ustring;
 
     auto
-    remove (Gtk::Widget* child) -> void;
+    remove (gtk::Widget* child) -> void;
 
     auto
     set_enable_expansion (bool enable_expansion) -> void;
@@ -117,56 +117,56 @@ namespace Adw
     set_expanded (bool expanded) -> void;
 
     auto
-    set_icon_name (const Glib::ustring& icon_name) -> void;
+    set_icon_name (const glib::ustring& icon_name) -> void;
 
     auto
     set_show_enable_switch (bool show_enable_switch) -> void;
 
     auto
-    set_subtitle (const Glib::ustring& subtitle) -> void;
+    set_subtitle (const glib::ustring& subtitle) -> void;
 
     auto
-    property_enable_expansion () -> Glib::PropertyProxy<bool>;
+    property_enable_expansion () -> glib::PropertyProxy<bool>;
 
     auto
-    property_enable_expansion () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_enable_expansion () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_expanded () -> Glib::PropertyProxy<bool>;
+    property_expanded () -> glib::PropertyProxy<bool>;
 
     auto
-    property_expanded () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_expanded () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_icon_name () -> Glib::PropertyProxy<Glib::ustring>;
+    property_icon_name () -> glib::PropertyProxy<glib::ustring>;
 
     auto
-    property_icon_name () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+    property_icon_name () const -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
     auto
-    property_show_enable_switch () -> Glib::PropertyProxy<bool>;
+    property_show_enable_switch () -> glib::PropertyProxy<bool>;
 
     auto
-    property_show_enable_switch () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_show_enable_switch () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_subtitle () -> Glib::PropertyProxy<Glib::ustring>;
+    property_subtitle () -> glib::PropertyProxy<glib::ustring>;
 
     auto
-    property_subtitle () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+    property_subtitle () const -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Adw
+} // namespace adw
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (AdwExpanderRow* object, bool take_copy = false) -> Adw::ExpanderRow*;
+  wrap (AdwExpanderRow* object, bool take_copy = false) -> adw::ExpanderRow*;
 }
 
 #endif

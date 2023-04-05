@@ -18,7 +18,7 @@ extern "C"
 }
   #endif
 
-namespace Gtk
+namespace gtk
 {
 
   class LIBMM_GTK_SYMEXPORT TreeRowReference
@@ -70,7 +70,7 @@ namespace Gtk
 
   private:
   public:
-    TreeRowReference (const Glib::RefPtr<TreeModel>& model,
+    TreeRowReference (const glib::RefPtr<TreeModel>& model,
                       const TreeModel::Path& path);
 
     explicit operator bool () const;
@@ -79,18 +79,18 @@ namespace Gtk
     get_path () const -> TreeModel::Path;
 
     auto
-    get_model () -> Glib::RefPtr<TreeModel>;
+    get_model () -> glib::RefPtr<TreeModel>;
 
     auto
-    get_model () const -> Glib::RefPtr<const TreeModel>;
+    get_model () const -> glib::RefPtr<const TreeModel>;
 
     auto
     is_valid () const -> bool;
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Gtk
+namespace gtk
 {
 
   inline auto
@@ -99,22 +99,22 @@ namespace Gtk
     lhs.swap (rhs);
   }
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkTreeRowReference* object, bool take_copy = false) -> Gtk::TreeRowReference;
+  wrap (GtkTreeRowReference* object, bool take_copy = false) -> gtk::TreeRowReference;
 
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
   template <>
-  class LIBMM_GTK_SYMEXPORT Value<Gtk::TreeRowReference>
-    : public Glib::Value_Boxed<Gtk::TreeRowReference>
+  class LIBMM_GTK_SYMEXPORT Value<gtk::TreeRowReference>
+    : public glib::Value_Boxed<gtk::TreeRowReference>
   {
   };
   #endif
 
-} // namespace Glib
+} // namespace glib
 
 #endif
 

@@ -13,9 +13,9 @@ namespace
   class SlotWithData
   {
   public:
-    SlotWithData (const Gio::MemoryInputStream::SlotDestroyData& slot,
+    SlotWithData (const gio::MemoryInputStream::SlotDestroyData& slot,
                   void* data)
-      : m_slot (new Gio::MemoryInputStream::SlotDestroyData (slot)),
+      : m_slot (new gio::MemoryInputStream::SlotDestroyData (slot)),
         m_data (data)
     {
     }
@@ -36,7 +36,7 @@ namespace
     }
 
   private:
-    Gio::MemoryInputStream::SlotDestroyData* m_slot;
+    gio::MemoryInputStream::SlotDestroyData* m_slot;
     void* m_data;
   };
 
@@ -52,7 +52,7 @@ namespace
     }
     catch (...)
     {
-      Glib::exception_handlers_invoke ();
+      glib::exception_handlers_invoke ();
     }
 
     delete slot_with_data;
@@ -60,7 +60,7 @@ namespace
 
 } // namespace
 
-namespace Gio
+namespace gio
 {
 
   auto
@@ -78,26 +78,26 @@ namespace Gio
     g_bytes_unref (bytes);
   }
 
-} // namespace Gio
+} // namespace gio
 
 namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GMemoryInputStream* object, const bool take_copy) -> RefPtr<Gio::MemoryInputStream>
+  wrap (GMemoryInputStream* object, const bool take_copy) -> RefPtr<gio::MemoryInputStream>
   {
-    return Glib::make_refptr_for_instance<Gio::MemoryInputStream> (
-        dynamic_cast<Gio::MemoryInputStream*> (
+    return glib::make_refptr_for_instance<gio::MemoryInputStream> (
+        dynamic_cast<gio::MemoryInputStream*> (
             wrap_auto ((GObject*) object, take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gio
+namespace gio
 {
 
   auto
@@ -124,7 +124,7 @@ namespace Gio
   }
 
   auto
-  MemoryInputStream_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  MemoryInputStream_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new MemoryInputStream ((GMemoryInputStream*) object);
   }
@@ -137,7 +137,7 @@ namespace Gio
   }
 
   MemoryInputStream::MemoryInputStream (
-      const Glib::ConstructParams& construct_params)
+      const glib::ConstructParams& construct_params)
     : InputStream (construct_params)
   {
   }
@@ -181,14 +181,14 @@ namespace Gio
 
   MemoryInputStream::MemoryInputStream ()
     : ObjectBase (nullptr),
-      InputStream (Glib::ConstructParams (memoryinputstream_class_.init ()))
+      InputStream (glib::ConstructParams (memoryinputstream_class_.init ()))
   {
   }
 
   auto
-  MemoryInputStream::create () -> Glib::RefPtr<MemoryInputStream>
+  MemoryInputStream::create () -> glib::RefPtr<MemoryInputStream>
   {
-    return Glib::make_refptr_for_instance<MemoryInputStream> (
+    return glib::make_refptr_for_instance<MemoryInputStream> (
         new MemoryInputStream ());
   }
 
@@ -201,11 +201,11 @@ namespace Gio
   }
 
   auto
-  MemoryInputStream::add_bytes (const Glib::RefPtr<const Glib::Bytes>& bytes) -> void
+  MemoryInputStream::add_bytes (const glib::RefPtr<const glib::Bytes>& bytes) -> void
   {
     g_memory_input_stream_add_bytes (
         gobj (),
-        const_cast<GBytes*> (Glib::unwrap<Glib::Bytes> (bytes)));
+        const_cast<GBytes*> (glib::unwrap<glib::Bytes> (bytes)));
   }
 
-} // namespace Gio
+} // namespace gio

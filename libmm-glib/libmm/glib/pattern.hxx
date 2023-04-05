@@ -10,13 +10,13 @@ extern "C"
 
 #include <libmm/glib/ustring.hxx>
 
-namespace Glib
+namespace glib
 {
 
   class LIBMM_GLIB_SYMEXPORT PatternSpec
   {
   public:
-    explicit PatternSpec (const Glib::ustring& pattern);
+    explicit PatternSpec (const glib::ustring& pattern);
     explicit PatternSpec (GPatternSpec* gobject);
     ~PatternSpec () noexcept;
 
@@ -25,9 +25,9 @@ namespace Glib
     operator= (const PatternSpec&) -> PatternSpec& = delete;
 
     auto
-    match (const Glib::ustring& str) const -> bool;
+    match (const glib::ustring& str) const -> bool;
     auto
-    match (const Glib::ustring& str, const Glib::ustring& str_reversed) const
+    match (const glib::ustring& str, const glib::ustring& str_reversed) const
         -> bool;
 
     auto
@@ -51,6 +51,6 @@ namespace Glib
     GPatternSpec* gobject_;
   };
 
-} // namespace Glib
+} // namespace glib
 
 #endif

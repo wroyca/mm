@@ -12,41 +12,41 @@
 
   #include <gtk/gtk.h>
 
-namespace Gtk
+namespace gtk
 {
 
-  ColorChooserDialog::ColorChooserDialog (const Glib::ustring& title)
-    : Glib::ObjectBase (nullptr),
-      Gtk::Dialog (Glib::ConstructParams (colorchooserdialog_class_.init (),
+  ColorChooserDialog::ColorChooserDialog (const glib::ustring& title)
+    : glib::ObjectBase (nullptr),
+      gtk::Dialog (glib::ConstructParams (colorchooserdialog_class_.init (),
                                           "title",
                                           title.c_str (),
                                           nullptr))
   {
   }
 
-} // namespace Gtk
+} // namespace gtk
 
 namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GtkColorChooserDialog* object, bool take_copy) -> Gtk::ColorChooserDialog*
+  wrap (GtkColorChooserDialog* object, bool take_copy) -> gtk::ColorChooserDialog*
   {
-    return dynamic_cast<Gtk::ColorChooserDialog*> (
-        Glib::wrap_auto ((GObject*) (object), take_copy));
+    return dynamic_cast<gtk::ColorChooserDialog*> (
+        glib::wrap_auto ((GObject*) (object), take_copy));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gtk
+namespace gtk
 {
 
   auto
-  ColorChooserDialog_Class::init () -> const Glib::Class&
+  ColorChooserDialog_Class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -67,31 +67,31 @@ namespace Gtk
   }
 
   auto
-  ColorChooserDialog_Class::wrap_new (GObject* o) -> Glib::ObjectBase*
+  ColorChooserDialog_Class::wrap_new (GObject* o) -> glib::ObjectBase*
   {
     return new ColorChooserDialog ((GtkColorChooserDialog*) (o));
   }
 
   ColorChooserDialog::ColorChooserDialog (
-      const Glib::ConstructParams& construct_params)
-    : Gtk::Dialog (construct_params)
+      const glib::ConstructParams& construct_params)
+    : gtk::Dialog (construct_params)
   {
   }
 
   ColorChooserDialog::ColorChooserDialog (GtkColorChooserDialog* castitem)
-    : Gtk::Dialog ((GtkDialog*) (castitem))
+    : gtk::Dialog ((GtkDialog*) (castitem))
   {
   }
 
   ColorChooserDialog::ColorChooserDialog (ColorChooserDialog&& src) noexcept
-    : Gtk::Dialog (std::move (src))
+    : gtk::Dialog (std::move (src))
   {
   }
 
   auto
   ColorChooserDialog::operator= (ColorChooserDialog&& src) noexcept -> ColorChooserDialog&
   {
-    Gtk::Dialog::operator= (std::move (src));
+    gtk::Dialog::operator= (std::move (src));
     return *this;
   }
 
@@ -116,15 +116,15 @@ namespace Gtk
   }
 
   ColorChooserDialog::ColorChooserDialog ()
-    : Glib::ObjectBase (nullptr),
-      Gtk::Dialog (Glib::ConstructParams (colorchooserdialog_class_.init ()))
+    : glib::ObjectBase (nullptr),
+      gtk::Dialog (glib::ConstructParams (colorchooserdialog_class_.init ()))
   {
   }
 
-  ColorChooserDialog::ColorChooserDialog (const Glib::ustring& title,
+  ColorChooserDialog::ColorChooserDialog (const glib::ustring& title,
                                           Window& transient_for)
-    : Glib::ObjectBase (nullptr),
-      Gtk::Dialog (Glib::ConstructParams (colorchooserdialog_class_.init (),
+    : glib::ObjectBase (nullptr),
+      gtk::Dialog (glib::ConstructParams (colorchooserdialog_class_.init (),
                                           "title",
                                           title.c_str (),
                                           "transient_for",
@@ -134,17 +134,17 @@ namespace Gtk
   }
 
   auto
-  ColorChooserDialog::property_show_editor () -> Glib::PropertyProxy<bool>
+  ColorChooserDialog::property_show_editor () -> glib::PropertyProxy<bool>
   {
-    return Glib::PropertyProxy<bool> (this, "show-editor");
+    return glib::PropertyProxy<bool> (this, "show-editor");
   }
 
   auto
-  ColorChooserDialog::property_show_editor () const -> Glib::PropertyProxy_ReadOnly<bool>
+  ColorChooserDialog::property_show_editor () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "show-editor");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "show-editor");
   }
 
-} // namespace Gtk
+} // namespace gtk
 
 #endif

@@ -7,7 +7,7 @@
 
 #include <libmm/gtk/mm-gtk.hxx>
 
-namespace Adw
+namespace adw
 {
 
 }
@@ -16,23 +16,23 @@ namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (AdwCarouselIndicatorDots* object, bool take_copy) -> Adw::CarouselIndicatorDots*
+  wrap (AdwCarouselIndicatorDots* object, bool take_copy) -> adw::CarouselIndicatorDots*
   {
-    return dynamic_cast<Adw::CarouselIndicatorDots*> (
-        Glib::wrap_auto ((GObject*) (object), take_copy));
+    return dynamic_cast<adw::CarouselIndicatorDots*> (
+        glib::wrap_auto ((GObject*) (object), take_copy));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Adw
+namespace adw
 {
 
   auto
-  CarouselIndicatorDots_Class::init () -> const Glib::Class&
+  CarouselIndicatorDots_Class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -43,35 +43,35 @@ namespace Adw
   }
 
   auto
-  CarouselIndicatorDots_Class::wrap_new (GObject* o) -> Glib::ObjectBase*
+  CarouselIndicatorDots_Class::wrap_new (GObject* o) -> glib::ObjectBase*
   {
     return manage (new CarouselIndicatorDots ((AdwCarouselIndicatorDots*) (o)));
   }
 
   CarouselIndicatorDots::CarouselIndicatorDots (
-      const Glib::ConstructParams& construct_params)
-    : Gtk::Widget (construct_params)
+      const glib::ConstructParams& construct_params)
+    : gtk::Widget (construct_params)
   {
   }
 
   CarouselIndicatorDots::CarouselIndicatorDots (
       AdwCarouselIndicatorDots* castitem)
-    : Gtk::Widget ((GtkWidget*) (castitem))
+    : gtk::Widget ((GtkWidget*) (castitem))
   {
   }
 
   CarouselIndicatorDots::CarouselIndicatorDots (
       CarouselIndicatorDots&& src) noexcept
-    : Gtk::Widget (std::move (src)),
-      Gtk::Orientable (std::move (src))
+    : gtk::Widget (std::move (src)),
+      gtk::Orientable (std::move (src))
   {
   }
 
   auto
   CarouselIndicatorDots::operator= (CarouselIndicatorDots&& src) noexcept -> CarouselIndicatorDots&
   {
-    Gtk::Widget::operator= (std::move (src));
-    Gtk::Orientable::operator= (std::move (src));
+    gtk::Widget::operator= (std::move (src));
+    gtk::Orientable::operator= (std::move (src));
     return *this;
   }
 
@@ -96,41 +96,41 @@ namespace Adw
   }
 
   CarouselIndicatorDots::CarouselIndicatorDots ()
-    : Glib::ObjectBase (nullptr),
-      Gtk::Widget (Glib::ConstructParams (carouselindicatordots_class_.init ()))
+    : glib::ObjectBase (nullptr),
+      gtk::Widget (glib::ConstructParams (carouselindicatordots_class_.init ()))
   {
   }
 
   auto
-  CarouselIndicatorDots::get_carousel () const -> Adw::Carousel*
+  CarouselIndicatorDots::get_carousel () const -> adw::Carousel*
   {
-    return Glib::wrap (adw_carousel_indicator_dots_get_carousel (
+    return glib::wrap (adw_carousel_indicator_dots_get_carousel (
         const_cast<AdwCarouselIndicatorDots*> (gobj ())));
   }
 
   auto
-  CarouselIndicatorDots::set_carousel (Adw::Carousel* carousel) -> void
+  CarouselIndicatorDots::set_carousel (adw::Carousel* carousel) -> void
   {
     adw_carousel_indicator_dots_set_carousel (
         gobj (),
-        (AdwCarousel*) Glib::unwrap (carousel));
+        (AdwCarousel*) glib::unwrap (carousel));
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<Adw::Carousel*>::value,
-      "Type Adw::Carousel* cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      glib::Traits::ValueCompatibleWithWrapProperty<adw::Carousel*>::value,
+      "Type adw::Carousel* cannot be used in _WRAP_PROPERTY. "
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  CarouselIndicatorDots::property_carousel () -> Glib::PropertyProxy<Adw::Carousel*>
+  CarouselIndicatorDots::property_carousel () -> glib::PropertyProxy<adw::Carousel*>
   {
-    return Glib::PropertyProxy<Adw::Carousel*> (this, "carousel");
+    return glib::PropertyProxy<adw::Carousel*> (this, "carousel");
   }
 
   auto
-  CarouselIndicatorDots::property_carousel () const -> Glib::PropertyProxy_ReadOnly<Adw::Carousel*>
+  CarouselIndicatorDots::property_carousel () const -> glib::PropertyProxy_ReadOnly<adw::Carousel*>
   {
-    return Glib::PropertyProxy_ReadOnly<Adw::Carousel*> (this, "carousel");
+    return glib::PropertyProxy_ReadOnly<adw::Carousel*> (this, "carousel");
   }
 
-} // namespace Adw
+} // namespace adw

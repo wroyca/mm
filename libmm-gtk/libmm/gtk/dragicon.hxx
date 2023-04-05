@@ -17,13 +17,13 @@
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT DragIcon_Class;
 }
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
   class LIBMM_GTK_SYMEXPORT DragIcon : public Widget,
@@ -55,7 +55,7 @@ namespace Gtk
     static CppClassType dragicon_class_;
 
   protected:
-    explicit DragIcon (const Glib::ConstructParams& construct_params);
+    explicit DragIcon (const glib::ConstructParams& construct_params);
     explicit DragIcon (GtkDragIcon* castitem);
 
 #endif
@@ -85,7 +85,7 @@ namespace Gtk
   private:
   public:
     static auto
-    get_for_drag (const Glib::RefPtr<Gdk::Drag>& drag) -> DragIcon*;
+    get_for_drag (const glib::RefPtr<gdk::Drag>& drag) -> DragIcon*;
 
     auto
     set_child (Widget& child) -> void;
@@ -99,31 +99,31 @@ namespace Gtk
     get_child () const -> const Widget*;
 
     static auto
-    set_from_paintable (const Glib::RefPtr<Gdk::Drag>& drag,
-                        const Glib::RefPtr<Gdk::Paintable>& paintable,
+    set_from_paintable (const glib::RefPtr<gdk::Drag>& drag,
+                        const glib::RefPtr<gdk::Paintable>& paintable,
                         int hot_x,
                         int hot_y) -> void;
 
     static auto
-    create_widget_for_value (const Glib::ValueBase& value) -> Widget*;
+    create_widget_for_value (const glib::ValueBase& value) -> Widget*;
 
     auto
-    property_child () -> Glib::PropertyProxy<Widget*>;
+    property_child () -> glib::PropertyProxy<Widget*>;
 
     auto
-    property_child () const -> Glib::PropertyProxy_ReadOnly<Widget*>;
+    property_child () const -> glib::PropertyProxy_ReadOnly<Widget*>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkDragIcon* object, bool take_copy = false) -> Gtk::DragIcon*;
-} // namespace Glib
+  wrap (GtkDragIcon* object, bool take_copy = false) -> gtk::DragIcon*;
+} // namespace glib
 
 #endif

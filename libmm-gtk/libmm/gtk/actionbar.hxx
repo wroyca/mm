@@ -14,13 +14,13 @@ using GtkActionBarClass = struct _GtkActionBarClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT ActionBar_Class;
 }
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
   class LIBMM_GTK_SYMEXPORT ActionBar : public Widget
@@ -50,7 +50,7 @@ namespace Gtk
     static CppClassType actionbar_class_;
 
   protected:
-    explicit ActionBar (const Glib::ConstructParams& construct_params);
+    explicit ActionBar (const glib::ConstructParams& construct_params);
     explicit ActionBar (GtkActionBar* castitem);
 
 #endif
@@ -82,13 +82,13 @@ namespace Gtk
     ActionBar ();
 
     auto
-    pack_start (Gtk::Widget& child) -> void;
+    pack_start (gtk::Widget& child) -> void;
 
     auto
-    pack_end (Gtk::Widget& child) -> void;
+    pack_end (gtk::Widget& child) -> void;
 
     auto
-    remove (Gtk::Widget& child) -> void;
+    remove (gtk::Widget& child) -> void;
 
     auto
     get_center_widget () -> Widget*;
@@ -109,22 +109,22 @@ namespace Gtk
     get_revealed () const -> bool;
 
     auto
-    property_revealed () -> Glib::PropertyProxy<bool>;
+    property_revealed () -> glib::PropertyProxy<bool>;
 
     auto
-    property_revealed () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_revealed () const -> glib::PropertyProxy_ReadOnly<bool>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkActionBar* object, bool take_copy = false) -> Gtk::ActionBar*;
-} // namespace Glib
+  wrap (GtkActionBar* object, bool take_copy = false) -> gtk::ActionBar*;
+} // namespace glib
 
 #endif

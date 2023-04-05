@@ -9,7 +9,7 @@
 #include <string>
 #include <vector>
 
-namespace Glib
+namespace glib
 {
 
   class Environ
@@ -43,6 +43,6 @@ namespace Glib
     std::unique_ptr<char*, decltype (&g_strfreev)> envp;
   };
 
-} // namespace Glib
+} // namespace glib
 
 #endif

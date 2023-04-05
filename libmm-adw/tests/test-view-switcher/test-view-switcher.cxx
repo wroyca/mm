@@ -4,30 +4,30 @@
  * SPDX-License-Identifier: LGPL-2.1-or-later
  */
 
-#include <libmm/adw/init.hxx> // Adw::init
+#include <libmm/adw/init.hxx> // adw::init
 #include <libmm/adw/mm-adw.hxx>
 
 static void
 test_adw_view_switcher_policy (void)
 {
-  Adw::ViewSwitcher view_switcher;
+  adw::ViewSwitcher view_switcher;
 
   g_assert_true (view_switcher.get_policy () ==
-                 Adw::ViewSwitcherPolicy::NARROW);
+                 adw::ViewSwitcherPolicy::NARROW);
 
-  view_switcher.set_policy (Adw::ViewSwitcherPolicy::WIDE);
-  g_assert_true (view_switcher.get_policy () == Adw::ViewSwitcherPolicy::WIDE);
+  view_switcher.set_policy (adw::ViewSwitcherPolicy::WIDE);
+  g_assert_true (view_switcher.get_policy () == adw::ViewSwitcherPolicy::WIDE);
 
-  view_switcher.set_policy (Adw::ViewSwitcherPolicy::NARROW);
+  view_switcher.set_policy (adw::ViewSwitcherPolicy::NARROW);
   g_assert_true (view_switcher.get_policy () ==
-                 Adw::ViewSwitcherPolicy::NARROW);
+                 adw::ViewSwitcherPolicy::NARROW);
 }
 
 static void
 test_adw_view_switcher_stack (void)
 {
-  Adw::ViewSwitcher view_switcher;
-  Adw::ViewStack* view_stack = Gtk::make_managed<Adw::ViewStack> ();
+  adw::ViewSwitcher view_switcher;
+  adw::ViewStack* view_stack = gtk::make_managed<adw::ViewStack> ();
 
   g_assert_true (view_switcher.get_stack () == nullptr);
 
@@ -42,7 +42,7 @@ int
 main (int argc, char* argv[])
 {
   gtk_test_init (&argc, &argv, NULL);
-  Adw::init ();
+  adw::init ();
 
   g_test_add_func ("/Adwaita/ViewSwitcher/policy",
                    test_adw_view_switcher_policy);

@@ -3,7 +3,7 @@
 #include <libmm/cairo/private.hxx>
 #include <libmm/cairo/win32_surface.hxx>
 
-namespace Cairo
+namespace cairo
 {
 
 #ifdef CAIRO_HAS_WIN32_SURFACE
@@ -89,4 +89,4 @@ namespace Cairo
 
 #endif
 
-} // namespace Cairo
+} // namespace cairo

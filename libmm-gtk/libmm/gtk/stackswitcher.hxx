@@ -15,13 +15,13 @@ using GtkStackSwitcherClass = struct _GtkStackSwitcherClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT StackSwitcher_Class;
 }
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
   class LIBMM_GTK_SYMEXPORT StackSwitcher : public Widget
@@ -51,7 +51,7 @@ namespace Gtk
     static CppClassType stackswitcher_class_;
 
   protected:
-    explicit StackSwitcher (const Glib::ConstructParams& construct_params);
+    explicit StackSwitcher (const glib::ConstructParams& construct_params);
     explicit StackSwitcher (GtkStackSwitcher* castitem);
 
 #endif
@@ -95,22 +95,22 @@ namespace Gtk
     get_stack () const -> const Stack*;
 
     auto
-    property_stack () -> Glib::PropertyProxy<Stack*>;
+    property_stack () -> glib::PropertyProxy<Stack*>;
 
     auto
-    property_stack () const -> Glib::PropertyProxy_ReadOnly<Stack*>;
+    property_stack () const -> glib::PropertyProxy_ReadOnly<Stack*>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkStackSwitcher* object, bool take_copy = false) -> Gtk::StackSwitcher*;
-} // namespace Glib
+  wrap (GtkStackSwitcher* object, bool take_copy = false) -> gtk::StackSwitcher*;
+} // namespace glib
 
 #endif

@@ -8,12 +8,12 @@
 #include <gio/gio.h>
 #include <libmm/glib/bytes.hxx>
 
-namespace Gio
+namespace gio
 {
 
   MemoryOutputStream::MemoryOutputStream ()
     : ObjectBase (nullptr),
-      OutputStream (Glib::ConstructParams (memoryoutputstream_class_.init (),
+      OutputStream (glib::ConstructParams (memoryoutputstream_class_.init (),
                                            "data",
                                            nullptr,
                                            "size",
@@ -26,26 +26,26 @@ namespace Gio
   {
   }
 
-} // namespace Gio
+} // namespace gio
 
 namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GMemoryOutputStream* object, const bool take_copy) -> RefPtr<Gio::MemoryOutputStream>
+  wrap (GMemoryOutputStream* object, const bool take_copy) -> RefPtr<gio::MemoryOutputStream>
   {
-    return Glib::make_refptr_for_instance<Gio::MemoryOutputStream> (
-        dynamic_cast<Gio::MemoryOutputStream*> (
+    return glib::make_refptr_for_instance<gio::MemoryOutputStream> (
+        dynamic_cast<gio::MemoryOutputStream*> (
             wrap_auto ((GObject*) object, take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gio
+namespace gio
 {
 
   auto
@@ -73,7 +73,7 @@ namespace Gio
   }
 
   auto
-  MemoryOutputStream_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  MemoryOutputStream_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new MemoryOutputStream ((GMemoryOutputStream*) object);
   }
@@ -86,7 +86,7 @@ namespace Gio
   }
 
   MemoryOutputStream::MemoryOutputStream (
-      const Glib::ConstructParams& construct_params)
+      const glib::ConstructParams& construct_params)
     : OutputStream (construct_params)
   {
   }
@@ -134,7 +134,7 @@ namespace Gio
                                           const GReallocFunc realloc_function,
                                           const GDestroyNotify destroy_function)
     : ObjectBase (nullptr),
-      OutputStream (Glib::ConstructParams (memoryoutputstream_class_.init (),
+      OutputStream (glib::ConstructParams (memoryoutputstream_class_.init (),
                                            "data",
                                            data,
                                            "size",
@@ -148,9 +148,9 @@ namespace Gio
   }
 
   auto
-  MemoryOutputStream::create () -> Glib::RefPtr<MemoryOutputStream>
+  MemoryOutputStream::create () -> glib::RefPtr<MemoryOutputStream>
   {
-    return Glib::make_refptr_for_instance<MemoryOutputStream> (
+    return glib::make_refptr_for_instance<MemoryOutputStream> (
         new MemoryOutputStream ());
   }
 
@@ -158,9 +158,9 @@ namespace Gio
   MemoryOutputStream::create (void* data,
                               const gsize size,
                               const GReallocFunc realloc_function,
-                              const GDestroyNotify destroy_function) -> Glib::RefPtr<MemoryOutputStream>
+                              const GDestroyNotify destroy_function) -> glib::RefPtr<MemoryOutputStream>
   {
-    return Glib::make_refptr_for_instance<MemoryOutputStream> (
+    return glib::make_refptr_for_instance<MemoryOutputStream> (
         new MemoryOutputStream (data,
                                 size,
                                 realloc_function,
@@ -200,42 +200,42 @@ namespace Gio
   }
 
   auto
-  MemoryOutputStream::steal_as_bytes () -> Glib::RefPtr<Glib::Bytes>
+  MemoryOutputStream::steal_as_bytes () -> glib::RefPtr<glib::Bytes>
   {
-    return Glib::wrap (g_memory_output_stream_steal_as_bytes (gobj ()));
+    return glib::wrap (g_memory_output_stream_steal_as_bytes (gobj ()));
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<void*>::value,
+      glib::Traits::ValueCompatibleWithWrapProperty<void*>::value,
       "Type void* cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  MemoryOutputStream::property_data () const -> Glib::PropertyProxy_ReadOnly<void*>
+  MemoryOutputStream::property_data () const -> glib::PropertyProxy_ReadOnly<void*>
   {
     return {this, "data"};
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<gulong>::value,
+      glib::Traits::ValueCompatibleWithWrapProperty<gulong>::value,
       "Type gulong cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  MemoryOutputStream::property_data_size () const -> Glib::PropertyProxy_ReadOnly<gulong>
+  MemoryOutputStream::property_data_size () const -> glib::PropertyProxy_ReadOnly<gulong>
   {
     return {this, "data-size"};
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<gulong>::value,
+      glib::Traits::ValueCompatibleWithWrapProperty<gulong>::value,
       "Type gulong cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  MemoryOutputStream::property_size () const -> Glib::PropertyProxy_ReadOnly<gulong>
+  MemoryOutputStream::property_size () const -> glib::PropertyProxy_ReadOnly<gulong>
   {
     return {this, "size"};
   }
 
-} // namespace Gio
+} // namespace gio

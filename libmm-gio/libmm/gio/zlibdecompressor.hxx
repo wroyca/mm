@@ -16,18 +16,18 @@ using GZlibDecompressorClass = struct _GZlibDecompressorClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gio
+namespace gio
 {
   class LIBMM_GIO_SYMEXPORT ZlibDecompressor_Class;
 }
 #endif
 
-namespace Gio
+namespace gio
 {
 
   class LIBMM_GIO_SYMEXPORT FileInfo;
 
-  class LIBMM_GIO_SYMEXPORT ZlibDecompressor : public Glib::Object,
+  class LIBMM_GIO_SYMEXPORT ZlibDecompressor : public glib::Object,
                                      public Converter
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -47,7 +47,7 @@ namespace Gio
     static CppClassType zlibdecompressor_class_;
 
   protected:
-    explicit ZlibDecompressor (const Glib::ConstructParams& construct_params);
+    explicit ZlibDecompressor (const glib::ConstructParams& construct_params);
     explicit ZlibDecompressor (GZlibDecompressor* castitem);
 
 #endif
@@ -89,35 +89,35 @@ namespace Gio
 
   public:
     static auto
-    create (ZlibCompressorFormat format) -> Glib::RefPtr<ZlibDecompressor>;
+    create (ZlibCompressorFormat format) -> glib::RefPtr<ZlibDecompressor>;
 
     auto
-    get_file_info () -> Glib::RefPtr<FileInfo>;
+    get_file_info () -> glib::RefPtr<FileInfo>;
 
     auto
-    get_file_info () const -> Glib::RefPtr<const FileInfo>;
+    get_file_info () const -> glib::RefPtr<const FileInfo>;
 
     auto
     property_file_info () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<FileInfo>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<FileInfo>>;
 
     auto
     property_format () const
-        -> Glib::PropertyProxy_ReadOnly<ZlibCompressorFormat>;
+        -> glib::PropertyProxy_ReadOnly<ZlibCompressorFormat>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gio
+} // namespace gio
 
-namespace Glib
+namespace glib
 {
 
   LIBMM_GIO_SYMEXPORT
   auto
-  wrap (GZlibDecompressor* object, bool take_copy = false) -> Glib::RefPtr<Gio::ZlibDecompressor>;
-} // namespace Glib
+  wrap (GZlibDecompressor* object, bool take_copy = false) -> glib::RefPtr<gio::ZlibDecompressor>;
+} // namespace glib
 
 #endif

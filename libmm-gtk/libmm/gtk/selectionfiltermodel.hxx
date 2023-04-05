@@ -15,17 +15,17 @@
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT SelectionFilterModel_Class;
 }
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
-  class LIBMM_GTK_SYMEXPORT SelectionFilterModel : public Glib::Object,
-                                         public Gio::ListModel
+  class LIBMM_GTK_SYMEXPORT SelectionFilterModel : public glib::Object,
+                                         public gio::ListModel
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -45,7 +45,7 @@ namespace Gtk
 
   protected:
     explicit SelectionFilterModel (
-        const Glib::ConstructParams& construct_params);
+        const glib::ConstructParams& construct_params);
     explicit SelectionFilterModel (GtkSelectionFilterModel* castitem);
 
 #endif
@@ -83,46 +83,46 @@ namespace Gtk
 
   private:
   protected:
-    explicit SelectionFilterModel (const Glib::RefPtr<SelectionModel>& model);
+    explicit SelectionFilterModel (const glib::RefPtr<SelectionModel>& model);
 
   public:
     static auto
-    create (const Glib::RefPtr<SelectionModel>& model)
-        -> Glib::RefPtr<SelectionFilterModel>;
+    create (const glib::RefPtr<SelectionModel>& model)
+        -> glib::RefPtr<SelectionFilterModel>;
 
     auto
-    set_model (const Glib::RefPtr<SelectionModel>& model) -> void;
+    set_model (const glib::RefPtr<SelectionModel>& model) -> void;
 
     auto
-    get_model () -> Glib::RefPtr<SelectionModel>;
+    get_model () -> glib::RefPtr<SelectionModel>;
 
     auto
-    get_model () const -> Glib::RefPtr<const SelectionModel>;
+    get_model () const -> glib::RefPtr<const SelectionModel>;
 
     auto
-    property_item_type () const -> Glib::PropertyProxy_ReadOnly<GType>;
+    property_item_type () const -> glib::PropertyProxy_ReadOnly<GType>;
 
     auto
-    property_model () -> Glib::PropertyProxy<Glib::RefPtr<SelectionModel>>;
+    property_model () -> glib::PropertyProxy<glib::RefPtr<SelectionModel>>;
 
     auto
     property_model () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<SelectionModel>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<SelectionModel>>;
 
     auto
-    property_n_items () const -> Glib::PropertyProxy_ReadOnly<unsigned int>;
+    property_n_items () const -> glib::PropertyProxy_ReadOnly<unsigned int>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkSelectionFilterModel* object, bool take_copy = false) -> Glib::RefPtr<Gtk::SelectionFilterModel>;
-} // namespace Glib
+  wrap (GtkSelectionFilterModel* object, bool take_copy = false) -> glib::RefPtr<gtk::SelectionFilterModel>;
+} // namespace glib
 
 #endif

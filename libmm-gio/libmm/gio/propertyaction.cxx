@@ -7,15 +7,15 @@
 
 #include <gio/gio.h>
 
-namespace Gio
+namespace gio
 {
 
   PropertyAction::PropertyAction (
-      const Glib::ustring& name,
-      const Glib::PropertyProxy_Base& property_proxy,
+      const glib::ustring& name,
+      const glib::PropertyProxy_Base& property_proxy,
       const bool invert_boolean)
     : ObjectBase (nullptr),
-      Object (Glib::ConstructParams (propertyaction_class_.init (),
+      Object (glib::ConstructParams (propertyaction_class_.init (),
                                      "name",
                                      name.c_str (),
                                      "object",
@@ -28,26 +28,26 @@ namespace Gio
   {
   }
 
-} // namespace Gio
+} // namespace gio
 
 namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GPropertyAction* object, const bool take_copy) -> RefPtr<Gio::PropertyAction>
+  wrap (GPropertyAction* object, const bool take_copy) -> RefPtr<gio::PropertyAction>
   {
-    return Glib::make_refptr_for_instance<Gio::PropertyAction> (
-        dynamic_cast<Gio::PropertyAction*> (
+    return glib::make_refptr_for_instance<gio::PropertyAction> (
+        dynamic_cast<gio::PropertyAction*> (
             wrap_auto ((GObject*) object, take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gio
+namespace gio
 {
 
   auto
@@ -73,7 +73,7 @@ namespace Gio
   }
 
   auto
-  PropertyAction_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  PropertyAction_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new PropertyAction ((GPropertyAction*) object);
   }
@@ -85,7 +85,7 @@ namespace Gio
     return gobj ();
   }
 
-  PropertyAction::PropertyAction (const Glib::ConstructParams& construct_params)
+  PropertyAction::PropertyAction (const glib::ConstructParams& construct_params)
     : Object (construct_params)
   {
   }
@@ -126,63 +126,63 @@ namespace Gio
   }
 
   auto
-  PropertyAction::create (const Glib::ustring& name,
-                          const Glib::PropertyProxy_Base& property_proxy,
-                          const bool invert_boolean) -> Glib::RefPtr<PropertyAction>
+  PropertyAction::create (const glib::ustring& name,
+                          const glib::PropertyProxy_Base& property_proxy,
+                          const bool invert_boolean) -> glib::RefPtr<PropertyAction>
   {
-    return Glib::make_refptr_for_instance<PropertyAction> (
+    return glib::make_refptr_for_instance<PropertyAction> (
         new PropertyAction (name, property_proxy, invert_boolean));
   }
 
   auto
-  PropertyAction::property_name () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>
+  PropertyAction::property_name () const -> glib::PropertyProxy_ReadOnly<glib::ustring>
   {
     return {this, "name"};
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<Glib::VariantType>::value,
-      "Type Glib::VariantType cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      glib::Traits::ValueCompatibleWithWrapProperty<glib::VariantType>::value,
+      "Type glib::VariantType cannot be used in _WRAP_PROPERTY. "
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  PropertyAction::property_parameter_type () const -> Glib::PropertyProxy_ReadOnly<Glib::VariantType>
+  PropertyAction::property_parameter_type () const -> glib::PropertyProxy_ReadOnly<glib::VariantType>
   {
     return {this, "parameter-type"};
   }
 
   auto
-  PropertyAction::property_enabled () const -> Glib::PropertyProxy_ReadOnly<bool>
+  PropertyAction::property_enabled () const -> glib::PropertyProxy_ReadOnly<bool>
   {
     return {this, "enabled"};
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<Glib::VariantType>::value,
-      "Type Glib::VariantType cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      glib::Traits::ValueCompatibleWithWrapProperty<glib::VariantType>::value,
+      "Type glib::VariantType cannot be used in _WRAP_PROPERTY. "
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  PropertyAction::property_state_type () const -> Glib::PropertyProxy_ReadOnly<Glib::VariantType>
+  PropertyAction::property_state_type () const -> glib::PropertyProxy_ReadOnly<glib::VariantType>
   {
     return {this, "state-type"};
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<Glib::VariantBase>::value,
-      "Type Glib::VariantBase cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      glib::Traits::ValueCompatibleWithWrapProperty<glib::VariantBase>::value,
+      "Type glib::VariantBase cannot be used in _WRAP_PROPERTY. "
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  PropertyAction::property_state () const -> Glib::PropertyProxy_ReadOnly<Glib::VariantBase>
+  PropertyAction::property_state () const -> glib::PropertyProxy_ReadOnly<glib::VariantBase>
   {
     return {this, "state"};
   }
 
   auto
-  PropertyAction::property_invert_boolean () const -> Glib::PropertyProxy_ReadOnly<bool>
+  PropertyAction::property_invert_boolean () const -> glib::PropertyProxy_ReadOnly<bool>
   {
     return {this, "invert-boolean"};
   }
 
-} // namespace Gio
+} // namespace gio

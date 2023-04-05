@@ -10,7 +10,7 @@
   #include <libmm/cairo/fontface.hxx>
   #include <libmm/cairo/scaledfont.hxx>
 
-namespace Cairo
+namespace cairo
 {
 
   class LIBMM_CAIRO_SYMEXPORT Win32FontFace : public FontFace
@@ -63,7 +63,7 @@ namespace Cairo
                      const FontOptions& options = FontOptions ());
   };
 
-} // namespace Cairo
+} // namespace cairo
 
 #endif
 

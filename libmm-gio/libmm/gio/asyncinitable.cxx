@@ -11,19 +11,19 @@
 #include <libmm/glib/error.hxx>
 #include <libmm/glib/exceptionhandler.hxx>
 
-namespace Gio
+namespace gio
 {
 
   auto
   AsyncInitable::init_async (const SlotAsyncReady& slot,
-                             const Glib::RefPtr<Cancellable>& cancellable,
+                             const glib::RefPtr<Cancellable>& cancellable,
                              const int io_priority) -> void
   {
     const auto slot_copy = new SlotAsyncReady (slot);
 
     g_async_initable_init_async (gobj (),
                                  io_priority,
-                                 Glib::unwrap (cancellable),
+                                 glib::unwrap (cancellable),
                                  &SignalProxy_async_callback,
                                  slot_copy);
   }
@@ -49,7 +49,7 @@ namespace Gio
       const gpointer user_data) -> void
   {
     const auto obj_base =
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self);
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self);
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -62,13 +62,13 @@ namespace Gio
               static_cast<SlotAsyncReady*> (user_data);
 
           obj->init_async_vfunc (*the_slot,
-                                 Glib::wrap (cancellable, true),
+                                 glib::wrap (cancellable, true),
                                  io_priority);
           return;
         }
         catch (...)
         {
-          Glib::exception_handlers_invoke ();
+          glib::exception_handlers_invoke ();
         }
       }
     }
@@ -85,7 +85,7 @@ namespace Gio
 
   auto
   AsyncInitable::init_async_vfunc (const SlotAsyncReady& slot,
-                                   const Glib::RefPtr<Cancellable>& cancellable,
+                                   const glib::RefPtr<Cancellable>& cancellable,
                                    const int io_priority) -> void
   {
     const auto base =
@@ -98,7 +98,7 @@ namespace Gio
     {
       (*base->init_async) (gobj (),
                            io_priority,
-                           Glib::unwrap (cancellable),
+                           glib::unwrap (cancellable),
                            &SignalProxy_async_callback,
                            const_cast<SlotAsyncReady*> (&slot));
     }
@@ -110,7 +110,7 @@ namespace Gio
                                                    GError** error) -> gboolean
   {
     const auto obj_base =
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self);
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self);
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -119,11 +119,11 @@ namespace Gio
       {
         try
         {
-          return obj->init_finish_vfunc (Glib::wrap (res, true));
+          return obj->init_finish_vfunc (glib::wrap (res, true));
         }
         catch (...)
         {
-          Glib::exception_handlers_invoke ();
+          glib::exception_handlers_invoke ();
         }
       }
     }
@@ -142,7 +142,7 @@ namespace Gio
   }
 
   auto
-  AsyncInitable::init_finish_vfunc (const Glib::RefPtr<AsyncResult>& res) -> bool
+  AsyncInitable::init_finish_vfunc (const glib::RefPtr<AsyncResult>& res) -> bool
   {
     const auto base =
         static_cast<BaseClassType*> (g_type_interface_peek_parent (
@@ -155,10 +155,10 @@ namespace Gio
       GError* gerror = nullptr;
 
       const bool result =
-          (*base->init_finish) (gobj (), Glib::unwrap (res), &gerror);
+          (*base->init_finish) (gobj (), glib::unwrap (res), &gerror);
 
       if (gerror)
-        Glib::Error::throw_exception (gerror);
+        glib::Error::throw_exception (gerror);
 
       return result;
     }
@@ -167,26 +167,26 @@ namespace Gio
     return RType ();
   }
 
-} // namespace Gio
+} // namespace gio
 
 namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GAsyncInitable* object, const bool take_copy) -> RefPtr<Gio::AsyncInitable>
+  wrap (GAsyncInitable* object, const bool take_copy) -> RefPtr<gio::AsyncInitable>
   {
-    return Glib::make_refptr_for_instance<Gio::AsyncInitable> (
-        Glib::wrap_auto_interface<Gio::AsyncInitable> ((GObject*) object,
+    return glib::make_refptr_for_instance<gio::AsyncInitable> (
+        glib::wrap_auto_interface<gio::AsyncInitable> ((GObject*) object,
                                                        take_copy));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gio
+namespace gio
 {
 
   auto
@@ -214,7 +214,7 @@ namespace Gio
   }
 
   auto
-  AsyncInitable_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  AsyncInitable_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new AsyncInitable ((GAsyncInitable*) object);
   }
@@ -229,7 +229,7 @@ namespace Gio
   {
   }
 
-  AsyncInitable::AsyncInitable (const Glib::Interface_Class& interface_class)
+  AsyncInitable::AsyncInitable (const glib::Interface_Class& interface_class)
     : Interface (interface_class)
   {
   }
@@ -269,25 +269,25 @@ namespace Gio
   }
 
   auto
-  AsyncInitable::init_finish (const Glib::RefPtr<AsyncResult>& res) -> bool
+  AsyncInitable::init_finish (const glib::RefPtr<AsyncResult>& res) -> bool
   {
     GError* gerror = nullptr;
     const auto retvalue =
-        g_async_initable_init_finish (gobj (), Glib::unwrap (res), &gerror);
+        g_async_initable_init_finish (gobj (), glib::unwrap (res), &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
   auto
-  AsyncInitable::create_finish (const Glib::RefPtr<AsyncResult>& res) -> Glib::RefPtr<Glib::Object>
+  AsyncInitable::create_finish (const glib::RefPtr<AsyncResult>& res) -> glib::RefPtr<glib::Object>
   {
     GError* gerror = nullptr;
-    auto retvalue = Glib::wrap (
-        g_async_initable_new_finish (gobj (), Glib::unwrap (res), &gerror));
+    auto retvalue = glib::wrap (
+        g_async_initable_new_finish (gobj (), glib::unwrap (res), &gerror));
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
-} // namespace Gio
+} // namespace gio

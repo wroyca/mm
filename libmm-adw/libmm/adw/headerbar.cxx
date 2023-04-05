@@ -7,7 +7,7 @@
 
 #include <libmm/gtk/mm-gtk.hxx>
 
-namespace Adw
+namespace adw
 {
 
 }
@@ -17,28 +17,28 @@ namespace
 }
 
 auto
-Glib::Value<Adw::CenteringPolicy>::value_type () -> GType
+glib::Value<adw::CenteringPolicy>::value_type () -> GType
 {
   return adw_centering_policy_get_type ();
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (AdwHeaderBar* object, bool take_copy) -> Adw::HeaderBar*
+  wrap (AdwHeaderBar* object, bool take_copy) -> adw::HeaderBar*
   {
-    return dynamic_cast<Adw::HeaderBar*> (
-        Glib::wrap_auto ((GObject*) (object), take_copy));
+    return dynamic_cast<adw::HeaderBar*> (
+        glib::wrap_auto ((GObject*) (object), take_copy));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Adw
+namespace adw
 {
 
   auto
-  HeaderBar_Class::init () -> const Glib::Class&
+  HeaderBar_Class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -49,30 +49,30 @@ namespace Adw
   }
 
   auto
-  HeaderBar_Class::wrap_new (GObject* o) -> Glib::ObjectBase*
+  HeaderBar_Class::wrap_new (GObject* o) -> glib::ObjectBase*
   {
     return manage (new HeaderBar ((AdwHeaderBar*) (o)));
   }
 
-  HeaderBar::HeaderBar (const Glib::ConstructParams& construct_params)
-    : Gtk::Widget (construct_params)
+  HeaderBar::HeaderBar (const glib::ConstructParams& construct_params)
+    : gtk::Widget (construct_params)
   {
   }
 
   HeaderBar::HeaderBar (AdwHeaderBar* castitem)
-    : Gtk::Widget ((GtkWidget*) (castitem))
+    : gtk::Widget ((GtkWidget*) (castitem))
   {
   }
 
   HeaderBar::HeaderBar (HeaderBar&& src) noexcept
-    : Gtk::Widget (std::move (src))
+    : gtk::Widget (std::move (src))
   {
   }
 
   auto
   HeaderBar::operator= (HeaderBar&& src) noexcept -> HeaderBar&
   {
-    Gtk::Widget::operator= (std::move (src));
+    gtk::Widget::operator= (std::move (src));
     return *this;
   }
 
@@ -96,8 +96,8 @@ namespace Adw
   }
 
   HeaderBar::HeaderBar ()
-    : Glib::ObjectBase (nullptr),
-      Gtk::Widget (Glib::ConstructParams (headerbar_class_.init ()))
+    : glib::ObjectBase (nullptr),
+      gtk::Widget (glib::ConstructParams (headerbar_class_.init ()))
   {
   }
 
@@ -109,9 +109,9 @@ namespace Adw
   }
 
   auto
-  HeaderBar::get_decoration_layout () const -> Glib::ustring
+  HeaderBar::get_decoration_layout () const -> glib::ustring
   {
-    return Glib::convert_const_gchar_ptr_to_ustring (
+    return glib::convert_const_gchar_ptr_to_ustring (
         adw_header_bar_get_decoration_layout (
             const_cast<AdwHeaderBar*> (gobj ())));
   }
@@ -131,28 +131,28 @@ namespace Adw
   }
 
   auto
-  HeaderBar::get_title_widget () const -> Gtk::Widget*
+  HeaderBar::get_title_widget () const -> gtk::Widget*
   {
-    return Glib::wrap (
+    return glib::wrap (
         adw_header_bar_get_title_widget (const_cast<AdwHeaderBar*> (gobj ())));
   }
 
   auto
-  HeaderBar::pack_end (Gtk::Widget* child) -> void
+  HeaderBar::pack_end (gtk::Widget* child) -> void
   {
-    adw_header_bar_pack_end (gobj (), (GtkWidget*) Glib::unwrap (child));
+    adw_header_bar_pack_end (gobj (), (GtkWidget*) glib::unwrap (child));
   }
 
   auto
-  HeaderBar::pack_start (Gtk::Widget* child) -> void
+  HeaderBar::pack_start (gtk::Widget* child) -> void
   {
-    adw_header_bar_pack_start (gobj (), (GtkWidget*) Glib::unwrap (child));
+    adw_header_bar_pack_start (gobj (), (GtkWidget*) glib::unwrap (child));
   }
 
   auto
-  HeaderBar::remove (Gtk::Widget* child) -> void
+  HeaderBar::remove (gtk::Widget* child) -> void
   {
-    adw_header_bar_remove (gobj (), (GtkWidget*) Glib::unwrap (child));
+    adw_header_bar_remove (gobj (), (GtkWidget*) glib::unwrap (child));
   }
 
   auto
@@ -164,7 +164,7 @@ namespace Adw
   }
 
   auto
-  HeaderBar::set_decoration_layout (const Glib::ustring& layout) -> void
+  HeaderBar::set_decoration_layout (const glib::ustring& layout) -> void
   {
     adw_header_bar_set_decoration_layout (gobj (), layout.c_str ());
   }
@@ -184,78 +184,78 @@ namespace Adw
   }
 
   auto
-  HeaderBar::set_title_widget (Gtk::Widget* title_widget) -> void
+  HeaderBar::set_title_widget (gtk::Widget* title_widget) -> void
   {
     adw_header_bar_set_title_widget (gobj (),
-                                     (GtkWidget*) Glib::unwrap (title_widget));
+                                     (GtkWidget*) glib::unwrap (title_widget));
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<CenteringPolicy>::value,
+      glib::Traits::ValueCompatibleWithWrapProperty<CenteringPolicy>::value,
       "Type CenteringPolicy cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  HeaderBar::property_centering_policy () -> Glib::PropertyProxy<CenteringPolicy>
+  HeaderBar::property_centering_policy () -> glib::PropertyProxy<CenteringPolicy>
   {
-    return Glib::PropertyProxy<CenteringPolicy> (this, "centering-policy");
+    return glib::PropertyProxy<CenteringPolicy> (this, "centering-policy");
   }
 
   auto
-  HeaderBar::property_centering_policy () const -> Glib::PropertyProxy_ReadOnly<CenteringPolicy>
+  HeaderBar::property_centering_policy () const -> glib::PropertyProxy_ReadOnly<CenteringPolicy>
   {
-    return Glib::PropertyProxy_ReadOnly<CenteringPolicy> (this,
+    return glib::PropertyProxy_ReadOnly<CenteringPolicy> (this,
                                                           "centering-policy");
   }
 
   auto
-  HeaderBar::property_decoration_layout () -> Glib::PropertyProxy<Glib::ustring>
+  HeaderBar::property_decoration_layout () -> glib::PropertyProxy<glib::ustring>
   {
-    return Glib::PropertyProxy<Glib::ustring> (this, "decoration-layout");
+    return glib::PropertyProxy<glib::ustring> (this, "decoration-layout");
   }
 
   auto
-  HeaderBar::property_decoration_layout () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>
+  HeaderBar::property_decoration_layout () const -> glib::PropertyProxy_ReadOnly<glib::ustring>
   {
-    return Glib::PropertyProxy_ReadOnly<Glib::ustring> (this,
+    return glib::PropertyProxy_ReadOnly<glib::ustring> (this,
                                                         "decoration-layout");
   }
 
   auto
-  HeaderBar::property_show_end_title_buttons () -> Glib::PropertyProxy<bool>
+  HeaderBar::property_show_end_title_buttons () -> glib::PropertyProxy<bool>
   {
-    return Glib::PropertyProxy<bool> (this, "show-end-title-buttons");
+    return glib::PropertyProxy<bool> (this, "show-end-title-buttons");
   }
 
   auto
-  HeaderBar::property_show_end_title_buttons () const -> Glib::PropertyProxy_ReadOnly<bool>
+  HeaderBar::property_show_end_title_buttons () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "show-end-title-buttons");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "show-end-title-buttons");
   }
 
   auto
-  HeaderBar::property_show_start_title_buttons () -> Glib::PropertyProxy<bool>
+  HeaderBar::property_show_start_title_buttons () -> glib::PropertyProxy<bool>
   {
-    return Glib::PropertyProxy<bool> (this, "show-start-title-buttons");
+    return glib::PropertyProxy<bool> (this, "show-start-title-buttons");
   }
 
   auto
-  HeaderBar::property_show_start_title_buttons () const -> Glib::PropertyProxy_ReadOnly<bool>
+  HeaderBar::property_show_start_title_buttons () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this,
+    return glib::PropertyProxy_ReadOnly<bool> (this,
                                                "show-start-title-buttons");
   }
 
   auto
-  HeaderBar::property_title_widget () -> Glib::PropertyProxy<Gtk::Widget*>
+  HeaderBar::property_title_widget () -> glib::PropertyProxy<gtk::Widget*>
   {
-    return Glib::PropertyProxy<Gtk::Widget*> (this, "title-widget");
+    return glib::PropertyProxy<gtk::Widget*> (this, "title-widget");
   }
 
   auto
-  HeaderBar::property_title_widget () const -> Glib::PropertyProxy_ReadOnly<Gtk::Widget*>
+  HeaderBar::property_title_widget () const -> glib::PropertyProxy_ReadOnly<gtk::Widget*>
   {
-    return Glib::PropertyProxy_ReadOnly<Gtk::Widget*> (this, "title-widget");
+    return glib::PropertyProxy_ReadOnly<gtk::Widget*> (this, "title-widget");
   }
 
-} // namespace Adw
+} // namespace adw

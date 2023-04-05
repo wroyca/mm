@@ -8,10 +8,10 @@
 #include <string>
 #include <vector>
 
-namespace Glib
+namespace glib
 {
 
-  class ShellError : public Glib::Error
+  class ShellError : public glib::Error
   {
   public:
     enum Code
@@ -22,7 +22,7 @@ namespace Glib
     };
 
     LIBMM_GLIB_SYMEXPORT
-    ShellError (Code error_code, const Glib::ustring& error_message);
+    ShellError (Code error_code, const glib::ustring& error_message);
     LIBMM_GLIB_SYMEXPORT explicit ShellError (GError* gobject);
     LIBMM_GLIB_SYMEXPORT auto
     code () const -> Code;
@@ -50,6 +50,6 @@ namespace Glib
   auto
   shell_unquote (const std::string& quoted_string) -> std::string;
 
-} // namespace Glib
+} // namespace glib
 
 #endif

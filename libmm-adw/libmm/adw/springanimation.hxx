@@ -20,13 +20,13 @@ using AdwSpringAnimationClass = struct _AdwSpringAnimationClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Adw
+namespace adw
 {
   class LIBMM_ADW_SYMEXPORT SpringAnimation_Class;
 }
 #endif
 
-namespace Adw
+namespace adw
 {
 
   class LIBMM_ADW_SYMEXPORT SpringAnimation : public Animation
@@ -48,7 +48,7 @@ namespace Adw
     static CppClassType springanimation_class_;
 
   protected:
-    explicit SpringAnimation (const Glib::ConstructParams& construct_params);
+    explicit SpringAnimation (const glib::ConstructParams& construct_params);
     explicit SpringAnimation (AdwSpringAnimation* castitem);
 
 #endif
@@ -85,23 +85,23 @@ namespace Adw
     gobj_copy () -> AdwSpringAnimation*;
 
   private:
-    explicit SpringAnimation (Gtk::Widget* widget,
+    explicit SpringAnimation (gtk::Widget* widget,
                               double value_from,
                               double value_to,
-                              const Glib::RefPtr<SpringParams>& spring_params,
-                              const Glib::RefPtr<AnimationTarget>& target);
+                              const glib::RefPtr<SpringParams>& spring_params,
+                              const glib::RefPtr<AnimationTarget>& target);
 
   protected:
     SpringAnimation ();
 
   public:
     static auto
-    create (Gtk::Widget* widget,
+    create (gtk::Widget* widget,
             double value_from,
             double value_to,
-            const Glib::RefPtr<SpringParams>& spring_params,
-            const Glib::RefPtr<AnimationTarget>& target)
-        -> Glib::RefPtr<SpringAnimation>;
+            const glib::RefPtr<SpringParams>& spring_params,
+            const glib::RefPtr<AnimationTarget>& target)
+        -> glib::RefPtr<SpringAnimation>;
 
     auto
     get_clamp () const -> bool;
@@ -116,7 +116,7 @@ namespace Adw
     get_initial_velocity () const -> double;
 
     auto
-    get_spring_params () const -> Glib::RefPtr<SpringParams>;
+    get_spring_params () const -> glib::RefPtr<SpringParams>;
 
     auto
     get_value_from () const -> double;
@@ -137,7 +137,7 @@ namespace Adw
     set_initial_velocity (double velocity) -> void;
 
     auto
-    set_spring_params (const Glib::RefPtr<SpringParams>& spring_params) -> void;
+    set_spring_params (const glib::RefPtr<SpringParams>& spring_params) -> void;
 
     auto
     set_value_from (double epsilon) -> void;
@@ -146,61 +146,61 @@ namespace Adw
     set_value_to (double epsilon) -> void;
 
     auto
-    property_clamp () -> Glib::PropertyProxy<bool>;
+    property_clamp () -> glib::PropertyProxy<bool>;
 
     auto
-    property_clamp () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_clamp () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_epsilon () -> Glib::PropertyProxy<double>;
+    property_epsilon () -> glib::PropertyProxy<double>;
 
     auto
-    property_epsilon () const -> Glib::PropertyProxy_ReadOnly<double>;
+    property_epsilon () const -> glib::PropertyProxy_ReadOnly<double>;
 
     auto
-    property_estimated_duration () const -> Glib::PropertyProxy_ReadOnly<guint>;
+    property_estimated_duration () const -> glib::PropertyProxy_ReadOnly<guint>;
 
     auto
-    property_initial_velocity () -> Glib::PropertyProxy<double>;
+    property_initial_velocity () -> glib::PropertyProxy<double>;
 
     auto
-    property_initial_velocity () const -> Glib::PropertyProxy_ReadOnly<double>;
+    property_initial_velocity () const -> glib::PropertyProxy_ReadOnly<double>;
 
     auto
     property_spring_params ()
-        -> Glib::PropertyProxy<Glib::RefPtr<SpringParams>>;
+        -> glib::PropertyProxy<glib::RefPtr<SpringParams>>;
 
     auto
     property_spring_params () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<SpringParams>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<SpringParams>>;
 
     auto
-    property_value_from () -> Glib::PropertyProxy<double>;
+    property_value_from () -> glib::PropertyProxy<double>;
 
     auto
-    property_value_from () const -> Glib::PropertyProxy_ReadOnly<double>;
+    property_value_from () const -> glib::PropertyProxy_ReadOnly<double>;
 
     auto
-    property_value_to () -> Glib::PropertyProxy<double>;
+    property_value_to () -> glib::PropertyProxy<double>;
 
     auto
-    property_value_to () const -> Glib::PropertyProxy_ReadOnly<double>;
+    property_value_to () const -> glib::PropertyProxy_ReadOnly<double>;
 
     auto
-    property_velocity () const -> Glib::PropertyProxy_ReadOnly<double>;
+    property_velocity () const -> glib::PropertyProxy_ReadOnly<double>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Adw
+} // namespace adw
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (AdwSpringAnimation* object, bool take_copy = false) -> Glib::RefPtr<Adw::SpringAnimation>;
+  wrap (AdwSpringAnimation* object, bool take_copy = false) -> glib::RefPtr<adw::SpringAnimation>;
 }
 
 #endif

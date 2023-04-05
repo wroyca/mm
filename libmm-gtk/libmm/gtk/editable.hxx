@@ -23,16 +23,16 @@ using GtkEditableClass = struct _GtkEditableClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT Editable_Class;
 }
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
-  class LIBMM_GTK_SYMEXPORT Editable : public Glib::Interface
+  class LIBMM_GTK_SYMEXPORT Editable : public glib::Interface
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -56,7 +56,7 @@ namespace Gtk
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
-    explicit Editable (const Glib::Interface_Class& interface_class);
+    explicit Editable (const glib::Interface_Class& interface_class);
 
   public:
     explicit Editable (GtkEditable* castitem);
@@ -97,10 +97,10 @@ namespace Gtk
   private:
   public:
     auto
-    get_text () const -> Glib::ustring;
+    get_text () const -> glib::ustring;
 
     auto
-    set_text (const Glib::ustring& text) -> void;
+    set_text (const glib::ustring& text) -> void;
 
     auto
     delete_selection () -> void;
@@ -112,7 +112,7 @@ namespace Gtk
     get_editable () const -> bool;
 
     auto
-    insert_text (const Glib::ustring& new_text,
+    insert_text (const glib::ustring& new_text,
                  int new_text_length,
                  int& position) -> void;
 
@@ -120,7 +120,7 @@ namespace Gtk
     delete_text (int start_pos, int end_pos) -> void;
 
     auto
-    get_chars (int start_pos, int end_pos) const -> Glib::ustring;
+    get_chars (int start_pos, int end_pos) const -> glib::ustring;
 
     auto
     select_region (int start_pos, int end_pos) -> void;
@@ -160,62 +160,62 @@ namespace Gtk
 
     auto
     signal_insert_text ()
-        -> Glib::SignalProxy<void (const Glib::ustring&, int*)>;
+        -> glib::SignalProxy<void (const glib::ustring&, int*)>;
 
     auto
-    signal_delete_text () -> Glib::SignalProxy<void (int, int)>;
+    signal_delete_text () -> glib::SignalProxy<void (int, int)>;
 
     auto
-    signal_changed () -> Glib::SignalProxy<void ()>;
+    signal_changed () -> glib::SignalProxy<void ()>;
 
     auto
-    property_text () -> Glib::PropertyProxy<Glib::ustring>;
+    property_text () -> glib::PropertyProxy<glib::ustring>;
 
     auto
-    property_text () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+    property_text () const -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
     auto
-    property_cursor_position () const -> Glib::PropertyProxy_ReadOnly<int>;
+    property_cursor_position () const -> glib::PropertyProxy_ReadOnly<int>;
 
     auto
-    property_enable_undo () -> Glib::PropertyProxy<bool>;
+    property_enable_undo () -> glib::PropertyProxy<bool>;
 
     auto
-    property_enable_undo () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_enable_undo () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_selection_bound () const -> Glib::PropertyProxy_ReadOnly<int>;
+    property_selection_bound () const -> glib::PropertyProxy_ReadOnly<int>;
 
     auto
-    property_editable () -> Glib::PropertyProxy<bool>;
+    property_editable () -> glib::PropertyProxy<bool>;
 
     auto
-    property_editable () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_editable () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_width_chars () -> Glib::PropertyProxy<int>;
+    property_width_chars () -> glib::PropertyProxy<int>;
 
     auto
-    property_width_chars () const -> Glib::PropertyProxy_ReadOnly<int>;
+    property_width_chars () const -> glib::PropertyProxy_ReadOnly<int>;
 
     auto
-    property_max_width_chars () -> Glib::PropertyProxy<int>;
+    property_max_width_chars () -> glib::PropertyProxy<int>;
 
     auto
-    property_max_width_chars () const -> Glib::PropertyProxy_ReadOnly<int>;
+    property_max_width_chars () const -> glib::PropertyProxy_ReadOnly<int>;
 
     auto
-    property_xalign () -> Glib::PropertyProxy<float>;
+    property_xalign () -> glib::PropertyProxy<float>;
 
     auto
-    property_xalign () const -> Glib::PropertyProxy_ReadOnly<float>;
+    property_xalign () const -> glib::PropertyProxy_ReadOnly<float>;
 
   protected:
     virtual auto
     delete_text_vfunc (int start_pos, int end_pos) -> void;
 
     virtual auto
-    get_text_vfunc () const -> Glib::ustring;
+    get_text_vfunc () const -> glib::ustring;
 
     virtual auto
     select_region_vfunc (int start_pos, int end_pos) -> void;
@@ -227,10 +227,10 @@ namespace Gtk
   public:
   protected:
     virtual auto
-    insert_text_vfunc (const Glib::ustring& text, int& position) -> void;
+    insert_text_vfunc (const glib::ustring& text, int& position) -> void;
 
     virtual auto
-    on_insert_text (const Glib::ustring& text, int* position) -> void;
+    on_insert_text (const glib::ustring& text, int* position) -> void;
 
     virtual auto
     on_delete_text (int start_pos, int end_pos) -> void;
@@ -239,13 +239,13 @@ namespace Gtk
     on_changed () -> void;
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkEditable* object, bool take_copy = false) -> Glib::RefPtr<Gtk::Editable>;
+  wrap (GtkEditable* object, bool take_copy = false) -> glib::RefPtr<gtk::Editable>;
 
-} // namespace Glib
+} // namespace glib
 
 #endif

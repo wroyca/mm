@@ -16,20 +16,20 @@ using GTlsDatabaseClass = struct _GTlsDatabaseClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gio
+namespace gio
 {
   class LIBMM_GIO_SYMEXPORT TlsDatabase_Class;
 }
 #endif
 
-namespace Glib
+namespace glib
 {
 
   class LIBMM_GLIB_SYMEXPORT ByteArray;
 
 }
 
-namespace Gio
+namespace gio
 {
 
   class LIBMM_GIO_SYMEXPORT Cancellable;
@@ -37,7 +37,7 @@ namespace Gio
   class LIBMM_GIO_SYMEXPORT TlsCertificate;
   class LIBMM_GIO_SYMEXPORT TlsInteraction;
 
-  class LIBMM_GIO_SYMEXPORT TlsDatabase : public Glib::Object
+  class LIBMM_GIO_SYMEXPORT TlsDatabase : public glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -56,7 +56,7 @@ namespace Gio
     static CppClassType tlsdatabase_class_;
 
   protected:
-    explicit TlsDatabase (const Glib::ConstructParams& construct_params);
+    explicit TlsDatabase (const glib::ConstructParams& construct_params);
     explicit TlsDatabase (GTlsDatabase* castitem);
 
 #endif
@@ -109,486 +109,486 @@ namespace Gio
     };
 
     auto
-    verify_chain (const Glib::RefPtr<TlsCertificate>& chain,
-                  const Glib::ustring& purpose,
-                  const Glib::RefPtr<const SocketConnectable>& identity,
-                  const Glib::RefPtr<TlsInteraction>& interaction,
-                  const Glib::RefPtr<Cancellable>& cancellable,
+    verify_chain (const glib::RefPtr<TlsCertificate>& chain,
+                  const glib::ustring& purpose,
+                  const glib::RefPtr<const SocketConnectable>& identity,
+                  const glib::RefPtr<TlsInteraction>& interaction,
+                  const glib::RefPtr<Cancellable>& cancellable,
                   VerifyFlags flags = VerifyFlags::NONE) const
         -> TlsCertificateFlags;
 
     auto
-    verify_chain (const Glib::RefPtr<TlsCertificate>& chain,
-                  const Glib::ustring& purpose,
-                  const Glib::RefPtr<const SocketConnectable>& identity,
-                  const Glib::RefPtr<TlsInteraction>& interaction,
+    verify_chain (const glib::RefPtr<TlsCertificate>& chain,
+                  const glib::ustring& purpose,
+                  const glib::RefPtr<const SocketConnectable>& identity,
+                  const glib::RefPtr<TlsInteraction>& interaction,
                   VerifyFlags flags = VerifyFlags::NONE) const
         -> TlsCertificateFlags;
 
     auto
-    verify_chain (const Glib::RefPtr<TlsCertificate>& chain,
-                  const Glib::ustring& purpose,
-                  const Glib::RefPtr<const SocketConnectable>& identity,
-                  const Glib::RefPtr<Cancellable>& cancellable,
+    verify_chain (const glib::RefPtr<TlsCertificate>& chain,
+                  const glib::ustring& purpose,
+                  const glib::RefPtr<const SocketConnectable>& identity,
+                  const glib::RefPtr<Cancellable>& cancellable,
                   VerifyFlags flags = VerifyFlags::NONE) const
         -> TlsCertificateFlags;
 
     auto
-    verify_chain (const Glib::RefPtr<TlsCertificate>& chain,
-                  const Glib::ustring& purpose,
-                  const Glib::RefPtr<const SocketConnectable>& identity,
+    verify_chain (const glib::RefPtr<TlsCertificate>& chain,
+                  const glib::ustring& purpose,
+                  const glib::RefPtr<const SocketConnectable>& identity,
                   VerifyFlags flags = VerifyFlags::NONE) const
         -> TlsCertificateFlags;
 
     auto
-    verify_chain (const Glib::RefPtr<TlsCertificate>& chain,
-                  const Glib::ustring& purpose,
-                  const Glib::RefPtr<TlsInteraction>& interaction,
-                  const Glib::RefPtr<Cancellable>& cancellable,
+    verify_chain (const glib::RefPtr<TlsCertificate>& chain,
+                  const glib::ustring& purpose,
+                  const glib::RefPtr<TlsInteraction>& interaction,
+                  const glib::RefPtr<Cancellable>& cancellable,
                   VerifyFlags flags = VerifyFlags::NONE) const
         -> TlsCertificateFlags;
 
     auto
-    verify_chain (const Glib::RefPtr<TlsCertificate>& chain,
-                  const Glib::ustring& purpose,
-                  const Glib::RefPtr<TlsInteraction>& interaction,
+    verify_chain (const glib::RefPtr<TlsCertificate>& chain,
+                  const glib::ustring& purpose,
+                  const glib::RefPtr<TlsInteraction>& interaction,
                   VerifyFlags flags = VerifyFlags::NONE) const
         -> TlsCertificateFlags;
 
     auto
-    verify_chain (const Glib::RefPtr<TlsCertificate>& chain,
-                  const Glib::ustring& purpose,
-                  const Glib::RefPtr<Cancellable>& cancellable,
+    verify_chain (const glib::RefPtr<TlsCertificate>& chain,
+                  const glib::ustring& purpose,
+                  const glib::RefPtr<Cancellable>& cancellable,
                   VerifyFlags flags = VerifyFlags::NONE) const
         -> TlsCertificateFlags;
 
     auto
-    verify_chain (const Glib::RefPtr<TlsCertificate>& chain,
-                  const Glib::ustring& purpose,
+    verify_chain (const glib::RefPtr<TlsCertificate>& chain,
+                  const glib::ustring& purpose,
                   VerifyFlags flags = VerifyFlags::NONE) const
         -> TlsCertificateFlags;
 
     auto
-    verify_chain_async (const Glib::RefPtr<TlsCertificate>& chain,
-                        const Glib::ustring& purpose,
-                        const Glib::RefPtr<const SocketConnectable>& identity,
-                        const Glib::RefPtr<TlsInteraction>& interaction,
+    verify_chain_async (const glib::RefPtr<TlsCertificate>& chain,
+                        const glib::ustring& purpose,
+                        const glib::RefPtr<const SocketConnectable>& identity,
+                        const glib::RefPtr<TlsInteraction>& interaction,
                         const SlotAsyncReady& slot,
-                        const Glib::RefPtr<Cancellable>& cancellable,
+                        const glib::RefPtr<Cancellable>& cancellable,
                         VerifyFlags flags = VerifyFlags::NONE) const -> void;
 
     auto
-    verify_chain_async (const Glib::RefPtr<TlsCertificate>& chain,
-                        const Glib::ustring& purpose,
-                        const Glib::RefPtr<const SocketConnectable>& identity,
-                        const Glib::RefPtr<TlsInteraction>& interaction,
-                        const SlotAsyncReady& slot,
-                        VerifyFlags flags = VerifyFlags::NONE) const -> void;
-
-    auto
-    verify_chain_async (const Glib::RefPtr<TlsCertificate>& chain,
-                        const Glib::ustring& purpose,
-                        const Glib::RefPtr<const SocketConnectable>& identity,
-                        const SlotAsyncReady& slot,
-                        const Glib::RefPtr<Cancellable>& cancellable,
-                        VerifyFlags flags = VerifyFlags::NONE) const -> void;
-
-    auto
-    verify_chain_async (const Glib::RefPtr<TlsCertificate>& chain,
-                        const Glib::ustring& purpose,
-                        const Glib::RefPtr<const SocketConnectable>& identity,
+    verify_chain_async (const glib::RefPtr<TlsCertificate>& chain,
+                        const glib::ustring& purpose,
+                        const glib::RefPtr<const SocketConnectable>& identity,
+                        const glib::RefPtr<TlsInteraction>& interaction,
                         const SlotAsyncReady& slot,
                         VerifyFlags flags = VerifyFlags::NONE) const -> void;
 
     auto
-    verify_chain_async (const Glib::RefPtr<TlsCertificate>& chain,
-                        const Glib::ustring& purpose,
-                        const Glib::RefPtr<TlsInteraction>& interaction,
+    verify_chain_async (const glib::RefPtr<TlsCertificate>& chain,
+                        const glib::ustring& purpose,
+                        const glib::RefPtr<const SocketConnectable>& identity,
                         const SlotAsyncReady& slot,
-                        const Glib::RefPtr<Cancellable>& cancellable,
+                        const glib::RefPtr<Cancellable>& cancellable,
                         VerifyFlags flags = VerifyFlags::NONE) const -> void;
 
     auto
-    verify_chain_async (const Glib::RefPtr<TlsCertificate>& chain,
-                        const Glib::ustring& purpose,
-                        const Glib::RefPtr<TlsInteraction>& interaction,
-                        const SlotAsyncReady& slot,
-                        VerifyFlags flags = VerifyFlags::NONE) const -> void;
-
-    auto
-    verify_chain_async (const Glib::RefPtr<TlsCertificate>& chain,
-                        const Glib::ustring& purpose,
-                        const SlotAsyncReady& slot,
-                        const Glib::RefPtr<Cancellable>& cancellable,
-                        VerifyFlags flags = VerifyFlags::NONE) const -> void;
-
-    auto
-    verify_chain_async (const Glib::RefPtr<TlsCertificate>& chain,
-                        const Glib::ustring& purpose,
+    verify_chain_async (const glib::RefPtr<TlsCertificate>& chain,
+                        const glib::ustring& purpose,
+                        const glib::RefPtr<const SocketConnectable>& identity,
                         const SlotAsyncReady& slot,
                         VerifyFlags flags = VerifyFlags::NONE) const -> void;
 
     auto
-    verify_chain_finish (const Glib::RefPtr<AsyncResult>& result)
+    verify_chain_async (const glib::RefPtr<TlsCertificate>& chain,
+                        const glib::ustring& purpose,
+                        const glib::RefPtr<TlsInteraction>& interaction,
+                        const SlotAsyncReady& slot,
+                        const glib::RefPtr<Cancellable>& cancellable,
+                        VerifyFlags flags = VerifyFlags::NONE) const -> void;
+
+    auto
+    verify_chain_async (const glib::RefPtr<TlsCertificate>& chain,
+                        const glib::ustring& purpose,
+                        const glib::RefPtr<TlsInteraction>& interaction,
+                        const SlotAsyncReady& slot,
+                        VerifyFlags flags = VerifyFlags::NONE) const -> void;
+
+    auto
+    verify_chain_async (const glib::RefPtr<TlsCertificate>& chain,
+                        const glib::ustring& purpose,
+                        const SlotAsyncReady& slot,
+                        const glib::RefPtr<Cancellable>& cancellable,
+                        VerifyFlags flags = VerifyFlags::NONE) const -> void;
+
+    auto
+    verify_chain_async (const glib::RefPtr<TlsCertificate>& chain,
+                        const glib::ustring& purpose,
+                        const SlotAsyncReady& slot,
+                        VerifyFlags flags = VerifyFlags::NONE) const -> void;
+
+    auto
+    verify_chain_finish (const glib::RefPtr<AsyncResult>& result)
         -> TlsCertificateFlags;
 
     auto
     lookup_certificate_issuer (
-        const Glib::RefPtr<const TlsCertificate>& certificate,
-        const Glib::RefPtr<TlsInteraction>& interaction,
-        const Glib::RefPtr<Cancellable>& cancellable,
-        LookupFlags flags = LookupFlags::NONE) -> Glib::RefPtr<TlsCertificate>;
+        const glib::RefPtr<const TlsCertificate>& certificate,
+        const glib::RefPtr<TlsInteraction>& interaction,
+        const glib::RefPtr<Cancellable>& cancellable,
+        LookupFlags flags = LookupFlags::NONE) -> glib::RefPtr<TlsCertificate>;
 
     auto
     lookup_certificate_issuer (
-        const Glib::RefPtr<const TlsCertificate>& certificate,
-        const Glib::RefPtr<TlsInteraction>& interaction,
-        LookupFlags flags = LookupFlags::NONE) -> Glib::RefPtr<TlsCertificate>;
+        const glib::RefPtr<const TlsCertificate>& certificate,
+        const glib::RefPtr<TlsInteraction>& interaction,
+        LookupFlags flags = LookupFlags::NONE) -> glib::RefPtr<TlsCertificate>;
 
     auto
     lookup_certificate_issuer (
-        const Glib::RefPtr<const TlsCertificate>& certificate,
-        const Glib::RefPtr<Cancellable>& cancellable,
-        LookupFlags flags = LookupFlags::NONE) -> Glib::RefPtr<TlsCertificate>;
+        const glib::RefPtr<const TlsCertificate>& certificate,
+        const glib::RefPtr<Cancellable>& cancellable,
+        LookupFlags flags = LookupFlags::NONE) -> glib::RefPtr<TlsCertificate>;
 
     auto
     lookup_certificate_issuer (
-        const Glib::RefPtr<const TlsCertificate>& certificate,
-        LookupFlags flags = LookupFlags::NONE) -> Glib::RefPtr<TlsCertificate>;
+        const glib::RefPtr<const TlsCertificate>& certificate,
+        LookupFlags flags = LookupFlags::NONE) -> glib::RefPtr<TlsCertificate>;
 
     auto
     lookup_certificate_issuer (
-        const Glib::RefPtr<const TlsCertificate>& certificate,
-        const Glib::RefPtr<TlsInteraction>& interaction,
-        const Glib::RefPtr<Cancellable>& cancellable,
+        const glib::RefPtr<const TlsCertificate>& certificate,
+        const glib::RefPtr<TlsInteraction>& interaction,
+        const glib::RefPtr<Cancellable>& cancellable,
         LookupFlags flags = LookupFlags::NONE) const
-        -> Glib::RefPtr<const TlsCertificate>;
+        -> glib::RefPtr<const TlsCertificate>;
 
     auto
     lookup_certificate_issuer (
-        const Glib::RefPtr<const TlsCertificate>& certificate,
-        const Glib::RefPtr<TlsInteraction>& interaction,
+        const glib::RefPtr<const TlsCertificate>& certificate,
+        const glib::RefPtr<TlsInteraction>& interaction,
         LookupFlags flags = LookupFlags::NONE) const
-        -> Glib::RefPtr<const TlsCertificate>;
+        -> glib::RefPtr<const TlsCertificate>;
 
     auto
     lookup_certificate_issuer (
-        const Glib::RefPtr<const TlsCertificate>& certificate,
-        const Glib::RefPtr<Cancellable>& cancellable,
+        const glib::RefPtr<const TlsCertificate>& certificate,
+        const glib::RefPtr<Cancellable>& cancellable,
         LookupFlags flags = LookupFlags::NONE) const
-        -> Glib::RefPtr<const TlsCertificate>;
+        -> glib::RefPtr<const TlsCertificate>;
 
     auto
     lookup_certificate_issuer (
-        const Glib::RefPtr<const TlsCertificate>& certificate,
+        const glib::RefPtr<const TlsCertificate>& certificate,
         LookupFlags flags = LookupFlags::NONE) const
-        -> Glib::RefPtr<const TlsCertificate>;
+        -> glib::RefPtr<const TlsCertificate>;
 
     auto
     lookup_certificate_issuer_async (
-        const Glib::RefPtr<const TlsCertificate>& certificate,
-        const Glib::RefPtr<TlsInteraction>& interaction,
+        const glib::RefPtr<const TlsCertificate>& certificate,
+        const glib::RefPtr<TlsInteraction>& interaction,
         const SlotAsyncReady& slot,
-        const Glib::RefPtr<Cancellable>& cancellable,
-        LookupFlags flags = LookupFlags::NONE) -> void;
-
-    auto
-    lookup_certificate_issuer_async (
-        const Glib::RefPtr<const TlsCertificate>& certificate,
-        const Glib::RefPtr<TlsInteraction>& interaction,
-        const SlotAsyncReady& slot,
+        const glib::RefPtr<Cancellable>& cancellable,
         LookupFlags flags = LookupFlags::NONE) -> void;
 
     auto
     lookup_certificate_issuer_async (
-        const Glib::RefPtr<const TlsCertificate>& certificate,
+        const glib::RefPtr<const TlsCertificate>& certificate,
+        const glib::RefPtr<TlsInteraction>& interaction,
         const SlotAsyncReady& slot,
-        const Glib::RefPtr<Cancellable>& cancellable,
         LookupFlags flags = LookupFlags::NONE) -> void;
 
     auto
     lookup_certificate_issuer_async (
-        const Glib::RefPtr<const TlsCertificate>& certificate,
+        const glib::RefPtr<const TlsCertificate>& certificate,
+        const SlotAsyncReady& slot,
+        const glib::RefPtr<Cancellable>& cancellable,
+        LookupFlags flags = LookupFlags::NONE) -> void;
+
+    auto
+    lookup_certificate_issuer_async (
+        const glib::RefPtr<const TlsCertificate>& certificate,
         const SlotAsyncReady& slot,
         LookupFlags flags = LookupFlags::NONE) -> void;
 
     auto
-    lookup_certificate_issuer_finish (const Glib::RefPtr<AsyncResult>& result)
-        -> Glib::RefPtr<TlsCertificate>;
+    lookup_certificate_issuer_finish (const glib::RefPtr<AsyncResult>& result)
+        -> glib::RefPtr<TlsCertificate>;
 
     auto
     lookup_certificates_issued_by (
-        const Glib::RefPtr<Glib::ByteArray>& issuer_raw_dn,
-        const Glib::RefPtr<TlsInteraction>& interaction,
-        const Glib::RefPtr<Cancellable>& cancellable,
+        const glib::RefPtr<glib::ByteArray>& issuer_raw_dn,
+        const glib::RefPtr<TlsInteraction>& interaction,
+        const glib::RefPtr<Cancellable>& cancellable,
         LookupFlags flags = LookupFlags::NONE)
-        -> std::vector<Glib::RefPtr<TlsCertificate>>;
+        -> std::vector<glib::RefPtr<TlsCertificate>>;
 
     auto
     lookup_certificates_issued_by (
-        const Glib::RefPtr<Glib::ByteArray>& issuer_raw_dn,
-        const Glib::RefPtr<TlsInteraction>& interaction,
+        const glib::RefPtr<glib::ByteArray>& issuer_raw_dn,
+        const glib::RefPtr<TlsInteraction>& interaction,
         LookupFlags flags = LookupFlags::NONE)
-        -> std::vector<Glib::RefPtr<TlsCertificate>>;
+        -> std::vector<glib::RefPtr<TlsCertificate>>;
 
     auto
     lookup_certificates_issued_by (
-        const Glib::RefPtr<Glib::ByteArray>& issuer_raw_dn,
-        const Glib::RefPtr<Cancellable>& cancellable,
+        const glib::RefPtr<glib::ByteArray>& issuer_raw_dn,
+        const glib::RefPtr<Cancellable>& cancellable,
         LookupFlags flags = LookupFlags::NONE)
-        -> std::vector<Glib::RefPtr<TlsCertificate>>;
+        -> std::vector<glib::RefPtr<TlsCertificate>>;
 
     auto
     lookup_certificates_issued_by (
-        const Glib::RefPtr<Glib::ByteArray>& issuer_raw_dn,
+        const glib::RefPtr<glib::ByteArray>& issuer_raw_dn,
         LookupFlags flags = LookupFlags::NONE)
-        -> std::vector<Glib::RefPtr<TlsCertificate>>;
+        -> std::vector<glib::RefPtr<TlsCertificate>>;
 
     auto
     lookup_certificates_issued_by (
-        const Glib::RefPtr<Glib::ByteArray>& issuer_raw_dn,
-        const Glib::RefPtr<TlsInteraction>& interaction,
-        const Glib::RefPtr<Cancellable>& cancellable,
+        const glib::RefPtr<glib::ByteArray>& issuer_raw_dn,
+        const glib::RefPtr<TlsInteraction>& interaction,
+        const glib::RefPtr<Cancellable>& cancellable,
         LookupFlags flags = LookupFlags::NONE) const
-        -> std::vector<Glib::RefPtr<const TlsCertificate>>;
+        -> std::vector<glib::RefPtr<const TlsCertificate>>;
 
     auto
     lookup_certificates_issued_by (
-        const Glib::RefPtr<Glib::ByteArray>& issuer_raw_dn,
-        const Glib::RefPtr<TlsInteraction>& interaction,
+        const glib::RefPtr<glib::ByteArray>& issuer_raw_dn,
+        const glib::RefPtr<TlsInteraction>& interaction,
         LookupFlags flags = LookupFlags::NONE) const
-        -> std::vector<Glib::RefPtr<const TlsCertificate>>;
+        -> std::vector<glib::RefPtr<const TlsCertificate>>;
 
     auto
     lookup_certificates_issued_by (
-        const Glib::RefPtr<Glib::ByteArray>& issuer_raw_dn,
-        const Glib::RefPtr<Cancellable>& cancellable,
+        const glib::RefPtr<glib::ByteArray>& issuer_raw_dn,
+        const glib::RefPtr<Cancellable>& cancellable,
         LookupFlags flags = LookupFlags::NONE) const
-        -> std::vector<Glib::RefPtr<const TlsCertificate>>;
+        -> std::vector<glib::RefPtr<const TlsCertificate>>;
 
     auto
     lookup_certificates_issued_by (
-        const Glib::RefPtr<Glib::ByteArray>& issuer_raw_dn,
+        const glib::RefPtr<glib::ByteArray>& issuer_raw_dn,
         LookupFlags flags = LookupFlags::NONE) const
-        -> std::vector<Glib::RefPtr<const TlsCertificate>>;
+        -> std::vector<glib::RefPtr<const TlsCertificate>>;
 
     auto
     lookup_certificates_issued_by_async (
-        const Glib::RefPtr<Glib::ByteArray>& issuer_raw_dn,
-        const Glib::RefPtr<TlsInteraction>& interaction,
+        const glib::RefPtr<glib::ByteArray>& issuer_raw_dn,
+        const glib::RefPtr<TlsInteraction>& interaction,
         const SlotAsyncReady& slot,
-        const Glib::RefPtr<Cancellable>& cancellable,
+        const glib::RefPtr<Cancellable>& cancellable,
         LookupFlags flags = LookupFlags::NONE) -> void;
 
     auto
     lookup_certificates_issued_by_async (
-        const Glib::RefPtr<Glib::ByteArray>& issuer_raw_dn,
-        const Glib::RefPtr<TlsInteraction>& interaction,
+        const glib::RefPtr<glib::ByteArray>& issuer_raw_dn,
+        const glib::RefPtr<TlsInteraction>& interaction,
         const SlotAsyncReady& slot,
         LookupFlags flags = LookupFlags::NONE) -> void;
 
     auto
     lookup_certificates_issued_by_async (
-        const Glib::RefPtr<Glib::ByteArray>& issuer_raw_dn,
+        const glib::RefPtr<glib::ByteArray>& issuer_raw_dn,
         const SlotAsyncReady& slot,
-        const Glib::RefPtr<Cancellable>& cancellable,
+        const glib::RefPtr<Cancellable>& cancellable,
         LookupFlags flags = LookupFlags::NONE) -> void;
 
     auto
     lookup_certificates_issued_by_async (
-        const Glib::RefPtr<Glib::ByteArray>& issuer_raw_dn,
+        const glib::RefPtr<glib::ByteArray>& issuer_raw_dn,
         const SlotAsyncReady& slot,
         LookupFlags flags = LookupFlags::NONE) -> void;
 
     auto
     lookup_certificates_issued_by_finish (
-        const Glib::RefPtr<AsyncResult>& result)
-        -> std::vector<Glib::RefPtr<TlsCertificate>>;
+        const glib::RefPtr<AsyncResult>& result)
+        -> std::vector<glib::RefPtr<TlsCertificate>>;
 
     auto
     create_certificate_handle (
-        const Glib::RefPtr<const TlsCertificate>& certificate) const
-        -> Glib::ustring;
+        const glib::RefPtr<const TlsCertificate>& certificate) const
+        -> glib::ustring;
 
     auto
     lookup_certificate_for_handle (
-        const Glib::ustring& handle,
-        const Glib::RefPtr<TlsInteraction>& interaction,
-        const Glib::RefPtr<Cancellable>& cancellable,
-        LookupFlags flags = LookupFlags::NONE) -> Glib::RefPtr<TlsCertificate>;
+        const glib::ustring& handle,
+        const glib::RefPtr<TlsInteraction>& interaction,
+        const glib::RefPtr<Cancellable>& cancellable,
+        LookupFlags flags = LookupFlags::NONE) -> glib::RefPtr<TlsCertificate>;
 
     auto
     lookup_certificate_for_handle (
-        const Glib::ustring& handle,
-        const Glib::RefPtr<TlsInteraction>& interaction,
-        LookupFlags flags = LookupFlags::NONE) -> Glib::RefPtr<TlsCertificate>;
+        const glib::ustring& handle,
+        const glib::RefPtr<TlsInteraction>& interaction,
+        LookupFlags flags = LookupFlags::NONE) -> glib::RefPtr<TlsCertificate>;
 
     auto
-    lookup_certificate_for_handle (const Glib::ustring& handle,
-                                   const Glib::RefPtr<Cancellable>& cancellable,
+    lookup_certificate_for_handle (const glib::ustring& handle,
+                                   const glib::RefPtr<Cancellable>& cancellable,
                                    LookupFlags flags = LookupFlags::NONE)
-        -> Glib::RefPtr<TlsCertificate>;
+        -> glib::RefPtr<TlsCertificate>;
 
     auto
-    lookup_certificate_for_handle (const Glib::ustring& handle,
+    lookup_certificate_for_handle (const glib::ustring& handle,
                                    LookupFlags flags = LookupFlags::NONE)
-        -> Glib::RefPtr<TlsCertificate>;
+        -> glib::RefPtr<TlsCertificate>;
 
     auto
     lookup_certificate_for_handle (
-        const Glib::ustring& handle,
-        const Glib::RefPtr<TlsInteraction>& interaction,
-        const Glib::RefPtr<Cancellable>& cancellable,
+        const glib::ustring& handle,
+        const glib::RefPtr<TlsInteraction>& interaction,
+        const glib::RefPtr<Cancellable>& cancellable,
         LookupFlags flags = LookupFlags::NONE) const
-        -> Glib::RefPtr<const TlsCertificate>;
+        -> glib::RefPtr<const TlsCertificate>;
 
     auto
     lookup_certificate_for_handle (
-        const Glib::ustring& handle,
-        const Glib::RefPtr<TlsInteraction>& interaction,
+        const glib::ustring& handle,
+        const glib::RefPtr<TlsInteraction>& interaction,
         LookupFlags flags = LookupFlags::NONE) const
-        -> Glib::RefPtr<const TlsCertificate>;
+        -> glib::RefPtr<const TlsCertificate>;
 
     auto
-    lookup_certificate_for_handle (const Glib::ustring& handle,
-                                   const Glib::RefPtr<Cancellable>& cancellable,
+    lookup_certificate_for_handle (const glib::ustring& handle,
+                                   const glib::RefPtr<Cancellable>& cancellable,
                                    LookupFlags flags = LookupFlags::NONE) const
-        -> Glib::RefPtr<const TlsCertificate>;
+        -> glib::RefPtr<const TlsCertificate>;
 
     auto
-    lookup_certificate_for_handle (const Glib::ustring& handle,
+    lookup_certificate_for_handle (const glib::ustring& handle,
                                    LookupFlags flags = LookupFlags::NONE) const
-        -> Glib::RefPtr<const TlsCertificate>;
+        -> glib::RefPtr<const TlsCertificate>;
 
     auto
     lookup_certificate_for_handle_async (
-        const Glib::ustring& handle,
-        const Glib::RefPtr<TlsInteraction>& interaction,
+        const glib::ustring& handle,
+        const glib::RefPtr<TlsInteraction>& interaction,
         const SlotAsyncReady& slot,
-        const Glib::RefPtr<Cancellable>& cancellable,
+        const glib::RefPtr<Cancellable>& cancellable,
         LookupFlags flags = LookupFlags::NONE) -> void;
 
     auto
     lookup_certificate_for_handle_async (
-        const Glib::ustring& handle,
-        const Glib::RefPtr<TlsInteraction>& interaction,
+        const glib::ustring& handle,
+        const glib::RefPtr<TlsInteraction>& interaction,
         const SlotAsyncReady& slot,
         LookupFlags flags = LookupFlags::NONE) -> void;
 
     auto
     lookup_certificate_for_handle_async (
-        const Glib::ustring& handle,
+        const glib::ustring& handle,
         const SlotAsyncReady& slot,
-        const Glib::RefPtr<Cancellable>& cancellable,
+        const glib::RefPtr<Cancellable>& cancellable,
         LookupFlags flags = LookupFlags::NONE) -> void;
 
     auto
-    lookup_certificate_for_handle_async (const Glib::ustring& handle,
+    lookup_certificate_for_handle_async (const glib::ustring& handle,
                                          const SlotAsyncReady& slot,
                                          LookupFlags flags = LookupFlags::NONE)
         -> void;
 
     auto
     lookup_certificate_for_handle_finish (
-        const Glib::RefPtr<AsyncResult>& result)
-        -> Glib::RefPtr<TlsCertificate>;
+        const glib::RefPtr<AsyncResult>& result)
+        -> glib::RefPtr<TlsCertificate>;
 
   protected:
     virtual auto
-    verify_chain_vfunc (const Glib::RefPtr<TlsCertificate>& chain,
-                        const Glib::ustring& purpose,
-                        const Glib::RefPtr<const SocketConnectable>& identity,
-                        const Glib::RefPtr<TlsInteraction>& interaction,
-                        const Glib::RefPtr<Cancellable>& cancellable,
+    verify_chain_vfunc (const glib::RefPtr<TlsCertificate>& chain,
+                        const glib::ustring& purpose,
+                        const glib::RefPtr<const SocketConnectable>& identity,
+                        const glib::RefPtr<TlsInteraction>& interaction,
+                        const glib::RefPtr<Cancellable>& cancellable,
                         VerifyFlags flags) const -> TlsCertificateFlags;
 
     virtual auto
     verify_chain_async_vfunc (
-        const Glib::RefPtr<TlsCertificate>& chain,
-        const Glib::ustring& purpose,
-        const Glib::RefPtr<const SocketConnectable>& identity,
-        const Glib::RefPtr<TlsInteraction>& interaction,
+        const glib::RefPtr<TlsCertificate>& chain,
+        const glib::ustring& purpose,
+        const glib::RefPtr<const SocketConnectable>& identity,
+        const glib::RefPtr<TlsInteraction>& interaction,
         const SlotAsyncReady& slot,
-        const Glib::RefPtr<Cancellable>& cancellable,
+        const glib::RefPtr<Cancellable>& cancellable,
         VerifyFlags flags) const -> void;
 
     virtual auto
-    verify_chain_finish_vfunc (const Glib::RefPtr<AsyncResult>& result)
+    verify_chain_finish_vfunc (const glib::RefPtr<AsyncResult>& result)
         -> TlsCertificateFlags;
 
     virtual auto
     create_certificate_handle_vfunc (
-        const Glib::RefPtr<const TlsCertificate>& certificate) const
-        -> Glib::ustring;
+        const glib::RefPtr<const TlsCertificate>& certificate) const
+        -> glib::ustring;
 
     virtual auto
     lookup_certificate_for_handle_vfunc (
-        const Glib::ustring& handle,
-        const Glib::RefPtr<TlsInteraction>& interaction,
-        const Glib::RefPtr<Cancellable>& cancellable,
-        LookupFlags flags) -> Glib::RefPtr<TlsCertificate>;
+        const glib::ustring& handle,
+        const glib::RefPtr<TlsInteraction>& interaction,
+        const glib::RefPtr<Cancellable>& cancellable,
+        LookupFlags flags) -> glib::RefPtr<TlsCertificate>;
 
     virtual auto
     lookup_certificate_for_handle_async_vfunc (
-        const Glib::ustring& handle,
-        const Glib::RefPtr<TlsInteraction>& interaction,
+        const glib::ustring& handle,
+        const glib::RefPtr<TlsInteraction>& interaction,
         const SlotAsyncReady& slot,
-        const Glib::RefPtr<Cancellable>& cancellable,
+        const glib::RefPtr<Cancellable>& cancellable,
         LookupFlags flags) -> void;
 
     virtual auto
     lookup_certificate_for_handle_finish_vfunc (
-        const Glib::RefPtr<AsyncResult>& result)
-        -> Glib::RefPtr<TlsCertificate>;
+        const glib::RefPtr<AsyncResult>& result)
+        -> glib::RefPtr<TlsCertificate>;
 
     virtual auto
     lookup_certificate_issuer_vfunc (
-        const Glib::RefPtr<TlsCertificate>& certificate,
-        const Glib::RefPtr<TlsInteraction>& interaction,
-        const Glib::RefPtr<Cancellable>& cancellable,
-        LookupFlags flags) -> Glib::RefPtr<TlsCertificate>;
+        const glib::RefPtr<TlsCertificate>& certificate,
+        const glib::RefPtr<TlsInteraction>& interaction,
+        const glib::RefPtr<Cancellable>& cancellable,
+        LookupFlags flags) -> glib::RefPtr<TlsCertificate>;
 
     virtual auto
     lookup_certificate_issuer_async_vfunc (
-        const Glib::RefPtr<TlsCertificate>& certificate,
-        const Glib::RefPtr<TlsInteraction>& interaction,
+        const glib::RefPtr<TlsCertificate>& certificate,
+        const glib::RefPtr<TlsInteraction>& interaction,
         const SlotAsyncReady& slot,
-        const Glib::RefPtr<Cancellable>& cancellable,
+        const glib::RefPtr<Cancellable>& cancellable,
         LookupFlags flags) -> void;
 
     virtual auto
     lookup_certificate_issuer_finish_vfunc (
-        const Glib::RefPtr<AsyncResult>& result)
-        -> Glib::RefPtr<TlsCertificate>;
+        const glib::RefPtr<AsyncResult>& result)
+        -> glib::RefPtr<TlsCertificate>;
 
     virtual auto
     lookup_certificates_issued_by_vfunc (
-        const Glib::RefPtr<Glib::ByteArray>& issuer_raw_dn,
-        const Glib::RefPtr<TlsInteraction>& interaction,
-        const Glib::RefPtr<Cancellable>& cancellable,
-        LookupFlags flags) -> std::vector<Glib::RefPtr<TlsCertificate>>;
+        const glib::RefPtr<glib::ByteArray>& issuer_raw_dn,
+        const glib::RefPtr<TlsInteraction>& interaction,
+        const glib::RefPtr<Cancellable>& cancellable,
+        LookupFlags flags) -> std::vector<glib::RefPtr<TlsCertificate>>;
 
     virtual auto
     lookup_certificates_issued_by_async_vfunc (
-        const Glib::RefPtr<Glib::ByteArray>& issuer_raw_dn,
-        const Glib::RefPtr<TlsInteraction>& interaction,
+        const glib::RefPtr<glib::ByteArray>& issuer_raw_dn,
+        const glib::RefPtr<TlsInteraction>& interaction,
         const SlotAsyncReady& slot,
-        const Glib::RefPtr<Cancellable>& cancellable,
+        const glib::RefPtr<Cancellable>& cancellable,
         LookupFlags flags) -> void;
 
     virtual auto
     lookup_certificates_issued_by_finish_vfunc (
-        const Glib::RefPtr<AsyncResult>& result)
-        -> std::vector<Glib::RefPtr<TlsCertificate>>;
+        const glib::RefPtr<AsyncResult>& result)
+        -> std::vector<glib::RefPtr<TlsCertificate>>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gio
+} // namespace gio
 
-namespace Gio
+namespace gio
 {
 
   inline auto
@@ -639,25 +639,25 @@ namespace Gio
     return (lhs = static_cast<TlsDatabase::VerifyFlags> (
                 static_cast<unsigned> (lhs) ^ static_cast<unsigned> (rhs)));
   }
-} // namespace Gio
+} // namespace gio
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_GIO_SYMEXPORT Value<Gio::TlsDatabase::VerifyFlags>
-    : public Glib::Value_Flags<Gio::TlsDatabase::VerifyFlags>
+  class LIBMM_GIO_SYMEXPORT Value<gio::TlsDatabase::VerifyFlags>
+    : public glib::Value_Flags<gio::TlsDatabase::VerifyFlags>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
-namespace Gio
+namespace gio
 {
 
   inline auto
@@ -708,30 +708,30 @@ namespace Gio
     return (lhs = static_cast<TlsDatabase::LookupFlags> (
                 static_cast<unsigned> (lhs) ^ static_cast<unsigned> (rhs)));
   }
-} // namespace Gio
+} // namespace gio
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_GIO_SYMEXPORT Value<Gio::TlsDatabase::LookupFlags>
-    : public Glib::Value_Flags<Gio::TlsDatabase::LookupFlags>
+  class LIBMM_GIO_SYMEXPORT Value<gio::TlsDatabase::LookupFlags>
+    : public glib::Value_Flags<gio::TlsDatabase::LookupFlags>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
-namespace Glib
+namespace glib
 {
 
   LIBMM_GIO_SYMEXPORT
   auto
-  wrap (GTlsDatabase* object, bool take_copy = false) -> Glib::RefPtr<Gio::TlsDatabase>;
-} // namespace Glib
+  wrap (GTlsDatabase* object, bool take_copy = false) -> glib::RefPtr<gio::TlsDatabase>;
+} // namespace glib
 
 #endif

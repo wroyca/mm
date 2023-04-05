@@ -7,27 +7,27 @@
 
 #include <libmm/glib/interface_p.hxx>
 
-namespace Gtk
+namespace gtk
 {
 
-  class LIBMM_GTK_SYMEXPORT Editable_Class : public Glib::Interface_Class
+  class LIBMM_GTK_SYMEXPORT Editable_Class : public glib::Interface_Class
   {
   public:
     using CppObjectType = Editable;
     using BaseObjectType = GtkEditable;
     using BaseClassType = GtkEditableInterface;
-    using CppClassParent = Glib::Interface_Class;
+    using CppClassParent = glib::Interface_Class;
 
     friend class Editable;
 
     auto
-    init () -> const Glib::Interface_Class&;
+    init () -> const glib::Interface_Class&;
 
     static auto
     iface_init_function (void* g_iface, void* iface_data) -> void;
 
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
 
   protected:
     static auto
@@ -61,6 +61,6 @@ namespace Gtk
                                          int* end_pos) -> gboolean;
   };
 
-} // namespace Gtk
+} // namespace gtk
 
 #endif

@@ -16,18 +16,18 @@ using GFilenameCompleterClass = struct _GFilenameCompleterClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gio
+namespace gio
 {
   class LIBMM_GIO_SYMEXPORT FilenameCompleter_Class;
 }
 #endif
 
-namespace Gio
+namespace gio
 {
 
   class LIBMM_GIO_SYMEXPORT File;
 
-  class LIBMM_GIO_SYMEXPORT FilenameCompleter : public Glib::Object
+  class LIBMM_GIO_SYMEXPORT FilenameCompleter : public glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -46,7 +46,7 @@ namespace Gio
     static CppClassType filenamecompleter_class_;
 
   protected:
-    explicit FilenameCompleter (const Glib::ConstructParams& construct_params);
+    explicit FilenameCompleter (const glib::ConstructParams& construct_params);
     explicit FilenameCompleter (GFilenameCompleter* castitem);
 
 #endif
@@ -88,7 +88,7 @@ namespace Gio
 
   public:
     static auto
-    create () -> Glib::RefPtr<FilenameCompleter>;
+    create () -> glib::RefPtr<FilenameCompleter>;
 
     auto
     get_completion_suffix (const std::string& initial_text) const
@@ -96,13 +96,13 @@ namespace Gio
 
     auto
     get_completions (const std::string& initial_text) const
-        -> std::vector<Glib::ustring>;
+        -> std::vector<glib::ustring>;
 
     auto
     set_dirs_only (bool dirs_only = true) -> void;
 
     auto
-    signal_got_completion_data () -> Glib::SignalProxy<void ()>;
+    signal_got_completion_data () -> glib::SignalProxy<void ()>;
 
   public:
   public:
@@ -111,14 +111,14 @@ namespace Gio
     on_got_completion_data () -> void;
   };
 
-} // namespace Gio
+} // namespace gio
 
-namespace Glib
+namespace glib
 {
 
   LIBMM_GIO_SYMEXPORT
   auto
-  wrap (GFilenameCompleter* object, bool take_copy = false) -> Glib::RefPtr<Gio::FilenameCompleter>;
-} // namespace Glib
+  wrap (GFilenameCompleter* object, bool take_copy = false) -> glib::RefPtr<gio::FilenameCompleter>;
+} // namespace glib
 
 #endif

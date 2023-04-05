@@ -7,7 +7,7 @@
 
 #include <gdk/gdk.h>
 
-namespace Gdk
+namespace gdk
 {
 
   const float MULTIPLIER = 65535.0f;
@@ -23,7 +23,7 @@ namespace Gdk
     gobject_ = gdk_rgba_copy (&tmp);
   }
 
-  RGBA::RGBA (const Glib::ustring& value)
+  RGBA::RGBA (const glib::ustring& value)
     : RGBA ()
   {
     set (value);
@@ -247,24 +247,24 @@ namespace Gdk
     return gobject_->alpha;
   }
 
-} // namespace Gdk
+} // namespace gdk
 
 namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GdkRGBA* object, bool take_copy) -> Gdk::RGBA
+  wrap (GdkRGBA* object, bool take_copy) -> gdk::RGBA
   {
-    return Gdk::RGBA (object, take_copy);
+    return gdk::RGBA (object, take_copy);
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gdk
+namespace gdk
 {
 
   auto
@@ -324,15 +324,15 @@ namespace Gdk
   }
 
   auto
-  RGBA::set (const Glib::ustring& spec) -> bool
+  RGBA::set (const glib::ustring& spec) -> bool
   {
     return gdk_rgba_parse (gobj (), spec.c_str ());
   }
 
   auto
-  RGBA::to_string () const -> Glib::ustring
+  RGBA::to_string () const -> glib::ustring
   {
-    return Glib::convert_return_gchar_ptr_to_ustring (
+    return glib::convert_return_gchar_ptr_to_ustring (
         gdk_rgba_to_string (const_cast<GdkRGBA*> (gobj ())));
   }
 
@@ -360,4 +360,4 @@ namespace Gdk
     return (gdk_rgba_equal (lhs.gobj (), rhs.gobj ()) == 0);
   }
 
-} // namespace Gdk
+} // namespace gdk

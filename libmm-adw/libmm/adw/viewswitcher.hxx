@@ -17,13 +17,13 @@
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Adw
+namespace adw
 {
   class LIBMM_ADW_SYMEXPORT ViewSwitcher_Class;
 }
 #endif
 
-namespace Adw
+namespace adw
 {
 
   enum class LIBMM_ADW_SYMEXPORT ViewSwitcherPolicy
@@ -32,28 +32,28 @@ namespace Adw
     WIDE
   };
 
-} // namespace Adw
+} // namespace adw
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_ADW_SYMEXPORT Value<Adw::ViewSwitcherPolicy>
-    : public Glib::Value_Enum<Adw::ViewSwitcherPolicy>
+  class LIBMM_ADW_SYMEXPORT Value<adw::ViewSwitcherPolicy>
+    : public glib::Value_Enum<adw::ViewSwitcherPolicy>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
-namespace Adw
+namespace adw
 {
 
-  class LIBMM_ADW_SYMEXPORT ViewSwitcher : public Gtk::Widget
+  class LIBMM_ADW_SYMEXPORT ViewSwitcher : public gtk::Widget
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -80,7 +80,7 @@ namespace Adw
     static CppClassType viewswitcher_class_;
 
   protected:
-    explicit ViewSwitcher (const Glib::ConstructParams& construct_params);
+    explicit ViewSwitcher (const glib::ConstructParams& construct_params);
     explicit ViewSwitcher (AdwViewSwitcher* castitem);
 
 #endif
@@ -124,30 +124,30 @@ namespace Adw
     set_stack (ViewStack* stack) -> void;
 
     auto
-    property_policy () -> Glib::PropertyProxy<ViewSwitcherPolicy>;
+    property_policy () -> glib::PropertyProxy<ViewSwitcherPolicy>;
 
     auto
     property_policy () const
-        -> Glib::PropertyProxy_ReadOnly<ViewSwitcherPolicy>;
+        -> glib::PropertyProxy_ReadOnly<ViewSwitcherPolicy>;
 
     auto
-    property_stack () -> Glib::PropertyProxy<ViewStack*>;
+    property_stack () -> glib::PropertyProxy<ViewStack*>;
 
     auto
-    property_stack () const -> Glib::PropertyProxy_ReadOnly<ViewStack*>;
+    property_stack () const -> glib::PropertyProxy_ReadOnly<ViewStack*>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Adw
+} // namespace adw
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (AdwViewSwitcher* object, bool take_copy = false) -> Adw::ViewSwitcher*;
+  wrap (AdwViewSwitcher* object, bool take_copy = false) -> adw::ViewSwitcher*;
 }
 
 #endif

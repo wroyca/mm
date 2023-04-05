@@ -24,16 +24,16 @@ using GtkScrollableClass = struct _GtkScrollableClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT Scrollable_Class;
 }
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
-  class LIBMM_GTK_SYMEXPORT Scrollable : public Glib::Interface
+  class LIBMM_GTK_SYMEXPORT Scrollable : public glib::Interface
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -57,7 +57,7 @@ namespace Gtk
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
-    explicit Scrollable (const Glib::Interface_Class& interface_class);
+    explicit Scrollable (const glib::Interface_Class& interface_class);
 
   public:
     explicit Scrollable (GtkScrollable* castitem);
@@ -104,25 +104,25 @@ namespace Gtk
     };
 
     auto
-    get_hadjustment () -> Glib::RefPtr<Adjustment>;
+    get_hadjustment () -> glib::RefPtr<Adjustment>;
 
     auto
-    get_hadjustment () const -> Glib::RefPtr<const Adjustment>;
+    get_hadjustment () const -> glib::RefPtr<const Adjustment>;
 
     auto
-    set_hadjustment (const Glib::RefPtr<Adjustment>& hadjustment) -> void;
+    set_hadjustment (const glib::RefPtr<Adjustment>& hadjustment) -> void;
 
     auto
     unset_hadjustment () -> void;
 
     auto
-    get_vadjustment () -> Glib::RefPtr<Adjustment>;
+    get_vadjustment () -> glib::RefPtr<Adjustment>;
 
     auto
-    get_vadjustment () const -> Glib::RefPtr<const Adjustment>;
+    get_vadjustment () const -> glib::RefPtr<const Adjustment>;
 
     auto
-    set_vadjustment (const Glib::RefPtr<Adjustment>& vadjustment) -> void;
+    set_vadjustment (const glib::RefPtr<Adjustment>& vadjustment) -> void;
 
     auto
     unset_vadjustment () -> void;
@@ -143,30 +143,30 @@ namespace Gtk
     get_border (Border& border) const -> bool;
 
     auto
-    property_hadjustment () -> Glib::PropertyProxy<Glib::RefPtr<Adjustment>>;
+    property_hadjustment () -> glib::PropertyProxy<glib::RefPtr<Adjustment>>;
 
     auto
     property_hadjustment () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Adjustment>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<Adjustment>>;
 
     auto
-    property_vadjustment () -> Glib::PropertyProxy<Glib::RefPtr<Adjustment>>;
+    property_vadjustment () -> glib::PropertyProxy<glib::RefPtr<Adjustment>>;
 
     auto
     property_vadjustment () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Adjustment>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<Adjustment>>;
 
     auto
-    property_hscroll_policy () -> Glib::PropertyProxy<Policy>;
+    property_hscroll_policy () -> glib::PropertyProxy<Policy>;
 
     auto
-    property_hscroll_policy () const -> Glib::PropertyProxy_ReadOnly<Policy>;
+    property_hscroll_policy () const -> glib::PropertyProxy_ReadOnly<Policy>;
 
     auto
-    property_vscroll_policy () -> Glib::PropertyProxy<Policy>;
+    property_vscroll_policy () -> glib::PropertyProxy<Policy>;
 
     auto
-    property_vscroll_policy () const -> Glib::PropertyProxy_ReadOnly<Policy>;
+    property_vscroll_policy () const -> glib::PropertyProxy_ReadOnly<Policy>;
 
   protected:
     virtual auto
@@ -177,29 +177,29 @@ namespace Gtk
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_GTK_SYMEXPORT Value<Gtk::Scrollable::Policy>
-    : public Glib::Value_Enum<Gtk::Scrollable::Policy>
+  class LIBMM_GTK_SYMEXPORT Value<gtk::Scrollable::Policy>
+    : public glib::Value_Enum<gtk::Scrollable::Policy>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkScrollable* object, bool take_copy = false) -> Glib::RefPtr<Gtk::Scrollable>;
+  wrap (GtkScrollable* object, bool take_copy = false) -> glib::RefPtr<gtk::Scrollable>;
 
-} // namespace Glib
+} // namespace glib
 
 #endif

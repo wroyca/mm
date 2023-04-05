@@ -11,13 +11,13 @@
 #include <libmm/glib/error.hxx>
 #include <libmm/glib/exceptionhandler.hxx>
 
-namespace Gio
+namespace gio
 {
 
   auto
   FileEnumerator::next_files_async (
       const SlotAsyncReady& slot,
-      const Glib::RefPtr<Cancellable>& cancellable,
+      const glib::RefPtr<Cancellable>& cancellable,
       const int num_files,
       const int io_priority) -> void
   {
@@ -26,7 +26,7 @@ namespace Gio
     g_file_enumerator_next_files_async (gobj (),
                                         num_files,
                                         io_priority,
-                                        Glib::unwrap (cancellable),
+                                        glib::unwrap (cancellable),
                                         &SignalProxy_async_callback,
                                         slot_copy);
   }
@@ -48,14 +48,14 @@ namespace Gio
 
   auto
   FileEnumerator::close_async (const int io_priority,
-                               const Glib::RefPtr<Cancellable>& cancellable,
+                               const glib::RefPtr<Cancellable>& cancellable,
                                const SlotAsyncReady& slot) -> void
   {
     const auto slot_copy = new SlotAsyncReady (slot);
 
     g_file_enumerator_close_async (gobj (),
                                    io_priority,
-                                   Glib::unwrap (cancellable),
+                                   glib::unwrap (cancellable),
                                    &SignalProxy_async_callback,
                                    slot_copy);
   }
@@ -73,26 +73,26 @@ namespace Gio
                                    slot_copy);
   }
 
-} // namespace Gio
+} // namespace gio
 
 namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GFileEnumerator* object, const bool take_copy) -> RefPtr<Gio::FileEnumerator>
+  wrap (GFileEnumerator* object, const bool take_copy) -> RefPtr<gio::FileEnumerator>
   {
-    return Glib::make_refptr_for_instance<Gio::FileEnumerator> (
-        dynamic_cast<Gio::FileEnumerator*> (
+    return glib::make_refptr_for_instance<gio::FileEnumerator> (
+        dynamic_cast<gio::FileEnumerator*> (
             wrap_auto ((GObject*) object, take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gio
+namespace gio
 {
 
   auto
@@ -116,7 +116,7 @@ namespace Gio
   }
 
   auto
-  FileEnumerator_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  FileEnumerator_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new FileEnumerator ((GFileEnumerator*) object);
   }
@@ -128,7 +128,7 @@ namespace Gio
     return gobj ();
   }
 
-  FileEnumerator::FileEnumerator (const Glib::ConstructParams& construct_params)
+  FileEnumerator::FileEnumerator (const glib::ConstructParams& construct_params)
     : Object (construct_params)
   {
   }
@@ -167,37 +167,37 @@ namespace Gio
   }
 
   auto
-  FileEnumerator::next_file (const Glib::RefPtr<Cancellable>& cancellable) -> Glib::RefPtr<FileInfo>
+  FileEnumerator::next_file (const glib::RefPtr<Cancellable>& cancellable) -> glib::RefPtr<FileInfo>
   {
     GError* gerror = nullptr;
     auto retvalue =
-        Glib::wrap (g_file_enumerator_next_file (gobj (),
-                                                 Glib::unwrap (cancellable),
+        glib::wrap (g_file_enumerator_next_file (gobj (),
+                                                 glib::unwrap (cancellable),
                                                  &gerror));
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
   auto
-  FileEnumerator::next_file () -> Glib::RefPtr<FileInfo>
+  FileEnumerator::next_file () -> glib::RefPtr<FileInfo>
   {
     GError* gerror = nullptr;
     auto retvalue =
-        Glib::wrap (g_file_enumerator_next_file (gobj (), nullptr, &gerror));
+        glib::wrap (g_file_enumerator_next_file (gobj (), nullptr, &gerror));
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
   auto
-  FileEnumerator::close (const Glib::RefPtr<Cancellable>& cancellable) -> bool
+  FileEnumerator::close (const glib::RefPtr<Cancellable>& cancellable) -> bool
   {
     GError* gerror = nullptr;
     const auto retvalue =
-        g_file_enumerator_close (gobj (), Glib::unwrap (cancellable), &gerror);
+        g_file_enumerator_close (gobj (), glib::unwrap (cancellable), &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
@@ -207,33 +207,33 @@ namespace Gio
     GError* gerror = nullptr;
     const auto retvalue = g_file_enumerator_close (gobj (), nullptr, &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
   auto
-  FileEnumerator::next_files_finish (const Glib::RefPtr<AsyncResult>& result) -> std::vector<Glib::RefPtr<FileInfo>>
+  FileEnumerator::next_files_finish (const glib::RefPtr<AsyncResult>& result) -> std::vector<glib::RefPtr<FileInfo>>
   {
     GError* gerror = nullptr;
-    auto retvalue = Glib::ListHandler<Glib::RefPtr<FileInfo>>::list_to_vector (
+    auto retvalue = glib::ListHandler<glib::RefPtr<FileInfo>>::list_to_vector (
         g_file_enumerator_next_files_finish (gobj (),
-                                             Glib::unwrap (result),
+                                             glib::unwrap (result),
                                              &gerror),
-        Glib::OWNERSHIP_DEEP);
+        glib::OWNERSHIP_DEEP);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
   auto
-  FileEnumerator::close_finish (const Glib::RefPtr<AsyncResult>& result) -> bool
+  FileEnumerator::close_finish (const glib::RefPtr<AsyncResult>& result) -> bool
   {
     GError* gerror = nullptr;
     const auto retvalue = g_file_enumerator_close_finish (gobj (),
-                                                          Glib::unwrap (result),
+                                                          glib::unwrap (result),
                                                           &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
@@ -257,18 +257,18 @@ namespace Gio
   }
 
   auto
-  FileEnumerator::get_container () -> Glib::RefPtr<File>
+  FileEnumerator::get_container () -> glib::RefPtr<File>
   {
-    auto retvalue = Glib::wrap (g_file_enumerator_get_container (gobj ()));
+    auto retvalue = glib::wrap (g_file_enumerator_get_container (gobj ()));
     if (retvalue)
       retvalue->reference ();
     return retvalue;
   }
 
   auto
-  FileEnumerator::get_container () const -> Glib::RefPtr<const File>
+  FileEnumerator::get_container () const -> glib::RefPtr<const File>
   {
-    auto retvalue = Glib::wrap (g_file_enumerator_get_container (
+    auto retvalue = glib::wrap (g_file_enumerator_get_container (
         const_cast<GFileEnumerator*> (gobj ())));
     if (retvalue)
       retvalue->reference ();
@@ -276,18 +276,18 @@ namespace Gio
   }
 
   auto
-  FileEnumerator::get_child (const Glib::RefPtr<FileInfo>& info) -> Glib::RefPtr<File>
+  FileEnumerator::get_child (const glib::RefPtr<FileInfo>& info) -> glib::RefPtr<File>
   {
-    return Glib::wrap (
-        g_file_enumerator_get_child (gobj (), Glib::unwrap (info)));
+    return glib::wrap (
+        g_file_enumerator_get_child (gobj (), glib::unwrap (info)));
   }
 
   auto
-  FileEnumerator::get_child (const Glib::RefPtr<FileInfo>& info) const -> Glib::RefPtr<const File>
+  FileEnumerator::get_child (const glib::RefPtr<FileInfo>& info) const -> glib::RefPtr<const File>
   {
-    return Glib::wrap (
+    return glib::wrap (
         g_file_enumerator_get_child (const_cast<GFileEnumerator*> (gobj ()),
-                                     Glib::unwrap (info)));
+                                     glib::unwrap (info)));
   }
 
-} // namespace Gio
+} // namespace gio

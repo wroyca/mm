@@ -9,20 +9,20 @@
 #include <libmm/gio/slot_async.hxx>
 #include <libmm/glib/error.hxx>
 
-namespace Gio
+namespace gio
 {
 
   auto
   DataInputStream::read_line (std::string& line,
-                              const Glib::RefPtr<Cancellable>& cancellable) -> bool
+                              const glib::RefPtr<Cancellable>& cancellable) -> bool
   {
     GError* gerror = nullptr;
     char* c_line = g_data_input_stream_read_line (gobj (),
                                                   nullptr,
-                                                  Glib::unwrap (cancellable),
+                                                  glib::unwrap (cancellable),
                                                   &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     if (c_line)
     {
       line = c_line;
@@ -40,7 +40,7 @@ namespace Gio
     char* c_line =
         g_data_input_stream_read_line (gobj (), nullptr, nullptr, &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     if (c_line)
     {
       line = c_line;
@@ -54,30 +54,30 @@ namespace Gio
   auto
   DataInputStream::read_line_async (
       const SlotAsyncReady& slot,
-      const Glib::RefPtr<Cancellable>& cancellable,
+      const glib::RefPtr<Cancellable>& cancellable,
       const int io_priority) -> void
   {
     const auto slot_copy = new SlotAsyncReady (slot);
 
     g_data_input_stream_read_line_async (gobj (),
                                          io_priority,
-                                         Glib::unwrap (cancellable),
+                                         glib::unwrap (cancellable),
                                          &SignalProxy_async_callback,
                                          slot_copy);
   }
 
   auto
-  DataInputStream::read_line_finish (const Glib::RefPtr<AsyncResult>& result,
+  DataInputStream::read_line_finish (const glib::RefPtr<AsyncResult>& result,
                                      std::string& data) -> bool
   {
     GError* gerror = nullptr;
     gsize size = 0;
     gchar* buffer = g_data_input_stream_read_line_finish (gobj (),
-                                                          Glib::unwrap (result),
+                                                          glib::unwrap (result),
                                                           &size,
                                                           &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
 
     bool retval = false;
     if (buffer && size)
@@ -93,17 +93,17 @@ namespace Gio
   auto
   DataInputStream::read_upto (std::string& data,
                               const std::string& stop_chars,
-                              const Glib::RefPtr<Cancellable>& cancellable) -> bool
+                              const glib::RefPtr<Cancellable>& cancellable) -> bool
   {
     GError* gerror = nullptr;
     char* c_str = g_data_input_stream_read_upto (gobj (),
                                                  stop_chars.c_str (),
                                                  -1,
                                                  nullptr,
-                                                 Glib::unwrap (cancellable),
+                                                 glib::unwrap (cancellable),
                                                  &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     if (c_str)
     {
       data = c_str;
@@ -126,7 +126,7 @@ namespace Gio
                                                  &gerror);
 
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
 
     if (c_str)
     {
@@ -142,7 +142,7 @@ namespace Gio
   DataInputStream::read_upto_async (
       const std::string& stop_chars,
       const SlotAsyncReady& slot,
-      const Glib::RefPtr<Cancellable>& cancellable,
+      const glib::RefPtr<Cancellable>& cancellable,
       const int io_priority) -> void
   {
     const auto slot_copy = new SlotAsyncReady (slot);
@@ -151,23 +151,23 @@ namespace Gio
                                          stop_chars.c_str (),
                                          -1,
                                          io_priority,
-                                         Glib::unwrap (cancellable),
+                                         glib::unwrap (cancellable),
                                          &SignalProxy_async_callback,
                                          slot_copy);
   }
 
   auto
-  DataInputStream::read_upto_finish (const Glib::RefPtr<AsyncResult>& result,
+  DataInputStream::read_upto_finish (const glib::RefPtr<AsyncResult>& result,
                                      std::string& data) -> bool
   {
     GError* gerror = nullptr;
     gsize size = 0;
     gchar* buffer = g_data_input_stream_read_upto_finish (gobj (),
-                                                          Glib::unwrap (result),
+                                                          glib::unwrap (result),
                                                           &size,
                                                           &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
 
     bool retval = false;
     if (buffer && size)
@@ -180,26 +180,26 @@ namespace Gio
     return retval;
   }
 
-} // namespace Gio
+} // namespace gio
 
 namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GDataInputStream* object, const bool take_copy) -> RefPtr<Gio::DataInputStream>
+  wrap (GDataInputStream* object, const bool take_copy) -> RefPtr<gio::DataInputStream>
   {
-    return Glib::make_refptr_for_instance<Gio::DataInputStream> (
-        dynamic_cast<Gio::DataInputStream*> (
+    return glib::make_refptr_for_instance<gio::DataInputStream> (
+        dynamic_cast<gio::DataInputStream*> (
             wrap_auto ((GObject*) object, take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gio
+namespace gio
 {
 
   auto
@@ -223,7 +223,7 @@ namespace Gio
   }
 
   auto
-  DataInputStream_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  DataInputStream_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new DataInputStream ((GDataInputStream*) object);
   }
@@ -236,7 +236,7 @@ namespace Gio
   }
 
   DataInputStream::DataInputStream (
-      const Glib::ConstructParams& construct_params)
+      const glib::ConstructParams& construct_params)
     : BufferedInputStream (construct_params)
   {
   }
@@ -275,20 +275,20 @@ namespace Gio
   }
 
   DataInputStream::DataInputStream (
-      const Glib::RefPtr<InputStream>& base_stream)
+      const glib::RefPtr<InputStream>& base_stream)
     : ObjectBase (nullptr),
       BufferedInputStream (
-          Glib::ConstructParams (datainputstream_class_.init (),
+          glib::ConstructParams (datainputstream_class_.init (),
                                  "base_stream",
-                                 Glib::unwrap (base_stream),
+                                 glib::unwrap (base_stream),
                                  nullptr))
   {
   }
 
   auto
-  DataInputStream::create (const Glib::RefPtr<InputStream>& base_stream) -> Glib::RefPtr<DataInputStream>
+  DataInputStream::create (const glib::RefPtr<InputStream>& base_stream) -> glib::RefPtr<DataInputStream>
   {
-    return Glib::make_refptr_for_instance<DataInputStream> (
+    return glib::make_refptr_for_instance<DataInputStream> (
         new DataInputStream (base_stream));
   }
 
@@ -325,15 +325,15 @@ namespace Gio
   }
 
   auto
-  DataInputStream::read_byte (const Glib::RefPtr<Cancellable>& cancellable) -> guchar
+  DataInputStream::read_byte (const glib::RefPtr<Cancellable>& cancellable) -> guchar
   {
     GError* gerror = nullptr;
     const auto retvalue = g_data_input_stream_read_byte (
         gobj (),
-        Glib::unwrap (cancellable),
+        glib::unwrap (cancellable),
         &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
@@ -344,20 +344,20 @@ namespace Gio
     const auto retvalue =
         g_data_input_stream_read_byte (gobj (), nullptr, &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
   auto
-  DataInputStream::read_int16 (const Glib::RefPtr<Cancellable>& cancellable) -> gint16
+  DataInputStream::read_int16 (const glib::RefPtr<Cancellable>& cancellable) -> gint16
   {
     GError* gerror = nullptr;
     const auto retvalue = g_data_input_stream_read_int16 (
         gobj (),
-        Glib::unwrap (cancellable),
+        glib::unwrap (cancellable),
         &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
@@ -368,20 +368,20 @@ namespace Gio
     const auto retvalue =
         g_data_input_stream_read_int16 (gobj (), nullptr, &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
   auto
-  DataInputStream::read_uint16 (const Glib::RefPtr<Cancellable>& cancellable) -> guint16
+  DataInputStream::read_uint16 (const glib::RefPtr<Cancellable>& cancellable) -> guint16
   {
     GError* gerror = nullptr;
     const auto retvalue = g_data_input_stream_read_uint16 (
         gobj (),
-        Glib::unwrap (cancellable),
+        glib::unwrap (cancellable),
         &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
@@ -392,20 +392,20 @@ namespace Gio
     const auto retvalue =
         g_data_input_stream_read_uint16 (gobj (), nullptr, &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
   auto
-  DataInputStream::read_int32 (const Glib::RefPtr<Cancellable>& cancellable) -> gint32
+  DataInputStream::read_int32 (const glib::RefPtr<Cancellable>& cancellable) -> gint32
   {
     GError* gerror = nullptr;
     const auto retvalue = g_data_input_stream_read_int32 (
         gobj (),
-        Glib::unwrap (cancellable),
+        glib::unwrap (cancellable),
         &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
@@ -416,20 +416,20 @@ namespace Gio
     const auto retvalue =
         g_data_input_stream_read_int32 (gobj (), nullptr, &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
   auto
-  DataInputStream::read_uint32 (const Glib::RefPtr<Cancellable>& cancellable) -> guint32
+  DataInputStream::read_uint32 (const glib::RefPtr<Cancellable>& cancellable) -> guint32
   {
     GError* gerror = nullptr;
     const auto retvalue = g_data_input_stream_read_uint32 (
         gobj (),
-        Glib::unwrap (cancellable),
+        glib::unwrap (cancellable),
         &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
@@ -440,20 +440,20 @@ namespace Gio
     const auto retvalue =
         g_data_input_stream_read_uint32 (gobj (), nullptr, &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
   auto
-  DataInputStream::read_int64 (const Glib::RefPtr<Cancellable>& cancellable) -> gint64
+  DataInputStream::read_int64 (const glib::RefPtr<Cancellable>& cancellable) -> gint64
   {
     GError* gerror = nullptr;
     const auto retvalue = g_data_input_stream_read_int64 (
         gobj (),
-        Glib::unwrap (cancellable),
+        glib::unwrap (cancellable),
         &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
@@ -464,20 +464,20 @@ namespace Gio
     const auto retvalue =
         g_data_input_stream_read_int64 (gobj (), nullptr, &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
   auto
-  DataInputStream::read_uint64 (const Glib::RefPtr<Cancellable>& cancellable) -> guint64
+  DataInputStream::read_uint64 (const glib::RefPtr<Cancellable>& cancellable) -> guint64
   {
     GError* gerror = nullptr;
     const auto retvalue = g_data_input_stream_read_uint64 (
         gobj (),
-        Glib::unwrap (cancellable),
+        glib::unwrap (cancellable),
         &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
@@ -488,129 +488,129 @@ namespace Gio
     const auto retvalue =
         g_data_input_stream_read_uint64 (gobj (), nullptr, &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
   auto
   DataInputStream::read_line_utf8 (std::string& line,
-                                   const Glib::RefPtr<Cancellable>& cancellable,
+                                   const glib::RefPtr<Cancellable>& cancellable,
                                    gsize& length) -> void
   {
     GError* gerror = nullptr;
-    line = Glib::convert_return_gchar_ptr_to_stdstring (
+    line = glib::convert_return_gchar_ptr_to_stdstring (
         g_data_input_stream_read_line_utf8 (gobj (),
                                             &length,
-                                            Glib::unwrap (cancellable),
+                                            glib::unwrap (cancellable),
                                             &gerror));
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
   }
 
   auto
   DataInputStream::read_line_utf8 (std::string& line,
-                                   const Glib::RefPtr<Cancellable>& cancellable) -> void
+                                   const glib::RefPtr<Cancellable>& cancellable) -> void
   {
     GError* gerror = nullptr;
-    line = Glib::convert_return_gchar_ptr_to_stdstring (
+    line = glib::convert_return_gchar_ptr_to_stdstring (
         g_data_input_stream_read_line_utf8 (gobj (),
                                             nullptr,
-                                            Glib::unwrap (cancellable),
+                                            glib::unwrap (cancellable),
                                             &gerror));
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
   }
 
   auto
   DataInputStream::read_line_utf8 (std::string& line, gsize& length) -> void
   {
     GError* gerror = nullptr;
-    line = Glib::convert_return_gchar_ptr_to_stdstring (
+    line = glib::convert_return_gchar_ptr_to_stdstring (
         g_data_input_stream_read_line_utf8 (gobj (),
                                             &length,
                                             nullptr,
                                             &gerror));
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
   }
 
   auto
   DataInputStream::read_line_utf8 (std::string& line) -> void
   {
     GError* gerror = nullptr;
-    line = Glib::convert_return_gchar_ptr_to_stdstring (
+    line = glib::convert_return_gchar_ptr_to_stdstring (
         g_data_input_stream_read_line_utf8 (gobj (),
                                             nullptr,
                                             nullptr,
                                             &gerror));
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
   }
 
   auto
   DataInputStream::read_line_finish_utf8 (
-      const Glib::RefPtr<AsyncResult>& result,
+      const glib::RefPtr<AsyncResult>& result,
       std::string& data,
       gsize& length) -> void
   {
     GError* gerror = nullptr;
-    data = Glib::convert_return_gchar_ptr_to_stdstring (
+    data = glib::convert_return_gchar_ptr_to_stdstring (
         g_data_input_stream_read_line_finish_utf8 (gobj (),
-                                                   Glib::unwrap (result),
+                                                   glib::unwrap (result),
                                                    &length,
                                                    &gerror));
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
   }
 
   auto
   DataInputStream::read_line_finish_utf8 (
-      const Glib::RefPtr<AsyncResult>& result,
+      const glib::RefPtr<AsyncResult>& result,
       std::string& data) -> void
   {
     GError* gerror = nullptr;
-    data = Glib::convert_return_gchar_ptr_to_stdstring (
+    data = glib::convert_return_gchar_ptr_to_stdstring (
         g_data_input_stream_read_line_finish_utf8 (gobj (),
-                                                   Glib::unwrap (result),
+                                                   glib::unwrap (result),
                                                    nullptr,
                                                    &gerror));
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<DataStreamByteOrder>::value,
+      glib::Traits::ValueCompatibleWithWrapProperty<DataStreamByteOrder>::value,
       "Type DataStreamByteOrder cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  DataInputStream::property_byte_order () -> Glib::PropertyProxy<DataStreamByteOrder>
+  DataInputStream::property_byte_order () -> glib::PropertyProxy<DataStreamByteOrder>
   {
     return {this, "byte-order"};
   }
 
   auto
-  DataInputStream::property_byte_order () const -> Glib::PropertyProxy_ReadOnly<DataStreamByteOrder>
+  DataInputStream::property_byte_order () const -> glib::PropertyProxy_ReadOnly<DataStreamByteOrder>
   {
     return {this, "byte-order"};
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<
+      glib::Traits::ValueCompatibleWithWrapProperty<
           DataStreamNewlineType>::value,
       "Type DataStreamNewlineType cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  DataInputStream::property_newline_type () -> Glib::PropertyProxy<DataStreamNewlineType>
+  DataInputStream::property_newline_type () -> glib::PropertyProxy<DataStreamNewlineType>
   {
     return {this, "newline-type"};
   }
 
   auto
-  DataInputStream::property_newline_type () const -> Glib::PropertyProxy_ReadOnly<DataStreamNewlineType>
+  DataInputStream::property_newline_type () const -> glib::PropertyProxy_ReadOnly<DataStreamNewlineType>
   {
     return {this, "newline-type"};
   }
 
-} // namespace Gio
+} // namespace gio

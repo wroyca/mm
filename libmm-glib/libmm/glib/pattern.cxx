@@ -3,7 +3,7 @@
 #include <glib.h>
 #include <libmm/glib/pattern.hxx>
 
-namespace Glib
+namespace glib
 {
 
   PatternSpec::PatternSpec (const ustring& pattern)
@@ -51,4 +51,4 @@ namespace Glib
     return !g_pattern_spec_equal (gobject_, rhs.gobject_);
   }
 
-} // namespace Glib
+} // namespace glib

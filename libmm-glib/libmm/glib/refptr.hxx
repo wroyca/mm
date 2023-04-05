@@ -7,7 +7,7 @@
 #include <libmm/glib/mm-glibconfig.hxx>
 #include <memory>
 
-namespace Glib
+namespace glib
 {
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -32,6 +32,6 @@ namespace Glib
     return RefPtr<T_CppObject> (object, &RefPtrDeleter<T_CppObject>);
   }
 
-} // namespace Glib
+} // namespace glib
 
 #endif

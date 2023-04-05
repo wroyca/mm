@@ -8,7 +8,7 @@
 #include <gmodule.h>
 #include <libmm/glib/utility.hxx>
 
-namespace Glib
+namespace glib
 {
 
   Module::Module (const std::string& file_name, Flags flags)
@@ -45,13 +45,13 @@ namespace Glib
     return gobject_ != nullptr;
   }
 
-} // namespace Glib
+} // namespace glib
 
 namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
@@ -95,4 +95,4 @@ namespace Glib
         g_module_build_path (directory.c_str (), module_name.c_str ()));
   }
 
-} // namespace Glib
+} // namespace glib

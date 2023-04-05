@@ -21,22 +21,22 @@ namespace
   static auto
   proxy_foreach_callback (GtkIconView*, GtkTreePath* path, void* data) -> void
   {
-    typedef Gtk::IconView::SlotForeach SlotType;
+    typedef gtk::IconView::SlotForeach SlotType;
     auto& slot = *static_cast<SlotType*> (data);
 
     try
     {
-      slot (Gtk::TreeModel::Path (path, true));
+      slot (gtk::TreeModel::Path (path, true));
     }
     catch (...)
     {
-      Glib::exception_handlers_invoke ();
+      glib::exception_handlers_invoke ();
     }
   }
 
 } // namespace
 
-namespace Gtk
+namespace gtk
 {
 
   auto
@@ -69,8 +69,8 @@ namespace Gtk
         &cpath,
         &ccell);
 
-    path = Glib::wrap (cpath);
-    cell = Glib::wrap (ccell);
+    path = glib::wrap (cpath);
+    cell = glib::wrap (ccell);
     return result;
   }
 
@@ -85,7 +85,7 @@ namespace Gtk
         &cpath,
         nullptr);
 
-    path = Glib::wrap (cpath);
+    path = glib::wrap (cpath);
     return result;
   }
 
@@ -100,7 +100,7 @@ namespace Gtk
         nullptr,
         &ccell);
 
-    cell = Glib::wrap (ccell);
+    cell = glib::wrap (ccell);
     return result;
   }
 
@@ -115,8 +115,8 @@ namespace Gtk
         &cstart_path,
         &cend_path);
 
-    start_path = Glib::wrap (cstart_path);
-    end_path = Glib::wrap (cend_path);
+    start_path = glib::wrap (cstart_path);
+    end_path = glib::wrap (cend_path);
     return result;
   }
 
@@ -129,8 +129,8 @@ namespace Gtk
                                             &cpath,
                                             &ccell);
 
-    path = Glib::wrap (cpath);
-    cell = Glib::wrap (ccell);
+    path = glib::wrap (cpath);
+    cell = glib::wrap (ccell);
     return result;
   }
 
@@ -142,7 +142,7 @@ namespace Gtk
                                             &cpath,
                                             nullptr);
 
-    path = Glib::wrap (cpath);
+    path = glib::wrap (cpath);
     return result;
   }
 
@@ -154,7 +154,7 @@ namespace Gtk
                                             nullptr,
                                             &ccell);
 
-    cell = Glib::wrap (ccell);
+    cell = glib::wrap (ccell);
     return result;
   }
 
@@ -166,7 +166,7 @@ namespace Gtk
                                       &cpath,
                                       (GtkIconViewDropPosition*) (&pos));
     if (cpath)
-      path = Gtk::TreeModel::Path (cpath, true);
+      path = gtk::TreeModel::Path (cpath, true);
   }
 
   auto
@@ -177,7 +177,7 @@ namespace Gtk
                                       &cpath,
                                       nullptr);
     if (cpath)
-      path = Gtk::TreeModel::Path (cpath, true);
+      path = gtk::TreeModel::Path (cpath, true);
   }
 
   auto
@@ -202,7 +202,7 @@ namespace Gtk
         &cpath,
         (GtkIconViewDropPosition*) (&pos));
     if (cpath)
-      path = Gtk::TreeModel::Path (cpath, true);
+      path = gtk::TreeModel::Path (cpath, true);
 
     return result;
   }
@@ -220,7 +220,7 @@ namespace Gtk
         &cpath,
         nullptr);
     if (cpath)
-      path = Gtk::TreeModel::Path (cpath, true);
+      path = gtk::TreeModel::Path (cpath, true);
 
     return result;
   }
@@ -254,7 +254,7 @@ namespace Gtk
                                                          &cpath,
                                                          nullptr);
 
-    path = Glib::wrap (cpath, false);
+    path = glib::wrap (cpath, false);
 
     return result;
   }
@@ -263,7 +263,7 @@ namespace Gtk
   IconView::get_tooltip_context_iter (int x,
                                       int y,
                                       bool keyboard_tip,
-                                      Gtk::TreeModel::iterator& iter) -> bool
+                                      gtk::TreeModel::iterator& iter) -> bool
   {
     GtkTreeIter src_iter;
 
@@ -275,13 +275,13 @@ namespace Gtk
                                                          nullptr,
                                                          &src_iter);
 
-    iter = Gtk::TreeModel::iterator (gtk_icon_view_get_model (this->gobj ()),
+    iter = gtk::TreeModel::iterator (gtk_icon_view_get_model (this->gobj ()),
                                      &src_iter);
 
     return result;
   }
 
-} // namespace Gtk
+} // namespace gtk
 
 namespace
 {
@@ -291,61 +291,61 @@ namespace
                                            GtkTreePath* p0,
                                            void* data) -> void
   {
-    using namespace Gtk;
+    using namespace gtk;
     using SlotType = sigc::slot<void (const TreeModel::Path&)>;
 
     auto obj = dynamic_cast<IconView*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
     {
       try
       {
-        if (const auto slot = Glib::SignalProxyNormal::data_to_slot (data))
-          (*static_cast<SlotType*> (slot)) (Gtk::TreePath (p0, true));
+        if (const auto slot = glib::SignalProxyNormal::data_to_slot (data))
+          (*static_cast<SlotType*> (slot)) (gtk::TreePath (p0, true));
       }
       catch (...)
       {
-        Glib::exception_handlers_invoke ();
+        glib::exception_handlers_invoke ();
       }
     }
   }
 
-  static const Glib::SignalProxyInfo IconView_signal_item_activated_info = {
+  static const glib::SignalProxyInfo IconView_signal_item_activated_info = {
       "item_activated",
       (GCallback) &IconView_signal_item_activated_callback,
       (GCallback) &IconView_signal_item_activated_callback};
 
-  static const Glib::SignalProxyInfo IconView_signal_selection_changed_info = {
+  static const glib::SignalProxyInfo IconView_signal_selection_changed_info = {
       "selection_changed",
-      (GCallback) &Glib::SignalProxyNormal::slot0_void_callback,
-      (GCallback) &Glib::SignalProxyNormal::slot0_void_callback};
+      (GCallback) &glib::SignalProxyNormal::slot0_void_callback,
+      (GCallback) &glib::SignalProxyNormal::slot0_void_callback};
 
 } // namespace
 
 auto
-Glib::Value<Gtk::IconView::DropPosition>::value_type () -> GType
+glib::Value<gtk::IconView::DropPosition>::value_type () -> GType
 {
   return gtk_icon_view_drop_position_get_type ();
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GtkIconView* object, bool take_copy) -> Gtk::IconView*
+  wrap (GtkIconView* object, bool take_copy) -> gtk::IconView*
   {
-    return dynamic_cast<Gtk::IconView*> (
-        Glib::wrap_auto ((GObject*) (object), take_copy));
+    return dynamic_cast<gtk::IconView*> (
+        glib::wrap_auto ((GObject*) (object), take_copy));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gtk
+namespace gtk
 {
 
   auto
-  IconView_Class::init () -> const Glib::Class&
+  IconView_Class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -368,23 +368,23 @@ namespace Gtk
   }
 
   auto
-  IconView_Class::wrap_new (GObject* o) -> Glib::ObjectBase*
+  IconView_Class::wrap_new (GObject* o) -> glib::ObjectBase*
   {
     return manage (new IconView ((GtkIconView*) (o)));
   }
 
-  IconView::IconView (const Glib::ConstructParams& construct_params)
-    : Gtk::Widget (construct_params)
+  IconView::IconView (const glib::ConstructParams& construct_params)
+    : gtk::Widget (construct_params)
   {
   }
 
   IconView::IconView (GtkIconView* castitem)
-    : Gtk::Widget ((GtkWidget*) (castitem))
+    : gtk::Widget ((GtkWidget*) (castitem))
   {
   }
 
   IconView::IconView (IconView&& src) noexcept
-    : Gtk::Widget (std::move (src)),
+    : gtk::Widget (std::move (src)),
       CellLayout (std::move (src)),
       Scrollable (std::move (src))
   {
@@ -393,7 +393,7 @@ namespace Gtk
   auto
   IconView::operator= (IconView&& src) noexcept -> IconView&
   {
-    Gtk::Widget::operator= (std::move (src));
+    gtk::Widget::operator= (std::move (src));
     CellLayout::operator= (std::move (src));
     Scrollable::operator= (std::move (src));
     return *this;
@@ -419,46 +419,46 @@ namespace Gtk
   }
 
   IconView::IconView ()
-    : Glib::ObjectBase (nullptr),
-      Gtk::Widget (Glib::ConstructParams (iconview_class_.init ()))
+    : glib::ObjectBase (nullptr),
+      gtk::Widget (glib::ConstructParams (iconview_class_.init ()))
   {
   }
 
-  IconView::IconView (const Glib::RefPtr<TreeModel>& model)
-    : Glib::ObjectBase (nullptr),
-      Gtk::Widget (Glib::ConstructParams (iconview_class_.init (),
+  IconView::IconView (const glib::RefPtr<TreeModel>& model)
+    : glib::ObjectBase (nullptr),
+      gtk::Widget (glib::ConstructParams (iconview_class_.init (),
                                           "model",
-                                          Glib::unwrap (model),
+                                          glib::unwrap (model),
                                           nullptr))
   {
   }
 
-  IconView::IconView (const Glib::RefPtr<CellArea>& cell_area)
-    : Glib::ObjectBase (nullptr),
-      Gtk::Widget (Glib::ConstructParams (iconview_class_.init (),
+  IconView::IconView (const glib::RefPtr<CellArea>& cell_area)
+    : glib::ObjectBase (nullptr),
+      gtk::Widget (glib::ConstructParams (iconview_class_.init (),
                                           "cell_area",
-                                          Glib::unwrap (cell_area),
+                                          glib::unwrap (cell_area),
                                           nullptr))
   {
   }
 
   auto
-  IconView::set_model (const Glib::RefPtr<TreeModel>& model) -> void
+  IconView::set_model (const glib::RefPtr<TreeModel>& model) -> void
   {
-    gtk_icon_view_set_model (gobj (), Glib::unwrap (model));
+    gtk_icon_view_set_model (gobj (), glib::unwrap (model));
   }
 
   auto
-  IconView::get_model () -> Glib::RefPtr<TreeModel>
+  IconView::get_model () -> glib::RefPtr<TreeModel>
   {
-    auto retvalue = Glib::wrap (gtk_icon_view_get_model (gobj ()));
+    auto retvalue = glib::wrap (gtk_icon_view_get_model (gobj ()));
     if (retvalue)
       retvalue->reference ();
     return retvalue;
   }
 
   auto
-  IconView::get_model () const -> Glib::RefPtr<const TreeModel>
+  IconView::get_model () const -> glib::RefPtr<const TreeModel>
   {
     return const_cast<IconView*> (this)->get_model ();
   }
@@ -620,7 +620,7 @@ namespace Gtk
   auto
   IconView::get_path_at_pos (int x, int y) const -> TreeModel::Path
   {
-    return Gtk::TreePath (
+    return gtk::TreePath (
         gtk_icon_view_get_path_at_pos (const_cast<GtkIconView*> (gobj ()),
                                        x,
                                        y),
@@ -696,9 +696,9 @@ namespace Gtk
   auto
   IconView::get_selected_items () const -> std::vector<TreePath>
   {
-    return Glib::ListHandler<TreePath, TreePathTraits>::list_to_vector (
+    return glib::ListHandler<TreePath, TreePathTraits>::list_to_vector (
         gtk_icon_view_get_selected_items (const_cast<GtkIconView*> (gobj ())),
-        Glib::OWNERSHIP_DEEP);
+        glib::OWNERSHIP_DEEP);
   }
 
   auto
@@ -755,25 +755,25 @@ namespace Gtk
 
   auto
   IconView::enable_model_drag_source (
-      const Glib::RefPtr<const Gdk::ContentFormats>& formats,
-      Gdk::ModifierType start_button_mask,
-      Gdk::DragAction actions) -> void
+      const glib::RefPtr<const gdk::ContentFormats>& formats,
+      gdk::ModifierType start_button_mask,
+      gdk::DragAction actions) -> void
   {
     gtk_icon_view_enable_model_drag_source (
         gobj (),
         static_cast<GdkModifierType> (start_button_mask),
-        const_cast<GdkContentFormats*> (Glib::unwrap (formats)),
+        const_cast<GdkContentFormats*> (glib::unwrap (formats)),
         static_cast<GdkDragAction> (actions));
   }
 
   auto
   IconView::enable_model_drag_dest (
-      const Glib::RefPtr<const Gdk::ContentFormats>& formats,
-      Gdk::DragAction actions) -> void
+      const glib::RefPtr<const gdk::ContentFormats>& formats,
+      gdk::DragAction actions) -> void
   {
     gtk_icon_view_enable_model_drag_dest (
         gobj (),
-        const_cast<GdkContentFormats*> (Glib::unwrap (formats)),
+        const_cast<GdkContentFormats*> (glib::unwrap (formats)),
         static_cast<GdkDragAction> (actions));
   }
 
@@ -811,9 +811,9 @@ namespace Gtk
   }
 
   auto
-  IconView::create_drag_icon (const TreeModel::Path& path) const -> Glib::RefPtr<Gdk::Paintable>
+  IconView::create_drag_icon (const TreeModel::Path& path) const -> glib::RefPtr<gdk::Paintable>
   {
-    return Glib::wrap (gtk_icon_view_create_drag_icon (
+    return glib::wrap (gtk_icon_view_create_drag_icon (
         const_cast<GtkIconView*> (gobj ()),
         const_cast<GtkTreePath*> ((path).gobj ())));
   }
@@ -821,7 +821,7 @@ namespace Gtk
   auto
   IconView::get_cell_rect (const TreeModel::Path& path,
                            const CellRenderer& cell,
-                           Gdk::Rectangle& rect) const -> bool
+                           gdk::Rectangle& rect) const -> bool
   {
     GdkRectangle g_rect = GdkRectangle ();
     auto retvalue = gtk_icon_view_get_cell_rect (
@@ -829,13 +829,13 @@ namespace Gtk
         const_cast<GtkTreePath*> ((path).gobj ()),
         const_cast<GtkCellRenderer*> ((cell).gobj ()),
         &g_rect);
-    rect = Glib::wrap (&(g_rect));
+    rect = glib::wrap (&(g_rect));
     return retvalue;
   }
 
   auto
   IconView::get_cell_rect (const TreeModel::Path& path,
-                           Gdk::Rectangle& rect) const -> bool
+                           gdk::Rectangle& rect) const -> bool
   {
     GdkRectangle g_rect = GdkRectangle ();
     auto retvalue = gtk_icon_view_get_cell_rect (
@@ -843,26 +843,26 @@ namespace Gtk
         const_cast<GtkTreePath*> ((path).gobj ()),
         nullptr,
         &g_rect);
-    rect = Glib::wrap (&(g_rect));
+    rect = glib::wrap (&(g_rect));
     return retvalue;
   }
 
   auto
-  IconView::set_tooltip_item (const Glib::RefPtr<Tooltip>& tooltip,
+  IconView::set_tooltip_item (const glib::RefPtr<Tooltip>& tooltip,
                               const TreeModel::Path& path) -> void
   {
     gtk_icon_view_set_tooltip_item (gobj (),
-                                    Glib::unwrap (tooltip),
+                                    glib::unwrap (tooltip),
                                     const_cast<GtkTreePath*> ((path).gobj ()));
   }
 
   auto
-  IconView::set_tooltip_cell (const Glib::RefPtr<Tooltip>& tooltip,
+  IconView::set_tooltip_cell (const glib::RefPtr<Tooltip>& tooltip,
                               const TreeModel::Path& path,
                               CellRenderer& cell) -> void
   {
     gtk_icon_view_set_tooltip_cell (gobj (),
-                                    Glib::unwrap (tooltip),
+                                    glib::unwrap (tooltip),
                                     const_cast<GtkTreePath*> ((path).gobj ()),
                                     (cell).gobj ());
   }
@@ -881,243 +881,243 @@ namespace Gtk
   }
 
   auto
-  IconView::signal_item_activated () -> Glib::SignalProxy<void (const TreeModel::Path&)>
+  IconView::signal_item_activated () -> glib::SignalProxy<void (const TreeModel::Path&)>
   {
-    return Glib::SignalProxy<void (const TreeModel::Path&)> (
+    return glib::SignalProxy<void (const TreeModel::Path&)> (
         this,
         &IconView_signal_item_activated_info);
   }
 
   auto
-  IconView::signal_selection_changed () -> Glib::SignalProxy<void ()>
+  IconView::signal_selection_changed () -> glib::SignalProxy<void ()>
   {
-    return Glib::SignalProxy<void ()> (this,
+    return glib::SignalProxy<void ()> (this,
                                        &IconView_signal_selection_changed_info);
   }
 
   auto
-  IconView::property_pixbuf_column () -> Glib::PropertyProxy<int>
+  IconView::property_pixbuf_column () -> glib::PropertyProxy<int>
   {
-    return Glib::PropertyProxy<int> (this, "pixbuf-column");
+    return glib::PropertyProxy<int> (this, "pixbuf-column");
   }
 
   auto
-  IconView::property_pixbuf_column () const -> Glib::PropertyProxy_ReadOnly<int>
+  IconView::property_pixbuf_column () const -> glib::PropertyProxy_ReadOnly<int>
   {
-    return Glib::PropertyProxy_ReadOnly<int> (this, "pixbuf-column");
+    return glib::PropertyProxy_ReadOnly<int> (this, "pixbuf-column");
   }
 
   auto
-  IconView::property_text_column () -> Glib::PropertyProxy<int>
+  IconView::property_text_column () -> glib::PropertyProxy<int>
   {
-    return Glib::PropertyProxy<int> (this, "text-column");
+    return glib::PropertyProxy<int> (this, "text-column");
   }
 
   auto
-  IconView::property_text_column () const -> Glib::PropertyProxy_ReadOnly<int>
+  IconView::property_text_column () const -> glib::PropertyProxy_ReadOnly<int>
   {
-    return Glib::PropertyProxy_ReadOnly<int> (this, "text-column");
+    return glib::PropertyProxy_ReadOnly<int> (this, "text-column");
   }
 
   auto
-  IconView::property_markup_column () -> Glib::PropertyProxy<int>
+  IconView::property_markup_column () -> glib::PropertyProxy<int>
   {
-    return Glib::PropertyProxy<int> (this, "markup-column");
+    return glib::PropertyProxy<int> (this, "markup-column");
   }
 
   auto
-  IconView::property_markup_column () const -> Glib::PropertyProxy_ReadOnly<int>
+  IconView::property_markup_column () const -> glib::PropertyProxy_ReadOnly<int>
   {
-    return Glib::PropertyProxy_ReadOnly<int> (this, "markup-column");
+    return glib::PropertyProxy_ReadOnly<int> (this, "markup-column");
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<SelectionMode>::value,
+      glib::Traits::ValueCompatibleWithWrapProperty<SelectionMode>::value,
       "Type SelectionMode cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  IconView::property_selection_mode () -> Glib::PropertyProxy<SelectionMode>
+  IconView::property_selection_mode () -> glib::PropertyProxy<SelectionMode>
   {
-    return Glib::PropertyProxy<SelectionMode> (this, "selection-mode");
+    return glib::PropertyProxy<SelectionMode> (this, "selection-mode");
   }
 
   auto
-  IconView::property_selection_mode () const -> Glib::PropertyProxy_ReadOnly<SelectionMode>
+  IconView::property_selection_mode () const -> glib::PropertyProxy_ReadOnly<SelectionMode>
   {
-    return Glib::PropertyProxy_ReadOnly<SelectionMode> (this, "selection-mode");
+    return glib::PropertyProxy_ReadOnly<SelectionMode> (this, "selection-mode");
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<Orientation>::value,
+      glib::Traits::ValueCompatibleWithWrapProperty<Orientation>::value,
       "Type Orientation cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  IconView::property_item_orientation () -> Glib::PropertyProxy<Orientation>
+  IconView::property_item_orientation () -> glib::PropertyProxy<Orientation>
   {
-    return Glib::PropertyProxy<Orientation> (this, "item-orientation");
+    return glib::PropertyProxy<Orientation> (this, "item-orientation");
   }
 
   auto
-  IconView::property_item_orientation () const -> Glib::PropertyProxy_ReadOnly<Orientation>
+  IconView::property_item_orientation () const -> glib::PropertyProxy_ReadOnly<Orientation>
   {
-    return Glib::PropertyProxy_ReadOnly<Orientation> (this, "item-orientation");
+    return glib::PropertyProxy_ReadOnly<Orientation> (this, "item-orientation");
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<
-          Glib::RefPtr<TreeModel>>::value,
-      "Type Glib::RefPtr<TreeModel> cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      glib::Traits::ValueCompatibleWithWrapProperty<
+          glib::RefPtr<TreeModel>>::value,
+      "Type glib::RefPtr<TreeModel> cannot be used in _WRAP_PROPERTY. "
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  IconView::property_model () -> Glib::PropertyProxy<Glib::RefPtr<TreeModel>>
+  IconView::property_model () -> glib::PropertyProxy<glib::RefPtr<TreeModel>>
   {
-    return Glib::PropertyProxy<Glib::RefPtr<TreeModel>> (this, "model");
+    return glib::PropertyProxy<glib::RefPtr<TreeModel>> (this, "model");
   }
 
   auto
-  IconView::property_model () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<TreeModel>>
+  IconView::property_model () const -> glib::PropertyProxy_ReadOnly<glib::RefPtr<TreeModel>>
   {
-    return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<TreeModel>> (this,
+    return glib::PropertyProxy_ReadOnly<glib::RefPtr<TreeModel>> (this,
                                                                   "model");
   }
 
   auto
-  IconView::property_columns () -> Glib::PropertyProxy<int>
+  IconView::property_columns () -> glib::PropertyProxy<int>
   {
-    return Glib::PropertyProxy<int> (this, "columns");
+    return glib::PropertyProxy<int> (this, "columns");
   }
 
   auto
-  IconView::property_columns () const -> Glib::PropertyProxy_ReadOnly<int>
+  IconView::property_columns () const -> glib::PropertyProxy_ReadOnly<int>
   {
-    return Glib::PropertyProxy_ReadOnly<int> (this, "columns");
+    return glib::PropertyProxy_ReadOnly<int> (this, "columns");
   }
 
   auto
-  IconView::property_item_width () -> Glib::PropertyProxy<int>
+  IconView::property_item_width () -> glib::PropertyProxy<int>
   {
-    return Glib::PropertyProxy<int> (this, "item-width");
+    return glib::PropertyProxy<int> (this, "item-width");
   }
 
   auto
-  IconView::property_item_width () const -> Glib::PropertyProxy_ReadOnly<int>
+  IconView::property_item_width () const -> glib::PropertyProxy_ReadOnly<int>
   {
-    return Glib::PropertyProxy_ReadOnly<int> (this, "item-width");
+    return glib::PropertyProxy_ReadOnly<int> (this, "item-width");
   }
 
   auto
-  IconView::property_spacing () -> Glib::PropertyProxy<int>
+  IconView::property_spacing () -> glib::PropertyProxy<int>
   {
-    return Glib::PropertyProxy<int> (this, "spacing");
+    return glib::PropertyProxy<int> (this, "spacing");
   }
 
   auto
-  IconView::property_spacing () const -> Glib::PropertyProxy_ReadOnly<int>
+  IconView::property_spacing () const -> glib::PropertyProxy_ReadOnly<int>
   {
-    return Glib::PropertyProxy_ReadOnly<int> (this, "spacing");
+    return glib::PropertyProxy_ReadOnly<int> (this, "spacing");
   }
 
   auto
-  IconView::property_row_spacing () -> Glib::PropertyProxy<int>
+  IconView::property_row_spacing () -> glib::PropertyProxy<int>
   {
-    return Glib::PropertyProxy<int> (this, "row-spacing");
+    return glib::PropertyProxy<int> (this, "row-spacing");
   }
 
   auto
-  IconView::property_row_spacing () const -> Glib::PropertyProxy_ReadOnly<int>
+  IconView::property_row_spacing () const -> glib::PropertyProxy_ReadOnly<int>
   {
-    return Glib::PropertyProxy_ReadOnly<int> (this, "row-spacing");
+    return glib::PropertyProxy_ReadOnly<int> (this, "row-spacing");
   }
 
   auto
-  IconView::property_column_spacing () -> Glib::PropertyProxy<int>
+  IconView::property_column_spacing () -> glib::PropertyProxy<int>
   {
-    return Glib::PropertyProxy<int> (this, "column-spacing");
+    return glib::PropertyProxy<int> (this, "column-spacing");
   }
 
   auto
-  IconView::property_column_spacing () const -> Glib::PropertyProxy_ReadOnly<int>
+  IconView::property_column_spacing () const -> glib::PropertyProxy_ReadOnly<int>
   {
-    return Glib::PropertyProxy_ReadOnly<int> (this, "column-spacing");
+    return glib::PropertyProxy_ReadOnly<int> (this, "column-spacing");
   }
 
   auto
-  IconView::property_margin () -> Glib::PropertyProxy<int>
+  IconView::property_margin () -> glib::PropertyProxy<int>
   {
-    return Glib::PropertyProxy<int> (this, "margin");
+    return glib::PropertyProxy<int> (this, "margin");
   }
 
   auto
-  IconView::property_margin () const -> Glib::PropertyProxy_ReadOnly<int>
+  IconView::property_margin () const -> glib::PropertyProxy_ReadOnly<int>
   {
-    return Glib::PropertyProxy_ReadOnly<int> (this, "margin");
+    return glib::PropertyProxy_ReadOnly<int> (this, "margin");
   }
 
   auto
-  IconView::property_reorderable () -> Glib::PropertyProxy<int>
+  IconView::property_reorderable () -> glib::PropertyProxy<int>
   {
-    return Glib::PropertyProxy<int> (this, "reorderable");
+    return glib::PropertyProxy<int> (this, "reorderable");
   }
 
   auto
-  IconView::property_reorderable () const -> Glib::PropertyProxy_ReadOnly<int>
+  IconView::property_reorderable () const -> glib::PropertyProxy_ReadOnly<int>
   {
-    return Glib::PropertyProxy_ReadOnly<int> (this, "reorderable");
+    return glib::PropertyProxy_ReadOnly<int> (this, "reorderable");
   }
 
   auto
-  IconView::property_tooltip_column () -> Glib::PropertyProxy<int>
+  IconView::property_tooltip_column () -> glib::PropertyProxy<int>
   {
-    return Glib::PropertyProxy<int> (this, "tooltip-column");
+    return glib::PropertyProxy<int> (this, "tooltip-column");
   }
 
   auto
-  IconView::property_tooltip_column () const -> Glib::PropertyProxy_ReadOnly<int>
+  IconView::property_tooltip_column () const -> glib::PropertyProxy_ReadOnly<int>
   {
-    return Glib::PropertyProxy_ReadOnly<int> (this, "tooltip-column");
+    return glib::PropertyProxy_ReadOnly<int> (this, "tooltip-column");
   }
 
   auto
-  IconView::property_item_padding () -> Glib::PropertyProxy<int>
+  IconView::property_item_padding () -> glib::PropertyProxy<int>
   {
-    return Glib::PropertyProxy<int> (this, "item-padding");
+    return glib::PropertyProxy<int> (this, "item-padding");
   }
 
   auto
-  IconView::property_item_padding () const -> Glib::PropertyProxy_ReadOnly<int>
+  IconView::property_item_padding () const -> glib::PropertyProxy_ReadOnly<int>
   {
-    return Glib::PropertyProxy_ReadOnly<int> (this, "item-padding");
+    return glib::PropertyProxy_ReadOnly<int> (this, "item-padding");
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<
-          Glib::RefPtr<CellArea>>::value,
-      "Type Glib::RefPtr<CellArea> cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      glib::Traits::ValueCompatibleWithWrapProperty<
+          glib::RefPtr<CellArea>>::value,
+      "Type glib::RefPtr<CellArea> cannot be used in _WRAP_PROPERTY. "
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  IconView::property_cell_area () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<CellArea>>
+  IconView::property_cell_area () const -> glib::PropertyProxy_ReadOnly<glib::RefPtr<CellArea>>
   {
-    return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<CellArea>> (this,
+    return glib::PropertyProxy_ReadOnly<glib::RefPtr<CellArea>> (this,
                                                                  "cell-area");
   }
 
   auto
-  IconView::property_activate_on_single_click () -> Glib::PropertyProxy<bool>
+  IconView::property_activate_on_single_click () -> glib::PropertyProxy<bool>
   {
-    return Glib::PropertyProxy<bool> (this, "activate-on-single-click");
+    return glib::PropertyProxy<bool> (this, "activate-on-single-click");
   }
 
   auto
-  IconView::property_activate_on_single_click () const -> Glib::PropertyProxy_ReadOnly<bool>
+  IconView::property_activate_on_single_click () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this,
+    return glib::PropertyProxy_ReadOnly<bool> (this,
                                                "activate-on-single-click");
   }
 
-} // namespace Gtk
+} // namespace gtk
 
 #endif

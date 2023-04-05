@@ -17,16 +17,16 @@ using GOutputStreamClass = struct _GOutputStreamClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gio
+namespace gio
 {
   class LIBMM_GIO_SYMEXPORT OutputStream_Class;
 }
 #endif
 
-namespace Gio
+namespace gio
 {
 
-  class LIBMM_GIO_SYMEXPORT OutputStream : public Glib::Object
+  class LIBMM_GIO_SYMEXPORT OutputStream : public glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -45,7 +45,7 @@ namespace Gio
     static CppClassType outputstream_class_;
 
   protected:
-    explicit OutputStream (const Glib::ConstructParams& construct_params);
+    explicit OutputStream (const glib::ConstructParams& construct_params);
     explicit OutputStream (GOutputStream* castitem);
 
 #endif
@@ -96,14 +96,14 @@ namespace Gio
     auto
     write (const void* buffer,
            gsize count,
-           const Glib::RefPtr<Cancellable>& cancellable) -> gssize;
+           const glib::RefPtr<Cancellable>& cancellable) -> gssize;
 
     auto
     write (const void* buffer, gsize count) -> gssize;
 
     auto
     write (const std::string& buffer,
-           const Glib::RefPtr<Cancellable>& cancellable) -> gssize;
+           const glib::RefPtr<Cancellable>& cancellable) -> gssize;
 
     auto
     write (const std::string& buffer) -> gssize;
@@ -112,7 +112,7 @@ namespace Gio
     write_all (const void* buffer,
                gsize count,
                gsize& bytes_written,
-               const Glib::RefPtr<Cancellable>& cancellable) -> bool;
+               const glib::RefPtr<Cancellable>& cancellable) -> bool;
 
     auto
     write_all (const void* buffer, gsize count, gsize& bytes_written) -> bool;
@@ -120,49 +120,49 @@ namespace Gio
     auto
     write_all (const std::string& buffer,
                gsize& bytes_written,
-               const Glib::RefPtr<Cancellable>& cancellable) -> bool;
+               const glib::RefPtr<Cancellable>& cancellable) -> bool;
 
     auto
     write_all (const std::string& buffer, gsize& bytes_written) -> bool;
 
     auto
-    write_bytes (const Glib::RefPtr<const Glib::Bytes>& bytes,
-                 const Glib::RefPtr<Cancellable>& cancellable) -> gssize;
+    write_bytes (const glib::RefPtr<const glib::Bytes>& bytes,
+                 const glib::RefPtr<Cancellable>& cancellable) -> gssize;
 
     auto
-    write_bytes (const Glib::RefPtr<const Glib::Bytes>& bytes) -> gssize;
+    write_bytes (const glib::RefPtr<const glib::Bytes>& bytes) -> gssize;
 
     auto
-    write_bytes_async (const Glib::RefPtr<const Glib::Bytes>& bytes,
+    write_bytes_async (const glib::RefPtr<const glib::Bytes>& bytes,
                        const SlotAsyncReady& slot,
-                       const Glib::RefPtr<Cancellable>& cancellable,
-                       int io_priority = Glib::PRIORITY_DEFAULT) -> void;
+                       const glib::RefPtr<Cancellable>& cancellable,
+                       int io_priority = glib::PRIORITY_DEFAULT) -> void;
 
     auto
-    write_bytes_async (const Glib::RefPtr<const Glib::Bytes>& bytes,
+    write_bytes_async (const glib::RefPtr<const glib::Bytes>& bytes,
                        const SlotAsyncReady& slot,
-                       int io_priority = Glib::PRIORITY_DEFAULT) -> void;
+                       int io_priority = glib::PRIORITY_DEFAULT) -> void;
 
     auto
-    write_bytes_finish (const Glib::RefPtr<AsyncResult>& result) -> gssize;
+    write_bytes_finish (const glib::RefPtr<AsyncResult>& result) -> gssize;
 
     auto
-    splice (const Glib::RefPtr<InputStream>& source,
-            const Glib::RefPtr<Cancellable>& cancellable,
+    splice (const glib::RefPtr<InputStream>& source,
+            const glib::RefPtr<Cancellable>& cancellable,
             SpliceFlags flags = SpliceFlags::NONE) -> gssize;
 
     auto
-    splice (const Glib::RefPtr<InputStream>& source,
+    splice (const glib::RefPtr<InputStream>& source,
             SpliceFlags flags = SpliceFlags::NONE) -> gssize;
 
     auto
-    flush (const Glib::RefPtr<Cancellable>& cancellable) -> bool;
+    flush (const glib::RefPtr<Cancellable>& cancellable) -> bool;
 
     auto
     flush () -> bool;
 
     auto
-    close (const Glib::RefPtr<Cancellable>& cancellable) -> bool;
+    close (const glib::RefPtr<Cancellable>& cancellable) -> bool;
 
     auto
     close () -> bool;
@@ -171,74 +171,74 @@ namespace Gio
     write_async (const void* buffer,
                  gsize count,
                  const SlotAsyncReady& slot,
-                 const Glib::RefPtr<Cancellable>& cancellable,
-                 int io_priority = Glib::PRIORITY_DEFAULT) -> void;
+                 const glib::RefPtr<Cancellable>& cancellable,
+                 int io_priority = glib::PRIORITY_DEFAULT) -> void;
 
     auto
     write_async (const void* buffer,
                  gsize count,
                  const SlotAsyncReady& slot,
-                 int io_priority = Glib::PRIORITY_DEFAULT) -> void;
+                 int io_priority = glib::PRIORITY_DEFAULT) -> void;
 
     auto
-    write_finish (const Glib::RefPtr<AsyncResult>& result) -> gssize;
-
-    auto
-    write_all_async (const void* buffer,
-                     gsize count,
-                     const SlotAsyncReady& slot,
-                     const Glib::RefPtr<Cancellable>& cancellable,
-                     int io_priority = Glib::PRIORITY_DEFAULT) -> void;
+    write_finish (const glib::RefPtr<AsyncResult>& result) -> gssize;
 
     auto
     write_all_async (const void* buffer,
                      gsize count,
                      const SlotAsyncReady& slot,
-                     int io_priority = Glib::PRIORITY_DEFAULT) -> void;
+                     const glib::RefPtr<Cancellable>& cancellable,
+                     int io_priority = glib::PRIORITY_DEFAULT) -> void;
 
     auto
-    write_all_finish (const Glib::RefPtr<AsyncResult>& result,
+    write_all_async (const void* buffer,
+                     gsize count,
+                     const SlotAsyncReady& slot,
+                     int io_priority = glib::PRIORITY_DEFAULT) -> void;
+
+    auto
+    write_all_finish (const glib::RefPtr<AsyncResult>& result,
                       gsize& bytes_written) -> bool;
 
     auto
-    splice_async (const Glib::RefPtr<InputStream>& source,
+    splice_async (const glib::RefPtr<InputStream>& source,
                   const SlotAsyncReady& slot,
-                  const Glib::RefPtr<Cancellable>& cancellable,
+                  const glib::RefPtr<Cancellable>& cancellable,
                   SpliceFlags flags = SpliceFlags::NONE,
-                  int io_priority = Glib::PRIORITY_DEFAULT) -> void;
+                  int io_priority = glib::PRIORITY_DEFAULT) -> void;
 
     auto
-    splice_async (const Glib::RefPtr<InputStream>& source,
+    splice_async (const glib::RefPtr<InputStream>& source,
                   const SlotAsyncReady& slot,
                   SpliceFlags flags = SpliceFlags::NONE,
-                  int io_priority = Glib::PRIORITY_DEFAULT) -> void;
+                  int io_priority = glib::PRIORITY_DEFAULT) -> void;
 
     auto
-    splice_finish (const Glib::RefPtr<AsyncResult>& result) -> gssize;
+    splice_finish (const glib::RefPtr<AsyncResult>& result) -> gssize;
 
     auto
     flush_async (const SlotAsyncReady& slot,
-                 const Glib::RefPtr<Cancellable>& cancellable,
-                 int io_priority = Glib::PRIORITY_DEFAULT) -> void;
+                 const glib::RefPtr<Cancellable>& cancellable,
+                 int io_priority = glib::PRIORITY_DEFAULT) -> void;
 
     auto
     flush_async (const SlotAsyncReady& slot,
-                 int io_priority = Glib::PRIORITY_DEFAULT) -> void;
+                 int io_priority = glib::PRIORITY_DEFAULT) -> void;
 
     auto
-    flush_finish (const Glib::RefPtr<AsyncResult>& result) -> bool;
-
-    auto
-    close_async (const SlotAsyncReady& slot,
-                 const Glib::RefPtr<Cancellable>& cancellable,
-                 int io_priority = Glib::PRIORITY_DEFAULT) -> void;
+    flush_finish (const glib::RefPtr<AsyncResult>& result) -> bool;
 
     auto
     close_async (const SlotAsyncReady& slot,
-                 int io_priority = Glib::PRIORITY_DEFAULT) -> void;
+                 const glib::RefPtr<Cancellable>& cancellable,
+                 int io_priority = glib::PRIORITY_DEFAULT) -> void;
 
     auto
-    close_finish (const Glib::RefPtr<AsyncResult>& result) -> bool;
+    close_async (const SlotAsyncReady& slot,
+                 int io_priority = glib::PRIORITY_DEFAULT) -> void;
+
+    auto
+    close_finish (const glib::RefPtr<AsyncResult>& result) -> bool;
 
     auto
     is_closed () const -> bool;
@@ -259,27 +259,27 @@ namespace Gio
     virtual auto
     write_vfunc (const void* buffer,
                  gsize count,
-                 const Glib::RefPtr<Cancellable>& cancellable) -> gssize;
+                 const glib::RefPtr<Cancellable>& cancellable) -> gssize;
 
     virtual auto
-    splice_vfunc (const Glib::RefPtr<InputStream>& source,
-                  const Glib::RefPtr<Cancellable>& cancellable,
+    splice_vfunc (const glib::RefPtr<InputStream>& source,
+                  const glib::RefPtr<Cancellable>& cancellable,
                   SpliceFlags flags) -> gssize;
 
     virtual auto
-    flush_vfunc (const Glib::RefPtr<Cancellable>& cancellable) -> bool;
+    flush_vfunc (const glib::RefPtr<Cancellable>& cancellable) -> bool;
 
     virtual auto
-    close_vfunc (const Glib::RefPtr<Cancellable>& cancellable) -> bool;
+    close_vfunc (const glib::RefPtr<Cancellable>& cancellable) -> bool;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gio
+} // namespace gio
 
-namespace Gio
+namespace gio
 {
 
   inline auto
@@ -330,14 +330,14 @@ namespace Gio
     return (lhs = static_cast<OutputStream::SpliceFlags> (
                 static_cast<unsigned> (lhs) ^ static_cast<unsigned> (rhs)));
   }
-} // namespace Gio
+} // namespace gio
 
-namespace Glib
+namespace glib
 {
 
   LIBMM_GIO_SYMEXPORT
   auto
-  wrap (GOutputStream* object, bool take_copy = false) -> Glib::RefPtr<Gio::OutputStream>;
-} // namespace Glib
+  wrap (GOutputStream* object, bool take_copy = false) -> glib::RefPtr<gio::OutputStream>;
+} // namespace glib
 
 #endif

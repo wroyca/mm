@@ -23,18 +23,18 @@ using GtkWindowClass = struct _GtkWindowClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT Window_Class;
 }
 #endif
 
-namespace Gio
+namespace gio
 {
   class LIBMM_GTK_SYMEXPORT ListModel;
 }
 
-namespace Gtk
+namespace gtk
 {
 
   class LIBMM_GTK_SYMEXPORT Application;
@@ -66,7 +66,7 @@ namespace Gtk
     static CppClassType window_class_;
 
   protected:
-    explicit Window (const Glib::ConstructParams& construct_params);
+    explicit Window (const glib::ConstructParams& construct_params);
     explicit Window (GtkWindow* castitem);
 
 #endif
@@ -104,166 +104,166 @@ namespace Gtk
     explicit Window ();
 
     auto
-    property_title () -> Glib::PropertyProxy<Glib::ustring>;
+    property_title () -> glib::PropertyProxy<glib::ustring>;
 
     auto
-    property_title () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+    property_title () const -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
     auto
-    property_startup_id () -> Glib::PropertyProxy_WriteOnly<Glib::ustring>;
+    property_startup_id () -> glib::PropertyProxy_WriteOnly<glib::ustring>;
 
     auto
-    property_resizable () -> Glib::PropertyProxy<bool>;
+    property_resizable () -> glib::PropertyProxy<bool>;
 
     auto
-    property_resizable () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_resizable () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_modal () -> Glib::PropertyProxy<bool>;
+    property_modal () -> glib::PropertyProxy<bool>;
 
     auto
-    property_modal () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_modal () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_default_width () -> Glib::PropertyProxy<int>;
+    property_default_width () -> glib::PropertyProxy<int>;
 
     auto
-    property_default_width () const -> Glib::PropertyProxy_ReadOnly<int>;
+    property_default_width () const -> glib::PropertyProxy_ReadOnly<int>;
 
     auto
-    property_default_height () -> Glib::PropertyProxy<int>;
+    property_default_height () -> glib::PropertyProxy<int>;
 
     auto
-    property_default_height () const -> Glib::PropertyProxy_ReadOnly<int>;
+    property_default_height () const -> glib::PropertyProxy_ReadOnly<int>;
 
     auto
-    property_destroy_with_parent () -> Glib::PropertyProxy<bool>;
+    property_destroy_with_parent () -> glib::PropertyProxy<bool>;
 
     auto
-    property_destroy_with_parent () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_destroy_with_parent () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_hide_on_close () -> Glib::PropertyProxy<bool>;
+    property_hide_on_close () -> glib::PropertyProxy<bool>;
 
     auto
-    property_hide_on_close () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_hide_on_close () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_mnemonics_visible () -> Glib::PropertyProxy<bool>;
+    property_mnemonics_visible () -> glib::PropertyProxy<bool>;
 
     auto
-    property_mnemonics_visible () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_mnemonics_visible () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_icon_name () -> Glib::PropertyProxy<Glib::ustring>;
+    property_icon_name () -> glib::PropertyProxy<glib::ustring>;
 
     auto
-    property_icon_name () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+    property_icon_name () const -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
     auto
-    property_display () -> Glib::PropertyProxy<Glib::RefPtr<Gdk::Display>>;
+    property_display () -> glib::PropertyProxy<glib::RefPtr<gdk::Display>>;
 
     auto
     property_display () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gdk::Display>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<gdk::Display>>;
 
     auto
-    property_is_active () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_is_active () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_decorated () -> Glib::PropertyProxy<bool>;
+    property_decorated () -> glib::PropertyProxy<bool>;
 
     auto
-    property_decorated () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_decorated () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_transient_for () -> Glib::PropertyProxy<Window*>;
+    property_transient_for () -> glib::PropertyProxy<Window*>;
 
     auto
-    property_transient_for () const -> Glib::PropertyProxy_ReadOnly<Window*>;
+    property_transient_for () const -> glib::PropertyProxy_ReadOnly<Window*>;
 
     auto
-    property_deletable () -> Glib::PropertyProxy<bool>;
+    property_deletable () -> glib::PropertyProxy<bool>;
 
     auto
-    property_deletable () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_deletable () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_application () -> Glib::PropertyProxy<Glib::RefPtr<Application>>;
+    property_application () -> glib::PropertyProxy<glib::RefPtr<Application>>;
 
     auto
     property_application () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Application>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<Application>>;
 
     auto
-    property_focus_visible () -> Glib::PropertyProxy<bool>;
+    property_focus_visible () -> glib::PropertyProxy<bool>;
 
     auto
-    property_focus_visible () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_focus_visible () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_maximized () -> Glib::PropertyProxy<bool>;
+    property_maximized () -> glib::PropertyProxy<bool>;
 
     auto
-    property_maximized () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_maximized () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_fullscreened () -> Glib::PropertyProxy<bool>;
+    property_fullscreened () -> glib::PropertyProxy<bool>;
 
     auto
-    property_fullscreened () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_fullscreened () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_default_widget () -> Glib::PropertyProxy<Widget*>;
+    property_default_widget () -> glib::PropertyProxy<Widget*>;
 
     auto
-    property_default_widget () const -> Glib::PropertyProxy_ReadOnly<Widget*>;
+    property_default_widget () const -> glib::PropertyProxy_ReadOnly<Widget*>;
 
     auto
-    property_focus_widget () -> Glib::PropertyProxy<Widget*>;
+    property_focus_widget () -> glib::PropertyProxy<Widget*>;
 
     auto
-    property_focus_widget () const -> Glib::PropertyProxy_ReadOnly<Widget*>;
+    property_focus_widget () const -> glib::PropertyProxy_ReadOnly<Widget*>;
 
     auto
-    property_child () -> Glib::PropertyProxy<Widget*>;
+    property_child () -> glib::PropertyProxy<Widget*>;
 
     auto
-    property_child () const -> Glib::PropertyProxy_ReadOnly<Widget*>;
+    property_child () const -> glib::PropertyProxy_ReadOnly<Widget*>;
 
     auto
-    property_titlebar () -> Glib::PropertyProxy<Widget*>;
+    property_titlebar () -> glib::PropertyProxy<Widget*>;
 
     auto
-    property_titlebar () const -> Glib::PropertyProxy_ReadOnly<Widget*>;
+    property_titlebar () const -> glib::PropertyProxy_ReadOnly<Widget*>;
 
     auto
-    property_handle_menubar_accel () -> Glib::PropertyProxy<bool>;
+    property_handle_menubar_accel () -> glib::PropertyProxy<bool>;
 
     auto
     property_handle_menubar_accel () const
-        -> Glib::PropertyProxy_ReadOnly<bool>;
+        -> glib::PropertyProxy_ReadOnly<bool>;
 
 #ifndef GTKMM_DISABLE_DEPRECATED
 
     auto
-    signal_keys_changed () -> Glib::SignalProxy<void ()>;
+    signal_keys_changed () -> glib::SignalProxy<void ()>;
 #endif
 
     auto
-    signal_close_request () -> Glib::SignalProxy<bool ()>;
+    signal_close_request () -> glib::SignalProxy<bool ()>;
 
     auto
-    set_title (const Glib::ustring& title) -> void;
+    set_title (const glib::ustring& title) -> void;
 
     auto
-    get_title () const -> Glib::ustring;
+    get_title () const -> glib::ustring;
 
     auto
-    set_startup_id (const Glib::ustring& startup_id) -> void;
+    set_startup_id (const glib::ustring& startup_id) -> void;
 
     auto
-    set_focus (Gtk::Widget& focus) -> void;
+    set_focus (gtk::Widget& focus) -> void;
     auto
     unset_focus () -> void;
 
@@ -274,7 +274,7 @@ namespace Gtk
     get_focus () const -> const Widget*;
 
     auto
-    set_default_widget (Gtk::Widget& default_widget) -> void;
+    set_default_widget (gtk::Widget& default_widget) -> void;
     auto
     unset_default_widget () -> void;
 
@@ -330,7 +330,7 @@ namespace Gtk
     get_resizable () const -> bool;
 
     auto
-    set_display (const Glib::RefPtr<Gdk::Display>& display) -> void;
+    set_display (const glib::RefPtr<gdk::Display>& display) -> void;
 
     auto
     is_active () const -> bool;
@@ -348,16 +348,16 @@ namespace Gtk
     get_deletable () const -> bool;
 
     auto
-    set_icon_name (const Glib::ustring& name) -> void;
+    set_icon_name (const glib::ustring& name) -> void;
 
     auto
-    get_icon_name () const -> Glib::ustring;
+    get_icon_name () const -> glib::ustring;
 
     static auto
-    set_default_icon_name (const Glib::ustring& name) -> void;
+    set_default_icon_name (const glib::ustring& name) -> void;
 
     static auto
-    get_default_icon_name () -> Glib::ustring;
+    get_default_icon_name () -> glib::ustring;
 
     static auto
     set_auto_startup_notification (bool setting = true) -> void;
@@ -369,7 +369,7 @@ namespace Gtk
     get_modal () const -> bool;
 
     static auto
-    get_toplevels () -> Glib::RefPtr<Gio::ListModel>;
+    get_toplevels () -> glib::RefPtr<gio::ListModel>;
 
     static auto
     list_toplevels () -> std::vector<Window*>;
@@ -399,7 +399,7 @@ namespace Gtk
     unfullscreen () -> void;
 
     auto
-    fullscreen_on_monitor (const Glib::RefPtr<Gdk::Monitor>& monitor) -> void;
+    fullscreen_on_monitor (const glib::RefPtr<gdk::Monitor>& monitor) -> void;
 
     auto
     close () -> void;
@@ -411,22 +411,22 @@ namespace Gtk
     get_default_size (int& width, int& height) const -> void;
 
     auto
-    get_group () -> Glib::RefPtr<WindowGroup>;
+    get_group () -> glib::RefPtr<WindowGroup>;
 
     auto
-    get_group () const -> Glib::RefPtr<const WindowGroup>;
+    get_group () const -> glib::RefPtr<const WindowGroup>;
 
     auto
     has_group () const -> bool;
 
     auto
-    get_application () -> Glib::RefPtr<Application>;
+    get_application () -> glib::RefPtr<Application>;
 
     auto
-    get_application () const -> Glib::RefPtr<const Application>;
+    get_application () const -> glib::RefPtr<const Application>;
 
     auto
-    set_application (const Glib::RefPtr<Application>& application) -> void;
+    set_application (const glib::RefPtr<Application>& application) -> void;
 
     auto
     unset_application () -> void;
@@ -488,12 +488,12 @@ namespace Gtk
     on_close_request () -> bool;
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkWindow* object, bool take_copy = false) -> Gtk::Window*;
-} // namespace Glib
+  wrap (GtkWindow* object, bool take_copy = false) -> gtk::Window*;
+} // namespace glib
 
 #endif

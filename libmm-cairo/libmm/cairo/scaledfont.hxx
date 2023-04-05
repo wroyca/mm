@@ -14,7 +14,7 @@
   #include <cairo-ft.h>
 #endif
 
-namespace Cairo
+namespace cairo
 {
 
   class LIBMM_CAIRO_SYMEXPORT ScaledFont
@@ -142,6 +142,6 @@ namespace Cairo
   };
 #endif
 
-} // namespace Cairo
+} // namespace cairo
 
 #endif

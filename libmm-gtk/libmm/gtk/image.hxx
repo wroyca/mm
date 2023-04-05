@@ -16,13 +16,13 @@ using GtkImageClass = struct _GtkImageClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT Image_Class;
 }
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
   class LIBMM_GTK_SYMEXPORT Image : public Widget
@@ -52,7 +52,7 @@ namespace Gtk
     static CppClassType image_class_;
 
   protected:
-    explicit Image (const Glib::ConstructParams& construct_params);
+    explicit Image (const glib::ConstructParams& construct_params);
     explicit Image (GtkImage* castitem);
 
 #endif
@@ -93,11 +93,11 @@ namespace Gtk
 
     explicit Image (const std::string& file);
 
-    explicit Image (const Glib::RefPtr<Gdk::Pixbuf>& pixbuf);
+    explicit Image (const glib::RefPtr<gdk::Pixbuf>& pixbuf);
 
-    explicit Image (const Glib::RefPtr<Gdk::Paintable>& paintable);
+    explicit Image (const glib::RefPtr<gdk::Paintable>& paintable);
 
-    explicit Image (const Glib::RefPtr<Gio::Icon>& gicon);
+    explicit Image (const glib::RefPtr<gio::Icon>& gicon);
 
     auto
     set (const std::string& filename) -> void;
@@ -106,16 +106,16 @@ namespace Gtk
     set_from_resource (const std::string& resource_path) -> void;
 
     auto
-    set (const Glib::RefPtr<Gdk::Pixbuf>& pixbuf) -> void;
+    set (const glib::RefPtr<gdk::Pixbuf>& pixbuf) -> void;
 
     auto
-    set (const Glib::RefPtr<Gdk::Paintable>& paintable) -> void;
+    set (const glib::RefPtr<gdk::Paintable>& paintable) -> void;
 
     auto
-    set (const Glib::RefPtr<const Gio::Icon>& icon) -> void;
+    set (const glib::RefPtr<const gio::Icon>& icon) -> void;
 
     auto
-    set_from_icon_name (const Glib::ustring& icon_name) -> void;
+    set_from_icon_name (const glib::ustring& icon_name) -> void;
 
     auto
     clear () -> void;
@@ -124,10 +124,10 @@ namespace Gtk
     get_storage_type () const -> Type;
 
     auto
-    get_paintable () -> Glib::RefPtr<Gdk::Paintable>;
+    get_paintable () -> glib::RefPtr<gdk::Paintable>;
 
     auto
-    get_paintable () const -> Glib::RefPtr<const Gdk::Paintable>;
+    get_paintable () const -> glib::RefPtr<const gdk::Paintable>;
 
     auto
     set_icon_size (IconSize icon_size) -> void;
@@ -136,13 +136,13 @@ namespace Gtk
     get_icon_size () const -> IconSize;
 
     auto
-    get_gicon () -> Glib::RefPtr<Gio::Icon>;
+    get_gicon () -> glib::RefPtr<gio::Icon>;
 
     auto
-    get_gicon () const -> Glib::RefPtr<const Gio::Icon>;
+    get_gicon () const -> glib::RefPtr<const gio::Icon>;
 
     auto
-    get_icon_name () const -> Glib::ustring;
+    get_icon_name () const -> glib::ustring;
 
     auto
     get_pixel_size () const -> int;
@@ -151,85 +151,85 @@ namespace Gtk
     set_pixel_size (int pixel_size) -> void;
 
     auto
-    property_file () -> Glib::PropertyProxy<Glib::ustring>;
+    property_file () -> glib::PropertyProxy<glib::ustring>;
 
     auto
-    property_file () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+    property_file () const -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
     auto
-    property_icon_size () -> Glib::PropertyProxy<IconSize>;
+    property_icon_size () -> glib::PropertyProxy<IconSize>;
 
     auto
-    property_icon_size () const -> Glib::PropertyProxy_ReadOnly<IconSize>;
+    property_icon_size () const -> glib::PropertyProxy_ReadOnly<IconSize>;
 
     auto
-    property_pixel_size () -> Glib::PropertyProxy<int>;
+    property_pixel_size () -> glib::PropertyProxy<int>;
 
     auto
-    property_pixel_size () const -> Glib::PropertyProxy_ReadOnly<int>;
+    property_pixel_size () const -> glib::PropertyProxy_ReadOnly<int>;
 
     auto
-    property_icon_name () -> Glib::PropertyProxy<Glib::ustring>;
+    property_icon_name () -> glib::PropertyProxy<glib::ustring>;
 
     auto
-    property_icon_name () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+    property_icon_name () const -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
     auto
-    property_storage_type () const -> Glib::PropertyProxy_ReadOnly<Type>;
+    property_storage_type () const -> glib::PropertyProxy_ReadOnly<Type>;
 
     auto
-    property_gicon () -> Glib::PropertyProxy<Glib::RefPtr<Gio::Icon>>;
+    property_gicon () -> glib::PropertyProxy<glib::RefPtr<gio::Icon>>;
 
     auto
     property_gicon () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gio::Icon>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<gio::Icon>>;
 
     auto
-    property_use_fallback () -> Glib::PropertyProxy<bool>;
+    property_use_fallback () -> glib::PropertyProxy<bool>;
 
     auto
-    property_use_fallback () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_use_fallback () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_resource () -> Glib::PropertyProxy<std::string>;
+    property_resource () -> glib::PropertyProxy<std::string>;
 
     auto
-    property_resource () const -> Glib::PropertyProxy_ReadOnly<std::string>;
+    property_resource () const -> glib::PropertyProxy_ReadOnly<std::string>;
 
     auto
-    property_paintable () -> Glib::PropertyProxy<Glib::RefPtr<Gdk::Paintable>>;
+    property_paintable () -> glib::PropertyProxy<glib::RefPtr<gdk::Paintable>>;
 
     auto
     property_paintable () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gdk::Paintable>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<gdk::Paintable>>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_GTK_SYMEXPORT Value<Gtk::Image::Type>
-    : public Glib::Value_Enum<Gtk::Image::Type>
+  class LIBMM_GTK_SYMEXPORT Value<gtk::Image::Type>
+    : public glib::Value_Enum<gtk::Image::Type>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkImage* object, bool take_copy = false) -> Gtk::Image*;
-} // namespace Glib
+  wrap (GtkImage* object, bool take_copy = false) -> gtk::Image*;
+} // namespace glib
 
 #endif

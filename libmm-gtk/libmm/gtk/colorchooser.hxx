@@ -25,16 +25,16 @@ using GtkColorChooserClass = struct _GtkColorChooserClass;
   #endif
 
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT ColorChooser_Class;
 }
   #endif
 
-namespace Gtk
+namespace gtk
 {
 
-  class LIBMM_GTK_SYMEXPORT ColorChooser : public Glib::Interface
+  class LIBMM_GTK_SYMEXPORT ColorChooser : public glib::Interface
   {
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -58,7 +58,7 @@ namespace Gtk
 
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
-    explicit ColorChooser (const Glib::Interface_Class& interface_class);
+    explicit ColorChooser (const glib::Interface_Class& interface_class);
 
   public:
     explicit ColorChooser (GtkColorChooser* castitem);
@@ -99,10 +99,10 @@ namespace Gtk
   private:
   public:
     auto
-    get_rgba () const -> Gdk::RGBA;
+    get_rgba () const -> gdk::RGBA;
 
     auto
-    set_rgba (const Gdk::RGBA& color) -> void;
+    set_rgba (const gdk::RGBA& color) -> void;
 
     auto
     get_use_alpha () const -> bool;
@@ -113,38 +113,38 @@ namespace Gtk
     auto
     add_palette (Orientation orientation,
                  int colors_per_line,
-                 const std::vector<Gdk::RGBA>& colors) -> void;
+                 const std::vector<gdk::RGBA>& colors) -> void;
 
     auto
-    signal_color_activated () -> Glib::SignalProxy<void (const Gdk::RGBA&)>;
+    signal_color_activated () -> glib::SignalProxy<void (const gdk::RGBA&)>;
 
     auto
-    property_rgba () -> Glib::PropertyProxy<Gdk::RGBA>;
+    property_rgba () -> glib::PropertyProxy<gdk::RGBA>;
 
     auto
-    property_rgba () const -> Glib::PropertyProxy_ReadOnly<Gdk::RGBA>;
+    property_rgba () const -> glib::PropertyProxy_ReadOnly<gdk::RGBA>;
 
     auto
-    property_use_alpha () -> Glib::PropertyProxy<bool>;
+    property_use_alpha () -> glib::PropertyProxy<bool>;
 
     auto
-    property_use_alpha () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_use_alpha () const -> glib::PropertyProxy_ReadOnly<bool>;
 
   public:
   public:
   protected:
     virtual auto
-    on_color_activated (const Gdk::RGBA& color) -> void;
+    on_color_activated (const gdk::RGBA& color) -> void;
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkColorChooser* object, bool take_copy = false) -> Glib::RefPtr<Gtk::ColorChooser>;
+  wrap (GtkColorChooser* object, bool take_copy = false) -> glib::RefPtr<gtk::ColorChooser>;
 
-} // namespace Glib
+} // namespace glib
 
 #endif
 

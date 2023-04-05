@@ -19,13 +19,13 @@ using GtkAssistantClass = struct _GtkAssistantClass;
   #endif
 
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT Assistant_Class;
 }
   #endif
 
-namespace Gtk
+namespace gtk
 {
 
   class LIBMM_GTK_SYMEXPORT Assistant : public Window
@@ -55,7 +55,7 @@ namespace Gtk
     static CppClassType assistant_class_;
 
   protected:
-    explicit Assistant (const Glib::ConstructParams& construct_params);
+    explicit Assistant (const glib::ConstructParams& construct_params);
     explicit Assistant (GtkAssistant* castitem);
 
   #endif
@@ -133,10 +133,10 @@ namespace Gtk
     get_page_type (const Widget& page) const -> AssistantPage::Type;
 
     auto
-    set_page_title (const Widget& page, const Glib::ustring& title) -> void;
+    set_page_title (const Widget& page, const glib::ustring& title) -> void;
 
     auto
-    get_page_title (const Widget& page) const -> Glib::ustring;
+    get_page_title (const Widget& page) const -> glib::ustring;
 
     auto
     set_page_complete (const Widget& page, bool complete = true) -> void;
@@ -157,48 +157,48 @@ namespace Gtk
     commit () -> void;
 
     auto
-    get_page (Widget& child) -> Glib::RefPtr<AssistantPage>;
+    get_page (Widget& child) -> glib::RefPtr<AssistantPage>;
 
     auto
-    get_page (const Widget& child) const -> Glib::RefPtr<const AssistantPage>;
+    get_page (const Widget& child) const -> glib::RefPtr<const AssistantPage>;
 
     auto
-    get_pages () -> Glib::RefPtr<Gio::ListModel>;
+    get_pages () -> glib::RefPtr<gio::ListModel>;
 
     auto
-    get_pages () const -> Glib::RefPtr<const Gio::ListModel>;
+    get_pages () const -> glib::RefPtr<const gio::ListModel>;
 
     auto
-    signal_prepare () -> Glib::SignalProxy<void (Gtk::Widget*)>;
+    signal_prepare () -> glib::SignalProxy<void (gtk::Widget*)>;
 
     auto
-    signal_apply () -> Glib::SignalProxy<void ()>;
+    signal_apply () -> glib::SignalProxy<void ()>;
 
     auto
-    signal_close () -> Glib::SignalProxy<void ()>;
+    signal_close () -> glib::SignalProxy<void ()>;
 
     auto
-    signal_cancel () -> Glib::SignalProxy<void ()>;
+    signal_cancel () -> glib::SignalProxy<void ()>;
 
     auto
-    property_use_header_bar () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_use_header_bar () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
     property_pages () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gio::ListModel>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<gio::ListModel>>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkAssistant* object, bool take_copy = false) -> Gtk::Assistant*;
-} // namespace Glib
+  wrap (GtkAssistant* object, bool take_copy = false) -> gtk::Assistant*;
+} // namespace glib
 
 #endif
 

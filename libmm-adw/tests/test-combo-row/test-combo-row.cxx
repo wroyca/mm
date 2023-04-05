@@ -4,7 +4,7 @@
  * SPDX-License-Identifier: LGPL-2.1-or-later
  */
 
-#include <libmm/adw/init.hxx> // Adw::init
+#include <libmm/adw/init.hxx> // adw::init
 #include <libmm/adw/mm-adw.hxx>
 
 int notified;
@@ -18,20 +18,20 @@ notify_cb ()
 static void
 test_adw_combo_row_set_for_enum (void)
 {
-  Adw::ComboRow row;
-  Glib::RefPtr<Gtk::Expression<Glib::ustring>> expr;
-  Glib::RefPtr<Gio::ListModel> model;
-  Glib::RefPtr<Adw::EnumListItem> item;
+  adw::ComboRow row;
+  glib::RefPtr<gtk::Expression<glib::ustring>> expr;
+  glib::RefPtr<gio::ListModel> model;
+  glib::RefPtr<adw::EnumListItem> item;
 
   g_assert_true (row.get_model () == nullptr);
 
-  expr = Gtk::PropertyExpression<Glib::ustring>::create (
-      Adw::EnumListItem::get_type (),
+  expr = gtk::PropertyExpression<glib::ustring>::create (
+      adw::EnumListItem::get_type (),
       "nick");
   row.set_expression (expr);
 
   // Enums don't have a way to retrieve its GType in gtkmm.
-  model = Adw::EnumListModel::create (GTK_TYPE_ORIENTATION);
+  model = adw::EnumListModel::create (GTK_TYPE_ORIENTATION);
   row.set_model (model);
 
   model = row.get_model ();
@@ -39,11 +39,11 @@ test_adw_combo_row_set_for_enum (void)
 
   g_assert_true (model->get_n_items () == 2);
 
-  item = std::dynamic_pointer_cast<Adw::EnumListItem> (model->get_object (0));
+  item = std::dynamic_pointer_cast<adw::EnumListItem> (model->get_object (0));
   g_assert_true (item != nullptr);
   g_assert_true (item->get_nick () == "horizontal");
 
-  item = std::dynamic_pointer_cast<Adw::EnumListItem> (model->get_object (1));
+  item = std::dynamic_pointer_cast<adw::EnumListItem> (model->get_object (1));
   g_assert_true (item != nullptr);
   g_assert_true (item->get_nick () == "vertical");
 }
@@ -51,8 +51,8 @@ test_adw_combo_row_set_for_enum (void)
 static void
 test_adw_combo_row_selected (void)
 {
-  Adw::ComboRow row;
-  Glib::RefPtr<Gio::ListModel> model;
+  adw::ComboRow row;
+  glib::RefPtr<gio::ListModel> model;
   int selected = 0;
 
   notified = 0;
@@ -66,7 +66,7 @@ test_adw_combo_row_selected (void)
   g_assert_true (notified == 0);
 
   // Enums don't have a way to retrieve its GType in gtkmm.
-  model = Adw::EnumListModel::create (GTK_TYPE_SELECTION_MODE);
+  model = adw::EnumListModel::create (GTK_TYPE_SELECTION_MODE);
   row.set_model (model);
 
   g_assert_true (row.get_selected () == 0);
@@ -84,7 +84,7 @@ test_adw_combo_row_selected (void)
 static void
 test_adw_combo_row_use_subtitle (void)
 {
-  Adw::ComboRow row;
+  adw::ComboRow row;
 
   notified = 0;
   row.property_use_subtitle ().signal_changed ().connect (
@@ -109,7 +109,7 @@ int
 main (int argc, char* argv[])
 {
   gtk_test_init (&argc, &argv, NULL);
-  Adw::init ();
+  adw::init ();
 
   g_test_add_func ("/Adwaita/ComboRow/set_for_enum",
                    test_adw_combo_row_set_for_enum);

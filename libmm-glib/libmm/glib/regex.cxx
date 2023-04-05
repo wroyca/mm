@@ -7,10 +7,10 @@
 
 #include <libmm/glib/utility.hxx>
 
-using CompileFlags = Glib::Regex::CompileFlags;
-using MatchFlags = Glib::Regex::MatchFlags;
+using CompileFlags = glib::Regex::CompileFlags;
+using MatchFlags = glib::Regex::MatchFlags;
 
-namespace Glib
+namespace glib
 {
 
   auto
@@ -382,36 +382,36 @@ namespace Glib
       g_match_info_free (gobject_);
   }
 
-} // namespace Glib
+} // namespace glib
 
 namespace
 {
 }
 
-Glib::RegexError::RegexError (const Code error_code,
+glib::RegexError::RegexError (const Code error_code,
                               const ustring& error_message)
   : Error (G_REGEX_ERROR, error_code, error_message)
 {
 }
 
-Glib::RegexError::RegexError (GError* gobject)
+glib::RegexError::RegexError (GError* gobject)
   : Error (gobject)
 {
 }
 
 auto
-Glib::RegexError::code () const -> Code
+glib::RegexError::code () const -> Code
 {
   return static_cast<Code> (Error::code ());
 }
 
 auto
-Glib::RegexError::throw_func (GError* gobject) -> void
+glib::RegexError::throw_func (GError* gobject) -> void
 {
   throw RegexError (gobject);
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
@@ -420,13 +420,13 @@ namespace Glib
     if (take_copy && object)
       g_regex_ref (object);
 
-    return Glib::make_refptr_for_instance<Regex> (
+    return glib::make_refptr_for_instance<Regex> (
         reinterpret_cast<Regex*> (object));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Glib
+namespace glib
 {
 
   auto
@@ -646,9 +646,9 @@ namespace Glib
     return retvalue;
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Glib
+namespace glib
 {
 
   auto
@@ -750,4 +750,4 @@ namespace Glib
         OWNERSHIP_DEEP);
   }
 
-} // namespace Glib
+} // namespace glib

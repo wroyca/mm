@@ -10,31 +10,31 @@
 namespace
 {
 
-  static const Glib::SignalProxyInfo ATContext_signal_state_change_info = {
+  static const glib::SignalProxyInfo ATContext_signal_state_change_info = {
       "state-change",
-      (GCallback) &Glib::SignalProxyNormal::slot0_void_callback,
-      (GCallback) &Glib::SignalProxyNormal::slot0_void_callback};
+      (GCallback) &glib::SignalProxyNormal::slot0_void_callback,
+      (GCallback) &glib::SignalProxyNormal::slot0_void_callback};
 
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GtkATContext* object, bool take_copy) -> Glib::RefPtr<Gtk::ATContext>
+  wrap (GtkATContext* object, bool take_copy) -> glib::RefPtr<gtk::ATContext>
   {
-    return Glib::make_refptr_for_instance<Gtk::ATContext> (
-        dynamic_cast<Gtk::ATContext*> (
-            Glib::wrap_auto ((GObject*) (object), take_copy)));
+    return glib::make_refptr_for_instance<gtk::ATContext> (
+        dynamic_cast<gtk::ATContext*> (
+            glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gtk
+namespace gtk
 {
 
   auto
-  ATContext_Class::init () -> const Glib::Class&
+  ATContext_Class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -45,7 +45,7 @@ namespace Gtk
   }
 
   auto
-  ATContext_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  ATContext_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new ATContext ((GtkATContext*) object);
   }
@@ -57,25 +57,25 @@ namespace Gtk
     return gobj ();
   }
 
-  ATContext::ATContext (const Glib::ConstructParams& construct_params)
-    : Glib::Object (construct_params)
+  ATContext::ATContext (const glib::ConstructParams& construct_params)
+    : glib::Object (construct_params)
   {
   }
 
   ATContext::ATContext (GtkATContext* castitem)
-    : Glib::Object ((GObject*) (castitem))
+    : glib::Object ((GObject*) (castitem))
   {
   }
 
   ATContext::ATContext (ATContext&& src) noexcept
-    : Glib::Object (std::move (src))
+    : glib::Object (std::move (src))
   {
   }
 
   auto
   ATContext::operator= (ATContext&& src) noexcept -> ATContext&
   {
-    Glib::Object::operator= (std::move (src));
+    glib::Object::operator= (std::move (src));
     return *this;
   }
 
@@ -96,33 +96,33 @@ namespace Gtk
   }
 
   ATContext::ATContext ()
-    : Glib::ObjectBase (nullptr),
-      Glib::Object (Glib::ConstructParams (atcontext_class_.init ()))
+    : glib::ObjectBase (nullptr),
+      glib::Object (glib::ConstructParams (atcontext_class_.init ()))
   {
   }
 
   auto
   ATContext::create (Accessible::Role accessible_role,
-                     const Glib::RefPtr<Accessible>& accessible,
-                     const Glib::RefPtr<Gdk::Display>& display) -> Glib::RefPtr<ATContext>
+                     const glib::RefPtr<Accessible>& accessible,
+                     const glib::RefPtr<gdk::Display>& display) -> glib::RefPtr<ATContext>
   {
-    return Glib::wrap (
+    return glib::wrap (
         gtk_at_context_create (static_cast<GtkAccessibleRole> (accessible_role),
-                               Glib::unwrap (accessible),
-                               Glib::unwrap (display)));
+                               glib::unwrap (accessible),
+                               glib::unwrap (display)));
   }
 
   auto
-  ATContext::get_accessible () -> Glib::RefPtr<Accessible>
+  ATContext::get_accessible () -> glib::RefPtr<Accessible>
   {
-    auto retvalue = Glib::wrap (gtk_at_context_get_accessible (gobj ()));
+    auto retvalue = glib::wrap (gtk_at_context_get_accessible (gobj ()));
     if (retvalue)
       retvalue->reference ();
     return retvalue;
   }
 
   auto
-  ATContext::get_accessible () const -> Glib::RefPtr<const Accessible>
+  ATContext::get_accessible () const -> glib::RefPtr<const Accessible>
   {
     return const_cast<ATContext*> (this)->get_accessible ();
   }
@@ -135,61 +135,61 @@ namespace Gtk
   }
 
   auto
-  ATContext::signal_state_change () -> Glib::SignalProxy<void ()>
+  ATContext::signal_state_change () -> glib::SignalProxy<void ()>
   {
-    return Glib::SignalProxy<void ()> (this,
+    return glib::SignalProxy<void ()> (this,
                                        &ATContext_signal_state_change_info);
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<Accessible::Role>::value,
+      glib::Traits::ValueCompatibleWithWrapProperty<Accessible::Role>::value,
       "Type Accessible::Role cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  ATContext::property_accessible_role () -> Glib::PropertyProxy<Accessible::Role>
+  ATContext::property_accessible_role () -> glib::PropertyProxy<Accessible::Role>
   {
-    return Glib::PropertyProxy<Accessible::Role> (this, "accessible-role");
+    return glib::PropertyProxy<Accessible::Role> (this, "accessible-role");
   }
 
   auto
-  ATContext::property_accessible_role () const -> Glib::PropertyProxy_ReadOnly<Accessible::Role>
+  ATContext::property_accessible_role () const -> glib::PropertyProxy_ReadOnly<Accessible::Role>
   {
-    return Glib::PropertyProxy_ReadOnly<Accessible::Role> (this,
+    return glib::PropertyProxy_ReadOnly<Accessible::Role> (this,
                                                            "accessible-role");
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<
-          Glib::RefPtr<Accessible>>::value,
-      "Type Glib::RefPtr<Accessible> cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      glib::Traits::ValueCompatibleWithWrapProperty<
+          glib::RefPtr<Accessible>>::value,
+      "Type glib::RefPtr<Accessible> cannot be used in _WRAP_PROPERTY. "
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  ATContext::property_accessible () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Accessible>>
+  ATContext::property_accessible () const -> glib::PropertyProxy_ReadOnly<glib::RefPtr<Accessible>>
   {
-    return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Accessible>> (
+    return glib::PropertyProxy_ReadOnly<glib::RefPtr<Accessible>> (
         this,
         "accessible");
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<
-          Glib::RefPtr<Gdk::Display>>::value,
-      "Type Glib::RefPtr<Gdk::Display> cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      glib::Traits::ValueCompatibleWithWrapProperty<
+          glib::RefPtr<gdk::Display>>::value,
+      "Type glib::RefPtr<gdk::Display> cannot be used in _WRAP_PROPERTY. "
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  ATContext::property_display () -> Glib::PropertyProxy<Glib::RefPtr<Gdk::Display>>
+  ATContext::property_display () -> glib::PropertyProxy<glib::RefPtr<gdk::Display>>
   {
-    return Glib::PropertyProxy<Glib::RefPtr<Gdk::Display>> (this, "display");
+    return glib::PropertyProxy<glib::RefPtr<gdk::Display>> (this, "display");
   }
 
   auto
-  ATContext::property_display () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gdk::Display>>
+  ATContext::property_display () const -> glib::PropertyProxy_ReadOnly<glib::RefPtr<gdk::Display>>
   {
-    return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gdk::Display>> (this,
+    return glib::PropertyProxy_ReadOnly<glib::RefPtr<gdk::Display>> (this,
                                                                      "display");
   }
 
-} // namespace Gtk
+} // namespace gtk

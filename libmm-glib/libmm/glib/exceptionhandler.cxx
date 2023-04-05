@@ -20,7 +20,7 @@ namespace
     g_assert (error != nullptr);
 
     g_critical ("\n"
-                "unhandled exception (type Glib::Error) in signal handler:\n"
+                "unhandled exception (type glib::Error) in signal handler:\n"
                 "domain: %s\n"
                 "code  : %d\n"
                 "what  : %s\n",
@@ -36,7 +36,7 @@ namespace
     {
       throw;
     }
-    catch (const Glib::Error& error)
+    catch (const glib::Error& error)
     {
       glibmm_exception_warning (error.gobj ());
 
@@ -57,7 +57,7 @@ namespace
 
 } // namespace
 
-namespace Glib
+namespace glib
 {
 
   auto
@@ -108,4 +108,4 @@ namespace Glib
     glibmm_unexpected_exception ();
   }
 
-} // namespace Glib
+} // namespace glib

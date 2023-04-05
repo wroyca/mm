@@ -21,20 +21,20 @@ using GAsyncResultClass = struct _GAsyncResultClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gio
+namespace gio
 {
   class LIBMM_GIO_SYMEXPORT AsyncResult_Class;
 }
 #endif
 
-namespace Gio
+namespace gio
 {
 
   class LIBMM_GIO_SYMEXPORT AsyncResult;
 
-  using SlotAsyncReady = sigc::slot<void (Glib::RefPtr<AsyncResult>&)>;
+  using SlotAsyncReady = sigc::slot<void (glib::RefPtr<AsyncResult>&)>;
 
-  class LIBMM_GIO_SYMEXPORT AsyncResult : public Glib::Interface
+  class LIBMM_GIO_SYMEXPORT AsyncResult : public glib::Interface
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -58,7 +58,7 @@ namespace Gio
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
-    explicit AsyncResult (const Glib::Interface_Class& interface_class);
+    explicit AsyncResult (const glib::Interface_Class& interface_class);
 
   public:
     explicit AsyncResult (GAsyncResult* castitem);
@@ -99,16 +99,16 @@ namespace Gio
   private:
   public:
     auto
-    get_source_object_base () -> Glib::RefPtr<Glib::ObjectBase>;
+    get_source_object_base () -> glib::RefPtr<glib::ObjectBase>;
     auto
-    get_source_object_base () const -> Glib::RefPtr<const Glib::ObjectBase>;
+    get_source_object_base () const -> glib::RefPtr<const glib::ObjectBase>;
 
     auto
     is_tagged (gpointer source_tag) const -> bool;
 
   protected:
     virtual auto
-    get_source_object_vfunc () -> Glib::RefPtr<Glib::ObjectBase>;
+    get_source_object_vfunc () -> glib::RefPtr<glib::ObjectBase>;
 
     virtual auto
     is_tagged_vfunc (gpointer source_tag) -> bool;
@@ -118,15 +118,15 @@ namespace Gio
   protected:
   };
 
-} // namespace Gio
+} // namespace gio
 
-namespace Glib
+namespace glib
 {
 
   LIBMM_GIO_SYMEXPORT
   auto
-  wrap (GAsyncResult* object, bool take_copy = false) -> Glib::RefPtr<Gio::AsyncResult>;
+  wrap (GAsyncResult* object, bool take_copy = false) -> glib::RefPtr<gio::AsyncResult>;
 
-} // namespace Glib
+} // namespace glib
 
 #endif

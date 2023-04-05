@@ -19,14 +19,14 @@ void on_object_qdata_destroyed(gpointer data)
 
 int main(int /* argc */, char** /* argv */)
 {
-  auto app = Gtk::Application::create();
+  auto app = gtk::Application::create();
   app->register_application();
 
   // pButton points at a widget that was first created by GTK.
   // A C++ wrapper was later added to it.
-  auto pScaleButton = new Gtk::ScaleButton(0.0, 1.0, 0.1);
-  Gtk::Button* pButton = pScaleButton->get_plus_button();
-  Gtk::Button m_Button;
+  auto pScaleButton = new gtk::ScaleButton(0.0, 1.0, 0.1);
+  gtk::Button* pButton = pScaleButton->get_plus_button();
+  gtk::Button m_Button;
   std::cout << "pButton  GType name: " << G_OBJECT_TYPE_NAME(pButton->gobj()) << "\n";
   std::cout << "m_Button GType name: " << G_OBJECT_TYPE_NAME(m_Button.gobj()) << "\n";
 

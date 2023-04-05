@@ -11,24 +11,24 @@ namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GtkBuilderCScope* object, bool take_copy) -> Glib::RefPtr<Gtk::BuilderCScope>
+  wrap (GtkBuilderCScope* object, bool take_copy) -> glib::RefPtr<gtk::BuilderCScope>
   {
-    return Glib::make_refptr_for_instance<Gtk::BuilderCScope> (
-        dynamic_cast<Gtk::BuilderCScope*> (
-            Glib::wrap_auto ((GObject*) (object), take_copy)));
+    return glib::make_refptr_for_instance<gtk::BuilderCScope> (
+        dynamic_cast<gtk::BuilderCScope*> (
+            glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gtk
+namespace gtk
 {
 
   auto
-  BuilderCScope_Class::init () -> const Glib::Class&
+  BuilderCScope_Class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -50,7 +50,7 @@ namespace Gtk
   }
 
   auto
-  BuilderCScope_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  BuilderCScope_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new BuilderCScope ((GtkBuilderCScope*) object);
   }
@@ -62,18 +62,18 @@ namespace Gtk
     return gobj ();
   }
 
-  BuilderCScope::BuilderCScope (const Glib::ConstructParams& construct_params)
-    : Glib::Object (construct_params)
+  BuilderCScope::BuilderCScope (const glib::ConstructParams& construct_params)
+    : glib::Object (construct_params)
   {
   }
 
   BuilderCScope::BuilderCScope (GtkBuilderCScope* castitem)
-    : Glib::Object ((GObject*) (castitem))
+    : glib::Object ((GObject*) (castitem))
   {
   }
 
   BuilderCScope::BuilderCScope (BuilderCScope&& src) noexcept
-    : Glib::Object (std::move (src)),
+    : glib::Object (std::move (src)),
       BuilderScope (std::move (src))
   {
   }
@@ -81,7 +81,7 @@ namespace Gtk
   auto
   BuilderCScope::operator= (BuilderCScope&& src) noexcept -> BuilderCScope&
   {
-    Glib::Object::operator= (std::move (src));
+    glib::Object::operator= (std::move (src));
     BuilderScope::operator= (std::move (src));
     return *this;
   }
@@ -103,15 +103,15 @@ namespace Gtk
   }
 
   BuilderCScope::BuilderCScope ()
-    : Glib::ObjectBase (nullptr),
-      Glib::Object (Glib::ConstructParams (buildercscope_class_.init ()))
+    : glib::ObjectBase (nullptr),
+      glib::Object (glib::ConstructParams (buildercscope_class_.init ()))
   {
   }
 
   auto
-  BuilderCScope::create () -> Glib::RefPtr<BuilderCScope>
+  BuilderCScope::create () -> glib::RefPtr<BuilderCScope>
   {
-    return Glib::make_refptr_for_instance<BuilderCScope> (new BuilderCScope ());
+    return glib::make_refptr_for_instance<BuilderCScope> (new BuilderCScope ());
   }
 
-} // namespace Gtk
+} // namespace gtk

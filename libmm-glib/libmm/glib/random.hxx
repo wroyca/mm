@@ -11,7 +11,7 @@ extern "C"
   using GRand = struct _GRand;
 }
 
-namespace Glib
+namespace glib
 {
 
   class LIBMM_GLIB_SYMEXPORT Rand
@@ -57,6 +57,6 @@ namespace Glib
     GRand* gobject_;
   };
 
-} // namespace Glib
+} // namespace glib
 
 #endif

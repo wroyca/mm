@@ -5,7 +5,7 @@
 
 #include <memory>
 
-namespace Cairo
+namespace cairo
 {
 
   template <typename T_CppObject>
@@ -18,6 +18,6 @@ namespace Cairo
     return RefPtr<T_CppObject> (object);
   }
 
-} // namespace Cairo
+} // namespace cairo
 
 #endif

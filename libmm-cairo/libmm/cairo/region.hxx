@@ -9,7 +9,7 @@
 #include <libmm/cairo/types.hxx>
 #include <vector>
 
-namespace Cairo
+namespace cairo
 {
 
   class LIBMM_CAIRO_SYMEXPORT Region
@@ -128,6 +128,6 @@ namespace Cairo
     cobject* m_cobject;
   };
 
-} // namespace Cairo
+} // namespace cairo
 
 #endif

@@ -21,16 +21,16 @@ using GDBusObjectManagerClientClass = struct _GDBusObjectManagerClientClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gio::DBus
+namespace gio::DBus
 {
   class LIBMM_GIO_SYMEXPORT ObjectManagerClient_Class;
 }
 #endif
 
-namespace Gio::DBus
+namespace gio::DBus
 {
 
-  class LIBMM_GIO_SYMEXPORT ObjectManagerClient : public Glib::Object,
+  class LIBMM_GIO_SYMEXPORT ObjectManagerClient : public glib::Object,
                                         public Initable,
                                         public AsyncInitable,
                                         public ObjectManager
@@ -53,7 +53,7 @@ namespace Gio::DBus
 
   protected:
     explicit ObjectManagerClient (
-        const Glib::ConstructParams& construct_params);
+        const glib::ConstructParams& construct_params);
     explicit ObjectManagerClient (GDBusObjectManagerClient* castitem);
 
 #endif
@@ -98,143 +98,143 @@ namespace Gio::DBus
     };
 
     using SlotProxyType =
-        sigc::slot<GType (const Glib::RefPtr<Gio::DBus::ObjectManagerClient>&,
-                          const Glib::ustring&,
-                          const Glib::ustring&)>;
+        sigc::slot<GType (const glib::RefPtr<gio::DBus::ObjectManagerClient>&,
+                          const glib::ustring&,
+                          const glib::ustring&)>;
 
   protected:
-    ObjectManagerClient (const Glib::RefPtr<Connection>& connection,
-                         const Glib::ustring& name,
-                         const Glib::ustring& object_path,
+    ObjectManagerClient (const glib::RefPtr<Connection>& connection,
+                         const glib::ustring& name,
+                         const glib::ustring& object_path,
                          const SlotAsyncReady& slot_async_ready,
-                         const Glib::RefPtr<Cancellable>& cancellable,
+                         const glib::RefPtr<Cancellable>& cancellable,
                          const SlotProxyType& slot_proxy_type,
                          Flags flags);
 
     ObjectManagerClient (BusType bus_type,
-                         const Glib::ustring& name,
-                         const Glib::ustring& object_path,
+                         const glib::ustring& name,
+                         const glib::ustring& object_path,
                          const SlotAsyncReady& slot_async_ready,
-                         const Glib::RefPtr<Cancellable>& cancellable,
+                         const glib::RefPtr<Cancellable>& cancellable,
                          const SlotProxyType& slot_proxy_type,
                          Flags flags);
 
   public:
     static auto
-    create (const Glib::RefPtr<Connection>& connection,
-            const Glib::ustring& name,
-            const Glib::ustring& object_path,
+    create (const glib::RefPtr<Connection>& connection,
+            const glib::ustring& name,
+            const glib::ustring& object_path,
             const SlotAsyncReady& slot_async_ready,
-            const Glib::RefPtr<Cancellable>& cancellable = {},
+            const glib::RefPtr<Cancellable>& cancellable = {},
             const SlotProxyType& slot_proxy_type = {},
             Flags flags = Flags::NONE) -> void;
 
     static auto
-    create_finish (const Glib::RefPtr<AsyncResult>& res)
-        -> Glib::RefPtr<Gio::DBus::ObjectManagerClient>;
+    create_finish (const glib::RefPtr<AsyncResult>& res)
+        -> glib::RefPtr<gio::DBus::ObjectManagerClient>;
 
     static auto
-    create_sync (const Glib::RefPtr<Connection>& connection,
-                 const Glib::ustring& name,
-                 const Glib::ustring& object_path,
-                 const Glib::RefPtr<Cancellable>& cancellable = {},
+    create_sync (const glib::RefPtr<Connection>& connection,
+                 const glib::ustring& name,
+                 const glib::ustring& object_path,
+                 const glib::RefPtr<Cancellable>& cancellable = {},
                  const SlotProxyType& slot_proxy_type = {},
                  Flags flags = Flags::NONE)
-        -> Glib::RefPtr<Gio::DBus::ObjectManagerClient>;
+        -> glib::RefPtr<gio::DBus::ObjectManagerClient>;
 
     static auto
     create_for_bus (BusType bus_type,
-                    const Glib::ustring& name,
-                    const Glib::ustring& object_path,
+                    const glib::ustring& name,
+                    const glib::ustring& object_path,
                     const SlotAsyncReady& slot_async_ready,
-                    const Glib::RefPtr<Cancellable>& cancellable = {},
+                    const glib::RefPtr<Cancellable>& cancellable = {},
                     const SlotProxyType& slot_proxy_type = {},
                     Flags flags = Flags::NONE) -> void;
 
     static auto
-    create_for_bus_finish (const Glib::RefPtr<AsyncResult>& res)
-        -> Glib::RefPtr<Gio::DBus::ObjectManagerClient>;
+    create_for_bus_finish (const glib::RefPtr<AsyncResult>& res)
+        -> glib::RefPtr<gio::DBus::ObjectManagerClient>;
 
     static auto
     create_for_bus_sync (BusType bus_type,
-                         const Glib::ustring& name,
-                         const Glib::ustring& object_path,
-                         const Glib::RefPtr<Cancellable>& cancellable = {},
+                         const glib::ustring& name,
+                         const glib::ustring& object_path,
+                         const glib::RefPtr<Cancellable>& cancellable = {},
                          const SlotProxyType& slot_proxy_type = {},
                          Flags flags = Flags::NONE)
-        -> Glib::RefPtr<Gio::DBus::ObjectManagerClient>;
+        -> glib::RefPtr<gio::DBus::ObjectManagerClient>;
 
     auto
-    get_connection () -> Glib::RefPtr<Connection>;
+    get_connection () -> glib::RefPtr<Connection>;
 
     auto
-    get_connection () const -> Glib::RefPtr<const Connection>;
+    get_connection () const -> glib::RefPtr<const Connection>;
 
     auto
     get_flags () const -> Flags;
 
     auto
-    get_name () const -> Glib::ustring;
+    get_name () const -> glib::ustring;
 
     auto
-    get_name_owner () const -> Glib::ustring;
+    get_name_owner () const -> glib::ustring;
 
     auto
     property_connection () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Connection>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<Connection>>;
 
     auto
-    property_flags () const -> Glib::PropertyProxy_ReadOnly<Flags>;
+    property_flags () const -> glib::PropertyProxy_ReadOnly<Flags>;
 
     auto
     property_object_path () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+        -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
     auto
-    property_name () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+    property_name () const -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
     auto
-    property_name_owner () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+    property_name_owner () const -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
     auto
     signal_interface_proxy_signal ()
-        -> Glib::SignalProxy<void (const Glib::RefPtr<Gio::DBus::ObjectProxy>&,
-                                   const Glib::RefPtr<Gio::DBus::Proxy>&,
-                                   const Glib::ustring&,
-                                   const Glib::ustring&,
-                                   const Glib::VariantContainerBase&)>;
+        -> glib::SignalProxy<void (const glib::RefPtr<gio::DBus::ObjectProxy>&,
+                                   const glib::RefPtr<gio::DBus::Proxy>&,
+                                   const glib::ustring&,
+                                   const glib::ustring&,
+                                   const glib::VariantContainerBase&)>;
 
-    using MapChangedProperties = std::map<Glib::ustring, Glib::VariantBase>;
+    using MapChangedProperties = std::map<glib::ustring, glib::VariantBase>;
 
     auto
     signal_interface_proxy_properties_changed ()
-        -> Glib::SignalProxy<void (const Glib::RefPtr<Gio::DBus::ObjectProxy>&,
-                                   const Glib::RefPtr<Gio::DBus::Proxy>&,
+        -> glib::SignalProxy<void (const glib::RefPtr<gio::DBus::ObjectProxy>&,
+                                   const glib::RefPtr<gio::DBus::Proxy>&,
                                    const MapChangedProperties&,
-                                   const std::vector<Glib::ustring>&)>;
+                                   const std::vector<glib::ustring>&)>;
 
   public:
   public:
   protected:
     virtual auto
     on_interface_proxy_signal (
-        const Glib::RefPtr<Gio::DBus::ObjectProxy>& object_proxy,
-        const Glib::RefPtr<Gio::DBus::Proxy>& interface_proxy,
-        const Glib::ustring& sender_name,
-        const Glib::ustring& signal_name,
-        const Glib::VariantContainerBase& parameters) -> void;
+        const glib::RefPtr<gio::DBus::ObjectProxy>& object_proxy,
+        const glib::RefPtr<gio::DBus::Proxy>& interface_proxy,
+        const glib::ustring& sender_name,
+        const glib::ustring& signal_name,
+        const glib::VariantContainerBase& parameters) -> void;
 
     virtual auto
     on_interface_proxy_properties_changed (
-        const Glib::RefPtr<Gio::DBus::ObjectProxy>& object_proxy,
-        const Glib::RefPtr<Gio::DBus::Proxy>& interface_proxy,
+        const glib::RefPtr<gio::DBus::ObjectProxy>& object_proxy,
+        const glib::RefPtr<gio::DBus::Proxy>& interface_proxy,
         const MapChangedProperties& changed_properties,
-        const std::vector<Glib::ustring>& invalidated_properties) -> void;
+        const std::vector<glib::ustring>& invalidated_properties) -> void;
   };
 
-} // namespace Gio::DBus
+} // namespace gio::DBus
 
-namespace Gio::DBus
+namespace gio::DBus
 {
 
   inline auto
@@ -285,30 +285,30 @@ namespace Gio::DBus
     return (lhs = static_cast<ObjectManagerClient::Flags> (
                 static_cast<unsigned> (lhs) ^ static_cast<unsigned> (rhs)));
   }
-} // namespace Gio::DBus
+} // namespace gio::DBus
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_GIO_SYMEXPORT Value<Gio::DBus::ObjectManagerClient::Flags>
-    : public Glib::Value_Flags<Gio::DBus::ObjectManagerClient::Flags>
+  class LIBMM_GIO_SYMEXPORT Value<gio::DBus::ObjectManagerClient::Flags>
+    : public glib::Value_Flags<gio::DBus::ObjectManagerClient::Flags>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
-namespace Glib
+namespace glib
 {
 
   LIBMM_GIO_SYMEXPORT
   auto
-  wrap (GDBusObjectManagerClient* object, bool take_copy = false) -> Glib::RefPtr<Gio::DBus::ObjectManagerClient>;
-} // namespace Glib
+  wrap (GDBusObjectManagerClient* object, bool take_copy = false) -> glib::RefPtr<gio::DBus::ObjectManagerClient>;
+} // namespace glib
 
 #endif

@@ -19,17 +19,17 @@ using GtkColumnViewColumnClass = struct _GtkColumnViewColumnClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT ColumnViewColumn_Class;
 }
 #endif
 
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT ColumnView;
 
-  class LIBMM_GTK_SYMEXPORT ColumnViewColumn : public Glib::Object
+  class LIBMM_GTK_SYMEXPORT ColumnViewColumn : public glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -48,7 +48,7 @@ namespace Gtk
     static CppClassType columnviewcolumn_class_;
 
   protected:
-    explicit ColumnViewColumn (const Glib::ConstructParams& construct_params);
+    explicit ColumnViewColumn (const glib::ConstructParams& construct_params);
     explicit ColumnViewColumn (GtkColumnViewColumn* castitem);
 
 #endif
@@ -87,14 +87,14 @@ namespace Gtk
   private:
   protected:
     explicit ColumnViewColumn (
-        const Glib::ustring& title,
-        const Glib::RefPtr<ListItemFactory>& factory = {});
+        const glib::ustring& title,
+        const glib::RefPtr<ListItemFactory>& factory = {});
 
   public:
     static auto
-    create (const Glib::ustring& title,
-            const Glib::RefPtr<ListItemFactory>& factory = {})
-        -> Glib::RefPtr<ColumnViewColumn>;
+    create (const glib::ustring& title,
+            const glib::RefPtr<ListItemFactory>& factory = {})
+        -> glib::RefPtr<ColumnViewColumn>;
 
     auto
     get_column_view () -> ColumnView*;
@@ -103,28 +103,28 @@ namespace Gtk
     get_column_view () const -> const ColumnView*;
 
     auto
-    set_factory (const Glib::RefPtr<ListItemFactory>& factory) -> void;
+    set_factory (const glib::RefPtr<ListItemFactory>& factory) -> void;
 
     auto
-    get_factory () -> Glib::RefPtr<ListItemFactory>;
+    get_factory () -> glib::RefPtr<ListItemFactory>;
 
     auto
-    get_factory () const -> Glib::RefPtr<const ListItemFactory>;
+    get_factory () const -> glib::RefPtr<const ListItemFactory>;
 
     auto
-    set_title (const Glib::ustring& title) -> void;
+    set_title (const glib::ustring& title) -> void;
 
     auto
-    get_title () const -> Glib::ustring;
+    get_title () const -> glib::ustring;
 
     auto
-    set_sorter (const Glib::RefPtr<Sorter>& sorter) -> void;
+    set_sorter (const glib::RefPtr<Sorter>& sorter) -> void;
 
     auto
-    get_sorter () -> Glib::RefPtr<Sorter>;
+    get_sorter () -> glib::RefPtr<Sorter>;
 
     auto
-    get_sorter () const -> Glib::RefPtr<const Sorter>;
+    get_sorter () const -> glib::RefPtr<const Sorter>;
 
     auto
     set_visible (bool visible = true) -> void;
@@ -133,13 +133,13 @@ namespace Gtk
     get_visible () const -> bool;
 
     auto
-    set_header_menu (const Glib::RefPtr<Gio::MenuModel>& model) -> void;
+    set_header_menu (const glib::RefPtr<gio::MenuModel>& model) -> void;
 
     auto
-    get_header_menu () -> Glib::RefPtr<Gio::MenuModel>;
+    get_header_menu () -> glib::RefPtr<gio::MenuModel>;
 
     auto
-    get_header_menu () const -> Glib::RefPtr<const Gio::MenuModel>;
+    get_header_menu () const -> glib::RefPtr<const gio::MenuModel>;
 
     auto
     set_fixed_width (int fixed_width) -> void;
@@ -160,83 +160,83 @@ namespace Gtk
     get_expand () const -> bool;
 
     auto
-    set_id (const Glib::ustring& id) -> void;
+    set_id (const glib::ustring& id) -> void;
 
     auto
-    get_id () const -> Glib::ustring;
+    get_id () const -> glib::ustring;
 
     auto
-    property_column_view () const -> Glib::PropertyProxy_ReadOnly<ColumnView*>;
+    property_column_view () const -> glib::PropertyProxy_ReadOnly<ColumnView*>;
 
     auto
-    property_factory () -> Glib::PropertyProxy<Glib::RefPtr<ListItemFactory>>;
+    property_factory () -> glib::PropertyProxy<glib::RefPtr<ListItemFactory>>;
 
     auto
     property_factory () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<ListItemFactory>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<ListItemFactory>>;
 
     auto
-    property_title () -> Glib::PropertyProxy<Glib::ustring>;
+    property_title () -> glib::PropertyProxy<glib::ustring>;
 
     auto
-    property_title () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+    property_title () const -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
     auto
-    property_sorter () -> Glib::PropertyProxy<Glib::RefPtr<Sorter>>;
+    property_sorter () -> glib::PropertyProxy<glib::RefPtr<Sorter>>;
 
     auto
     property_sorter () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Sorter>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<Sorter>>;
 
     auto
-    property_visible () -> Glib::PropertyProxy<bool>;
+    property_visible () -> glib::PropertyProxy<bool>;
 
     auto
-    property_visible () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_visible () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
     property_header_menu ()
-        -> Glib::PropertyProxy<Glib::RefPtr<Gio::MenuModel>>;
+        -> glib::PropertyProxy<glib::RefPtr<gio::MenuModel>>;
 
     auto
     property_header_menu () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gio::MenuModel>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<gio::MenuModel>>;
 
     auto
-    property_resizable () -> Glib::PropertyProxy<bool>;
+    property_resizable () -> glib::PropertyProxy<bool>;
 
     auto
-    property_resizable () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_resizable () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_expand () -> Glib::PropertyProxy<bool>;
+    property_expand () -> glib::PropertyProxy<bool>;
 
     auto
-    property_expand () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_expand () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_fixed_width () -> Glib::PropertyProxy<int>;
+    property_fixed_width () -> glib::PropertyProxy<int>;
 
     auto
-    property_fixed_width () const -> Glib::PropertyProxy_ReadOnly<int>;
+    property_fixed_width () const -> glib::PropertyProxy_ReadOnly<int>;
 
     auto
-    property_id () -> Glib::PropertyProxy<Glib::ustring>;
+    property_id () -> glib::PropertyProxy<glib::ustring>;
 
     auto
-    property_id () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+    property_id () const -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkColumnViewColumn* object, bool take_copy = false) -> Glib::RefPtr<Gtk::ColumnViewColumn>;
-} // namespace Glib
+  wrap (GtkColumnViewColumn* object, bool take_copy = false) -> glib::RefPtr<gtk::ColumnViewColumn>;
+} // namespace glib
 
 #endif

@@ -16,16 +16,16 @@ using GBindingClass = struct _GBindingClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
   class LIBMM_GLIB_SYMEXPORT Binding_Class;
 }
 #endif
 
-namespace Glib
+namespace glib
 {
 
-  class LIBMM_GLIB_SYMEXPORT Binding : public Glib::Object
+  class LIBMM_GLIB_SYMEXPORT Binding : public glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -44,7 +44,7 @@ namespace Glib
     static CppClassType binding_class_;
 
   protected:
-    explicit Binding (const Glib::ConstructParams& construct_params);
+    explicit Binding (const glib::ConstructParams& construct_params);
     explicit Binding (GBinding* castitem);
 
 #endif
@@ -101,12 +101,12 @@ namespace Glib
                          Flags flags = Flags::DEFAULT,
                          const SlotTransform& transform_to = {},
                          const SlotTransform& transform_from = {})
-        -> Glib::RefPtr<Binding>;
+        -> glib::RefPtr<Binding>;
 
     static auto
     bind_property (const PropertyProxy_Base& source_property,
                    const PropertyProxy_Base& target_property,
-                   Flags flags = Flags::DEFAULT) -> Glib::RefPtr<Binding>
+                   Flags flags = Flags::DEFAULT) -> glib::RefPtr<Binding>
     {
       return bind_property_value (source_property, target_property, flags);
     }
@@ -116,7 +116,7 @@ namespace Glib
     bind_property (const PropertyProxy<T_source>& source_property,
                    const PropertyProxy<T_target>& target_property,
                    Flags flags,
-                   const T_functor_to& transform_to) -> Glib::RefPtr<Binding>
+                   const T_functor_to& transform_to) -> glib::RefPtr<Binding>
     {
       SlotTypedTransform<T_source, T_target> slot_transform_to = transform_to;
 
@@ -134,7 +134,7 @@ namespace Glib
     bind_property (const PropertyProxy<T_source>& source_property,
                    const PropertyProxy_WriteOnly<T_target>& target_property,
                    Flags flags,
-                   const T_functor_to& transform_to) -> Glib::RefPtr<Binding>
+                   const T_functor_to& transform_to) -> glib::RefPtr<Binding>
     {
       SlotTypedTransform<T_source, T_target> slot_transform_to = transform_to;
 
@@ -152,7 +152,7 @@ namespace Glib
     bind_property (const PropertyProxy_ReadOnly<T_source>& source_property,
                    const PropertyProxy<T_target>& target_property,
                    Flags flags,
-                   const T_functor_to& transform_to) -> Glib::RefPtr<Binding>
+                   const T_functor_to& transform_to) -> glib::RefPtr<Binding>
     {
       SlotTypedTransform<T_source, T_target> slot_transform_to = transform_to;
 
@@ -170,7 +170,7 @@ namespace Glib
     bind_property (const PropertyProxy_ReadOnly<T_source>& source_property,
                    const PropertyProxy_WriteOnly<T_target>& target_property,
                    Flags flags,
-                   const T_functor_to& transform_to) -> Glib::RefPtr<Binding>
+                   const T_functor_to& transform_to) -> glib::RefPtr<Binding>
     {
       SlotTypedTransform<T_source, T_target> slot_transform_to = transform_to;
 
@@ -193,7 +193,7 @@ namespace Glib
                    Flags flags,
                    const T_functor_to& transform_to,
                    const T_functor_from& transform_from)
-        -> Glib::RefPtr<Binding>
+        -> glib::RefPtr<Binding>
     {
       SlotTypedTransform<T_source, T_target> slot_transform_from =
           transform_from;
@@ -214,44 +214,44 @@ namespace Glib
 #ifndef GLIBMM_DISABLE_DEPRECATED
 
     auto
-    get_source () -> Glib::ObjectBase*;
+    get_source () -> glib::ObjectBase*;
 #endif
 
 #ifndef GLIBMM_DISABLE_DEPRECATED
 
     auto
-    get_source () const -> const Glib::ObjectBase*;
+    get_source () const -> const glib::ObjectBase*;
 #endif
 
     auto
-    dup_source () -> Glib::RefPtr<Glib::ObjectBase>;
+    dup_source () -> glib::RefPtr<glib::ObjectBase>;
 
     auto
-    dup_source () const -> Glib::RefPtr<const Glib::ObjectBase>;
+    dup_source () const -> glib::RefPtr<const glib::ObjectBase>;
 
     auto
-    get_source_property () const -> Glib::ustring;
+    get_source_property () const -> glib::ustring;
 
 #ifndef GLIBMM_DISABLE_DEPRECATED
 
     auto
-    get_target () -> Glib::ObjectBase*;
+    get_target () -> glib::ObjectBase*;
 #endif
 
 #ifndef GLIBMM_DISABLE_DEPRECATED
 
     auto
-    get_target () const -> const Glib::ObjectBase*;
+    get_target () const -> const glib::ObjectBase*;
 #endif
 
     auto
-    dup_target () -> Glib::RefPtr<Glib::ObjectBase>;
+    dup_target () -> glib::RefPtr<glib::ObjectBase>;
 
     auto
-    dup_target () const -> Glib::RefPtr<const Glib::ObjectBase>;
+    dup_target () const -> glib::RefPtr<const glib::ObjectBase>;
 
     auto
-    get_target_property () const -> Glib::ustring;
+    get_target_property () const -> glib::ustring;
 
     auto
     get_flags () const -> Flags;
@@ -260,23 +260,23 @@ namespace Glib
     unbind () -> void;
 
     auto
-    property_flags () const -> Glib::PropertyProxy_ReadOnly<Flags>;
+    property_flags () const -> glib::PropertyProxy_ReadOnly<Flags>;
 
     auto
     property_source () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Glib::ObjectBase>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<glib::ObjectBase>>;
 
     auto
     property_source_property () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+        -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
     auto
     property_target () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Glib::ObjectBase>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<glib::ObjectBase>>;
 
     auto
     property_target_property () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+        -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
   private:
     template <typename T_from, typename T_to>
@@ -294,14 +294,14 @@ namespace Glib
       auto
       operator() (const GValue* from_value, GValue* to_value) -> bool
       {
-        Glib::Value<T_from> from_glib_value;
+        glib::Value<T_from> from_glib_value;
         from_glib_value.init (from_value);
         const auto to = typed_transform (from_glib_value.get ());
 
         if (!to.has_value ())
           return false;
 
-        Glib::Value<T_to> to_glib_value;
+        glib::Value<T_to> to_glib_value;
         to_glib_value.init (to_value);
         to_glib_value.set (*to);
         g_value_copy (to_glib_value.gobj (), to_value);
@@ -317,9 +317,9 @@ namespace Glib
   protected:
   };
 
-} // namespace Glib
+} // namespace glib
 
-namespace Glib
+namespace glib
 {
 
   inline auto
@@ -369,30 +369,30 @@ namespace Glib
     return (lhs = static_cast<Binding::Flags> (static_cast<unsigned> (lhs) ^
                                                static_cast<unsigned> (rhs)));
   }
-} // namespace Glib
+} // namespace glib
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_GLIB_SYMEXPORT Value<Glib::Binding::Flags>
-    : public Glib::Value_Flags<Glib::Binding::Flags>
+  class LIBMM_GLIB_SYMEXPORT Value<glib::Binding::Flags>
+    : public glib::Value_Flags<glib::Binding::Flags>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
-namespace Glib
+namespace glib
 {
 
   LIBMM_GLIB_SYMEXPORT
   auto
-  wrap (GBinding* object, bool take_copy = false) -> Glib::RefPtr<Glib::Binding>;
-} // namespace Glib
+  wrap (GBinding* object, bool take_copy = false) -> glib::RefPtr<glib::Binding>;
+} // namespace glib
 
 #endif

@@ -18,13 +18,13 @@ using GdkDeviceClass = struct _GdkDeviceClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gdk
+namespace gdk
 {
   class LIBMM_GDK_SYMEXPORT Device_Class;
 }
 #endif
 
-namespace Gdk
+namespace gdk
 {
 
   enum class InputSource
@@ -38,25 +38,25 @@ namespace Gdk
     TABLET_PAD
   };
 
-} // namespace Gdk
+} // namespace gdk
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_GDK_SYMEXPORT Value<Gdk::InputSource>
-    : public Glib::Value_Enum<Gdk::InputSource>
+  class LIBMM_GDK_SYMEXPORT Value<gdk::InputSource>
+    : public glib::Value_Enum<gdk::InputSource>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
-namespace Gdk
+namespace gdk
 {
 
   class LIBMM_GDK_SYMEXPORT DeviceTool;
@@ -65,7 +65,7 @@ namespace Gdk
   class LIBMM_GDK_SYMEXPORT Seat;
   class LIBMM_GDK_SYMEXPORT Surface;
 
-  class LIBMM_GDK_SYMEXPORT Device : public Glib::Object
+  class LIBMM_GDK_SYMEXPORT Device : public glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -84,7 +84,7 @@ namespace Gdk
     static CppClassType device_class_;
 
   protected:
-    explicit Device (const Glib::ConstructParams& construct_params);
+    explicit Device (const glib::ConstructParams& construct_params);
     explicit Device (GdkDevice* castitem);
 
 #endif
@@ -126,7 +126,7 @@ namespace Gdk
 
   public:
     auto
-    get_name () const -> Glib::ustring;
+    get_name () const -> glib::ustring;
 
     auto
     get_has_cursor () const -> bool;
@@ -135,45 +135,45 @@ namespace Gdk
     get_source () const -> InputSource;
 
     auto
-    get_display () -> Glib::RefPtr<Display>;
+    get_display () -> glib::RefPtr<Display>;
 
     auto
-    get_display () const -> Glib::RefPtr<const Display>;
+    get_display () const -> glib::RefPtr<const Display>;
 
     auto
     get_surface_at_position (double& win_x, double& win_y)
-        -> Glib::RefPtr<Surface>;
+        -> glib::RefPtr<Surface>;
 
     auto
     get_surface_at_position (double& win_x, double& win_y) const
-        -> Glib::RefPtr<const Surface>;
+        -> glib::RefPtr<const Surface>;
 
     auto
-    get_surface_at_position () -> Glib::RefPtr<Surface>;
+    get_surface_at_position () -> glib::RefPtr<Surface>;
 
     auto
-    get_surface_at_position () const -> Glib::RefPtr<const Surface>;
+    get_surface_at_position () const -> glib::RefPtr<const Surface>;
 
     auto
-    get_vendor_id () const -> Glib::ustring;
+    get_vendor_id () const -> glib::ustring;
 
     auto
-    get_product_id () -> Glib::ustring;
+    get_product_id () -> glib::ustring;
 
     auto
-    get_seat () -> Glib::RefPtr<Seat>;
+    get_seat () -> glib::RefPtr<Seat>;
 
     auto
-    get_seat () const -> Glib::RefPtr<const Seat>;
+    get_seat () const -> glib::RefPtr<const Seat>;
 
     auto
     get_num_touches () const -> guint;
 
     auto
-    get_device_tool () -> Glib::RefPtr<DeviceTool>;
+    get_device_tool () -> glib::RefPtr<DeviceTool>;
 
     auto
-    get_device_tool () const -> Glib::RefPtr<const DeviceTool>;
+    get_device_tool () const -> glib::RefPtr<const DeviceTool>;
 
     auto
     get_caps_lock_state () const -> bool;
@@ -188,7 +188,7 @@ namespace Gdk
     get_modifier_state () const -> ModifierType;
 
     auto
-    get_direction () const -> Pango::Direction;
+    get_direction () const -> pango::Direction;
 
     auto
     has_bidi_layouts () const -> bool;
@@ -200,84 +200,84 @@ namespace Gdk
     has_device_pad () const -> bool;
 
     auto
-    device_with_pad_cast () -> Glib::RefPtr<DeviceWithPad>;
+    device_with_pad_cast () -> glib::RefPtr<DeviceWithPad>;
 
     auto
-    device_with_pad_cast () const -> Glib::RefPtr<const DeviceWithPad>;
+    device_with_pad_cast () const -> glib::RefPtr<const DeviceWithPad>;
 
     auto
-    signal_changed () -> Glib::SignalProxy<void ()>;
+    signal_changed () -> glib::SignalProxy<void ()>;
 
     auto
     signal_tool_changed ()
-        -> Glib::SignalProxy<void (const Glib::RefPtr<DeviceTool>&)>;
+        -> glib::SignalProxy<void (const glib::RefPtr<DeviceTool>&)>;
 
     auto
     property_display () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Display>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<Display>>;
 
     auto
-    property_name () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+    property_name () const -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
     auto
-    property_source () const -> Glib::PropertyProxy_ReadOnly<InputSource>;
+    property_source () const -> glib::PropertyProxy_ReadOnly<InputSource>;
 
     auto
-    property_has_cursor () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_has_cursor () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_n_axes () const -> Glib::PropertyProxy_ReadOnly<guint>;
+    property_n_axes () const -> glib::PropertyProxy_ReadOnly<guint>;
 
     auto
-    property_vendor_id () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+    property_vendor_id () const -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
     auto
-    property_product_id () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+    property_product_id () const -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
     auto
-    property_seat () -> Glib::PropertyProxy<Glib::RefPtr<Seat>>;
+    property_seat () -> glib::PropertyProxy<glib::RefPtr<Seat>>;
 
     auto
-    property_seat () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Seat>>;
+    property_seat () const -> glib::PropertyProxy_ReadOnly<glib::RefPtr<Seat>>;
 
     auto
-    property_num_touches () const -> Glib::PropertyProxy_ReadOnly<guint>;
+    property_num_touches () const -> glib::PropertyProxy_ReadOnly<guint>;
 
     auto
     property_tool () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<DeviceTool>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<DeviceTool>>;
 
     auto
     property_direction () const
-        -> Glib::PropertyProxy_ReadOnly<Pango::Direction>;
+        -> glib::PropertyProxy_ReadOnly<pango::Direction>;
 
     auto
-    property_has_bidi_layouts () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_has_bidi_layouts () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_caps_lock_state () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_caps_lock_state () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_num_lock_state () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_num_lock_state () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_scroll_lock_state () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_scroll_lock_state () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
     property_modifier_state () const
-        -> Glib::PropertyProxy_ReadOnly<ModifierType>;
+        -> glib::PropertyProxy_ReadOnly<ModifierType>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gdk
+} // namespace gdk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GDK_SYMEXPORT auto
-  wrap (GdkDevice* object, bool take_copy = false) -> Glib::RefPtr<Gdk::Device>;
-} // namespace Glib
+  wrap (GdkDevice* object, bool take_copy = false) -> glib::RefPtr<gdk::Device>;
+} // namespace glib
 
 #endif

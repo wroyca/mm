@@ -8,7 +8,7 @@
 #include <libmm/glib/utility.hxx>
 #include <libmm/glib/wrap.hxx>
 
-namespace Glib
+namespace glib
 {
 
   DateTime::operator bool () const
@@ -16,13 +16,13 @@ namespace Glib
     return gobject_ != nullptr;
   }
 
-} // namespace Glib
+} // namespace glib
 
 namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
@@ -31,9 +31,9 @@ namespace Glib
     return DateTime (object, take_copy);
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Glib
+namespace glib
 {
 
   auto
@@ -425,4 +425,4 @@ namespace Glib
         g_date_time_format_iso8601 (const_cast<GDateTime*> (gobj ())));
   }
 
-} // namespace Glib
+} // namespace glib

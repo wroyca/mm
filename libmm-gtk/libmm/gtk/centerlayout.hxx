@@ -13,13 +13,13 @@
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT CenterLayout_Class;
 }
 #endif
 
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT Widget;
 
@@ -42,7 +42,7 @@ namespace Gtk
     static CppClassType centerlayout_class_;
 
   protected:
-    explicit CenterLayout (const Glib::ConstructParams& construct_params);
+    explicit CenterLayout (const glib::ConstructParams& construct_params);
     explicit CenterLayout (GtkCenterLayout* castitem);
 
 #endif
@@ -84,7 +84,7 @@ namespace Gtk
 
   public:
     static auto
-    create () -> Glib::RefPtr<CenterLayout>;
+    create () -> glib::RefPtr<CenterLayout>;
 
     auto
     set_orientation (Orientation orientation) -> void;
@@ -130,12 +130,12 @@ namespace Gtk
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkCenterLayout* object, bool take_copy = false) -> Glib::RefPtr<Gtk::CenterLayout>;
-} // namespace Glib
+  wrap (GtkCenterLayout* object, bool take_copy = false) -> glib::RefPtr<gtk::CenterLayout>;
+} // namespace glib
 
 #endif

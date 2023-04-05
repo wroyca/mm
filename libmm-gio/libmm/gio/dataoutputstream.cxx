@@ -8,7 +8,7 @@
 #include <gio/gio.h>
 #include <libmm/glib/error.hxx>
 
-namespace Gio
+namespace gio
 {
 
 }
@@ -17,20 +17,20 @@ namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GDataOutputStream* object, const bool take_copy) -> RefPtr<Gio::DataOutputStream>
+  wrap (GDataOutputStream* object, const bool take_copy) -> RefPtr<gio::DataOutputStream>
   {
-    return Glib::make_refptr_for_instance<Gio::DataOutputStream> (
-        dynamic_cast<Gio::DataOutputStream*> (
+    return glib::make_refptr_for_instance<gio::DataOutputStream> (
+        dynamic_cast<gio::DataOutputStream*> (
             wrap_auto ((GObject*) object, take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gio
+namespace gio
 {
 
   auto
@@ -56,7 +56,7 @@ namespace Gio
   }
 
   auto
-  DataOutputStream_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  DataOutputStream_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new DataOutputStream ((GDataOutputStream*) object);
   }
@@ -69,7 +69,7 @@ namespace Gio
   }
 
   DataOutputStream::DataOutputStream (
-      const Glib::ConstructParams& construct_params)
+      const glib::ConstructParams& construct_params)
     : FilterOutputStream (construct_params)
   {
   }
@@ -110,20 +110,20 @@ namespace Gio
   }
 
   DataOutputStream::DataOutputStream (
-      const Glib::RefPtr<OutputStream>& base_stream)
+      const glib::RefPtr<OutputStream>& base_stream)
     : ObjectBase (nullptr),
       FilterOutputStream (
-          Glib::ConstructParams (dataoutputstream_class_.init (),
+          glib::ConstructParams (dataoutputstream_class_.init (),
                                  "base_stream",
-                                 Glib::unwrap (base_stream),
+                                 glib::unwrap (base_stream),
                                  nullptr))
   {
   }
 
   auto
-  DataOutputStream::create (const Glib::RefPtr<OutputStream>& base_stream) -> Glib::RefPtr<DataOutputStream>
+  DataOutputStream::create (const glib::RefPtr<OutputStream>& base_stream) -> glib::RefPtr<DataOutputStream>
   {
-    return Glib::make_refptr_for_instance<DataOutputStream> (
+    return glib::make_refptr_for_instance<DataOutputStream> (
         new DataOutputStream (base_stream));
   }
 
@@ -145,16 +145,16 @@ namespace Gio
 
   auto
   DataOutputStream::put_byte (const guchar data,
-                              const Glib::RefPtr<Cancellable>& cancellable) -> bool
+                              const glib::RefPtr<Cancellable>& cancellable) -> bool
   {
     GError* gerror = nullptr;
     const auto retvalue = g_data_output_stream_put_byte (
         gobj (),
         data,
-        Glib::unwrap (cancellable),
+        glib::unwrap (cancellable),
         &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
@@ -165,22 +165,22 @@ namespace Gio
     const auto retvalue =
         g_data_output_stream_put_byte (gobj (), data, nullptr, &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
   auto
   DataOutputStream::put_int16 (const gint16 data,
-                               const Glib::RefPtr<Cancellable>& cancellable) -> bool
+                               const glib::RefPtr<Cancellable>& cancellable) -> bool
   {
     GError* gerror = nullptr;
     const auto retvalue = g_data_output_stream_put_int16 (
         gobj (),
         data,
-        Glib::unwrap (cancellable),
+        glib::unwrap (cancellable),
         &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
@@ -191,22 +191,22 @@ namespace Gio
     const auto retvalue =
         g_data_output_stream_put_int16 (gobj (), data, nullptr, &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
   auto
   DataOutputStream::put_uint16 (const guint16 data,
-                                const Glib::RefPtr<Cancellable>& cancellable) -> bool
+                                const glib::RefPtr<Cancellable>& cancellable) -> bool
   {
     GError* gerror = nullptr;
     const auto retvalue = g_data_output_stream_put_uint16 (
         gobj (),
         data,
-        Glib::unwrap (cancellable),
+        glib::unwrap (cancellable),
         &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
@@ -217,22 +217,22 @@ namespace Gio
     const auto retvalue =
         g_data_output_stream_put_uint16 (gobj (), data, nullptr, &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
   auto
   DataOutputStream::put_int32 (const gint32 data,
-                               const Glib::RefPtr<Cancellable>& cancellable) -> bool
+                               const glib::RefPtr<Cancellable>& cancellable) -> bool
   {
     GError* gerror = nullptr;
     const auto retvalue = g_data_output_stream_put_int32 (
         gobj (),
         data,
-        Glib::unwrap (cancellable),
+        glib::unwrap (cancellable),
         &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
@@ -243,22 +243,22 @@ namespace Gio
     const auto retvalue =
         g_data_output_stream_put_int32 (gobj (), data, nullptr, &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
   auto
   DataOutputStream::put_uint32 (const guint32 data,
-                                const Glib::RefPtr<Cancellable>& cancellable) -> bool
+                                const glib::RefPtr<Cancellable>& cancellable) -> bool
   {
     GError* gerror = nullptr;
     const auto retvalue = g_data_output_stream_put_uint32 (
         gobj (),
         data,
-        Glib::unwrap (cancellable),
+        glib::unwrap (cancellable),
         &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
@@ -269,22 +269,22 @@ namespace Gio
     const auto retvalue =
         g_data_output_stream_put_uint32 (gobj (), data, nullptr, &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
   auto
   DataOutputStream::put_int64 (const gint64 data,
-                               const Glib::RefPtr<Cancellable>& cancellable) -> bool
+                               const glib::RefPtr<Cancellable>& cancellable) -> bool
   {
     GError* gerror = nullptr;
     const auto retvalue = g_data_output_stream_put_int64 (
         gobj (),
         data,
-        Glib::unwrap (cancellable),
+        glib::unwrap (cancellable),
         &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
@@ -295,22 +295,22 @@ namespace Gio
     const auto retvalue =
         g_data_output_stream_put_int64 (gobj (), data, nullptr, &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
   auto
   DataOutputStream::put_uint64 (const guint64 data,
-                                const Glib::RefPtr<Cancellable>& cancellable) -> bool
+                                const glib::RefPtr<Cancellable>& cancellable) -> bool
   {
     GError* gerror = nullptr;
     const auto retvalue = g_data_output_stream_put_uint64 (
         gobj (),
         data,
-        Glib::unwrap (cancellable),
+        glib::unwrap (cancellable),
         &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
@@ -321,22 +321,22 @@ namespace Gio
     const auto retvalue =
         g_data_output_stream_put_uint64 (gobj (), data, nullptr, &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
   auto
   DataOutputStream::put_string (const std::string& str,
-                                const Glib::RefPtr<Cancellable>& cancellable) -> bool
+                                const glib::RefPtr<Cancellable>& cancellable) -> bool
   {
     GError* gerror = nullptr;
     const auto retvalue = g_data_output_stream_put_string (
         gobj (),
         str.c_str (),
-        Glib::unwrap (cancellable),
+        glib::unwrap (cancellable),
         &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
@@ -349,25 +349,25 @@ namespace Gio
                                                            nullptr,
                                                            &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<DataStreamByteOrder>::value,
+      glib::Traits::ValueCompatibleWithWrapProperty<DataStreamByteOrder>::value,
       "Type DataStreamByteOrder cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  DataOutputStream::property_byte_order () -> Glib::PropertyProxy<DataStreamByteOrder>
+  DataOutputStream::property_byte_order () -> glib::PropertyProxy<DataStreamByteOrder>
   {
     return {this, "byte-order"};
   }
 
   auto
-  DataOutputStream::property_byte_order () const -> Glib::PropertyProxy_ReadOnly<DataStreamByteOrder>
+  DataOutputStream::property_byte_order () const -> glib::PropertyProxy_ReadOnly<DataStreamByteOrder>
   {
     return {this, "byte-order"};
   }
 
-} // namespace Gio
+} // namespace gio

@@ -4,11 +4,11 @@
 #include <iostream>
 #include <stdlib.h>
 
-class Derived : public Gtk::Object
+class Derived : public gtk::Object
 {
 public:
   Derived(GObject* gobject, int i)
-  : Gtk::Object(gobject),
+  : gtk::Object(gobject),
     i_(i)
   {
   }
@@ -17,13 +17,13 @@ public:
   Derived& operator=(const Derived& src) = delete;
 
   Derived(Derived&& src) noexcept
-  : Gtk::Object(std::move(src)),
+  : gtk::Object(std::move(src)),
     i_(std::move(src.i_))
   {}
 
   Derived& operator=(Derived&& src) noexcept
   {
-    Gtk::Object::operator=(std::move(src));
+    gtk::Object::operator=(std::move(src));
     i_ = std::move(src.i_);
 
     return *this;
@@ -67,7 +67,7 @@ void test_object_move_assignment_operator()
 int main(int /* argc */, char** /* argv */)
 {
   gtk_init();
-  Gtk::init_gtkmm_internals();
+  gtk::init_gtkmm_internals();
 
   test_object_move_constructor();
   test_object_move_assignment_operator();

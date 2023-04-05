@@ -21,13 +21,13 @@ using GtkScaleButtonClass = struct _GtkScaleButtonClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT ScaleButton_Class;
 }
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
   class LIBMM_GTK_SYMEXPORT ScaleButton : public Widget,
@@ -58,7 +58,7 @@ namespace Gtk
     static CppClassType scalebutton_class_;
 
   protected:
-    explicit ScaleButton (const Glib::ConstructParams& construct_params);
+    explicit ScaleButton (const glib::ConstructParams& construct_params);
     explicit ScaleButton (GtkScaleButton* castitem);
 
 #endif
@@ -90,12 +90,12 @@ namespace Gtk
     explicit ScaleButton (double min,
                           double max,
                           double step,
-                          const std::vector<Glib::ustring>& icons);
+                          const std::vector<glib::ustring>& icons);
 
     explicit ScaleButton (double min, double max, double step);
 
     auto
-    set_icons (const std::vector<Glib::ustring>& icons) -> void;
+    set_icons (const std::vector<glib::ustring>& icons) -> void;
 
     auto
     get_value () const -> double;
@@ -104,13 +104,13 @@ namespace Gtk
     set_value (double value) -> void;
 
     auto
-    get_adjustment () -> Glib::RefPtr<Adjustment>;
+    get_adjustment () -> glib::RefPtr<Adjustment>;
 
     auto
-    get_adjustment () const -> Glib::RefPtr<const Adjustment>;
+    get_adjustment () const -> glib::RefPtr<const Adjustment>;
 
     auto
-    set_adjustment (const Glib::RefPtr<Adjustment>& adjustment) -> void;
+    set_adjustment (const glib::RefPtr<Adjustment>& adjustment) -> void;
 
     auto
     get_plus_button () -> Button*;
@@ -125,33 +125,33 @@ namespace Gtk
     get_minus_button () const -> const Button*;
 
     auto
-    get_popup () -> Gtk::Widget*;
+    get_popup () -> gtk::Widget*;
 
     auto
-    get_popup () const -> const Gtk::Widget*;
+    get_popup () const -> const gtk::Widget*;
 
     auto
-    signal_value_changed () -> Glib::SignalProxy<void (double)>;
+    signal_value_changed () -> glib::SignalProxy<void (double)>;
 
     auto
-    property_value () -> Glib::PropertyProxy<double>;
+    property_value () -> glib::PropertyProxy<double>;
 
     auto
-    property_value () const -> Glib::PropertyProxy_ReadOnly<double>;
+    property_value () const -> glib::PropertyProxy_ReadOnly<double>;
 
     auto
-    property_adjustment () -> Glib::PropertyProxy<Glib::RefPtr<Adjustment>>;
+    property_adjustment () -> glib::PropertyProxy<glib::RefPtr<Adjustment>>;
 
     auto
     property_adjustment () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Adjustment>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<Adjustment>>;
 
     auto
-    property_icons () -> Glib::PropertyProxy<std::vector<Glib::ustring>>;
+    property_icons () -> glib::PropertyProxy<std::vector<glib::ustring>>;
 
     auto
     property_icons () const
-        -> Glib::PropertyProxy_ReadOnly<std::vector<Glib::ustring>>;
+        -> glib::PropertyProxy_ReadOnly<std::vector<glib::ustring>>;
 
   public:
   public:
@@ -160,12 +160,12 @@ namespace Gtk
     on_value_changed (double value) -> void;
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkScaleButton* object, bool take_copy = false) -> Gtk::ScaleButton*;
-} // namespace Glib
+  wrap (GtkScaleButton* object, bool take_copy = false) -> gtk::ScaleButton*;
+} // namespace glib
 
 #endif

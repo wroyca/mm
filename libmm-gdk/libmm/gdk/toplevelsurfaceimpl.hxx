@@ -7,7 +7,7 @@
 #include <libmm/gdk/surface.hxx>
 #include <libmm/gdk/toplevel.hxx>
 
-namespace Gdk
+namespace gdk
 {
 
   class LIBMM_GDK_SYMEXPORT ToplevelSurfaceImpl : public Toplevel,
@@ -31,6 +31,6 @@ namespace Gdk
     ~ToplevelSurfaceImpl () noexcept override;
   };
 
-} // namespace Gdk
+} // namespace gdk
 
 #endif

@@ -16,30 +16,30 @@ namespace
                                   GtkFlowBoxChild* child,
                                   void* data) -> void
   {
-    auto the_slot = static_cast<Gtk::FlowBox::SlotSelectedForeach*> (data);
+    auto the_slot = static_cast<gtk::FlowBox::SlotSelectedForeach*> (data);
 
     try
     {
-      (*the_slot) (Glib::wrap (box), Glib::wrap (child));
+      (*the_slot) (glib::wrap (box), glib::wrap (child));
     }
     catch (...)
     {
-      Glib::exception_handlers_invoke ();
+      glib::exception_handlers_invoke ();
     }
   }
 
   static auto
   SignalProxy_Filter_gtk_callback (GtkFlowBoxChild* child, void* data) -> gboolean
   {
-    auto the_slot = static_cast<Gtk::FlowBox::SlotFilter*> (data);
+    auto the_slot = static_cast<gtk::FlowBox::SlotFilter*> (data);
 
     try
     {
-      return (*the_slot) (Glib::wrap (child));
+      return (*the_slot) (glib::wrap (child));
     }
     catch (...)
     {
-      Glib::exception_handlers_invoke ();
+      glib::exception_handlers_invoke ();
       return FALSE;
     }
   }
@@ -47,7 +47,7 @@ namespace
   static auto
   SignalProxy_Filter_gtk_callback_destroy (void* data) -> void
   {
-    delete static_cast<Gtk::FlowBox::SlotFilter*> (data);
+    delete static_cast<gtk::FlowBox::SlotFilter*> (data);
   }
 
   static auto
@@ -55,15 +55,15 @@ namespace
                                  GtkFlowBoxChild* child2,
                                  void* data) -> int
   {
-    auto the_slot = static_cast<Gtk::FlowBox::SlotSort*> (data);
+    auto the_slot = static_cast<gtk::FlowBox::SlotSort*> (data);
 
     try
     {
-      return (*the_slot) (Glib::wrap (child1), Glib::wrap (child2));
+      return (*the_slot) (glib::wrap (child1), glib::wrap (child2));
     }
     catch (...)
     {
-      Glib::exception_handlers_invoke ();
+      glib::exception_handlers_invoke ();
       return 0;
     }
   }
@@ -71,32 +71,32 @@ namespace
   static auto
   SignalProxy_Sort_gtk_callback_destroy (void* data) -> void
   {
-    delete static_cast<Gtk::FlowBox::SlotSort*> (data);
+    delete static_cast<gtk::FlowBox::SlotSort*> (data);
   }
 
   static auto
   proxy_bind_model_create_widget_callback (void* item, void* data) -> GtkWidget*
   {
     auto& slot =
-        *static_cast<Gtk::FlowBox::SlotCreateWidget<Glib::Object>*> (data);
+        *static_cast<gtk::FlowBox::SlotCreateWidget<glib::Object>*> (data);
     auto cobject = static_cast<GObject*> (item);
 
     try
     {
-      Gtk::Widget* widget = slot (Glib::wrap (cobject, true));
+      gtk::Widget* widget = slot (glib::wrap (cobject, true));
       if (widget)
         return widget->gobj ();
     }
     catch (...)
     {
-      Glib::exception_handlers_invoke ();
+      glib::exception_handlers_invoke ();
     }
     return nullptr;
   }
 
 } // namespace
 
-namespace Gtk
+namespace gtk
 {
 
   auto
@@ -144,20 +144,20 @@ namespace Gtk
   }
 
   auto
-  FlowBox::bind_model (const Glib::RefPtr<Gio::ListModel>& model,
-                       const SlotCreateWidget<Glib::Object>& slot_create_widget) -> void
+  FlowBox::bind_model (const glib::RefPtr<gio::ListModel>& model,
+                       const SlotCreateWidget<glib::Object>& slot_create_widget) -> void
   {
-    auto slot_copy = new SlotCreateWidget<Glib::Object> (slot_create_widget);
+    auto slot_copy = new SlotCreateWidget<glib::Object> (slot_create_widget);
 
     gtk_flow_box_bind_model (
         gobj (),
-        Glib::unwrap (model),
+        glib::unwrap (model),
         &proxy_bind_model_create_widget_callback,
         slot_copy,
-        &Glib::destroy_notify_delete<SlotCreateWidget<Glib::Object>>);
+        &glib::destroy_notify_delete<SlotCreateWidget<glib::Object>>);
   }
 
-} // namespace Gtk
+} // namespace gtk
 
 namespace
 {
@@ -167,56 +167,56 @@ namespace
                                            GtkFlowBoxChild* p0,
                                            void* data) -> void
   {
-    using namespace Gtk;
+    using namespace gtk;
     using SlotType = sigc::slot<void (FlowBoxChild*)>;
 
     auto obj = dynamic_cast<FlowBox*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
     {
       try
       {
-        if (const auto slot = Glib::SignalProxyNormal::data_to_slot (data))
-          (*static_cast<SlotType*> (slot)) (Glib::wrap (p0));
+        if (const auto slot = glib::SignalProxyNormal::data_to_slot (data))
+          (*static_cast<SlotType*> (slot)) (glib::wrap (p0));
       }
       catch (...)
       {
-        Glib::exception_handlers_invoke ();
+        glib::exception_handlers_invoke ();
       }
     }
   }
 
-  static const Glib::SignalProxyInfo FlowBox_signal_child_activated_info = {
+  static const glib::SignalProxyInfo FlowBox_signal_child_activated_info = {
       "child-activated",
       (GCallback) &FlowBox_signal_child_activated_callback,
       (GCallback) &FlowBox_signal_child_activated_callback};
 
-  static const Glib::SignalProxyInfo
+  static const glib::SignalProxyInfo
       FlowBox_signal_selected_children_changed_info = {
           "selected-children-changed",
-          (GCallback) &Glib::SignalProxyNormal::slot0_void_callback,
-          (GCallback) &Glib::SignalProxyNormal::slot0_void_callback};
+          (GCallback) &glib::SignalProxyNormal::slot0_void_callback,
+          (GCallback) &glib::SignalProxyNormal::slot0_void_callback};
 
 } // namespace
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GtkFlowBox* object, bool take_copy) -> Gtk::FlowBox*
+  wrap (GtkFlowBox* object, bool take_copy) -> gtk::FlowBox*
   {
-    return dynamic_cast<Gtk::FlowBox*> (
-        Glib::wrap_auto ((GObject*) (object), take_copy));
+    return dynamic_cast<gtk::FlowBox*> (
+        glib::wrap_auto ((GObject*) (object), take_copy));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gtk
+namespace gtk
 {
 
   auto
-  FlowBox_Class::init () -> const Glib::Class&
+  FlowBox_Class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -238,23 +238,23 @@ namespace Gtk
   }
 
   auto
-  FlowBox_Class::wrap_new (GObject* o) -> Glib::ObjectBase*
+  FlowBox_Class::wrap_new (GObject* o) -> glib::ObjectBase*
   {
     return manage (new FlowBox ((GtkFlowBox*) (o)));
   }
 
-  FlowBox::FlowBox (const Glib::ConstructParams& construct_params)
-    : Gtk::Widget (construct_params)
+  FlowBox::FlowBox (const glib::ConstructParams& construct_params)
+    : gtk::Widget (construct_params)
   {
   }
 
   FlowBox::FlowBox (GtkFlowBox* castitem)
-    : Gtk::Widget ((GtkWidget*) (castitem))
+    : gtk::Widget ((GtkWidget*) (castitem))
   {
   }
 
   FlowBox::FlowBox (FlowBox&& src) noexcept
-    : Gtk::Widget (std::move (src)),
+    : gtk::Widget (std::move (src)),
       Orientable (std::move (src))
   {
   }
@@ -262,7 +262,7 @@ namespace Gtk
   auto
   FlowBox::operator= (FlowBox&& src) noexcept -> FlowBox&
   {
-    Gtk::Widget::operator= (std::move (src));
+    gtk::Widget::operator= (std::move (src));
     Orientable::operator= (std::move (src));
     return *this;
   }
@@ -287,8 +287,8 @@ namespace Gtk
   }
 
   FlowBox::FlowBox ()
-    : Glib::ObjectBase (nullptr),
-      Gtk::Widget (Glib::ConstructParams (flowbox_class_.init ()))
+    : glib::ObjectBase (nullptr),
+      gtk::Widget (glib::ConstructParams (flowbox_class_.init ()))
   {
   }
 
@@ -395,7 +395,7 @@ namespace Gtk
   auto
   FlowBox::get_child_at_index (int idx) -> FlowBoxChild*
   {
-    return Glib::wrap (gtk_flow_box_get_child_at_index (gobj (), idx));
+    return glib::wrap (gtk_flow_box_get_child_at_index (gobj (), idx));
   }
 
   auto
@@ -407,7 +407,7 @@ namespace Gtk
   auto
   FlowBox::get_child_at_pos (int x, int y) -> FlowBoxChild*
   {
-    return Glib::wrap (gtk_flow_box_get_child_at_pos (gobj (), x, y));
+    return glib::wrap (gtk_flow_box_get_child_at_pos (gobj (), x, y));
   }
 
   auto
@@ -417,19 +417,19 @@ namespace Gtk
   }
 
   auto
-  FlowBox::get_selected_children () -> std::vector<Gtk::FlowBoxChild*>
+  FlowBox::get_selected_children () -> std::vector<gtk::FlowBoxChild*>
   {
-    return Glib::ListHandler<Gtk::FlowBoxChild*>::list_to_vector (
+    return glib::ListHandler<gtk::FlowBoxChild*>::list_to_vector (
         gtk_flow_box_get_selected_children (gobj ()),
-        Glib::OWNERSHIP_SHALLOW);
+        glib::OWNERSHIP_SHALLOW);
   }
 
   auto
-  FlowBox::get_selected_children () const -> std::vector<const Gtk::FlowBoxChild*>
+  FlowBox::get_selected_children () const -> std::vector<const gtk::FlowBoxChild*>
   {
-    return Glib::ListHandler<const Gtk::FlowBoxChild*>::list_to_vector (
+    return glib::ListHandler<const gtk::FlowBoxChild*>::list_to_vector (
         gtk_flow_box_get_selected_children (const_cast<GtkFlowBox*> (gobj ())),
-        Glib::OWNERSHIP_SHALLOW);
+        glib::OWNERSHIP_SHALLOW);
   }
 
   auto
@@ -471,15 +471,15 @@ namespace Gtk
   }
 
   auto
-  FlowBox::set_hadjustment (const Glib::RefPtr<Adjustment>& adjustment) -> void
+  FlowBox::set_hadjustment (const glib::RefPtr<Adjustment>& adjustment) -> void
   {
-    gtk_flow_box_set_hadjustment (gobj (), Glib::unwrap (adjustment));
+    gtk_flow_box_set_hadjustment (gobj (), glib::unwrap (adjustment));
   }
 
   auto
-  FlowBox::set_vadjustment (const Glib::RefPtr<Adjustment>& adjustment) -> void
+  FlowBox::set_vadjustment (const glib::RefPtr<Adjustment>& adjustment) -> void
   {
-    gtk_flow_box_set_vadjustment (gobj (), Glib::unwrap (adjustment));
+    gtk_flow_box_set_vadjustment (gobj (), glib::unwrap (adjustment));
   }
 
   auto
@@ -495,121 +495,121 @@ namespace Gtk
   }
 
   auto
-  FlowBox::signal_child_activated () -> Glib::SignalProxy<void (FlowBoxChild*)>
+  FlowBox::signal_child_activated () -> glib::SignalProxy<void (FlowBoxChild*)>
   {
-    return Glib::SignalProxy<void (FlowBoxChild*)> (
+    return glib::SignalProxy<void (FlowBoxChild*)> (
         this,
         &FlowBox_signal_child_activated_info);
   }
 
   auto
-  FlowBox::signal_selected_children_changed () -> Glib::SignalProxy<void ()>
+  FlowBox::signal_selected_children_changed () -> glib::SignalProxy<void ()>
   {
-    return Glib::SignalProxy<void ()> (
+    return glib::SignalProxy<void ()> (
         this,
         &FlowBox_signal_selected_children_changed_info);
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<SelectionMode>::value,
+      glib::Traits::ValueCompatibleWithWrapProperty<SelectionMode>::value,
       "Type SelectionMode cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  FlowBox::property_selection_mode () -> Glib::PropertyProxy<SelectionMode>
+  FlowBox::property_selection_mode () -> glib::PropertyProxy<SelectionMode>
   {
-    return Glib::PropertyProxy<SelectionMode> (this, "selection-mode");
+    return glib::PropertyProxy<SelectionMode> (this, "selection-mode");
   }
 
   auto
-  FlowBox::property_selection_mode () const -> Glib::PropertyProxy_ReadOnly<SelectionMode>
+  FlowBox::property_selection_mode () const -> glib::PropertyProxy_ReadOnly<SelectionMode>
   {
-    return Glib::PropertyProxy_ReadOnly<SelectionMode> (this, "selection-mode");
+    return glib::PropertyProxy_ReadOnly<SelectionMode> (this, "selection-mode");
   }
 
   auto
-  FlowBox::property_activate_on_single_click () -> Glib::PropertyProxy<bool>
+  FlowBox::property_activate_on_single_click () -> glib::PropertyProxy<bool>
   {
-    return Glib::PropertyProxy<bool> (this, "activate-on-single-click");
+    return glib::PropertyProxy<bool> (this, "activate-on-single-click");
   }
 
   auto
-  FlowBox::property_activate_on_single_click () const -> Glib::PropertyProxy_ReadOnly<bool>
+  FlowBox::property_activate_on_single_click () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this,
+    return glib::PropertyProxy_ReadOnly<bool> (this,
                                                "activate-on-single-click");
   }
 
   auto
-  FlowBox::property_accept_unpaired_release () -> Glib::PropertyProxy<bool>
+  FlowBox::property_accept_unpaired_release () -> glib::PropertyProxy<bool>
   {
-    return Glib::PropertyProxy<bool> (this, "accept-unpaired-release");
+    return glib::PropertyProxy<bool> (this, "accept-unpaired-release");
   }
 
   auto
-  FlowBox::property_accept_unpaired_release () const -> Glib::PropertyProxy_ReadOnly<bool>
+  FlowBox::property_accept_unpaired_release () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "accept-unpaired-release");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "accept-unpaired-release");
   }
 
   auto
-  FlowBox::property_homogeneous () -> Glib::PropertyProxy<bool>
+  FlowBox::property_homogeneous () -> glib::PropertyProxy<bool>
   {
-    return Glib::PropertyProxy<bool> (this, "homogeneous");
+    return glib::PropertyProxy<bool> (this, "homogeneous");
   }
 
   auto
-  FlowBox::property_homogeneous () const -> Glib::PropertyProxy_ReadOnly<bool>
+  FlowBox::property_homogeneous () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "homogeneous");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "homogeneous");
   }
 
   auto
-  FlowBox::property_min_children_per_line () -> Glib::PropertyProxy<guint>
+  FlowBox::property_min_children_per_line () -> glib::PropertyProxy<guint>
   {
-    return Glib::PropertyProxy<guint> (this, "min-children-per-line");
+    return glib::PropertyProxy<guint> (this, "min-children-per-line");
   }
 
   auto
-  FlowBox::property_min_children_per_line () const -> Glib::PropertyProxy_ReadOnly<guint>
+  FlowBox::property_min_children_per_line () const -> glib::PropertyProxy_ReadOnly<guint>
   {
-    return Glib::PropertyProxy_ReadOnly<guint> (this, "min-children-per-line");
+    return glib::PropertyProxy_ReadOnly<guint> (this, "min-children-per-line");
   }
 
   auto
-  FlowBox::property_max_children_per_line () -> Glib::PropertyProxy<guint>
+  FlowBox::property_max_children_per_line () -> glib::PropertyProxy<guint>
   {
-    return Glib::PropertyProxy<guint> (this, "max-children-per-line");
+    return glib::PropertyProxy<guint> (this, "max-children-per-line");
   }
 
   auto
-  FlowBox::property_max_children_per_line () const -> Glib::PropertyProxy_ReadOnly<guint>
+  FlowBox::property_max_children_per_line () const -> glib::PropertyProxy_ReadOnly<guint>
   {
-    return Glib::PropertyProxy_ReadOnly<guint> (this, "max-children-per-line");
+    return glib::PropertyProxy_ReadOnly<guint> (this, "max-children-per-line");
   }
 
   auto
-  FlowBox::property_row_spacing () -> Glib::PropertyProxy<guint>
+  FlowBox::property_row_spacing () -> glib::PropertyProxy<guint>
   {
-    return Glib::PropertyProxy<guint> (this, "row-spacing");
+    return glib::PropertyProxy<guint> (this, "row-spacing");
   }
 
   auto
-  FlowBox::property_row_spacing () const -> Glib::PropertyProxy_ReadOnly<guint>
+  FlowBox::property_row_spacing () const -> glib::PropertyProxy_ReadOnly<guint>
   {
-    return Glib::PropertyProxy_ReadOnly<guint> (this, "row-spacing");
+    return glib::PropertyProxy_ReadOnly<guint> (this, "row-spacing");
   }
 
   auto
-  FlowBox::property_column_spacing () -> Glib::PropertyProxy<guint>
+  FlowBox::property_column_spacing () -> glib::PropertyProxy<guint>
   {
-    return Glib::PropertyProxy<guint> (this, "column-spacing");
+    return glib::PropertyProxy<guint> (this, "column-spacing");
   }
 
   auto
-  FlowBox::property_column_spacing () const -> Glib::PropertyProxy_ReadOnly<guint>
+  FlowBox::property_column_spacing () const -> glib::PropertyProxy_ReadOnly<guint>
   {
-    return Glib::PropertyProxy_ReadOnly<guint> (this, "column-spacing");
+    return glib::PropertyProxy_ReadOnly<guint> (this, "column-spacing");
   }
 
-} // namespace Gtk
+} // namespace gtk

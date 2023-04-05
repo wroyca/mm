@@ -4,13 +4,13 @@
  * SPDX-License-Identifier: LGPL-2.1-or-later
  */
 
-#include <libmm/adw/init.hxx> // Adw::init
+#include <libmm/adw/init.hxx> // adw::init
 #include <libmm/adw/mm-adw.hxx>
 
 static void
 test_adw_preferences_row_title (void)
 {
-  Adw::PreferencesRow row;
+  adw::PreferencesRow row;
 
   g_assert_true (row.get_title () == "");
 
@@ -28,7 +28,7 @@ test_adw_preferences_row_title (void)
 static void
 test_adw_preferences_row_use_underline (void)
 {
-  Adw::PreferencesRow row;
+  adw::PreferencesRow row;
 
   g_assert_false (row.get_use_underline ());
 
@@ -43,7 +43,7 @@ int
 main (int argc, char* argv[])
 {
   gtk_test_init (&argc, &argv, NULL);
-  Adw::init ();
+  adw::init ();
 
   g_test_add_func ("/Adwaita/PreferencesRow/title",
                    test_adw_preferences_row_title);

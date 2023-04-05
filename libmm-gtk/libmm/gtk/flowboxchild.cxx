@@ -7,7 +7,7 @@
 
 #include <gtk/gtk.h>
 
-namespace Gtk
+namespace gtk
 {
 
   auto
@@ -16,35 +16,35 @@ namespace Gtk
     gtk_flow_box_child_set_child (gobj (), nullptr);
   }
 
-} // namespace Gtk
+} // namespace gtk
 
 namespace
 {
 
-  static const Glib::SignalProxyInfo FlowBoxChild_signal_activate_info = {
+  static const glib::SignalProxyInfo FlowBoxChild_signal_activate_info = {
       "activate",
-      (GCallback) &Glib::SignalProxyNormal::slot0_void_callback,
-      (GCallback) &Glib::SignalProxyNormal::slot0_void_callback};
+      (GCallback) &glib::SignalProxyNormal::slot0_void_callback,
+      (GCallback) &glib::SignalProxyNormal::slot0_void_callback};
 
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GtkFlowBoxChild* object, bool take_copy) -> Gtk::FlowBoxChild*
+  wrap (GtkFlowBoxChild* object, bool take_copy) -> gtk::FlowBoxChild*
   {
-    return dynamic_cast<Gtk::FlowBoxChild*> (
-        Glib::wrap_auto ((GObject*) (object), take_copy));
+    return dynamic_cast<gtk::FlowBoxChild*> (
+        glib::wrap_auto ((GObject*) (object), take_copy));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gtk
+namespace gtk
 {
 
   auto
-  FlowBoxChild_Class::init () -> const Glib::Class&
+  FlowBoxChild_Class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -68,8 +68,8 @@ namespace Gtk
   auto
   FlowBoxChild_Class::activate_callback (GtkFlowBoxChild* self) -> void
   {
-    const auto obj_base = static_cast<Glib::ObjectBase*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+    const auto obj_base = static_cast<glib::ObjectBase*> (
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -83,7 +83,7 @@ namespace Gtk
         }
         catch (...)
         {
-          Glib::exception_handlers_invoke ();
+          glib::exception_handlers_invoke ();
         }
       }
     }
@@ -96,30 +96,30 @@ namespace Gtk
   }
 
   auto
-  FlowBoxChild_Class::wrap_new (GObject* o) -> Glib::ObjectBase*
+  FlowBoxChild_Class::wrap_new (GObject* o) -> glib::ObjectBase*
   {
     return manage (new FlowBoxChild ((GtkFlowBoxChild*) (o)));
   }
 
-  FlowBoxChild::FlowBoxChild (const Glib::ConstructParams& construct_params)
-    : Gtk::Widget (construct_params)
+  FlowBoxChild::FlowBoxChild (const glib::ConstructParams& construct_params)
+    : gtk::Widget (construct_params)
   {
   }
 
   FlowBoxChild::FlowBoxChild (GtkFlowBoxChild* castitem)
-    : Gtk::Widget ((GtkWidget*) (castitem))
+    : gtk::Widget ((GtkWidget*) (castitem))
   {
   }
 
   FlowBoxChild::FlowBoxChild (FlowBoxChild&& src) noexcept
-    : Gtk::Widget (std::move (src))
+    : gtk::Widget (std::move (src))
   {
   }
 
   auto
   FlowBoxChild::operator= (FlowBoxChild&& src) noexcept -> FlowBoxChild&
   {
-    Gtk::Widget::operator= (std::move (src));
+    gtk::Widget::operator= (std::move (src));
     return *this;
   }
 
@@ -143,8 +143,8 @@ namespace Gtk
   }
 
   FlowBoxChild::FlowBoxChild ()
-    : Glib::ObjectBase (nullptr),
-      Gtk::Widget (Glib::ConstructParams (flowboxchild_class_.init ()))
+    : glib::ObjectBase (nullptr),
+      gtk::Widget (glib::ConstructParams (flowboxchild_class_.init ()))
   {
   }
 
@@ -157,7 +157,7 @@ namespace Gtk
   auto
   FlowBoxChild::get_child () -> Widget*
   {
-    return Glib::wrap (gtk_flow_box_child_get_child (gobj ()));
+    return glib::wrap (gtk_flow_box_child_get_child (gobj ()));
   }
 
   auto
@@ -187,26 +187,26 @@ namespace Gtk
   }
 
   auto
-  FlowBoxChild::signal_activate () -> Glib::SignalProxy<void ()>
+  FlowBoxChild::signal_activate () -> glib::SignalProxy<void ()>
   {
-    return Glib::SignalProxy<void ()> (this,
+    return glib::SignalProxy<void ()> (this,
                                        &FlowBoxChild_signal_activate_info);
   }
 
   auto
-  FlowBoxChild::property_child () -> Glib::PropertyProxy<Widget*>
+  FlowBoxChild::property_child () -> glib::PropertyProxy<Widget*>
   {
-    return Glib::PropertyProxy<Widget*> (this, "child");
+    return glib::PropertyProxy<Widget*> (this, "child");
   }
 
   auto
-  FlowBoxChild::property_child () const -> Glib::PropertyProxy_ReadOnly<Widget*>
+  FlowBoxChild::property_child () const -> glib::PropertyProxy_ReadOnly<Widget*>
   {
-    return Glib::PropertyProxy_ReadOnly<Widget*> (this, "child");
+    return glib::PropertyProxy_ReadOnly<Widget*> (this, "child");
   }
 
   auto
-  Gtk::FlowBoxChild::on_activate () -> void
+  gtk::FlowBoxChild::on_activate () -> void
   {
     const auto base = static_cast<BaseClassType*> (
         g_type_class_peek_parent (G_OBJECT_GET_CLASS (gobject_)));
@@ -215,4 +215,4 @@ namespace Gtk
       (*base->activate) (gobj ());
   }
 
-} // namespace Gtk
+} // namespace gtk

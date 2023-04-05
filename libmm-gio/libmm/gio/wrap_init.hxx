@@ -5,7 +5,7 @@
 
 #include <libmm/gio/mm-gioconfig.hxx>
 
-namespace Gio
+namespace gio
 {
   LIBMM_GIO_SYMEXPORT auto
   wrap_init () -> void;

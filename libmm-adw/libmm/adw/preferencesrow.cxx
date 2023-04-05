@@ -8,7 +8,7 @@
 #include <adwaita.h>
 #include <libmm/gtk/mm-gtk.hxx>
 
-namespace Adw
+namespace adw
 {
 
 }
@@ -17,23 +17,23 @@ namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (AdwPreferencesRow* object, bool take_copy) -> Adw::PreferencesRow*
+  wrap (AdwPreferencesRow* object, bool take_copy) -> adw::PreferencesRow*
   {
-    return dynamic_cast<Adw::PreferencesRow*> (
-        Glib::wrap_auto ((GObject*) (object), take_copy));
+    return dynamic_cast<adw::PreferencesRow*> (
+        glib::wrap_auto ((GObject*) (object), take_copy));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Adw
+namespace adw
 {
 
   auto
-  PreferencesRow_Class::init () -> const Glib::Class&
+  PreferencesRow_Class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -53,30 +53,30 @@ namespace Adw
   }
 
   auto
-  PreferencesRow_Class::wrap_new (GObject* o) -> Glib::ObjectBase*
+  PreferencesRow_Class::wrap_new (GObject* o) -> glib::ObjectBase*
   {
     return manage (new PreferencesRow ((AdwPreferencesRow*) (o)));
   }
 
-  PreferencesRow::PreferencesRow (const Glib::ConstructParams& construct_params)
-    : Gtk::ListBoxRow (construct_params)
+  PreferencesRow::PreferencesRow (const glib::ConstructParams& construct_params)
+    : gtk::ListBoxRow (construct_params)
   {
   }
 
   PreferencesRow::PreferencesRow (AdwPreferencesRow* castitem)
-    : Gtk::ListBoxRow ((GtkListBoxRow*) (castitem))
+    : gtk::ListBoxRow ((GtkListBoxRow*) (castitem))
   {
   }
 
   PreferencesRow::PreferencesRow (PreferencesRow&& src) noexcept
-    : Gtk::ListBoxRow (std::move (src))
+    : gtk::ListBoxRow (std::move (src))
   {
   }
 
   auto
   PreferencesRow::operator= (PreferencesRow&& src) noexcept -> PreferencesRow&
   {
-    Gtk::ListBoxRow::operator= (std::move (src));
+    gtk::ListBoxRow::operator= (std::move (src));
     return *this;
   }
 
@@ -100,15 +100,15 @@ namespace Adw
   }
 
   PreferencesRow::PreferencesRow ()
-    : Glib::ObjectBase (nullptr),
-      Gtk::ListBoxRow (Glib::ConstructParams (preferencesrow_class_.init ()))
+    : glib::ObjectBase (nullptr),
+      gtk::ListBoxRow (glib::ConstructParams (preferencesrow_class_.init ()))
   {
   }
 
   auto
-  PreferencesRow::get_title () const -> Glib::ustring
+  PreferencesRow::get_title () const -> glib::ustring
   {
-    return Glib::convert_const_gchar_ptr_to_ustring (
+    return glib::convert_const_gchar_ptr_to_ustring (
         adw_preferences_row_get_title (
             const_cast<AdwPreferencesRow*> (gobj ())));
   }
@@ -135,7 +135,7 @@ namespace Adw
   }
 
   auto
-  PreferencesRow::set_title (const Glib::ustring& title) -> void
+  PreferencesRow::set_title (const glib::ustring& title) -> void
   {
     adw_preferences_row_set_title (gobj (), title.c_str ());
   }
@@ -162,51 +162,51 @@ namespace Adw
   }
 
   auto
-  PreferencesRow::property_title () -> Glib::PropertyProxy<Glib::ustring>
+  PreferencesRow::property_title () -> glib::PropertyProxy<glib::ustring>
   {
-    return Glib::PropertyProxy<Glib::ustring> (this, "title");
+    return glib::PropertyProxy<glib::ustring> (this, "title");
   }
 
   auto
-  PreferencesRow::property_title () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>
+  PreferencesRow::property_title () const -> glib::PropertyProxy_ReadOnly<glib::ustring>
   {
-    return Glib::PropertyProxy_ReadOnly<Glib::ustring> (this, "title");
+    return glib::PropertyProxy_ReadOnly<glib::ustring> (this, "title");
   }
 
   auto
-  PreferencesRow::property_title_selectable () -> Glib::PropertyProxy<bool>
+  PreferencesRow::property_title_selectable () -> glib::PropertyProxy<bool>
   {
-    return Glib::PropertyProxy<bool> (this, "title-selectable");
+    return glib::PropertyProxy<bool> (this, "title-selectable");
   }
 
   auto
-  PreferencesRow::property_title_selectable () const -> Glib::PropertyProxy_ReadOnly<bool>
+  PreferencesRow::property_title_selectable () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "title-selectable");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "title-selectable");
   }
 
   auto
-  PreferencesRow::property_use_markup () -> Glib::PropertyProxy<bool>
+  PreferencesRow::property_use_markup () -> glib::PropertyProxy<bool>
   {
-    return Glib::PropertyProxy<bool> (this, "use-markup");
+    return glib::PropertyProxy<bool> (this, "use-markup");
   }
 
   auto
-  PreferencesRow::property_use_markup () const -> Glib::PropertyProxy_ReadOnly<bool>
+  PreferencesRow::property_use_markup () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "use-markup");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "use-markup");
   }
 
   auto
-  PreferencesRow::property_use_underline () -> Glib::PropertyProxy<bool>
+  PreferencesRow::property_use_underline () -> glib::PropertyProxy<bool>
   {
-    return Glib::PropertyProxy<bool> (this, "use-underline");
+    return glib::PropertyProxy<bool> (this, "use-underline");
   }
 
   auto
-  PreferencesRow::property_use_underline () const -> Glib::PropertyProxy_ReadOnly<bool>
+  PreferencesRow::property_use_underline () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "use-underline");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "use-underline");
   }
 
-} // namespace Adw
+} // namespace adw

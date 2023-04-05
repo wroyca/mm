@@ -13,25 +13,25 @@ namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GtkNative* object, bool take_copy) -> Glib::RefPtr<Gtk::Native>
+  wrap (GtkNative* object, bool take_copy) -> glib::RefPtr<gtk::Native>
   {
-    return Glib::make_refptr_for_instance<Gtk::Native> (
-        dynamic_cast<Gtk::Native*> (
-            Glib::wrap_auto_interface<Gtk::Native> ((GObject*) (object),
+    return glib::make_refptr_for_instance<gtk::Native> (
+        dynamic_cast<gtk::Native*> (
+            glib::wrap_auto_interface<gtk::Native> ((GObject*) (object),
                                                     take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gtk
+namespace gtk
 {
 
   auto
-  Native_Class::init () -> const Glib::Interface_Class&
+  Native_Class::init () -> const glib::Interface_Class&
   {
     if (!gtype_)
     {
@@ -52,35 +52,35 @@ namespace Gtk
   }
 
   auto
-  Native_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  Native_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new Native ((GtkNative*) (object));
   }
 
   Native::Native ()
-    : Glib::Interface (native_class_.init ())
+    : glib::Interface (native_class_.init ())
   {
   }
 
   Native::Native (GtkNative* castitem)
-    : Glib::Interface ((GObject*) (castitem))
+    : glib::Interface ((GObject*) (castitem))
   {
   }
 
-  Native::Native (const Glib::Interface_Class& interface_class)
-    : Glib::Interface (interface_class)
+  Native::Native (const glib::Interface_Class& interface_class)
+    : glib::Interface (interface_class)
   {
   }
 
   Native::Native (Native&& src) noexcept
-    : Glib::Interface (std::move (src))
+    : glib::Interface (std::move (src))
   {
   }
 
   auto
   Native::operator= (Native&& src) noexcept -> Native&
   {
-    Glib::Interface::operator= (std::move (src));
+    glib::Interface::operator= (std::move (src));
     return *this;
   }
 
@@ -119,25 +119,25 @@ namespace Gtk
   }
 
   auto
-  Native::get_for_surface (const Glib::RefPtr<const Gdk::Surface>& surface) -> Native*
+  Native::get_for_surface (const glib::RefPtr<const gdk::Surface>& surface) -> Native*
   {
-    return dynamic_cast<Native*> (Glib::wrap_auto (
+    return dynamic_cast<Native*> (glib::wrap_auto (
         (GObject*) (gtk_native_get_for_surface (
-            const_cast<GdkSurface*> (Glib::unwrap<Gdk::Surface> (surface)))),
+            const_cast<GdkSurface*> (glib::unwrap<gdk::Surface> (surface)))),
         false));
   }
 
   auto
-  Native::get_surface () -> Glib::RefPtr<Gdk::Surface>
+  Native::get_surface () -> glib::RefPtr<gdk::Surface>
   {
-    auto retvalue = Glib::wrap (gtk_native_get_surface (gobj ()));
+    auto retvalue = glib::wrap (gtk_native_get_surface (gobj ()));
     if (retvalue)
       retvalue->reference ();
     return retvalue;
   }
 
   auto
-  Native::get_surface () const -> Glib::RefPtr<const Gdk::Surface>
+  Native::get_surface () const -> glib::RefPtr<const gdk::Surface>
   {
     return const_cast<Native*> (this)->get_surface ();
   }
@@ -148,4 +148,4 @@ namespace Gtk
     gtk_native_get_surface_transform (gobj (), &(x), &(y));
   }
 
-} // namespace Gtk
+} // namespace gtk

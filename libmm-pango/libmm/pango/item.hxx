@@ -10,7 +10,7 @@
 #include <libmm/pango/language.hxx>
 #include <pango/pango.h>
 
-namespace Pango
+namespace pango
 {
 
   enum class ShapeFlags
@@ -67,25 +67,25 @@ namespace Pango
                                            static_cast<unsigned> (rhs)));
   }
 
-} // namespace Pango
+} // namespace pango
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_PANGO_SYMEXPORT Value<Pango::ShapeFlags>
-    : public Glib::Value_Flags<Pango::ShapeFlags>
+  class LIBMM_PANGO_SYMEXPORT Value<pango::ShapeFlags>
+    : public glib::Value_Flags<pango::ShapeFlags>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
-namespace Pango
+namespace pango
 {
 
   class Font;
@@ -108,9 +108,9 @@ namespace Pango
 
   public:
     auto
-    get_font () -> Glib::RefPtr<Font>;
+    get_font () -> glib::RefPtr<Font>;
     auto
-    get_font () const -> Glib::RefPtr<const Font>;
+    get_font () const -> glib::RefPtr<const Font>;
 
     auto
     get_level () const -> guint8;
@@ -175,14 +175,14 @@ namespace Pango
     get_analysis () const -> Analysis;
 
     auto
-    get_segment (const Glib::ustring& text) const -> Glib::ustring;
+    get_segment (const glib::ustring& text) const -> glib::ustring;
 
     auto
-    shape (const Glib::ustring& text) const -> GlyphString;
+    shape (const glib::ustring& text) const -> GlyphString;
 
     auto
-    shape (const Glib::ustring& item_text,
-           const Glib::ustring& paragraph_text,
+    shape (const glib::ustring& item_text,
+           const glib::ustring& paragraph_text,
            ShapeFlags flags = ShapeFlags::NONE) const -> GlyphString;
 
     auto
@@ -201,23 +201,23 @@ namespace Pango
     PangoItem* gobject_;
   };
 
-} // namespace Pango
+} // namespace pango
 
-namespace Glib
+namespace glib
 {
 
   LIBMM_PANGO_SYMEXPORT
   auto
-  wrap (PangoAnalysis* object) -> Pango::Analysis&;
+  wrap (PangoAnalysis* object) -> pango::Analysis&;
 
   LIBMM_PANGO_SYMEXPORT
   auto
-  wrap (const PangoAnalysis* object) -> const Pango::Analysis&;
+  wrap (const PangoAnalysis* object) -> const pango::Analysis&;
 
   LIBMM_PANGO_SYMEXPORT
   auto
-  wrap (PangoItem* object, bool take_copy = true) -> Pango::Item;
+  wrap (PangoItem* object, bool take_copy = true) -> pango::Item;
 
-} // namespace Glib
+} // namespace glib
 
 #endif

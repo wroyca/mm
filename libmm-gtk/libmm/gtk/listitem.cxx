@@ -7,7 +7,7 @@
 
 #include <gtk/gtk.h>
 
-namespace Gtk
+namespace gtk
 {
 
   auto
@@ -16,30 +16,30 @@ namespace Gtk
     gtk_list_item_set_child (gobj (), nullptr);
   }
 
-} // namespace Gtk
+} // namespace gtk
 
 namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GtkListItem* object, bool take_copy) -> Glib::RefPtr<Gtk::ListItem>
+  wrap (GtkListItem* object, bool take_copy) -> glib::RefPtr<gtk::ListItem>
   {
-    return Glib::make_refptr_for_instance<Gtk::ListItem> (
-        dynamic_cast<Gtk::ListItem*> (
-            Glib::wrap_auto ((GObject*) (object), take_copy)));
+    return glib::make_refptr_for_instance<gtk::ListItem> (
+        dynamic_cast<gtk::ListItem*> (
+            glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gtk
+namespace gtk
 {
 
   auto
-  ListItem_Class::init () -> const Glib::Class&
+  ListItem_Class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -59,7 +59,7 @@ namespace Gtk
   }
 
   auto
-  ListItem_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  ListItem_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new ListItem ((GtkListItem*) object);
   }
@@ -71,25 +71,25 @@ namespace Gtk
     return gobj ();
   }
 
-  ListItem::ListItem (const Glib::ConstructParams& construct_params)
-    : Glib::Object (construct_params)
+  ListItem::ListItem (const glib::ConstructParams& construct_params)
+    : glib::Object (construct_params)
   {
   }
 
   ListItem::ListItem (GtkListItem* castitem)
-    : Glib::Object ((GObject*) (castitem))
+    : glib::Object ((GObject*) (castitem))
   {
   }
 
   ListItem::ListItem (ListItem&& src) noexcept
-    : Glib::Object (std::move (src))
+    : glib::Object (std::move (src))
   {
   }
 
   auto
   ListItem::operator= (ListItem&& src) noexcept -> ListItem&
   {
-    Glib::Object::operator= (std::move (src));
+    glib::Object::operator= (std::move (src));
     return *this;
   }
 
@@ -110,17 +110,17 @@ namespace Gtk
   }
 
   auto
-  ListItem::get_item () -> Glib::RefPtr<Glib::ObjectBase>
+  ListItem::get_item () -> glib::RefPtr<glib::ObjectBase>
   {
-    auto retvalue = Glib::make_refptr_for_instance<Glib::ObjectBase> (
-        Glib::wrap_auto (G_OBJECT (gtk_list_item_get_item (gobj ()))));
+    auto retvalue = glib::make_refptr_for_instance<glib::ObjectBase> (
+        glib::wrap_auto (G_OBJECT (gtk_list_item_get_item (gobj ()))));
     if (retvalue)
       retvalue->reference ();
     return retvalue;
   }
 
   auto
-  ListItem::get_item () const -> Glib::RefPtr<const Glib::ObjectBase>
+  ListItem::get_item () const -> glib::RefPtr<const glib::ObjectBase>
   {
     return const_cast<ListItem*> (this)->get_item ();
   }
@@ -170,7 +170,7 @@ namespace Gtk
   auto
   ListItem::get_child () -> Widget*
   {
-    return Glib::wrap (gtk_list_item_get_child (gobj ()));
+    return glib::wrap (gtk_list_item_get_child (gobj ()));
   }
 
   auto
@@ -180,65 +180,65 @@ namespace Gtk
   }
 
   auto
-  ListItem::property_activatable () -> Glib::PropertyProxy<bool>
+  ListItem::property_activatable () -> glib::PropertyProxy<bool>
   {
-    return Glib::PropertyProxy<bool> (this, "activatable");
+    return glib::PropertyProxy<bool> (this, "activatable");
   }
 
   auto
-  ListItem::property_activatable () const -> Glib::PropertyProxy_ReadOnly<bool>
+  ListItem::property_activatable () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "activatable");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "activatable");
   }
 
   auto
-  ListItem::property_child () -> Glib::PropertyProxy<Widget*>
+  ListItem::property_child () -> glib::PropertyProxy<Widget*>
   {
-    return Glib::PropertyProxy<Widget*> (this, "child");
+    return glib::PropertyProxy<Widget*> (this, "child");
   }
 
   auto
-  ListItem::property_child () const -> Glib::PropertyProxy_ReadOnly<Widget*>
+  ListItem::property_child () const -> glib::PropertyProxy_ReadOnly<Widget*>
   {
-    return Glib::PropertyProxy_ReadOnly<Widget*> (this, "child");
+    return glib::PropertyProxy_ReadOnly<Widget*> (this, "child");
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<
-          Glib::RefPtr<Glib::ObjectBase>>::value,
-      "Type Glib::RefPtr<Glib::ObjectBase> cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      glib::Traits::ValueCompatibleWithWrapProperty<
+          glib::RefPtr<glib::ObjectBase>>::value,
+      "Type glib::RefPtr<glib::ObjectBase> cannot be used in _WRAP_PROPERTY. "
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  ListItem::property_item () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Glib::ObjectBase>>
+  ListItem::property_item () const -> glib::PropertyProxy_ReadOnly<glib::RefPtr<glib::ObjectBase>>
   {
-    return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Glib::ObjectBase>> (
+    return glib::PropertyProxy_ReadOnly<glib::RefPtr<glib::ObjectBase>> (
         this,
         "item");
   }
 
   auto
-  ListItem::property_position () const -> Glib::PropertyProxy_ReadOnly<guint>
+  ListItem::property_position () const -> glib::PropertyProxy_ReadOnly<guint>
   {
-    return Glib::PropertyProxy_ReadOnly<guint> (this, "position");
+    return glib::PropertyProxy_ReadOnly<guint> (this, "position");
   }
 
   auto
-  ListItem::property_selectable () -> Glib::PropertyProxy<bool>
+  ListItem::property_selectable () -> glib::PropertyProxy<bool>
   {
-    return Glib::PropertyProxy<bool> (this, "selectable");
+    return glib::PropertyProxy<bool> (this, "selectable");
   }
 
   auto
-  ListItem::property_selectable () const -> Glib::PropertyProxy_ReadOnly<bool>
+  ListItem::property_selectable () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "selectable");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "selectable");
   }
 
   auto
-  ListItem::property_selected () const -> Glib::PropertyProxy_ReadOnly<bool>
+  ListItem::property_selected () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "selected");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "selected");
   }
 
-} // namespace Gtk
+} // namespace gtk

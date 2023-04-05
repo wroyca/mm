@@ -16,16 +16,16 @@ using GTlsPasswordClass = struct _GTlsPasswordClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gio
+namespace gio
 {
   class LIBMM_GIO_SYMEXPORT TlsPassword_Class;
 }
 #endif
 
-namespace Gio
+namespace gio
 {
 
-  class LIBMM_GIO_SYMEXPORT TlsPassword : public Glib::Object
+  class LIBMM_GIO_SYMEXPORT TlsPassword : public glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -44,7 +44,7 @@ namespace Gio
     static CppClassType tlspassword_class_;
 
   protected:
-    explicit TlsPassword (const Glib::ConstructParams& construct_params);
+    explicit TlsPassword (const glib::ConstructParams& construct_params);
     explicit TlsPassword (GTlsPassword* castitem);
 
 #endif
@@ -94,13 +94,13 @@ namespace Gio
     };
 
   protected:
-    explicit TlsPassword (const Glib::ustring& description,
+    explicit TlsPassword (const glib::ustring& description,
                           Flags flags = Flags::NONE);
 
   public:
     static auto
-    create (const Glib::ustring& description, Flags flags = Flags::NONE)
-        -> Glib::RefPtr<TlsPassword>;
+    create (const glib::ustring& description, Flags flags = Flags::NONE)
+        -> glib::RefPtr<TlsPassword>;
 
     auto
     get_value (gsize& length) const -> const guchar*;
@@ -112,10 +112,10 @@ namespace Gio
     set_value (const guchar* value, gssize length = -1) -> void;
 
     auto
-    get_description () const -> Glib::ustring;
+    get_description () const -> glib::ustring;
 
     auto
-    set_description (const Glib::ustring& description) -> void;
+    set_description (const glib::ustring& description) -> void;
 
     auto
     get_flags () const -> Flags;
@@ -124,45 +124,45 @@ namespace Gio
     set_flags (Flags flags) -> void;
 
     auto
-    get_warning () const -> Glib::ustring;
+    get_warning () const -> glib::ustring;
 
     auto
-    set_warning (const Glib::ustring& warning) -> void;
+    set_warning (const glib::ustring& warning) -> void;
 
     auto
-    property_description () -> Glib::PropertyProxy<Glib::ustring>;
+    property_description () -> glib::PropertyProxy<glib::ustring>;
 
     auto
     property_description () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+        -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
     auto
-    property_flags () -> Glib::PropertyProxy<Flags>;
+    property_flags () -> glib::PropertyProxy<Flags>;
 
     auto
-    property_flags () const -> Glib::PropertyProxy_ReadOnly<Flags>;
+    property_flags () const -> glib::PropertyProxy_ReadOnly<Flags>;
 
     auto
-    property_warning () -> Glib::PropertyProxy<Glib::ustring>;
+    property_warning () -> glib::PropertyProxy<glib::ustring>;
 
     auto
-    property_warning () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+    property_warning () const -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
   protected:
     virtual auto
     get_value_vfunc (gsize& length) const -> const guchar*;
 
     virtual auto
-    get_default_warning_vfunc () const -> Glib::ustring;
+    get_default_warning_vfunc () const -> glib::ustring;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gio
+} // namespace gio
 
-namespace Gio
+namespace gio
 {
 
   inline auto
@@ -212,30 +212,30 @@ namespace Gio
     return (lhs = static_cast<TlsPassword::Flags> (
                 static_cast<unsigned> (lhs) ^ static_cast<unsigned> (rhs)));
   }
-} // namespace Gio
+} // namespace gio
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_GIO_SYMEXPORT Value<Gio::TlsPassword::Flags>
-    : public Glib::Value_Flags<Gio::TlsPassword::Flags>
+  class LIBMM_GIO_SYMEXPORT Value<gio::TlsPassword::Flags>
+    : public glib::Value_Flags<gio::TlsPassword::Flags>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
-namespace Glib
+namespace glib
 {
 
   LIBMM_GIO_SYMEXPORT
   auto
-  wrap (GTlsPassword* object, bool take_copy = false) -> Glib::RefPtr<Gio::TlsPassword>;
-} // namespace Glib
+  wrap (GTlsPassword* object, bool take_copy = false) -> glib::RefPtr<gio::TlsPassword>;
+} // namespace glib
 
 #endif

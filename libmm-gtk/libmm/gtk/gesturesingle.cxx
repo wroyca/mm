@@ -11,24 +11,24 @@ namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GtkGestureSingle* object, bool take_copy) -> Glib::RefPtr<Gtk::GestureSingle>
+  wrap (GtkGestureSingle* object, bool take_copy) -> glib::RefPtr<gtk::GestureSingle>
   {
-    return Glib::make_refptr_for_instance<Gtk::GestureSingle> (
-        dynamic_cast<Gtk::GestureSingle*> (
-            Glib::wrap_auto ((GObject*) (object), take_copy)));
+    return glib::make_refptr_for_instance<gtk::GestureSingle> (
+        dynamic_cast<gtk::GestureSingle*> (
+            glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gtk
+namespace gtk
 {
 
   auto
-  GestureSingle_Class::init () -> const Glib::Class&
+  GestureSingle_Class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -48,7 +48,7 @@ namespace Gtk
   }
 
   auto
-  GestureSingle_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  GestureSingle_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new GestureSingle ((GtkGestureSingle*) object);
   }
@@ -60,7 +60,7 @@ namespace Gtk
     return gobj ();
   }
 
-  GestureSingle::GestureSingle (const Glib::ConstructParams& construct_params)
+  GestureSingle::GestureSingle (const glib::ConstructParams& construct_params)
     : Gesture (construct_params)
   {
   }
@@ -99,8 +99,8 @@ namespace Gtk
   }
 
   GestureSingle::GestureSingle ()
-    : Glib::ObjectBase (nullptr),
-      Gesture (Glib::ConstructParams (gesturesingle_class_.init ()))
+    : glib::ObjectBase (nullptr),
+      Gesture (glib::ConstructParams (gesturesingle_class_.init ()))
   {
   }
 
@@ -152,52 +152,52 @@ namespace Gtk
   }
 
   auto
-  GestureSingle::get_current_sequence () -> Gdk::EventSequence*
+  GestureSingle::get_current_sequence () -> gdk::EventSequence*
   {
-    return reinterpret_cast<Gdk::EventSequence*> (
+    return reinterpret_cast<gdk::EventSequence*> (
         gtk_gesture_single_get_current_sequence (gobj ()));
   }
 
   auto
-  GestureSingle::get_current_sequence () const -> const Gdk::EventSequence*
+  GestureSingle::get_current_sequence () const -> const gdk::EventSequence*
   {
     return const_cast<GestureSingle*> (this)->get_current_sequence ();
   }
 
   auto
-  GestureSingle::property_touch_only () -> Glib::PropertyProxy<bool>
+  GestureSingle::property_touch_only () -> glib::PropertyProxy<bool>
   {
-    return Glib::PropertyProxy<bool> (this, "touch-only");
+    return glib::PropertyProxy<bool> (this, "touch-only");
   }
 
   auto
-  GestureSingle::property_touch_only () const -> Glib::PropertyProxy_ReadOnly<bool>
+  GestureSingle::property_touch_only () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "touch-only");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "touch-only");
   }
 
   auto
-  GestureSingle::property_exclusive () -> Glib::PropertyProxy<bool>
+  GestureSingle::property_exclusive () -> glib::PropertyProxy<bool>
   {
-    return Glib::PropertyProxy<bool> (this, "exclusive");
+    return glib::PropertyProxy<bool> (this, "exclusive");
   }
 
   auto
-  GestureSingle::property_exclusive () const -> Glib::PropertyProxy_ReadOnly<bool>
+  GestureSingle::property_exclusive () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "exclusive");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "exclusive");
   }
 
   auto
-  GestureSingle::property_button () -> Glib::PropertyProxy<unsigned int>
+  GestureSingle::property_button () -> glib::PropertyProxy<unsigned int>
   {
-    return Glib::PropertyProxy<unsigned int> (this, "button");
+    return glib::PropertyProxy<unsigned int> (this, "button");
   }
 
   auto
-  GestureSingle::property_button () const -> Glib::PropertyProxy_ReadOnly<unsigned int>
+  GestureSingle::property_button () const -> glib::PropertyProxy_ReadOnly<unsigned int>
   {
-    return Glib::PropertyProxy_ReadOnly<unsigned int> (this, "button");
+    return glib::PropertyProxy_ReadOnly<unsigned int> (this, "button");
   }
 
-} // namespace Gtk
+} // namespace gtk

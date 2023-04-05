@@ -16,16 +16,16 @@
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Adw
+namespace adw
 {
   class LIBMM_ADW_SYMEXPORT PreferencesGroup_Class;
 }
 #endif
 
-namespace Adw
+namespace adw
 {
 
-  class LIBMM_ADW_SYMEXPORT PreferencesGroup : public Gtk::Widget
+  class LIBMM_ADW_SYMEXPORT PreferencesGroup : public gtk::Widget
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -52,7 +52,7 @@ namespace Adw
     static CppClassType preferencesgroup_class_;
 
   protected:
-    explicit PreferencesGroup (const Glib::ConstructParams& construct_params);
+    explicit PreferencesGroup (const glib::ConstructParams& construct_params);
     explicit PreferencesGroup (AdwPreferencesGroup* castitem);
 
 #endif
@@ -84,61 +84,61 @@ namespace Adw
     PreferencesGroup ();
 
     auto
-    add (Gtk::Widget* child) -> void;
+    add (gtk::Widget* child) -> void;
 
     auto
-    get_description () const -> Glib::ustring;
+    get_description () const -> glib::ustring;
 
     auto
-    get_header_suffix () const -> Gtk::Widget*;
+    get_header_suffix () const -> gtk::Widget*;
 
     auto
-    get_title () const -> Glib::ustring;
+    get_title () const -> glib::ustring;
 
     auto
-    remove (Gtk::Widget* child) -> void;
+    remove (gtk::Widget* child) -> void;
 
     auto
-    set_description (const Glib::ustring& description) -> void;
+    set_description (const glib::ustring& description) -> void;
 
     auto
-    set_header_suffix (Gtk::Widget* suffix) -> void;
+    set_header_suffix (gtk::Widget* suffix) -> void;
 
     auto
-    set_title (const Glib::ustring& title) -> void;
+    set_title (const glib::ustring& title) -> void;
 
     auto
-    property_description () -> Glib::PropertyProxy<Glib::ustring>;
+    property_description () -> glib::PropertyProxy<glib::ustring>;
 
     auto
     property_description () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+        -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
     auto
-    property_header_suffix () -> Glib::PropertyProxy<Gtk::Widget*>;
+    property_header_suffix () -> glib::PropertyProxy<gtk::Widget*>;
 
     auto
     property_header_suffix () const
-        -> Glib::PropertyProxy_ReadOnly<Gtk::Widget*>;
+        -> glib::PropertyProxy_ReadOnly<gtk::Widget*>;
 
     auto
-    property_title () -> Glib::PropertyProxy<Glib::ustring>;
+    property_title () -> glib::PropertyProxy<glib::ustring>;
 
     auto
-    property_title () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+    property_title () const -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Adw
+} // namespace adw
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (AdwPreferencesGroup* object, bool take_copy = false) -> Adw::PreferencesGroup*;
+  wrap (AdwPreferencesGroup* object, bool take_copy = false) -> adw::PreferencesGroup*;
 }
 
 #endif

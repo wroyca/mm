@@ -30,25 +30,25 @@ namespace
         GDBusMethodInvocation* invocation,
         void* user_data) -> void
     {
-      const Gio::DBus::InterfaceVTable* vtable =
-          static_cast<Gio::DBus::InterfaceVTable*> (user_data);
+      const gio::DBus::InterfaceVTable* vtable =
+          static_cast<gio::DBus::InterfaceVTable*> (user_data);
 
-      const Gio::DBus::InterfaceVTable::SlotInterfaceMethodCall* the_slot =
+      const gio::DBus::InterfaceVTable::SlotInterfaceMethodCall* the_slot =
           vtable->get_slot_method_call ();
 
       try
       {
-        (*the_slot) (Glib::wrap (connection, true),
+        (*the_slot) (glib::wrap (connection, true),
                      sender ? sender : "",
                      object_path,
                      interface_name,
                      method_name,
-                     Glib::VariantContainerBase (parameters, true),
-                     Glib::wrap (invocation, true));
+                     glib::VariantContainerBase (parameters, true),
+                     glib::wrap (invocation, true));
       }
       catch (...)
       {
-        Glib::exception_handlers_invoke ();
+        glib::exception_handlers_invoke ();
       }
     }
 
@@ -62,32 +62,32 @@ namespace
                                                     void* user_data)
         -> GVariant*
     {
-      const Gio::DBus::InterfaceVTable* vtable =
-          static_cast<Gio::DBus::InterfaceVTable*> (user_data);
+      const gio::DBus::InterfaceVTable* vtable =
+          static_cast<gio::DBus::InterfaceVTable*> (user_data);
 
-      const Gio::DBus::InterfaceVTable::SlotInterfaceGetProperty* the_slot =
+      const gio::DBus::InterfaceVTable::SlotInterfaceGetProperty* the_slot =
           vtable->get_slot_get_property ();
 
       try
       {
-        Glib::VariantBase result;
+        glib::VariantBase result;
 
         (*the_slot) (result,
-                     Glib::wrap (connection, true),
+                     glib::wrap (connection, true),
                      sender,
                      object_path,
                      interface_name,
                      property_name);
         return result.gobj_copy ();
       }
-      catch (const Glib::Error& ex)
+      catch (const glib::Error& ex)
       {
         if (error)
           *error = g_error_copy (ex.gobj ());
       }
       catch (...)
       {
-        Glib::exception_handlers_invoke ();
+        glib::exception_handlers_invoke ();
       }
 
       return nullptr;
@@ -103,29 +103,29 @@ namespace
                                                     GError** error,
                                                     void* user_data) -> gboolean
     {
-      const Gio::DBus::InterfaceVTable* vtable =
-          static_cast<Gio::DBus::InterfaceVTable*> (user_data);
+      const gio::DBus::InterfaceVTable* vtable =
+          static_cast<gio::DBus::InterfaceVTable*> (user_data);
 
-      const Gio::DBus::InterfaceVTable::SlotInterfaceSetProperty* the_slot =
+      const gio::DBus::InterfaceVTable::SlotInterfaceSetProperty* the_slot =
           vtable->get_slot_set_property ();
 
       try
       {
-        return (*the_slot) (Glib::wrap (connection, true),
+        return (*the_slot) (glib::wrap (connection, true),
                             sender,
                             object_path,
                             interface_name,
                             property_name,
-                            Glib::VariantBase (value, true));
+                            glib::VariantBase (value, true));
       }
-      catch (const Glib::Error& ex)
+      catch (const glib::Error& ex)
       {
         if (error)
           *error = g_error_copy (ex.gobj ());
       }
       catch (...)
       {
-        Glib::exception_handlers_invoke ();
+        glib::exception_handlers_invoke ();
       }
 
       return false;
@@ -133,7 +133,7 @@ namespace
   }
 } // namespace
 
-namespace Gio::DBus
+namespace gio::DBus
 {
 
   InterfaceVTable::InterfaceVTable (
@@ -204,13 +204,13 @@ namespace Gio::DBus
     return slot_set_property_;
   }
 
-} // namespace Gio::DBus
+} // namespace gio::DBus
 
 namespace
 {
 }
 
-namespace Gio::DBus
+namespace gio::DBus
 {
 
 }

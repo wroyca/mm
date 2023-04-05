@@ -12,7 +12,7 @@ typedef struct _GtkBuildableParser GtkBuildableParser;
 #include <gtk/gtk.h>
 #include <libmm/gtk/builder.hxx>
 
-namespace Gtk
+namespace gtk
 {
 
   auto
@@ -26,7 +26,7 @@ namespace Gtk
     if (GTK_IS_TREE_MODEL (buildable) && std::strcmp (tagname, "columns") == 0)
     {
       const auto cpp_builder = dynamic_cast<Builder*> (
-          Glib::ObjectBase::_get_current_wrapper ((GObject*) builder));
+          glib::ObjectBase::_get_current_wrapper ((GObject*) builder));
       if (cpp_builder)
         cpp_builder->set_no_gtkmm_derived_types (true);
     }
@@ -64,37 +64,37 @@ namespace Gtk
     if (GTK_IS_TREE_MODEL (buildable) && std::strcmp (tagname, "columns") == 0)
     {
       const auto cpp_builder = dynamic_cast<Builder*> (
-          Glib::ObjectBase::_get_current_wrapper ((GObject*) builder));
+          glib::ObjectBase::_get_current_wrapper ((GObject*) builder));
       if (cpp_builder)
         cpp_builder->set_no_gtkmm_derived_types (false);
     }
   }
 
-} // namespace Gtk
+} // namespace gtk
 
 namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GtkBuildable* object, bool take_copy) -> Glib::RefPtr<Gtk::Buildable>
+  wrap (GtkBuildable* object, bool take_copy) -> glib::RefPtr<gtk::Buildable>
   {
-    return Glib::make_refptr_for_instance<Gtk::Buildable> (
-        dynamic_cast<Gtk::Buildable*> (
-            Glib::wrap_auto_interface<Gtk::Buildable> ((GObject*) (object),
+    return glib::make_refptr_for_instance<gtk::Buildable> (
+        dynamic_cast<gtk::Buildable*> (
+            glib::wrap_auto_interface<gtk::Buildable> ((GObject*) (object),
                                                        take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gtk
+namespace gtk
 {
 
   auto
-  Buildable_Class::init () -> const Glib::Interface_Class&
+  Buildable_Class::init () -> const glib::Interface_Class&
   {
     if (!gtype_)
     {
@@ -118,35 +118,35 @@ namespace Gtk
   }
 
   auto
-  Buildable_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  Buildable_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new Buildable ((GtkBuildable*) (object));
   }
 
   Buildable::Buildable ()
-    : Glib::Interface (buildable_class_.init ())
+    : glib::Interface (buildable_class_.init ())
   {
   }
 
   Buildable::Buildable (GtkBuildable* castitem)
-    : Glib::Interface ((GObject*) (castitem))
+    : glib::Interface ((GObject*) (castitem))
   {
   }
 
-  Buildable::Buildable (const Glib::Interface_Class& interface_class)
-    : Glib::Interface (interface_class)
+  Buildable::Buildable (const glib::Interface_Class& interface_class)
+    : glib::Interface (interface_class)
   {
   }
 
   Buildable::Buildable (Buildable&& src) noexcept
-    : Glib::Interface (std::move (src))
+    : glib::Interface (std::move (src))
   {
   }
 
   auto
   Buildable::operator= (Buildable&& src) noexcept -> Buildable&
   {
-    Glib::Interface::operator= (std::move (src));
+    glib::Interface::operator= (std::move (src));
     return *this;
   }
 
@@ -173,10 +173,10 @@ namespace Gtk
   }
 
   auto
-  Buildable::get_buildable_id () const -> Glib::ustring
+  Buildable::get_buildable_id () const -> glib::ustring
   {
-    return Glib::convert_const_gchar_ptr_to_ustring (
+    return glib::convert_const_gchar_ptr_to_ustring (
         gtk_buildable_get_buildable_id (const_cast<GtkBuildable*> (gobj ())));
   }
 
-} // namespace Gtk
+} // namespace gtk

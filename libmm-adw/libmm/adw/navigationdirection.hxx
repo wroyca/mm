@@ -10,7 +10,7 @@
 
 #include <adwaita.h>
 
-namespace Adw
+namespace adw
 {
 
   enum class LIBMM_ADW_SYMEXPORT NavigationDirection
@@ -19,25 +19,25 @@ namespace Adw
     FORWARD
   };
 
-} // namespace Adw
+} // namespace adw
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_ADW_SYMEXPORT Value<Adw::NavigationDirection>
-    : public Glib::Value_Enum<Adw::NavigationDirection>
+  class LIBMM_ADW_SYMEXPORT Value<adw::NavigationDirection>
+    : public glib::Value_Enum<adw::NavigationDirection>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
-namespace Adw
+namespace adw
 {
 
 }

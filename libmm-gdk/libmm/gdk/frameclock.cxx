@@ -10,47 +10,47 @@
 namespace
 {
 
-  static const Glib::SignalProxyInfo FrameClock_signal_update_info = {
+  static const glib::SignalProxyInfo FrameClock_signal_update_info = {
       "update",
-      (GCallback) &Glib::SignalProxyNormal::slot0_void_callback,
-      (GCallback) &Glib::SignalProxyNormal::slot0_void_callback};
+      (GCallback) &glib::SignalProxyNormal::slot0_void_callback,
+      (GCallback) &glib::SignalProxyNormal::slot0_void_callback};
 
-  static const Glib::SignalProxyInfo FrameClock_signal_layout_info = {
+  static const glib::SignalProxyInfo FrameClock_signal_layout_info = {
       "layout",
-      (GCallback) &Glib::SignalProxyNormal::slot0_void_callback,
-      (GCallback) &Glib::SignalProxyNormal::slot0_void_callback};
+      (GCallback) &glib::SignalProxyNormal::slot0_void_callback,
+      (GCallback) &glib::SignalProxyNormal::slot0_void_callback};
 
-  static const Glib::SignalProxyInfo FrameClock_signal_paint_info = {
+  static const glib::SignalProxyInfo FrameClock_signal_paint_info = {
       "paint",
-      (GCallback) &Glib::SignalProxyNormal::slot0_void_callback,
-      (GCallback) &Glib::SignalProxyNormal::slot0_void_callback};
+      (GCallback) &glib::SignalProxyNormal::slot0_void_callback,
+      (GCallback) &glib::SignalProxyNormal::slot0_void_callback};
 
 } // namespace
 
 auto
-Glib::Value<Gdk::FrameClock::Phase>::value_type () -> GType
+glib::Value<gdk::FrameClock::Phase>::value_type () -> GType
 {
   return gdk_frame_clock_phase_get_type ();
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GdkFrameClock* object, bool take_copy) -> Glib::RefPtr<Gdk::FrameClock>
+  wrap (GdkFrameClock* object, bool take_copy) -> glib::RefPtr<gdk::FrameClock>
   {
-    return Glib::make_refptr_for_instance<Gdk::FrameClock> (
-        dynamic_cast<Gdk::FrameClock*> (
-            Glib::wrap_auto ((GObject*) (object), take_copy)));
+    return glib::make_refptr_for_instance<gdk::FrameClock> (
+        dynamic_cast<gdk::FrameClock*> (
+            glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gdk
+namespace gdk
 {
 
   auto
-  FrameClock_Class::init () -> const Glib::Class&
+  FrameClock_Class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -70,7 +70,7 @@ namespace Gdk
   }
 
   auto
-  FrameClock_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  FrameClock_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new FrameClock ((GdkFrameClock*) object);
   }
@@ -82,25 +82,25 @@ namespace Gdk
     return gobj ();
   }
 
-  FrameClock::FrameClock (const Glib::ConstructParams& construct_params)
-    : Glib::Object (construct_params)
+  FrameClock::FrameClock (const glib::ConstructParams& construct_params)
+    : glib::Object (construct_params)
   {
   }
 
   FrameClock::FrameClock (GdkFrameClock* castitem)
-    : Glib::Object ((GObject*) (castitem))
+    : glib::Object ((GObject*) (castitem))
   {
   }
 
   FrameClock::FrameClock (FrameClock&& src) noexcept
-    : Glib::Object (std::move (src))
+    : glib::Object (std::move (src))
   {
   }
 
   auto
   FrameClock::operator= (FrameClock&& src) noexcept -> FrameClock&
   {
-    Glib::Object::operator= (std::move (src));
+    glib::Object::operator= (std::move (src));
     return *this;
   }
 
@@ -161,32 +161,32 @@ namespace Gdk
   }
 
   auto
-  FrameClock::get_timings (gint64 frame_counter) -> Glib::RefPtr<FrameTimings>
+  FrameClock::get_timings (gint64 frame_counter) -> glib::RefPtr<FrameTimings>
   {
     auto retvalue =
-        Glib::wrap (gdk_frame_clock_get_timings (gobj (), frame_counter));
+        glib::wrap (gdk_frame_clock_get_timings (gobj (), frame_counter));
     if (retvalue)
       retvalue->reference ();
     return retvalue;
   }
 
   auto
-  FrameClock::get_timings (gint64 frame_counter) const -> Glib::RefPtr<const FrameTimings>
+  FrameClock::get_timings (gint64 frame_counter) const -> glib::RefPtr<const FrameTimings>
   {
     return const_cast<FrameClock*> (this)->get_timings (frame_counter);
   }
 
   auto
-  FrameClock::get_current_timings () -> Glib::RefPtr<FrameTimings>
+  FrameClock::get_current_timings () -> glib::RefPtr<FrameTimings>
   {
-    auto retvalue = Glib::wrap (gdk_frame_clock_get_current_timings (gobj ()));
+    auto retvalue = glib::wrap (gdk_frame_clock_get_current_timings (gobj ()));
     if (retvalue)
       retvalue->reference ();
     return retvalue;
   }
 
   auto
-  FrameClock::get_current_timings () const -> Glib::RefPtr<const FrameTimings>
+  FrameClock::get_current_timings () const -> glib::RefPtr<const FrameTimings>
   {
     return const_cast<FrameClock*> (this)->get_current_timings ();
   }
@@ -209,21 +209,21 @@ namespace Gdk
   }
 
   auto
-  FrameClock::signal_update () -> Glib::SignalProxy<void ()>
+  FrameClock::signal_update () -> glib::SignalProxy<void ()>
   {
-    return Glib::SignalProxy<void ()> (this, &FrameClock_signal_update_info);
+    return glib::SignalProxy<void ()> (this, &FrameClock_signal_update_info);
   }
 
   auto
-  FrameClock::signal_layout () -> Glib::SignalProxy<void ()>
+  FrameClock::signal_layout () -> glib::SignalProxy<void ()>
   {
-    return Glib::SignalProxy<void ()> (this, &FrameClock_signal_layout_info);
+    return glib::SignalProxy<void ()> (this, &FrameClock_signal_layout_info);
   }
 
   auto
-  FrameClock::signal_paint () -> Glib::SignalProxy<void ()>
+  FrameClock::signal_paint () -> glib::SignalProxy<void ()>
   {
-    return Glib::SignalProxy<void ()> (this, &FrameClock_signal_paint_info);
+    return glib::SignalProxy<void ()> (this, &FrameClock_signal_paint_info);
   }
 
-} // namespace Gdk
+} // namespace gdk

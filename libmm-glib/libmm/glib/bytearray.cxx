@@ -15,8 +15,8 @@ namespace
                                  const gconstpointer b,
                                  const gpointer user_data) -> int
     {
-      const Glib::ByteArray::SlotCompare* slot =
-          static_cast<Glib::ByteArray::SlotCompare*> (user_data);
+      const glib::ByteArray::SlotCompare* slot =
+          static_cast<glib::ByteArray::SlotCompare*> (user_data);
 
       return (*slot) (static_cast<const guint8*> (a),
                       static_cast<const guint8*> (b));
@@ -24,7 +24,7 @@ namespace
   }
 } // namespace
 
-namespace Glib
+namespace glib
 {
 
   auto
@@ -45,13 +45,13 @@ namespace Glib
     return gobj ()->data;
   }
 
-} // namespace Glib
+} // namespace glib
 
 namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
@@ -60,13 +60,13 @@ namespace Glib
     if (take_copy && object)
       g_byte_array_ref (object);
 
-    return Glib::make_refptr_for_instance<ByteArray> (
+    return glib::make_refptr_for_instance<ByteArray> (
         reinterpret_cast<ByteArray*> (object));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Glib
+namespace glib
 {
 
   auto
@@ -180,4 +180,4 @@ namespace Glib
     return retvalue;
   }
 
-} // namespace Glib
+} // namespace glib

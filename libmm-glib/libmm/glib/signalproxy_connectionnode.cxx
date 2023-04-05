@@ -4,7 +4,7 @@
 #include <libmm/glib/signalproxy_connectionnode.hxx>
 #include <utility>
 
-namespace Glib
+namespace glib
 {
 
   SignalProxyConnectionNode::SignalProxyConnectionNode (
@@ -62,4 +62,4 @@ namespace Glib
     }
   }
 
-} // namespace Glib
+} // namespace glib

@@ -14,13 +14,13 @@ using GtkSpinnerClass = struct _GtkSpinnerClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT Spinner_Class;
 }
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
   class LIBMM_GTK_SYMEXPORT Spinner : public Widget
@@ -50,7 +50,7 @@ namespace Gtk
     static CppClassType spinner_class_;
 
   protected:
-    explicit Spinner (const Glib::ConstructParams& construct_params);
+    explicit Spinner (const glib::ConstructParams& construct_params);
     explicit Spinner (GtkSpinner* castitem);
 
 #endif
@@ -94,22 +94,22 @@ namespace Gtk
     get_spinning () const -> bool;
 
     auto
-    property_spinning () -> Glib::PropertyProxy<bool>;
+    property_spinning () -> glib::PropertyProxy<bool>;
 
     auto
-    property_spinning () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_spinning () const -> glib::PropertyProxy_ReadOnly<bool>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkSpinner* object, bool take_copy = false) -> Gtk::Spinner*;
-} // namespace Glib
+  wrap (GtkSpinner* object, bool take_copy = false) -> gtk::Spinner*;
+} // namespace glib
 
 #endif

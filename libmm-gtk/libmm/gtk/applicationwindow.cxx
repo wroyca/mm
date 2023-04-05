@@ -8,12 +8,12 @@
 #include <libmm/gtk/applicationwindow.hxx>
 #include <libmm/gtk/shortcutswindow.hxx>
 
-namespace Gtk
+namespace gtk
 {
   ApplicationWindow::ApplicationWindow (
-      const Glib::RefPtr<Application>& application)
-    : Glib::ObjectBase (nullptr),
-      Gtk::Window (Glib::ConstructParams (applicationwindow_class_.init ()))
+      const glib::RefPtr<Application>& application)
+    : glib::ObjectBase (nullptr),
+      gtk::Window (glib::ConstructParams (applicationwindow_class_.init ()))
   {
     if (application)
       application->add_window (*this);
@@ -25,29 +25,29 @@ namespace Gtk
     gtk_application_window_set_help_overlay (gobj (), nullptr);
   }
 
-} // namespace Gtk
+} // namespace gtk
 
 namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GtkApplicationWindow* object, bool take_copy) -> Gtk::ApplicationWindow*
+  wrap (GtkApplicationWindow* object, bool take_copy) -> gtk::ApplicationWindow*
   {
-    return dynamic_cast<Gtk::ApplicationWindow*> (
-        Glib::wrap_auto ((GObject*) (object), take_copy));
+    return dynamic_cast<gtk::ApplicationWindow*> (
+        glib::wrap_auto ((GObject*) (object), take_copy));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gtk
+namespace gtk
 {
 
   auto
-  ApplicationWindow_Class::init () -> const Glib::Class&
+  ApplicationWindow_Class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -55,8 +55,8 @@ namespace Gtk
 
       register_derived_type (gtk_application_window_get_type ());
 
-      Gio::ActionGroup::add_interface (get_type ());
-      Gio::ActionMap::add_interface (get_type ());
+      gio::ActionGroup::add_interface (get_type ());
+      gio::ActionMap::add_interface (get_type ());
     }
 
     return *this;
@@ -70,35 +70,35 @@ namespace Gtk
   }
 
   auto
-  ApplicationWindow_Class::wrap_new (GObject* o) -> Glib::ObjectBase*
+  ApplicationWindow_Class::wrap_new (GObject* o) -> glib::ObjectBase*
   {
     return new ApplicationWindow ((GtkApplicationWindow*) (o));
   }
 
   ApplicationWindow::ApplicationWindow (
-      const Glib::ConstructParams& construct_params)
-    : Gtk::Window (construct_params)
+      const glib::ConstructParams& construct_params)
+    : gtk::Window (construct_params)
   {
   }
 
   ApplicationWindow::ApplicationWindow (GtkApplicationWindow* castitem)
-    : Gtk::Window ((GtkWindow*) (castitem))
+    : gtk::Window ((GtkWindow*) (castitem))
   {
   }
 
   ApplicationWindow::ApplicationWindow (ApplicationWindow&& src) noexcept
-    : Gtk::Window (std::move (src)),
-      Gio::ActionGroup (std::move (src)),
-      Gio::ActionMap (std::move (src))
+    : gtk::Window (std::move (src)),
+      gio::ActionGroup (std::move (src)),
+      gio::ActionMap (std::move (src))
   {
   }
 
   auto
   ApplicationWindow::operator= (ApplicationWindow&& src) noexcept -> ApplicationWindow&
   {
-    Gtk::Window::operator= (std::move (src));
-    Gio::ActionGroup::operator= (std::move (src));
-    Gio::ActionMap::operator= (std::move (src));
+    gtk::Window::operator= (std::move (src));
+    gio::ActionGroup::operator= (std::move (src));
+    gio::ActionMap::operator= (std::move (src));
     return *this;
   }
 
@@ -122,8 +122,8 @@ namespace Gtk
   }
 
   ApplicationWindow::ApplicationWindow ()
-    : Glib::ObjectBase (nullptr),
-      Gtk::Window (Glib::ConstructParams (applicationwindow_class_.init ()))
+    : glib::ObjectBase (nullptr),
+      gtk::Window (glib::ConstructParams (applicationwindow_class_.init ()))
   {
   }
 
@@ -157,7 +157,7 @@ namespace Gtk
   auto
   ApplicationWindow::get_help_overlay () -> ShortcutsWindow*
   {
-    return Glib::wrap (gtk_application_window_get_help_overlay (gobj ()));
+    return glib::wrap (gtk_application_window_get_help_overlay (gobj ()));
   }
 
   auto
@@ -167,15 +167,15 @@ namespace Gtk
   }
 
   auto
-  ApplicationWindow::property_show_menubar () -> Glib::PropertyProxy<bool>
+  ApplicationWindow::property_show_menubar () -> glib::PropertyProxy<bool>
   {
-    return Glib::PropertyProxy<bool> (this, "show-menubar");
+    return glib::PropertyProxy<bool> (this, "show-menubar");
   }
 
   auto
-  ApplicationWindow::property_show_menubar () const -> Glib::PropertyProxy_ReadOnly<bool>
+  ApplicationWindow::property_show_menubar () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "show-menubar");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "show-menubar");
   }
 
-} // namespace Gtk
+} // namespace gtk

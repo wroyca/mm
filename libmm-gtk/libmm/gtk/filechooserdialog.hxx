@@ -17,13 +17,13 @@ using GtkFileChooserDialogClass = struct _GtkFileChooserDialogClass;
   #endif
 
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT FileChooserDialog_Class;
 }
   #endif
 
-namespace Gtk
+namespace gtk
 {
 
   class LIBMM_GTK_SYMEXPORT FileChooserDialog : public Dialog,
@@ -54,7 +54,7 @@ namespace Gtk
     static CppClassType filechooserdialog_class_;
 
   protected:
-    explicit FileChooserDialog (const Glib::ConstructParams& construct_params);
+    explicit FileChooserDialog (const glib::ConstructParams& construct_params);
     explicit FileChooserDialog (GtkFileChooserDialog* castitem);
 
   #endif
@@ -83,11 +83,11 @@ namespace Gtk
 
   private:
   public:
-    FileChooserDialog (Gtk::Window& parent,
-                       const Glib::ustring& title,
+    FileChooserDialog (gtk::Window& parent,
+                       const glib::ustring& title,
                        Action action = Action::OPEN,
                        bool use_header_bar = false);
-    explicit FileChooserDialog (const Glib::ustring& title,
+    explicit FileChooserDialog (const glib::ustring& title,
                                 Action action = Action::OPEN,
                                 bool use_header_bar = false);
 
@@ -96,13 +96,13 @@ namespace Gtk
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkFileChooserDialog* object, bool take_copy = false) -> Gtk::FileChooserDialog*;
-} // namespace Glib
+  wrap (GtkFileChooserDialog* object, bool take_copy = false) -> gtk::FileChooserDialog*;
+} // namespace glib
 
 #endif
 

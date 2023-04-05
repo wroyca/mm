@@ -18,18 +18,18 @@
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Adw
+namespace adw
 {
   class LIBMM_ADW_SYMEXPORT Carousel_Class;
 }
 #endif
 
-namespace Adw
+namespace adw
 {
 
-  class LIBMM_ADW_SYMEXPORT Carousel : public Gtk::Widget,
-                   public Gtk::Orientable,
-                   public Adw::Swipeable
+  class LIBMM_ADW_SYMEXPORT Carousel : public gtk::Widget,
+                   public gtk::Orientable,
+                   public adw::Swipeable
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -56,7 +56,7 @@ namespace Adw
     static CppClassType carousel_class_;
 
   protected:
-    explicit Carousel (const Glib::ConstructParams& construct_params);
+    explicit Carousel (const glib::ConstructParams& construct_params);
     explicit Carousel (AdwCarousel* castitem);
 
 #endif
@@ -88,7 +88,7 @@ namespace Adw
     Carousel ();
 
     auto
-    append (Gtk::Widget* child) -> void;
+    append (gtk::Widget* child) -> void;
 
     auto
     get_allow_long_swipes () const -> bool;
@@ -106,7 +106,7 @@ namespace Adw
     get_n_pages () const -> guint;
 
     auto
-    get_nth_page (guint n) const -> Gtk::Widget*;
+    get_nth_page (guint n) const -> gtk::Widget*;
 
     auto
     get_position () const -> double;
@@ -115,25 +115,25 @@ namespace Adw
     get_reveal_duration () const -> guint;
 
     auto
-    get_scroll_params () const -> Glib::RefPtr<SpringParams>;
+    get_scroll_params () const -> glib::RefPtr<SpringParams>;
 
     auto
     get_spacing () const -> guint;
 
     auto
-    insert (Gtk::Widget* child, int position) -> void;
+    insert (gtk::Widget* child, int position) -> void;
 
     auto
-    prepend (Gtk::Widget* child) -> void;
+    prepend (gtk::Widget* child) -> void;
 
     auto
-    remove (Gtk::Widget* child) -> void;
+    remove (gtk::Widget* child) -> void;
 
     auto
-    reorder (Gtk::Widget* child, int position) -> void;
+    reorder (gtk::Widget* child, int position) -> void;
 
     auto
-    scroll_to (Gtk::Widget* child, bool animate) -> void;
+    scroll_to (gtk::Widget* child, bool animate) -> void;
 
     auto
     set_allow_long_swipes (bool allow_long_swipes) -> void;
@@ -151,74 +151,74 @@ namespace Adw
     set_reveal_duration (guint reveal_duration) -> void;
 
     auto
-    set_scroll_params (const Glib::RefPtr<SpringParams>& scroll_params) -> void;
+    set_scroll_params (const glib::RefPtr<SpringParams>& scroll_params) -> void;
 
     auto
     set_spacing (guint spacing) -> void;
 
     auto
-    property_interactive () -> Glib::PropertyProxy<bool>;
+    property_interactive () -> glib::PropertyProxy<bool>;
 
     auto
-    property_interactive () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_interactive () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_scroll_params () -> Glib::PropertyProxy<bool>;
+    property_scroll_params () -> glib::PropertyProxy<bool>;
 
     auto
-    property_scroll_params () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_scroll_params () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_allow_mouse_drag () -> Glib::PropertyProxy<bool>;
+    property_allow_mouse_drag () -> glib::PropertyProxy<bool>;
 
     auto
-    property_allow_mouse_drag () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_allow_mouse_drag () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_allow_scroll_wheel () -> Glib::PropertyProxy<bool>;
+    property_allow_scroll_wheel () -> glib::PropertyProxy<bool>;
 
     auto
-    property_allow_scroll_wheel () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_allow_scroll_wheel () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_allow_long_swipes () -> Glib::PropertyProxy<bool>;
+    property_allow_long_swipes () -> glib::PropertyProxy<bool>;
 
     auto
-    property_allow_long_swipes () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_allow_long_swipes () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_reveal_duration () -> Glib::PropertyProxy<guint>;
+    property_reveal_duration () -> glib::PropertyProxy<guint>;
 
     auto
-    property_reveal_duration () const -> Glib::PropertyProxy_ReadOnly<guint>;
+    property_reveal_duration () const -> glib::PropertyProxy_ReadOnly<guint>;
 
     auto
-    property_position () const -> Glib::PropertyProxy_ReadOnly<double>;
+    property_position () const -> glib::PropertyProxy_ReadOnly<double>;
 
     auto
-    property_n_pages () const -> Glib::PropertyProxy_ReadOnly<guint>;
+    property_n_pages () const -> glib::PropertyProxy_ReadOnly<guint>;
 
     auto
-    property_spacing () -> Glib::PropertyProxy<guint>;
+    property_spacing () -> glib::PropertyProxy<guint>;
 
     auto
-    property_spacing () const -> Glib::PropertyProxy_ReadOnly<guint>;
+    property_spacing () const -> glib::PropertyProxy_ReadOnly<guint>;
 
     auto
-    signal_page_changed () -> Glib::SignalProxy<void (guint)>;
+    signal_page_changed () -> glib::SignalProxy<void (guint)>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Adw
+} // namespace adw
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (AdwCarousel* object, bool take_copy = false) -> Adw::Carousel*;
+  wrap (AdwCarousel* object, bool take_copy = false) -> adw::Carousel*;
 }
 
 #endif

@@ -14,16 +14,16 @@ using GThreadedSocketServiceClass = struct _GThreadedSocketServiceClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gio
+namespace gio
 {
   class LIBMM_GIO_SYMEXPORT ThreadedSocketService_Class;
 }
 #endif
 
-namespace Gio
+namespace gio
 {
 
-  class LIBMM_GIO_SYMEXPORT ThreadedSocketService : public Gio::SocketService
+  class LIBMM_GIO_SYMEXPORT ThreadedSocketService : public gio::SocketService
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -43,7 +43,7 @@ namespace Gio
 
   protected:
     explicit ThreadedSocketService (
-        const Glib::ConstructParams& construct_params);
+        const glib::ConstructParams& construct_params);
     explicit ThreadedSocketService (GThreadedSocketService* castitem);
 
 #endif
@@ -85,32 +85,32 @@ namespace Gio
 
   public:
     static auto
-    create (int max_threads) -> Glib::RefPtr<ThreadedSocketService>;
+    create (int max_threads) -> glib::RefPtr<ThreadedSocketService>;
 
     auto
     signal_run ()
-        -> Glib::SignalProxy<bool (const Glib::RefPtr<SocketConnection>&,
-                                   const Glib::RefPtr<Glib::Object>&)>;
+        -> glib::SignalProxy<bool (const glib::RefPtr<SocketConnection>&,
+                                   const glib::RefPtr<glib::Object>&)>;
 
     auto
-    property_max_threads () const -> Glib::PropertyProxy_ReadOnly<int>;
+    property_max_threads () const -> glib::PropertyProxy_ReadOnly<int>;
 
   public:
   public:
   protected:
     virtual auto
-    on_run (const Glib::RefPtr<SocketConnection>& connection,
-            const Glib::RefPtr<Glib::Object>& source_object) -> bool;
+    on_run (const glib::RefPtr<SocketConnection>& connection,
+            const glib::RefPtr<glib::Object>& source_object) -> bool;
   };
 
-} // namespace Gio
+} // namespace gio
 
-namespace Glib
+namespace glib
 {
 
   LIBMM_GIO_SYMEXPORT
   auto
-  wrap (GThreadedSocketService* object, bool take_copy = false) -> Glib::RefPtr<Gio::ThreadedSocketService>;
-} // namespace Glib
+  wrap (GThreadedSocketService* object, bool take_copy = false) -> glib::RefPtr<gio::ThreadedSocketService>;
+} // namespace glib
 
 #endif

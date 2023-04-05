@@ -18,18 +18,18 @@ using GtkGestureStylusClass = struct _GtkGestureStylusClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT GestureStylus_Class;
 }
 #endif
 
-namespace Gdk
+namespace gdk
 {
   class LIBMM_GTK_SYMEXPORT DeviceTool;
 }
 
-namespace Gtk
+namespace gtk
 {
 
   class LIBMM_GTK_SYMEXPORT GestureStylus : public GestureSingle
@@ -51,7 +51,7 @@ namespace Gtk
     static CppClassType gesturestylus_class_;
 
   protected:
-    explicit GestureStylus (const Glib::ConstructParams& construct_params);
+    explicit GestureStylus (const glib::ConstructParams& construct_params);
     explicit GestureStylus (GtkGestureStylus* castitem);
 
 #endif
@@ -93,7 +93,7 @@ namespace Gtk
 
   public:
     static auto
-    create () -> Glib::RefPtr<GestureStylus>;
+    create () -> glib::RefPtr<GestureStylus>;
 
     auto
     get_stylus_only () const -> bool;
@@ -102,50 +102,50 @@ namespace Gtk
     set_stylus_only (bool stylus_only = true) -> void;
 
     auto
-    get_axis (Gdk::AxisUse axis) const -> std::optional<double>;
+    get_axis (gdk::AxisUse axis) const -> std::optional<double>;
 
     auto
-    get_axes (const std::vector<Gdk::AxisUse>& axes) const
+    get_axes (const std::vector<gdk::AxisUse>& axes) const
         -> std::vector<double>;
 
     auto
-    get_backlog () const -> std::vector<Gdk::TimeCoord>;
+    get_backlog () const -> std::vector<gdk::TimeCoord>;
 
     auto
-    get_device_tool () -> Glib::RefPtr<Gdk::DeviceTool>;
+    get_device_tool () -> glib::RefPtr<gdk::DeviceTool>;
 
     auto
-    get_device_tool () const -> Glib::RefPtr<const Gdk::DeviceTool>;
+    get_device_tool () const -> glib::RefPtr<const gdk::DeviceTool>;
 
     auto
-    signal_proximity () -> Glib::SignalProxy<void (double, double)>;
+    signal_proximity () -> glib::SignalProxy<void (double, double)>;
 
     auto
-    signal_down () -> Glib::SignalProxy<void (double, double)>;
+    signal_down () -> glib::SignalProxy<void (double, double)>;
 
     auto
-    signal_motion () -> Glib::SignalProxy<void (double, double)>;
+    signal_motion () -> glib::SignalProxy<void (double, double)>;
 
     auto
-    signal_up () -> Glib::SignalProxy<void (double, double)>;
+    signal_up () -> glib::SignalProxy<void (double, double)>;
 
     auto
-    property_stylus_only () -> Glib::PropertyProxy<bool>;
+    property_stylus_only () -> glib::PropertyProxy<bool>;
 
     auto
-    property_stylus_only () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_stylus_only () const -> glib::PropertyProxy_ReadOnly<bool>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkGestureStylus* object, bool take_copy = false) -> Glib::RefPtr<Gtk::GestureStylus>;
-} // namespace Glib
+  wrap (GtkGestureStylus* object, bool take_copy = false) -> glib::RefPtr<gtk::GestureStylus>;
+} // namespace glib
 
 #endif

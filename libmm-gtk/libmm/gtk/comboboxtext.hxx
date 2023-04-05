@@ -16,13 +16,13 @@ using GtkComboBoxTextClass = struct _GtkComboBoxTextClass;
   #endif
 
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT ComboBoxText_Class;
 }
   #endif
 
-namespace Gtk
+namespace gtk
 {
 
   class LIBMM_GTK_SYMEXPORT ComboBoxText : public ComboBox
@@ -52,7 +52,7 @@ namespace Gtk
     static CppClassType comboboxtext_class_;
 
   protected:
-    explicit ComboBoxText (const Glib::ConstructParams& construct_params);
+    explicit ComboBoxText (const glib::ConstructParams& construct_params);
     explicit ComboBoxText (GtkComboBoxText* castitem);
 
   #endif
@@ -84,48 +84,48 @@ namespace Gtk
     explicit ComboBoxText (bool has_entry = false);
 
     auto
-    append (const Glib::ustring& text) -> void;
+    append (const glib::ustring& text) -> void;
 
     auto
-    append (const Glib::ustring& id, const Glib::ustring& text) -> void;
+    append (const glib::ustring& id, const glib::ustring& text) -> void;
 
     auto
-    insert (int position, const Glib::ustring& text) -> void;
+    insert (int position, const glib::ustring& text) -> void;
 
     auto
-    insert (int position, const Glib::ustring& id, const Glib::ustring& text)
+    insert (int position, const glib::ustring& id, const glib::ustring& text)
         -> void;
 
     auto
-    prepend (const Glib::ustring& text) -> void;
+    prepend (const glib::ustring& text) -> void;
 
     auto
-    prepend (const Glib::ustring& id, const Glib::ustring& text) -> void;
+    prepend (const glib::ustring& id, const glib::ustring& text) -> void;
 
     auto
     remove_text (int position) -> void;
 
     auto
-    get_active_text () const -> Glib::ustring;
+    get_active_text () const -> glib::ustring;
 
     auto
     remove_all () -> void;
 
     auto
-    set_active_text (const Glib::ustring& text) -> void;
+    set_active_text (const glib::ustring& text) -> void;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkComboBoxText* object, bool take_copy = false) -> Gtk::ComboBoxText*;
-} // namespace Glib
+  wrap (GtkComboBoxText* object, bool take_copy = false) -> gtk::ComboBoxText*;
+} // namespace glib
 
 #endif
 

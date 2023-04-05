@@ -1,5 +1,5 @@
-// Gtk::TreeModel and Gtk::TreeIter are deprecated, but let's keep the test.
-// The recommended replacement is Gio::ListModel which requires no test here.
+// gtk::TreeModel and gtk::TreeIter are deprecated, but let's keep the test.
+// The recommended replacement is gio::ListModel which requires no test here.
 #undef GTKMM_DISABLE_DEPRECATED
 
 #include <libmm/gtk/mm-gtk.hxx>
@@ -22,15 +22,15 @@ main(int, char**)
 
 static void
 test_const_conversion() {
-  Gtk::TreeModel::iterator non_const_iter;
-  Gtk::TreeModel::const_iterator const_iter;
+  gtk::TreeModel::iterator non_const_iter;
+  gtk::TreeModel::const_iterator const_iter;
   assert(non_const_iter == const_iter);
   assert(const_iter == non_const_iter);
 }
 
 static void
 test_assignment_from_const() {
-  Gtk::TreeModel::iterator non_const_iter;
+  gtk::TreeModel::iterator non_const_iter;
   auto const_iter = non_const_iter;
   assert(const_iter == non_const_iter);
 }
@@ -41,7 +41,7 @@ test_assignment_from_const() {
 /*
 static void
 test_assignment_to_const() {
-  Gtk::TreeModel::const_iterator const_iter;
+  gtk::TreeModel::const_iterator const_iter;
   // This should not compile:
   auto non_const_iter = const_iter;
   assert(const_iter == non_const_iter);
@@ -51,7 +51,7 @@ test_assignment_to_const() {
 int main(int /* argc */, char** /* argv */)
 {
   gtk_init();
-  Gtk::init_gtkmm_internals();
+  gtk::init_gtkmm_internals();
 
   test_const_conversion();
   test_assignment_from_const();

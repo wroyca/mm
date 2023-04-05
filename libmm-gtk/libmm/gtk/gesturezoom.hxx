@@ -14,13 +14,13 @@ using GtkGestureZoomClass = struct _GtkGestureZoomClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT GestureZoom_Class;
 }
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
   class LIBMM_GTK_SYMEXPORT GestureZoom : public Gesture
@@ -42,7 +42,7 @@ namespace Gtk
     static CppClassType gesturezoom_class_;
 
   protected:
-    explicit GestureZoom (const Glib::ConstructParams& construct_params);
+    explicit GestureZoom (const glib::ConstructParams& construct_params);
     explicit GestureZoom (GtkGestureZoom* castitem);
 
 #endif
@@ -84,25 +84,25 @@ namespace Gtk
 
   public:
     static auto
-    create () -> Glib::RefPtr<GestureZoom>;
+    create () -> glib::RefPtr<GestureZoom>;
 
     auto
     get_scale_delta () const -> double;
 
     auto
-    signal_scale_changed () -> Glib::SignalProxy<void (double)>;
+    signal_scale_changed () -> glib::SignalProxy<void (double)>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkGestureZoom* object, bool take_copy = false) -> Glib::RefPtr<Gtk::GestureZoom>;
-} // namespace Glib
+  wrap (GtkGestureZoom* object, bool take_copy = false) -> glib::RefPtr<gtk::GestureZoom>;
+} // namespace glib
 
 #endif

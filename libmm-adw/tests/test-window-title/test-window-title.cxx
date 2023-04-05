@@ -6,7 +6,7 @@
  * Author: Alexander Mikhaylenko <alexander.mikhaylenko@puri.sm>
  */
 
-#include <libmm/adw/init.hxx> // Adw::init
+#include <libmm/adw/init.hxx> // adw::init
 #include <libmm/adw/mm-adw.hxx>
 
 int notified;
@@ -20,13 +20,13 @@ notify_cb ()
 static void
 test_adw_window_title_title (void)
 {
-  Adw::WindowTitle window_title ("Some title", "");
+  adw::WindowTitle window_title ("Some title", "");
 
   notified = 0;
   window_title.property_title ().signal_changed ().connect (
       sigc::ptr_fun (notify_cb));
 
-  Glib::ustring title = window_title.get_property<Glib::ustring> ("title");
+  glib::ustring title = window_title.get_property<glib::ustring> ("title");
   g_assert_true (title == "Some title");
 
   window_title.set_title ("Some title");
@@ -36,7 +36,7 @@ test_adw_window_title_title (void)
   g_assert_true (window_title.get_title () == "Another title");
   g_assert_true (notified == 1);
 
-  window_title.set_property<Glib::ustring> ("title", "Yet another title");
+  window_title.set_property<glib::ustring> ("title", "Yet another title");
   g_assert_true (window_title.get_title () == "Yet another title");
   g_assert_true (notified == 2);
 }
@@ -44,14 +44,14 @@ test_adw_window_title_title (void)
 static void
 test_adw_window_title_subtitle (void)
 {
-  Adw::WindowTitle window_title ("", "Some subtitle");
+  adw::WindowTitle window_title ("", "Some subtitle");
 
   notified = 0;
   window_title.property_subtitle ().signal_changed ().connect (
       sigc::ptr_fun (notify_cb));
 
-  Glib::ustring subtitle =
-      window_title.get_property<Glib::ustring> ("subtitle");
+  glib::ustring subtitle =
+      window_title.get_property<glib::ustring> ("subtitle");
   g_assert_true (subtitle == "Some subtitle");
 
   window_title.set_subtitle ("Some subtitle");
@@ -61,7 +61,7 @@ test_adw_window_title_subtitle (void)
   g_assert_true (window_title.get_subtitle () == "Another subtitle");
   g_assert_true (notified == 1);
 
-  window_title.set_property<Glib::ustring> ("subtitle", "Yet another subtitle");
+  window_title.set_property<glib::ustring> ("subtitle", "Yet another subtitle");
   g_assert_true (window_title.get_subtitle () == "Yet another subtitle");
   g_assert_true (notified == 2);
 }
@@ -70,7 +70,7 @@ int
 main (int argc, char* argv[])
 {
   gtk_test_init (&argc, &argv, NULL);
-  Adw::init ();
+  adw::init ();
 
   g_test_add_func ("/Adwaita/WindowTitle/title", test_adw_window_title_title);
   g_test_add_func ("/Adwaita/WindowTitle/subtitle",

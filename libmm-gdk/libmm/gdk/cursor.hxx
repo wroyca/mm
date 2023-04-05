@@ -14,16 +14,16 @@ using GdkCursorClass = struct _GdkCursorClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gdk
+namespace gdk
 {
   class LIBMM_GDK_SYMEXPORT Cursor_Class;
 }
 #endif
 
-namespace Gdk
+namespace gdk
 {
 
-  class LIBMM_GDK_SYMEXPORT Cursor : public Glib::Object
+  class LIBMM_GDK_SYMEXPORT Cursor : public glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -42,7 +42,7 @@ namespace Gdk
     static CppClassType cursor_class_;
 
   protected:
-    explicit Cursor (const Glib::ConstructParams& construct_params);
+    explicit Cursor (const glib::ConstructParams& construct_params);
     explicit Cursor (GdkCursor* castitem);
 
 #endif
@@ -82,29 +82,29 @@ namespace Gdk
   protected:
   public:
     static auto
-    create (const Glib::RefPtr<const Texture>& texture,
+    create (const glib::RefPtr<const Texture>& texture,
             int hotspot_x,
             int hotspot_y,
-            const Glib::RefPtr<Cursor>& fallback = {}) -> Glib::RefPtr<Cursor>;
+            const glib::RefPtr<Cursor>& fallback = {}) -> glib::RefPtr<Cursor>;
 
     static auto
-    create (const Glib::ustring& name,
-            const Glib::RefPtr<Cursor>& fallback = {}) -> Glib::RefPtr<Cursor>;
+    create (const glib::ustring& name,
+            const glib::RefPtr<Cursor>& fallback = {}) -> glib::RefPtr<Cursor>;
 
     auto
-    get_fallback () -> Glib::RefPtr<Cursor>;
+    get_fallback () -> glib::RefPtr<Cursor>;
 
     auto
-    get_fallback () const -> Glib::RefPtr<const Cursor>;
+    get_fallback () const -> glib::RefPtr<const Cursor>;
 
     auto
-    get_name () const -> Glib::ustring;
+    get_name () const -> glib::ustring;
 
     auto
-    get_texture () -> Glib::RefPtr<Texture>;
+    get_texture () -> glib::RefPtr<Texture>;
 
     auto
-    get_texture () const -> Glib::RefPtr<const Texture>;
+    get_texture () const -> glib::RefPtr<const Texture>;
 
     auto
     get_hotspot_x () const -> int;
@@ -114,32 +114,32 @@ namespace Gdk
 
     auto
     property_fallback () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Cursor>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<Cursor>>;
 
     auto
-    property_hotspot_x () const -> Glib::PropertyProxy_ReadOnly<int>;
+    property_hotspot_x () const -> glib::PropertyProxy_ReadOnly<int>;
 
     auto
-    property_hotspot_y () const -> Glib::PropertyProxy_ReadOnly<int>;
+    property_hotspot_y () const -> glib::PropertyProxy_ReadOnly<int>;
 
     auto
-    property_name () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+    property_name () const -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
     auto
     property_texture () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Texture>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<Texture>>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gdk
+} // namespace gdk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GDK_SYMEXPORT auto
-  wrap (GdkCursor* object, bool take_copy = false) -> Glib::RefPtr<Gdk::Cursor>;
-} // namespace Glib
+  wrap (GdkCursor* object, bool take_copy = false) -> glib::RefPtr<gdk::Cursor>;
+} // namespace glib
 
 #endif

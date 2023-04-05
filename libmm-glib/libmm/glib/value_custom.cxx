@@ -21,7 +21,7 @@ namespace
 
 } // namespace
 
-namespace Glib
+namespace glib
 {
 
   auto
@@ -35,7 +35,7 @@ namespace Glib
 
     if (const GType existing_type = g_type_from_name (full_name.c_str ()))
     {
-      warn_already_registered ("Glib::custom_boxed_type_register", full_name);
+      warn_already_registered ("glib::custom_boxed_type_register", full_name);
       return existing_type;
     }
 
@@ -77,7 +77,7 @@ namespace Glib
 
     if (const GType existing_type = g_type_from_name (full_name.c_str ()))
     {
-      warn_already_registered ("Glib::custom_pointer_type_register", full_name);
+      warn_already_registered ("glib::custom_pointer_type_register", full_name);
       return existing_type;
     }
 
@@ -100,4 +100,4 @@ namespace Glib
                                    GTypeFlags (0));
   }
 
-} // namespace Glib
+} // namespace glib

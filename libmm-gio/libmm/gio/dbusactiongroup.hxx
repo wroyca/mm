@@ -16,20 +16,20 @@ using GDBusActionGroupClass = struct _GDBusActionGroupClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gio::DBus
+namespace gio::DBus
 {
   class LIBMM_GIO_SYMEXPORT ActionGroup_Class;
 }
 #endif
 
-namespace Gio::DBus
+namespace gio::DBus
 {
 
   class LIBMM_GIO_SYMEXPORT Connection;
 
-  class LIBMM_GIO_SYMEXPORT ActionGroup : public Glib::Object,
-                                public Gio::ActionGroup,
-                                public Gio::RemoteActionGroup
+  class LIBMM_GIO_SYMEXPORT ActionGroup : public glib::Object,
+                                public gio::ActionGroup,
+                                public gio::RemoteActionGroup
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -48,7 +48,7 @@ namespace Gio::DBus
     static CppClassType actiongroup_class_;
 
   protected:
-    explicit ActionGroup (const Glib::ConstructParams& construct_params);
+    explicit ActionGroup (const glib::ConstructParams& construct_params);
     explicit ActionGroup (GDBusActionGroup* castitem);
 
 #endif
@@ -90,23 +90,23 @@ namespace Gio::DBus
 
   public:
     static auto
-    get (const Glib::RefPtr<Connection>& connection,
-         const Glib::ustring& bus_name,
-         const Glib::ustring& object_path) -> Glib::RefPtr<ActionGroup>;
+    get (const glib::RefPtr<Connection>& connection,
+         const glib::ustring& bus_name,
+         const glib::ustring& object_path) -> glib::RefPtr<ActionGroup>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gio::DBus
+} // namespace gio::DBus
 
-namespace Glib
+namespace glib
 {
 
   LIBMM_GIO_SYMEXPORT
   auto
-  wrap (GDBusActionGroup* object, bool take_copy = false) -> Glib::RefPtr<Gio::DBus::ActionGroup>;
-} // namespace Glib
+  wrap (GDBusActionGroup* object, bool take_copy = false) -> glib::RefPtr<gio::DBus::ActionGroup>;
+} // namespace glib
 
 #endif

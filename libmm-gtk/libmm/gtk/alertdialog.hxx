@@ -18,17 +18,17 @@
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT AlertDialog_Class;
 }
 #endif
 
-namespace Gtk
+namespace gtk
 {
   class Window;
 
-  class LIBMM_GTK_SYMEXPORT AlertDialog : public Glib::Object
+  class LIBMM_GTK_SYMEXPORT AlertDialog : public glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -47,7 +47,7 @@ namespace Gtk
     static CppClassType alertdialog_class_;
 
   protected:
-    explicit AlertDialog (const Glib::ConstructParams& construct_params);
+    explicit AlertDialog (const glib::ConstructParams& construct_params);
     explicit AlertDialog (GtkAlertDialog* castitem);
 
 #endif
@@ -87,14 +87,14 @@ namespace Gtk
   protected:
     AlertDialog ();
 
-    explicit AlertDialog (const Glib::ustring& message);
+    explicit AlertDialog (const glib::ustring& message);
 
   public:
     static auto
-    create () -> Glib::RefPtr<AlertDialog>;
+    create () -> glib::RefPtr<AlertDialog>;
 
     static auto
-    create (const Glib::ustring& message) -> Glib::RefPtr<AlertDialog>;
+    create (const glib::ustring& message) -> glib::RefPtr<AlertDialog>;
 
     auto
     get_modal () const -> bool;
@@ -103,22 +103,22 @@ namespace Gtk
     set_modal (bool modal = true) -> void;
 
     auto
-    get_message () const -> Glib::ustring;
+    get_message () const -> glib::ustring;
 
     auto
-    set_message (const Glib::ustring& message) -> void;
+    set_message (const glib::ustring& message) -> void;
 
     auto
-    get_detail () const -> Glib::ustring;
+    get_detail () const -> glib::ustring;
 
     auto
-    set_detail (const Glib::ustring& detail) -> void;
+    set_detail (const glib::ustring& detail) -> void;
 
     auto
-    get_buttons () const -> std::vector<Glib::ustring>;
+    get_buttons () const -> std::vector<glib::ustring>;
 
     auto
-    set_buttons (const std::vector<Glib::ustring>& labels) const -> void;
+    set_buttons (const std::vector<glib::ustring>& labels) const -> void;
 
     auto
     get_cancel_button () const -> int;
@@ -134,17 +134,17 @@ namespace Gtk
 
     auto
     choose (Window& parent,
-            const Gio::SlotAsyncReady& slot,
-            const Glib::RefPtr<Gio::Cancellable>& cancellable = {}) const
+            const gio::SlotAsyncReady& slot,
+            const glib::RefPtr<gio::Cancellable>& cancellable = {}) const
         -> void;
 
     auto
-    choose (const Gio::SlotAsyncReady& slot,
-            const Glib::RefPtr<Gio::Cancellable>& cancellable = {}) const
+    choose (const gio::SlotAsyncReady& slot,
+            const glib::RefPtr<gio::Cancellable>& cancellable = {}) const
         -> void;
 
     auto
-    choose_finish (const Glib::RefPtr<Gio::AsyncResult>& result) const -> int;
+    choose_finish (const glib::RefPtr<gio::AsyncResult>& result) const -> int;
 
     auto
     show (Window& parent) -> void;
@@ -153,53 +153,53 @@ namespace Gtk
     show () -> void;
 
     auto
-    property_modal () -> Glib::PropertyProxy<bool>;
+    property_modal () -> glib::PropertyProxy<bool>;
 
     auto
-    property_modal () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_modal () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_message () -> Glib::PropertyProxy<Glib::ustring>;
+    property_message () -> glib::PropertyProxy<glib::ustring>;
 
     auto
-    property_message () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+    property_message () const -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
     auto
-    property_detail () -> Glib::PropertyProxy<Glib::ustring>;
+    property_detail () -> glib::PropertyProxy<glib::ustring>;
 
     auto
-    property_detail () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+    property_detail () const -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
     auto
-    property_buttons () -> Glib::PropertyProxy<std::vector<Glib::ustring>>;
+    property_buttons () -> glib::PropertyProxy<std::vector<glib::ustring>>;
 
     auto
     property_buttons () const
-        -> Glib::PropertyProxy_ReadOnly<std::vector<Glib::ustring>>;
+        -> glib::PropertyProxy_ReadOnly<std::vector<glib::ustring>>;
 
     auto
-    property_cancel_button () -> Glib::PropertyProxy<int>;
+    property_cancel_button () -> glib::PropertyProxy<int>;
 
     auto
-    property_cancel_button () const -> Glib::PropertyProxy_ReadOnly<int>;
+    property_cancel_button () const -> glib::PropertyProxy_ReadOnly<int>;
 
     auto
-    property_default_button () -> Glib::PropertyProxy<int>;
+    property_default_button () -> glib::PropertyProxy<int>;
 
     auto
-    property_default_button () const -> Glib::PropertyProxy_ReadOnly<int>;
+    property_default_button () const -> glib::PropertyProxy_ReadOnly<int>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkAlertDialog* object, bool take_copy = false) -> Glib::RefPtr<Gtk::AlertDialog>;
-} // namespace Glib
+  wrap (GtkAlertDialog* object, bool take_copy = false) -> glib::RefPtr<gtk::AlertDialog>;
+} // namespace glib
 
 #endif

@@ -10,9 +10,9 @@
 
 #include <cmath>
 
-using namespace Cairo::Private;
+using namespace cairo::Private;
 
-namespace Cairo
+namespace cairo
 {
 
   Context::Context (const RefPtr<Surface>& target)
@@ -1054,4 +1054,4 @@ namespace Cairo
       ctx_->restore ();
   }
 
-} // namespace Cairo
+} // namespace cairo

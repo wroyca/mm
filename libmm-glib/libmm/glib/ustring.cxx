@@ -22,8 +22,8 @@
 namespace
 {
 
-  using Glib::ustring;
-  using Glib::UStringView;
+  using glib::ustring;
+  using glib::UStringView;
 
   struct UnicharToUtf8
   {
@@ -125,7 +125,7 @@ namespace
       return ustring::npos;
 
     long ucs4_match_size = 0;
-    const auto ucs4_match = Glib::make_unique_ptr_gfree (
+    const auto ucs4_match = glib::make_unique_ptr_gfree (
         g_utf8_to_ucs4_fast (utf8_match, utf8_match_size, &ucs4_match_size));
 
     const gunichar* const match_begin = ucs4_match.get ();
@@ -157,7 +157,7 @@ namespace
                      const bool find_not_of) -> ustring::size_type
   {
     long ucs4_match_size = 0;
-    const auto ucs4_match = Glib::make_unique_ptr_gfree (
+    const auto ucs4_match = glib::make_unique_ptr_gfree (
         g_utf8_to_ucs4_fast (utf8_match, utf8_match_size, &ucs4_match_size));
 
     const gunichar* const match_begin = ucs4_match.get ();
@@ -187,7 +187,7 @@ namespace
 
 } // namespace
 
-namespace Glib
+namespace glib
 {
 
 #ifndef GLIBMM_HAVE_ALLOWS_STATIC_INLINE_NPOS
@@ -1518,4 +1518,4 @@ namespace Glib
 
 #endif
 
-} // namespace Glib
+} // namespace glib

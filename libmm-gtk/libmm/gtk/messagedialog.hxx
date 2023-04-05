@@ -17,13 +17,13 @@ using GtkMessageDialogClass = struct _GtkMessageDialogClass;
   #endif
 
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT MessageDialog_Class;
 }
   #endif
 
-namespace Gtk
+namespace gtk
 {
 
   enum class ButtonsType
@@ -36,25 +36,25 @@ namespace Gtk
     OK_CANCEL
   };
 
-} // namespace Gtk
+} // namespace gtk
 
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_GTK_SYMEXPORT Value<Gtk::ButtonsType>
-    : public Glib::Value_Enum<Gtk::ButtonsType>
+  class LIBMM_GTK_SYMEXPORT Value<gtk::ButtonsType>
+    : public glib::Value_Enum<gtk::ButtonsType>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
   #endif
 
-namespace Gtk
+namespace gtk
 {
 
   class LIBMM_GTK_SYMEXPORT MessageDialog : public Dialog
@@ -84,7 +84,7 @@ namespace Gtk
     static CppClassType messagedialog_class_;
 
   protected:
-    explicit MessageDialog (const Glib::ConstructParams& construct_params);
+    explicit MessageDialog (const glib::ConstructParams& construct_params);
     explicit MessageDialog (GtkMessageDialog* castitem);
 
   #endif
@@ -113,23 +113,23 @@ namespace Gtk
 
   private:
   public:
-    explicit MessageDialog (const Glib::ustring& message,
+    explicit MessageDialog (const glib::ustring& message,
                             bool use_markup = false,
                             MessageType type = MessageType::INFO,
                             ButtonsType buttons = ButtonsType::OK,
                             bool modal = false);
-    MessageDialog (Gtk::Window& parent,
-                   const Glib::ustring& message,
+    MessageDialog (gtk::Window& parent,
+                   const glib::ustring& message,
                    bool use_markup = false,
                    MessageType type = MessageType::INFO,
                    ButtonsType buttons = ButtonsType::OK,
                    bool modal = false);
 
     auto
-    set_message (const Glib::ustring& message, bool use_markup = false) -> void;
+    set_message (const glib::ustring& message, bool use_markup = false) -> void;
 
     auto
-    set_secondary_text (const Glib::ustring& text, bool use_markup = false)
+    set_secondary_text (const glib::ustring& text, bool use_markup = false)
         -> void;
 
     auto
@@ -139,52 +139,52 @@ namespace Gtk
     get_message_area () const -> const Box*;
 
     auto
-    property_message_type () -> Glib::PropertyProxy<MessageType>;
+    property_message_type () -> glib::PropertyProxy<MessageType>;
 
     auto
-    property_message_type () const -> Glib::PropertyProxy_ReadOnly<MessageType>;
+    property_message_type () const -> glib::PropertyProxy_ReadOnly<MessageType>;
 
     auto
-    property_text () -> Glib::PropertyProxy<Glib::ustring>;
+    property_text () -> glib::PropertyProxy<glib::ustring>;
 
     auto
-    property_text () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+    property_text () const -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
     auto
-    property_use_markup () -> Glib::PropertyProxy<bool>;
+    property_use_markup () -> glib::PropertyProxy<bool>;
 
     auto
-    property_use_markup () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_use_markup () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_secondary_text () -> Glib::PropertyProxy<Glib::ustring>;
+    property_secondary_text () -> glib::PropertyProxy<glib::ustring>;
 
     auto
     property_secondary_text () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+        -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
     auto
-    property_secondary_use_markup () -> Glib::PropertyProxy<bool>;
+    property_secondary_use_markup () -> glib::PropertyProxy<bool>;
 
     auto
     property_secondary_use_markup () const
-        -> Glib::PropertyProxy_ReadOnly<bool>;
+        -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_message_area () const -> Glib::PropertyProxy_ReadOnly<Box*>;
+    property_message_area () const -> glib::PropertyProxy_ReadOnly<Box*>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkMessageDialog* object, bool take_copy = false) -> Gtk::MessageDialog*;
-} // namespace Glib
+  wrap (GtkMessageDialog* object, bool take_copy = false) -> gtk::MessageDialog*;
+} // namespace glib
 
 #endif
 

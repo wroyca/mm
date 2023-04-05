@@ -19,13 +19,13 @@ using GtkDialogClass = struct _GtkDialogClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT Dialog_Class;
 }
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
   class ResponseType_Wrapper final
@@ -52,25 +52,25 @@ namespace Gtk
 
   using ResponseType = ResponseType_Wrapper::ResponseType;
 
-} // namespace Gtk
+} // namespace gtk
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_GTK_SYMEXPORT Value<Gtk::ResponseType>
-    : public Glib::Value_Enum<Gtk::ResponseType>
+  class LIBMM_GTK_SYMEXPORT Value<gtk::ResponseType>
+    : public glib::Value_Enum<gtk::ResponseType>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
   class LIBMM_GTK_SYMEXPORT Dialog : public Window
@@ -100,7 +100,7 @@ namespace Gtk
     static CppClassType dialog_class_;
 
   protected:
-    explicit Dialog (const Glib::ConstructParams& construct_params);
+    explicit Dialog (const glib::ConstructParams& construct_params);
     explicit Dialog (GtkDialog* castitem);
 
 #endif
@@ -130,11 +130,11 @@ namespace Gtk
   private:
   public:
     Dialog ();
-    explicit Dialog (const Glib::ustring& title,
+    explicit Dialog (const glib::ustring& title,
                      bool modal = false,
                      bool use_header_bar = false);
-    Dialog (const Glib::ustring& title,
-            Gtk::Window& parent,
+    Dialog (const glib::ustring& title,
+            gtk::Window& parent,
             bool modal = false,
             bool use_header_bar = false);
 
@@ -142,7 +142,7 @@ namespace Gtk
     add_action_widget (Widget& child, int response_id) -> void;
 
     auto
-    add_button (const Glib::ustring& button_text, int response_id) -> Button*;
+    add_button (const glib::ustring& button_text, int response_id) -> Button*;
 
     auto
     set_response_sensitive (int response_id, bool setting = true) -> void;
@@ -157,7 +157,7 @@ namespace Gtk
     get_widget_for_response (int response_id) const -> const Widget*;
 
     auto
-    get_response_for_widget (const Gtk::Widget& widget) const -> int;
+    get_response_for_widget (const gtk::Widget& widget) const -> int;
 
     auto
     response (int response_id) -> void;
@@ -175,10 +175,10 @@ namespace Gtk
     get_header_bar () const -> const HeaderBar*;
 
     auto
-    signal_response () -> Glib::SignalProxy<void (int)>;
+    signal_response () -> glib::SignalProxy<void (int)>;
 
     auto
-    property_use_header_bar () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_use_header_bar () const -> glib::PropertyProxy_ReadOnly<bool>;
 
   public:
   public:
@@ -187,12 +187,12 @@ namespace Gtk
     on_response (int response_id) -> void;
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkDialog* object, bool take_copy = false) -> Gtk::Dialog*;
-} // namespace Glib
+  wrap (GtkDialog* object, bool take_copy = false) -> gtk::Dialog*;
+} // namespace glib
 
 #endif

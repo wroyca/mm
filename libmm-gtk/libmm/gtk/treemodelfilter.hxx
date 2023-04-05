@@ -20,16 +20,16 @@ using GtkTreeModelFilterClass = struct _GtkTreeModelFilterClass;
   #endif
 
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT TreeModelFilter_Class;
 }
   #endif
 
-namespace Gtk
+namespace gtk
 {
 
-  class LIBMM_GTK_SYMEXPORT TreeModelFilter : public Glib::Object,
+  class LIBMM_GTK_SYMEXPORT TreeModelFilter : public glib::Object,
                                     public TreeModel,
                                     public TreeDragSource
   {
@@ -50,7 +50,7 @@ namespace Gtk
     static CppClassType treemodelfilter_class_;
 
   protected:
-    explicit TreeModelFilter (const Glib::ConstructParams& construct_params);
+    explicit TreeModelFilter (const glib::ConstructParams& construct_params);
     explicit TreeModelFilter (GtkTreeModelFilter* castitem);
 
   #endif
@@ -88,19 +88,19 @@ namespace Gtk
 
   private:
   protected:
-    explicit TreeModelFilter (const Glib::RefPtr<TreeModel>& child_model);
-    explicit TreeModelFilter (const Glib::RefPtr<TreeModel>& child_model,
+    explicit TreeModelFilter (const glib::RefPtr<TreeModel>& child_model);
+    explicit TreeModelFilter (const glib::RefPtr<TreeModel>& child_model,
                               const TreeModel::Path& virtual_root);
 
   public:
     static auto
-    create (const Glib::RefPtr<TreeModel>& child_model)
-        -> Glib::RefPtr<TreeModelFilter>;
+    create (const glib::RefPtr<TreeModel>& child_model)
+        -> glib::RefPtr<TreeModelFilter>;
 
     static auto
-    create (const Glib::RefPtr<TreeModel>& child_model,
+    create (const glib::RefPtr<TreeModel>& child_model,
             const TreeModel::Path& virtual_root)
-        -> Glib::RefPtr<TreeModelFilter>;
+        -> glib::RefPtr<TreeModelFilter>;
 
     typedef sigc::slot<bool (const TreeModel::const_iterator&)> SlotVisible;
 
@@ -108,7 +108,7 @@ namespace Gtk
     set_visible_func (const SlotVisible& slot) -> void;
 
     typedef sigc::slot<
-        void (const Gtk::TreeModel::iterator&, Glib::ValueBase&, int)>
+        void (const gtk::TreeModel::iterator&, glib::ValueBase&, int)>
         SlotModify;
 
     auto
@@ -122,10 +122,10 @@ namespace Gtk
     set_visible_column (int column) -> void;
 
     auto
-    get_model () -> Glib::RefPtr<TreeModel>;
+    get_model () -> glib::RefPtr<TreeModel>;
 
     auto
-    get_model () const -> Glib::RefPtr<const TreeModel>;
+    get_model () const -> glib::RefPtr<const TreeModel>;
 
     auto
     convert_child_iter_to_iter (const iterator& child_iter) -> iterator;
@@ -155,30 +155,30 @@ namespace Gtk
 
     auto
     property_child_model () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<TreeModel>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<TreeModel>>;
 
     auto
     property_virtual_root () const
-        -> Glib::PropertyProxy_ReadOnly<TreeModel::Path>;
+        -> glib::PropertyProxy_ReadOnly<TreeModel::Path>;
 
   protected:
     auto
     set_value_impl (const iterator& row,
                     int column,
-                    const Glib::ValueBase& value) -> void override;
+                    const glib::ValueBase& value) -> void override;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkTreeModelFilter* object, bool take_copy = false) -> Glib::RefPtr<Gtk::TreeModelFilter>;
-} // namespace Glib
+  wrap (GtkTreeModelFilter* object, bool take_copy = false) -> glib::RefPtr<gtk::TreeModelFilter>;
+} // namespace glib
 
 #endif
 

@@ -22,7 +22,7 @@ extern "C"
 }
 #endif
 
-namespace Glib
+namespace glib
 {
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -60,39 +60,39 @@ namespace Glib
     initialize (GObject* castitem) -> void;
 
     auto
-    initialize_move (GObject* castitem, Glib::ObjectBase* previous_wrapper)
+    initialize_move (GObject* castitem, glib::ObjectBase* previous_wrapper)
         -> void;
 
   public:
     auto
-    set_property_value (const Glib::ustring& property_name,
-                        const Glib::ValueBase& value) -> void;
+    set_property_value (const glib::ustring& property_name,
+                        const glib::ValueBase& value) -> void;
 
     auto
-    get_property_value (const Glib::ustring& property_name,
-                        Glib::ValueBase& value) const -> void;
+    get_property_value (const glib::ustring& property_name,
+                        glib::ValueBase& value) const -> void;
 
     template <class PropertyType>
     auto
-    set_property (const Glib::ustring& property_name, const PropertyType& value)
+    set_property (const glib::ustring& property_name, const PropertyType& value)
         -> void;
 
     template <class PropertyType>
     auto
-    get_property (const Glib::ustring& property_name, PropertyType& value) const
+    get_property (const glib::ustring& property_name, PropertyType& value) const
         -> void;
 
     template <class PropertyType>
     auto
-    get_property (const Glib::ustring& property_name) const -> PropertyType;
+    get_property (const glib::ustring& property_name) const -> PropertyType;
 
     auto
-    connect_property_changed (const Glib::ustring& property_name,
+    connect_property_changed (const glib::ustring& property_name,
                               const sigc::slot<void ()>& slot)
         -> sigc::connection;
 
     auto
-    connect_property_changed (const Glib::ustring& property_name,
+    connect_property_changed (const glib::ustring& property_name,
                               sigc::slot<void ()>&& slot) -> sigc::connection;
 
     auto
@@ -174,7 +174,7 @@ namespace Glib
 
     auto
     _move_current_wrapper (GObject* object,
-                           Glib::ObjectBase* previous_wrapper) noexcept -> void;
+                           glib::ObjectBase* previous_wrapper) noexcept -> void;
 #endif
 
   private:
@@ -186,7 +186,7 @@ namespace Glib
     virtual auto
     set_manage () -> void;
 
-    friend class Glib::GSigConnectionNode;
+    friend class glib::GSigConnectionNode;
 #endif
   };
 
@@ -194,11 +194,11 @@ namespace Glib
 
   template <class PropertyType>
   inline auto
-  ObjectBase::set_property (const Glib::ustring& property_name,
+  ObjectBase::set_property (const glib::ustring& property_name,
                             const PropertyType& value) -> void
   {
-    Glib::Value<PropertyType> property_value;
-    property_value.init (Glib::Value<PropertyType>::value_type ());
+    glib::Value<PropertyType> property_value;
+    property_value.init (glib::Value<PropertyType>::value_type ());
 
     property_value.set (value);
     this->set_property_value (property_name, property_value);
@@ -206,11 +206,11 @@ namespace Glib
 
   template <class PropertyType>
   inline auto
-  ObjectBase::get_property (const Glib::ustring& property_name,
+  ObjectBase::get_property (const glib::ustring& property_name,
                             PropertyType& value) const -> void
   {
-    Glib::Value<PropertyType> property_value;
-    property_value.init (Glib::Value<PropertyType>::value_type ());
+    glib::Value<PropertyType> property_value;
+    property_value.init (glib::Value<PropertyType>::value_type ());
 
     this->get_property_value (property_name, property_value);
 
@@ -219,7 +219,7 @@ namespace Glib
 
   template <class PropertyType>
   inline auto
-  ObjectBase::get_property (const Glib::ustring& property_name) const -> PropertyType
+  ObjectBase::get_property (const glib::ustring& property_name) const -> PropertyType
   {
     PropertyType value;
     get_property (property_name, value);
@@ -233,6 +233,6 @@ namespace Glib
   auto
   _gobject_cppinstance_already_deleted (GObject* gobject) -> bool;
 
-} // namespace Glib
+} // namespace glib
 
 #endif

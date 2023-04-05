@@ -8,41 +8,41 @@
 #include <gtk/gtk.h>
 #include <libmm/gtk/stringlist.hxx>
 
-namespace Gtk
+namespace gtk
 {
 
-  DropDown::DropDown (const std::vector<Glib::ustring>& strings)
-    : Glib::ObjectBase (nullptr),
-      Gtk::Widget (Glib::ConstructParams (dropdown_class_.init (),
+  DropDown::DropDown (const std::vector<glib::ustring>& strings)
+    : glib::ObjectBase (nullptr),
+      gtk::Widget (glib::ConstructParams (dropdown_class_.init (),
                                           "model",
                                           StringList::create (strings)->gobj (),
                                           nullptr))
   {
   }
 
-} // namespace Gtk
+} // namespace gtk
 
 namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GtkDropDown* object, bool take_copy) -> Gtk::DropDown*
+  wrap (GtkDropDown* object, bool take_copy) -> gtk::DropDown*
   {
-    return dynamic_cast<Gtk::DropDown*> (
-        Glib::wrap_auto ((GObject*) (object), take_copy));
+    return dynamic_cast<gtk::DropDown*> (
+        glib::wrap_auto ((GObject*) (object), take_copy));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gtk
+namespace gtk
 {
 
   auto
-  DropDown_Class::init () -> const Glib::Class&
+  DropDown_Class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -62,30 +62,30 @@ namespace Gtk
   }
 
   auto
-  DropDown_Class::wrap_new (GObject* o) -> Glib::ObjectBase*
+  DropDown_Class::wrap_new (GObject* o) -> glib::ObjectBase*
   {
     return manage (new DropDown ((GtkDropDown*) (o)));
   }
 
-  DropDown::DropDown (const Glib::ConstructParams& construct_params)
-    : Gtk::Widget (construct_params)
+  DropDown::DropDown (const glib::ConstructParams& construct_params)
+    : gtk::Widget (construct_params)
   {
   }
 
   DropDown::DropDown (GtkDropDown* castitem)
-    : Gtk::Widget ((GtkWidget*) (castitem))
+    : gtk::Widget ((GtkWidget*) (castitem))
   {
   }
 
   DropDown::DropDown (DropDown&& src) noexcept
-    : Gtk::Widget (std::move (src))
+    : gtk::Widget (std::move (src))
   {
   }
 
   auto
   DropDown::operator= (DropDown&& src) noexcept -> DropDown&
   {
-    Gtk::Widget::operator= (std::move (src));
+    gtk::Widget::operator= (std::move (src));
     return *this;
   }
 
@@ -108,13 +108,13 @@ namespace Gtk
     return gtk_drop_down_get_type ();
   }
 
-  DropDown::DropDown (const Glib::RefPtr<Gio::ListModel>& model,
-                      const Glib::RefPtr<Expression<Glib::ustring>>& expression)
-    : Glib::ObjectBase (nullptr),
-      Gtk::Widget (Glib::ConstructParams (
+  DropDown::DropDown (const glib::RefPtr<gio::ListModel>& model,
+                      const glib::RefPtr<Expression<glib::ustring>>& expression)
+    : glib::ObjectBase (nullptr),
+      gtk::Widget (glib::ConstructParams (
           dropdown_class_.init (),
           "model",
-          Glib::unwrap (model),
+          glib::unwrap (model),
           "expression",
           ((expression) ? (expression)->gobj () : nullptr),
           nullptr))
@@ -122,22 +122,22 @@ namespace Gtk
   }
 
   auto
-  DropDown::set_model (const Glib::RefPtr<Gio::ListModel>& model) -> void
+  DropDown::set_model (const glib::RefPtr<gio::ListModel>& model) -> void
   {
-    gtk_drop_down_set_model (gobj (), Glib::unwrap (model));
+    gtk_drop_down_set_model (gobj (), glib::unwrap (model));
   }
 
   auto
-  DropDown::get_model () -> Glib::RefPtr<Gio::ListModel>
+  DropDown::get_model () -> glib::RefPtr<gio::ListModel>
   {
-    auto retvalue = Glib::wrap (gtk_drop_down_get_model (gobj ()));
+    auto retvalue = glib::wrap (gtk_drop_down_get_model (gobj ()));
     if (retvalue)
       retvalue->reference ();
     return retvalue;
   }
 
   auto
-  DropDown::get_model () const -> Glib::RefPtr<const Gio::ListModel>
+  DropDown::get_model () const -> glib::RefPtr<const gio::ListModel>
   {
     return const_cast<DropDown*> (this)->get_model ();
   }
@@ -155,66 +155,66 @@ namespace Gtk
   }
 
   auto
-  DropDown::get_selected_item () -> Glib::RefPtr<Glib::ObjectBase>
+  DropDown::get_selected_item () -> glib::RefPtr<glib::ObjectBase>
   {
-    auto retvalue = Glib::make_refptr_for_instance<Glib::ObjectBase> (
-        Glib::wrap_auto (G_OBJECT (gtk_drop_down_get_selected_item (gobj ()))));
+    auto retvalue = glib::make_refptr_for_instance<glib::ObjectBase> (
+        glib::wrap_auto (G_OBJECT (gtk_drop_down_get_selected_item (gobj ()))));
     if (retvalue)
       retvalue->reference ();
     return retvalue;
   }
 
   auto
-  DropDown::get_selected_item () const -> Glib::RefPtr<const Glib::ObjectBase>
+  DropDown::get_selected_item () const -> glib::RefPtr<const glib::ObjectBase>
   {
     return const_cast<DropDown*> (this)->get_selected_item ();
   }
 
   auto
-  DropDown::set_factory (const Glib::RefPtr<ListItemFactory>& factory) -> void
+  DropDown::set_factory (const glib::RefPtr<ListItemFactory>& factory) -> void
   {
-    gtk_drop_down_set_factory (gobj (), Glib::unwrap (factory));
+    gtk_drop_down_set_factory (gobj (), glib::unwrap (factory));
   }
 
   auto
-  DropDown::get_factory () -> Glib::RefPtr<ListItemFactory>
+  DropDown::get_factory () -> glib::RefPtr<ListItemFactory>
   {
-    auto retvalue = Glib::wrap (gtk_drop_down_get_factory (gobj ()));
+    auto retvalue = glib::wrap (gtk_drop_down_get_factory (gobj ()));
     if (retvalue)
       retvalue->reference ();
     return retvalue;
   }
 
   auto
-  DropDown::get_factory () const -> Glib::RefPtr<const ListItemFactory>
+  DropDown::get_factory () const -> glib::RefPtr<const ListItemFactory>
   {
     return const_cast<DropDown*> (this)->get_factory ();
   }
 
   auto
-  DropDown::set_list_factory (const Glib::RefPtr<ListItemFactory>& factory) -> void
+  DropDown::set_list_factory (const glib::RefPtr<ListItemFactory>& factory) -> void
   {
-    gtk_drop_down_set_list_factory (gobj (), Glib::unwrap (factory));
+    gtk_drop_down_set_list_factory (gobj (), glib::unwrap (factory));
   }
 
   auto
-  DropDown::get_list_factory () -> Glib::RefPtr<ListItemFactory>
+  DropDown::get_list_factory () -> glib::RefPtr<ListItemFactory>
   {
-    auto retvalue = Glib::wrap (gtk_drop_down_get_list_factory (gobj ()));
+    auto retvalue = glib::wrap (gtk_drop_down_get_list_factory (gobj ()));
     if (retvalue)
       retvalue->reference ();
     return retvalue;
   }
 
   auto
-  DropDown::get_list_factory () const -> Glib::RefPtr<const ListItemFactory>
+  DropDown::get_list_factory () const -> glib::RefPtr<const ListItemFactory>
   {
     return const_cast<DropDown*> (this)->get_list_factory ();
   }
 
   auto
   DropDown::set_expression (
-      const Glib::RefPtr<Expression<Glib::ustring>>& expression) -> void
+      const glib::RefPtr<Expression<glib::ustring>>& expression) -> void
   {
     gtk_drop_down_set_expression (
         gobj (),
@@ -222,19 +222,19 @@ namespace Gtk
   }
 
   auto
-  DropDown::get_expression () -> Glib::RefPtr<Expression<Glib::ustring>>
+  DropDown::get_expression () -> glib::RefPtr<Expression<glib::ustring>>
   {
     auto retvalue =
-        Glib::wrap<Glib::ustring> (gtk_drop_down_get_expression (gobj ()));
+        glib::wrap<glib::ustring> (gtk_drop_down_get_expression (gobj ()));
     if (retvalue)
       retvalue->reference ();
     return retvalue;
   }
 
   auto
-  DropDown::get_expression () const -> Glib::RefPtr<const Expression<Glib::ustring>>
+  DropDown::get_expression () const -> glib::RefPtr<const Expression<glib::ustring>>
   {
-    auto retvalue = Glib::wrap<Glib::ustring> (
+    auto retvalue = glib::wrap<glib::ustring> (
         gtk_drop_down_get_expression (const_cast<GtkDropDown*> (gobj ())));
     if (retvalue)
       retvalue->reference ();
@@ -266,135 +266,135 @@ namespace Gtk
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<
-          Glib::RefPtr<ListItemFactory>>::value,
-      "Type Glib::RefPtr<ListItemFactory> cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      glib::Traits::ValueCompatibleWithWrapProperty<
+          glib::RefPtr<ListItemFactory>>::value,
+      "Type glib::RefPtr<ListItemFactory> cannot be used in _WRAP_PROPERTY. "
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  DropDown::property_factory () -> Glib::PropertyProxy<Glib::RefPtr<ListItemFactory>>
+  DropDown::property_factory () -> glib::PropertyProxy<glib::RefPtr<ListItemFactory>>
   {
-    return Glib::PropertyProxy<Glib::RefPtr<ListItemFactory>> (this, "factory");
+    return glib::PropertyProxy<glib::RefPtr<ListItemFactory>> (this, "factory");
   }
 
   auto
-  DropDown::property_factory () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<ListItemFactory>>
+  DropDown::property_factory () const -> glib::PropertyProxy_ReadOnly<glib::RefPtr<ListItemFactory>>
   {
-    return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<ListItemFactory>> (
+    return glib::PropertyProxy_ReadOnly<glib::RefPtr<ListItemFactory>> (
         this,
         "factory");
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<
-          Glib::RefPtr<ListItemFactory>>::value,
-      "Type Glib::RefPtr<ListItemFactory> cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      glib::Traits::ValueCompatibleWithWrapProperty<
+          glib::RefPtr<ListItemFactory>>::value,
+      "Type glib::RefPtr<ListItemFactory> cannot be used in _WRAP_PROPERTY. "
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  DropDown::property_list_factory () -> Glib::PropertyProxy<Glib::RefPtr<ListItemFactory>>
+  DropDown::property_list_factory () -> glib::PropertyProxy<glib::RefPtr<ListItemFactory>>
   {
-    return Glib::PropertyProxy<Glib::RefPtr<ListItemFactory>> (this,
+    return glib::PropertyProxy<glib::RefPtr<ListItemFactory>> (this,
                                                                "list-factory");
   }
 
   auto
-  DropDown::property_list_factory () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<ListItemFactory>>
+  DropDown::property_list_factory () const -> glib::PropertyProxy_ReadOnly<glib::RefPtr<ListItemFactory>>
   {
-    return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<ListItemFactory>> (
+    return glib::PropertyProxy_ReadOnly<glib::RefPtr<ListItemFactory>> (
         this,
         "list-factory");
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<
-          Glib::RefPtr<Gio::ListModel>>::value,
-      "Type Glib::RefPtr<Gio::ListModel> cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      glib::Traits::ValueCompatibleWithWrapProperty<
+          glib::RefPtr<gio::ListModel>>::value,
+      "Type glib::RefPtr<gio::ListModel> cannot be used in _WRAP_PROPERTY. "
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  DropDown::property_model () -> Glib::PropertyProxy<Glib::RefPtr<Gio::ListModel>>
+  DropDown::property_model () -> glib::PropertyProxy<glib::RefPtr<gio::ListModel>>
   {
-    return Glib::PropertyProxy<Glib::RefPtr<Gio::ListModel>> (this, "model");
+    return glib::PropertyProxy<glib::RefPtr<gio::ListModel>> (this, "model");
   }
 
   auto
-  DropDown::property_model () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gio::ListModel>>
+  DropDown::property_model () const -> glib::PropertyProxy_ReadOnly<glib::RefPtr<gio::ListModel>>
   {
-    return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gio::ListModel>> (this,
+    return glib::PropertyProxy_ReadOnly<glib::RefPtr<gio::ListModel>> (this,
                                                                        "model");
   }
 
   auto
-  DropDown::property_selected () -> Glib::PropertyProxy<guint>
+  DropDown::property_selected () -> glib::PropertyProxy<guint>
   {
-    return Glib::PropertyProxy<guint> (this, "selected");
+    return glib::PropertyProxy<guint> (this, "selected");
   }
 
   auto
-  DropDown::property_selected () const -> Glib::PropertyProxy_ReadOnly<guint>
+  DropDown::property_selected () const -> glib::PropertyProxy_ReadOnly<guint>
   {
-    return Glib::PropertyProxy_ReadOnly<guint> (this, "selected");
+    return glib::PropertyProxy_ReadOnly<guint> (this, "selected");
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<
-          Glib::RefPtr<Glib::ObjectBase>>::value,
-      "Type Glib::RefPtr<Glib::ObjectBase> cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      glib::Traits::ValueCompatibleWithWrapProperty<
+          glib::RefPtr<glib::ObjectBase>>::value,
+      "Type glib::RefPtr<glib::ObjectBase> cannot be used in _WRAP_PROPERTY. "
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  DropDown::property_selected_item () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Glib::ObjectBase>>
+  DropDown::property_selected_item () const -> glib::PropertyProxy_ReadOnly<glib::RefPtr<glib::ObjectBase>>
   {
-    return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Glib::ObjectBase>> (
+    return glib::PropertyProxy_ReadOnly<glib::RefPtr<glib::ObjectBase>> (
         this,
         "selected-item");
   }
 
   auto
-  DropDown::property_enable_search () -> Glib::PropertyProxy<bool>
+  DropDown::property_enable_search () -> glib::PropertyProxy<bool>
   {
-    return Glib::PropertyProxy<bool> (this, "enable-search");
+    return glib::PropertyProxy<bool> (this, "enable-search");
   }
 
   auto
-  DropDown::property_enable_search () const -> Glib::PropertyProxy_ReadOnly<bool>
+  DropDown::property_enable_search () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "enable-search");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "enable-search");
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<
-          Glib::RefPtr<Expression<Glib::ustring>>>::value,
-      "Type Glib::RefPtr<Expression<Glib::ustring>> cannot be used in "
+      glib::Traits::ValueCompatibleWithWrapProperty<
+          glib::RefPtr<Expression<glib::ustring>>>::value,
+      "Type glib::RefPtr<Expression<glib::ustring>> cannot be used in "
       "_WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  DropDown::property_expression () -> Glib::PropertyProxy<Glib::RefPtr<Expression<Glib::ustring>>>
+  DropDown::property_expression () -> glib::PropertyProxy<glib::RefPtr<Expression<glib::ustring>>>
   {
-    return Glib::PropertyProxy<Glib::RefPtr<Expression<Glib::ustring>>> (
+    return glib::PropertyProxy<glib::RefPtr<Expression<glib::ustring>>> (
         this,
         "expression");
   }
 
   auto
-  DropDown::property_expression () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Expression<Glib::ustring>>>
+  DropDown::property_expression () const -> glib::PropertyProxy_ReadOnly<glib::RefPtr<Expression<glib::ustring>>>
   {
-    return Glib::PropertyProxy_ReadOnly<
-        Glib::RefPtr<Expression<Glib::ustring>>> (this, "expression");
+    return glib::PropertyProxy_ReadOnly<
+        glib::RefPtr<Expression<glib::ustring>>> (this, "expression");
   }
 
   auto
-  DropDown::property_show_arrow () -> Glib::PropertyProxy<bool>
+  DropDown::property_show_arrow () -> glib::PropertyProxy<bool>
   {
-    return Glib::PropertyProxy<bool> (this, "show-arrow");
+    return glib::PropertyProxy<bool> (this, "show-arrow");
   }
 
   auto
-  DropDown::property_show_arrow () const -> Glib::PropertyProxy_ReadOnly<bool>
+  DropDown::property_show_arrow () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "show-arrow");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "show-arrow");
   }
 
-} // namespace Gtk
+} // namespace gtk

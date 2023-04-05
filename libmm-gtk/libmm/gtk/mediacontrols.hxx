@@ -13,13 +13,13 @@
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT MediaControls_Class;
 }
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
   class LIBMM_GTK_SYMEXPORT MediaControls : public Widget
@@ -49,7 +49,7 @@ namespace Gtk
     static CppClassType mediacontrols_class_;
 
   protected:
-    explicit MediaControls (const Glib::ConstructParams& construct_params);
+    explicit MediaControls (const glib::ConstructParams& construct_params);
     explicit MediaControls (GtkMediaControls* castitem);
 
 #endif
@@ -79,35 +79,35 @@ namespace Gtk
   private:
   public:
     MediaControls ();
-    explicit MediaControls (const Glib::RefPtr<MediaStream>& media_stream);
+    explicit MediaControls (const glib::RefPtr<MediaStream>& media_stream);
 
     auto
-    get_media_stream () -> Glib::RefPtr<MediaStream>;
+    get_media_stream () -> glib::RefPtr<MediaStream>;
 
     auto
-    get_media_stream () const -> Glib::RefPtr<const MediaStream>;
+    get_media_stream () const -> glib::RefPtr<const MediaStream>;
 
     auto
-    set_media_stream (const Glib::RefPtr<MediaStream>& stream) -> void;
+    set_media_stream (const glib::RefPtr<MediaStream>& stream) -> void;
 
     auto
-    property_media_stream () -> Glib::PropertyProxy<Glib::RefPtr<MediaStream>>;
+    property_media_stream () -> glib::PropertyProxy<glib::RefPtr<MediaStream>>;
 
     auto
     property_media_stream () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<MediaStream>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<MediaStream>>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkMediaControls* object, bool take_copy = false) -> Gtk::MediaControls*;
-} // namespace Glib
+  wrap (GtkMediaControls* object, bool take_copy = false) -> gtk::MediaControls*;
+} // namespace glib
 
 #endif

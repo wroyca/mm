@@ -18,13 +18,13 @@ using GtkColorButtonClass = struct _GtkColorButtonClass;
   #endif
 
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT ColorButton_Class;
 }
   #endif
 
-namespace Gtk
+namespace gtk
 {
 
   class LIBMM_GTK_SYMEXPORT ColorButton : public Widget,
@@ -55,7 +55,7 @@ namespace Gtk
     static CppClassType colorbutton_class_;
 
   protected:
-    explicit ColorButton (const Glib::ConstructParams& construct_params);
+    explicit ColorButton (const glib::ConstructParams& construct_params);
     explicit ColorButton (GtkColorButton* castitem);
 
   #endif
@@ -86,13 +86,13 @@ namespace Gtk
   public:
     ColorButton ();
 
-    explicit ColorButton (const Gdk::RGBA& rgba);
+    explicit ColorButton (const gdk::RGBA& rgba);
 
     auto
-    set_title (const Glib::ustring& title) -> void;
+    set_title (const glib::ustring& title) -> void;
 
     auto
-    get_title () const -> Glib::ustring;
+    get_title () const -> glib::ustring;
 
     auto
     set_modal (bool modal = true) -> void;
@@ -101,38 +101,38 @@ namespace Gtk
     get_modal () const -> bool;
 
     auto
-    property_title () -> Glib::PropertyProxy<Glib::ustring>;
+    property_title () -> glib::PropertyProxy<glib::ustring>;
 
     auto
-    property_title () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+    property_title () const -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
     auto
-    property_show_editor () -> Glib::PropertyProxy<bool>;
+    property_show_editor () -> glib::PropertyProxy<bool>;
 
     auto
-    property_show_editor () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_show_editor () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_modal () -> Glib::PropertyProxy<bool>;
+    property_modal () -> glib::PropertyProxy<bool>;
 
     auto
-    property_modal () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_modal () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    signal_color_set () -> Glib::SignalProxy<void ()>;
+    signal_color_set () -> glib::SignalProxy<void ()>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkColorButton* object, bool take_copy = false) -> Gtk::ColorButton*;
-} // namespace Glib
+  wrap (GtkColorButton* object, bool take_copy = false) -> gtk::ColorButton*;
+} // namespace glib
 
 #endif
 

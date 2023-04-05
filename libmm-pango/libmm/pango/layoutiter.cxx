@@ -7,7 +7,7 @@
 
 #include <libmm/pango/layout.hxx>
 
-namespace Pango
+namespace pango
 {
 
   auto
@@ -103,24 +103,24 @@ namespace Pango
     return logical_rect;
   }
 
-} // namespace Pango
+} // namespace pango
 
 namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (PangoLayoutIter* object, const bool take_copy) -> Pango::LayoutIter
+  wrap (PangoLayoutIter* object, const bool take_copy) -> pango::LayoutIter
   {
-    return Pango::LayoutIter (object, take_copy);
+    return pango::LayoutIter (object, take_copy);
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Pango
+namespace pango
 {
 
   auto
@@ -200,18 +200,18 @@ namespace Pango
   }
 
   auto
-  LayoutIter::get_line () -> Glib::RefPtr<LayoutLine>
+  LayoutIter::get_line () -> glib::RefPtr<LayoutLine>
   {
-    auto retvalue = Glib::wrap (pango_layout_iter_get_line (gobj ()));
+    auto retvalue = glib::wrap (pango_layout_iter_get_line (gobj ()));
     if (retvalue)
       retvalue->reference ();
     return retvalue;
   }
 
   auto
-  LayoutIter::get_line () const -> Glib::RefPtr<const LayoutLine>
+  LayoutIter::get_line () const -> glib::RefPtr<const LayoutLine>
   {
-    auto retvalue = Glib::wrap (pango_layout_iter_get_line_readonly (
+    auto retvalue = glib::wrap (pango_layout_iter_get_line_readonly (
         const_cast<PangoLayoutIter*> (gobj ())));
     if (retvalue)
       retvalue->reference ();
@@ -219,9 +219,9 @@ namespace Pango
   }
 
   auto
-  LayoutIter::get_const_line () const -> Glib::RefPtr<const LayoutLine>
+  LayoutIter::get_const_line () const -> glib::RefPtr<const LayoutLine>
   {
-    auto retvalue = Glib::wrap (pango_layout_iter_get_line_readonly (
+    auto retvalue = glib::wrap (pango_layout_iter_get_line_readonly (
         const_cast<PangoLayoutIter*> (gobj ())));
     if (retvalue)
       retvalue->reference ();
@@ -236,16 +236,16 @@ namespace Pango
   }
 
   auto
-  LayoutIter::get_layout () -> Glib::RefPtr<Layout>
+  LayoutIter::get_layout () -> glib::RefPtr<Layout>
   {
-    auto retvalue = Glib::wrap (pango_layout_iter_get_layout (gobj ()));
+    auto retvalue = glib::wrap (pango_layout_iter_get_layout (gobj ()));
     if (retvalue)
       retvalue->reference ();
     return retvalue;
   }
 
   auto
-  LayoutIter::get_layout () const -> Glib::RefPtr<const Layout>
+  LayoutIter::get_layout () const -> glib::RefPtr<const Layout>
   {
     return const_cast<LayoutIter*> (this)->get_layout ();
   }
@@ -327,4 +327,4 @@ namespace Pango
         const_cast<PangoLayoutIter*> (gobj ()));
   }
 
-} // namespace Pango
+} // namespace pango

@@ -5,7 +5,7 @@
 
 #include <libmm/glib/class.hxx>
 
-namespace Glib
+namespace glib
 {
 
   class LIBMM_GLIB_SYMEXPORT Object_Class : public Class
@@ -25,6 +25,6 @@ namespace Glib
     wrap_new (GObject*) -> Object*;
   };
 
-} // namespace Glib
+} // namespace glib
 
 #endif

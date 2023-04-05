@@ -15,17 +15,17 @@ using GtkBuilderCScopeClass = struct _GtkBuilderCScopeClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT BuilderCScope_Class;
 }
 #endif
 
-namespace Gtk
+namespace gtk
 {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
-  class LIBMM_GTK_SYMEXPORT BuilderCScope : public Glib::Object,
+  class LIBMM_GTK_SYMEXPORT BuilderCScope : public glib::Object,
                                   public BuilderScope
   {
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -45,7 +45,7 @@ namespace Gtk
     static CppClassType buildercscope_class_;
 
   protected:
-    explicit BuilderCScope (const Glib::ConstructParams& construct_params);
+    explicit BuilderCScope (const glib::ConstructParams& construct_params);
     explicit BuilderCScope (GtkBuilderCScope* castitem);
 
   #endif
@@ -87,7 +87,7 @@ namespace Gtk
 
   public:
     static auto
-    create () -> Glib::RefPtr<BuilderCScope>;
+    create () -> glib::RefPtr<BuilderCScope>;
 
   public:
   public:
@@ -95,12 +95,12 @@ namespace Gtk
   };
 #endif
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkBuilderCScope* object, bool take_copy = false) -> Glib::RefPtr<Gtk::BuilderCScope>;
-} // namespace Glib
+  wrap (GtkBuilderCScope* object, bool take_copy = false) -> glib::RefPtr<gtk::BuilderCScope>;
+} // namespace glib
 
 #endif

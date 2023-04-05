@@ -14,16 +14,16 @@ using GtkListItemClass = struct _GtkListItemClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT ListItem_Class;
 }
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
-  class LIBMM_GTK_SYMEXPORT ListItem : public Glib::Object
+  class LIBMM_GTK_SYMEXPORT ListItem : public glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -42,7 +42,7 @@ namespace Gtk
     static CppClassType listitem_class_;
 
   protected:
-    explicit ListItem (const Glib::ConstructParams& construct_params);
+    explicit ListItem (const glib::ConstructParams& construct_params);
     explicit ListItem (GtkListItem* castitem);
 
 #endif
@@ -81,10 +81,10 @@ namespace Gtk
   private:
   public:
     auto
-    get_item () -> Glib::RefPtr<Glib::ObjectBase>;
+    get_item () -> glib::RefPtr<glib::ObjectBase>;
 
     auto
-    get_item () const -> Glib::RefPtr<const Glib::ObjectBase>;
+    get_item () const -> glib::RefPtr<const glib::ObjectBase>;
 
     auto
     get_position () const -> guint;
@@ -116,44 +116,44 @@ namespace Gtk
     get_child () const -> const Widget*;
 
     auto
-    property_activatable () -> Glib::PropertyProxy<bool>;
+    property_activatable () -> glib::PropertyProxy<bool>;
 
     auto
-    property_activatable () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_activatable () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_child () -> Glib::PropertyProxy<Widget*>;
+    property_child () -> glib::PropertyProxy<Widget*>;
 
     auto
-    property_child () const -> Glib::PropertyProxy_ReadOnly<Widget*>;
+    property_child () const -> glib::PropertyProxy_ReadOnly<Widget*>;
 
     auto
     property_item () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Glib::ObjectBase>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<glib::ObjectBase>>;
 
     auto
-    property_position () const -> Glib::PropertyProxy_ReadOnly<guint>;
+    property_position () const -> glib::PropertyProxy_ReadOnly<guint>;
 
     auto
-    property_selectable () -> Glib::PropertyProxy<bool>;
+    property_selectable () -> glib::PropertyProxy<bool>;
 
     auto
-    property_selectable () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_selectable () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_selected () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_selected () const -> glib::PropertyProxy_ReadOnly<bool>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkListItem* object, bool take_copy = false) -> Glib::RefPtr<Gtk::ListItem>;
-} // namespace Glib
+  wrap (GtkListItem* object, bool take_copy = false) -> glib::RefPtr<gtk::ListItem>;
+} // namespace glib
 
 #endif

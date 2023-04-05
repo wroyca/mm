@@ -7,7 +7,7 @@
 
 #include <glib.h>
 
-namespace Glib
+namespace glib
 {
 
   auto
@@ -26,13 +26,13 @@ namespace Glib
     return true;
   }
 
-} // namespace Glib
+} // namespace glib
 
 namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
@@ -41,13 +41,13 @@ namespace Glib
     if (take_copy && object)
       g_variant_dict_ref (object);
 
-    return Glib::make_refptr_for_instance<VariantDict> (
+    return glib::make_refptr_for_instance<VariantDict> (
         reinterpret_cast<VariantDict*> (object));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Glib
+namespace glib
 {
 
   auto
@@ -125,4 +125,4 @@ namespace Glib
     g_variant_dict_clear (gobj ());
   }
 
-} // namespace Glib
+} // namespace glib

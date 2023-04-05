@@ -6,7 +6,7 @@
 #include <libmm/gdk/device.hxx>
 #include <libmm/gdk/devicepad.hxx>
 
-namespace Gdk
+namespace gdk
 {
 
   class LIBMM_GDK_SYMEXPORT DeviceWithPad : public Device,
@@ -30,6 +30,6 @@ namespace Gdk
     ~DeviceWithPad () noexcept override;
   };
 
-} // namespace Gdk
+} // namespace gdk
 
 #endif

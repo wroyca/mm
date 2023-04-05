@@ -6,7 +6,7 @@
 #include <libmm/glib/mm-glibconfig.hxx>
 #include <libmm/glib/propertyproxy_base.hxx>
 
-namespace Glib
+namespace glib
 {
 
   template <class T>
@@ -99,8 +99,8 @@ namespace Glib
   auto
   PropertyProxy<T>::set_value (const T& data) -> void
   {
-    Glib::Value<T> value;
-    value.init (Glib::Value<T>::value_type ());
+    glib::Value<T> value;
+    value.init (glib::Value<T>::value_type ());
 
     value.set (data);
     set_property_ (value);
@@ -110,8 +110,8 @@ namespace Glib
   auto
   PropertyProxy<T>::get_value () const -> T
   {
-    Glib::Value<T> value;
-    value.init (Glib::Value<T>::value_type ());
+    glib::Value<T> value;
+    value.init (glib::Value<T>::value_type ());
 
     get_property_ (value);
     return value.get ();
@@ -121,8 +121,8 @@ namespace Glib
   auto
   PropertyProxy_WriteOnly<T>::set_value (const T& data) -> void
   {
-    Glib::Value<T> value;
-    value.init (Glib::Value<T>::value_type ());
+    glib::Value<T> value;
+    value.init (glib::Value<T>::value_type ());
 
     value.set (data);
     set_property_ (value);
@@ -132,8 +132,8 @@ namespace Glib
   auto
   PropertyProxy_ReadOnly<T>::get_value () const -> T
   {
-    Glib::Value<T> value;
-    value.init (Glib::Value<T>::value_type ());
+    glib::Value<T> value;
+    value.init (glib::Value<T>::value_type ());
 
     get_property_ (value);
     return value.get ();
@@ -141,6 +141,6 @@ namespace Glib
 
 #endif
 
-} // namespace Glib
+} // namespace glib
 
 #endif

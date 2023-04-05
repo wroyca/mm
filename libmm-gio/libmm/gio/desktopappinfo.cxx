@@ -15,24 +15,24 @@ namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GDesktopAppInfo* object, bool take_copy) -> Glib::RefPtr<Gio::DesktopAppInfo>
+  wrap (GDesktopAppInfo* object, bool take_copy) -> glib::RefPtr<gio::DesktopAppInfo>
   {
-    return Glib::make_refptr_for_instance<Gio::DesktopAppInfo> (
-        dynamic_cast<Gio::DesktopAppInfo*> (
-            Glib::wrap_auto ((GObject*) (object), take_copy)));
+    return glib::make_refptr_for_instance<gio::DesktopAppInfo> (
+        dynamic_cast<gio::DesktopAppInfo*> (
+            glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gio
+namespace gio
 {
 
   auto
-  DesktopAppInfo_Class::init () -> const Glib::Class&
+  DesktopAppInfo_Class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -54,7 +54,7 @@ namespace Gio
   }
 
   auto
-  DesktopAppInfo_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  DesktopAppInfo_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new DesktopAppInfo ((GDesktopAppInfo*) object);
   }
@@ -66,18 +66,18 @@ namespace Gio
     return gobj ();
   }
 
-  DesktopAppInfo::DesktopAppInfo (const Glib::ConstructParams& construct_params)
-    : Glib::Object (construct_params)
+  DesktopAppInfo::DesktopAppInfo (const glib::ConstructParams& construct_params)
+    : glib::Object (construct_params)
   {
   }
 
   DesktopAppInfo::DesktopAppInfo (GDesktopAppInfo* castitem)
-    : Glib::Object ((GObject*) (castitem))
+    : glib::Object ((GObject*) (castitem))
   {
   }
 
   DesktopAppInfo::DesktopAppInfo (DesktopAppInfo&& src) noexcept
-    : Glib::Object (std::move (src)),
+    : glib::Object (std::move (src)),
       AppInfo (std::move (src))
   {
   }
@@ -85,7 +85,7 @@ namespace Gio
   auto
   DesktopAppInfo::operator= (DesktopAppInfo&& src) noexcept -> DesktopAppInfo&
   {
-    Glib::Object::operator= (std::move (src));
+    glib::Object::operator= (std::move (src));
     AppInfo::operator= (std::move (src));
     return *this;
   }
@@ -107,30 +107,30 @@ namespace Gio
   }
 
   auto
-  DesktopAppInfo::create (const std::string& desktop_id) -> Glib::RefPtr<DesktopAppInfo>
+  DesktopAppInfo::create (const std::string& desktop_id) -> glib::RefPtr<DesktopAppInfo>
   {
-    return Glib::wrap (g_desktop_app_info_new (desktop_id.c_str ()));
+    return glib::wrap (g_desktop_app_info_new (desktop_id.c_str ()));
   }
 
   auto
   DesktopAppInfo::create_from_keyfile (
-      const Glib::RefPtr<Glib::KeyFile>& key_file) -> Glib::RefPtr<DesktopAppInfo>
+      const glib::RefPtr<glib::KeyFile>& key_file) -> glib::RefPtr<DesktopAppInfo>
   {
-    return Glib::wrap (
-        g_desktop_app_info_new_from_keyfile (Glib::unwrap (key_file)));
+    return glib::wrap (
+        g_desktop_app_info_new_from_keyfile (glib::unwrap (key_file)));
   }
 
   auto
-  DesktopAppInfo::create_from_filename (const std::string& filename) -> Glib::RefPtr<DesktopAppInfo>
+  DesktopAppInfo::create_from_filename (const std::string& filename) -> glib::RefPtr<DesktopAppInfo>
   {
-    return Glib::wrap (
+    return glib::wrap (
         g_desktop_app_info_new_from_filename (filename.c_str ()));
   }
 
   auto
   DesktopAppInfo::get_filename () const -> std::string
   {
-    return Glib::convert_const_gchar_ptr_to_stdstring (
+    return glib::convert_const_gchar_ptr_to_stdstring (
         g_desktop_app_info_get_filename (
             const_cast<GDesktopAppInfo*> (gobj ())));
   }
@@ -143,18 +143,18 @@ namespace Gio
   }
 
   auto
-  DesktopAppInfo::get_keywords () const -> std::vector<Glib::ustring>
+  DesktopAppInfo::get_keywords () const -> std::vector<glib::ustring>
   {
-    return Glib::ArrayHandler<Glib::ustring>::array_to_vector (
+    return glib::ArrayHandler<glib::ustring>::array_to_vector (
         g_desktop_app_info_get_keywords (
             const_cast<GDesktopAppInfo*> (gobj ())),
-        Glib::OWNERSHIP_NONE);
+        glib::OWNERSHIP_NONE);
   }
 
   auto
   DesktopAppInfo::get_startup_wm_class () const -> std::string
   {
-    return Glib::convert_const_gchar_ptr_to_stdstring (
+    return glib::convert_const_gchar_ptr_to_stdstring (
         g_desktop_app_info_get_startup_wm_class (
             const_cast<GDesktopAppInfo*> (gobj ())));
   }
@@ -177,7 +177,7 @@ namespace Gio
   auto
   DesktopAppInfo::get_generic_name () const -> std::string
   {
-    return Glib::convert_const_gchar_ptr_to_stdstring (
+    return glib::convert_const_gchar_ptr_to_stdstring (
         g_desktop_app_info_get_generic_name (
             const_cast<GDesktopAppInfo*> (gobj ())));
   }
@@ -185,34 +185,34 @@ namespace Gio
   auto
   DesktopAppInfo::get_categories () const -> std::string
   {
-    return Glib::convert_const_gchar_ptr_to_stdstring (
+    return glib::convert_const_gchar_ptr_to_stdstring (
         g_desktop_app_info_get_categories (
             const_cast<GDesktopAppInfo*> (gobj ())));
   }
 
   auto
-  DesktopAppInfo::has_key (const Glib::ustring& key) const -> bool
+  DesktopAppInfo::has_key (const glib::ustring& key) const -> bool
   {
     return g_desktop_app_info_has_key (const_cast<GDesktopAppInfo*> (gobj ()),
                                        key.c_str ());
   }
 
   auto
-  DesktopAppInfo::get_string (const Glib::ustring& key) -> Glib::ustring
+  DesktopAppInfo::get_string (const glib::ustring& key) -> glib::ustring
   {
-    return Glib::convert_return_gchar_ptr_to_ustring (
+    return glib::convert_return_gchar_ptr_to_ustring (
         g_desktop_app_info_get_string (gobj (), key.c_str ()));
   }
 
   auto
-  DesktopAppInfo::get_locale_string (const Glib::ustring& key) -> Glib::ustring
+  DesktopAppInfo::get_locale_string (const glib::ustring& key) -> glib::ustring
   {
-    return Glib::convert_return_gchar_ptr_to_ustring (
+    return glib::convert_return_gchar_ptr_to_ustring (
         g_desktop_app_info_get_locale_string (gobj (), key.c_str ()));
   }
 
   auto
-  DesktopAppInfo::get_boolean (const Glib::ustring& key) const -> bool
+  DesktopAppInfo::get_boolean (const glib::ustring& key) const -> bool
   {
     return g_desktop_app_info_get_boolean (
         const_cast<GDesktopAppInfo*> (gobj ()),
@@ -220,39 +220,39 @@ namespace Gio
   }
 
   auto
-  DesktopAppInfo::list_actions () const -> std::vector<Glib::ustring>
+  DesktopAppInfo::list_actions () const -> std::vector<glib::ustring>
   {
-    return Glib::ArrayHandler<Glib::ustring>::array_to_vector (
+    return glib::ArrayHandler<glib::ustring>::array_to_vector (
         g_desktop_app_info_list_actions (
             const_cast<GDesktopAppInfo*> (gobj ())),
-        Glib::OWNERSHIP_NONE);
+        glib::OWNERSHIP_NONE);
   }
 
   void
   DesktopAppInfo::launch_action (
-      const Glib::ustring& action_name,
-      const Glib::RefPtr<AppLaunchContext>& launch_context)
+      const glib::ustring& action_name,
+      const glib::RefPtr<AppLaunchContext>& launch_context)
   {
     g_desktop_app_info_launch_action (gobj (),
                                       action_name.c_str (),
-                                      Glib::unwrap (launch_context));
+                                      glib::unwrap (launch_context));
   }
 
   void
-  DesktopAppInfo::launch_action (const Glib::ustring& action_name)
+  DesktopAppInfo::launch_action (const glib::ustring& action_name)
   {
     g_desktop_app_info_launch_action (gobj (), action_name.c_str (), nullptr);
   }
 
   auto
-  DesktopAppInfo::get_action_name (const Glib::ustring& action_name) const -> Glib::ustring
+  DesktopAppInfo::get_action_name (const glib::ustring& action_name) const -> glib::ustring
   {
-    return Glib::convert_return_gchar_ptr_to_ustring (
+    return glib::convert_return_gchar_ptr_to_ustring (
         g_desktop_app_info_get_action_name (
             const_cast<GDesktopAppInfo*> (gobj ()),
             action_name.c_str ()));
   }
 
-} // namespace Gio
+} // namespace gio
 
 #endif

@@ -25,16 +25,16 @@ using GtkTreeDragSourceClass = struct _GtkTreeDragSourceClass;
   #endif
 
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT TreeDragSource_Class;
 }
   #endif
 
-namespace Gtk
+namespace gtk
 {
 
-  class LIBMM_GTK_SYMEXPORT TreeDragSource : public Glib::Interface
+  class LIBMM_GTK_SYMEXPORT TreeDragSource : public glib::Interface
   {
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -58,7 +58,7 @@ namespace Gtk
 
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
-    explicit TreeDragSource (const Glib::Interface_Class& interface_class);
+    explicit TreeDragSource (const glib::Interface_Class& interface_class);
 
   public:
     explicit TreeDragSource (GtkTreeDragSource* castitem);
@@ -103,7 +103,7 @@ namespace Gtk
 
     auto
     drag_data_get (const TreeModel::Path& path) const
-        -> Glib::RefPtr<Gdk::ContentProvider>;
+        -> glib::RefPtr<gdk::ContentProvider>;
 
     auto
     drag_data_delete (const TreeModel::Path& path) -> bool;
@@ -114,7 +114,7 @@ namespace Gtk
 
     virtual auto
     drag_data_get_vfunc (const TreeModel::Path& path) const
-        -> Glib::RefPtr<Gdk::ContentProvider>;
+        -> glib::RefPtr<gdk::ContentProvider>;
 
     virtual auto
     drag_data_delete_vfunc (const TreeModel::Path& path) -> bool;
@@ -124,14 +124,14 @@ namespace Gtk
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkTreeDragSource* object, bool take_copy = false) -> Glib::RefPtr<Gtk::TreeDragSource>;
+  wrap (GtkTreeDragSource* object, bool take_copy = false) -> glib::RefPtr<gtk::TreeDragSource>;
 
-} // namespace Glib
+} // namespace glib
 
 #endif
 

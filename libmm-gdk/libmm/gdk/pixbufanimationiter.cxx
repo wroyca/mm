@@ -5,7 +5,7 @@
 #include <libmm/gdk/pixbufanimationiter.hxx>
 #include <libmm/gdk/pixbufanimationiter_p.hxx>
 
-namespace Gdk
+namespace gdk
 {
 
   G_GNUC_BEGIN_IGNORE_DEPRECATIONS
@@ -20,30 +20,30 @@ namespace Gdk
 
   G_GNUC_END_IGNORE_DEPRECATIONS
 
-} // namespace Gdk
+} // namespace gdk
 
 namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GdkPixbufAnimationIter* object, bool take_copy) -> Glib::RefPtr<Gdk::PixbufAnimationIter>
+  wrap (GdkPixbufAnimationIter* object, bool take_copy) -> glib::RefPtr<gdk::PixbufAnimationIter>
   {
-    return Glib::make_refptr_for_instance<Gdk::PixbufAnimationIter> (
-        dynamic_cast<Gdk::PixbufAnimationIter*> (
-            Glib::wrap_auto ((GObject*) (object), take_copy)));
+    return glib::make_refptr_for_instance<gdk::PixbufAnimationIter> (
+        dynamic_cast<gdk::PixbufAnimationIter*> (
+            glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gdk
+namespace gdk
 {
 
   auto
-  PixbufAnimationIter_Class::init () -> const Glib::Class&
+  PixbufAnimationIter_Class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -64,7 +64,7 @@ namespace Gdk
   }
 
   auto
-  PixbufAnimationIter_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  PixbufAnimationIter_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new PixbufAnimationIter ((GdkPixbufAnimationIter*) object);
   }
@@ -77,25 +77,25 @@ namespace Gdk
   }
 
   PixbufAnimationIter::PixbufAnimationIter (
-      const Glib::ConstructParams& construct_params)
-    : Glib::Object (construct_params)
+      const glib::ConstructParams& construct_params)
+    : glib::Object (construct_params)
   {
   }
 
   PixbufAnimationIter::PixbufAnimationIter (GdkPixbufAnimationIter* castitem)
-    : Glib::Object ((GObject*) (castitem))
+    : glib::Object ((GObject*) (castitem))
   {
   }
 
   PixbufAnimationIter::PixbufAnimationIter (PixbufAnimationIter&& src) noexcept
-    : Glib::Object (std::move (src))
+    : glib::Object (std::move (src))
   {
   }
 
   auto
   PixbufAnimationIter::operator= (PixbufAnimationIter&& src) noexcept -> PixbufAnimationIter&
   {
-    Glib::Object::operator= (std::move (src));
+    glib::Object::operator= (std::move (src));
     return *this;
   }
 
@@ -124,16 +124,16 @@ namespace Gdk
   }
 
   auto
-  PixbufAnimationIter::get_pixbuf () -> Glib::RefPtr<Gdk::Pixbuf>
+  PixbufAnimationIter::get_pixbuf () -> glib::RefPtr<gdk::Pixbuf>
   {
-    auto retvalue = Glib::wrap (gdk_pixbuf_animation_iter_get_pixbuf (gobj ()));
+    auto retvalue = glib::wrap (gdk_pixbuf_animation_iter_get_pixbuf (gobj ()));
     if (retvalue)
       retvalue->reference ();
     return retvalue;
   }
 
   auto
-  PixbufAnimationIter::get_pixbuf () const -> Glib::RefPtr<const Gdk::Pixbuf>
+  PixbufAnimationIter::get_pixbuf () const -> glib::RefPtr<const gdk::Pixbuf>
   {
     return const_cast<PixbufAnimationIter*> (this)->get_pixbuf ();
   }
@@ -145,4 +145,4 @@ namespace Gdk
         const_cast<GdkPixbufAnimationIter*> (gobj ()));
   }
 
-} // namespace Gdk
+} // namespace gdk

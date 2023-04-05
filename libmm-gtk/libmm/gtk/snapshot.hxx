@@ -13,22 +13,22 @@
 typedef struct _graphene_rect_t graphene_rect_t;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT Snapshot_Class;
 }
 #endif
 
-namespace Gdk
+namespace gdk
 {
   class LIBMM_GTK_SYMEXPORT RGBA;
   class LIBMM_GTK_SYMEXPORT Texture;
-} // namespace Gdk
+} // namespace gdk
 
-namespace Gtk
+namespace gtk
 {
 
-  class LIBMM_GTK_SYMEXPORT Snapshot : public Gdk::Snapshot
+  class LIBMM_GTK_SYMEXPORT Snapshot : public gdk::Snapshot
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -47,7 +47,7 @@ namespace Gtk
     static CppClassType snapshot_class_;
 
   protected:
-    explicit Snapshot (const Glib::ConstructParams& construct_params);
+    explicit Snapshot (const glib::ConstructParams& construct_params);
     explicit Snapshot (GtkSnapshot* castitem);
 
 #endif
@@ -86,10 +86,10 @@ namespace Gtk
   private:
   public:
     static auto
-    create () -> Glib::RefPtr<Snapshot>;
+    create () -> glib::RefPtr<Snapshot>;
 
     auto
-    push_debug (const Glib::ustring& name) -> void;
+    push_debug (const glib::ustring& name) -> void;
 
     auto
     push_opacity (double opacity) -> void;
@@ -102,17 +102,17 @@ namespace Gtk
                  const graphene_rect_t* child_bounds) -> void;
 
     auto
-    push_repeat (const Gdk::Rectangle& bounds,
-                 const Gdk::Rectangle& child_bounds) -> void;
+    push_repeat (const gdk::Rectangle& bounds,
+                 const gdk::Rectangle& child_bounds) -> void;
 
     auto
-    push_repeat (const Gdk::Rectangle& bounds) -> void;
+    push_repeat (const gdk::Rectangle& bounds) -> void;
 
     auto
     push_clip (const graphene_rect_t* bounds) -> void;
 
     auto
-    push_clip (const Gdk::Rectangle& bounds) -> void;
+    push_clip (const gdk::Rectangle& bounds) -> void;
 
     auto
     push_cross_fade (double progress) -> void;
@@ -143,35 +143,35 @@ namespace Gtk
 
     auto
     append_cairo (const graphene_rect_t* bounds)
-        -> Cairo::RefPtr<Cairo::Context>;
+        -> cairo::RefPtr<cairo::Context>;
 
     auto
-    append_cairo (const Gdk::Rectangle& bounds)
-        -> Cairo::RefPtr<Cairo::Context>;
+    append_cairo (const gdk::Rectangle& bounds)
+        -> cairo::RefPtr<cairo::Context>;
 
     auto
-    append_texture (const Glib::RefPtr<Gdk::Texture>& texture,
+    append_texture (const glib::RefPtr<gdk::Texture>& texture,
                     const graphene_rect_t* bounds) -> void;
 
     auto
-    append_texture (const Glib::RefPtr<Gdk::Texture>& texture,
-                    const Gdk::Rectangle& bounds) -> void;
+    append_texture (const glib::RefPtr<gdk::Texture>& texture,
+                    const gdk::Rectangle& bounds) -> void;
 
     auto
-    append_color (const Gdk::RGBA& color, const graphene_rect_t* bounds)
+    append_color (const gdk::RGBA& color, const graphene_rect_t* bounds)
         -> void;
 
     auto
-    append_color (const Gdk::RGBA& color, const Gdk::Rectangle& bounds) -> void;
+    append_color (const gdk::RGBA& color, const gdk::Rectangle& bounds) -> void;
 
     auto
-    append_layout (const Glib::RefPtr<Pango::Layout>& layout,
-                   const Gdk::RGBA& color) -> void;
+    append_layout (const glib::RefPtr<pango::Layout>& layout,
+                   const gdk::RGBA& color) -> void;
 
 #ifndef GTKMM_DISABLE_DEPRECATED
 
     auto
-    render_backgrount (const Glib::RefPtr<StyleContext>& context,
+    render_backgrount (const glib::RefPtr<StyleContext>& context,
                        double x,
                        double y,
                        double width,
@@ -181,7 +181,7 @@ namespace Gtk
 #ifndef GTKMM_DISABLE_DEPRECATED
 
     auto
-    render_frame (const Glib::RefPtr<StyleContext>& context,
+    render_frame (const glib::RefPtr<StyleContext>& context,
                   double x,
                   double y,
                   double width,
@@ -191,7 +191,7 @@ namespace Gtk
 #ifndef GTKMM_DISABLE_DEPRECATED
 
     auto
-    render_focus (const Glib::RefPtr<StyleContext>& context,
+    render_focus (const glib::RefPtr<StyleContext>& context,
                   double x,
                   double y,
                   double width,
@@ -201,21 +201,21 @@ namespace Gtk
 #ifndef GTKMM_DISABLE_DEPRECATED
 
     auto
-    render_layout (const Glib::RefPtr<StyleContext>& context,
+    render_layout (const glib::RefPtr<StyleContext>& context,
                    double x,
                    double y,
-                   const Glib::RefPtr<Pango::Layout>& layout) -> void;
+                   const glib::RefPtr<pango::Layout>& layout) -> void;
 #endif
 
 #ifndef GTKMM_DISABLE_DEPRECATED
 
     auto
-    render_insertion_cursor (const Glib::RefPtr<StyleContext>& context,
+    render_insertion_cursor (const glib::RefPtr<StyleContext>& context,
                              double x,
                              double y,
-                             const Glib::RefPtr<Pango::Layout>& layout,
+                             const glib::RefPtr<pango::Layout>& layout,
                              int index,
-                             Pango::Direction direction) -> void;
+                             pango::Direction direction) -> void;
 #endif
 
   public:
@@ -223,12 +223,12 @@ namespace Gtk
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap_gtk_snapshot (GtkSnapshot* object, bool take_copy = false) -> Glib::RefPtr<Gtk::Snapshot>;
-} // namespace Glib
+  wrap_gtk_snapshot (GtkSnapshot* object, bool take_copy = false) -> glib::RefPtr<gtk::Snapshot>;
+} // namespace glib
 
 #endif

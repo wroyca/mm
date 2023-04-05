@@ -4,23 +4,23 @@
 #include <libmm/gdk/cairoutils.hxx>
 #include <libmm/gdk/general.hxx>
 
-namespace Gdk
+namespace gdk
 {
 
-  namespace Cairo
+  namespace cairo
   {
 
     auto
-    set_source_rgba (const ::Cairo::RefPtr<::Cairo::Context>& context,
-                     const Gdk::RGBA& color) -> void
+    set_source_rgba (const ::cairo::RefPtr<::cairo::Context>& context,
+                     const gdk::RGBA& color) -> void
     {
       gdk_cairo_set_source_rgba (context->cobj (),
                                  const_cast<GdkRGBA*> (color.gobj ()));
     }
 
     auto
-    set_source_pixbuf (const ::Cairo::RefPtr<::Cairo::Context>& context,
-                       const Glib::RefPtr<const Gdk::Pixbuf>& pixbuf,
+    set_source_pixbuf (const ::cairo::RefPtr<::cairo::Context>& context,
+                       const glib::RefPtr<const gdk::Pixbuf>& pixbuf,
                        double pixbuf_x,
                        double pixbuf_y) -> void
     {
@@ -31,26 +31,26 @@ namespace Gdk
     }
 
     auto
-    add_rectangle_to_path (const ::Cairo::RefPtr<::Cairo::Context>& context,
-                           const Gdk::Rectangle& rectangle) -> void
+    add_rectangle_to_path (const ::cairo::RefPtr<::cairo::Context>& context,
+                           const gdk::Rectangle& rectangle) -> void
     {
       gdk_cairo_rectangle (context->cobj (),
                            const_cast<GdkRectangle*> (rectangle.gobj ()));
     }
 
     auto
-    add_region_to_path (const ::Cairo::RefPtr<::Cairo::Context>& context,
-                        const ::Cairo::RefPtr<::Cairo::Region>& region) -> void
+    add_region_to_path (const ::cairo::RefPtr<::cairo::Context>& context,
+                        const ::cairo::RefPtr<::cairo::Region>& region) -> void
     {
       gdk_cairo_region (context->cobj (), (region ? region->cobj () : nullptr));
     }
 
     auto
     create_region_from_surface (
-        const ::Cairo::RefPtr<::Cairo::Surface>& surface)
-        -> ::Cairo::RefPtr<::Cairo::Region>
+        const ::cairo::RefPtr<::cairo::Surface>& surface)
+        -> ::cairo::RefPtr<::cairo::Region>
     {
-      return Gdk::Cairo::wrap (
+      return gdk::cairo::wrap (
           gdk_cairo_region_create_from_surface (surface->cobj ()),
           true);
     }
@@ -58,8 +58,8 @@ namespace Gdk
 #ifndef GDKMM_DISABLE_DEPRECATED
     G_GNUC_BEGIN_IGNORE_DEPRECATIONS
     auto
-    draw_from_gl (const ::Cairo::RefPtr<::Cairo::Context>& context,
-                  const Glib::RefPtr<Gdk::Surface>& surface,
+    draw_from_gl (const ::cairo::RefPtr<::cairo::Context>& context,
+                  const glib::RefPtr<gdk::Surface>& surface,
                   int source,
                   int source_type,
                   int buffer_scale,
@@ -82,6 +82,6 @@ namespace Gdk
     G_GNUC_END_IGNORE_DEPRECATIONS
 #endif
 
-  } // namespace Cairo
+  } // namespace cairo
 
-} // namespace Gdk
+} // namespace gdk

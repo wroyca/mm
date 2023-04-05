@@ -17,7 +17,7 @@ extern "C"
 }
 #endif
 
-namespace Pango
+namespace pango
 {
 
   class LIBMM_PANGO_SYMEXPORT AttrList
@@ -68,12 +68,12 @@ namespace Pango
 
   private:
   public:
-    explicit AttrList (const Glib::ustring& markup_text,
+    explicit AttrList (const glib::ustring& markup_text,
                        gunichar accel_marker = 0);
 
-    AttrList (const Glib::ustring& markup_text,
+    AttrList (const glib::ustring& markup_text,
               gunichar accel_marker,
-              Glib::ustring& text,
+              glib::ustring& text,
               gunichar& accel_char);
 
     explicit operator bool () const;
@@ -100,18 +100,18 @@ namespace Pango
     equal (const AttrList& other_list) const -> bool;
 
     auto
-    to_string () const -> Glib::ustring;
+    to_string () const -> glib::ustring;
 
     static auto
-    from_string (const Glib::ustring& text) -> AttrList;
+    from_string (const glib::ustring& text) -> AttrList;
 
     auto
     get_iter () -> AttrIter;
   };
 
-} // namespace Pango
+} // namespace pango
 
-namespace Pango
+namespace pango
 {
 
   inline auto
@@ -120,23 +120,23 @@ namespace Pango
     lhs.swap (rhs);
   }
 
-} // namespace Pango
+} // namespace pango
 
-namespace Glib
+namespace glib
 {
 
   LIBMM_PANGO_SYMEXPORT
   auto
-  wrap (PangoAttrList* object, bool take_copy = false) -> Pango::AttrList;
+  wrap (PangoAttrList* object, bool take_copy = false) -> pango::AttrList;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
   template <>
-  class LIBMM_PANGO_SYMEXPORT Value<Pango::AttrList>
-    : public Glib::Value_Boxed<Pango::AttrList>
+  class LIBMM_PANGO_SYMEXPORT Value<pango::AttrList>
+    : public glib::Value_Boxed<pango::AttrList>
   {
   };
 #endif
 
-} // namespace Glib
+} // namespace glib
 
 #endif

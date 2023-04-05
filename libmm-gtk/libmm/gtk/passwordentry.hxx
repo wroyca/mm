@@ -16,13 +16,13 @@ using GtkPasswordEntryClass = struct _GtkPasswordEntryClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT PasswordEntry_Class;
 }
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
   class LIBMM_GTK_SYMEXPORT PasswordEntry : public Widget,
@@ -53,7 +53,7 @@ namespace Gtk
     static CppClassType passwordentry_class_;
 
   protected:
-    explicit PasswordEntry (const Glib::ConstructParams& construct_params);
+    explicit PasswordEntry (const glib::ConstructParams& construct_params);
     explicit PasswordEntry (GtkPasswordEntry* castitem);
 
 #endif
@@ -91,51 +91,51 @@ namespace Gtk
     get_show_peek_icon () const -> bool;
 
     auto
-    set_extra_menu (const Glib::RefPtr<Gio::MenuModel>& model) -> void;
+    set_extra_menu (const glib::RefPtr<gio::MenuModel>& model) -> void;
 
     auto
-    get_extra_menu () -> Glib::RefPtr<Gio::MenuModel>;
+    get_extra_menu () -> glib::RefPtr<gio::MenuModel>;
 
     auto
-    get_extra_menu () const -> Glib::RefPtr<const Gio::MenuModel>;
+    get_extra_menu () const -> glib::RefPtr<const gio::MenuModel>;
 
     auto
-    property_placeholder_text () -> Glib::PropertyProxy<Glib::ustring>;
+    property_placeholder_text () -> glib::PropertyProxy<glib::ustring>;
 
     auto
     property_placeholder_text () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+        -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
     auto
-    property_activates_default () -> Glib::PropertyProxy<bool>;
+    property_activates_default () -> glib::PropertyProxy<bool>;
 
     auto
-    property_activates_default () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_activates_default () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_show_peek_icon () -> Glib::PropertyProxy<bool>;
+    property_show_peek_icon () -> glib::PropertyProxy<bool>;
 
     auto
-    property_show_peek_icon () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_show_peek_icon () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_extra_menu () -> Glib::PropertyProxy<Glib::RefPtr<Gio::MenuModel>>;
+    property_extra_menu () -> glib::PropertyProxy<glib::RefPtr<gio::MenuModel>>;
 
     auto
     property_extra_menu () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gio::MenuModel>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<gio::MenuModel>>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkPasswordEntry* object, bool take_copy = false) -> Gtk::PasswordEntry*;
-} // namespace Glib
+  wrap (GtkPasswordEntry* object, bool take_copy = false) -> gtk::PasswordEntry*;
+} // namespace glib
 
 #endif

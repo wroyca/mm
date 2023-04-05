@@ -13,17 +13,17 @@
   #include <gtk/gtk.h>
   #include <libmm/gtk/window.hxx>
 
-namespace Gtk
+namespace gtk
 {
 
-  FileChooserNative::FileChooserNative (const Glib::ustring& title,
+  FileChooserNative::FileChooserNative (const glib::ustring& title,
                                         Window& parent,
                                         FileChooser::Action action,
-                                        const Glib::ustring& accept_label,
-                                        const Glib::ustring& cancel_label)
-    : Glib::ObjectBase (nullptr),
+                                        const glib::ustring& accept_label,
+                                        const glib::ustring& cancel_label)
+    : glib::ObjectBase (nullptr),
       NativeDialog (
-          Glib::ConstructParams (filechoosernative_class_.init (),
+          glib::ConstructParams (filechoosernative_class_.init (),
                                  "title",
                                  title.c_str (),
                                  "transient-for",
@@ -31,56 +31,56 @@ namespace Gtk
                                  "action",
                                  static_cast<GtkFileChooserAction> (action),
                                  "accept_label",
-                                 Glib::c_str_or_nullptr (accept_label),
+                                 glib::c_str_or_nullptr (accept_label),
                                  "cancel_label",
-                                 Glib::c_str_or_nullptr (cancel_label),
+                                 glib::c_str_or_nullptr (cancel_label),
                                  nullptr))
   {
   }
 
-  FileChooserNative::FileChooserNative (const Glib::ustring& title,
+  FileChooserNative::FileChooserNative (const glib::ustring& title,
                                         FileChooser::Action action,
-                                        const Glib::ustring& accept_label,
-                                        const Glib::ustring& cancel_label)
-    : Glib::ObjectBase (nullptr),
+                                        const glib::ustring& accept_label,
+                                        const glib::ustring& cancel_label)
+    : glib::ObjectBase (nullptr),
       NativeDialog (
-          Glib::ConstructParams (filechoosernative_class_.init (),
+          glib::ConstructParams (filechoosernative_class_.init (),
                                  "title",
                                  title.c_str (),
                                  "action",
                                  static_cast<GtkFileChooserAction> (action),
                                  "accept_label",
-                                 Glib::c_str_or_nullptr (accept_label),
+                                 glib::c_str_or_nullptr (accept_label),
                                  "cancel_label",
-                                 Glib::c_str_or_nullptr (cancel_label),
+                                 glib::c_str_or_nullptr (cancel_label),
                                  nullptr))
   {
   }
 
-} // namespace Gtk
+} // namespace gtk
 
 namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GtkFileChooserNative* object, bool take_copy) -> Glib::RefPtr<Gtk::FileChooserNative>
+  wrap (GtkFileChooserNative* object, bool take_copy) -> glib::RefPtr<gtk::FileChooserNative>
   {
-    return Glib::make_refptr_for_instance<Gtk::FileChooserNative> (
-        dynamic_cast<Gtk::FileChooserNative*> (
-            Glib::wrap_auto ((GObject*) (object), take_copy)));
+    return glib::make_refptr_for_instance<gtk::FileChooserNative> (
+        dynamic_cast<gtk::FileChooserNative*> (
+            glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gtk
+namespace gtk
 {
 
   auto
-  FileChooserNative_Class::init () -> const Glib::Class&
+  FileChooserNative_Class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -100,7 +100,7 @@ namespace Gtk
   }
 
   auto
-  FileChooserNative_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  FileChooserNative_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new FileChooserNative ((GtkFileChooserNative*) object);
   }
@@ -113,7 +113,7 @@ namespace Gtk
   }
 
   FileChooserNative::FileChooserNative (
-      const Glib::ConstructParams& construct_params)
+      const glib::ConstructParams& construct_params)
     : NativeDialog (construct_params)
   {
   }
@@ -154,19 +154,19 @@ namespace Gtk
   }
 
   FileChooserNative::FileChooserNative ()
-    : Glib::ObjectBase (nullptr),
-      NativeDialog (Glib::ConstructParams (filechoosernative_class_.init ()))
+    : glib::ObjectBase (nullptr),
+      NativeDialog (glib::ConstructParams (filechoosernative_class_.init ()))
   {
   }
 
   auto
-  FileChooserNative::create (const Glib::ustring& title,
+  FileChooserNative::create (const glib::ustring& title,
                              Window& parent,
                              FileChooser::Action action,
-                             const Glib::ustring& accept_label,
-                             const Glib::ustring& cancel_label) -> Glib::RefPtr<FileChooserNative>
+                             const glib::ustring& accept_label,
+                             const glib::ustring& cancel_label) -> glib::RefPtr<FileChooserNative>
   {
-    return Glib::make_refptr_for_instance<FileChooserNative> (
+    return glib::make_refptr_for_instance<FileChooserNative> (
         new FileChooserNative (title,
                                parent,
                                action,
@@ -175,25 +175,25 @@ namespace Gtk
   }
 
   auto
-  FileChooserNative::create (const Glib::ustring& title,
+  FileChooserNative::create (const glib::ustring& title,
                              FileChooser::Action action,
-                             const Glib::ustring& accept_label,
-                             const Glib::ustring& cancel_label) -> Glib::RefPtr<FileChooserNative>
+                             const glib::ustring& accept_label,
+                             const glib::ustring& cancel_label) -> glib::RefPtr<FileChooserNative>
   {
-    return Glib::make_refptr_for_instance<FileChooserNative> (
+    return glib::make_refptr_for_instance<FileChooserNative> (
         new FileChooserNative (title, action, accept_label, cancel_label));
   }
 
   auto
-  FileChooserNative::get_accept_label () const -> Glib::ustring
+  FileChooserNative::get_accept_label () const -> glib::ustring
   {
-    return Glib::convert_const_gchar_ptr_to_ustring (
+    return glib::convert_const_gchar_ptr_to_ustring (
         gtk_file_chooser_native_get_accept_label (
             const_cast<GtkFileChooserNative*> (gobj ())));
   }
 
   auto
-  FileChooserNative::set_accept_label (const Glib::ustring& accept_label) -> void
+  FileChooserNative::set_accept_label (const glib::ustring& accept_label) -> void
   {
     gtk_file_chooser_native_set_accept_label (
         gobj (),
@@ -201,15 +201,15 @@ namespace Gtk
   }
 
   auto
-  FileChooserNative::get_cancel_label () const -> Glib::ustring
+  FileChooserNative::get_cancel_label () const -> glib::ustring
   {
-    return Glib::convert_const_gchar_ptr_to_ustring (
+    return glib::convert_const_gchar_ptr_to_ustring (
         gtk_file_chooser_native_get_cancel_label (
             const_cast<GtkFileChooserNative*> (gobj ())));
   }
 
   auto
-  FileChooserNative::set_cancel_label (const Glib::ustring& cancel_label) -> void
+  FileChooserNative::set_cancel_label (const glib::ustring& cancel_label) -> void
   {
     gtk_file_chooser_native_set_cancel_label (
         gobj (),
@@ -217,29 +217,29 @@ namespace Gtk
   }
 
   auto
-  FileChooserNative::property_accept_label () -> Glib::PropertyProxy<Glib::ustring>
+  FileChooserNative::property_accept_label () -> glib::PropertyProxy<glib::ustring>
   {
-    return Glib::PropertyProxy<Glib::ustring> (this, "accept-label");
+    return glib::PropertyProxy<glib::ustring> (this, "accept-label");
   }
 
   auto
-  FileChooserNative::property_accept_label () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>
+  FileChooserNative::property_accept_label () const -> glib::PropertyProxy_ReadOnly<glib::ustring>
   {
-    return Glib::PropertyProxy_ReadOnly<Glib::ustring> (this, "accept-label");
+    return glib::PropertyProxy_ReadOnly<glib::ustring> (this, "accept-label");
   }
 
   auto
-  FileChooserNative::property_cancel_label () -> Glib::PropertyProxy<Glib::ustring>
+  FileChooserNative::property_cancel_label () -> glib::PropertyProxy<glib::ustring>
   {
-    return Glib::PropertyProxy<Glib::ustring> (this, "cancel-label");
+    return glib::PropertyProxy<glib::ustring> (this, "cancel-label");
   }
 
   auto
-  FileChooserNative::property_cancel_label () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>
+  FileChooserNative::property_cancel_label () const -> glib::PropertyProxy_ReadOnly<glib::ustring>
   {
-    return Glib::PropertyProxy_ReadOnly<Glib::ustring> (this, "cancel-label");
+    return glib::PropertyProxy_ReadOnly<glib::ustring> (this, "cancel-label");
   }
 
-} // namespace Gtk
+} // namespace gtk
 
 #endif

@@ -16,13 +16,13 @@ using GdkDragClass = struct _GdkDragClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gdk
+namespace gdk
 {
   class LIBMM_GDK_SYMEXPORT Drag_Class;
 }
 #endif
 
-namespace Gdk
+namespace gdk
 {
   class LIBMM_GDK_SYMEXPORT ContentFormats;
   class LIBMM_GDK_SYMEXPORT ContentProvider;
@@ -37,28 +37,28 @@ namespace Gdk
     ERROR
   };
 
-} // namespace Gdk
+} // namespace gdk
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_GDK_SYMEXPORT Value<Gdk::DragCancelReason>
-    : public Glib::Value_Enum<Gdk::DragCancelReason>
+  class LIBMM_GDK_SYMEXPORT Value<gdk::DragCancelReason>
+    : public glib::Value_Enum<gdk::DragCancelReason>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
-namespace Gdk
+namespace gdk
 {
 
-  class LIBMM_GDK_SYMEXPORT Drag : public Glib::Object
+  class LIBMM_GDK_SYMEXPORT Drag : public glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -77,7 +77,7 @@ namespace Gdk
     static CppClassType drag_class_;
 
   protected:
-    explicit Drag (const Glib::ConstructParams& construct_params);
+    explicit Drag (const glib::ConstructParams& construct_params);
     explicit Drag (GdkDrag* castitem);
 
 #endif
@@ -116,22 +116,22 @@ namespace Gdk
   private:
   public:
     auto
-    get_display () -> Glib::RefPtr<Display>;
+    get_display () -> glib::RefPtr<Display>;
 
     auto
-    get_display () const -> Glib::RefPtr<const Display>;
+    get_display () const -> glib::RefPtr<const Display>;
 
     auto
-    get_device () -> Glib::RefPtr<Device>;
+    get_device () -> glib::RefPtr<Device>;
 
     auto
-    get_device () const -> Glib::RefPtr<const Device>;
+    get_device () const -> glib::RefPtr<const Device>;
 
     auto
-    get_formats () -> Glib::RefPtr<ContentFormats>;
+    get_formats () -> glib::RefPtr<ContentFormats>;
 
     auto
-    get_formats () const -> Glib::RefPtr<const ContentFormats>;
+    get_formats () const -> glib::RefPtr<const ContentFormats>;
 
     auto
     get_actions () const -> DragAction;
@@ -146,79 +146,79 @@ namespace Gdk
     drag_drop_done (bool success) -> void;
 
     auto
-    get_drag_surface () -> Glib::RefPtr<Surface>;
+    get_drag_surface () -> glib::RefPtr<Surface>;
 
     auto
-    get_drag_surface () const -> Glib::RefPtr<const Surface>;
+    get_drag_surface () const -> glib::RefPtr<const Surface>;
 
     auto
     set_hotspot (int hot_x, int hot_y) -> void;
 
     auto
-    get_content () -> Glib::RefPtr<ContentProvider>;
+    get_content () -> glib::RefPtr<ContentProvider>;
 
     auto
-    get_content () const -> Glib::RefPtr<const ContentProvider>;
+    get_content () const -> glib::RefPtr<const ContentProvider>;
 
     auto
-    get_surface () -> Glib::RefPtr<Surface>;
+    get_surface () -> glib::RefPtr<Surface>;
 
     auto
-    get_surface () const -> Glib::RefPtr<const Surface>;
+    get_surface () const -> glib::RefPtr<const Surface>;
 
     auto
     property_content () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<ContentProvider>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<ContentProvider>>;
 
     auto
     property_device () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Device>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<Device>>;
 
     auto
     property_display () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Display>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<Display>>;
 
     auto
     property_formats () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<ContentFormats>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<ContentFormats>>;
 
     auto
-    property_selected_action () -> Glib::PropertyProxy<DragAction>;
+    property_selected_action () -> glib::PropertyProxy<DragAction>;
 
     auto
     property_selected_action () const
-        -> Glib::PropertyProxy_ReadOnly<DragAction>;
+        -> glib::PropertyProxy_ReadOnly<DragAction>;
 
     auto
-    property_actions () -> Glib::PropertyProxy<DragAction>;
+    property_actions () -> glib::PropertyProxy<DragAction>;
 
     auto
-    property_actions () const -> Glib::PropertyProxy_ReadOnly<DragAction>;
+    property_actions () const -> glib::PropertyProxy_ReadOnly<DragAction>;
 
     auto
     property_surface () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Surface>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<Surface>>;
 
     auto
-    signal_cancel () -> Glib::SignalProxy<void (DragCancelReason)>;
+    signal_cancel () -> glib::SignalProxy<void (DragCancelReason)>;
 
     auto
-    signal_drop_performed () -> Glib::SignalProxy<void ()>;
+    signal_drop_performed () -> glib::SignalProxy<void ()>;
 
     auto
-    signal_dnd_finished () -> Glib::SignalProxy<void ()>;
+    signal_dnd_finished () -> glib::SignalProxy<void ()>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gdk
+} // namespace gdk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GDK_SYMEXPORT auto
-  wrap (GdkDrag* object, bool take_copy = false) -> Glib::RefPtr<Gdk::Drag>;
-} // namespace Glib
+  wrap (GdkDrag* object, bool take_copy = false) -> glib::RefPtr<gdk::Drag>;
+} // namespace glib
 
 #endif

@@ -14,13 +14,13 @@ using GtkVolumeButtonClass = struct _GtkVolumeButtonClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT VolumeButton_Class;
 }
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
   class LIBMM_GTK_SYMEXPORT VolumeButton : public ScaleButton
@@ -50,7 +50,7 @@ namespace Gtk
     static CppClassType volumebutton_class_;
 
   protected:
-    explicit VolumeButton (const Glib::ConstructParams& construct_params);
+    explicit VolumeButton (const glib::ConstructParams& construct_params);
     explicit VolumeButton (GtkVolumeButton* castitem);
 
 #endif
@@ -82,22 +82,22 @@ namespace Gtk
     VolumeButton ();
 
     auto
-    property_use_symbolic () -> Glib::PropertyProxy<bool>;
+    property_use_symbolic () -> glib::PropertyProxy<bool>;
 
     auto
-    property_use_symbolic () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_use_symbolic () const -> glib::PropertyProxy_ReadOnly<bool>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkVolumeButton* object, bool take_copy = false) -> Gtk::VolumeButton*;
-} // namespace Glib
+  wrap (GtkVolumeButton* object, bool take_copy = false) -> gtk::VolumeButton*;
+} // namespace glib
 
 #endif

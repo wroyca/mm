@@ -7,7 +7,7 @@
 
 #include <gio/gio.h>
 
-namespace Gio
+namespace gio
 {
 
 }
@@ -16,22 +16,22 @@ namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GSettingsSchemaKey* object, const bool take_copy) -> RefPtr<Gio::SettingsSchemaKey>
+  wrap (GSettingsSchemaKey* object, const bool take_copy) -> RefPtr<gio::SettingsSchemaKey>
   {
     if (take_copy && object)
       g_settings_schema_key_ref (object);
 
-    return Glib::make_refptr_for_instance<Gio::SettingsSchemaKey> (
-        reinterpret_cast<Gio::SettingsSchemaKey*> (object));
+    return glib::make_refptr_for_instance<gio::SettingsSchemaKey> (
+        reinterpret_cast<gio::SettingsSchemaKey*> (object));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gio
+namespace gio
 {
 
   auto
@@ -70,60 +70,60 @@ namespace Gio
   }
 
   auto
-  SettingsSchemaKey::get_name () const -> Glib::ustring
+  SettingsSchemaKey::get_name () const -> glib::ustring
   {
-    return Glib::convert_const_gchar_ptr_to_ustring (
+    return glib::convert_const_gchar_ptr_to_ustring (
         g_settings_schema_key_get_name (
             const_cast<GSettingsSchemaKey*> (gobj ())));
   }
 
   auto
-  SettingsSchemaKey::get_summary () const -> Glib::ustring
+  SettingsSchemaKey::get_summary () const -> glib::ustring
   {
-    return Glib::convert_const_gchar_ptr_to_ustring (
+    return glib::convert_const_gchar_ptr_to_ustring (
         g_settings_schema_key_get_summary (
             const_cast<GSettingsSchemaKey*> (gobj ())));
   }
 
   auto
-  SettingsSchemaKey::get_description () const -> Glib::ustring
+  SettingsSchemaKey::get_description () const -> glib::ustring
   {
-    return Glib::convert_const_gchar_ptr_to_ustring (
+    return glib::convert_const_gchar_ptr_to_ustring (
         g_settings_schema_key_get_description (
             const_cast<GSettingsSchemaKey*> (gobj ())));
   }
 
   auto
-  SettingsSchemaKey::get_value_type () const -> Glib::VariantType
+  SettingsSchemaKey::get_value_type () const -> glib::VariantType
   {
-    return Glib::wrap (
+    return glib::wrap (
         const_cast<GVariantType*> (g_settings_schema_key_get_value_type (
             const_cast<GSettingsSchemaKey*> (gobj ()))),
         true);
   }
 
   auto
-  SettingsSchemaKey::get_default_value () const -> Glib::VariantBase
+  SettingsSchemaKey::get_default_value () const -> glib::VariantBase
   {
-    return Glib::wrap (g_settings_schema_key_get_default_value (
+    return glib::wrap (g_settings_schema_key_get_default_value (
                            const_cast<GSettingsSchemaKey*> (gobj ())),
                        false);
   }
 
   auto
-  SettingsSchemaKey::get_range () const -> Glib::VariantBase
+  SettingsSchemaKey::get_range () const -> glib::VariantBase
   {
-    return Glib::wrap (g_settings_schema_key_get_range (
+    return glib::wrap (g_settings_schema_key_get_range (
                            const_cast<GSettingsSchemaKey*> (gobj ())),
                        false);
   }
 
   auto
-  SettingsSchemaKey::range_check (const Glib::VariantBase& value) const -> bool
+  SettingsSchemaKey::range_check (const glib::VariantBase& value) const -> bool
   {
     return g_settings_schema_key_range_check (
         const_cast<GSettingsSchemaKey*> (gobj ()),
         const_cast<GVariant*> (value.gobj ()));
   }
 
-} // namespace Gio
+} // namespace gio

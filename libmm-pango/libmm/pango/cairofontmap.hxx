@@ -23,16 +23,16 @@ using PangoCairoFontMapClass = struct _PangoCairoFontMapClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Pango
+namespace pango
 {
   class LIBMM_PANGO_SYMEXPORT CairoFontMap_Class;
 }
 #endif
 
-namespace Pango
+namespace pango
 {
 
-  class LIBMM_PANGO_SYMEXPORT CairoFontMap : public Glib::Interface
+  class LIBMM_PANGO_SYMEXPORT CairoFontMap : public glib::Interface
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -56,7 +56,7 @@ namespace Pango
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
-    explicit CairoFontMap (const Glib::Interface_Class& interface_class);
+    explicit CairoFontMap (const glib::Interface_Class& interface_class);
 
   public:
     explicit CairoFontMap (PangoCairoFontMap* castitem);
@@ -97,13 +97,13 @@ namespace Pango
   private:
   public:
     static auto
-    get_default () -> Glib::RefPtr<FontMap>;
+    get_default () -> glib::RefPtr<FontMap>;
 
     auto
     set_default () -> void;
 
     auto
-    get_font_type () const -> Cairo::FontType;
+    get_font_type () const -> cairo::FontType;
 
     auto
     set_resolution (double dpi) -> void;
@@ -116,15 +116,15 @@ namespace Pango
   protected:
   };
 
-} // namespace Pango
+} // namespace pango
 
-namespace Glib
+namespace glib
 {
 
   LIBMM_PANGO_SYMEXPORT
   auto
-  wrap (PangoCairoFontMap* object, bool take_copy = false) -> Glib::RefPtr<Pango::CairoFontMap>;
+  wrap (PangoCairoFontMap* object, bool take_copy = false) -> glib::RefPtr<pango::CairoFontMap>;
 
-} // namespace Glib
+} // namespace glib
 
 #endif

@@ -16,13 +16,13 @@ using GtkShortcutsShortcutClass = struct _GtkShortcutsShortcutClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT ShortcutsShortcut_Class;
 }
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
   enum class ShortcutType
@@ -39,25 +39,25 @@ namespace Gtk
     GESTURE_SWIPE_RIGHT
   };
 
-} // namespace Gtk
+} // namespace gtk
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_GTK_SYMEXPORT Value<Gtk::ShortcutType>
-    : public Glib::Value_Enum<Gtk::ShortcutType>
+  class LIBMM_GTK_SYMEXPORT Value<gtk::ShortcutType>
+    : public glib::Value_Enum<gtk::ShortcutType>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
   class LIBMM_GTK_SYMEXPORT ShortcutsShortcut : public Widget
@@ -87,7 +87,7 @@ namespace Gtk
     static CppClassType shortcutsshortcut_class_;
 
   protected:
-    explicit ShortcutsShortcut (const Glib::ConstructParams& construct_params);
+    explicit ShortcutsShortcut (const glib::ConstructParams& construct_params);
     explicit ShortcutsShortcut (GtkShortcutsShortcut* castitem);
 
 #endif
@@ -119,74 +119,74 @@ namespace Gtk
     ShortcutsShortcut ();
 
     auto
-    property_accelerator () -> Glib::PropertyProxy<Glib::ustring>;
+    property_accelerator () -> glib::PropertyProxy<glib::ustring>;
 
     auto
     property_accelerator () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+        -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
     auto
-    property_icon () -> Glib::PropertyProxy<Glib::RefPtr<Gio::Icon>>;
+    property_icon () -> glib::PropertyProxy<glib::RefPtr<gio::Icon>>;
 
     auto
     property_icon () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gio::Icon>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<gio::Icon>>;
 
     auto
-    property_icon_set () -> Glib::PropertyProxy<bool>;
+    property_icon_set () -> glib::PropertyProxy<bool>;
 
     auto
-    property_icon_set () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_icon_set () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_title () -> Glib::PropertyProxy<Glib::ustring>;
+    property_title () -> glib::PropertyProxy<glib::ustring>;
 
     auto
-    property_title () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+    property_title () const -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
     auto
-    property_subtitle () -> Glib::PropertyProxy<Glib::ustring>;
+    property_subtitle () -> glib::PropertyProxy<glib::ustring>;
 
     auto
-    property_subtitle () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+    property_subtitle () const -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
     auto
-    property_subtitle_set () -> Glib::PropertyProxy<bool>;
+    property_subtitle_set () -> glib::PropertyProxy<bool>;
 
     auto
-    property_subtitle_set () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_subtitle_set () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_direction () -> Glib::PropertyProxy<TextDirection>;
+    property_direction () -> glib::PropertyProxy<TextDirection>;
 
     auto
-    property_direction () const -> Glib::PropertyProxy_ReadOnly<TextDirection>;
+    property_direction () const -> glib::PropertyProxy_ReadOnly<TextDirection>;
 
     auto
-    property_shortcut_type () -> Glib::PropertyProxy<ShortcutType>;
+    property_shortcut_type () -> glib::PropertyProxy<ShortcutType>;
 
     auto
     property_shortcut_type () const
-        -> Glib::PropertyProxy_ReadOnly<ShortcutType>;
+        -> glib::PropertyProxy_ReadOnly<ShortcutType>;
 
     auto
-    property_action_name () -> Glib::PropertyProxy<Glib::ustring>;
+    property_action_name () -> glib::PropertyProxy<glib::ustring>;
 
     auto
     property_action_name () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+        -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkShortcutsShortcut* object, bool take_copy = false) -> Gtk::ShortcutsShortcut*;
-} // namespace Glib
+  wrap (GtkShortcutsShortcut* object, bool take_copy = false) -> gtk::ShortcutsShortcut*;
+} // namespace glib
 
 #endif

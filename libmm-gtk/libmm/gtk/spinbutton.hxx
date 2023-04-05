@@ -17,13 +17,13 @@ using GtkSpinButtonClass = struct _GtkSpinButtonClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT SpinButton_Class;
 }
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
   enum class SpinType
@@ -37,24 +37,24 @@ namespace Gtk
     USER_DEFINED
   };
 
-} // namespace Gtk
+} // namespace gtk
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_GTK_SYMEXPORT Value<Gtk::SpinType> : public Glib::Value_Enum<Gtk::SpinType>
+  class LIBMM_GTK_SYMEXPORT Value<gtk::SpinType> : public glib::Value_Enum<gtk::SpinType>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
   class LIBMM_GTK_SYMEXPORT Adjustment;
@@ -89,7 +89,7 @@ namespace Gtk
     static CppClassType spinbutton_class_;
 
   protected:
-    explicit SpinButton (const Glib::ConstructParams& construct_params);
+    explicit SpinButton (const glib::ConstructParams& construct_params);
     explicit SpinButton (GtkSpinButton* castitem);
 
 #endif
@@ -126,25 +126,25 @@ namespace Gtk
 
     explicit SpinButton (double climb_rate = 0.0, guint digits = 0);
 
-    explicit SpinButton (const Glib::RefPtr<Adjustment>& adjustment,
+    explicit SpinButton (const glib::RefPtr<Adjustment>& adjustment,
                          double climb_rate = 0.0,
                          guint digits = 0);
 
     auto
-    configure (const Glib::RefPtr<Adjustment>& adjustment,
+    configure (const glib::RefPtr<Adjustment>& adjustment,
                double climb_rate,
                guint digits) -> void;
 
     auto
-    set_adjustment (const Glib::RefPtr<Adjustment>& adjustment) -> void;
+    set_adjustment (const glib::RefPtr<Adjustment>& adjustment) -> void;
     auto
     unset_adjustment () -> void;
 
     auto
-    get_adjustment () -> Glib::RefPtr<Adjustment>;
+    get_adjustment () -> glib::RefPtr<Adjustment>;
 
     auto
-    get_adjustment () const -> Glib::RefPtr<const Adjustment>;
+    get_adjustment () const -> glib::RefPtr<const Adjustment>;
 
     auto
     set_digits (guint digits) -> void;
@@ -215,94 +215,94 @@ namespace Gtk
     };
 
     auto
-    signal_input () -> Glib::SignalProxy<int (double&)>;
+    signal_input () -> glib::SignalProxy<int (double&)>;
 
     auto
-    signal_output () -> Glib::SignalProxy<bool ()>;
+    signal_output () -> glib::SignalProxy<bool ()>;
 
     auto
-    signal_wrapped () -> Glib::SignalProxy<void ()>;
+    signal_wrapped () -> glib::SignalProxy<void ()>;
 
     auto
-    signal_value_changed () -> Glib::SignalProxy<void ()>;
+    signal_value_changed () -> glib::SignalProxy<void ()>;
 
     auto
-    property_adjustment () -> Glib::PropertyProxy<Glib::RefPtr<Adjustment>>;
+    property_adjustment () -> glib::PropertyProxy<glib::RefPtr<Adjustment>>;
 
     auto
     property_adjustment () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Adjustment>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<Adjustment>>;
 
     auto
-    property_climb_rate () -> Glib::PropertyProxy<double>;
+    property_climb_rate () -> glib::PropertyProxy<double>;
 
     auto
-    property_climb_rate () const -> Glib::PropertyProxy_ReadOnly<double>;
+    property_climb_rate () const -> glib::PropertyProxy_ReadOnly<double>;
 
     auto
-    property_digits () -> Glib::PropertyProxy<guint>;
+    property_digits () -> glib::PropertyProxy<guint>;
 
     auto
-    property_digits () const -> Glib::PropertyProxy_ReadOnly<guint>;
+    property_digits () const -> glib::PropertyProxy_ReadOnly<guint>;
 
     auto
-    property_snap_to_ticks () -> Glib::PropertyProxy<bool>;
+    property_snap_to_ticks () -> glib::PropertyProxy<bool>;
 
     auto
-    property_snap_to_ticks () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_snap_to_ticks () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_numeric () -> Glib::PropertyProxy<bool>;
+    property_numeric () -> glib::PropertyProxy<bool>;
 
     auto
-    property_numeric () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_numeric () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_wrap () -> Glib::PropertyProxy<bool>;
+    property_wrap () -> glib::PropertyProxy<bool>;
 
     auto
-    property_wrap () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_wrap () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_update_policy () -> Glib::PropertyProxy<UpdatePolicy>;
+    property_update_policy () -> glib::PropertyProxy<UpdatePolicy>;
 
     auto
     property_update_policy () const
-        -> Glib::PropertyProxy_ReadOnly<UpdatePolicy>;
+        -> glib::PropertyProxy_ReadOnly<UpdatePolicy>;
 
     auto
-    property_value () -> Glib::PropertyProxy<double>;
+    property_value () -> glib::PropertyProxy<double>;
 
     auto
-    property_value () const -> Glib::PropertyProxy_ReadOnly<double>;
+    property_value () const -> glib::PropertyProxy_ReadOnly<double>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_GTK_SYMEXPORT Value<Gtk::SpinButton::UpdatePolicy>
-    : public Glib::Value_Enum<Gtk::SpinButton::UpdatePolicy>
+  class LIBMM_GTK_SYMEXPORT Value<gtk::SpinButton::UpdatePolicy>
+    : public glib::Value_Enum<gtk::SpinButton::UpdatePolicy>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkSpinButton* object, bool take_copy = false) -> Gtk::SpinButton*;
-} // namespace Glib
+  wrap (GtkSpinButton* object, bool take_copy = false) -> gtk::SpinButton*;
+} // namespace glib
 
 #endif

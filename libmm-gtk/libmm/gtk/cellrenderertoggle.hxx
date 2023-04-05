@@ -16,13 +16,13 @@ using GtkCellRendererToggleClass = struct _GtkCellRendererToggleClass;
   #endif
 
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT CellRendererToggle_Class;
 }
   #endif
 
-namespace Gtk
+namespace gtk
 {
 
   class LIBMM_GTK_SYMEXPORT CellRendererToggle : public CellRenderer
@@ -52,7 +52,7 @@ namespace Gtk
     static CppClassType cellrenderertoggle_class_;
 
   protected:
-    explicit CellRendererToggle (const Glib::ConstructParams& construct_params);
+    explicit CellRendererToggle (const glib::ConstructParams& construct_params);
     explicit CellRendererToggle (GtkCellRendererToggle* castitem);
 
   #endif
@@ -102,47 +102,47 @@ namespace Gtk
     set_activatable (bool setting = true) -> void;
 
     auto
-    signal_toggled () -> Glib::SignalProxy<void (const Glib::ustring&)>;
+    signal_toggled () -> glib::SignalProxy<void (const glib::ustring&)>;
 
     auto
-    property_activatable () -> Glib::PropertyProxy<bool>;
+    property_activatable () -> glib::PropertyProxy<bool>;
 
     auto
-    property_activatable () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_activatable () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_active () -> Glib::PropertyProxy<bool>;
+    property_active () -> glib::PropertyProxy<bool>;
 
     auto
-    property_active () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_active () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_inconsistent () -> Glib::PropertyProxy<bool>;
+    property_inconsistent () -> glib::PropertyProxy<bool>;
 
     auto
-    property_inconsistent () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_inconsistent () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_radio () -> Glib::PropertyProxy<bool>;
+    property_radio () -> glib::PropertyProxy<bool>;
 
     auto
-    property_radio () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_radio () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    _property_renderable () -> Glib::PropertyProxy_Base override;
+    _property_renderable () -> glib::PropertyProxy_Base override;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkCellRendererToggle* object, bool take_copy = false) -> Gtk::CellRendererToggle*;
-} // namespace Glib
+  wrap (GtkCellRendererToggle* object, bool take_copy = false) -> gtk::CellRendererToggle*;
+} // namespace glib
 
 #endif
 

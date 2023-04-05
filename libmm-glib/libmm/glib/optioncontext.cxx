@@ -9,7 +9,7 @@
 #include <libmm/glib/exceptionhandler.hxx>
 #include <libmm/glib/utility.hxx>
 
-namespace Glib
+namespace glib
 {
 
   namespace OptionContextPrivate
@@ -118,36 +118,36 @@ namespace Glib
                                    nullptr));
   }
 
-} // namespace Glib
+} // namespace glib
 
 namespace
 {
 }
 
-Glib::OptionError::OptionError (const Code error_code,
+glib::OptionError::OptionError (const Code error_code,
                                 const ustring& error_message)
   : Error (G_OPTION_ERROR, error_code, error_message)
 {
 }
 
-Glib::OptionError::OptionError (GError* gobject)
+glib::OptionError::OptionError (GError* gobject)
   : Error (gobject)
 {
 }
 
 auto
-Glib::OptionError::code () const -> Code
+glib::OptionError::code () const -> Code
 {
   return static_cast<Code> (Error::code ());
 }
 
 auto
-Glib::OptionError::throw_func (GError* gobject) -> void
+glib::OptionError::throw_func (GError* gobject) -> void
 {
   throw OptionError (gobject);
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
@@ -252,4 +252,4 @@ namespace Glib
     g_option_context_set_translation_domain (gobj (), domain.c_str ());
   }
 
-} // namespace Glib
+} // namespace glib

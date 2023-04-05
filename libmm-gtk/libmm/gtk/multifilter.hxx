@@ -16,7 +16,7 @@ using GtkMultiFilterClass = struct _GtkMultiFilterClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT MultiFilter_Class;
 }
@@ -28,7 +28,7 @@ using GtkAnyFilterClass = struct _GtkAnyFilterClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT AnyFilter_Class;
 }
@@ -40,17 +40,17 @@ using GtkEveryFilterClass = struct _GtkEveryFilterClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT EveryFilter_Class;
 }
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
   class LIBMM_GTK_SYMEXPORT MultiFilter : public Filter,
-                                public Gio::ListModel,
+                                public gio::ListModel,
                                 public Buildable
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -70,7 +70,7 @@ namespace Gtk
     static CppClassType multifilter_class_;
 
   protected:
-    explicit MultiFilter (const Glib::ConstructParams& construct_params);
+    explicit MultiFilter (const glib::ConstructParams& construct_params);
     explicit MultiFilter (GtkMultiFilter* castitem);
 
 #endif
@@ -112,16 +112,16 @@ namespace Gtk
 
   public:
     auto
-    append (const Glib::RefPtr<Filter>& filter) -> void;
+    append (const glib::RefPtr<Filter>& filter) -> void;
 
     auto
     remove (guint position) -> void;
 
     auto
-    property_item_type () const -> Glib::PropertyProxy_ReadOnly<GType>;
+    property_item_type () const -> glib::PropertyProxy_ReadOnly<GType>;
 
     auto
-    property_n_items () const -> Glib::PropertyProxy_ReadOnly<unsigned int>;
+    property_n_items () const -> glib::PropertyProxy_ReadOnly<unsigned int>;
 
   public:
   public:
@@ -147,7 +147,7 @@ namespace Gtk
     static CppClassType anyfilter_class_;
 
   protected:
-    explicit AnyFilter (const Glib::ConstructParams& construct_params);
+    explicit AnyFilter (const glib::ConstructParams& construct_params);
     explicit AnyFilter (GtkAnyFilter* castitem);
 
 #endif
@@ -189,7 +189,7 @@ namespace Gtk
 
   public:
     static auto
-    create () -> Glib::RefPtr<AnyFilter>;
+    create () -> glib::RefPtr<AnyFilter>;
 
   public:
   public:
@@ -215,7 +215,7 @@ namespace Gtk
     static CppClassType everyfilter_class_;
 
   protected:
-    explicit EveryFilter (const Glib::ConstructParams& construct_params);
+    explicit EveryFilter (const glib::ConstructParams& construct_params);
     explicit EveryFilter (GtkEveryFilter* castitem);
 
 #endif
@@ -257,31 +257,31 @@ namespace Gtk
 
   public:
     static auto
-    create () -> Glib::RefPtr<EveryFilter>;
+    create () -> glib::RefPtr<EveryFilter>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkMultiFilter* object, bool take_copy = false) -> Glib::RefPtr<Gtk::MultiFilter>;
-} // namespace Glib
+  wrap (GtkMultiFilter* object, bool take_copy = false) -> glib::RefPtr<gtk::MultiFilter>;
+} // namespace glib
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkAnyFilter* object, bool take_copy = false) -> Glib::RefPtr<Gtk::AnyFilter>;
-} // namespace Glib
+  wrap (GtkAnyFilter* object, bool take_copy = false) -> glib::RefPtr<gtk::AnyFilter>;
+} // namespace glib
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkEveryFilter* object, bool take_copy = false) -> Glib::RefPtr<Gtk::EveryFilter>;
-} // namespace Glib
+  wrap (GtkEveryFilter* object, bool take_copy = false) -> glib::RefPtr<gtk::EveryFilter>;
+} // namespace glib
 
 #endif

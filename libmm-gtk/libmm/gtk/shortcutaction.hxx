@@ -16,7 +16,7 @@ using GtkShortcutActionClass = struct _GtkShortcutActionClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT ShortcutAction_Class;
 }
@@ -28,7 +28,7 @@ using GtkNothingActionClass = struct _GtkNothingActionClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT NothingAction_Class;
 }
@@ -40,7 +40,7 @@ using GtkCallbackActionClass = struct _GtkCallbackActionClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT CallbackAction_Class;
 }
@@ -52,7 +52,7 @@ using GtkMnemonicActionClass = struct _GtkMnemonicActionClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT MnemonicAction_Class;
 }
@@ -64,7 +64,7 @@ using GtkActivateActionClass = struct _GtkActivateActionClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT ActivateAction_Class;
 }
@@ -76,7 +76,7 @@ using GtkSignalActionClass = struct _GtkSignalActionClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT SignalAction_Class;
 }
@@ -88,17 +88,17 @@ using GtkNamedActionClass = struct _GtkNamedActionClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT NamedAction_Class;
 }
 #endif
 
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT Widget;
 
-  class LIBMM_GTK_SYMEXPORT ShortcutAction : public Glib::Object
+  class LIBMM_GTK_SYMEXPORT ShortcutAction : public glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -117,7 +117,7 @@ namespace Gtk
     static CppClassType shortcutaction_class_;
 
   protected:
-    explicit ShortcutAction (const Glib::ConstructParams& construct_params);
+    explicit ShortcutAction (const glib::ConstructParams& construct_params);
     explicit ShortcutAction (GtkShortcutAction* castitem);
 
 #endif
@@ -164,15 +164,15 @@ namespace Gtk
     };
 
     static auto
-    parse_string (const Glib::ustring& string) -> Glib::RefPtr<ShortcutAction>;
+    parse_string (const glib::ustring& string) -> glib::RefPtr<ShortcutAction>;
 
     auto
-    to_string () const -> Glib::ustring;
+    to_string () const -> glib::ustring;
 
     auto
     activate (Widget& widget,
               Flags flags = static_cast<Flags> (0),
-              const Glib::VariantBase& args = {}) -> bool;
+              const glib::VariantBase& args = {}) -> bool;
 
   public:
   public:
@@ -198,7 +198,7 @@ namespace Gtk
     static CppClassType nothingaction_class_;
 
   protected:
-    explicit NothingAction (const Glib::ConstructParams& construct_params);
+    explicit NothingAction (const glib::ConstructParams& construct_params);
     explicit NothingAction (GtkNothingAction* castitem);
 
 #endif
@@ -240,7 +240,7 @@ namespace Gtk
 
   public:
     static auto
-    get () -> Glib::RefPtr<NothingAction>;
+    get () -> glib::RefPtr<NothingAction>;
 
   public:
   public:
@@ -266,7 +266,7 @@ namespace Gtk
     static CppClassType callbackaction_class_;
 
   protected:
-    explicit CallbackAction (const Glib::ConstructParams& construct_params);
+    explicit CallbackAction (const glib::ConstructParams& construct_params);
     explicit CallbackAction (GtkCallbackAction* castitem);
 
 #endif
@@ -304,10 +304,10 @@ namespace Gtk
 
   private:
   public:
-    using SlotShortcut = sigc::slot<bool (Widget&, const Glib::VariantBase&)>;
+    using SlotShortcut = sigc::slot<bool (Widget&, const glib::VariantBase&)>;
 
     static auto
-    create (const SlotShortcut& slot) -> Glib::RefPtr<CallbackAction>;
+    create (const SlotShortcut& slot) -> glib::RefPtr<CallbackAction>;
 
   protected:
     explicit CallbackAction (const SlotShortcut& slot);
@@ -336,7 +336,7 @@ namespace Gtk
     static CppClassType mnemonicaction_class_;
 
   protected:
-    explicit MnemonicAction (const Glib::ConstructParams& construct_params);
+    explicit MnemonicAction (const glib::ConstructParams& construct_params);
     explicit MnemonicAction (GtkMnemonicAction* castitem);
 
 #endif
@@ -378,7 +378,7 @@ namespace Gtk
 
   public:
     static auto
-    get () -> Glib::RefPtr<MnemonicAction>;
+    get () -> glib::RefPtr<MnemonicAction>;
 
   public:
   public:
@@ -404,7 +404,7 @@ namespace Gtk
     static CppClassType activateaction_class_;
 
   protected:
-    explicit ActivateAction (const Glib::ConstructParams& construct_params);
+    explicit ActivateAction (const glib::ConstructParams& construct_params);
     explicit ActivateAction (GtkActivateAction* castitem);
 
 #endif
@@ -446,7 +446,7 @@ namespace Gtk
 
   public:
     static auto
-    get () -> Glib::RefPtr<ActivateAction>;
+    get () -> glib::RefPtr<ActivateAction>;
 
   public:
   public:
@@ -472,7 +472,7 @@ namespace Gtk
     static CppClassType signalaction_class_;
 
   protected:
-    explicit SignalAction (const Glib::ConstructParams& construct_params);
+    explicit SignalAction (const glib::ConstructParams& construct_params);
     explicit SignalAction (GtkSignalAction* castitem);
 
 #endif
@@ -510,18 +510,18 @@ namespace Gtk
 
   private:
   protected:
-    explicit SignalAction (const Glib::ustring& signal_name);
+    explicit SignalAction (const glib::ustring& signal_name);
 
   public:
     static auto
-    create (const Glib::ustring& signal_name) -> Glib::RefPtr<SignalAction>;
+    create (const glib::ustring& signal_name) -> glib::RefPtr<SignalAction>;
 
     auto
-    get_signal_name () const -> Glib::ustring;
+    get_signal_name () const -> glib::ustring;
 
     auto
     property_signal_name () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+        -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
   public:
   public:
@@ -547,7 +547,7 @@ namespace Gtk
     static CppClassType namedaction_class_;
 
   protected:
-    explicit NamedAction (const Glib::ConstructParams& construct_params);
+    explicit NamedAction (const glib::ConstructParams& construct_params);
     explicit NamedAction (GtkNamedAction* castitem);
 
 #endif
@@ -585,27 +585,27 @@ namespace Gtk
 
   private:
   protected:
-    explicit NamedAction (const Glib::ustring& action_name);
+    explicit NamedAction (const glib::ustring& action_name);
 
   public:
     static auto
-    create (const Glib::ustring& action_name) -> Glib::RefPtr<NamedAction>;
+    create (const glib::ustring& action_name) -> glib::RefPtr<NamedAction>;
 
     auto
-    get_action_name () const -> Glib::ustring;
+    get_action_name () const -> glib::ustring;
 
     auto
     property_action_name () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+        -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Gtk
+namespace gtk
 {
 
   inline auto
@@ -655,64 +655,64 @@ namespace Gtk
     return (lhs = static_cast<ShortcutAction::Flags> (
                 static_cast<unsigned> (lhs) ^ static_cast<unsigned> (rhs)));
   }
-} // namespace Gtk
+} // namespace gtk
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_GTK_SYMEXPORT Value<Gtk::ShortcutAction::Flags>
-    : public Glib::Value_Flags<Gtk::ShortcutAction::Flags>
+  class LIBMM_GTK_SYMEXPORT Value<gtk::ShortcutAction::Flags>
+    : public glib::Value_Flags<gtk::ShortcutAction::Flags>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkShortcutAction* object, bool take_copy = false) -> Glib::RefPtr<Gtk::ShortcutAction>;
-} // namespace Glib
+  wrap (GtkShortcutAction* object, bool take_copy = false) -> glib::RefPtr<gtk::ShortcutAction>;
+} // namespace glib
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkNothingAction* object, bool take_copy = false) -> Glib::RefPtr<Gtk::NothingAction>;
-} // namespace Glib
+  wrap (GtkNothingAction* object, bool take_copy = false) -> glib::RefPtr<gtk::NothingAction>;
+} // namespace glib
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkCallbackAction* object, bool take_copy = false) -> Glib::RefPtr<Gtk::CallbackAction>;
-} // namespace Glib
+  wrap (GtkCallbackAction* object, bool take_copy = false) -> glib::RefPtr<gtk::CallbackAction>;
+} // namespace glib
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkMnemonicAction* object, bool take_copy = false) -> Glib::RefPtr<Gtk::MnemonicAction>;
-} // namespace Glib
+  wrap (GtkMnemonicAction* object, bool take_copy = false) -> glib::RefPtr<gtk::MnemonicAction>;
+} // namespace glib
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkActivateAction* object, bool take_copy = false) -> Glib::RefPtr<Gtk::ActivateAction>;
-} // namespace Glib
+  wrap (GtkActivateAction* object, bool take_copy = false) -> glib::RefPtr<gtk::ActivateAction>;
+} // namespace glib
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkSignalAction* object, bool take_copy = false) -> Glib::RefPtr<Gtk::SignalAction>;
-} // namespace Glib
+  wrap (GtkSignalAction* object, bool take_copy = false) -> glib::RefPtr<gtk::SignalAction>;
+} // namespace glib
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkNamedAction* object, bool take_copy = false) -> Glib::RefPtr<Gtk::NamedAction>;
-} // namespace Glib
+  wrap (GtkNamedAction* object, bool take_copy = false) -> glib::RefPtr<gtk::NamedAction>;
+} // namespace glib
 
 #endif

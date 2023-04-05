@@ -7,34 +7,34 @@
 
 #include <libmm/glib/class.hxx>
 
-namespace Gtk
+namespace gtk
 {
 
-  class LIBMM_GTK_SYMEXPORT StringSorter_Class : public Glib::Class
+  class LIBMM_GTK_SYMEXPORT StringSorter_Class : public glib::Class
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
     using CppObjectType = StringSorter;
     using BaseObjectType = GtkStringSorter;
     using BaseClassType = GtkStringSorterClass;
-    using CppClassParent = Gtk::Sorter_Class;
+    using CppClassParent = gtk::Sorter_Class;
     using BaseClassParent = GtkSorterClass;
 
     friend class StringSorter;
 #endif
 
     auto
-    init () -> const Glib::Class&;
+    init () -> const glib::Class&;
 
     static auto
     class_init_function (void* g_class, void* class_data) -> void;
 
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
 
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
 #endif

@@ -17,16 +17,16 @@
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Adw
+namespace adw
 {
   class LIBMM_ADW_SYMEXPORT ViewSwitcherTitle_Class;
 }
 #endif
 
-namespace Adw
+namespace adw
 {
 
-  class LIBMM_ADW_SYMEXPORT ViewSwitcherTitle : public Gtk::Widget
+  class LIBMM_ADW_SYMEXPORT ViewSwitcherTitle : public gtk::Widget
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -53,7 +53,7 @@ namespace Adw
     static CppClassType viewswitchertitle_class_;
 
   protected:
-    explicit ViewSwitcherTitle (const Glib::ConstructParams& construct_params);
+    explicit ViewSwitcherTitle (const glib::ConstructParams& construct_params);
     explicit ViewSwitcherTitle (AdwViewSwitcherTitle* castitem);
 
 #endif
@@ -88,10 +88,10 @@ namespace Adw
     get_stack () const -> ViewStack*;
 
     auto
-    get_subtitle () const -> Glib::ustring;
+    get_subtitle () const -> glib::ustring;
 
     auto
-    get_title () const -> Glib::ustring;
+    get_title () const -> glib::ustring;
 
     auto
     get_title_visible () const -> bool;
@@ -103,54 +103,54 @@ namespace Adw
     set_stack (ViewStack* stack) -> void;
 
     auto
-    set_subtitle (const Glib::ustring& subtitle) -> void;
+    set_subtitle (const glib::ustring& subtitle) -> void;
 
     auto
-    set_title (const Glib::ustring& title) -> void;
+    set_title (const glib::ustring& title) -> void;
 
     auto
     set_view_switcher_enabled (bool enabled) -> void;
 
     auto
-    property_stack () -> Glib::PropertyProxy<ViewStack*>;
+    property_stack () -> glib::PropertyProxy<ViewStack*>;
 
     auto
-    property_stack () const -> Glib::PropertyProxy_ReadOnly<ViewStack*>;
+    property_stack () const -> glib::PropertyProxy_ReadOnly<ViewStack*>;
 
     auto
-    property_subtitle () -> Glib::PropertyProxy<Glib::ustring>;
+    property_subtitle () -> glib::PropertyProxy<glib::ustring>;
 
     auto
-    property_subtitle () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+    property_subtitle () const -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
     auto
-    property_title () -> Glib::PropertyProxy<Glib::ustring>;
+    property_title () -> glib::PropertyProxy<glib::ustring>;
 
     auto
-    property_title () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+    property_title () const -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
     auto
-    property_title_visible () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_title_visible () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_view_switcher_enabled () -> Glib::PropertyProxy<bool>;
+    property_view_switcher_enabled () -> glib::PropertyProxy<bool>;
 
     auto
     property_view_switcher_enabled () const
-        -> Glib::PropertyProxy_ReadOnly<bool>;
+        -> glib::PropertyProxy_ReadOnly<bool>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Adw
+} // namespace adw
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (AdwViewSwitcherTitle* object, bool take_copy = false) -> Adw::ViewSwitcherTitle*;
+  wrap (AdwViewSwitcherTitle* object, bool take_copy = false) -> adw::ViewSwitcherTitle*;
 }
 
 #endif

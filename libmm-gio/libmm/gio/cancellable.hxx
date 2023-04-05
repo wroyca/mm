@@ -16,16 +16,16 @@ using GCancellableClass = struct _GCancellableClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gio
+namespace gio
 {
   class LIBMM_GIO_SYMEXPORT Cancellable_Class;
 }
 #endif
 
-namespace Gio
+namespace gio
 {
 
-  class LIBMM_GIO_SYMEXPORT Cancellable : public Glib::Object
+  class LIBMM_GIO_SYMEXPORT Cancellable : public glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -44,7 +44,7 @@ namespace Gio
     static CppClassType cancellable_class_;
 
   protected:
-    explicit Cancellable (const Glib::ConstructParams& construct_params);
+    explicit Cancellable (const glib::ConstructParams& construct_params);
     explicit Cancellable (GCancellable* castitem);
 
 #endif
@@ -88,7 +88,7 @@ namespace Gio
     using SlotCancelledCallback = sigc::slot<void ()>;
 
     static auto
-    create () -> Glib::RefPtr<Cancellable>;
+    create () -> glib::RefPtr<Cancellable>;
 
     auto
     is_cancelled () const -> bool;
@@ -106,7 +106,7 @@ namespace Gio
     cancel () -> void;
 
     static auto
-    get_current () -> Glib::RefPtr<Cancellable>;
+    get_current () -> glib::RefPtr<Cancellable>;
 
     auto
     push_current () -> void;
@@ -124,7 +124,7 @@ namespace Gio
     disconnect (gulong handler_id) -> void;
 
     auto
-    signal_cancelled () -> Glib::SignalProxy<void ()>;
+    signal_cancelled () -> glib::SignalProxy<void ()>;
 
   public:
   public:
@@ -133,14 +133,14 @@ namespace Gio
     on_cancelled () -> void;
   };
 
-} // namespace Gio
+} // namespace gio
 
-namespace Glib
+namespace glib
 {
 
   LIBMM_GIO_SYMEXPORT
   auto
-  wrap (GCancellable* object, bool take_copy = false) -> Glib::RefPtr<Gio::Cancellable>;
-} // namespace Glib
+  wrap (GCancellable* object, bool take_copy = false) -> glib::RefPtr<gio::Cancellable>;
+} // namespace glib
 
 #endif

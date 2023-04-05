@@ -10,42 +10,42 @@
 #include <libmm/gio/slot_async.hxx>
 #include <libmm/glib/error.hxx>
 
-namespace Gio
+namespace gio
 {
 
   auto
   NetworkAddress::parse (const std::string& host_and_port,
-                         const guint16 default_port) -> Glib::RefPtr<NetworkAddress>
+                         const guint16 default_port) -> glib::RefPtr<NetworkAddress>
   {
     GError* error = nullptr;
     auto* address = G_NETWORK_ADDRESS (
         g_network_address_parse (host_and_port.c_str (), default_port, &error));
     if (error)
-      Glib::Error::throw_exception (error);
+      glib::Error::throw_exception (error);
 
-    return Glib::wrap (address);
+    return glib::wrap (address);
   }
 
-} // namespace Gio
+} // namespace gio
 
 namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GNetworkAddress* object, const bool take_copy) -> RefPtr<Gio::NetworkAddress>
+  wrap (GNetworkAddress* object, const bool take_copy) -> RefPtr<gio::NetworkAddress>
   {
-    return Glib::make_refptr_for_instance<Gio::NetworkAddress> (
-        dynamic_cast<Gio::NetworkAddress*> (
+    return glib::make_refptr_for_instance<gio::NetworkAddress> (
+        dynamic_cast<gio::NetworkAddress*> (
             wrap_auto ((GObject*) object, take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gio
+namespace gio
 {
 
   auto
@@ -71,7 +71,7 @@ namespace Gio
   }
 
   auto
-  NetworkAddress_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  NetworkAddress_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new NetworkAddress ((GNetworkAddress*) object);
   }
@@ -83,7 +83,7 @@ namespace Gio
     return gobj ();
   }
 
-  NetworkAddress::NetworkAddress (const Glib::ConstructParams& construct_params)
+  NetworkAddress::NetworkAddress (const glib::ConstructParams& construct_params)
     : Object (construct_params)
   {
   }
@@ -126,7 +126,7 @@ namespace Gio
   NetworkAddress::NetworkAddress (const std::string& hostname,
                                   const guint16 port)
     : ObjectBase (nullptr),
-      Object (Glib::ConstructParams (networkaddress_class_.init (),
+      Object (glib::ConstructParams (networkaddress_class_.init (),
                                      "hostname",
                                      hostname.c_str (),
                                      "port",
@@ -136,16 +136,16 @@ namespace Gio
   }
 
   auto
-  NetworkAddress::create (const std::string& hostname, const guint16 port) -> Glib::RefPtr<NetworkAddress>
+  NetworkAddress::create (const std::string& hostname, const guint16 port) -> glib::RefPtr<NetworkAddress>
   {
-    return Glib::make_refptr_for_instance<NetworkAddress> (
+    return glib::make_refptr_for_instance<NetworkAddress> (
         new NetworkAddress (hostname, port));
   }
 
   auto
   NetworkAddress::get_hostname () const -> std::string
   {
-    return Glib::convert_const_gchar_ptr_to_stdstring (
+    return glib::convert_const_gchar_ptr_to_stdstring (
         g_network_address_get_hostname (
             const_cast<GNetworkAddress*> (gobj ())));
   }
@@ -159,26 +159,26 @@ namespace Gio
   auto
   NetworkAddress::get_scheme () const -> std::string
   {
-    return Glib::convert_const_gchar_ptr_to_stdstring (
+    return glib::convert_const_gchar_ptr_to_stdstring (
         g_network_address_get_scheme (const_cast<GNetworkAddress*> (gobj ())));
   }
 
   auto
-  NetworkAddress::property_hostname () const -> Glib::PropertyProxy_ReadOnly<std::string>
+  NetworkAddress::property_hostname () const -> glib::PropertyProxy_ReadOnly<std::string>
   {
     return {this, "hostname"};
   }
 
   auto
-  NetworkAddress::property_port () const -> Glib::PropertyProxy_ReadOnly<guint>
+  NetworkAddress::property_port () const -> glib::PropertyProxy_ReadOnly<guint>
   {
     return {this, "port"};
   }
 
   auto
-  NetworkAddress::property_scheme () const -> Glib::PropertyProxy_ReadOnly<std::string>
+  NetworkAddress::property_scheme () const -> glib::PropertyProxy_ReadOnly<std::string>
   {
     return {this, "scheme"};
   }
 
-} // namespace Gio
+} // namespace gio

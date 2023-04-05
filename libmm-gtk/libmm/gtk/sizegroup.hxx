@@ -17,16 +17,16 @@ using GtkSizeGroupClass = struct _GtkSizeGroupClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT SizeGroup_Class;
 }
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
-  class LIBMM_GTK_SYMEXPORT SizeGroup : public Glib::Object,
+  class LIBMM_GTK_SYMEXPORT SizeGroup : public glib::Object,
                               public Buildable
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -46,7 +46,7 @@ namespace Gtk
     static CppClassType sizegroup_class_;
 
   protected:
-    explicit SizeGroup (const Glib::ConstructParams& construct_params);
+    explicit SizeGroup (const glib::ConstructParams& construct_params);
     explicit SizeGroup (GtkSizeGroup* castitem);
 
 #endif
@@ -97,7 +97,7 @@ namespace Gtk
 
   public:
     static auto
-    create (Mode mode) -> Glib::RefPtr<SizeGroup>;
+    create (Mode mode) -> glib::RefPtr<SizeGroup>;
 
     auto
     set_mode (Mode mode) -> void;
@@ -118,38 +118,38 @@ namespace Gtk
     get_widgets () const -> std::vector<const Widget*>;
 
     auto
-    property_mode () -> Glib::PropertyProxy<Mode>;
+    property_mode () -> glib::PropertyProxy<Mode>;
 
     auto
-    property_mode () const -> Glib::PropertyProxy_ReadOnly<Mode>;
+    property_mode () const -> glib::PropertyProxy_ReadOnly<Mode>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_GTK_SYMEXPORT Value<Gtk::SizeGroup::Mode>
-    : public Glib::Value_Enum<Gtk::SizeGroup::Mode>
+  class LIBMM_GTK_SYMEXPORT Value<gtk::SizeGroup::Mode>
+    : public glib::Value_Enum<gtk::SizeGroup::Mode>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkSizeGroup* object, bool take_copy = false) -> Glib::RefPtr<Gtk::SizeGroup>;
-} // namespace Glib
+  wrap (GtkSizeGroup* object, bool take_copy = false) -> glib::RefPtr<gtk::SizeGroup>;
+} // namespace glib
 
 #endif

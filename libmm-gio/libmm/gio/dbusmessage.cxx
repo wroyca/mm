@@ -12,13 +12,13 @@
   #include <libmm/gio/unixfdlist.hxx>
 #endif
 
-namespace Gio::DBus
+namespace gio::DBus
 {
 
   using ByteOrder = Message::ByteOrder;
 
   auto
-  Message::get_body (Glib::VariantBase& value) const -> void
+  Message::get_body (glib::VariantBase& value) const -> void
   {
     const GVariant* const g_value =
         g_dbus_message_get_body (const_cast<GDBusMessage*> (gobj ()));
@@ -30,7 +30,7 @@ namespace Gio::DBus
   }
 
   auto
-  Message::get_header (Glib::VariantBase& value,
+  Message::get_header (glib::VariantBase& value,
                        MessageHeaderField header_field) const -> void
   {
     const GVariant* const g_value = g_dbus_message_get_header (
@@ -51,32 +51,32 @@ namespace Gio::DBus
   }
 #endif
 
-} // namespace Gio::DBus
+} // namespace gio::DBus
 
 namespace
 {
 }
 
 auto
-Glib::Value<Gio::DBus::CapabilityFlags>::value_type () -> GType
+glib::Value<gio::DBus::CapabilityFlags>::value_type () -> GType
 {
   return g_dbus_capability_flags_get_type ();
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GDBusMessage* object, const bool take_copy) -> RefPtr<Gio::DBus::Message>
+  wrap (GDBusMessage* object, const bool take_copy) -> RefPtr<gio::DBus::Message>
   {
-    return Glib::make_refptr_for_instance<Gio::DBus::Message> (
-        dynamic_cast<Gio::DBus::Message*> (
+    return glib::make_refptr_for_instance<gio::DBus::Message> (
+        dynamic_cast<gio::DBus::Message*> (
             wrap_auto ((GObject*) object, take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gio::DBus
+namespace gio::DBus
 {
 
   auto
@@ -100,7 +100,7 @@ namespace Gio::DBus
   }
 
   auto
-  Message_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  Message_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new Message ((GDBusMessage*) object);
   }
@@ -112,7 +112,7 @@ namespace Gio::DBus
     return gobj ();
   }
 
-  Message::Message (const Glib::ConstructParams& construct_params)
+  Message::Message (const glib::ConstructParams& construct_params)
     : Object (construct_params)
   {
   }
@@ -152,33 +152,33 @@ namespace Gio::DBus
 
   Message::Message ()
     : ObjectBase (nullptr),
-      Object (Glib::ConstructParams (message_class_.init ()))
+      Object (glib::ConstructParams (message_class_.init ()))
   {
   }
 
   auto
-  Message::create () -> Glib::RefPtr<Message>
+  Message::create () -> glib::RefPtr<Message>
   {
-    return Glib::make_refptr_for_instance<Message> (new Message ());
+    return glib::make_refptr_for_instance<Message> (new Message ());
   }
 
   auto
-  Message::create_signal (const Glib::ustring& path,
-                          const Glib::ustring& iface,
-                          const Glib::ustring& signal) -> Glib::RefPtr<Message>
+  Message::create_signal (const glib::ustring& path,
+                          const glib::ustring& iface,
+                          const glib::ustring& signal) -> glib::RefPtr<Message>
   {
-    return Glib::wrap (g_dbus_message_new_signal (path.c_str (),
+    return glib::wrap (g_dbus_message_new_signal (path.c_str (),
                                                   iface.c_str (),
                                                   signal.c_str ()));
   }
 
   auto
-  Message::create_method_call (const Glib::ustring& name,
-                               const Glib::ustring& path,
-                               const Glib::ustring& iface,
-                               const Glib::ustring& method) -> Glib::RefPtr<Message>
+  Message::create_method_call (const glib::ustring& name,
+                               const glib::ustring& path,
+                               const glib::ustring& iface,
+                               const glib::ustring& method) -> glib::RefPtr<Message>
   {
-    return Glib::wrap (g_dbus_message_new_method_call (name.c_str (),
+    return glib::wrap (g_dbus_message_new_method_call (name.c_str (),
                                                        path.c_str (),
                                                        iface.c_str (),
                                                        method.c_str ()));
@@ -186,20 +186,20 @@ namespace Gio::DBus
 
   auto
   Message::create_method_reply (
-      const Glib::RefPtr<Message>& method_call_message) -> Glib::RefPtr<Message>
+      const glib::RefPtr<Message>& method_call_message) -> glib::RefPtr<Message>
   {
-    return Glib::wrap (
-        g_dbus_message_new_method_reply (Glib::unwrap (method_call_message)));
+    return glib::wrap (
+        g_dbus_message_new_method_reply (glib::unwrap (method_call_message)));
   }
 
   auto
   Message::create_method_error_literal (
-      const Glib::RefPtr<const Message>& method_call_message,
-      const Glib::ustring& error_name,
-      const Glib::ustring& error_message) -> Glib::RefPtr<Message>
+      const glib::RefPtr<const Message>& method_call_message,
+      const glib::ustring& error_name,
+      const glib::ustring& error_message) -> glib::RefPtr<Message>
   {
-    return Glib::wrap (g_dbus_message_new_method_error_literal (
-        const_cast<GDBusMessage*> (Glib::unwrap (method_call_message)),
+    return glib::wrap (g_dbus_message_new_method_error_literal (
+        const_cast<GDBusMessage*> (glib::unwrap (method_call_message)),
         error_name.c_str (),
         error_message.c_str ()));
   }
@@ -207,23 +207,23 @@ namespace Gio::DBus
   auto
   Message::create_from_blob (const guchar* blob,
                              const gsize blob_len,
-                             CapabilityFlags capabilities) -> Glib::RefPtr<Message>
+                             CapabilityFlags capabilities) -> glib::RefPtr<Message>
   {
     GError* gerror = nullptr;
-    auto retvalue = Glib::wrap (g_dbus_message_new_from_blob (
+    auto retvalue = glib::wrap (g_dbus_message_new_from_blob (
         const_cast<guchar*> (blob),
         blob_len,
         static_cast<GDBusCapabilityFlags> (capabilities),
         &gerror));
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
   auto
-  Message::print (const guint indent) -> Glib::ustring
+  Message::print (const guint indent) -> glib::ustring
   {
-    return Glib::convert_return_gchar_ptr_to_ustring (
+    return glib::convert_return_gchar_ptr_to_ustring (
         g_dbus_message_print (gobj (), indent));
   }
 
@@ -240,13 +240,13 @@ namespace Gio::DBus
   }
 
   auto
-  Message::copy () const -> Glib::RefPtr<Message>
+  Message::copy () const -> glib::RefPtr<Message>
   {
     GError* gerror = nullptr;
-    auto retvalue = Glib::wrap (
+    auto retvalue = glib::wrap (
         g_dbus_message_copy (const_cast<GDBusMessage*> (gobj ()), &gerror));
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
@@ -305,16 +305,16 @@ namespace Gio::DBus
   }
 
   auto
-  Message::set_body (const Glib::VariantBase& body) -> void
+  Message::set_body (const glib::VariantBase& body) -> void
   {
     g_dbus_message_set_body (gobj (), const_cast<GVariant*> (body.gobj ()));
   }
 
 #ifdef G_OS_UNIX
   auto
-  Message::get_unix_fd_list () -> Glib::RefPtr<UnixFDList>
+  Message::get_unix_fd_list () -> glib::RefPtr<UnixFDList>
   {
-    auto retvalue = Glib::wrap (g_dbus_message_get_unix_fd_list (gobj ()));
+    auto retvalue = glib::wrap (g_dbus_message_get_unix_fd_list (gobj ()));
     if (retvalue)
       retvalue->reference ();
     return retvalue;
@@ -323,7 +323,7 @@ namespace Gio::DBus
 
 #ifdef G_OS_UNIX
   auto
-  Message::get_unix_fd_list () const -> Glib::RefPtr<const UnixFDList>
+  Message::get_unix_fd_list () const -> glib::RefPtr<const UnixFDList>
   {
     return const_cast<Message*> (this)->get_unix_fd_list ();
   }
@@ -331,9 +331,9 @@ namespace Gio::DBus
 
 #ifdef G_OS_UNIX
   void
-  Message::set_unix_fd_list (const Glib::RefPtr<UnixFDList>& fd_list)
+  Message::set_unix_fd_list (const glib::RefPtr<UnixFDList>& fd_list)
   {
-    g_dbus_message_set_unix_fd_list (gobj (), Glib::unwrap (fd_list));
+    g_dbus_message_set_unix_fd_list (gobj (), glib::unwrap (fd_list));
   }
 #endif
 
@@ -352,7 +352,7 @@ namespace Gio::DBus
 
   auto
   Message::set_header (MessageHeaderField header_field,
-                       const Glib::VariantBase& value) -> void
+                       const glib::VariantBase& value) -> void
   {
     g_dbus_message_set_header (
         gobj (),
@@ -363,72 +363,72 @@ namespace Gio::DBus
   auto
   Message::get_header_fields () const -> std::vector<guchar>
   {
-    return Glib::ArrayHandler<guchar>::array_to_vector (
+    return glib::ArrayHandler<guchar>::array_to_vector (
         g_dbus_message_get_header_fields (const_cast<GDBusMessage*> (gobj ())),
-        Glib::OWNERSHIP_SHALLOW);
+        glib::OWNERSHIP_SHALLOW);
   }
 
   auto
-  Message::get_destination () const -> Glib::ustring
+  Message::get_destination () const -> glib::ustring
   {
-    return Glib::convert_const_gchar_ptr_to_ustring (
+    return glib::convert_const_gchar_ptr_to_ustring (
         g_dbus_message_get_destination (const_cast<GDBusMessage*> (gobj ())));
   }
 
   auto
-  Message::set_destination (const Glib::ustring& value) -> void
+  Message::set_destination (const glib::ustring& value) -> void
   {
     g_dbus_message_set_destination (gobj (), value.c_str ());
   }
 
   auto
-  Message::get_error_name () const -> Glib::ustring
+  Message::get_error_name () const -> glib::ustring
   {
-    return Glib::convert_const_gchar_ptr_to_ustring (
+    return glib::convert_const_gchar_ptr_to_ustring (
         g_dbus_message_get_error_name (const_cast<GDBusMessage*> (gobj ())));
   }
 
   auto
-  Message::set_error_name (const Glib::ustring& value) -> void
+  Message::set_error_name (const glib::ustring& value) -> void
   {
     g_dbus_message_set_error_name (gobj (), value.c_str ());
   }
 
   auto
-  Message::get_interface () const -> Glib::ustring
+  Message::get_interface () const -> glib::ustring
   {
-    return Glib::convert_const_gchar_ptr_to_ustring (
+    return glib::convert_const_gchar_ptr_to_ustring (
         g_dbus_message_get_interface (const_cast<GDBusMessage*> (gobj ())));
   }
 
   auto
-  Message::set_interface (const Glib::ustring& value) -> void
+  Message::set_interface (const glib::ustring& value) -> void
   {
     g_dbus_message_set_interface (gobj (), value.c_str ());
   }
 
   auto
-  Message::get_member () const -> Glib::ustring
+  Message::get_member () const -> glib::ustring
   {
-    return Glib::convert_const_gchar_ptr_to_ustring (
+    return glib::convert_const_gchar_ptr_to_ustring (
         g_dbus_message_get_member (const_cast<GDBusMessage*> (gobj ())));
   }
 
   auto
-  Message::set_member (const Glib::ustring& value) -> void
+  Message::set_member (const glib::ustring& value) -> void
   {
     g_dbus_message_set_member (gobj (), value.c_str ());
   }
 
   auto
-  Message::get_path () const -> Glib::ustring
+  Message::get_path () const -> glib::ustring
   {
-    return Glib::convert_const_gchar_ptr_to_ustring (
+    return glib::convert_const_gchar_ptr_to_ustring (
         g_dbus_message_get_path (const_cast<GDBusMessage*> (gobj ())));
   }
 
   auto
-  Message::set_path (const Glib::ustring& value) -> void
+  Message::set_path (const glib::ustring& value) -> void
   {
     g_dbus_message_set_path (gobj (), value.c_str ());
   }
@@ -447,35 +447,35 @@ namespace Gio::DBus
   }
 
   auto
-  Message::get_sender () const -> Glib::ustring
+  Message::get_sender () const -> glib::ustring
   {
-    return Glib::convert_const_gchar_ptr_to_ustring (
+    return glib::convert_const_gchar_ptr_to_ustring (
         g_dbus_message_get_sender (const_cast<GDBusMessage*> (gobj ())));
   }
 
   auto
-  Message::set_sender (const Glib::ustring& value) -> void
+  Message::set_sender (const glib::ustring& value) -> void
   {
     g_dbus_message_set_sender (gobj (), value.c_str ());
   }
 
   auto
-  Message::get_signature () const -> Glib::ustring
+  Message::get_signature () const -> glib::ustring
   {
-    return Glib::convert_const_gchar_ptr_to_ustring (
+    return glib::convert_const_gchar_ptr_to_ustring (
         g_dbus_message_get_signature (const_cast<GDBusMessage*> (gobj ())));
   }
 
   auto
-  Message::set_signature (const Glib::ustring& value) -> void
+  Message::set_signature (const glib::ustring& value) -> void
   {
     g_dbus_message_set_signature (gobj (), value.c_str ());
   }
 
   auto
-  Message::get_arg0 () const -> Glib::ustring
+  Message::get_arg0 () const -> glib::ustring
   {
-    return Glib::convert_const_gchar_ptr_to_ustring (
+    return glib::convert_const_gchar_ptr_to_ustring (
         g_dbus_message_get_arg0 (const_cast<GDBusMessage*> (gobj ())));
   }
 
@@ -488,7 +488,7 @@ namespace Gio::DBus
         blob_len,
         &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
@@ -502,7 +502,7 @@ namespace Gio::DBus
         static_cast<GDBusCapabilityFlags> (capabilities),
         &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
@@ -512,13 +512,13 @@ namespace Gio::DBus
     GError* gerror = nullptr;
     g_dbus_message_to_gerror (gobj (), &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
   }
 
   auto
-  Message::property_locked () const -> Glib::PropertyProxy_ReadOnly<bool>
+  Message::property_locked () const -> glib::PropertyProxy_ReadOnly<bool>
   {
     return {this, "locked"};
   }
 
-} // namespace Gio::DBus
+} // namespace gio::DBus

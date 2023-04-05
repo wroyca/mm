@@ -5,7 +5,7 @@
 #include <libmm/adw/comborow.hxx>
 #include <libmm/adw/comborow_p.hxx>
 
-namespace Adw
+namespace adw
 {
 
 }
@@ -14,23 +14,23 @@ namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (AdwComboRow* object, bool take_copy) -> Adw::ComboRow*
+  wrap (AdwComboRow* object, bool take_copy) -> adw::ComboRow*
   {
-    return dynamic_cast<Adw::ComboRow*> (
-        Glib::wrap_auto ((GObject*) (object), take_copy));
+    return dynamic_cast<adw::ComboRow*> (
+        glib::wrap_auto ((GObject*) (object), take_copy));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Adw
+namespace adw
 {
 
   auto
-  ComboRow_Class::init () -> const Glib::Class&
+  ComboRow_Class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -50,30 +50,30 @@ namespace Adw
   }
 
   auto
-  ComboRow_Class::wrap_new (GObject* o) -> Glib::ObjectBase*
+  ComboRow_Class::wrap_new (GObject* o) -> glib::ObjectBase*
   {
     return manage (new ComboRow ((AdwComboRow*) (o)));
   }
 
-  ComboRow::ComboRow (const Glib::ConstructParams& construct_params)
-    : Adw::ActionRow (construct_params)
+  ComboRow::ComboRow (const glib::ConstructParams& construct_params)
+    : adw::ActionRow (construct_params)
   {
   }
 
   ComboRow::ComboRow (AdwComboRow* castitem)
-    : Adw::ActionRow ((AdwActionRow*) (castitem))
+    : adw::ActionRow ((AdwActionRow*) (castitem))
   {
   }
 
   ComboRow::ComboRow (ComboRow&& src) noexcept
-    : Adw::ActionRow (std::move (src))
+    : adw::ActionRow (std::move (src))
   {
   }
 
   auto
   ComboRow::operator= (ComboRow&& src) noexcept -> ComboRow&
   {
-    Adw::ActionRow::operator= (std::move (src));
+    adw::ActionRow::operator= (std::move (src));
     return *this;
   }
 
@@ -97,15 +97,15 @@ namespace Adw
   }
 
   ComboRow::ComboRow ()
-    : Glib::ObjectBase (nullptr),
-      Adw::ActionRow (Glib::ConstructParams (comborow_class_.init ()))
+    : glib::ObjectBase (nullptr),
+      adw::ActionRow (glib::ConstructParams (comborow_class_.init ()))
   {
   }
 
   auto
-  ComboRow::get_expression () const -> Glib::RefPtr<Gtk::Expression<Glib::ustring>>
+  ComboRow::get_expression () const -> glib::RefPtr<gtk::Expression<glib::ustring>>
   {
-    auto retvalue = Glib::wrap<Glib::ustring> (
+    auto retvalue = glib::wrap<glib::ustring> (
         adw_combo_row_get_expression (const_cast<AdwComboRow*> (gobj ())));
     if (retvalue)
       retvalue->reference ();
@@ -113,9 +113,9 @@ namespace Adw
   }
 
   auto
-  ComboRow::get_factory () const -> Glib::RefPtr<Gtk::ListItemFactory>
+  ComboRow::get_factory () const -> glib::RefPtr<gtk::ListItemFactory>
   {
-    auto retvalue = Glib::wrap (
+    auto retvalue = glib::wrap (
         adw_combo_row_get_factory (const_cast<AdwComboRow*> (gobj ())));
     if (retvalue)
       retvalue->reference ();
@@ -123,9 +123,9 @@ namespace Adw
   }
 
   auto
-  ComboRow::get_list_factory () const -> Glib::RefPtr<Gtk::ListItemFactory>
+  ComboRow::get_list_factory () const -> glib::RefPtr<gtk::ListItemFactory>
   {
-    auto retvalue = Glib::wrap (
+    auto retvalue = glib::wrap (
         adw_combo_row_get_list_factory (const_cast<AdwComboRow*> (gobj ())));
     if (retvalue)
       retvalue->reference ();
@@ -133,9 +133,9 @@ namespace Adw
   }
 
   auto
-  ComboRow::get_model () const -> Glib::RefPtr<Gio::ListModel>
+  ComboRow::get_model () const -> glib::RefPtr<gio::ListModel>
   {
-    auto retvalue = Glib::wrap (
+    auto retvalue = glib::wrap (
         adw_combo_row_get_model (const_cast<AdwComboRow*> (gobj ())));
     if (retvalue)
       retvalue->reference ();
@@ -149,10 +149,10 @@ namespace Adw
   }
 
   auto
-  ComboRow::get_selected_item () const -> Glib::RefPtr<Glib::ObjectBase>
+  ComboRow::get_selected_item () const -> glib::RefPtr<glib::ObjectBase>
   {
-    auto retvalue = Glib::make_refptr_for_instance<Glib::ObjectBase> (
-        Glib::wrap_auto (G_OBJECT (adw_combo_row_get_selected_item (
+    auto retvalue = glib::make_refptr_for_instance<glib::ObjectBase> (
+        glib::wrap_auto (G_OBJECT (adw_combo_row_get_selected_item (
             const_cast<AdwComboRow*> (gobj ())))));
     if (retvalue)
       retvalue->reference ();
@@ -166,15 +166,15 @@ namespace Adw
   }
 
   auto
-  ComboRow::set_factory (const Glib::RefPtr<Gtk::ListItemFactory>& factory) -> void
+  ComboRow::set_factory (const glib::RefPtr<gtk::ListItemFactory>& factory) -> void
   {
-    adw_combo_row_set_factory (gobj (), Glib::unwrap (factory));
+    adw_combo_row_set_factory (gobj (), glib::unwrap (factory));
   }
 
   auto
-  ComboRow::set_list_factory (const Glib::RefPtr<Gtk::ListItemFactory>& factory) -> void
+  ComboRow::set_list_factory (const glib::RefPtr<gtk::ListItemFactory>& factory) -> void
   {
-    adw_combo_row_set_list_factory (gobj (), Glib::unwrap (factory));
+    adw_combo_row_set_list_factory (gobj (), glib::unwrap (factory));
   }
 
   auto
@@ -192,7 +192,7 @@ namespace Adw
 
   auto
   ComboRow::set_expression (
-      const Glib::RefPtr<Gtk::Expression<Glib::ustring>>& expression) -> void
+      const glib::RefPtr<gtk::Expression<glib::ustring>>& expression) -> void
   {
     adw_combo_row_set_expression (
         gobj (),
@@ -200,134 +200,134 @@ namespace Adw
   }
 
   auto
-  ComboRow::set_model (const Glib::RefPtr<Gio::ListModel>& model) -> void
+  ComboRow::set_model (const glib::RefPtr<gio::ListModel>& model) -> void
   {
-    adw_combo_row_set_model (gobj (), Glib::unwrap (model));
+    adw_combo_row_set_model (gobj (), glib::unwrap (model));
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<
-          Glib::RefPtr<Gtk::Expression<Glib::ustring>>>::value,
-      "Type Glib::RefPtr<Gtk::Expression<Glib::ustring>> cannot be used in "
+      glib::Traits::ValueCompatibleWithWrapProperty<
+          glib::RefPtr<gtk::Expression<glib::ustring>>>::value,
+      "Type glib::RefPtr<gtk::Expression<glib::ustring>> cannot be used in "
       "_WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  ComboRow::property_expression () -> Glib::PropertyProxy<Glib::RefPtr<Gtk::Expression<Glib::ustring>>>
+  ComboRow::property_expression () -> glib::PropertyProxy<glib::RefPtr<gtk::Expression<glib::ustring>>>
   {
-    return Glib::PropertyProxy<Glib::RefPtr<Gtk::Expression<Glib::ustring>>> (
+    return glib::PropertyProxy<glib::RefPtr<gtk::Expression<glib::ustring>>> (
         this,
         "expression");
   }
 
   auto
-  ComboRow::property_expression () const -> Glib::PropertyProxy_ReadOnly<
-      Glib::RefPtr<Gtk::Expression<Glib::ustring>>>
+  ComboRow::property_expression () const -> glib::PropertyProxy_ReadOnly<
+      glib::RefPtr<gtk::Expression<glib::ustring>>>
   {
-    return Glib::PropertyProxy_ReadOnly<
-        Glib::RefPtr<Gtk::Expression<Glib::ustring>>> (this, "expression");
+    return glib::PropertyProxy_ReadOnly<
+        glib::RefPtr<gtk::Expression<glib::ustring>>> (this, "expression");
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<
-          Glib::RefPtr<Glib::ObjectBase>>::value,
-      "Type Glib::RefPtr<Glib::ObjectBase> cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      glib::Traits::ValueCompatibleWithWrapProperty<
+          glib::RefPtr<glib::ObjectBase>>::value,
+      "Type glib::RefPtr<glib::ObjectBase> cannot be used in _WRAP_PROPERTY. "
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  ComboRow::property_selected_item () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Glib::ObjectBase>>
+  ComboRow::property_selected_item () const -> glib::PropertyProxy_ReadOnly<glib::RefPtr<glib::ObjectBase>>
   {
-    return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Glib::ObjectBase>> (
+    return glib::PropertyProxy_ReadOnly<glib::RefPtr<glib::ObjectBase>> (
         this,
         "selected-item");
   }
 
   auto
-  ComboRow::property_selected () -> Glib::PropertyProxy<guint>
+  ComboRow::property_selected () -> glib::PropertyProxy<guint>
   {
-    return Glib::PropertyProxy<guint> (this, "selected");
+    return glib::PropertyProxy<guint> (this, "selected");
   }
 
   auto
-  ComboRow::property_selected () const -> Glib::PropertyProxy_ReadOnly<guint>
+  ComboRow::property_selected () const -> glib::PropertyProxy_ReadOnly<guint>
   {
-    return Glib::PropertyProxy_ReadOnly<guint> (this, "selected");
+    return glib::PropertyProxy_ReadOnly<guint> (this, "selected");
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<
-          Glib::RefPtr<Gtk::ListItemFactory>>::value,
-      "Type Glib::RefPtr<Gtk::ListItemFactory> cannot be used in "
+      glib::Traits::ValueCompatibleWithWrapProperty<
+          glib::RefPtr<gtk::ListItemFactory>>::value,
+      "Type glib::RefPtr<gtk::ListItemFactory> cannot be used in "
       "_WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  ComboRow::property_factory () -> Glib::PropertyProxy<Glib::RefPtr<Gtk::ListItemFactory>>
+  ComboRow::property_factory () -> glib::PropertyProxy<glib::RefPtr<gtk::ListItemFactory>>
   {
-    return Glib::PropertyProxy<Glib::RefPtr<Gtk::ListItemFactory>> (this,
+    return glib::PropertyProxy<glib::RefPtr<gtk::ListItemFactory>> (this,
                                                                     "factory");
   }
 
   auto
-  ComboRow::property_factory () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gtk::ListItemFactory>>
+  ComboRow::property_factory () const -> glib::PropertyProxy_ReadOnly<glib::RefPtr<gtk::ListItemFactory>>
   {
-    return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gtk::ListItemFactory>> (
+    return glib::PropertyProxy_ReadOnly<glib::RefPtr<gtk::ListItemFactory>> (
         this,
         "factory");
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<
-          Glib::RefPtr<Gtk::ListItemFactory>>::value,
-      "Type Glib::RefPtr<Gtk::ListItemFactory> cannot be used in "
+      glib::Traits::ValueCompatibleWithWrapProperty<
+          glib::RefPtr<gtk::ListItemFactory>>::value,
+      "Type glib::RefPtr<gtk::ListItemFactory> cannot be used in "
       "_WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  ComboRow::property_list_factory () -> Glib::PropertyProxy<Glib::RefPtr<Gtk::ListItemFactory>>
+  ComboRow::property_list_factory () -> glib::PropertyProxy<glib::RefPtr<gtk::ListItemFactory>>
   {
-    return Glib::PropertyProxy<Glib::RefPtr<Gtk::ListItemFactory>> (
+    return glib::PropertyProxy<glib::RefPtr<gtk::ListItemFactory>> (
         this,
         "list-factory");
   }
 
   auto
-  ComboRow::property_list_factory () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gtk::ListItemFactory>>
+  ComboRow::property_list_factory () const -> glib::PropertyProxy_ReadOnly<glib::RefPtr<gtk::ListItemFactory>>
   {
-    return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gtk::ListItemFactory>> (
+    return glib::PropertyProxy_ReadOnly<glib::RefPtr<gtk::ListItemFactory>> (
         this,
         "list-factory");
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<
-          Glib::RefPtr<Gio::ListModel>>::value,
-      "Type Glib::RefPtr<Gio::ListModel> cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      glib::Traits::ValueCompatibleWithWrapProperty<
+          glib::RefPtr<gio::ListModel>>::value,
+      "Type glib::RefPtr<gio::ListModel> cannot be used in _WRAP_PROPERTY. "
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  ComboRow::property_model () -> Glib::PropertyProxy<Glib::RefPtr<Gio::ListModel>>
+  ComboRow::property_model () -> glib::PropertyProxy<glib::RefPtr<gio::ListModel>>
   {
-    return Glib::PropertyProxy<Glib::RefPtr<Gio::ListModel>> (this, "model");
+    return glib::PropertyProxy<glib::RefPtr<gio::ListModel>> (this, "model");
   }
 
   auto
-  ComboRow::property_model () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gio::ListModel>>
+  ComboRow::property_model () const -> glib::PropertyProxy_ReadOnly<glib::RefPtr<gio::ListModel>>
   {
-    return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gio::ListModel>> (this,
+    return glib::PropertyProxy_ReadOnly<glib::RefPtr<gio::ListModel>> (this,
                                                                        "model");
   }
 
   auto
-  ComboRow::property_use_subtitle () -> Glib::PropertyProxy<bool>
+  ComboRow::property_use_subtitle () -> glib::PropertyProxy<bool>
   {
-    return Glib::PropertyProxy<bool> (this, "use-subtitle");
+    return glib::PropertyProxy<bool> (this, "use-subtitle");
   }
 
   auto
-  ComboRow::property_use_subtitle () const -> Glib::PropertyProxy_ReadOnly<bool>
+  ComboRow::property_use_subtitle () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "use-subtitle");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "use-subtitle");
   }
 
-} // namespace Adw
+} // namespace adw

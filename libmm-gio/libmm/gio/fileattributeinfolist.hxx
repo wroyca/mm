@@ -8,7 +8,7 @@
 
 #include <libmm/gio/fileattributeinfo.hxx>
 
-namespace Gio
+namespace gio
 {
 
   class LIBMM_GIO_SYMEXPORT FileAttributeInfoList final
@@ -20,7 +20,7 @@ namespace Gio
 #endif
 
     static auto
-    create () -> Glib::RefPtr<FileAttributeInfoList>;
+    create () -> glib::RefPtr<FileAttributeInfoList>;
 
     auto
     reference () const -> void;
@@ -58,7 +58,7 @@ namespace Gio
     lookup (const std::string& name) const -> FileAttributeInfo;
 
     auto
-    dup () const -> Glib::RefPtr<FileAttributeInfoList>;
+    dup () const -> glib::RefPtr<FileAttributeInfoList>;
 
     auto
     add (const std::string& name,
@@ -67,15 +67,15 @@ namespace Gio
         -> void;
   };
 
-} // namespace Gio
+} // namespace gio
 
-namespace Glib
+namespace glib
 {
 
   LIBMM_GIO_SYMEXPORT
   auto
-  wrap (GFileAttributeInfoList* object, bool take_copy = false) -> Glib::RefPtr<Gio::FileAttributeInfoList>;
+  wrap (GFileAttributeInfoList* object, bool take_copy = false) -> glib::RefPtr<gio::FileAttributeInfoList>;
 
-} // namespace Glib
+} // namespace glib
 
 #endif

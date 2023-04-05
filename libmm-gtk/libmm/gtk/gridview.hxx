@@ -16,13 +16,13 @@ using GtkGridViewClass = struct _GtkGridViewClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT GridView_Class;
 }
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
   class LIBMM_GTK_SYMEXPORT GridView : public ListBase
@@ -52,7 +52,7 @@ namespace Gtk
     static CppClassType gridview_class_;
 
   protected:
-    explicit GridView (const Glib::ConstructParams& construct_params);
+    explicit GridView (const glib::ConstructParams& construct_params);
     explicit GridView (GtkGridView* castitem);
 
 #endif
@@ -81,26 +81,26 @@ namespace Gtk
 
   private:
   public:
-    explicit GridView (const Glib::RefPtr<SelectionModel>& model = {},
-                       const Glib::RefPtr<ListItemFactory>& factory = {});
+    explicit GridView (const glib::RefPtr<SelectionModel>& model = {},
+                       const glib::RefPtr<ListItemFactory>& factory = {});
 
     auto
-    get_model () -> Glib::RefPtr<SelectionModel>;
+    get_model () -> glib::RefPtr<SelectionModel>;
 
     auto
-    get_model () const -> Glib::RefPtr<const SelectionModel>;
+    get_model () const -> glib::RefPtr<const SelectionModel>;
 
     auto
-    set_model (const Glib::RefPtr<SelectionModel>& model) -> void;
+    set_model (const glib::RefPtr<SelectionModel>& model) -> void;
 
     auto
-    set_factory (const Glib::RefPtr<ListItemFactory>& factory) -> void;
+    set_factory (const glib::RefPtr<ListItemFactory>& factory) -> void;
 
     auto
-    get_factory () -> Glib::RefPtr<ListItemFactory>;
+    get_factory () -> glib::RefPtr<ListItemFactory>;
 
     auto
-    get_factory () const -> Glib::RefPtr<const ListItemFactory>;
+    get_factory () const -> glib::RefPtr<const ListItemFactory>;
 
     auto
     get_min_columns () const -> guint;
@@ -127,58 +127,58 @@ namespace Gtk
     get_single_click_activate () const -> bool;
 
     auto
-    property_factory () -> Glib::PropertyProxy<Glib::RefPtr<ListItemFactory>>;
+    property_factory () -> glib::PropertyProxy<glib::RefPtr<ListItemFactory>>;
 
     auto
     property_factory () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<ListItemFactory>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<ListItemFactory>>;
 
     auto
-    property_max_columns () -> Glib::PropertyProxy<guint>;
+    property_max_columns () -> glib::PropertyProxy<guint>;
 
     auto
-    property_max_columns () const -> Glib::PropertyProxy_ReadOnly<guint>;
+    property_max_columns () const -> glib::PropertyProxy_ReadOnly<guint>;
 
     auto
-    property_min_columns () -> Glib::PropertyProxy<guint>;
+    property_min_columns () -> glib::PropertyProxy<guint>;
 
     auto
-    property_min_columns () const -> Glib::PropertyProxy_ReadOnly<guint>;
+    property_min_columns () const -> glib::PropertyProxy_ReadOnly<guint>;
 
     auto
-    property_model () -> Glib::PropertyProxy<Glib::RefPtr<SelectionModel>>;
+    property_model () -> glib::PropertyProxy<glib::RefPtr<SelectionModel>>;
 
     auto
     property_model () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<SelectionModel>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<SelectionModel>>;
 
     auto
-    property_single_click_activate () -> Glib::PropertyProxy<bool>;
+    property_single_click_activate () -> glib::PropertyProxy<bool>;
 
     auto
     property_single_click_activate () const
-        -> Glib::PropertyProxy_ReadOnly<bool>;
+        -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_enable_rubberband () -> Glib::PropertyProxy<bool>;
+    property_enable_rubberband () -> glib::PropertyProxy<bool>;
 
     auto
-    property_enable_rubberband () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_enable_rubberband () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    signal_activate () -> Glib::SignalProxy<void (guint)>;
+    signal_activate () -> glib::SignalProxy<void (guint)>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkGridView* object, bool take_copy = false) -> Gtk::GridView*;
-} // namespace Glib
+  wrap (GtkGridView* object, bool take_copy = false) -> gtk::GridView*;
+} // namespace glib
 
 #endif

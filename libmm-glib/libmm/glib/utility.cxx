@@ -3,7 +3,7 @@
 #include <libmm/glib/utility.hxx>
 
 auto
-Glib::append_canonical_typename (std::string& dest, const char* type_name)
+glib::append_canonical_typename (std::string& dest, const char* type_name)
     -> void
 {
   const std::string::size_type offset = dest.size ();

@@ -12,7 +12,7 @@
   #include <cairo-ft.h>
 #endif
 
-namespace Cairo
+namespace cairo
 {
 
   class LIBMM_CAIRO_SYMEXPORT FontOptions
@@ -119,6 +119,6 @@ namespace Cairo
     cobject* m_cobject;
   };
 
-} // namespace Cairo
+} // namespace cairo
 
 #endif

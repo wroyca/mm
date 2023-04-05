@@ -5,7 +5,7 @@
 
 #include <libmm/adw/export.hxx>
 
-namespace Adw
+namespace adw
 {
   LIBMM_ADW_SYMEXPORT auto
   init () -> void;

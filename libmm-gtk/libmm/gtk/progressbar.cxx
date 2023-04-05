@@ -14,23 +14,23 @@ namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GtkProgressBar* object, bool take_copy) -> Gtk::ProgressBar*
+  wrap (GtkProgressBar* object, bool take_copy) -> gtk::ProgressBar*
   {
-    return dynamic_cast<Gtk::ProgressBar*> (
-        Glib::wrap_auto ((GObject*) (object), take_copy));
+    return dynamic_cast<gtk::ProgressBar*> (
+        glib::wrap_auto ((GObject*) (object), take_copy));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gtk
+namespace gtk
 {
 
   auto
-  ProgressBar_Class::init () -> const Glib::Class&
+  ProgressBar_Class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -52,23 +52,23 @@ namespace Gtk
   }
 
   auto
-  ProgressBar_Class::wrap_new (GObject* o) -> Glib::ObjectBase*
+  ProgressBar_Class::wrap_new (GObject* o) -> glib::ObjectBase*
   {
     return manage (new ProgressBar ((GtkProgressBar*) (o)));
   }
 
-  ProgressBar::ProgressBar (const Glib::ConstructParams& construct_params)
-    : Gtk::Widget (construct_params)
+  ProgressBar::ProgressBar (const glib::ConstructParams& construct_params)
+    : gtk::Widget (construct_params)
   {
   }
 
   ProgressBar::ProgressBar (GtkProgressBar* castitem)
-    : Gtk::Widget ((GtkWidget*) (castitem))
+    : gtk::Widget ((GtkWidget*) (castitem))
   {
   }
 
   ProgressBar::ProgressBar (ProgressBar&& src) noexcept
-    : Gtk::Widget (std::move (src)),
+    : gtk::Widget (std::move (src)),
       Orientable (std::move (src))
   {
   }
@@ -76,7 +76,7 @@ namespace Gtk
   auto
   ProgressBar::operator= (ProgressBar&& src) noexcept -> ProgressBar&
   {
-    Gtk::Widget::operator= (std::move (src));
+    gtk::Widget::operator= (std::move (src));
     Orientable::operator= (std::move (src));
     return *this;
   }
@@ -101,8 +101,8 @@ namespace Gtk
   }
 
   ProgressBar::ProgressBar ()
-    : Glib::ObjectBase (nullptr),
-      Gtk::Widget (Glib::ConstructParams (progressbar_class_.init ()))
+    : glib::ObjectBase (nullptr),
+      gtk::Widget (glib::ConstructParams (progressbar_class_.init ()))
   {
   }
 
@@ -113,14 +113,14 @@ namespace Gtk
   }
 
   auto
-  ProgressBar::get_text () const -> Glib::ustring
+  ProgressBar::get_text () const -> glib::ustring
   {
-    return Glib::convert_const_gchar_ptr_to_ustring (
+    return glib::convert_const_gchar_ptr_to_ustring (
         gtk_progress_bar_get_text (const_cast<GtkProgressBar*> (gobj ())));
   }
 
   auto
-  ProgressBar::set_text (const Glib::ustring& text) -> void
+  ProgressBar::set_text (const glib::ustring& text) -> void
   {
     gtk_progress_bar_set_text (gobj (), text.c_str ());
   }
@@ -165,16 +165,16 @@ namespace Gtk
   }
 
   auto
-  ProgressBar::set_ellipsize (Pango::EllipsizeMode mode) -> void
+  ProgressBar::set_ellipsize (pango::EllipsizeMode mode) -> void
   {
     gtk_progress_bar_set_ellipsize (gobj (),
                                     static_cast<PangoEllipsizeMode> (mode));
   }
 
   auto
-  ProgressBar::get_ellipsize () const -> Pango::EllipsizeMode
+  ProgressBar::get_ellipsize () const -> pango::EllipsizeMode
   {
-    return static_cast<Pango::EllipsizeMode> (
+    return static_cast<pango::EllipsizeMode> (
         gtk_progress_bar_get_ellipsize (const_cast<GtkProgressBar*> (gobj ())));
   }
 
@@ -192,75 +192,75 @@ namespace Gtk
   }
 
   auto
-  ProgressBar::property_fraction () -> Glib::PropertyProxy<double>
+  ProgressBar::property_fraction () -> glib::PropertyProxy<double>
   {
-    return Glib::PropertyProxy<double> (this, "fraction");
+    return glib::PropertyProxy<double> (this, "fraction");
   }
 
   auto
-  ProgressBar::property_fraction () const -> Glib::PropertyProxy_ReadOnly<double>
+  ProgressBar::property_fraction () const -> glib::PropertyProxy_ReadOnly<double>
   {
-    return Glib::PropertyProxy_ReadOnly<double> (this, "fraction");
+    return glib::PropertyProxy_ReadOnly<double> (this, "fraction");
   }
 
   auto
-  ProgressBar::property_pulse_step () -> Glib::PropertyProxy<double>
+  ProgressBar::property_pulse_step () -> glib::PropertyProxy<double>
   {
-    return Glib::PropertyProxy<double> (this, "pulse-step");
+    return glib::PropertyProxy<double> (this, "pulse-step");
   }
 
   auto
-  ProgressBar::property_pulse_step () const -> Glib::PropertyProxy_ReadOnly<double>
+  ProgressBar::property_pulse_step () const -> glib::PropertyProxy_ReadOnly<double>
   {
-    return Glib::PropertyProxy_ReadOnly<double> (this, "pulse-step");
+    return glib::PropertyProxy_ReadOnly<double> (this, "pulse-step");
   }
 
   auto
-  ProgressBar::property_text () -> Glib::PropertyProxy<Glib::ustring>
+  ProgressBar::property_text () -> glib::PropertyProxy<glib::ustring>
   {
-    return Glib::PropertyProxy<Glib::ustring> (this, "text");
+    return glib::PropertyProxy<glib::ustring> (this, "text");
   }
 
   auto
-  ProgressBar::property_text () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>
+  ProgressBar::property_text () const -> glib::PropertyProxy_ReadOnly<glib::ustring>
   {
-    return Glib::PropertyProxy_ReadOnly<Glib::ustring> (this, "text");
+    return glib::PropertyProxy_ReadOnly<glib::ustring> (this, "text");
   }
 
   auto
-  ProgressBar::property_ellipsize () -> Glib::PropertyProxy<bool>
+  ProgressBar::property_ellipsize () -> glib::PropertyProxy<bool>
   {
-    return Glib::PropertyProxy<bool> (this, "ellipsize");
+    return glib::PropertyProxy<bool> (this, "ellipsize");
   }
 
   auto
-  ProgressBar::property_ellipsize () const -> Glib::PropertyProxy_ReadOnly<bool>
+  ProgressBar::property_ellipsize () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "ellipsize");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "ellipsize");
   }
 
   auto
-  ProgressBar::property_show_text () -> Glib::PropertyProxy<bool>
+  ProgressBar::property_show_text () -> glib::PropertyProxy<bool>
   {
-    return Glib::PropertyProxy<bool> (this, "show-text");
+    return glib::PropertyProxy<bool> (this, "show-text");
   }
 
   auto
-  ProgressBar::property_show_text () const -> Glib::PropertyProxy_ReadOnly<bool>
+  ProgressBar::property_show_text () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "show-text");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "show-text");
   }
 
   auto
-  ProgressBar::property_inverted () -> Glib::PropertyProxy<bool>
+  ProgressBar::property_inverted () -> glib::PropertyProxy<bool>
   {
-    return Glib::PropertyProxy<bool> (this, "inverted");
+    return glib::PropertyProxy<bool> (this, "inverted");
   }
 
   auto
-  ProgressBar::property_inverted () const -> Glib::PropertyProxy_ReadOnly<bool>
+  ProgressBar::property_inverted () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "inverted");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "inverted");
   }
 
-} // namespace Gtk
+} // namespace gtk

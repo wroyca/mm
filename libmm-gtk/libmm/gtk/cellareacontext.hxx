@@ -18,18 +18,18 @@ using GtkCellAreaContextClass = struct _GtkCellAreaContextClass;
   #endif
 
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT CellAreaContext_Class;
 }
   #endif
 
-namespace Gtk
+namespace gtk
 {
 
   class LIBMM_GTK_SYMEXPORT CellArea;
 
-  class LIBMM_GTK_SYMEXPORT CellAreaContext : public Glib::Object
+  class LIBMM_GTK_SYMEXPORT CellAreaContext : public glib::Object
   {
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -48,7 +48,7 @@ namespace Gtk
     static CppClassType cellareacontext_class_;
 
   protected:
-    explicit CellAreaContext (const Glib::ConstructParams& construct_params);
+    explicit CellAreaContext (const glib::ConstructParams& construct_params);
     explicit CellAreaContext (GtkCellAreaContext* castitem);
 
   #endif
@@ -89,10 +89,10 @@ namespace Gtk
   protected:
   public:
     auto
-    get_area () -> Glib::RefPtr<CellArea>;
+    get_area () -> glib::RefPtr<CellArea>;
 
     auto
-    get_area () const -> Glib::RefPtr<const CellArea>;
+    get_area () const -> glib::RefPtr<const CellArea>;
 
     auto
     allocate (int width, int height) -> void;
@@ -127,32 +127,32 @@ namespace Gtk
     push_preferred_height (int minimum_height, int natural_height) -> void;
 
     auto
-    property_area () const -> Glib::PropertyProxy_ReadOnly<CellArea*>;
+    property_area () const -> glib::PropertyProxy_ReadOnly<CellArea*>;
 
     auto
-    property_minimum_width () const -> Glib::PropertyProxy_ReadOnly<int>;
+    property_minimum_width () const -> glib::PropertyProxy_ReadOnly<int>;
 
     auto
-    property_natural_width () const -> Glib::PropertyProxy_ReadOnly<int>;
+    property_natural_width () const -> glib::PropertyProxy_ReadOnly<int>;
 
     auto
-    property_minimum_height () const -> Glib::PropertyProxy_ReadOnly<int>;
+    property_minimum_height () const -> glib::PropertyProxy_ReadOnly<int>;
 
     auto
-    property_natural_height () const -> Glib::PropertyProxy_ReadOnly<int>;
+    property_natural_height () const -> glib::PropertyProxy_ReadOnly<int>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkCellAreaContext* object, bool take_copy = false) -> Glib::RefPtr<Gtk::CellAreaContext>;
-} // namespace Glib
+  wrap (GtkCellAreaContext* object, bool take_copy = false) -> glib::RefPtr<gtk::CellAreaContext>;
+} // namespace glib
 
 #endif
 

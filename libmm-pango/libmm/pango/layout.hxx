@@ -22,13 +22,13 @@ using PangoLayoutClass = struct _PangoLayoutClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Pango
+namespace pango
 {
   class LIBMM_PANGO_SYMEXPORT Layout_Class;
 }
 #endif
 
-namespace Pango
+namespace pango
 {
 
   enum class Alignment
@@ -38,25 +38,25 @@ namespace Pango
     RIGHT
   };
 
-} // namespace Pango
+} // namespace pango
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_PANGO_SYMEXPORT Value<Pango::Alignment>
-    : public Glib::Value_Enum<Pango::Alignment>
+  class LIBMM_PANGO_SYMEXPORT Value<pango::Alignment>
+    : public glib::Value_Enum<pango::Alignment>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
-namespace Pango
+namespace pango
 {
 
   enum class WrapMode
@@ -66,25 +66,25 @@ namespace Pango
     WORD_CHAR
   };
 
-} // namespace Pango
+} // namespace pango
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_PANGO_SYMEXPORT Value<Pango::WrapMode>
-    : public Glib::Value_Enum<Pango::WrapMode>
+  class LIBMM_PANGO_SYMEXPORT Value<pango::WrapMode>
+    : public glib::Value_Enum<pango::WrapMode>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
-namespace Pango
+namespace pango
 {
 
   enum class EllipsizeMode
@@ -95,28 +95,28 @@ namespace Pango
     END
   };
 
-} // namespace Pango
+} // namespace pango
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_PANGO_SYMEXPORT Value<Pango::EllipsizeMode>
-    : public Glib::Value_Enum<Pango::EllipsizeMode>
+  class LIBMM_PANGO_SYMEXPORT Value<pango::EllipsizeMode>
+    : public glib::Value_Enum<pango::EllipsizeMode>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
-namespace Pango
+namespace pango
 {
 
-  class LIBMM_PANGO_SYMEXPORT Layout : public Glib::Object
+  class LIBMM_PANGO_SYMEXPORT Layout : public glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -135,7 +135,7 @@ namespace Pango
     static CppClassType layout_class_;
 
   protected:
-    explicit Layout (const Glib::ConstructParams& construct_params);
+    explicit Layout (const glib::ConstructParams& construct_params);
     explicit Layout (PangoLayout* castitem);
 
 #endif
@@ -173,25 +173,25 @@ namespace Pango
 
   private:
   protected:
-    explicit Layout (const Glib::RefPtr<Context>& context);
+    explicit Layout (const glib::RefPtr<Context>& context);
 
   public:
     static auto
-    create (const Glib::RefPtr<Context>& context) -> Glib::RefPtr<Layout>;
+    create (const glib::RefPtr<Context>& context) -> glib::RefPtr<Layout>;
 
     static auto
-    create (const Cairo::RefPtr<Cairo::Context>& context)
-        -> Glib::RefPtr<Layout>;
+    create (const cairo::RefPtr<cairo::Context>& context)
+        -> glib::RefPtr<Layout>;
 
     auto
-    update_from_cairo_context (const Cairo::RefPtr<Cairo::Context>& context)
+    update_from_cairo_context (const cairo::RefPtr<cairo::Context>& context)
         -> void;
 
     auto
-    copy () -> Glib::RefPtr<Layout>;
+    copy () -> glib::RefPtr<Layout>;
 
     auto
-    get_context () const -> Glib::RefPtr<Context>;
+    get_context () const -> glib::RefPtr<Context>;
 
     auto
     set_attributes (AttrList& attrs) -> void;
@@ -200,19 +200,19 @@ namespace Pango
     get_attributes () const -> AttrList;
 
     auto
-    set_text (const Glib::ustring& text) -> void;
+    set_text (const glib::ustring& text) -> void;
 
     auto
-    get_text () const -> Glib::ustring;
+    get_text () const -> glib::ustring;
 
     auto
     get_character_count () const -> int;
 
     auto
-    set_markup (const Glib::ustring& markup) -> void;
+    set_markup (const glib::ustring& markup) -> void;
 
     auto
-    set_markup (const Glib::ustring& markup,
+    set_markup (const glib::ustring& markup,
                 gunichar accel_marker,
                 gunichar& accel_char) -> void;
 
@@ -374,31 +374,31 @@ namespace Pango
     get_line_count () const -> int;
 
     auto
-    get_line (int line) -> Glib::RefPtr<LayoutLine>;
+    get_line (int line) -> glib::RefPtr<LayoutLine>;
 
     auto
-    get_line (int line) const -> Glib::RefPtr<const LayoutLine>;
+    get_line (int line) const -> glib::RefPtr<const LayoutLine>;
 
     auto
-    get_const_line (int line) const -> Glib::RefPtr<const LayoutLine>;
+    get_const_line (int line) const -> glib::RefPtr<const LayoutLine>;
 
     auto
-    get_lines () -> std::vector<Glib::RefPtr<LayoutLine>>;
+    get_lines () -> std::vector<glib::RefPtr<LayoutLine>>;
 
     auto
-    get_lines () const -> std::vector<Glib::RefPtr<const LayoutLine>>;
+    get_lines () const -> std::vector<glib::RefPtr<const LayoutLine>>;
 
     auto
-    get_const_lines () const -> std::vector<Glib::RefPtr<const LayoutLine>>;
+    get_const_lines () const -> std::vector<glib::RefPtr<const LayoutLine>>;
 
     auto
     get_iter () -> LayoutIter;
 
     auto
-    add_to_cairo_context (const Cairo::RefPtr<Cairo::Context>& context) -> void;
+    add_to_cairo_context (const cairo::RefPtr<cairo::Context>& context) -> void;
 
     auto
-    show_in_cairo_context (const Cairo::RefPtr<Cairo::Context>& context)
+    show_in_cairo_context (const cairo::RefPtr<cairo::Context>& context)
         -> void;
 
   public:
@@ -406,14 +406,14 @@ namespace Pango
   protected:
   };
 
-} // namespace Pango
+} // namespace pango
 
-namespace Glib
+namespace glib
 {
 
   LIBMM_PANGO_SYMEXPORT
   auto
-  wrap (PangoLayout* object, bool take_copy = false) -> Glib::RefPtr<Pango::Layout>;
-} // namespace Glib
+  wrap (PangoLayout* object, bool take_copy = false) -> glib::RefPtr<pango::Layout>;
+} // namespace glib
 
 #endif

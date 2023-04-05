@@ -8,7 +8,7 @@
 #include <glib.h>
 #include <libmm/glib/utility.hxx>
 
-namespace Glib
+namespace glib
 {
 
   Dir::Dir (const std::string& path)
@@ -197,30 +197,30 @@ namespace Glib
     file_set_contents (filename, contents.c_str (), contents.size ());
   }
 
-} // namespace Glib
+} // namespace glib
 
 namespace
 {
 }
 
-Glib::FileError::FileError (const Code error_code, const ustring& error_message)
+glib::FileError::FileError (const Code error_code, const ustring& error_message)
   : Error (G_FILE_ERROR, error_code, error_message)
 {
 }
 
-Glib::FileError::FileError (GError* gobject)
+glib::FileError::FileError (GError* gobject)
   : Error (gobject)
 {
 }
 
 auto
-Glib::FileError::code () const -> Code
+glib::FileError::code () const -> Code
 {
   return static_cast<Code> (Error::code ());
 }
 
 auto
-Glib::FileError::throw_func (GError* gobject) -> void
+glib::FileError::throw_func (GError* gobject) -> void
 {
   throw FileError (gobject);
 }

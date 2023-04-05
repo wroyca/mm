@@ -23,23 +23,23 @@ using GtkRootClass = struct _GtkRootClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT Root_Class;
 }
 #endif
 
-namespace Gdk
+namespace gdk
 {
   class LIBMM_GTK_SYMEXPORT Display;
   class LIBMM_GTK_SYMEXPORT Surface;
-} // namespace Gdk
+} // namespace gdk
 
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT Widget;
 
-  class LIBMM_GTK_SYMEXPORT Root : public Glib::Interface
+  class LIBMM_GTK_SYMEXPORT Root : public glib::Interface
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -63,7 +63,7 @@ namespace Gtk
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
-    explicit Root (const Glib::Interface_Class& interface_class);
+    explicit Root (const glib::Interface_Class& interface_class);
 
   public:
     explicit Root (GtkRoot* castitem);
@@ -104,10 +104,10 @@ namespace Gtk
   private:
   public:
     auto
-    get_display () -> Glib::RefPtr<Gdk::Display>;
+    get_display () -> glib::RefPtr<gdk::Display>;
 
     auto
-    get_display () const -> Glib::RefPtr<const Gdk::Display>;
+    get_display () const -> glib::RefPtr<const gdk::Display>;
 
     auto
     set_focus (Widget& focus) -> void;
@@ -126,13 +126,13 @@ namespace Gtk
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkRoot* object, bool take_copy = false) -> Glib::RefPtr<Gtk::Root>;
+  wrap (GtkRoot* object, bool take_copy = false) -> glib::RefPtr<gtk::Root>;
 
-} // namespace Glib
+} // namespace glib
 
 #endif

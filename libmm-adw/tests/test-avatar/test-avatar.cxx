@@ -4,7 +4,7 @@
  * SPDX-License-Identifier: LGPL-2.1-or-later
  */
 
-#include <libmm/adw/init.hxx> // Adw::init
+#include <libmm/adw/init.hxx> // adw::init
 #include <libmm/adw/mm-adw.hxx>
 
 #define TEST_ICON_NAME "avatar-default-symbolic"
@@ -14,7 +14,7 @@
 static void
 test_adw_avatar_icon_name (void)
 {
-  Adw::Avatar avatar (128, "", true);
+  adw::Avatar avatar (128, "", true);
   g_assert_true (avatar.get_icon_name () == "");
 
   avatar.set_icon_name (TEST_ICON_NAME);
@@ -24,7 +24,7 @@ test_adw_avatar_icon_name (void)
 static void
 test_adw_avatar_text (void)
 {
-  Adw::Avatar avatar (128, "", true);
+  adw::Avatar avatar (128, "", true);
   g_assert_true (avatar.get_text () == "");
 
   avatar.set_text (TEST_STRING);
@@ -34,7 +34,7 @@ test_adw_avatar_text (void)
 static void
 test_adw_avatar_size (void)
 {
-  Adw::Avatar avatar (TEST_SIZE, "", true);
+  adw::Avatar avatar (TEST_SIZE, "", true);
 
   g_assert_true (avatar.get_size () == TEST_SIZE);
   avatar.set_size (TEST_SIZE / 2);
@@ -45,7 +45,7 @@ int
 main (int argc, char* argv[])
 {
   gtk_test_init (&argc, &argv, NULL);
-  Adw::init ();
+  adw::init ();
 
   g_test_add_func ("/Adwaita/Avatar/icon_name", test_adw_avatar_icon_name);
   g_test_add_func ("/Adwaita/Avatar/text", test_adw_avatar_text);

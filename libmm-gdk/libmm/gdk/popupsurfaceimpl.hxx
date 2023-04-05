@@ -7,7 +7,7 @@
 #include <libmm/gdk/popup.hxx>
 #include <libmm/gdk/surface.hxx>
 
-namespace Gdk
+namespace gdk
 {
 
   class LIBMM_GDK_SYMEXPORT PopupSurfaceImpl : public Popup,
@@ -31,6 +31,6 @@ namespace Gdk
     ~PopupSurfaceImpl () noexcept override;
   };
 
-} // namespace Gdk
+} // namespace gdk
 
 #endif

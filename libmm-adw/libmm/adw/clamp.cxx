@@ -7,7 +7,7 @@
 
 #include <libmm/gtk/mm-gtk.hxx>
 
-namespace Adw
+namespace adw
 {
 
 }
@@ -16,23 +16,23 @@ namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (AdwClamp* object, bool take_copy) -> Adw::Clamp*
+  wrap (AdwClamp* object, bool take_copy) -> adw::Clamp*
   {
-    return dynamic_cast<Adw::Clamp*> (
-        Glib::wrap_auto ((GObject*) (object), take_copy));
+    return dynamic_cast<adw::Clamp*> (
+        glib::wrap_auto ((GObject*) (object), take_copy));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Adw
+namespace adw
 {
 
   auto
-  Clamp_Class::init () -> const Glib::Class&
+  Clamp_Class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -43,32 +43,32 @@ namespace Adw
   }
 
   auto
-  Clamp_Class::wrap_new (GObject* o) -> Glib::ObjectBase*
+  Clamp_Class::wrap_new (GObject* o) -> glib::ObjectBase*
   {
     return manage (new Clamp ((AdwClamp*) (o)));
   }
 
-  Clamp::Clamp (const Glib::ConstructParams& construct_params)
-    : Gtk::Widget (construct_params)
+  Clamp::Clamp (const glib::ConstructParams& construct_params)
+    : gtk::Widget (construct_params)
   {
   }
 
   Clamp::Clamp (AdwClamp* castitem)
-    : Gtk::Widget ((GtkWidget*) (castitem))
+    : gtk::Widget ((GtkWidget*) (castitem))
   {
   }
 
   Clamp::Clamp (Clamp&& src) noexcept
-    : Gtk::Widget (std::move (src)),
-      Gtk::Orientable (std::move (src))
+    : gtk::Widget (std::move (src)),
+      gtk::Orientable (std::move (src))
   {
   }
 
   auto
   Clamp::operator= (Clamp&& src) noexcept -> Clamp&
   {
-    Gtk::Widget::operator= (std::move (src));
-    Gtk::Orientable::operator= (std::move (src));
+    gtk::Widget::operator= (std::move (src));
+    gtk::Orientable::operator= (std::move (src));
     return *this;
   }
 
@@ -92,15 +92,15 @@ namespace Adw
   }
 
   Clamp::Clamp ()
-    : Glib::ObjectBase (nullptr),
-      Gtk::Widget (Glib::ConstructParams (clamp_class_.init ()))
+    : glib::ObjectBase (nullptr),
+      gtk::Widget (glib::ConstructParams (clamp_class_.init ()))
   {
   }
 
   auto
-  Clamp::get_child () const -> Gtk::Widget*
+  Clamp::get_child () const -> gtk::Widget*
   {
-    return Glib::wrap (adw_clamp_get_child (const_cast<AdwClamp*> (gobj ())));
+    return glib::wrap (adw_clamp_get_child (const_cast<AdwClamp*> (gobj ())));
   }
 
   auto
@@ -116,9 +116,9 @@ namespace Adw
   }
 
   auto
-  Clamp::set_child (Gtk::Widget* child) -> void
+  Clamp::set_child (gtk::Widget* child) -> void
   {
-    adw_clamp_set_child (gobj (), (GtkWidget*) Glib::unwrap (child));
+    adw_clamp_set_child (gobj (), (GtkWidget*) glib::unwrap (child));
   }
 
   auto
@@ -134,39 +134,39 @@ namespace Adw
   }
 
   auto
-  Clamp::property_child () -> Glib::PropertyProxy<Gtk::Widget*>
+  Clamp::property_child () -> glib::PropertyProxy<gtk::Widget*>
   {
-    return Glib::PropertyProxy<Gtk::Widget*> (this, "child");
+    return glib::PropertyProxy<gtk::Widget*> (this, "child");
   }
 
   auto
-  Clamp::property_child () const -> Glib::PropertyProxy_ReadOnly<Gtk::Widget*>
+  Clamp::property_child () const -> glib::PropertyProxy_ReadOnly<gtk::Widget*>
   {
-    return Glib::PropertyProxy_ReadOnly<Gtk::Widget*> (this, "child");
+    return glib::PropertyProxy_ReadOnly<gtk::Widget*> (this, "child");
   }
 
   auto
-  Clamp::property_maximum_size () -> Glib::PropertyProxy<int>
+  Clamp::property_maximum_size () -> glib::PropertyProxy<int>
   {
-    return Glib::PropertyProxy<int> (this, "maximum-size");
+    return glib::PropertyProxy<int> (this, "maximum-size");
   }
 
   auto
-  Clamp::property_maximum_size () const -> Glib::PropertyProxy_ReadOnly<int>
+  Clamp::property_maximum_size () const -> glib::PropertyProxy_ReadOnly<int>
   {
-    return Glib::PropertyProxy_ReadOnly<int> (this, "maximum-size");
+    return glib::PropertyProxy_ReadOnly<int> (this, "maximum-size");
   }
 
   auto
-  Clamp::property_tightening_threshold () -> Glib::PropertyProxy<int>
+  Clamp::property_tightening_threshold () -> glib::PropertyProxy<int>
   {
-    return Glib::PropertyProxy<int> (this, "tightening-threshold");
+    return glib::PropertyProxy<int> (this, "tightening-threshold");
   }
 
   auto
-  Clamp::property_tightening_threshold () const -> Glib::PropertyProxy_ReadOnly<int>
+  Clamp::property_tightening_threshold () const -> glib::PropertyProxy_ReadOnly<int>
   {
-    return Glib::PropertyProxy_ReadOnly<int> (this, "tightening-threshold");
+    return glib::PropertyProxy_ReadOnly<int> (this, "tightening-threshold");
   }
 
-} // namespace Adw
+} // namespace adw

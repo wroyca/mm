@@ -4,32 +4,32 @@
 #include <libmm/gtk/mm-gtk.hxx>
 #include <utility>
 
-namespace Adw
+namespace adw
 {
 
   SelectionListModelImpl::SelectionListModelImpl (GObject* castitem)
-    : Glib::ObjectBase (nullptr),
-      Glib::Object (castitem)
+    : glib::ObjectBase (nullptr),
+      glib::Object (castitem)
   {
   }
 
   SelectionListModelImpl::SelectionListModelImpl (
       SelectionListModelImpl&& src) noexcept
-    : Gio::ListModel (std::move (src)),
-      Gtk::SelectionModel (std::move (src)),
-      Glib::Object (std::move (src))
+    : gio::ListModel (std::move (src)),
+      gtk::SelectionModel (std::move (src)),
+      glib::Object (std::move (src))
   {
   }
 
   auto
   SelectionListModelImpl::operator= (SelectionListModelImpl&& src) noexcept -> SelectionListModelImpl&
   {
-    Gio::ListModel::operator= (std::move (src));
-    Gtk::SelectionModel::operator= (std::move (src));
-    Glib::Object::operator= (std::move (src));
+    gio::ListModel::operator= (std::move (src));
+    gtk::SelectionModel::operator= (std::move (src));
+    glib::Object::operator= (std::move (src));
     return *this;
   }
 
   SelectionListModelImpl::~SelectionListModelImpl () noexcept {}
 
-} // namespace Adw
+} // namespace adw

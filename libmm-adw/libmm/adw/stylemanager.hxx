@@ -17,13 +17,13 @@
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Adw
+namespace adw
 {
   class LIBMM_ADW_SYMEXPORT StyleManager_Class;
 }
 #endif
 
-namespace Adw
+namespace adw
 {
 
   enum class LIBMM_ADW_SYMEXPORT ColorScheme
@@ -35,27 +35,27 @@ namespace Adw
     FORCE_DARK
   };
 
-} // namespace Adw
+} // namespace adw
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_ADW_SYMEXPORT Value<Adw::ColorScheme> : public Glib::Value_Enum<Adw::ColorScheme>
+  class LIBMM_ADW_SYMEXPORT Value<adw::ColorScheme> : public glib::Value_Enum<adw::ColorScheme>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
-namespace Adw
+namespace adw
 {
 
-  class LIBMM_ADW_SYMEXPORT StyleManager : public Glib::Object
+  class LIBMM_ADW_SYMEXPORT StyleManager : public glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -74,7 +74,7 @@ namespace Adw
     static CppClassType stylemanager_class_;
 
   protected:
-    explicit StyleManager (const Glib::ConstructParams& construct_params);
+    explicit StyleManager (const glib::ConstructParams& construct_params);
     explicit StyleManager (AdwStyleManager* castitem);
 
 #endif
@@ -116,14 +116,14 @@ namespace Adw
 
   public:
     static auto
-    create () -> Glib::RefPtr<StyleManager>;
+    create () -> glib::RefPtr<StyleManager>;
 
     static auto
-    get_default () -> Glib::RefPtr<StyleManager>;
+    get_default () -> glib::RefPtr<StyleManager>;
 
     static auto
-    get_for_display (const Glib::RefPtr<Gdk::Display>& display)
-        -> Glib::RefPtr<StyleManager>;
+    get_for_display (const glib::RefPtr<gdk::Display>& display)
+        -> glib::RefPtr<StyleManager>;
 
     auto
     get_color_scheme () const -> ColorScheme;
@@ -138,43 +138,43 @@ namespace Adw
     get_high_contrast () const -> bool;
 
     auto
-    get_display () const -> Glib::RefPtr<Gdk::Display>;
+    get_display () const -> glib::RefPtr<gdk::Display>;
 
     auto
     set_color_scheme (ColorScheme color_scheme) -> void;
 
     auto
-    property_high_contrast () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_high_contrast () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_color_scheme () -> Glib::PropertyProxy<ColorScheme>;
+    property_color_scheme () -> glib::PropertyProxy<ColorScheme>;
 
     auto
-    property_color_scheme () const -> Glib::PropertyProxy_ReadOnly<ColorScheme>;
+    property_color_scheme () const -> glib::PropertyProxy_ReadOnly<ColorScheme>;
 
     auto
     property_display () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gdk::Display>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<gdk::Display>>;
 
     auto
     property_system_supports_color_schemes () const
-        -> Glib::PropertyProxy_ReadOnly<bool>;
+        -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_dark () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_dark () const -> glib::PropertyProxy_ReadOnly<bool>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Adw
+} // namespace adw
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (AdwStyleManager* object, bool take_copy = false) -> Glib::RefPtr<Adw::StyleManager>;
+  wrap (AdwStyleManager* object, bool take_copy = false) -> glib::RefPtr<adw::StyleManager>;
 }
 
 #endif

@@ -17,18 +17,18 @@ using GtkLayoutChildClass = struct _GtkLayoutChildClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT LayoutChild_Class;
 }
 #endif
 
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT LayoutManager;
   class LIBMM_GTK_SYMEXPORT Widget;
 
-  class LIBMM_GTK_SYMEXPORT LayoutChild : public Glib::Object
+  class LIBMM_GTK_SYMEXPORT LayoutChild : public glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -47,7 +47,7 @@ namespace Gtk
     static CppClassType layoutchild_class_;
 
   protected:
-    explicit LayoutChild (const Glib::ConstructParams& construct_params);
+    explicit LayoutChild (const glib::ConstructParams& construct_params);
     explicit LayoutChild (GtkLayoutChild* castitem);
 
 #endif
@@ -89,10 +89,10 @@ namespace Gtk
 
   public:
     auto
-    get_layout_manager () -> Glib::RefPtr<LayoutManager>;
+    get_layout_manager () -> glib::RefPtr<LayoutManager>;
 
     auto
-    get_layout_manager () const -> Glib::RefPtr<const LayoutManager>;
+    get_layout_manager () const -> glib::RefPtr<const LayoutManager>;
 
     auto
     get_child_widget () -> Widget*;
@@ -102,22 +102,22 @@ namespace Gtk
 
     auto
     property_layout_manager () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<LayoutManager>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<LayoutManager>>;
 
     auto
-    property_child_widget () const -> Glib::PropertyProxy_ReadOnly<Widget*>;
+    property_child_widget () const -> glib::PropertyProxy_ReadOnly<Widget*>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkLayoutChild* object, bool take_copy = false) -> Glib::RefPtr<Gtk::LayoutChild>;
-} // namespace Glib
+  wrap (GtkLayoutChild* object, bool take_copy = false) -> glib::RefPtr<gtk::LayoutChild>;
+} // namespace glib
 
 #endif

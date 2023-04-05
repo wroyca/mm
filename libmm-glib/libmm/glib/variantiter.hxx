@@ -6,7 +6,7 @@
 #include <glib.h>
 #include <libmm/glib/mm-glibconfig.hxx>
 
-namespace Glib
+namespace glib
 {
 
   class LIBMM_GLIB_SYMEXPORT VariantBase;
@@ -69,9 +69,9 @@ namespace Glib
     next_value (VariantBase& value) -> bool;
   };
 
-} // namespace Glib
+} // namespace glib
 
-namespace Glib
+namespace glib
 {
 
   inline auto
@@ -80,15 +80,15 @@ namespace Glib
     lhs.swap (rhs);
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Glib
+namespace glib
 {
 
   LIBMM_GLIB_SYMEXPORT
   auto
-  wrap (GVariantIter* object, bool take_copy = false) -> Glib::VariantIter;
+  wrap (GVariantIter* object, bool take_copy = false) -> glib::VariantIter;
 
-} // namespace Glib
+} // namespace glib
 
 #endif

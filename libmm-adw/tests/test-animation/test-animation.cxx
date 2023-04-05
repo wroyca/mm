@@ -6,7 +6,7 @@
  * Author: Alexander Mikhaylenko <alexander.mikhaylenko@puri.sm>
  */
 
-#include <libmm/adw/init.hxx> // Adw::init
+#include <libmm/adw/init.hxx> // adw::init
 #include <libmm/adw/mm-adw.hxx>
 
 static double last_value;
@@ -27,12 +27,12 @@ done_cb (void)
 static void
 test_adw_animation_general (void)
 {
-  Gtk::Button widget;
-  auto target = Adw::CallbackAnimationTarget::create (sigc::ptr_fun (value_cb));
+  gtk::Button widget;
+  auto target = adw::CallbackAnimationTarget::create (sigc::ptr_fun (value_cb));
   auto target2 =
-      Adw::CallbackAnimationTarget::create (sigc::ptr_fun (value_cb));
+      adw::CallbackAnimationTarget::create (sigc::ptr_fun (value_cb));
 
-  auto animation = Adw::TimedAnimation::create (&widget, 10, 20, 100, target);
+  auto animation = adw::TimedAnimation::create (&widget, 10, 20, 100, target);
 
   last_value = 0;
   done_count = 0;
@@ -43,7 +43,7 @@ test_adw_animation_general (void)
   g_assert_true (animation->get_target ()->gobj () ==
                  (AdwAnimationTarget*) target->gobj ());
 
-  g_assert_true (animation->get_state () == Adw::AnimationState::IDLE);
+  g_assert_true (animation->get_state () == adw::AnimationState::IDLE);
   g_assert_true (animation->get_value () == 10);
   g_assert_true (last_value == 0);
   g_assert_true (done_count == 0);
@@ -51,7 +51,7 @@ test_adw_animation_general (void)
   animation->play ();
 
   /* Since the widget is not mapped, the animation will immediately finish */
-  g_assert_true (animation->get_state () == Adw::AnimationState::FINISHED);
+  g_assert_true (animation->get_state () == adw::AnimationState::FINISHED);
   g_assert_true (animation->get_value () == 20);
   g_assert_true (last_value == 20);
   g_assert_true (done_count == 1);
@@ -64,7 +64,7 @@ test_adw_animation_general (void)
 
   animation->skip ();
 
-  g_assert_true (animation->get_state () == Adw::AnimationState::FINISHED);
+  g_assert_true (animation->get_state () == adw::AnimationState::FINISHED);
   g_assert_true (animation->get_value () == 20);
   g_assert_true (last_value == 20);
   g_assert_true (done_count == 2);
@@ -81,7 +81,7 @@ int
 main (int argc, char* argv[])
 {
   gtk_test_init (&argc, &argv, NULL);
-  Adw::init ();
+  adw::init ();
 
   g_test_add_func ("/Adwaita/Animation/general", test_adw_animation_general);
 

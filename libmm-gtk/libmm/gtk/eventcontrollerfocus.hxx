@@ -15,13 +15,13 @@ using GtkEventControllerFocusClass = struct _GtkEventControllerFocusClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT EventControllerFocus_Class;
 }
 #endif
 
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT Widget;
 
@@ -45,7 +45,7 @@ namespace Gtk
 
   protected:
     explicit EventControllerFocus (
-        const Glib::ConstructParams& construct_params);
+        const glib::ConstructParams& construct_params);
     explicit EventControllerFocus (GtkEventControllerFocus* castitem);
 
 #endif
@@ -87,7 +87,7 @@ namespace Gtk
 
   public:
     static auto
-    create () -> Glib::RefPtr<EventControllerFocus>;
+    create () -> glib::RefPtr<EventControllerFocus>;
 
     auto
     contains_focus () const -> bool;
@@ -96,28 +96,28 @@ namespace Gtk
     is_focus () const -> bool;
 
     auto
-    signal_enter () -> Glib::SignalProxy<void ()>;
+    signal_enter () -> glib::SignalProxy<void ()>;
 
     auto
-    signal_leave () -> Glib::SignalProxy<void ()>;
+    signal_leave () -> glib::SignalProxy<void ()>;
 
     auto
-    property_is_focus () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_is_focus () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_contains_focus () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_contains_focus () const -> glib::PropertyProxy_ReadOnly<bool>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkEventControllerFocus* object, bool take_copy = false) -> Glib::RefPtr<Gtk::EventControllerFocus>;
-} // namespace Glib
+  wrap (GtkEventControllerFocus* object, bool take_copy = false) -> glib::RefPtr<gtk::EventControllerFocus>;
+} // namespace glib
 
 #endif

@@ -12,39 +12,39 @@
 #include <libmm/gdk/rgba.hxx>
 #include <libmm/gdk/surface.hxx>
 
-namespace Gdk
+namespace gdk
 {
 
-  namespace Cairo
+  namespace cairo
   {
     LIBMM_GDK_SYMEXPORT auto
-    set_source_rgba (const ::Cairo::RefPtr<::Cairo::Context>& context,
-                     const Gdk::RGBA& color) -> void;
+    set_source_rgba (const ::cairo::RefPtr<::cairo::Context>& context,
+                     const gdk::RGBA& color) -> void;
 
     LIBMM_GDK_SYMEXPORT auto
-    set_source_pixbuf (const ::Cairo::RefPtr<::Cairo::Context>& context,
-                       const Glib::RefPtr<const Gdk::Pixbuf>& pixbuf,
+    set_source_pixbuf (const ::cairo::RefPtr<::cairo::Context>& context,
+                       const glib::RefPtr<const gdk::Pixbuf>& pixbuf,
                        double pixbuf_x = 0,
                        double pixbuf_y = 0) -> void;
 
     LIBMM_GDK_SYMEXPORT auto
-    add_rectangle_to_path (const ::Cairo::RefPtr<::Cairo::Context>& context,
-                           const Gdk::Rectangle& rectangle) -> void;
+    add_rectangle_to_path (const ::cairo::RefPtr<::cairo::Context>& context,
+                           const gdk::Rectangle& rectangle) -> void;
 
     LIBMM_GDK_SYMEXPORT auto
-    add_region_to_path (const ::Cairo::RefPtr<::Cairo::Context>& context,
-                        const ::Cairo::RefPtr<::Cairo::Region>& region) -> void;
+    add_region_to_path (const ::cairo::RefPtr<::cairo::Context>& context,
+                        const ::cairo::RefPtr<::cairo::Region>& region) -> void;
 
     LIBMM_GDK_SYMEXPORT auto
     create_region_from_surface (
-        const ::Cairo::RefPtr<::Cairo::Surface>& surface)
-        -> ::Cairo::RefPtr<::Cairo::Region>;
+        const ::cairo::RefPtr<::cairo::Surface>& surface)
+        -> ::cairo::RefPtr<::cairo::Region>;
 
 #ifndef GDKMM_DISABLE_DEPRECATED
 
     LIBMM_GDK_SYMEXPORT auto
-    draw_from_gl (const ::Cairo::RefPtr<::Cairo::Context>& context,
-                  const Glib::RefPtr<Gdk::Surface>& surface,
+    draw_from_gl (const ::cairo::RefPtr<::cairo::Context>& context,
+                  const glib::RefPtr<gdk::Surface>& surface,
                   int source,
                   int source_type,
                   int buffer_scale,
@@ -54,8 +54,8 @@ namespace Gdk
                   int height) -> void;
 #endif
 
-  } // namespace Cairo
+  } // namespace cairo
 
-} // namespace Gdk
+} // namespace gdk
 
 #endif

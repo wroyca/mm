@@ -14,13 +14,13 @@ using GtkRevealerClass = struct _GtkRevealerClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT Revealer_Class;
 }
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
   class LIBMM_GTK_SYMEXPORT Revealer : public Widget
@@ -50,7 +50,7 @@ namespace Gtk
     static CppClassType revealer_class_;
 
   protected:
-    explicit Revealer (const Glib::ConstructParams& construct_params);
+    explicit Revealer (const glib::ConstructParams& construct_params);
     explicit Revealer (GtkRevealer* castitem);
 
 #endif
@@ -114,45 +114,45 @@ namespace Gtk
     get_child () const -> const Widget*;
 
     auto
-    property_transition_type () -> Glib::PropertyProxy<RevealerTransitionType>;
+    property_transition_type () -> glib::PropertyProxy<RevealerTransitionType>;
 
     auto
     property_transition_type () const
-        -> Glib::PropertyProxy_ReadOnly<RevealerTransitionType>;
+        -> glib::PropertyProxy_ReadOnly<RevealerTransitionType>;
 
     auto
-    property_transition_duration () -> Glib::PropertyProxy<guint>;
+    property_transition_duration () -> glib::PropertyProxy<guint>;
 
     auto
     property_transition_duration () const
-        -> Glib::PropertyProxy_ReadOnly<guint>;
+        -> glib::PropertyProxy_ReadOnly<guint>;
 
     auto
-    property_reveal_child () -> Glib::PropertyProxy<bool>;
+    property_reveal_child () -> glib::PropertyProxy<bool>;
 
     auto
-    property_reveal_child () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_reveal_child () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_child_revealed () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_child_revealed () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_child () -> Glib::PropertyProxy<Widget*>;
+    property_child () -> glib::PropertyProxy<Widget*>;
 
     auto
-    property_child () const -> Glib::PropertyProxy_ReadOnly<Widget*>;
+    property_child () const -> glib::PropertyProxy_ReadOnly<Widget*>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkRevealer* object, bool take_copy = false) -> Gtk::Revealer*;
-} // namespace Glib
+  wrap (GtkRevealer* object, bool take_copy = false) -> gtk::Revealer*;
+} // namespace glib
 
 #endif

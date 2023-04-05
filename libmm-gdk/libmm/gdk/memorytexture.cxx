@@ -10,29 +10,29 @@ namespace
 }
 
 auto
-Glib::Value<Gdk::MemoryTexture::Format>::value_type () -> GType
+glib::Value<gdk::MemoryTexture::Format>::value_type () -> GType
 {
   return gdk_memory_format_get_type ();
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GdkMemoryTexture* object, bool take_copy) -> Glib::RefPtr<Gdk::MemoryTexture>
+  wrap (GdkMemoryTexture* object, bool take_copy) -> glib::RefPtr<gdk::MemoryTexture>
   {
-    return Glib::make_refptr_for_instance<Gdk::MemoryTexture> (
-        dynamic_cast<Gdk::MemoryTexture*> (
-            Glib::wrap_auto ((GObject*) (object), take_copy)));
+    return glib::make_refptr_for_instance<gdk::MemoryTexture> (
+        dynamic_cast<gdk::MemoryTexture*> (
+            glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gdk
+namespace gdk
 {
 
   auto
-  MemoryTexture_Class::init () -> const Glib::Class&
+  MemoryTexture_Class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -52,7 +52,7 @@ namespace Gdk
   }
 
   auto
-  MemoryTexture_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  MemoryTexture_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new MemoryTexture ((GdkMemoryTexture*) object);
   }
@@ -64,25 +64,25 @@ namespace Gdk
     return gobj ();
   }
 
-  MemoryTexture::MemoryTexture (const Glib::ConstructParams& construct_params)
-    : Gdk::Texture (construct_params)
+  MemoryTexture::MemoryTexture (const glib::ConstructParams& construct_params)
+    : gdk::Texture (construct_params)
   {
   }
 
   MemoryTexture::MemoryTexture (GdkMemoryTexture* castitem)
-    : Gdk::Texture ((GdkTexture*) (castitem))
+    : gdk::Texture ((GdkTexture*) (castitem))
   {
   }
 
   MemoryTexture::MemoryTexture (MemoryTexture&& src) noexcept
-    : Gdk::Texture (std::move (src))
+    : gdk::Texture (std::move (src))
   {
   }
 
   auto
   MemoryTexture::operator= (MemoryTexture&& src) noexcept -> MemoryTexture&
   {
-    Gdk::Texture::operator= (std::move (src));
+    gdk::Texture::operator= (std::move (src));
     return *this;
   }
 
@@ -103,8 +103,8 @@ namespace Gdk
   }
 
   MemoryTexture::MemoryTexture ()
-    : Glib::ObjectBase (nullptr),
-      Gdk::Texture (Glib::ConstructParams (memorytexture_class_.init ()))
+    : glib::ObjectBase (nullptr),
+      gdk::Texture (glib::ConstructParams (memorytexture_class_.init ()))
   {
   }
 
@@ -112,15 +112,15 @@ namespace Gdk
   MemoryTexture::create (int width,
                          int height,
                          Format format,
-                         const Glib::RefPtr<const Glib::Bytes>& bytes,
-                         gsize stride) -> Glib::RefPtr<Texture>
+                         const glib::RefPtr<const glib::Bytes>& bytes,
+                         gsize stride) -> glib::RefPtr<Texture>
   {
-    return Glib::wrap (gdk_memory_texture_new (
+    return glib::wrap (gdk_memory_texture_new (
         width,
         height,
         static_cast<GdkMemoryFormat> (format),
-        const_cast<GBytes*> (Glib::unwrap<Glib::Bytes> (bytes)),
+        const_cast<GBytes*> (glib::unwrap<glib::Bytes> (bytes)),
         stride));
   }
 
-} // namespace Gdk
+} // namespace gdk

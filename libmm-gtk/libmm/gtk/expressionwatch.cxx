@@ -11,22 +11,22 @@ namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GtkExpressionWatch* object, bool take_copy) -> Glib::RefPtr<Gtk::ExpressionWatchBase>
+  wrap (GtkExpressionWatch* object, bool take_copy) -> glib::RefPtr<gtk::ExpressionWatchBase>
   {
     if (take_copy && object)
       gtk_expression_watch_ref (object);
 
-    return Glib::make_refptr_for_instance<Gtk::ExpressionWatchBase> (
-        reinterpret_cast<Gtk::ExpressionWatchBase*> (object));
+    return glib::make_refptr_for_instance<gtk::ExpressionWatchBase> (
+        reinterpret_cast<gtk::ExpressionWatchBase*> (object));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gtk
+namespace gtk
 {
 
   auto
@@ -70,4 +70,4 @@ namespace Gtk
     gtk_expression_watch_unwatch (gobj ());
   }
 
-} // namespace Gtk
+} // namespace gtk

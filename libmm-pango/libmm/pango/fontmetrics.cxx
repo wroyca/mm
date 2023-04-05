@@ -9,18 +9,18 @@ namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (PangoFontMetrics* object, const bool take_copy) -> Pango::FontMetrics
+  wrap (PangoFontMetrics* object, const bool take_copy) -> pango::FontMetrics
   {
-    return Pango::FontMetrics (object, take_copy);
+    return pango::FontMetrics (object, take_copy);
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Pango
+namespace pango
 {
 
   auto
@@ -149,4 +149,4 @@ namespace Pango
         const_cast<PangoFontMetrics*> (gobj ()));
   }
 
-} // namespace Pango
+} // namespace pango

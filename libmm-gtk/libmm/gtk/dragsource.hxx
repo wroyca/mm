@@ -18,13 +18,13 @@ using GtkDragSourceClass = struct _GtkDragSourceClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT DragSource_Class;
 }
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
   class LIBMM_GTK_SYMEXPORT DragSource : public GestureSingle
@@ -46,7 +46,7 @@ namespace Gtk
     static CppClassType dragsource_class_;
 
   protected:
-    explicit DragSource (const Glib::ConstructParams& construct_params);
+    explicit DragSource (const glib::ConstructParams& construct_params);
     explicit DragSource (GtkDragSource* castitem);
 
 #endif
@@ -88,25 +88,25 @@ namespace Gtk
 
   public:
     static auto
-    create () -> Glib::RefPtr<DragSource>;
+    create () -> glib::RefPtr<DragSource>;
 
     auto
-    set_content (const Glib::RefPtr<Gdk::ContentProvider>& content) -> void;
+    set_content (const glib::RefPtr<gdk::ContentProvider>& content) -> void;
 
     auto
-    get_content () -> Glib::RefPtr<Gdk::ContentProvider>;
+    get_content () -> glib::RefPtr<gdk::ContentProvider>;
 
     auto
-    get_content () const -> Glib::RefPtr<const Gdk::ContentProvider>;
+    get_content () const -> glib::RefPtr<const gdk::ContentProvider>;
 
     auto
-    set_actions (Gdk::DragAction actions) -> void;
+    set_actions (gdk::DragAction actions) -> void;
 
     auto
-    get_actions () const -> Gdk::DragAction;
+    get_actions () const -> gdk::DragAction;
 
     auto
-    set_icon (const Glib::RefPtr<const Gdk::Paintable>& paintable,
+    set_icon (const glib::RefPtr<const gdk::Paintable>& paintable,
               int hot_x,
               int hot_y) -> void;
 
@@ -114,54 +114,54 @@ namespace Gtk
     drag_cancel () -> void;
 
     auto
-    get_drag () -> Glib::RefPtr<Gdk::Drag>;
+    get_drag () -> glib::RefPtr<gdk::Drag>;
 
     auto
-    get_drag () const -> Glib::RefPtr<const Gdk::Drag>;
+    get_drag () const -> glib::RefPtr<const gdk::Drag>;
 
     auto
     property_content ()
-        -> Glib::PropertyProxy<Glib::RefPtr<Gdk::ContentProvider>>;
+        -> glib::PropertyProxy<glib::RefPtr<gdk::ContentProvider>>;
 
     auto
     property_content () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gdk::ContentProvider>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<gdk::ContentProvider>>;
 
     auto
-    property_actions () -> Glib::PropertyProxy<Gdk::DragAction>;
+    property_actions () -> glib::PropertyProxy<gdk::DragAction>;
 
     auto
-    property_actions () const -> Glib::PropertyProxy_ReadOnly<Gdk::DragAction>;
+    property_actions () const -> glib::PropertyProxy_ReadOnly<gdk::DragAction>;
 
     auto
     signal_prepare ()
-        -> Glib::SignalProxy<Glib::RefPtr<Gdk::ContentProvider> (double,
+        -> glib::SignalProxy<glib::RefPtr<gdk::ContentProvider> (double,
                                                                  double)>;
 
     auto
     signal_drag_begin ()
-        -> Glib::SignalProxy<void (const Glib::RefPtr<Gdk::Drag>&)>;
+        -> glib::SignalProxy<void (const glib::RefPtr<gdk::Drag>&)>;
 
     auto
     signal_drag_end ()
-        -> Glib::SignalProxy<void (const Glib::RefPtr<Gdk::Drag>&, bool)>;
+        -> glib::SignalProxy<void (const glib::RefPtr<gdk::Drag>&, bool)>;
 
     auto
     signal_drag_cancel ()
-        -> Glib::SignalProxy<bool (const Glib::RefPtr<Gdk::Drag>&,
-                                   Gdk::DragCancelReason)>;
+        -> glib::SignalProxy<bool (const glib::RefPtr<gdk::Drag>&,
+                                   gdk::DragCancelReason)>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkDragSource* object, bool take_copy = false) -> Glib::RefPtr<Gtk::DragSource>;
-} // namespace Glib
+  wrap (GtkDragSource* object, bool take_copy = false) -> glib::RefPtr<gtk::DragSource>;
+} // namespace glib
 
 #endif

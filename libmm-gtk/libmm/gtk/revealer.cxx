@@ -7,7 +7,7 @@
 
 #include <gtk/gtk.h>
 
-namespace Gtk
+namespace gtk
 {
 
   auto
@@ -16,29 +16,29 @@ namespace Gtk
     gtk_revealer_set_child (gobj (), nullptr);
   }
 
-} // namespace Gtk
+} // namespace gtk
 
 namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GtkRevealer* object, bool take_copy) -> Gtk::Revealer*
+  wrap (GtkRevealer* object, bool take_copy) -> gtk::Revealer*
   {
-    return dynamic_cast<Gtk::Revealer*> (
-        Glib::wrap_auto ((GObject*) (object), take_copy));
+    return dynamic_cast<gtk::Revealer*> (
+        glib::wrap_auto ((GObject*) (object), take_copy));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gtk
+namespace gtk
 {
 
   auto
-  Revealer_Class::init () -> const Glib::Class&
+  Revealer_Class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -58,30 +58,30 @@ namespace Gtk
   }
 
   auto
-  Revealer_Class::wrap_new (GObject* o) -> Glib::ObjectBase*
+  Revealer_Class::wrap_new (GObject* o) -> glib::ObjectBase*
   {
     return manage (new Revealer ((GtkRevealer*) (o)));
   }
 
-  Revealer::Revealer (const Glib::ConstructParams& construct_params)
-    : Gtk::Widget (construct_params)
+  Revealer::Revealer (const glib::ConstructParams& construct_params)
+    : gtk::Widget (construct_params)
   {
   }
 
   Revealer::Revealer (GtkRevealer* castitem)
-    : Gtk::Widget ((GtkWidget*) (castitem))
+    : gtk::Widget ((GtkWidget*) (castitem))
   {
   }
 
   Revealer::Revealer (Revealer&& src) noexcept
-    : Gtk::Widget (std::move (src))
+    : gtk::Widget (std::move (src))
   {
   }
 
   auto
   Revealer::operator= (Revealer&& src) noexcept -> Revealer&
   {
-    Gtk::Widget::operator= (std::move (src));
+    gtk::Widget::operator= (std::move (src));
     return *this;
   }
 
@@ -105,8 +105,8 @@ namespace Gtk
   }
 
   Revealer::Revealer ()
-    : Glib::ObjectBase (nullptr),
-      Gtk::Widget (Glib::ConstructParams (revealer_class_.init ()))
+    : glib::ObjectBase (nullptr),
+      gtk::Widget (glib::ConstructParams (revealer_class_.init ()))
   {
   }
 
@@ -165,7 +165,7 @@ namespace Gtk
   auto
   Revealer::get_child () -> Widget*
   {
-    return Glib::wrap (gtk_revealer_get_child (gobj ()));
+    return glib::wrap (gtk_revealer_get_child (gobj ()));
   }
 
   auto
@@ -175,66 +175,66 @@ namespace Gtk
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<
+      glib::Traits::ValueCompatibleWithWrapProperty<
           RevealerTransitionType>::value,
       "Type RevealerTransitionType cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  Revealer::property_transition_type () -> Glib::PropertyProxy<RevealerTransitionType>
+  Revealer::property_transition_type () -> glib::PropertyProxy<RevealerTransitionType>
   {
-    return Glib::PropertyProxy<RevealerTransitionType> (this,
+    return glib::PropertyProxy<RevealerTransitionType> (this,
                                                         "transition-type");
   }
 
   auto
-  Revealer::property_transition_type () const -> Glib::PropertyProxy_ReadOnly<RevealerTransitionType>
+  Revealer::property_transition_type () const -> glib::PropertyProxy_ReadOnly<RevealerTransitionType>
   {
-    return Glib::PropertyProxy_ReadOnly<RevealerTransitionType> (
+    return glib::PropertyProxy_ReadOnly<RevealerTransitionType> (
         this,
         "transition-type");
   }
 
   auto
-  Revealer::property_transition_duration () -> Glib::PropertyProxy<guint>
+  Revealer::property_transition_duration () -> glib::PropertyProxy<guint>
   {
-    return Glib::PropertyProxy<guint> (this, "transition-duration");
+    return glib::PropertyProxy<guint> (this, "transition-duration");
   }
 
   auto
-  Revealer::property_transition_duration () const -> Glib::PropertyProxy_ReadOnly<guint>
+  Revealer::property_transition_duration () const -> glib::PropertyProxy_ReadOnly<guint>
   {
-    return Glib::PropertyProxy_ReadOnly<guint> (this, "transition-duration");
+    return glib::PropertyProxy_ReadOnly<guint> (this, "transition-duration");
   }
 
   auto
-  Revealer::property_reveal_child () -> Glib::PropertyProxy<bool>
+  Revealer::property_reveal_child () -> glib::PropertyProxy<bool>
   {
-    return Glib::PropertyProxy<bool> (this, "reveal-child");
+    return glib::PropertyProxy<bool> (this, "reveal-child");
   }
 
   auto
-  Revealer::property_reveal_child () const -> Glib::PropertyProxy_ReadOnly<bool>
+  Revealer::property_reveal_child () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "reveal-child");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "reveal-child");
   }
 
   auto
-  Revealer::property_child_revealed () const -> Glib::PropertyProxy_ReadOnly<bool>
+  Revealer::property_child_revealed () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "child-revealed");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "child-revealed");
   }
 
   auto
-  Revealer::property_child () -> Glib::PropertyProxy<Widget*>
+  Revealer::property_child () -> glib::PropertyProxy<Widget*>
   {
-    return Glib::PropertyProxy<Widget*> (this, "child");
+    return glib::PropertyProxy<Widget*> (this, "child");
   }
 
   auto
-  Revealer::property_child () const -> Glib::PropertyProxy_ReadOnly<Widget*>
+  Revealer::property_child () const -> glib::PropertyProxy_ReadOnly<Widget*>
   {
-    return Glib::PropertyProxy_ReadOnly<Widget*> (this, "child");
+    return glib::PropertyProxy_ReadOnly<Widget*> (this, "child");
   }
 
-} // namespace Gtk
+} // namespace gtk

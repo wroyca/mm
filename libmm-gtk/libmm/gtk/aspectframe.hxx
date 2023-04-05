@@ -14,13 +14,13 @@ using GtkAspectFrameClass = struct _GtkAspectFrameClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT AspectFrame_Class;
 }
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
   class LIBMM_GTK_SYMEXPORT AspectFrame : public Widget
@@ -50,7 +50,7 @@ namespace Gtk
     static CppClassType aspectframe_class_;
 
   protected:
-    explicit AspectFrame (const Glib::ConstructParams& construct_params);
+    explicit AspectFrame (const glib::ConstructParams& construct_params);
     explicit AspectFrame (GtkAspectFrame* castitem);
 
 #endif
@@ -79,8 +79,8 @@ namespace Gtk
 
   private:
   public:
-    explicit AspectFrame (Align xalign = Gtk::Align::CENTER,
-                          Align yalign = Gtk::Align::CENTER,
+    explicit AspectFrame (Align xalign = gtk::Align::CENTER,
+                          Align yalign = gtk::Align::CENTER,
                           float ratio = 1.0,
                           bool obey_child = false);
 
@@ -131,46 +131,46 @@ namespace Gtk
     get_child () const -> const Widget*;
 
     auto
-    property_xalign () -> Glib::PropertyProxy<float>;
+    property_xalign () -> glib::PropertyProxy<float>;
 
     auto
-    property_xalign () const -> Glib::PropertyProxy_ReadOnly<float>;
+    property_xalign () const -> glib::PropertyProxy_ReadOnly<float>;
 
     auto
-    property_yalign () -> Glib::PropertyProxy<float>;
+    property_yalign () -> glib::PropertyProxy<float>;
 
     auto
-    property_yalign () const -> Glib::PropertyProxy_ReadOnly<float>;
+    property_yalign () const -> glib::PropertyProxy_ReadOnly<float>;
 
     auto
-    property_ratio () -> Glib::PropertyProxy<float>;
+    property_ratio () -> glib::PropertyProxy<float>;
 
     auto
-    property_ratio () const -> Glib::PropertyProxy_ReadOnly<float>;
+    property_ratio () const -> glib::PropertyProxy_ReadOnly<float>;
 
     auto
-    property_obey_child () -> Glib::PropertyProxy<bool>;
+    property_obey_child () -> glib::PropertyProxy<bool>;
 
     auto
-    property_obey_child () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_obey_child () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_child () -> Glib::PropertyProxy<Widget*>;
+    property_child () -> glib::PropertyProxy<Widget*>;
 
     auto
-    property_child () const -> Glib::PropertyProxy_ReadOnly<Widget*>;
+    property_child () const -> glib::PropertyProxy_ReadOnly<Widget*>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkAspectFrame* object, bool take_copy = false) -> Gtk::AspectFrame*;
-} // namespace Glib
+  wrap (GtkAspectFrame* object, bool take_copy = false) -> gtk::AspectFrame*;
+} // namespace glib
 
 #endif

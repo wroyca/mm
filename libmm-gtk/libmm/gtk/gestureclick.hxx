@@ -15,13 +15,13 @@ using GtkGestureClickClass = struct _GtkGestureClickClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT GestureClick_Class;
 }
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
   class LIBMM_GTK_SYMEXPORT GestureClick : public GestureSingle
@@ -43,7 +43,7 @@ namespace Gtk
     static CppClassType gestureclick_class_;
 
   protected:
-    explicit GestureClick (const Glib::ConstructParams& construct_params);
+    explicit GestureClick (const glib::ConstructParams& construct_params);
     explicit GestureClick (GtkGestureClick* castitem);
 
 #endif
@@ -85,32 +85,32 @@ namespace Gtk
 
   public:
     static auto
-    create () -> Glib::RefPtr<GestureClick>;
+    create () -> glib::RefPtr<GestureClick>;
 
     auto
-    signal_pressed () -> Glib::SignalProxy<void (int, double, double)>;
+    signal_pressed () -> glib::SignalProxy<void (int, double, double)>;
 
     auto
-    signal_released () -> Glib::SignalProxy<void (int, double, double)>;
+    signal_released () -> glib::SignalProxy<void (int, double, double)>;
 
     auto
-    signal_stopped () -> Glib::SignalProxy<void ()>;
+    signal_stopped () -> glib::SignalProxy<void ()>;
 
     auto
     signal_unpaired_release ()
-        -> Glib::SignalProxy<void (double, double, guint, Gdk::EventSequence*)>;
+        -> glib::SignalProxy<void (double, double, guint, gdk::EventSequence*)>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkGestureClick* object, bool take_copy = false) -> Glib::RefPtr<Gtk::GestureClick>;
-} // namespace Glib
+  wrap (GtkGestureClick* object, bool take_copy = false) -> glib::RefPtr<gtk::GestureClick>;
+} // namespace glib
 
 #endif

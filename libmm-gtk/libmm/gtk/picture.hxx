@@ -14,13 +14,13 @@
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT Picture_Class;
 }
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
   class LIBMM_GTK_SYMEXPORT Picture : public Widget
@@ -50,7 +50,7 @@ namespace Gtk
     static CppClassType picture_class_;
 
   protected:
-    explicit Picture (const Glib::ConstructParams& construct_params);
+    explicit Picture (const glib::ConstructParams& construct_params);
     explicit Picture (GtkPicture* castitem);
 
 #endif
@@ -81,31 +81,31 @@ namespace Gtk
   public:
     Picture ();
 
-    explicit Picture (const Glib::RefPtr<Gdk::Paintable>& paintable);
+    explicit Picture (const glib::RefPtr<gdk::Paintable>& paintable);
 
-    explicit Picture (const Glib::RefPtr<Gdk::Pixbuf>& pixbuf);
+    explicit Picture (const glib::RefPtr<gdk::Pixbuf>& pixbuf);
 
-    explicit Picture (const Glib::RefPtr<Gio::File>& file);
+    explicit Picture (const glib::RefPtr<gio::File>& file);
 
     explicit Picture (const std::string& filename);
 
     auto
-    set_paintable (const Glib::RefPtr<Gdk::Paintable>& paintable) -> void;
+    set_paintable (const glib::RefPtr<gdk::Paintable>& paintable) -> void;
 
     auto
-    get_paintable () -> Glib::RefPtr<Gdk::Paintable>;
+    get_paintable () -> glib::RefPtr<gdk::Paintable>;
 
     auto
-    get_paintable () const -> Glib::RefPtr<const Gdk::Paintable>;
+    get_paintable () const -> glib::RefPtr<const gdk::Paintable>;
 
     auto
-    set_file (const Glib::RefPtr<const Gio::File>& file) -> void;
+    set_file (const glib::RefPtr<const gio::File>& file) -> void;
 
     auto
-    get_file () -> Glib::RefPtr<Gio::File>;
+    get_file () -> glib::RefPtr<gio::File>;
 
     auto
-    get_file () const -> Glib::RefPtr<const Gio::File>;
+    get_file () const -> glib::RefPtr<const gio::File>;
 
     auto
     set_filename (const std::string& filename) -> void;
@@ -114,7 +114,7 @@ namespace Gtk
     set_resource (const std::string& resource_path) -> void;
 
     auto
-    set_pixbuf (const Glib::RefPtr<Gdk::Pixbuf>& pixbuf) -> void;
+    set_pixbuf (const glib::RefPtr<gdk::Pixbuf>& pixbuf) -> void;
 
 #ifndef GTKMM_DISABLE_DEPRECATED
 
@@ -141,65 +141,65 @@ namespace Gtk
     get_content_fit () const -> ContentFit;
 
     auto
-    set_alternative_text (const Glib::ustring& alternative_text) -> void;
+    set_alternative_text (const glib::ustring& alternative_text) -> void;
 
     auto
-    get_alternative_text () const -> Glib::ustring;
+    get_alternative_text () const -> glib::ustring;
 
     auto
-    property_paintable () -> Glib::PropertyProxy<Glib::RefPtr<Gdk::Paintable>>;
+    property_paintable () -> glib::PropertyProxy<glib::RefPtr<gdk::Paintable>>;
 
     auto
     property_paintable () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gdk::Paintable>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<gdk::Paintable>>;
 
     auto
-    property_file () -> Glib::PropertyProxy<Glib::RefPtr<Gio::File>>;
+    property_file () -> glib::PropertyProxy<glib::RefPtr<gio::File>>;
 
     auto
     property_file () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gio::File>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<gio::File>>;
 
     auto
-    property_alternative_text () -> Glib::PropertyProxy<Glib::ustring>;
+    property_alternative_text () -> glib::PropertyProxy<glib::ustring>;
 
     auto
     property_alternative_text () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+        -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
 #ifndef GTKMM_DISABLE_DEPRECATED
 
     auto
-    property_keep_aspect_ratio () -> Glib::PropertyProxy<bool>;
+    property_keep_aspect_ratio () -> glib::PropertyProxy<bool>;
 
     auto
-    property_keep_aspect_ratio () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_keep_aspect_ratio () const -> glib::PropertyProxy_ReadOnly<bool>;
 
 #endif
 
     auto
-    property_can_shrink () -> Glib::PropertyProxy<bool>;
+    property_can_shrink () -> glib::PropertyProxy<bool>;
 
     auto
-    property_can_shrink () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_can_shrink () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_content_fit () -> Glib::PropertyProxy<ContentFit>;
+    property_content_fit () -> glib::PropertyProxy<ContentFit>;
 
     auto
-    property_content_fit () const -> Glib::PropertyProxy_ReadOnly<ContentFit>;
+    property_content_fit () const -> glib::PropertyProxy_ReadOnly<ContentFit>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkPicture* object, bool take_copy = false) -> Gtk::Picture*;
-} // namespace Glib
+  wrap (GtkPicture* object, bool take_copy = false) -> gtk::Picture*;
+} // namespace glib
 
 #endif

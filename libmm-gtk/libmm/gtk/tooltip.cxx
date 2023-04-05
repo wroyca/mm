@@ -7,7 +7,7 @@
 
 #include <gtk/gtk.h>
 
-namespace Gtk
+namespace gtk
 {
 
   auto
@@ -34,30 +34,30 @@ namespace Gtk
     gtk_tooltip_set_custom (gobj (), nullptr);
   }
 
-} // namespace Gtk
+} // namespace gtk
 
 namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GtkTooltip* object, bool take_copy) -> Glib::RefPtr<Gtk::Tooltip>
+  wrap (GtkTooltip* object, bool take_copy) -> glib::RefPtr<gtk::Tooltip>
   {
-    return Glib::make_refptr_for_instance<Gtk::Tooltip> (
-        dynamic_cast<Gtk::Tooltip*> (
-            Glib::wrap_auto ((GObject*) (object), take_copy)));
+    return glib::make_refptr_for_instance<gtk::Tooltip> (
+        dynamic_cast<gtk::Tooltip*> (
+            glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gtk
+namespace gtk
 {
 
   auto
-  Tooltip_Class::init () -> const Glib::Class&
+  Tooltip_Class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -77,7 +77,7 @@ namespace Gtk
   }
 
   auto
-  Tooltip_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  Tooltip_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new Tooltip ((GtkTooltip*) object);
   }
@@ -89,25 +89,25 @@ namespace Gtk
     return gobj ();
   }
 
-  Tooltip::Tooltip (const Glib::ConstructParams& construct_params)
-    : Glib::Object (construct_params)
+  Tooltip::Tooltip (const glib::ConstructParams& construct_params)
+    : glib::Object (construct_params)
   {
   }
 
   Tooltip::Tooltip (GtkTooltip* castitem)
-    : Glib::Object ((GObject*) (castitem))
+    : glib::Object ((GObject*) (castitem))
   {
   }
 
   Tooltip::Tooltip (Tooltip&& src) noexcept
-    : Glib::Object (std::move (src))
+    : glib::Object (std::move (src))
   {
   }
 
   auto
   Tooltip::operator= (Tooltip&& src) noexcept -> Tooltip&
   {
-    Glib::Object::operator= (std::move (src));
+    glib::Object::operator= (std::move (src));
     return *this;
   }
 
@@ -128,33 +128,33 @@ namespace Gtk
   }
 
   auto
-  Tooltip::set_markup (const Glib::ustring& markup) -> void
+  Tooltip::set_markup (const glib::ustring& markup) -> void
   {
     gtk_tooltip_set_markup (gobj (), markup.c_str ());
   }
 
   auto
-  Tooltip::set_text (const Glib::ustring& text) -> void
+  Tooltip::set_text (const glib::ustring& text) -> void
   {
     gtk_tooltip_set_text (gobj (), text.c_str ());
   }
 
   auto
-  Tooltip::set_icon (const Glib::RefPtr<Gdk::Paintable>& paintable) -> void
+  Tooltip::set_icon (const glib::RefPtr<gdk::Paintable>& paintable) -> void
   {
-    gtk_tooltip_set_icon (gobj (), Glib::unwrap (paintable));
+    gtk_tooltip_set_icon (gobj (), glib::unwrap (paintable));
   }
 
   auto
-  Tooltip::set_icon (const Glib::RefPtr<Gio::Icon>& gicon) -> void
+  Tooltip::set_icon (const glib::RefPtr<gio::Icon>& gicon) -> void
   {
     gtk_tooltip_set_icon_from_gicon (
         gobj (),
-        const_cast<GIcon*> (Glib::unwrap<Gio::Icon> (gicon)));
+        const_cast<GIcon*> (glib::unwrap<gio::Icon> (gicon)));
   }
 
   auto
-  Tooltip::set_icon (const Glib::ustring& icon_name) -> void
+  Tooltip::set_icon (const glib::ustring& icon_name) -> void
   {
     gtk_tooltip_set_icon_from_icon_name (
         gobj (),
@@ -168,9 +168,9 @@ namespace Gtk
   }
 
   auto
-  Tooltip::set_tip_area (const Gdk::Rectangle& rect) -> void
+  Tooltip::set_tip_area (const gdk::Rectangle& rect) -> void
   {
     gtk_tooltip_set_tip_area (gobj (), (rect).gobj ());
   }
 
-} // namespace Gtk
+} // namespace gtk

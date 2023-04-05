@@ -11,23 +11,23 @@ namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GtkColorDialogButton* object, bool take_copy) -> Gtk::ColorDialogButton*
+  wrap (GtkColorDialogButton* object, bool take_copy) -> gtk::ColorDialogButton*
   {
-    return dynamic_cast<Gtk::ColorDialogButton*> (
-        Glib::wrap_auto ((GObject*) (object), take_copy));
+    return dynamic_cast<gtk::ColorDialogButton*> (
+        glib::wrap_auto ((GObject*) (object), take_copy));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gtk
+namespace gtk
 {
 
   auto
-  ColorDialogButton_Class::init () -> const Glib::Class&
+  ColorDialogButton_Class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -38,31 +38,31 @@ namespace Gtk
   }
 
   auto
-  ColorDialogButton_Class::wrap_new (GObject* o) -> Glib::ObjectBase*
+  ColorDialogButton_Class::wrap_new (GObject* o) -> glib::ObjectBase*
   {
     return manage (new ColorDialogButton ((GtkColorDialogButton*) (o)));
   }
 
   ColorDialogButton::ColorDialogButton (
-      const Glib::ConstructParams& construct_params)
-    : Gtk::Widget (construct_params)
+      const glib::ConstructParams& construct_params)
+    : gtk::Widget (construct_params)
   {
   }
 
   ColorDialogButton::ColorDialogButton (GtkColorDialogButton* castitem)
-    : Gtk::Widget ((GtkWidget*) (castitem))
+    : gtk::Widget ((GtkWidget*) (castitem))
   {
   }
 
   ColorDialogButton::ColorDialogButton (ColorDialogButton&& src) noexcept
-    : Gtk::Widget (std::move (src))
+    : gtk::Widget (std::move (src))
   {
   }
 
   auto
   ColorDialogButton::operator= (ColorDialogButton&& src) noexcept -> ColorDialogButton&
   {
-    Gtk::Widget::operator= (std::move (src));
+    gtk::Widget::operator= (std::move (src));
     return *this;
   }
 
@@ -85,84 +85,84 @@ namespace Gtk
     return gtk_color_dialog_button_get_type ();
   }
 
-  ColorDialogButton::ColorDialogButton (const Glib::RefPtr<ColorDialog>& dialog)
-    : Glib::ObjectBase (nullptr),
-      Gtk::Widget (Glib::ConstructParams (colordialogbutton_class_.init (),
+  ColorDialogButton::ColorDialogButton (const glib::RefPtr<ColorDialog>& dialog)
+    : glib::ObjectBase (nullptr),
+      gtk::Widget (glib::ConstructParams (colordialogbutton_class_.init (),
                                           "dialog",
-                                          Glib::unwrap (dialog),
+                                          glib::unwrap (dialog),
                                           nullptr))
   {
   }
 
   auto
-  ColorDialogButton::get_dialog () -> Glib::RefPtr<ColorDialog>
+  ColorDialogButton::get_dialog () -> glib::RefPtr<ColorDialog>
   {
-    auto retvalue = Glib::wrap (gtk_color_dialog_button_get_dialog (gobj ()));
+    auto retvalue = glib::wrap (gtk_color_dialog_button_get_dialog (gobj ()));
     if (retvalue)
       retvalue->reference ();
     return retvalue;
   }
 
   auto
-  ColorDialogButton::get_dialog () const -> Glib::RefPtr<const ColorDialog>
+  ColorDialogButton::get_dialog () const -> glib::RefPtr<const ColorDialog>
   {
     return const_cast<ColorDialogButton*> (this)->get_dialog ();
   }
 
   auto
-  ColorDialogButton::set_dialog (const Glib::RefPtr<ColorDialog>& dialog) -> void
+  ColorDialogButton::set_dialog (const glib::RefPtr<ColorDialog>& dialog) -> void
   {
-    gtk_color_dialog_button_set_dialog (gobj (), Glib::unwrap (dialog));
+    gtk_color_dialog_button_set_dialog (gobj (), glib::unwrap (dialog));
   }
 
   auto
-  ColorDialogButton::get_rgba () const -> Gdk::RGBA
+  ColorDialogButton::get_rgba () const -> gdk::RGBA
   {
-    return Glib::wrap (const_cast<GdkRGBA*> (gtk_color_dialog_button_get_rgba (
+    return glib::wrap (const_cast<GdkRGBA*> (gtk_color_dialog_button_get_rgba (
                            const_cast<GtkColorDialogButton*> (gobj ()))),
                        true);
   }
 
   auto
-  ColorDialogButton::set_rgba (const Gdk::RGBA& color) -> void
+  ColorDialogButton::set_rgba (const gdk::RGBA& color) -> void
   {
     gtk_color_dialog_button_set_rgba (gobj (), (color).gobj ());
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<
-          Glib::RefPtr<ColorDialog>>::value,
-      "Type Glib::RefPtr<ColorDialog> cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      glib::Traits::ValueCompatibleWithWrapProperty<
+          glib::RefPtr<ColorDialog>>::value,
+      "Type glib::RefPtr<ColorDialog> cannot be used in _WRAP_PROPERTY. "
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  ColorDialogButton::property_dialog () -> Glib::PropertyProxy<Glib::RefPtr<ColorDialog>>
+  ColorDialogButton::property_dialog () -> glib::PropertyProxy<glib::RefPtr<ColorDialog>>
   {
-    return Glib::PropertyProxy<Glib::RefPtr<ColorDialog>> (this, "dialog");
+    return glib::PropertyProxy<glib::RefPtr<ColorDialog>> (this, "dialog");
   }
 
   auto
-  ColorDialogButton::property_dialog () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<ColorDialog>>
+  ColorDialogButton::property_dialog () const -> glib::PropertyProxy_ReadOnly<glib::RefPtr<ColorDialog>>
   {
-    return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<ColorDialog>> (this,
+    return glib::PropertyProxy_ReadOnly<glib::RefPtr<ColorDialog>> (this,
                                                                     "dialog");
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<Gdk::RGBA>::value,
-      "Type Gdk::RGBA cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      glib::Traits::ValueCompatibleWithWrapProperty<gdk::RGBA>::value,
+      "Type gdk::RGBA cannot be used in _WRAP_PROPERTY. "
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  ColorDialogButton::property_rgba () -> Glib::PropertyProxy<Gdk::RGBA>
+  ColorDialogButton::property_rgba () -> glib::PropertyProxy<gdk::RGBA>
   {
-    return Glib::PropertyProxy<Gdk::RGBA> (this, "rgba");
+    return glib::PropertyProxy<gdk::RGBA> (this, "rgba");
   }
 
   auto
-  ColorDialogButton::property_rgba () const -> Glib::PropertyProxy_ReadOnly<Gdk::RGBA>
+  ColorDialogButton::property_rgba () const -> glib::PropertyProxy_ReadOnly<gdk::RGBA>
   {
-    return Glib::PropertyProxy_ReadOnly<Gdk::RGBA> (this, "rgba");
+    return glib::PropertyProxy_ReadOnly<gdk::RGBA> (this, "rgba");
   }
 
-} // namespace Gtk
+} // namespace gtk

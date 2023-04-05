@@ -6,22 +6,22 @@
  * Author: Alexander Mikhaylenko <alexander.mikhaylenko@puri.sm>
  */
 
-#include <libmm/adw/init.hxx> // Adw::init
+#include <libmm/adw/init.hxx> // adw::init
 #include <libmm/adw/mm-adw.hxx>
 #include <vector>
 
 static void
 test_adw_about_window_create (void)
 {
-  Adw::AboutWindow* window = new Adw::AboutWindow ();
+  adw::AboutWindow* window = new adw::AboutWindow ();
   g_assert_nonnull (window);
 
-  std::vector<Glib::ustring> developers{"Angela Avery"};
-  std::vector<Glib::ustring> designers{"GNOME Design Team"};
-  std::vector<Glib::ustring> artists{"GNOME Design Team"};
-  std::vector<Glib::ustring> documenters{"Angela Avery"};
-  std::vector<Glib::ustring> credits{"Angela Avery"};
-  std::vector<Glib::ustring> acknowledgements{"Angela Avery"};
+  std::vector<glib::ustring> developers{"Angela Avery"};
+  std::vector<glib::ustring> designers{"GNOME Design Team"};
+  std::vector<glib::ustring> artists{"GNOME Design Team"};
+  std::vector<glib::ustring> documenters{"Angela Avery"};
+  std::vector<glib::ustring> credits{"Angela Avery"};
+  std::vector<glib::ustring> acknowledgements{"Angela Avery"};
 
   window->set_application_name ("Example");
   window->set_application_icon ("org.gnome.Example");
@@ -42,7 +42,7 @@ test_adw_about_window_create (void)
   window->set_translator_credits ("translator-credits");
   // window->set_copyright("© 2022 Angela Avery"); // © is two bytes. ustring
   // isn't wide.
-  window->set_license_type (Gtk::License::GPL_3_0);
+  window->set_license_type (gtk::License::GPL_3_0);
 
   g_assert_true (window->get_application_name () == "Example");
   g_assert_true (window->get_application_icon () == "org.gnome.Example");
@@ -63,18 +63,18 @@ test_adw_about_window_create (void)
   g_assert_true (window->get_translator_credits () == "translator-credits");
   // g_assert_true(window->get_copyright() == "© 2022 Angela Avery"); // © is
   // two bytes. ustring isn't wide.
-  g_assert_true (window->get_license_type () == Gtk::License::GPL_3_0);
+  g_assert_true (window->get_license_type () == gtk::License::GPL_3_0);
 
   window->add_link ("Example", "https://example.org");
   window->add_credit_section ("Example", credits);
   window->add_acknowledgement_section ("Example", acknowledgements);
   window->add_legal_section ("Example",
                              "© 2022 Example",
-                             Gtk::License::GPL_3_0,
+                             gtk::License::GPL_3_0,
                              "");
   window->add_legal_section ("Example",
                              "© 2022 Example",
-                             Gtk::License::GPL_3_0,
+                             gtk::License::GPL_3_0,
                              "License");
 
   delete window;
@@ -84,7 +84,7 @@ int
 main (int argc, char* argv[])
 {
   gtk_test_init (&argc, &argv, NULL);
-  Adw::init ();
+  adw::init ();
 
   g_test_add_func ("/Adwaita/AboutWindow/create", test_adw_about_window_create);
 

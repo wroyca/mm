@@ -9,24 +9,24 @@
 
 #include <gtk/gtk.h>
 
-namespace Gtk
+namespace gtk
 {
 
-  const Glib::ustring PAPER_NAME_A3 = GTK_PAPER_NAME_A3;
-  const Glib::ustring PAPER_NAME_A4 = GTK_PAPER_NAME_A4;
-  const Glib::ustring PAPER_NAME_A5 = GTK_PAPER_NAME_A5;
-  const Glib::ustring PAPER_NAME_B5 = GTK_PAPER_NAME_B5;
-  const Glib::ustring PAPER_NAME_LETTER = GTK_PAPER_NAME_LETTER;
-  const Glib::ustring PAPER_NAME_EXECUTIVE = GTK_PAPER_NAME_EXECUTIVE;
-  const Glib::ustring PAPER_NAME_LEGAL = GTK_PAPER_NAME_LEGAL;
+  const glib::ustring PAPER_NAME_A3 = GTK_PAPER_NAME_A3;
+  const glib::ustring PAPER_NAME_A4 = GTK_PAPER_NAME_A4;
+  const glib::ustring PAPER_NAME_A5 = GTK_PAPER_NAME_A5;
+  const glib::ustring PAPER_NAME_B5 = GTK_PAPER_NAME_B5;
+  const glib::ustring PAPER_NAME_LETTER = GTK_PAPER_NAME_LETTER;
+  const glib::ustring PAPER_NAME_EXECUTIVE = GTK_PAPER_NAME_EXECUTIVE;
+  const glib::ustring PAPER_NAME_LEGAL = GTK_PAPER_NAME_LEGAL;
 
-  PaperSize::PaperSize (const Glib::ustring& name)
+  PaperSize::PaperSize (const glib::ustring& name)
     : gobject_ (gtk_paper_size_new (name.c_str ()))
   {
   }
 
-  PaperSize::PaperSize (const Glib::ustring& ppd_name,
-                        const Glib::ustring& ppd_display_name,
+  PaperSize::PaperSize (const glib::ustring& ppd_name,
+                        const glib::ustring& ppd_display_name,
                         double width,
                         double height)
     : gobject_ (gtk_paper_size_new_from_ppd (ppd_name.c_str (),
@@ -36,8 +36,8 @@ namespace Gtk
   {
   }
 
-  PaperSize::PaperSize (const Glib::ustring& name,
-                        const Glib::ustring& display_name,
+  PaperSize::PaperSize (const glib::ustring& name,
+                        const glib::ustring& display_name,
                         double width,
                         double height,
                         Unit unit)
@@ -49,17 +49,17 @@ namespace Gtk
   {
   }
 
-  PaperSize::PaperSize (const Glib::RefPtr<const Glib::KeyFile>& key_file,
-                        const Glib::ustring& group_name)
+  PaperSize::PaperSize (const glib::RefPtr<const glib::KeyFile>& key_file,
+                        const glib::ustring& group_name)
   {
     GError* gerror = nullptr;
     gobject_ = gtk_paper_size_new_from_key_file (
-        const_cast<GKeyFile*> (Glib::unwrap (key_file)),
-        Glib::c_str_or_nullptr (group_name),
+        const_cast<GKeyFile*> (glib::unwrap (key_file)),
+        glib::c_str_or_nullptr (group_name),
         &gerror);
 
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
   }
 
   auto
@@ -76,9 +76,9 @@ namespace Gtk
   }
 
   auto
-  PaperSize::save_to_key_file (const Glib::RefPtr<Glib::KeyFile>& key_file) -> void
+  PaperSize::save_to_key_file (const glib::RefPtr<glib::KeyFile>& key_file) -> void
   {
-    gtk_paper_size_to_key_file (gobj (), Glib::unwrap (key_file), nullptr);
+    gtk_paper_size_to_key_file (gobj (), glib::unwrap (key_file), nullptr);
   }
 
   auto
@@ -87,30 +87,30 @@ namespace Gtk
     gtk_paper_size_free (const_cast<CTypeNonConst> (ptr));
   }
 
-} // namespace Gtk
+} // namespace gtk
 
 namespace
 {
 }
 
 auto
-Glib::Value<Gtk::Unit>::value_type () -> GType
+glib::Value<gtk::Unit>::value_type () -> GType
 {
   return gtk_unit_get_type ();
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GtkPaperSize* object, bool take_copy) -> Gtk::PaperSize
+  wrap (GtkPaperSize* object, bool take_copy) -> gtk::PaperSize
   {
-    return Gtk::PaperSize (object, take_copy);
+    return gtk::PaperSize (object, take_copy);
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gtk
+namespace gtk
 {
 
   auto
@@ -179,29 +179,29 @@ namespace Gtk
   auto
   PaperSize::get_paper_sizes (bool include_custom) -> std::vector<PaperSize>
   {
-    return Glib::ListHandler<PaperSize, PaperSizeTraits>::list_to_vector (
+    return glib::ListHandler<PaperSize, PaperSizeTraits>::list_to_vector (
         gtk_paper_size_get_paper_sizes (static_cast<int> (include_custom)),
-        Glib::OWNERSHIP_DEEP);
+        glib::OWNERSHIP_DEEP);
   }
 
   auto
-  PaperSize::get_name () const -> Glib::ustring
+  PaperSize::get_name () const -> glib::ustring
   {
-    return Glib::convert_const_gchar_ptr_to_ustring (
+    return glib::convert_const_gchar_ptr_to_ustring (
         gtk_paper_size_get_name (const_cast<GtkPaperSize*> (gobj ())));
   }
 
   auto
-  PaperSize::get_display_name () const -> Glib::ustring
+  PaperSize::get_display_name () const -> glib::ustring
   {
-    return Glib::convert_const_gchar_ptr_to_ustring (
+    return glib::convert_const_gchar_ptr_to_ustring (
         gtk_paper_size_get_display_name (const_cast<GtkPaperSize*> (gobj ())));
   }
 
   auto
-  PaperSize::get_ppd_name () const -> Glib::ustring
+  PaperSize::get_ppd_name () const -> glib::ustring
   {
-    return Glib::convert_const_gchar_ptr_to_ustring (
+    return glib::convert_const_gchar_ptr_to_ustring (
         gtk_paper_size_get_ppd_name (const_cast<GtkPaperSize*> (gobj ())));
   }
 
@@ -273,19 +273,19 @@ namespace Gtk
   }
 
   auto
-  PaperSize::get_default () -> Glib::ustring
+  PaperSize::get_default () -> glib::ustring
   {
-    return Glib::convert_const_gchar_ptr_to_ustring (
+    return glib::convert_const_gchar_ptr_to_ustring (
         gtk_paper_size_get_default ());
   }
 
   auto
-  PaperSize::save_to_key_file (const Glib::RefPtr<Glib::KeyFile>& key_file,
-                               const Glib::ustring& group_name) -> void
+  PaperSize::save_to_key_file (const glib::RefPtr<glib::KeyFile>& key_file,
+                               const glib::ustring& group_name) -> void
   {
     gtk_paper_size_to_key_file (gobj (),
-                                Glib::unwrap (key_file),
+                                glib::unwrap (key_file),
                                 group_name.c_str ());
   }
 
-} // namespace Gtk
+} // namespace gtk

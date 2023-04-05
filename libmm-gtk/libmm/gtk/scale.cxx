@@ -22,7 +22,7 @@ namespace
                                            double value,
                                            gpointer user_data) -> char*
   {
-    auto the_slot = static_cast<Gtk::Scale::SlotFormatValue*> (user_data);
+    auto the_slot = static_cast<gtk::Scale::SlotFormatValue*> (user_data);
 
     try
     {
@@ -30,31 +30,31 @@ namespace
     }
     catch (...)
     {
-      Glib::exception_handlers_invoke ();
+      glib::exception_handlers_invoke ();
     }
     return g_strdup ("?");
   }
 
 } // namespace
 
-namespace Gtk
+namespace gtk
 {
 
   Scale::Scale (Orientation orientation)
-    : Glib::ObjectBase (nullptr),
-      Range (Glib::ConstructParams (scale_class_.init (),
+    : glib::ObjectBase (nullptr),
+      Range (glib::ConstructParams (scale_class_.init (),
                                     "orientation",
                                     (GtkOrientation) (orientation),
                                     nullptr))
   {
   }
 
-  Scale::Scale (const Glib::RefPtr<Adjustment>& adjustment,
+  Scale::Scale (const glib::RefPtr<Adjustment>& adjustment,
                 Orientation orientation)
-    : Glib::ObjectBase (nullptr),
-      Range (Glib::ConstructParams (scale_class_.init (),
+    : glib::ObjectBase (nullptr),
+      Range (glib::ConstructParams (scale_class_.init (),
                                     "adjustment",
-                                    Glib::unwrap (adjustment),
+                                    glib::unwrap (adjustment),
                                     "orientation",
                                     (GtkOrientation) (orientation),
                                     nullptr))
@@ -70,7 +70,7 @@ namespace Gtk
         gobj (),
         &SignalProxy_Scale_format_value_callback,
         slot_copy,
-        &Glib::destroy_notify_delete<SlotFormatValue>);
+        &glib::destroy_notify_delete<SlotFormatValue>);
   }
 
   auto
@@ -79,29 +79,29 @@ namespace Gtk
     gtk_scale_set_format_value_func (gobj (), nullptr, nullptr, nullptr);
   }
 
-} // namespace Gtk
+} // namespace gtk
 
 namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GtkScale* object, bool take_copy) -> Gtk::Scale*
+  wrap (GtkScale* object, bool take_copy) -> gtk::Scale*
   {
-    return dynamic_cast<Gtk::Scale*> (
-        Glib::wrap_auto ((GObject*) (object), take_copy));
+    return dynamic_cast<gtk::Scale*> (
+        glib::wrap_auto ((GObject*) (object), take_copy));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gtk
+namespace gtk
 {
 
   auto
-  Scale_Class::init () -> const Glib::Class&
+  Scale_Class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -121,30 +121,30 @@ namespace Gtk
   }
 
   auto
-  Scale_Class::wrap_new (GObject* o) -> Glib::ObjectBase*
+  Scale_Class::wrap_new (GObject* o) -> glib::ObjectBase*
   {
     return manage (new Scale ((GtkScale*) (o)));
   }
 
-  Scale::Scale (const Glib::ConstructParams& construct_params)
-    : Gtk::Range (construct_params)
+  Scale::Scale (const glib::ConstructParams& construct_params)
+    : gtk::Range (construct_params)
   {
   }
 
   Scale::Scale (GtkScale* castitem)
-    : Gtk::Range ((GtkRange*) (castitem))
+    : gtk::Range ((GtkRange*) (castitem))
   {
   }
 
   Scale::Scale (Scale&& src) noexcept
-    : Gtk::Range (std::move (src))
+    : gtk::Range (std::move (src))
   {
   }
 
   auto
   Scale::operator= (Scale&& src) noexcept -> Scale&
   {
-    Gtk::Range::operator= (std::move (src));
+    gtk::Range::operator= (std::move (src));
     return *this;
   }
 
@@ -168,8 +168,8 @@ namespace Gtk
   }
 
   Scale::Scale ()
-    : Glib::ObjectBase (nullptr),
-      Gtk::Range (Glib::ConstructParams (scale_class_.init ()))
+    : glib::ObjectBase (nullptr),
+      gtk::Range (glib::ConstructParams (scale_class_.init ()))
   {
   }
 
@@ -223,16 +223,16 @@ namespace Gtk
   }
 
   auto
-  Scale::get_layout () -> Glib::RefPtr<Pango::Layout>
+  Scale::get_layout () -> glib::RefPtr<pango::Layout>
   {
-    auto retvalue = Glib::wrap (gtk_scale_get_layout (gobj ()));
+    auto retvalue = glib::wrap (gtk_scale_get_layout (gobj ()));
     if (retvalue)
       retvalue->reference ();
     return retvalue;
   }
 
   auto
-  Scale::get_layout () const -> Glib::RefPtr<const Pango::Layout>
+  Scale::get_layout () const -> glib::RefPtr<const pango::Layout>
   {
     return const_cast<Scale*> (this)->get_layout ();
   }
@@ -246,7 +246,7 @@ namespace Gtk
   auto
   Scale::add_mark (double value,
                    PositionType position,
-                   const Glib::ustring& markup) -> void
+                   const glib::ustring& markup) -> void
   {
     gtk_scale_add_mark (gobj (),
                         value,
@@ -261,56 +261,56 @@ namespace Gtk
   }
 
   auto
-  Scale::property_digits () -> Glib::PropertyProxy<int>
+  Scale::property_digits () -> glib::PropertyProxy<int>
   {
-    return Glib::PropertyProxy<int> (this, "digits");
+    return glib::PropertyProxy<int> (this, "digits");
   }
 
   auto
-  Scale::property_digits () const -> Glib::PropertyProxy_ReadOnly<int>
+  Scale::property_digits () const -> glib::PropertyProxy_ReadOnly<int>
   {
-    return Glib::PropertyProxy_ReadOnly<int> (this, "digits");
+    return glib::PropertyProxy_ReadOnly<int> (this, "digits");
   }
 
   auto
-  Scale::property_draw_value () -> Glib::PropertyProxy<bool>
+  Scale::property_draw_value () -> glib::PropertyProxy<bool>
   {
-    return Glib::PropertyProxy<bool> (this, "draw-value");
+    return glib::PropertyProxy<bool> (this, "draw-value");
   }
 
   auto
-  Scale::property_draw_value () const -> Glib::PropertyProxy_ReadOnly<bool>
+  Scale::property_draw_value () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "draw-value");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "draw-value");
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<PositionType>::value,
+      glib::Traits::ValueCompatibleWithWrapProperty<PositionType>::value,
       "Type PositionType cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  Scale::property_value_pos () -> Glib::PropertyProxy<PositionType>
+  Scale::property_value_pos () -> glib::PropertyProxy<PositionType>
   {
-    return Glib::PropertyProxy<PositionType> (this, "value-pos");
+    return glib::PropertyProxy<PositionType> (this, "value-pos");
   }
 
   auto
-  Scale::property_value_pos () const -> Glib::PropertyProxy_ReadOnly<PositionType>
+  Scale::property_value_pos () const -> glib::PropertyProxy_ReadOnly<PositionType>
   {
-    return Glib::PropertyProxy_ReadOnly<PositionType> (this, "value-pos");
+    return glib::PropertyProxy_ReadOnly<PositionType> (this, "value-pos");
   }
 
   auto
-  Scale::property_has_origin () -> Glib::PropertyProxy<bool>
+  Scale::property_has_origin () -> glib::PropertyProxy<bool>
   {
-    return Glib::PropertyProxy<bool> (this, "has-origin");
+    return glib::PropertyProxy<bool> (this, "has-origin");
   }
 
   auto
-  Scale::property_has_origin () const -> Glib::PropertyProxy_ReadOnly<bool>
+  Scale::property_has_origin () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "has-origin");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "has-origin");
   }
 
-} // namespace Gtk
+} // namespace gtk

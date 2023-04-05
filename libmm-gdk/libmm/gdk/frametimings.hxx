@@ -12,7 +12,7 @@
 
 extern "C" typedef struct _GdkFrameTimings GdkFrameTimings;
 
-namespace Gdk
+namespace gdk
 {
 
   class LIBMM_GDK_SYMEXPORT FrameTimings final
@@ -69,13 +69,13 @@ namespace Gdk
     get_predicted_presentation_time () const -> gint64;
   };
 
-} // namespace Gdk
+} // namespace gdk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GDK_SYMEXPORT auto
-  wrap (GdkFrameTimings* object, bool take_copy = false) -> Glib::RefPtr<Gdk::FrameTimings>;
+  wrap (GdkFrameTimings* object, bool take_copy = false) -> glib::RefPtr<gdk::FrameTimings>;
 
-} // namespace Glib
+} // namespace glib
 
 #endif

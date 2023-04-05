@@ -17,13 +17,13 @@ using GtkCellRendererComboClass = struct _GtkCellRendererComboClass;
   #endif
 
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT CellRendererCombo_Class;
 }
   #endif
 
-namespace Gtk
+namespace gtk
 {
 
   class LIBMM_GTK_SYMEXPORT CellRendererCombo : public CellRendererText
@@ -53,7 +53,7 @@ namespace Gtk
     static CppClassType cellrenderercombo_class_;
 
   protected:
-    explicit CellRendererCombo (const Glib::ConstructParams& construct_params);
+    explicit CellRendererCombo (const glib::ConstructParams& construct_params);
     explicit CellRendererCombo (GtkCellRendererCombo* castitem);
 
   #endif
@@ -85,43 +85,43 @@ namespace Gtk
     CellRendererCombo ();
 
     auto
-    signal_changed () -> Glib::SignalProxy<void (const Glib::ustring&,
+    signal_changed () -> glib::SignalProxy<void (const glib::ustring&,
                                                  const TreeModel::iterator&)>;
 
     auto
-    property_model () -> Glib::PropertyProxy<Glib::RefPtr<Gtk::TreeModel>>;
+    property_model () -> glib::PropertyProxy<glib::RefPtr<gtk::TreeModel>>;
 
     auto
     property_model () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gtk::TreeModel>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<gtk::TreeModel>>;
 
     auto
-    property_text_column () -> Glib::PropertyProxy<int>;
+    property_text_column () -> glib::PropertyProxy<int>;
 
     auto
-    property_text_column () const -> Glib::PropertyProxy_ReadOnly<int>;
+    property_text_column () const -> glib::PropertyProxy_ReadOnly<int>;
 
     auto
-    property_has_entry () -> Glib::PropertyProxy<bool>;
+    property_has_entry () -> glib::PropertyProxy<bool>;
 
     auto
-    property_has_entry () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_has_entry () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    _property_renderable () -> Glib::PropertyProxy_Base override;
+    _property_renderable () -> glib::PropertyProxy_Base override;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkCellRendererCombo* object, bool take_copy = false) -> Gtk::CellRendererCombo*;
-} // namespace Glib
+  wrap (GtkCellRendererCombo* object, bool take_copy = false) -> gtk::CellRendererCombo*;
+} // namespace glib
 
 #endif
 

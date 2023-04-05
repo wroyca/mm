@@ -8,7 +8,7 @@
 #include <libmm/glib/ustring.hxx>
 #include <sigc++/sigc++.h>
 
-namespace Gio::DBus
+namespace gio::DBus
 {
 
   LIBMM_GIO_SYMEXPORT
@@ -21,20 +21,20 @@ namespace Gio::DBus
 
   LIBMM_GIO_SYMEXPORT
   auto
-  is_name (const Glib::ustring& string) -> bool;
+  is_name (const glib::ustring& string) -> bool;
 
   LIBMM_GIO_SYMEXPORT
   auto
-  is_unique_name (const Glib::ustring& string) -> bool;
+  is_unique_name (const glib::ustring& string) -> bool;
 
   LIBMM_GIO_SYMEXPORT
   auto
-  is_member_name (const Glib::ustring& string) -> bool;
+  is_member_name (const glib::ustring& string) -> bool;
 
   LIBMM_GIO_SYMEXPORT
   auto
-  is_interface_name (const Glib::ustring& string) -> bool;
+  is_interface_name (const glib::ustring& string) -> bool;
 
-} // namespace Gio::DBus
+} // namespace gio::DBus
 
 #endif

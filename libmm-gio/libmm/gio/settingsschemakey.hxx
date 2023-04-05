@@ -15,7 +15,7 @@
 typedef struct _GSettingsSchemaKey GSettingsSchemaKey;
 #endif
 
-namespace Gio
+namespace gio
 {
 
   class LIBMM_GIO_SYMEXPORT SettingsSchemaKey final
@@ -55,36 +55,36 @@ namespace Gio
   protected:
   public:
     auto
-    get_name () const -> Glib::ustring;
+    get_name () const -> glib::ustring;
 
     auto
-    get_summary () const -> Glib::ustring;
+    get_summary () const -> glib::ustring;
 
     auto
-    get_description () const -> Glib::ustring;
+    get_description () const -> glib::ustring;
 
     auto
-    get_value_type () const -> Glib::VariantType;
+    get_value_type () const -> glib::VariantType;
 
     auto
-    get_default_value () const -> Glib::VariantBase;
+    get_default_value () const -> glib::VariantBase;
 
     auto
-    get_range () const -> Glib::VariantBase;
+    get_range () const -> glib::VariantBase;
 
     auto
-    range_check (const Glib::VariantBase& value) const -> bool;
+    range_check (const glib::VariantBase& value) const -> bool;
   };
 
-} // namespace Gio
+} // namespace gio
 
-namespace Glib
+namespace glib
 {
 
   LIBMM_GIO_SYMEXPORT
   auto
-  wrap (GSettingsSchemaKey* object, bool take_copy = false) -> Glib::RefPtr<Gio::SettingsSchemaKey>;
+  wrap (GSettingsSchemaKey* object, bool take_copy = false) -> glib::RefPtr<gio::SettingsSchemaKey>;
 
-} // namespace Glib
+} // namespace glib
 
 #endif

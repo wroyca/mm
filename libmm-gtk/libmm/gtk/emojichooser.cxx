@@ -15,51 +15,51 @@ namespace
                                              const gchar* p0,
                                              void* data) -> void
   {
-    using namespace Gtk;
-    using SlotType = sigc::slot<void (const Glib::ustring&)>;
+    using namespace gtk;
+    using SlotType = sigc::slot<void (const glib::ustring&)>;
 
     auto obj = dynamic_cast<EmojiChooser*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
     {
       try
       {
-        if (const auto slot = Glib::SignalProxyNormal::data_to_slot (data))
+        if (const auto slot = glib::SignalProxyNormal::data_to_slot (data))
           (*static_cast<SlotType*> (slot)) (
-              Glib::convert_const_gchar_ptr_to_ustring (p0));
+              glib::convert_const_gchar_ptr_to_ustring (p0));
       }
       catch (...)
       {
-        Glib::exception_handlers_invoke ();
+        glib::exception_handlers_invoke ();
       }
     }
   }
 
-  static const Glib::SignalProxyInfo EmojiChooser_signal_emoji_picked_info = {
+  static const glib::SignalProxyInfo EmojiChooser_signal_emoji_picked_info = {
       "emoji-picked",
       (GCallback) &EmojiChooser_signal_emoji_picked_callback,
       (GCallback) &EmojiChooser_signal_emoji_picked_callback};
 
 } // namespace
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GtkEmojiChooser* object, bool take_copy) -> Gtk::EmojiChooser*
+  wrap (GtkEmojiChooser* object, bool take_copy) -> gtk::EmojiChooser*
   {
-    return dynamic_cast<Gtk::EmojiChooser*> (
-        Glib::wrap_auto ((GObject*) (object), take_copy));
+    return dynamic_cast<gtk::EmojiChooser*> (
+        glib::wrap_auto ((GObject*) (object), take_copy));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gtk
+namespace gtk
 {
 
   auto
-  EmojiChooser_Class::init () -> const Glib::Class&
+  EmojiChooser_Class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -79,30 +79,30 @@ namespace Gtk
   }
 
   auto
-  EmojiChooser_Class::wrap_new (GObject* o) -> Glib::ObjectBase*
+  EmojiChooser_Class::wrap_new (GObject* o) -> glib::ObjectBase*
   {
     return manage (new EmojiChooser ((GtkEmojiChooser*) (o)));
   }
 
-  EmojiChooser::EmojiChooser (const Glib::ConstructParams& construct_params)
-    : Gtk::Popover (construct_params)
+  EmojiChooser::EmojiChooser (const glib::ConstructParams& construct_params)
+    : gtk::Popover (construct_params)
   {
   }
 
   EmojiChooser::EmojiChooser (GtkEmojiChooser* castitem)
-    : Gtk::Popover ((GtkPopover*) (castitem))
+    : gtk::Popover ((GtkPopover*) (castitem))
   {
   }
 
   EmojiChooser::EmojiChooser (EmojiChooser&& src) noexcept
-    : Gtk::Popover (std::move (src))
+    : gtk::Popover (std::move (src))
   {
   }
 
   auto
   EmojiChooser::operator= (EmojiChooser&& src) noexcept -> EmojiChooser&
   {
-    Gtk::Popover::operator= (std::move (src));
+    gtk::Popover::operator= (std::move (src));
     return *this;
   }
 
@@ -126,17 +126,17 @@ namespace Gtk
   }
 
   EmojiChooser::EmojiChooser ()
-    : Glib::ObjectBase (nullptr),
-      Gtk::Popover (Glib::ConstructParams (emojichooser_class_.init ()))
+    : glib::ObjectBase (nullptr),
+      gtk::Popover (glib::ConstructParams (emojichooser_class_.init ()))
   {
   }
 
   auto
-  EmojiChooser::signal_emoji_picked () -> Glib::SignalProxy<void (const Glib::ustring&)>
+  EmojiChooser::signal_emoji_picked () -> glib::SignalProxy<void (const glib::ustring&)>
   {
-    return Glib::SignalProxy<void (const Glib::ustring&)> (
+    return glib::SignalProxy<void (const glib::ustring&)> (
         this,
         &EmojiChooser_signal_emoji_picked_info);
   }
 
-} // namespace Gtk
+} // namespace gtk

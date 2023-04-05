@@ -19,16 +19,16 @@ using PangoRendererClass = struct _PangoRendererClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Pango
+namespace pango
 {
   class LIBMM_PANGO_SYMEXPORT Renderer_Class;
 }
 #endif
 
-namespace Pango
+namespace pango
 {
 
-  class LIBMM_PANGO_SYMEXPORT Renderer : public Glib::Object
+  class LIBMM_PANGO_SYMEXPORT Renderer : public glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -47,7 +47,7 @@ namespace Pango
     static CppClassType renderer_class_;
 
   protected:
-    explicit Renderer (const Glib::ConstructParams& construct_params);
+    explicit Renderer (const glib::ConstructParams& construct_params);
     explicit Renderer (PangoRenderer* castitem);
 
 #endif
@@ -95,20 +95,20 @@ namespace Pango
     };
 
     auto
-    draw_layout (const Glib::RefPtr<Layout>& layout, int x, int y) -> void;
+    draw_layout (const glib::RefPtr<Layout>& layout, int x, int y) -> void;
 
     auto
-    draw_layout_line (const Glib::RefPtr<LayoutLine>& line, int x, int y)
+    draw_layout_line (const glib::RefPtr<LayoutLine>& line, int x, int y)
         -> void;
 
     auto
-    draw_glyphs (const Glib::RefPtr<Font>& font,
+    draw_glyphs (const glib::RefPtr<Font>& font,
                  const GlyphString& glyphs,
                  int x,
                  int y) -> void;
 
     auto
-    draw_glyph_item (const Glib::ustring& text,
+    draw_glyph_item (const glib::ustring& text,
                      const GlyphItem& glyph_item,
                      int x,
                      int y) -> void;
@@ -129,7 +129,7 @@ namespace Pango
                     double x22) -> void;
 
     auto
-    draw_glyph (const Glib::RefPtr<Font>& font, Glyph glyph, double x, double y)
+    draw_glyph (const glib::RefPtr<Font>& font, Glyph glyph, double x, double y)
         -> void;
 
     auto
@@ -160,20 +160,20 @@ namespace Pango
     get_matrix () const -> Matrix;
 
     auto
-    get_layout () -> Glib::RefPtr<Layout>;
+    get_layout () -> glib::RefPtr<Layout>;
 
     auto
-    get_layout () const -> Glib::RefPtr<const Layout>;
+    get_layout () const -> glib::RefPtr<const Layout>;
 
     auto
-    get_layout_line () -> Glib::RefPtr<LayoutLine>;
+    get_layout_line () -> glib::RefPtr<LayoutLine>;
 
     auto
-    get_layout_line () const -> Glib::RefPtr<const LayoutLine>;
+    get_layout_line () const -> glib::RefPtr<const LayoutLine>;
 
   protected:
     virtual auto
-    draw_glyphs_vfunc (const Glib::RefPtr<Font>& font,
+    draw_glyphs_vfunc (const glib::RefPtr<Font>& font,
                        const GlyphString& glyphs,
                        int x,
                        int y) -> void;
@@ -198,7 +198,7 @@ namespace Pango
                           double x22) -> void;
 
     virtual auto
-    draw_glyph_vfunc (const Glib::RefPtr<Font>& font,
+    draw_glyph_vfunc (const glib::RefPtr<Font>& font,
                       Glyph glyph,
                       double x,
                       double y) -> void;
@@ -216,7 +216,7 @@ namespace Pango
     prepare_run_vfunc (const GlyphItem& run) -> void;
 
     virtual auto
-    draw_glyph_item_vfunc (const Glib::ustring& text,
+    draw_glyph_item_vfunc (const glib::ustring& text,
                            const GlyphItem& glyph_item,
                            int x,
                            int y) -> void;
@@ -226,30 +226,30 @@ namespace Pango
   protected:
   };
 
-} // namespace Pango
+} // namespace pango
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_PANGO_SYMEXPORT Value<Pango::Renderer::Part>
-    : public Glib::Value_Enum<Pango::Renderer::Part>
+  class LIBMM_PANGO_SYMEXPORT Value<pango::Renderer::Part>
+    : public glib::Value_Enum<pango::Renderer::Part>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
-namespace Glib
+namespace glib
 {
 
   LIBMM_PANGO_SYMEXPORT
   auto
-  wrap (PangoRenderer* object, bool take_copy = false) -> Glib::RefPtr<Pango::Renderer>;
-} // namespace Glib
+  wrap (PangoRenderer* object, bool take_copy = false) -> glib::RefPtr<pango::Renderer>;
+} // namespace glib
 
 #endif

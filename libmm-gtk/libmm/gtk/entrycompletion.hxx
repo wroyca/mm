@@ -18,20 +18,20 @@ using GtkEntryCompletionClass = struct _GtkEntryCompletionClass;
   #endif
 
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT EntryCompletion_Class;
 }
   #endif
 
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT CellArea;
   class LIBMM_GTK_SYMEXPORT Entry;
 
-  class LIBMM_GTK_SYMEXPORT EntryCompletion : public Glib::Object,
-                                    public Gtk::CellLayout,
-                                    public Gtk::Buildable
+  class LIBMM_GTK_SYMEXPORT EntryCompletion : public glib::Object,
+                                    public gtk::CellLayout,
+                                    public gtk::Buildable
   {
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -50,7 +50,7 @@ namespace Gtk
     static CppClassType entrycompletion_class_;
 
   protected:
-    explicit EntryCompletion (const Glib::ConstructParams& construct_params);
+    explicit EntryCompletion (const glib::ConstructParams& construct_params);
     explicit EntryCompletion (GtkEntryCompletion* castitem);
 
   #endif
@@ -92,7 +92,7 @@ namespace Gtk
 
   public:
     static auto
-    create () -> Glib::RefPtr<EntryCompletion>;
+    create () -> glib::RefPtr<EntryCompletion>;
 
     auto
     get_entry () -> Entry*;
@@ -101,18 +101,18 @@ namespace Gtk
     get_entry () const -> const Entry*;
 
     auto
-    set_model (const Glib::RefPtr<TreeModel>& model) -> void;
+    set_model (const glib::RefPtr<TreeModel>& model) -> void;
 
     auto
-    get_model () -> Glib::RefPtr<TreeModel>;
+    get_model () -> glib::RefPtr<TreeModel>;
 
     auto
-    get_model () const -> Glib::RefPtr<const TreeModel>;
+    get_model () const -> glib::RefPtr<const TreeModel>;
 
     auto
     unset_model () -> void;
 
-    typedef sigc::slot<bool (const Glib::ustring&,
+    typedef sigc::slot<bool (const glib::ustring&,
                              const TreeModel::const_iterator&)>
         SlotMatch;
 
@@ -126,7 +126,7 @@ namespace Gtk
     get_minimum_key_length () const -> int;
 
     auto
-    compute_prefix (const Glib::ustring& key) -> Glib::ustring;
+    compute_prefix (const glib::ustring& key) -> glib::ustring;
 
     auto
     complete () -> void;
@@ -165,7 +165,7 @@ namespace Gtk
     get_popup_single_match () const -> bool;
 
     auto
-    get_completion_prefix () const -> Glib::ustring;
+    get_completion_prefix () const -> glib::ustring;
 
     auto
     set_text_column (const TreeModelColumnBase& column) -> void;
@@ -178,83 +178,83 @@ namespace Gtk
 
     auto
     signal_match_selected ()
-        -> Glib::SignalProxy<bool (const TreeModel::iterator&)>;
+        -> glib::SignalProxy<bool (const TreeModel::iterator&)>;
 
     auto
     signal_cursor_on_match ()
-        -> Glib::SignalProxy<bool (const TreeModel::iterator&)>;
+        -> glib::SignalProxy<bool (const TreeModel::iterator&)>;
 
     auto
-    signal_insert_prefix () -> Glib::SignalProxy<bool (const Glib::ustring&)>;
+    signal_insert_prefix () -> glib::SignalProxy<bool (const glib::ustring&)>;
 
     auto
-    signal_no_matches () -> Glib::SignalProxy<void ()>;
+    signal_no_matches () -> glib::SignalProxy<void ()>;
 
     auto
-    property_model () -> Glib::PropertyProxy<Glib::RefPtr<Gtk::TreeModel>>;
+    property_model () -> glib::PropertyProxy<glib::RefPtr<gtk::TreeModel>>;
 
     auto
     property_model () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gtk::TreeModel>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<gtk::TreeModel>>;
 
     auto
-    property_minimum_key_length () -> Glib::PropertyProxy<int>;
+    property_minimum_key_length () -> glib::PropertyProxy<int>;
 
     auto
-    property_minimum_key_length () const -> Glib::PropertyProxy_ReadOnly<int>;
+    property_minimum_key_length () const -> glib::PropertyProxy_ReadOnly<int>;
 
     auto
-    property_text_column () -> Glib::PropertyProxy<int>;
+    property_text_column () -> glib::PropertyProxy<int>;
 
     auto
-    property_text_column () const -> Glib::PropertyProxy_ReadOnly<int>;
+    property_text_column () const -> glib::PropertyProxy_ReadOnly<int>;
 
     auto
-    property_inline_completion () -> Glib::PropertyProxy<bool>;
+    property_inline_completion () -> glib::PropertyProxy<bool>;
 
     auto
-    property_inline_completion () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_inline_completion () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_popup_completion () -> Glib::PropertyProxy<bool>;
+    property_popup_completion () -> glib::PropertyProxy<bool>;
 
     auto
-    property_popup_completion () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_popup_completion () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_popup_set_width () -> Glib::PropertyProxy<bool>;
+    property_popup_set_width () -> glib::PropertyProxy<bool>;
 
     auto
-    property_popup_set_width () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_popup_set_width () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_popup_single_match () -> Glib::PropertyProxy<bool>;
+    property_popup_single_match () -> glib::PropertyProxy<bool>;
 
     auto
-    property_popup_single_match () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_popup_single_match () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_inline_selection () -> Glib::PropertyProxy<bool>;
+    property_inline_selection () -> glib::PropertyProxy<bool>;
 
     auto
-    property_inline_selection () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_inline_selection () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
     property_cell_area () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<CellArea>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<CellArea>>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkEntryCompletion* object, bool take_copy = false) -> Glib::RefPtr<Gtk::EntryCompletion>;
-} // namespace Glib
+  wrap (GtkEntryCompletion* object, bool take_copy = false) -> glib::RefPtr<gtk::EntryCompletion>;
+} // namespace glib
 
 #endif
 

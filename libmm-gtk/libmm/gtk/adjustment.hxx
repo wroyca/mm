@@ -16,16 +16,16 @@ using GtkAdjustmentClass = struct _GtkAdjustmentClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT Adjustment_Class;
 }
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
-  class LIBMM_GTK_SYMEXPORT Adjustment : public Glib::Object
+  class LIBMM_GTK_SYMEXPORT Adjustment : public glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -44,7 +44,7 @@ namespace Gtk
     static CppClassType adjustment_class_;
 
   protected:
-    explicit Adjustment (const Glib::ConstructParams& construct_params);
+    explicit Adjustment (const glib::ConstructParams& construct_params);
     explicit Adjustment (GtkAdjustment* castitem);
 
 #endif
@@ -101,7 +101,7 @@ namespace Gtk
             double upper,
             double step_increment = 1,
             double page_increment = 10,
-            double page_size = 0) -> Glib::RefPtr<Adjustment>;
+            double page_size = 0) -> glib::RefPtr<Adjustment>;
 
     auto
     clamp_page (double lower, double upper) -> void;
@@ -154,46 +154,46 @@ namespace Gtk
     get_minimum_increment () const -> double;
 
     auto
-    signal_changed () -> Glib::SignalProxy<void ()>;
+    signal_changed () -> glib::SignalProxy<void ()>;
 
     auto
-    signal_value_changed () -> Glib::SignalProxy<void ()>;
+    signal_value_changed () -> glib::SignalProxy<void ()>;
 
     auto
-    property_value () -> Glib::PropertyProxy<double>;
+    property_value () -> glib::PropertyProxy<double>;
 
     auto
-    property_value () const -> Glib::PropertyProxy_ReadOnly<double>;
+    property_value () const -> glib::PropertyProxy_ReadOnly<double>;
 
     auto
-    property_lower () -> Glib::PropertyProxy<double>;
+    property_lower () -> glib::PropertyProxy<double>;
 
     auto
-    property_lower () const -> Glib::PropertyProxy_ReadOnly<double>;
+    property_lower () const -> glib::PropertyProxy_ReadOnly<double>;
 
     auto
-    property_upper () -> Glib::PropertyProxy<double>;
+    property_upper () -> glib::PropertyProxy<double>;
 
     auto
-    property_upper () const -> Glib::PropertyProxy_ReadOnly<double>;
+    property_upper () const -> glib::PropertyProxy_ReadOnly<double>;
 
     auto
-    property_step_increment () -> Glib::PropertyProxy<double>;
+    property_step_increment () -> glib::PropertyProxy<double>;
 
     auto
-    property_step_increment () const -> Glib::PropertyProxy_ReadOnly<double>;
+    property_step_increment () const -> glib::PropertyProxy_ReadOnly<double>;
 
     auto
-    property_page_increment () -> Glib::PropertyProxy<double>;
+    property_page_increment () -> glib::PropertyProxy<double>;
 
     auto
-    property_page_increment () const -> Glib::PropertyProxy_ReadOnly<double>;
+    property_page_increment () const -> glib::PropertyProxy_ReadOnly<double>;
 
     auto
-    property_page_size () -> Glib::PropertyProxy<double>;
+    property_page_size () -> glib::PropertyProxy<double>;
 
     auto
-    property_page_size () const -> Glib::PropertyProxy_ReadOnly<double>;
+    property_page_size () const -> glib::PropertyProxy_ReadOnly<double>;
 
   public:
   public:
@@ -205,12 +205,12 @@ namespace Gtk
     on_value_changed () -> void;
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkAdjustment* object, bool take_copy = false) -> Glib::RefPtr<Gtk::Adjustment>;
-} // namespace Glib
+  wrap (GtkAdjustment* object, bool take_copy = false) -> glib::RefPtr<gtk::Adjustment>;
+} // namespace glib
 
 #endif

@@ -12,16 +12,16 @@
 
   #include <gtk/gtk.h>
 
-namespace Gtk
+namespace gtk
 {
 
   auto
-  CellRendererToggle::_property_renderable () -> Glib::PropertyProxy_Base
+  CellRendererToggle::_property_renderable () -> glib::PropertyProxy_Base
   {
     return property_active ();
   }
 
-} // namespace Gtk
+} // namespace gtk
 
 namespace
 {
@@ -31,51 +31,51 @@ namespace
                                               const gchar* p0,
                                               void* data) -> void
   {
-    using namespace Gtk;
-    using SlotType = sigc::slot<void (const Glib::ustring&)>;
+    using namespace gtk;
+    using SlotType = sigc::slot<void (const glib::ustring&)>;
 
     auto obj = dynamic_cast<CellRendererToggle*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
     {
       try
       {
-        if (const auto slot = Glib::SignalProxyNormal::data_to_slot (data))
+        if (const auto slot = glib::SignalProxyNormal::data_to_slot (data))
           (*static_cast<SlotType*> (slot)) (
-              Glib::convert_const_gchar_ptr_to_ustring (p0));
+              glib::convert_const_gchar_ptr_to_ustring (p0));
       }
       catch (...)
       {
-        Glib::exception_handlers_invoke ();
+        glib::exception_handlers_invoke ();
       }
     }
   }
 
-  static const Glib::SignalProxyInfo CellRendererToggle_signal_toggled_info = {
+  static const glib::SignalProxyInfo CellRendererToggle_signal_toggled_info = {
       "toggled",
       (GCallback) &CellRendererToggle_signal_toggled_callback,
       (GCallback) &CellRendererToggle_signal_toggled_callback};
 
 } // namespace
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GtkCellRendererToggle* object, bool take_copy) -> Gtk::CellRendererToggle*
+  wrap (GtkCellRendererToggle* object, bool take_copy) -> gtk::CellRendererToggle*
   {
-    return dynamic_cast<Gtk::CellRendererToggle*> (
-        Glib::wrap_auto ((GObject*) (object), take_copy));
+    return dynamic_cast<gtk::CellRendererToggle*> (
+        glib::wrap_auto ((GObject*) (object), take_copy));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gtk
+namespace gtk
 {
 
   auto
-  CellRendererToggle_Class::init () -> const Glib::Class&
+  CellRendererToggle_Class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -96,31 +96,31 @@ namespace Gtk
   }
 
   auto
-  CellRendererToggle_Class::wrap_new (GObject* o) -> Glib::ObjectBase*
+  CellRendererToggle_Class::wrap_new (GObject* o) -> glib::ObjectBase*
   {
     return manage (new CellRendererToggle ((GtkCellRendererToggle*) (o)));
   }
 
   CellRendererToggle::CellRendererToggle (
-      const Glib::ConstructParams& construct_params)
-    : Gtk::CellRenderer (construct_params)
+      const glib::ConstructParams& construct_params)
+    : gtk::CellRenderer (construct_params)
   {
   }
 
   CellRendererToggle::CellRendererToggle (GtkCellRendererToggle* castitem)
-    : Gtk::CellRenderer ((GtkCellRenderer*) (castitem))
+    : gtk::CellRenderer ((GtkCellRenderer*) (castitem))
   {
   }
 
   CellRendererToggle::CellRendererToggle (CellRendererToggle&& src) noexcept
-    : Gtk::CellRenderer (std::move (src))
+    : gtk::CellRenderer (std::move (src))
   {
   }
 
   auto
   CellRendererToggle::operator= (CellRendererToggle&& src) noexcept -> CellRendererToggle&
   {
-    Gtk::CellRenderer::operator= (std::move (src));
+    gtk::CellRenderer::operator= (std::move (src));
     return *this;
   }
 
@@ -145,9 +145,9 @@ namespace Gtk
   }
 
   CellRendererToggle::CellRendererToggle ()
-    : Glib::ObjectBase (nullptr),
-      Gtk::CellRenderer (
-          Glib::ConstructParams (cellrenderertoggle_class_.init ()))
+    : glib::ObjectBase (nullptr),
+      gtk::CellRenderer (
+          glib::ConstructParams (cellrenderertoggle_class_.init ()))
   {
   }
 
@@ -192,61 +192,61 @@ namespace Gtk
   }
 
   auto
-  CellRendererToggle::signal_toggled () -> Glib::SignalProxy<void (const Glib::ustring&)>
+  CellRendererToggle::signal_toggled () -> glib::SignalProxy<void (const glib::ustring&)>
   {
-    return Glib::SignalProxy<void (const Glib::ustring&)> (
+    return glib::SignalProxy<void (const glib::ustring&)> (
         this,
         &CellRendererToggle_signal_toggled_info);
   }
 
   auto
-  CellRendererToggle::property_activatable () -> Glib::PropertyProxy<bool>
+  CellRendererToggle::property_activatable () -> glib::PropertyProxy<bool>
   {
-    return Glib::PropertyProxy<bool> (this, "activatable");
+    return glib::PropertyProxy<bool> (this, "activatable");
   }
 
   auto
-  CellRendererToggle::property_activatable () const -> Glib::PropertyProxy_ReadOnly<bool>
+  CellRendererToggle::property_activatable () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "activatable");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "activatable");
   }
 
   auto
-  CellRendererToggle::property_active () -> Glib::PropertyProxy<bool>
+  CellRendererToggle::property_active () -> glib::PropertyProxy<bool>
   {
-    return Glib::PropertyProxy<bool> (this, "active");
+    return glib::PropertyProxy<bool> (this, "active");
   }
 
   auto
-  CellRendererToggle::property_active () const -> Glib::PropertyProxy_ReadOnly<bool>
+  CellRendererToggle::property_active () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "active");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "active");
   }
 
   auto
-  CellRendererToggle::property_inconsistent () -> Glib::PropertyProxy<bool>
+  CellRendererToggle::property_inconsistent () -> glib::PropertyProxy<bool>
   {
-    return Glib::PropertyProxy<bool> (this, "inconsistent");
+    return glib::PropertyProxy<bool> (this, "inconsistent");
   }
 
   auto
-  CellRendererToggle::property_inconsistent () const -> Glib::PropertyProxy_ReadOnly<bool>
+  CellRendererToggle::property_inconsistent () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "inconsistent");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "inconsistent");
   }
 
   auto
-  CellRendererToggle::property_radio () -> Glib::PropertyProxy<bool>
+  CellRendererToggle::property_radio () -> glib::PropertyProxy<bool>
   {
-    return Glib::PropertyProxy<bool> (this, "radio");
+    return glib::PropertyProxy<bool> (this, "radio");
   }
 
   auto
-  CellRendererToggle::property_radio () const -> Glib::PropertyProxy_ReadOnly<bool>
+  CellRendererToggle::property_radio () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "radio");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "radio");
   }
 
-} // namespace Gtk
+} // namespace gtk
 
 #endif

@@ -15,7 +15,7 @@
   #include <libmm/gtk/treemodelcolumn.hxx>
   #include <type_traits>
 
-namespace Gtk
+namespace gtk
 {
 
   class LIBMM_GTK_SYMEXPORT TreeModel;
@@ -78,12 +78,12 @@ namespace Gtk
     TreeModel* model_;
     bool is_end_;
 
-    friend class Gtk::TreeIter<Gtk::TreeConstRow>;
+    friend class gtk::TreeIter<gtk::TreeConstRow>;
 
-    friend class Gtk::TreeConstRow;
-    friend class Gtk::TreeRow;
-    friend class Gtk::TreeNodeConstChildren;
-    friend class Gtk::TreeNodeChildren;
+    friend class gtk::TreeConstRow;
+    friend class gtk::TreeRow;
+    friend class gtk::TreeNodeConstChildren;
+    friend class gtk::TreeNodeChildren;
   #endif
   };
 
@@ -102,7 +102,7 @@ namespace Gtk
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
     auto
-    set_model_refptr (const Glib::RefPtr<TreeModel>& model) -> void;
+    set_model_refptr (const glib::RefPtr<TreeModel>& model) -> void;
     auto
     set_model_gobject (GtkTreeModel* model) -> void;
     auto
@@ -255,7 +255,7 @@ namespace Gtk
 
   private:
     auto
-    get_value_impl (int column, Glib::ValueBase& value) const -> void;
+    get_value_impl (int column, glib::ValueBase& value) const -> void;
   };
 
   class LIBMM_GTK_SYMEXPORT TreeRow : public TreeConstRow
@@ -291,18 +291,18 @@ namespace Gtk
 
   private:
     auto
-    set_value_impl (int column, const Glib::ValueBase& value) -> void;
+    set_value_impl (int column, const glib::ValueBase& value) -> void;
     auto
-    get_value_impl (int column, Glib::ValueBase& value) const -> void;
+    get_value_impl (int column, glib::ValueBase& value) const -> void;
   };
 
   class LIBMM_GTK_SYMEXPORT TreeNodeConstChildren : public TreeIterBase2
   {
   public:
-    using value_type = Gtk::TreeConstRow;
+    using value_type = gtk::TreeConstRow;
     using size_type = unsigned int;
     using difference_type = int;
-    using const_iterator = Gtk::TreeIter<Gtk::TreeConstRow>;
+    using const_iterator = gtk::TreeIter<gtk::TreeConstRow>;
 
     auto
     begin () const -> const_iterator;
@@ -341,8 +341,8 @@ namespace Gtk
   class LIBMM_GTK_SYMEXPORT TreeNodeChildren : public TreeNodeConstChildren
   {
   public:
-    using value_type = Gtk::TreeRow;
-    using iterator = Gtk::TreeIter<Gtk::TreeRow>;
+    using value_type = gtk::TreeRow;
+    using iterator = gtk::TreeIter<gtk::TreeRow>;
 
     using TreeNodeConstChildren::begin;
     using TreeNodeConstChildren::end;
@@ -504,7 +504,7 @@ namespace Gtk
   TreeRow::set_value (const TreeModelColumn<ColumnType>& column,
                       const ColumnType& data) -> void
   {
-    using ValueType = typename Gtk::TreeModelColumn<ColumnType>::ValueType;
+    using ValueType = typename gtk::TreeModelColumn<ColumnType>::ValueType;
 
     ValueType value;
     value.init (column.type ());
@@ -517,7 +517,7 @@ namespace Gtk
   auto
   TreeRow::set_value (int column, const ColumnType& data) -> void
   {
-    using ValueType = typename Gtk::TreeModelColumn<ColumnType>::ValueType;
+    using ValueType = typename gtk::TreeModelColumn<ColumnType>::ValueType;
 
     ValueType value;
     value.init (ValueType::value_type ());
@@ -530,7 +530,7 @@ namespace Gtk
   auto
   TreeConstRow::get_value (const TreeModelColumn<ColumnType>& column) const -> ColumnType
   {
-    using ValueType = typename Gtk::TreeModelColumn<ColumnType>::ValueType;
+    using ValueType = typename gtk::TreeModelColumn<ColumnType>::ValueType;
 
     ValueType value;
     this->get_value_impl (column.index (), value);
@@ -542,7 +542,7 @@ namespace Gtk
   auto
   TreeConstRow::get_value (int column, ColumnType& data) const -> void
   {
-    using ValueType = typename Gtk::TreeModelColumn<ColumnType>::ValueType;
+    using ValueType = typename gtk::TreeModelColumn<ColumnType>::ValueType;
 
     ValueType value;
     this->get_value_impl (column, value);
@@ -552,20 +552,20 @@ namespace Gtk
 
   #endif
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
 
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
   template <>
-  class LIBMM_GTK_SYMEXPORT Value<Gtk::TreeIterBase>
-    : public Glib::Value_Boxed<Gtk::TreeIterBase>
+  class LIBMM_GTK_SYMEXPORT Value<gtk::TreeIterBase>
+    : public glib::Value_Boxed<gtk::TreeIterBase>
   {
   };
   #endif
 
-} // namespace Glib
+} // namespace glib
 
 #endif
 

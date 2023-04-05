@@ -11,7 +11,7 @@
 #include <gtk/gtk.h>
 #include <libmm/glib/value.hxx>
 
-namespace Gtk
+namespace gtk
 {
 
   enum class Align
@@ -23,24 +23,24 @@ namespace Gtk
     BASELINE
   };
 
-} // namespace Gtk
+} // namespace gtk
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_GTK_SYMEXPORT Value<Gtk::Align> : public Glib::Value_Enum<Gtk::Align>
+  class LIBMM_GTK_SYMEXPORT Value<gtk::Align> : public glib::Value_Enum<gtk::Align>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
   enum class ArrowType
@@ -52,25 +52,25 @@ namespace Gtk
     NONE
   };
 
-} // namespace Gtk
+} // namespace gtk
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_GTK_SYMEXPORT Value<Gtk::ArrowType>
-    : public Glib::Value_Enum<Gtk::ArrowType>
+  class LIBMM_GTK_SYMEXPORT Value<gtk::ArrowType>
+    : public glib::Value_Enum<gtk::ArrowType>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
   enum class DeleteType
@@ -85,25 +85,25 @@ namespace Gtk
     WHITESPACE
   };
 
-} // namespace Gtk
+} // namespace gtk
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_GTK_SYMEXPORT Value<Gtk::DeleteType>
-    : public Glib::Value_Enum<Gtk::DeleteType>
+  class LIBMM_GTK_SYMEXPORT Value<gtk::DeleteType>
+    : public glib::Value_Enum<gtk::DeleteType>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
   enum class DirectionType
@@ -116,25 +116,25 @@ namespace Gtk
     RIGHT
   };
 
-} // namespace Gtk
+} // namespace gtk
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_GTK_SYMEXPORT Value<Gtk::DirectionType>
-    : public Glib::Value_Enum<Gtk::DirectionType>
+  class LIBMM_GTK_SYMEXPORT Value<gtk::DirectionType>
+    : public glib::Value_Enum<gtk::DirectionType>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
   enum class IconSize
@@ -144,24 +144,24 @@ namespace Gtk
     LARGE
   };
 
-} // namespace Gtk
+} // namespace gtk
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_GTK_SYMEXPORT Value<Gtk::IconSize> : public Glib::Value_Enum<Gtk::IconSize>
+  class LIBMM_GTK_SYMEXPORT Value<gtk::IconSize> : public glib::Value_Enum<gtk::IconSize>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
   enum class TextDirection
@@ -171,25 +171,25 @@ namespace Gtk
     RTL
   };
 
-} // namespace Gtk
+} // namespace gtk
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_GTK_SYMEXPORT Value<Gtk::TextDirection>
-    : public Glib::Value_Enum<Gtk::TextDirection>
+  class LIBMM_GTK_SYMEXPORT Value<gtk::TextDirection>
+    : public glib::Value_Enum<gtk::TextDirection>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
   enum class Justification
@@ -200,25 +200,25 @@ namespace Gtk
     FILL
   };
 
-} // namespace Gtk
+} // namespace gtk
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_GTK_SYMEXPORT Value<Gtk::Justification>
-    : public Glib::Value_Enum<Gtk::Justification>
+  class LIBMM_GTK_SYMEXPORT Value<gtk::Justification>
+    : public glib::Value_Enum<gtk::Justification>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
   enum class MessageType
@@ -230,25 +230,25 @@ namespace Gtk
     OTHER
   };
 
-} // namespace Gtk
+} // namespace gtk
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_GTK_SYMEXPORT Value<Gtk::MessageType>
-    : public Glib::Value_Enum<Gtk::MessageType>
+  class LIBMM_GTK_SYMEXPORT Value<gtk::MessageType>
+    : public glib::Value_Enum<gtk::MessageType>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
   enum class MovementStep
@@ -265,25 +265,25 @@ namespace Gtk
     HORIZONTAL_PAGES
   };
 
-} // namespace Gtk
+} // namespace gtk
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_GTK_SYMEXPORT Value<Gtk::MovementStep>
-    : public Glib::Value_Enum<Gtk::MovementStep>
+  class LIBMM_GTK_SYMEXPORT Value<gtk::MovementStep>
+    : public glib::Value_Enum<gtk::MovementStep>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
   enum class Orientation
@@ -292,25 +292,25 @@ namespace Gtk
     VERTICAL
   };
 
-} // namespace Gtk
+} // namespace gtk
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_GTK_SYMEXPORT Value<Gtk::Orientation>
-    : public Glib::Value_Enum<Gtk::Orientation>
+  class LIBMM_GTK_SYMEXPORT Value<gtk::Orientation>
+    : public glib::Value_Enum<gtk::Orientation>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
   enum class Overflow
@@ -319,24 +319,24 @@ namespace Gtk
     HIDDEN
   };
 
-} // namespace Gtk
+} // namespace gtk
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_GTK_SYMEXPORT Value<Gtk::Overflow> : public Glib::Value_Enum<Gtk::Overflow>
+  class LIBMM_GTK_SYMEXPORT Value<gtk::Overflow> : public glib::Value_Enum<gtk::Overflow>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
   enum class CornerType
@@ -347,25 +347,25 @@ namespace Gtk
     BOTTOM_RIGHT
   };
 
-} // namespace Gtk
+} // namespace gtk
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_GTK_SYMEXPORT Value<Gtk::CornerType>
-    : public Glib::Value_Enum<Gtk::CornerType>
+  class LIBMM_GTK_SYMEXPORT Value<gtk::CornerType>
+    : public glib::Value_Enum<gtk::CornerType>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
   enum class PackType
@@ -374,24 +374,24 @@ namespace Gtk
     END
   };
 
-} // namespace Gtk
+} // namespace gtk
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_GTK_SYMEXPORT Value<Gtk::PackType> : public Glib::Value_Enum<Gtk::PackType>
+  class LIBMM_GTK_SYMEXPORT Value<gtk::PackType> : public glib::Value_Enum<gtk::PackType>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
   enum class PickFlags
@@ -449,25 +449,25 @@ namespace Gtk
                                           static_cast<unsigned> (rhs)));
   }
 
-} // namespace Gtk
+} // namespace gtk
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_GTK_SYMEXPORT Value<Gtk::PickFlags>
-    : public Glib::Value_Flags<Gtk::PickFlags>
+  class LIBMM_GTK_SYMEXPORT Value<gtk::PickFlags>
+    : public glib::Value_Flags<gtk::PickFlags>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
   enum class PolicyType
@@ -478,25 +478,25 @@ namespace Gtk
     EXTERNAL
   };
 
-} // namespace Gtk
+} // namespace gtk
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_GTK_SYMEXPORT Value<Gtk::PolicyType>
-    : public Glib::Value_Enum<Gtk::PolicyType>
+  class LIBMM_GTK_SYMEXPORT Value<gtk::PolicyType>
+    : public glib::Value_Enum<gtk::PolicyType>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
   enum class PositionType
@@ -507,25 +507,25 @@ namespace Gtk
     BOTTOM
   };
 
-} // namespace Gtk
+} // namespace gtk
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_GTK_SYMEXPORT Value<Gtk::PositionType>
-    : public Glib::Value_Enum<Gtk::PositionType>
+  class LIBMM_GTK_SYMEXPORT Value<gtk::PositionType>
+    : public glib::Value_Enum<gtk::PositionType>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
   enum class RevealerTransitionType
@@ -542,25 +542,25 @@ namespace Gtk
     SWING_DOWN
   };
 
-} // namespace Gtk
+} // namespace gtk
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_GTK_SYMEXPORT Value<Gtk::RevealerTransitionType>
-    : public Glib::Value_Enum<Gtk::RevealerTransitionType>
+  class LIBMM_GTK_SYMEXPORT Value<gtk::RevealerTransitionType>
+    : public glib::Value_Enum<gtk::RevealerTransitionType>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
   enum class ScrollType
@@ -583,25 +583,25 @@ namespace Gtk
     END
   };
 
-} // namespace Gtk
+} // namespace gtk
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_GTK_SYMEXPORT Value<Gtk::ScrollType>
-    : public Glib::Value_Enum<Gtk::ScrollType>
+  class LIBMM_GTK_SYMEXPORT Value<gtk::ScrollType>
+    : public glib::Value_Enum<gtk::ScrollType>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
   enum class SelectionMode
@@ -612,25 +612,25 @@ namespace Gtk
     MULTIPLE
   };
 
-} // namespace Gtk
+} // namespace gtk
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_GTK_SYMEXPORT Value<Gtk::SelectionMode>
-    : public Glib::Value_Enum<Gtk::SelectionMode>
+  class LIBMM_GTK_SYMEXPORT Value<gtk::SelectionMode>
+    : public glib::Value_Enum<gtk::SelectionMode>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
   enum class StackTransitionType
@@ -660,25 +660,25 @@ namespace Gtk
     ROTATE_LEFT_RIGHT
   };
 
-} // namespace Gtk
+} // namespace gtk
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_GTK_SYMEXPORT Value<Gtk::StackTransitionType>
-    : public Glib::Value_Enum<Gtk::StackTransitionType>
+  class LIBMM_GTK_SYMEXPORT Value<gtk::StackTransitionType>
+    : public glib::Value_Enum<gtk::StackTransitionType>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
   enum class WrapMode
@@ -689,24 +689,24 @@ namespace Gtk
     WORD_CHAR
   };
 
-} // namespace Gtk
+} // namespace gtk
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_GTK_SYMEXPORT Value<Gtk::WrapMode> : public Glib::Value_Enum<Gtk::WrapMode>
+  class LIBMM_GTK_SYMEXPORT Value<gtk::WrapMode> : public glib::Value_Enum<gtk::WrapMode>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
   enum class NaturalWrapMode
@@ -716,25 +716,25 @@ namespace Gtk
     WORD
   };
 
-} // namespace Gtk
+} // namespace gtk
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_GTK_SYMEXPORT Value<Gtk::NaturalWrapMode>
-    : public Glib::Value_Enum<Gtk::NaturalWrapMode>
+  class LIBMM_GTK_SYMEXPORT Value<gtk::NaturalWrapMode>
+    : public glib::Value_Enum<gtk::NaturalWrapMode>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
   enum class SortType
@@ -743,24 +743,24 @@ namespace Gtk
     DESCENDING
   };
 
-} // namespace Gtk
+} // namespace gtk
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_GTK_SYMEXPORT Value<Gtk::SortType> : public Glib::Value_Enum<Gtk::SortType>
+  class LIBMM_GTK_SYMEXPORT Value<gtk::SortType> : public glib::Value_Enum<gtk::SortType>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
   enum class Ordering
@@ -770,24 +770,24 @@ namespace Gtk
     LARGER
   };
 
-} // namespace Gtk
+} // namespace gtk
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_GTK_SYMEXPORT Value<Gtk::Ordering> : public Glib::Value_Enum<Gtk::Ordering>
+  class LIBMM_GTK_SYMEXPORT Value<gtk::Ordering> : public glib::Value_Enum<gtk::Ordering>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
   enum class PageOrientation
@@ -798,25 +798,25 @@ namespace Gtk
     REVERSE_LANDSCAPE
   };
 
-} // namespace Gtk
+} // namespace gtk
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_GTK_SYMEXPORT Value<Gtk::PageOrientation>
-    : public Glib::Value_Enum<Gtk::PageOrientation>
+  class LIBMM_GTK_SYMEXPORT Value<gtk::PageOrientation>
+    : public glib::Value_Enum<gtk::PageOrientation>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
   enum class SensitivityType
@@ -826,25 +826,25 @@ namespace Gtk
     OFF
   };
 
-} // namespace Gtk
+} // namespace gtk
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_GTK_SYMEXPORT Value<Gtk::SensitivityType>
-    : public Glib::Value_Enum<Gtk::SensitivityType>
+  class LIBMM_GTK_SYMEXPORT Value<gtk::SensitivityType>
+    : public glib::Value_Enum<gtk::SensitivityType>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
   enum class SizeRequestMode
@@ -854,25 +854,25 @@ namespace Gtk
     CONSTANT_SIZE
   };
 
-} // namespace Gtk
+} // namespace gtk
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_GTK_SYMEXPORT Value<Gtk::SizeRequestMode>
-    : public Glib::Value_Enum<Gtk::SizeRequestMode>
+  class LIBMM_GTK_SYMEXPORT Value<gtk::SizeRequestMode>
+    : public glib::Value_Enum<gtk::SizeRequestMode>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
   enum class StateFlags
@@ -943,25 +943,25 @@ namespace Gtk
                                            static_cast<unsigned> (rhs)));
   }
 
-} // namespace Gtk
+} // namespace gtk
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_GTK_SYMEXPORT Value<Gtk::StateFlags>
-    : public Glib::Value_Flags<Gtk::StateFlags>
+  class LIBMM_GTK_SYMEXPORT Value<gtk::StateFlags>
+    : public glib::Value_Flags<gtk::StateFlags>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
   enum class InputPurpose
@@ -979,25 +979,25 @@ namespace Gtk
     TERMINAL
   };
 
-} // namespace Gtk
+} // namespace gtk
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_GTK_SYMEXPORT Value<Gtk::InputPurpose>
-    : public Glib::Value_Enum<Gtk::InputPurpose>
+  class LIBMM_GTK_SYMEXPORT Value<gtk::InputPurpose>
+    : public glib::Value_Enum<gtk::InputPurpose>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
   enum class InputHints
@@ -1065,25 +1065,25 @@ namespace Gtk
                                            static_cast<unsigned> (rhs)));
   }
 
-} // namespace Gtk
+} // namespace gtk
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_GTK_SYMEXPORT Value<Gtk::InputHints>
-    : public Glib::Value_Flags<Gtk::InputHints>
+  class LIBMM_GTK_SYMEXPORT Value<gtk::InputHints>
+    : public glib::Value_Flags<gtk::InputHints>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
   enum class BaselinePosition
@@ -1093,25 +1093,25 @@ namespace Gtk
     BOTTOM
   };
 
-} // namespace Gtk
+} // namespace gtk
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_GTK_SYMEXPORT Value<Gtk::BaselinePosition>
-    : public Glib::Value_Enum<Gtk::BaselinePosition>
+  class LIBMM_GTK_SYMEXPORT Value<gtk::BaselinePosition>
+    : public glib::Value_Enum<gtk::BaselinePosition>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
   enum class ShortcutScope
@@ -1121,25 +1121,25 @@ namespace Gtk
     GLOBAL
   };
 
-} // namespace Gtk
+} // namespace gtk
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_GTK_SYMEXPORT Value<Gtk::ShortcutScope>
-    : public Glib::Value_Enum<Gtk::ShortcutScope>
+  class LIBMM_GTK_SYMEXPORT Value<gtk::ShortcutScope>
+    : public glib::Value_Enum<gtk::ShortcutScope>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
   enum class ContentFit
@@ -1150,25 +1150,25 @@ namespace Gtk
     SCALE_DOWN
   };
 
-} // namespace Gtk
+} // namespace gtk
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_GTK_SYMEXPORT Value<Gtk::ContentFit>
-    : public Glib::Value_Enum<Gtk::ContentFit>
+  class LIBMM_GTK_SYMEXPORT Value<gtk::ContentFit>
+    : public glib::Value_Enum<gtk::ContentFit>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -1177,6 +1177,6 @@ namespace Gtk
   _gtkmm_align_float_from_enum (Align value) -> float;
 #endif
 
-} // namespace Gtk
+} // namespace gtk
 
 #endif

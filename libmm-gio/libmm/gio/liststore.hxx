@@ -17,16 +17,16 @@
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gio
+namespace gio
 {
   class LIBMM_GIO_SYMEXPORT ListStoreBase_Class;
 }
 #endif
 
-namespace Gio
+namespace gio
 {
 
-  class LIBMM_GIO_SYMEXPORT ListStoreBase : public Glib::Object,
+  class LIBMM_GIO_SYMEXPORT ListStoreBase : public glib::Object,
                                   public ListModel
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -46,7 +46,7 @@ namespace Gio
     static CppClassType liststorebase_class_;
 
   protected:
-    explicit ListStoreBase (const Glib::ConstructParams& construct_params);
+    explicit ListStoreBase (const glib::ConstructParams& construct_params);
     explicit ListStoreBase (GListStore* castitem);
 
 #endif
@@ -88,24 +88,24 @@ namespace Gio
 
   public:
     static auto
-    create (GType item_type) -> Glib::RefPtr<ListStoreBase>;
+    create (GType item_type) -> glib::RefPtr<ListStoreBase>;
 
     auto
-    insert (guint position, const Glib::RefPtr<Glib::ObjectBase>& item) -> void;
+    insert (guint position, const glib::RefPtr<glib::ObjectBase>& item) -> void;
 
     using SlotCompare =
-        sigc::slot<int (const Glib::RefPtr<const Glib::ObjectBase>&,
-                        const Glib::RefPtr<const Glib::ObjectBase>&)>;
+        sigc::slot<int (const glib::RefPtr<const glib::ObjectBase>&,
+                        const glib::RefPtr<const glib::ObjectBase>&)>;
 
     auto
-    insert_sorted (const Glib::RefPtr<Glib::ObjectBase>& item,
+    insert_sorted (const glib::RefPtr<glib::ObjectBase>& item,
                    const SlotCompare& slot) -> guint;
 
     auto
     sort (const SlotCompare& slot) -> void;
 
     auto
-    append (const Glib::RefPtr<Glib::ObjectBase>& item) -> void;
+    append (const glib::RefPtr<glib::ObjectBase>& item) -> void;
 
     auto
     remove (guint position) -> void;
@@ -116,26 +116,26 @@ namespace Gio
     auto
     splice (guint position,
             guint n_removals,
-            const std::vector<Glib::RefPtr<Glib::ObjectBase>>& additions)
+            const std::vector<glib::RefPtr<glib::ObjectBase>>& additions)
         -> void;
 
     auto
-    find (const Glib::RefPtr<const Glib::ObjectBase>& item) const
+    find (const glib::RefPtr<const glib::ObjectBase>& item) const
         -> std::pair<bool, unsigned int>;
 
     using SlotEqual =
-        sigc::slot<bool (const Glib::RefPtr<const Glib::ObjectBase>&,
-                         const Glib::RefPtr<const Glib::ObjectBase>&)>;
+        sigc::slot<bool (const glib::RefPtr<const glib::ObjectBase>&,
+                         const glib::RefPtr<const glib::ObjectBase>&)>;
 
     auto
-    find (const Glib::RefPtr<const Glib::ObjectBase>& item,
+    find (const glib::RefPtr<const glib::ObjectBase>& item,
           const SlotEqual& slot) const -> std::pair<bool, unsigned int>;
 
     auto
-    property_item_type () const -> Glib::PropertyProxy_ReadOnly<GType>;
+    property_item_type () const -> glib::PropertyProxy_ReadOnly<GType>;
 
     auto
-    property_n_items () const -> Glib::PropertyProxy_ReadOnly<unsigned int>;
+    property_n_items () const -> glib::PropertyProxy_ReadOnly<unsigned int>;
 
   public:
   public:
@@ -146,52 +146,52 @@ namespace Gio
   class ListStore : public ListStoreBase
   {
     static_assert (
-        std::is_base_of<Glib::ObjectBase, T_item>::value,
-        "T_item must be Glib::ObjectBase or derived from Glib::ObjectBase.");
+        std::is_base_of<glib::ObjectBase, T_item>::value,
+        "T_item must be glib::ObjectBase or derived from glib::ObjectBase.");
 
   protected:
     ListStore ();
 
   public:
     static auto
-    create () -> Glib::RefPtr<ListStore>;
+    create () -> glib::RefPtr<ListStore>;
 
     auto
-    get_item (guint position) -> Glib::RefPtr<T_item>;
+    get_item (guint position) -> glib::RefPtr<T_item>;
 
     auto
-    get_item (guint position) const -> Glib::RefPtr<const T_item>;
+    get_item (guint position) const -> glib::RefPtr<const T_item>;
 
     auto
-    insert (guint position, const Glib::RefPtr<T_item>& item) -> void;
+    insert (guint position, const glib::RefPtr<T_item>& item) -> void;
 
-    using SlotCompare = sigc::slot<int (const Glib::RefPtr<const T_item>&,
-                                        const Glib::RefPtr<const T_item>&)>;
+    using SlotCompare = sigc::slot<int (const glib::RefPtr<const T_item>&,
+                                        const glib::RefPtr<const T_item>&)>;
 
     auto
-    insert_sorted (const Glib::RefPtr<T_item>& item, const SlotCompare& slot)
+    insert_sorted (const glib::RefPtr<T_item>& item, const SlotCompare& slot)
         -> guint;
 
     auto
     sort (const SlotCompare& slot) -> void;
 
     auto
-    append (const Glib::RefPtr<T_item>& item) -> void;
+    append (const glib::RefPtr<T_item>& item) -> void;
 
     auto
     splice (guint position,
             guint n_removals,
-            const std::vector<Glib::RefPtr<T_item>>& additions) -> void;
+            const std::vector<glib::RefPtr<T_item>>& additions) -> void;
 
     auto
-    find (const Glib::RefPtr<const T_item>& item) const
+    find (const glib::RefPtr<const T_item>& item) const
         -> std::pair<bool, unsigned int>;
 
-    using SlotEqual = sigc::slot<bool (const Glib::RefPtr<const T_item>&,
-                                       const Glib::RefPtr<const T_item>&)>;
+    using SlotEqual = sigc::slot<bool (const glib::RefPtr<const T_item>&,
+                                       const glib::RefPtr<const T_item>&)>;
 
     auto
-    find (const Glib::RefPtr<const T_item>& item, const SlotEqual& slot) const
+    find (const glib::RefPtr<const T_item>& item, const SlotEqual& slot) const
         -> std::pair<bool, unsigned int>;
 
   private:
@@ -214,36 +214,36 @@ namespace Gio
 
   template <typename T_item>
   auto
-  ListStore<T_item>::create () -> Glib::RefPtr<ListStore<T_item>>
+  ListStore<T_item>::create () -> glib::RefPtr<ListStore<T_item>>
   {
-    return Glib::make_refptr_for_instance<ListStore<T_item>> (
+    return glib::make_refptr_for_instance<ListStore<T_item>> (
         new ListStore<T_item> ());
   }
 
   template <typename T_item>
   auto
-  ListStore<T_item>::get_item (guint position) -> Glib::RefPtr<T_item>
+  ListStore<T_item>::get_item (guint position) -> glib::RefPtr<T_item>
   {
     return std::dynamic_pointer_cast<T_item> (ListModel::get_object (position));
   }
 
   template <typename T_item>
   auto
-  ListStore<T_item>::get_item (guint position) const -> Glib::RefPtr<const T_item>
+  ListStore<T_item>::get_item (guint position) const -> glib::RefPtr<const T_item>
   {
     return const_cast<ListStore<T_item>*> (this)->get_item (position);
   }
 
   template <typename T_item>
   auto
-  ListStore<T_item>::insert (guint position, const Glib::RefPtr<T_item>& item) -> void
+  ListStore<T_item>::insert (guint position, const glib::RefPtr<T_item>& item) -> void
   {
     ListStoreBase::insert (position, item);
   }
 
   template <typename T_item>
   auto
-  ListStore<T_item>::insert_sorted (const Glib::RefPtr<T_item>& item,
+  ListStore<T_item>::insert_sorted (const glib::RefPtr<T_item>& item,
                                     const SlotCompare& slot) -> guint
   {
     auto slot_copy = const_cast<SlotCompare*> (&slot);
@@ -265,7 +265,7 @@ namespace Gio
 
   template <typename T_item>
   auto
-  ListStore<T_item>::append (const Glib::RefPtr<T_item>& item) -> void
+  ListStore<T_item>::append (const glib::RefPtr<T_item>& item) -> void
   {
     ListStoreBase::append (item);
   }
@@ -274,7 +274,7 @@ namespace Gio
   auto
   ListStore<T_item>::splice (guint position,
                              guint n_removals,
-                             const std::vector<Glib::RefPtr<T_item>>& additions) -> void
+                             const std::vector<glib::RefPtr<T_item>>& additions) -> void
   {
     const std::size_t n_additions = additions.size ();
     std::unique_ptr<gpointer[]> g_additions{new gpointer[n_additions]};
@@ -291,14 +291,14 @@ namespace Gio
 
   template <typename T_item>
   auto
-  ListStore<T_item>::find (const Glib::RefPtr<const T_item>& item) const -> std::pair<bool, unsigned int>
+  ListStore<T_item>::find (const glib::RefPtr<const T_item>& item) const -> std::pair<bool, unsigned int>
   {
     return ListStoreBase::find (item);
   }
 
   template <typename T_item>
   auto
-  ListStore<T_item>::find (const Glib::RefPtr<const T_item>& item,
+  ListStore<T_item>::find (const glib::RefPtr<const T_item>& item,
                            const SlotEqual& slot) const -> std::pair<bool, unsigned int>
   {
     auto slot_ptr = const_cast<SlotEqual*> (&slot);
@@ -321,14 +321,14 @@ namespace Gio
   {
     auto slot = static_cast<SlotCompare*> (user_data);
 
-    const Glib::RefPtr<const T_item> item_a =
+    const glib::RefPtr<const T_item> item_a =
         std::dynamic_pointer_cast<T_item> (
-            Glib::wrap (static_cast<typename T_item::BaseObjectType*> (
+            glib::wrap (static_cast<typename T_item::BaseObjectType*> (
                             const_cast<gpointer> (a)),
                         true));
-    const Glib::RefPtr<const T_item> item_b =
+    const glib::RefPtr<const T_item> item_b =
         std::dynamic_pointer_cast<T_item> (
-            Glib::wrap (static_cast<typename T_item::BaseObjectType*> (
+            glib::wrap (static_cast<typename T_item::BaseObjectType*> (
                             const_cast<gpointer> (b)),
                         true));
 
@@ -343,14 +343,14 @@ namespace Gio
   {
     auto slot = static_cast<SlotEqual*> (user_data);
 
-    const Glib::RefPtr<const T_item> item_a =
+    const glib::RefPtr<const T_item> item_a =
         std::dynamic_pointer_cast<T_item> (
-            Glib::wrap (static_cast<typename T_item::BaseObjectType*> (
+            glib::wrap (static_cast<typename T_item::BaseObjectType*> (
                             const_cast<gpointer> (a)),
                         true));
-    const Glib::RefPtr<const T_item> item_b =
+    const glib::RefPtr<const T_item> item_b =
         std::dynamic_pointer_cast<T_item> (
-            Glib::wrap (static_cast<typename T_item::BaseObjectType*> (
+            glib::wrap (static_cast<typename T_item::BaseObjectType*> (
                             const_cast<gpointer> (b)),
                         true));
 
@@ -359,14 +359,14 @@ namespace Gio
 
 #endif
 
-} // namespace Gio
+} // namespace gio
 
-namespace Glib
+namespace glib
 {
 
   LIBMM_GIO_SYMEXPORT
   auto
-  wrap (GListStore* object, bool take_copy = false) -> Glib::RefPtr<Gio::ListStoreBase>;
-} // namespace Glib
+  wrap (GListStore* object, bool take_copy = false) -> glib::RefPtr<gio::ListStoreBase>;
+} // namespace glib
 
 #endif

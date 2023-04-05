@@ -3,10 +3,10 @@
 #include <libmm/gdk/popupsurfaceimpl.hxx>
 #include <utility>
 
-namespace Gdk
+namespace gdk
 {
   PopupSurfaceImpl::PopupSurfaceImpl (GdkSurface* castitem)
-    : Glib::ObjectBase (nullptr),
+    : glib::ObjectBase (nullptr),
       Surface (castitem)
   {
   }
@@ -27,4 +27,4 @@ namespace Gdk
 
   PopupSurfaceImpl::~PopupSurfaceImpl () noexcept {}
 
-} // namespace Gdk
+} // namespace gdk

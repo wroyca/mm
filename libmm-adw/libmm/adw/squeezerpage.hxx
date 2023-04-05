@@ -17,16 +17,16 @@
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Adw
+namespace adw
 {
   class LIBMM_ADW_SYMEXPORT SqueezerPage_Class;
 }
 #endif
 
-namespace Adw
+namespace adw
 {
 
-  class LIBMM_ADW_SYMEXPORT SqueezerPage : public Glib::Object
+  class LIBMM_ADW_SYMEXPORT SqueezerPage : public glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -45,7 +45,7 @@ namespace Adw
     static CppClassType squeezerpage_class_;
 
   protected:
-    explicit SqueezerPage (const Glib::ConstructParams& construct_params);
+    explicit SqueezerPage (const glib::ConstructParams& construct_params);
     explicit SqueezerPage (AdwSqueezerPage* castitem);
 
 #endif
@@ -87,10 +87,10 @@ namespace Adw
 
   public:
     static auto
-    create () -> Glib::RefPtr<SqueezerPage>;
+    create () -> glib::RefPtr<SqueezerPage>;
 
     auto
-    get_child () const -> Gtk::Widget*;
+    get_child () const -> gtk::Widget*;
 
     auto
     get_enabled () const -> bool;
@@ -99,26 +99,26 @@ namespace Adw
     set_enabled (bool enabled) -> void;
 
     auto
-    property_child () const -> Glib::PropertyProxy_ReadOnly<Gtk::Widget*>;
+    property_child () const -> glib::PropertyProxy_ReadOnly<gtk::Widget*>;
 
     auto
-    property_enabled () -> Glib::PropertyProxy<bool>;
+    property_enabled () -> glib::PropertyProxy<bool>;
 
     auto
-    property_enabled () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_enabled () const -> glib::PropertyProxy_ReadOnly<bool>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Adw
+} // namespace adw
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (AdwSqueezerPage* object, bool take_copy = false) -> Glib::RefPtr<Adw::SqueezerPage>;
+  wrap (AdwSqueezerPage* object, bool take_copy = false) -> glib::RefPtr<adw::SqueezerPage>;
 }
 
 #endif

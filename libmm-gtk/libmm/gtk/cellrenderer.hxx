@@ -19,13 +19,13 @@ using GtkCellRendererClass = struct _GtkCellRendererClass;
   #endif
 
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT CellRenderer_Class;
 }
   #endif
 
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT Snapshot;
 
@@ -88,25 +88,25 @@ namespace Gtk
                                                   static_cast<unsigned> (rhs)));
   }
 
-} // namespace Gtk
+} // namespace gtk
 
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_GTK_SYMEXPORT Value<Gtk::CellRendererState>
-    : public Glib::Value_Flags<Gtk::CellRendererState>
+  class LIBMM_GTK_SYMEXPORT Value<gtk::CellRendererState>
+    : public glib::Value_Flags<gtk::CellRendererState>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
   #endif
 
-namespace Gtk
+namespace gtk
 {
 
   enum class CellRendererMode
@@ -116,25 +116,25 @@ namespace Gtk
     EDITABLE
   };
 
-} // namespace Gtk
+} // namespace gtk
 
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_GTK_SYMEXPORT Value<Gtk::CellRendererMode>
-    : public Glib::Value_Enum<Gtk::CellRendererMode>
+  class LIBMM_GTK_SYMEXPORT Value<gtk::CellRendererMode>
+    : public glib::Value_Enum<gtk::CellRendererMode>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
   #endif
 
-namespace Gtk
+namespace gtk
 {
 
   class LIBMM_GTK_SYMEXPORT CellRenderer : public Object
@@ -164,7 +164,7 @@ namespace Gtk
     static CppClassType cellrenderer_class_;
 
   protected:
-    explicit CellRenderer (const Glib::ConstructParams& construct_params);
+    explicit CellRenderer (const glib::ConstructParams& construct_params);
     explicit CellRenderer (GtkCellRenderer* castitem);
 
   #endif
@@ -226,29 +226,29 @@ namespace Gtk
     auto
     get_aligned_area (Widget& widget,
                       CellRendererState flags,
-                      const Gdk::Rectangle& cell_area) const -> Gdk::Rectangle;
+                      const gdk::Rectangle& cell_area) const -> gdk::Rectangle;
 
     auto
-    snapshot (const Glib::RefPtr<Gtk::Snapshot>& snapshot,
+    snapshot (const glib::RefPtr<gtk::Snapshot>& snapshot,
               Widget& widget,
-              const Gdk::Rectangle& background_area,
-              const Gdk::Rectangle& cell_area,
+              const gdk::Rectangle& background_area,
+              const gdk::Rectangle& cell_area,
               CellRendererState flags) -> void;
 
     auto
-    activate (const Glib::RefPtr<const Gdk::Event>& event,
+    activate (const glib::RefPtr<const gdk::Event>& event,
               Widget& widget,
-              const Glib::ustring& path,
-              const Gdk::Rectangle& background_area,
-              const Gdk::Rectangle& cell_area,
+              const glib::ustring& path,
+              const gdk::Rectangle& background_area,
+              const gdk::Rectangle& cell_area,
               CellRendererState flags) -> bool;
 
     auto
-    start_editing (const Glib::RefPtr<const Gdk::Event>& event,
+    start_editing (const glib::RefPtr<const gdk::Event>& event,
                    Widget& widget,
-                   const Glib::ustring& path,
-                   const Gdk::Rectangle& background_area,
-                   const Gdk::Rectangle& cell_area,
+                   const glib::ustring& path,
+                   const gdk::Rectangle& background_area,
+                   const gdk::Rectangle& cell_area,
                    CellRendererState flags = CellRendererState (0))
         -> CellEditable*;
 
@@ -308,99 +308,99 @@ namespace Gtk
     get_state (CellRendererState cell_state) const -> StateFlags;
 
     virtual auto
-    _property_renderable () -> Glib::PropertyProxy_Base;
+    _property_renderable () -> glib::PropertyProxy_Base;
 
     auto
-    signal_editing_canceled () -> Glib::SignalProxy<void ()>;
+    signal_editing_canceled () -> glib::SignalProxy<void ()>;
 
     auto
     signal_editing_started ()
-        -> Glib::SignalProxy<void (CellEditable*, const Glib::ustring&)>;
+        -> glib::SignalProxy<void (CellEditable*, const glib::ustring&)>;
 
     auto
-    property_mode () -> Glib::PropertyProxy<CellRendererMode>;
+    property_mode () -> glib::PropertyProxy<CellRendererMode>;
 
     auto
-    property_mode () const -> Glib::PropertyProxy_ReadOnly<CellRendererMode>;
+    property_mode () const -> glib::PropertyProxy_ReadOnly<CellRendererMode>;
 
     auto
-    property_visible () -> Glib::PropertyProxy<bool>;
+    property_visible () -> glib::PropertyProxy<bool>;
 
     auto
-    property_visible () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_visible () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_sensitive () -> Glib::PropertyProxy<bool>;
+    property_sensitive () -> glib::PropertyProxy<bool>;
 
     auto
-    property_sensitive () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_sensitive () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_xalign () -> Glib::PropertyProxy<float>;
+    property_xalign () -> glib::PropertyProxy<float>;
 
     auto
-    property_xalign () const -> Glib::PropertyProxy_ReadOnly<float>;
+    property_xalign () const -> glib::PropertyProxy_ReadOnly<float>;
 
     auto
-    property_yalign () -> Glib::PropertyProxy<float>;
+    property_yalign () -> glib::PropertyProxy<float>;
 
     auto
-    property_yalign () const -> Glib::PropertyProxy_ReadOnly<float>;
+    property_yalign () const -> glib::PropertyProxy_ReadOnly<float>;
 
     auto
-    property_xpad () -> Glib::PropertyProxy<unsigned int>;
+    property_xpad () -> glib::PropertyProxy<unsigned int>;
 
     auto
-    property_xpad () const -> Glib::PropertyProxy_ReadOnly<unsigned int>;
+    property_xpad () const -> glib::PropertyProxy_ReadOnly<unsigned int>;
 
     auto
-    property_ypad () -> Glib::PropertyProxy<unsigned int>;
+    property_ypad () -> glib::PropertyProxy<unsigned int>;
 
     auto
-    property_ypad () const -> Glib::PropertyProxy_ReadOnly<unsigned int>;
+    property_ypad () const -> glib::PropertyProxy_ReadOnly<unsigned int>;
 
     auto
-    property_width () -> Glib::PropertyProxy<int>;
+    property_width () -> glib::PropertyProxy<int>;
 
     auto
-    property_width () const -> Glib::PropertyProxy_ReadOnly<int>;
+    property_width () const -> glib::PropertyProxy_ReadOnly<int>;
 
     auto
-    property_height () -> Glib::PropertyProxy<int>;
+    property_height () -> glib::PropertyProxy<int>;
 
     auto
-    property_height () const -> Glib::PropertyProxy_ReadOnly<int>;
+    property_height () const -> glib::PropertyProxy_ReadOnly<int>;
 
     auto
-    property_is_expander () -> Glib::PropertyProxy<bool>;
+    property_is_expander () -> glib::PropertyProxy<bool>;
 
     auto
-    property_is_expander () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_is_expander () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_is_expanded () -> Glib::PropertyProxy<bool>;
+    property_is_expanded () -> glib::PropertyProxy<bool>;
 
     auto
-    property_is_expanded () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_is_expanded () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_cell_background () -> Glib::PropertyProxy_WriteOnly<Glib::ustring>;
+    property_cell_background () -> glib::PropertyProxy_WriteOnly<glib::ustring>;
 
     auto
-    property_cell_background_rgba () -> Glib::PropertyProxy<Gdk::RGBA>;
+    property_cell_background_rgba () -> glib::PropertyProxy<gdk::RGBA>;
 
     auto
     property_cell_background_rgba () const
-        -> Glib::PropertyProxy_ReadOnly<Gdk::RGBA>;
+        -> glib::PropertyProxy_ReadOnly<gdk::RGBA>;
 
     auto
-    property_cell_background_set () -> Glib::PropertyProxy<bool>;
+    property_cell_background_set () -> glib::PropertyProxy<bool>;
 
     auto
-    property_cell_background_set () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_cell_background_set () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_editing () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_editing () const -> glib::PropertyProxy_ReadOnly<bool>;
 
   protected:
     CellRenderer ();
@@ -431,26 +431,26 @@ namespace Gtk
                                           int& natural_width) const -> void;
 
     virtual auto
-    snapshot_vfunc (const Glib::RefPtr<Gtk::Snapshot>& snapshot,
+    snapshot_vfunc (const glib::RefPtr<gtk::Snapshot>& snapshot,
                     Widget& widget,
-                    const Gdk::Rectangle& background_area,
-                    const Gdk::Rectangle& cell_area,
+                    const gdk::Rectangle& background_area,
+                    const gdk::Rectangle& cell_area,
                     CellRendererState flags) -> void;
 
     virtual auto
-    activate_vfunc (const Glib::RefPtr<const Gdk::Event>& event,
+    activate_vfunc (const glib::RefPtr<const gdk::Event>& event,
                     Widget& widget,
-                    const Glib::ustring& path,
-                    const Gdk::Rectangle& background_area,
-                    const Gdk::Rectangle& cell_area,
+                    const glib::ustring& path,
+                    const gdk::Rectangle& background_area,
+                    const gdk::Rectangle& cell_area,
                     CellRendererState flags) -> bool;
 
     virtual auto
-    start_editing_vfunc (const Glib::RefPtr<const Gdk::Event>& event,
+    start_editing_vfunc (const glib::RefPtr<const gdk::Event>& event,
                          Widget& widget,
-                         const Glib::ustring& path,
-                         const Gdk::Rectangle& background_area,
-                         const Gdk::Rectangle& cell_area,
+                         const glib::ustring& path,
+                         const gdk::Rectangle& background_area,
+                         const gdk::Rectangle& cell_area,
                          CellRendererState flags) -> CellEditable*;
 
   public:
@@ -460,17 +460,17 @@ namespace Gtk
     on_editing_canceled () -> void;
 
     virtual auto
-    on_editing_started (CellEditable* editable, const Glib::ustring& path)
+    on_editing_started (CellEditable* editable, const glib::ustring& path)
         -> void;
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkCellRenderer* object, bool take_copy = false) -> Gtk::CellRenderer*;
-} // namespace Glib
+  wrap (GtkCellRenderer* object, bool take_copy = false) -> gtk::CellRenderer*;
+} // namespace glib
 
 #endif
 

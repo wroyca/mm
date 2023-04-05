@@ -12,18 +12,18 @@
 
   #include <gtk/gtk.h>
 
-using Mode = Gtk::CellRendererAccel::Mode;
+using Mode = gtk::CellRendererAccel::Mode;
 
-namespace Gtk
+namespace gtk
 {
 
   auto
-  CellRendererAccel::_property_renderable () -> Glib::PropertyProxy_Base
+  CellRendererAccel::_property_renderable () -> glib::PropertyProxy_Base
   {
     return property_accel_key ();
   }
 
-} // namespace Gtk
+} // namespace gtk
 
 namespace
 {
@@ -36,32 +36,32 @@ namespace
                                                   guint p3,
                                                   void* data) -> void
   {
-    using namespace Gtk;
+    using namespace gtk;
     using SlotType = sigc::slot<
-        void (const Glib::ustring&, guint, Gdk::ModifierType, guint)>;
+        void (const glib::ustring&, guint, gdk::ModifierType, guint)>;
 
     auto obj = dynamic_cast<CellRendererAccel*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
     {
       try
       {
-        if (const auto slot = Glib::SignalProxyNormal::data_to_slot (data))
+        if (const auto slot = glib::SignalProxyNormal::data_to_slot (data))
           (*static_cast<SlotType*> (slot)) (
-              Glib::convert_const_gchar_ptr_to_ustring (p0),
+              glib::convert_const_gchar_ptr_to_ustring (p0),
               p1,
-              static_cast<Gdk::ModifierType> (p2),
+              static_cast<gdk::ModifierType> (p2),
               p3);
       }
       catch (...)
       {
-        Glib::exception_handlers_invoke ();
+        glib::exception_handlers_invoke ();
       }
     }
   }
 
-  static const Glib::SignalProxyInfo
+  static const glib::SignalProxyInfo
       CellRendererAccel_signal_accel_edited_info = {
           "accel_edited",
           (GCallback) &CellRendererAccel_signal_accel_edited_callback,
@@ -72,28 +72,28 @@ namespace
                                                    const gchar* p0,
                                                    void* data) -> void
   {
-    using namespace Gtk;
-    using SlotType = sigc::slot<void (const Glib::ustring&)>;
+    using namespace gtk;
+    using SlotType = sigc::slot<void (const glib::ustring&)>;
 
     auto obj = dynamic_cast<CellRendererAccel*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
     {
       try
       {
-        if (const auto slot = Glib::SignalProxyNormal::data_to_slot (data))
+        if (const auto slot = glib::SignalProxyNormal::data_to_slot (data))
           (*static_cast<SlotType*> (slot)) (
-              Glib::convert_const_gchar_ptr_to_ustring (p0));
+              glib::convert_const_gchar_ptr_to_ustring (p0));
       }
       catch (...)
       {
-        Glib::exception_handlers_invoke ();
+        glib::exception_handlers_invoke ();
       }
     }
   }
 
-  static const Glib::SignalProxyInfo
+  static const glib::SignalProxyInfo
       CellRendererAccel_signal_accel_cleared_info = {
           "accel_cleared",
           (GCallback) &CellRendererAccel_signal_accel_cleared_callback,
@@ -102,28 +102,28 @@ namespace
 } // namespace
 
 auto
-Glib::Value<Gtk::CellRendererAccel::Mode>::value_type () -> GType
+glib::Value<gtk::CellRendererAccel::Mode>::value_type () -> GType
 {
   return gtk_cell_renderer_accel_mode_get_type ();
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GtkCellRendererAccel* object, bool take_copy) -> Gtk::CellRendererAccel*
+  wrap (GtkCellRendererAccel* object, bool take_copy) -> gtk::CellRendererAccel*
   {
-    return dynamic_cast<Gtk::CellRendererAccel*> (
-        Glib::wrap_auto ((GObject*) (object), take_copy));
+    return dynamic_cast<gtk::CellRendererAccel*> (
+        glib::wrap_auto ((GObject*) (object), take_copy));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gtk
+namespace gtk
 {
 
   auto
-  CellRendererAccel_Class::init () -> const Glib::Class&
+  CellRendererAccel_Class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -143,31 +143,31 @@ namespace Gtk
   }
 
   auto
-  CellRendererAccel_Class::wrap_new (GObject* o) -> Glib::ObjectBase*
+  CellRendererAccel_Class::wrap_new (GObject* o) -> glib::ObjectBase*
   {
     return manage (new CellRendererAccel ((GtkCellRendererAccel*) (o)));
   }
 
   CellRendererAccel::CellRendererAccel (
-      const Glib::ConstructParams& construct_params)
-    : Gtk::CellRendererText (construct_params)
+      const glib::ConstructParams& construct_params)
+    : gtk::CellRendererText (construct_params)
   {
   }
 
   CellRendererAccel::CellRendererAccel (GtkCellRendererAccel* castitem)
-    : Gtk::CellRendererText ((GtkCellRendererText*) (castitem))
+    : gtk::CellRendererText ((GtkCellRendererText*) (castitem))
   {
   }
 
   CellRendererAccel::CellRendererAccel (CellRendererAccel&& src) noexcept
-    : Gtk::CellRendererText (std::move (src))
+    : gtk::CellRendererText (std::move (src))
   {
   }
 
   auto
   CellRendererAccel::operator= (CellRendererAccel&& src) noexcept -> CellRendererAccel&
   {
-    Gtk::CellRendererText::operator= (std::move (src));
+    gtk::CellRendererText::operator= (std::move (src));
     return *this;
   }
 
@@ -191,88 +191,88 @@ namespace Gtk
   }
 
   CellRendererAccel::CellRendererAccel ()
-    : Glib::ObjectBase (nullptr),
-      Gtk::CellRendererText (
-          Glib::ConstructParams (cellrendereraccel_class_.init ()))
+    : glib::ObjectBase (nullptr),
+      gtk::CellRendererText (
+          glib::ConstructParams (cellrendereraccel_class_.init ()))
   {
   }
 
   auto
-  CellRendererAccel::signal_accel_edited () -> Glib::SignalProxy<
-      void (const Glib::ustring&, guint, Gdk::ModifierType, guint)>
+  CellRendererAccel::signal_accel_edited () -> glib::SignalProxy<
+      void (const glib::ustring&, guint, gdk::ModifierType, guint)>
   {
-    return Glib::SignalProxy<
-        void (const Glib::ustring&, guint, Gdk::ModifierType, guint)> (
+    return glib::SignalProxy<
+        void (const glib::ustring&, guint, gdk::ModifierType, guint)> (
         this,
         &CellRendererAccel_signal_accel_edited_info);
   }
 
   auto
-  CellRendererAccel::signal_accel_cleared () -> Glib::SignalProxy<void (const Glib::ustring&)>
+  CellRendererAccel::signal_accel_cleared () -> glib::SignalProxy<void (const glib::ustring&)>
   {
-    return Glib::SignalProxy<void (const Glib::ustring&)> (
+    return glib::SignalProxy<void (const glib::ustring&)> (
         this,
         &CellRendererAccel_signal_accel_cleared_info);
   }
 
   auto
-  CellRendererAccel::property_accel_key () -> Glib::PropertyProxy<guint>
+  CellRendererAccel::property_accel_key () -> glib::PropertyProxy<guint>
   {
-    return Glib::PropertyProxy<guint> (this, "accel-key");
+    return glib::PropertyProxy<guint> (this, "accel-key");
   }
 
   auto
-  CellRendererAccel::property_accel_key () const -> Glib::PropertyProxy_ReadOnly<guint>
+  CellRendererAccel::property_accel_key () const -> glib::PropertyProxy_ReadOnly<guint>
   {
-    return Glib::PropertyProxy_ReadOnly<guint> (this, "accel-key");
+    return glib::PropertyProxy_ReadOnly<guint> (this, "accel-key");
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<Gdk::ModifierType>::value,
-      "Type Gdk::ModifierType cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      glib::Traits::ValueCompatibleWithWrapProperty<gdk::ModifierType>::value,
+      "Type gdk::ModifierType cannot be used in _WRAP_PROPERTY. "
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  CellRendererAccel::property_accel_mods () -> Glib::PropertyProxy<Gdk::ModifierType>
+  CellRendererAccel::property_accel_mods () -> glib::PropertyProxy<gdk::ModifierType>
   {
-    return Glib::PropertyProxy<Gdk::ModifierType> (this, "accel-mods");
+    return glib::PropertyProxy<gdk::ModifierType> (this, "accel-mods");
   }
 
   auto
-  CellRendererAccel::property_accel_mods () const -> Glib::PropertyProxy_ReadOnly<Gdk::ModifierType>
+  CellRendererAccel::property_accel_mods () const -> glib::PropertyProxy_ReadOnly<gdk::ModifierType>
   {
-    return Glib::PropertyProxy_ReadOnly<Gdk::ModifierType> (this, "accel-mods");
+    return glib::PropertyProxy_ReadOnly<gdk::ModifierType> (this, "accel-mods");
   }
 
   auto
-  CellRendererAccel::property_keycode () -> Glib::PropertyProxy<guint>
+  CellRendererAccel::property_keycode () -> glib::PropertyProxy<guint>
   {
-    return Glib::PropertyProxy<guint> (this, "keycode");
+    return glib::PropertyProxy<guint> (this, "keycode");
   }
 
   auto
-  CellRendererAccel::property_keycode () const -> Glib::PropertyProxy_ReadOnly<guint>
+  CellRendererAccel::property_keycode () const -> glib::PropertyProxy_ReadOnly<guint>
   {
-    return Glib::PropertyProxy_ReadOnly<guint> (this, "keycode");
+    return glib::PropertyProxy_ReadOnly<guint> (this, "keycode");
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<Mode>::value,
+      glib::Traits::ValueCompatibleWithWrapProperty<Mode>::value,
       "Type Mode cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  CellRendererAccel::property_accel_mode () -> Glib::PropertyProxy<Mode>
+  CellRendererAccel::property_accel_mode () -> glib::PropertyProxy<Mode>
   {
-    return Glib::PropertyProxy<Mode> (this, "accel-mode");
+    return glib::PropertyProxy<Mode> (this, "accel-mode");
   }
 
   auto
-  CellRendererAccel::property_accel_mode () const -> Glib::PropertyProxy_ReadOnly<Mode>
+  CellRendererAccel::property_accel_mode () const -> glib::PropertyProxy_ReadOnly<Mode>
   {
-    return Glib::PropertyProxy_ReadOnly<Mode> (this, "accel-mode");
+    return glib::PropertyProxy_ReadOnly<Mode> (this, "accel-mode");
   }
 
-} // namespace Gtk
+} // namespace gtk
 
 #endif

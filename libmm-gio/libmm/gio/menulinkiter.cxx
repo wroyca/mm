@@ -8,12 +8,12 @@
 #include <gio/gio.h>
 #include <libmm/gio/menumodel.hxx>
 
-namespace Gio
+namespace gio
 {
 
   auto
-  MenuLinkIter::get_next (Glib::ustring& out_link,
-                          Glib::RefPtr<MenuModel>& value) -> bool
+  MenuLinkIter::get_next (glib::ustring& out_link,
+                          glib::RefPtr<MenuModel>& value) -> bool
   {
     const char* g_out_link = nullptr;
     GMenuModel* g_value = nullptr;
@@ -21,31 +21,31 @@ namespace Gio
     const bool result =
         g_menu_link_iter_get_next (gobj (), &g_out_link, &g_value);
     out_link = g_out_link;
-    value = Glib::wrap (g_value);
+    value = glib::wrap (g_value);
 
     return result;
   }
 
-} // namespace Gio
+} // namespace gio
 
 namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GMenuLinkIter* object, const bool take_copy) -> RefPtr<Gio::MenuLinkIter>
+  wrap (GMenuLinkIter* object, const bool take_copy) -> RefPtr<gio::MenuLinkIter>
   {
-    return Glib::make_refptr_for_instance<Gio::MenuLinkIter> (
-        dynamic_cast<Gio::MenuLinkIter*> (
+    return glib::make_refptr_for_instance<gio::MenuLinkIter> (
+        dynamic_cast<gio::MenuLinkIter*> (
             wrap_auto ((GObject*) object, take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gio
+namespace gio
 {
 
   auto
@@ -69,7 +69,7 @@ namespace Gio
   }
 
   auto
-  MenuLinkIter_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  MenuLinkIter_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new MenuLinkIter ((GMenuLinkIter*) object);
   }
@@ -81,7 +81,7 @@ namespace Gio
     return gobj ();
   }
 
-  MenuLinkIter::MenuLinkIter (const Glib::ConstructParams& construct_params)
+  MenuLinkIter::MenuLinkIter (const glib::ConstructParams& construct_params)
     : Object (construct_params)
   {
   }
@@ -121,25 +121,25 @@ namespace Gio
 
   MenuLinkIter::MenuLinkIter ()
     : ObjectBase (nullptr),
-      Object (Glib::ConstructParams (menulinkiter_class_.init ()))
+      Object (glib::ConstructParams (menulinkiter_class_.init ()))
   {
   }
 
   auto
-  MenuLinkIter::get_name () const -> Glib::ustring
+  MenuLinkIter::get_name () const -> glib::ustring
   {
-    return Glib::convert_const_gchar_ptr_to_ustring (
+    return glib::convert_const_gchar_ptr_to_ustring (
         g_menu_link_iter_get_name (const_cast<GMenuLinkIter*> (gobj ())));
   }
 
   auto
-  MenuLinkIter::get_value () -> Glib::RefPtr<MenuModel>
+  MenuLinkIter::get_value () -> glib::RefPtr<MenuModel>
   {
-    return Glib::wrap (g_menu_link_iter_get_value (gobj ()));
+    return glib::wrap (g_menu_link_iter_get_value (gobj ()));
   }
 
   auto
-  MenuLinkIter::get_value () const -> Glib::RefPtr<const MenuModel>
+  MenuLinkIter::get_value () const -> glib::RefPtr<const MenuModel>
   {
     return const_cast<MenuLinkIter*> (this)->get_value ();
   }
@@ -150,4 +150,4 @@ namespace Gio
     return g_menu_link_iter_next (gobj ());
   }
 
-} // namespace Gio
+} // namespace gio

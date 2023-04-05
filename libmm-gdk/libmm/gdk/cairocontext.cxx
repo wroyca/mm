@@ -12,24 +12,24 @@ namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GdkCairoContext* object, bool take_copy) -> Glib::RefPtr<Gdk::CairoContext>
+  wrap (GdkCairoContext* object, bool take_copy) -> glib::RefPtr<gdk::CairoContext>
   {
-    return Glib::make_refptr_for_instance<Gdk::CairoContext> (
-        dynamic_cast<Gdk::CairoContext*> (
-            Glib::wrap_auto ((GObject*) (object), take_copy)));
+    return glib::make_refptr_for_instance<gdk::CairoContext> (
+        dynamic_cast<gdk::CairoContext*> (
+            glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gdk
+namespace gdk
 {
 
   auto
-  CairoContext_Class::init () -> const Glib::Class&
+  CairoContext_Class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -49,7 +49,7 @@ namespace Gdk
   }
 
   auto
-  CairoContext_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  CairoContext_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new CairoContext ((GdkCairoContext*) object);
   }
@@ -61,25 +61,25 @@ namespace Gdk
     return gobj ();
   }
 
-  CairoContext::CairoContext (const Glib::ConstructParams& construct_params)
-    : Gdk::DrawContext (construct_params)
+  CairoContext::CairoContext (const glib::ConstructParams& construct_params)
+    : gdk::DrawContext (construct_params)
   {
   }
 
   CairoContext::CairoContext (GdkCairoContext* castitem)
-    : Gdk::DrawContext ((GdkDrawContext*) (castitem))
+    : gdk::DrawContext ((GdkDrawContext*) (castitem))
   {
   }
 
   CairoContext::CairoContext (CairoContext&& src) noexcept
-    : Gdk::DrawContext (std::move (src))
+    : gdk::DrawContext (std::move (src))
   {
   }
 
   auto
   CairoContext::operator= (CairoContext&& src) noexcept -> CairoContext&
   {
-    Gdk::DrawContext::operator= (std::move (src));
+    gdk::DrawContext::operator= (std::move (src));
     return *this;
   }
 
@@ -100,15 +100,15 @@ namespace Gdk
   }
 
   CairoContext::CairoContext ()
-    : Glib::ObjectBase (nullptr),
-      Gdk::DrawContext (Glib::ConstructParams (cairocontext_class_.init ()))
+    : glib::ObjectBase (nullptr),
+      gdk::DrawContext (glib::ConstructParams (cairocontext_class_.init ()))
   {
   }
 
   auto
-  CairoContext::cairo_create () -> ::Cairo::RefPtr<::Cairo::Context>
+  CairoContext::cairo_create () -> ::cairo::RefPtr<::cairo::Context>
   {
-    return Gdk::Cairo::wrap (gdk_cairo_context_cairo_create (gobj ()));
+    return gdk::cairo::wrap (gdk_cairo_context_cairo_create (gobj ()));
   }
 
-} // namespace Gdk
+} // namespace gdk

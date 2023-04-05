@@ -17,16 +17,16 @@
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Adw
+namespace adw
 {
   class LIBMM_ADW_SYMEXPORT PasswordEntryRow_Class;
 }
 #endif
 
-namespace Adw
+namespace adw
 {
 
-  class LIBMM_ADW_SYMEXPORT PasswordEntryRow : public Adw::EntryRow
+  class LIBMM_ADW_SYMEXPORT PasswordEntryRow : public adw::EntryRow
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -53,7 +53,7 @@ namespace Adw
     static CppClassType passwordentryrow_class_;
 
   protected:
-    explicit PasswordEntryRow (const Glib::ConstructParams& construct_params);
+    explicit PasswordEntryRow (const glib::ConstructParams& construct_params);
     explicit PasswordEntryRow (AdwPasswordEntryRow* castitem);
 
 #endif
@@ -89,13 +89,13 @@ namespace Adw
   protected:
   };
 
-} // namespace Adw
+} // namespace adw
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (AdwPasswordEntryRow* object, bool take_copy = false) -> Adw::PasswordEntryRow*;
+  wrap (AdwPasswordEntryRow* object, bool take_copy = false) -> adw::PasswordEntryRow*;
 }
 
 #endif

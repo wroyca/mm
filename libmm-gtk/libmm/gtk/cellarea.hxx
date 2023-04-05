@@ -19,17 +19,17 @@ using GtkCellAreaClass = struct _GtkCellAreaClass;
   #endif
 
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT CellArea_Class;
 }
   #endif
 
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT Snapshot;
 
-  class LIBMM_GTK_SYMEXPORT CellArea : public Glib::Object,
+  class LIBMM_GTK_SYMEXPORT CellArea : public glib::Object,
                              public Buildable,
                              public CellLayout
   {
@@ -50,7 +50,7 @@ namespace Gtk
     static CppClassType cellarea_class_;
 
   protected:
-    explicit CellArea (const Glib::ConstructParams& construct_params);
+    explicit CellArea (const glib::ConstructParams& construct_params);
     explicit CellArea (GtkCellArea* castitem);
 
   #endif
@@ -105,132 +105,132 @@ namespace Gtk
     auto foreach (const SlotForeach& slot) -> void;
 
     typedef sigc::slot<
-        bool (CellRenderer*, const Gdk::Rectangle&, const Gdk::Rectangle&)>
+        bool (CellRenderer*, const gdk::Rectangle&, const gdk::Rectangle&)>
         SlotForeachAlloc;
 
-    auto foreach (const Glib::RefPtr<CellAreaContext>& context,
+    auto foreach (const glib::RefPtr<CellAreaContext>& context,
                   Widget * widget,
-                  const Gdk::Rectangle& cell_area,
-                  const Gdk::Rectangle& background_area,
+                  const gdk::Rectangle& cell_area,
+                  const gdk::Rectangle& background_area,
                   const SlotForeachAlloc& slot) -> void;
 
     auto
-    event (const Glib::RefPtr<CellAreaContext>& context,
+    event (const glib::RefPtr<CellAreaContext>& context,
            Widget& widget,
-           const Glib::RefPtr<const Gdk::Event>& gdk_event,
-           const Gdk::Rectangle& cell_area,
+           const glib::RefPtr<const gdk::Event>& gdk_event,
+           const gdk::Rectangle& cell_area,
            GtkCellRendererState flags) -> int;
 
     auto
-    snapshot (const Glib::RefPtr<CellAreaContext>& context,
+    snapshot (const glib::RefPtr<CellAreaContext>& context,
               Widget& widget,
-              const Glib::RefPtr<Gtk::Snapshot>& snapshot,
-              const Gdk::Rectangle& background_area,
-              const Gdk::Rectangle& cell_area,
+              const glib::RefPtr<gtk::Snapshot>& snapshot,
+              const gdk::Rectangle& background_area,
+              const gdk::Rectangle& cell_area,
               CellRendererState flags,
               bool paint_focus) -> void;
 
     auto
-    get_cell_allocation (const Glib::RefPtr<CellAreaContext>& context,
+    get_cell_allocation (const glib::RefPtr<CellAreaContext>& context,
                          Widget& widget,
                          CellRenderer& renderer,
-                         const Gdk::Rectangle& cell_area,
-                         Gdk::Rectangle& allocation) -> void;
+                         const gdk::Rectangle& cell_area,
+                         gdk::Rectangle& allocation) -> void;
 
     auto
-    get_cell_at_position (const Glib::RefPtr<CellAreaContext>& context,
+    get_cell_at_position (const glib::RefPtr<CellAreaContext>& context,
                           Widget& widget,
-                          const Gdk::Rectangle& cell_area,
+                          const gdk::Rectangle& cell_area,
                           int x,
                           int y,
-                          Gdk::Rectangle& alloc_area) -> CellRenderer*;
+                          gdk::Rectangle& alloc_area) -> CellRenderer*;
 
     auto
-    get_cell_at_position (const Glib::RefPtr<CellAreaContext>& context,
+    get_cell_at_position (const glib::RefPtr<CellAreaContext>& context,
                           Widget& widget,
-                          const Gdk::Rectangle& cell_area,
+                          const gdk::Rectangle& cell_area,
                           int x,
                           int y,
-                          Gdk::Rectangle& alloc_area) const
+                          gdk::Rectangle& alloc_area) const
         -> const CellRenderer*;
 
     auto
-    create_context () const -> Glib::RefPtr<CellAreaContext>;
+    create_context () const -> glib::RefPtr<CellAreaContext>;
 
     auto
-    copy_context (const Glib::RefPtr<const CellAreaContext>& context)
-        -> Glib::RefPtr<CellAreaContext>;
+    copy_context (const glib::RefPtr<const CellAreaContext>& context)
+        -> glib::RefPtr<CellAreaContext>;
 
     auto
     get_request_mode () const -> SizeRequestMode;
 
     auto
-    get_preferred_width (const Glib::RefPtr<CellAreaContext>& context,
+    get_preferred_width (const glib::RefPtr<CellAreaContext>& context,
                          Widget& widget,
                          int& minimum_width,
                          int& natural_width) -> void;
 
     auto
     get_preferred_height_for_width (
-        const Glib::RefPtr<CellAreaContext>& context,
+        const glib::RefPtr<CellAreaContext>& context,
         Widget& widget,
         int width,
         int& minimum_height,
         int& natural_height) -> void;
 
     auto
-    get_preferred_height (const Glib::RefPtr<CellAreaContext>& context,
+    get_preferred_height (const glib::RefPtr<CellAreaContext>& context,
                           Widget& widget,
                           int& minimum_height,
                           int& natural_height) -> void;
 
     auto
     get_preferred_width_for_height (
-        const Glib::RefPtr<CellAreaContext>& context,
+        const glib::RefPtr<CellAreaContext>& context,
         Widget& widget,
         int height,
         int& minimum_width,
         int& natural_width) -> void;
 
     auto
-    get_current_path_string () const -> Glib::ustring;
+    get_current_path_string () const -> glib::ustring;
 
     auto
-    apply_attributes (const Glib::RefPtr<TreeModel>& tree_model,
+    apply_attributes (const glib::RefPtr<TreeModel>& tree_model,
                       const TreeModel::iterator& iter,
                       bool is_expander,
                       bool is_expanded) -> void;
 
     auto
     attribute_connect (CellRenderer& renderer,
-                       const Glib::ustring& attribute,
+                       const glib::ustring& attribute,
                        int column) -> void;
 
     auto
     attribute_disconnect (CellRenderer& renderer,
-                          const Glib::ustring& attribute) -> void;
+                          const glib::ustring& attribute) -> void;
 
     auto
     attribute_get_column (CellRenderer& renderer,
-                          const Glib::ustring& attribute) const -> int;
+                          const glib::ustring& attribute) const -> int;
 
     auto
     cell_set_property (CellRenderer& renderer,
-                       const Glib::ustring& property_name,
-                       const Glib::ValueBase& value) -> void;
+                       const glib::ustring& property_name,
+                       const glib::ValueBase& value) -> void;
 
     auto
     cell_get_property (CellRenderer& renderer,
-                       const Glib::ustring& property_name,
-                       Glib::ValueBase& value) -> void;
+                       const glib::ustring& property_name,
+                       glib::ValueBase& value) -> void;
 
     auto
     is_activatable () const -> bool;
 
     auto
-    activate (const Glib::RefPtr<CellAreaContext>& context,
+    activate (const glib::RefPtr<CellAreaContext>& context,
               Widget& widget,
-              const Gdk::Rectangle& cell_area,
+              const gdk::Rectangle& cell_area,
               CellRendererState flags,
               bool edit_only) -> bool;
 
@@ -285,8 +285,8 @@ namespace Gtk
     auto
     activate_cell (Widget& widget,
                    CellRenderer& renderer,
-                   const Glib::RefPtr<const Gdk::Event>& gdk_event,
-                   const Gdk::Rectangle& cell_area,
+                   const glib::RefPtr<const gdk::Event>& gdk_event,
+                   const gdk::Rectangle& cell_area,
                    CellRendererState flags) -> bool;
 
     auto
@@ -294,8 +294,8 @@ namespace Gtk
 
     auto
     inner_cell_area (Widget& widget,
-                     const Gdk::Rectangle& cell_area,
-                     Gdk::Rectangle& inner_area) -> void;
+                     const gdk::Rectangle& cell_area,
+                     gdk::Rectangle& inner_area) -> void;
 
     auto
     request_renderer (CellRenderer& renderer,
@@ -308,31 +308,31 @@ namespace Gtk
   protected:
     auto
     signal_apply_attributes ()
-        -> Glib::SignalProxy<void (const Glib::RefPtr<TreeModel>&,
+        -> glib::SignalProxy<void (const glib::RefPtr<TreeModel>&,
                                    const TreeModel::iterator&,
                                    bool,
                                    bool)>;
 
     auto
-    signal_add_editable () -> Glib::SignalProxy<void (CellRenderer*,
+    signal_add_editable () -> glib::SignalProxy<void (CellRenderer*,
                                                       CellEditable*,
-                                                      const Gdk::Rectangle&,
-                                                      const Glib::ustring&)>;
+                                                      const gdk::Rectangle&,
+                                                      const glib::ustring&)>;
 
     auto
     signal_remove_editable ()
-        -> Glib::SignalProxy<void (CellRenderer*, CellEditable*)>;
+        -> glib::SignalProxy<void (CellRenderer*, CellEditable*)>;
 
     auto
     signal_focus_changed ()
-        -> Glib::SignalProxy<void (CellRenderer*, const Glib::ustring&)>;
+        -> glib::SignalProxy<void (CellRenderer*, const glib::ustring&)>;
 
     virtual auto
-    snapshot_vfunc (const Glib::RefPtr<CellAreaContext>& context,
+    snapshot_vfunc (const glib::RefPtr<CellAreaContext>& context,
                     Widget& widget,
-                    const Glib::RefPtr<Gtk::Snapshot>& snapshot,
-                    const Gdk::Rectangle& background_area,
-                    const Gdk::Rectangle& cell_area,
+                    const glib::RefPtr<gtk::Snapshot>& snapshot,
+                    const gdk::Rectangle& background_area,
+                    const gdk::Rectangle& cell_area,
                     CellRendererState flags,
                     bool paint_focus) -> void;
 
@@ -340,64 +340,64 @@ namespace Gtk
     get_request_mode_vfunc () const -> SizeRequestMode;
 
     virtual auto
-    get_preferred_width_vfunc (const Glib::RefPtr<CellAreaContext>& context,
+    get_preferred_width_vfunc (const glib::RefPtr<CellAreaContext>& context,
                                Widget& widget,
                                int& minimum_width,
                                int& natural_width) -> void;
 
     virtual auto
     get_preferred_height_for_width_vfunc (
-        const Glib::RefPtr<CellAreaContext>& context,
+        const glib::RefPtr<CellAreaContext>& context,
         Widget& widget,
         int width,
         int& minimum_height,
         int& natural_height) -> void;
 
     virtual auto
-    get_preferred_height_vfunc (const Glib::RefPtr<CellAreaContext>& context,
+    get_preferred_height_vfunc (const glib::RefPtr<CellAreaContext>& context,
                                 Widget& widget,
                                 int& minimum_height,
                                 int& natural_height) -> void;
 
     virtual auto
     get_preferred_width_for_height_vfunc (
-        const Glib::RefPtr<CellAreaContext>& context,
+        const glib::RefPtr<CellAreaContext>& context,
         Widget& widget,
         int height,
         int& minimum_width,
         int& natural_width) -> void;
 
     auto
-    property_focus_cell () -> Glib::PropertyProxy<CellRenderer*>;
+    property_focus_cell () -> glib::PropertyProxy<CellRenderer*>;
 
     auto
-    property_focus_cell () const -> Glib::PropertyProxy_ReadOnly<CellRenderer*>;
+    property_focus_cell () const -> glib::PropertyProxy_ReadOnly<CellRenderer*>;
 
     auto
     property_edited_cell () const
-        -> Glib::PropertyProxy_ReadOnly<CellRenderer*>;
+        -> glib::PropertyProxy_ReadOnly<CellRenderer*>;
 
     auto
     property_edit_widget () const
-        -> Glib::PropertyProxy_ReadOnly<CellEditable*>;
+        -> glib::PropertyProxy_ReadOnly<CellEditable*>;
 
   public:
   public:
   protected:
     virtual auto
-    on_apply_attributes (const Glib::RefPtr<TreeModel>& tree_model,
+    on_apply_attributes (const glib::RefPtr<TreeModel>& tree_model,
                          const TreeModel::iterator& iter,
                          bool is_expander,
                          bool is_expanded) -> void;
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkCellArea* object, bool take_copy = false) -> Glib::RefPtr<Gtk::CellArea>;
-} // namespace Glib
+  wrap (GtkCellArea* object, bool take_copy = false) -> glib::RefPtr<gtk::CellArea>;
+} // namespace glib
 
 #endif
 

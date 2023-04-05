@@ -14,13 +14,13 @@ using GtkOverlayClass = struct _GtkOverlayClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT Overlay_Class;
 }
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
   class LIBMM_GTK_SYMEXPORT Overlay : public Widget
@@ -50,7 +50,7 @@ namespace Gtk
     static CppClassType overlay_class_;
 
   protected:
-    explicit Overlay (const Glib::ConstructParams& construct_params);
+    explicit Overlay (const glib::ConstructParams& construct_params);
     explicit Overlay (GtkOverlay* castitem);
 
 #endif
@@ -82,10 +82,10 @@ namespace Gtk
     Overlay ();
 
     auto
-    add_overlay (Gtk::Widget& widget) -> void;
+    add_overlay (gtk::Widget& widget) -> void;
 
     auto
-    remove_overlay (Gtk::Widget& widget) -> void;
+    remove_overlay (gtk::Widget& widget) -> void;
 
     auto
     set_child (Widget& child) -> void;
@@ -112,25 +112,25 @@ namespace Gtk
 
     auto
     signal_get_child_position ()
-        -> Glib::SignalProxy<bool (Gtk::Widget*, Gdk::Rectangle&)>;
+        -> glib::SignalProxy<bool (gtk::Widget*, gdk::Rectangle&)>;
 
     auto
-    property_child () -> Glib::PropertyProxy<Widget*>;
+    property_child () -> glib::PropertyProxy<Widget*>;
 
     auto
-    property_child () const -> Glib::PropertyProxy_ReadOnly<Widget*>;
+    property_child () const -> glib::PropertyProxy_ReadOnly<Widget*>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkOverlay* object, bool take_copy = false) -> Gtk::Overlay*;
-} // namespace Glib
+  wrap (GtkOverlay* object, bool take_copy = false) -> gtk::Overlay*;
+} // namespace glib
 
 #endif

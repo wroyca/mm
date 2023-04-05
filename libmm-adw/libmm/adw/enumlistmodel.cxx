@@ -9,7 +9,7 @@
 #include <libmm/glib/mm-glib.hxx>
 #include <libmm/gtk/mm-gtk.hxx>
 
-namespace Adw
+namespace adw
 {
 
 }
@@ -18,24 +18,24 @@ namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (AdwEnumListModel* object, bool take_copy) -> Glib::RefPtr<Adw::EnumListModel>
+  wrap (AdwEnumListModel* object, bool take_copy) -> glib::RefPtr<adw::EnumListModel>
   {
-    return Glib::make_refptr_for_instance<Adw::EnumListModel> (
-        dynamic_cast<Adw::EnumListModel*> (
-            Glib::wrap_auto ((GObject*) (object), take_copy)));
+    return glib::make_refptr_for_instance<adw::EnumListModel> (
+        dynamic_cast<adw::EnumListModel*> (
+            glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Adw
+namespace adw
 {
 
   auto
-  EnumListModel_Class::init () -> const Glib::Class&
+  EnumListModel_Class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -46,7 +46,7 @@ namespace Adw
   }
 
   auto
-  EnumListModel_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  EnumListModel_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new EnumListModel ((AdwEnumListModel*) object);
   }
@@ -58,27 +58,27 @@ namespace Adw
     return gobj ();
   }
 
-  EnumListModel::EnumListModel (const Glib::ConstructParams& construct_params)
-    : Glib::Object (construct_params)
+  EnumListModel::EnumListModel (const glib::ConstructParams& construct_params)
+    : glib::Object (construct_params)
   {
   }
 
   EnumListModel::EnumListModel (AdwEnumListModel* castitem)
-    : Glib::Object ((GObject*) (castitem))
+    : glib::Object ((GObject*) (castitem))
   {
   }
 
   EnumListModel::EnumListModel (EnumListModel&& src) noexcept
-    : Glib::Object (std::move (src)),
-      Gio::ListModel (std::move (src))
+    : glib::Object (std::move (src)),
+      gio::ListModel (std::move (src))
   {
   }
 
   auto
   EnumListModel::operator= (EnumListModel&& src) noexcept -> EnumListModel&
   {
-    Glib::Object::operator= (std::move (src));
-    Gio::ListModel::operator= (std::move (src));
+    glib::Object::operator= (std::move (src));
+    gio::ListModel::operator= (std::move (src));
     return *this;
   }
 
@@ -99,14 +99,14 @@ namespace Adw
   }
 
   EnumListModel::EnumListModel ()
-    : Glib::ObjectBase (nullptr),
-      Glib::Object (Glib::ConstructParams (enumlistmodel_class_.init ()))
+    : glib::ObjectBase (nullptr),
+      glib::Object (glib::ConstructParams (enumlistmodel_class_.init ()))
   {
   }
 
   EnumListModel::EnumListModel (GType enum_type)
-    : Glib::ObjectBase (nullptr),
-      Glib::Object (Glib::ConstructParams (enumlistmodel_class_.init (),
+    : glib::ObjectBase (nullptr),
+      glib::Object (glib::ConstructParams (enumlistmodel_class_.init (),
                                            "enum_type",
                                            enum_type,
                                            nullptr))
@@ -114,9 +114,9 @@ namespace Adw
   }
 
   auto
-  EnumListModel::create (GType enum_type) -> Glib::RefPtr<EnumListModel>
+  EnumListModel::create (GType enum_type) -> glib::RefPtr<EnumListModel>
   {
-    return Glib::make_refptr_for_instance<EnumListModel> (
+    return glib::make_refptr_for_instance<EnumListModel> (
         new EnumListModel (enum_type));
   }
 
@@ -136,14 +136,14 @@ namespace Adw
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<GType>::value,
+      glib::Traits::ValueCompatibleWithWrapProperty<GType>::value,
       "Type GType cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  EnumListModel::property_enum_type () const -> Glib::PropertyProxy_ReadOnly<GType>
+  EnumListModel::property_enum_type () const -> glib::PropertyProxy_ReadOnly<GType>
   {
-    return Glib::PropertyProxy_ReadOnly<GType> (this, "enum-type");
+    return glib::PropertyProxy_ReadOnly<GType> (this, "enum-type");
   }
 
-} // namespace Adw
+} // namespace adw

@@ -18,7 +18,7 @@ extern "C"
 }
 #endif
 
-namespace Glib
+namespace glib
 {
 
   class Source;
@@ -159,7 +159,7 @@ namespace Glib
                                             static_cast<unsigned> (rhs)));
   }
 
-  class IOChannelError : public Glib::Error
+  class IOChannelError : public glib::Error
   {
   public:
     enum Code
@@ -176,7 +176,7 @@ namespace Glib
     };
 
     LIBMM_GLIB_SYMEXPORT
-    IOChannelError (Code error_code, const Glib::ustring& error_message);
+    IOChannelError (Code error_code, const glib::ustring& error_message);
     LIBMM_GLIB_SYMEXPORT explicit IOChannelError (GError* gobject);
     LIBMM_GLIB_SYMEXPORT auto
     code () const -> Code;
@@ -214,18 +214,18 @@ namespace Glib
 
     static auto
     create_from_file (const std::string& filename, const std::string& mode)
-        -> Glib::RefPtr<IOChannel>;
+        -> glib::RefPtr<IOChannel>;
 
     static auto
-    create_from_fd (int fd) -> Glib::RefPtr<IOChannel>;
+    create_from_fd (int fd) -> glib::RefPtr<IOChannel>;
 
 #ifdef G_OS_WIN32
 
     static auto
-    create_from_win32_fd (int fd) -> Glib::RefPtr<IOChannel>;
+    create_from_win32_fd (int fd) -> glib::RefPtr<IOChannel>;
 
     static auto
-    create_from_win32_socket (int socket) -> Glib::RefPtr<IOChannel>;
+    create_from_win32_socket (int socket) -> glib::RefPtr<IOChannel>;
 
 #endif
 
@@ -236,16 +236,16 @@ namespace Glib
     read (char* buf, gsize count, gsize& bytes_read) -> IOStatus;
 
     auto
-    read (Glib::ustring& str, gsize count) -> IOStatus;
+    read (glib::ustring& str, gsize count) -> IOStatus;
 
     auto
-    read_line (Glib::ustring& line) -> IOStatus;
+    read_line (glib::ustring& line) -> IOStatus;
 
     auto
-    read_to_end (Glib::ustring& str) -> IOStatus;
+    read_to_end (glib::ustring& str) -> IOStatus;
 
     auto
-    write (const Glib::ustring& str) -> IOStatus;
+    write (const glib::ustring& str) -> IOStatus;
 
     auto
     write (const char* buf, gssize count, gsize& bytes_written) -> IOStatus;
@@ -302,7 +302,7 @@ namespace Glib
     get_line_term () const -> std::string;
 
     auto
-    create_watch (IOCondition condition) -> Glib::RefPtr<IOSource>;
+    create_watch (IOCondition condition) -> glib::RefPtr<IOSource>;
 
     virtual auto
     reference () const -> void;
@@ -334,8 +334,8 @@ namespace Glib
   };
 
   LIBMM_GLIB_SYMEXPORT auto
-  wrap (GIOChannel* gobject, bool take_copy = false) -> Glib::RefPtr<IOChannel>;
+  wrap (GIOChannel* gobject, bool take_copy = false) -> glib::RefPtr<IOChannel>;
 
-} // namespace Glib
+} // namespace glib
 
 #endif

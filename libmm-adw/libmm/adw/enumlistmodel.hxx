@@ -17,17 +17,17 @@
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Adw
+namespace adw
 {
   class LIBMM_ADW_SYMEXPORT EnumListModel_Class;
 }
 #endif
 
-namespace Adw
+namespace adw
 {
 
-  class LIBMM_ADW_SYMEXPORT EnumListModel : public Glib::Object,
-                        public Gio::ListModel
+  class LIBMM_ADW_SYMEXPORT EnumListModel : public glib::Object,
+                        public gio::ListModel
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -46,7 +46,7 @@ namespace Adw
     static CppClassType enumlistmodel_class_;
 
   protected:
-    explicit EnumListModel (const Glib::ConstructParams& construct_params);
+    explicit EnumListModel (const glib::ConstructParams& construct_params);
     explicit EnumListModel (AdwEnumListModel* castitem);
 
 #endif
@@ -89,7 +89,7 @@ namespace Adw
 
   public:
     static auto
-    create (GType enum_type) -> Glib::RefPtr<EnumListModel>;
+    create (GType enum_type) -> glib::RefPtr<EnumListModel>;
 
     auto
     find_position (int value) const -> guint;
@@ -98,20 +98,20 @@ namespace Adw
     get_enum_type () const -> GType;
 
     auto
-    property_enum_type () const -> Glib::PropertyProxy_ReadOnly<GType>;
+    property_enum_type () const -> glib::PropertyProxy_ReadOnly<GType>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Adw
+} // namespace adw
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (AdwEnumListModel* object, bool take_copy = false) -> Glib::RefPtr<Adw::EnumListModel>;
+  wrap (AdwEnumListModel* object, bool take_copy = false) -> glib::RefPtr<adw::EnumListModel>;
 }
 
 #endif

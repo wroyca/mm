@@ -16,18 +16,18 @@ using GUnixSocketAddressClass = struct _GUnixSocketAddressClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gio
+namespace gio
 {
   class LIBMM_GIO_SYMEXPORT UnixSocketAddress_Class;
 }
 #endif
 
-namespace Glib
+namespace glib
 {
   class LIBMM_GLIB_SYMEXPORT ByteArray;
 }
 
-namespace Gio
+namespace gio
 {
 
   class LIBMM_GIO_SYMEXPORT UnixSocketAddress : public SocketAddress
@@ -49,7 +49,7 @@ namespace Gio
     static CppClassType unixsocketaddress_class_;
 
   protected:
-    explicit UnixSocketAddress (const Glib::ConstructParams& construct_params);
+    explicit UnixSocketAddress (const glib::ConstructParams& construct_params);
     explicit UnixSocketAddress (GUnixSocketAddress* castitem);
 
 #endif
@@ -101,11 +101,11 @@ namespace Gio
 
   public:
     static auto
-    create (const std::string& path) -> Glib::RefPtr<UnixSocketAddress>;
+    create (const std::string& path) -> glib::RefPtr<UnixSocketAddress>;
 
     static auto
     create (const std::string& path, Type type, int path_len = -1)
-        -> Glib::RefPtr<UnixSocketAddress>;
+        -> glib::RefPtr<UnixSocketAddress>;
 
     auto
     get_address_type () const -> Type;
@@ -117,44 +117,44 @@ namespace Gio
     abstract_names_supported () -> bool;
 
     auto
-    property_address_type () const -> Glib::PropertyProxy_ReadOnly<Type>;
+    property_address_type () const -> glib::PropertyProxy_ReadOnly<Type>;
 
     auto
-    property_path () const -> Glib::PropertyProxy_ReadOnly<std::string>;
+    property_path () const -> glib::PropertyProxy_ReadOnly<std::string>;
 
     auto
     property_path_as_array () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Glib::ByteArray>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<glib::ByteArray>>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gio
+} // namespace gio
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_GIO_SYMEXPORT Value<Gio::UnixSocketAddress::Type>
-    : public Glib::Value_Enum<Gio::UnixSocketAddress::Type>
+  class LIBMM_GIO_SYMEXPORT Value<gio::UnixSocketAddress::Type>
+    : public glib::Value_Enum<gio::UnixSocketAddress::Type>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
-namespace Glib
+namespace glib
 {
 
   LIBMM_GIO_SYMEXPORT
   auto
-  wrap (GUnixSocketAddress* object, bool take_copy = false) -> Glib::RefPtr<Gio::UnixSocketAddress>;
-} // namespace Glib
+  wrap (GUnixSocketAddress* object, bool take_copy = false) -> glib::RefPtr<gio::UnixSocketAddress>;
+} // namespace glib
 
 #endif

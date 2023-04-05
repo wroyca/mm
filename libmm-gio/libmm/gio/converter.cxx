@@ -7,10 +7,10 @@
 
 #include <gio/gio.h>
 
-using Flags = Gio::Converter::Flags;
-using Result = Gio::Converter::Result;
+using Flags = gio::Converter::Flags;
+using Result = gio::Converter::Result;
 
-namespace Gio
+namespace gio
 {
 
 }
@@ -20,31 +20,31 @@ namespace
 }
 
 auto
-Glib::Value<Gio::Converter::Result>::value_type () -> GType
+glib::Value<gio::Converter::Result>::value_type () -> GType
 {
   return g_converter_result_get_type ();
 }
 
 auto
-Glib::Value<Gio::Converter::Flags>::value_type () -> GType
+glib::Value<gio::Converter::Flags>::value_type () -> GType
 {
   return g_converter_flags_get_type ();
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GConverter* object, const bool take_copy) -> RefPtr<Gio::Converter>
+  wrap (GConverter* object, const bool take_copy) -> RefPtr<gio::Converter>
   {
-    return Glib::make_refptr_for_instance<Gio::Converter> (
-        Glib::wrap_auto_interface<Gio::Converter> ((GObject*) object,
+    return glib::make_refptr_for_instance<gio::Converter> (
+        glib::wrap_auto_interface<gio::Converter> ((GObject*) object,
                                                    take_copy));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gio
+namespace gio
 {
 
   auto
@@ -83,7 +83,7 @@ namespace Gio
                                            GError** error) -> GConverterResult
   {
     const auto obj_base =
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self);
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self);
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -101,7 +101,7 @@ namespace Gio
                                   *bytes_read,
                                   *bytes_written));
         }
-        catch (Glib::Error& errormm)
+        catch (glib::Error& errormm)
         {
           errormm.propagate (error);
           using RType = GConverterResult;
@@ -109,7 +109,7 @@ namespace Gio
         }
         catch (...)
         {
-          Glib::exception_handlers_invoke ();
+          glib::exception_handlers_invoke ();
         }
       }
     }
@@ -138,7 +138,7 @@ namespace Gio
   Converter_Class::reset_vfunc_callback (GConverter* self) -> void
   {
     const auto obj_base =
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self);
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self);
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -152,7 +152,7 @@ namespace Gio
         }
         catch (...)
         {
-          Glib::exception_handlers_invoke ();
+          glib::exception_handlers_invoke ();
         }
       }
     }
@@ -167,7 +167,7 @@ namespace Gio
   }
 
   auto
-  Converter_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  Converter_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new Converter ((GConverter*) object);
   }
@@ -182,7 +182,7 @@ namespace Gio
   {
   }
 
-  Converter::Converter (const Glib::Interface_Class& interface_class)
+  Converter::Converter (const glib::Interface_Class& interface_class)
     : Interface (interface_class)
   {
   }
@@ -242,7 +242,7 @@ namespace Gio
                              &bytes_written,
                              &gerror));
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
@@ -280,7 +280,7 @@ namespace Gio
                             &bytes_written,
                             &gerror)));
       if (gerror)
-        Glib::Error::throw_exception (gerror);
+        glib::Error::throw_exception (gerror);
       return retval;
     }
 
@@ -302,4 +302,4 @@ namespace Gio
     }
   }
 
-} // namespace Gio
+} // namespace gio

@@ -22,13 +22,13 @@
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Adw
+namespace adw
 {
   class LIBMM_ADW_SYMEXPORT Leaflet_Class;
 }
 #endif
 
-namespace Adw
+namespace adw
 {
 
   enum class LIBMM_ADW_SYMEXPORT LeafletTransitionType
@@ -38,30 +38,30 @@ namespace Adw
     SLIDE
   };
 
-} // namespace Adw
+} // namespace adw
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_ADW_SYMEXPORT Value<Adw::LeafletTransitionType>
-    : public Glib::Value_Enum<Adw::LeafletTransitionType>
+  class LIBMM_ADW_SYMEXPORT Value<adw::LeafletTransitionType>
+    : public glib::Value_Enum<adw::LeafletTransitionType>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
-namespace Adw
+namespace adw
 {
 
-  class LIBMM_ADW_SYMEXPORT Leaflet : public Gtk::Widget,
-                  public Gtk::Orientable,
-                  public Adw::Swipeable
+  class LIBMM_ADW_SYMEXPORT Leaflet : public gtk::Widget,
+                  public gtk::Orientable,
+                  public adw::Swipeable
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -88,7 +88,7 @@ namespace Adw
     static CppClassType leaflet_class_;
 
   protected:
-    explicit Leaflet (const Glib::ConstructParams& construct_params);
+    explicit Leaflet (const glib::ConstructParams& construct_params);
     explicit Leaflet (AdwLeaflet* castitem);
 
 #endif
@@ -120,10 +120,10 @@ namespace Adw
     Leaflet ();
 
     auto
-    append (Gtk::Widget* child) -> Glib::RefPtr<LeafletPage>;
+    append (gtk::Widget* child) -> glib::RefPtr<LeafletPage>;
 
     auto
-    get_adjacent_child (NavigationDirection direction) const -> Gtk::Widget*;
+    get_adjacent_child (NavigationDirection direction) const -> gtk::Widget*;
 
     auto
     get_can_navigate_back () const -> bool;
@@ -135,10 +135,10 @@ namespace Adw
     get_can_unfold () const -> bool;
 
     auto
-    get_child_by_name (const Glib::ustring& name) const -> Gtk::Widget*;
+    get_child_by_name (const glib::ustring& name) const -> gtk::Widget*;
 
     auto
-    get_child_transition_params () const -> Glib::RefPtr<SpringParams>;
+    get_child_transition_params () const -> glib::RefPtr<SpringParams>;
 
     auto
     get_child_transition_running () const -> bool;
@@ -156,35 +156,35 @@ namespace Adw
     get_mode_transition_duration () const -> guint;
 
     auto
-    get_page (Gtk::Widget* child) const -> Glib::RefPtr<LeafletPage>;
+    get_page (gtk::Widget* child) const -> glib::RefPtr<LeafletPage>;
 
     auto
-    get_pages () const -> Glib::RefPtr<Gtk::SelectionModel>;
+    get_pages () const -> glib::RefPtr<gtk::SelectionModel>;
 
     auto
     get_transition_type () const -> LeafletTransitionType;
 
     auto
-    get_visible_child () const -> Gtk::Widget*;
+    get_visible_child () const -> gtk::Widget*;
 
     auto
-    get_visible_child_name () const -> Glib::ustring;
+    get_visible_child_name () const -> glib::ustring;
 
     auto
-    insert_child_after (Gtk::Widget* child, Gtk::Widget* sibling)
-        -> Glib::RefPtr<LeafletPage>;
+    insert_child_after (gtk::Widget* child, gtk::Widget* sibling)
+        -> glib::RefPtr<LeafletPage>;
 
     auto
     navigate (NavigationDirection direction) -> bool;
 
     auto
-    prepend (Gtk::Widget* child) -> Glib::RefPtr<LeafletPage>;
+    prepend (gtk::Widget* child) -> glib::RefPtr<LeafletPage>;
 
     auto
-    remove (Gtk::Widget* child) -> void;
+    remove (gtk::Widget* child) -> void;
 
     auto
-    reorder_child_after (Gtk::Widget* child, Gtk::Widget* sibling) -> void;
+    reorder_child_after (gtk::Widget* child, gtk::Widget* sibling) -> void;
 
     auto
     set_can_navigate_back (bool can_navigate_back) -> void;
@@ -196,7 +196,7 @@ namespace Adw
     set_can_unfold (bool can_unfold) -> void;
 
     auto
-    set_child_transition_params (const Glib::RefPtr<SpringParams>& params)
+    set_child_transition_params (const glib::RefPtr<SpringParams>& params)
         -> void;
 
     auto
@@ -212,103 +212,103 @@ namespace Adw
     set_transition_type (LeafletTransitionType transition) -> void;
 
     auto
-    set_visible_child (Gtk::Widget* child) -> void;
+    set_visible_child (gtk::Widget* child) -> void;
 
     auto
-    set_visible_child_name (const Glib::ustring& name) -> void;
+    set_visible_child_name (const glib::ustring& name) -> void;
 
     auto
-    property_can_navigate_back () -> Glib::PropertyProxy<bool>;
+    property_can_navigate_back () -> glib::PropertyProxy<bool>;
 
     auto
-    property_can_navigate_back () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_can_navigate_back () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_can_navigate_forward () -> Glib::PropertyProxy<bool>;
+    property_can_navigate_forward () -> glib::PropertyProxy<bool>;
 
     auto
     property_can_navigate_forward () const
-        -> Glib::PropertyProxy_ReadOnly<bool>;
+        -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_can_unfold () -> Glib::PropertyProxy<bool>;
+    property_can_unfold () -> glib::PropertyProxy<bool>;
 
     auto
-    property_can_unfold () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_can_unfold () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
     property_child_transition_params ()
-        -> Glib::PropertyProxy<Glib::RefPtr<SpringParams>>;
+        -> glib::PropertyProxy<glib::RefPtr<SpringParams>>;
 
     auto
     property_child_transition_params () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<SpringParams>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<SpringParams>>;
 
     auto
     property_child_transition_running () const
-        -> Glib::PropertyProxy_ReadOnly<bool>;
+        -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
     property_fold_threshold_policy ()
-        -> Glib::PropertyProxy<FoldThresholdPolicy>;
+        -> glib::PropertyProxy<FoldThresholdPolicy>;
 
     auto
     property_fold_threshold_policy () const
-        -> Glib::PropertyProxy_ReadOnly<FoldThresholdPolicy>;
+        -> glib::PropertyProxy_ReadOnly<FoldThresholdPolicy>;
 
     auto
-    property_folded () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_folded () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_homogeneous () -> Glib::PropertyProxy<bool>;
+    property_homogeneous () -> glib::PropertyProxy<bool>;
 
     auto
-    property_homogeneous () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_homogeneous () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_mode_transition_duration () -> Glib::PropertyProxy<guint>;
+    property_mode_transition_duration () -> glib::PropertyProxy<guint>;
 
     auto
     property_mode_transition_duration () const
-        -> Glib::PropertyProxy_ReadOnly<guint>;
+        -> glib::PropertyProxy_ReadOnly<guint>;
 
     auto
     property_pages () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gtk::SelectionModel>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<gtk::SelectionModel>>;
 
     auto
-    property_transition_type () -> Glib::PropertyProxy<LeafletTransitionType>;
+    property_transition_type () -> glib::PropertyProxy<LeafletTransitionType>;
 
     auto
     property_transition_type () const
-        -> Glib::PropertyProxy_ReadOnly<LeafletTransitionType>;
+        -> glib::PropertyProxy_ReadOnly<LeafletTransitionType>;
 
     auto
-    property_visible_child () -> Glib::PropertyProxy<Gtk::Widget*>;
+    property_visible_child () -> glib::PropertyProxy<gtk::Widget*>;
 
     auto
     property_visible_child () const
-        -> Glib::PropertyProxy_ReadOnly<Gtk::Widget*>;
+        -> glib::PropertyProxy_ReadOnly<gtk::Widget*>;
 
     auto
-    property_visible_child_name () -> Glib::PropertyProxy<Glib::ustring>;
+    property_visible_child_name () -> glib::PropertyProxy<glib::ustring>;
 
     auto
     property_visible_child_name () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+        -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Adw
+} // namespace adw
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (AdwLeaflet* object, bool take_copy = false) -> Adw::Leaflet*;
+  wrap (AdwLeaflet* object, bool take_copy = false) -> adw::Leaflet*;
 }
 
 #endif

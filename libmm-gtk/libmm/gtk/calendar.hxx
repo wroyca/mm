@@ -17,13 +17,13 @@ using GtkCalendarClass = struct _GtkCalendarClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT Calendar_Class;
 }
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
   class LIBMM_GTK_SYMEXPORT Calendar : public Widget
@@ -53,7 +53,7 @@ namespace Gtk
     static CppClassType calendar_class_;
 
   protected:
-    explicit Calendar (const Glib::ConstructParams& construct_params);
+    explicit Calendar (const glib::ConstructParams& construct_params);
     explicit Calendar (GtkCalendar* castitem);
 
 #endif
@@ -85,7 +85,7 @@ namespace Gtk
     Calendar ();
 
     auto
-    select_day (const Glib::DateTime& day) -> void;
+    select_day (const glib::DateTime& day) -> void;
 
     auto
     mark_day (guint day) -> void;
@@ -115,73 +115,73 @@ namespace Gtk
     get_show_day_names () const -> bool;
 
     auto
-    get_date () const -> Glib::DateTime;
+    get_date () const -> glib::DateTime;
 
     auto
     get_day_is_marked (guint day) const -> bool;
 
     auto
-    signal_day_selected () -> Glib::SignalProxy<void ()>;
+    signal_day_selected () -> glib::SignalProxy<void ()>;
 
     auto
-    signal_prev_month () -> Glib::SignalProxy<void ()>;
+    signal_prev_month () -> glib::SignalProxy<void ()>;
 
     auto
-    signal_next_month () -> Glib::SignalProxy<void ()>;
+    signal_next_month () -> glib::SignalProxy<void ()>;
 
     auto
-    signal_prev_year () -> Glib::SignalProxy<void ()>;
+    signal_prev_year () -> glib::SignalProxy<void ()>;
 
     auto
-    signal_next_year () -> Glib::SignalProxy<void ()>;
+    signal_next_year () -> glib::SignalProxy<void ()>;
 
     auto
-    property_year () -> Glib::PropertyProxy<int>;
+    property_year () -> glib::PropertyProxy<int>;
 
     auto
-    property_year () const -> Glib::PropertyProxy_ReadOnly<int>;
+    property_year () const -> glib::PropertyProxy_ReadOnly<int>;
 
     auto
-    property_month () -> Glib::PropertyProxy<int>;
+    property_month () -> glib::PropertyProxy<int>;
 
     auto
-    property_month () const -> Glib::PropertyProxy_ReadOnly<int>;
+    property_month () const -> glib::PropertyProxy_ReadOnly<int>;
 
     auto
-    property_day () -> Glib::PropertyProxy<int>;
+    property_day () -> glib::PropertyProxy<int>;
 
     auto
-    property_day () const -> Glib::PropertyProxy_ReadOnly<int>;
+    property_day () const -> glib::PropertyProxy_ReadOnly<int>;
 
     auto
-    property_show_heading () -> Glib::PropertyProxy<bool>;
+    property_show_heading () -> glib::PropertyProxy<bool>;
 
     auto
-    property_show_heading () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_show_heading () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_show_day_names () -> Glib::PropertyProxy<bool>;
+    property_show_day_names () -> glib::PropertyProxy<bool>;
 
     auto
-    property_show_day_names () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_show_day_names () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_show_week_numbers () -> Glib::PropertyProxy<bool>;
+    property_show_week_numbers () -> glib::PropertyProxy<bool>;
 
     auto
-    property_show_week_numbers () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_show_week_numbers () const -> glib::PropertyProxy_ReadOnly<bool>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkCalendar* object, bool take_copy = false) -> Gtk::Calendar*;
-} // namespace Glib
+  wrap (GtkCalendar* object, bool take_copy = false) -> gtk::Calendar*;
+} // namespace glib
 
 #endif

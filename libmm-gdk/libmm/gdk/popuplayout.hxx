@@ -11,7 +11,7 @@
 #include <libmm/gdk/rectangle.hxx>
 #include <libmm/glib/refptr.hxx>
 
-namespace Gdk
+namespace gdk
 {
 
   enum class AnchorHints
@@ -75,25 +75,25 @@ namespace Gdk
                                             static_cast<unsigned> (rhs)));
   }
 
-} // namespace Gdk
+} // namespace gdk
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_GDK_SYMEXPORT Value<Gdk::AnchorHints>
-    : public Glib::Value_Flags<Gdk::AnchorHints>
+  class LIBMM_GDK_SYMEXPORT Value<gdk::AnchorHints>
+    : public glib::Value_Flags<gdk::AnchorHints>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
-namespace Gdk
+namespace gdk
 {
 
   class LIBMM_GDK_SYMEXPORT PopupLayout final
@@ -134,13 +134,13 @@ namespace Gdk
     static auto
     create (const Rectangle& anchor_rect,
             Gravity rect_anchor,
-            Gravity surface_anchor) -> Glib::RefPtr<PopupLayout>;
+            Gravity surface_anchor) -> glib::RefPtr<PopupLayout>;
 
     auto
-    copy () const -> Glib::RefPtr<PopupLayout>;
+    copy () const -> glib::RefPtr<PopupLayout>;
 
     auto
-    equal (const Glib::RefPtr<const PopupLayout>& other) const -> bool;
+    equal (const glib::RefPtr<const PopupLayout>& other) const -> bool;
 
     auto
     set_anchor_rect (const Rectangle& anchor_rect) -> void;
@@ -183,13 +183,13 @@ namespace Gdk
         -> void;
   };
 
-} // namespace Gdk
+} // namespace gdk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GDK_SYMEXPORT auto
-  wrap (GdkPopupLayout* object, bool take_copy = false) -> Glib::RefPtr<Gdk::PopupLayout>;
+  wrap (GdkPopupLayout* object, bool take_copy = false) -> glib::RefPtr<gdk::PopupLayout>;
 
-} // namespace Glib
+} // namespace glib
 
 #endif

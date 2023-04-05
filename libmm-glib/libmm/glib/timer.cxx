@@ -3,7 +3,7 @@
 #include <glib.h>
 #include <libmm/glib/mm-glib.hxx>
 
-namespace Glib
+namespace glib
 {
 
   Timer::Timer ()
@@ -64,4 +64,4 @@ namespace Glib
     g_usleep (microseconds);
   }
 
-} // namespace Glib
+} // namespace glib

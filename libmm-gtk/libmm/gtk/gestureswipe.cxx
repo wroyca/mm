@@ -16,51 +16,51 @@ namespace
                                       gdouble p1,
                                       void* data) -> void
   {
-    using namespace Gtk;
+    using namespace gtk;
     using SlotType = sigc::slot<void (double, double)>;
 
     auto obj = dynamic_cast<GestureSwipe*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
     {
       try
       {
-        if (const auto slot = Glib::SignalProxyNormal::data_to_slot (data))
+        if (const auto slot = glib::SignalProxyNormal::data_to_slot (data))
           (*static_cast<SlotType*> (slot)) (p0, p1);
       }
       catch (...)
       {
-        Glib::exception_handlers_invoke ();
+        glib::exception_handlers_invoke ();
       }
     }
   }
 
-  static const Glib::SignalProxyInfo GestureSwipe_signal_swipe_info = {
+  static const glib::SignalProxyInfo GestureSwipe_signal_swipe_info = {
       "swipe",
       (GCallback) &GestureSwipe_signal_swipe_callback,
       (GCallback) &GestureSwipe_signal_swipe_callback};
 
 } // namespace
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GtkGestureSwipe* object, bool take_copy) -> Glib::RefPtr<Gtk::GestureSwipe>
+  wrap (GtkGestureSwipe* object, bool take_copy) -> glib::RefPtr<gtk::GestureSwipe>
   {
-    return Glib::make_refptr_for_instance<Gtk::GestureSwipe> (
-        dynamic_cast<Gtk::GestureSwipe*> (
-            Glib::wrap_auto ((GObject*) (object), take_copy)));
+    return glib::make_refptr_for_instance<gtk::GestureSwipe> (
+        dynamic_cast<gtk::GestureSwipe*> (
+            glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gtk
+namespace gtk
 {
 
   auto
-  GestureSwipe_Class::init () -> const Glib::Class&
+  GestureSwipe_Class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -80,7 +80,7 @@ namespace Gtk
   }
 
   auto
-  GestureSwipe_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  GestureSwipe_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new GestureSwipe ((GtkGestureSwipe*) object);
   }
@@ -92,7 +92,7 @@ namespace Gtk
     return gobj ();
   }
 
-  GestureSwipe::GestureSwipe (const Glib::ConstructParams& construct_params)
+  GestureSwipe::GestureSwipe (const glib::ConstructParams& construct_params)
     : GestureSingle (construct_params)
   {
   }
@@ -131,15 +131,15 @@ namespace Gtk
   }
 
   GestureSwipe::GestureSwipe ()
-    : Glib::ObjectBase (nullptr),
-      GestureSingle (Glib::ConstructParams (gestureswipe_class_.init ()))
+    : glib::ObjectBase (nullptr),
+      GestureSingle (glib::ConstructParams (gestureswipe_class_.init ()))
   {
   }
 
   auto
-  GestureSwipe::create () -> Glib::RefPtr<GestureSwipe>
+  GestureSwipe::create () -> glib::RefPtr<GestureSwipe>
   {
-    return Glib::make_refptr_for_instance<GestureSwipe> (new GestureSwipe ());
+    return glib::make_refptr_for_instance<GestureSwipe> (new GestureSwipe ());
   }
 
   auto
@@ -152,11 +152,11 @@ namespace Gtk
   }
 
   auto
-  GestureSwipe::signal_swipe () -> Glib::SignalProxy<void (double, double)>
+  GestureSwipe::signal_swipe () -> glib::SignalProxy<void (double, double)>
   {
-    return Glib::SignalProxy<void (double, double)> (
+    return glib::SignalProxy<void (double, double)> (
         this,
         &GestureSwipe_signal_swipe_info);
   }
 
-} // namespace Gtk
+} // namespace gtk

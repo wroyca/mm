@@ -5,7 +5,7 @@
 
 #include <glib.h>
 
-namespace Glib
+namespace glib
 {
 
   enum class MainContextFlags
@@ -126,6 +126,6 @@ namespace Glib
                                            static_cast<unsigned> (rhs)));
   }
 
-} // namespace Glib
+} // namespace glib
 
 #endif

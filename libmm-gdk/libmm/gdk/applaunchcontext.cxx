@@ -8,7 +8,7 @@
 #include <gdk/gdk.h>
 #include <libmm/gdk/display.hxx>
 
-namespace Gdk
+namespace gdk
 {
 
 }
@@ -17,24 +17,24 @@ namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GdkAppLaunchContext* object, bool take_copy) -> Glib::RefPtr<Gdk::AppLaunchContext>
+  wrap (GdkAppLaunchContext* object, bool take_copy) -> glib::RefPtr<gdk::AppLaunchContext>
   {
-    return Glib::make_refptr_for_instance<Gdk::AppLaunchContext> (
-        dynamic_cast<Gdk::AppLaunchContext*> (
-            Glib::wrap_auto ((GObject*) (object), take_copy)));
+    return glib::make_refptr_for_instance<gdk::AppLaunchContext> (
+        dynamic_cast<gdk::AppLaunchContext*> (
+            glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gdk
+namespace gdk
 {
 
   auto
-  AppLaunchContext_Class::init () -> const Glib::Class&
+  AppLaunchContext_Class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -54,7 +54,7 @@ namespace Gdk
   }
 
   auto
-  AppLaunchContext_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  AppLaunchContext_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new AppLaunchContext ((GdkAppLaunchContext*) object);
   }
@@ -67,25 +67,25 @@ namespace Gdk
   }
 
   AppLaunchContext::AppLaunchContext (
-      const Glib::ConstructParams& construct_params)
-    : Gio::AppLaunchContext (construct_params)
+      const glib::ConstructParams& construct_params)
+    : gio::AppLaunchContext (construct_params)
   {
   }
 
   AppLaunchContext::AppLaunchContext (GdkAppLaunchContext* castitem)
-    : Gio::AppLaunchContext ((GAppLaunchContext*) (castitem))
+    : gio::AppLaunchContext ((GAppLaunchContext*) (castitem))
   {
   }
 
   AppLaunchContext::AppLaunchContext (AppLaunchContext&& src) noexcept
-    : Gio::AppLaunchContext (std::move (src))
+    : gio::AppLaunchContext (std::move (src))
   {
   }
 
   auto
   AppLaunchContext::operator= (AppLaunchContext&& src) noexcept -> AppLaunchContext&
   {
-    Gio::AppLaunchContext::operator= (std::move (src));
+    gio::AppLaunchContext::operator= (std::move (src));
     return *this;
   }
 
@@ -106,30 +106,30 @@ namespace Gdk
   }
 
   AppLaunchContext::AppLaunchContext ()
-    : Glib::ObjectBase (nullptr),
-      Gio::AppLaunchContext (
-          Glib::ConstructParams (applaunchcontext_class_.init ()))
+    : glib::ObjectBase (nullptr),
+      gio::AppLaunchContext (
+          glib::ConstructParams (applaunchcontext_class_.init ()))
   {
   }
 
   auto
-  AppLaunchContext::create () -> Glib::RefPtr<AppLaunchContext>
+  AppLaunchContext::create () -> glib::RefPtr<AppLaunchContext>
   {
-    return Glib::make_refptr_for_instance<AppLaunchContext> (
+    return glib::make_refptr_for_instance<AppLaunchContext> (
         new AppLaunchContext ());
   }
 
   auto
-  AppLaunchContext::get_display () -> Glib::RefPtr<Display>
+  AppLaunchContext::get_display () -> glib::RefPtr<Display>
   {
-    auto retvalue = Glib::wrap (gdk_app_launch_context_get_display (gobj ()));
+    auto retvalue = glib::wrap (gdk_app_launch_context_get_display (gobj ()));
     if (retvalue)
       retvalue->reference ();
     return retvalue;
   }
 
   auto
-  AppLaunchContext::get_display () const -> Glib::RefPtr<const Display>
+  AppLaunchContext::get_display () const -> glib::RefPtr<const Display>
   {
     return const_cast<AppLaunchContext*> (this)->get_display ();
   }
@@ -147,30 +147,30 @@ namespace Gdk
   }
 
   auto
-  AppLaunchContext::set_icon (const Glib::RefPtr<Gio::Icon>& icon) -> void
+  AppLaunchContext::set_icon (const glib::RefPtr<gio::Icon>& icon) -> void
   {
     gdk_app_launch_context_set_icon (
         gobj (),
-        const_cast<GIcon*> (Glib::unwrap<Gio::Icon> (icon)));
+        const_cast<GIcon*> (glib::unwrap<gio::Icon> (icon)));
   }
 
   auto
-  AppLaunchContext::set_icon_name (const Glib::ustring& icon_name) -> void
+  AppLaunchContext::set_icon_name (const glib::ustring& icon_name) -> void
   {
     gdk_app_launch_context_set_icon_name (gobj (), icon_name.c_str ());
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<
-          Glib::RefPtr<Display>>::value,
-      "Type Glib::RefPtr<Display> cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      glib::Traits::ValueCompatibleWithWrapProperty<
+          glib::RefPtr<Display>>::value,
+      "Type glib::RefPtr<Display> cannot be used in _WRAP_PROPERTY. "
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  AppLaunchContext::property_display () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Display>>
+  AppLaunchContext::property_display () const -> glib::PropertyProxy_ReadOnly<glib::RefPtr<Display>>
   {
-    return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Display>> (this,
+    return glib::PropertyProxy_ReadOnly<glib::RefPtr<Display>> (this,
                                                                 "display");
   }
 
-} // namespace Gdk
+} // namespace gdk

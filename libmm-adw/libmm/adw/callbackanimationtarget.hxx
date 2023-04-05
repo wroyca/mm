@@ -17,16 +17,16 @@ using AdwCallbackAnimationTargetClass = struct _AdwCallbackAnimationTargetClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Adw
+namespace adw
 {
   class LIBMM_ADW_SYMEXPORT CallbackAnimationTarget_Class;
 }
 #endif
 
-namespace Adw
+namespace adw
 {
 
-  class LIBMM_ADW_SYMEXPORT CallbackAnimationTarget : public Adw::AnimationTarget
+  class LIBMM_ADW_SYMEXPORT CallbackAnimationTarget : public adw::AnimationTarget
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -47,7 +47,7 @@ namespace Adw
 
   protected:
     explicit CallbackAnimationTarget (
-        const Glib::ConstructParams& construct_params);
+        const glib::ConstructParams& construct_params);
     explicit CallbackAnimationTarget (AdwCallbackAnimationTarget* castitem);
 
 #endif
@@ -98,20 +98,20 @@ namespace Adw
   public:
     static auto
     create (const SlotTarget& slot_target)
-        -> Glib::RefPtr<CallbackAnimationTarget>;
+        -> glib::RefPtr<CallbackAnimationTarget>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Adw
+} // namespace adw
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (AdwCallbackAnimationTarget* object, bool take_copy = false) -> Glib::RefPtr<Adw::CallbackAnimationTarget>;
+  wrap (AdwCallbackAnimationTarget* object, bool take_copy = false) -> glib::RefPtr<adw::CallbackAnimationTarget>;
 }
 
 #endif

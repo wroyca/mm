@@ -7,7 +7,7 @@
 
 #include <gio/gio.h>
 
-namespace Gio
+namespace gio
 {
 
 }
@@ -16,20 +16,20 @@ namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GSeekable* object, const bool take_copy) -> RefPtr<Gio::Seekable>
+  wrap (GSeekable* object, const bool take_copy) -> RefPtr<gio::Seekable>
   {
-    return Glib::make_refptr_for_instance<Gio::Seekable> (
-        Glib::wrap_auto_interface<Gio::Seekable> ((GObject*) object,
+    return glib::make_refptr_for_instance<gio::Seekable> (
+        glib::wrap_auto_interface<gio::Seekable> ((GObject*) object,
                                                   take_copy));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gio
+namespace gio
 {
 
   auto
@@ -54,7 +54,7 @@ namespace Gio
   }
 
   auto
-  Seekable_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  Seekable_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new Seekable ((GSeekable*) object);
   }
@@ -69,7 +69,7 @@ namespace Gio
   {
   }
 
-  Seekable::Seekable (const Glib::Interface_Class& interface_class)
+  Seekable::Seekable (const glib::Interface_Class& interface_class)
     : Interface (interface_class)
   {
   }
@@ -122,22 +122,22 @@ namespace Gio
 
   auto
   Seekable::seek (const goffset offset,
-                  Glib::SeekType type,
-                  const Glib::RefPtr<Cancellable>& cancellable) -> bool
+                  glib::SeekType type,
+                  const glib::RefPtr<Cancellable>& cancellable) -> bool
   {
     GError* gerror = nullptr;
     const auto retvalue = g_seekable_seek (gobj (),
                                            offset,
                                            static_cast<GSeekType> (type),
-                                           Glib::unwrap (cancellable),
+                                           glib::unwrap (cancellable),
                                            &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
   auto
-  Seekable::seek (const goffset offset, Glib::SeekType type) -> bool
+  Seekable::seek (const goffset offset, glib::SeekType type) -> bool
   {
     GError* gerror = nullptr;
     const auto retvalue = g_seekable_seek (gobj (),
@@ -146,7 +146,7 @@ namespace Gio
                                            nullptr,
                                            &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
@@ -158,15 +158,15 @@ namespace Gio
 
   auto
   Seekable::truncate (const goffset offset,
-                      const Glib::RefPtr<Cancellable>& cancellable) -> bool
+                      const glib::RefPtr<Cancellable>& cancellable) -> bool
   {
     GError* gerror = nullptr;
     const auto retvalue = g_seekable_truncate (gobj (),
                                                offset,
-                                               Glib::unwrap (cancellable),
+                                               glib::unwrap (cancellable),
                                                &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
@@ -177,8 +177,8 @@ namespace Gio
     const auto retvalue =
         g_seekable_truncate (gobj (), offset, nullptr, &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
-} // namespace Gio
+} // namespace gio

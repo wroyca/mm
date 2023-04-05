@@ -16,16 +16,16 @@ using GUnixOutputStreamClass = struct _GUnixOutputStreamClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gio
+namespace gio
 {
   class LIBMM_GIO_SYMEXPORT UnixOutputStream_Class;
 }
 #endif
 
-namespace Gio
+namespace gio
 {
 
-  class LIBMM_GIO_SYMEXPORT UnixOutputStream : public Gio::OutputStream,
+  class LIBMM_GIO_SYMEXPORT UnixOutputStream : public gio::OutputStream,
                                      public PollableOutputStream,
                                      public FileDescriptorBased
   {
@@ -46,7 +46,7 @@ namespace Gio
     static CppClassType unixoutputstream_class_;
 
   protected:
-    explicit UnixOutputStream (const Glib::ConstructParams& construct_params);
+    explicit UnixOutputStream (const glib::ConstructParams& construct_params);
     explicit UnixOutputStream (GUnixOutputStream* castitem);
 
 #endif
@@ -88,7 +88,7 @@ namespace Gio
 
   public:
     static auto
-    create (int fd, bool close_fd) -> Glib::RefPtr<UnixOutputStream>;
+    create (int fd, bool close_fd) -> glib::RefPtr<UnixOutputStream>;
 
     void
     set_close_fd (bool close_fd = true);
@@ -100,27 +100,27 @@ namespace Gio
     get_fd () const -> int;
 
     auto
-    property_fd () const -> Glib::PropertyProxy_ReadOnly<int>;
+    property_fd () const -> glib::PropertyProxy_ReadOnly<int>;
 
     auto
-    property_close_fd () -> Glib::PropertyProxy<bool>;
+    property_close_fd () -> glib::PropertyProxy<bool>;
 
     auto
-    property_close_fd () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_close_fd () const -> glib::PropertyProxy_ReadOnly<bool>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gio
+} // namespace gio
 
-namespace Glib
+namespace glib
 {
 
   LIBMM_GIO_SYMEXPORT
   auto
-  wrap (GUnixOutputStream* object, bool take_copy = false) -> Glib::RefPtr<Gio::UnixOutputStream>;
-} // namespace Glib
+  wrap (GUnixOutputStream* object, bool take_copy = false) -> glib::RefPtr<gio::UnixOutputStream>;
+} // namespace glib
 
 #endif

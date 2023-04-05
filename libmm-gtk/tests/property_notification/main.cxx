@@ -17,7 +17,7 @@ void on_property_editable_changed()
   std::cout << "editable property changed (should not happen)" << std::endl;
 }
 
-class TestWindow : public Gtk::Window
+class TestWindow : public gtk::Window
 {
 public:
   TestWindow()
@@ -27,18 +27,18 @@ public:
     m_label.connect_property_changed("text", sigc::ptr_fun(&on_property_text_changed));
     m_label.property_text().signal_changed().connect(sigc::ptr_fun(&on_property_text_changed_nicer_api));
     m_label.connect_property_changed("editable", sigc::ptr_fun(&on_property_editable_changed));
-    m_label.set_halign(Gtk::Align::CENTER);
-    m_label.set_valign(Gtk::Align::CENTER);
+    m_label.set_halign(gtk::Align::CENTER);
+    m_label.set_valign(gtk::Align::CENTER);
 
     set_child(m_label);
   }
 
 protected:
-  Gtk::EditableLabel m_label {"Editable text"};
+  gtk::EditableLabel m_label {"Editable text"};
 };
 
 int main (int argc, char **argv)
 {
-  auto app = Gtk::Application::create();
+  auto app = gtk::Application::create();
   return app->make_window_and_run<TestWindow>(argc, argv);
 }

@@ -17,13 +17,13 @@ using GtkLockButtonClass = struct _GtkLockButtonClass;
   #endif
 
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT LockButton_Class;
 }
   #endif
 
-namespace Gtk
+namespace gtk
 {
 
   class LIBMM_GTK_SYMEXPORT LockButton : public Button
@@ -53,7 +53,7 @@ namespace Gtk
     static CppClassType lockbutton_class_;
 
   protected:
-    explicit LockButton (const Glib::ConstructParams& construct_params);
+    explicit LockButton (const glib::ConstructParams& construct_params);
     explicit LockButton (GtkLockButton* castitem);
 
   #endif
@@ -84,16 +84,16 @@ namespace Gtk
   public:
     LockButton ();
 
-    explicit LockButton (const Glib::RefPtr<const Gio::Permission>& permission);
+    explicit LockButton (const glib::RefPtr<const gio::Permission>& permission);
 
     auto
-    get_permission () -> Glib::RefPtr<Gio::Permission>;
+    get_permission () -> glib::RefPtr<gio::Permission>;
 
     auto
-    get_permission () const -> Glib::RefPtr<const Gio::Permission>;
+    get_permission () const -> glib::RefPtr<const gio::Permission>;
 
     auto
-    set_permission (const Glib::RefPtr<const Gio::Permission>& permission)
+    set_permission (const glib::RefPtr<const gio::Permission>& permission)
         -> void;
 
     auto
@@ -101,58 +101,58 @@ namespace Gtk
 
     auto
     property_permission ()
-        -> Glib::PropertyProxy<Glib::RefPtr<Gio::Permission>>;
+        -> glib::PropertyProxy<glib::RefPtr<gio::Permission>>;
 
     auto
     property_permission () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gio::Permission>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<gio::Permission>>;
 
     auto
-    property_text_lock () -> Glib::PropertyProxy<Glib::ustring>;
+    property_text_lock () -> glib::PropertyProxy<glib::ustring>;
 
     auto
-    property_text_lock () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+    property_text_lock () const -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
     auto
-    property_text_unlock () -> Glib::PropertyProxy<Glib::ustring>;
+    property_text_unlock () -> glib::PropertyProxy<glib::ustring>;
 
     auto
     property_text_unlock () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+        -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
     auto
-    property_tooltip_lock () -> Glib::PropertyProxy<Glib::ustring>;
+    property_tooltip_lock () -> glib::PropertyProxy<glib::ustring>;
 
     auto
     property_tooltip_lock () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+        -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
     auto
-    property_tooltip_unlock () -> Glib::PropertyProxy<Glib::ustring>;
+    property_tooltip_unlock () -> glib::PropertyProxy<glib::ustring>;
 
     auto
     property_tooltip_unlock () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+        -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
     auto
-    property_tooltip_not_authorized () -> Glib::PropertyProxy<Glib::ustring>;
+    property_tooltip_not_authorized () -> glib::PropertyProxy<glib::ustring>;
 
     auto
     property_tooltip_not_authorized () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+        -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkLockButton* object, bool take_copy = false) -> Gtk::LockButton*;
-} // namespace Glib
+  wrap (GtkLockButton* object, bool take_copy = false) -> gtk::LockButton*;
+} // namespace glib
 
 #endif
 

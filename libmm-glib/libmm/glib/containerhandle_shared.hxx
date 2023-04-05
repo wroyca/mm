@@ -18,7 +18,7 @@
 #include <list>
 #include <vector>
 
-namespace Glib
+namespace glib
 {
 
   enum OwnershipType
@@ -70,7 +70,7 @@ namespace Glib
       static auto
       to_c_type (CppType ptr) -> CType
       {
-        return Glib::unwrap (ptr);
+        return glib::unwrap (ptr);
       }
 
       static auto
@@ -83,7 +83,7 @@ namespace Glib
       to_cpp_type (CType ptr) -> CppType
       {
         GObject* cobj = (GObject*) ptr;
-        return dynamic_cast<CppType> (Glib::wrap_auto (cobj, false));
+        return dynamic_cast<CppType> (glib::wrap_auto (cobj, false));
       }
 
       static auto
@@ -106,7 +106,7 @@ namespace Glib
       static auto
       to_c_type (CppType ptr) -> CType
       {
-        return Glib::unwrap (ptr);
+        return glib::unwrap (ptr);
       }
 
       static auto
@@ -119,7 +119,7 @@ namespace Glib
       to_cpp_type (CType ptr) -> CppType
       {
         GObject* cobj = (GObject*) const_cast<CTypeNonConst> (ptr);
-        return dynamic_cast<CppType> (Glib::wrap_auto (cobj, false));
+        return dynamic_cast<CppType> (glib::wrap_auto (cobj, false));
       }
 
       static auto
@@ -132,16 +132,16 @@ namespace Glib
     #endif
 
     template <class T>
-    struct TypeTraits<Glib::RefPtr<T>>
+    struct TypeTraits<glib::RefPtr<T>>
     {
-      using CppType = Glib::RefPtr<T>;
+      using CppType = glib::RefPtr<T>;
       using CType = typename T::BaseObjectType*;
       using CTypeNonConst = typename T::BaseObjectType*;
 
       static auto
       to_c_type (const CppType& ptr) -> CType
       {
-        return Glib::unwrap (ptr);
+        return glib::unwrap (ptr);
       }
 
       static auto
@@ -154,8 +154,8 @@ namespace Glib
       to_cpp_type (CType ptr) -> CppType
       {
         GObject* cobj = (GObject*) (ptr);
-        return Glib::make_refptr_for_instance<T> (
-            dynamic_cast<T*> (Glib::wrap_auto (cobj, true)));
+        return glib::make_refptr_for_instance<T> (
+            dynamic_cast<T*> (glib::wrap_auto (cobj, true)));
       }
 
       static auto
@@ -169,16 +169,16 @@ namespace Glib
     #ifdef GLIBMM_HAVE_DISAMBIGUOUS_CONST_TEMPLATE_SPECIALIZATIONS
 
     template <class T>
-    struct TypeTraits<Glib::RefPtr<const T>>
+    struct TypeTraits<glib::RefPtr<const T>>
     {
-      using CppType = Glib::RefPtr<const T>;
+      using CppType = glib::RefPtr<const T>;
       using CType = const typename T::BaseObjectType*;
       using CTypeNonConst = typename T::BaseObjectType*;
 
       static auto
       to_c_type (const CppType& ptr) -> CType
       {
-        return Glib::unwrap (ptr);
+        return glib::unwrap (ptr);
       }
 
       static auto
@@ -191,8 +191,8 @@ namespace Glib
       to_cpp_type (CType ptr) -> CppType
       {
         GObject* cobj = (GObject*) const_cast<CTypeNonConst> (ptr);
-        return Glib::make_refptr_for_instance<const T> (
-            dynamic_cast<const T*> (Glib::wrap_auto (cobj, true)));
+        return glib::make_refptr_for_instance<const T> (
+            dynamic_cast<const T*> (glib::wrap_auto (cobj, true)));
       }
 
       static auto
@@ -208,14 +208,14 @@ namespace Glib
   #endif
 
     template <>
-    struct TypeTraits<Glib::ustring>
+    struct TypeTraits<glib::ustring>
     {
-      using CppType = Glib::ustring;
+      using CppType = glib::ustring;
       using CType = const char*;
       using CTypeNonConst = char*;
 
       static auto
-      to_c_type (const Glib::ustring& str) -> CType
+      to_c_type (const glib::ustring& str) -> CType
       {
         return str.c_str ();
       }
@@ -235,7 +235,7 @@ namespace Glib
       static auto
       to_cpp_type (CType str) -> CppType
       {
-        return (str) ? Glib::ustring (str) : Glib::ustring ();
+        return (str) ? glib::ustring (str) : glib::ustring ();
       }
 
       static auto
@@ -259,7 +259,7 @@ namespace Glib
       }
 
       static auto
-      to_c_type (const Glib::ustring& str) -> CType
+      to_c_type (const glib::ustring& str) -> CType
       {
         return str.c_str ();
       }
@@ -315,14 +315,14 @@ namespace Glib
     };
 
     template <>
-    struct TypeTraits<Glib::VariantBase>
+    struct TypeTraits<glib::VariantBase>
     {
-      using CppType = Glib::VariantBase;
+      using CppType = glib::VariantBase;
       using CType = GVariant*;
       using CTypeNonConst = GVariant*;
 
       static auto
-      to_c_type (const Glib::VariantBase& v) -> CType
+      to_c_type (const glib::VariantBase& v) -> CType
       {
         return const_cast<CTypeNonConst> (v.gobj ());
       }
@@ -336,7 +336,7 @@ namespace Glib
       static auto
       to_cpp_type (CType v) -> CppType
       {
-        return Glib::VariantBase (v, true);
+        return glib::VariantBase (v, true);
       }
 
       static auto
@@ -347,14 +347,14 @@ namespace Glib
     };
 
     template <>
-    struct TypeTraits<Glib::VariantContainerBase>
+    struct TypeTraits<glib::VariantContainerBase>
     {
-      using CppType = Glib::VariantContainerBase;
+      using CppType = glib::VariantContainerBase;
       using CType = GVariant*;
       using CTypeNonConst = GVariant*;
 
       static auto
-      to_c_type (const Glib::VariantContainerBase& v) -> CType
+      to_c_type (const glib::VariantContainerBase& v) -> CType
       {
         return const_cast<CTypeNonConst> (v.gobj ());
       }
@@ -368,7 +368,7 @@ namespace Glib
       static auto
       to_cpp_type (CType v) -> CppType
       {
-        return Glib::VariantContainerBase (v, true);
+        return glib::VariantContainerBase (v, true);
       }
 
       static auto
@@ -393,6 +393,6 @@ namespace Glib
 
   } // namespace Container_Helpers
 
-} // namespace Glib
+} // namespace glib
 
 #endif

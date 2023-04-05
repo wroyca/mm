@@ -16,13 +16,13 @@ using GtkPrinterClass = struct _GtkPrinterClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT Printer_Class;
 }
 #endif
 
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT PaperSize;
 
@@ -88,28 +88,28 @@ namespace Gtk
                                                   static_cast<unsigned> (rhs)));
   }
 
-} // namespace Gtk
+} // namespace gtk
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_GTK_SYMEXPORT Value<Gtk::PrintCapabilities>
-    : public Glib::Value_Flags<Gtk::PrintCapabilities>
+  class LIBMM_GTK_SYMEXPORT Value<gtk::PrintCapabilities>
+    : public glib::Value_Flags<gtk::PrintCapabilities>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
-  class LIBMM_GTK_SYMEXPORT Printer : public Glib::Object
+  class LIBMM_GTK_SYMEXPORT Printer : public glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -128,7 +128,7 @@ namespace Gtk
     static CppClassType printer_class_;
 
   protected:
-    explicit Printer (const Glib::ConstructParams& construct_params);
+    explicit Printer (const glib::ConstructParams& construct_params);
     explicit Printer (GtkPrinter* castitem);
 
 #endif
@@ -167,22 +167,22 @@ namespace Gtk
   private:
   public:
     auto
-    equal (const Glib::RefPtr<Printer>& other) const -> bool;
+    equal (const glib::RefPtr<Printer>& other) const -> bool;
 
     auto
-    get_name () const -> Glib::ustring;
+    get_name () const -> glib::ustring;
 
     auto
-    get_state_message () const -> Glib::ustring;
+    get_state_message () const -> glib::ustring;
 
     auto
-    get_description () const -> Glib::ustring;
+    get_description () const -> glib::ustring;
 
     auto
-    get_location () const -> Glib::ustring;
+    get_location () const -> glib::ustring;
 
     auto
-    get_icon_name () const -> Glib::ustring;
+    get_icon_name () const -> glib::ustring;
 
     auto
     get_job_count () const -> int;
@@ -209,13 +209,13 @@ namespace Gtk
     accepts_ps () const -> bool;
 
     auto
-    list_papers () -> std::vector<Glib::RefPtr<PageSetup>>;
+    list_papers () -> std::vector<glib::RefPtr<PageSetup>>;
 
     auto
-    get_default_page_size () const -> Glib::RefPtr<PageSetup>;
+    get_default_page_size () const -> glib::RefPtr<PageSetup>;
 
     auto
-    list_papers () const -> std::vector<Glib::RefPtr<const PageSetup>>;
+    list_papers () const -> std::vector<glib::RefPtr<const PageSetup>>;
 
     auto
     has_details () const -> bool;
@@ -240,38 +240,38 @@ namespace Gtk
                       double& right) const -> bool;
 
     auto
-    signal_details_acquired () -> Glib::SignalProxy<void (bool)>;
+    signal_details_acquired () -> glib::SignalProxy<void (bool)>;
 
     auto
-    property_name () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+    property_name () const -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
     auto
-    property_is_virtual () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_is_virtual () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
     property_state_message () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+        -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
     auto
-    property_location () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+    property_location () const -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
     auto
-    property_icon_name () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+    property_icon_name () const -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
     auto
-    property_job_count () const -> Glib::PropertyProxy_ReadOnly<int>;
+    property_job_count () const -> glib::PropertyProxy_ReadOnly<int>;
 
     auto
-    property_accepts_pdf () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_accepts_pdf () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_accepts_ps () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_accepts_ps () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_paused () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_paused () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_accepting_jobs () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_accepting_jobs () const -> glib::PropertyProxy_ReadOnly<bool>;
 
   public:
   public:
@@ -279,30 +279,30 @@ namespace Gtk
   };
 
   inline auto
-  operator== (const Glib::RefPtr<Printer>& lhs,
-              const Glib::RefPtr<Printer>& rhs) -> bool
+  operator== (const glib::RefPtr<Printer>& lhs,
+              const glib::RefPtr<Printer>& rhs) -> bool
   {
     return lhs->equal (rhs);
   }
 
   inline auto
-  operator!= (const Glib::RefPtr<Printer>& lhs,
-              const Glib::RefPtr<Printer>& rhs) -> bool
+  operator!= (const glib::RefPtr<Printer>& lhs,
+              const glib::RefPtr<Printer>& rhs) -> bool
   {
     return !lhs->equal (rhs);
   }
 
-  typedef sigc::slot<bool (const Glib::RefPtr<Printer>&)> SlotPrinterEnumerator;
+  typedef sigc::slot<bool (const glib::RefPtr<Printer>&)> SlotPrinterEnumerator;
 
   LIBMM_GTK_SYMEXPORT auto
   enumerate_printers (const SlotPrinterEnumerator& slot, bool wait = true) -> void;
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkPrinter* object, bool take_copy = false) -> Glib::RefPtr<Gtk::Printer>;
-} // namespace Glib
+  wrap (GtkPrinter* object, bool take_copy = false) -> glib::RefPtr<gtk::Printer>;
+} // namespace glib
 
 #endif

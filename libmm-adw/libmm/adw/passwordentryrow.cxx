@@ -5,7 +5,7 @@
 #include <libmm/adw/passwordentryrow.hxx>
 #include <libmm/adw/passwordentryrow_p.hxx>
 
-namespace Adw
+namespace adw
 {
 
 }
@@ -14,23 +14,23 @@ namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (AdwPasswordEntryRow* object, bool take_copy) -> Adw::PasswordEntryRow*
+  wrap (AdwPasswordEntryRow* object, bool take_copy) -> adw::PasswordEntryRow*
   {
-    return dynamic_cast<Adw::PasswordEntryRow*> (
-        Glib::wrap_auto ((GObject*) (object), take_copy));
+    return dynamic_cast<adw::PasswordEntryRow*> (
+        glib::wrap_auto ((GObject*) (object), take_copy));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Adw
+namespace adw
 {
 
   auto
-  PasswordEntryRow_Class::init () -> const Glib::Class&
+  PasswordEntryRow_Class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -41,31 +41,31 @@ namespace Adw
   }
 
   auto
-  PasswordEntryRow_Class::wrap_new (GObject* o) -> Glib::ObjectBase*
+  PasswordEntryRow_Class::wrap_new (GObject* o) -> glib::ObjectBase*
   {
     return manage (new PasswordEntryRow ((AdwPasswordEntryRow*) (o)));
   }
 
   PasswordEntryRow::PasswordEntryRow (
-      const Glib::ConstructParams& construct_params)
-    : Adw::EntryRow (construct_params)
+      const glib::ConstructParams& construct_params)
+    : adw::EntryRow (construct_params)
   {
   }
 
   PasswordEntryRow::PasswordEntryRow (AdwPasswordEntryRow* castitem)
-    : Adw::EntryRow ((AdwEntryRow*) (castitem))
+    : adw::EntryRow ((AdwEntryRow*) (castitem))
   {
   }
 
   PasswordEntryRow::PasswordEntryRow (PasswordEntryRow&& src) noexcept
-    : Adw::EntryRow (std::move (src))
+    : adw::EntryRow (std::move (src))
   {
   }
 
   auto
   PasswordEntryRow::operator= (PasswordEntryRow&& src) noexcept -> PasswordEntryRow&
   {
-    Adw::EntryRow::operator= (std::move (src));
+    adw::EntryRow::operator= (std::move (src));
     return *this;
   }
 
@@ -89,9 +89,9 @@ namespace Adw
   }
 
   PasswordEntryRow::PasswordEntryRow ()
-    : Glib::ObjectBase (nullptr),
-      Adw::EntryRow (Glib::ConstructParams (passwordentryrow_class_.init ()))
+    : glib::ObjectBase (nullptr),
+      adw::EntryRow (glib::ConstructParams (passwordentryrow_class_.init ()))
   {
   }
 
-} // namespace Adw
+} // namespace adw

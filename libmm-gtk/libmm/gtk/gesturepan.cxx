@@ -16,27 +16,27 @@ namespace
                                   gdouble p1,
                                   void* data) -> void
   {
-    using namespace Gtk;
+    using namespace gtk;
     using SlotType = sigc::slot<void (PanDirection, double)>;
 
     auto obj = dynamic_cast<GesturePan*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
     {
       try
       {
-        if (const auto slot = Glib::SignalProxyNormal::data_to_slot (data))
+        if (const auto slot = glib::SignalProxyNormal::data_to_slot (data))
           (*static_cast<SlotType*> (slot)) (static_cast<PanDirection> (p0), p1);
       }
       catch (...)
       {
-        Glib::exception_handlers_invoke ();
+        glib::exception_handlers_invoke ();
       }
     }
   }
 
-  static const Glib::SignalProxyInfo GesturePan_signal_pan_info = {
+  static const glib::SignalProxyInfo GesturePan_signal_pan_info = {
       "pan",
       (GCallback) &GesturePan_signal_pan_callback,
       (GCallback) &GesturePan_signal_pan_callback};
@@ -44,29 +44,29 @@ namespace
 } // namespace
 
 auto
-Glib::Value<Gtk::PanDirection>::value_type () -> GType
+glib::Value<gtk::PanDirection>::value_type () -> GType
 {
   return gtk_pan_direction_get_type ();
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GtkGesturePan* object, bool take_copy) -> Glib::RefPtr<Gtk::GesturePan>
+  wrap (GtkGesturePan* object, bool take_copy) -> glib::RefPtr<gtk::GesturePan>
   {
-    return Glib::make_refptr_for_instance<Gtk::GesturePan> (
-        dynamic_cast<Gtk::GesturePan*> (
-            Glib::wrap_auto ((GObject*) (object), take_copy)));
+    return glib::make_refptr_for_instance<gtk::GesturePan> (
+        dynamic_cast<gtk::GesturePan*> (
+            glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gtk
+namespace gtk
 {
 
   auto
-  GesturePan_Class::init () -> const Glib::Class&
+  GesturePan_Class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -86,7 +86,7 @@ namespace Gtk
   }
 
   auto
-  GesturePan_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  GesturePan_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new GesturePan ((GtkGesturePan*) object);
   }
@@ -98,7 +98,7 @@ namespace Gtk
     return gobj ();
   }
 
-  GesturePan::GesturePan (const Glib::ConstructParams& construct_params)
+  GesturePan::GesturePan (const glib::ConstructParams& construct_params)
     : GestureDrag (construct_params)
   {
   }
@@ -137,15 +137,15 @@ namespace Gtk
   }
 
   GesturePan::GesturePan ()
-    : Glib::ObjectBase (nullptr),
-      GestureDrag (Glib::ConstructParams (gesturepan_class_.init ()))
+    : glib::ObjectBase (nullptr),
+      GestureDrag (glib::ConstructParams (gesturepan_class_.init ()))
   {
   }
 
   GesturePan::GesturePan (Orientation orientation)
-    : Glib::ObjectBase (nullptr),
+    : glib::ObjectBase (nullptr),
       GestureDrag (
-          Glib::ConstructParams (gesturepan_class_.init (),
+          glib::ConstructParams (gesturepan_class_.init (),
                                  "orientation",
                                  static_cast<GtkOrientation> (orientation),
                                  nullptr))
@@ -153,9 +153,9 @@ namespace Gtk
   }
 
   auto
-  GesturePan::create (Orientation orientation) -> Glib::RefPtr<GesturePan>
+  GesturePan::create (Orientation orientation) -> glib::RefPtr<GesturePan>
   {
-    return Glib::make_refptr_for_instance<GesturePan> (
+    return glib::make_refptr_for_instance<GesturePan> (
         new GesturePan (orientation));
   }
 
@@ -174,28 +174,28 @@ namespace Gtk
   }
 
   auto
-  GesturePan::signal_pan () -> Glib::SignalProxy<void (PanDirection, double)>
+  GesturePan::signal_pan () -> glib::SignalProxy<void (PanDirection, double)>
   {
-    return Glib::SignalProxy<void (PanDirection, double)> (
+    return glib::SignalProxy<void (PanDirection, double)> (
         this,
         &GesturePan_signal_pan_info);
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<Orientation>::value,
+      glib::Traits::ValueCompatibleWithWrapProperty<Orientation>::value,
       "Type Orientation cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  GesturePan::property_orientation () -> Glib::PropertyProxy<Orientation>
+  GesturePan::property_orientation () -> glib::PropertyProxy<Orientation>
   {
-    return Glib::PropertyProxy<Orientation> (this, "orientation");
+    return glib::PropertyProxy<Orientation> (this, "orientation");
   }
 
   auto
-  GesturePan::property_orientation () const -> Glib::PropertyProxy_ReadOnly<Orientation>
+  GesturePan::property_orientation () const -> glib::PropertyProxy_ReadOnly<Orientation>
   {
-    return Glib::PropertyProxy_ReadOnly<Orientation> (this, "orientation");
+    return glib::PropertyProxy_ReadOnly<Orientation> (this, "orientation");
   }
 
-} // namespace Gtk
+} // namespace gtk

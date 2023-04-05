@@ -12,30 +12,30 @@ namespace
 }
 
 auto
-Glib::Value<Gdk::DevicePad::Feature>::value_type () -> GType
+glib::Value<gdk::DevicePad::Feature>::value_type () -> GType
 {
   return gdk_device_pad_feature_get_type ();
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GdkDevicePad* object, bool take_copy) -> Glib::RefPtr<Gdk::DevicePad>
+  wrap (GdkDevicePad* object, bool take_copy) -> glib::RefPtr<gdk::DevicePad>
   {
-    return Glib::make_refptr_for_instance<Gdk::DevicePad> (
-        dynamic_cast<Gdk::DevicePad*> (
-            Glib::wrap_auto_interface<Gdk::DevicePad> ((GObject*) (object),
+    return glib::make_refptr_for_instance<gdk::DevicePad> (
+        dynamic_cast<gdk::DevicePad*> (
+            glib::wrap_auto_interface<gdk::DevicePad> ((GObject*) (object),
                                                        take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gdk
+namespace gdk
 {
 
   auto
-  DevicePad_Class::init () -> const Glib::Interface_Class&
+  DevicePad_Class::init () -> const glib::Interface_Class&
   {
     if (!gtype_)
     {
@@ -56,35 +56,35 @@ namespace Gdk
   }
 
   auto
-  DevicePad_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  DevicePad_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new DevicePad ((GdkDevicePad*) (object));
   }
 
   DevicePad::DevicePad ()
-    : Glib::Interface (devicepad_class_.init ())
+    : glib::Interface (devicepad_class_.init ())
   {
   }
 
   DevicePad::DevicePad (GdkDevicePad* castitem)
-    : Glib::Interface ((GObject*) (castitem))
+    : glib::Interface ((GObject*) (castitem))
   {
   }
 
-  DevicePad::DevicePad (const Glib::Interface_Class& interface_class)
-    : Glib::Interface (interface_class)
+  DevicePad::DevicePad (const glib::Interface_Class& interface_class)
+    : glib::Interface (interface_class)
   {
   }
 
   DevicePad::DevicePad (DevicePad&& src) noexcept
-    : Glib::Interface (std::move (src))
+    : glib::Interface (std::move (src))
   {
   }
 
   auto
   DevicePad::operator= (DevicePad&& src) noexcept -> DevicePad&
   {
-    Glib::Interface::operator= (std::move (src));
+    glib::Interface::operator= (std::move (src));
     return *this;
   }
 
@@ -141,4 +141,4 @@ namespace Gdk
         feature_idx);
   }
 
-} // namespace Gdk
+} // namespace gdk

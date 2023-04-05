@@ -7,30 +7,30 @@
 
 #include <libmm/glib/class.hxx>
 
-namespace Adw
+namespace adw
 {
 
-  class LIBMM_ADW_SYMEXPORT MessageDialog_Class : public Glib::Class
+  class LIBMM_ADW_SYMEXPORT MessageDialog_Class : public glib::Class
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
     using CppObjectType = MessageDialog;
     using BaseObjectType = AdwMessageDialog;
     using BaseClassType = AdwMessageDialogClass;
-    using CppClassParent = Gtk::Window_Class;
+    using CppClassParent = gtk::Window_Class;
     using BaseClassParent = GtkWindowClass;
 
     friend class MessageDialog;
 #endif
 
     auto
-    init () -> const Glib::Class&;
+    init () -> const glib::Class&;
 
     static auto
     class_init_function (void* g_class, void* class_data) -> void;
 
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
 
   protected:
     static auto
@@ -40,6 +40,6 @@ namespace Adw
     response_vfunc_callback (AdwMessageDialog* self, const gchar* p0) -> void;
   };
 
-} // namespace Adw
+} // namespace adw
 
 #endif

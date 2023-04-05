@@ -7,68 +7,68 @@
 
 #include <libmm/glib/utility.hxx>
 
-namespace Pango
+namespace pango
 {
 
-  FontDescription::FontDescription (const Glib::ustring& font_name)
+  FontDescription::FontDescription (const glib::ustring& font_name)
   {
     gobject_ = pango_font_description_from_string (font_name.c_str ());
   }
 
-} // namespace Pango
+} // namespace pango
 
 namespace
 {
 }
 
 auto
-Glib::Value<Pango::Style>::value_type () -> GType
+glib::Value<pango::Style>::value_type () -> GType
 {
   return pango_style_get_type ();
 }
 
 auto
-Glib::Value<Pango::Variant>::value_type () -> GType
+glib::Value<pango::Variant>::value_type () -> GType
 {
   return pango_variant_get_type ();
 }
 
 auto
-Glib::Value<Pango::Stretch>::value_type () -> GType
+glib::Value<pango::Stretch>::value_type () -> GType
 {
   return pango_stretch_get_type ();
 }
 
 auto
-Glib::Value<Pango::Weight>::value_type () -> GType
+glib::Value<pango::Weight>::value_type () -> GType
 {
   return pango_weight_get_type ();
 }
 
 auto
-Glib::Value<Pango::FontMask>::value_type () -> GType
+glib::Value<pango::FontMask>::value_type () -> GType
 {
   return pango_font_mask_get_type ();
 }
 
 auto
-Glib::Value<Pango::Gravity>::value_type () -> GType
+glib::Value<pango::Gravity>::value_type () -> GType
 {
   return pango_gravity_get_type ();
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (PangoFontDescription* object, const bool take_copy) -> Pango::FontDescription
+  wrap (PangoFontDescription* object, const bool take_copy) -> pango::FontDescription
   {
-    return Pango::FontDescription (object, take_copy);
+    return pango::FontDescription (object, take_copy);
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Pango
+namespace pango
 {
 
   auto
@@ -142,15 +142,15 @@ namespace Pango
   }
 
   auto
-  FontDescription::set_family (const Glib::ustring& family) -> void
+  FontDescription::set_family (const glib::ustring& family) -> void
   {
     pango_font_description_set_family (gobj (), family.c_str ());
   }
 
   auto
-  FontDescription::get_family () const -> Glib::ustring
+  FontDescription::get_family () const -> glib::ustring
   {
-    return Glib::convert_const_gchar_ptr_to_ustring (
+    return glib::convert_const_gchar_ptr_to_ustring (
         pango_font_description_get_family (gobj ()));
   }
 
@@ -243,15 +243,15 @@ namespace Pango
   }
 
   auto
-  FontDescription::set_variations (const Glib::ustring& settings) -> void
+  FontDescription::set_variations (const glib::ustring& settings) -> void
   {
     pango_font_description_set_variations (gobj (), settings.c_str ());
   }
 
   auto
-  FontDescription::get_variations () const -> Glib::ustring
+  FontDescription::get_variations () const -> glib::ustring
   {
-    return Glib::convert_const_gchar_ptr_to_ustring (
+    return glib::convert_const_gchar_ptr_to_ustring (
         pango_font_description_get_variations (gobj ()));
   }
 
@@ -288,16 +288,16 @@ namespace Pango
   }
 
   auto
-  FontDescription::to_string () const -> Glib::ustring
+  FontDescription::to_string () const -> glib::ustring
   {
-    return Glib::convert_return_gchar_ptr_to_ustring (
+    return glib::convert_return_gchar_ptr_to_ustring (
         pango_font_description_to_string (gobj ()));
   }
 
   auto
-  FontDescription::to_filename () const -> Glib::ustring
+  FontDescription::to_filename () const -> glib::ustring
   {
-    return Glib::convert_return_gchar_ptr_to_ustring (
+    return glib::convert_return_gchar_ptr_to_ustring (
         pango_font_description_to_filename (gobj ()));
   }
 
@@ -313,4 +313,4 @@ namespace Pango
     return pango_font_description_equal (lhs.gobj (), rhs.gobj ()) == 0;
   }
 
-} // namespace Pango
+} // namespace pango

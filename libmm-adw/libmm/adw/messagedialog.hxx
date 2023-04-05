@@ -16,13 +16,13 @@ using AdwMessageDialogClass = struct _AdwMessageDialogClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Adw
+namespace adw
 {
   class LIBMM_ADW_SYMEXPORT MessageDialog_Class;
 }
 #endif
 
-namespace Adw
+namespace adw
 {
 
   enum class LIBMM_ADW_SYMEXPORT ResponseAppearance
@@ -32,28 +32,28 @@ namespace Adw
     DESTRUCTIVE
   };
 
-} // namespace Adw
+} // namespace adw
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_ADW_SYMEXPORT Value<Adw::ResponseAppearance>
-    : public Glib::Value_Enum<Adw::ResponseAppearance>
+  class LIBMM_ADW_SYMEXPORT Value<adw::ResponseAppearance>
+    : public glib::Value_Enum<adw::ResponseAppearance>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
-namespace Adw
+namespace adw
 {
 
-  class LIBMM_ADW_SYMEXPORT MessageDialog : public Gtk::Window
+  class LIBMM_ADW_SYMEXPORT MessageDialog : public gtk::Window
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -80,7 +80,7 @@ namespace Adw
     static CppClassType messagedialog_class_;
 
   protected:
-    explicit MessageDialog (const Glib::ConstructParams& construct_params);
+    explicit MessageDialog (const glib::ConstructParams& construct_params);
     explicit MessageDialog (AdwMessageDialog* castitem);
 
 #endif
@@ -109,147 +109,147 @@ namespace Adw
 
   private:
   public:
-    explicit MessageDialog (Gtk::Window* transient_for,
-                            const Glib::ustring& heading,
-                            const Glib::ustring& body);
+    explicit MessageDialog (gtk::Window* transient_for,
+                            const glib::ustring& heading,
+                            const glib::ustring& body);
 
     auto
-    add_response (const Glib::ustring& id, const Glib::ustring& label) -> void;
+    add_response (const glib::ustring& id, const glib::ustring& label) -> void;
 
     auto
-    get_body () const -> Glib::ustring;
+    get_body () const -> glib::ustring;
 
     auto
     get_body_use_markup () const -> bool;
 
     auto
-    get_close_response () const -> Glib::ustring;
+    get_close_response () const -> glib::ustring;
 
     auto
-    get_default_response () const -> Glib::ustring;
+    get_default_response () const -> glib::ustring;
 
     auto
-    get_extra_child () const -> Gtk::Widget*;
+    get_extra_child () const -> gtk::Widget*;
 
     auto
-    get_heading () const -> Glib::ustring;
+    get_heading () const -> glib::ustring;
 
     auto
     get_heading_use_markup () const -> bool;
 
     auto
-    get_response_appearance (const Glib::ustring& response) const
+    get_response_appearance (const glib::ustring& response) const
         -> ResponseAppearance;
 
     auto
-    get_response_enabled (const Glib::ustring& response) const -> bool;
+    get_response_enabled (const glib::ustring& response) const -> bool;
 
     auto
-    get_response_label (const Glib::ustring& response) const -> Glib::ustring;
+    get_response_label (const glib::ustring& response) const -> glib::ustring;
 
     auto
-    has_response (const Glib::ustring& response) const -> bool;
+    has_response (const glib::ustring& response) const -> bool;
 
     auto
-    response (const Glib::ustring& response) -> void;
+    response (const glib::ustring& response) -> void;
 
     auto
-    set_body (const Glib::ustring& body) -> void;
+    set_body (const glib::ustring& body) -> void;
 
     auto
     set_body_use_markup (bool use_markup) -> void;
 
     auto
-    set_close_response (const Glib::ustring& response) -> void;
+    set_close_response (const glib::ustring& response) -> void;
 
     auto
-    set_default_response (const Glib::ustring& response) -> void;
+    set_default_response (const glib::ustring& response) -> void;
 
     auto
-    set_extra_child (Gtk::Widget* child) -> void;
+    set_extra_child (gtk::Widget* child) -> void;
 
     auto
-    set_heading (const Glib::ustring& heading) -> void;
+    set_heading (const glib::ustring& heading) -> void;
 
     auto
     set_heading_use_markup (bool use_markup) -> void;
 
     auto
-    set_response_appearance (const Glib::ustring& response,
+    set_response_appearance (const glib::ustring& response,
                              ResponseAppearance appearance) -> void;
 
     auto
-    set_response_enabled (const Glib::ustring& response, bool enabled) -> void;
+    set_response_enabled (const glib::ustring& response, bool enabled) -> void;
 
     auto
-    set_response_label (const Glib::ustring& response,
-                        const Glib::ustring& label) -> void;
+    set_response_label (const glib::ustring& response,
+                        const glib::ustring& label) -> void;
 
     auto
-    property_body () -> Glib::PropertyProxy<Glib::ustring>;
+    property_body () -> glib::PropertyProxy<glib::ustring>;
 
     auto
-    property_body () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+    property_body () const -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
     auto
-    property_body_use_markup () -> Glib::PropertyProxy<bool>;
+    property_body_use_markup () -> glib::PropertyProxy<bool>;
 
     auto
-    property_body_use_markup () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_body_use_markup () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_close_response () -> Glib::PropertyProxy<Glib::ustring>;
+    property_close_response () -> glib::PropertyProxy<glib::ustring>;
 
     auto
     property_close_response () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+        -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
     auto
-    property_default_response () -> Glib::PropertyProxy<Glib::ustring>;
+    property_default_response () -> glib::PropertyProxy<glib::ustring>;
 
     auto
     property_default_response () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+        -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
     auto
-    property_extra_child () -> Glib::PropertyProxy<Gtk::Widget*>;
+    property_extra_child () -> glib::PropertyProxy<gtk::Widget*>;
 
     auto
-    property_extra_child () const -> Glib::PropertyProxy_ReadOnly<Gtk::Widget*>;
+    property_extra_child () const -> glib::PropertyProxy_ReadOnly<gtk::Widget*>;
 
     auto
-    property_heading () -> Glib::PropertyProxy<Glib::ustring>;
+    property_heading () -> glib::PropertyProxy<glib::ustring>;
 
     auto
-    property_heading () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+    property_heading () const -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
     auto
-    property_heading_use_markup () -> Glib::PropertyProxy<bool>;
+    property_heading_use_markup () -> glib::PropertyProxy<bool>;
 
     auto
-    property_heading_use_markup () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_heading_use_markup () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    signal_response (const Glib::ustring& response = {})
-        -> Glib::SignalProxyDetailed<void (const Glib::ustring&)>;
+    signal_response (const glib::ustring& response = {})
+        -> glib::SignalProxyDetailed<void (const glib::ustring&)>;
 
     virtual auto
-    response_vfunc (const Glib::ustring& response) -> void;
+    response_vfunc (const glib::ustring& response) -> void;
 
   public:
   public:
   protected:
     virtual auto
-    on_response (const Glib::ustring& response) -> void;
+    on_response (const glib::ustring& response) -> void;
   };
 
-} // namespace Adw
+} // namespace adw
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (AdwMessageDialog* object, bool take_copy = false) -> Adw::MessageDialog*;
+  wrap (AdwMessageDialog* object, bool take_copy = false) -> adw::MessageDialog*;
 }
 
 #endif

@@ -16,13 +16,13 @@ using GInetSocketAddressClass = struct _GInetSocketAddressClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gio
+namespace gio
 {
   class LIBMM_GIO_SYMEXPORT InetSocketAddress_Class;
 }
 #endif
 
-namespace Gio
+namespace gio
 {
 
   class LIBMM_GIO_SYMEXPORT InetSocketAddress : public SocketAddress
@@ -44,7 +44,7 @@ namespace Gio
     static CppClassType inetsocketaddress_class_;
 
   protected:
-    explicit InetSocketAddress (const Glib::ConstructParams& construct_params);
+    explicit InetSocketAddress (const glib::ConstructParams& construct_params);
     explicit InetSocketAddress (GInetSocketAddress* castitem);
 
 #endif
@@ -82,19 +82,19 @@ namespace Gio
 
   private:
   protected:
-    explicit InetSocketAddress (const Glib::RefPtr<InetAddress>& address,
+    explicit InetSocketAddress (const glib::RefPtr<InetAddress>& address,
                                 guint16 port);
 
   public:
     static auto
-    create (const Glib::RefPtr<InetAddress>& address, guint16 port)
-        -> Glib::RefPtr<InetSocketAddress>;
+    create (const glib::RefPtr<InetAddress>& address, guint16 port)
+        -> glib::RefPtr<InetSocketAddress>;
 
     auto
-    get_address () -> Glib::RefPtr<InetAddress>;
+    get_address () -> glib::RefPtr<InetAddress>;
 
     auto
-    get_address () const -> Glib::RefPtr<const InetAddress>;
+    get_address () const -> glib::RefPtr<const InetAddress>;
 
     auto
     get_port () const -> guint16;
@@ -107,30 +107,30 @@ namespace Gio
 
     auto
     property_address () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<InetAddress>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<InetAddress>>;
 
     auto
-    property_port () const -> Glib::PropertyProxy_ReadOnly<guint>;
+    property_port () const -> glib::PropertyProxy_ReadOnly<guint>;
 
     auto
-    property_flowinfo () const -> Glib::PropertyProxy_ReadOnly<guint>;
+    property_flowinfo () const -> glib::PropertyProxy_ReadOnly<guint>;
 
     auto
-    property_scope_id () const -> Glib::PropertyProxy_ReadOnly<guint>;
+    property_scope_id () const -> glib::PropertyProxy_ReadOnly<guint>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gio
+} // namespace gio
 
-namespace Glib
+namespace glib
 {
 
   LIBMM_GIO_SYMEXPORT
   auto
-  wrap (GInetSocketAddress* object, bool take_copy = false) -> Glib::RefPtr<Gio::InetSocketAddress>;
-} // namespace Glib
+  wrap (GInetSocketAddress* object, bool take_copy = false) -> glib::RefPtr<gio::InetSocketAddress>;
+} // namespace glib
 
 #endif

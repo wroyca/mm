@@ -14,13 +14,13 @@ using GtkLinkButtonClass = struct _GtkLinkButtonClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT LinkButton_Class;
 }
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
   class LIBMM_GTK_SYMEXPORT LinkButton : public Button
@@ -50,7 +50,7 @@ namespace Gtk
     static CppClassType linkbutton_class_;
 
   protected:
-    explicit LinkButton (const Glib::ConstructParams& construct_params);
+    explicit LinkButton (const glib::ConstructParams& construct_params);
     explicit LinkButton (GtkLinkButton* castitem);
 
 #endif
@@ -80,15 +80,15 @@ namespace Gtk
   private:
   public:
     LinkButton ();
-    explicit LinkButton (const Glib::ustring& uri);
+    explicit LinkButton (const glib::ustring& uri);
 
-    explicit LinkButton (const Glib::ustring& uri, const Glib::ustring& label);
-
-    auto
-    get_uri () const -> Glib::ustring;
+    explicit LinkButton (const glib::ustring& uri, const glib::ustring& label);
 
     auto
-    set_uri (const Glib::ustring& uri) -> void;
+    get_uri () const -> glib::ustring;
+
+    auto
+    set_uri (const glib::ustring& uri) -> void;
 
     auto
     get_visited () const -> bool;
@@ -97,31 +97,31 @@ namespace Gtk
     set_visited (bool visited = true) -> void;
 
     auto
-    property_uri () -> Glib::PropertyProxy<Glib::ustring>;
+    property_uri () -> glib::PropertyProxy<glib::ustring>;
 
     auto
-    property_uri () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+    property_uri () const -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
     auto
-    property_visited () -> Glib::PropertyProxy<bool>;
+    property_visited () -> glib::PropertyProxy<bool>;
 
     auto
-    property_visited () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_visited () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    signal_activate_link () -> Glib::SignalProxy<bool ()>;
+    signal_activate_link () -> glib::SignalProxy<bool ()>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkLinkButton* object, bool take_copy = false) -> Gtk::LinkButton*;
-} // namespace Glib
+  wrap (GtkLinkButton* object, bool take_copy = false) -> gtk::LinkButton*;
+} // namespace glib
 
 #endif

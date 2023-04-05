@@ -7,7 +7,7 @@
 
 #include <gio/gio.h>
 
-namespace Gio
+namespace gio
 {
 }
 
@@ -15,20 +15,20 @@ namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GTcpWrapperConnection* object, const bool take_copy) -> RefPtr<Gio::TcpWrapperConnection>
+  wrap (GTcpWrapperConnection* object, const bool take_copy) -> RefPtr<gio::TcpWrapperConnection>
   {
-    return Glib::make_refptr_for_instance<Gio::TcpWrapperConnection> (
-        dynamic_cast<Gio::TcpWrapperConnection*> (
+    return glib::make_refptr_for_instance<gio::TcpWrapperConnection> (
+        dynamic_cast<gio::TcpWrapperConnection*> (
             wrap_auto ((GObject*) object, take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gio
+namespace gio
 {
 
   auto
@@ -53,7 +53,7 @@ namespace Gio
   }
 
   auto
-  TcpWrapperConnection_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  TcpWrapperConnection_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new TcpWrapperConnection ((GTcpWrapperConnection*) object);
   }
@@ -66,7 +66,7 @@ namespace Gio
   }
 
   TcpWrapperConnection::TcpWrapperConnection (
-      const Glib::ConstructParams& construct_params)
+      const glib::ConstructParams& construct_params)
     : TcpConnection (construct_params)
   {
   }
@@ -107,44 +107,44 @@ namespace Gio
   }
 
   TcpWrapperConnection::TcpWrapperConnection (
-      const Glib::RefPtr<IOStream>& base_io_stream,
-      const Glib::RefPtr<Socket>& socket)
+      const glib::RefPtr<IOStream>& base_io_stream,
+      const glib::RefPtr<Socket>& socket)
     : ObjectBase (nullptr),
-      TcpConnection (Glib::ConstructParams (tcpwrapperconnection_class_.init (),
+      TcpConnection (glib::ConstructParams (tcpwrapperconnection_class_.init (),
                                             "base_io_stream",
-                                            Glib::unwrap (base_io_stream),
+                                            glib::unwrap (base_io_stream),
                                             "socket",
-                                            Glib::unwrap (socket),
+                                            glib::unwrap (socket),
                                             nullptr))
   {
   }
 
   auto
-  TcpWrapperConnection::get_base_io_stream () -> Glib::RefPtr<IOStream>
+  TcpWrapperConnection::get_base_io_stream () -> glib::RefPtr<IOStream>
   {
     auto retvalue =
-        Glib::wrap (g_tcp_wrapper_connection_get_base_io_stream (gobj ()));
+        glib::wrap (g_tcp_wrapper_connection_get_base_io_stream (gobj ()));
     if (retvalue)
       retvalue->reference ();
     return retvalue;
   }
 
   auto
-  TcpWrapperConnection::get_base_io_stream () const -> Glib::RefPtr<const IOStream>
+  TcpWrapperConnection::get_base_io_stream () const -> glib::RefPtr<const IOStream>
   {
     return const_cast<TcpWrapperConnection*> (this)->get_base_io_stream ();
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<
-          Glib::RefPtr<IOStream>>::value,
-      "Type Glib::RefPtr<IOStream> cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      glib::Traits::ValueCompatibleWithWrapProperty<
+          glib::RefPtr<IOStream>>::value,
+      "Type glib::RefPtr<IOStream> cannot be used in _WRAP_PROPERTY. "
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  TcpWrapperConnection::property_base_io_stream () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<IOStream>>
+  TcpWrapperConnection::property_base_io_stream () const -> glib::PropertyProxy_ReadOnly<glib::RefPtr<IOStream>>
   {
     return {this, "base-io-stream"};
   }
 
-} // namespace Gio
+} // namespace gio

@@ -5,7 +5,7 @@
 
 #include <libmm/glib/ustring.hxx>
 
-namespace Glib
+namespace glib
 {
 
   LIBMM_GLIB_SYMEXPORT
@@ -49,12 +49,12 @@ namespace Glib
 
   LIBMM_GLIB_SYMEXPORT
   auto
-  strerror (int errnum) -> Glib::ustring;
+  strerror (int errnum) -> glib::ustring;
 
   LIBMM_GLIB_SYMEXPORT
   auto
-  strsignal (int signum) -> Glib::ustring;
+  strsignal (int signum) -> glib::ustring;
 
-} // namespace Glib
+} // namespace glib
 
 #endif

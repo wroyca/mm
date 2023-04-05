@@ -7,7 +7,7 @@
 
 #include <cstring>
 
-namespace Gdk
+namespace gdk
 {
 
   Rectangle::Rectangle (int x, int y, int width, int height)
@@ -96,30 +96,30 @@ namespace Gdk
     return dest;
   }
 
-} // namespace Gdk
+} // namespace gdk
 
 namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GdkRectangle* object) -> Gdk::Rectangle&
+  wrap (GdkRectangle* object) -> gdk::Rectangle&
   {
-    return *reinterpret_cast<Gdk::Rectangle*> (object);
+    return *reinterpret_cast<gdk::Rectangle*> (object);
   }
 
   auto
-  wrap (const GdkRectangle* object) -> const Gdk::Rectangle&
+  wrap (const GdkRectangle* object) -> const gdk::Rectangle&
   {
-    return *reinterpret_cast<const Gdk::Rectangle*> (object);
+    return *reinterpret_cast<const gdk::Rectangle*> (object);
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gdk
+namespace gdk
 {
 
   Rectangle::Rectangle (const Rectangle& other) noexcept
@@ -221,4 +221,4 @@ namespace Gdk
     gobj ()->height = value;
   }
 
-} // namespace Gdk
+} // namespace gdk

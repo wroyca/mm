@@ -10,11 +10,11 @@
 #include <libmm/glib/exceptionhandler.hxx>
 #include <libmm/glib/vectorutils.hxx>
 
-namespace Gio
+namespace gio
 {
 
   auto
-  Settings::get_value (const Glib::ustring& key, Glib::VariantBase& value) const -> void
+  Settings::get_value (const glib::ustring& key, glib::VariantBase& value) const -> void
   {
     const auto g_value = g_settings_get_value (const_cast<GSettings*> (gobj ()),
                                                key.c_str ());
@@ -25,8 +25,8 @@ namespace Gio
   }
 
   auto
-  Settings::get_user_value (const Glib::ustring& key,
-                            Glib::VariantBase& value) const -> bool
+  Settings::get_user_value (const glib::ustring& key,
+                            glib::VariantBase& value) const -> bool
   {
     const auto g_value = g_settings_get_user_value (
         const_cast<GSettings*> (gobj ()),
@@ -39,8 +39,8 @@ namespace Gio
   }
 
   auto
-  Settings::get_default_value (const Glib::ustring& key,
-                               Glib::VariantBase& value) const -> void
+  Settings::get_default_value (const glib::ustring& key,
+                               glib::VariantBase& value) const -> void
   {
     const auto g_value = g_settings_get_default_value (
         const_cast<GSettings*> (gobj ()),
@@ -52,16 +52,16 @@ namespace Gio
   }
 
   auto
-  Settings::bind (const Glib::ustring& key,
-                  const Glib::PropertyProxy_Base& property_proxy,
+  Settings::bind (const glib::ustring& key,
+                  const glib::PropertyProxy_Base& property_proxy,
                   const BindFlags flags) -> void
   {
     bind (key, property_proxy.get_object (), property_proxy.get_name (), flags);
   }
 
   auto
-  Settings::bind_writable (const Glib::ustring& key,
-                           const Glib::PropertyProxy_Base& property_proxy,
+  Settings::bind_writable (const glib::ustring& key,
+                           const glib::PropertyProxy_Base& property_proxy,
                            const bool inverted) -> void
   {
     bind_writable (key,
@@ -70,7 +70,7 @@ namespace Gio
                    inverted);
   }
 
-} // namespace Gio
+} // namespace gio
 
 namespace
 {
@@ -80,28 +80,28 @@ namespace
                                     const gchar* p0,
                                     void* data) -> void
   {
-    using namespace Gio;
-    using SlotType = sigc::slot<void (const Glib::ustring&)>;
+    using namespace gio;
+    using SlotType = sigc::slot<void (const glib::ustring&)>;
 
     const auto obj = dynamic_cast<Settings*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
     {
       try
       {
-        if (const auto slot = Glib::SignalProxyNormal::data_to_slot (data))
+        if (const auto slot = glib::SignalProxyNormal::data_to_slot (data))
           (*static_cast<SlotType*> (slot)) (
-              Glib::convert_const_gchar_ptr_to_ustring (p0));
+              glib::convert_const_gchar_ptr_to_ustring (p0));
       }
       catch (...)
       {
-        Glib::exception_handlers_invoke ();
+        glib::exception_handlers_invoke ();
       }
     }
   }
 
-  const Glib::SignalProxyInfo Settings_signal_changed_info = {
+  const glib::SignalProxyInfo Settings_signal_changed_info = {
       "changed",
       (GCallback) &Settings_signal_changed_callback,
       (GCallback) &Settings_signal_changed_callback};
@@ -111,22 +111,22 @@ namespace
                                                   const GQuark p0,
                                                   void* data) -> gboolean
   {
-    using namespace Gio;
+    using namespace gio;
     using SlotType = sigc::slot<bool (GQuark)>;
 
     const auto obj = dynamic_cast<Settings*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
     {
       try
       {
-        if (const auto slot = Glib::SignalProxyNormal::data_to_slot (data))
+        if (const auto slot = glib::SignalProxyNormal::data_to_slot (data))
           return (*static_cast<SlotType*> (slot)) (p0);
       }
       catch (...)
       {
-        Glib::exception_handlers_invoke ();
+        glib::exception_handlers_invoke ();
       }
     }
 
@@ -139,22 +139,22 @@ namespace
                                                          const GQuark p0,
                                                          void* data) -> gboolean
   {
-    using namespace Gio;
+    using namespace gio;
     using SlotType = sigc::slot<void (GQuark)>;
 
     const auto obj = dynamic_cast<Settings*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
     {
       try
       {
-        if (const auto slot = Glib::SignalProxyNormal::data_to_slot (data))
+        if (const auto slot = glib::SignalProxyNormal::data_to_slot (data))
           (*static_cast<SlotType*> (slot)) (p0);
       }
       catch (...)
       {
-        Glib::exception_handlers_invoke ();
+        glib::exception_handlers_invoke ();
       }
     }
 
@@ -162,7 +162,7 @@ namespace
     return RType ();
   }
 
-  const Glib::SignalProxyInfo Settings_signal_writable_change_event_info = {
+  const glib::SignalProxyInfo Settings_signal_writable_change_event_info = {
       "writable-change-event",
       (GCallback) &Settings_signal_writable_change_event_callback,
       (GCallback) &Settings_signal_writable_change_event_notify_callback};
@@ -172,28 +172,28 @@ namespace
                                              const gchar* p0,
                                              void* data) -> void
   {
-    using namespace Gio;
-    using SlotType = sigc::slot<void (const Glib::ustring&)>;
+    using namespace gio;
+    using SlotType = sigc::slot<void (const glib::ustring&)>;
 
     const auto obj = dynamic_cast<Settings*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
     {
       try
       {
-        if (const auto slot = Glib::SignalProxyNormal::data_to_slot (data))
+        if (const auto slot = glib::SignalProxyNormal::data_to_slot (data))
           (*static_cast<SlotType*> (slot)) (
-              Glib::convert_const_gchar_ptr_to_ustring (p0));
+              glib::convert_const_gchar_ptr_to_ustring (p0));
       }
       catch (...)
       {
-        Glib::exception_handlers_invoke ();
+        glib::exception_handlers_invoke ();
       }
     }
   }
 
-  const Glib::SignalProxyInfo Settings_signal_writable_changed_info = {
+  const glib::SignalProxyInfo Settings_signal_writable_changed_info = {
       "writable_changed",
       (GCallback) &Settings_signal_writable_changed_callback,
       (GCallback) &Settings_signal_writable_changed_callback};
@@ -201,25 +201,25 @@ namespace
 } // namespace
 
 auto
-Glib::Value<Gio::Settings::BindFlags>::value_type () -> GType
+glib::Value<gio::Settings::BindFlags>::value_type () -> GType
 {
   return g_settings_bind_flags_get_type ();
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GSettings* object, const bool take_copy) -> RefPtr<Gio::Settings>
+  wrap (GSettings* object, const bool take_copy) -> RefPtr<gio::Settings>
   {
-    return Glib::make_refptr_for_instance<Gio::Settings> (
-        dynamic_cast<Gio::Settings*> (
+    return glib::make_refptr_for_instance<gio::Settings> (
+        dynamic_cast<gio::Settings*> (
             wrap_auto ((GObject*) object, take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gio
+namespace gio
 {
 
   auto
@@ -250,7 +250,7 @@ namespace Gio
   Settings_Class::changed_callback (GSettings* self, const gchar* p0) -> void
   {
     const auto obj_base =
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self);
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self);
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -259,12 +259,12 @@ namespace Gio
       {
         try
         {
-          obj->on_changed (Glib::convert_const_gchar_ptr_to_ustring (p0));
+          obj->on_changed (glib::convert_const_gchar_ptr_to_ustring (p0));
           return;
         }
         catch (...)
         {
-          Glib::exception_handlers_invoke ();
+          glib::exception_handlers_invoke ();
         }
       }
     }
@@ -281,7 +281,7 @@ namespace Gio
                                                   const GQuark p0) -> gboolean
   {
     const auto obj_base =
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self);
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self);
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -294,7 +294,7 @@ namespace Gio
         }
         catch (...)
         {
-          Glib::exception_handlers_invoke ();
+          glib::exception_handlers_invoke ();
         }
       }
     }
@@ -313,7 +313,7 @@ namespace Gio
   Settings_Class::writable_changed_callback (GSettings* self, const gchar* p0) -> void
   {
     const auto obj_base =
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self);
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self);
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -323,12 +323,12 @@ namespace Gio
         try
         {
           obj->on_writable_changed (
-              Glib::convert_const_gchar_ptr_to_ustring (p0));
+              glib::convert_const_gchar_ptr_to_ustring (p0));
           return;
         }
         catch (...)
         {
-          Glib::exception_handlers_invoke ();
+          glib::exception_handlers_invoke ();
         }
       }
     }
@@ -341,7 +341,7 @@ namespace Gio
   }
 
   auto
-  Settings_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  Settings_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new Settings ((GSettings*) object);
   }
@@ -353,7 +353,7 @@ namespace Gio
     return gobj ();
   }
 
-  Settings::Settings (const Glib::ConstructParams& construct_params)
+  Settings::Settings (const glib::ConstructParams& construct_params)
     : Object (construct_params)
   {
   }
@@ -391,18 +391,18 @@ namespace Gio
     return g_settings_get_type ();
   }
 
-  Settings::Settings (const Glib::ustring& schema_id)
+  Settings::Settings (const glib::ustring& schema_id)
     : ObjectBase (nullptr),
-      Object (Glib::ConstructParams (settings_class_.init (),
+      Object (glib::ConstructParams (settings_class_.init (),
                                      "schema_id",
                                      schema_id.c_str (),
                                      nullptr))
   {
   }
 
-  Settings::Settings (const Glib::ustring& schema_id, const Glib::ustring& path)
+  Settings::Settings (const glib::ustring& schema_id, const glib::ustring& path)
     : ObjectBase (nullptr),
-      Object (Glib::ConstructParams (settings_class_.init (),
+      Object (glib::ConstructParams (settings_class_.init (),
                                      "schema_id",
                                      schema_id.c_str (),
                                      "path",
@@ -412,20 +412,20 @@ namespace Gio
   }
 
   auto
-  Settings::create (const Glib::ustring& schema_id) -> Glib::RefPtr<Settings>
+  Settings::create (const glib::ustring& schema_id) -> glib::RefPtr<Settings>
   {
-    return Glib::make_refptr_for_instance<Settings> (new Settings (schema_id));
+    return glib::make_refptr_for_instance<Settings> (new Settings (schema_id));
   }
 
   auto
-  Settings::create (const Glib::ustring& schema_id, const Glib::ustring& path) -> Glib::RefPtr<Settings>
+  Settings::create (const glib::ustring& schema_id, const glib::ustring& path) -> glib::RefPtr<Settings>
   {
-    return Glib::make_refptr_for_instance<Settings> (
+    return glib::make_refptr_for_instance<Settings> (
         new Settings (schema_id, path));
   }
 
   auto
-  Settings::set_value (const Glib::ustring& key, const Glib::VariantBase& value) -> bool
+  Settings::set_value (const glib::ustring& key, const glib::VariantBase& value) -> bool
   {
     return g_settings_set_value (gobj (),
                                  key.c_str (),
@@ -433,151 +433,151 @@ namespace Gio
   }
 
   auto
-  Settings::get_int (const Glib::ustring& key) const -> int
+  Settings::get_int (const glib::ustring& key) const -> int
   {
     return g_settings_get_int (const_cast<GSettings*> (gobj ()), key.c_str ());
   }
 
   auto
-  Settings::set_int (const Glib::ustring& key, const int value) -> bool
+  Settings::set_int (const glib::ustring& key, const int value) -> bool
   {
     return g_settings_set_int (gobj (), key.c_str (), value);
   }
 
   auto
-  Settings::get_int64 (const Glib::ustring& key) const -> gint64
+  Settings::get_int64 (const glib::ustring& key) const -> gint64
   {
     return g_settings_get_int64 (const_cast<GSettings*> (gobj ()),
                                  key.c_str ());
   }
 
   auto
-  Settings::set_int64 (const Glib::ustring& key, const gint64 value) -> bool
+  Settings::set_int64 (const glib::ustring& key, const gint64 value) -> bool
   {
     return g_settings_set_int64 (gobj (), key.c_str (), value);
   }
 
   auto
-  Settings::get_uint (const Glib::ustring& key) const -> guint
+  Settings::get_uint (const glib::ustring& key) const -> guint
   {
     return g_settings_get_uint (const_cast<GSettings*> (gobj ()), key.c_str ());
   }
 
   auto
-  Settings::set_uint (const Glib::ustring& key, const guint value) -> bool
+  Settings::set_uint (const glib::ustring& key, const guint value) -> bool
   {
     return g_settings_set_uint (gobj (), key.c_str (), value);
   }
 
   auto
-  Settings::get_uint64 (const Glib::ustring& key) const -> guint64
+  Settings::get_uint64 (const glib::ustring& key) const -> guint64
   {
     return g_settings_get_uint64 (const_cast<GSettings*> (gobj ()),
                                   key.c_str ());
   }
 
   auto
-  Settings::set_uint64 (const Glib::ustring& key, const guint64 value) -> bool
+  Settings::set_uint64 (const glib::ustring& key, const guint64 value) -> bool
   {
     return g_settings_set_uint64 (gobj (), key.c_str (), value);
   }
 
   auto
-  Settings::get_boolean (const Glib::ustring& key) const -> bool
+  Settings::get_boolean (const glib::ustring& key) const -> bool
   {
     return g_settings_get_boolean (const_cast<GSettings*> (gobj ()),
                                    key.c_str ());
   }
 
   auto
-  Settings::set_boolean (const Glib::ustring& key, const bool value) -> bool
+  Settings::set_boolean (const glib::ustring& key, const bool value) -> bool
   {
     return g_settings_set_boolean (gobj (), key.c_str (), value);
   }
 
   auto
-  Settings::get_string (const Glib::ustring& key) const -> Glib::ustring
+  Settings::get_string (const glib::ustring& key) const -> glib::ustring
   {
-    return Glib::convert_return_gchar_ptr_to_ustring (
+    return glib::convert_return_gchar_ptr_to_ustring (
         g_settings_get_string (const_cast<GSettings*> (gobj ()), key.c_str ()));
   }
 
   auto
-  Settings::set_string (const Glib::ustring& key, const Glib::ustring& value) -> bool
+  Settings::set_string (const glib::ustring& key, const glib::ustring& value) -> bool
   {
     return g_settings_set_string (gobj (), key.c_str (), value.c_str ());
   }
 
   auto
-  Settings::get_double (const Glib::ustring& key) const -> double
+  Settings::get_double (const glib::ustring& key) const -> double
   {
     return g_settings_get_double (const_cast<GSettings*> (gobj ()),
                                   key.c_str ());
   }
 
   auto
-  Settings::set_double (const Glib::ustring& key, const double value) -> bool
+  Settings::set_double (const glib::ustring& key, const double value) -> bool
   {
     return g_settings_set_double (gobj (), key.c_str (), value);
   }
 
   auto
-  Settings::get_string_array (const Glib::ustring& key) const -> std::vector<Glib::ustring>
+  Settings::get_string_array (const glib::ustring& key) const -> std::vector<glib::ustring>
   {
-    return Glib::ArrayHandler<Glib::ustring>::array_to_vector (
+    return glib::ArrayHandler<glib::ustring>::array_to_vector (
         g_settings_get_strv (const_cast<GSettings*> (gobj ()), key.c_str ()),
-        Glib::OWNERSHIP_DEEP);
+        glib::OWNERSHIP_DEEP);
   }
 
   auto
-  Settings::set_string_array (const Glib::ustring& key,
-                              const std::vector<Glib::ustring>& value) -> bool
+  Settings::set_string_array (const glib::ustring& key,
+                              const std::vector<glib::ustring>& value) -> bool
   {
     return g_settings_set_strv (
         gobj (),
         key.c_str (),
-        Glib::ArrayHandler<Glib::ustring>::vector_to_array (value).data ());
+        glib::ArrayHandler<glib::ustring>::vector_to_array (value).data ());
   }
 
   auto
-  Settings::get_enum (const Glib::ustring& key) const -> int
+  Settings::get_enum (const glib::ustring& key) const -> int
   {
     return g_settings_get_enum (const_cast<GSettings*> (gobj ()), key.c_str ());
   }
 
   auto
-  Settings::set_enum (const Glib::ustring& key, const int value) -> bool
+  Settings::set_enum (const glib::ustring& key, const int value) -> bool
   {
     return g_settings_set_enum (gobj (), key.c_str (), value);
   }
 
   auto
-  Settings::get_flags (const Glib::ustring& key) const -> guint
+  Settings::get_flags (const glib::ustring& key) const -> guint
   {
     return g_settings_get_flags (const_cast<GSettings*> (gobj ()),
                                  key.c_str ());
   }
 
   auto
-  Settings::set_flags (const Glib::ustring& key, const guint value) -> bool
+  Settings::set_flags (const glib::ustring& key, const guint value) -> bool
   {
     return g_settings_set_flags (gobj (), key.c_str (), value);
   }
 
   auto
-  Settings::get_child (const Glib::ustring& name) -> Glib::RefPtr<Settings>
+  Settings::get_child (const glib::ustring& name) -> glib::RefPtr<Settings>
   {
-    return Glib::wrap (g_settings_get_child (gobj (), name.c_str ()));
+    return glib::wrap (g_settings_get_child (gobj (), name.c_str ()));
   }
 
   auto
-  Settings::get_child (const Glib::ustring& name) const -> Glib::RefPtr<const Settings>
+  Settings::get_child (const glib::ustring& name) const -> glib::RefPtr<const Settings>
   {
     return const_cast<Settings*> (this)->get_child (name);
   }
 
   auto
-  Settings::is_writable (const Glib::ustring& name) const -> bool
+  Settings::is_writable (const glib::ustring& name) const -> bool
   {
     return g_settings_is_writable (const_cast<GSettings*> (gobj ()),
                                    name.c_str ());
@@ -608,23 +608,23 @@ namespace Gio
   }
 
   auto
-  Settings::reset (const Glib::ustring& key) -> void
+  Settings::reset (const glib::ustring& key) -> void
   {
     g_settings_reset (gobj (), key.c_str ());
   }
 
   auto
-  Settings::list_children () const -> std::vector<Glib::ustring>
+  Settings::list_children () const -> std::vector<glib::ustring>
   {
-    return Glib::ArrayHandler<Glib::ustring>::array_to_vector (
+    return glib::ArrayHandler<glib::ustring>::array_to_vector (
         g_settings_list_children (const_cast<GSettings*> (gobj ())),
-        Glib::OWNERSHIP_DEEP);
+        glib::OWNERSHIP_DEEP);
   }
 
   auto
-  Settings::bind (const Glib::ustring& key,
+  Settings::bind (const glib::ustring& key,
                   ObjectBase* object,
-                  const Glib::ustring& property,
+                  const glib::ustring& property,
                   BindFlags flags) -> void
   {
     g_settings_bind (gobj (),
@@ -635,9 +635,9 @@ namespace Gio
   }
 
   auto
-  Settings::bind_writable (const Glib::ustring& key,
+  Settings::bind_writable (const glib::ustring& key,
                            ObjectBase* object,
-                           const Glib::ustring& property,
+                           const glib::ustring& property,
                            const bool inverted) -> void
   {
     g_settings_bind_writable (gobj (),
@@ -648,73 +648,73 @@ namespace Gio
   }
 
   auto
-  Settings::create_action (const Glib::ustring& key) -> Glib::RefPtr<Action>
+  Settings::create_action (const glib::ustring& key) -> glib::RefPtr<Action>
   {
-    return Glib::wrap (g_settings_create_action (gobj (), key.c_str ()));
+    return glib::wrap (g_settings_create_action (gobj (), key.c_str ()));
   }
 
   auto
-  Settings::signal_changed (const Glib::ustring& key) -> Glib::SignalProxyDetailed<void (const Glib::ustring&)>
+  Settings::signal_changed (const glib::ustring& key) -> glib::SignalProxyDetailed<void (const glib::ustring&)>
   {
-    return Glib::SignalProxyDetailed<void (const Glib::ustring&)> (
+    return glib::SignalProxyDetailed<void (const glib::ustring&)> (
         this,
         &Settings_signal_changed_info,
         key);
   }
 
   auto
-  Settings::signal_writable_change_event () -> Glib::SignalProxy<bool (GQuark)>
+  Settings::signal_writable_change_event () -> glib::SignalProxy<bool (GQuark)>
   {
     return {this, &Settings_signal_writable_change_event_info};
   }
 
   auto
-  Settings::signal_writable_changed (const Glib::ustring& key) -> Glib::SignalProxyDetailed<void (const Glib::ustring&)>
+  Settings::signal_writable_changed (const glib::ustring& key) -> glib::SignalProxyDetailed<void (const glib::ustring&)>
   {
-    return Glib::SignalProxyDetailed<void (const Glib::ustring&)> (
+    return glib::SignalProxyDetailed<void (const glib::ustring&)> (
         this,
         &Settings_signal_writable_changed_info,
         key);
   }
 
   auto
-  Settings::property_delay_apply () const -> Glib::PropertyProxy_ReadOnly<bool>
+  Settings::property_delay_apply () const -> glib::PropertyProxy_ReadOnly<bool>
   {
     return {this, "delay-apply"};
   }
 
   auto
-  Settings::property_has_unapplied () const -> Glib::PropertyProxy_ReadOnly<bool>
+  Settings::property_has_unapplied () const -> glib::PropertyProxy_ReadOnly<bool>
   {
     return {this, "has-unapplied"};
   }
 
   auto
-  Settings::property_path () const -> Glib::PropertyProxy_ReadOnly<std::string>
+  Settings::property_path () const -> glib::PropertyProxy_ReadOnly<std::string>
   {
     return {this, "path"};
   }
 
   auto
-  Settings::property_schema_id () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>
+  Settings::property_schema_id () const -> glib::PropertyProxy_ReadOnly<glib::ustring>
   {
     return {this, "schema-id"};
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<
-          Glib::RefPtr<SettingsSchema>>::value,
-      "Type Glib::RefPtr<SettingsSchema> cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      glib::Traits::ValueCompatibleWithWrapProperty<
+          glib::RefPtr<SettingsSchema>>::value,
+      "Type glib::RefPtr<SettingsSchema> cannot be used in _WRAP_PROPERTY. "
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  Settings::property_settings_schema () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<SettingsSchema>>
+  Settings::property_settings_schema () const -> glib::PropertyProxy_ReadOnly<glib::RefPtr<SettingsSchema>>
   {
     return {this, "settings-schema"};
   }
 
   auto
-  Settings::on_changed (const Glib::ustring& key) -> void
+  Settings::on_changed (const glib::ustring& key) -> void
   {
     const auto base = static_cast<BaseClassType*> (
         g_type_class_peek_parent (G_OBJECT_GET_CLASS (gobject_)));
@@ -737,7 +737,7 @@ namespace Gio
   }
 
   auto
-  Settings::on_writable_changed (const Glib::ustring& key) -> void
+  Settings::on_writable_changed (const glib::ustring& key) -> void
   {
     const auto base = static_cast<BaseClassType*> (
         g_type_class_peek_parent (G_OBJECT_GET_CLASS (gobject_)));
@@ -746,4 +746,4 @@ namespace Gio
       (*base->writable_changed) (gobj (), key.c_str ());
   }
 
-} // namespace Gio
+} // namespace gio

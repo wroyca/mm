@@ -8,31 +8,31 @@
 #include <libmm/gdk/enums.hxx>
 #include <libmm/glib/ustring.hxx>
 
-namespace Gtk
+namespace gtk
 {
 
   namespace Accelerator
   {
     LIBMM_GTK_SYMEXPORT auto
-    valid (guint keyval, Gdk::ModifierType modifiers) -> bool;
+    valid (guint keyval, gdk::ModifierType modifiers) -> bool;
 
     LIBMM_GTK_SYMEXPORT auto
-    parse (const Glib::ustring& accelerator,
+    parse (const glib::ustring& accelerator,
            guint& accelerator_key,
-           Gdk::ModifierType& accelerator_mods) -> bool;
+           gdk::ModifierType& accelerator_mods) -> bool;
 
     LIBMM_GTK_SYMEXPORT auto
-    name (guint accelerator_key, Gdk::ModifierType accelerator_mods)
-        -> Glib::ustring;
+    name (guint accelerator_key, gdk::ModifierType accelerator_mods)
+        -> glib::ustring;
 
     LIBMM_GTK_SYMEXPORT auto
-    get_label (guint accelerator_key, Gdk::ModifierType accelerator_mods)
-        -> Glib::ustring;
+    get_label (guint accelerator_key, gdk::ModifierType accelerator_mods)
+        -> glib::ustring;
 
     LIBMM_GTK_SYMEXPORT auto
-    get_default_mod_mask () -> Gdk::ModifierType;
+    get_default_mod_mask () -> gdk::ModifierType;
 
   } // namespace Accelerator
 
-} // namespace Gtk
+} // namespace gtk
 #endif

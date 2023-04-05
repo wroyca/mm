@@ -11,23 +11,23 @@ namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GtkShortcutLabel* object, bool take_copy) -> Gtk::ShortcutLabel*
+  wrap (GtkShortcutLabel* object, bool take_copy) -> gtk::ShortcutLabel*
   {
-    return dynamic_cast<Gtk::ShortcutLabel*> (
-        Glib::wrap_auto ((GObject*) (object), take_copy));
+    return dynamic_cast<gtk::ShortcutLabel*> (
+        glib::wrap_auto ((GObject*) (object), take_copy));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gtk
+namespace gtk
 {
 
   auto
-  ShortcutLabel_Class::init () -> const Glib::Class&
+  ShortcutLabel_Class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -47,12 +47,12 @@ namespace Gtk
   }
 
   auto
-  ShortcutLabel_Class::wrap_new (GObject* o) -> Glib::ObjectBase*
+  ShortcutLabel_Class::wrap_new (GObject* o) -> glib::ObjectBase*
   {
     return manage (new ShortcutLabel ((GtkShortcutLabel*) (o)));
   }
 
-  ShortcutLabel::ShortcutLabel (const Glib::ConstructParams& construct_params)
+  ShortcutLabel::ShortcutLabel (const glib::ConstructParams& construct_params)
     : Widget (construct_params)
   {
   }
@@ -94,14 +94,14 @@ namespace Gtk
   }
 
   ShortcutLabel::ShortcutLabel ()
-    : Glib::ObjectBase (nullptr),
-      Widget (Glib::ConstructParams (shortcutlabel_class_.init ()))
+    : glib::ObjectBase (nullptr),
+      Widget (glib::ConstructParams (shortcutlabel_class_.init ()))
   {
   }
 
-  ShortcutLabel::ShortcutLabel (const Glib::ustring& accelerator)
-    : Glib::ObjectBase (nullptr),
-      Widget (Glib::ConstructParams (shortcutlabel_class_.init (),
+  ShortcutLabel::ShortcutLabel (const glib::ustring& accelerator)
+    : glib::ObjectBase (nullptr),
+      Widget (glib::ConstructParams (shortcutlabel_class_.init (),
                                      "accelerator",
                                      accelerator.c_str (),
                                      nullptr))
@@ -109,55 +109,55 @@ namespace Gtk
   }
 
   auto
-  ShortcutLabel::get_accelerator () const -> Glib::ustring
+  ShortcutLabel::get_accelerator () const -> glib::ustring
   {
-    return Glib::convert_const_gchar_ptr_to_ustring (
+    return glib::convert_const_gchar_ptr_to_ustring (
         gtk_shortcut_label_get_accelerator (
             const_cast<GtkShortcutLabel*> (gobj ())));
   }
 
   auto
-  ShortcutLabel::set_accelerator (const Glib::ustring& accelerator) -> void
+  ShortcutLabel::set_accelerator (const glib::ustring& accelerator) -> void
   {
     gtk_shortcut_label_set_accelerator (gobj (), accelerator.c_str ());
   }
 
   auto
-  ShortcutLabel::get_disabled_text () const -> Glib::ustring
+  ShortcutLabel::get_disabled_text () const -> glib::ustring
   {
-    return Glib::convert_const_gchar_ptr_to_ustring (
+    return glib::convert_const_gchar_ptr_to_ustring (
         gtk_shortcut_label_get_disabled_text (
             const_cast<GtkShortcutLabel*> (gobj ())));
   }
 
   auto
-  ShortcutLabel::set_disabled_text (const Glib::ustring& disabled_text) -> void
+  ShortcutLabel::set_disabled_text (const glib::ustring& disabled_text) -> void
   {
     gtk_shortcut_label_set_disabled_text (gobj (), disabled_text.c_str ());
   }
 
   auto
-  ShortcutLabel::property_accelerator () -> Glib::PropertyProxy<Glib::ustring>
+  ShortcutLabel::property_accelerator () -> glib::PropertyProxy<glib::ustring>
   {
-    return Glib::PropertyProxy<Glib::ustring> (this, "accelerator");
+    return glib::PropertyProxy<glib::ustring> (this, "accelerator");
   }
 
   auto
-  ShortcutLabel::property_accelerator () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>
+  ShortcutLabel::property_accelerator () const -> glib::PropertyProxy_ReadOnly<glib::ustring>
   {
-    return Glib::PropertyProxy_ReadOnly<Glib::ustring> (this, "accelerator");
+    return glib::PropertyProxy_ReadOnly<glib::ustring> (this, "accelerator");
   }
 
   auto
-  ShortcutLabel::property_disabled_text () -> Glib::PropertyProxy<Glib::ustring>
+  ShortcutLabel::property_disabled_text () -> glib::PropertyProxy<glib::ustring>
   {
-    return Glib::PropertyProxy<Glib::ustring> (this, "disabled-text");
+    return glib::PropertyProxy<glib::ustring> (this, "disabled-text");
   }
 
   auto
-  ShortcutLabel::property_disabled_text () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>
+  ShortcutLabel::property_disabled_text () const -> glib::PropertyProxy_ReadOnly<glib::ustring>
   {
-    return Glib::PropertyProxy_ReadOnly<Glib::ustring> (this, "disabled-text");
+    return glib::PropertyProxy_ReadOnly<glib::ustring> (this, "disabled-text");
   }
 
-} // namespace Gtk
+} // namespace gtk

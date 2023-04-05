@@ -15,50 +15,50 @@ namespace
                                        guint p0,
                                        void* data) -> void
   {
-    using namespace Gtk;
+    using namespace gtk;
     using SlotType = sigc::slot<void (guint)>;
 
     auto obj = dynamic_cast<ColumnView*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
     {
       try
       {
-        if (const auto slot = Glib::SignalProxyNormal::data_to_slot (data))
+        if (const auto slot = glib::SignalProxyNormal::data_to_slot (data))
           (*static_cast<SlotType*> (slot)) (p0);
       }
       catch (...)
       {
-        Glib::exception_handlers_invoke ();
+        glib::exception_handlers_invoke ();
       }
     }
   }
 
-  static const Glib::SignalProxyInfo ColumnView_signal_activate_info = {
+  static const glib::SignalProxyInfo ColumnView_signal_activate_info = {
       "activate",
       (GCallback) &ColumnView_signal_activate_callback,
       (GCallback) &ColumnView_signal_activate_callback};
 
 } // namespace
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GtkColumnView* object, bool take_copy) -> Gtk::ColumnView*
+  wrap (GtkColumnView* object, bool take_copy) -> gtk::ColumnView*
   {
-    return dynamic_cast<Gtk::ColumnView*> (
-        Glib::wrap_auto ((GObject*) (object), take_copy));
+    return dynamic_cast<gtk::ColumnView*> (
+        glib::wrap_auto ((GObject*) (object), take_copy));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gtk
+namespace gtk
 {
 
   auto
-  ColumnView_Class::init () -> const Glib::Class&
+  ColumnView_Class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -80,23 +80,23 @@ namespace Gtk
   }
 
   auto
-  ColumnView_Class::wrap_new (GObject* o) -> Glib::ObjectBase*
+  ColumnView_Class::wrap_new (GObject* o) -> glib::ObjectBase*
   {
     return manage (new ColumnView ((GtkColumnView*) (o)));
   }
 
-  ColumnView::ColumnView (const Glib::ConstructParams& construct_params)
-    : Gtk::Widget (construct_params)
+  ColumnView::ColumnView (const glib::ConstructParams& construct_params)
+    : gtk::Widget (construct_params)
   {
   }
 
   ColumnView::ColumnView (GtkColumnView* castitem)
-    : Gtk::Widget ((GtkWidget*) (castitem))
+    : gtk::Widget ((GtkWidget*) (castitem))
   {
   }
 
   ColumnView::ColumnView (ColumnView&& src) noexcept
-    : Gtk::Widget (std::move (src)),
+    : gtk::Widget (std::move (src)),
       Scrollable (std::move (src))
   {
   }
@@ -104,7 +104,7 @@ namespace Gtk
   auto
   ColumnView::operator= (ColumnView&& src) noexcept -> ColumnView&
   {
-    Gtk::Widget::operator= (std::move (src));
+    gtk::Widget::operator= (std::move (src));
     Scrollable::operator= (std::move (src));
     return *this;
   }
@@ -128,68 +128,68 @@ namespace Gtk
     return gtk_column_view_get_type ();
   }
 
-  ColumnView::ColumnView (const Glib::RefPtr<SelectionModel>& model)
-    : Glib::ObjectBase (nullptr),
-      Gtk::Widget (Glib::ConstructParams (columnview_class_.init (),
+  ColumnView::ColumnView (const glib::RefPtr<SelectionModel>& model)
+    : glib::ObjectBase (nullptr),
+      gtk::Widget (glib::ConstructParams (columnview_class_.init (),
                                           "model",
-                                          Glib::unwrap (model),
+                                          glib::unwrap (model),
                                           nullptr))
   {
   }
 
   auto
-  ColumnView::get_columns () -> Glib::RefPtr<Gio::ListModel>
+  ColumnView::get_columns () -> glib::RefPtr<gio::ListModel>
   {
-    auto retvalue = Glib::wrap (gtk_column_view_get_columns (gobj ()));
+    auto retvalue = glib::wrap (gtk_column_view_get_columns (gobj ()));
     if (retvalue)
       retvalue->reference ();
     return retvalue;
   }
 
   auto
-  ColumnView::get_columns () const -> Glib::RefPtr<const Gio::ListModel>
+  ColumnView::get_columns () const -> glib::RefPtr<const gio::ListModel>
   {
     return const_cast<ColumnView*> (this)->get_columns ();
   }
 
   auto
-  ColumnView::append_column (const Glib::RefPtr<ColumnViewColumn>& column) -> void
+  ColumnView::append_column (const glib::RefPtr<ColumnViewColumn>& column) -> void
   {
-    gtk_column_view_append_column (gobj (), Glib::unwrap (column));
+    gtk_column_view_append_column (gobj (), glib::unwrap (column));
   }
 
   auto
-  ColumnView::remove_column (const Glib::RefPtr<ColumnViewColumn>& column) -> void
+  ColumnView::remove_column (const glib::RefPtr<ColumnViewColumn>& column) -> void
   {
-    gtk_column_view_remove_column (gobj (), Glib::unwrap (column));
+    gtk_column_view_remove_column (gobj (), glib::unwrap (column));
   }
 
   auto
   ColumnView::insert_column (guint position,
-                             const Glib::RefPtr<ColumnViewColumn>& column) -> void
+                             const glib::RefPtr<ColumnViewColumn>& column) -> void
   {
-    gtk_column_view_insert_column (gobj (), position, Glib::unwrap (column));
+    gtk_column_view_insert_column (gobj (), position, glib::unwrap (column));
   }
 
   auto
-  ColumnView::get_model () -> Glib::RefPtr<SelectionModel>
+  ColumnView::get_model () -> glib::RefPtr<SelectionModel>
   {
-    auto retvalue = Glib::wrap (gtk_column_view_get_model (gobj ()));
+    auto retvalue = glib::wrap (gtk_column_view_get_model (gobj ()));
     if (retvalue)
       retvalue->reference ();
     return retvalue;
   }
 
   auto
-  ColumnView::get_model () const -> Glib::RefPtr<const SelectionModel>
+  ColumnView::get_model () const -> glib::RefPtr<const SelectionModel>
   {
     return const_cast<ColumnView*> (this)->get_model ();
   }
 
   auto
-  ColumnView::set_model (const Glib::RefPtr<SelectionModel>& model) -> void
+  ColumnView::set_model (const glib::RefPtr<SelectionModel>& model) -> void
   {
-    gtk_column_view_set_model (gobj (), Glib::unwrap (model));
+    gtk_column_view_set_model (gobj (), glib::unwrap (model));
   }
 
   auto
@@ -223,26 +223,26 @@ namespace Gtk
   }
 
   auto
-  ColumnView::get_sorter () -> Glib::RefPtr<Sorter>
+  ColumnView::get_sorter () -> glib::RefPtr<Sorter>
   {
-    auto retvalue = Glib::wrap (gtk_column_view_get_sorter (gobj ()));
+    auto retvalue = glib::wrap (gtk_column_view_get_sorter (gobj ()));
     if (retvalue)
       retvalue->reference ();
     return retvalue;
   }
 
   auto
-  ColumnView::get_sorter () const -> Glib::RefPtr<const Sorter>
+  ColumnView::get_sorter () const -> glib::RefPtr<const Sorter>
   {
     return const_cast<ColumnView*> (this)->get_sorter ();
   }
 
   auto
-  ColumnView::sort_by_column (const Glib::RefPtr<ColumnViewColumn>& column,
+  ColumnView::sort_by_column (const glib::RefPtr<ColumnViewColumn>& column,
                               SortType direction) -> void
   {
     gtk_column_view_sort_by_column (gobj (),
-                                    Glib::unwrap (column),
+                                    glib::unwrap (column),
                                     static_cast<GtkSortType> (direction));
   }
 
@@ -290,115 +290,115 @@ namespace Gtk
   }
 
   auto
-  ColumnView::signal_activate () -> Glib::SignalProxy<void (guint)>
+  ColumnView::signal_activate () -> glib::SignalProxy<void (guint)>
   {
-    return Glib::SignalProxy<void (guint)> (this,
+    return glib::SignalProxy<void (guint)> (this,
                                             &ColumnView_signal_activate_info);
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<
-          Glib::RefPtr<Gio::ListModel>>::value,
-      "Type Glib::RefPtr<Gio::ListModel> cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      glib::Traits::ValueCompatibleWithWrapProperty<
+          glib::RefPtr<gio::ListModel>>::value,
+      "Type glib::RefPtr<gio::ListModel> cannot be used in _WRAP_PROPERTY. "
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  ColumnView::property_columns () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gio::ListModel>>
+  ColumnView::property_columns () const -> glib::PropertyProxy_ReadOnly<glib::RefPtr<gio::ListModel>>
   {
-    return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gio::ListModel>> (
+    return glib::PropertyProxy_ReadOnly<glib::RefPtr<gio::ListModel>> (
         this,
         "columns");
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<
-          Glib::RefPtr<SelectionModel>>::value,
-      "Type Glib::RefPtr<SelectionModel> cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      glib::Traits::ValueCompatibleWithWrapProperty<
+          glib::RefPtr<SelectionModel>>::value,
+      "Type glib::RefPtr<SelectionModel> cannot be used in _WRAP_PROPERTY. "
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  ColumnView::property_model () -> Glib::PropertyProxy<Glib::RefPtr<SelectionModel>>
+  ColumnView::property_model () -> glib::PropertyProxy<glib::RefPtr<SelectionModel>>
   {
-    return Glib::PropertyProxy<Glib::RefPtr<SelectionModel>> (this, "model");
+    return glib::PropertyProxy<glib::RefPtr<SelectionModel>> (this, "model");
   }
 
   auto
-  ColumnView::property_model () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<SelectionModel>>
+  ColumnView::property_model () const -> glib::PropertyProxy_ReadOnly<glib::RefPtr<SelectionModel>>
   {
-    return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<SelectionModel>> (this,
+    return glib::PropertyProxy_ReadOnly<glib::RefPtr<SelectionModel>> (this,
                                                                        "model");
   }
 
   auto
-  ColumnView::property_show_row_separators () -> Glib::PropertyProxy<bool>
+  ColumnView::property_show_row_separators () -> glib::PropertyProxy<bool>
   {
-    return Glib::PropertyProxy<bool> (this, "show-row-separators");
+    return glib::PropertyProxy<bool> (this, "show-row-separators");
   }
 
   auto
-  ColumnView::property_show_row_separators () const -> Glib::PropertyProxy_ReadOnly<bool>
+  ColumnView::property_show_row_separators () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "show-row-separators");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "show-row-separators");
   }
 
   auto
-  ColumnView::property_show_column_separators () -> Glib::PropertyProxy<bool>
+  ColumnView::property_show_column_separators () -> glib::PropertyProxy<bool>
   {
-    return Glib::PropertyProxy<bool> (this, "show-column-separators");
+    return glib::PropertyProxy<bool> (this, "show-column-separators");
   }
 
   auto
-  ColumnView::property_show_column_separators () const -> Glib::PropertyProxy_ReadOnly<bool>
+  ColumnView::property_show_column_separators () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "show-column-separators");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "show-column-separators");
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<
-          Glib::RefPtr<Sorter>>::value,
-      "Type Glib::RefPtr<Sorter> cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      glib::Traits::ValueCompatibleWithWrapProperty<
+          glib::RefPtr<Sorter>>::value,
+      "Type glib::RefPtr<Sorter> cannot be used in _WRAP_PROPERTY. "
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  ColumnView::property_sorter () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Sorter>>
+  ColumnView::property_sorter () const -> glib::PropertyProxy_ReadOnly<glib::RefPtr<Sorter>>
   {
-    return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Sorter>> (this, "sorter");
+    return glib::PropertyProxy_ReadOnly<glib::RefPtr<Sorter>> (this, "sorter");
   }
 
   auto
-  ColumnView::property_single_click_activate () -> Glib::PropertyProxy<bool>
+  ColumnView::property_single_click_activate () -> glib::PropertyProxy<bool>
   {
-    return Glib::PropertyProxy<bool> (this, "single-click-activate");
+    return glib::PropertyProxy<bool> (this, "single-click-activate");
   }
 
   auto
-  ColumnView::property_single_click_activate () const -> Glib::PropertyProxy_ReadOnly<bool>
+  ColumnView::property_single_click_activate () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "single-click-activate");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "single-click-activate");
   }
 
   auto
-  ColumnView::property_reorderable () -> Glib::PropertyProxy<bool>
+  ColumnView::property_reorderable () -> glib::PropertyProxy<bool>
   {
-    return Glib::PropertyProxy<bool> (this, "reorderable");
+    return glib::PropertyProxy<bool> (this, "reorderable");
   }
 
   auto
-  ColumnView::property_reorderable () const -> Glib::PropertyProxy_ReadOnly<bool>
+  ColumnView::property_reorderable () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "reorderable");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "reorderable");
   }
 
   auto
-  ColumnView::property_enable_rubberband () -> Glib::PropertyProxy<bool>
+  ColumnView::property_enable_rubberband () -> glib::PropertyProxy<bool>
   {
-    return Glib::PropertyProxy<bool> (this, "enable-rubberband");
+    return glib::PropertyProxy<bool> (this, "enable-rubberband");
   }
 
   auto
-  ColumnView::property_enable_rubberband () const -> Glib::PropertyProxy_ReadOnly<bool>
+  ColumnView::property_enable_rubberband () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "enable-rubberband");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "enable-rubberband");
   }
 
-} // namespace Gtk
+} // namespace gtk

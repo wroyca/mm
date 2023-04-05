@@ -24,7 +24,7 @@ extern "C"
 }
   #endif
 
-namespace Gtk
+namespace gtk
 {
 
   class LIBMM_GTK_SYMEXPORT TreePath
@@ -110,7 +110,7 @@ namespace Gtk
 
     explicit TreePath (GtkTreePath* gobject, bool make_a_copy = true);
     explicit TreePath (size_type n, value_type value = 0);
-    explicit TreePath (const Glib::ustring& path);
+    explicit TreePath (const glib::ustring& path);
     explicit TreePath (const TreeModel::iterator& iter);
 
     template <class In>
@@ -223,19 +223,19 @@ namespace Gtk
     is_descendant (const TreePath& ancestor) const -> bool;
 
     auto
-    to_string () const -> Glib::ustring;
+    to_string () const -> glib::ustring;
 
     static auto
-    get_row_drag_data (const Glib::ValueBase& value,
-                       Glib::RefPtr<const TreeModel>& model,
+    get_row_drag_data (const glib::ValueBase& value,
+                       glib::RefPtr<const TreeModel>& model,
                        TreePath& path) -> bool;
 
     static auto
-    get_row_drag_data (const Glib::ValueBase& value, TreePath& path) -> bool;
+    get_row_drag_data (const glib::ValueBase& value, TreePath& path) -> bool;
 
     auto
-    create_row_drag_content (const Glib::RefPtr<const TreeModel>& model) const
-        -> Glib::RefPtr<Gdk::ContentProvider>;
+    create_row_drag_content (const glib::RefPtr<const TreeModel>& model) const
+        -> glib::RefPtr<gdk::ContentProvider>;
   };
 
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -298,9 +298,9 @@ namespace Gtk
 
   #endif
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Gtk
+namespace gtk
 {
   LIBMM_GTK_SYMEXPORT auto
   operator== (const TreePath& lhs, const TreePath& rhs) -> bool;
@@ -320,9 +320,9 @@ namespace Gtk
   LIBMM_GTK_SYMEXPORT auto
   operator>= (const TreePath& lhs, const TreePath& rhs) -> bool;
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Gtk
+namespace gtk
 {
 
   inline auto
@@ -331,21 +331,21 @@ namespace Gtk
     lhs.swap (rhs);
   }
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkTreePath* object, bool take_copy = false) -> Gtk::TreePath;
+  wrap (GtkTreePath* object, bool take_copy = false) -> gtk::TreePath;
 
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
   template <>
-  class LIBMM_GTK_SYMEXPORT Value<Gtk::TreePath> : public Glib::Value_Boxed<Gtk::TreePath>
+  class LIBMM_GTK_SYMEXPORT Value<gtk::TreePath> : public glib::Value_Boxed<gtk::TreePath>
   {
   };
   #endif
 
-} // namespace Glib
+} // namespace glib
 
 #endif
 

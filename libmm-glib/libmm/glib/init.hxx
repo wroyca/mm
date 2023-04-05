@@ -5,7 +5,7 @@
 
 #include <libmm/glib/mm-glibconfig.hxx>
 
-namespace Glib
+namespace glib
 {
   LIBMM_GLIB_SYMEXPORT auto
   init () -> void;
@@ -17,6 +17,6 @@ namespace Glib
   auto
   get_init_to_users_preferred_locale () -> bool;
 
-} // namespace Glib
+} // namespace glib
 
 #endif

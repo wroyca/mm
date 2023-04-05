@@ -5,12 +5,12 @@
 #include <libmm/pango/attrlist.hxx>
 #include <libmm/pango/attrlist_p.hxx>
 
-namespace Pango
+namespace pango
 {
 
-  using SListHandler_Attribute = Glib::SListHandler<Attribute, AttributeTraits>;
+  using SListHandler_Attribute = glib::SListHandler<Attribute, AttributeTraits>;
 
-  AttrList::AttrList (const Glib::ustring& markup_text,
+  AttrList::AttrList (const glib::ustring& markup_text,
                       const gunichar accel_marker)
   {
     const gboolean bTest = pango_parse_markup (markup_text.c_str (),
@@ -29,9 +29,9 @@ namespace Pango
     return gobj () != nullptr;
   }
 
-  AttrList::AttrList (const Glib::ustring& markup_text,
+  AttrList::AttrList (const glib::ustring& markup_text,
                       const gunichar accel_marker,
-                      Glib::ustring& text,
+                      glib::ustring& text,
                       gunichar& accel_char)
   {
     text.erase ();
@@ -75,24 +75,24 @@ namespace Pango
     pango_attr_list_change (gobj (), pango_attribute_copy (attr.gobj ()));
   }
 
-} // namespace Pango
+} // namespace pango
 
 namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (PangoAttrList* object, const bool take_copy) -> Pango::AttrList
+  wrap (PangoAttrList* object, const bool take_copy) -> pango::AttrList
   {
-    return Pango::AttrList (object, take_copy);
+    return pango::AttrList (object, take_copy);
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Pango
+namespace pango
 {
 
   auto
@@ -175,7 +175,7 @@ namespace Pango
   {
     return SListHandler_Attribute::slist_to_vector (
         pango_attr_list_get_attributes (const_cast<PangoAttrList*> (gobj ())),
-        Glib::OWNERSHIP_DEEP);
+        glib::OWNERSHIP_DEEP);
   }
 
   auto
@@ -187,14 +187,14 @@ namespace Pango
   }
 
   auto
-  AttrList::to_string () const -> Glib::ustring
+  AttrList::to_string () const -> glib::ustring
   {
-    return Glib::convert_return_gchar_ptr_to_ustring (
+    return glib::convert_return_gchar_ptr_to_ustring (
         pango_attr_list_to_string (const_cast<PangoAttrList*> (gobj ())));
   }
 
   auto
-  AttrList::from_string (const Glib::ustring& text) -> AttrList
+  AttrList::from_string (const glib::ustring& text) -> AttrList
   {
     return AttrList (pango_attr_list_from_string (text.c_str ()), false);
   }
@@ -202,7 +202,7 @@ namespace Pango
   auto
   AttrList::get_iter () -> AttrIter
   {
-    return Glib::wrap (pango_attr_list_get_iterator (gobj ()));
+    return glib::wrap (pango_attr_list_get_iterator (gobj ()));
   }
 
-} // namespace Pango
+} // namespace pango

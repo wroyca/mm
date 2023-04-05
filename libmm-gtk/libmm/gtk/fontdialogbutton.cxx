@@ -12,28 +12,28 @@ namespace
 }
 
 auto
-Glib::Value<Gtk::FontLevel>::value_type () -> GType
+glib::Value<gtk::FontLevel>::value_type () -> GType
 {
   return gtk_font_level_get_type ();
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GtkFontDialogButton* object, bool take_copy) -> Gtk::FontDialogButton*
+  wrap (GtkFontDialogButton* object, bool take_copy) -> gtk::FontDialogButton*
   {
-    return dynamic_cast<Gtk::FontDialogButton*> (
-        Glib::wrap_auto ((GObject*) (object), take_copy));
+    return dynamic_cast<gtk::FontDialogButton*> (
+        glib::wrap_auto ((GObject*) (object), take_copy));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gtk
+namespace gtk
 {
 
   auto
-  FontDialogButton_Class::init () -> const Glib::Class&
+  FontDialogButton_Class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -44,31 +44,31 @@ namespace Gtk
   }
 
   auto
-  FontDialogButton_Class::wrap_new (GObject* o) -> Glib::ObjectBase*
+  FontDialogButton_Class::wrap_new (GObject* o) -> glib::ObjectBase*
   {
     return manage (new FontDialogButton ((GtkFontDialogButton*) (o)));
   }
 
   FontDialogButton::FontDialogButton (
-      const Glib::ConstructParams& construct_params)
-    : Gtk::Widget (construct_params)
+      const glib::ConstructParams& construct_params)
+    : gtk::Widget (construct_params)
   {
   }
 
   FontDialogButton::FontDialogButton (GtkFontDialogButton* castitem)
-    : Gtk::Widget ((GtkWidget*) (castitem))
+    : gtk::Widget ((GtkWidget*) (castitem))
   {
   }
 
   FontDialogButton::FontDialogButton (FontDialogButton&& src) noexcept
-    : Gtk::Widget (std::move (src))
+    : gtk::Widget (std::move (src))
   {
   }
 
   auto
   FontDialogButton::operator= (FontDialogButton&& src) noexcept -> FontDialogButton&
   {
-    Gtk::Widget::operator= (std::move (src));
+    gtk::Widget::operator= (std::move (src));
     return *this;
   }
 
@@ -91,34 +91,34 @@ namespace Gtk
     return gtk_font_dialog_button_get_type ();
   }
 
-  FontDialogButton::FontDialogButton (const Glib::RefPtr<FontDialog>& dialog)
-    : Glib::ObjectBase (nullptr),
-      Gtk::Widget (Glib::ConstructParams (fontdialogbutton_class_.init (),
+  FontDialogButton::FontDialogButton (const glib::RefPtr<FontDialog>& dialog)
+    : glib::ObjectBase (nullptr),
+      gtk::Widget (glib::ConstructParams (fontdialogbutton_class_.init (),
                                           "dialog",
-                                          Glib::unwrap (dialog),
+                                          glib::unwrap (dialog),
                                           nullptr))
   {
   }
 
   auto
-  FontDialogButton::get_dialog () -> Glib::RefPtr<FontDialog>
+  FontDialogButton::get_dialog () -> glib::RefPtr<FontDialog>
   {
-    auto retvalue = Glib::wrap (gtk_font_dialog_button_get_dialog (gobj ()));
+    auto retvalue = glib::wrap (gtk_font_dialog_button_get_dialog (gobj ()));
     if (retvalue)
       retvalue->reference ();
     return retvalue;
   }
 
   auto
-  FontDialogButton::get_dialog () const -> Glib::RefPtr<const FontDialog>
+  FontDialogButton::get_dialog () const -> glib::RefPtr<const FontDialog>
   {
     return const_cast<FontDialogButton*> (this)->get_dialog ();
   }
 
   auto
-  FontDialogButton::set_dialog (const Glib::RefPtr<FontDialog>& dialog) -> void
+  FontDialogButton::set_dialog (const glib::RefPtr<FontDialog>& dialog) -> void
   {
-    gtk_font_dialog_button_set_dialog (gobj (), Glib::unwrap (dialog));
+    gtk_font_dialog_button_set_dialog (gobj (), glib::unwrap (dialog));
   }
 
   auto
@@ -136,42 +136,42 @@ namespace Gtk
   }
 
   auto
-  FontDialogButton::get_font_desc () const -> Pango::FontDescription
+  FontDialogButton::get_font_desc () const -> pango::FontDescription
   {
-    return Glib::wrap (gtk_font_dialog_button_get_font_desc (
+    return glib::wrap (gtk_font_dialog_button_get_font_desc (
                            const_cast<GtkFontDialogButton*> (gobj ())),
                        true);
   }
 
   auto
-  FontDialogButton::set_font_desc (const Pango::FontDescription& font_desc) -> void
+  FontDialogButton::set_font_desc (const pango::FontDescription& font_desc) -> void
   {
     gtk_font_dialog_button_set_font_desc (gobj (), (font_desc).gobj ());
   }
 
   auto
-  FontDialogButton::get_font_features () const -> Glib::ustring
+  FontDialogButton::get_font_features () const -> glib::ustring
   {
-    return Glib::convert_const_gchar_ptr_to_ustring (
+    return glib::convert_const_gchar_ptr_to_ustring (
         gtk_font_dialog_button_get_font_features (
             const_cast<GtkFontDialogButton*> (gobj ())));
   }
 
   auto
-  FontDialogButton::set_font_features (const Glib::ustring& font_features) -> void
+  FontDialogButton::set_font_features (const glib::ustring& font_features) -> void
   {
     gtk_font_dialog_button_set_font_features (gobj (), font_features.c_str ());
   }
 
   auto
-  FontDialogButton::get_language () const -> Pango::Language
+  FontDialogButton::get_language () const -> pango::Language
   {
-    return Pango::Language (gtk_font_dialog_button_get_language (
+    return pango::Language (gtk_font_dialog_button_get_language (
         const_cast<GtkFontDialogButton*> (gobj ())));
   }
 
   auto
-  FontDialogButton::set_language (const Pango::Language& language) -> void
+  FontDialogButton::set_language (const pango::Language& language) -> void
   {
     gtk_font_dialog_button_set_language (
         gobj (),
@@ -205,111 +205,111 @@ namespace Gtk
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<
-          Glib::RefPtr<FontDialog>>::value,
-      "Type Glib::RefPtr<FontDialog> cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      glib::Traits::ValueCompatibleWithWrapProperty<
+          glib::RefPtr<FontDialog>>::value,
+      "Type glib::RefPtr<FontDialog> cannot be used in _WRAP_PROPERTY. "
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  FontDialogButton::property_dialog () -> Glib::PropertyProxy<Glib::RefPtr<FontDialog>>
+  FontDialogButton::property_dialog () -> glib::PropertyProxy<glib::RefPtr<FontDialog>>
   {
-    return Glib::PropertyProxy<Glib::RefPtr<FontDialog>> (this, "dialog");
+    return glib::PropertyProxy<glib::RefPtr<FontDialog>> (this, "dialog");
   }
 
   auto
-  FontDialogButton::property_dialog () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<FontDialog>>
+  FontDialogButton::property_dialog () const -> glib::PropertyProxy_ReadOnly<glib::RefPtr<FontDialog>>
   {
-    return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<FontDialog>> (this,
+    return glib::PropertyProxy_ReadOnly<glib::RefPtr<FontDialog>> (this,
                                                                    "dialog");
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<FontLevel>::value,
+      glib::Traits::ValueCompatibleWithWrapProperty<FontLevel>::value,
       "Type FontLevel cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  FontDialogButton::property_level () -> Glib::PropertyProxy<FontLevel>
+  FontDialogButton::property_level () -> glib::PropertyProxy<FontLevel>
   {
-    return Glib::PropertyProxy<FontLevel> (this, "level");
+    return glib::PropertyProxy<FontLevel> (this, "level");
   }
 
   auto
-  FontDialogButton::property_level () const -> Glib::PropertyProxy_ReadOnly<FontLevel>
+  FontDialogButton::property_level () const -> glib::PropertyProxy_ReadOnly<FontLevel>
   {
-    return Glib::PropertyProxy_ReadOnly<FontLevel> (this, "level");
+    return glib::PropertyProxy_ReadOnly<FontLevel> (this, "level");
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<
-          Pango::FontDescription>::value,
-      "Type Pango::FontDescription cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      glib::Traits::ValueCompatibleWithWrapProperty<
+          pango::FontDescription>::value,
+      "Type pango::FontDescription cannot be used in _WRAP_PROPERTY. "
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  FontDialogButton::property_font_desc () -> Glib::PropertyProxy<Pango::FontDescription>
+  FontDialogButton::property_font_desc () -> glib::PropertyProxy<pango::FontDescription>
   {
-    return Glib::PropertyProxy<Pango::FontDescription> (this, "font-desc");
+    return glib::PropertyProxy<pango::FontDescription> (this, "font-desc");
   }
 
   auto
-  FontDialogButton::property_font_desc () const -> Glib::PropertyProxy_ReadOnly<Pango::FontDescription>
+  FontDialogButton::property_font_desc () const -> glib::PropertyProxy_ReadOnly<pango::FontDescription>
   {
-    return Glib::PropertyProxy_ReadOnly<Pango::FontDescription> (this,
+    return glib::PropertyProxy_ReadOnly<pango::FontDescription> (this,
                                                                  "font-desc");
   }
 
   auto
-  FontDialogButton::property_font_features () -> Glib::PropertyProxy<Glib::ustring>
+  FontDialogButton::property_font_features () -> glib::PropertyProxy<glib::ustring>
   {
-    return Glib::PropertyProxy<Glib::ustring> (this, "font-features");
+    return glib::PropertyProxy<glib::ustring> (this, "font-features");
   }
 
   auto
-  FontDialogButton::property_font_features () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>
+  FontDialogButton::property_font_features () const -> glib::PropertyProxy_ReadOnly<glib::ustring>
   {
-    return Glib::PropertyProxy_ReadOnly<Glib::ustring> (this, "font-features");
+    return glib::PropertyProxy_ReadOnly<glib::ustring> (this, "font-features");
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<Pango::Language>::value,
-      "Type Pango::Language cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      glib::Traits::ValueCompatibleWithWrapProperty<pango::Language>::value,
+      "Type pango::Language cannot be used in _WRAP_PROPERTY. "
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  FontDialogButton::property_language () -> Glib::PropertyProxy<Pango::Language>
+  FontDialogButton::property_language () -> glib::PropertyProxy<pango::Language>
   {
-    return Glib::PropertyProxy<Pango::Language> (this, "language");
+    return glib::PropertyProxy<pango::Language> (this, "language");
   }
 
   auto
-  FontDialogButton::property_language () const -> Glib::PropertyProxy_ReadOnly<Pango::Language>
+  FontDialogButton::property_language () const -> glib::PropertyProxy_ReadOnly<pango::Language>
   {
-    return Glib::PropertyProxy_ReadOnly<Pango::Language> (this, "language");
+    return glib::PropertyProxy_ReadOnly<pango::Language> (this, "language");
   }
 
   auto
-  FontDialogButton::property_use_font () -> Glib::PropertyProxy<bool>
+  FontDialogButton::property_use_font () -> glib::PropertyProxy<bool>
   {
-    return Glib::PropertyProxy<bool> (this, "use-font");
+    return glib::PropertyProxy<bool> (this, "use-font");
   }
 
   auto
-  FontDialogButton::property_use_font () const -> Glib::PropertyProxy_ReadOnly<bool>
+  FontDialogButton::property_use_font () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "use-font");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "use-font");
   }
 
   auto
-  FontDialogButton::property_use_size () -> Glib::PropertyProxy<bool>
+  FontDialogButton::property_use_size () -> glib::PropertyProxy<bool>
   {
-    return Glib::PropertyProxy<bool> (this, "use-size");
+    return glib::PropertyProxy<bool> (this, "use-size");
   }
 
   auto
-  FontDialogButton::property_use_size () const -> Glib::PropertyProxy_ReadOnly<bool>
+  FontDialogButton::property_use_size () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "use-size");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "use-size");
   }
 
-} // namespace Gtk
+} // namespace gtk

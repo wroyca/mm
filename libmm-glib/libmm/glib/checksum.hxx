@@ -21,7 +21,7 @@ extern "C"
 }
 #endif
 
-namespace Glib
+namespace glib
 {
 
   class LIBMM_GLIB_SYMEXPORT Checksum
@@ -112,9 +112,9 @@ namespace Glib
     get_length (Type checksum_type) -> gssize;
   };
 
-} // namespace Glib
+} // namespace glib
 
-namespace Glib
+namespace glib
 {
 
   inline auto
@@ -123,23 +123,23 @@ namespace Glib
     lhs.swap (rhs);
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Glib
+namespace glib
 {
 
   LIBMM_GLIB_SYMEXPORT
   auto
-  wrap (GChecksum* object, bool take_copy = false) -> Glib::Checksum;
+  wrap (GChecksum* object, bool take_copy = false) -> glib::Checksum;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
   template <>
-  class LIBMM_GLIB_SYMEXPORT Value<Glib::Checksum>
-    : public Glib::Value_Boxed<Glib::Checksum>
+  class LIBMM_GLIB_SYMEXPORT Value<glib::Checksum>
+    : public glib::Value_Boxed<glib::Checksum>
   {
   };
 #endif
 
-} // namespace Glib
+} // namespace glib
 
 #endif

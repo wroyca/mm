@@ -7,7 +7,7 @@
 
 #include <gio/gio.h>
 
-namespace Gio
+namespace gio
 {
 
 }
@@ -22,47 +22,47 @@ namespace
                                            const guint p2,
                                            void* data) -> void
   {
-    using namespace Gio;
+    using namespace gio;
     using SlotType = sigc::slot<void (guint, guint, guint)>;
 
     const auto obj = dynamic_cast<ListModel*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
     {
       try
       {
-        if (const auto slot = Glib::SignalProxyNormal::data_to_slot (data))
+        if (const auto slot = glib::SignalProxyNormal::data_to_slot (data))
           (*static_cast<SlotType*> (slot)) (p0, p1, p2);
       }
       catch (...)
       {
-        Glib::exception_handlers_invoke ();
+        glib::exception_handlers_invoke ();
       }
     }
   }
 
-  const Glib::SignalProxyInfo ListModel_signal_items_changed_info = {
+  const glib::SignalProxyInfo ListModel_signal_items_changed_info = {
       "items-changed",
       (GCallback) &ListModel_signal_items_changed_callback,
       (GCallback) &ListModel_signal_items_changed_callback};
 
 } // namespace
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GListModel* object, const bool take_copy) -> RefPtr<Gio::ListModel>
+  wrap (GListModel* object, const bool take_copy) -> RefPtr<gio::ListModel>
   {
-    return Glib::make_refptr_for_instance<Gio::ListModel> (
-        Glib::wrap_auto_interface<Gio::ListModel> ((GObject*) object,
+    return glib::make_refptr_for_instance<gio::ListModel> (
+        glib::wrap_auto_interface<gio::ListModel> ((GObject*) object,
                                                    take_copy));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gio
+namespace gio
 {
 
   auto
@@ -94,7 +94,7 @@ namespace Gio
   ListModel_Class::get_item_type_vfunc_callback (GListModel* self) -> GType
   {
     const auto obj_base =
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self);
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self);
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -107,7 +107,7 @@ namespace Gio
         }
         catch (...)
         {
-          Glib::exception_handlers_invoke ();
+          glib::exception_handlers_invoke ();
         }
       }
     }
@@ -128,7 +128,7 @@ namespace Gio
   ListModel_Class::get_n_items_vfunc_callback (GListModel* self) -> guint
   {
     const auto obj_base =
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self);
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self);
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -141,7 +141,7 @@ namespace Gio
         }
         catch (...)
         {
-          Glib::exception_handlers_invoke ();
+          glib::exception_handlers_invoke ();
         }
       }
     }
@@ -163,7 +163,7 @@ namespace Gio
                                             const guint position) -> gpointer
   {
     const auto obj_base =
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self);
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self);
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -176,7 +176,7 @@ namespace Gio
         }
         catch (...)
         {
-          Glib::exception_handlers_invoke ();
+          glib::exception_handlers_invoke ();
         }
       }
     }
@@ -194,7 +194,7 @@ namespace Gio
   }
 
   auto
-  ListModel_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  ListModel_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new ListModel ((GListModel*) object);
   }
@@ -209,7 +209,7 @@ namespace Gio
   {
   }
 
-  ListModel::ListModel (const Glib::Interface_Class& interface_class)
+  ListModel::ListModel (const glib::Interface_Class& interface_class)
     : Interface (interface_class)
   {
   }
@@ -269,20 +269,20 @@ namespace Gio
   }
 
   auto
-  ListModel::get_object (const guint position) -> Glib::RefPtr<ObjectBase>
+  ListModel::get_object (const guint position) -> glib::RefPtr<ObjectBase>
   {
-    return Glib::make_refptr_for_instance<ObjectBase> (
-        Glib::wrap_auto (g_list_model_get_object (gobj (), position)));
+    return glib::make_refptr_for_instance<ObjectBase> (
+        glib::wrap_auto (g_list_model_get_object (gobj (), position)));
   }
 
   auto
-  ListModel::get_object (const guint position) const -> Glib::RefPtr<const ObjectBase>
+  ListModel::get_object (const guint position) const -> glib::RefPtr<const ObjectBase>
   {
     return const_cast<ListModel*> (this)->get_object (position);
   }
 
   auto
-  ListModel::signal_items_changed () -> Glib::SignalProxy<void (guint, guint, guint)>
+  ListModel::signal_items_changed () -> glib::SignalProxy<void (guint, guint, guint)>
   {
     return {this, &ListModel_signal_items_changed_info};
   }
@@ -341,4 +341,4 @@ namespace Gio
     return RType ();
   }
 
-} // namespace Gio
+} // namespace gio

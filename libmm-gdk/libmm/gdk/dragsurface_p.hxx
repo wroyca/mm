@@ -8,31 +8,31 @@
 
 #include <libmm/glib/interface_p.hxx>
 
-namespace Gdk
+namespace gdk
 {
 
-  class LIBMM_GDK_SYMEXPORT DragSurface_Class : public Glib::Interface_Class
+  class LIBMM_GDK_SYMEXPORT DragSurface_Class : public glib::Interface_Class
   {
   public:
     using CppObjectType = DragSurface;
     using BaseObjectType = GdkDragSurface;
     using BaseClassType = GdkDragSurfaceInterface;
-    using CppClassParent = Glib::Interface_Class;
+    using CppClassParent = glib::Interface_Class;
 
     friend class DragSurface;
 
     auto
-    init () -> const Glib::Interface_Class&;
+    init () -> const glib::Interface_Class&;
 
     static auto
     iface_init_function (void* g_iface, void* iface_data) -> void;
 
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
 
   protected:
   };
 
-} // namespace Gdk
+} // namespace gdk
 
 #endif

@@ -18,17 +18,17 @@
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Adw
+namespace adw
 {
   class LIBMM_ADW_SYMEXPORT SwipeTracker_Class;
 }
 #endif
 
-namespace Adw
+namespace adw
 {
 
-  class LIBMM_ADW_SYMEXPORT SwipeTracker : public Glib::Object,
-                       public Gtk::Orientable
+  class LIBMM_ADW_SYMEXPORT SwipeTracker : public glib::Object,
+                       public gtk::Orientable
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -47,7 +47,7 @@ namespace Adw
     static CppClassType swipetracker_class_;
 
   protected:
-    explicit SwipeTracker (const Glib::ConstructParams& construct_params);
+    explicit SwipeTracker (const glib::ConstructParams& construct_params);
     explicit SwipeTracker (AdwSwipeTracker* castitem);
 
 #endif
@@ -86,12 +86,12 @@ namespace Adw
   private:
   protected:
     SwipeTracker ();
-    explicit SwipeTracker (const Glib::RefPtr<Swipeable>& swipeable);
+    explicit SwipeTracker (const glib::RefPtr<Swipeable>& swipeable);
 
   public:
     static auto
-    create (const Glib::RefPtr<Swipeable>& swipeable)
-        -> Glib::RefPtr<SwipeTracker>;
+    create (const glib::RefPtr<Swipeable>& swipeable)
+        -> glib::RefPtr<SwipeTracker>;
 
     auto
     get_allow_long_swipes () const -> bool;
@@ -106,7 +106,7 @@ namespace Adw
     get_reversed () const -> bool;
 
     auto
-    get_swipeable () const -> Glib::RefPtr<Swipeable>;
+    get_swipeable () const -> glib::RefPtr<Swipeable>;
 
     auto
     set_allow_long_swipes (bool allow_long_swipes) -> void;
@@ -124,57 +124,57 @@ namespace Adw
     shift_position (double delta) -> void;
 
     auto
-    property_allow_long_swipes () -> Glib::PropertyProxy<bool>;
+    property_allow_long_swipes () -> glib::PropertyProxy<bool>;
 
     auto
-    property_allow_long_swipes () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_allow_long_swipes () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_allow_mouse_drag () -> Glib::PropertyProxy<bool>;
+    property_allow_mouse_drag () -> glib::PropertyProxy<bool>;
 
     auto
-    property_allow_mouse_drag () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_allow_mouse_drag () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_enabled () -> Glib::PropertyProxy<bool>;
+    property_enabled () -> glib::PropertyProxy<bool>;
 
     auto
-    property_enabled () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_enabled () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_reversed () -> Glib::PropertyProxy<bool>;
+    property_reversed () -> glib::PropertyProxy<bool>;
 
     auto
-    property_reversed () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_reversed () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
     property_swipeable () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Swipeable>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<Swipeable>>;
 
     auto
-    signal_begin_swipe () -> Glib::SignalProxy<void ()>;
+    signal_begin_swipe () -> glib::SignalProxy<void ()>;
 
     auto
-    signal_end_swipe () -> Glib::SignalProxy<void (double, double)>;
+    signal_end_swipe () -> glib::SignalProxy<void (double, double)>;
 
     auto
-    signal_prepare () -> Glib::SignalProxy<void (NavigationDirection)>;
+    signal_prepare () -> glib::SignalProxy<void (NavigationDirection)>;
 
     auto
-    signal_update_swipe () -> Glib::SignalProxy<void (double)>;
+    signal_update_swipe () -> glib::SignalProxy<void (double)>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Adw
+} // namespace adw
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (AdwSwipeTracker* object, bool take_copy = false) -> Glib::RefPtr<Adw::SwipeTracker>;
+  wrap (AdwSwipeTracker* object, bool take_copy = false) -> glib::RefPtr<adw::SwipeTracker>;
 }
 
 #endif

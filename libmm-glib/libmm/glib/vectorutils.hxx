@@ -8,7 +8,7 @@
 #include <libmm/glib/mm-glibconfig.hxx>
 #include <vector>
 
-namespace Glib
+namespace glib
 {
 
   namespace Container_Helpers
@@ -223,7 +223,7 @@ namespace Glib
 
       explicit inline ArrayKeeper (const CType* array,
                                    std::size_t array_size,
-                                   Glib::OwnershipType ownership);
+                                   glib::OwnershipType ownership);
       inline ArrayKeeper (const ArrayKeeper& keeper);
       ~ArrayKeeper () noexcept;
 
@@ -233,7 +233,7 @@ namespace Glib
     private:
       CType* array_;
       std::size_t array_size_;
-      mutable Glib::OwnershipType ownership_;
+      mutable glib::OwnershipType ownership_;
     };
 
     template <typename Tr>
@@ -244,7 +244,7 @@ namespace Glib
       using CType = typename Tr::CType;
 
       explicit inline GListKeeper (const GList* glist,
-                                   Glib::OwnershipType ownership);
+                                   glib::OwnershipType ownership);
       inline GListKeeper (const GListKeeper& keeper);
       ~GListKeeper () noexcept;
 
@@ -253,7 +253,7 @@ namespace Glib
 
     private:
       GList* glist_;
-      mutable Glib::OwnershipType ownership_;
+      mutable glib::OwnershipType ownership_;
     };
 
     template <typename Tr>
@@ -264,7 +264,7 @@ namespace Glib
       using CType = typename Tr::CType;
 
       explicit inline GSListKeeper (const GSList* gslist,
-                                    Glib::OwnershipType ownership);
+                                    glib::OwnershipType ownership);
       inline GSListKeeper (const GSListKeeper& keeper);
       ~GSListKeeper () noexcept;
 
@@ -273,28 +273,28 @@ namespace Glib
 
     private:
       GSList* gslist_;
-      mutable Glib::OwnershipType ownership_;
+      mutable glib::OwnershipType ownership_;
     };
 
   } // namespace Container_Helpers
 
-  template <typename T, typename Tr = Glib::Container_Helpers::TypeTraits<T>>
+  template <typename T, typename Tr = glib::Container_Helpers::TypeTraits<T>>
   class ArrayHandler
   {
   public:
     using CType = typename Tr::CType;
     using CppType = T;
     using VectorType = std::vector<CppType>;
-    using ArrayKeeperType = typename Glib::Container_Helpers::ArrayKeeper<Tr>;
+    using ArrayKeeperType = typename glib::Container_Helpers::ArrayKeeper<Tr>;
     using ArrayIteratorType =
-        typename Glib::Container_Helpers::ArrayIterator<Tr>;
+        typename glib::Container_Helpers::ArrayIterator<Tr>;
 
     static auto
     array_to_vector (const CType* array,
                      std::size_t array_size,
-                     Glib::OwnershipType ownership) -> VectorType;
+                     glib::OwnershipType ownership) -> VectorType;
     static auto
-    array_to_vector (const CType* array, Glib::OwnershipType ownership)
+    array_to_vector (const CType* array, glib::OwnershipType ownership)
         -> VectorType;
     static auto
     vector_to_array (const VectorType& vector) -> ArrayKeeperType;
@@ -307,53 +307,53 @@ namespace Glib
     using CType = gboolean;
     using CppType = bool;
     using VectorType = std::vector<bool>;
-    typedef Glib::Container_Helpers::ArrayKeeper<
-        Glib::Container_Helpers::TypeTraits<bool>>
+    typedef glib::Container_Helpers::ArrayKeeper<
+        glib::Container_Helpers::TypeTraits<bool>>
         ArrayKeeperType;
-    typedef Glib::Container_Helpers::ArrayIterator<
-        Glib::Container_Helpers::TypeTraits<bool>>
+    typedef glib::Container_Helpers::ArrayIterator<
+        glib::Container_Helpers::TypeTraits<bool>>
         ArrayIteratorType;
 
     static auto
     array_to_vector (const CType* array,
                      std::size_t array_size,
-                     Glib::OwnershipType ownership) -> VectorType;
+                     glib::OwnershipType ownership) -> VectorType;
     static auto
-    array_to_vector (const CType* array, Glib::OwnershipType ownership)
+    array_to_vector (const CType* array, glib::OwnershipType ownership)
         -> VectorType;
     static auto
     vector_to_array (const VectorType& vector) -> ArrayKeeperType;
   };
 
-  template <typename T, typename Tr = Glib::Container_Helpers::TypeTraits<T>>
+  template <typename T, typename Tr = glib::Container_Helpers::TypeTraits<T>>
   class ListHandler
   {
   public:
     using CType = typename Tr::CType;
     using CppType = T;
     using VectorType = std::vector<CppType>;
-    using GListKeeperType = typename Glib::Container_Helpers::GListKeeper<Tr>;
-    using ListIteratorType = typename Glib::Container_Helpers::ListIterator<Tr>;
+    using GListKeeperType = typename glib::Container_Helpers::GListKeeper<Tr>;
+    using ListIteratorType = typename glib::Container_Helpers::ListIterator<Tr>;
 
     static auto
-    list_to_vector (GList* glist, Glib::OwnershipType ownership) -> VectorType;
+    list_to_vector (GList* glist, glib::OwnershipType ownership) -> VectorType;
     static auto
     vector_to_list (const VectorType& vector) -> GListKeeperType;
   };
 
-  template <typename T, typename Tr = Glib::Container_Helpers::TypeTraits<T>>
+  template <typename T, typename Tr = glib::Container_Helpers::TypeTraits<T>>
   class SListHandler
   {
   public:
     using CType = typename Tr::CType;
     using CppType = T;
     using VectorType = std::vector<CppType>;
-    using GSListKeeperType = typename Glib::Container_Helpers::GSListKeeper<Tr>;
+    using GSListKeeperType = typename glib::Container_Helpers::GSListKeeper<Tr>;
     using SListIteratorType =
-        typename Glib::Container_Helpers::SListIterator<Tr>;
+        typename glib::Container_Helpers::SListIterator<Tr>;
 
     static auto
-    slist_to_vector (GSList* gslist, Glib::OwnershipType ownership)
+    slist_to_vector (GSList* gslist, glib::OwnershipType ownership)
         -> VectorType;
     static auto
     vector_to_slist (const VectorType& vector) -> GSListKeeperType;
@@ -582,7 +582,7 @@ namespace Glib
     template <typename Tr>
     inline ArrayKeeper<Tr>::ArrayKeeper (const CType* array,
                                          std::size_t array_size,
-                                         Glib::OwnershipType ownership)
+                                         glib::OwnershipType ownership)
       : array_ (const_cast<CType*> (array)),
         array_size_ (array_size),
         ownership_ (ownership)
@@ -595,15 +595,15 @@ namespace Glib
         array_size_ (keeper.array_size_),
         ownership_ (keeper.ownership_)
     {
-      keeper.ownership_ = Glib::OWNERSHIP_NONE;
+      keeper.ownership_ = glib::OWNERSHIP_NONE;
     }
 
     template <typename Tr>
     ArrayKeeper<Tr>::~ArrayKeeper () noexcept
     {
-      if (array_ && ownership_ != Glib::OWNERSHIP_NONE)
+      if (array_ && ownership_ != glib::OWNERSHIP_NONE)
       {
-        if (ownership_ != Glib::OWNERSHIP_SHALLOW)
+        if (ownership_ != glib::OWNERSHIP_SHALLOW)
         {
           const CType* const array_end (array_ + array_size_);
 
@@ -625,7 +625,7 @@ namespace Glib
 
     template <typename Tr>
     inline GListKeeper<Tr>::GListKeeper (const GList* glist,
-                                         Glib::OwnershipType ownership)
+                                         glib::OwnershipType ownership)
       : glist_ (const_cast<GList*> (glist)),
         ownership_ (ownership)
     {
@@ -636,7 +636,7 @@ namespace Glib
       : glist_ (keeper.glist_),
         ownership_ (keeper.ownership_)
     {
-      keeper.ownership_ = Glib::OWNERSHIP_NONE;
+      keeper.ownership_ = glib::OWNERSHIP_NONE;
     }
 
     template <typename Tr>
@@ -644,9 +644,9 @@ namespace Glib
     {
       using CTypeNonConst = typename Tr::CTypeNonConst;
 
-      if (glist_ && ownership_ != Glib::OWNERSHIP_NONE)
+      if (glist_ && ownership_ != glib::OWNERSHIP_NONE)
       {
-        if (ownership_ != Glib::OWNERSHIP_SHALLOW)
+        if (ownership_ != glib::OWNERSHIP_SHALLOW)
         {
           for (GList* node = glist_; node; node = node->next)
           {
@@ -666,7 +666,7 @@ namespace Glib
 
     template <typename Tr>
     inline GSListKeeper<Tr>::GSListKeeper (const GSList* gslist,
-                                           Glib::OwnershipType ownership)
+                                           glib::OwnershipType ownership)
       : gslist_ (const_cast<GSList*> (gslist)),
         ownership_ (ownership)
     {
@@ -677,16 +677,16 @@ namespace Glib
       : gslist_ (keeper.gslist_),
         ownership_ (keeper.ownership_)
     {
-      keeper.ownership_ = Glib::OWNERSHIP_NONE;
+      keeper.ownership_ = glib::OWNERSHIP_NONE;
     }
 
     template <typename Tr>
     GSListKeeper<Tr>::~GSListKeeper () noexcept
     {
       using CTypeNonConst = typename Tr::CTypeNonConst;
-      if (gslist_ && ownership_ != Glib::OWNERSHIP_NONE)
+      if (gslist_ && ownership_ != glib::OWNERSHIP_NONE)
       {
-        if (ownership_ != Glib::OWNERSHIP_SHALLOW)
+        if (ownership_ != glib::OWNERSHIP_SHALLOW)
         {
           for (GSList* node = gslist_; node; node = node->next)
           {
@@ -710,7 +710,7 @@ namespace Glib
   auto
   ArrayHandler<T, Tr>::array_to_vector (const CType* array,
                                         std::size_t array_size,
-                                        Glib::OwnershipType ownership) ->
+                                        glib::OwnershipType ownership) ->
       typename ArrayHandler<T, Tr>::VectorType
   {
     if (array)
@@ -722,7 +722,7 @@ namespace Glib
   #else
       VectorType temp;
       temp.reserve (array_size);
-      Glib::Container_Helpers::fill_container (
+      glib::Container_Helpers::fill_container (
           temp,
           ArrayIteratorType (array),
           ArrayIteratorType (array + array_size));
@@ -735,12 +735,12 @@ namespace Glib
   template <typename T, class Tr>
   auto
   ArrayHandler<T, Tr>::array_to_vector (const CType* array,
-                                        Glib::OwnershipType ownership) ->
+                                        glib::OwnershipType ownership) ->
       typename ArrayHandler<T, Tr>::VectorType
   {
     return array_to_vector (
         array,
-        Glib::Container_Helpers::compute_array_size2 (array),
+        glib::Container_Helpers::compute_array_size2 (array),
         ownership);
   }
 
@@ -750,16 +750,16 @@ namespace Glib
       typename ArrayHandler<T, Tr>::ArrayKeeperType
   {
     return ArrayKeeperType (
-        Glib::Container_Helpers::create_array<Tr> (vector.begin (),
+        glib::Container_Helpers::create_array<Tr> (vector.begin (),
                                                    vector.size ()),
         vector.size (),
-        Glib::OWNERSHIP_SHALLOW);
+        glib::OWNERSHIP_SHALLOW);
   }
 
   template <typename T, class Tr>
   auto
   ListHandler<T, Tr>::list_to_vector (GList* glist,
-                                      Glib::OwnershipType ownership) ->
+                                      glib::OwnershipType ownership) ->
       typename ListHandler<T, Tr>::VectorType
   {
     GListKeeperType keeper (glist, ownership);
@@ -768,7 +768,7 @@ namespace Glib
   #else
     VectorType temp;
     temp.reserve (g_list_length (glist));
-    Glib::Container_Helpers::fill_container (temp,
+    glib::Container_Helpers::fill_container (temp,
                                              ListIteratorType (glist),
                                              ListIteratorType (nullptr));
     return temp;
@@ -781,15 +781,15 @@ namespace Glib
       typename ListHandler<T, Tr>::GListKeeperType
   {
     return GListKeeperType (
-        Glib::Container_Helpers::create_glist<Tr> (vector.begin (),
+        glib::Container_Helpers::create_glist<Tr> (vector.begin (),
                                                    vector.end ()),
-        Glib::OWNERSHIP_SHALLOW);
+        glib::OWNERSHIP_SHALLOW);
   }
 
   template <typename T, class Tr>
   auto
   SListHandler<T, Tr>::slist_to_vector (GSList* gslist,
-                                        Glib::OwnershipType ownership) ->
+                                        glib::OwnershipType ownership) ->
       typename SListHandler<T, Tr>::VectorType
   {
     GSListKeeperType keeper (gslist, ownership);
@@ -798,7 +798,7 @@ namespace Glib
   #else
     VectorType temp;
     temp.reserve (g_slist_length (gslist));
-    Glib::Container_Helpers::fill_container (temp,
+    glib::Container_Helpers::fill_container (temp,
                                              SListIteratorType (gslist),
                                              SListIteratorType (nullptr));
     return temp;
@@ -811,13 +811,13 @@ namespace Glib
       typename SListHandler<T, Tr>::GSListKeeperType
   {
     return GSListKeeperType (
-        Glib::Container_Helpers::create_gslist<Tr> (vector.begin (),
+        glib::Container_Helpers::create_gslist<Tr> (vector.begin (),
                                                     vector.end ()),
-        Glib::OWNERSHIP_SHALLOW);
+        glib::OWNERSHIP_SHALLOW);
   }
 
 #endif
 
-} // namespace Glib
+} // namespace glib
 
 #endif

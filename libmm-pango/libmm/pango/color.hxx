@@ -12,7 +12,7 @@
 #include <libmm/glib/value.hxx>
 #include <pango/pango.h>
 
-namespace Pango
+namespace pango
 {
 
   class LIBMM_PANGO_SYMEXPORT Color
@@ -76,32 +76,32 @@ namespace Pango
     set_blue (const guint16& value) -> void;
 
     auto
-    parse (const Glib::ustring& spec) -> bool;
+    parse (const glib::ustring& spec) -> bool;
 
     auto
-    to_string () const -> Glib::ustring;
+    to_string () const -> glib::ustring;
   };
 
-} // namespace Pango
+} // namespace pango
 
-namespace Glib
+namespace glib
 {
 
   LIBMM_PANGO_SYMEXPORT
   auto
-  wrap (PangoColor* object) -> Pango::Color&;
+  wrap (PangoColor* object) -> pango::Color&;
 
   LIBMM_PANGO_SYMEXPORT
   auto
-  wrap (const PangoColor* object) -> const Pango::Color&;
+  wrap (const PangoColor* object) -> const pango::Color&;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
   template <>
-  class LIBMM_PANGO_SYMEXPORT Value<Pango::Color> : public Glib::Value_Boxed<Pango::Color>
+  class LIBMM_PANGO_SYMEXPORT Value<pango::Color> : public glib::Value_Boxed<pango::Color>
   {
   };
 #endif
 
-} // namespace Glib
+} // namespace glib
 
 #endif

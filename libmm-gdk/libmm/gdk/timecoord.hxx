@@ -10,7 +10,7 @@
 
 #include <gdk/gdk.h>
 
-namespace Gdk
+namespace gdk
 {
 
   class LIBMM_GDK_SYMEXPORT TimeCoord
@@ -61,7 +61,7 @@ namespace Gdk
 
   struct TimeCoordPtrTraits
   {
-    using CppType = Gdk::TimeCoord;
+    using CppType = gdk::TimeCoord;
     using CType = GdkTimeCoord*;
     using CTypeNonConst = GdkTimeCoord*;
 
@@ -92,7 +92,7 @@ namespace Gdk
 
   struct TimeCoordTraits
   {
-    using CppType = Gdk::TimeCoord;
+    using CppType = gdk::TimeCoord;
     using CType = GdkTimeCoord;
     using CTypeNonConst = GdkTimeCoord;
 
@@ -121,6 +121,6 @@ namespace Gdk
   };
 #endif
 
-} // namespace Gdk
+} // namespace gdk
 
 #endif

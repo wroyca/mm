@@ -16,18 +16,18 @@ using GtkGestureClass = struct _GtkGestureClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT Gesture_Class;
 }
 #endif
 
-namespace Gdk
+namespace gdk
 {
   class LIBMM_GTK_SYMEXPORT Device;
 }
 
-namespace Gtk
+namespace gtk
 {
 
   enum class EventSequenceState
@@ -37,25 +37,25 @@ namespace Gtk
     DENIED
   };
 
-} // namespace Gtk
+} // namespace gtk
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_GTK_SYMEXPORT Value<Gtk::EventSequenceState>
-    : public Glib::Value_Enum<Gtk::EventSequenceState>
+  class LIBMM_GTK_SYMEXPORT Value<gtk::EventSequenceState>
+    : public glib::Value_Enum<gtk::EventSequenceState>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
   class LIBMM_GTK_SYMEXPORT Gesture : public EventController
@@ -77,7 +77,7 @@ namespace Gtk
     static CppClassType gesture_class_;
 
   protected:
-    explicit Gesture (const Glib::ConstructParams& construct_params);
+    explicit Gesture (const glib::ConstructParams& construct_params);
     explicit Gesture (GtkGesture* castitem);
 
 #endif
@@ -119,50 +119,50 @@ namespace Gtk
 
   public:
     auto
-    get_device () -> Glib::RefPtr<Gdk::Device>;
+    get_device () -> glib::RefPtr<gdk::Device>;
 
     auto
-    get_device () const -> Glib::RefPtr<const Gdk::Device>;
+    get_device () const -> glib::RefPtr<const gdk::Device>;
 
     auto
     set_state (EventSequenceState state) -> bool;
 
     auto
-    get_sequence_state (Gdk::EventSequence* sequence) const
+    get_sequence_state (gdk::EventSequence* sequence) const
         -> EventSequenceState;
 
 #ifndef GTKMM_DISABLE_DEPRECATED
 
     auto
-    set_sequence_state (Gdk::EventSequence* sequence, EventSequenceState state)
+    set_sequence_state (gdk::EventSequence* sequence, EventSequenceState state)
         -> bool;
 #endif
 
     auto
-    get_sequences () const -> std::vector<const Gdk::EventSequence*>;
+    get_sequences () const -> std::vector<const gdk::EventSequence*>;
 
     auto
-    get_last_updated_sequence () -> Gdk::EventSequence*;
+    get_last_updated_sequence () -> gdk::EventSequence*;
 
     auto
-    get_last_updated_sequence () const -> const Gdk::EventSequence*;
+    get_last_updated_sequence () const -> const gdk::EventSequence*;
 
     auto
-    handles_sequence (Gdk::EventSequence* sequence) const -> bool;
+    handles_sequence (gdk::EventSequence* sequence) const -> bool;
 
     auto
-    get_last_event (Gdk::EventSequence* sequence) -> Glib::RefPtr<Gdk::Event>;
+    get_last_event (gdk::EventSequence* sequence) -> glib::RefPtr<gdk::Event>;
 
     auto
-    get_last_event (Gdk::EventSequence* sequence) const
-        -> Glib::RefPtr<const Gdk::Event>;
+    get_last_event (gdk::EventSequence* sequence) const
+        -> glib::RefPtr<const gdk::Event>;
 
     auto
-    get_point (Gdk::EventSequence* sequence, double& x, double& y) const
+    get_point (gdk::EventSequence* sequence, double& x, double& y) const
         -> bool;
 
     auto
-    get_bounding_box (Gdk::Rectangle& rect) const -> bool;
+    get_bounding_box (gdk::Rectangle& rect) const -> bool;
 
     auto
     get_bounding_box_center (double& x, double& y) const -> bool;
@@ -174,50 +174,50 @@ namespace Gtk
     is_recognized () const -> bool;
 
     auto
-    group (const Glib::RefPtr<Gesture>& group_gesture) -> void;
+    group (const glib::RefPtr<Gesture>& group_gesture) -> void;
 
     auto
     ungroup () -> void;
 
     auto
-    get_group () -> std::vector<Glib::RefPtr<Gesture>>;
+    get_group () -> std::vector<glib::RefPtr<Gesture>>;
 
     auto
-    get_group () const -> std::vector<Glib::RefPtr<const Gesture>>;
+    get_group () const -> std::vector<glib::RefPtr<const Gesture>>;
 
     auto
-    is_grouped_with (const Glib::RefPtr<Gesture>& other) const -> bool;
+    is_grouped_with (const glib::RefPtr<Gesture>& other) const -> bool;
 
     auto
-    signal_begin () -> Glib::SignalProxy<void (Gdk::EventSequence*)>;
+    signal_begin () -> glib::SignalProxy<void (gdk::EventSequence*)>;
 
     auto
-    signal_end () -> Glib::SignalProxy<void (Gdk::EventSequence*)>;
+    signal_end () -> glib::SignalProxy<void (gdk::EventSequence*)>;
 
     auto
-    signal_update () -> Glib::SignalProxy<void (Gdk::EventSequence*)>;
+    signal_update () -> glib::SignalProxy<void (gdk::EventSequence*)>;
 
     auto
-    signal_cancel () -> Glib::SignalProxy<void (Gdk::EventSequence*)>;
+    signal_cancel () -> glib::SignalProxy<void (gdk::EventSequence*)>;
 
     auto
     signal_sequence_state_changed ()
-        -> Glib::SignalProxy<void (Gdk::EventSequence*, EventSequenceState)>;
+        -> glib::SignalProxy<void (gdk::EventSequence*, EventSequenceState)>;
 
     auto
-    property_n_points () const -> Glib::PropertyProxy_ReadOnly<unsigned int>;
+    property_n_points () const -> glib::PropertyProxy_ReadOnly<unsigned int>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkGesture* object, bool take_copy = false) -> Glib::RefPtr<Gtk::Gesture>;
-} // namespace Glib
+  wrap (GtkGesture* object, bool take_copy = false) -> glib::RefPtr<gtk::Gesture>;
+} // namespace glib
 
 #endif

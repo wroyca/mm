@@ -14,16 +14,16 @@ using GTcpWrapperConnectionClass = struct _GTcpWrapperConnectionClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gio
+namespace gio
 {
   class LIBMM_GIO_SYMEXPORT TcpWrapperConnection_Class;
 }
 #endif
 
-namespace Gio
+namespace gio
 {
 
-  class LIBMM_GIO_SYMEXPORT TcpWrapperConnection : public Gio::TcpConnection
+  class LIBMM_GIO_SYMEXPORT TcpWrapperConnection : public gio::TcpConnection
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -43,7 +43,7 @@ namespace Gio
 
   protected:
     explicit TcpWrapperConnection (
-        const Glib::ConstructParams& construct_params);
+        const glib::ConstructParams& construct_params);
     explicit TcpWrapperConnection (GTcpWrapperConnection* castitem);
 
 #endif
@@ -81,32 +81,32 @@ namespace Gio
 
   private:
   public:
-    explicit TcpWrapperConnection (const Glib::RefPtr<IOStream>& base_io_stream,
-                                   const Glib::RefPtr<Socket>& socket);
+    explicit TcpWrapperConnection (const glib::RefPtr<IOStream>& base_io_stream,
+                                   const glib::RefPtr<Socket>& socket);
 
     auto
-    get_base_io_stream () -> Glib::RefPtr<IOStream>;
+    get_base_io_stream () -> glib::RefPtr<IOStream>;
 
     auto
-    get_base_io_stream () const -> Glib::RefPtr<const IOStream>;
+    get_base_io_stream () const -> glib::RefPtr<const IOStream>;
 
     auto
     property_base_io_stream () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<IOStream>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<IOStream>>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gio
+} // namespace gio
 
-namespace Glib
+namespace glib
 {
 
   LIBMM_GIO_SYMEXPORT
   auto
-  wrap (GTcpWrapperConnection* object, bool take_copy = false) -> Glib::RefPtr<Gio::TcpWrapperConnection>;
-} // namespace Glib
+  wrap (GTcpWrapperConnection* object, bool take_copy = false) -> glib::RefPtr<gio::TcpWrapperConnection>;
+} // namespace glib
 
 #endif

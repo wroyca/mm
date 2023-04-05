@@ -16,19 +16,19 @@ using GMenuModelClass = struct _GMenuModelClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gio
+namespace gio
 {
   class LIBMM_GIO_SYMEXPORT MenuModel_Class;
 }
 #endif
 
-namespace Gio
+namespace gio
 {
 
   class LIBMM_GIO_SYMEXPORT MenuAttributeIter;
   class LIBMM_GIO_SYMEXPORT MenuLinkIter;
 
-  class LIBMM_GIO_SYMEXPORT MenuModel : public Glib::Object
+  class LIBMM_GIO_SYMEXPORT MenuModel : public glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -47,7 +47,7 @@ namespace Gio
     static CppClassType menumodel_class_;
 
   protected:
-    explicit MenuModel (const Glib::ConstructParams& construct_params);
+    explicit MenuModel (const glib::ConstructParams& construct_params);
     explicit MenuModel (GMenuModel* castitem);
 
 #endif
@@ -111,15 +111,15 @@ namespace Gio
     auto
     get_item_attribute (int item_index,
                         Attribute attribute,
-                        const Glib::VariantType& expected_type) const
-        -> Glib::VariantBase;
+                        const glib::VariantType& expected_type) const
+        -> glib::VariantBase;
 
     auto
-    get_item_link (int item_index, Link link) -> Glib::RefPtr<MenuModel>;
+    get_item_link (int item_index, Link link) -> glib::RefPtr<MenuModel>;
 
     auto
     get_item_link (int item_index, Link link) const
-        -> Glib::RefPtr<const MenuModel>;
+        -> glib::RefPtr<const MenuModel>;
 
     auto
     is_mutable () const -> bool;
@@ -128,38 +128,38 @@ namespace Gio
     get_n_items () const -> int;
 
     auto
-    iterate_item_attributes (int item_index) -> Glib::RefPtr<MenuAttributeIter>;
+    iterate_item_attributes (int item_index) -> glib::RefPtr<MenuAttributeIter>;
 
     auto
     iterate_item_attributes (int item_index) const
-        -> Glib::RefPtr<const MenuAttributeIter>;
+        -> glib::RefPtr<const MenuAttributeIter>;
 
     auto
-    iterate_item_links (int item_index) -> Glib::RefPtr<MenuLinkIter>;
+    iterate_item_links (int item_index) -> glib::RefPtr<MenuLinkIter>;
 
     auto
     iterate_item_links (int item_index) const
-        -> Glib::RefPtr<const MenuLinkIter>;
+        -> glib::RefPtr<const MenuLinkIter>;
 
     auto
     items_changed (int position, int removed, int added) -> void;
 
     auto
-    signal_items_changed () -> Glib::SignalProxy<void (int, int, int)>;
+    signal_items_changed () -> glib::SignalProxy<void (int, int, int)>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gio
+} // namespace gio
 
-namespace Glib
+namespace glib
 {
 
   LIBMM_GIO_SYMEXPORT
   auto
-  wrap (GMenuModel* object, bool take_copy = false) -> Glib::RefPtr<Gio::MenuModel>;
-} // namespace Glib
+  wrap (GMenuModel* object, bool take_copy = false) -> glib::RefPtr<gio::MenuModel>;
+} // namespace glib
 
 #endif

@@ -8,7 +8,7 @@
 #include <libmm/pango/layout.hxx>
 #include <pango/pangocairo.h>
 
-namespace Pango
+namespace pango
 {
 
   auto
@@ -72,48 +72,48 @@ namespace Pango
                                     end_index,
                                     &ranges,
                                     &n_ranges);
-    return Glib::ArrayHandler<std::pair<int, int>>::array_to_vector (
+    return glib::ArrayHandler<std::pair<int, int>>::array_to_vector (
         reinterpret_cast<std::pair<int, int>*> (ranges),
         n_ranges,
-        Glib::OWNERSHIP_SHALLOW);
+        glib::OWNERSHIP_SHALLOW);
   }
 
   auto
   LayoutLine::show_in_cairo_context (
-      const Cairo::RefPtr<Cairo::Context>& context) -> void
+      const cairo::RefPtr<cairo::Context>& context) -> void
   {
     pango_cairo_show_layout_line (context->cobj (), gobj ());
   }
 
   auto
   LayoutLine::add_to_cairo_context (
-      const Cairo::RefPtr<Cairo::Context>& context) -> void
+      const cairo::RefPtr<cairo::Context>& context) -> void
   {
     pango_cairo_layout_line_path (context->cobj (), gobj ());
   }
 
-} // namespace Pango
+} // namespace pango
 
 namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (PangoLayoutLine* object, const bool take_copy) -> RefPtr<Pango::LayoutLine>
+  wrap (PangoLayoutLine* object, const bool take_copy) -> RefPtr<pango::LayoutLine>
   {
     if (take_copy && object)
       pango_layout_line_ref (object);
 
-    return Glib::make_refptr_for_instance<Pango::LayoutLine> (
-        reinterpret_cast<Pango::LayoutLine*> (object));
+    return glib::make_refptr_for_instance<pango::LayoutLine> (
+        reinterpret_cast<pango::LayoutLine*> (object));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Pango
+namespace pango
 {
 
   auto
@@ -178,9 +178,9 @@ namespace Pango
   }
 
   auto
-  LayoutLine::get_layout () -> Glib::RefPtr<Layout>
+  LayoutLine::get_layout () -> glib::RefPtr<Layout>
   {
-    Glib::RefPtr<Layout> ref_ptr (Glib::wrap (gobj ()->layout));
+    glib::RefPtr<Layout> ref_ptr (glib::wrap (gobj ()->layout));
 
     if (ref_ptr)
       ref_ptr->reference ();
@@ -189,9 +189,9 @@ namespace Pango
   }
 
   auto
-  LayoutLine::get_layout () const -> Glib::RefPtr<const Layout>
+  LayoutLine::get_layout () const -> glib::RefPtr<const Layout>
   {
-    Glib::RefPtr<const Layout> ref_ptr (Glib::wrap (gobj ()->layout));
+    glib::RefPtr<const Layout> ref_ptr (glib::wrap (gobj ()->layout));
 
     if (ref_ptr)
       ref_ptr->reference ();
@@ -211,4 +211,4 @@ namespace Pango
     return gobj ()->start_index;
   }
 
-} // namespace Pango
+} // namespace pango

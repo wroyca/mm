@@ -12,7 +12,7 @@
 
   #include <gtk/gtk.h>
 
-namespace Gtk
+namespace gtk
 {
 
 }
@@ -20,30 +20,30 @@ namespace Gtk
 namespace
 {
 
-  static const Glib::SignalProxyInfo FontButton_signal_font_set_info = {
+  static const glib::SignalProxyInfo FontButton_signal_font_set_info = {
       "font-set",
-      (GCallback) &Glib::SignalProxyNormal::slot0_void_callback,
-      (GCallback) &Glib::SignalProxyNormal::slot0_void_callback};
+      (GCallback) &glib::SignalProxyNormal::slot0_void_callback,
+      (GCallback) &glib::SignalProxyNormal::slot0_void_callback};
 
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GtkFontButton* object, bool take_copy) -> Gtk::FontButton*
+  wrap (GtkFontButton* object, bool take_copy) -> gtk::FontButton*
   {
-    return dynamic_cast<Gtk::FontButton*> (
-        Glib::wrap_auto ((GObject*) (object), take_copy));
+    return dynamic_cast<gtk::FontButton*> (
+        glib::wrap_auto ((GObject*) (object), take_copy));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gtk
+namespace gtk
 {
 
   auto
-  FontButton_Class::init () -> const Glib::Class&
+  FontButton_Class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -65,23 +65,23 @@ namespace Gtk
   }
 
   auto
-  FontButton_Class::wrap_new (GObject* o) -> Glib::ObjectBase*
+  FontButton_Class::wrap_new (GObject* o) -> glib::ObjectBase*
   {
     return manage (new FontButton ((GtkFontButton*) (o)));
   }
 
-  FontButton::FontButton (const Glib::ConstructParams& construct_params)
-    : Gtk::Widget (construct_params)
+  FontButton::FontButton (const glib::ConstructParams& construct_params)
+    : gtk::Widget (construct_params)
   {
   }
 
   FontButton::FontButton (GtkFontButton* castitem)
-    : Gtk::Widget ((GtkWidget*) (castitem))
+    : gtk::Widget ((GtkWidget*) (castitem))
   {
   }
 
   FontButton::FontButton (FontButton&& src) noexcept
-    : Gtk::Widget (std::move (src)),
+    : gtk::Widget (std::move (src)),
       FontChooser (std::move (src))
   {
   }
@@ -89,7 +89,7 @@ namespace Gtk
   auto
   FontButton::operator= (FontButton&& src) noexcept -> FontButton&
   {
-    Gtk::Widget::operator= (std::move (src));
+    gtk::Widget::operator= (std::move (src));
     FontChooser::operator= (std::move (src));
     return *this;
   }
@@ -114,14 +114,14 @@ namespace Gtk
   }
 
   FontButton::FontButton ()
-    : Glib::ObjectBase (nullptr),
-      Gtk::Widget (Glib::ConstructParams (fontbutton_class_.init ()))
+    : glib::ObjectBase (nullptr),
+      gtk::Widget (glib::ConstructParams (fontbutton_class_.init ()))
   {
   }
 
-  FontButton::FontButton (const Glib::ustring& font)
-    : Glib::ObjectBase (nullptr),
-      Gtk::Widget (Glib::ConstructParams (fontbutton_class_.init (),
+  FontButton::FontButton (const glib::ustring& font)
+    : glib::ObjectBase (nullptr),
+      gtk::Widget (glib::ConstructParams (fontbutton_class_.init (),
                                           "font",
                                           font.c_str (),
                                           nullptr))
@@ -129,14 +129,14 @@ namespace Gtk
   }
 
   auto
-  FontButton::get_title () const -> Glib::ustring
+  FontButton::get_title () const -> glib::ustring
   {
-    return Glib::convert_const_gchar_ptr_to_ustring (
+    return glib::convert_const_gchar_ptr_to_ustring (
         gtk_font_button_get_title (const_cast<GtkFontButton*> (gobj ())));
   }
 
   auto
-  FontButton::set_title (const Glib::ustring& title) -> void
+  FontButton::set_title (const glib::ustring& title) -> void
   {
     gtk_font_button_set_title (gobj (), title.c_str ());
   }
@@ -178,59 +178,59 @@ namespace Gtk
   }
 
   auto
-  FontButton::signal_font_set () -> Glib::SignalProxy<void ()>
+  FontButton::signal_font_set () -> glib::SignalProxy<void ()>
   {
-    return Glib::SignalProxy<void ()> (this, &FontButton_signal_font_set_info);
+    return glib::SignalProxy<void ()> (this, &FontButton_signal_font_set_info);
   }
 
   auto
-  FontButton::property_title () -> Glib::PropertyProxy<Glib::ustring>
+  FontButton::property_title () -> glib::PropertyProxy<glib::ustring>
   {
-    return Glib::PropertyProxy<Glib::ustring> (this, "title");
+    return glib::PropertyProxy<glib::ustring> (this, "title");
   }
 
   auto
-  FontButton::property_title () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>
+  FontButton::property_title () const -> glib::PropertyProxy_ReadOnly<glib::ustring>
   {
-    return Glib::PropertyProxy_ReadOnly<Glib::ustring> (this, "title");
+    return glib::PropertyProxy_ReadOnly<glib::ustring> (this, "title");
   }
 
   auto
-  FontButton::property_modal () -> Glib::PropertyProxy<bool>
+  FontButton::property_modal () -> glib::PropertyProxy<bool>
   {
-    return Glib::PropertyProxy<bool> (this, "modal");
+    return glib::PropertyProxy<bool> (this, "modal");
   }
 
   auto
-  FontButton::property_modal () const -> Glib::PropertyProxy_ReadOnly<bool>
+  FontButton::property_modal () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "modal");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "modal");
   }
 
   auto
-  FontButton::property_use_font () -> Glib::PropertyProxy<bool>
+  FontButton::property_use_font () -> glib::PropertyProxy<bool>
   {
-    return Glib::PropertyProxy<bool> (this, "use-font");
+    return glib::PropertyProxy<bool> (this, "use-font");
   }
 
   auto
-  FontButton::property_use_font () const -> Glib::PropertyProxy_ReadOnly<bool>
+  FontButton::property_use_font () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "use-font");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "use-font");
   }
 
   auto
-  FontButton::property_use_size () -> Glib::PropertyProxy<bool>
+  FontButton::property_use_size () -> glib::PropertyProxy<bool>
   {
-    return Glib::PropertyProxy<bool> (this, "use-size");
+    return glib::PropertyProxy<bool> (this, "use-size");
   }
 
   auto
-  FontButton::property_use_size () const -> Glib::PropertyProxy_ReadOnly<bool>
+  FontButton::property_use_size () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "use-size");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "use-size");
   }
 
-} // namespace Gtk
+} // namespace gtk
 
 #endif

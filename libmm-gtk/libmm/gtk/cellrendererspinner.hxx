@@ -17,13 +17,13 @@ using GtkCellRendererSpinnerClass = struct _GtkCellRendererSpinnerClass;
   #endif
 
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT CellRendererSpinner_Class;
 }
   #endif
 
-namespace Gtk
+namespace gtk
 {
 
   class LIBMM_GTK_SYMEXPORT CellRendererSpinner : public CellRenderer
@@ -54,7 +54,7 @@ namespace Gtk
 
   protected:
     explicit CellRendererSpinner (
-        const Glib::ConstructParams& construct_params);
+        const glib::ConstructParams& construct_params);
     explicit CellRendererSpinner (GtkCellRendererSpinner* castitem);
 
   #endif
@@ -86,35 +86,35 @@ namespace Gtk
     CellRendererSpinner ();
 
     auto
-    property_active () -> Glib::PropertyProxy<bool>;
+    property_active () -> glib::PropertyProxy<bool>;
 
     auto
-    property_active () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_active () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_pulse () -> Glib::PropertyProxy<guint>;
+    property_pulse () -> glib::PropertyProxy<guint>;
 
     auto
-    property_pulse () const -> Glib::PropertyProxy_ReadOnly<guint>;
+    property_pulse () const -> glib::PropertyProxy_ReadOnly<guint>;
 
     auto
-    property_size () -> Glib::PropertyProxy<Gtk::IconSize>;
+    property_size () -> glib::PropertyProxy<gtk::IconSize>;
 
     auto
-    property_size () const -> Glib::PropertyProxy_ReadOnly<Gtk::IconSize>;
+    property_size () const -> glib::PropertyProxy_ReadOnly<gtk::IconSize>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkCellRendererSpinner* object, bool take_copy = false) -> Gtk::CellRendererSpinner*;
-} // namespace Glib
+  wrap (GtkCellRendererSpinner* object, bool take_copy = false) -> gtk::CellRendererSpinner*;
+} // namespace glib
 
 #endif
 

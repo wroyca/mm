@@ -9,7 +9,7 @@
 #include <libmm/pango/font.hxx>
 #include <libmm/pango/glyphstring.hxx>
 
-namespace Pango
+namespace pango
 {
 
   Analysis::Analysis () = default;
@@ -23,9 +23,9 @@ namespace Pango
   Analysis::get_extra_attrs () const -> std::vector<Attribute>
   {
     using SListHandler_Attribute =
-        Glib::SListHandler<Attribute, AttributeTraits>;
+        glib::SListHandler<Attribute, AttributeTraits>;
     return SListHandler_Attribute::slist_to_vector (gobj ()->extra_attrs,
-                                                    Glib::OWNERSHIP_NONE);
+                                                    glib::OWNERSHIP_NONE);
   }
 
   Item::Item (const Item& src)
@@ -80,68 +80,68 @@ namespace Pango
   }
 
   auto
-  Item::get_segment (const Glib::ustring& text) const -> Glib::ustring
+  Item::get_segment (const glib::ustring& text) const -> glib::ustring
   {
     const char* const start = text.data () + gobj ()->offset;
     return {start, start + gobj ()->length};
   }
 
   auto
-  Item::shape (const Glib::ustring& text) const -> GlyphString
+  Item::shape (const glib::ustring& text) const -> GlyphString
   {
     return GlyphString (text, get_analysis ());
   }
 
   auto
-  Item::shape (const Glib::ustring& item_text,
-               const Glib::ustring& paragraph_text,
+  Item::shape (const glib::ustring& item_text,
+               const glib::ustring& paragraph_text,
                const ShapeFlags flags) const -> GlyphString
   {
     return GlyphString (item_text, paragraph_text, get_analysis (), flags);
   }
 
-} // namespace Pango
+} // namespace pango
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (PangoAnalysis* object) -> Pango::Analysis&
+  wrap (PangoAnalysis* object) -> pango::Analysis&
   {
-    return *reinterpret_cast<Pango::Analysis*> (object);
+    return *reinterpret_cast<pango::Analysis*> (object);
   }
 
   auto
-  wrap (const PangoAnalysis* object) -> const Pango::Analysis&
+  wrap (const PangoAnalysis* object) -> const pango::Analysis&
   {
-    return *reinterpret_cast<const Pango::Analysis*> (object);
+    return *reinterpret_cast<const pango::Analysis*> (object);
   }
 
   auto
-  wrap (PangoItem* object, const bool take_copy) -> Pango::Item
+  wrap (PangoItem* object, const bool take_copy) -> pango::Item
   {
-    return Pango::Item (object, take_copy);
+    return pango::Item (object, take_copy);
   }
 
-} // namespace Glib
+} // namespace glib
 
 namespace
 {
 }
 
 auto
-Glib::Value<Pango::ShapeFlags>::value_type () -> GType
+glib::Value<pango::ShapeFlags>::value_type () -> GType
 {
   return pango_shape_flags_get_type ();
 }
 
-namespace Pango
+namespace pango
 {
 
   auto
-  Analysis::get_font () -> Glib::RefPtr<Font>
+  Analysis::get_font () -> glib::RefPtr<Font>
   {
-    Glib::RefPtr<Font> ref_ptr (Glib::wrap (gobj ()->font));
+    glib::RefPtr<Font> ref_ptr (glib::wrap (gobj ()->font));
 
     if (ref_ptr)
       ref_ptr->reference ();
@@ -150,9 +150,9 @@ namespace Pango
   }
 
   auto
-  Analysis::get_font () const -> Glib::RefPtr<const Font>
+  Analysis::get_font () const -> glib::RefPtr<const Font>
   {
-    Glib::RefPtr<const Font> ref_ptr (Glib::wrap (gobj ()->font));
+    glib::RefPtr<const Font> ref_ptr (glib::wrap (gobj ()->font));
 
     if (ref_ptr)
       ref_ptr->reference ();
@@ -172,9 +172,9 @@ namespace Pango
     return Language (gobj ()->language);
   }
 
-} // namespace Pango
+} // namespace pango
 
-namespace Pango
+namespace pango
 {
 
   auto
@@ -201,4 +201,4 @@ namespace Pango
     return gobj ()->num_chars;
   }
 
-} // namespace Pango
+} // namespace pango

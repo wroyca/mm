@@ -16,35 +16,35 @@ namespace
                                                gdouble p1,
                                                void* data) -> void
   {
-    using namespace Gtk;
+    using namespace gtk;
     using SlotType = sigc::slot<void (double, double)>;
 
     auto obj = dynamic_cast<EventControllerMotion*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
     {
       try
       {
-        if (const auto slot = Glib::SignalProxyNormal::data_to_slot (data))
+        if (const auto slot = glib::SignalProxyNormal::data_to_slot (data))
           (*static_cast<SlotType*> (slot)) (p0, p1);
       }
       catch (...)
       {
-        Glib::exception_handlers_invoke ();
+        glib::exception_handlers_invoke ();
       }
     }
   }
 
-  static const Glib::SignalProxyInfo EventControllerMotion_signal_enter_info = {
+  static const glib::SignalProxyInfo EventControllerMotion_signal_enter_info = {
       "enter",
       (GCallback) &EventControllerMotion_signal_enter_callback,
       (GCallback) &EventControllerMotion_signal_enter_callback};
 
-  static const Glib::SignalProxyInfo EventControllerMotion_signal_leave_info = {
+  static const glib::SignalProxyInfo EventControllerMotion_signal_leave_info = {
       "leave",
-      (GCallback) &Glib::SignalProxyNormal::slot0_void_callback,
-      (GCallback) &Glib::SignalProxyNormal::slot0_void_callback};
+      (GCallback) &glib::SignalProxyNormal::slot0_void_callback,
+      (GCallback) &glib::SignalProxyNormal::slot0_void_callback};
 
   static auto
   EventControllerMotion_signal_motion_callback (GtkEventControllerMotion* self,
@@ -52,51 +52,51 @@ namespace
                                                 gdouble p1,
                                                 void* data) -> void
   {
-    using namespace Gtk;
+    using namespace gtk;
     using SlotType = sigc::slot<void (double, double)>;
 
     auto obj = dynamic_cast<EventControllerMotion*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
     {
       try
       {
-        if (const auto slot = Glib::SignalProxyNormal::data_to_slot (data))
+        if (const auto slot = glib::SignalProxyNormal::data_to_slot (data))
           (*static_cast<SlotType*> (slot)) (p0, p1);
       }
       catch (...)
       {
-        Glib::exception_handlers_invoke ();
+        glib::exception_handlers_invoke ();
       }
     }
   }
 
-  static const Glib::SignalProxyInfo EventControllerMotion_signal_motion_info =
+  static const glib::SignalProxyInfo EventControllerMotion_signal_motion_info =
       {"motion",
        (GCallback) &EventControllerMotion_signal_motion_callback,
        (GCallback) &EventControllerMotion_signal_motion_callback};
 
 } // namespace
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GtkEventControllerMotion* object, bool take_copy) -> Glib::RefPtr<Gtk::EventControllerMotion>
+  wrap (GtkEventControllerMotion* object, bool take_copy) -> glib::RefPtr<gtk::EventControllerMotion>
   {
-    return Glib::make_refptr_for_instance<Gtk::EventControllerMotion> (
-        dynamic_cast<Gtk::EventControllerMotion*> (
-            Glib::wrap_auto ((GObject*) (object), take_copy)));
+    return glib::make_refptr_for_instance<gtk::EventControllerMotion> (
+        dynamic_cast<gtk::EventControllerMotion*> (
+            glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gtk
+namespace gtk
 {
 
   auto
-  EventControllerMotion_Class::init () -> const Glib::Class&
+  EventControllerMotion_Class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -117,7 +117,7 @@ namespace Gtk
   }
 
   auto
-  EventControllerMotion_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  EventControllerMotion_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new EventControllerMotion ((GtkEventControllerMotion*) object);
   }
@@ -130,7 +130,7 @@ namespace Gtk
   }
 
   EventControllerMotion::EventControllerMotion (
-      const Glib::ConstructParams& construct_params)
+      const glib::ConstructParams& construct_params)
     : EventController (construct_params)
   {
   }
@@ -172,16 +172,16 @@ namespace Gtk
   }
 
   EventControllerMotion::EventControllerMotion ()
-    : Glib::ObjectBase (nullptr),
+    : glib::ObjectBase (nullptr),
       EventController (
-          Glib::ConstructParams (eventcontrollermotion_class_.init ()))
+          glib::ConstructParams (eventcontrollermotion_class_.init ()))
   {
   }
 
   auto
-  EventControllerMotion::create () -> Glib::RefPtr<EventControllerMotion>
+  EventControllerMotion::create () -> glib::RefPtr<EventControllerMotion>
   {
-    return Glib::make_refptr_for_instance<EventControllerMotion> (
+    return glib::make_refptr_for_instance<EventControllerMotion> (
         new EventControllerMotion ());
   }
 
@@ -200,39 +200,39 @@ namespace Gtk
   }
 
   auto
-  EventControllerMotion::signal_enter () -> Glib::SignalProxy<void (double, double)>
+  EventControllerMotion::signal_enter () -> glib::SignalProxy<void (double, double)>
   {
-    return Glib::SignalProxy<void (double, double)> (
+    return glib::SignalProxy<void (double, double)> (
         this,
         &EventControllerMotion_signal_enter_info);
   }
 
   auto
-  EventControllerMotion::signal_leave () -> Glib::SignalProxy<void ()>
+  EventControllerMotion::signal_leave () -> glib::SignalProxy<void ()>
   {
-    return Glib::SignalProxy<void ()> (
+    return glib::SignalProxy<void ()> (
         this,
         &EventControllerMotion_signal_leave_info);
   }
 
   auto
-  EventControllerMotion::signal_motion () -> Glib::SignalProxy<void (double, double)>
+  EventControllerMotion::signal_motion () -> glib::SignalProxy<void (double, double)>
   {
-    return Glib::SignalProxy<void (double, double)> (
+    return glib::SignalProxy<void (double, double)> (
         this,
         &EventControllerMotion_signal_motion_info);
   }
 
   auto
-  EventControllerMotion::property_is_pointer () const -> Glib::PropertyProxy_ReadOnly<bool>
+  EventControllerMotion::property_is_pointer () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "is-pointer");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "is-pointer");
   }
 
   auto
-  EventControllerMotion::property_contains_pointer () const -> Glib::PropertyProxy_ReadOnly<bool>
+  EventControllerMotion::property_contains_pointer () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "contains-pointer");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "contains-pointer");
   }
 
-} // namespace Gtk
+} // namespace gtk

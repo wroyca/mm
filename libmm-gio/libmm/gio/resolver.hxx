@@ -18,23 +18,23 @@ using GResolverClass = struct _GResolverClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gio
+namespace gio
 {
   class LIBMM_GIO_SYMEXPORT Resolver_Class;
 }
 #endif
 
-namespace Glib
+namespace glib
 {
 
   class LIBMM_GLIB_SYMEXPORT VariantContainerBase;
 
 }
 
-namespace Gio
+namespace gio
 {
 
-  class LIBMM_GIO_SYMEXPORT Resolver : public Glib::Object
+  class LIBMM_GIO_SYMEXPORT Resolver : public glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -53,7 +53,7 @@ namespace Gio
     static CppClassType resolver_class_;
 
   protected:
-    explicit Resolver (const Glib::ConstructParams& construct_params);
+    explicit Resolver (const glib::ConstructParams& construct_params);
     explicit Resolver (GResolver* castitem);
 
 #endif
@@ -109,130 +109,130 @@ namespace Gio
     };
 
     static auto
-    get_default () -> Glib::RefPtr<Resolver>;
+    get_default () -> glib::RefPtr<Resolver>;
 
     static auto
-    set_default (const Glib::RefPtr<Resolver>& resolver) -> void;
+    set_default (const glib::RefPtr<Resolver>& resolver) -> void;
 
     auto
-    lookup_by_name (const Glib::ustring& hostname,
-                    const Glib::RefPtr<Cancellable>& cancellable)
-        -> std::vector<Glib::RefPtr<InetAddress>>;
+    lookup_by_name (const glib::ustring& hostname,
+                    const glib::RefPtr<Cancellable>& cancellable)
+        -> std::vector<glib::RefPtr<InetAddress>>;
 
     auto
-    lookup_by_name (const Glib::ustring& hostname)
-        -> std::vector<Glib::RefPtr<InetAddress>>;
+    lookup_by_name (const glib::ustring& hostname)
+        -> std::vector<glib::RefPtr<InetAddress>>;
 
     auto
-    lookup_by_name_async (const Glib::ustring& hostname,
+    lookup_by_name_async (const glib::ustring& hostname,
                           const SlotAsyncReady& slot,
-                          const Glib::RefPtr<Cancellable>& cancellable) -> void;
+                          const glib::RefPtr<Cancellable>& cancellable) -> void;
 
     auto
-    lookup_by_name_async (const Glib::ustring& hostname,
+    lookup_by_name_async (const glib::ustring& hostname,
                           const SlotAsyncReady& slot) -> void;
 
     auto
-    lookup_by_name_finish (const Glib::RefPtr<AsyncResult>& result)
-        -> std::vector<Glib::RefPtr<InetAddress>>;
+    lookup_by_name_finish (const glib::RefPtr<AsyncResult>& result)
+        -> std::vector<glib::RefPtr<InetAddress>>;
 
     auto
     lookup_by_name_with_flags (
-        const Glib::ustring& hostname,
+        const glib::ustring& hostname,
         NameLookupFlags flags,
-        const Glib::RefPtr<Cancellable>& cancellable = {})
-        -> std::vector<Glib::RefPtr<InetAddress>>;
+        const glib::RefPtr<Cancellable>& cancellable = {})
+        -> std::vector<glib::RefPtr<InetAddress>>;
 
     auto
     lookup_by_name_with_flags_async (
-        const Glib::ustring& hostname,
+        const glib::ustring& hostname,
         NameLookupFlags flags,
         const SlotAsyncReady& slot,
-        const Glib::RefPtr<Cancellable>& cancellable = {}) -> void;
+        const glib::RefPtr<Cancellable>& cancellable = {}) -> void;
 
     auto
-    lookup_by_name_with_flags_finish (const Glib::RefPtr<AsyncResult>& result)
-        -> std::vector<Glib::RefPtr<InetAddress>>;
+    lookup_by_name_with_flags_finish (const glib::RefPtr<AsyncResult>& result)
+        -> std::vector<glib::RefPtr<InetAddress>>;
 
     auto
-    lookup_by_address (const Glib::RefPtr<InetAddress>& address,
-                       const Glib::RefPtr<Cancellable>& cancellable)
-        -> Glib::ustring;
+    lookup_by_address (const glib::RefPtr<InetAddress>& address,
+                       const glib::RefPtr<Cancellable>& cancellable)
+        -> glib::ustring;
 
     auto
-    lookup_by_address (const Glib::RefPtr<InetAddress>& address)
-        -> Glib::ustring;
+    lookup_by_address (const glib::RefPtr<InetAddress>& address)
+        -> glib::ustring;
 
     auto
-    lookup_by_address_async (const Glib::RefPtr<InetAddress>& address,
+    lookup_by_address_async (const glib::RefPtr<InetAddress>& address,
                              const SlotAsyncReady& slot,
-                             const Glib::RefPtr<Cancellable>& cancellable)
+                             const glib::RefPtr<Cancellable>& cancellable)
         -> void;
 
     auto
-    lookup_by_address_async (const Glib::RefPtr<InetAddress>& address,
+    lookup_by_address_async (const glib::RefPtr<InetAddress>& address,
                              const SlotAsyncReady& slot) -> void;
 
     auto
-    lookup_by_address_finish (const Glib::RefPtr<AsyncResult>& result)
-        -> Glib::ustring;
+    lookup_by_address_finish (const glib::RefPtr<AsyncResult>& result)
+        -> glib::ustring;
 
     auto
-    lookup_service (const Glib::ustring& service,
-                    const Glib::ustring& protocol,
-                    const Glib::ustring& domain,
-                    const Glib::RefPtr<Cancellable>& cancellable)
+    lookup_service (const glib::ustring& service,
+                    const glib::ustring& protocol,
+                    const glib::ustring& domain,
+                    const glib::RefPtr<Cancellable>& cancellable)
         -> std::vector<SrvTarget>;
 
     auto
-    lookup_service (const Glib::ustring& service,
-                    const Glib::ustring& protocol,
-                    const Glib::ustring& domain) -> std::vector<SrvTarget>;
+    lookup_service (const glib::ustring& service,
+                    const glib::ustring& protocol,
+                    const glib::ustring& domain) -> std::vector<SrvTarget>;
 
     auto
-    lookup_service_async (const Glib::ustring& service,
-                          const Glib::ustring& protocol,
-                          const Glib::ustring& domain,
+    lookup_service_async (const glib::ustring& service,
+                          const glib::ustring& protocol,
+                          const glib::ustring& domain,
                           const SlotAsyncReady& slot,
-                          const Glib::RefPtr<Cancellable>& cancellable) -> void;
+                          const glib::RefPtr<Cancellable>& cancellable) -> void;
 
     auto
-    lookup_service_async (const Glib::ustring& service,
-                          const Glib::ustring& protocol,
-                          const Glib::ustring& domain,
+    lookup_service_async (const glib::ustring& service,
+                          const glib::ustring& protocol,
+                          const glib::ustring& domain,
                           const SlotAsyncReady& slot) -> void;
 
     auto
-    lookup_service_finish (const Glib::RefPtr<AsyncResult>& result)
+    lookup_service_finish (const glib::RefPtr<AsyncResult>& result)
         -> std::vector<SrvTarget>;
 
     auto
-    lookup_records (const Glib::ustring& rrname,
+    lookup_records (const glib::ustring& rrname,
                     RecordType record_type,
-                    const Glib::RefPtr<Cancellable>& cancellable)
-        -> std::vector<Glib::VariantContainerBase>;
+                    const glib::RefPtr<Cancellable>& cancellable)
+        -> std::vector<glib::VariantContainerBase>;
 
     auto
-    lookup_records (const Glib::ustring& rrname, RecordType record_type)
-        -> std::vector<Glib::VariantContainerBase>;
+    lookup_records (const glib::ustring& rrname, RecordType record_type)
+        -> std::vector<glib::VariantContainerBase>;
 
     auto
-    lookup_records_async (const Glib::ustring& rrname,
+    lookup_records_async (const glib::ustring& rrname,
                           RecordType record_type,
                           const SlotAsyncReady& slot,
-                          const Glib::RefPtr<Cancellable>& cancellable) -> void;
+                          const glib::RefPtr<Cancellable>& cancellable) -> void;
 
     auto
-    lookup_records_async (const Glib::ustring& rrname,
+    lookup_records_async (const glib::ustring& rrname,
                           RecordType record_type,
                           const SlotAsyncReady& slot) -> void;
 
     auto
-    lookup_records_finish (const Glib::RefPtr<AsyncResult>& result)
-        -> std::vector<Glib::VariantContainerBase>;
+    lookup_records_finish (const glib::RefPtr<AsyncResult>& result)
+        -> std::vector<glib::VariantContainerBase>;
 
     auto
-    signal_reload () -> Glib::SignalProxy<void ()>;
+    signal_reload () -> glib::SignalProxy<void ()>;
 
   public:
   public:
@@ -243,43 +243,43 @@ namespace Gio
 
   LIBMM_GIO_SYMEXPORT
   auto
-  hostname_to_ascii (const Glib::ustring& hostname) -> std::string;
+  hostname_to_ascii (const glib::ustring& hostname) -> std::string;
 
   LIBMM_GIO_SYMEXPORT
   auto
-  hostname_to_unicode (const Glib::ustring& hostname) -> Glib::ustring;
+  hostname_to_unicode (const glib::ustring& hostname) -> glib::ustring;
 
   LIBMM_GIO_SYMEXPORT
   auto
-  hostname_is_non_ascii (const Glib::ustring& hostname) -> bool;
+  hostname_is_non_ascii (const glib::ustring& hostname) -> bool;
 
   LIBMM_GIO_SYMEXPORT
   auto
-  hostname_is_ascii_encoded (const Glib::ustring& hostname) -> bool;
+  hostname_is_ascii_encoded (const glib::ustring& hostname) -> bool;
 
   LIBMM_GIO_SYMEXPORT
   auto
-  hostname_is_ip_address (const Glib::ustring& hostname) -> bool;
+  hostname_is_ip_address (const glib::ustring& hostname) -> bool;
 
-} // namespace Gio
+} // namespace gio
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_GIO_SYMEXPORT Value<Gio::Resolver::RecordType>
-    : public Glib::Value_Enum<Gio::Resolver::RecordType>
+  class LIBMM_GIO_SYMEXPORT Value<gio::Resolver::RecordType>
+    : public glib::Value_Enum<gio::Resolver::RecordType>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
-namespace Gio
+namespace gio
 {
 
   inline auto
@@ -330,30 +330,30 @@ namespace Gio
     return (lhs = static_cast<Resolver::NameLookupFlags> (
                 static_cast<unsigned> (lhs) ^ static_cast<unsigned> (rhs)));
   }
-} // namespace Gio
+} // namespace gio
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_GIO_SYMEXPORT Value<Gio::Resolver::NameLookupFlags>
-    : public Glib::Value_Flags<Gio::Resolver::NameLookupFlags>
+  class LIBMM_GIO_SYMEXPORT Value<gio::Resolver::NameLookupFlags>
+    : public glib::Value_Flags<gio::Resolver::NameLookupFlags>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
-namespace Glib
+namespace glib
 {
 
   LIBMM_GIO_SYMEXPORT
   auto
-  wrap (GResolver* object, bool take_copy = false) -> Glib::RefPtr<Gio::Resolver>;
-} // namespace Glib
+  wrap (GResolver* object, bool take_copy = false) -> glib::RefPtr<gio::Resolver>;
+} // namespace glib
 
 #endif

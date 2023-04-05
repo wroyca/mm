@@ -17,13 +17,13 @@ using GtkRangeClass = struct _GtkRangeClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT Range_Class;
 }
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
   class LIBMM_GTK_SYMEXPORT Adjustment;
@@ -56,7 +56,7 @@ namespace Gtk
     static CppClassType range_class_;
 
   protected:
-    explicit Range (const Glib::ConstructParams& construct_params);
+    explicit Range (const glib::ConstructParams& construct_params);
     explicit Range (GtkRange* castitem);
 
 #endif
@@ -89,15 +89,15 @@ namespace Gtk
 
   public:
     auto
-    set_adjustment (const Glib::RefPtr<Adjustment>& adjustment) -> void;
+    set_adjustment (const glib::RefPtr<Adjustment>& adjustment) -> void;
     auto
     unset_adjustment () -> void;
 
     auto
-    get_adjustment () -> Glib::RefPtr<Adjustment>;
+    get_adjustment () -> glib::RefPtr<Adjustment>;
 
     auto
-    get_adjustment () const -> Glib::RefPtr<const Adjustment>;
+    get_adjustment () const -> glib::RefPtr<const Adjustment>;
 
     auto
     set_inverted (bool setting = true) -> void;
@@ -118,7 +118,7 @@ namespace Gtk
     get_slider_size_fixed () const -> bool;
 
     auto
-    get_range_rect () const -> Gdk::Rectangle;
+    get_range_rect () const -> gdk::Rectangle;
 
     auto
     get_slider_range (int& slider_start, int& slider_end) const -> void;
@@ -160,58 +160,58 @@ namespace Gtk
     get_round_digits () const -> int;
 
     auto
-    signal_value_changed () -> Glib::SignalProxy<void ()>;
+    signal_value_changed () -> glib::SignalProxy<void ()>;
 
     auto
-    signal_adjust_bounds () -> Glib::SignalProxy<void (double)>;
+    signal_adjust_bounds () -> glib::SignalProxy<void (double)>;
 
     auto
-    signal_move_slider () -> Glib::SignalProxy<void (ScrollType)>;
+    signal_move_slider () -> glib::SignalProxy<void (ScrollType)>;
 
     auto
-    signal_change_value () -> Glib::SignalProxy<bool (ScrollType, double)>;
+    signal_change_value () -> glib::SignalProxy<bool (ScrollType, double)>;
 
     auto
-    property_adjustment () -> Glib::PropertyProxy<Glib::RefPtr<Adjustment>>;
+    property_adjustment () -> glib::PropertyProxy<glib::RefPtr<Adjustment>>;
 
     auto
     property_adjustment () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Adjustment>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<Adjustment>>;
 
     auto
-    property_inverted () -> Glib::PropertyProxy<bool>;
+    property_inverted () -> glib::PropertyProxy<bool>;
 
     auto
-    property_inverted () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_inverted () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_show_fill_level () -> Glib::PropertyProxy<bool>;
+    property_show_fill_level () -> glib::PropertyProxy<bool>;
 
     auto
-    property_show_fill_level () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_show_fill_level () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_restrict_to_fill_level () -> Glib::PropertyProxy<bool>;
+    property_restrict_to_fill_level () -> glib::PropertyProxy<bool>;
 
     auto
     property_restrict_to_fill_level () const
-        -> Glib::PropertyProxy_ReadOnly<bool>;
+        -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_fill_level () -> Glib::PropertyProxy<double>;
+    property_fill_level () -> glib::PropertyProxy<double>;
 
     auto
-    property_fill_level () const -> Glib::PropertyProxy_ReadOnly<double>;
+    property_fill_level () const -> glib::PropertyProxy_ReadOnly<double>;
 
     auto
-    property_round_digits () -> Glib::PropertyProxy<int>;
+    property_round_digits () -> glib::PropertyProxy<int>;
 
     auto
-    property_round_digits () const -> Glib::PropertyProxy_ReadOnly<int>;
+    property_round_digits () const -> glib::PropertyProxy_ReadOnly<int>;
 
   protected:
     virtual auto
-    get_range_border_vfunc (Gtk::Border& border) const -> void;
+    get_range_border_vfunc (gtk::Border& border) const -> void;
 
   public:
   public:
@@ -229,12 +229,12 @@ namespace Gtk
     on_change_value (ScrollType scroll, double new_value) -> bool;
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkRange* object, bool take_copy = false) -> Gtk::Range*;
-} // namespace Glib
+  wrap (GtkRange* object, bool take_copy = false) -> gtk::Range*;
+} // namespace glib
 
 #endif

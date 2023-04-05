@@ -19,13 +19,13 @@ using GtkCellRendererPixbufClass = struct _GtkCellRendererPixbufClass;
   #endif
 
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT CellRendererPixbuf_Class;
 }
   #endif
 
-namespace Gtk
+namespace gtk
 {
 
   class LIBMM_GTK_SYMEXPORT CellRendererPixbuf : public CellRenderer
@@ -55,7 +55,7 @@ namespace Gtk
     static CppClassType cellrendererpixbuf_class_;
 
   protected:
-    explicit CellRendererPixbuf (const Glib::ConstructParams& construct_params);
+    explicit CellRendererPixbuf (const glib::ConstructParams& construct_params);
     explicit CellRendererPixbuf (GtkCellRendererPixbuf* castitem);
 
   #endif
@@ -88,65 +88,65 @@ namespace Gtk
 
     auto
     property_pixbuf ()
-        -> Glib::PropertyProxy_WriteOnly<Glib::RefPtr<Gdk::Pixbuf>>;
+        -> glib::PropertyProxy_WriteOnly<glib::RefPtr<gdk::Pixbuf>>;
 
     auto
     property_pixbuf_expander_open ()
-        -> Glib::PropertyProxy<Glib::RefPtr<Gdk::Pixbuf>>;
+        -> glib::PropertyProxy<glib::RefPtr<gdk::Pixbuf>>;
 
     auto
     property_pixbuf_expander_open () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gdk::Pixbuf>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<gdk::Pixbuf>>;
 
     auto
     property_pixbuf_expander_closed ()
-        -> Glib::PropertyProxy<Glib::RefPtr<Gdk::Pixbuf>>;
+        -> glib::PropertyProxy<glib::RefPtr<gdk::Pixbuf>>;
 
     auto
     property_pixbuf_expander_closed () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gdk::Pixbuf>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<gdk::Pixbuf>>;
 
     auto
-    property_icon_size () -> Glib::PropertyProxy<Gtk::IconSize>;
+    property_icon_size () -> glib::PropertyProxy<gtk::IconSize>;
 
     auto
-    property_icon_size () const -> Glib::PropertyProxy_ReadOnly<Gtk::IconSize>;
+    property_icon_size () const -> glib::PropertyProxy_ReadOnly<gtk::IconSize>;
 
     auto
-    property_icon_name () -> Glib::PropertyProxy<Glib::ustring>;
+    property_icon_name () -> glib::PropertyProxy<glib::ustring>;
 
     auto
-    property_icon_name () const -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+    property_icon_name () const -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
     auto
-    property_gicon () -> Glib::PropertyProxy<Glib::RefPtr<Gio::Icon>>;
+    property_gicon () -> glib::PropertyProxy<glib::RefPtr<gio::Icon>>;
 
     auto
     property_gicon () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gio::Icon>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<gio::Icon>>;
 
     auto
-    property_texture () -> Glib::PropertyProxy<Glib::RefPtr<Gdk::Texture>>;
+    property_texture () -> glib::PropertyProxy<glib::RefPtr<gdk::Texture>>;
 
     auto
     property_texture () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Gdk::Texture>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<gdk::Texture>>;
 
     auto
-    _property_renderable () -> Glib::PropertyProxy_Base override;
+    _property_renderable () -> glib::PropertyProxy_Base override;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkCellRendererPixbuf* object, bool take_copy = false) -> Gtk::CellRendererPixbuf*;
-} // namespace Glib
+  wrap (GtkCellRendererPixbuf* object, bool take_copy = false) -> gtk::CellRendererPixbuf*;
+} // namespace glib
 
 #endif
 

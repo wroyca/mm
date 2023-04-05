@@ -15,16 +15,16 @@ using GdkCairoContextClass = struct _GdkCairoContextClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gdk
+namespace gdk
 {
   class LIBMM_GDK_SYMEXPORT CairoContext_Class;
 }
 #endif
 
-namespace Gdk
+namespace gdk
 {
 
-  class LIBMM_GDK_SYMEXPORT CairoContext : public Gdk::DrawContext
+  class LIBMM_GDK_SYMEXPORT CairoContext : public gdk::DrawContext
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -43,7 +43,7 @@ namespace Gdk
     static CppClassType cairocontext_class_;
 
   protected:
-    explicit CairoContext (const Glib::ConstructParams& construct_params);
+    explicit CairoContext (const glib::ConstructParams& construct_params);
     explicit CairoContext (GdkCairoContext* castitem);
 
 #endif
@@ -85,19 +85,19 @@ namespace Gdk
 
   public:
     auto
-    cairo_create () -> ::Cairo::RefPtr<::Cairo::Context>;
+    cairo_create () -> ::cairo::RefPtr<::cairo::Context>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gdk
+} // namespace gdk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GDK_SYMEXPORT auto
-  wrap (GdkCairoContext* object, bool take_copy = false) -> Glib::RefPtr<Gdk::CairoContext>;
-} // namespace Glib
+  wrap (GdkCairoContext* object, bool take_copy = false) -> glib::RefPtr<gdk::CairoContext>;
+} // namespace glib
 
 #endif

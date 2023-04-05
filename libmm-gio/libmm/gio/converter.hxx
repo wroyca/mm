@@ -20,16 +20,16 @@ using GConverterClass = struct _GConverterClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gio
+namespace gio
 {
   class LIBMM_GIO_SYMEXPORT Converter_Class;
 }
 #endif
 
-namespace Gio
+namespace gio
 {
 
-  class LIBMM_GIO_SYMEXPORT Converter : public Glib::Interface
+  class LIBMM_GIO_SYMEXPORT Converter : public glib::Interface
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -53,7 +53,7 @@ namespace Gio
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
-    explicit Converter (const Glib::Interface_Class& interface_class);
+    explicit Converter (const glib::Interface_Class& interface_class);
 
   public:
     explicit Converter (GConverter* castitem);
@@ -138,25 +138,25 @@ namespace Gio
   protected:
   };
 
-} // namespace Gio
+} // namespace gio
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_GIO_SYMEXPORT Value<Gio::Converter::Result>
-    : public Glib::Value_Enum<Gio::Converter::Result>
+  class LIBMM_GIO_SYMEXPORT Value<gio::Converter::Result>
+    : public glib::Value_Enum<gio::Converter::Result>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
-namespace Gio
+namespace gio
 {
 
   inline auto
@@ -206,31 +206,31 @@ namespace Gio
     return (lhs = static_cast<Converter::Flags> (static_cast<unsigned> (lhs) ^
                                                  static_cast<unsigned> (rhs)));
   }
-} // namespace Gio
+} // namespace gio
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Glib
+namespace glib
 {
 
   template <>
-  class LIBMM_GIO_SYMEXPORT Value<Gio::Converter::Flags>
-    : public Glib::Value_Flags<Gio::Converter::Flags>
+  class LIBMM_GIO_SYMEXPORT Value<gio::Converter::Flags>
+    : public glib::Value_Flags<gio::Converter::Flags>
   {
   public:
     static auto
     value_type () -> GType G_GNUC_CONST;
   };
 
-} // namespace Glib
+} // namespace glib
 #endif
 
-namespace Glib
+namespace glib
 {
 
   LIBMM_GIO_SYMEXPORT
   auto
-  wrap (GConverter* object, bool take_copy = false) -> Glib::RefPtr<Gio::Converter>;
+  wrap (GConverter* object, bool take_copy = false) -> glib::RefPtr<gio::Converter>;
 
-} // namespace Glib
+} // namespace glib
 
 #endif

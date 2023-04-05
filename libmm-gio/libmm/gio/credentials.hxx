@@ -16,16 +16,16 @@ using GCredentialsClass = struct _GCredentialsClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gio
+namespace gio
 {
   class LIBMM_GIO_SYMEXPORT Credentials_Class;
 }
 #endif
 
-namespace Gio
+namespace gio
 {
 
-  class LIBMM_GIO_SYMEXPORT Credentials : public Glib::Object
+  class LIBMM_GIO_SYMEXPORT Credentials : public glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -44,7 +44,7 @@ namespace Gio
     static CppClassType credentials_class_;
 
   protected:
-    explicit Credentials (const Glib::ConstructParams& construct_params);
+    explicit Credentials (const glib::ConstructParams& construct_params);
     explicit Credentials (GCredentials* castitem);
 
 #endif
@@ -98,10 +98,10 @@ namespace Gio
     };
 
     static auto
-    create () -> Glib::RefPtr<Credentials>;
+    create () -> glib::RefPtr<Credentials>;
 
     auto
-    to_string () const -> Glib::ustring;
+    to_string () const -> glib::ustring;
 
     auto
     get_native (Type native_type) -> gpointer;
@@ -110,7 +110,7 @@ namespace Gio
     set_native (Type native_type, gpointer native) -> void;
 
     auto
-    is_same_user (const Glib::RefPtr<const Credentials>& other_credentials)
+    is_same_user (const glib::RefPtr<const Credentials>& other_credentials)
         -> bool;
 
 #ifdef G_OS_UNIX
@@ -136,14 +136,14 @@ namespace Gio
   protected:
   };
 
-} // namespace Gio
+} // namespace gio
 
-namespace Glib
+namespace glib
 {
 
   LIBMM_GIO_SYMEXPORT
   auto
-  wrap (GCredentials* object, bool take_copy = false) -> Glib::RefPtr<Gio::Credentials>;
-} // namespace Glib
+  wrap (GCredentials* object, bool take_copy = false) -> glib::RefPtr<gio::Credentials>;
+} // namespace glib
 
 #endif

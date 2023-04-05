@@ -15,13 +15,13 @@ using GConverterOutputStreamClass = struct _GConverterOutputStreamClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gio
+namespace gio
 {
   class LIBMM_GIO_SYMEXPORT ConverterOutputStream_Class;
 }
 #endif
 
-namespace Gio
+namespace gio
 {
 
   class LIBMM_GIO_SYMEXPORT Converter;
@@ -48,7 +48,7 @@ namespace Gio
 
   protected:
     explicit ConverterOutputStream (
-        const Glib::ConstructParams& construct_params);
+        const glib::ConstructParams& construct_params);
     explicit ConverterOutputStream (GConverterOutputStream* castitem);
 
 #endif
@@ -87,38 +87,38 @@ namespace Gio
   private:
   protected:
     explicit ConverterOutputStream (
-        const Glib::RefPtr<OutputStream>& base_stream,
-        const Glib::RefPtr<Converter>& converter);
+        const glib::RefPtr<OutputStream>& base_stream,
+        const glib::RefPtr<Converter>& converter);
 
   public:
     static auto
-    create (const Glib::RefPtr<OutputStream>& base_stream,
-            const Glib::RefPtr<Converter>& converter)
-        -> Glib::RefPtr<ConverterOutputStream>;
+    create (const glib::RefPtr<OutputStream>& base_stream,
+            const glib::RefPtr<Converter>& converter)
+        -> glib::RefPtr<ConverterOutputStream>;
 
     auto
-    get_converter () -> Glib::RefPtr<Converter>;
+    get_converter () -> glib::RefPtr<Converter>;
 
     auto
-    get_converter () const -> Glib::RefPtr<const Converter>;
+    get_converter () const -> glib::RefPtr<const Converter>;
 
     auto
     property_converter () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Converter>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<Converter>>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gio
+} // namespace gio
 
-namespace Glib
+namespace glib
 {
 
   LIBMM_GIO_SYMEXPORT
   auto
-  wrap (GConverterOutputStream* object, bool take_copy = false) -> Glib::RefPtr<Gio::ConverterOutputStream>;
-} // namespace Glib
+  wrap (GConverterOutputStream* object, bool take_copy = false) -> glib::RefPtr<gio::ConverterOutputStream>;
+} // namespace glib
 
 #endif

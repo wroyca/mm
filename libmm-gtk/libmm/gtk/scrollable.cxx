@@ -7,17 +7,17 @@
 
 #include <gtk/gtk.h>
 
-using Policy = Gtk::Scrollable::Policy;
+using Policy = gtk::Scrollable::Policy;
 
-namespace Gtk
+namespace gtk
 {
 
   auto
   Scrollable_Class::get_border_vfunc_callback (GtkScrollable* self,
                                                GtkBorder* border) -> gboolean
   {
-    const auto obj_base = static_cast<Glib::ObjectBase*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+    const auto obj_base = static_cast<glib::ObjectBase*> (
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -34,7 +34,7 @@ namespace Gtk
         }
         catch (...)
         {
-          Glib::exception_handlers_invoke ();
+          glib::exception_handlers_invoke ();
         }
       }
     }
@@ -63,37 +63,37 @@ namespace Gtk
     gtk_scrollable_set_vadjustment (gobj (), nullptr);
   }
 
-} // namespace Gtk
+} // namespace gtk
 
 namespace
 {
 }
 
 auto
-Glib::Value<Gtk::Scrollable::Policy>::value_type () -> GType
+glib::Value<gtk::Scrollable::Policy>::value_type () -> GType
 {
   return gtk_scrollable_policy_get_type ();
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GtkScrollable* object, bool take_copy) -> Glib::RefPtr<Gtk::Scrollable>
+  wrap (GtkScrollable* object, bool take_copy) -> glib::RefPtr<gtk::Scrollable>
   {
-    return Glib::make_refptr_for_instance<Gtk::Scrollable> (
-        dynamic_cast<Gtk::Scrollable*> (
-            Glib::wrap_auto_interface<Gtk::Scrollable> ((GObject*) (object),
+    return glib::make_refptr_for_instance<gtk::Scrollable> (
+        dynamic_cast<gtk::Scrollable*> (
+            glib::wrap_auto_interface<gtk::Scrollable> ((GObject*) (object),
                                                         take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gtk
+namespace gtk
 {
 
   auto
-  Scrollable_Class::init () -> const Glib::Interface_Class&
+  Scrollable_Class::init () -> const glib::Interface_Class&
   {
     if (!gtype_)
     {
@@ -116,35 +116,35 @@ namespace Gtk
   }
 
   auto
-  Scrollable_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  Scrollable_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new Scrollable ((GtkScrollable*) (object));
   }
 
   Scrollable::Scrollable ()
-    : Glib::Interface (scrollable_class_.init ())
+    : glib::Interface (scrollable_class_.init ())
   {
   }
 
   Scrollable::Scrollable (GtkScrollable* castitem)
-    : Glib::Interface ((GObject*) (castitem))
+    : glib::Interface ((GObject*) (castitem))
   {
   }
 
-  Scrollable::Scrollable (const Glib::Interface_Class& interface_class)
-    : Glib::Interface (interface_class)
+  Scrollable::Scrollable (const glib::Interface_Class& interface_class)
+    : glib::Interface (interface_class)
   {
   }
 
   Scrollable::Scrollable (Scrollable&& src) noexcept
-    : Glib::Interface (std::move (src))
+    : glib::Interface (std::move (src))
   {
   }
 
   auto
   Scrollable::operator= (Scrollable&& src) noexcept -> Scrollable&
   {
-    Glib::Interface::operator= (std::move (src));
+    glib::Interface::operator= (std::move (src));
     return *this;
   }
 
@@ -171,39 +171,39 @@ namespace Gtk
   }
 
   auto
-  Scrollable::get_hadjustment () -> Glib::RefPtr<Adjustment>
+  Scrollable::get_hadjustment () -> glib::RefPtr<Adjustment>
   {
-    auto retvalue = Glib::wrap (gtk_scrollable_get_hadjustment (gobj ()));
+    auto retvalue = glib::wrap (gtk_scrollable_get_hadjustment (gobj ()));
     if (retvalue)
       retvalue->reference ();
     return retvalue;
   }
 
   auto
-  Scrollable::get_hadjustment () const -> Glib::RefPtr<const Adjustment>
+  Scrollable::get_hadjustment () const -> glib::RefPtr<const Adjustment>
   {
     return const_cast<Scrollable*> (this)->get_hadjustment ();
   }
 
   auto
-  Scrollable::set_hadjustment (const Glib::RefPtr<Adjustment>& hadjustment) -> void
+  Scrollable::set_hadjustment (const glib::RefPtr<Adjustment>& hadjustment) -> void
   {
-    gtk_scrollable_set_hadjustment (gobj (), Glib::unwrap (hadjustment));
+    gtk_scrollable_set_hadjustment (gobj (), glib::unwrap (hadjustment));
   }
 
   auto
-  Scrollable::get_vadjustment () -> Glib::RefPtr<Adjustment>
+  Scrollable::get_vadjustment () -> glib::RefPtr<Adjustment>
   {
-    auto retvalue = Glib::wrap (gtk_scrollable_get_vadjustment (gobj ()));
+    auto retvalue = glib::wrap (gtk_scrollable_get_vadjustment (gobj ()));
     if (retvalue)
       retvalue->reference ();
     return retvalue;
   }
 
   auto
-  Scrollable::get_vadjustment () const -> Glib::RefPtr<const Adjustment>
+  Scrollable::get_vadjustment () const -> glib::RefPtr<const Adjustment>
   {
-    auto retvalue = Glib::wrap (
+    auto retvalue = glib::wrap (
         gtk_scrollable_get_vadjustment (const_cast<GtkScrollable*> (gobj ())));
     if (retvalue)
       retvalue->reference ();
@@ -211,9 +211,9 @@ namespace Gtk
   }
 
   auto
-  Scrollable::set_vadjustment (const Glib::RefPtr<Adjustment>& vadjustment) -> void
+  Scrollable::set_vadjustment (const glib::RefPtr<Adjustment>& vadjustment) -> void
   {
-    gtk_scrollable_set_vadjustment (gobj (), Glib::unwrap (vadjustment));
+    gtk_scrollable_set_vadjustment (gobj (), glib::unwrap (vadjustment));
   }
 
   auto
@@ -254,81 +254,81 @@ namespace Gtk
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<
-          Glib::RefPtr<Adjustment>>::value,
-      "Type Glib::RefPtr<Adjustment> cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      glib::Traits::ValueCompatibleWithWrapProperty<
+          glib::RefPtr<Adjustment>>::value,
+      "Type glib::RefPtr<Adjustment> cannot be used in _WRAP_PROPERTY. "
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  Scrollable::property_hadjustment () -> Glib::PropertyProxy<Glib::RefPtr<Adjustment>>
+  Scrollable::property_hadjustment () -> glib::PropertyProxy<glib::RefPtr<Adjustment>>
   {
-    return Glib::PropertyProxy<Glib::RefPtr<Adjustment>> (this, "hadjustment");
+    return glib::PropertyProxy<glib::RefPtr<Adjustment>> (this, "hadjustment");
   }
 
   auto
-  Scrollable::property_hadjustment () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Adjustment>>
+  Scrollable::property_hadjustment () const -> glib::PropertyProxy_ReadOnly<glib::RefPtr<Adjustment>>
   {
-    return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Adjustment>> (
+    return glib::PropertyProxy_ReadOnly<glib::RefPtr<Adjustment>> (
         this,
         "hadjustment");
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<
-          Glib::RefPtr<Adjustment>>::value,
-      "Type Glib::RefPtr<Adjustment> cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      glib::Traits::ValueCompatibleWithWrapProperty<
+          glib::RefPtr<Adjustment>>::value,
+      "Type glib::RefPtr<Adjustment> cannot be used in _WRAP_PROPERTY. "
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  Scrollable::property_vadjustment () -> Glib::PropertyProxy<Glib::RefPtr<Adjustment>>
+  Scrollable::property_vadjustment () -> glib::PropertyProxy<glib::RefPtr<Adjustment>>
   {
-    return Glib::PropertyProxy<Glib::RefPtr<Adjustment>> (this, "vadjustment");
+    return glib::PropertyProxy<glib::RefPtr<Adjustment>> (this, "vadjustment");
   }
 
   auto
-  Scrollable::property_vadjustment () const -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Adjustment>>
+  Scrollable::property_vadjustment () const -> glib::PropertyProxy_ReadOnly<glib::RefPtr<Adjustment>>
   {
-    return Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Adjustment>> (
+    return glib::PropertyProxy_ReadOnly<glib::RefPtr<Adjustment>> (
         this,
         "vadjustment");
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<Policy>::value,
+      glib::Traits::ValueCompatibleWithWrapProperty<Policy>::value,
       "Type Policy cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  Scrollable::property_hscroll_policy () -> Glib::PropertyProxy<Policy>
+  Scrollable::property_hscroll_policy () -> glib::PropertyProxy<Policy>
   {
-    return Glib::PropertyProxy<Policy> (this, "hscroll-policy");
+    return glib::PropertyProxy<Policy> (this, "hscroll-policy");
   }
 
   auto
-  Scrollable::property_hscroll_policy () const -> Glib::PropertyProxy_ReadOnly<Policy>
+  Scrollable::property_hscroll_policy () const -> glib::PropertyProxy_ReadOnly<Policy>
   {
-    return Glib::PropertyProxy_ReadOnly<Policy> (this, "hscroll-policy");
+    return glib::PropertyProxy_ReadOnly<Policy> (this, "hscroll-policy");
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<Policy>::value,
+      glib::Traits::ValueCompatibleWithWrapProperty<Policy>::value,
       "Type Policy cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  Scrollable::property_vscroll_policy () -> Glib::PropertyProxy<Policy>
+  Scrollable::property_vscroll_policy () -> glib::PropertyProxy<Policy>
   {
-    return Glib::PropertyProxy<Policy> (this, "vscroll-policy");
+    return glib::PropertyProxy<Policy> (this, "vscroll-policy");
   }
 
   auto
-  Scrollable::property_vscroll_policy () const -> Glib::PropertyProxy_ReadOnly<Policy>
+  Scrollable::property_vscroll_policy () const -> glib::PropertyProxy_ReadOnly<Policy>
   {
-    return Glib::PropertyProxy_ReadOnly<Policy> (this, "vscroll-policy");
+    return glib::PropertyProxy_ReadOnly<Policy> (this, "vscroll-policy");
   }
 
   auto
-  Gtk::Scrollable::get_border_vfunc (Border& border) const -> bool
+  gtk::Scrollable::get_border_vfunc (Border& border) const -> bool
   {
     const auto base =
         static_cast<BaseClassType*> (g_type_interface_peek_parent (
@@ -346,4 +346,4 @@ namespace Gtk
     return RType ();
   }
 
-} // namespace Gtk
+} // namespace gtk

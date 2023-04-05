@@ -16,16 +16,16 @@ using GDBusObjectProxyClass = struct _GDBusObjectProxyClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gio::DBus
+namespace gio::DBus
 {
   class LIBMM_GIO_SYMEXPORT ObjectProxy_Class;
 }
 #endif
 
-namespace Gio::DBus
+namespace gio::DBus
 {
 
-  class LIBMM_GIO_SYMEXPORT ObjectProxy : public Glib::Object,
+  class LIBMM_GIO_SYMEXPORT ObjectProxy : public glib::Object,
                                 public Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -45,7 +45,7 @@ namespace Gio::DBus
     static CppClassType objectproxy_class_;
 
   protected:
-    explicit ObjectProxy (const Glib::ConstructParams& construct_params);
+    explicit ObjectProxy (const glib::ConstructParams& construct_params);
     explicit ObjectProxy (GDBusObjectProxy* castitem);
 
 #endif
@@ -83,41 +83,41 @@ namespace Gio::DBus
 
   private:
   protected:
-    explicit ObjectProxy (const Glib::RefPtr<Connection>& connection,
-                          const Glib::ustring& object_path);
+    explicit ObjectProxy (const glib::RefPtr<Connection>& connection,
+                          const glib::ustring& object_path);
 
   public:
     static auto
-    create (const Glib::RefPtr<Connection>& connection,
-            const Glib::ustring& object_path) -> Glib::RefPtr<ObjectProxy>;
+    create (const glib::RefPtr<Connection>& connection,
+            const glib::ustring& object_path) -> glib::RefPtr<ObjectProxy>;
 
     auto
-    get_connection () -> Glib::RefPtr<Connection>;
+    get_connection () -> glib::RefPtr<Connection>;
 
     auto
-    get_connection () const -> Glib::RefPtr<const Connection>;
+    get_connection () const -> glib::RefPtr<const Connection>;
 
     auto
     property_g_connection () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Connection>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<Connection>>;
 
     auto
     property_g_object_path () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+        -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gio::DBus
+} // namespace gio::DBus
 
-namespace Glib
+namespace glib
 {
 
   LIBMM_GIO_SYMEXPORT
   auto
-  wrap (GDBusObjectProxy* object, bool take_copy = false) -> Glib::RefPtr<Gio::DBus::ObjectProxy>;
-} // namespace Glib
+  wrap (GDBusObjectProxy* object, bool take_copy = false) -> glib::RefPtr<gio::DBus::ObjectProxy>;
+} // namespace glib
 
 #endif

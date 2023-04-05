@@ -3,7 +3,7 @@
 #include <libmm/cairo/matrix.hxx>
 #include <libmm/cairo/private.hxx>
 
-namespace Cairo
+namespace cairo
 {
 
   Matrix::Matrix () = default;
@@ -101,4 +101,4 @@ namespace Cairo
     return m;
   }
 
-} // namespace Cairo
+} // namespace cairo

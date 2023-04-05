@@ -20,16 +20,16 @@ using GSeekableClass = struct _GSeekableClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gio
+namespace gio
 {
   class LIBMM_GIO_SYMEXPORT Seekable_Class;
 }
 #endif
 
-namespace Gio
+namespace gio
 {
 
-  class LIBMM_GIO_SYMEXPORT Seekable : public Glib::Interface
+  class LIBMM_GIO_SYMEXPORT Seekable : public glib::Interface
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -53,7 +53,7 @@ namespace Gio
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
-    explicit Seekable (const Glib::Interface_Class& interface_class);
+    explicit Seekable (const glib::Interface_Class& interface_class);
 
   public:
     explicit Seekable (GSeekable* castitem);
@@ -101,17 +101,17 @@ namespace Gio
 
     auto
     seek (goffset offset,
-          Glib::SeekType type,
-          const Glib::RefPtr<Cancellable>& cancellable) -> bool;
+          glib::SeekType type,
+          const glib::RefPtr<Cancellable>& cancellable) -> bool;
 
     auto
-    seek (goffset offset, Glib::SeekType type) -> bool;
+    seek (goffset offset, glib::SeekType type) -> bool;
 
     auto
     can_truncate () const -> bool;
 
     auto
-    truncate (goffset offset, const Glib::RefPtr<Cancellable>& cancellable)
+    truncate (goffset offset, const glib::RefPtr<Cancellable>& cancellable)
         -> bool;
 
     auto
@@ -123,15 +123,15 @@ namespace Gio
   protected:
   };
 
-} // namespace Gio
+} // namespace gio
 
-namespace Glib
+namespace glib
 {
 
   LIBMM_GIO_SYMEXPORT
   auto
-  wrap (GSeekable* object, bool take_copy = false) -> Glib::RefPtr<Gio::Seekable>;
+  wrap (GSeekable* object, bool take_copy = false) -> glib::RefPtr<gio::Seekable>;
 
-} // namespace Glib
+} // namespace glib
 
 #endif

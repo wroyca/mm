@@ -7,34 +7,34 @@
 
 #include <libmm/glib/class.hxx>
 
-namespace Gdk
+namespace gdk
 {
 
-  class LIBMM_GDK_SYMEXPORT MemoryTexture_Class : public Glib::Class
+  class LIBMM_GDK_SYMEXPORT MemoryTexture_Class : public glib::Class
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
     using CppObjectType = MemoryTexture;
     using BaseObjectType = GdkMemoryTexture;
     using BaseClassType = GdkMemoryTextureClass;
-    using CppClassParent = Gdk::Texture_Class;
+    using CppClassParent = gdk::Texture_Class;
     using BaseClassParent = GdkTextureClass;
 
     friend class MemoryTexture;
 #endif
 
     auto
-    init () -> const Glib::Class&;
+    init () -> const glib::Class&;
 
     static auto
     class_init_function (void* g_class, void* class_data) -> void;
 
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
 
   protected:
   };
 
-} // namespace Gdk
+} // namespace gdk
 
 #endif

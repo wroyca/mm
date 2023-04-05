@@ -19,17 +19,17 @@ using GtkShortcutControllerClass = struct _GtkShortcutControllerClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT ShortcutController_Class;
 }
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
   class LIBMM_GTK_SYMEXPORT ShortcutController : public EventController,
-                                       public Gio::ListModel,
+                                       public gio::ListModel,
                                        public Buildable
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -49,7 +49,7 @@ namespace Gtk
     static CppClassType shortcutcontroller_class_;
 
   protected:
-    explicit ShortcutController (const Glib::ConstructParams& construct_params);
+    explicit ShortcutController (const glib::ConstructParams& construct_params);
     explicit ShortcutController (GtkShortcutController* castitem);
 
 #endif
@@ -88,21 +88,21 @@ namespace Gtk
   private:
   protected:
     ShortcutController ();
-    explicit ShortcutController (const Glib::RefPtr<Gio::ListModel>& model);
+    explicit ShortcutController (const glib::RefPtr<gio::ListModel>& model);
 
   public:
     static auto
-    create () -> Glib::RefPtr<ShortcutController>;
+    create () -> glib::RefPtr<ShortcutController>;
 
     static auto
-    create (const Glib::RefPtr<Gio::ListModel>& model)
-        -> Glib::RefPtr<ShortcutController>;
+    create (const glib::RefPtr<gio::ListModel>& model)
+        -> glib::RefPtr<ShortcutController>;
 
     auto
-    set_mnemonics_modifiers (Gdk::ModifierType modifiers) -> void;
+    set_mnemonics_modifiers (gdk::ModifierType modifiers) -> void;
 
     auto
-    get_mnemonics_modifiers () const -> Gdk::ModifierType;
+    get_mnemonics_modifiers () const -> gdk::ModifierType;
 
     auto
     set_scope (ShortcutScope scope) -> void;
@@ -117,41 +117,41 @@ namespace Gtk
     get_scope () const -> ShortcutScope;
 
     auto
-    add_shortcut (const Glib::RefPtr<Shortcut>& shortcut) -> void;
+    add_shortcut (const glib::RefPtr<Shortcut>& shortcut) -> void;
 
     auto
-    remove_shortcut (const Glib::RefPtr<const Shortcut>& shortcut) -> void;
+    remove_shortcut (const glib::RefPtr<const Shortcut>& shortcut) -> void;
 
     auto
-    property_item_type () const -> Glib::PropertyProxy_ReadOnly<GType>;
+    property_item_type () const -> glib::PropertyProxy_ReadOnly<GType>;
 
     auto
-    property_mnemonic_modifiers () -> Glib::PropertyProxy<Gdk::ModifierType>;
+    property_mnemonic_modifiers () -> glib::PropertyProxy<gdk::ModifierType>;
 
     auto
     property_mnemonic_modifiers () const
-        -> Glib::PropertyProxy_ReadOnly<Gdk::ModifierType>;
+        -> glib::PropertyProxy_ReadOnly<gdk::ModifierType>;
 
     auto
-    property_n_items () const -> Glib::PropertyProxy_ReadOnly<unsigned int>;
+    property_n_items () const -> glib::PropertyProxy_ReadOnly<unsigned int>;
 
     auto
-    property_scope () -> Glib::PropertyProxy<ShortcutScope>;
+    property_scope () -> glib::PropertyProxy<ShortcutScope>;
 
     auto
-    property_scope () const -> Glib::PropertyProxy_ReadOnly<ShortcutScope>;
+    property_scope () const -> glib::PropertyProxy_ReadOnly<ShortcutScope>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkShortcutController* object, bool take_copy = false) -> Glib::RefPtr<Gtk::ShortcutController>;
-} // namespace Glib
+  wrap (GtkShortcutController* object, bool take_copy = false) -> glib::RefPtr<gtk::ShortcutController>;
+} // namespace glib
 
 #endif

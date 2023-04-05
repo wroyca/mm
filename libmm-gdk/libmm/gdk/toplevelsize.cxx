@@ -8,7 +8,7 @@
 #include <gdk/gdk.h>
 #include <utility>
 
-namespace Gdk
+namespace gdk
 {
 
   ToplevelSize::operator bool () const
@@ -37,13 +37,13 @@ namespace Gdk
 
   ToplevelSize::~ToplevelSize () noexcept {}
 
-} // namespace Gdk
+} // namespace gdk
 
 namespace
 {
 }
 
-namespace Gdk
+namespace gdk
 {
 
   auto
@@ -72,4 +72,4 @@ namespace Gdk
     gdk_toplevel_size_set_shadow_width (gobj (), left, right, top, bottom);
   }
 
-} // namespace Gdk
+} // namespace gdk

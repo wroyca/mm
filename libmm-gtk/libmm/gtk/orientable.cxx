@@ -11,25 +11,25 @@ namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GtkOrientable* object, bool take_copy) -> Glib::RefPtr<Gtk::Orientable>
+  wrap (GtkOrientable* object, bool take_copy) -> glib::RefPtr<gtk::Orientable>
   {
-    return Glib::make_refptr_for_instance<Gtk::Orientable> (
-        dynamic_cast<Gtk::Orientable*> (
-            Glib::wrap_auto_interface<Gtk::Orientable> ((GObject*) (object),
+    return glib::make_refptr_for_instance<gtk::Orientable> (
+        dynamic_cast<gtk::Orientable*> (
+            glib::wrap_auto_interface<gtk::Orientable> ((GObject*) (object),
                                                         take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gtk
+namespace gtk
 {
 
   auto
-  Orientable_Class::init () -> const Glib::Interface_Class&
+  Orientable_Class::init () -> const glib::Interface_Class&
   {
     if (!gtype_)
     {
@@ -50,35 +50,35 @@ namespace Gtk
   }
 
   auto
-  Orientable_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  Orientable_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new Orientable ((GtkOrientable*) (object));
   }
 
   Orientable::Orientable ()
-    : Glib::Interface (orientable_class_.init ())
+    : glib::Interface (orientable_class_.init ())
   {
   }
 
   Orientable::Orientable (GtkOrientable* castitem)
-    : Glib::Interface ((GObject*) (castitem))
+    : glib::Interface ((GObject*) (castitem))
   {
   }
 
-  Orientable::Orientable (const Glib::Interface_Class& interface_class)
-    : Glib::Interface (interface_class)
+  Orientable::Orientable (const glib::Interface_Class& interface_class)
+    : glib::Interface (interface_class)
   {
   }
 
   Orientable::Orientable (Orientable&& src) noexcept
-    : Glib::Interface (std::move (src))
+    : glib::Interface (std::move (src))
   {
   }
 
   auto
   Orientable::operator= (Orientable&& src) noexcept -> Orientable&
   {
-    Glib::Interface::operator= (std::move (src));
+    glib::Interface::operator= (std::move (src));
     return *this;
   }
 
@@ -119,20 +119,20 @@ namespace Gtk
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<Orientation>::value,
+      glib::Traits::ValueCompatibleWithWrapProperty<Orientation>::value,
       "Type Orientation cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  Orientable::property_orientation () -> Glib::PropertyProxy<Orientation>
+  Orientable::property_orientation () -> glib::PropertyProxy<Orientation>
   {
-    return Glib::PropertyProxy<Orientation> (this, "orientation");
+    return glib::PropertyProxy<Orientation> (this, "orientation");
   }
 
   auto
-  Orientable::property_orientation () const -> Glib::PropertyProxy_ReadOnly<Orientation>
+  Orientable::property_orientation () const -> glib::PropertyProxy_ReadOnly<Orientation>
   {
-    return Glib::PropertyProxy_ReadOnly<Orientation> (this, "orientation");
+    return glib::PropertyProxy_ReadOnly<Orientation> (this, "orientation");
   }
 
-} // namespace Gtk
+} // namespace gtk

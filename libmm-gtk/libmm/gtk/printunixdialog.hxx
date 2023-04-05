@@ -19,13 +19,13 @@ using GtkPrintUnixDialogClass = struct _GtkPrintUnixDialogClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT PrintUnixDialog_Class;
 }
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
   class LIBMM_GTK_SYMEXPORT PrintUnixDialog : public Dialog
@@ -55,7 +55,7 @@ namespace Gtk
     static CppClassType printunixdialog_class_;
 
   protected:
-    explicit PrintUnixDialog (const Glib::ConstructParams& construct_params);
+    explicit PrintUnixDialog (const glib::ConstructParams& construct_params);
     explicit PrintUnixDialog (GtkPrintUnixDialog* castitem);
 
 #endif
@@ -84,17 +84,17 @@ namespace Gtk
 
   private:
   public:
-    explicit PrintUnixDialog (Gtk::Window& parent, const Glib::ustring& title);
-    explicit PrintUnixDialog (const Glib::ustring& title);
+    explicit PrintUnixDialog (gtk::Window& parent, const glib::ustring& title);
+    explicit PrintUnixDialog (const glib::ustring& title);
 
     auto
-    set_page_setup (const Glib::RefPtr<PageSetup>& page_setup) -> void;
+    set_page_setup (const glib::RefPtr<PageSetup>& page_setup) -> void;
 
     auto
-    get_page_setup () -> Glib::RefPtr<PageSetup>;
+    get_page_setup () -> glib::RefPtr<PageSetup>;
 
     auto
-    get_page_setup () const -> Glib::RefPtr<const PageSetup>;
+    get_page_setup () const -> glib::RefPtr<const PageSetup>;
 
     auto
     set_current_page (int current_page) -> void;
@@ -103,22 +103,22 @@ namespace Gtk
     get_current_page () const -> int;
 
     auto
-    set_settings (const Glib::RefPtr<PrintSettings>& settings) -> void;
+    set_settings (const glib::RefPtr<PrintSettings>& settings) -> void;
 
     auto
-    get_settings () -> Glib::RefPtr<PrintSettings>;
+    get_settings () -> glib::RefPtr<PrintSettings>;
 
     auto
-    get_settings () const -> Glib::RefPtr<const PrintSettings>;
+    get_settings () const -> glib::RefPtr<const PrintSettings>;
 
     auto
-    get_selected_printer () -> Glib::RefPtr<Printer>;
+    get_selected_printer () -> glib::RefPtr<Printer>;
 
     auto
-    get_selected_printer () const -> Glib::RefPtr<const Printer>;
+    get_selected_printer () const -> glib::RefPtr<const Printer>;
 
     auto
-    add_custom_tab (const Widget& child, const Glib::ustring& tab_label)
+    add_custom_tab (const Widget& child, const glib::ustring& tab_label)
         -> void;
 
     auto
@@ -152,65 +152,65 @@ namespace Gtk
     get_page_setup_set () const -> bool;
 
     auto
-    property_page_setup () -> Glib::PropertyProxy<Glib::RefPtr<PageSetup>>;
+    property_page_setup () -> glib::PropertyProxy<glib::RefPtr<PageSetup>>;
 
     auto
     property_page_setup () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<PageSetup>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<PageSetup>>;
 
     auto
-    property_current_page () -> Glib::PropertyProxy<int>;
+    property_current_page () -> glib::PropertyProxy<int>;
 
     auto
-    property_current_page () const -> Glib::PropertyProxy_ReadOnly<int>;
+    property_current_page () const -> glib::PropertyProxy_ReadOnly<int>;
 
     auto
     property_print_settings ()
-        -> Glib::PropertyProxy<Glib::RefPtr<PrintSettings>>;
+        -> glib::PropertyProxy<glib::RefPtr<PrintSettings>>;
 
     auto
     property_print_settings () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<PrintSettings>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<PrintSettings>>;
 
     auto
     property_selected_printer () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Printer>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<Printer>>;
 
     auto
-    property_manual_capabilities () -> Glib::PropertyProxy<bool>;
+    property_manual_capabilities () -> glib::PropertyProxy<bool>;
 
     auto
-    property_manual_capabilities () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_manual_capabilities () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_support_selection () -> Glib::PropertyProxy<bool>;
+    property_support_selection () -> glib::PropertyProxy<bool>;
 
     auto
-    property_support_selection () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_support_selection () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_has_selection () -> Glib::PropertyProxy<bool>;
+    property_has_selection () -> glib::PropertyProxy<bool>;
 
     auto
-    property_has_selection () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_has_selection () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_embed_page_setup () -> Glib::PropertyProxy<bool>;
+    property_embed_page_setup () -> glib::PropertyProxy<bool>;
 
     auto
-    property_embed_page_setup () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_embed_page_setup () const -> glib::PropertyProxy_ReadOnly<bool>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkPrintUnixDialog* object, bool take_copy = false) -> Gtk::PrintUnixDialog*;
-} // namespace Glib
+  wrap (GtkPrintUnixDialog* object, bool take_copy = false) -> gtk::PrintUnixDialog*;
+} // namespace glib
 
 #endif

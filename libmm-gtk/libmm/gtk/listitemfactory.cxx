@@ -11,24 +11,24 @@ namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GtkListItemFactory* object, bool take_copy) -> Glib::RefPtr<Gtk::ListItemFactory>
+  wrap (GtkListItemFactory* object, bool take_copy) -> glib::RefPtr<gtk::ListItemFactory>
   {
-    return Glib::make_refptr_for_instance<Gtk::ListItemFactory> (
-        dynamic_cast<Gtk::ListItemFactory*> (
-            Glib::wrap_auto ((GObject*) (object), take_copy)));
+    return glib::make_refptr_for_instance<gtk::ListItemFactory> (
+        dynamic_cast<gtk::ListItemFactory*> (
+            glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gtk
+namespace gtk
 {
 
   auto
-  ListItemFactory_Class::init () -> const Glib::Class&
+  ListItemFactory_Class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -48,7 +48,7 @@ namespace Gtk
   }
 
   auto
-  ListItemFactory_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  ListItemFactory_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new ListItemFactory ((GtkListItemFactory*) object);
   }
@@ -61,25 +61,25 @@ namespace Gtk
   }
 
   ListItemFactory::ListItemFactory (
-      const Glib::ConstructParams& construct_params)
-    : Glib::Object (construct_params)
+      const glib::ConstructParams& construct_params)
+    : glib::Object (construct_params)
   {
   }
 
   ListItemFactory::ListItemFactory (GtkListItemFactory* castitem)
-    : Glib::Object ((GObject*) (castitem))
+    : glib::Object ((GObject*) (castitem))
   {
   }
 
   ListItemFactory::ListItemFactory (ListItemFactory&& src) noexcept
-    : Glib::Object (std::move (src))
+    : glib::Object (std::move (src))
   {
   }
 
   auto
   ListItemFactory::operator= (ListItemFactory&& src) noexcept -> ListItemFactory&
   {
-    Glib::Object::operator= (std::move (src));
+    glib::Object::operator= (std::move (src));
     return *this;
   }
 
@@ -99,4 +99,4 @@ namespace Gtk
     return gtk_list_item_factory_get_type ();
   }
 
-} // namespace Gtk
+} // namespace gtk

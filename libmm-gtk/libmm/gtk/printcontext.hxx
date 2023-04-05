@@ -22,16 +22,16 @@ using GtkPrintContextClass = struct _GtkPrintContextClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT PrintContext_Class;
 }
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
-  class LIBMM_GTK_SYMEXPORT PrintContext : public Glib::Object
+  class LIBMM_GTK_SYMEXPORT PrintContext : public glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -50,7 +50,7 @@ namespace Gtk
     static CppClassType printcontext_class_;
 
   protected:
-    explicit PrintContext (const Glib::ConstructParams& construct_params);
+    explicit PrintContext (const glib::ConstructParams& construct_params);
     explicit PrintContext (GtkPrintContext* castitem);
 
 #endif
@@ -89,16 +89,16 @@ namespace Gtk
   private:
   public:
     auto
-    get_cairo_context () -> Cairo::RefPtr<Cairo::Context>;
+    get_cairo_context () -> cairo::RefPtr<cairo::Context>;
 
     auto
-    get_cairo_context () const -> Cairo::RefPtr<const Cairo::Context>;
+    get_cairo_context () const -> cairo::RefPtr<const cairo::Context>;
 
     auto
-    get_page_setup () -> Glib::RefPtr<PageSetup>;
+    get_page_setup () -> glib::RefPtr<PageSetup>;
 
     auto
-    get_page_setup () const -> Glib::RefPtr<const PageSetup>;
+    get_page_setup () const -> glib::RefPtr<const PageSetup>;
 
     auto
     get_width () const -> double;
@@ -119,19 +119,19 @@ namespace Gtk
                       double& right) const -> bool;
 
     auto
-    get_pango_fontmap () -> Glib::RefPtr<Pango::FontMap>;
+    get_pango_fontmap () -> glib::RefPtr<pango::FontMap>;
 
     auto
-    get_pango_fontmap () const -> Glib::RefPtr<const Pango::FontMap>;
+    get_pango_fontmap () const -> glib::RefPtr<const pango::FontMap>;
 
     auto
-    create_pango_context () -> Glib::RefPtr<Pango::Context>;
+    create_pango_context () -> glib::RefPtr<pango::Context>;
 
     auto
-    create_pango_layout () -> Glib::RefPtr<Pango::Layout>;
+    create_pango_layout () -> glib::RefPtr<pango::Layout>;
 
     auto
-    set_cairo_context (const Cairo::RefPtr<Cairo::Context>& cr,
+    set_cairo_context (const cairo::RefPtr<cairo::Context>& cr,
                        double dpi_x,
                        double dpi_y) -> void;
 
@@ -140,12 +140,12 @@ namespace Gtk
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkPrintContext* object, bool take_copy = false) -> Glib::RefPtr<Gtk::PrintContext>;
-} // namespace Glib
+  wrap (GtkPrintContext* object, bool take_copy = false) -> glib::RefPtr<gtk::PrintContext>;
+} // namespace glib
 
 #endif

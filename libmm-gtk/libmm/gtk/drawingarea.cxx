@@ -18,8 +18,8 @@ namespace
                                  int height,
                                  void* user_data) -> void
   {
-    auto the_slot = static_cast<Gtk::DrawingArea::SlotDraw*> (user_data);
-    auto cr2 = Gdk::Cairo::wrap (cr, false);
+    auto the_slot = static_cast<gtk::DrawingArea::SlotDraw*> (user_data);
+    auto cr2 = gdk::cairo::wrap (cr, false);
 
     try
     {
@@ -27,13 +27,13 @@ namespace
     }
     catch (...)
     {
-      Glib::exception_handlers_invoke ();
+      glib::exception_handlers_invoke ();
     }
   }
 
 } // namespace
 
-namespace Gtk
+namespace gtk
 {
   auto
   DrawingArea::set_draw_func (const SlotDraw& slot) -> void
@@ -43,10 +43,10 @@ namespace Gtk
     gtk_drawing_area_set_draw_func (gobj (),
                                     &SignalProxy_Draw_gtk_callback,
                                     slot_copy,
-                                    &Glib::destroy_notify_delete<SlotDraw>);
+                                    &glib::destroy_notify_delete<SlotDraw>);
   }
 
-} // namespace Gtk
+} // namespace gtk
 
 namespace
 {
@@ -57,50 +57,50 @@ namespace
                                       gint p1,
                                       void* data) -> void
   {
-    using namespace Gtk;
+    using namespace gtk;
     using SlotType = sigc::slot<void (int, int)>;
 
     auto obj = dynamic_cast<DrawingArea*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
     {
       try
       {
-        if (const auto slot = Glib::SignalProxyNormal::data_to_slot (data))
+        if (const auto slot = glib::SignalProxyNormal::data_to_slot (data))
           (*static_cast<SlotType*> (slot)) (p0, p1);
       }
       catch (...)
       {
-        Glib::exception_handlers_invoke ();
+        glib::exception_handlers_invoke ();
       }
     }
   }
 
-  static const Glib::SignalProxyInfo DrawingArea_signal_resize_info = {
+  static const glib::SignalProxyInfo DrawingArea_signal_resize_info = {
       "resize",
       (GCallback) &DrawingArea_signal_resize_callback,
       (GCallback) &DrawingArea_signal_resize_callback};
 
 } // namespace
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GtkDrawingArea* object, bool take_copy) -> Gtk::DrawingArea*
+  wrap (GtkDrawingArea* object, bool take_copy) -> gtk::DrawingArea*
   {
-    return dynamic_cast<Gtk::DrawingArea*> (
-        Glib::wrap_auto ((GObject*) (object), take_copy));
+    return dynamic_cast<gtk::DrawingArea*> (
+        glib::wrap_auto ((GObject*) (object), take_copy));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gtk
+namespace gtk
 {
 
   auto
-  DrawingArea_Class::init () -> const Glib::Class&
+  DrawingArea_Class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -124,8 +124,8 @@ namespace Gtk
   auto
   DrawingArea_Class::resize_callback (GtkDrawingArea* self, gint p0, gint p1) -> void
   {
-    const auto obj_base = static_cast<Glib::ObjectBase*> (
-        Glib::ObjectBase::_get_current_wrapper ((GObject*) self));
+    const auto obj_base = static_cast<glib::ObjectBase*> (
+        glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj_base && obj_base->is_derived_ ())
     {
@@ -139,7 +139,7 @@ namespace Gtk
         }
         catch (...)
         {
-          Glib::exception_handlers_invoke ();
+          glib::exception_handlers_invoke ();
         }
       }
     }
@@ -152,30 +152,30 @@ namespace Gtk
   }
 
   auto
-  DrawingArea_Class::wrap_new (GObject* o) -> Glib::ObjectBase*
+  DrawingArea_Class::wrap_new (GObject* o) -> glib::ObjectBase*
   {
     return manage (new DrawingArea ((GtkDrawingArea*) (o)));
   }
 
-  DrawingArea::DrawingArea (const Glib::ConstructParams& construct_params)
-    : Gtk::Widget (construct_params)
+  DrawingArea::DrawingArea (const glib::ConstructParams& construct_params)
+    : gtk::Widget (construct_params)
   {
   }
 
   DrawingArea::DrawingArea (GtkDrawingArea* castitem)
-    : Gtk::Widget ((GtkWidget*) (castitem))
+    : gtk::Widget ((GtkWidget*) (castitem))
   {
   }
 
   DrawingArea::DrawingArea (DrawingArea&& src) noexcept
-    : Gtk::Widget (std::move (src))
+    : gtk::Widget (std::move (src))
   {
   }
 
   auto
   DrawingArea::operator= (DrawingArea&& src) noexcept -> DrawingArea&
   {
-    Gtk::Widget::operator= (std::move (src));
+    gtk::Widget::operator= (std::move (src));
     return *this;
   }
 
@@ -199,8 +199,8 @@ namespace Gtk
   }
 
   DrawingArea::DrawingArea ()
-    : Glib::ObjectBase (nullptr),
-      Gtk::Widget (Glib::ConstructParams (drawingarea_class_.init ()))
+    : glib::ObjectBase (nullptr),
+      gtk::Widget (glib::ConstructParams (drawingarea_class_.init ()))
   {
   }
 
@@ -231,38 +231,38 @@ namespace Gtk
   }
 
   auto
-  DrawingArea::signal_resize () -> Glib::SignalProxy<void (int, int)>
+  DrawingArea::signal_resize () -> glib::SignalProxy<void (int, int)>
   {
-    return Glib::SignalProxy<void (int, int)> (this,
+    return glib::SignalProxy<void (int, int)> (this,
                                                &DrawingArea_signal_resize_info);
   }
 
   auto
-  DrawingArea::property_content_width () -> Glib::PropertyProxy<int>
+  DrawingArea::property_content_width () -> glib::PropertyProxy<int>
   {
-    return Glib::PropertyProxy<int> (this, "content-width");
+    return glib::PropertyProxy<int> (this, "content-width");
   }
 
   auto
-  DrawingArea::property_content_width () const -> Glib::PropertyProxy_ReadOnly<int>
+  DrawingArea::property_content_width () const -> glib::PropertyProxy_ReadOnly<int>
   {
-    return Glib::PropertyProxy_ReadOnly<int> (this, "content-width");
+    return glib::PropertyProxy_ReadOnly<int> (this, "content-width");
   }
 
   auto
-  DrawingArea::property_content_height () -> Glib::PropertyProxy<int>
+  DrawingArea::property_content_height () -> glib::PropertyProxy<int>
   {
-    return Glib::PropertyProxy<int> (this, "content-height");
+    return glib::PropertyProxy<int> (this, "content-height");
   }
 
   auto
-  DrawingArea::property_content_height () const -> Glib::PropertyProxy_ReadOnly<int>
+  DrawingArea::property_content_height () const -> glib::PropertyProxy_ReadOnly<int>
   {
-    return Glib::PropertyProxy_ReadOnly<int> (this, "content-height");
+    return glib::PropertyProxy_ReadOnly<int> (this, "content-height");
   }
 
   auto
-  Gtk::DrawingArea::on_resize (int width, int height) -> void
+  gtk::DrawingArea::on_resize (int width, int height) -> void
   {
     const auto base = static_cast<BaseClassType*> (
         g_type_class_peek_parent (G_OBJECT_GET_CLASS (gobject_)));
@@ -271,4 +271,4 @@ namespace Gtk
       (*base->resize) (gobj (), width, height);
   }
 
-} // namespace Gtk
+} // namespace gtk

@@ -10,7 +10,7 @@
 #include <libmm/gio/slot_async.hxx>
 #include <libmm/glib/error.hxx>
 
-namespace Gio
+namespace gio
 {
 }
 
@@ -18,20 +18,20 @@ namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GSocketAddress* object, const bool take_copy) -> RefPtr<Gio::SocketAddress>
+  wrap (GSocketAddress* object, const bool take_copy) -> RefPtr<gio::SocketAddress>
   {
-    return Glib::make_refptr_for_instance<Gio::SocketAddress> (
-        dynamic_cast<Gio::SocketAddress*> (
+    return glib::make_refptr_for_instance<gio::SocketAddress> (
+        dynamic_cast<gio::SocketAddress*> (
             wrap_auto ((GObject*) object, take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gio
+namespace gio
 {
 
   auto
@@ -57,7 +57,7 @@ namespace Gio
   }
 
   auto
-  SocketAddress_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  SocketAddress_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new SocketAddress ((GSocketAddress*) object);
   }
@@ -69,7 +69,7 @@ namespace Gio
     return gobj ();
   }
 
-  SocketAddress::SocketAddress (const Glib::ConstructParams& construct_params)
+  SocketAddress::SocketAddress (const glib::ConstructParams& construct_params)
     : Object (construct_params)
   {
   }
@@ -110,9 +110,9 @@ namespace Gio
   }
 
   auto
-  SocketAddress::create (const gpointer native, const gsize len) -> Glib::RefPtr<SocketAddress>
+  SocketAddress::create (const gpointer native, const gsize len) -> glib::RefPtr<SocketAddress>
   {
-    return Glib::wrap (g_socket_address_new_from_native (native, len));
+    return glib::wrap (g_socket_address_new_from_native (native, len));
   }
 
   auto
@@ -129,7 +129,7 @@ namespace Gio
     const auto retvalue =
         g_socket_address_to_native (gobj (), dest, destlen, &gerror);
     if (gerror)
-      Glib::Error::throw_exception (gerror);
+      glib::Error::throw_exception (gerror);
     return retvalue;
   }
 
@@ -141,14 +141,14 @@ namespace Gio
   }
 
   static_assert (
-      Glib::Traits::ValueCompatibleWithWrapProperty<SocketFamily>::value,
+      glib::Traits::ValueCompatibleWithWrapProperty<SocketFamily>::value,
       "Type SocketFamily cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of Glib::Value<>.");
+      "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  SocketAddress::property_family () const -> Glib::PropertyProxy_ReadOnly<SocketFamily>
+  SocketAddress::property_family () const -> glib::PropertyProxy_ReadOnly<SocketFamily>
   {
     return {this, "family"};
   }
 
-} // namespace Gio
+} // namespace gio

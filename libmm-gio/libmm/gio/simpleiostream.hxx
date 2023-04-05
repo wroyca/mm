@@ -14,16 +14,16 @@ using GSimpleIOStreamClass = struct _GSimpleIOStreamClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gio
+namespace gio
 {
   class LIBMM_GIO_SYMEXPORT SimpleIOStream_Class;
 }
 #endif
 
-namespace Gio
+namespace gio
 {
 
-  class LIBMM_GIO_SYMEXPORT SimpleIOStream : public Gio::IOStream
+  class LIBMM_GIO_SYMEXPORT SimpleIOStream : public gio::IOStream
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -42,7 +42,7 @@ namespace Gio
     static CppClassType simpleiostream_class_;
 
   protected:
-    explicit SimpleIOStream (const Glib::ConstructParams& construct_params);
+    explicit SimpleIOStream (const glib::ConstructParams& construct_params);
     explicit SimpleIOStream (GSimpleIOStream* castitem);
 
 #endif
@@ -80,36 +80,36 @@ namespace Gio
 
   private:
   protected:
-    explicit SimpleIOStream (const Glib::RefPtr<InputStream>& input_stream,
-                             const Glib::RefPtr<OutputStream>& output_stream);
+    explicit SimpleIOStream (const glib::RefPtr<InputStream>& input_stream,
+                             const glib::RefPtr<OutputStream>& output_stream);
 
   public:
     static auto
-    create (const Glib::RefPtr<InputStream>& input_stream,
-            const Glib::RefPtr<OutputStream>& output_stream)
-        -> Glib::RefPtr<SimpleIOStream>;
+    create (const glib::RefPtr<InputStream>& input_stream,
+            const glib::RefPtr<OutputStream>& output_stream)
+        -> glib::RefPtr<SimpleIOStream>;
 
     auto
     property_input_stream () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<InputStream>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<InputStream>>;
 
     auto
     property_output_stream () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<OutputStream>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<OutputStream>>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gio
+} // namespace gio
 
-namespace Glib
+namespace glib
 {
 
   LIBMM_GIO_SYMEXPORT
   auto
-  wrap (GSimpleIOStream* object, bool take_copy = false) -> Glib::RefPtr<Gio::SimpleIOStream>;
-} // namespace Glib
+  wrap (GSimpleIOStream* object, bool take_copy = false) -> glib::RefPtr<gio::SimpleIOStream>;
+} // namespace glib
 
 #endif

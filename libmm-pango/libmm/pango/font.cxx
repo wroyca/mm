@@ -8,7 +8,7 @@
 #include <libmm/pango/fontface.hxx>
 #include <libmm/pango/fontmap.hxx>
 
-namespace Pango
+namespace pango
 {
 
   auto
@@ -40,25 +40,25 @@ namespace Pango
     return logical_rect;
   }
 
-} // namespace Pango
+} // namespace pango
 
 namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (PangoFont* object, const bool take_copy) -> RefPtr<Pango::Font>
+  wrap (PangoFont* object, const bool take_copy) -> RefPtr<pango::Font>
   {
-    return Glib::make_refptr_for_instance<Pango::Font> (
-        dynamic_cast<Pango::Font*> (wrap_auto ((GObject*) object, take_copy)));
+    return glib::make_refptr_for_instance<pango::Font> (
+        dynamic_cast<pango::Font*> (wrap_auto ((GObject*) object, take_copy)));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Pango
+namespace pango
 {
 
   auto
@@ -82,7 +82,7 @@ namespace Pango
   }
 
   auto
-  Font_Class::wrap_new (GObject* object) -> Glib::ObjectBase*
+  Font_Class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new Font ((PangoFont*) object);
   }
@@ -94,7 +94,7 @@ namespace Pango
     return gobj ();
   }
 
-  Font::Font (const Glib::ConstructParams& construct_params)
+  Font::Font (const glib::ConstructParams& construct_params)
     : Object (construct_params)
   {
   }
@@ -147,9 +147,9 @@ namespace Pango
   }
 
   auto
-  Font::get_coverage (const Language& language) const -> Glib::RefPtr<Coverage>
+  Font::get_coverage (const Language& language) const -> glib::RefPtr<Coverage>
   {
-    return Glib::wrap (pango_font_get_coverage (
+    return glib::wrap (pango_font_get_coverage (
         const_cast<PangoFont*> (gobj ()),
         const_cast<PangoLanguage*> (language.gobj ())));
   }
@@ -174,28 +174,28 @@ namespace Pango
   }
 
   auto
-  Font::get_font_map () -> Glib::RefPtr<FontMap>
+  Font::get_font_map () -> glib::RefPtr<FontMap>
   {
-    return Glib::wrap (pango_font_get_font_map (gobj ()));
+    return glib::wrap (pango_font_get_font_map (gobj ()));
   }
 
   auto
-  Font::get_font_map () const -> Glib::RefPtr<const FontMap>
+  Font::get_font_map () const -> glib::RefPtr<const FontMap>
   {
     return const_cast<Font*> (this)->get_font_map ();
   }
 
   auto
-  Font::get_face () -> Glib::RefPtr<FontFace>
+  Font::get_face () -> glib::RefPtr<FontFace>
   {
-    auto retvalue = Glib::wrap (pango_font_get_face (gobj ()));
+    auto retvalue = glib::wrap (pango_font_get_face (gobj ()));
     if (retvalue)
       retvalue->reference ();
     return retvalue;
   }
 
   auto
-  Font::get_face () const -> Glib::RefPtr<const FontFace>
+  Font::get_face () const -> glib::RefPtr<const FontFace>
   {
     return const_cast<Font*> (this)->get_face ();
   }
@@ -206,4 +206,4 @@ namespace Pango
     return pango_font_has_char (const_cast<PangoFont*> (gobj ()), wc);
   }
 
-} // namespace Pango
+} // namespace pango

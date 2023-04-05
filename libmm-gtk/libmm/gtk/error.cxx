@@ -11,31 +11,31 @@ namespace
 {
 }
 
-Gtk::DialogError::DialogError (Gtk::DialogError::Code error_code,
-                               const Glib::ustring& error_message)
-  : Glib::Error (GTK_DIALOG_ERROR, error_code, error_message)
+gtk::DialogError::DialogError (gtk::DialogError::Code error_code,
+                               const glib::ustring& error_message)
+  : glib::Error (GTK_DIALOG_ERROR, error_code, error_message)
 {
 }
 
-Gtk::DialogError::DialogError (GError* gobject)
-  : Glib::Error (gobject)
+gtk::DialogError::DialogError (GError* gobject)
+  : glib::Error (gobject)
 {
 }
 
 auto
-Gtk::DialogError::code () const -> Gtk::DialogError::Code
+gtk::DialogError::code () const -> gtk::DialogError::Code
 {
-  return static_cast<Code> (Glib::Error::code ());
+  return static_cast<Code> (glib::Error::code ());
 }
 
 auto
-Gtk::DialogError::throw_func (GError* gobject) -> void
+gtk::DialogError::throw_func (GError* gobject) -> void
 {
-  throw Gtk::DialogError (gobject);
+  throw gtk::DialogError (gobject);
 }
 
 auto
-Glib::Value<Gtk::DialogError::Code>::value_type () -> GType
+glib::Value<gtk::DialogError::Code>::value_type () -> GType
 {
   return gtk_dialog_error_get_type ();
 }

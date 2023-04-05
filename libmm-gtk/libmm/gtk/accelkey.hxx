@@ -8,7 +8,7 @@
 #include <gdk/gdkkeysyms.h>
 #include <libmm/gdk/enums.hxx>
 
-namespace Gtk
+namespace gtk
 {
 
   class LIBMM_GTK_SYMEXPORT AccelKey
@@ -17,11 +17,11 @@ namespace Gtk
     AccelKey ();
 
     AccelKey (guint accel_key,
-              Gdk::ModifierType accel_mods,
-              const Glib::ustring& accel_path = {});
+              gdk::ModifierType accel_mods,
+              const glib::ustring& accel_path = {});
 
-    AccelKey (const Glib::ustring& accelerator,
-              const Glib::ustring& accel_path = {});
+    AccelKey (const glib::ustring& accelerator,
+              const glib::ustring& accel_path = {});
 
     AccelKey (const AccelKey& src);
 
@@ -35,20 +35,20 @@ namespace Gtk
     get_key () const -> guint;
 
     auto
-    get_mod () const -> Gdk::ModifierType;
+    get_mod () const -> gdk::ModifierType;
 
     auto
-    get_path () const -> Glib::ustring;
+    get_path () const -> glib::ustring;
 
     auto
-    get_abbrev () const -> Glib::ustring;
+    get_abbrev () const -> glib::ustring;
 
   protected:
     guint key_;
-    Gdk::ModifierType mod_;
-    Glib::ustring path_;
+    gdk::ModifierType mod_;
+    glib::ustring path_;
   };
 
-} // namespace Gtk
+} // namespace gtk
 
 #endif

@@ -7,29 +7,29 @@
 
 #include <libmm/glib/class.hxx>
 
-namespace Gtk
+namespace gtk
 {
 
-  class LIBMM_GTK_SYMEXPORT FileDialog_Class : public Glib::Class
+  class LIBMM_GTK_SYMEXPORT FileDialog_Class : public glib::Class
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
     using CppObjectType = FileDialog;
     using BaseObjectType = GtkFileDialog;
-    using CppClassParent = Glib::Object_Class;
+    using CppClassParent = glib::Object_Class;
 
     friend class FileDialog;
 #endif
 
     auto
-    init () -> const Glib::Class&;
+    init () -> const glib::Class&;
 
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
 
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
 #endif

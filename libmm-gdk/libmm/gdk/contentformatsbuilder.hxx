@@ -8,7 +8,7 @@
 
 #include <libmm/gdk/contentformats.hxx>
 
-namespace Gdk
+namespace gdk
 {
 
   class LIBMM_GDK_SYMEXPORT ContentFormatsBuilder final
@@ -47,28 +47,28 @@ namespace Gdk
   private:
   public:
     static auto
-    create () -> Glib::RefPtr<ContentFormatsBuilder>;
+    create () -> glib::RefPtr<ContentFormatsBuilder>;
 
     auto
-    add_formats (const Glib::RefPtr<const ContentFormats>& formats) -> void;
+    add_formats (const glib::RefPtr<const ContentFormats>& formats) -> void;
 
     auto
-    add_mime_type (const Glib::ustring& mime_type) -> void;
+    add_mime_type (const glib::ustring& mime_type) -> void;
 
     auto
     add_gtype (GType gtype) -> void;
 
     auto
-    to_formats () -> Glib::RefPtr<ContentFormats>;
+    to_formats () -> glib::RefPtr<ContentFormats>;
   };
 
-} // namespace Gdk
+} // namespace gdk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GDK_SYMEXPORT auto
-  wrap (GdkContentFormatsBuilder* object, bool take_copy = false) -> Glib::RefPtr<Gdk::ContentFormatsBuilder>;
+  wrap (GdkContentFormatsBuilder* object, bool take_copy = false) -> glib::RefPtr<gdk::ContentFormatsBuilder>;
 
-} // namespace Glib
+} // namespace glib
 
 #endif

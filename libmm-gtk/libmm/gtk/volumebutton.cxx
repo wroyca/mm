@@ -7,7 +7,7 @@
 
 #include <gtk/gtk.h>
 
-namespace Gtk
+namespace gtk
 {
 
 }
@@ -16,23 +16,23 @@ namespace
 {
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
-  wrap (GtkVolumeButton* object, bool take_copy) -> Gtk::VolumeButton*
+  wrap (GtkVolumeButton* object, bool take_copy) -> gtk::VolumeButton*
   {
-    return dynamic_cast<Gtk::VolumeButton*> (
-        Glib::wrap_auto ((GObject*) (object), take_copy));
+    return dynamic_cast<gtk::VolumeButton*> (
+        glib::wrap_auto ((GObject*) (object), take_copy));
   }
 
-} // namespace Glib
+} // namespace glib
 
-namespace Gtk
+namespace gtk
 {
 
   auto
-  VolumeButton_Class::init () -> const Glib::Class&
+  VolumeButton_Class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -52,30 +52,30 @@ namespace Gtk
   }
 
   auto
-  VolumeButton_Class::wrap_new (GObject* o) -> Glib::ObjectBase*
+  VolumeButton_Class::wrap_new (GObject* o) -> glib::ObjectBase*
   {
     return manage (new VolumeButton ((GtkVolumeButton*) (o)));
   }
 
-  VolumeButton::VolumeButton (const Glib::ConstructParams& construct_params)
-    : Gtk::ScaleButton (construct_params)
+  VolumeButton::VolumeButton (const glib::ConstructParams& construct_params)
+    : gtk::ScaleButton (construct_params)
   {
   }
 
   VolumeButton::VolumeButton (GtkVolumeButton* castitem)
-    : Gtk::ScaleButton ((GtkScaleButton*) (castitem))
+    : gtk::ScaleButton ((GtkScaleButton*) (castitem))
   {
   }
 
   VolumeButton::VolumeButton (VolumeButton&& src) noexcept
-    : Gtk::ScaleButton (std::move (src))
+    : gtk::ScaleButton (std::move (src))
   {
   }
 
   auto
   VolumeButton::operator= (VolumeButton&& src) noexcept -> VolumeButton&
   {
-    Gtk::ScaleButton::operator= (std::move (src));
+    gtk::ScaleButton::operator= (std::move (src));
     return *this;
   }
 
@@ -99,21 +99,21 @@ namespace Gtk
   }
 
   VolumeButton::VolumeButton ()
-    : Glib::ObjectBase (nullptr),
-      Gtk::ScaleButton (Glib::ConstructParams (volumebutton_class_.init ()))
+    : glib::ObjectBase (nullptr),
+      gtk::ScaleButton (glib::ConstructParams (volumebutton_class_.init ()))
   {
   }
 
   auto
-  VolumeButton::property_use_symbolic () -> Glib::PropertyProxy<bool>
+  VolumeButton::property_use_symbolic () -> glib::PropertyProxy<bool>
   {
-    return Glib::PropertyProxy<bool> (this, "use-symbolic");
+    return glib::PropertyProxy<bool> (this, "use-symbolic");
   }
 
   auto
-  VolumeButton::property_use_symbolic () const -> Glib::PropertyProxy_ReadOnly<bool>
+  VolumeButton::property_use_symbolic () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return Glib::PropertyProxy_ReadOnly<bool> (this, "use-symbolic");
+    return glib::PropertyProxy_ReadOnly<bool> (this, "use-symbolic");
   }
 
-} // namespace Gtk
+} // namespace gtk

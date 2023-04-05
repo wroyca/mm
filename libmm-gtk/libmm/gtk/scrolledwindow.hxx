@@ -14,13 +14,13 @@ using GtkScrolledWindowClass = struct _GtkScrolledWindowClass;
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT ScrolledWindow_Class;
 }
 #endif
 
-namespace Gtk
+namespace gtk
 {
 
   class Adjustment;
@@ -53,7 +53,7 @@ namespace Gtk
     static CppClassType scrolledwindow_class_;
 
   protected:
-    explicit ScrolledWindow (const Glib::ConstructParams& construct_params);
+    explicit ScrolledWindow (const glib::ConstructParams& construct_params);
     explicit ScrolledWindow (GtkScrolledWindow* castitem);
 
 #endif
@@ -85,22 +85,22 @@ namespace Gtk
     ScrolledWindow ();
 
     auto
-    set_hadjustment (const Glib::RefPtr<Adjustment>& hadjustment) -> void;
+    set_hadjustment (const glib::RefPtr<Adjustment>& hadjustment) -> void;
 
     auto
-    set_vadjustment (const Glib::RefPtr<Adjustment>& vadjustment) -> void;
+    set_vadjustment (const glib::RefPtr<Adjustment>& vadjustment) -> void;
 
     auto
-    get_hadjustment () -> Glib::RefPtr<Adjustment>;
+    get_hadjustment () -> glib::RefPtr<Adjustment>;
 
     auto
-    get_hadjustment () const -> Glib::RefPtr<const Adjustment>;
+    get_hadjustment () const -> glib::RefPtr<const Adjustment>;
 
     auto
-    get_vadjustment () -> Glib::RefPtr<Adjustment>;
+    get_vadjustment () -> glib::RefPtr<Adjustment>;
 
     auto
-    get_vadjustment () const -> Glib::RefPtr<const Adjustment>;
+    get_vadjustment () const -> glib::RefPtr<const Adjustment>;
 
     auto
     set_policy (PolicyType hscrollbar_policy, PolicyType vscrollbar_policy)
@@ -197,119 +197,119 @@ namespace Gtk
     get_child () const -> const Widget*;
 
     auto
-    signal_edge_overshot () -> Glib::SignalProxy<void (Gtk::PositionType)>;
+    signal_edge_overshot () -> glib::SignalProxy<void (gtk::PositionType)>;
 
     auto
-    signal_edge_reached () -> Glib::SignalProxy<void (Gtk::PositionType)>;
+    signal_edge_reached () -> glib::SignalProxy<void (gtk::PositionType)>;
 
     auto
-    property_hadjustment () -> Glib::PropertyProxy<Glib::RefPtr<Adjustment>>;
+    property_hadjustment () -> glib::PropertyProxy<glib::RefPtr<Adjustment>>;
 
     auto
     property_hadjustment () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Adjustment>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<Adjustment>>;
 
     auto
-    property_vadjustment () -> Glib::PropertyProxy<Glib::RefPtr<Adjustment>>;
+    property_vadjustment () -> glib::PropertyProxy<glib::RefPtr<Adjustment>>;
 
     auto
     property_vadjustment () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::RefPtr<Adjustment>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<Adjustment>>;
 
     auto
-    property_hscrollbar_policy () -> Glib::PropertyProxy<PolicyType>;
+    property_hscrollbar_policy () -> glib::PropertyProxy<PolicyType>;
 
     auto
     property_hscrollbar_policy () const
-        -> Glib::PropertyProxy_ReadOnly<PolicyType>;
+        -> glib::PropertyProxy_ReadOnly<PolicyType>;
 
     auto
-    property_vscrollbar_policy () -> Glib::PropertyProxy<PolicyType>;
+    property_vscrollbar_policy () -> glib::PropertyProxy<PolicyType>;
 
     auto
     property_vscrollbar_policy () const
-        -> Glib::PropertyProxy_ReadOnly<PolicyType>;
+        -> glib::PropertyProxy_ReadOnly<PolicyType>;
 
     auto
-    property_window_placement () -> Glib::PropertyProxy<CornerType>;
+    property_window_placement () -> glib::PropertyProxy<CornerType>;
 
     auto
     property_window_placement () const
-        -> Glib::PropertyProxy_ReadOnly<CornerType>;
+        -> glib::PropertyProxy_ReadOnly<CornerType>;
 
     auto
-    property_has_frame () -> Glib::PropertyProxy<bool>;
+    property_has_frame () -> glib::PropertyProxy<bool>;
 
     auto
-    property_has_frame () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_has_frame () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_min_content_width () -> Glib::PropertyProxy<int>;
+    property_min_content_width () -> glib::PropertyProxy<int>;
 
     auto
-    property_min_content_width () const -> Glib::PropertyProxy_ReadOnly<int>;
+    property_min_content_width () const -> glib::PropertyProxy_ReadOnly<int>;
 
     auto
-    property_min_content_height () -> Glib::PropertyProxy<int>;
+    property_min_content_height () -> glib::PropertyProxy<int>;
 
     auto
-    property_min_content_height () const -> Glib::PropertyProxy_ReadOnly<int>;
+    property_min_content_height () const -> glib::PropertyProxy_ReadOnly<int>;
 
     auto
-    property_kinetic_scrolling () -> Glib::PropertyProxy<bool>;
+    property_kinetic_scrolling () -> glib::PropertyProxy<bool>;
 
     auto
-    property_kinetic_scrolling () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_kinetic_scrolling () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_overlay_scrolling () -> Glib::PropertyProxy<bool>;
+    property_overlay_scrolling () -> glib::PropertyProxy<bool>;
 
     auto
-    property_overlay_scrolling () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_overlay_scrolling () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_max_content_width () -> Glib::PropertyProxy<int>;
+    property_max_content_width () -> glib::PropertyProxy<int>;
 
     auto
-    property_max_content_width () const -> Glib::PropertyProxy_ReadOnly<int>;
+    property_max_content_width () const -> glib::PropertyProxy_ReadOnly<int>;
 
     auto
-    property_max_content_height () -> Glib::PropertyProxy<int>;
+    property_max_content_height () -> glib::PropertyProxy<int>;
 
     auto
-    property_max_content_height () const -> Glib::PropertyProxy_ReadOnly<int>;
+    property_max_content_height () const -> glib::PropertyProxy_ReadOnly<int>;
 
     auto
-    property_propagate_natural_width () -> Glib::PropertyProxy<bool>;
+    property_propagate_natural_width () -> glib::PropertyProxy<bool>;
 
     auto
     property_propagate_natural_width () const
-        -> Glib::PropertyProxy_ReadOnly<bool>;
+        -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_propagate_natural_height () -> Glib::PropertyProxy<bool>;
+    property_propagate_natural_height () -> glib::PropertyProxy<bool>;
 
     auto
     property_propagate_natural_height () const
-        -> Glib::PropertyProxy_ReadOnly<bool>;
+        -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_child () -> Glib::PropertyProxy<Widget*>;
+    property_child () -> glib::PropertyProxy<Widget*>;
 
     auto
-    property_child () const -> Glib::PropertyProxy_ReadOnly<Widget*>;
+    property_child () const -> glib::PropertyProxy_ReadOnly<Widget*>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkScrolledWindow* object, bool take_copy = false) -> Gtk::ScrolledWindow*;
-} // namespace Glib
+  wrap (GtkScrolledWindow* object, bool take_copy = false) -> gtk::ScrolledWindow*;
+} // namespace glib
 
 #endif

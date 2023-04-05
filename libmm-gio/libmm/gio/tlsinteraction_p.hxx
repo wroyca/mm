@@ -8,17 +8,17 @@
 
 #include <libmm/glib/class.hxx>
 
-namespace Gio
+namespace gio
 {
 
-  class LIBMM_GIO_SYMEXPORT TlsInteraction_Class : public Glib::Class
+  class LIBMM_GIO_SYMEXPORT TlsInteraction_Class : public glib::Class
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
     using CppObjectType = TlsInteraction;
     using BaseObjectType = GTlsInteraction;
     using BaseClassType = GTlsInteractionClass;
-    using CppClassParent = Glib::Object_Class;
+    using CppClassParent = glib::Object_Class;
     using BaseClassParent = GObjectClass;
 
     friend class TlsInteraction;
@@ -31,7 +31,7 @@ namespace Gio
     class_init_function (void* g_class, void* class_data) -> void;
 
     static auto
-    wrap_new (GObject*) -> Glib::ObjectBase*;
+    wrap_new (GObject*) -> glib::ObjectBase*;
 
   protected:
     static auto
@@ -52,6 +52,6 @@ namespace Gio
         -> GTlsInteractionResult;
   };
 
-} // namespace Gio
+} // namespace gio
 
 #endif

@@ -17,13 +17,13 @@ using GtkAppChooserWidgetClass = struct _GtkAppChooserWidgetClass;
   #endif
 
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
-namespace Gtk
+namespace gtk
 {
   class LIBMM_GTK_SYMEXPORT AppChooserWidget_Class;
 }
   #endif
 
-namespace Gtk
+namespace gtk
 {
 
   class LIBMM_GTK_SYMEXPORT AppChooserWidget : public Widget,
@@ -54,7 +54,7 @@ namespace Gtk
     static CppClassType appchooserwidget_class_;
 
   protected:
-    explicit AppChooserWidget (const Glib::ConstructParams& construct_params);
+    explicit AppChooserWidget (const glib::ConstructParams& construct_params);
     explicit AppChooserWidget (GtkAppChooserWidget* castitem);
 
   #endif
@@ -83,7 +83,7 @@ namespace Gtk
 
   private:
   public:
-    explicit AppChooserWidget (const Glib::ustring& content_type);
+    explicit AppChooserWidget (const glib::ustring& content_type);
 
     auto
     set_show_default (bool setting = true) -> void;
@@ -116,68 +116,68 @@ namespace Gtk
     get_show_all () const -> bool;
 
     auto
-    set_default_text (const Glib::ustring& text) -> void;
+    set_default_text (const glib::ustring& text) -> void;
 
     auto
-    get_default_text () -> Glib::ustring;
+    get_default_text () -> glib::ustring;
 
     auto
     signal_application_selected ()
-        -> Glib::SignalProxy<void (const Glib::RefPtr<Gio::AppInfo>&)>;
+        -> glib::SignalProxy<void (const glib::RefPtr<gio::AppInfo>&)>;
 
     auto
     signal_application_activated ()
-        -> Glib::SignalProxy<void (const Glib::RefPtr<Gio::AppInfo>&)>;
+        -> glib::SignalProxy<void (const glib::RefPtr<gio::AppInfo>&)>;
 
     auto
-    property_show_default () -> Glib::PropertyProxy<bool>;
+    property_show_default () -> glib::PropertyProxy<bool>;
 
     auto
-    property_show_default () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_show_default () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_show_recommended () -> Glib::PropertyProxy<bool>;
+    property_show_recommended () -> glib::PropertyProxy<bool>;
 
     auto
-    property_show_recommended () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_show_recommended () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_show_fallback () -> Glib::PropertyProxy<bool>;
+    property_show_fallback () -> glib::PropertyProxy<bool>;
 
     auto
-    property_show_fallback () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_show_fallback () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_show_other () -> Glib::PropertyProxy<bool>;
+    property_show_other () -> glib::PropertyProxy<bool>;
 
     auto
-    property_show_other () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_show_other () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_show_all () -> Glib::PropertyProxy<bool>;
+    property_show_all () -> glib::PropertyProxy<bool>;
 
     auto
-    property_show_all () const -> Glib::PropertyProxy_ReadOnly<bool>;
+    property_show_all () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_default_text () -> Glib::PropertyProxy<Glib::ustring>;
+    property_default_text () -> glib::PropertyProxy<glib::ustring>;
 
     auto
     property_default_text () const
-        -> Glib::PropertyProxy_ReadOnly<Glib::ustring>;
+        -> glib::PropertyProxy_ReadOnly<glib::ustring>;
 
   public:
   public:
   protected:
   };
 
-} // namespace Gtk
+} // namespace gtk
 
-namespace Glib
+namespace glib
 {
   LIBMM_GTK_SYMEXPORT auto
-  wrap (GtkAppChooserWidget* object, bool take_copy = false) -> Gtk::AppChooserWidget*;
-} // namespace Glib
+  wrap (GtkAppChooserWidget* object, bool take_copy = false) -> gtk::AppChooserWidget*;
+} // namespace glib
 
 #endif
 

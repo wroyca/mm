@@ -13,7 +13,7 @@
 namespace
 {
 
-  class ForeignIOChannel : public Glib::IOChannel
+  class ForeignIOChannel : public glib::IOChannel
   {
   public:
     ForeignIOChannel (GIOChannel* gobject, const bool take_copy)
@@ -46,7 +46,7 @@ namespace
 
 } // namespace
 
-namespace Glib
+namespace glib
 {
 
   IOChannel::IOChannel (IOChannel&& other) noexcept
@@ -280,39 +280,39 @@ namespace Glib
       cpp_object->reference ();
     }
 
-    return Glib::make_refptr_for_instance<IOChannel> (cpp_object);
+    return glib::make_refptr_for_instance<IOChannel> (cpp_object);
   }
 
-} // namespace Glib
+} // namespace glib
 
 namespace
 {
 }
 
-Glib::IOChannelError::IOChannelError (const Code error_code,
+glib::IOChannelError::IOChannelError (const Code error_code,
                                       const ustring& error_message)
   : Error (G_IO_CHANNEL_ERROR, error_code, error_message)
 {
 }
 
-Glib::IOChannelError::IOChannelError (GError* gobject)
+glib::IOChannelError::IOChannelError (GError* gobject)
   : Error (gobject)
 {
 }
 
 auto
-Glib::IOChannelError::code () const -> Code
+glib::IOChannelError::code () const -> Code
 {
   return static_cast<Code> (Error::code ());
 }
 
 auto
-Glib::IOChannelError::throw_func (GError* gobject) -> void
+glib::IOChannelError::throw_func (GError* gobject) -> void
 {
   throw IOChannelError (gobject);
 }
 
-namespace Glib
+namespace glib
 {
 
   auto
@@ -462,4 +462,4 @@ namespace Glib
     g_io_channel_set_close_on_unref (gobj (), do_close);
   }
 
-} // namespace Glib
+} // namespace glib
