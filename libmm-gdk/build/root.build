@@ -1,6 +1,6 @@
 # Suppress warnings coming from external libraries.
 #
-cxx.internal.scope = current
+# cxx.internal.scope = current
 
 cxx.std = latest
 
