@@ -1,7 +1,7 @@
 intf_libs = # Interface dependencies.
 impl_libs = # Implementation dependencies.
 
-import intf_libs += libadwaita-1.0%lib{adwaita-1}
+import intf_libs += libadwaita%lib{adwaita-1}
 import impl_libs += libmm-gtk%lib{mm-gtk}
 import impl_libs += libmm-gdk%lib{mm-gdk}
 import impl_libs += libmm-gio%lib{mm-gio}
