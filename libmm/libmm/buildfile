@@ -18,8 +18,9 @@ hxx{version}: in{version} $src_root/manifest
 # Build options.
 #
 cxx.poptions =+ "-I$out_root" "-I$src_root"
-cxx.loptions =+ "/LIBPATH:C:/Users/wroy/Documents/Gnome/lib"
-
+if ($cxx.target.class == 'windows')
+  cxx.loptions =+ "/LIBPATH:C:/gnome/lib"
+  
 # Export options.
 #
 lib{mm}:
