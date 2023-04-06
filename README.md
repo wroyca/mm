@@ -10,7 +10,7 @@ Libmm is a robust and versatile library that empowers developers to create sophi
 
 ## Getting Started 
 
-If you're ready to start using libmm, we recommend referring to  the [build2](https://build2.org/build2-toolchain/doc/build2-toolchain-intro.xhtml#preface) documentation. This build system provides comprehensive instructions for installing and using build2, which offers a powerful and flexible development experience that integrates seamlessly with libmm. If you're already familiar with build2, you can build, test, install, uninstall and upgrade libmm with:
+If you're ready to start using libmm, we recommend referring to  the [build2](https://build2.org/build2-toolchain/doc/build2-toolchain-intro.xhtml#preface) documentation. This documentation provides comprehensive instructions for installing and using build2, which offers a powerful and flexible development experience that integrates seamlessly with libmm. If you're already familiar with build2, you can build, test, install, uninstall and upgrade libmm with:
 
 ### Windows
 ```bash
