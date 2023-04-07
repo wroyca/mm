@@ -22,3 +22,4 @@ depends: libmm-pango == $
 fedora-builds: sys
 fedora-build-include: linux_fedora*-**
 fedora-build-exclude: **
+fedora-build-config: sys:pango-devel sys:cairo-devel sys:gtk4-devel sys:libadwaita-devel sys:glib2-devel sys:libsigc++30-devel
