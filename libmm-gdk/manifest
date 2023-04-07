@@ -9,3 +9,7 @@ depends: * bpkg >= 0.16.0-
 depends: libmm-glib == $
 depends: libmm-pango == $
 depends: libmm-gio == $
+
+fedora-builds: sys
+fedora-build-include: linux_fedora*-**
+fedora-build-exclude: **

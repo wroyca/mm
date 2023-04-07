@@ -18,3 +18,7 @@ depends: libmm-gio == $
 depends: libmm-glib == $
 depends: libmm-gtk == $
 depends: libmm-pango == $
+
+fedora-builds: sys
+fedora-build-include: linux_fedora*-**
+fedora-build-exclude: **
