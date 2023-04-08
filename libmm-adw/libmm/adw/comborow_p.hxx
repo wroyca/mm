@@ -17,7 +17,7 @@ namespace adw
     using CppObjectType = ComboRow;
     using BaseObjectType = AdwComboRow;
     using BaseClassType = AdwComboRowClass;
-    using CppClassParent = adw::ActionRow_Class;
+    using CppClassParent = adw::action_row_class;
     using BaseClassParent = AdwActionRowClass;
 
     friend class ComboRow;

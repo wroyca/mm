@@ -25,7 +25,7 @@ namespace adw
 namespace adw
 {
 
-  class LIBMM_ADW_SYMEXPORT ComboRow : public adw::ActionRow
+  class LIBMM_ADW_SYMEXPORT ComboRow : public adw::action_row
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

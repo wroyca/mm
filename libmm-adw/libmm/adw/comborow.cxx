@@ -56,24 +56,24 @@ namespace adw
   }
 
   ComboRow::ComboRow (const glib::ConstructParams& construct_params)
-    : adw::ActionRow (construct_params)
+    : adw::action_row (construct_params)
   {
   }
 
   ComboRow::ComboRow (AdwComboRow* castitem)
-    : adw::ActionRow ((AdwActionRow*) (castitem))
+    : adw::action_row ((AdwActionRow*) (castitem))
   {
   }
 
   ComboRow::ComboRow (ComboRow&& src) noexcept
-    : adw::ActionRow (std::move (src))
+    : adw::action_row (std::move (src))
   {
   }
 
   auto
   ComboRow::operator= (ComboRow&& src) noexcept -> ComboRow&
   {
-    adw::ActionRow::operator= (std::move (src));
+    adw::action_row::operator= (std::move (src));
     return *this;
   }
 
@@ -98,7 +98,7 @@ namespace adw
 
   ComboRow::ComboRow ()
     : glib::ObjectBase (nullptr),
-      adw::ActionRow (glib::ConstructParams (comborow_class_.init ()))
+      adw::action_row (glib::ConstructParams (comborow_class_.init ()))
   {
   }
 

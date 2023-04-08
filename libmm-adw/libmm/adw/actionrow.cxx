@@ -7,41 +7,14 @@
 
 namespace adw
 {
-
-}
-
-namespace
-{
-
-  static const glib::SignalProxyInfo ActionRow_signal_activated_info = {
-      "activated",
-      (GCallback) &glib::SignalProxyNormal::slot0_void_callback,
-      (GCallback) &glib::SignalProxyNormal::slot0_void_callback};
-
-}
-
-namespace glib
-{
+  action_row::cpp_class_type action_row::actionrow_class_;
 
   auto
-  wrap (AdwActionRow* object, bool take_copy) -> adw::ActionRow*
-  {
-    return dynamic_cast<adw::ActionRow*> (
-        glib::wrap_auto ((GObject*) (object), take_copy));
-  }
-
-} // namespace glib
-
-namespace adw
-{
-
-  auto
-  ActionRow_Class::init () -> const glib::Class&
+  action_row_class::init () -> const Class &
   {
     if (!gtype_)
     {
-      class_init_func_ = &ActionRow_Class::class_init_function;
-
+      class_init_func_ = &action_row_class::class_init_function;
       register_derived_type (adw_action_row_get_type ());
     }
 
@@ -49,219 +22,227 @@ namespace adw
   }
 
   auto
-  ActionRow_Class::class_init_function (void* g_class, void* class_data) -> void
+  action_row_class::class_init_function (void *g_class,
+                                        void *class_data) -> void
   {
-    const auto klass = static_cast<BaseClassType*> (g_class);
+    const auto klass = static_cast<BaseClassType *> (g_class);
     CppClassParent::class_init_function (klass, class_data);
   }
 
   auto
-  ActionRow_Class::wrap_new (GObject* o) -> glib::ObjectBase*
+  action_row_class::wrap_new (GObject *object) -> glib::ObjectBase *
   {
-    return manage (new ActionRow ((AdwActionRow*) (o)));
+    return manage (new action_row (std::bit_cast<AdwActionRow *> (object)));
   }
 
-  ActionRow::ActionRow (const glib::ConstructParams& construct_params)
-    : adw::PreferencesRow (construct_params)
+  namespace
   {
+    const glib::SignalProxyInfo signal_activated_info = {
+      "activated",
+      std::bit_cast<GCallback> (&glib::SignalProxyNormal::slot0_void_callback),
+      std::bit_cast<GCallback> (&glib::SignalProxyNormal::slot0_void_callback)
+    };
   }
 
-  ActionRow::ActionRow (AdwActionRow* castitem)
-    : adw::PreferencesRow ((AdwPreferencesRow*) (castitem))
-  {
-  }
-
-  ActionRow::ActionRow (ActionRow&& src) noexcept
-    : adw::PreferencesRow (std::move (src))
-  {
-  }
-
-  auto
-  ActionRow::operator= (ActionRow&& src) noexcept -> ActionRow&
-  {
-    adw::PreferencesRow::operator= (std::move (src));
-    return *this;
-  }
-
-  ActionRow::~ActionRow () noexcept
+  action_row::action_row (): ObjectBase (nullptr), PreferencesRow (glib::ConstructParams (actionrow_class_.init ())) { }
+  action_row::action_row (const glib::ConstructParams &construct_params): PreferencesRow (construct_params) { }
+  action_row::action_row (AdwActionRow *castitem): PreferencesRow (std::bit_cast<AdwPreferencesRow *> (castitem)) { }
+  action_row::action_row (action_row &&src) noexcept: PreferencesRow (std::move (src)) { }
+  action_row::~action_row () noexcept
   {
     destroy_ ();
   }
 
-  ActionRow::CppClassType ActionRow::actionrow_class_;
+  auto
+  action_row::operator= (action_row &&src) noexcept -> action_row &
+  {
+    PreferencesRow::operator= (std::move (src));
+    return *this;
+  }
 
   auto
-  ActionRow::get_type () -> GType
+  action_row::get_type () -> GType
   {
     return actionrow_class_.init ().get_type ();
   }
 
   auto
-  ActionRow::get_base_type () -> GType
+  action_row::get_base_type () -> GType
   {
     return adw_action_row_get_type ();
   }
 
-  ActionRow::ActionRow ()
-    : glib::ObjectBase (nullptr),
-      adw::PreferencesRow (glib::ConstructParams (actionrow_class_.init ()))
-  {
+  auto
+  action_row::gobj () -> AdwActionRow * {
+    return reinterpret_cast<AdwActionRow *> (gobject_);
   }
 
   auto
-  ActionRow::get_icon_name () const -> glib::ustring
-  {
-    return glib::convert_const_gchar_ptr_to_ustring (
-        adw_action_row_get_icon_name (const_cast<AdwActionRow*> (gobj ())));
+  action_row::gobj () const -> const AdwActionRow * {
+    return reinterpret_cast<AdwActionRow *> (gobject_);
   }
 
   auto
-  ActionRow::get_subtitle () const -> glib::ustring
-  {
-    return glib::convert_const_gchar_ptr_to_ustring (
-        adw_action_row_get_subtitle (const_cast<AdwActionRow*> (gobj ())));
-  }
-
-  auto
-  ActionRow::get_activatable_widget () const -> gtk::Widget*
-  {
-    return glib::wrap (adw_action_row_get_activatable_widget (
-        const_cast<AdwActionRow*> (gobj ())));
-  }
-
-  auto
-  ActionRow::get_subtitle_lines () const -> int
-  {
-    return adw_action_row_get_subtitle_lines (
-        const_cast<AdwActionRow*> (gobj ()));
-  }
-
-  auto
-  ActionRow::get_title_lines () const -> int
-  {
-    return adw_action_row_get_title_lines (const_cast<AdwActionRow*> (gobj ()));
-  }
-
-  auto
-  ActionRow::activate () -> void
+  action_row::activate () -> void
   {
     adw_action_row_activate (gobj ());
   }
 
   auto
-  ActionRow::add_prefix (gtk::Widget& widget) -> void
+  action_row::remove (Widget &widget) -> void
   {
-    adw_action_row_add_prefix (gobj (), (widget).gobj ());
+    adw_action_row_remove (gobj (), widget.gobj ());
   }
 
   auto
-  ActionRow::add_suffix (gtk::Widget& widget) -> void
+  action_row::get_icon_name () const -> glib::ustring
   {
-    adw_action_row_add_suffix (gobj (), (widget).gobj ());
+    return glib::convert_const_gchar_ptr_to_ustring (
+      adw_action_row_get_icon_name (const_cast<AdwActionRow *> (gobj ())));
   }
 
   auto
-  ActionRow::set_activatable_widget (gtk::Widget* widget) const -> void
+  action_row::get_subtitle () const -> glib::ustring
   {
-    adw_action_row_set_activatable_widget (const_cast<AdwActionRow*> (gobj ()),
-                                           (GtkWidget*) glib::unwrap (widget));
+    return glib::convert_const_gchar_ptr_to_ustring (
+      adw_action_row_get_subtitle (const_cast<AdwActionRow *> (gobj ())));
   }
 
   auto
-  ActionRow::set_icon_name (const glib::ustring& icon_name) -> void
+  action_row::get_activatable_widget () const -> Widget *
+  {
+    return glib::wrap (
+      adw_action_row_get_activatable_widget (const_cast<AdwActionRow *> (gobj ())));
+  }
+
+  auto
+  action_row::get_subtitle_lines () const -> int
+  {
+    return adw_action_row_get_subtitle_lines (const_cast<AdwActionRow *> (gobj ()));
+  }
+
+  auto
+  action_row::get_title_lines () const -> int
+  {
+    return adw_action_row_get_title_lines (const_cast<AdwActionRow *> (gobj ()));
+  }
+
+  auto
+  action_row::add_prefix (Widget &widget) -> void
+  {
+    adw_action_row_add_prefix (gobj (), widget.gobj ());
+  }
+
+  auto
+  action_row::add_suffix (Widget &widget) -> void
+  {
+    adw_action_row_add_suffix (gobj (), widget.gobj ());
+  }
+
+  auto
+  action_row::set_activatable_widget (Widget *widget) const -> void
+  {
+    adw_action_row_set_activatable_widget (const_cast<AdwActionRow *> (gobj ()), glib::unwrap (widget));
+  }
+
+  auto
+  action_row::set_icon_name (const glib::ustring &icon_name) -> void
   {
     adw_action_row_set_icon_name (gobj (), icon_name.c_str ());
   }
 
   auto
-  ActionRow::set_subtitle (const glib::ustring& subtitle) -> void
+  action_row::set_subtitle (const glib::ustring &subtitle) -> void
   {
     adw_action_row_set_subtitle (gobj (), subtitle.c_str ());
   }
 
   auto
-  ActionRow::set_subtitle_lines (int subtitle_lines) -> void
+  action_row::set_subtitle_lines (const int subtitle_lines) -> void
   {
     adw_action_row_set_subtitle_lines (gobj (), subtitle_lines);
   }
 
   auto
-  ActionRow::set_title_lines (int title_lines) -> void
+  action_row::set_title_lines (const int title_lines) -> void
   {
     adw_action_row_set_title_lines (gobj (), title_lines);
   }
 
   auto
-  ActionRow::remove (gtk::Widget& widget) -> void
+  action_row::property_icon_name () -> glib::PropertyProxy<glib::ustring>
   {
-    adw_action_row_remove (gobj (), (widget).gobj ());
+    return {this, "icon-name"};
   }
 
   auto
-  ActionRow::signal_activated () -> glib::SignalProxy<void ()>
+  action_row::property_icon_name () const -> glib::PropertyProxy_ReadOnly<glib::ustring>
   {
-    return glib::SignalProxy<void ()> (this, &ActionRow_signal_activated_info);
+    return {this, "icon-name"};
   }
 
   auto
-  ActionRow::property_icon_name () -> glib::PropertyProxy<glib::ustring>
+  action_row::property_subtitle () -> glib::PropertyProxy<glib::ustring>
   {
-    return glib::PropertyProxy<glib::ustring> (this, "icon-name");
+    return {this, "subtitle"};
   }
 
   auto
-  ActionRow::property_icon_name () const -> glib::PropertyProxy_ReadOnly<glib::ustring>
+  action_row::property_subtitle () const -> glib::PropertyProxy_ReadOnly<glib::ustring>
   {
-    return glib::PropertyProxy_ReadOnly<glib::ustring> (this, "icon-name");
+    return {this, "subtitle"};
   }
 
   auto
-  ActionRow::property_subtitle () -> glib::PropertyProxy<glib::ustring>
+  action_row::property_activatable_widget () -> glib::PropertyProxy<Widget *>
   {
-    return glib::PropertyProxy<glib::ustring> (this, "subtitle");
+    return {this, "activatable-widget"};
   }
 
   auto
-  ActionRow::property_subtitle () const -> glib::PropertyProxy_ReadOnly<glib::ustring>
+  action_row::property_activatable_widget () const -> glib::PropertyProxy_ReadOnly<Widget *>
   {
-    return glib::PropertyProxy_ReadOnly<glib::ustring> (this, "subtitle");
+    return {this, "activatable-widget"};
   }
 
   auto
-  ActionRow::property_activatable_widget () -> glib::PropertyProxy<gtk::Widget*>
+  action_row::property_subtitle_lines () -> glib::PropertyProxy<int>
   {
-    return glib::PropertyProxy<gtk::Widget*> (this, "activatable-widget");
+    return {this, "subtitle-lines"};
   }
 
   auto
-  ActionRow::property_activatable_widget () const -> glib::PropertyProxy_ReadOnly<gtk::Widget*>
+  action_row::property_subtitle_lines () const -> glib::PropertyProxy_ReadOnly<int>
   {
-    return glib::PropertyProxy_ReadOnly<gtk::Widget*> (this,
-                                                       "activatable-widget");
+    return {this, "subtitle-lines"};
   }
 
   auto
-  ActionRow::property_subtitle_lines () -> glib::PropertyProxy<int>
+  action_row::property_title_lines () -> glib::PropertyProxy<int>
   {
-    return glib::PropertyProxy<int> (this, "subtitle-lines");
+    return {this, "title-lines"};
   }
 
   auto
-  ActionRow::property_subtitle_lines () const -> glib::PropertyProxy_ReadOnly<int>
+  action_row::property_title_lines () const -> glib::PropertyProxy_ReadOnly<int>
   {
-    return glib::PropertyProxy_ReadOnly<int> (this, "subtitle-lines");
+    return {this, "title-lines"};
   }
 
   auto
-  ActionRow::property_title_lines () -> glib::PropertyProxy<int>
+  action_row::signal_activated () -> glib::SignalProxy<void  ()>
   {
-    return glib::PropertyProxy<int> (this, "title-lines");
+    return {this, &signal_activated_info};
   }
-
-  auto
-  ActionRow::property_title_lines () const -> glib::PropertyProxy_ReadOnly<int>
-  {
-    return glib::PropertyProxy_ReadOnly<int> (this, "title-lines");
-  }
-
 } // namespace adw
+
+namespace glib
+{
+  auto
+  wrap (AdwActionRow *object,
+        const bool take_copy) -> adw::action_row *
+  {
+    return dynamic_cast<adw::action_row *> (
+      wrap_auto (std::bit_cast<GObject *> (object), take_copy));
+  }
+} // namespace glib

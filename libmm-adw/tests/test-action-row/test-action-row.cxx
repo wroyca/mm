@@ -12,7 +12,7 @@
 static void
 test_adw_action_row_add_remove (void)
 {
-  adw::ActionRow row;
+  adw::action_row row;
 
   auto* prefix = gtk::make_managed<gtk::CheckButton> ();
   auto* suffix = gtk::make_managed<gtk::CheckButton> ();
@@ -27,7 +27,7 @@ test_adw_action_row_add_remove (void)
 static void
 test_adw_action_row_subtitle (void)
 {
-  adw::ActionRow row;
+  adw::action_row row;
 
   g_assert_true (row.get_subtitle () == "");
 
@@ -42,7 +42,7 @@ test_adw_action_row_subtitle (void)
 static void
 test_adw_action_row_icon_name (void)
 {
-  adw::ActionRow row;
+  adw::action_row row;
 
   g_assert_true (row.get_icon_name () == "");
 
@@ -53,7 +53,7 @@ test_adw_action_row_icon_name (void)
 static void
 test_adw_action_row_title_lines (void)
 {
-  adw::ActionRow row;
+  adw::action_row row;
   g_assert_true (row.get_title_lines () == 0);
 
   g_test_expect_message (
@@ -72,7 +72,7 @@ test_adw_action_row_title_lines (void)
 static void
 test_adw_action_row_subtitle_lines (void)
 {
-  adw::ActionRow row;
+  adw::action_row row;
 
   g_assert_true (row.get_subtitle_lines () == 0);
 
@@ -92,7 +92,7 @@ test_adw_action_row_subtitle_lines (void)
 static void
 test_adw_action_row_activate (void)
 {
-  adw::ActionRow row;
+  adw::action_row row;
 
   int activated = 0;
   row.signal_activated ().connect ([&activated] () { activated++; });

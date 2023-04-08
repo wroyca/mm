@@ -183,7 +183,7 @@ namespace adw
     wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
-  class LIBMM_ADW_SYMEXPORT ActionRow_Class
+  class LIBMM_ADW_SYMEXPORT action_row_class
   {
   public:
     static auto
@@ -546,7 +546,7 @@ namespace adw
     glib::wrap_register (adw_about_window_get_type (),
                          &about_window_class::wrap_new);
     glib::wrap_register (adw_action_row_get_type (),
-                         &ActionRow_Class::wrap_new);
+                         &action_row_class::wrap_new);
     glib::wrap_register (adw_animation_get_type (), &Animation_Class::wrap_new);
     glib::wrap_register (adw_animation_target_get_type (),
                          &AnimationTarget_Class::wrap_new);
@@ -634,7 +634,7 @@ namespace adw
                          &WindowTitle_Class::wrap_new);
 
     g_type_ensure (about_window::get_type ());
-    g_type_ensure (ActionRow::get_type ());
+    g_type_ensure (action_row::get_type ());
     g_type_ensure (Animation::get_type ());
     g_type_ensure (AnimationTarget::get_type ());
     g_type_ensure (Application::get_type ());
