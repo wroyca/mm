@@ -14,12 +14,12 @@ namespace adw
   class LIBMM_ADW_SYMEXPORT about_window_class;
   class LIBMM_ADW_SYMEXPORT about_window : public Window
   {
-  public:
     using cpp_object_type = about_window;
     using cpp_class_type = about_window_class;
     using base_object_type = AdwAboutWindow;
     using base_class_type = AdwAboutWindowClass;
 
+  public:
     about_window ();
     about_window (about_window &&src) noexcept;
     about_window (const about_window &) = delete;
