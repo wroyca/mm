@@ -11,8 +11,3 @@ depends: libmm-gdk == $
 depends: libmm-gio == $
 depends: libmm-pango == $
 depends: libmm-cairo == $
-
-fedora-builds: sys
-fedora-build-include: linux_fedora*-**
-fedora-build-exclude: **
-fedora-build-config: sys:gtk4-devel

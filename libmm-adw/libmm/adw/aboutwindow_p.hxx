@@ -10,15 +10,15 @@
 namespace adw
 {
 
-  class LIBMM_ADW_SYMEXPORT AboutWindow_Class : public glib::Class
+  class LIBMM_ADW_SYMEXPORT about_window_class : public glib::Class
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-    using CppObjectType = AboutWindow;
+    using CppObjectType = about_window;
     using BaseObjectType = AdwAboutWindow;
     using CppClassParent = adw::Window_Class;
 
-    friend class AboutWindow;
+    friend class about_window;
 #endif
 
     auto

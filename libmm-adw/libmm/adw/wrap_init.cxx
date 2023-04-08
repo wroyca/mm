@@ -176,7 +176,7 @@ extern "C"
 namespace adw
 {
 
-  class LIBMM_ADW_SYMEXPORT AboutWindow_Class
+  class LIBMM_ADW_SYMEXPORT about_window_class
   {
   public:
     static auto
@@ -544,7 +544,7 @@ namespace adw
   wrap_init () -> void
   {
     glib::wrap_register (adw_about_window_get_type (),
-                         &AboutWindow_Class::wrap_new);
+                         &about_window_class::wrap_new);
     glib::wrap_register (adw_action_row_get_type (),
                          &ActionRow_Class::wrap_new);
     glib::wrap_register (adw_animation_get_type (), &Animation_Class::wrap_new);
@@ -633,7 +633,7 @@ namespace adw
     glib::wrap_register (adw_window_title_get_type (),
                          &WindowTitle_Class::wrap_new);
 
-    g_type_ensure (AboutWindow::get_type ());
+    g_type_ensure (about_window::get_type ());
     g_type_ensure (ActionRow::get_type ());
     g_type_ensure (Animation::get_type ());
     g_type_ensure (AnimationTarget::get_type ());

@@ -13,7 +13,7 @@
 static void
 test_adw_about_window_create (void)
 {
-  adw::AboutWindow* window = new adw::AboutWindow ();
+  adw::about_window* window = new adw::about_window ();
   g_assert_nonnull (window);
 
   std::vector<glib::ustring> developers{"Angela Avery"};

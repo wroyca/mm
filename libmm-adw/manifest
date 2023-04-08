@@ -11,8 +11,3 @@ depends: libmm-glib == $
 depends: libmm-gio == $
 depends: libmm-gdk == $
 depends: libmm-cairo == $
-
-fedora-builds: sys
-fedora-build-include: linux_fedora*-**
-fedora-build-exclude: **
-fedora-build-config: sys:libadwaita-devel

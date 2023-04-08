@@ -6,8 +6,3 @@ summary: C++ binding library for GLIB
 license: LGPL-2.1-or-later ; GNU Lesser General Public License v2.1 or later.
 depends: * build2 >= 0.16.0-
 depends: * bpkg >= 0.16.0-
-
-fedora-builds: sys
-fedora-build-include: linux_fedora*-**
-fedora-build-exclude: **
-fedora-build-config: sys:glib2-devel sys:libsigc++30-devel
