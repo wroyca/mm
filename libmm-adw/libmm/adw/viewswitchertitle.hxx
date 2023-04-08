@@ -19,42 +19,42 @@
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace adw
 {
-  class LIBMM_ADW_SYMEXPORT ViewSwitcherTitle_Class;
+  class LIBMM_ADW_SYMEXPORT view_switcher_title_class;
 }
 #endif
 
 namespace adw
 {
 
-  class LIBMM_ADW_SYMEXPORT ViewSwitcherTitle : public gtk::Widget
+  class LIBMM_ADW_SYMEXPORT view_switcher_title : public gtk::Widget
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-    typedef ViewSwitcherTitle CppObjectType;
-    typedef ViewSwitcherTitle_Class CppClassType;
-    typedef AdwViewSwitcherTitle BaseObjectType;
-    typedef AdwViewSwitcherTitleClass BaseClassType;
+    using CppObjectType = view_switcher_title;
+    using CppClassType = view_switcher_title_class;
+    using BaseObjectType = AdwViewSwitcherTitle;
+    using BaseClassType = AdwViewSwitcherTitleClass;
 #endif
 
-    ViewSwitcherTitle (ViewSwitcherTitle&& src) noexcept;
+    view_switcher_title (view_switcher_title&& src) noexcept;
     auto
-    operator= (ViewSwitcherTitle&& src) noexcept -> ViewSwitcherTitle&;
+    operator= (view_switcher_title&& src) noexcept -> view_switcher_title&;
 
-    ViewSwitcherTitle (const ViewSwitcherTitle&) = delete;
+    view_switcher_title (const view_switcher_title&) = delete;
     auto
-    operator= (const ViewSwitcherTitle&) -> ViewSwitcherTitle& = delete;
+    operator= (const view_switcher_title&) -> view_switcher_title& = delete;
 
-    ~ViewSwitcherTitle () noexcept override;
+    ~view_switcher_title () noexcept override;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   private:
-    friend class ViewSwitcherTitle_Class;
+    friend class view_switcher_title_class;
     static CppClassType viewswitchertitle_class_;
 
   protected:
-    explicit ViewSwitcherTitle (const glib::ConstructParams& construct_params);
-    explicit ViewSwitcherTitle (AdwViewSwitcherTitle* castitem);
+    explicit view_switcher_title (const glib::ConstructParams& construct_params);
+    explicit view_switcher_title (AdwViewSwitcherTitle* castitem);
 
 #endif
 
@@ -82,10 +82,10 @@ namespace adw
 
   private:
   public:
-    ViewSwitcherTitle ();
+    view_switcher_title ();
 
     auto
-    get_stack () const -> ViewStack*;
+    get_stack () const -> view_stack*;
 
     auto
     get_subtitle () const -> glib::ustring;
@@ -100,7 +100,7 @@ namespace adw
     get_view_switcher_enabled () const -> bool;
 
     auto
-    set_stack (ViewStack* stack) -> void;
+    set_stack (view_stack* stack) -> void;
 
     auto
     set_subtitle (const glib::ustring& subtitle) -> void;
@@ -112,10 +112,10 @@ namespace adw
     set_view_switcher_enabled (bool enabled) -> void;
 
     auto
-    property_stack () -> glib::PropertyProxy<ViewStack*>;
+    property_stack () -> glib::PropertyProxy<view_stack*>;
 
     auto
-    property_stack () const -> glib::PropertyProxy_ReadOnly<ViewStack*>;
+    property_stack () const -> glib::PropertyProxy_ReadOnly<view_stack*>;
 
     auto
     property_subtitle () -> glib::PropertyProxy<glib::ustring>;
@@ -150,7 +150,7 @@ namespace glib
 {
 
   auto
-  wrap (AdwViewSwitcherTitle* object, bool take_copy = false) -> adw::ViewSwitcherTitle*;
+  wrap (AdwViewSwitcherTitle* object, bool take_copy = false) -> adw::view_switcher_title*;
 }
 
 #endif

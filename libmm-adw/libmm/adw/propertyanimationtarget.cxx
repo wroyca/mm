@@ -11,7 +11,7 @@
 namespace adw
 {
 
-  PropertyAnimationTarget::PropertyAnimationTarget (
+  property_animation_target::property_animation_target (
       const glib::RefPtr<glib::Object>& object,
       const glib::ustring& property_name)
     : glib::ObjectBase (nullptr),
@@ -36,10 +36,10 @@ namespace glib
 {
 
   auto
-  wrap (AdwPropertyAnimationTarget* object, bool take_copy) -> glib::RefPtr<adw::PropertyAnimationTarget>
+  wrap (AdwPropertyAnimationTarget* object, bool take_copy) -> glib::RefPtr<adw::property_animation_target>
   {
-    return glib::make_refptr_for_instance<adw::PropertyAnimationTarget> (
-        dynamic_cast<adw::PropertyAnimationTarget*> (
+    return glib::make_refptr_for_instance<adw::property_animation_target> (
+        dynamic_cast<adw::property_animation_target*> (
             glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
@@ -49,7 +49,7 @@ namespace adw
 {
 
   auto
-  PropertyAnimationTarget_Class::init () -> const glib::Class&
+  property_animation_target_class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -60,61 +60,61 @@ namespace adw
   }
 
   auto
-  PropertyAnimationTarget_Class::wrap_new (GObject* object) -> glib::ObjectBase*
+  property_animation_target_class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
-    return new PropertyAnimationTarget ((AdwPropertyAnimationTarget*) object);
+    return new property_animation_target ((AdwPropertyAnimationTarget*) object);
   }
 
   auto
-  PropertyAnimationTarget::gobj_copy () -> AdwPropertyAnimationTarget*
+  property_animation_target::gobj_copy () -> AdwPropertyAnimationTarget*
   {
     reference ();
     return gobj ();
   }
 
-  PropertyAnimationTarget::PropertyAnimationTarget (
+  property_animation_target::property_animation_target (
       const glib::ConstructParams& construct_params)
     : AnimationTarget (construct_params)
   {
   }
 
-  PropertyAnimationTarget::PropertyAnimationTarget (
+  property_animation_target::property_animation_target (
       AdwPropertyAnimationTarget* castitem)
     : AnimationTarget ((AdwAnimationTarget*) (castitem))
   {
   }
 
-  PropertyAnimationTarget::PropertyAnimationTarget (
-      PropertyAnimationTarget&& src) noexcept
+  property_animation_target::property_animation_target (
+      property_animation_target&& src) noexcept
     : AnimationTarget (std::move (src))
   {
   }
 
   auto
-  PropertyAnimationTarget::operator= (PropertyAnimationTarget&& src) noexcept -> PropertyAnimationTarget&
+  property_animation_target::operator= (property_animation_target&& src) noexcept -> property_animation_target&
   {
     AnimationTarget::operator= (std::move (src));
     return *this;
   }
 
-  PropertyAnimationTarget::~PropertyAnimationTarget () noexcept {}
+  property_animation_target::~property_animation_target () noexcept {}
 
-  PropertyAnimationTarget::CppClassType
-      PropertyAnimationTarget::propertyanimationtarget_class_;
+  property_animation_target::CppClassType
+      property_animation_target::propertyanimationtarget_class_;
 
   auto
-  PropertyAnimationTarget::get_type () -> GType
+  property_animation_target::get_type () -> GType
   {
     return propertyanimationtarget_class_.init ().get_type ();
   }
 
   auto
-  PropertyAnimationTarget::get_base_type () -> GType
+  property_animation_target::get_base_type () -> GType
   {
     return adw_property_animation_target_get_type ();
   }
 
-  PropertyAnimationTarget::PropertyAnimationTarget (
+  property_animation_target::property_animation_target (
       const glib::RefPtr<glib::Object>& object,
       GParamSpec* pspec)
     : glib::ObjectBase (nullptr),
@@ -128,7 +128,7 @@ namespace adw
   {
   }
 
-  PropertyAnimationTarget::PropertyAnimationTarget ()
+  property_animation_target::property_animation_target ()
     : glib::ObjectBase (nullptr),
       AnimationTarget (
           glib::ConstructParams (propertyanimationtarget_class_.init ()))
@@ -136,23 +136,23 @@ namespace adw
   }
 
   auto
-  PropertyAnimationTarget::create (const glib::RefPtr<glib::Object>& object,
-                                   const glib::ustring& property_name) -> glib::RefPtr<PropertyAnimationTarget>
+  property_animation_target::create (const glib::RefPtr<glib::Object>& object,
+                                   const glib::ustring& property_name) -> glib::RefPtr<property_animation_target>
   {
-    return glib::make_refptr_for_instance<PropertyAnimationTarget> (
-        new PropertyAnimationTarget (object, property_name));
+    return glib::make_refptr_for_instance<property_animation_target> (
+        new property_animation_target (object, property_name));
   }
 
   auto
-  PropertyAnimationTarget::create (const glib::RefPtr<glib::Object>& object,
-                                   GParamSpec* pspec) -> glib::RefPtr<PropertyAnimationTarget>
+  property_animation_target::create (const glib::RefPtr<glib::Object>& object,
+                                   GParamSpec* pspec) -> glib::RefPtr<property_animation_target>
   {
-    return glib::make_refptr_for_instance<PropertyAnimationTarget> (
-        new PropertyAnimationTarget (object, pspec));
+    return glib::make_refptr_for_instance<property_animation_target> (
+        new property_animation_target (object, pspec));
   }
 
   auto
-  PropertyAnimationTarget::get_object () const -> glib::RefPtr<glib::Object>
+  property_animation_target::get_object () const -> glib::RefPtr<glib::Object>
   {
     auto retvalue = glib::wrap (adw_property_animation_target_get_object (
         const_cast<AdwPropertyAnimationTarget*> (gobj ())));
@@ -162,20 +162,20 @@ namespace adw
   }
 
   auto
-  PropertyAnimationTarget::get_pspec () const -> GParamSpec*
+  property_animation_target::get_pspec () const -> GParamSpec*
   {
     return adw_property_animation_target_get_pspec (
         const_cast<AdwPropertyAnimationTarget*> (gobj ()));
   }
 
   auto
-  PropertyAnimationTarget::property_object () const -> glib::PropertyProxy_ReadOnly<glib::RefPtr<glib::Object>>
+  property_animation_target::property_object () const -> glib::PropertyProxy_ReadOnly<glib::RefPtr<glib::Object>>
   {
     return {this, "object"};
   }
 
   auto
-  PropertyAnimationTarget::property_pspec () const -> glib::PropertyProxy_ReadOnly<GParamSpec*>
+  property_animation_target::property_pspec () const -> glib::PropertyProxy_ReadOnly<GParamSpec*>
   {
     return {this, "pspec"};
   }

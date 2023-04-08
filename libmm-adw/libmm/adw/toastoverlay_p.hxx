@@ -10,15 +10,15 @@
 namespace adw
 {
 
-  class LIBMM_ADW_SYMEXPORT ToastOverlay_Class : public glib::Class
+  class LIBMM_ADW_SYMEXPORT toast_overlay_class : public glib::Class
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-    using CppObjectType = ToastOverlay;
+    using CppObjectType = toast_overlay;
     using BaseObjectType = AdwToastOverlay;
     using CppClassParent = gtk::Widget_Class;
 
-    friend class ToastOverlay;
+    friend class toast_overlay;
 #endif
 
     auto

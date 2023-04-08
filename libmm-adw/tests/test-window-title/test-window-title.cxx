@@ -20,7 +20,7 @@ notify_cb ()
 static void
 test_adw_window_title_title (void)
 {
-  adw::WindowTitle window_title ("Some title", "");
+  adw::window_title window_title ("Some title", "");
 
   notified = 0;
   window_title.property_title ().signal_changed ().connect (
@@ -44,7 +44,7 @@ test_adw_window_title_title (void)
 static void
 test_adw_window_title_subtitle (void)
 {
-  adw::WindowTitle window_title ("", "Some subtitle");
+  adw::window_title window_title ("", "Some subtitle");
 
   notified = 0;
   window_title.property_subtitle ().signal_changed ().connect (

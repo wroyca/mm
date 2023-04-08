@@ -20,9 +20,9 @@ namespace glib
 {
 
   auto
-  wrap (AdwWindowTitle* object, bool take_copy) -> adw::WindowTitle*
+  wrap (AdwWindowTitle* object, bool take_copy) -> adw::window_title*
   {
-    return dynamic_cast<adw::WindowTitle*> (
+    return dynamic_cast<adw::window_title*> (
         glib::wrap_auto ((GObject*) (object), take_copy));
   }
 
@@ -32,7 +32,7 @@ namespace adw
 {
 
   auto
-  WindowTitle_Class::init () -> const glib::Class&
+  window_title_class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -43,59 +43,59 @@ namespace adw
   }
 
   auto
-  WindowTitle_Class::wrap_new (GObject* o) -> glib::ObjectBase*
+  window_title_class::wrap_new (GObject* o) -> glib::ObjectBase*
   {
-    return manage (new WindowTitle ((AdwWindowTitle*) (o)));
+    return manage (new window_title ((AdwWindowTitle*) (o)));
   }
 
-  WindowTitle::WindowTitle (const glib::ConstructParams& construct_params)
+  window_title::window_title (const glib::ConstructParams& construct_params)
     : gtk::Widget (construct_params)
   {
   }
 
-  WindowTitle::WindowTitle (AdwWindowTitle* castitem)
+  window_title::window_title (AdwWindowTitle* castitem)
     : gtk::Widget ((GtkWidget*) (castitem))
   {
   }
 
-  WindowTitle::WindowTitle (WindowTitle&& src) noexcept
+  window_title::window_title (window_title&& src) noexcept
     : gtk::Widget (std::move (src))
   {
   }
 
   auto
-  WindowTitle::operator= (WindowTitle&& src) noexcept -> WindowTitle&
+  window_title::operator= (window_title&& src) noexcept -> window_title&
   {
     gtk::Widget::operator= (std::move (src));
     return *this;
   }
 
-  WindowTitle::~WindowTitle () noexcept
+  window_title::~window_title () noexcept
   {
     destroy_ ();
   }
 
-  WindowTitle::CppClassType WindowTitle::windowtitle_class_;
+  window_title::CppClassType window_title::windowtitle_class_;
 
   auto
-  WindowTitle::get_type () -> GType
+  window_title::get_type () -> GType
   {
     return windowtitle_class_.init ().get_type ();
   }
 
   auto
-  WindowTitle::get_base_type () -> GType
+  window_title::get_base_type () -> GType
   {
     return adw_window_title_get_type ();
   }
 
-  WindowTitle::WindowTitle ()
+  window_title::window_title ()
     : glib::ObjectBase (nullptr),
       gtk::Widget (glib::ConstructParams (windowtitle_class_.init ()))
   {
   }
 
-  WindowTitle::WindowTitle (const glib::ustring& title,
+  window_title::window_title (const glib::ustring& title,
                             const glib::ustring& subtitle)
     : glib::ObjectBase (nullptr),
       gtk::Widget (glib::ConstructParams (windowtitle_class_.init (),
@@ -108,51 +108,51 @@ namespace adw
   }
 
   auto
-  WindowTitle::get_subtitle () const -> glib::ustring
+  window_title::get_subtitle () const -> glib::ustring
   {
     return glib::convert_const_gchar_ptr_to_ustring (
         adw_window_title_get_subtitle (const_cast<AdwWindowTitle*> (gobj ())));
   }
 
   auto
-  WindowTitle::get_title () const -> glib::ustring
+  window_title::get_title () const -> glib::ustring
   {
     return glib::convert_const_gchar_ptr_to_ustring (
         adw_window_title_get_title (const_cast<AdwWindowTitle*> (gobj ())));
   }
 
   auto
-  WindowTitle::set_subtitle (const glib::ustring& str) -> void
+  window_title::set_subtitle (const glib::ustring& str) -> void
   {
     adw_window_title_set_subtitle (gobj (), str.c_str ());
   }
 
   auto
-  WindowTitle::set_title (const glib::ustring& str) -> void
+  window_title::set_title (const glib::ustring& str) -> void
   {
     adw_window_title_set_title (gobj (), str.c_str ());
   }
 
   auto
-  WindowTitle::property_title () -> glib::PropertyProxy<glib::ustring>
+  window_title::property_title () -> glib::PropertyProxy<glib::ustring>
   {
     return {this, "title"};
   }
 
   auto
-  WindowTitle::property_title () const -> glib::PropertyProxy_ReadOnly<glib::ustring>
+  window_title::property_title () const -> glib::PropertyProxy_ReadOnly<glib::ustring>
   {
     return {this, "title"};
   }
 
   auto
-  WindowTitle::property_subtitle () -> glib::PropertyProxy<glib::ustring>
+  window_title::property_subtitle () -> glib::PropertyProxy<glib::ustring>
   {
     return {this, "subtitle"};
   }
 
   auto
-  WindowTitle::property_subtitle () const -> glib::PropertyProxy_ReadOnly<glib::ustring>
+  window_title::property_subtitle () const -> glib::PropertyProxy_ReadOnly<glib::ustring>
   {
     return {this, "subtitle"};
   }

@@ -23,7 +23,7 @@ namespace
     using namespace adw;
     using SlotType = sigc::slot<void (guint)>;
 
-    auto obj = dynamic_cast<Carousel*> (
+    auto obj = dynamic_cast<carousel*> (
         glib::ObjectBase::_get_current_wrapper ((GObject*) self));
 
     if (obj)
@@ -51,9 +51,9 @@ namespace glib
 {
 
   auto
-  wrap (AdwCarousel* object, bool take_copy) -> adw::Carousel*
+  wrap (AdwCarousel* object, bool take_copy) -> adw::carousel*
   {
-    return dynamic_cast<adw::Carousel*> (
+    return dynamic_cast<adw::carousel*> (
         glib::wrap_auto ((GObject*) (object), take_copy));
   }
 
@@ -63,7 +63,7 @@ namespace adw
 {
 
   auto
-  Carousel_Class::init () -> const glib::Class&
+  carousel_class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -74,123 +74,123 @@ namespace adw
   }
 
   auto
-  Carousel_Class::wrap_new (GObject* o) -> glib::ObjectBase*
+  carousel_class::wrap_new (GObject* o) -> glib::ObjectBase*
   {
-    return manage (new Carousel ((AdwCarousel*) (o)));
+    return manage (new carousel ((AdwCarousel*) (o)));
   }
 
-  Carousel::Carousel (const glib::ConstructParams& construct_params)
+  carousel::carousel (const glib::ConstructParams& construct_params)
     : gtk::Widget (construct_params)
   {
   }
 
-  Carousel::Carousel (AdwCarousel* castitem)
+  carousel::carousel (AdwCarousel* castitem)
     : gtk::Widget ((GtkWidget*) (castitem))
   {
   }
 
-  Carousel::Carousel (Carousel&& src) noexcept
+  carousel::carousel (carousel&& src) noexcept
     : gtk::Widget (std::move (src)),
       gtk::Orientable (std::move (src)),
-      adw::Swipeable (std::move (src))
+      adw::swipeable (std::move (src))
   {
   }
 
   auto
-  Carousel::operator= (Carousel&& src) noexcept -> Carousel&
+  carousel::operator= (carousel&& src) noexcept -> carousel&
   {
     gtk::Widget::operator= (std::move (src));
     gtk::Orientable::operator= (std::move (src));
-    adw::Swipeable::operator= (std::move (src));
+    adw::swipeable::operator= (std::move (src));
     return *this;
   }
 
-  Carousel::~Carousel () noexcept
+  carousel::~carousel () noexcept
   {
     destroy_ ();
   }
 
-  Carousel::CppClassType Carousel::carousel_class_;
+  carousel::CppClassType carousel::carousel_class_;
 
   auto
-  Carousel::get_type () -> GType
+  carousel::get_type () -> GType
   {
     return carousel_class_.init ().get_type ();
   }
 
   auto
-  Carousel::get_base_type () -> GType
+  carousel::get_base_type () -> GType
   {
     return adw_carousel_get_type ();
   }
 
-  Carousel::Carousel ()
+  carousel::carousel ()
     : glib::ObjectBase (nullptr),
       gtk::Widget (glib::ConstructParams (carousel_class_.init ()))
   {
   }
 
   auto
-  Carousel::append (gtk::Widget* child) -> void
+  carousel::append (gtk::Widget* child) -> void
   {
     adw_carousel_append (gobj (), (GtkWidget*) glib::unwrap (child));
   }
 
   auto
-  Carousel::get_allow_long_swipes () const -> bool
+  carousel::get_allow_long_swipes () const -> bool
   {
     return adw_carousel_get_allow_long_swipes (
         const_cast<AdwCarousel*> (gobj ()));
   }
 
   auto
-  Carousel::get_allow_mouse_drag () const -> bool
+  carousel::get_allow_mouse_drag () const -> bool
   {
     return adw_carousel_get_allow_mouse_drag (
         const_cast<AdwCarousel*> (gobj ()));
   }
 
   auto
-  Carousel::get_allow_scroll_wheel () const -> bool
+  carousel::get_allow_scroll_wheel () const -> bool
   {
     return adw_carousel_get_allow_scroll_wheel (
         const_cast<AdwCarousel*> (gobj ()));
   }
 
   auto
-  Carousel::get_interactive () const -> bool
+  carousel::get_interactive () const -> bool
   {
     return adw_carousel_get_interactive (const_cast<AdwCarousel*> (gobj ()));
   }
 
   auto
-  Carousel::get_n_pages () const -> guint
+  carousel::get_n_pages () const -> guint
   {
     return adw_carousel_get_n_pages (const_cast<AdwCarousel*> (gobj ()));
   }
 
   auto
-  Carousel::get_nth_page (guint n) const -> gtk::Widget*
+  carousel::get_nth_page (guint n) const -> gtk::Widget*
   {
     return glib::wrap (
         adw_carousel_get_nth_page (const_cast<AdwCarousel*> (gobj ()), n));
   }
 
   auto
-  Carousel::get_position () const -> double
+  carousel::get_position () const -> double
   {
     return adw_carousel_get_position (const_cast<AdwCarousel*> (gobj ()));
   }
 
   auto
-  Carousel::get_reveal_duration () const -> guint
+  carousel::get_reveal_duration () const -> guint
   {
     return adw_carousel_get_reveal_duration (
         const_cast<AdwCarousel*> (gobj ()));
   }
 
   auto
-  Carousel::get_scroll_params () const -> glib::RefPtr<SpringParams>
+  carousel::get_scroll_params () const -> glib::RefPtr<spring_params>
   {
     auto retvalue = glib::wrap (
         adw_carousel_get_scroll_params (const_cast<AdwCarousel*> (gobj ())));
@@ -200,37 +200,37 @@ namespace adw
   }
 
   auto
-  Carousel::get_spacing () const -> guint
+  carousel::get_spacing () const -> guint
   {
     return adw_carousel_get_spacing (const_cast<AdwCarousel*> (gobj ()));
   }
 
   auto
-  Carousel::insert (gtk::Widget* child, int position) -> void
+  carousel::insert (gtk::Widget* child, int position) -> void
   {
     adw_carousel_insert (gobj (), (GtkWidget*) glib::unwrap (child), position);
   }
 
   auto
-  Carousel::prepend (gtk::Widget* child) -> void
+  carousel::prepend (gtk::Widget* child) -> void
   {
     adw_carousel_prepend (gobj (), (GtkWidget*) glib::unwrap (child));
   }
 
   auto
-  Carousel::remove (gtk::Widget* child) -> void
+  carousel::remove (gtk::Widget* child) -> void
   {
     adw_carousel_remove (gobj (), (GtkWidget*) glib::unwrap (child));
   }
 
   auto
-  Carousel::reorder (gtk::Widget* child, int position) -> void
+  carousel::reorder (gtk::Widget* child, int position) -> void
   {
     adw_carousel_reorder (gobj (), (GtkWidget*) glib::unwrap (child), position);
   }
 
   auto
-  Carousel::scroll_to (gtk::Widget* child, bool animate) -> void
+  carousel::scroll_to (gtk::Widget* child, bool animate) -> void
   {
     adw_carousel_scroll_to (gobj (),
                             (GtkWidget*) glib::unwrap (child),
@@ -238,148 +238,148 @@ namespace adw
   }
 
   auto
-  Carousel::set_allow_long_swipes (bool allow_long_swipes) -> void
+  carousel::set_allow_long_swipes (bool allow_long_swipes) -> void
   {
     adw_carousel_set_allow_long_swipes (gobj (),
                                         static_cast<int> (allow_long_swipes));
   }
 
   auto
-  Carousel::set_allow_mouse_drag (bool allow_mouse_drag) -> void
+  carousel::set_allow_mouse_drag (bool allow_mouse_drag) -> void
   {
     adw_carousel_set_allow_mouse_drag (gobj (),
                                        static_cast<int> (allow_mouse_drag));
   }
 
   auto
-  Carousel::set_allow_scroll_wheel (bool allow_scroll_wheel) -> void
+  carousel::set_allow_scroll_wheel (bool allow_scroll_wheel) -> void
   {
     adw_carousel_set_allow_scroll_wheel (gobj (),
                                          static_cast<int> (allow_scroll_wheel));
   }
 
   auto
-  Carousel::set_interactive (bool interactive) -> void
+  carousel::set_interactive (bool interactive) -> void
   {
     adw_carousel_set_interactive (gobj (), static_cast<int> (interactive));
   }
 
   auto
-  Carousel::set_reveal_duration (guint reveal_duration) -> void
+  carousel::set_reveal_duration (guint reveal_duration) -> void
   {
     adw_carousel_set_reveal_duration (gobj (), reveal_duration);
   }
 
   auto
-  Carousel::set_scroll_params (const glib::RefPtr<SpringParams>& scroll_params) -> void
+  carousel::set_scroll_params (const glib::RefPtr<spring_params>& scroll_params) -> void
   {
     adw_carousel_set_scroll_params (gobj (), glib::unwrap (scroll_params));
   }
 
   auto
-  Carousel::set_spacing (guint spacing) -> void
+  carousel::set_spacing (guint spacing) -> void
   {
     adw_carousel_set_spacing (gobj (), spacing);
   }
 
   auto
-  Carousel::signal_page_changed () -> glib::SignalProxy<void (guint)>
+  carousel::signal_page_changed () -> glib::SignalProxy<void (guint)>
   {
     return {this, &Carousel_signal_page_changed_info};
   }
 
   auto
-  Carousel::property_interactive () -> glib::PropertyProxy<bool>
+  carousel::property_interactive () -> glib::PropertyProxy<bool>
   {
     return {this, "interactive"};
   }
 
   auto
-  Carousel::property_interactive () const -> glib::PropertyProxy_ReadOnly<bool>
+  carousel::property_interactive () const -> glib::PropertyProxy_ReadOnly<bool>
   {
     return {this, "interactive"};
   }
 
   auto
-  Carousel::property_scroll_params () -> glib::PropertyProxy<bool>
+  carousel::property_scroll_params () -> glib::PropertyProxy<bool>
   {
     return {this, "scroll-params"};
   }
 
   auto
-  Carousel::property_scroll_params () const -> glib::PropertyProxy_ReadOnly<bool>
+  carousel::property_scroll_params () const -> glib::PropertyProxy_ReadOnly<bool>
   {
     return {this, "scroll-params"};
   }
 
   auto
-  Carousel::property_allow_mouse_drag () -> glib::PropertyProxy<bool>
+  carousel::property_allow_mouse_drag () -> glib::PropertyProxy<bool>
   {
     return {this, "allow-mouse-drag"};
   }
 
   auto
-  Carousel::property_allow_mouse_drag () const -> glib::PropertyProxy_ReadOnly<bool>
+  carousel::property_allow_mouse_drag () const -> glib::PropertyProxy_ReadOnly<bool>
   {
     return {this, "allow-mouse-drag"};
   }
 
   auto
-  Carousel::property_allow_scroll_wheel () -> glib::PropertyProxy<bool>
+  carousel::property_allow_scroll_wheel () -> glib::PropertyProxy<bool>
   {
     return {this, "allow-scroll-wheel"};
   }
 
   auto
-  Carousel::property_allow_scroll_wheel () const -> glib::PropertyProxy_ReadOnly<bool>
+  carousel::property_allow_scroll_wheel () const -> glib::PropertyProxy_ReadOnly<bool>
   {
     return {this, "allow-scroll-wheel"};
   }
 
   auto
-  Carousel::property_allow_long_swipes () -> glib::PropertyProxy<bool>
+  carousel::property_allow_long_swipes () -> glib::PropertyProxy<bool>
   {
     return {this, "allow-long-swipes"};
   }
 
   auto
-  Carousel::property_allow_long_swipes () const -> glib::PropertyProxy_ReadOnly<bool>
+  carousel::property_allow_long_swipes () const -> glib::PropertyProxy_ReadOnly<bool>
   {
     return {this, "allow-long-swipes"};
   }
 
   auto
-  Carousel::property_reveal_duration () -> glib::PropertyProxy<guint>
+  carousel::property_reveal_duration () -> glib::PropertyProxy<guint>
   {
     return {this, "reveal-duration"};
   }
 
   auto
-  Carousel::property_reveal_duration () const -> glib::PropertyProxy_ReadOnly<guint>
+  carousel::property_reveal_duration () const -> glib::PropertyProxy_ReadOnly<guint>
   {
     return {this, "reveal-duration"};
   }
 
   auto
-  Carousel::property_position () const -> glib::PropertyProxy_ReadOnly<double>
+  carousel::property_position () const -> glib::PropertyProxy_ReadOnly<double>
   {
     return {this, "position"};
   }
 
   auto
-  Carousel::property_n_pages () const -> glib::PropertyProxy_ReadOnly<guint>
+  carousel::property_n_pages () const -> glib::PropertyProxy_ReadOnly<guint>
   {
     return {this, "n-pages"};
   }
 
   auto
-  Carousel::property_spacing () -> glib::PropertyProxy<guint>
+  carousel::property_spacing () -> glib::PropertyProxy<guint>
   {
     return {this, "spacing"};
   }
 
   auto
-  Carousel::property_spacing () const -> glib::PropertyProxy_ReadOnly<guint>
+  carousel::property_spacing () const -> glib::PropertyProxy_ReadOnly<guint>
   {
     return {this, "spacing"};
   }

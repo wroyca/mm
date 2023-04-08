@@ -22,10 +22,10 @@ namespace glib
 {
 
   auto
-  wrap (AdwSqueezerPage* object, bool take_copy) -> glib::RefPtr<adw::SqueezerPage>
+  wrap (AdwSqueezerPage* object, bool take_copy) -> glib::RefPtr<adw::squeezer_page>
   {
-    return glib::make_refptr_for_instance<adw::SqueezerPage> (
-        dynamic_cast<adw::SqueezerPage*> (
+    return glib::make_refptr_for_instance<adw::squeezer_page> (
+        dynamic_cast<adw::squeezer_page*> (
             glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
@@ -35,7 +35,7 @@ namespace adw
 {
 
   auto
-  SqueezerPage_Class::init () -> const glib::Class&
+  squeezer_page_class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -46,102 +46,102 @@ namespace adw
   }
 
   auto
-  SqueezerPage_Class::wrap_new (GObject* object) -> glib::ObjectBase*
+  squeezer_page_class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
-    return new SqueezerPage ((AdwSqueezerPage*) object);
+    return new squeezer_page ((AdwSqueezerPage*) object);
   }
 
   auto
-  SqueezerPage::gobj_copy () -> AdwSqueezerPage*
+  squeezer_page::gobj_copy () -> AdwSqueezerPage*
   {
     reference ();
     return gobj ();
   }
 
-  SqueezerPage::SqueezerPage (const glib::ConstructParams& construct_params)
+  squeezer_page::squeezer_page (const glib::ConstructParams& construct_params)
     : glib::Object (construct_params)
   {
   }
 
-  SqueezerPage::SqueezerPage (AdwSqueezerPage* castitem)
+  squeezer_page::squeezer_page (AdwSqueezerPage* castitem)
     : glib::Object ((GObject*) (castitem))
   {
   }
 
-  SqueezerPage::SqueezerPage (SqueezerPage&& src) noexcept
+  squeezer_page::squeezer_page (squeezer_page&& src) noexcept
     : glib::Object (std::move (src))
   {
   }
 
   auto
-  SqueezerPage::operator= (SqueezerPage&& src) noexcept -> SqueezerPage&
+  squeezer_page::operator= (squeezer_page&& src) noexcept -> squeezer_page&
   {
     glib::Object::operator= (std::move (src));
     return *this;
   }
 
-  SqueezerPage::~SqueezerPage () noexcept {}
+  squeezer_page::~squeezer_page () noexcept {}
 
-  SqueezerPage::CppClassType SqueezerPage::squeezerpage_class_;
+  squeezer_page::CppClassType squeezer_page::squeezerpage_class_;
 
   auto
-  SqueezerPage::get_type () -> GType
+  squeezer_page::get_type () -> GType
   {
     return squeezerpage_class_.init ().get_type ();
   }
 
   auto
-  SqueezerPage::get_base_type () -> GType
+  squeezer_page::get_base_type () -> GType
   {
     return adw_squeezer_page_get_type ();
   }
 
-  SqueezerPage::SqueezerPage ()
+  squeezer_page::squeezer_page ()
     : glib::ObjectBase (nullptr),
       glib::Object (glib::ConstructParams (squeezerpage_class_.init ()))
   {
   }
 
   auto
-  SqueezerPage::create () -> glib::RefPtr<SqueezerPage>
+  squeezer_page::create () -> glib::RefPtr<squeezer_page>
   {
-    return glib::make_refptr_for_instance<SqueezerPage> (new SqueezerPage ());
+    return glib::make_refptr_for_instance<squeezer_page> (new squeezer_page ());
   }
 
   auto
-  SqueezerPage::get_child () const -> gtk::Widget*
+  squeezer_page::get_child () const -> gtk::Widget*
   {
     return glib::wrap (
         adw_squeezer_page_get_child (const_cast<AdwSqueezerPage*> (gobj ())));
   }
 
   auto
-  SqueezerPage::get_enabled () const -> bool
+  squeezer_page::get_enabled () const -> bool
   {
     return adw_squeezer_page_get_enabled (
         const_cast<AdwSqueezerPage*> (gobj ()));
   }
 
   auto
-  SqueezerPage::set_enabled (bool enabled) -> void
+  squeezer_page::set_enabled (bool enabled) -> void
   {
     adw_squeezer_page_set_enabled (gobj (), static_cast<int> (enabled));
   }
 
   auto
-  SqueezerPage::property_child () const -> glib::PropertyProxy_ReadOnly<gtk::Widget*>
+  squeezer_page::property_child () const -> glib::PropertyProxy_ReadOnly<gtk::Widget*>
   {
     return {this, "child"};
   }
 
   auto
-  SqueezerPage::property_enabled () -> glib::PropertyProxy<bool>
+  squeezer_page::property_enabled () -> glib::PropertyProxy<bool>
   {
     return {this, "enabled"};
   }
 
   auto
-  SqueezerPage::property_enabled () const -> glib::PropertyProxy_ReadOnly<bool>
+  squeezer_page::property_enabled () const -> glib::PropertyProxy_ReadOnly<bool>
   {
     return {this, "enabled"};
   }

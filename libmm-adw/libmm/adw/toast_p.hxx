@@ -10,15 +10,15 @@
 namespace adw
 {
 
-  class LIBMM_ADW_SYMEXPORT Toast_Class : public glib::Class
+  class LIBMM_ADW_SYMEXPORT toast_class : public glib::Class
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-    using CppObjectType = Toast;
+    using CppObjectType = toast;
     using BaseObjectType = AdwToast;
     using CppClassParent = glib::Object_Class;
 
-    friend class Toast;
+    friend class toast;
 #endif
 
     auto

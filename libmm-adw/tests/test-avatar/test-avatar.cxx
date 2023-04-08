@@ -14,7 +14,7 @@
 static void
 test_adw_avatar_icon_name (void)
 {
-  adw::Avatar avatar (128, "", true);
+  adw::avatar avatar (128, "", true);
   g_assert_true (avatar.get_icon_name () == "");
 
   avatar.set_icon_name (TEST_ICON_NAME);
@@ -24,7 +24,7 @@ test_adw_avatar_icon_name (void)
 static void
 test_adw_avatar_text (void)
 {
-  adw::Avatar avatar (128, "", true);
+  adw::avatar avatar (128, "", true);
   g_assert_true (avatar.get_text () == "");
 
   avatar.set_text (TEST_STRING);
@@ -34,7 +34,7 @@ test_adw_avatar_text (void)
 static void
 test_adw_avatar_size (void)
 {
-  adw::Avatar avatar (TEST_SIZE, "", true);
+  adw::avatar avatar (TEST_SIZE, "", true);
 
   g_assert_true (avatar.get_size () == TEST_SIZE);
   avatar.set_size (TEST_SIZE / 2);

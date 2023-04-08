@@ -18,46 +18,46 @@ using AdwPropertyAnimationTargetClass = struct _AdwPropertyAnimationTargetClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace adw
 {
-  class LIBMM_ADW_SYMEXPORT PropertyAnimationTarget_Class;
+  class LIBMM_ADW_SYMEXPORT property_animation_target_class;
 }
 #endif
 
 namespace adw
 {
 
-  class LIBMM_ADW_SYMEXPORT PropertyAnimationTarget : public AnimationTarget
+  class LIBMM_ADW_SYMEXPORT property_animation_target : public AnimationTarget
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   public:
-    using CppObjectType = PropertyAnimationTarget;
-    using CppClassType = PropertyAnimationTarget_Class;
+    using CppObjectType = property_animation_target;
+    using CppClassType = property_animation_target_class;
     using BaseObjectType = AdwPropertyAnimationTarget;
     using BaseClassType = AdwPropertyAnimationTargetClass;
 
-    PropertyAnimationTarget (const PropertyAnimationTarget&) = delete;
+    property_animation_target (const property_animation_target&) = delete;
     auto
-    operator= (const PropertyAnimationTarget&)
-        -> PropertyAnimationTarget& = delete;
+    operator= (const property_animation_target&)
+        -> property_animation_target& = delete;
 
   private:
-    friend class PropertyAnimationTarget_Class;
+    friend class property_animation_target_class;
     static CppClassType propertyanimationtarget_class_;
 
   protected:
-    explicit PropertyAnimationTarget (
+    explicit property_animation_target (
         const glib::ConstructParams& construct_params);
-    explicit PropertyAnimationTarget (AdwPropertyAnimationTarget* castitem);
+    explicit property_animation_target (AdwPropertyAnimationTarget* castitem);
 
 #endif
 
   public:
-    PropertyAnimationTarget (PropertyAnimationTarget&& src) noexcept;
+    property_animation_target (property_animation_target&& src) noexcept;
     auto
-    operator= (PropertyAnimationTarget&& src) noexcept
-        -> PropertyAnimationTarget&;
+    operator= (property_animation_target&& src) noexcept
+        -> property_animation_target&;
 
-    ~PropertyAnimationTarget () noexcept override;
+    ~property_animation_target () noexcept override;
 
     static auto
     get_type () -> GType G_GNUC_CONST;
@@ -84,22 +84,22 @@ namespace adw
     gobj_copy () -> AdwPropertyAnimationTarget*;
 
   private:
-    PropertyAnimationTarget (const glib::RefPtr<glib::Object>& object,
+    property_animation_target (const glib::RefPtr<glib::Object>& object,
                              const glib::ustring& property_name);
-    explicit PropertyAnimationTarget (const glib::RefPtr<glib::Object>& object,
+    explicit property_animation_target (const glib::RefPtr<glib::Object>& object,
                                       GParamSpec* pspec);
 
   public:
-    PropertyAnimationTarget ();
+    property_animation_target ();
 
     static auto
     create (const glib::RefPtr<glib::Object>& object,
             const glib::ustring& property_name)
-        -> glib::RefPtr<PropertyAnimationTarget>;
+        -> glib::RefPtr<property_animation_target>;
 
     static auto
     create (const glib::RefPtr<glib::Object>& object, GParamSpec* pspec)
-        -> glib::RefPtr<PropertyAnimationTarget>;
+        -> glib::RefPtr<property_animation_target>;
 
     auto
     get_object () const -> glib::RefPtr<glib::Object>;
@@ -125,7 +125,7 @@ namespace glib
 {
 
   auto
-  wrap (AdwPropertyAnimationTarget* object, bool take_copy = false) -> glib::RefPtr<adw::PropertyAnimationTarget>;
+  wrap (AdwPropertyAnimationTarget* object, bool take_copy = false) -> glib::RefPtr<adw::property_animation_target>;
 }
 
 #endif

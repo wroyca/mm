@@ -22,11 +22,11 @@ namespace glib
 {
 
   auto
-  wrap (AdwSwipeable* object, bool take_copy) -> glib::RefPtr<adw::Swipeable>
+  wrap (AdwSwipeable* object, bool take_copy) -> glib::RefPtr<adw::swipeable>
   {
-    return glib::make_refptr_for_instance<adw::Swipeable> (
-        dynamic_cast<adw::Swipeable*> (
-            glib::wrap_auto_interface<adw::Swipeable> ((GObject*) (object),
+    return glib::make_refptr_for_instance<adw::swipeable> (
+        dynamic_cast<adw::swipeable*> (
+            glib::wrap_auto_interface<adw::swipeable> ((GObject*) (object),
                                                        take_copy)));
   }
 
@@ -36,11 +36,11 @@ namespace adw
 {
 
   auto
-  Swipeable_Class::init () -> const glib::Interface_Class&
+  swipeable_class::init () -> const glib::Interface_Class&
   {
     if (!gtype_)
     {
-      class_init_func_ = &Swipeable_Class::iface_init_function;
+      class_init_func_ = &swipeable_class::iface_init_function;
 
       gtype_ = adw_swipeable_get_type ();
     }
@@ -49,7 +49,7 @@ namespace adw
   }
 
   auto
-  Swipeable_Class::iface_init_function (void* g_iface, void*) -> void
+  swipeable_class::iface_init_function (void* g_iface, void*) -> void
   {
     const auto klass = static_cast<BaseClassType*> (g_iface);
 
@@ -57,81 +57,81 @@ namespace adw
   }
 
   auto
-  Swipeable_Class::wrap_new (GObject* object) -> glib::ObjectBase*
+  swipeable_class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
-    return new Swipeable ((AdwSwipeable*) (object));
+    return new swipeable ((AdwSwipeable*) (object));
   }
 
-  Swipeable::Swipeable ()
+  swipeable::swipeable ()
     : glib::Interface (swipeable_class_.init ())
   {
   }
 
-  Swipeable::Swipeable (AdwSwipeable* castitem)
+  swipeable::swipeable (AdwSwipeable* castitem)
     : glib::Interface ((GObject*) (castitem))
   {
   }
 
-  Swipeable::Swipeable (const glib::Interface_Class& interface_class)
+  swipeable::swipeable (const glib::Interface_Class& interface_class)
     : glib::Interface (interface_class)
   {
   }
 
-  Swipeable::Swipeable (Swipeable&& src) noexcept
+  swipeable::swipeable (swipeable&& src) noexcept
     : glib::Interface (std::move (src))
   {
   }
 
   auto
-  Swipeable::operator= (Swipeable&& src) noexcept -> Swipeable&
+  swipeable::operator= (swipeable&& src) noexcept -> swipeable&
   {
     glib::Interface::operator= (std::move (src));
     return *this;
   }
 
-  Swipeable::~Swipeable () noexcept {}
+  swipeable::~swipeable () noexcept {}
 
   auto
-  Swipeable::add_interface (GType gtype_implementer) -> void
+  swipeable::add_interface (GType gtype_implementer) -> void
   {
     swipeable_class_.init ().add_interface (gtype_implementer);
   }
 
-  Swipeable::CppClassType Swipeable::swipeable_class_;
+  swipeable::CppClassType swipeable::swipeable_class_;
 
   auto
-  Swipeable::get_type () -> GType
+  swipeable::get_type () -> GType
   {
     return swipeable_class_.init ().get_type ();
   }
 
   auto
-  Swipeable::get_base_type () -> GType
+  swipeable::get_base_type () -> GType
   {
     return adw_swipeable_get_type ();
   }
 
   auto
-  Swipeable::get_cancel_progress () const -> double
+  swipeable::get_cancel_progress () const -> double
   {
     return adw_swipeable_get_cancel_progress (
         const_cast<AdwSwipeable*> (gobj ()));
   }
 
   auto
-  Swipeable::get_distance () const -> double
+  swipeable::get_distance () const -> double
   {
     return adw_swipeable_get_distance (const_cast<AdwSwipeable*> (gobj ()));
   }
 
   auto
-  Swipeable::get_progress () const -> double
+  swipeable::get_progress () const -> double
   {
     return adw_swipeable_get_progress (const_cast<AdwSwipeable*> (gobj ()));
   }
 
   auto
-  Swipeable::get_swipe_area (NavigationDirection navigation_direction,
+  swipeable::get_swipe_area (NavigationDirection navigation_direction,
                              bool is_drag,
                              gdk::Rectangle& rect) const -> void
   {

@@ -21,9 +21,9 @@ namespace glib
 {
 
   auto
-  wrap (AdwWindow* object, bool take_copy) -> adw::Window*
+  wrap (AdwWindow* object, bool take_copy) -> adw::window*
   {
-    return dynamic_cast<adw::Window*> (
+    return dynamic_cast<adw::window*> (
         glib::wrap_auto ((GObject*) (object), take_copy));
   }
 
@@ -33,11 +33,11 @@ namespace adw
 {
 
   auto
-  Window_Class::init () -> const glib::Class&
+  window_class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
-      class_init_func_ = &Window_Class::class_init_function;
+      class_init_func_ = &window_class::class_init_function;
 
       register_derived_type (adw_window_get_type ());
     }
@@ -46,86 +46,86 @@ namespace adw
   }
 
   auto
-  Window_Class::class_init_function (void* g_class, void* class_data) -> void
+  window_class::class_init_function (void* g_class, void* class_data) -> void
   {
     const auto klass = static_cast<BaseClassType*> (g_class);
     CppClassParent::class_init_function (klass, class_data);
   }
 
   auto
-  Window_Class::wrap_new (GObject* o) -> glib::ObjectBase*
+  window_class::wrap_new (GObject* o) -> glib::ObjectBase*
   {
-    return new Window ((AdwWindow*) (o));
+    return new window ((AdwWindow*) (o));
   }
 
-  Window::Window (const glib::ConstructParams& construct_params)
+  window::window (const glib::ConstructParams& construct_params)
     : gtk::Window (construct_params)
   {
   }
 
-  Window::Window (AdwWindow* castitem)
+  window::window (AdwWindow* castitem)
     : gtk::Window ((GtkWindow*) (castitem))
   {
   }
 
-  Window::Window (Window&& src) noexcept
+  window::window (window&& src) noexcept
     : gtk::Window (std::move (src))
   {
   }
 
   auto
-  Window::operator= (Window&& src) noexcept -> Window&
+  window::operator= (window&& src) noexcept -> window&
   {
     gtk::Window::operator= (std::move (src));
     return *this;
   }
 
-  Window::~Window () noexcept
+  window::~window () noexcept
   {
     destroy_ ();
   }
 
-  Window::CppClassType Window::window_class_;
+  window::CppClassType window::window_class_;
 
   auto
-  Window::get_type () -> GType
+  window::get_type () -> GType
   {
     return window_class_.init ().get_type ();
   }
 
   auto
-  Window::get_base_type () -> GType
+  window::get_base_type () -> GType
   {
     return adw_window_get_type ();
   }
 
-  Window::Window ()
+  window::window ()
     : glib::ObjectBase (nullptr),
       gtk::Window (glib::ConstructParams (window_class_.init ()))
   {
   }
 
   auto
-  Window::get_content () const -> gtk::Widget*
+  window::get_content () const -> gtk::Widget*
   {
     return glib::wrap (
         adw_window_get_content (const_cast<AdwWindow*> (gobj ())));
   }
 
   auto
-  Window::set_content (gtk::Widget* content) -> void
+  window::set_content (gtk::Widget* content) -> void
   {
     adw_window_set_content (gobj (), (GtkWidget*) glib::unwrap (content));
   }
 
   auto
-  Window::property_content () -> glib::PropertyProxy<gtk::Widget*>
+  window::property_content () -> glib::PropertyProxy<gtk::Widget*>
   {
     return {this, "content"};
   }
 
   auto
-  Window::property_content () const -> glib::PropertyProxy_ReadOnly<gtk::Widget*>
+  window::property_content () const -> glib::PropertyProxy_ReadOnly<gtk::Widget*>
   {
     return {this, "content"};
   }

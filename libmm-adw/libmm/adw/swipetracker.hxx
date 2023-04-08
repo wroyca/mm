@@ -20,44 +20,44 @@
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace adw
 {
-  class LIBMM_ADW_SYMEXPORT SwipeTracker_Class;
+  class LIBMM_ADW_SYMEXPORT swipe_tracker_class;
 }
 #endif
 
 namespace adw
 {
 
-  class LIBMM_ADW_SYMEXPORT SwipeTracker : public glib::Object,
+  class LIBMM_ADW_SYMEXPORT swipe_tracker : public glib::Object,
                        public gtk::Orientable
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   public:
-    using CppObjectType = SwipeTracker;
-    using CppClassType = SwipeTracker_Class;
+    using CppObjectType = swipe_tracker;
+    using CppClassType = swipe_tracker_class;
     using BaseObjectType = AdwSwipeTracker;
     using BaseClassType = AdwSwipeTrackerClass;
 
-    SwipeTracker (const SwipeTracker&) = delete;
+    swipe_tracker (const swipe_tracker&) = delete;
     auto
-    operator= (const SwipeTracker&) -> SwipeTracker& = delete;
+    operator= (const swipe_tracker&) -> swipe_tracker& = delete;
 
   private:
-    friend class SwipeTracker_Class;
+    friend class swipe_tracker_class;
     static CppClassType swipetracker_class_;
 
   protected:
-    explicit SwipeTracker (const glib::ConstructParams& construct_params);
-    explicit SwipeTracker (AdwSwipeTracker* castitem);
+    explicit swipe_tracker (const glib::ConstructParams& construct_params);
+    explicit swipe_tracker (AdwSwipeTracker* castitem);
 
 #endif
 
   public:
-    SwipeTracker (SwipeTracker&& src) noexcept;
+    swipe_tracker (swipe_tracker&& src) noexcept;
     auto
-    operator= (SwipeTracker&& src) noexcept -> SwipeTracker&;
+    operator= (swipe_tracker&& src) noexcept -> swipe_tracker&;
 
-    ~SwipeTracker () noexcept override;
+    ~swipe_tracker () noexcept override;
 
     static auto
     get_type () -> GType G_GNUC_CONST;
@@ -85,13 +85,13 @@ namespace adw
 
   private:
   protected:
-    SwipeTracker ();
-    explicit SwipeTracker (const glib::RefPtr<Swipeable>& swipeable);
+    swipe_tracker ();
+    explicit swipe_tracker (const glib::RefPtr<swipeable>& swipeable);
 
   public:
     static auto
-    create (const glib::RefPtr<Swipeable>& swipeable)
-        -> glib::RefPtr<SwipeTracker>;
+    create (const glib::RefPtr<swipeable>& swipeable)
+        -> glib::RefPtr<swipe_tracker>;
 
     auto
     get_allow_long_swipes () const -> bool;
@@ -106,7 +106,7 @@ namespace adw
     get_reversed () const -> bool;
 
     auto
-    get_swipeable () const -> glib::RefPtr<Swipeable>;
+    get_swipeable () const -> glib::RefPtr<swipeable>;
 
     auto
     set_allow_long_swipes (bool allow_long_swipes) -> void;
@@ -149,7 +149,7 @@ namespace adw
 
     auto
     property_swipeable () const
-        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<Swipeable>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<swipeable>>;
 
     auto
     signal_begin_swipe () -> glib::SignalProxy<void ()>;
@@ -174,7 +174,7 @@ namespace glib
 {
 
   auto
-  wrap (AdwSwipeTracker* object, bool take_copy = false) -> glib::RefPtr<adw::SwipeTracker>;
+  wrap (AdwSwipeTracker* object, bool take_copy = false) -> glib::RefPtr<adw::swipe_tracker>;
 }
 
 #endif

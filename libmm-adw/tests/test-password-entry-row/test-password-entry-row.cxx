@@ -12,7 +12,7 @@
 static void
 test_adw_password_entry_row_new (void)
 {
-  adw::PasswordEntryRow row;
+  adw::password_entry_row row;
 }
 
 int

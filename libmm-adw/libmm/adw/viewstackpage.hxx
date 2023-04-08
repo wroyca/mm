@@ -19,43 +19,43 @@
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace adw
 {
-  class LIBMM_ADW_SYMEXPORT ViewStackPage_Class;
+  class LIBMM_ADW_SYMEXPORT view_stack_page_class;
 }
 #endif
 
 namespace adw
 {
 
-  class LIBMM_ADW_SYMEXPORT ViewStackPage : public glib::Object
+  class LIBMM_ADW_SYMEXPORT view_stack_page : public glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   public:
-    using CppObjectType = ViewStackPage;
-    using CppClassType = ViewStackPage_Class;
+    using CppObjectType = view_stack_page;
+    using CppClassType = view_stack_page_class;
     using BaseObjectType = AdwViewStackPage;
     using BaseClassType = AdwViewStackPageClass;
 
-    ViewStackPage (const ViewStackPage&) = delete;
+    view_stack_page (const view_stack_page&) = delete;
     auto
-    operator= (const ViewStackPage&) -> ViewStackPage& = delete;
+    operator= (const view_stack_page&) -> view_stack_page& = delete;
 
   private:
-    friend class ViewStackPage_Class;
+    friend class view_stack_page_class;
     static CppClassType viewstackpage_class_;
 
   protected:
-    explicit ViewStackPage (const glib::ConstructParams& construct_params);
-    explicit ViewStackPage (AdwViewStackPage* castitem);
+    explicit view_stack_page (const glib::ConstructParams& construct_params);
+    explicit view_stack_page (AdwViewStackPage* castitem);
 
 #endif
 
   public:
-    ViewStackPage (ViewStackPage&& src) noexcept;
+    view_stack_page (view_stack_page&& src) noexcept;
     auto
-    operator= (ViewStackPage&& src) noexcept -> ViewStackPage&;
+    operator= (view_stack_page&& src) noexcept -> view_stack_page&;
 
-    ~ViewStackPage () noexcept override;
+    ~view_stack_page () noexcept override;
 
     static auto
     get_type () -> GType G_GNUC_CONST;
@@ -83,11 +83,11 @@ namespace adw
 
   private:
   protected:
-    ViewStackPage ();
+    view_stack_page ();
 
   public:
     static auto
-    create () -> glib::RefPtr<ViewStackPage>;
+    create () -> glib::RefPtr<view_stack_page>;
 
     auto
     get_badge_number () const -> guint;
@@ -190,7 +190,7 @@ namespace glib
 {
 
   auto
-  wrap (AdwViewStackPage* object, bool take_copy = false) -> glib::RefPtr<adw::ViewStackPage>;
+  wrap (AdwViewStackPage* object, bool take_copy = false) -> glib::RefPtr<adw::view_stack_page>;
 }
 
 #endif

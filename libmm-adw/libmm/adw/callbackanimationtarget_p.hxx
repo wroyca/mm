@@ -10,15 +10,15 @@
 namespace adw
 {
 
-  class LIBMM_ADW_SYMEXPORT CallbackAnimationTarget_Class : public glib::Class
+  class LIBMM_ADW_SYMEXPORT callback_animation_target_class : public glib::Class
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-    using CppObjectType = CallbackAnimationTarget;
+    using CppObjectType = callback_animation_target;
     using BaseObjectType = AdwCallbackAnimationTarget;
-    using CppClassParent = adw::AnimationTarget_Class;
+    using CppClassParent = adw::animation_target_class;
 
-    friend class CallbackAnimationTarget;
+    friend class callback_animation_target;
 #endif
 
     auto

@@ -19,42 +19,42 @@
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace adw
 {
-  class LIBMM_ADW_SYMEXPORT ViewSwitcherBar_Class;
+  class LIBMM_ADW_SYMEXPORT view_switcher_bar_class;
 }
 #endif
 
 namespace adw
 {
 
-  class LIBMM_ADW_SYMEXPORT ViewSwitcherBar : public gtk::Widget
+  class LIBMM_ADW_SYMEXPORT view_switcher_bar : public gtk::Widget
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-    typedef ViewSwitcherBar CppObjectType;
-    typedef ViewSwitcherBar_Class CppClassType;
-    typedef AdwViewSwitcherBar BaseObjectType;
-    typedef AdwViewSwitcherBarClass BaseClassType;
+    using CppObjectType = view_switcher_bar;
+    using CppClassType = view_switcher_bar_class;
+    using BaseObjectType = AdwViewSwitcherBar;
+    using BaseClassType = AdwViewSwitcherBarClass;
 #endif
 
-    ViewSwitcherBar (ViewSwitcherBar&& src) noexcept;
+    view_switcher_bar (view_switcher_bar&& src) noexcept;
     auto
-    operator= (ViewSwitcherBar&& src) noexcept -> ViewSwitcherBar&;
+    operator= (view_switcher_bar&& src) noexcept -> view_switcher_bar&;
 
-    ViewSwitcherBar (const ViewSwitcherBar&) = delete;
+    view_switcher_bar (const view_switcher_bar&) = delete;
     auto
-    operator= (const ViewSwitcherBar&) -> ViewSwitcherBar& = delete;
+    operator= (const view_switcher_bar&) -> view_switcher_bar& = delete;
 
-    ~ViewSwitcherBar () noexcept override;
+    ~view_switcher_bar () noexcept override;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   private:
-    friend class ViewSwitcherBar_Class;
+    friend class view_switcher_bar_class;
     static CppClassType viewswitcherbar_class_;
 
   protected:
-    explicit ViewSwitcherBar (const glib::ConstructParams& construct_params);
-    explicit ViewSwitcherBar (AdwViewSwitcherBar* castitem);
+    explicit view_switcher_bar (const glib::ConstructParams& construct_params);
+    explicit view_switcher_bar (AdwViewSwitcherBar* castitem);
 
 #endif
 
@@ -82,19 +82,19 @@ namespace adw
 
   private:
   public:
-    ViewSwitcherBar ();
+    view_switcher_bar ();
 
     auto
     get_reveal () const -> bool;
 
     auto
-    get_stack () const -> ViewStack*;
+    get_stack () const -> view_stack*;
 
     auto
     set_reveal (bool reveal) -> void;
 
     auto
-    set_stack (ViewStack* stack) -> void;
+    set_stack (view_stack* stack) -> void;
 
     auto
     property_reveal () -> glib::PropertyProxy<bool>;
@@ -103,10 +103,10 @@ namespace adw
     property_reveal () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_stack () -> glib::PropertyProxy<ViewStack*>;
+    property_stack () -> glib::PropertyProxy<view_stack*>;
 
     auto
-    property_stack () const -> glib::PropertyProxy_ReadOnly<ViewStack*>;
+    property_stack () const -> glib::PropertyProxy_ReadOnly<view_stack*>;
 
   public:
   public:
@@ -119,7 +119,7 @@ namespace glib
 {
 
   auto
-  wrap (AdwViewSwitcherBar* object, bool take_copy = false) -> adw::ViewSwitcherBar*;
+  wrap (AdwViewSwitcherBar* object, bool take_copy = false) -> adw::view_switcher_bar*;
 }
 
 #endif

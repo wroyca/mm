@@ -13,7 +13,7 @@ namespace adw
     using CppObjectType = action_row;
     using BaseObjectType = AdwActionRow;
     using BaseClassType = AdwActionRowClass;
-    using CppClassParent = PreferencesRow_Class;
+    using CppClassParent = preferences_row_class;
     using BaseClassParent = AdwPreferencesRowClass;
 
   public:

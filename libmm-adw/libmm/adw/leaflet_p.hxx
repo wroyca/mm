@@ -10,15 +10,15 @@
 namespace adw
 {
 
-  class LIBMM_ADW_SYMEXPORT Leaflet_Class : public glib::Class
+  class LIBMM_ADW_SYMEXPORT leaflet_class : public glib::Class
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-    using CppObjectType = Leaflet;
+    using CppObjectType = leaflet;
     using BaseObjectType = AdwLeaflet;
     using CppClassParent = gtk::Widget_Class;
 
-    friend class Leaflet;
+    friend class leaflet;
 #endif
 
     auto

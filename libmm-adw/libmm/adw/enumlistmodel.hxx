@@ -19,44 +19,44 @@
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace adw
 {
-  class LIBMM_ADW_SYMEXPORT EnumListModel_Class;
+  class LIBMM_ADW_SYMEXPORT enum_list_model_class;
 }
 #endif
 
 namespace adw
 {
 
-  class LIBMM_ADW_SYMEXPORT EnumListModel : public glib::Object,
+  class LIBMM_ADW_SYMEXPORT enum_list_model : public glib::Object,
                         public gio::ListModel
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   public:
-    using CppObjectType = EnumListModel;
-    using CppClassType = EnumListModel_Class;
+    using CppObjectType = enum_list_model;
+    using CppClassType = enum_list_model_class;
     using BaseObjectType = AdwEnumListModel;
     using BaseClassType = AdwEnumListModelClass;
 
-    EnumListModel (const EnumListModel&) = delete;
+    enum_list_model (const enum_list_model&) = delete;
     auto
-    operator= (const EnumListModel&) -> EnumListModel& = delete;
+    operator= (const enum_list_model&) -> enum_list_model& = delete;
 
   private:
-    friend class EnumListModel_Class;
+    friend class enum_list_model_class;
     static CppClassType enumlistmodel_class_;
 
   protected:
-    explicit EnumListModel (const glib::ConstructParams& construct_params);
-    explicit EnumListModel (AdwEnumListModel* castitem);
+    explicit enum_list_model (const glib::ConstructParams& construct_params);
+    explicit enum_list_model (AdwEnumListModel* castitem);
 
 #endif
 
   public:
-    EnumListModel (EnumListModel&& src) noexcept;
+    enum_list_model (enum_list_model&& src) noexcept;
     auto
-    operator= (EnumListModel&& src) noexcept -> EnumListModel&;
+    operator= (enum_list_model&& src) noexcept -> enum_list_model&;
 
-    ~EnumListModel () noexcept override;
+    ~enum_list_model () noexcept override;
 
     static auto
     get_type () -> GType G_GNUC_CONST;
@@ -84,12 +84,12 @@ namespace adw
 
   private:
   protected:
-    EnumListModel ();
-    explicit EnumListModel (GType enum_type);
+    enum_list_model ();
+    explicit enum_list_model (GType enum_type);
 
   public:
     static auto
-    create (GType enum_type) -> glib::RefPtr<EnumListModel>;
+    create (GType enum_type) -> glib::RefPtr<enum_list_model>;
 
     auto
     find_position (int value) const -> guint;
@@ -111,7 +111,7 @@ namespace glib
 {
 
   auto
-  wrap (AdwEnumListModel* object, bool take_copy = false) -> glib::RefPtr<adw::EnumListModel>;
+  wrap (AdwEnumListModel* object, bool take_copy = false) -> glib::RefPtr<adw::enum_list_model>;
 }
 
 #endif

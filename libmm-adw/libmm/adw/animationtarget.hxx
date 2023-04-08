@@ -18,7 +18,7 @@ using AdwAnimationTargetClass = struct _AdwAnimationTargetClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace adw
 {
-  class LIBMM_ADW_SYMEXPORT AnimationTarget_Class;
+  class LIBMM_ADW_SYMEXPORT animation_target_class;
 }
 #endif
 
@@ -31,7 +31,7 @@ namespace adw
 
   public:
     using CppObjectType = AnimationTarget;
-    using CppClassType = AnimationTarget_Class;
+    using CppClassType = animation_target_class;
     using BaseObjectType = AdwAnimationTarget;
     using BaseClassType = AdwAnimationTargetClass;
 
@@ -40,7 +40,7 @@ namespace adw
     operator= (const AnimationTarget&) -> AnimationTarget& = delete;
 
   private:
-    friend class AnimationTarget_Class;
+    friend class animation_target_class;
     static CppClassType animationtarget_class_;
 
   protected:

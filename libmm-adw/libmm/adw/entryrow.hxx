@@ -18,43 +18,43 @@
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace adw
 {
-  class LIBMM_ADW_SYMEXPORT EntryRow_Class;
+  class LIBMM_ADW_SYMEXPORT entry_row_class;
 }
 #endif
 
 namespace adw
 {
 
-  class LIBMM_ADW_SYMEXPORT EntryRow : public adw::PreferencesRow,
+  class LIBMM_ADW_SYMEXPORT entry_row : public adw::preferences_row,
                    public gtk::Editable
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-    typedef EntryRow CppObjectType;
-    typedef EntryRow_Class CppClassType;
-    typedef AdwEntryRow BaseObjectType;
-    typedef AdwEntryRowClass BaseClassType;
+    using CppObjectType = entry_row;
+    using CppClassType = entry_row_class;
+    using BaseObjectType = AdwEntryRow;
+    using BaseClassType = AdwEntryRowClass;
 #endif
 
-    EntryRow (EntryRow&& src) noexcept;
+    entry_row (entry_row&& src) noexcept;
     auto
-    operator= (EntryRow&& src) noexcept -> EntryRow&;
+    operator= (entry_row&& src) noexcept -> entry_row&;
 
-    EntryRow (const EntryRow&) = delete;
+    entry_row (const entry_row&) = delete;
     auto
-    operator= (const EntryRow&) -> EntryRow& = delete;
+    operator= (const entry_row&) -> entry_row& = delete;
 
-    ~EntryRow () noexcept override;
+    ~entry_row () noexcept override;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   private:
-    friend class EntryRow_Class;
+    friend class entry_row_class;
     static CppClassType entryrow_class_;
 
   protected:
-    explicit EntryRow (const glib::ConstructParams& construct_params);
-    explicit EntryRow (AdwEntryRow* castitem);
+    explicit entry_row (const glib::ConstructParams& construct_params);
+    explicit entry_row (AdwEntryRow* castitem);
 
 #endif
 
@@ -82,7 +82,7 @@ namespace adw
 
   private:
   public:
-    EntryRow ();
+    entry_row ();
 
     auto
     add_prefix (gtk::Widget* widget) -> void;
@@ -186,7 +186,7 @@ namespace glib
 {
 
   auto
-  wrap (AdwEntryRow* object, bool take_copy = false) -> adw::EntryRow*;
+  wrap (AdwEntryRow* object, bool take_copy = false) -> adw::entry_row*;
 }
 
 #endif

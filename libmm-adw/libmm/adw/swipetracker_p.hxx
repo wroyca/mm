@@ -10,15 +10,15 @@
 namespace adw
 {
 
-  class LIBMM_ADW_SYMEXPORT SwipeTracker_Class : public glib::Class
+  class LIBMM_ADW_SYMEXPORT swipe_tracker_class : public glib::Class
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-    using CppObjectType = SwipeTracker;
+    using CppObjectType = swipe_tracker;
     using BaseObjectType = AdwSwipeTracker;
     using CppClassParent = glib::Object_Class;
 
-    friend class SwipeTracker;
+    friend class swipe_tracker;
 #endif
 
     auto

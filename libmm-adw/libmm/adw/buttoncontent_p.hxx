@@ -10,15 +10,15 @@
 namespace adw
 {
 
-  class LIBMM_ADW_SYMEXPORT ButtonContent_Class : public glib::Class
+  class LIBMM_ADW_SYMEXPORT button_content_class : public glib::Class
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-    using CppObjectType = ButtonContent;
+    using CppObjectType = button_content;
     using BaseObjectType = AdwButtonContent;
     using CppClassParent = gtk::Widget_Class;
 
-    friend class ButtonContent;
+    friend class button_content;
 #endif
 
     auto

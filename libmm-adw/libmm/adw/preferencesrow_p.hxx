@@ -10,17 +10,17 @@
 namespace adw
 {
 
-  class LIBMM_ADW_SYMEXPORT PreferencesRow_Class : public glib::Class
+  class LIBMM_ADW_SYMEXPORT preferences_row_class : public glib::Class
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-    using CppObjectType = PreferencesRow;
+    using CppObjectType = preferences_row;
     using BaseObjectType = AdwPreferencesRow;
     using BaseClassType = AdwPreferencesRowClass;
     using CppClassParent = gtk::ListBoxRow_Class;
     using BaseClassParent = GtkListBoxRowClass;
 
-    friend class PreferencesRow;
+    friend class preferences_row;
 #endif
 
     auto

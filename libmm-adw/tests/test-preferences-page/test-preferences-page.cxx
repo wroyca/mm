@@ -10,8 +10,8 @@
 static void
 test_adw_preferences_page_add_remove (void)
 {
-  adw::PreferencesPage page;
-  adw::PreferencesGroup group;
+  adw::preferences_page page;
+  adw::preferences_group group;
 
   page.add (&group);
   page.remove (&group);
@@ -20,7 +20,7 @@ test_adw_preferences_page_add_remove (void)
 static void
 test_adw_preferences_page_title (void)
 {
-  adw::PreferencesPage page;
+  adw::preferences_page page;
 
   g_assert_true (page.get_title () == "");
 
@@ -34,7 +34,7 @@ test_adw_preferences_page_title (void)
 static void
 test_adw_preferences_page_icon_name (void)
 {
-  adw::PreferencesPage page;
+  adw::preferences_page page;
 
   g_assert_true (page.get_icon_name () == "");
 
@@ -48,7 +48,7 @@ test_adw_preferences_page_icon_name (void)
 static void
 test_adw_preferences_page_use_underline (void)
 {
-  adw::PreferencesPage page;
+  adw::preferences_page page;
 
   g_assert_false (page.get_use_underline ());
 

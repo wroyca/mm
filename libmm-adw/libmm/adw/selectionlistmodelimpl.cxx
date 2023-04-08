@@ -7,14 +7,14 @@
 namespace adw
 {
 
-  SelectionListModelImpl::SelectionListModelImpl (GObject* castitem)
+  selection_list_model_impl::selection_list_model_impl (GObject* castitem)
     : glib::ObjectBase (nullptr),
       glib::Object (castitem)
   {
   }
 
-  SelectionListModelImpl::SelectionListModelImpl (
-      SelectionListModelImpl&& src) noexcept
+  selection_list_model_impl::selection_list_model_impl (
+      selection_list_model_impl&& src) noexcept
     : gio::ListModel (std::move (src)),
       gtk::SelectionModel (std::move (src)),
       glib::Object (std::move (src))
@@ -22,7 +22,7 @@ namespace adw
   }
 
   auto
-  SelectionListModelImpl::operator= (SelectionListModelImpl&& src) noexcept -> SelectionListModelImpl&
+  selection_list_model_impl::operator= (selection_list_model_impl&& src) noexcept -> selection_list_model_impl&
   {
     gio::ListModel::operator= (std::move (src));
     gtk::SelectionModel::operator= (std::move (src));
@@ -30,6 +30,6 @@ namespace adw
     return *this;
   }
 
-  SelectionListModelImpl::~SelectionListModelImpl () noexcept {}
+  selection_list_model_impl::~selection_list_model_impl () noexcept {}
 
 } // namespace adw

@@ -10,17 +10,17 @@
 namespace adw
 {
 
-  class LIBMM_ADW_SYMEXPORT Application_Class : public glib::Class
+  class LIBMM_ADW_SYMEXPORT application_class : public glib::Class
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-    using CppObjectType = Application;
+    using CppObjectType = application;
     using BaseObjectType = AdwApplication;
     using BaseClassType = AdwApplicationClass;
     using CppClassParent = gtk::Application_Class;
     using BaseClassParent = GtkApplicationClass;
 
-    friend class Application;
+    friend class application;
 #endif
 
     auto

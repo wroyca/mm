@@ -18,7 +18,7 @@ using AdwMessageDialogClass = struct _AdwMessageDialogClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace adw
 {
-  class LIBMM_ADW_SYMEXPORT MessageDialog_Class;
+  class LIBMM_ADW_SYMEXPORT message_dialog_class;
 }
 #endif
 
@@ -53,35 +53,35 @@ namespace glib
 namespace adw
 {
 
-  class LIBMM_ADW_SYMEXPORT MessageDialog : public gtk::Window
+  class LIBMM_ADW_SYMEXPORT message_dialog : public gtk::Window
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-    typedef MessageDialog CppObjectType;
-    typedef MessageDialog_Class CppClassType;
-    typedef AdwMessageDialog BaseObjectType;
-    typedef AdwMessageDialogClass BaseClassType;
+    using CppObjectType = message_dialog;
+    using CppClassType = message_dialog_class;
+    using BaseObjectType = AdwMessageDialog;
+    using BaseClassType = AdwMessageDialogClass;
 #endif
 
-    MessageDialog (MessageDialog&& src) noexcept;
+    message_dialog (message_dialog&& src) noexcept;
     auto
-    operator= (MessageDialog&& src) noexcept -> MessageDialog&;
+    operator= (message_dialog&& src) noexcept -> message_dialog&;
 
-    MessageDialog (const MessageDialog&) = delete;
+    message_dialog (const message_dialog&) = delete;
     auto
-    operator= (const MessageDialog&) -> MessageDialog& = delete;
+    operator= (const message_dialog&) -> message_dialog& = delete;
 
-    ~MessageDialog () noexcept override;
+    ~message_dialog () noexcept override;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   private:
-    friend class MessageDialog_Class;
+    friend class message_dialog_class;
     static CppClassType messagedialog_class_;
 
   protected:
-    explicit MessageDialog (const glib::ConstructParams& construct_params);
-    explicit MessageDialog (AdwMessageDialog* castitem);
+    explicit message_dialog (const glib::ConstructParams& construct_params);
+    explicit message_dialog (AdwMessageDialog* castitem);
 
 #endif
 
@@ -109,7 +109,7 @@ namespace adw
 
   private:
   public:
-    explicit MessageDialog (gtk::Window* transient_for,
+    explicit message_dialog (gtk::Window* transient_for,
                             const glib::ustring& heading,
                             const glib::ustring& body);
 
@@ -249,7 +249,7 @@ namespace glib
 {
 
   auto
-  wrap (AdwMessageDialog* object, bool take_copy = false) -> adw::MessageDialog*;
+  wrap (AdwMessageDialog* object, bool take_copy = false) -> adw::message_dialog*;
 }
 
 #endif

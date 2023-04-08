@@ -13,7 +13,7 @@
 namespace adw
 {
   class LIBMM_ADW_SYMEXPORT action_row_class;
-  class LIBMM_ADW_SYMEXPORT action_row : public PreferencesRow
+  class LIBMM_ADW_SYMEXPORT action_row : public preferences_row
   {
     using cpp_object_type = action_row;
     using cpp_class_type = action_row_class;

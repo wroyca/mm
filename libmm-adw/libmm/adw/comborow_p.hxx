@@ -10,17 +10,17 @@
 namespace adw
 {
 
-  class LIBMM_ADW_SYMEXPORT ComboRow_Class : public glib::Class
+  class LIBMM_ADW_SYMEXPORT combo_row_class : public glib::Class
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-    using CppObjectType = ComboRow;
+    using CppObjectType = combo_row;
     using BaseObjectType = AdwComboRow;
     using BaseClassType = AdwComboRowClass;
     using CppClassParent = adw::action_row_class;
     using BaseClassParent = AdwActionRowClass;
 
-    friend class ComboRow;
+    friend class combo_row;
 #endif
 
     auto

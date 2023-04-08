@@ -16,7 +16,7 @@ notify_cb ()
 }
 
 static void
-allocate_carousel (adw::Carousel& carousel)
+allocate_carousel (adw::carousel& carousel)
 {
   int width, height;
 
@@ -42,7 +42,7 @@ allocate_carousel (adw::Carousel& carousel)
 static void
 test_adw_carousel_add_remove (void)
 {
-  adw::Carousel carousel;
+  adw::carousel carousel;
 
   gtk::Label child1;
   gtk::Label child2;
@@ -94,7 +94,7 @@ test_adw_carousel_add_remove (void)
 }
 
 static void
-assert_carousel_positions (adw::Carousel& carousel,
+assert_carousel_positions (adw::carousel& carousel,
                            gtk::Widget& child1,
                            gtk::Widget& child2,
                            gtk::Widget& child3,
@@ -112,7 +112,7 @@ assert_carousel_positions (adw::Carousel& carousel,
 static void
 test_adw_carousel_reorder (void)
 {
-  adw::Carousel carousel;
+  adw::carousel carousel;
   gtk::Label child1;
   gtk::Label child2;
   gtk::Label child3;
@@ -174,7 +174,7 @@ test_adw_carousel_reorder (void)
 static void
 test_adw_carousel_interactive (void)
 {
-  adw::Carousel carousel;
+  adw::carousel carousel;
 
   notified = 0;
   carousel.property_interactive ().signal_changed ().connect (
@@ -200,7 +200,7 @@ test_adw_carousel_interactive (void)
 static void
 test_adw_carousel_spacing (void)
 {
-  adw::Carousel carousel;
+  adw::carousel carousel;
 
   notified = 0;
   carousel.property_spacing ().signal_changed ().connect (
@@ -226,7 +226,7 @@ test_adw_carousel_spacing (void)
 static void
 test_adw_carousel_allow_mouse_drag (void)
 {
-  adw::Carousel carousel;
+  adw::carousel carousel;
 
   notified = 0;
   carousel.property_allow_mouse_drag ().signal_changed ().connect (
@@ -252,7 +252,7 @@ test_adw_carousel_allow_mouse_drag (void)
 static void
 test_adw_carousel_allow_long_swipes (void)
 {
-  adw::Carousel carousel;
+  adw::carousel carousel;
 
   notified = 0;
   carousel.property_allow_long_swipes ().signal_changed ().connect (
@@ -278,7 +278,7 @@ test_adw_carousel_allow_long_swipes (void)
 static void
 test_adw_carousel_reveal_duration (void)
 {
-  adw::Carousel carousel;
+  adw::carousel carousel;
 
   notified = 0;
   carousel.property_reveal_duration ().signal_changed ().connect (

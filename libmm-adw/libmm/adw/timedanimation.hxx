@@ -23,43 +23,43 @@ using AdwTimedAnimationClass = struct _AdwTimedAnimationClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace adw
 {
-  class LIBMM_ADW_SYMEXPORT TimedAnimation_Class;
+  class LIBMM_ADW_SYMEXPORT timed_animation_class;
 }
 #endif
 
 namespace adw
 {
 
-  class LIBMM_ADW_SYMEXPORT TimedAnimation : public Animation
+  class LIBMM_ADW_SYMEXPORT timed_animation : public animation
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   public:
-    using CppObjectType = TimedAnimation;
-    using CppClassType = TimedAnimation_Class;
+    using CppObjectType = timed_animation;
+    using CppClassType = timed_animation_class;
     using BaseObjectType = AdwTimedAnimation;
     using BaseClassType = AdwTimedAnimationClass;
 
-    TimedAnimation (const TimedAnimation&) = delete;
+    timed_animation (const timed_animation&) = delete;
     auto
-    operator= (const TimedAnimation&) -> TimedAnimation& = delete;
+    operator= (const timed_animation&) -> timed_animation& = delete;
 
   private:
-    friend class TimedAnimation_Class;
+    friend class timed_animation_class;
     static CppClassType timedanimation_class_;
 
   protected:
-    explicit TimedAnimation (const glib::ConstructParams& construct_params);
-    explicit TimedAnimation (AdwTimedAnimation* castitem);
+    explicit timed_animation (const glib::ConstructParams& construct_params);
+    explicit timed_animation (AdwTimedAnimation* castitem);
 
 #endif
 
   public:
-    TimedAnimation (TimedAnimation&& src) noexcept;
+    timed_animation (timed_animation&& src) noexcept;
     auto
-    operator= (TimedAnimation&& src) noexcept -> TimedAnimation&;
+    operator= (timed_animation&& src) noexcept -> timed_animation&;
 
-    ~TimedAnimation () noexcept override;
+    ~timed_animation () noexcept override;
 
     static auto
     get_type () -> GType G_GNUC_CONST;
@@ -87,8 +87,8 @@ namespace adw
 
   private:
   protected:
-    TimedAnimation ();
-    explicit TimedAnimation (gtk::Widget* widget,
+    timed_animation ();
+    explicit timed_animation (gtk::Widget* widget,
                              double value_from,
                              double value_to,
                              guint duration,
@@ -101,7 +101,7 @@ namespace adw
             double value_to,
             guint duration,
             const glib::RefPtr<AnimationTarget>& target)
-        -> glib::RefPtr<TimedAnimation>;
+        -> glib::RefPtr<timed_animation>;
 
     auto
     get_alternate () const -> bool;
@@ -198,7 +198,7 @@ namespace glib
 {
 
   auto
-  wrap (AdwTimedAnimation* object, bool take_copy = false) -> glib::RefPtr<adw::TimedAnimation>;
+  wrap (AdwTimedAnimation* object, bool take_copy = false) -> glib::RefPtr<adw::timed_animation>;
 }
 
 #endif

@@ -10,11 +10,11 @@
 namespace adw
 {
 
-  class LIBMM_ADW_SYMEXPORT WindowTitle_Class : public glib::Class
+  class LIBMM_ADW_SYMEXPORT window_title_class : public glib::Class
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-    using CppObjectType = WindowTitle;
+    using CppObjectType = window_title;
     using BaseObjectType = AdwWindowTitle;
     using CppClassParent = gtk::Widget_Class;
 

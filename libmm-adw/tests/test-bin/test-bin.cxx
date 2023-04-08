@@ -20,7 +20,7 @@ notify_cb (void)
 static void
 test_adw_bin_child (void)
 {
-  adw::Bin bin;
+  adw::bin bin;
 
   notified = 0;
   bin.property_child ().signal_changed ().connect (sigc::ptr_fun (notify_cb));

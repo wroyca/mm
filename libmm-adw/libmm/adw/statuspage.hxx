@@ -18,42 +18,42 @@
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace adw
 {
-  class LIBMM_ADW_SYMEXPORT StatusPage_Class;
+  class LIBMM_ADW_SYMEXPORT status_page_class;
 }
 #endif
 
 namespace adw
 {
 
-  class LIBMM_ADW_SYMEXPORT StatusPage : public gtk::Widget
+  class LIBMM_ADW_SYMEXPORT status_page : public gtk::Widget
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-    typedef StatusPage CppObjectType;
-    typedef StatusPage_Class CppClassType;
-    typedef AdwStatusPage BaseObjectType;
-    typedef AdwStatusPageClass BaseClassType;
+    using CppObjectType = status_page;
+    using CppClassType = status_page_class;
+    using BaseObjectType = AdwStatusPage;
+    using BaseClassType = AdwStatusPageClass;
 #endif
 
-    StatusPage (StatusPage&& src) noexcept;
+    status_page (status_page&& src) noexcept;
     auto
-    operator= (StatusPage&& src) noexcept -> StatusPage&;
+    operator= (status_page&& src) noexcept -> status_page&;
 
-    StatusPage (const StatusPage&) = delete;
+    status_page (const status_page&) = delete;
     auto
-    operator= (const StatusPage&) -> StatusPage& = delete;
+    operator= (const status_page&) -> status_page& = delete;
 
-    ~StatusPage () noexcept override;
+    ~status_page () noexcept override;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   private:
-    friend class StatusPage_Class;
+    friend class status_page_class;
     static CppClassType statuspage_class_;
 
   protected:
-    explicit StatusPage (const glib::ConstructParams& construct_params);
-    explicit StatusPage (AdwStatusPage* castitem);
+    explicit status_page (const glib::ConstructParams& construct_params);
+    explicit status_page (AdwStatusPage* castitem);
 
 #endif
 
@@ -81,7 +81,7 @@ namespace adw
 
   private:
   public:
-    StatusPage ();
+    status_page ();
 
     auto
     get_child () const -> gtk::Widget*;
@@ -156,7 +156,7 @@ namespace glib
 {
 
   auto
-  wrap (AdwStatusPage* object, bool take_copy = false) -> adw::StatusPage*;
+  wrap (AdwStatusPage* object, bool take_copy = false) -> adw::status_page*;
 }
 
 #endif

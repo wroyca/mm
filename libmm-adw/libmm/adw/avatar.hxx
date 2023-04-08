@@ -18,42 +18,42 @@
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace adw
 {
-  class LIBMM_ADW_SYMEXPORT Avatar_Class;
+  class LIBMM_ADW_SYMEXPORT avatar_class;
 }
 #endif
 
 namespace adw
 {
 
-  class LIBMM_ADW_SYMEXPORT Avatar : public gtk::Widget
+  class LIBMM_ADW_SYMEXPORT avatar : public gtk::Widget
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-    typedef Avatar CppObjectType;
-    typedef Avatar_Class CppClassType;
-    typedef AdwAvatar BaseObjectType;
-    typedef AdwAvatarClass BaseClassType;
+    using CppObjectType = avatar;
+    using CppClassType = avatar_class;
+    using BaseObjectType = AdwAvatar;
+    using BaseClassType = AdwAvatarClass;
 #endif
 
-    Avatar (Avatar&& src) noexcept;
+    avatar (avatar&& src) noexcept;
     auto
-    operator= (Avatar&& src) noexcept -> Avatar&;
+    operator= (avatar&& src) noexcept -> avatar&;
 
-    Avatar (const Avatar&) = delete;
+    avatar (const avatar&) = delete;
     auto
-    operator= (const Avatar&) -> Avatar& = delete;
+    operator= (const avatar&) -> avatar& = delete;
 
-    ~Avatar () noexcept override;
+    ~avatar () noexcept override;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   private:
-    friend class Avatar_Class;
+    friend class avatar_class;
     static CppClassType avatar_class_;
 
   protected:
-    explicit Avatar (const glib::ConstructParams& construct_params);
-    explicit Avatar (AdwAvatar* castitem);
+    explicit avatar (const glib::ConstructParams& construct_params);
+    explicit avatar (AdwAvatar* castitem);
 
 #endif
 
@@ -81,8 +81,8 @@ namespace adw
 
   private:
   public:
-    Avatar ();
-    explicit Avatar (int size, const glib::ustring& text, bool show_initials);
+    avatar ();
+    explicit avatar (int size, const glib::ustring& text, bool show_initials);
 
     auto
     draw_to_texture (int scale_factor) -> glib::RefPtr<gdk::Texture>;
@@ -160,7 +160,7 @@ namespace glib
 {
 
   auto
-  wrap (AdwAvatar* object, bool take_copy = false) -> adw::Avatar*;
+  wrap (AdwAvatar* object, bool take_copy = false) -> adw::avatar*;
 }
 
 #endif

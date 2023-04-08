@@ -10,15 +10,15 @@
 namespace adw
 {
 
-  class LIBMM_ADW_SYMEXPORT Flap_Class : public glib::Class
+  class LIBMM_ADW_SYMEXPORT flap_class : public glib::Class
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-    using CppObjectType = Flap;
+    using CppObjectType = flap;
     using BaseObjectType = AdwFlap;
     using CppClassParent = gtk::Widget_Class;
 
-    friend class Flap;
+    friend class flap;
 #endif
 
     auto

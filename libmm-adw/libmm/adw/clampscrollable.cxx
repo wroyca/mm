@@ -20,9 +20,9 @@ namespace glib
 {
 
   auto
-  wrap (AdwClampScrollable* object, bool take_copy) -> adw::ClampScrollable*
+  wrap (AdwClampScrollable* object, bool take_copy) -> adw::clamp_scrollable*
   {
-    return dynamic_cast<adw::ClampScrollable*> (
+    return dynamic_cast<adw::clamp_scrollable*> (
         glib::wrap_auto ((GObject*) (object), take_copy));
   }
 
@@ -32,7 +32,7 @@ namespace adw
 {
 
   auto
-  ClampScrollable_Class::init () -> const glib::Class&
+  clamp_scrollable_class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -43,23 +43,23 @@ namespace adw
   }
 
   auto
-  ClampScrollable_Class::wrap_new (GObject* o) -> glib::ObjectBase*
+  clamp_scrollable_class::wrap_new (GObject* o) -> glib::ObjectBase*
   {
-    return manage (new ClampScrollable ((AdwClampScrollable*) (o)));
+    return manage (new clamp_scrollable ((AdwClampScrollable*) (o)));
   }
 
-  ClampScrollable::ClampScrollable (
+  clamp_scrollable::clamp_scrollable (
       const glib::ConstructParams& construct_params)
     : gtk::Widget (construct_params)
   {
   }
 
-  ClampScrollable::ClampScrollable (AdwClampScrollable* castitem)
+  clamp_scrollable::clamp_scrollable (AdwClampScrollable* castitem)
     : gtk::Widget ((GtkWidget*) (castitem))
   {
   }
 
-  ClampScrollable::ClampScrollable (ClampScrollable&& src) noexcept
+  clamp_scrollable::clamp_scrollable (clamp_scrollable&& src) noexcept
     : gtk::Widget (std::move (src)),
       gtk::Orientable (std::move (src)),
       gtk::Scrollable (std::move (src))
@@ -67,7 +67,7 @@ namespace adw
   }
 
   auto
-  ClampScrollable::operator= (ClampScrollable&& src) noexcept -> ClampScrollable&
+  clamp_scrollable::operator= (clamp_scrollable&& src) noexcept -> clamp_scrollable&
   {
     gtk::Widget::operator= (std::move (src));
     gtk::Orientable::operator= (std::move (src));
@@ -75,103 +75,103 @@ namespace adw
     return *this;
   }
 
-  ClampScrollable::~ClampScrollable () noexcept
+  clamp_scrollable::~clamp_scrollable () noexcept
   {
     destroy_ ();
   }
 
-  ClampScrollable::CppClassType ClampScrollable::clampscrollable_class_;
+  clamp_scrollable::CppClassType clamp_scrollable::clampscrollable_class_;
 
   auto
-  ClampScrollable::get_type () -> GType
+  clamp_scrollable::get_type () -> GType
   {
     return clampscrollable_class_.init ().get_type ();
   }
 
   auto
-  ClampScrollable::get_base_type () -> GType
+  clamp_scrollable::get_base_type () -> GType
   {
     return adw_clamp_scrollable_get_type ();
   }
 
-  ClampScrollable::ClampScrollable ()
+  clamp_scrollable::clamp_scrollable ()
     : glib::ObjectBase (nullptr),
       gtk::Widget (glib::ConstructParams (clampscrollable_class_.init ()))
   {
   }
 
   auto
-  ClampScrollable::get_child () const -> gtk::Widget*
+  clamp_scrollable::get_child () const -> gtk::Widget*
   {
     return glib::wrap (adw_clamp_scrollable_get_child (
         const_cast<AdwClampScrollable*> (gobj ())));
   }
 
   auto
-  ClampScrollable::get_maximum_size () const -> int
+  clamp_scrollable::get_maximum_size () const -> int
   {
     return adw_clamp_scrollable_get_maximum_size (
         const_cast<AdwClampScrollable*> (gobj ()));
   }
 
   auto
-  ClampScrollable::get_tightening_threshold () const -> int
+  clamp_scrollable::get_tightening_threshold () const -> int
   {
     return adw_clamp_scrollable_get_tightening_threshold (
         const_cast<AdwClampScrollable*> (gobj ()));
   }
 
   auto
-  ClampScrollable::set_child (gtk::Widget* child) -> void
+  clamp_scrollable::set_child (gtk::Widget* child) -> void
   {
     adw_clamp_scrollable_set_child (gobj (), (GtkWidget*) glib::unwrap (child));
   }
 
   auto
-  ClampScrollable::get_maximum_size (int maximum_size) -> void
+  clamp_scrollable::get_maximum_size (int maximum_size) -> void
   {
     adw_clamp_scrollable_set_maximum_size (gobj (), maximum_size);
   }
 
   auto
-  ClampScrollable::get_tightening_threshold (int tightening_threshold) -> void
+  clamp_scrollable::get_tightening_threshold (int tightening_threshold) -> void
   {
     adw_clamp_scrollable_set_tightening_threshold (gobj (),
                                                    tightening_threshold);
   }
 
   auto
-  ClampScrollable::property_child () -> glib::PropertyProxy<gtk::Widget*>
+  clamp_scrollable::property_child () -> glib::PropertyProxy<gtk::Widget*>
   {
     return {this, "child"};
   }
 
   auto
-  ClampScrollable::property_child () const -> glib::PropertyProxy_ReadOnly<gtk::Widget*>
+  clamp_scrollable::property_child () const -> glib::PropertyProxy_ReadOnly<gtk::Widget*>
   {
     return {this, "child"};
   }
 
   auto
-  ClampScrollable::property_maximum_size () -> glib::PropertyProxy<int>
+  clamp_scrollable::property_maximum_size () -> glib::PropertyProxy<int>
   {
     return {this, "maximum-size"};
   }
 
   auto
-  ClampScrollable::property_maximum_size () const -> glib::PropertyProxy_ReadOnly<int>
+  clamp_scrollable::property_maximum_size () const -> glib::PropertyProxy_ReadOnly<int>
   {
     return {this, "maximum-size"};
   }
 
   auto
-  ClampScrollable::property_tightening_threshold () -> glib::PropertyProxy<int>
+  clamp_scrollable::property_tightening_threshold () -> glib::PropertyProxy<int>
   {
     return {this, "tightening-threshold"};
   }
 
   auto
-  ClampScrollable::property_tightening_threshold () const -> glib::PropertyProxy_ReadOnly<int>
+  clamp_scrollable::property_tightening_threshold () const -> glib::PropertyProxy_ReadOnly<int>
   {
     return {this, "tightening-threshold"};
   }

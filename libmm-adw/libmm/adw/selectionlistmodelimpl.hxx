@@ -9,33 +9,33 @@
 namespace adw
 {
 
-  class LIBMM_ADW_SYMEXPORT SelectionListModelImpl : public gio::ListModel,
+  class LIBMM_ADW_SYMEXPORT selection_list_model_impl : public gio::ListModel,
                                  public gtk::SelectionModel,
                                  public glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
   public:
-    SelectionListModelImpl (const SelectionListModelImpl&) = delete;
+    selection_list_model_impl (const selection_list_model_impl&) = delete;
     auto
-    operator= (const SelectionListModelImpl&)
-        -> SelectionListModelImpl& = delete;
+    operator= (const selection_list_model_impl&)
+        -> selection_list_model_impl& = delete;
 
   protected:
-    explicit SelectionListModelImpl (GObject* castitem);
-    friend class Leaflet;
-    friend class Squeezer;
-    friend class TabView;
-    friend class ViewStack;
+    explicit selection_list_model_impl (GObject* castitem);
+    friend class leaflet;
+    friend class squeezer;
+    friend class tab_view;
+    friend class view_stack;
 
 #endif
 
   public:
-    SelectionListModelImpl (SelectionListModelImpl&& src) noexcept;
+    selection_list_model_impl (selection_list_model_impl&& src) noexcept;
     auto
-    operator= (SelectionListModelImpl&& src) noexcept
-        -> SelectionListModelImpl&;
+    operator= (selection_list_model_impl&& src) noexcept
+        -> selection_list_model_impl&;
 
-    ~SelectionListModelImpl () noexcept override;
+    ~selection_list_model_impl () noexcept override;
   };
 
 } // namespace adw

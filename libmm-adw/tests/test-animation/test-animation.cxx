@@ -28,11 +28,11 @@ static void
 test_adw_animation_general (void)
 {
   gtk::Button widget;
-  auto target = adw::CallbackAnimationTarget::create (sigc::ptr_fun (value_cb));
+  auto target = adw::callback_animation_target::create (sigc::ptr_fun (value_cb));
   auto target2 =
-      adw::CallbackAnimationTarget::create (sigc::ptr_fun (value_cb));
+      adw::callback_animation_target::create (sigc::ptr_fun (value_cb));
 
-  auto animation = adw::TimedAnimation::create (&widget, 10, 20, 100, target);
+  auto animation = adw::timed_animation::create (&widget, 10, 20, 100, target);
 
   last_value = 0;
   done_count = 0;

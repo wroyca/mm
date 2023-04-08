@@ -17,7 +17,7 @@ namespace
 }
 
 auto
-glib::Value<adw::ViewSwitcherPolicy>::value_type () -> GType
+glib::Value<adw::view_switcher_policy>::value_type () -> GType
 {
   return adw_view_switcher_policy_get_type ();
 }
@@ -26,9 +26,9 @@ namespace glib
 {
 
   auto
-  wrap (AdwViewSwitcher* object, bool take_copy) -> adw::ViewSwitcher*
+  wrap (AdwViewSwitcher* object, bool take_copy) -> adw::view_switcher*
   {
-    return dynamic_cast<adw::ViewSwitcher*> (
+    return dynamic_cast<adw::view_switcher*> (
         glib::wrap_auto ((GObject*) (object), take_copy));
   }
 
@@ -38,7 +38,7 @@ namespace adw
 {
 
   auto
-  ViewSwitcher_Class::init () -> const glib::Class&
+  view_switcher_class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -49,105 +49,105 @@ namespace adw
   }
 
   auto
-  ViewSwitcher_Class::wrap_new (GObject* o) -> glib::ObjectBase*
+  view_switcher_class::wrap_new (GObject* o) -> glib::ObjectBase*
   {
-    return manage (new ViewSwitcher ((AdwViewSwitcher*) (o)));
+    return manage (new view_switcher ((AdwViewSwitcher*) (o)));
   }
 
-  ViewSwitcher::ViewSwitcher (const glib::ConstructParams& construct_params)
+  view_switcher::view_switcher (const glib::ConstructParams& construct_params)
     : gtk::Widget (construct_params)
   {
   }
 
-  ViewSwitcher::ViewSwitcher (AdwViewSwitcher* castitem)
+  view_switcher::view_switcher (AdwViewSwitcher* castitem)
     : gtk::Widget ((GtkWidget*) (castitem))
   {
   }
 
-  ViewSwitcher::ViewSwitcher (ViewSwitcher&& src) noexcept
+  view_switcher::view_switcher (view_switcher&& src) noexcept
     : gtk::Widget (std::move (src))
   {
   }
 
   auto
-  ViewSwitcher::operator= (ViewSwitcher&& src) noexcept -> ViewSwitcher&
+  view_switcher::operator= (view_switcher&& src) noexcept -> view_switcher&
   {
     gtk::Widget::operator= (std::move (src));
     return *this;
   }
 
-  ViewSwitcher::~ViewSwitcher () noexcept
+  view_switcher::~view_switcher () noexcept
   {
     destroy_ ();
   }
 
-  ViewSwitcher::CppClassType ViewSwitcher::viewswitcher_class_;
+  view_switcher::CppClassType view_switcher::viewswitcher_class_;
 
   auto
-  ViewSwitcher::get_type () -> GType
+  view_switcher::get_type () -> GType
   {
     return viewswitcher_class_.init ().get_type ();
   }
 
   auto
-  ViewSwitcher::get_base_type () -> GType
+  view_switcher::get_base_type () -> GType
   {
     return adw_view_switcher_get_type ();
   }
 
-  ViewSwitcher::ViewSwitcher ()
+  view_switcher::view_switcher ()
     : glib::ObjectBase (nullptr),
       gtk::Widget (glib::ConstructParams (viewswitcher_class_.init ()))
   {
   }
 
   auto
-  ViewSwitcher::get_policy () const -> ViewSwitcherPolicy
+  view_switcher::get_policy () const -> view_switcher_policy
   {
-    return static_cast<ViewSwitcherPolicy> (
+    return static_cast<view_switcher_policy> (
         adw_view_switcher_get_policy (const_cast<AdwViewSwitcher*> (gobj ())));
   }
 
   auto
-  ViewSwitcher::get_stack () const -> ViewStack*
+  view_switcher::get_stack () const -> view_stack*
   {
     return glib::wrap (
         adw_view_switcher_get_stack (const_cast<AdwViewSwitcher*> (gobj ())));
   }
 
   auto
-  ViewSwitcher::set_policy (ViewSwitcherPolicy policy) -> void
+  view_switcher::set_policy (view_switcher_policy policy) -> void
   {
     adw_view_switcher_set_policy (gobj (),
                                   static_cast<AdwViewSwitcherPolicy> (policy));
   }
 
   auto
-  ViewSwitcher::set_stack (ViewStack* stack) -> void
+  view_switcher::set_stack (view_stack* stack) -> void
   {
     adw_view_switcher_set_stack (gobj (), (AdwViewStack*) glib::unwrap (stack));
   }
 
   auto
-  ViewSwitcher::property_policy () -> glib::PropertyProxy<ViewSwitcherPolicy>
+  view_switcher::property_policy () -> glib::PropertyProxy<view_switcher_policy>
   {
     return {this, "policy"};
   }
 
   auto
-  ViewSwitcher::property_policy () const -> glib::PropertyProxy_ReadOnly<ViewSwitcherPolicy>
+  view_switcher::property_policy () const -> glib::PropertyProxy_ReadOnly<view_switcher_policy>
   {
     return {this, "policy"};
   }
 
   auto
-  ViewSwitcher::property_stack () -> glib::PropertyProxy<ViewStack*>
+  view_switcher::property_stack () -> glib::PropertyProxy<view_stack*>
   {
     return {this, "stack"};
   }
 
   auto
-  ViewSwitcher::property_stack () const -> glib::PropertyProxy_ReadOnly<ViewStack*>
+  view_switcher::property_stack () const -> glib::PropertyProxy_ReadOnly<view_stack*>
   {
     return {this, "stack"};
   }

@@ -18,42 +18,42 @@ using AdwWindowClass = struct _AdwWindowClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace adw
 {
-  class LIBMM_ADW_SYMEXPORT Window_Class;
+  class LIBMM_ADW_SYMEXPORT window_class;
 }
 #endif
 
 namespace adw
 {
 
-  class LIBMM_ADW_SYMEXPORT Window : public gtk::Window
+  class LIBMM_ADW_SYMEXPORT window : public gtk::Window
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-    typedef Window CppObjectType;
-    typedef Window_Class CppClassType;
-    typedef AdwWindow BaseObjectType;
-    typedef AdwWindowClass BaseClassType;
+    using CppObjectType = window;
+    using CppClassType = window_class;
+    using BaseObjectType = AdwWindow;
+    using BaseClassType = AdwWindowClass;
 #endif
 
-    Window (Window&& src) noexcept;
+    window (window&& src) noexcept;
     auto
-    operator= (Window&& src) noexcept -> Window&;
+    operator= (window&& src) noexcept -> window&;
 
-    Window (const Window&) = delete;
+    window (const window&) = delete;
     auto
-    operator= (const Window&) -> Window& = delete;
+    operator= (const window&) -> window& = delete;
 
-    ~Window () noexcept override;
+    ~window () noexcept override;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   private:
-    friend class Window_Class;
+    friend class window_class;
     static CppClassType window_class_;
 
   protected:
-    explicit Window (const glib::ConstructParams& construct_params);
-    explicit Window (AdwWindow* castitem);
+    explicit window (const glib::ConstructParams& construct_params);
+    explicit window (AdwWindow* castitem);
 
 #endif
 
@@ -81,7 +81,7 @@ namespace adw
 
   private:
   public:
-    Window ();
+    window ();
 
     auto
     get_content () const -> gtk::Widget*;
@@ -106,7 +106,7 @@ namespace glib
 {
 
   auto
-  wrap (AdwWindow* object, bool take_copy = false) -> adw::Window*;
+  wrap (AdwWindow* object, bool take_copy = false) -> adw::window*;
 }
 
 #endif

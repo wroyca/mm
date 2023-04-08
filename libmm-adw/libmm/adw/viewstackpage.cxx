@@ -22,10 +22,10 @@ namespace glib
 {
 
   auto
-  wrap (AdwViewStackPage* object, bool take_copy) -> glib::RefPtr<adw::ViewStackPage>
+  wrap (AdwViewStackPage* object, bool take_copy) -> glib::RefPtr<adw::view_stack_page>
   {
-    return glib::make_refptr_for_instance<adw::ViewStackPage> (
-        dynamic_cast<adw::ViewStackPage*> (
+    return glib::make_refptr_for_instance<adw::view_stack_page> (
+        dynamic_cast<adw::view_stack_page*> (
             glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
@@ -35,7 +35,7 @@ namespace adw
 {
 
   auto
-  ViewStackPage_Class::init () -> const glib::Class&
+  view_stack_page_class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -46,84 +46,84 @@ namespace adw
   }
 
   auto
-  ViewStackPage_Class::wrap_new (GObject* object) -> glib::ObjectBase*
+  view_stack_page_class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
-    return new ViewStackPage ((AdwViewStackPage*) object);
+    return new view_stack_page ((AdwViewStackPage*) object);
   }
 
   auto
-  ViewStackPage::gobj_copy () -> AdwViewStackPage*
+  view_stack_page::gobj_copy () -> AdwViewStackPage*
   {
     reference ();
     return gobj ();
   }
 
-  ViewStackPage::ViewStackPage (const glib::ConstructParams& construct_params)
+  view_stack_page::view_stack_page (const glib::ConstructParams& construct_params)
     : glib::Object (construct_params)
   {
   }
 
-  ViewStackPage::ViewStackPage (AdwViewStackPage* castitem)
+  view_stack_page::view_stack_page (AdwViewStackPage* castitem)
     : glib::Object ((GObject*) (castitem))
   {
   }
 
-  ViewStackPage::ViewStackPage (ViewStackPage&& src) noexcept
+  view_stack_page::view_stack_page (view_stack_page&& src) noexcept
     : glib::Object (std::move (src))
   {
   }
 
   auto
-  ViewStackPage::operator= (ViewStackPage&& src) noexcept -> ViewStackPage&
+  view_stack_page::operator= (view_stack_page&& src) noexcept -> view_stack_page&
   {
     glib::Object::operator= (std::move (src));
     return *this;
   }
 
-  ViewStackPage::~ViewStackPage () noexcept {}
+  view_stack_page::~view_stack_page () noexcept {}
 
-  ViewStackPage::CppClassType ViewStackPage::viewstackpage_class_;
+  view_stack_page::CppClassType view_stack_page::viewstackpage_class_;
 
   auto
-  ViewStackPage::get_type () -> GType
+  view_stack_page::get_type () -> GType
   {
     return viewstackpage_class_.init ().get_type ();
   }
 
   auto
-  ViewStackPage::get_base_type () -> GType
+  view_stack_page::get_base_type () -> GType
   {
     return adw_view_stack_page_get_type ();
   }
 
-  ViewStackPage::ViewStackPage ()
+  view_stack_page::view_stack_page ()
     : glib::ObjectBase (nullptr),
       glib::Object (glib::ConstructParams (viewstackpage_class_.init ()))
   {
   }
 
   auto
-  ViewStackPage::create () -> glib::RefPtr<ViewStackPage>
+  view_stack_page::create () -> glib::RefPtr<view_stack_page>
   {
-    return glib::make_refptr_for_instance<ViewStackPage> (new ViewStackPage ());
+    return glib::make_refptr_for_instance<view_stack_page> (new view_stack_page ());
   }
 
   auto
-  ViewStackPage::get_badge_number () const -> guint
+  view_stack_page::get_badge_number () const -> guint
   {
     return adw_view_stack_page_get_badge_number (
         const_cast<AdwViewStackPage*> (gobj ()));
   }
 
   auto
-  ViewStackPage::get_child () const -> gtk::Widget*
+  view_stack_page::get_child () const -> gtk::Widget*
   {
     return glib::wrap (adw_view_stack_page_get_child (
         const_cast<AdwViewStackPage*> (gobj ())));
   }
 
   auto
-  ViewStackPage::get_icon_name () const -> glib::ustring
+  view_stack_page::get_icon_name () const -> glib::ustring
   {
     return glib::convert_const_gchar_ptr_to_ustring (
         adw_view_stack_page_get_icon_name (
@@ -131,21 +131,21 @@ namespace adw
   }
 
   auto
-  ViewStackPage::get_name () const -> glib::ustring
+  view_stack_page::get_name () const -> glib::ustring
   {
     return glib::convert_const_gchar_ptr_to_ustring (
         adw_view_stack_page_get_name (const_cast<AdwViewStackPage*> (gobj ())));
   }
 
   auto
-  ViewStackPage::get_needs_attention () const -> bool
+  view_stack_page::get_needs_attention () const -> bool
   {
     return adw_view_stack_page_get_needs_attention (
         const_cast<AdwViewStackPage*> (gobj ()));
   }
 
   auto
-  ViewStackPage::get_title () const -> glib::ustring
+  view_stack_page::get_title () const -> glib::ustring
   {
     return glib::convert_const_gchar_ptr_to_ustring (
         adw_view_stack_page_get_title (
@@ -153,39 +153,39 @@ namespace adw
   }
 
   auto
-  ViewStackPage::get_use_underline () const -> bool
+  view_stack_page::get_use_underline () const -> bool
   {
     return adw_view_stack_page_get_use_underline (
         const_cast<AdwViewStackPage*> (gobj ()));
   }
 
   auto
-  ViewStackPage::get_visible () const -> bool
+  view_stack_page::get_visible () const -> bool
   {
     return adw_view_stack_page_get_visible (
         const_cast<AdwViewStackPage*> (gobj ()));
   }
 
   auto
-  ViewStackPage::set_badge_number (guint badge_number) -> void
+  view_stack_page::set_badge_number (guint badge_number) -> void
   {
     adw_view_stack_page_set_badge_number (gobj (), badge_number);
   }
 
   auto
-  ViewStackPage::set_icon_name (const glib::ustring& icon_name) -> void
+  view_stack_page::set_icon_name (const glib::ustring& icon_name) -> void
   {
     adw_view_stack_page_set_icon_name (gobj (), icon_name.c_str ());
   }
 
   auto
-  ViewStackPage::set_name (const glib::ustring& name) -> void
+  view_stack_page::set_name (const glib::ustring& name) -> void
   {
     adw_view_stack_page_set_name (gobj (), name.c_str ());
   }
 
   auto
-  ViewStackPage::set_needs_attention (bool needs_attention) -> void
+  view_stack_page::set_needs_attention (bool needs_attention) -> void
   {
     adw_view_stack_page_set_needs_attention (
         gobj (),
@@ -193,110 +193,110 @@ namespace adw
   }
 
   auto
-  ViewStackPage::set_title (const glib::ustring& title) -> void
+  view_stack_page::set_title (const glib::ustring& title) -> void
   {
     adw_view_stack_page_set_title (gobj (), title.c_str ());
   }
 
   auto
-  ViewStackPage::set_use_underline (bool use_underline) -> void
+  view_stack_page::set_use_underline (bool use_underline) -> void
   {
     adw_view_stack_page_set_use_underline (gobj (),
                                            static_cast<int> (use_underline));
   }
 
   auto
-  ViewStackPage::set_visible (bool visible) -> void
+  view_stack_page::set_visible (bool visible) -> void
   {
     adw_view_stack_page_set_visible (gobj (), static_cast<int> (visible));
   }
 
   auto
-  ViewStackPage::property_badge_number () -> glib::PropertyProxy<guint>
+  view_stack_page::property_badge_number () -> glib::PropertyProxy<guint>
   {
     return {this, "badge-number"};
   }
 
   auto
-  ViewStackPage::property_badge_number () const -> glib::PropertyProxy_ReadOnly<guint>
+  view_stack_page::property_badge_number () const -> glib::PropertyProxy_ReadOnly<guint>
   {
     return {this, "badge-number"};
   }
 
   auto
-  ViewStackPage::property_child () const -> glib::PropertyProxy_ReadOnly<gtk::Widget*>
+  view_stack_page::property_child () const -> glib::PropertyProxy_ReadOnly<gtk::Widget*>
   {
     return {this, "child"};
   }
 
   auto
-  ViewStackPage::property_icon_name () -> glib::PropertyProxy<glib::ustring>
+  view_stack_page::property_icon_name () -> glib::PropertyProxy<glib::ustring>
   {
     return {this, "icon-name"};
   }
 
   auto
-  ViewStackPage::property_icon_name () const -> glib::PropertyProxy_ReadOnly<glib::ustring>
+  view_stack_page::property_icon_name () const -> glib::PropertyProxy_ReadOnly<glib::ustring>
   {
     return {this, "icon-name"};
   }
 
   auto
-  ViewStackPage::property_name () -> glib::PropertyProxy<glib::ustring>
+  view_stack_page::property_name () -> glib::PropertyProxy<glib::ustring>
   {
     return {this, "name"};
   }
 
   auto
-  ViewStackPage::property_name () const -> glib::PropertyProxy_ReadOnly<glib::ustring>
+  view_stack_page::property_name () const -> glib::PropertyProxy_ReadOnly<glib::ustring>
   {
     return {this, "name"};
   }
 
   auto
-  ViewStackPage::property_needs_attention () -> glib::PropertyProxy<bool>
+  view_stack_page::property_needs_attention () -> glib::PropertyProxy<bool>
   {
     return {this, "needs-attention"};
   }
 
   auto
-  ViewStackPage::property_needs_attention () const -> glib::PropertyProxy_ReadOnly<bool>
+  view_stack_page::property_needs_attention () const -> glib::PropertyProxy_ReadOnly<bool>
   {
     return {this, "needs-attention"};
   }
 
   auto
-  ViewStackPage::property_title () -> glib::PropertyProxy<glib::ustring>
+  view_stack_page::property_title () -> glib::PropertyProxy<glib::ustring>
   {
     return {this, "title"};
   }
 
   auto
-  ViewStackPage::property_title () const -> glib::PropertyProxy_ReadOnly<glib::ustring>
+  view_stack_page::property_title () const -> glib::PropertyProxy_ReadOnly<glib::ustring>
   {
     return {this, "title"};
   }
 
   auto
-  ViewStackPage::property_use_underline () -> glib::PropertyProxy<bool>
+  view_stack_page::property_use_underline () -> glib::PropertyProxy<bool>
   {
     return {this, "use-underline"};
   }
 
   auto
-  ViewStackPage::property_use_underline () const -> glib::PropertyProxy_ReadOnly<bool>
+  view_stack_page::property_use_underline () const -> glib::PropertyProxy_ReadOnly<bool>
   {
     return {this, "use-underline"};
   }
 
   auto
-  ViewStackPage::property_visible () -> glib::PropertyProxy<bool>
+  view_stack_page::property_visible () -> glib::PropertyProxy<bool>
   {
     return {this, "visible"};
   }
 
   auto
-  ViewStackPage::property_visible () const -> glib::PropertyProxy_ReadOnly<bool>
+  view_stack_page::property_visible () const -> glib::PropertyProxy_ReadOnly<bool>
   {
     return {this, "visible"};
   }

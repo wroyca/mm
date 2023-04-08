@@ -19,46 +19,46 @@ using AdwCallbackAnimationTargetClass = struct _AdwCallbackAnimationTargetClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace adw
 {
-  class LIBMM_ADW_SYMEXPORT CallbackAnimationTarget_Class;
+  class LIBMM_ADW_SYMEXPORT callback_animation_target_class;
 }
 #endif
 
 namespace adw
 {
 
-  class LIBMM_ADW_SYMEXPORT CallbackAnimationTarget : public adw::AnimationTarget
+  class LIBMM_ADW_SYMEXPORT callback_animation_target : public adw::AnimationTarget
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   public:
-    using CppObjectType = CallbackAnimationTarget;
-    using CppClassType = CallbackAnimationTarget_Class;
+    using CppObjectType = callback_animation_target;
+    using CppClassType = callback_animation_target_class;
     using BaseObjectType = AdwCallbackAnimationTarget;
     using BaseClassType = AdwCallbackAnimationTargetClass;
 
-    CallbackAnimationTarget (const CallbackAnimationTarget&) = delete;
+    callback_animation_target (const callback_animation_target&) = delete;
     auto
-    operator= (const CallbackAnimationTarget&)
-        -> CallbackAnimationTarget& = delete;
+    operator= (const callback_animation_target&)
+        -> callback_animation_target& = delete;
 
   private:
-    friend class CallbackAnimationTarget_Class;
+    friend class callback_animation_target_class;
     static CppClassType callbackanimationtarget_class_;
 
   protected:
-    explicit CallbackAnimationTarget (
+    explicit callback_animation_target (
         const glib::ConstructParams& construct_params);
-    explicit CallbackAnimationTarget (AdwCallbackAnimationTarget* castitem);
+    explicit callback_animation_target (AdwCallbackAnimationTarget* castitem);
 
 #endif
 
   public:
-    CallbackAnimationTarget (CallbackAnimationTarget&& src) noexcept;
+    callback_animation_target (callback_animation_target&& src) noexcept;
     auto
-    operator= (CallbackAnimationTarget&& src) noexcept
-        -> CallbackAnimationTarget&;
+    operator= (callback_animation_target&& src) noexcept
+        -> callback_animation_target&;
 
-    ~CallbackAnimationTarget () noexcept override;
+    ~callback_animation_target () noexcept override;
 
     static auto
     get_type () -> GType G_GNUC_CONST;
@@ -92,13 +92,13 @@ namespace adw
     using SlotTarget = sigc::slot<void (double)>;
 
   protected:
-    CallbackAnimationTarget ();
-    CallbackAnimationTarget (const SlotTarget& slot_target);
+    callback_animation_target ();
+    callback_animation_target (const SlotTarget& slot_target);
 
   public:
     static auto
     create (const SlotTarget& slot_target)
-        -> glib::RefPtr<CallbackAnimationTarget>;
+        -> glib::RefPtr<callback_animation_target>;
 
   public:
   public:
@@ -111,7 +111,7 @@ namespace glib
 {
 
   auto
-  wrap (AdwCallbackAnimationTarget* object, bool take_copy = false) -> glib::RefPtr<adw::CallbackAnimationTarget>;
+  wrap (AdwCallbackAnimationTarget* object, bool take_copy = false) -> glib::RefPtr<adw::callback_animation_target>;
 }
 
 #endif

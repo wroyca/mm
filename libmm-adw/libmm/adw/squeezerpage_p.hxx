@@ -10,15 +10,15 @@
 namespace adw
 {
 
-  class LIBMM_ADW_SYMEXPORT SqueezerPage_Class : public glib::Class
+  class LIBMM_ADW_SYMEXPORT squeezer_page_class : public glib::Class
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-    using CppObjectType = SqueezerPage;
+    using CppObjectType = squeezer_page;
     using BaseObjectType = AdwSqueezerPage;
     using CppClassParent = glib::Object_Class;
 
-    friend class SqueezerPage;
+    friend class squeezer_page;
 #endif
 
     auto

@@ -11,7 +11,7 @@ static void
 test_adw_application_window_new (void)
 {
   glib::RefPtr<gtk::Application> app; // none
-  adw::ApplicationWindow window (app);
+  adw::application_window window (app);
 }
 
 int

@@ -18,7 +18,7 @@ notify_cb ()
 static void
 test_adw_status_page_icon_name (void)
 {
-  adw::StatusPage status_page;
+  adw::status_page status_page;
 
   notified = 0;
   status_page.property_icon_name ().signal_changed ().connect (
@@ -43,7 +43,7 @@ test_adw_status_page_icon_name (void)
 static void
 test_adw_status_page_title (void)
 {
-  adw::StatusPage status_page;
+  adw::status_page status_page;
 
   notified = 0;
   status_page.property_title ().signal_changed ().connect (
@@ -67,7 +67,7 @@ test_adw_status_page_title (void)
 static void
 test_adw_status_page_description (void)
 {
-  adw::StatusPage status_page;
+  adw::status_page status_page;
 
   notified = 0;
   status_page.property_description ().signal_changed ().connect (

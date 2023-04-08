@@ -10,15 +10,15 @@
 namespace adw
 {
 
-  class LIBMM_ADW_SYMEXPORT TabView_Class : public glib::Class
+  class LIBMM_ADW_SYMEXPORT tab_view_class : public glib::Class
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-    using CppObjectType = TabView;
+    using CppObjectType = tab_view;
     using BaseObjectType = AdwTabView;
     using CppClassParent = gtk::Widget_Class;
 
-    friend class TabView;
+    friend class tab_view;
 #endif
 
     auto

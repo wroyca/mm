@@ -10,15 +10,15 @@
 namespace adw
 {
 
-  class LIBMM_ADW_SYMEXPORT ViewStackPage_Class : public glib::Class
+  class LIBMM_ADW_SYMEXPORT view_stack_page_class : public glib::Class
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-    using CppObjectType = ViewStackPage;
+    using CppObjectType = view_stack_page;
     using BaseObjectType = AdwViewStackPage;
     using CppClassParent = glib::Object_Class;
 
-    friend class ViewStackPage;
+    friend class view_stack_page;
 #endif
 
     auto

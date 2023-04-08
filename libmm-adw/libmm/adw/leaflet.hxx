@@ -24,14 +24,14 @@
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace adw
 {
-  class LIBMM_ADW_SYMEXPORT Leaflet_Class;
+  class LIBMM_ADW_SYMEXPORT leaflet_class;
 }
 #endif
 
 namespace adw
 {
 
-  enum class LIBMM_ADW_SYMEXPORT LeafletTransitionType
+  enum class LIBMM_ADW_SYMEXPORT leaflet_transition_type
   {
     OVER,
     UNDER,
@@ -45,8 +45,8 @@ namespace glib
 {
 
   template <>
-  class LIBMM_ADW_SYMEXPORT Value<adw::LeafletTransitionType>
-    : public glib::Value_Enum<adw::LeafletTransitionType>
+  class LIBMM_ADW_SYMEXPORT Value<adw::leaflet_transition_type>
+    : public glib::Value_Enum<adw::leaflet_transition_type>
   {
   public:
     static auto
@@ -59,37 +59,37 @@ namespace glib
 namespace adw
 {
 
-  class LIBMM_ADW_SYMEXPORT Leaflet : public gtk::Widget,
+  class LIBMM_ADW_SYMEXPORT leaflet : public gtk::Widget,
                   public gtk::Orientable,
-                  public adw::Swipeable
+                  public adw::swipeable
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-    typedef Leaflet CppObjectType;
-    typedef Leaflet_Class CppClassType;
-    typedef AdwLeaflet BaseObjectType;
-    typedef AdwLeafletClass BaseClassType;
+    using CppObjectType = leaflet;
+    using CppClassType = leaflet_class;
+    using BaseObjectType = AdwLeaflet;
+    using BaseClassType = AdwLeafletClass;
 #endif
 
-    Leaflet (Leaflet&& src) noexcept;
+    leaflet (leaflet&& src) noexcept;
     auto
-    operator= (Leaflet&& src) noexcept -> Leaflet&;
+    operator= (leaflet&& src) noexcept -> leaflet&;
 
-    Leaflet (const Leaflet&) = delete;
+    leaflet (const leaflet&) = delete;
     auto
-    operator= (const Leaflet&) -> Leaflet& = delete;
+    operator= (const leaflet&) -> leaflet& = delete;
 
-    ~Leaflet () noexcept override;
+    ~leaflet () noexcept override;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   private:
-    friend class Leaflet_Class;
+    friend class leaflet_class;
     static CppClassType leaflet_class_;
 
   protected:
-    explicit Leaflet (const glib::ConstructParams& construct_params);
-    explicit Leaflet (AdwLeaflet* castitem);
+    explicit leaflet (const glib::ConstructParams& construct_params);
+    explicit leaflet (AdwLeaflet* castitem);
 
 #endif
 
@@ -117,10 +117,10 @@ namespace adw
 
   private:
   public:
-    Leaflet ();
+    leaflet ();
 
     auto
-    append (gtk::Widget* child) -> glib::RefPtr<LeafletPage>;
+    append (gtk::Widget* child) -> glib::RefPtr<leaflet_page>;
 
     auto
     get_adjacent_child (NavigationDirection direction) const -> gtk::Widget*;
@@ -138,7 +138,7 @@ namespace adw
     get_child_by_name (const glib::ustring& name) const -> gtk::Widget*;
 
     auto
-    get_child_transition_params () const -> glib::RefPtr<SpringParams>;
+    get_child_transition_params () const -> glib::RefPtr<spring_params>;
 
     auto
     get_child_transition_running () const -> bool;
@@ -156,13 +156,13 @@ namespace adw
     get_mode_transition_duration () const -> guint;
 
     auto
-    get_page (gtk::Widget* child) const -> glib::RefPtr<LeafletPage>;
+    get_page (gtk::Widget* child) const -> glib::RefPtr<leaflet_page>;
 
     auto
     get_pages () const -> glib::RefPtr<gtk::SelectionModel>;
 
     auto
-    get_transition_type () const -> LeafletTransitionType;
+    get_transition_type () const -> leaflet_transition_type;
 
     auto
     get_visible_child () const -> gtk::Widget*;
@@ -172,13 +172,13 @@ namespace adw
 
     auto
     insert_child_after (gtk::Widget* child, gtk::Widget* sibling)
-        -> glib::RefPtr<LeafletPage>;
+        -> glib::RefPtr<leaflet_page>;
 
     auto
     navigate (NavigationDirection direction) -> bool;
 
     auto
-    prepend (gtk::Widget* child) -> glib::RefPtr<LeafletPage>;
+    prepend (gtk::Widget* child) -> glib::RefPtr<leaflet_page>;
 
     auto
     remove (gtk::Widget* child) -> void;
@@ -196,7 +196,7 @@ namespace adw
     set_can_unfold (bool can_unfold) -> void;
 
     auto
-    set_child_transition_params (const glib::RefPtr<SpringParams>& params)
+    set_child_transition_params (const glib::RefPtr<spring_params>& params)
         -> void;
 
     auto
@@ -209,7 +209,7 @@ namespace adw
     set_mode_transition_duration (guint duration) -> void;
 
     auto
-    set_transition_type (LeafletTransitionType transition) -> void;
+    set_transition_type (leaflet_transition_type transition) -> void;
 
     auto
     set_visible_child (gtk::Widget* child) -> void;
@@ -238,11 +238,11 @@ namespace adw
 
     auto
     property_child_transition_params ()
-        -> glib::PropertyProxy<glib::RefPtr<SpringParams>>;
+        -> glib::PropertyProxy<glib::RefPtr<spring_params>>;
 
     auto
     property_child_transition_params () const
-        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<SpringParams>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<spring_params>>;
 
     auto
     property_child_transition_running () const
@@ -277,11 +277,11 @@ namespace adw
         -> glib::PropertyProxy_ReadOnly<glib::RefPtr<gtk::SelectionModel>>;
 
     auto
-    property_transition_type () -> glib::PropertyProxy<LeafletTransitionType>;
+    property_transition_type () -> glib::PropertyProxy<leaflet_transition_type>;
 
     auto
     property_transition_type () const
-        -> glib::PropertyProxy_ReadOnly<LeafletTransitionType>;
+        -> glib::PropertyProxy_ReadOnly<leaflet_transition_type>;
 
     auto
     property_visible_child () -> glib::PropertyProxy<gtk::Widget*>;
@@ -308,7 +308,7 @@ namespace glib
 {
 
   auto
-  wrap (AdwLeaflet* object, bool take_copy = false) -> adw::Leaflet*;
+  wrap (AdwLeaflet* object, bool take_copy = false) -> adw::leaflet*;
 }
 
 #endif

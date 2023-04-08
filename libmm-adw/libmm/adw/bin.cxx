@@ -20,9 +20,9 @@ namespace glib
 {
 
   auto
-  wrap (AdwBin* object, bool take_copy) -> adw::Bin*
+  wrap (AdwBin* object, bool take_copy) -> adw::bin*
   {
-    return dynamic_cast<adw::Bin*> (
+    return dynamic_cast<adw::bin*> (
         glib::wrap_auto ((GObject*) (object), take_copy));
   }
 
@@ -32,11 +32,11 @@ namespace adw
 {
 
   auto
-  Bin_Class::init () -> const glib::Class&
+  bin_class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
-      class_init_func_ = &Bin_Class::class_init_function;
+      class_init_func_ = &bin_class::class_init_function;
 
       register_derived_type (adw_bin_get_type ());
     }
@@ -45,85 +45,85 @@ namespace adw
   }
 
   auto
-  Bin_Class::class_init_function (void* g_class, void* class_data) -> void
+  bin_class::class_init_function (void* g_class, void* class_data) -> void
   {
     const auto klass = static_cast<BaseClassType*> (g_class);
     CppClassParent::class_init_function (klass, class_data);
   }
 
   auto
-  Bin_Class::wrap_new (GObject* o) -> glib::ObjectBase*
+  bin_class::wrap_new (GObject* o) -> glib::ObjectBase*
   {
-    return manage (new Bin ((AdwBin*) (o)));
+    return manage (new bin ((AdwBin*) (o)));
   }
 
-  Bin::Bin (const glib::ConstructParams& construct_params)
+  bin::bin (const glib::ConstructParams& construct_params)
     : gtk::Widget (construct_params)
   {
   }
 
-  Bin::Bin (AdwBin* castitem)
+  bin::bin (AdwBin* castitem)
     : gtk::Widget ((GtkWidget*) (castitem))
   {
   }
 
-  Bin::Bin (Bin&& src) noexcept
+  bin::bin (bin&& src) noexcept
     : gtk::Widget (std::move (src))
   {
   }
 
   auto
-  Bin::operator= (Bin&& src) noexcept -> Bin&
+  bin::operator= (bin&& src) noexcept -> bin&
   {
     gtk::Widget::operator= (std::move (src));
     return *this;
   }
 
-  Bin::~Bin () noexcept
+  bin::~bin () noexcept
   {
     destroy_ ();
   }
 
-  Bin::CppClassType Bin::bin_class_;
+  bin::CppClassType bin::bin_class_;
 
   auto
-  Bin::get_type () -> GType
+  bin::get_type () -> GType
   {
     return bin_class_.init ().get_type ();
   }
 
   auto
-  Bin::get_base_type () -> GType
+  bin::get_base_type () -> GType
   {
     return adw_bin_get_type ();
   }
 
-  Bin::Bin ()
+  bin::bin ()
     : glib::ObjectBase (nullptr),
       gtk::Widget (glib::ConstructParams (bin_class_.init ()))
   {
   }
 
   auto
-  Bin::get_child () const -> gtk::Widget*
+  bin::get_child () const -> gtk::Widget*
   {
     return glib::wrap (adw_bin_get_child (const_cast<AdwBin*> (gobj ())));
   }
 
   auto
-  Bin::set_child (gtk::Widget* widget) -> void
+  bin::set_child (gtk::Widget* widget) -> void
   {
     adw_bin_set_child (gobj (), (GtkWidget*) glib::unwrap (widget));
   }
 
   auto
-  Bin::property_child () -> glib::PropertyProxy<gtk::Widget*>
+  bin::property_child () -> glib::PropertyProxy<gtk::Widget*>
   {
     return {this, "child"};
   }
 
   auto
-  Bin::property_child () const -> glib::PropertyProxy_ReadOnly<gtk::Widget*>
+  bin::property_child () const -> glib::PropertyProxy_ReadOnly<gtk::Widget*>
   {
     return {this, "child"};
   }

@@ -44,10 +44,10 @@ namespace adw
     };
   }
 
-  action_row::action_row (): ObjectBase (nullptr), PreferencesRow (glib::ConstructParams (actionrow_class_.init ())) { }
-  action_row::action_row (const glib::ConstructParams &construct_params): PreferencesRow (construct_params) { }
-  action_row::action_row (AdwActionRow *castitem): PreferencesRow (std::bit_cast<AdwPreferencesRow *> (castitem)) { }
-  action_row::action_row (action_row &&src) noexcept: PreferencesRow (std::move (src)) { }
+  action_row::action_row (): ObjectBase (nullptr), preferences_row (glib::ConstructParams (actionrow_class_.init ())) { }
+  action_row::action_row (const glib::ConstructParams &construct_params): preferences_row (construct_params) { }
+  action_row::action_row (AdwActionRow *castitem): preferences_row (std::bit_cast<AdwPreferencesRow *> (castitem)) { }
+  action_row::action_row (action_row &&src) noexcept: preferences_row (std::move (src)) { }
   action_row::~action_row () noexcept
   {
     destroy_ ();
@@ -56,7 +56,7 @@ namespace adw
   auto
   action_row::operator= (action_row &&src) noexcept -> action_row &
   {
-    PreferencesRow::operator= (std::move (src));
+    preferences_row::operator= (std::move (src));
     return *this;
   }
 

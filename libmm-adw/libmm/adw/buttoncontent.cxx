@@ -20,9 +20,9 @@ namespace glib
 {
 
   auto
-  wrap (AdwButtonContent* object, bool take_copy) -> adw::ButtonContent*
+  wrap (AdwButtonContent* object, bool take_copy) -> adw::button_content*
   {
-    return dynamic_cast<adw::ButtonContent*> (
+    return dynamic_cast<adw::button_content*> (
         glib::wrap_auto ((GObject*) (object), take_copy));
   }
 
@@ -32,7 +32,7 @@ namespace adw
 {
 
   auto
-  ButtonContent_Class::init () -> const glib::Class&
+  button_content_class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -43,60 +43,60 @@ namespace adw
   }
 
   auto
-  ButtonContent_Class::wrap_new (GObject* o) -> glib::ObjectBase*
+  button_content_class::wrap_new (GObject* o) -> glib::ObjectBase*
   {
-    return manage (new ButtonContent ((AdwButtonContent*) (o)));
+    return manage (new button_content ((AdwButtonContent*) (o)));
   }
 
-  ButtonContent::ButtonContent (const glib::ConstructParams& construct_params)
+  button_content::button_content (const glib::ConstructParams& construct_params)
     : gtk::Widget (construct_params)
   {
   }
 
-  ButtonContent::ButtonContent (AdwButtonContent* castitem)
+  button_content::button_content (AdwButtonContent* castitem)
     : gtk::Widget ((GtkWidget*) (castitem))
   {
   }
 
-  ButtonContent::ButtonContent (ButtonContent&& src) noexcept
+  button_content::button_content (button_content&& src) noexcept
     : gtk::Widget (std::move (src))
   {
   }
 
   auto
-  ButtonContent::operator= (ButtonContent&& src) noexcept -> ButtonContent&
+  button_content::operator= (button_content&& src) noexcept -> button_content&
   {
     gtk::Widget::operator= (std::move (src));
     return *this;
   }
 
-  ButtonContent::~ButtonContent () noexcept
+  button_content::~button_content () noexcept
   {
     destroy_ ();
   }
 
-  ButtonContent::CppClassType ButtonContent::buttoncontent_class_;
+  button_content::CppClassType button_content::buttoncontent_class_;
 
   auto
-  ButtonContent::get_type () -> GType
+  button_content::get_type () -> GType
   {
     return buttoncontent_class_.init ().get_type ();
   }
 
   auto
-  ButtonContent::get_base_type () -> GType
+  button_content::get_base_type () -> GType
   {
     return adw_button_content_get_type ();
   }
 
-  ButtonContent::ButtonContent ()
+  button_content::button_content ()
     : glib::ObjectBase (nullptr),
       gtk::Widget (glib::ConstructParams (buttoncontent_class_.init ()))
   {
   }
 
   auto
-  ButtonContent::get_icon_name () const -> glib::ustring
+  button_content::get_icon_name () const -> glib::ustring
   {
     return glib::convert_const_gchar_ptr_to_ustring (
         adw_button_content_get_icon_name (
@@ -104,70 +104,70 @@ namespace adw
   }
 
   auto
-  ButtonContent::get_label () const -> glib::ustring
+  button_content::get_label () const -> glib::ustring
   {
     return glib::convert_const_gchar_ptr_to_ustring (
         adw_button_content_get_label (const_cast<AdwButtonContent*> (gobj ())));
   }
 
   auto
-  ButtonContent::get_use_underline () const -> bool
+  button_content::get_use_underline () const -> bool
   {
     return adw_button_content_get_use_underline (
         const_cast<AdwButtonContent*> (gobj ()));
   }
 
   auto
-  ButtonContent::set_icon_name (const glib::ustring& icon_name) -> void
+  button_content::set_icon_name (const glib::ustring& icon_name) -> void
   {
     adw_button_content_set_icon_name (gobj (), icon_name.c_str ());
   }
 
   auto
-  ButtonContent::set_label (const glib::ustring& label) -> void
+  button_content::set_label (const glib::ustring& label) -> void
   {
     adw_button_content_set_label (gobj (), label.c_str ());
   }
 
   auto
-  ButtonContent::set_use_underline (bool use_underline) -> void
+  button_content::set_use_underline (bool use_underline) -> void
   {
     adw_button_content_set_use_underline (gobj (),
                                           static_cast<int> (use_underline));
   }
 
   auto
-  ButtonContent::property_icon_name () -> glib::PropertyProxy<glib::ustring>
+  button_content::property_icon_name () -> glib::PropertyProxy<glib::ustring>
   {
     return {this, "icon-name"};
   }
 
   auto
-  ButtonContent::property_icon_name () const -> glib::PropertyProxy_ReadOnly<glib::ustring>
+  button_content::property_icon_name () const -> glib::PropertyProxy_ReadOnly<glib::ustring>
   {
     return {this, "icon-name"};
   }
 
   auto
-  ButtonContent::property_label () -> glib::PropertyProxy<glib::ustring>
+  button_content::property_label () -> glib::PropertyProxy<glib::ustring>
   {
     return {this, "label"};
   }
 
   auto
-  ButtonContent::property_label () const -> glib::PropertyProxy_ReadOnly<glib::ustring>
+  button_content::property_label () const -> glib::PropertyProxy_ReadOnly<glib::ustring>
   {
     return {this, "label"};
   }
 
   auto
-  ButtonContent::property_use_underline () -> glib::PropertyProxy<bool>
+  button_content::property_use_underline () -> glib::PropertyProxy<bool>
   {
     return {this, "use-underline"};
   }
 
   auto
-  ButtonContent::property_use_underline () const -> glib::PropertyProxy_ReadOnly<bool>
+  button_content::property_use_underline () const -> glib::PropertyProxy_ReadOnly<bool>
   {
     return {this, "use-underline"};
   }

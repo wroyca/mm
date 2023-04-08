@@ -18,8 +18,8 @@ notify_cb ()
 static void
 test_adw_carousel_indicator_lines_carousel (void)
 {
-  adw::CarouselIndicatorLines lines;
-  adw::Carousel carousel;
+  adw::carousel_indicator_lines lines;
+  adw::carousel carousel;
 
   notified = 0;
   lines.property_carousel ().signal_changed ().connect (

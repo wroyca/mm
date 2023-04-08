@@ -10,7 +10,7 @@
 static void
 test_adw_header_bar_pack (void)
 {
-  adw::HeaderBar bar;
+  adw::header_bar bar;
   gtk::Switch widget1;
 
   bar.pack_start (&widget1);
@@ -23,7 +23,7 @@ test_adw_header_bar_pack (void)
 static void
 test_adw_header_bar_title_widget (void)
 {
-  adw::HeaderBar bar;
+  adw::header_bar bar;
   g_assert_null (bar.get_title_widget ());
 
   gtk::Switch widget;
@@ -39,7 +39,7 @@ test_adw_header_bar_title_widget (void)
 static void
 test_adw_header_bar_show_start_title_buttons (void)
 {
-  adw::HeaderBar bar;
+  adw::header_bar bar;
 
   g_assert_true (bar.get_show_start_title_buttons ());
 
@@ -53,7 +53,7 @@ test_adw_header_bar_show_start_title_buttons (void)
 static void
 test_adw_header_bar_show_end_title_buttons (void)
 {
-  adw::HeaderBar bar;
+  adw::header_bar bar;
 
   g_assert_true (bar.get_show_end_title_buttons ());
 
@@ -67,7 +67,7 @@ test_adw_header_bar_show_end_title_buttons (void)
 static void
 test_adw_header_bar_decoration_layout (void)
 {
-  adw::HeaderBar bar;
+  adw::header_bar bar;
 
   g_assert_true (bar.get_decoration_layout () == "");
 
@@ -82,7 +82,7 @@ test_adw_header_bar_decoration_layout (void)
 static void
 test_adw_header_bar_centering_policy (void)
 {
-  adw::HeaderBar bar;
+  adw::header_bar bar;
 
   g_assert_true (bar.get_centering_policy () == adw::CenteringPolicy::LOOSE);
 

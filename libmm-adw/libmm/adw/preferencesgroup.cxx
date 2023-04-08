@@ -20,9 +20,9 @@ namespace glib
 {
 
   auto
-  wrap (AdwPreferencesGroup* object, bool take_copy) -> adw::PreferencesGroup*
+  wrap (AdwPreferencesGroup* object, bool take_copy) -> adw::preferences_group*
   {
-    return dynamic_cast<adw::PreferencesGroup*> (
+    return dynamic_cast<adw::preferences_group*> (
         glib::wrap_auto ((GObject*) (object), take_copy));
   }
 
@@ -32,11 +32,11 @@ namespace adw
 {
 
   auto
-  PreferencesGroup_Class::init () -> const glib::Class&
+  preferences_group_class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
-      class_init_func_ = &PreferencesGroup_Class::class_init_function;
+      class_init_func_ = &preferences_group_class::class_init_function;
 
       register_derived_type (adw_preferences_group_get_type ());
     }
@@ -45,74 +45,74 @@ namespace adw
   }
 
   auto
-  PreferencesGroup_Class::class_init_function (void* g_class, void* class_data) -> void
+  preferences_group_class::class_init_function (void* g_class, void* class_data) -> void
   {
     const auto klass = static_cast<BaseClassType*> (g_class);
     CppClassParent::class_init_function (klass, class_data);
   }
 
   auto
-  PreferencesGroup_Class::wrap_new (GObject* o) -> glib::ObjectBase*
+  preferences_group_class::wrap_new (GObject* o) -> glib::ObjectBase*
   {
-    return manage (new PreferencesGroup ((AdwPreferencesGroup*) (o)));
+    return manage (new preferences_group ((AdwPreferencesGroup*) (o)));
   }
 
-  PreferencesGroup::PreferencesGroup (
+  preferences_group::preferences_group (
       const glib::ConstructParams& construct_params)
     : gtk::Widget (construct_params)
   {
   }
 
-  PreferencesGroup::PreferencesGroup (AdwPreferencesGroup* castitem)
+  preferences_group::preferences_group (AdwPreferencesGroup* castitem)
     : gtk::Widget ((GtkWidget*) (castitem))
   {
   }
 
-  PreferencesGroup::PreferencesGroup (PreferencesGroup&& src) noexcept
+  preferences_group::preferences_group (preferences_group&& src) noexcept
     : gtk::Widget (std::move (src))
   {
   }
 
   auto
-  PreferencesGroup::operator= (PreferencesGroup&& src) noexcept -> PreferencesGroup&
+  preferences_group::operator= (preferences_group&& src) noexcept -> preferences_group&
   {
     gtk::Widget::operator= (std::move (src));
     return *this;
   }
 
-  PreferencesGroup::~PreferencesGroup () noexcept
+  preferences_group::~preferences_group () noexcept
   {
     destroy_ ();
   }
 
-  PreferencesGroup::CppClassType PreferencesGroup::preferencesgroup_class_;
+  preferences_group::CppClassType preferences_group::preferencesgroup_class_;
 
   auto
-  PreferencesGroup::get_type () -> GType
+  preferences_group::get_type () -> GType
   {
     return preferencesgroup_class_.init ().get_type ();
   }
 
   auto
-  PreferencesGroup::get_base_type () -> GType
+  preferences_group::get_base_type () -> GType
   {
     return adw_preferences_group_get_type ();
   }
 
-  PreferencesGroup::PreferencesGroup ()
+  preferences_group::preferences_group ()
     : glib::ObjectBase (nullptr),
       gtk::Widget (glib::ConstructParams (preferencesgroup_class_.init ()))
   {
   }
 
   auto
-  PreferencesGroup::add (gtk::Widget* child) -> void
+  preferences_group::add (gtk::Widget* child) -> void
   {
     adw_preferences_group_add (gobj (), (GtkWidget*) glib::unwrap (child));
   }
 
   auto
-  PreferencesGroup::get_description () const -> glib::ustring
+  preferences_group::get_description () const -> glib::ustring
   {
     return glib::convert_const_gchar_ptr_to_ustring (
         adw_preferences_group_get_description (
@@ -120,14 +120,14 @@ namespace adw
   }
 
   auto
-  PreferencesGroup::get_header_suffix () const -> gtk::Widget*
+  preferences_group::get_header_suffix () const -> gtk::Widget*
   {
     return glib::wrap (adw_preferences_group_get_header_suffix (
         const_cast<AdwPreferencesGroup*> (gobj ())));
   }
 
   auto
-  PreferencesGroup::get_title () const -> glib::ustring
+  preferences_group::get_title () const -> glib::ustring
   {
     return glib::convert_const_gchar_ptr_to_ustring (
         adw_preferences_group_get_title (
@@ -135,19 +135,19 @@ namespace adw
   }
 
   auto
-  PreferencesGroup::remove (gtk::Widget* child) -> void
+  preferences_group::remove (gtk::Widget* child) -> void
   {
     adw_preferences_group_remove (gobj (), (GtkWidget*) glib::unwrap (child));
   }
 
   auto
-  PreferencesGroup::set_description (const glib::ustring& description) -> void
+  preferences_group::set_description (const glib::ustring& description) -> void
   {
     adw_preferences_group_set_description (gobj (), description.c_str ());
   }
 
   auto
-  PreferencesGroup::set_header_suffix (gtk::Widget* suffix) -> void
+  preferences_group::set_header_suffix (gtk::Widget* suffix) -> void
   {
     adw_preferences_group_set_header_suffix (
         gobj (),
@@ -155,43 +155,43 @@ namespace adw
   }
 
   auto
-  PreferencesGroup::set_title (const glib::ustring& title) -> void
+  preferences_group::set_title (const glib::ustring& title) -> void
   {
     adw_preferences_group_set_title (gobj (), title.c_str ());
   }
 
   auto
-  PreferencesGroup::property_description () -> glib::PropertyProxy<glib::ustring>
+  preferences_group::property_description () -> glib::PropertyProxy<glib::ustring>
   {
     return {this, "description"};
   }
 
   auto
-  PreferencesGroup::property_description () const -> glib::PropertyProxy_ReadOnly<glib::ustring>
+  preferences_group::property_description () const -> glib::PropertyProxy_ReadOnly<glib::ustring>
   {
     return {this, "description"};
   }
 
   auto
-  PreferencesGroup::property_header_suffix () -> glib::PropertyProxy<gtk::Widget*>
+  preferences_group::property_header_suffix () -> glib::PropertyProxy<gtk::Widget*>
   {
     return {this, "header-suffix"};
   }
 
   auto
-  PreferencesGroup::property_header_suffix () const -> glib::PropertyProxy_ReadOnly<gtk::Widget*>
+  preferences_group::property_header_suffix () const -> glib::PropertyProxy_ReadOnly<gtk::Widget*>
   {
     return {this, "header-suffix"};
   }
 
   auto
-  PreferencesGroup::property_title () -> glib::PropertyProxy<glib::ustring>
+  preferences_group::property_title () -> glib::PropertyProxy<glib::ustring>
   {
     return {this, "title"};
   }
 
   auto
-  PreferencesGroup::property_title () const -> glib::PropertyProxy_ReadOnly<glib::ustring>
+  preferences_group::property_title () const -> glib::PropertyProxy_ReadOnly<glib::ustring>
   {
     return {this, "title"};
   }

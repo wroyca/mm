@@ -18,9 +18,9 @@ namespace glib
 {
 
   auto
-  wrap (AdwExpanderRow* object, bool take_copy) -> adw::ExpanderRow*
+  wrap (AdwExpanderRow* object, bool take_copy) -> adw::expander_row*
   {
-    return dynamic_cast<adw::ExpanderRow*> (
+    return dynamic_cast<adw::expander_row*> (
         glib::wrap_auto ((GObject*) (object), take_copy));
   }
 
@@ -30,11 +30,11 @@ namespace adw
 {
 
   auto
-  ExpanderRow_Class::init () -> const glib::Class&
+  expander_row_class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
-      class_init_func_ = &ExpanderRow_Class::class_init_function;
+      class_init_func_ = &expander_row_class::class_init_function;
 
       register_derived_type (adw_expander_row_get_type ());
     }
@@ -43,145 +43,145 @@ namespace adw
   }
 
   auto
-  ExpanderRow_Class::class_init_function (void* g_class, void* class_data) -> void
+  expander_row_class::class_init_function (void* g_class, void* class_data) -> void
   {
     const auto klass = static_cast<BaseClassType*> (g_class);
     CppClassParent::class_init_function (klass, class_data);
   }
 
   auto
-  ExpanderRow_Class::wrap_new (GObject* o) -> glib::ObjectBase*
+  expander_row_class::wrap_new (GObject* o) -> glib::ObjectBase*
   {
-    return manage (new ExpanderRow ((AdwExpanderRow*) (o)));
+    return manage (new expander_row ((AdwExpanderRow*) (o)));
   }
 
-  ExpanderRow::ExpanderRow (const glib::ConstructParams& construct_params)
-    : adw::PreferencesRow (construct_params)
-  {
-  }
-
-  ExpanderRow::ExpanderRow (AdwExpanderRow* castitem)
-    : adw::PreferencesRow ((AdwPreferencesRow*) (castitem))
+  expander_row::expander_row (const glib::ConstructParams& construct_params)
+    : adw::preferences_row (construct_params)
   {
   }
 
-  ExpanderRow::ExpanderRow (ExpanderRow&& src) noexcept
-    : adw::PreferencesRow (std::move (src))
+  expander_row::expander_row (AdwExpanderRow* castitem)
+    : adw::preferences_row ((AdwPreferencesRow*) (castitem))
+  {
+  }
+
+  expander_row::expander_row (expander_row&& src) noexcept
+    : adw::preferences_row (std::move (src))
   {
   }
 
   auto
-  ExpanderRow::operator= (ExpanderRow&& src) noexcept -> ExpanderRow&
+  expander_row::operator= (expander_row&& src) noexcept -> expander_row&
   {
-    adw::PreferencesRow::operator= (std::move (src));
+    adw::preferences_row::operator= (std::move (src));
     return *this;
   }
 
-  ExpanderRow::~ExpanderRow () noexcept
+  expander_row::~expander_row () noexcept
   {
     destroy_ ();
   }
 
-  ExpanderRow::CppClassType ExpanderRow::expanderrow_class_;
+  expander_row::CppClassType expander_row::expanderrow_class_;
 
   auto
-  ExpanderRow::get_type () -> GType
+  expander_row::get_type () -> GType
   {
     return expanderrow_class_.init ().get_type ();
   }
 
   auto
-  ExpanderRow::get_base_type () -> GType
+  expander_row::get_base_type () -> GType
   {
     return adw_expander_row_get_type ();
   }
 
-  ExpanderRow::ExpanderRow ()
+  expander_row::expander_row ()
     : glib::ObjectBase (nullptr),
-      adw::PreferencesRow (glib::ConstructParams (expanderrow_class_.init ()))
+      adw::preferences_row (glib::ConstructParams (expanderrow_class_.init ()))
   {
   }
 
   auto
-  ExpanderRow::add_action (gtk::Widget* widget) -> void
+  expander_row::add_action (gtk::Widget* widget) -> void
   {
     adw_expander_row_add_action (gobj (), (GtkWidget*) glib::unwrap (widget));
   }
 
   auto
-  ExpanderRow::add_prefix (gtk::Widget* widget) -> void
+  expander_row::add_prefix (gtk::Widget* widget) -> void
   {
     adw_expander_row_add_prefix (gobj (), (GtkWidget*) glib::unwrap (widget));
   }
 
   auto
-  ExpanderRow::add_row (gtk::Widget* child) -> void
+  expander_row::add_row (gtk::Widget* child) -> void
   {
     adw_expander_row_add_row (gobj (), (GtkWidget*) glib::unwrap (child));
   }
 
   auto
-  ExpanderRow::get_enable_expansion () const -> bool
+  expander_row::get_enable_expansion () const -> bool
   {
     return adw_expander_row_get_enable_expansion (
         const_cast<AdwExpanderRow*> (gobj ()));
   }
 
   auto
-  ExpanderRow::get_expanded () const -> bool
+  expander_row::get_expanded () const -> bool
   {
     return adw_expander_row_get_expanded (
         const_cast<AdwExpanderRow*> (gobj ()));
   }
 
   auto
-  ExpanderRow::get_icon_name () const -> glib::ustring
+  expander_row::get_icon_name () const -> glib::ustring
   {
     return glib::convert_const_gchar_ptr_to_ustring (
         adw_expander_row_get_icon_name (const_cast<AdwExpanderRow*> (gobj ())));
   }
 
   auto
-  ExpanderRow::get_show_enable_switch () const -> bool
+  expander_row::get_show_enable_switch () const -> bool
   {
     return adw_expander_row_get_show_enable_switch (
         const_cast<AdwExpanderRow*> (gobj ()));
   }
 
   auto
-  ExpanderRow::get_subtitle () const -> glib::ustring
+  expander_row::get_subtitle () const -> glib::ustring
   {
     return glib::convert_const_gchar_ptr_to_ustring (
         adw_expander_row_get_subtitle (const_cast<AdwExpanderRow*> (gobj ())));
   }
 
   auto
-  ExpanderRow::remove (gtk::Widget* child) -> void
+  expander_row::remove (gtk::Widget* child) -> void
   {
     adw_expander_row_remove (gobj (), (GtkWidget*) glib::unwrap (child));
   }
 
   auto
-  ExpanderRow::set_enable_expansion (bool enable_expansion) -> void
+  expander_row::set_enable_expansion (bool enable_expansion) -> void
   {
     adw_expander_row_set_enable_expansion (gobj (),
                                            static_cast<int> (enable_expansion));
   }
 
   auto
-  ExpanderRow::set_expanded (bool expanded) -> void
+  expander_row::set_expanded (bool expanded) -> void
   {
     adw_expander_row_set_expanded (gobj (), static_cast<int> (expanded));
   }
 
   auto
-  ExpanderRow::set_icon_name (const glib::ustring& icon_name) -> void
+  expander_row::set_icon_name (const glib::ustring& icon_name) -> void
   {
     adw_expander_row_set_icon_name (gobj (), icon_name.c_str ());
   }
 
   auto
-  ExpanderRow::set_show_enable_switch (bool show_enable_switch) -> void
+  expander_row::set_show_enable_switch (bool show_enable_switch) -> void
   {
     adw_expander_row_set_show_enable_switch (
         gobj (),
@@ -189,67 +189,67 @@ namespace adw
   }
 
   auto
-  ExpanderRow::set_subtitle (const glib::ustring& subtitle) -> void
+  expander_row::set_subtitle (const glib::ustring& subtitle) -> void
   {
     adw_expander_row_set_subtitle (gobj (), subtitle.c_str ());
   }
 
   auto
-  ExpanderRow::property_enable_expansion () -> glib::PropertyProxy<bool>
+  expander_row::property_enable_expansion () -> glib::PropertyProxy<bool>
   {
     return {this, "enable-expansion"};
   }
 
   auto
-  ExpanderRow::property_enable_expansion () const -> glib::PropertyProxy_ReadOnly<bool>
+  expander_row::property_enable_expansion () const -> glib::PropertyProxy_ReadOnly<bool>
   {
     return {this, "enable-expansion"};
   }
 
   auto
-  ExpanderRow::property_expanded () -> glib::PropertyProxy<bool>
+  expander_row::property_expanded () -> glib::PropertyProxy<bool>
   {
     return {this, "expanded"};
   }
 
   auto
-  ExpanderRow::property_expanded () const -> glib::PropertyProxy_ReadOnly<bool>
+  expander_row::property_expanded () const -> glib::PropertyProxy_ReadOnly<bool>
   {
     return {this, "expanded"};
   }
 
   auto
-  ExpanderRow::property_icon_name () -> glib::PropertyProxy<glib::ustring>
+  expander_row::property_icon_name () -> glib::PropertyProxy<glib::ustring>
   {
     return {this, "icon-name"};
   }
 
   auto
-  ExpanderRow::property_icon_name () const -> glib::PropertyProxy_ReadOnly<glib::ustring>
+  expander_row::property_icon_name () const -> glib::PropertyProxy_ReadOnly<glib::ustring>
   {
     return {this, "icon-name"};
   }
 
   auto
-  ExpanderRow::property_show_enable_switch () -> glib::PropertyProxy<bool>
+  expander_row::property_show_enable_switch () -> glib::PropertyProxy<bool>
   {
     return {this, "show-enable-switch"};
   }
 
   auto
-  ExpanderRow::property_show_enable_switch () const -> glib::PropertyProxy_ReadOnly<bool>
+  expander_row::property_show_enable_switch () const -> glib::PropertyProxy_ReadOnly<bool>
   {
     return {this, "show-enable-switch"};
   }
 
   auto
-  ExpanderRow::property_subtitle () -> glib::PropertyProxy<glib::ustring>
+  expander_row::property_subtitle () -> glib::PropertyProxy<glib::ustring>
   {
     return {this, "subtitle"};
   }
 
   auto
-  ExpanderRow::property_subtitle () const -> glib::PropertyProxy_ReadOnly<glib::ustring>
+  expander_row::property_subtitle () const -> glib::PropertyProxy_ReadOnly<glib::ustring>
   {
     return {this, "subtitle"};
   }

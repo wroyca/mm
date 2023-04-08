@@ -20,44 +20,44 @@
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace adw
 {
-  class LIBMM_ADW_SYMEXPORT Carousel_Class;
+  class LIBMM_ADW_SYMEXPORT carousel_class;
 }
 #endif
 
 namespace adw
 {
 
-  class LIBMM_ADW_SYMEXPORT Carousel : public gtk::Widget,
+  class LIBMM_ADW_SYMEXPORT carousel : public gtk::Widget,
                    public gtk::Orientable,
-                   public adw::Swipeable
+                   public adw::swipeable
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-    typedef Carousel CppObjectType;
-    typedef Carousel_Class CppClassType;
-    typedef AdwCarousel BaseObjectType;
-    typedef AdwCarouselClass BaseClassType;
+    using CppObjectType = carousel;
+    using CppClassType = carousel_class;
+    using BaseObjectType = AdwCarousel;
+    using BaseClassType = AdwCarouselClass;
 #endif
 
-    Carousel (Carousel&& src) noexcept;
+    carousel (carousel&& src) noexcept;
     auto
-    operator= (Carousel&& src) noexcept -> Carousel&;
+    operator= (carousel&& src) noexcept -> carousel&;
 
-    Carousel (const Carousel&) = delete;
+    carousel (const carousel&) = delete;
     auto
-    operator= (const Carousel&) -> Carousel& = delete;
+    operator= (const carousel&) -> carousel& = delete;
 
-    ~Carousel () noexcept override;
+    ~carousel () noexcept override;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   private:
-    friend class Carousel_Class;
+    friend class carousel_class;
     static CppClassType carousel_class_;
 
   protected:
-    explicit Carousel (const glib::ConstructParams& construct_params);
-    explicit Carousel (AdwCarousel* castitem);
+    explicit carousel (const glib::ConstructParams& construct_params);
+    explicit carousel (AdwCarousel* castitem);
 
 #endif
 
@@ -85,7 +85,7 @@ namespace adw
 
   private:
   public:
-    Carousel ();
+    carousel ();
 
     auto
     append (gtk::Widget* child) -> void;
@@ -115,7 +115,7 @@ namespace adw
     get_reveal_duration () const -> guint;
 
     auto
-    get_scroll_params () const -> glib::RefPtr<SpringParams>;
+    get_scroll_params () const -> glib::RefPtr<spring_params>;
 
     auto
     get_spacing () const -> guint;
@@ -151,7 +151,7 @@ namespace adw
     set_reveal_duration (guint reveal_duration) -> void;
 
     auto
-    set_scroll_params (const glib::RefPtr<SpringParams>& scroll_params) -> void;
+    set_scroll_params (const glib::RefPtr<spring_params>& scroll_params) -> void;
 
     auto
     set_spacing (guint spacing) -> void;
@@ -218,7 +218,7 @@ namespace glib
 {
 
   auto
-  wrap (AdwCarousel* object, bool take_copy = false) -> adw::Carousel*;
+  wrap (AdwCarousel* object, bool take_copy = false) -> adw::carousel*;
 }
 
 #endif

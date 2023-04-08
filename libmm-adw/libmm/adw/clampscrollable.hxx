@@ -18,44 +18,44 @@
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace adw
 {
-  class LIBMM_ADW_SYMEXPORT ClampScrollable_Class;
+  class LIBMM_ADW_SYMEXPORT clamp_scrollable_class;
 }
 #endif
 
 namespace adw
 {
 
-  class LIBMM_ADW_SYMEXPORT ClampScrollable : public gtk::Widget,
+  class LIBMM_ADW_SYMEXPORT clamp_scrollable : public gtk::Widget,
                           public gtk::Orientable,
                           public gtk::Scrollable
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-    typedef ClampScrollable CppObjectType;
-    typedef ClampScrollable_Class CppClassType;
-    typedef AdwClampScrollable BaseObjectType;
-    typedef AdwClampScrollableClass BaseClassType;
+    using CppObjectType = clamp_scrollable;
+    using CppClassType = clamp_scrollable_class;
+    using BaseObjectType = AdwClampScrollable;
+    using BaseClassType = AdwClampScrollableClass;
 #endif
 
-    ClampScrollable (ClampScrollable&& src) noexcept;
+    clamp_scrollable (clamp_scrollable&& src) noexcept;
     auto
-    operator= (ClampScrollable&& src) noexcept -> ClampScrollable&;
+    operator= (clamp_scrollable&& src) noexcept -> clamp_scrollable&;
 
-    ClampScrollable (const ClampScrollable&) = delete;
+    clamp_scrollable (const clamp_scrollable&) = delete;
     auto
-    operator= (const ClampScrollable&) -> ClampScrollable& = delete;
+    operator= (const clamp_scrollable&) -> clamp_scrollable& = delete;
 
-    ~ClampScrollable () noexcept override;
+    ~clamp_scrollable () noexcept override;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   private:
-    friend class ClampScrollable_Class;
+    friend class clamp_scrollable_class;
     static CppClassType clampscrollable_class_;
 
   protected:
-    explicit ClampScrollable (const glib::ConstructParams& construct_params);
-    explicit ClampScrollable (AdwClampScrollable* castitem);
+    explicit clamp_scrollable (const glib::ConstructParams& construct_params);
+    explicit clamp_scrollable (AdwClampScrollable* castitem);
 
 #endif
 
@@ -83,7 +83,7 @@ namespace adw
 
   private:
   public:
-    ClampScrollable ();
+    clamp_scrollable ();
 
     auto
     get_child () const -> gtk::Widget*;
@@ -132,7 +132,7 @@ namespace glib
 {
 
   auto
-  wrap (AdwClampScrollable* object, bool take_copy = false) -> adw::ClampScrollable*;
+  wrap (AdwClampScrollable* object, bool take_copy = false) -> adw::clamp_scrollable*;
 }
 
 #endif

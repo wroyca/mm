@@ -13,13 +13,13 @@ namespace adw
 {
 
   auto
-  Application::custom_class_init () -> const glib::Class&
+  application::custom_class_init () -> const glib::Class&
   {
     adw::init ();
     return application_class_.init ();
   }
 
-  Application::Application (const glib::ustring& application_id,
+  application::application (const glib::ustring& application_id,
                             gio::Application::Flags flags)
     : glib::ObjectBase (nullptr),
       gtk::Application (
@@ -32,7 +32,7 @@ namespace adw
   {
   }
 
-  Application::~Application () {}
+  application::~application () {}
 
 } // namespace adw
 
@@ -44,10 +44,10 @@ namespace glib
 {
 
   auto
-  wrap (AdwApplication* object, bool take_copy) -> glib::RefPtr<adw::Application>
+  wrap (AdwApplication* object, bool take_copy) -> glib::RefPtr<adw::application>
   {
-    return glib::make_refptr_for_instance<adw::Application> (
-        dynamic_cast<adw::Application*> (
+    return glib::make_refptr_for_instance<adw::application> (
+        dynamic_cast<adw::application*> (
             glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
@@ -57,11 +57,11 @@ namespace adw
 {
 
   auto
-  Application_Class::init () -> const glib::Class&
+  application_class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
-      class_init_func_ = &Application_Class::class_init_function;
+      class_init_func_ = &application_class::class_init_function;
 
       register_derived_type (adw_application_get_type ());
     }
@@ -70,71 +70,71 @@ namespace adw
   }
 
   auto
-  Application_Class::class_init_function (void* g_class, void* class_data) -> void
+  application_class::class_init_function (void* g_class, void* class_data) -> void
   {
     const auto klass = static_cast<BaseClassType*> (g_class);
     CppClassParent::class_init_function (klass, class_data);
   }
 
   auto
-  Application_Class::wrap_new (GObject* object) -> glib::ObjectBase*
+  application_class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
-    return new Application ((AdwApplication*) object);
+    return new application ((AdwApplication*) object);
   }
 
   auto
-  Application::gobj_copy () -> AdwApplication*
+  application::gobj_copy () -> AdwApplication*
   {
     reference ();
     return gobj ();
   }
 
-  Application::Application (const glib::ConstructParams& construct_params)
+  application::application (const glib::ConstructParams& construct_params)
     : gtk::Application (construct_params)
   {
   }
 
-  Application::Application (AdwApplication* castitem)
+  application::application (AdwApplication* castitem)
     : gtk::Application ((GtkApplication*) (castitem))
   {
   }
 
-  Application::Application (Application&& src) noexcept
+  application::application (application&& src) noexcept
     : gtk::Application (std::move (src))
   {
   }
 
   auto
-  Application::operator= (Application&& src) noexcept -> Application&
+  application::operator= (application&& src) noexcept -> application&
   {
     gtk::Application::operator= (std::move (src));
     return *this;
   }
 
-  Application::CppClassType Application::application_class_;
+  application::CppClassType application::application_class_;
 
   auto
-  Application::get_type () -> GType
+  application::get_type () -> GType
   {
     return application_class_.init ().get_type ();
   }
 
   auto
-  Application::get_base_type () -> GType
+  application::get_base_type () -> GType
   {
     return adw_application_get_type ();
   }
 
   auto
-  Application::create (const glib::ustring& application_id,
-                       gio::Application::Flags flags) -> glib::RefPtr<Application>
+  application::create (const glib::ustring& application_id,
+                       gio::Application::Flags flags) -> glib::RefPtr<application>
   {
-    return glib::make_refptr_for_instance<Application> (
-        new Application (application_id, flags));
+    return glib::make_refptr_for_instance<application> (
+        new application (application_id, flags));
   }
 
   auto
-  Application::get_style_manager () const -> glib::RefPtr<StyleManager>
+  application::get_style_manager () const -> glib::RefPtr<style_manager>
   {
     auto retvalue = glib::wrap (adw_application_get_style_manager (
         const_cast<AdwApplication*> (gobj ())));
@@ -144,7 +144,7 @@ namespace adw
   }
 
   auto
-  Application::property_style_manager () const -> glib::PropertyProxy_ReadOnly<glib::RefPtr<StyleManager>>
+  application::property_style_manager () const -> glib::PropertyProxy_ReadOnly<glib::RefPtr<style_manager>>
   {
     return {this, "style-manager"};
   }

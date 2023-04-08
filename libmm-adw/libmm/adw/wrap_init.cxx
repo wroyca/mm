@@ -190,350 +190,350 @@ namespace adw
     wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
-  class LIBMM_ADW_SYMEXPORT Animation_Class
+  class LIBMM_ADW_SYMEXPORT animation_class
   {
   public:
     static auto
     wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
-  class LIBMM_ADW_SYMEXPORT AnimationTarget_Class
+  class LIBMM_ADW_SYMEXPORT animation_target_class
   {
   public:
     static auto
     wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
-  class LIBMM_ADW_SYMEXPORT Application_Class
+  class LIBMM_ADW_SYMEXPORT application_class
   {
   public:
     static auto
     wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
-  class LIBMM_ADW_SYMEXPORT ApplicationWindow_Class
+  class LIBMM_ADW_SYMEXPORT application_window_class
   {
   public:
     static auto
     wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
-  class LIBMM_ADW_SYMEXPORT Avatar_Class
+  class LIBMM_ADW_SYMEXPORT avatar_class
   {
   public:
     static auto
     wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
-  class LIBMM_ADW_SYMEXPORT Bin_Class
+  class LIBMM_ADW_SYMEXPORT bin_class
   {
   public:
     static auto
     wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
-  class LIBMM_ADW_SYMEXPORT ButtonContent_Class
+  class LIBMM_ADW_SYMEXPORT button_content_class
   {
   public:
     static auto
     wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
-  class LIBMM_ADW_SYMEXPORT CallbackAnimationTarget_Class
+  class LIBMM_ADW_SYMEXPORT callback_animation_target_class
   {
   public:
     static auto
     wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
-  class LIBMM_ADW_SYMEXPORT Carousel_Class
+  class LIBMM_ADW_SYMEXPORT carousel_class
   {
   public:
     static auto
     wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
-  class LIBMM_ADW_SYMEXPORT CarouselIndicatorDots_Class
+  class LIBMM_ADW_SYMEXPORT carousel_indicator_dots_class
   {
   public:
     static auto
     wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
-  class LIBMM_ADW_SYMEXPORT CarouselIndicatorLines_Class
+  class LIBMM_ADW_SYMEXPORT carousel_indicator_lines_class
   {
   public:
     static auto
     wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
-  class LIBMM_ADW_SYMEXPORT Clamp_Class
+  class LIBMM_ADW_SYMEXPORT clamp_class
   {
   public:
     static auto
     wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
-  class LIBMM_ADW_SYMEXPORT ClampLayout_Class
+  class LIBMM_ADW_SYMEXPORT clamp_layout_class
   {
   public:
     static auto
     wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
-  class LIBMM_ADW_SYMEXPORT ClampScrollable_Class
+  class LIBMM_ADW_SYMEXPORT clamp_scrollable_class
   {
   public:
     static auto
     wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
-  class LIBMM_ADW_SYMEXPORT ComboRow_Class
+  class LIBMM_ADW_SYMEXPORT combo_row_class
   {
   public:
     static auto
     wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
-  class LIBMM_ADW_SYMEXPORT EntryRow_Class
+  class LIBMM_ADW_SYMEXPORT entry_row_class
   {
   public:
     static auto
     wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
-  class LIBMM_ADW_SYMEXPORT EnumListItem_Class
+  class LIBMM_ADW_SYMEXPORT enum_list_item_class
   {
   public:
     static auto
     wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
-  class LIBMM_ADW_SYMEXPORT EnumListModel_Class
+  class LIBMM_ADW_SYMEXPORT enum_list_model_class
   {
   public:
     static auto
     wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
-  class LIBMM_ADW_SYMEXPORT ExpanderRow_Class
+  class LIBMM_ADW_SYMEXPORT expander_row_class
   {
   public:
     static auto
     wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
-  class LIBMM_ADW_SYMEXPORT Flap_Class
+  class LIBMM_ADW_SYMEXPORT flap_class
   {
   public:
     static auto
     wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
-  class LIBMM_ADW_SYMEXPORT HeaderBar_Class
+  class LIBMM_ADW_SYMEXPORT header_bar_class
   {
   public:
     static auto
     wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
-  class LIBMM_ADW_SYMEXPORT Leaflet_Class
+  class LIBMM_ADW_SYMEXPORT leaflet_class
   {
   public:
     static auto
     wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
-  class LIBMM_ADW_SYMEXPORT LeafletPage_Class
+  class LIBMM_ADW_SYMEXPORT leaflet_page_class
   {
   public:
     static auto
     wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
-  class LIBMM_ADW_SYMEXPORT MessageDialog_Class
+  class LIBMM_ADW_SYMEXPORT message_dialog_class
   {
   public:
     static auto
     wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
-  class LIBMM_ADW_SYMEXPORT PasswordEntryRow_Class
+  class LIBMM_ADW_SYMEXPORT password_entry_row_class
   {
   public:
     static auto
     wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
-  class LIBMM_ADW_SYMEXPORT PreferencesGroup_Class
+  class LIBMM_ADW_SYMEXPORT preferences_group_class
   {
   public:
     static auto
     wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
-  class LIBMM_ADW_SYMEXPORT PreferencesPage_Class
+  class LIBMM_ADW_SYMEXPORT preferences_page_class
   {
   public:
     static auto
     wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
-  class LIBMM_ADW_SYMEXPORT PreferencesRow_Class
+  class LIBMM_ADW_SYMEXPORT preferences_row_class
   {
   public:
     static auto
     wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
-  class LIBMM_ADW_SYMEXPORT PreferencesWindow_Class
+  class LIBMM_ADW_SYMEXPORT preferences_window_class
   {
   public:
     static auto
     wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
-  class LIBMM_ADW_SYMEXPORT PropertyAnimationTarget_Class
+  class LIBMM_ADW_SYMEXPORT property_animation_target_class
   {
   public:
     static auto
     wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
-  class LIBMM_ADW_SYMEXPORT SplitButton_Class
+  class LIBMM_ADW_SYMEXPORT split_button_class
   {
   public:
     static auto
     wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
-  class LIBMM_ADW_SYMEXPORT SpringAnimation_Class
+  class LIBMM_ADW_SYMEXPORT spring_animation_class
   {
   public:
     static auto
     wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
-  class LIBMM_ADW_SYMEXPORT Squeezer_Class
+  class LIBMM_ADW_SYMEXPORT squeezer_class
   {
   public:
     static auto
     wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
-  class LIBMM_ADW_SYMEXPORT SqueezerPage_Class
+  class LIBMM_ADW_SYMEXPORT squeezer_page_class
   {
   public:
     static auto
     wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
-  class LIBMM_ADW_SYMEXPORT StatusPage_Class
+  class LIBMM_ADW_SYMEXPORT status_page_class
   {
   public:
     static auto
     wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
-  class LIBMM_ADW_SYMEXPORT StyleManager_Class
+  class LIBMM_ADW_SYMEXPORT style_manager_class
   {
   public:
     static auto
     wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
-  class LIBMM_ADW_SYMEXPORT SwipeTracker_Class
+  class LIBMM_ADW_SYMEXPORT swipe_tracker_class
   {
   public:
     static auto
     wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
-  class LIBMM_ADW_SYMEXPORT TabBar_Class
+  class LIBMM_ADW_SYMEXPORT tab_bar_class
   {
   public:
     static auto
     wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
-  class LIBMM_ADW_SYMEXPORT TabPage_Class
+  class LIBMM_ADW_SYMEXPORT tab_page_class
   {
   public:
     static auto
     wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
-  class LIBMM_ADW_SYMEXPORT TabView_Class
+  class LIBMM_ADW_SYMEXPORT tab_view_class
   {
   public:
     static auto
     wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
-  class LIBMM_ADW_SYMEXPORT TimedAnimation_Class
+  class LIBMM_ADW_SYMEXPORT timed_animation_class
   {
   public:
     static auto
     wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
-  class LIBMM_ADW_SYMEXPORT Toast_Class
+  class LIBMM_ADW_SYMEXPORT toast_class
   {
   public:
     static auto
     wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
-  class LIBMM_ADW_SYMEXPORT ToastOverlay_Class
+  class LIBMM_ADW_SYMEXPORT toast_overlay_class
   {
   public:
     static auto
     wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
-  class LIBMM_ADW_SYMEXPORT ViewStack_Class
+  class LIBMM_ADW_SYMEXPORT view_stack_class
   {
   public:
     static auto
     wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
-  class LIBMM_ADW_SYMEXPORT ViewStackPage_Class
+  class LIBMM_ADW_SYMEXPORT view_stack_page_class
   {
   public:
     static auto
     wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
-  class LIBMM_ADW_SYMEXPORT ViewSwitcher_Class
+  class LIBMM_ADW_SYMEXPORT view_switcher_class
   {
   public:
     static auto
     wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
-  class LIBMM_ADW_SYMEXPORT ViewSwitcherBar_Class
+  class LIBMM_ADW_SYMEXPORT view_switcher_bar_class
   {
   public:
     static auto
     wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
-  class LIBMM_ADW_SYMEXPORT ViewSwitcherTitle_Class
+  class LIBMM_ADW_SYMEXPORT view_switcher_title_class
   {
   public:
     static auto
     wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
-  class LIBMM_ADW_SYMEXPORT Window_Class
+  class LIBMM_ADW_SYMEXPORT window_class
   {
   public:
     static auto
     wrap_new (GObject*) -> glib::ObjectBase*;
   };
 
-  class LIBMM_ADW_SYMEXPORT WindowTitle_Class
+  class LIBMM_ADW_SYMEXPORT window_title_class
   {
   public:
     static auto
@@ -547,144 +547,144 @@ namespace adw
                          &about_window_class::wrap_new);
     glib::wrap_register (adw_action_row_get_type (),
                          &action_row_class::wrap_new);
-    glib::wrap_register (adw_animation_get_type (), &Animation_Class::wrap_new);
+    glib::wrap_register (adw_animation_get_type (), &animation_class::wrap_new);
     glib::wrap_register (adw_animation_target_get_type (),
-                         &AnimationTarget_Class::wrap_new);
+                         &animation_target_class::wrap_new);
     glib::wrap_register (adw_application_get_type (),
-                         &Application_Class::wrap_new);
+                         &application_class::wrap_new);
     glib::wrap_register (adw_application_window_get_type (),
-                         &ApplicationWindow_Class::wrap_new);
-    glib::wrap_register (adw_avatar_get_type (), &Avatar_Class::wrap_new);
-    glib::wrap_register (adw_bin_get_type (), &Bin_Class::wrap_new);
+                         &application_window_class::wrap_new);
+    glib::wrap_register (adw_avatar_get_type (), &avatar_class::wrap_new);
+    glib::wrap_register (adw_bin_get_type (), &bin_class::wrap_new);
     glib::wrap_register (adw_button_content_get_type (),
-                         &ButtonContent_Class::wrap_new);
+                         &button_content_class::wrap_new);
     glib::wrap_register (adw_callback_animation_target_get_type (),
-                         &CallbackAnimationTarget_Class::wrap_new);
-    glib::wrap_register (adw_carousel_get_type (), &Carousel_Class::wrap_new);
+                         &callback_animation_target_class::wrap_new);
+    glib::wrap_register (adw_carousel_get_type (), &carousel_class::wrap_new);
     glib::wrap_register (adw_carousel_indicator_dots_get_type (),
-                         &CarouselIndicatorDots_Class::wrap_new);
+                         &carousel_indicator_dots_class::wrap_new);
     glib::wrap_register (adw_carousel_indicator_lines_get_type (),
-                         &CarouselIndicatorLines_Class::wrap_new);
-    glib::wrap_register (adw_clamp_get_type (), &Clamp_Class::wrap_new);
+                         &carousel_indicator_lines_class::wrap_new);
+    glib::wrap_register (adw_clamp_get_type (), &clamp_class::wrap_new);
     glib::wrap_register (adw_clamp_layout_get_type (),
-                         &ClampLayout_Class::wrap_new);
+                         &clamp_layout_class::wrap_new);
     glib::wrap_register (adw_clamp_scrollable_get_type (),
-                         &ClampScrollable_Class::wrap_new);
-    glib::wrap_register (adw_combo_row_get_type (), &ComboRow_Class::wrap_new);
-    glib::wrap_register (adw_entry_row_get_type (), &EntryRow_Class::wrap_new);
+                         &clamp_scrollable_class::wrap_new);
+    glib::wrap_register (adw_combo_row_get_type (), &combo_row_class::wrap_new);
+    glib::wrap_register (adw_entry_row_get_type (), &entry_row_class::wrap_new);
     glib::wrap_register (adw_enum_list_item_get_type (),
-                         &EnumListItem_Class::wrap_new);
+                         &enum_list_item_class::wrap_new);
     glib::wrap_register (adw_enum_list_model_get_type (),
-                         &EnumListModel_Class::wrap_new);
+                         &enum_list_model_class::wrap_new);
     glib::wrap_register (adw_expander_row_get_type (),
-                         &ExpanderRow_Class::wrap_new);
-    glib::wrap_register (adw_flap_get_type (), &Flap_Class::wrap_new);
+                         &expander_row_class::wrap_new);
+    glib::wrap_register (adw_flap_get_type (), &flap_class::wrap_new);
     glib::wrap_register (adw_header_bar_get_type (),
-                         &HeaderBar_Class::wrap_new);
-    glib::wrap_register (adw_leaflet_get_type (), &Leaflet_Class::wrap_new);
+                         &header_bar_class::wrap_new);
+    glib::wrap_register (adw_leaflet_get_type (), &leaflet_class::wrap_new);
     glib::wrap_register (adw_leaflet_page_get_type (),
-                         &LeafletPage_Class::wrap_new);
+                         &leaflet_page_class::wrap_new);
     glib::wrap_register (adw_message_dialog_get_type (),
-                         &MessageDialog_Class::wrap_new);
+                         &message_dialog_class::wrap_new);
     glib::wrap_register (adw_password_entry_row_get_type (),
-                         &PasswordEntryRow_Class::wrap_new);
+                         &password_entry_row_class::wrap_new);
     glib::wrap_register (adw_preferences_group_get_type (),
-                         &PreferencesGroup_Class::wrap_new);
+                         &preferences_group_class::wrap_new);
     glib::wrap_register (adw_preferences_page_get_type (),
-                         &PreferencesPage_Class::wrap_new);
+                         &preferences_page_class::wrap_new);
     glib::wrap_register (adw_preferences_row_get_type (),
-                         &PreferencesRow_Class::wrap_new);
+                         &preferences_row_class::wrap_new);
     glib::wrap_register (adw_preferences_window_get_type (),
-                         &PreferencesWindow_Class::wrap_new);
+                         &preferences_window_class::wrap_new);
     glib::wrap_register (adw_property_animation_target_get_type (),
-                         &PropertyAnimationTarget_Class::wrap_new);
+                         &property_animation_target_class::wrap_new);
     glib::wrap_register (adw_split_button_get_type (),
-                         &SplitButton_Class::wrap_new);
+                         &split_button_class::wrap_new);
     glib::wrap_register (adw_spring_animation_get_type (),
-                         &SpringAnimation_Class::wrap_new);
-    glib::wrap_register (adw_squeezer_get_type (), &Squeezer_Class::wrap_new);
+                         &spring_animation_class::wrap_new);
+    glib::wrap_register (adw_squeezer_get_type (), &squeezer_class::wrap_new);
     glib::wrap_register (adw_squeezer_page_get_type (),
-                         &SqueezerPage_Class::wrap_new);
+                         &squeezer_page_class::wrap_new);
     glib::wrap_register (adw_status_page_get_type (),
-                         &StatusPage_Class::wrap_new);
+                         &status_page_class::wrap_new);
     glib::wrap_register (adw_style_manager_get_type (),
-                         &StyleManager_Class::wrap_new);
+                         &style_manager_class::wrap_new);
     glib::wrap_register (adw_swipe_tracker_get_type (),
-                         &SwipeTracker_Class::wrap_new);
-    glib::wrap_register (adw_tab_bar_get_type (), &TabBar_Class::wrap_new);
-    glib::wrap_register (adw_tab_page_get_type (), &TabPage_Class::wrap_new);
-    glib::wrap_register (adw_tab_view_get_type (), &TabView_Class::wrap_new);
+                         &swipe_tracker_class::wrap_new);
+    glib::wrap_register (adw_tab_bar_get_type (), &tab_bar_class::wrap_new);
+    glib::wrap_register (adw_tab_page_get_type (), &tab_page_class::wrap_new);
+    glib::wrap_register (adw_tab_view_get_type (), &tab_view_class::wrap_new);
     glib::wrap_register (adw_timed_animation_get_type (),
-                         &TimedAnimation_Class::wrap_new);
-    glib::wrap_register (adw_toast_get_type (), &Toast_Class::wrap_new);
+                         &timed_animation_class::wrap_new);
+    glib::wrap_register (adw_toast_get_type (), &toast_class::wrap_new);
     glib::wrap_register (adw_toast_overlay_get_type (),
-                         &ToastOverlay_Class::wrap_new);
+                         &toast_overlay_class::wrap_new);
     glib::wrap_register (adw_view_stack_get_type (),
-                         &ViewStack_Class::wrap_new);
+                         &view_stack_class::wrap_new);
     glib::wrap_register (adw_view_stack_page_get_type (),
-                         &ViewStackPage_Class::wrap_new);
+                         &view_stack_page_class::wrap_new);
     glib::wrap_register (adw_view_switcher_get_type (),
-                         &ViewSwitcher_Class::wrap_new);
+                         &view_switcher_class::wrap_new);
     glib::wrap_register (adw_view_switcher_bar_get_type (),
-                         &ViewSwitcherBar_Class::wrap_new);
+                         &view_switcher_bar_class::wrap_new);
     glib::wrap_register (adw_view_switcher_title_get_type (),
-                         &ViewSwitcherTitle_Class::wrap_new);
-    glib::wrap_register (adw_window_get_type (), &Window_Class::wrap_new);
+                         &view_switcher_title_class::wrap_new);
+    glib::wrap_register (adw_window_get_type (), &window_class::wrap_new);
     glib::wrap_register (adw_window_title_get_type (),
-                         &WindowTitle_Class::wrap_new);
+                         &window_title_class::wrap_new);
 
     g_type_ensure (about_window::get_type ());
     g_type_ensure (action_row::get_type ());
-    g_type_ensure (Animation::get_type ());
+    g_type_ensure (animation::get_type ());
     g_type_ensure (AnimationTarget::get_type ());
-    g_type_ensure (Application::get_type ());
-    g_type_ensure (ApplicationWindow::get_type ());
-    g_type_ensure (Avatar::get_type ());
-    g_type_ensure (Bin::get_type ());
-    g_type_ensure (ButtonContent::get_type ());
-    g_type_ensure (CallbackAnimationTarget::get_type ());
-    g_type_ensure (Carousel::get_type ());
-    g_type_ensure (CarouselIndicatorDots::get_type ());
-    g_type_ensure (CarouselIndicatorLines::get_type ());
-    g_type_ensure (Clamp::get_type ());
-    g_type_ensure (ClampLayout::get_type ());
-    g_type_ensure (ClampScrollable::get_type ());
-    g_type_ensure (ComboRow::get_type ());
-    g_type_ensure (EntryRow::get_type ());
-    g_type_ensure (EnumListItem::get_type ());
-    g_type_ensure (EnumListModel::get_type ());
-    g_type_ensure (ExpanderRow::get_type ());
-    g_type_ensure (Flap::get_type ());
-    g_type_ensure (HeaderBar::get_type ());
-    g_type_ensure (Leaflet::get_type ());
-    g_type_ensure (LeafletPage::get_type ());
-    g_type_ensure (MessageDialog::get_type ());
-    g_type_ensure (PasswordEntryRow::get_type ());
-    g_type_ensure (PreferencesGroup::get_type ());
-    g_type_ensure (PreferencesPage::get_type ());
-    g_type_ensure (PreferencesRow::get_type ());
-    g_type_ensure (PreferencesWindow::get_type ());
-    g_type_ensure (PropertyAnimationTarget::get_type ());
-    g_type_ensure (SplitButton::get_type ());
-    g_type_ensure (SpringAnimation::get_type ());
-    g_type_ensure (Squeezer::get_type ());
-    g_type_ensure (SqueezerPage::get_type ());
-    g_type_ensure (StatusPage::get_type ());
-    g_type_ensure (StyleManager::get_type ());
-    g_type_ensure (SwipeTracker::get_type ());
-    g_type_ensure (TabBar::get_type ());
-    g_type_ensure (TabPage::get_type ());
-    g_type_ensure (TabView::get_type ());
-    g_type_ensure (TimedAnimation::get_type ());
-    g_type_ensure (Toast::get_type ());
-    g_type_ensure (ToastOverlay::get_type ());
-    g_type_ensure (ViewStack::get_type ());
-    g_type_ensure (ViewStackPage::get_type ());
-    g_type_ensure (ViewSwitcher::get_type ());
-    g_type_ensure (ViewSwitcherBar::get_type ());
-    g_type_ensure (ViewSwitcherTitle::get_type ());
-    g_type_ensure (Window::get_type ());
-    g_type_ensure (WindowTitle::get_type ());
+    g_type_ensure (application::get_type ());
+    g_type_ensure (application_window::get_type ());
+    g_type_ensure (avatar::get_type ());
+    g_type_ensure (bin::get_type ());
+    g_type_ensure (button_content::get_type ());
+    g_type_ensure (callback_animation_target::get_type ());
+    g_type_ensure (carousel::get_type ());
+    g_type_ensure (carousel_indicator_dots::get_type ());
+    g_type_ensure (carousel_indicator_lines::get_type ());
+    g_type_ensure (clamp::get_type ());
+    g_type_ensure (clamp_layout::get_type ());
+    g_type_ensure (clamp_scrollable::get_type ());
+    g_type_ensure (combo_row::get_type ());
+    g_type_ensure (entry_row::get_type ());
+    g_type_ensure (enum_list_item::get_type ());
+    g_type_ensure (enum_list_model::get_type ());
+    g_type_ensure (expander_row::get_type ());
+    g_type_ensure (flap::get_type ());
+    g_type_ensure (header_bar::get_type ());
+    g_type_ensure (leaflet::get_type ());
+    g_type_ensure (leaflet_page::get_type ());
+    g_type_ensure (message_dialog::get_type ());
+    g_type_ensure (password_entry_row::get_type ());
+    g_type_ensure (preferences_group::get_type ());
+    g_type_ensure (preferences_page::get_type ());
+    g_type_ensure (preferences_row::get_type ());
+    g_type_ensure (preferences_window::get_type ());
+    g_type_ensure (property_animation_target::get_type ());
+    g_type_ensure (split_button::get_type ());
+    g_type_ensure (spring_animation::get_type ());
+    g_type_ensure (squeezer::get_type ());
+    g_type_ensure (squeezer_page::get_type ());
+    g_type_ensure (status_page::get_type ());
+    g_type_ensure (style_manager::get_type ());
+    g_type_ensure (swipe_tracker::get_type ());
+    g_type_ensure (tab_bar::get_type ());
+    g_type_ensure (tab_page::get_type ());
+    g_type_ensure (tab_view::get_type ());
+    g_type_ensure (timed_animation::get_type ());
+    g_type_ensure (toast::get_type ());
+    g_type_ensure (toast_overlay::get_type ());
+    g_type_ensure (view_stack::get_type ());
+    g_type_ensure (view_stack_page::get_type ());
+    g_type_ensure (view_switcher::get_type ());
+    g_type_ensure (view_switcher_bar::get_type ());
+    g_type_ensure (view_switcher_title::get_type ());
+    g_type_ensure (window::get_type ());
+    g_type_ensure (window_title::get_type ());
   }
 
 } // namespace adw

@@ -18,42 +18,42 @@
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace adw
 {
-  class LIBMM_ADW_SYMEXPORT WindowTitle_Class;
+  class LIBMM_ADW_SYMEXPORT window_title_class;
 }
 #endif
 
 namespace adw
 {
 
-  class LIBMM_ADW_SYMEXPORT WindowTitle : public gtk::Widget
+  class LIBMM_ADW_SYMEXPORT window_title : public gtk::Widget
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-    typedef WindowTitle CppObjectType;
-    typedef WindowTitle_Class CppClassType;
-    typedef AdwWindowTitle BaseObjectType;
-    typedef AdwWindowTitleClass BaseClassType;
+    using CppObjectType = window_title;
+    using CppClassType = window_title_class;
+    using BaseObjectType = AdwWindowTitle;
+    using BaseClassType = AdwWindowTitleClass;
 #endif
 
-    WindowTitle (WindowTitle&& src) noexcept;
+    window_title (window_title&& src) noexcept;
     auto
-    operator= (WindowTitle&& src) noexcept -> WindowTitle&;
+    operator= (window_title&& src) noexcept -> window_title&;
 
-    WindowTitle (const WindowTitle&) = delete;
+    window_title (const window_title&) = delete;
     auto
-    operator= (const WindowTitle&) -> WindowTitle& = delete;
+    operator= (const window_title&) -> window_title& = delete;
 
-    ~WindowTitle () noexcept override;
+    ~window_title () noexcept override;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   private:
-    friend class WindowTitle_Class;
+    friend class window_title_class;
     static CppClassType windowtitle_class_;
 
   protected:
-    explicit WindowTitle (const glib::ConstructParams& construct_params);
-    explicit WindowTitle (AdwWindowTitle* castitem);
+    explicit window_title (const glib::ConstructParams& construct_params);
+    explicit window_title (AdwWindowTitle* castitem);
 
 #endif
 
@@ -81,8 +81,8 @@ namespace adw
 
   private:
   public:
-    WindowTitle ();
-    explicit WindowTitle (const glib::ustring& title,
+    window_title ();
+    explicit window_title (const glib::ustring& title,
                           const glib::ustring& subtitle);
 
     auto
@@ -120,7 +120,7 @@ namespace glib
 {
 
   auto
-  wrap (AdwWindowTitle* object, bool take_copy = false) -> adw::WindowTitle*;
+  wrap (AdwWindowTitle* object, bool take_copy = false) -> adw::window_title*;
 }
 
 #endif

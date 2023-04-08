@@ -10,15 +10,15 @@
 namespace adw
 {
 
-  class LIBMM_ADW_SYMEXPORT StatusPage_Class : public glib::Class
+  class LIBMM_ADW_SYMEXPORT status_page_class : public glib::Class
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-    using CppObjectType = StatusPage;
+    using CppObjectType = status_page;
     using BaseObjectType = AdwStatusPage;
     using CppClassParent = gtk::Widget_Class;
 
-    friend class StatusPage;
+    friend class status_page;
 #endif
 
     auto

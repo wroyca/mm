@@ -19,43 +19,43 @@ using AdwApplicationClass = struct _AdwApplicationClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace adw
 {
-  class LIBMM_ADW_SYMEXPORT Application_Class;
+  class LIBMM_ADW_SYMEXPORT application_class;
 }
 #endif
 
 namespace adw
 {
 
-  class LIBMM_ADW_SYMEXPORT Application : public gtk::Application
+  class LIBMM_ADW_SYMEXPORT application : public gtk::Application
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   public:
-    using CppObjectType = Application;
-    using CppClassType = Application_Class;
+    using CppObjectType = application;
+    using CppClassType = application_class;
     using BaseObjectType = AdwApplication;
     using BaseClassType = AdwApplicationClass;
 
-    Application (const Application&) = delete;
+    application (const application&) = delete;
     auto
-    operator= (const Application&) -> Application& = delete;
+    operator= (const application&) -> application& = delete;
 
   private:
-    friend class Application_Class;
+    friend class application_class;
     static CppClassType application_class_;
 
   protected:
-    explicit Application (const glib::ConstructParams& construct_params);
-    explicit Application (AdwApplication* castitem);
+    explicit application (const glib::ConstructParams& construct_params);
+    explicit application (AdwApplication* castitem);
 
 #endif
 
   public:
-    Application (Application&& src) noexcept;
+    application (application&& src) noexcept;
     auto
-    operator= (Application&& src) noexcept -> Application&;
+    operator= (application&& src) noexcept -> application&;
 
-    ~Application () noexcept override;
+    ~application () noexcept override;
 
     static auto
     get_type () -> GType G_GNUC_CONST;
@@ -87,20 +87,20 @@ namespace adw
     custom_class_init () -> const glib::Class&;
 
   protected:
-    Application (const glib::ustring& application_id,
+    application (const glib::ustring& application_id,
                  gio::Application::Flags flags);
 
   public:
     static auto
     create (const glib::ustring& application_id, gio::Application::Flags flags)
-        -> glib::RefPtr<Application>;
+        -> glib::RefPtr<application>;
 
     auto
-    get_style_manager () const -> glib::RefPtr<StyleManager>;
+    get_style_manager () const -> glib::RefPtr<style_manager>;
 
     auto
     property_style_manager () const
-        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<StyleManager>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<style_manager>>;
 
   public:
   public:
@@ -113,7 +113,7 @@ namespace glib
 {
 
   auto
-  wrap (AdwApplication* object, bool take_copy = false) -> glib::RefPtr<adw::Application>;
+  wrap (AdwApplication* object, bool take_copy = false) -> glib::RefPtr<adw::application>;
 }
 
 #endif

@@ -19,7 +19,7 @@
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace adw
 {
-  class LIBMM_ADW_SYMEXPORT StyleManager_Class;
+  class LIBMM_ADW_SYMEXPORT style_manager_class;
 }
 #endif
 
@@ -55,36 +55,36 @@ namespace glib
 namespace adw
 {
 
-  class LIBMM_ADW_SYMEXPORT StyleManager : public glib::Object
+  class LIBMM_ADW_SYMEXPORT style_manager : public glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   public:
-    using CppObjectType = StyleManager;
-    using CppClassType = StyleManager_Class;
+    using CppObjectType = style_manager;
+    using CppClassType = style_manager_class;
     using BaseObjectType = AdwStyleManager;
     using BaseClassType = AdwStyleManagerClass;
 
-    StyleManager (const StyleManager&) = delete;
+    style_manager (const style_manager&) = delete;
     auto
-    operator= (const StyleManager&) -> StyleManager& = delete;
+    operator= (const style_manager&) -> style_manager& = delete;
 
   private:
-    friend class StyleManager_Class;
+    friend class style_manager_class;
     static CppClassType stylemanager_class_;
 
   protected:
-    explicit StyleManager (const glib::ConstructParams& construct_params);
-    explicit StyleManager (AdwStyleManager* castitem);
+    explicit style_manager (const glib::ConstructParams& construct_params);
+    explicit style_manager (AdwStyleManager* castitem);
 
 #endif
 
   public:
-    StyleManager (StyleManager&& src) noexcept;
+    style_manager (style_manager&& src) noexcept;
     auto
-    operator= (StyleManager&& src) noexcept -> StyleManager&;
+    operator= (style_manager&& src) noexcept -> style_manager&;
 
-    ~StyleManager () noexcept override;
+    ~style_manager () noexcept override;
 
     static auto
     get_type () -> GType G_GNUC_CONST;
@@ -112,18 +112,18 @@ namespace adw
 
   private:
   protected:
-    StyleManager ();
+    style_manager ();
 
   public:
     static auto
-    create () -> glib::RefPtr<StyleManager>;
+    create () -> glib::RefPtr<style_manager>;
 
     static auto
-    get_default () -> glib::RefPtr<StyleManager>;
+    get_default () -> glib::RefPtr<style_manager>;
 
     static auto
     get_for_display (const glib::RefPtr<gdk::Display>& display)
-        -> glib::RefPtr<StyleManager>;
+        -> glib::RefPtr<style_manager>;
 
     auto
     get_color_scheme () const -> ColorScheme;
@@ -174,7 +174,7 @@ namespace glib
 {
 
   auto
-  wrap (AdwStyleManager* object, bool take_copy = false) -> glib::RefPtr<adw::StyleManager>;
+  wrap (AdwStyleManager* object, bool take_copy = false) -> glib::RefPtr<adw::style_manager>;
 }
 
 #endif

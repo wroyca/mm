@@ -10,17 +10,17 @@
 namespace adw
 {
 
-  class LIBMM_ADW_SYMEXPORT PreferencesGroup_Class : public glib::Class
+  class LIBMM_ADW_SYMEXPORT preferences_group_class : public glib::Class
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-    using CppObjectType = PreferencesGroup;
+    using CppObjectType = preferences_group;
     using BaseObjectType = AdwPreferencesGroup;
     using BaseClassType = AdwPreferencesGroupClass;
     using CppClassParent = gtk::Widget_Class;
     using BaseClassParent = GtkWidgetClass;
 
-    friend class PreferencesGroup;
+    friend class preferences_group;
 #endif
 
     auto

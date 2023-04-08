@@ -10,15 +10,15 @@
 namespace adw
 {
 
-  class LIBMM_ADW_SYMEXPORT ViewSwitcherBar_Class : public glib::Class
+  class LIBMM_ADW_SYMEXPORT view_switcher_bar_class : public glib::Class
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-    using CppObjectType = ViewSwitcherBar;
+    using CppObjectType = view_switcher_bar;
     using BaseObjectType = AdwViewSwitcherBar;
     using CppClassParent = gtk::Widget_Class;
 
-    friend class ViewSwitcherBar;
+    friend class view_switcher_bar;
 #endif
 
     auto

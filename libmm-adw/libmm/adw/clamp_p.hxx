@@ -10,15 +10,15 @@
 namespace adw
 {
 
-  class LIBMM_ADW_SYMEXPORT Clamp_Class : public glib::Class
+  class LIBMM_ADW_SYMEXPORT clamp_class : public glib::Class
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-    using CppObjectType = Clamp;
+    using CppObjectType = clamp;
     using BaseObjectType = AdwClamp;
     using CppClassParent = gtk::Widget_Class;
 
-    friend class Clamp;
+    friend class clamp;
 #endif
 
     auto

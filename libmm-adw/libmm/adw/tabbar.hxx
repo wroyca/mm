@@ -19,42 +19,42 @@
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace adw
 {
-  class LIBMM_ADW_SYMEXPORT TabBar_Class;
+  class LIBMM_ADW_SYMEXPORT tab_bar_class;
 }
 #endif
 
 namespace adw
 {
 
-  class LIBMM_ADW_SYMEXPORT TabBar : public gtk::Widget
+  class LIBMM_ADW_SYMEXPORT tab_bar : public gtk::Widget
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-    typedef TabBar CppObjectType;
-    typedef TabBar_Class CppClassType;
-    typedef AdwTabBar BaseObjectType;
-    typedef AdwTabBarClass BaseClassType;
+    using CppObjectType = tab_bar;
+    using CppClassType = tab_bar_class;
+    using BaseObjectType = AdwTabBar;
+    using BaseClassType = AdwTabBarClass;
 #endif
 
-    TabBar (TabBar&& src) noexcept;
+    tab_bar (tab_bar&& src) noexcept;
     auto
-    operator= (TabBar&& src) noexcept -> TabBar&;
+    operator= (tab_bar&& src) noexcept -> tab_bar&;
 
-    TabBar (const TabBar&) = delete;
+    tab_bar (const tab_bar&) = delete;
     auto
-    operator= (const TabBar&) -> TabBar& = delete;
+    operator= (const tab_bar&) -> tab_bar& = delete;
 
-    ~TabBar () noexcept override;
+    ~tab_bar () noexcept override;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   private:
-    friend class TabBar_Class;
+    friend class tab_bar_class;
     static CppClassType tabbar_class_;
 
   protected:
-    explicit TabBar (const glib::ConstructParams& construct_params);
-    explicit TabBar (AdwTabBar* castitem);
+    explicit tab_bar (const glib::ConstructParams& construct_params);
+    explicit tab_bar (AdwTabBar* castitem);
 
 #endif
 
@@ -82,7 +82,7 @@ namespace adw
 
   private:
   public:
-    TabBar ();
+    tab_bar ();
 
     auto
     get_autohide () const -> bool;
@@ -106,7 +106,7 @@ namespace adw
     get_tabs_revealed () const -> bool;
 
     auto
-    get_view () const -> TabView*;
+    get_view () const -> tab_view*;
 
     auto
     set_autohide (bool autohide) -> void;
@@ -124,7 +124,7 @@ namespace adw
     set_start_action_widget (gtk::Widget* widget) -> void;
 
     auto
-    set_view (TabView* view) -> void;
+    set_view (tab_view* view) -> void;
 
     auto
     setup_extra_drop_target (gdk::DragAction actions,
@@ -176,14 +176,14 @@ namespace adw
     property_tabs_revealed () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_view () -> glib::PropertyProxy<TabView*>;
+    property_view () -> glib::PropertyProxy<tab_view*>;
 
     auto
-    property_view () const -> glib::PropertyProxy_ReadOnly<TabView*>;
+    property_view () const -> glib::PropertyProxy_ReadOnly<tab_view*>;
 
     auto
     signal_extra_drag_drop ()
-        -> glib::SignalProxy<bool (const glib::RefPtr<TabPage>&,
+        -> glib::SignalProxy<bool (const glib::RefPtr<tab_page>&,
                                    glib::ValueBase&)>;
 
   public:
@@ -197,7 +197,7 @@ namespace glib
 {
 
   auto
-  wrap (AdwTabBar* object, bool take_copy = false) -> adw::TabBar*;
+  wrap (AdwTabBar* object, bool take_copy = false) -> adw::tab_bar*;
 }
 
 #endif

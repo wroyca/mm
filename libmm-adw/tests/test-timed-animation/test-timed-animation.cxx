@@ -27,9 +27,9 @@ test_adw_animation_value_from (void)
 {
   gtk::Button widget;
   glib::RefPtr<adw::AnimationTarget> target =
-      adw::CallbackAnimationTarget::create (sigc::ptr_fun (value_cb));
-  glib::RefPtr<adw::TimedAnimation> animation =
-      adw::TimedAnimation::create (&widget, 10, 20, 100, target);
+      adw::callback_animation_target::create (sigc::ptr_fun (value_cb));
+  glib::RefPtr<adw::timed_animation> animation =
+      adw::timed_animation::create (&widget, 10, 20, 100, target);
 
   notified = 0;
   animation->property_value_from ().signal_changed ().connect (
@@ -54,9 +54,9 @@ test_adw_animation_value_to (void)
 {
   gtk::Button widget;
   glib::RefPtr<adw::AnimationTarget> target =
-      adw::CallbackAnimationTarget::create (sigc::ptr_fun (value_cb));
-  glib::RefPtr<adw::TimedAnimation> animation =
-      adw::TimedAnimation::create (&widget, 10, 20, 100, target);
+      adw::callback_animation_target::create (sigc::ptr_fun (value_cb));
+  glib::RefPtr<adw::timed_animation> animation =
+      adw::timed_animation::create (&widget, 10, 20, 100, target);
 
   animation->skip ();
 
@@ -83,9 +83,9 @@ test_adw_animation_duration (void)
 {
   gtk::Button widget;
   glib::RefPtr<adw::AnimationTarget> target =
-      adw::CallbackAnimationTarget::create (sigc::ptr_fun (value_cb));
-  glib::RefPtr<adw::TimedAnimation> animation =
-      adw::TimedAnimation::create (&widget, 10, 20, 100, target);
+      adw::callback_animation_target::create (sigc::ptr_fun (value_cb));
+  glib::RefPtr<adw::timed_animation> animation =
+      adw::timed_animation::create (&widget, 10, 20, 100, target);
 
   notified = 0;
   animation->property_duration ().signal_changed ().connect (
@@ -110,9 +110,9 @@ test_adw_animation_easing (void)
 {
   gtk::Button widget;
   glib::RefPtr<adw::AnimationTarget> target =
-      adw::CallbackAnimationTarget::create (sigc::ptr_fun (value_cb));
-  glib::RefPtr<adw::TimedAnimation> animation =
-      adw::TimedAnimation::create (&widget, 10, 20, 100, target);
+      adw::callback_animation_target::create (sigc::ptr_fun (value_cb));
+  glib::RefPtr<adw::timed_animation> animation =
+      adw::timed_animation::create (&widget, 10, 20, 100, target);
 
   notified = 0;
   animation->property_easing ().signal_changed ().connect (
@@ -138,9 +138,9 @@ test_adw_animation_repeat_count (void)
 {
   gtk::Button widget;
   glib::RefPtr<adw::AnimationTarget> target =
-      adw::CallbackAnimationTarget::create (sigc::ptr_fun (value_cb));
-  glib::RefPtr<adw::TimedAnimation> animation =
-      adw::TimedAnimation::create (&widget, 10, 20, 100, target);
+      adw::callback_animation_target::create (sigc::ptr_fun (value_cb));
+  glib::RefPtr<adw::timed_animation> animation =
+      adw::timed_animation::create (&widget, 10, 20, 100, target);
 
   notified = 0;
   animation->property_repeat_count ().signal_changed ().connect (
@@ -165,9 +165,9 @@ test_adw_animation_reverse (void)
 {
   gtk::Button widget;
   glib::RefPtr<adw::AnimationTarget> target =
-      adw::CallbackAnimationTarget::create (sigc::ptr_fun (value_cb));
-  glib::RefPtr<adw::TimedAnimation> animation =
-      adw::TimedAnimation::create (&widget, 10, 20, 100, target);
+      adw::callback_animation_target::create (sigc::ptr_fun (value_cb));
+  glib::RefPtr<adw::timed_animation> animation =
+      adw::timed_animation::create (&widget, 10, 20, 100, target);
 
   notified = 0;
   animation->property_reverse ().signal_changed ().connect (
@@ -192,9 +192,9 @@ test_adw_animation_alternate (void)
 {
   gtk::Button widget;
   glib::RefPtr<adw::AnimationTarget> target =
-      adw::CallbackAnimationTarget::create (sigc::ptr_fun (value_cb));
-  glib::RefPtr<adw::TimedAnimation> animation =
-      adw::TimedAnimation::create (&widget, 10, 20, 100, target);
+      adw::callback_animation_target::create (sigc::ptr_fun (value_cb));
+  glib::RefPtr<adw::timed_animation> animation =
+      adw::timed_animation::create (&widget, 10, 20, 100, target);
 
   notified = 0;
   animation->property_alternate ().signal_changed ().connect (

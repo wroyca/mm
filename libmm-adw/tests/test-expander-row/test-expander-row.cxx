@@ -10,7 +10,7 @@
 static void
 test_adw_expander_row_add_remove (void)
 {
-  adw::ExpanderRow row;
+  adw::expander_row row;
   gtk::ListBoxRow child;
 
   row.add_row (&child);
@@ -20,7 +20,7 @@ test_adw_expander_row_add_remove (void)
 static void
 test_adw_expander_row_subtitle (void)
 {
-  adw::ExpanderRow row;
+  adw::expander_row row;
   g_assert_true (row.get_subtitle () == "");
 
   row.set_subtitle ("Dummy subtitle");
@@ -34,7 +34,7 @@ test_adw_expander_row_subtitle (void)
 static void
 test_adw_expander_row_icon_name (void)
 {
-  adw::ExpanderRow row;
+  adw::expander_row row;
   g_assert_true (row.get_icon_name () == "");
 
   row.set_icon_name ("dummy-icon-name");
@@ -44,7 +44,7 @@ test_adw_expander_row_icon_name (void)
 static void
 test_adw_expander_row_expanded (void)
 {
-  adw::ExpanderRow row;
+  adw::expander_row row;
   g_assert_false (row.get_expanded ());
 
   row.set_expanded (true);
@@ -57,7 +57,7 @@ test_adw_expander_row_expanded (void)
 static void
 test_adw_expander_row_enable_expansion (void)
 {
-  adw::ExpanderRow row;
+  adw::expander_row row;
 
   g_assert_true (row.get_enable_expansion ());
   g_assert_false (row.get_expanded ());
@@ -80,7 +80,7 @@ test_adw_expander_row_enable_expansion (void)
 static void
 test_adw_expander_row_show_enable_switch (void)
 {
-  adw::ExpanderRow row;
+  adw::expander_row row;
 
   g_assert_false (row.get_show_enable_switch ());
 

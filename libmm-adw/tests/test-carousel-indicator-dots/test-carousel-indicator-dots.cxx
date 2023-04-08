@@ -18,8 +18,8 @@ notify_cb ()
 static void
 test_adw_carousel_indicator_dots_carousel (void)
 {
-  adw::CarouselIndicatorDots dots;
-  adw::Carousel carousel;
+  adw::carousel_indicator_dots dots;
+  adw::carousel carousel;
 
   notified = 0;
   dots.property_carousel ().signal_changed ().connect (

@@ -18,42 +18,42 @@
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace adw
 {
-  class LIBMM_ADW_SYMEXPORT PreferencesGroup_Class;
+  class LIBMM_ADW_SYMEXPORT preferences_group_class;
 }
 #endif
 
 namespace adw
 {
 
-  class LIBMM_ADW_SYMEXPORT PreferencesGroup : public gtk::Widget
+  class LIBMM_ADW_SYMEXPORT preferences_group : public gtk::Widget
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-    typedef PreferencesGroup CppObjectType;
-    typedef PreferencesGroup_Class CppClassType;
+    typedef preferences_group CppObjectType;
+    typedef preferences_group_class CppClassType;
     typedef AdwPreferencesGroup BaseObjectType;
     typedef AdwPreferencesGroupClass BaseClassType;
 #endif
 
-    PreferencesGroup (PreferencesGroup&& src) noexcept;
+    preferences_group (preferences_group&& src) noexcept;
     auto
-    operator= (PreferencesGroup&& src) noexcept -> PreferencesGroup&;
+    operator= (preferences_group&& src) noexcept -> preferences_group&;
 
-    PreferencesGroup (const PreferencesGroup&) = delete;
+    preferences_group (const preferences_group&) = delete;
     auto
-    operator= (const PreferencesGroup&) -> PreferencesGroup& = delete;
+    operator= (const preferences_group&) -> preferences_group& = delete;
 
-    ~PreferencesGroup () noexcept override;
+    ~preferences_group () noexcept override;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   private:
-    friend class PreferencesGroup_Class;
+    friend class preferences_group_class;
     static CppClassType preferencesgroup_class_;
 
   protected:
-    explicit PreferencesGroup (const glib::ConstructParams& construct_params);
-    explicit PreferencesGroup (AdwPreferencesGroup* castitem);
+    explicit preferences_group (const glib::ConstructParams& construct_params);
+    explicit preferences_group (AdwPreferencesGroup* castitem);
 
 #endif
 
@@ -81,7 +81,7 @@ namespace adw
 
   private:
   public:
-    PreferencesGroup ();
+    preferences_group ();
 
     auto
     add (gtk::Widget* child) -> void;
@@ -138,7 +138,7 @@ namespace glib
 {
 
   auto
-  wrap (AdwPreferencesGroup* object, bool take_copy = false) -> adw::PreferencesGroup*;
+  wrap (AdwPreferencesGroup* object, bool take_copy = false) -> adw::preferences_group*;
 }
 
 #endif

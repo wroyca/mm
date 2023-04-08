@@ -19,42 +19,42 @@
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace adw
 {
-  class LIBMM_ADW_SYMEXPORT PreferencesPage_Class;
+  class LIBMM_ADW_SYMEXPORT preferences_page_class;
 }
 #endif
 
 namespace adw
 {
 
-  class LIBMM_ADW_SYMEXPORT PreferencesPage : public gtk::Widget
+  class LIBMM_ADW_SYMEXPORT preferences_page : public gtk::Widget
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-    typedef PreferencesPage CppObjectType;
-    typedef PreferencesPage_Class CppClassType;
-    typedef AdwPreferencesPage BaseObjectType;
-    typedef AdwPreferencesPageClass BaseClassType;
+    using CppObjectType = preferences_page;
+    using CppClassType = preferences_page_class;
+    using BaseObjectType = AdwPreferencesPage;
+    using BaseClassType = AdwPreferencesPageClass;
 #endif
 
-    PreferencesPage (PreferencesPage&& src) noexcept;
+    preferences_page (preferences_page&& src) noexcept;
     auto
-    operator= (PreferencesPage&& src) noexcept -> PreferencesPage&;
+    operator= (preferences_page&& src) noexcept -> preferences_page&;
 
-    PreferencesPage (const PreferencesPage&) = delete;
+    preferences_page (const preferences_page&) = delete;
     auto
-    operator= (const PreferencesPage&) -> PreferencesPage& = delete;
+    operator= (const preferences_page&) -> preferences_page& = delete;
 
-    ~PreferencesPage () noexcept override;
+    ~preferences_page () noexcept override;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   private:
-    friend class PreferencesPage_Class;
+    friend class preferences_page_class;
     static CppClassType preferencespage_class_;
 
   protected:
-    explicit PreferencesPage (const glib::ConstructParams& construct_params);
-    explicit PreferencesPage (AdwPreferencesPage* castitem);
+    explicit preferences_page (const glib::ConstructParams& construct_params);
+    explicit preferences_page (AdwPreferencesPage* castitem);
 
 #endif
 
@@ -82,10 +82,10 @@ namespace adw
 
   private:
   public:
-    PreferencesPage ();
+    preferences_page ();
 
     auto
-    add (PreferencesGroup* group) -> void;
+    add (preferences_group* group) -> void;
 
     auto
     get_icon_name () const -> glib::ustring;
@@ -100,7 +100,7 @@ namespace adw
     get_use_underline () const -> bool;
 
     auto
-    remove (PreferencesGroup* group) -> void;
+    remove (preferences_group* group) -> void;
 
     auto
     set_icon_name (const glib::ustring& icon_name) -> void;
@@ -149,7 +149,7 @@ namespace glib
 {
 
   auto
-  wrap (AdwPreferencesPage* object, bool take_copy = false) -> adw::PreferencesPage*;
+  wrap (AdwPreferencesPage* object, bool take_copy = false) -> adw::preferences_page*;
 }
 
 #endif

@@ -19,7 +19,7 @@
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace adw
 {
-  class LIBMM_ADW_SYMEXPORT TabView_Class;
+  class LIBMM_ADW_SYMEXPORT tab_view_class;
 }
 #endif
 
@@ -113,35 +113,35 @@ namespace glib
 namespace adw
 {
 
-  class LIBMM_ADW_SYMEXPORT TabView : public gtk::Widget
+  class LIBMM_ADW_SYMEXPORT tab_view : public gtk::Widget
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-    typedef TabView CppObjectType;
-    typedef TabView_Class CppClassType;
-    typedef AdwTabView BaseObjectType;
-    typedef AdwTabViewClass BaseClassType;
+    using CppObjectType = tab_view;
+    using CppClassType = tab_view_class;
+    using BaseObjectType = AdwTabView;
+    using BaseClassType = AdwTabViewClass;
 #endif
 
-    TabView (TabView&& src) noexcept;
+    tab_view (tab_view&& src) noexcept;
     auto
-    operator= (TabView&& src) noexcept -> TabView&;
+    operator= (tab_view&& src) noexcept -> tab_view&;
 
-    TabView (const TabView&) = delete;
+    tab_view (const tab_view&) = delete;
     auto
-    operator= (const TabView&) -> TabView& = delete;
+    operator= (const tab_view&) -> tab_view& = delete;
 
-    ~TabView () noexcept override;
+    ~tab_view () noexcept override;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   private:
-    friend class TabView_Class;
+    friend class tab_view_class;
     static CppClassType tabview_class_;
 
   protected:
-    explicit TabView (const glib::ConstructParams& construct_params);
-    explicit TabView (AdwTabView* castitem);
+    explicit tab_view (const glib::ConstructParams& construct_params);
+    explicit tab_view (AdwTabView* castitem);
 
 #endif
 
@@ -169,38 +169,38 @@ namespace adw
 
   private:
   public:
-    TabView ();
+    tab_view ();
 
     auto
-    add_page (gtk::Widget* child, const glib::RefPtr<TabPage>& parent)
-        -> glib::RefPtr<TabPage>;
+    add_page (gtk::Widget* child, const glib::RefPtr<tab_page>& parent)
+        -> glib::RefPtr<tab_page>;
 
     auto
-    add_page (gtk::Widget* child) -> glib::RefPtr<TabPage>;
+    add_page (gtk::Widget* child) -> glib::RefPtr<tab_page>;
 
     auto
     add_shortcuts (TabViewShortcuts shortcuts) -> void;
 
     auto
-    append (gtk::Widget* child) -> glib::RefPtr<TabPage>;
+    append (gtk::Widget* child) -> glib::RefPtr<tab_page>;
 
     auto
-    append_pinned (gtk::Widget* child) -> glib::RefPtr<TabPage>;
+    append_pinned (gtk::Widget* child) -> glib::RefPtr<tab_page>;
 
     auto
-    close_other_pages (const glib::RefPtr<TabPage>& page) -> void;
+    close_other_pages (const glib::RefPtr<tab_page>& page) -> void;
 
     auto
-    close_page (const glib::RefPtr<TabPage>& page) -> void;
+    close_page (const glib::RefPtr<tab_page>& page) -> void;
 
     auto
-    close_page_finish (const glib::RefPtr<TabPage>& page, bool confirm) -> void;
+    close_page_finish (const glib::RefPtr<tab_page>& page, bool confirm) -> void;
 
     auto
-    close_pages_after (const glib::RefPtr<TabPage>& page) -> void;
+    close_pages_after (const glib::RefPtr<tab_page>& page) -> void;
 
     auto
-    close_pages_before (const glib::RefPtr<TabPage>& page) -> void;
+    close_pages_before (const glib::RefPtr<tab_page>& page) -> void;
 
     auto
     get_default_icon () const -> glib::RefPtr<gio::Icon>;
@@ -218,52 +218,52 @@ namespace adw
     get_n_pinned_pages () const -> int;
 
     auto
-    get_nth_page (int position) const -> glib::RefPtr<TabPage>;
+    get_nth_page (int position) const -> glib::RefPtr<tab_page>;
 
     auto
-    get_page (gtk::Widget* child) const -> glib::RefPtr<TabPage>;
+    get_page (gtk::Widget* child) const -> glib::RefPtr<tab_page>;
 
     auto
-    get_page_position (const glib::RefPtr<TabPage>& page) const -> int;
+    get_page_position (const glib::RefPtr<tab_page>& page) const -> int;
 
     auto
     get_pages () const -> glib::RefPtr<gtk::SelectionModel>;
 
     auto
-    get_selected_page () const -> glib::RefPtr<TabPage>;
+    get_selected_page () const -> glib::RefPtr<tab_page>;
 
     auto
     get_shortcuts () const -> TabViewShortcuts;
 
     auto
-    insert (gtk::Widget* child, int position) -> glib::RefPtr<TabPage>;
+    insert (gtk::Widget* child, int position) -> glib::RefPtr<tab_page>;
 
     auto
-    insert_pinned (gtk::Widget* child, int position) -> glib::RefPtr<TabPage>;
+    insert_pinned (gtk::Widget* child, int position) -> glib::RefPtr<tab_page>;
 
     auto
-    prepend (gtk::Widget* child) -> glib::RefPtr<TabPage>;
+    prepend (gtk::Widget* child) -> glib::RefPtr<tab_page>;
 
     auto
-    prepend_pinned (gtk::Widget* child) -> glib::RefPtr<TabPage>;
+    prepend_pinned (gtk::Widget* child) -> glib::RefPtr<tab_page>;
 
     auto
     remove_shortcuts (TabViewShortcuts shortcuts) -> void;
 
     auto
-    reorder_backward (const glib::RefPtr<TabPage>& page) -> bool;
+    reorder_backward (const glib::RefPtr<tab_page>& page) -> bool;
 
     auto
-    reorder_first (const glib::RefPtr<TabPage>& page) -> bool;
+    reorder_first (const glib::RefPtr<tab_page>& page) -> bool;
 
     auto
-    reorder_forward (const glib::RefPtr<TabPage>& page) -> bool;
+    reorder_forward (const glib::RefPtr<tab_page>& page) -> bool;
 
     auto
-    reorder_last (const glib::RefPtr<TabPage>& page) -> bool;
+    reorder_last (const glib::RefPtr<tab_page>& page) -> bool;
 
     auto
-    reorder_page (const glib::RefPtr<TabPage>& page, int position) -> bool;
+    reorder_page (const glib::RefPtr<tab_page>& page, int position) -> bool;
 
     auto
     select_next_page () -> bool;
@@ -278,17 +278,17 @@ namespace adw
     set_menu_model (const glib::RefPtr<gio::MenuModel>& menu_model) -> void;
 
     auto
-    set_page_pinned (const glib::RefPtr<TabPage>& page, bool pinned) -> void;
+    set_page_pinned (const glib::RefPtr<tab_page>& page, bool pinned) -> void;
 
     auto
-    set_selected_page (const glib::RefPtr<TabPage>& selected_page) -> void;
+    set_selected_page (const glib::RefPtr<tab_page>& selected_page) -> void;
 
     auto
     set_shortcuts (TabViewShortcuts shortcuts) -> void;
 
     auto
-    transfer_page (const glib::RefPtr<TabPage>& page,
-                   TabView* other_view,
+    transfer_page (const glib::RefPtr<tab_page>& page,
+                   tab_view* other_view,
                    int position) -> void;
 
     auto
@@ -320,11 +320,11 @@ namespace adw
         -> glib::PropertyProxy_ReadOnly<glib::RefPtr<gtk::SelectionModel>>;
 
     auto
-    property_selected_page () -> glib::PropertyProxy<glib::RefPtr<TabPage>>;
+    property_selected_page () -> glib::PropertyProxy<glib::RefPtr<tab_page>>;
 
     auto
     property_selected_page () const
-        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<TabPage>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<tab_page>>;
 
     auto
     property_shortcuts () -> glib::PropertyProxy<TabViewShortcuts>;
@@ -335,30 +335,30 @@ namespace adw
 
     auto
     signal_close_page ()
-        -> glib::SignalProxy<bool (const glib::RefPtr<TabPage>&)>;
+        -> glib::SignalProxy<bool (const glib::RefPtr<tab_page>&)>;
 
     auto
-    signal_create_window () -> glib::SignalProxy<TabView*()>;
+    signal_create_window () -> glib::SignalProxy<tab_view*()>;
 
     auto
     signal_indicator_activated ()
-        -> glib::SignalProxy<void (const glib::RefPtr<TabPage>&)>;
+        -> glib::SignalProxy<void (const glib::RefPtr<tab_page>&)>;
 
     auto
     signal_page_attached ()
-        -> glib::SignalProxy<void (const glib::RefPtr<TabPage>&, int)>;
+        -> glib::SignalProxy<void (const glib::RefPtr<tab_page>&, int)>;
 
     auto
     signal_page_detached ()
-        -> glib::SignalProxy<void (const glib::RefPtr<TabPage>&, int)>;
+        -> glib::SignalProxy<void (const glib::RefPtr<tab_page>&, int)>;
 
     auto
     signal_page_reordered ()
-        -> glib::SignalProxy<void (const glib::RefPtr<TabPage>&, int)>;
+        -> glib::SignalProxy<void (const glib::RefPtr<tab_page>&, int)>;
 
     auto
     signal_setup_menu ()
-        -> glib::SignalProxy<void (const glib::RefPtr<TabPage>&)>;
+        -> glib::SignalProxy<void (const glib::RefPtr<tab_page>&)>;
 
   public:
   public:
@@ -371,7 +371,7 @@ namespace glib
 {
 
   auto
-  wrap (AdwTabView* object, bool take_copy = false) -> adw::TabView*;
+  wrap (AdwTabView* object, bool take_copy = false) -> adw::tab_view*;
 }
 
 #endif

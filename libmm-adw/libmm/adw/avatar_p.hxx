@@ -10,15 +10,15 @@
 namespace adw
 {
 
-  class LIBMM_ADW_SYMEXPORT Avatar_Class : public glib::Class
+  class LIBMM_ADW_SYMEXPORT avatar_class : public glib::Class
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-    using CppObjectType = Avatar;
+    using CppObjectType = avatar;
     using BaseObjectType = AdwAvatar;
     using CppClassParent = gtk::Widget_Class;
 
-    friend class Avatar;
+    friend class avatar;
 #endif
 
     auto

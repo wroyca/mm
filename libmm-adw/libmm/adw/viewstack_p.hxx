@@ -10,15 +10,15 @@
 namespace adw
 {
 
-  class LIBMM_ADW_SYMEXPORT ViewStack_Class : public glib::Class
+  class LIBMM_ADW_SYMEXPORT view_stack_class : public glib::Class
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-    using CppObjectType = ViewStack;
+    using CppObjectType = view_stack;
     using BaseObjectType = AdwViewStack;
     using CppClassParent = gtk::Widget_Class;
 
-    friend class ViewStack;
+    friend class view_stack;
 #endif
 
     auto

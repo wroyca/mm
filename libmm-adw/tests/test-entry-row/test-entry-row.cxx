@@ -20,7 +20,7 @@ notify_cb ()
 static void
 test_adw_entry_row_add_remove (void)
 {
-  adw::EntryRow row;
+  adw::entry_row row;
 
   gtk::Button prefix, suffix;
 
@@ -34,7 +34,7 @@ test_adw_entry_row_add_remove (void)
 static void
 test_adw_entry_row_show_apply_button (void)
 {
-  adw::EntryRow row;
+  adw::entry_row row;
 
   notified = 0;
   row.property_show_apply_button ().signal_changed ().connect (

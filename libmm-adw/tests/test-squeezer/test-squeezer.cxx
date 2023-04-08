@@ -8,7 +8,7 @@
 #include <libmm/adw/init.hxx> // adw::init
 
 static void test_adw_squeezer_homogeneous(void) {
-  adw::Squeezer squeezer;
+  adw::squeezer squeezer;
 
   g_assert_true(squeezer.get_homogeneous());
 
@@ -20,7 +20,7 @@ static void test_adw_squeezer_homogeneous(void) {
 }
 
 static void test_adw_squeezer_allow_none(void) {
-  adw::Squeezer squeezer;
+  adw::squeezer squeezer;
 
   g_assert_false(squeezer.get_allow_none());
 
@@ -32,7 +32,7 @@ static void test_adw_squeezer_allow_none(void) {
 }
 
 static void test_adw_squeezer_transition_duration(void) {
-  adw::Squeezer squeezer;
+  adw::squeezer squeezer;
 
   g_assert_true(squeezer.get_transition_duration() == 200);
 
@@ -44,7 +44,7 @@ static void test_adw_squeezer_transition_duration(void) {
 }
 
 static void test_adw_squeezer_transition_type(void) {
-  adw::Squeezer squeezer;
+  adw::squeezer squeezer;
 
   g_assert_true(squeezer.get_transition_type() == adw::SqueezerTransitionType::NONE);
 
@@ -57,13 +57,13 @@ static void test_adw_squeezer_transition_type(void) {
 }
 
 static void test_adw_squeezer_transition_running(void) {
-  adw::Squeezer squeezer;
+  adw::squeezer squeezer;
 
   g_assert_false(squeezer.get_transition_running());
 }
 
 static void test_adw_squeezer_show_hide_child(void) {
-  adw::Squeezer squeezer;
+  adw::squeezer squeezer;
 
   g_assert_true(squeezer.get_visible_child() == nullptr);
 
@@ -83,7 +83,7 @@ static void test_adw_squeezer_show_hide_child(void) {
 }
 
 static void test_adw_squeezer_interpolate_size(void) {
-  adw::Squeezer squeezer;
+  adw::squeezer squeezer;
 
   g_assert_false(squeezer.get_interpolate_size());
 
@@ -95,11 +95,11 @@ static void test_adw_squeezer_interpolate_size(void) {
 }
 
 static void test_adw_squeezer_page_enabled(void) {
-  adw::Squeezer squeezer;
+  adw::squeezer squeezer;
 
   gtk::Label *child = gtk::make_managed<gtk::Label>();
 
-  glib::RefPtr<adw::SqueezerPage> page = squeezer.add(child);
+  glib::RefPtr<adw::squeezer_page> page = squeezer.add(child);
   g_assert_true(page->get_enabled());
 
   page->set_enabled(false);

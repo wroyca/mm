@@ -18,42 +18,42 @@ using AdwApplicationWindowClass = struct _AdwApplicationWindowClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace adw
 {
-  class LIBMM_ADW_SYMEXPORT ApplicationWindow_Class;
+  class LIBMM_ADW_SYMEXPORT application_window_class;
 }
 #endif
 
 namespace adw
 {
 
-  class LIBMM_ADW_SYMEXPORT ApplicationWindow : public gtk::ApplicationWindow
+  class LIBMM_ADW_SYMEXPORT application_window : public gtk::ApplicationWindow
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-    typedef ApplicationWindow CppObjectType;
-    typedef ApplicationWindow_Class CppClassType;
-    typedef AdwApplicationWindow BaseObjectType;
-    typedef AdwApplicationWindowClass BaseClassType;
+    using CppObjectType = application_window;
+    using CppClassType = application_window_class;
+    using BaseObjectType = AdwApplicationWindow;
+    using BaseClassType = AdwApplicationWindowClass;
 #endif
 
-    ApplicationWindow (ApplicationWindow&& src) noexcept;
+    application_window (application_window&& src) noexcept;
     auto
-    operator= (ApplicationWindow&& src) noexcept -> ApplicationWindow&;
+    operator= (application_window&& src) noexcept -> application_window&;
 
-    ApplicationWindow (const ApplicationWindow&) = delete;
+    application_window (const application_window&) = delete;
     auto
-    operator= (const ApplicationWindow&) -> ApplicationWindow& = delete;
+    operator= (const application_window&) -> application_window& = delete;
 
-    ~ApplicationWindow () noexcept override;
+    ~application_window () noexcept override;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   private:
-    friend class ApplicationWindow_Class;
+    friend class application_window_class;
     static CppClassType applicationwindow_class_;
 
   protected:
-    explicit ApplicationWindow (const glib::ConstructParams& construct_params);
-    explicit ApplicationWindow (AdwApplicationWindow* castitem);
+    explicit application_window (const glib::ConstructParams& construct_params);
+    explicit application_window (AdwApplicationWindow* castitem);
 
 #endif
 
@@ -81,10 +81,10 @@ namespace adw
 
   private:
   protected:
-    ApplicationWindow ();
+    application_window ();
 
   public:
-    explicit ApplicationWindow (
+    explicit application_window (
         const glib::RefPtr<gtk::Application>& application);
 
     auto
@@ -110,7 +110,7 @@ namespace glib
 {
 
   auto
-  wrap (AdwApplicationWindow* object, bool take_copy = false) -> adw::ApplicationWindow*;
+  wrap (AdwApplicationWindow* object, bool take_copy = false) -> adw::application_window*;
 }
 
 #endif

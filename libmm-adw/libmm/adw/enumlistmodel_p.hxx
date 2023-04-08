@@ -10,15 +10,15 @@
 namespace adw
 {
 
-  class LIBMM_ADW_SYMEXPORT EnumListModel_Class : public glib::Class
+  class LIBMM_ADW_SYMEXPORT enum_list_model_class : public glib::Class
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-    using CppObjectType = EnumListModel;
+    using CppObjectType = enum_list_model;
     using BaseObjectType = AdwEnumListModel;
     using CppClassParent = glib::Object_Class;
 
-    friend class EnumListModel;
+    friend class enum_list_model;
 #endif
 
     auto

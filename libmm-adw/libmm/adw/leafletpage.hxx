@@ -19,43 +19,43 @@
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace adw
 {
-  class LIBMM_ADW_SYMEXPORT LeafletPage_Class;
+  class LIBMM_ADW_SYMEXPORT leaflet_page_class;
 }
 #endif
 
 namespace adw
 {
 
-  class LIBMM_ADW_SYMEXPORT LeafletPage : public glib::Object
+  class LIBMM_ADW_SYMEXPORT leaflet_page : public glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   public:
-    using CppObjectType = LeafletPage;
-    using CppClassType = LeafletPage_Class;
+    using CppObjectType = leaflet_page;
+    using CppClassType = leaflet_page_class;
     using BaseObjectType = AdwLeafletPage;
     using BaseClassType = AdwLeafletPageClass;
 
-    LeafletPage (const LeafletPage&) = delete;
+    leaflet_page (const leaflet_page&) = delete;
     auto
-    operator= (const LeafletPage&) -> LeafletPage& = delete;
+    operator= (const leaflet_page&) -> leaflet_page& = delete;
 
   private:
-    friend class LeafletPage_Class;
+    friend class leaflet_page_class;
     static CppClassType leafletpage_class_;
 
   protected:
-    explicit LeafletPage (const glib::ConstructParams& construct_params);
-    explicit LeafletPage (AdwLeafletPage* castitem);
+    explicit leaflet_page (const glib::ConstructParams& construct_params);
+    explicit leaflet_page (AdwLeafletPage* castitem);
 
 #endif
 
   public:
-    LeafletPage (LeafletPage&& src) noexcept;
+    leaflet_page (leaflet_page&& src) noexcept;
     auto
-    operator= (LeafletPage&& src) noexcept -> LeafletPage&;
+    operator= (leaflet_page&& src) noexcept -> leaflet_page&;
 
-    ~LeafletPage () noexcept override;
+    ~leaflet_page () noexcept override;
 
     static auto
     get_type () -> GType G_GNUC_CONST;
@@ -83,11 +83,11 @@ namespace adw
 
   private:
   protected:
-    LeafletPage ();
+    leaflet_page ();
 
   public:
     static auto
-    create () -> glib::RefPtr<LeafletPage>;
+    create () -> glib::RefPtr<leaflet_page>;
 
     auto
     get_child () const -> gtk::Widget*;
@@ -130,7 +130,7 @@ namespace glib
 {
 
   auto
-  wrap (AdwLeafletPage* object, bool take_copy = false) -> glib::RefPtr<adw::LeafletPage>;
+  wrap (AdwLeafletPage* object, bool take_copy = false) -> glib::RefPtr<adw::leaflet_page>;
 }
 
 #endif

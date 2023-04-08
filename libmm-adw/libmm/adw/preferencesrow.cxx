@@ -21,9 +21,9 @@ namespace glib
 {
 
   auto
-  wrap (AdwPreferencesRow* object, bool take_copy) -> adw::PreferencesRow*
+  wrap (AdwPreferencesRow* object, bool take_copy) -> adw::preferences_row*
   {
-    return dynamic_cast<adw::PreferencesRow*> (
+    return dynamic_cast<adw::preferences_row*> (
         glib::wrap_auto ((GObject*) (object), take_copy));
   }
 
@@ -33,11 +33,11 @@ namespace adw
 {
 
   auto
-  PreferencesRow_Class::init () -> const glib::Class&
+  preferences_row_class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
-      class_init_func_ = &PreferencesRow_Class::class_init_function;
+      class_init_func_ = &preferences_row_class::class_init_function;
 
       register_derived_type (adw_preferences_row_get_type ());
     }
@@ -46,67 +46,67 @@ namespace adw
   }
 
   auto
-  PreferencesRow_Class::class_init_function (void* g_class, void* class_data) -> void
+  preferences_row_class::class_init_function (void* g_class, void* class_data) -> void
   {
     const auto klass = static_cast<BaseClassType*> (g_class);
     CppClassParent::class_init_function (klass, class_data);
   }
 
   auto
-  PreferencesRow_Class::wrap_new (GObject* o) -> glib::ObjectBase*
+  preferences_row_class::wrap_new (GObject* o) -> glib::ObjectBase*
   {
-    return manage (new PreferencesRow ((AdwPreferencesRow*) (o)));
+    return manage (new preferences_row ((AdwPreferencesRow*) (o)));
   }
 
-  PreferencesRow::PreferencesRow (const glib::ConstructParams& construct_params)
+  preferences_row::preferences_row (const glib::ConstructParams& construct_params)
     : gtk::ListBoxRow (construct_params)
   {
   }
 
-  PreferencesRow::PreferencesRow (AdwPreferencesRow* castitem)
+  preferences_row::preferences_row (AdwPreferencesRow* castitem)
     : gtk::ListBoxRow ((GtkListBoxRow*) (castitem))
   {
   }
 
-  PreferencesRow::PreferencesRow (PreferencesRow&& src) noexcept
+  preferences_row::preferences_row (preferences_row&& src) noexcept
     : gtk::ListBoxRow (std::move (src))
   {
   }
 
   auto
-  PreferencesRow::operator= (PreferencesRow&& src) noexcept -> PreferencesRow&
+  preferences_row::operator= (preferences_row&& src) noexcept -> preferences_row&
   {
     gtk::ListBoxRow::operator= (std::move (src));
     return *this;
   }
 
-  PreferencesRow::~PreferencesRow () noexcept
+  preferences_row::~preferences_row () noexcept
   {
     destroy_ ();
   }
 
-  PreferencesRow::CppClassType PreferencesRow::preferencesrow_class_;
+  preferences_row::CppClassType preferences_row::preferencesrow_class_;
 
   auto
-  PreferencesRow::get_type () -> GType
+  preferences_row::get_type () -> GType
   {
     return preferencesrow_class_.init ().get_type ();
   }
 
   auto
-  PreferencesRow::get_base_type () -> GType
+  preferences_row::get_base_type () -> GType
   {
     return adw_preferences_row_get_type ();
   }
 
-  PreferencesRow::PreferencesRow ()
+  preferences_row::preferences_row ()
     : glib::ObjectBase (nullptr),
       gtk::ListBoxRow (glib::ConstructParams (preferencesrow_class_.init ()))
   {
   }
 
   auto
-  PreferencesRow::get_title () const -> glib::ustring
+  preferences_row::get_title () const -> glib::ustring
   {
     return glib::convert_const_gchar_ptr_to_ustring (
         adw_preferences_row_get_title (
@@ -114,34 +114,34 @@ namespace adw
   }
 
   auto
-  PreferencesRow::get_title_selectable () const -> bool
+  preferences_row::get_title_selectable () const -> bool
   {
     return adw_preferences_row_get_title_selectable (
         const_cast<AdwPreferencesRow*> (gobj ()));
   }
 
   auto
-  PreferencesRow::get_use_markup () const -> bool
+  preferences_row::get_use_markup () const -> bool
   {
     return adw_preferences_row_get_use_markup (
         const_cast<AdwPreferencesRow*> (gobj ()));
   }
 
   auto
-  PreferencesRow::get_use_underline () const -> bool
+  preferences_row::get_use_underline () const -> bool
   {
     return adw_preferences_row_get_use_underline (
         const_cast<AdwPreferencesRow*> (gobj ()));
   }
 
   auto
-  PreferencesRow::set_title (const glib::ustring& title) -> void
+  preferences_row::set_title (const glib::ustring& title) -> void
   {
     adw_preferences_row_set_title (gobj (), title.c_str ());
   }
 
   auto
-  PreferencesRow::set_title_selectable (bool title_selectable) -> void
+  preferences_row::set_title_selectable (bool title_selectable) -> void
   {
     adw_preferences_row_set_title_selectable (
         gobj (),
@@ -149,62 +149,62 @@ namespace adw
   }
 
   auto
-  PreferencesRow::set_use_markup (bool use_markup) -> void
+  preferences_row::set_use_markup (bool use_markup) -> void
   {
     adw_preferences_row_set_use_markup (gobj (), static_cast<int> (use_markup));
   }
 
   auto
-  PreferencesRow::set_use_underline (bool use_underline) -> void
+  preferences_row::set_use_underline (bool use_underline) -> void
   {
     adw_preferences_row_set_use_underline (gobj (),
                                            static_cast<int> (use_underline));
   }
 
   auto
-  PreferencesRow::property_title () -> glib::PropertyProxy<glib::ustring>
+  preferences_row::property_title () -> glib::PropertyProxy<glib::ustring>
   {
     return {this, "title"};
   }
 
   auto
-  PreferencesRow::property_title () const -> glib::PropertyProxy_ReadOnly<glib::ustring>
+  preferences_row::property_title () const -> glib::PropertyProxy_ReadOnly<glib::ustring>
   {
     return {this, "title"};
   }
 
   auto
-  PreferencesRow::property_title_selectable () -> glib::PropertyProxy<bool>
+  preferences_row::property_title_selectable () -> glib::PropertyProxy<bool>
   {
     return {this, "title-selectable"};
   }
 
   auto
-  PreferencesRow::property_title_selectable () const -> glib::PropertyProxy_ReadOnly<bool>
+  preferences_row::property_title_selectable () const -> glib::PropertyProxy_ReadOnly<bool>
   {
     return {this, "title-selectable"};
   }
 
   auto
-  PreferencesRow::property_use_markup () -> glib::PropertyProxy<bool>
+  preferences_row::property_use_markup () -> glib::PropertyProxy<bool>
   {
     return {this, "use-markup"};
   }
 
   auto
-  PreferencesRow::property_use_markup () const -> glib::PropertyProxy_ReadOnly<bool>
+  preferences_row::property_use_markup () const -> glib::PropertyProxy_ReadOnly<bool>
   {
     return {this, "use-markup"};
   }
 
   auto
-  PreferencesRow::property_use_underline () -> glib::PropertyProxy<bool>
+  preferences_row::property_use_underline () -> glib::PropertyProxy<bool>
   {
     return {this, "use-underline"};
   }
 
   auto
-  PreferencesRow::property_use_underline () const -> glib::PropertyProxy_ReadOnly<bool>
+  preferences_row::property_use_underline () const -> glib::PropertyProxy_ReadOnly<bool>
   {
     return {this, "use-underline"};
   }

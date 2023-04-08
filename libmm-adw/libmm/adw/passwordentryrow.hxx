@@ -19,42 +19,42 @@
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace adw
 {
-  class LIBMM_ADW_SYMEXPORT PasswordEntryRow_Class;
+  class LIBMM_ADW_SYMEXPORT password_entry_row_class;
 }
 #endif
 
 namespace adw
 {
 
-  class LIBMM_ADW_SYMEXPORT PasswordEntryRow : public adw::EntryRow
+  class LIBMM_ADW_SYMEXPORT password_entry_row : public adw::entry_row
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-    typedef PasswordEntryRow CppObjectType;
-    typedef PasswordEntryRow_Class CppClassType;
+    typedef password_entry_row CppObjectType;
+    typedef password_entry_row_class CppClassType;
     typedef AdwPasswordEntryRow BaseObjectType;
     typedef AdwPasswordEntryRowClass BaseClassType;
 #endif
 
-    PasswordEntryRow (PasswordEntryRow&& src) noexcept;
+    password_entry_row (password_entry_row&& src) noexcept;
     auto
-    operator= (PasswordEntryRow&& src) noexcept -> PasswordEntryRow&;
+    operator= (password_entry_row&& src) noexcept -> password_entry_row&;
 
-    PasswordEntryRow (const PasswordEntryRow&) = delete;
+    password_entry_row (const password_entry_row&) = delete;
     auto
-    operator= (const PasswordEntryRow&) -> PasswordEntryRow& = delete;
+    operator= (const password_entry_row&) -> password_entry_row& = delete;
 
-    ~PasswordEntryRow () noexcept override;
+    ~password_entry_row () noexcept override;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   private:
-    friend class PasswordEntryRow_Class;
+    friend class password_entry_row_class;
     static CppClassType passwordentryrow_class_;
 
   protected:
-    explicit PasswordEntryRow (const glib::ConstructParams& construct_params);
-    explicit PasswordEntryRow (AdwPasswordEntryRow* castitem);
+    explicit password_entry_row (const glib::ConstructParams& construct_params);
+    explicit password_entry_row (AdwPasswordEntryRow* castitem);
 
 #endif
 
@@ -82,7 +82,7 @@ namespace adw
 
   private:
   public:
-    PasswordEntryRow ();
+    password_entry_row ();
 
   public:
   public:
@@ -95,7 +95,7 @@ namespace glib
 {
 
   auto
-  wrap (AdwPasswordEntryRow* object, bool take_copy = false) -> adw::PasswordEntryRow*;
+  wrap (AdwPasswordEntryRow* object, bool take_copy = false) -> adw::password_entry_row*;
 }
 
 #endif

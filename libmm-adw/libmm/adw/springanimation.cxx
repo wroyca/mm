@@ -22,10 +22,10 @@ namespace glib
 {
 
   auto
-  wrap (AdwSpringAnimation* object, bool take_copy) -> glib::RefPtr<adw::SpringAnimation>
+  wrap (AdwSpringAnimation* object, bool take_copy) -> glib::RefPtr<adw::spring_animation>
   {
-    return glib::make_refptr_for_instance<adw::SpringAnimation> (
-        dynamic_cast<adw::SpringAnimation*> (
+    return glib::make_refptr_for_instance<adw::spring_animation> (
+        dynamic_cast<adw::spring_animation*> (
             glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
@@ -35,11 +35,11 @@ namespace adw
 {
 
   auto
-  SpringAnimation_Class::init () -> const glib::Class&
+  spring_animation_class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
-      class_init_func_ = &SpringAnimation_Class::class_init_function;
+      class_init_func_ = &spring_animation_class::class_init_function;
 
       register_derived_type (adw_spring_animation_get_type ());
     }
@@ -48,72 +48,72 @@ namespace adw
   }
 
   auto
-  SpringAnimation_Class::class_init_function (void* g_class, void* class_data) -> void
+  spring_animation_class::class_init_function (void* g_class, void* class_data) -> void
   {
     const auto klass = static_cast<BaseClassType*> (g_class);
     CppClassParent::class_init_function (klass, class_data);
   }
 
   auto
-  SpringAnimation_Class::wrap_new (GObject* object) -> glib::ObjectBase*
+  spring_animation_class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
-    return new SpringAnimation ((AdwSpringAnimation*) object);
+    return new spring_animation ((AdwSpringAnimation*) object);
   }
 
   auto
-  SpringAnimation::gobj_copy () -> AdwSpringAnimation*
+  spring_animation::gobj_copy () -> AdwSpringAnimation*
   {
     reference ();
     return gobj ();
   }
 
-  SpringAnimation::SpringAnimation (
+  spring_animation::spring_animation (
       const glib::ConstructParams& construct_params)
-    : Animation (construct_params)
+    : animation (construct_params)
   {
   }
 
-  SpringAnimation::SpringAnimation (AdwSpringAnimation* castitem)
-    : Animation ((AdwAnimation*) (castitem))
+  spring_animation::spring_animation (AdwSpringAnimation* castitem)
+    : animation ((AdwAnimation*) (castitem))
   {
   }
 
-  SpringAnimation::SpringAnimation (SpringAnimation&& src) noexcept
-    : Animation (std::move (src))
+  spring_animation::spring_animation (spring_animation&& src) noexcept
+    : animation (std::move (src))
   {
   }
 
   auto
-  SpringAnimation::operator= (SpringAnimation&& src) noexcept -> SpringAnimation&
+  spring_animation::operator= (spring_animation&& src) noexcept -> spring_animation&
   {
-    Animation::operator= (std::move (src));
+    animation::operator= (std::move (src));
     return *this;
   }
 
-  SpringAnimation::~SpringAnimation () noexcept {}
+  spring_animation::~spring_animation () noexcept {}
 
-  SpringAnimation::CppClassType SpringAnimation::springanimation_class_;
+  spring_animation::CppClassType spring_animation::springanimation_class_;
 
   auto
-  SpringAnimation::get_type () -> GType
+  spring_animation::get_type () -> GType
   {
     return springanimation_class_.init ().get_type ();
   }
 
   auto
-  SpringAnimation::get_base_type () -> GType
+  spring_animation::get_base_type () -> GType
   {
     return adw_spring_animation_get_type ();
   }
 
-  SpringAnimation::SpringAnimation (
+  spring_animation::spring_animation (
       gtk::Widget* widget,
       double value_from,
       double value_to,
-      const glib::RefPtr<SpringParams>& spring_params,
+      const glib::RefPtr<spring_params>& spring_params,
       const glib::RefPtr<AnimationTarget>& target)
     : glib::ObjectBase (nullptr),
-      Animation (glib::ConstructParams (springanimation_class_.init (),
+      animation (glib::ConstructParams (springanimation_class_.init (),
                                         "widget",
                                         (GtkWidget*) glib::unwrap (widget),
                                         "value_from",
@@ -128,21 +128,21 @@ namespace adw
   {
   }
 
-  SpringAnimation::SpringAnimation ()
+  spring_animation::spring_animation ()
     : glib::ObjectBase (nullptr),
-      Animation (glib::ConstructParams (springanimation_class_.init ()))
+      animation (glib::ConstructParams (springanimation_class_.init ()))
   {
   }
 
   auto
-  SpringAnimation::create (gtk::Widget* widget,
+  spring_animation::create (gtk::Widget* widget,
                            double value_from,
                            double value_to,
-                           const glib::RefPtr<SpringParams>& spring_params,
-                           const glib::RefPtr<AnimationTarget>& target) -> glib::RefPtr<SpringAnimation>
+                           const glib::RefPtr<spring_params>& spring_params,
+                           const glib::RefPtr<AnimationTarget>& target) -> glib::RefPtr<spring_animation>
   {
-    return glib::make_refptr_for_instance<SpringAnimation> (
-        new SpringAnimation (widget,
+    return glib::make_refptr_for_instance<spring_animation> (
+        new spring_animation (widget,
                              value_from,
                              value_to,
                              spring_params,
@@ -150,35 +150,35 @@ namespace adw
   }
 
   auto
-  SpringAnimation::get_clamp () const -> bool
+  spring_animation::get_clamp () const -> bool
   {
     return adw_spring_animation_get_clamp (
         const_cast<AdwSpringAnimation*> (gobj ()));
   }
 
   auto
-  SpringAnimation::get_epsilon () const -> double
+  spring_animation::get_epsilon () const -> double
   {
     return adw_spring_animation_get_epsilon (
         const_cast<AdwSpringAnimation*> (gobj ()));
   }
 
   auto
-  SpringAnimation::get_estimated_duration () const -> guint
+  spring_animation::get_estimated_duration () const -> guint
   {
     return adw_spring_animation_get_estimated_duration (
         const_cast<AdwSpringAnimation*> (gobj ()));
   }
 
   auto
-  SpringAnimation::get_initial_velocity () const -> double
+  spring_animation::get_initial_velocity () const -> double
   {
     return adw_spring_animation_get_initial_velocity (
         const_cast<AdwSpringAnimation*> (gobj ()));
   }
 
   auto
-  SpringAnimation::get_spring_params () const -> glib::RefPtr<SpringParams>
+  spring_animation::get_spring_params () const -> glib::RefPtr<spring_params>
   {
     auto retvalue = glib::wrap (adw_spring_animation_get_spring_params (
         const_cast<AdwSpringAnimation*> (gobj ())));
@@ -188,144 +188,144 @@ namespace adw
   }
 
   auto
-  SpringAnimation::get_value_from () const -> double
+  spring_animation::get_value_from () const -> double
   {
     return adw_spring_animation_get_value_from (
         const_cast<AdwSpringAnimation*> (gobj ()));
   }
 
   auto
-  SpringAnimation::get_value_to () const -> double
+  spring_animation::get_value_to () const -> double
   {
     return adw_spring_animation_get_value_to (
         const_cast<AdwSpringAnimation*> (gobj ()));
   }
 
   auto
-  SpringAnimation::get_velocity () const -> double
+  spring_animation::get_velocity () const -> double
   {
     return adw_spring_animation_get_velocity (
         const_cast<AdwSpringAnimation*> (gobj ()));
   }
 
   auto
-  SpringAnimation::set_clamp (bool clamp) -> void
+  spring_animation::set_clamp (bool clamp) -> void
   {
     adw_spring_animation_set_clamp (gobj (), static_cast<int> (clamp));
   }
 
   auto
-  SpringAnimation::set_epsilon (double epsilon) -> void
+  spring_animation::set_epsilon (double epsilon) -> void
   {
     adw_spring_animation_set_epsilon (gobj (), epsilon);
   }
 
   auto
-  SpringAnimation::set_initial_velocity (double velocity) -> void
+  spring_animation::set_initial_velocity (double velocity) -> void
   {
     adw_spring_animation_set_initial_velocity (gobj (), velocity);
   }
 
   auto
-  SpringAnimation::set_spring_params (
-      const glib::RefPtr<SpringParams>& spring_params) -> void
+  spring_animation::set_spring_params (
+      const glib::RefPtr<spring_params>& spring_params) -> void
   {
     adw_spring_animation_set_spring_params (gobj (),
                                             glib::unwrap (spring_params));
   }
 
   auto
-  SpringAnimation::set_value_from (double epsilon) -> void
+  spring_animation::set_value_from (double epsilon) -> void
   {
     adw_spring_animation_set_value_from (gobj (), epsilon);
   }
 
   auto
-  SpringAnimation::set_value_to (double epsilon) -> void
+  spring_animation::set_value_to (double epsilon) -> void
   {
     adw_spring_animation_set_value_to (gobj (), epsilon);
   }
 
   auto
-  SpringAnimation::property_clamp () -> glib::PropertyProxy<bool>
+  spring_animation::property_clamp () -> glib::PropertyProxy<bool>
   {
     return {this, "clamp"};
   }
 
   auto
-  SpringAnimation::property_clamp () const -> glib::PropertyProxy_ReadOnly<bool>
+  spring_animation::property_clamp () const -> glib::PropertyProxy_ReadOnly<bool>
   {
     return {this, "clamp"};
   }
 
   auto
-  SpringAnimation::property_epsilon () -> glib::PropertyProxy<double>
+  spring_animation::property_epsilon () -> glib::PropertyProxy<double>
   {
     return {this, "epsilon"};
   }
 
   auto
-  SpringAnimation::property_epsilon () const -> glib::PropertyProxy_ReadOnly<double>
+  spring_animation::property_epsilon () const -> glib::PropertyProxy_ReadOnly<double>
   {
     return {this, "epsilon"};
   }
 
   auto
-  SpringAnimation::property_estimated_duration () const -> glib::PropertyProxy_ReadOnly<guint>
+  spring_animation::property_estimated_duration () const -> glib::PropertyProxy_ReadOnly<guint>
   {
     return {this, "estimated-duration"};
   }
 
   auto
-  SpringAnimation::property_initial_velocity () -> glib::PropertyProxy<double>
+  spring_animation::property_initial_velocity () -> glib::PropertyProxy<double>
   {
     return {this, "initial-velocity"};
   }
 
   auto
-  SpringAnimation::property_initial_velocity () const -> glib::PropertyProxy_ReadOnly<double>
+  spring_animation::property_initial_velocity () const -> glib::PropertyProxy_ReadOnly<double>
   {
     return {this, "initial-velocity"};
   }
 
   auto
-  SpringAnimation::property_spring_params () -> glib::PropertyProxy<glib::RefPtr<SpringParams>>
+  spring_animation::property_spring_params () -> glib::PropertyProxy<glib::RefPtr<spring_params>>
   {
     return {this, "spring-params"};
   }
 
   auto
-  SpringAnimation::property_spring_params () const -> glib::PropertyProxy_ReadOnly<glib::RefPtr<SpringParams>>
+  spring_animation::property_spring_params () const -> glib::PropertyProxy_ReadOnly<glib::RefPtr<spring_params>>
   {
     return {this, "spring-params"};
   }
 
   auto
-  SpringAnimation::property_value_from () -> glib::PropertyProxy<double>
+  spring_animation::property_value_from () -> glib::PropertyProxy<double>
   {
     return {this, "value-from"};
   }
 
   auto
-  SpringAnimation::property_value_from () const -> glib::PropertyProxy_ReadOnly<double>
+  spring_animation::property_value_from () const -> glib::PropertyProxy_ReadOnly<double>
   {
     return {this, "value-from"};
   }
 
   auto
-  SpringAnimation::property_value_to () -> glib::PropertyProxy<double>
+  spring_animation::property_value_to () -> glib::PropertyProxy<double>
   {
     return {this, "value-to"};
   }
 
   auto
-  SpringAnimation::property_value_to () const -> glib::PropertyProxy_ReadOnly<double>
+  spring_animation::property_value_to () const -> glib::PropertyProxy_ReadOnly<double>
   {
     return {this, "value-to"};
   }
 
   auto
-  SpringAnimation::property_velocity () const -> glib::PropertyProxy_ReadOnly<double>
+  spring_animation::property_velocity () const -> glib::PropertyProxy_ReadOnly<double>
   {
     return {this, "velocity"};
   }

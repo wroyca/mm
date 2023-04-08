@@ -10,17 +10,17 @@
 namespace adw
 {
 
-  class LIBMM_ADW_SYMEXPORT Bin_Class : public glib::Class
+  class LIBMM_ADW_SYMEXPORT bin_class : public glib::Class
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-    using CppObjectType = Bin;
+    using CppObjectType = bin;
     using BaseObjectType = AdwBin;
     using BaseClassType = AdwBinClass;
     using CppClassParent = gtk::Widget_Class;
     using BaseClassParent = GtkWidgetClass;
 
-    friend class Bin;
+    friend class bin;
 #endif
 
     auto

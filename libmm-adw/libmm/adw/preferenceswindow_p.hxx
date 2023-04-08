@@ -10,17 +10,17 @@
 namespace adw
 {
 
-  class LIBMM_ADW_SYMEXPORT PreferencesWindow_Class : public glib::Class
+  class LIBMM_ADW_SYMEXPORT preferences_window_class : public glib::Class
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-    using CppObjectType = PreferencesWindow;
+    using CppObjectType = preferences_window;
     using BaseObjectType = AdwPreferencesWindow;
     using BaseClassType = AdwPreferencesWindowClass;
-    using CppClassParent = adw::Window_Class;
+    using CppClassParent = adw::window_class;
     using BaseClassParent = AdwWindowClass;
 
-    friend class PreferencesWindow;
+    friend class preferences_window;
 #endif
 
     auto

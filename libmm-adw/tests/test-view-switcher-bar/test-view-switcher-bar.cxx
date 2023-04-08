@@ -10,8 +10,8 @@
 static void
 test_adw_view_switcher_bar_stack (void)
 {
-  adw::ViewSwitcherBar bar;
-  adw::ViewStack* stack = gtk::make_managed<adw::ViewStack> ();
+  adw::view_switcher_bar bar;
+  adw::view_stack* stack = gtk::make_managed<adw::view_stack> ();
 
   bar.set_stack (stack);
   g_assert_true (bar.get_stack () == stack);
@@ -23,7 +23,7 @@ test_adw_view_switcher_bar_stack (void)
 static void
 test_adw_view_switcher_bar_reveal (void)
 {
-  adw::ViewSwitcherBar bar;
+  adw::view_switcher_bar bar;
 
   g_assert_false (bar.get_reveal ());
 

@@ -20,7 +20,7 @@ notify_cb ()
 static void
 test_adw_toast_title (void)
 {
-  std::unique_ptr<adw::Toast> toast = std::make_unique<adw::Toast> ("Title");
+  std::unique_ptr<adw::toast> toast = std::make_unique<adw::toast> ("Title");
 
   notified = 0;
   toast->property_title ().signal_changed ().connect (
@@ -41,7 +41,7 @@ test_adw_toast_title (void)
 static void
 test_adw_toast_button_label (void)
 {
-  std::unique_ptr<adw::Toast> toast = std::make_unique<adw::Toast> ("Title");
+  std::unique_ptr<adw::toast> toast = std::make_unique<adw::toast> ("Title");
 
   g_assert_nonnull (toast);
 
@@ -65,7 +65,7 @@ test_adw_toast_button_label (void)
 static void
 test_adw_toast_action_name (void)
 {
-  std::unique_ptr<adw::Toast> toast = std::make_unique<adw::Toast> ("Title");
+  std::unique_ptr<adw::toast> toast = std::make_unique<adw::toast> ("Title");
 
   notified = 0;
   toast->property_action_name ().signal_changed ().connect (
@@ -87,7 +87,7 @@ test_adw_toast_action_name (void)
 static void
 test_adw_toast_action_target (void)
 {
-  std::unique_ptr<adw::Toast> toast = std::make_unique<adw::Toast> ("Title");
+  std::unique_ptr<adw::toast> toast = std::make_unique<adw::toast> ("Title");
 
   notified = 0;
   toast->property_action_target ().signal_changed ().connect (
@@ -112,7 +112,7 @@ test_adw_toast_action_target (void)
 static void
 test_adw_toast_detailed_action_name (void)
 {
-  std::unique_ptr<adw::Toast> toast = std::make_unique<adw::Toast> ("Title");
+  std::unique_ptr<adw::toast> toast = std::make_unique<adw::toast> ("Title");
 
   g_assert_true (toast->get_action_name () == "");
   g_assert_false (toast->get_action_target_value ());
@@ -130,7 +130,7 @@ test_adw_toast_detailed_action_name (void)
 static void
 test_adw_toast_priority (void)
 {
-  std::unique_ptr<adw::Toast> toast = std::make_unique<adw::Toast> ("Title");
+  std::unique_ptr<adw::toast> toast = std::make_unique<adw::toast> ("Title");
 
   notified = 0;
   toast->property_priority ().signal_changed ().connect (
@@ -153,7 +153,7 @@ test_adw_toast_priority (void)
 static void
 test_adw_toast_timeout (void)
 {
-  std::unique_ptr<adw::Toast> toast = std::make_unique<adw::Toast> ("Title");
+  std::unique_ptr<adw::toast> toast = std::make_unique<adw::toast> ("Title");
 
   notified = 0;
   toast->property_timeout ().signal_changed ().connect (
@@ -174,8 +174,8 @@ test_adw_toast_timeout (void)
 static void
 test_adw_toast_dismiss (void)
 {
-  std::unique_ptr<adw::Toast> toast = std::make_unique<adw::Toast> ("Title");
-  adw::ToastOverlay overlay;
+  std::unique_ptr<adw::toast> toast = std::make_unique<adw::toast> ("Title");
+  adw::toast_overlay overlay;
 
   // This is not obvious: dismiss will emit the "dismiss" signal. When a toast
   // is added to an overlay, it stays in a queue until dismissed. At that point
@@ -197,7 +197,7 @@ test_adw_toast_dismiss (void)
 static void
 test_adw_toast_custom_title (void)
 {
-  std::unique_ptr<adw::Toast> toast = std::make_unique<adw::Toast> ("Title");
+  std::unique_ptr<adw::toast> toast = std::make_unique<adw::toast> ("Title");
 
   notified = 0;
   toast->property_custom_title ().signal_changed ().connect (
@@ -226,11 +226,11 @@ test_adw_toast_custom_title (void)
 static void
 test_adw_toast_custom_title_overlay (void)
 {
-  adw::ToastOverlay first_overlay;
-  adw::ToastOverlay second_overlay;
+  adw::toast_overlay first_overlay;
+  adw::toast_overlay second_overlay;
   std::unique_ptr<gtk::Widget> widget =
       std::make_unique<gtk::Label> ("Custom title");
-  std::unique_ptr<adw::Toast> toast = std::make_unique<adw::Toast> ("");
+  std::unique_ptr<adw::toast> toast = std::make_unique<adw::toast> ("");
 
   toast->set_custom_title (widget.get ());
 

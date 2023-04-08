@@ -19,14 +19,14 @@
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace adw
 {
-  class LIBMM_ADW_SYMEXPORT ViewSwitcher_Class;
+  class LIBMM_ADW_SYMEXPORT view_switcher_class;
 }
 #endif
 
 namespace adw
 {
 
-  enum class LIBMM_ADW_SYMEXPORT ViewSwitcherPolicy
+  enum class LIBMM_ADW_SYMEXPORT view_switcher_policy
   {
     NARROW,
     WIDE
@@ -39,8 +39,8 @@ namespace glib
 {
 
   template <>
-  class LIBMM_ADW_SYMEXPORT Value<adw::ViewSwitcherPolicy>
-    : public glib::Value_Enum<adw::ViewSwitcherPolicy>
+  class LIBMM_ADW_SYMEXPORT Value<adw::view_switcher_policy>
+    : public glib::Value_Enum<adw::view_switcher_policy>
   {
   public:
     static auto
@@ -53,35 +53,35 @@ namespace glib
 namespace adw
 {
 
-  class LIBMM_ADW_SYMEXPORT ViewSwitcher : public gtk::Widget
+  class LIBMM_ADW_SYMEXPORT view_switcher : public gtk::Widget
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-    typedef ViewSwitcher CppObjectType;
-    typedef ViewSwitcher_Class CppClassType;
-    typedef AdwViewSwitcher BaseObjectType;
-    typedef AdwViewSwitcherClass BaseClassType;
+    using CppObjectType = view_switcher;
+    using CppClassType = view_switcher_class;
+    using BaseObjectType = AdwViewSwitcher;
+    using BaseClassType = AdwViewSwitcherClass;
 #endif
 
-    ViewSwitcher (ViewSwitcher&& src) noexcept;
+    view_switcher (view_switcher&& src) noexcept;
     auto
-    operator= (ViewSwitcher&& src) noexcept -> ViewSwitcher&;
+    operator= (view_switcher&& src) noexcept -> view_switcher&;
 
-    ViewSwitcher (const ViewSwitcher&) = delete;
+    view_switcher (const view_switcher&) = delete;
     auto
-    operator= (const ViewSwitcher&) -> ViewSwitcher& = delete;
+    operator= (const view_switcher&) -> view_switcher& = delete;
 
-    ~ViewSwitcher () noexcept override;
+    ~view_switcher () noexcept override;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   private:
-    friend class ViewSwitcher_Class;
+    friend class view_switcher_class;
     static CppClassType viewswitcher_class_;
 
   protected:
-    explicit ViewSwitcher (const glib::ConstructParams& construct_params);
-    explicit ViewSwitcher (AdwViewSwitcher* castitem);
+    explicit view_switcher (const glib::ConstructParams& construct_params);
+    explicit view_switcher (AdwViewSwitcher* castitem);
 
 #endif
 
@@ -109,32 +109,32 @@ namespace adw
 
   private:
   public:
-    ViewSwitcher ();
+    view_switcher ();
 
     auto
-    get_policy () const -> ViewSwitcherPolicy;
+    get_policy () const -> view_switcher_policy;
 
     auto
-    get_stack () const -> ViewStack*;
+    get_stack () const -> view_stack*;
 
     auto
-    set_policy (ViewSwitcherPolicy policy) -> void;
+    set_policy (view_switcher_policy policy) -> void;
 
     auto
-    set_stack (ViewStack* stack) -> void;
+    set_stack (view_stack* stack) -> void;
 
     auto
-    property_policy () -> glib::PropertyProxy<ViewSwitcherPolicy>;
+    property_policy () -> glib::PropertyProxy<view_switcher_policy>;
 
     auto
     property_policy () const
-        -> glib::PropertyProxy_ReadOnly<ViewSwitcherPolicy>;
+        -> glib::PropertyProxy_ReadOnly<view_switcher_policy>;
 
     auto
-    property_stack () -> glib::PropertyProxy<ViewStack*>;
+    property_stack () -> glib::PropertyProxy<view_stack*>;
 
     auto
-    property_stack () const -> glib::PropertyProxy_ReadOnly<ViewStack*>;
+    property_stack () const -> glib::PropertyProxy_ReadOnly<view_stack*>;
 
   public:
   public:
@@ -147,7 +147,7 @@ namespace glib
 {
 
   auto
-  wrap (AdwViewSwitcher* object, bool take_copy = false) -> adw::ViewSwitcher*;
+  wrap (AdwViewSwitcher* object, bool take_copy = false) -> adw::view_switcher*;
 }
 
 #endif

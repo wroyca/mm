@@ -20,7 +20,7 @@ notify_cb ()
 static void
 test_adw_style_manager_color_scheme (void)
 {
-  glib::RefPtr<adw::StyleManager> manager = adw::StyleManager::get_default ();
+  glib::RefPtr<adw::style_manager> manager = adw::style_manager::get_default ();
   adw::ColorScheme color_scheme;
 
   notified = 0;

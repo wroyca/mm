@@ -10,15 +10,15 @@
 namespace adw
 {
 
-  class LIBMM_ADW_SYMEXPORT SplitButton_Class : public glib::Class
+  class LIBMM_ADW_SYMEXPORT split_button_class : public glib::Class
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-    using CppObjectType = SplitButton;
+    using CppObjectType = split_button;
     using BaseObjectType = AdwSplitButton;
     using CppClassParent = gtk::Widget_Class;
 
-    friend class SplitButton;
+    friend class split_button;
 #endif
 
     auto

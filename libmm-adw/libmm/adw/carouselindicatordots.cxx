@@ -20,9 +20,9 @@ namespace glib
 {
 
   auto
-  wrap (AdwCarouselIndicatorDots* object, bool take_copy) -> adw::CarouselIndicatorDots*
+  wrap (AdwCarouselIndicatorDots* object, bool take_copy) -> adw::carousel_indicator_dots*
   {
-    return dynamic_cast<adw::CarouselIndicatorDots*> (
+    return dynamic_cast<adw::carousel_indicator_dots*> (
         glib::wrap_auto ((GObject*) (object), take_copy));
   }
 
@@ -32,7 +32,7 @@ namespace adw
 {
 
   auto
-  CarouselIndicatorDots_Class::init () -> const glib::Class&
+  carousel_indicator_dots_class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -43,73 +43,73 @@ namespace adw
   }
 
   auto
-  CarouselIndicatorDots_Class::wrap_new (GObject* o) -> glib::ObjectBase*
+  carousel_indicator_dots_class::wrap_new (GObject* o) -> glib::ObjectBase*
   {
-    return manage (new CarouselIndicatorDots ((AdwCarouselIndicatorDots*) (o)));
+    return manage (new carousel_indicator_dots ((AdwCarouselIndicatorDots*) (o)));
   }
 
-  CarouselIndicatorDots::CarouselIndicatorDots (
+  carousel_indicator_dots::carousel_indicator_dots (
       const glib::ConstructParams& construct_params)
     : gtk::Widget (construct_params)
   {
   }
 
-  CarouselIndicatorDots::CarouselIndicatorDots (
+  carousel_indicator_dots::carousel_indicator_dots (
       AdwCarouselIndicatorDots* castitem)
     : gtk::Widget ((GtkWidget*) (castitem))
   {
   }
 
-  CarouselIndicatorDots::CarouselIndicatorDots (
-      CarouselIndicatorDots&& src) noexcept
+  carousel_indicator_dots::carousel_indicator_dots (
+      carousel_indicator_dots&& src) noexcept
     : gtk::Widget (std::move (src)),
       gtk::Orientable (std::move (src))
   {
   }
 
   auto
-  CarouselIndicatorDots::operator= (CarouselIndicatorDots&& src) noexcept -> CarouselIndicatorDots&
+  carousel_indicator_dots::operator= (carousel_indicator_dots&& src) noexcept -> carousel_indicator_dots&
   {
     gtk::Widget::operator= (std::move (src));
     gtk::Orientable::operator= (std::move (src));
     return *this;
   }
 
-  CarouselIndicatorDots::~CarouselIndicatorDots () noexcept
+  carousel_indicator_dots::~carousel_indicator_dots () noexcept
   {
     destroy_ ();
   }
 
-  CarouselIndicatorDots::CppClassType
-      CarouselIndicatorDots::carouselindicatordots_class_;
+  carousel_indicator_dots::CppClassType
+      carousel_indicator_dots::carouselindicatordots_class_;
 
   auto
-  CarouselIndicatorDots::get_type () -> GType
+  carousel_indicator_dots::get_type () -> GType
   {
     return carouselindicatordots_class_.init ().get_type ();
   }
 
   auto
-  CarouselIndicatorDots::get_base_type () -> GType
+  carousel_indicator_dots::get_base_type () -> GType
   {
     return adw_carousel_indicator_dots_get_type ();
   }
 
-  CarouselIndicatorDots::CarouselIndicatorDots ()
+  carousel_indicator_dots::carousel_indicator_dots ()
     : glib::ObjectBase (nullptr),
       gtk::Widget (glib::ConstructParams (carouselindicatordots_class_.init ()))
   {
   }
 
   auto
-  CarouselIndicatorDots::get_carousel () const -> adw::Carousel*
+  carousel_indicator_dots::get_carousel () const -> adw::carousel*
   {
     return glib::wrap (adw_carousel_indicator_dots_get_carousel (
         const_cast<AdwCarouselIndicatorDots*> (gobj ())));
   }
 
   auto
-  CarouselIndicatorDots::set_carousel (adw::Carousel* carousel) -> void
+  carousel_indicator_dots::set_carousel (adw::carousel* carousel) -> void
   {
     adw_carousel_indicator_dots_set_carousel (
         gobj (),
@@ -117,13 +117,13 @@ namespace adw
   }
 
   auto
-  CarouselIndicatorDots::property_carousel () -> glib::PropertyProxy<adw::Carousel*>
+  carousel_indicator_dots::property_carousel () -> glib::PropertyProxy<adw::carousel*>
   {
     return {this, "carousel"};
   }
 
   auto
-  CarouselIndicatorDots::property_carousel () const -> glib::PropertyProxy_ReadOnly<adw::Carousel*>
+  carousel_indicator_dots::property_carousel () const -> glib::PropertyProxy_ReadOnly<adw::carousel*>
   {
     return {this, "carousel"};
   }

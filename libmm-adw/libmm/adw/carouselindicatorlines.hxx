@@ -19,46 +19,46 @@
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace adw
 {
-  class LIBMM_ADW_SYMEXPORT CarouselIndicatorLines_Class;
+  class LIBMM_ADW_SYMEXPORT carousel_indicator_lines_class;
 }
 #endif
 
 namespace adw
 {
 
-  class LIBMM_ADW_SYMEXPORT CarouselIndicatorLines : public gtk::Widget,
+  class LIBMM_ADW_SYMEXPORT carousel_indicator_lines : public gtk::Widget,
                                  public gtk::Orientable
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-    typedef CarouselIndicatorLines CppObjectType;
-    typedef CarouselIndicatorLines_Class CppClassType;
-    typedef AdwCarouselIndicatorLines BaseObjectType;
-    typedef AdwCarouselIndicatorLinesClass BaseClassType;
+    using CppObjectType = carousel_indicator_lines;
+    using CppClassType = carousel_indicator_lines_class;
+    using BaseObjectType = AdwCarouselIndicatorLines;
+    using BaseClassType = AdwCarouselIndicatorLinesClass;
 #endif
 
-    CarouselIndicatorLines (CarouselIndicatorLines&& src) noexcept;
+    carousel_indicator_lines (carousel_indicator_lines&& src) noexcept;
     auto
-    operator= (CarouselIndicatorLines&& src) noexcept
-        -> CarouselIndicatorLines&;
+    operator= (carousel_indicator_lines&& src) noexcept
+        -> carousel_indicator_lines&;
 
-    CarouselIndicatorLines (const CarouselIndicatorLines&) = delete;
+    carousel_indicator_lines (const carousel_indicator_lines&) = delete;
     auto
-    operator= (const CarouselIndicatorLines&)
-        -> CarouselIndicatorLines& = delete;
+    operator= (const carousel_indicator_lines&)
+        -> carousel_indicator_lines& = delete;
 
-    ~CarouselIndicatorLines () noexcept override;
+    ~carousel_indicator_lines () noexcept override;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   private:
-    friend class CarouselIndicatorLines_Class;
+    friend class carousel_indicator_lines_class;
     static CppClassType carouselindicatorlines_class_;
 
   protected:
-    explicit CarouselIndicatorLines (
+    explicit carousel_indicator_lines (
         const glib::ConstructParams& construct_params);
-    explicit CarouselIndicatorLines (AdwCarouselIndicatorLines* castitem);
+    explicit carousel_indicator_lines (AdwCarouselIndicatorLines* castitem);
 
 #endif
 
@@ -86,19 +86,19 @@ namespace adw
 
   private:
   public:
-    CarouselIndicatorLines ();
+    carousel_indicator_lines ();
 
     auto
-    get_carousel () const -> adw::Carousel*;
+    get_carousel () const -> adw::carousel*;
 
     auto
-    set_carousel (adw::Carousel* carousel) -> void;
+    set_carousel (adw::carousel* carousel) -> void;
 
     auto
-    property_carousel () -> glib::PropertyProxy<adw::Carousel*>;
+    property_carousel () -> glib::PropertyProxy<adw::carousel*>;
 
     auto
-    property_carousel () const -> glib::PropertyProxy_ReadOnly<adw::Carousel*>;
+    property_carousel () const -> glib::PropertyProxy_ReadOnly<adw::carousel*>;
 
   public:
   public:
@@ -111,7 +111,7 @@ namespace glib
 {
 
   auto
-  wrap (AdwCarouselIndicatorLines* object, bool take_copy = false) -> adw::CarouselIndicatorLines*;
+  wrap (AdwCarouselIndicatorLines* object, bool take_copy = false) -> adw::carousel_indicator_lines*;
 }
 
 #endif

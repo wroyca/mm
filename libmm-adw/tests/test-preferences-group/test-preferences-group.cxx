@@ -8,9 +8,9 @@
 #include <libmm/adw/init.hxx> // adw::init
 
 static void test_adw_preferences_group_add_remove(void) {
-  adw::PreferencesGroup group;
+  adw::preferences_group group;
 
-  adw::PreferencesRow *row = gtk::make_managed<adw::PreferencesRow>();
+  adw::preferences_row *row = gtk::make_managed<adw::preferences_row>();
   group.add(row);
 
   gtk::Switch *widget = gtk::make_managed<gtk::Switch>();
@@ -26,7 +26,7 @@ static void test_adw_preferences_group_add_remove(void) {
 }
 
 static void test_adw_preferences_group_title(void) {
-  adw::PreferencesGroup group;
+  adw::preferences_group group;
 
   g_assert_true(group.get_title() == "");
 
@@ -38,7 +38,7 @@ static void test_adw_preferences_group_title(void) {
 }
 
 static void test_adw_preferences_group_description(void) {
-  adw::PreferencesGroup group;
+  adw::preferences_group group;
 
   g_assert_true(group.get_description() == "");
 

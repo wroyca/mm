@@ -21,7 +21,7 @@
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace adw
 {
-  class LIBMM_ADW_SYMEXPORT Flap_Class;
+  class LIBMM_ADW_SYMEXPORT flap_class;
 }
 #endif
 
@@ -84,37 +84,37 @@ namespace glib
 namespace adw
 {
 
-  class LIBMM_ADW_SYMEXPORT Flap : public gtk::Widget,
+  class LIBMM_ADW_SYMEXPORT flap : public gtk::Widget,
                gtk::Orientable,
-               adw::Swipeable
+               adw::swipeable
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-    typedef Flap CppObjectType;
-    typedef Flap_Class CppClassType;
-    typedef AdwFlap BaseObjectType;
-    typedef AdwFlapClass BaseClassType;
+    using CppObjectType = flap;
+    using CppClassType = flap_class;
+    using BaseObjectType = AdwFlap;
+    using BaseClassType = AdwFlapClass;
 #endif
 
-    Flap (Flap&& src) noexcept;
+    flap (flap&& src) noexcept;
     auto
-    operator= (Flap&& src) noexcept -> Flap&;
+    operator= (flap&& src) noexcept -> flap&;
 
-    Flap (const Flap&) = delete;
+    flap (const flap&) = delete;
     auto
-    operator= (const Flap&) -> Flap& = delete;
+    operator= (const flap&) -> flap& = delete;
 
-    ~Flap () noexcept override;
+    ~flap () noexcept override;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   private:
-    friend class Flap_Class;
+    friend class flap_class;
     static CppClassType flap_class_;
 
   protected:
-    explicit Flap (const glib::ConstructParams& construct_params);
-    explicit Flap (AdwFlap* castitem);
+    explicit flap (const glib::ConstructParams& construct_params);
+    explicit flap (AdwFlap* castitem);
 
 #endif
 
@@ -142,7 +142,7 @@ namespace adw
 
   private:
   public:
-    Flap ();
+    flap ();
 
     auto
     get_content () const -> gtk::Widget*;
@@ -175,7 +175,7 @@ namespace adw
     get_reveal_flap () const -> bool;
 
     auto
-    get_reveal_params () const -> glib::RefPtr<SpringParams>;
+    get_reveal_params () const -> glib::RefPtr<spring_params>;
 
     auto
     get_reveal_progress () const -> double;
@@ -220,7 +220,7 @@ namespace adw
     set_reveal_flap (bool reveal_flap) -> void;
 
     auto
-    set_reveal_params (const glib::RefPtr<SpringParams>& params) -> void;
+    set_reveal_params (const glib::RefPtr<spring_params>& params) -> void;
 
     auto
     set_separator (gtk::Widget* separator) -> void;
@@ -297,11 +297,11 @@ namespace adw
 
     auto
     property_reveal_params ()
-        -> glib::PropertyProxy<glib::RefPtr<SpringParams>>;
+        -> glib::PropertyProxy<glib::RefPtr<spring_params>>;
 
     auto
     property_reveal_params () const
-        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<SpringParams>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<spring_params>>;
 
     auto
     property_reveal_progress () const -> glib::PropertyProxy_ReadOnly<double>;
@@ -342,7 +342,7 @@ namespace glib
 {
 
   auto
-  wrap (AdwFlap* object, bool take_copy = false) -> adw::Flap*;
+  wrap (AdwFlap* object, bool take_copy = false) -> adw::flap*;
 }
 
 #endif

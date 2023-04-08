@@ -18,42 +18,42 @@
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace adw
 {
-  class LIBMM_ADW_SYMEXPORT ComboRow_Class;
+  class LIBMM_ADW_SYMEXPORT combo_row_class;
 }
 #endif
 
 namespace adw
 {
 
-  class LIBMM_ADW_SYMEXPORT ComboRow : public adw::action_row
+  class LIBMM_ADW_SYMEXPORT combo_row : public adw::action_row
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-    typedef ComboRow CppObjectType;
-    typedef ComboRow_Class CppClassType;
-    typedef AdwComboRow BaseObjectType;
-    typedef AdwComboRowClass BaseClassType;
+    using CppObjectType = combo_row;
+    using CppClassType = combo_row_class;
+    using BaseObjectType = AdwComboRow;
+    using BaseClassType = AdwComboRowClass;
 #endif
 
-    ComboRow (ComboRow&& src) noexcept;
+    combo_row (combo_row&& src) noexcept;
     auto
-    operator= (ComboRow&& src) noexcept -> ComboRow&;
+    operator= (combo_row&& src) noexcept -> combo_row&;
 
-    ComboRow (const ComboRow&) = delete;
+    combo_row (const combo_row&) = delete;
     auto
-    operator= (const ComboRow&) -> ComboRow& = delete;
+    operator= (const combo_row&) -> combo_row& = delete;
 
-    ~ComboRow () noexcept override;
+    ~combo_row () noexcept override;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   private:
-    friend class ComboRow_Class;
+    friend class combo_row_class;
     static CppClassType comborow_class_;
 
   protected:
-    explicit ComboRow (const glib::ConstructParams& construct_params);
-    explicit ComboRow (AdwComboRow* castitem);
+    explicit combo_row (const glib::ConstructParams& construct_params);
+    explicit combo_row (AdwComboRow* castitem);
 
 #endif
 
@@ -81,7 +81,7 @@ namespace adw
 
   private:
   public:
-    ComboRow ();
+    combo_row ();
 
     auto
     get_expression () const -> glib::RefPtr<gtk::Expression<glib::ustring>>;
@@ -182,7 +182,7 @@ namespace glib
 {
 
   auto
-  wrap (AdwComboRow* object, bool take_copy = false) -> adw::ComboRow*;
+  wrap (AdwComboRow* object, bool take_copy = false) -> adw::combo_row*;
 }
 
 #endif

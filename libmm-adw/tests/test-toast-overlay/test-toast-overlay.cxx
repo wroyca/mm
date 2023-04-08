@@ -18,7 +18,7 @@ notify_cb ()
 static void
 test_adw_toast_overlay_child (void)
 {
-  adw::ToastOverlay toast_overlay;
+  adw::toast_overlay toast_overlay;
 
   notified = 0;
   toast_overlay.property_child ().signal_changed ().connect (
@@ -43,9 +43,9 @@ test_adw_toast_overlay_child (void)
 static void
 test_adw_toast_overlay_add_toast (void)
 {
-  adw::ToastOverlay toast_overlay;
-  std::unique_ptr<adw::Toast> toast =
-      std::make_unique<adw::Toast> ("Test Notification");
+  adw::toast_overlay toast_overlay;
+  std::unique_ptr<adw::toast> toast =
+      std::make_unique<adw::toast> ("Test Notification");
 
   toast->reference ();
   toast_overlay.add_toast (toast.get ());

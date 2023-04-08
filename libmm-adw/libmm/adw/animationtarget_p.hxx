@@ -10,7 +10,7 @@
 namespace adw
 {
 
-  class LIBMM_ADW_SYMEXPORT AnimationTarget_Class : public glib::Class
+  class LIBMM_ADW_SYMEXPORT animation_target_class : public glib::Class
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

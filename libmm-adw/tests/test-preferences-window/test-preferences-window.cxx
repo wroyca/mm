@@ -10,8 +10,8 @@
 static void
 test_adw_preferences_window_add_remove (void)
 {
-  adw::PreferencesWindow window;
-  adw::PreferencesPage page;
+  adw::preferences_window window;
+  adw::preferences_page page;
 
   window.add (&page);
   window.remove (&page);
@@ -20,8 +20,8 @@ test_adw_preferences_window_add_remove (void)
 static void
 test_adw_preferences_window_add_toast (void)
 {
-  adw::PreferencesWindow window;
-  adw::Toast* toast = new adw::Toast ("Test notification");
+  adw::preferences_window window;
+  adw::toast* toast = new adw::toast ("Test notification");
   window.add_toast (toast);
 }
 

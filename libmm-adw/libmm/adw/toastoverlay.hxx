@@ -19,42 +19,42 @@
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace adw
 {
-  class LIBMM_ADW_SYMEXPORT ToastOverlay_Class;
+  class LIBMM_ADW_SYMEXPORT toast_overlay_class;
 }
 #endif
 
 namespace adw
 {
 
-  class LIBMM_ADW_SYMEXPORT ToastOverlay : public gtk::Widget
+  class LIBMM_ADW_SYMEXPORT toast_overlay : public gtk::Widget
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-    typedef ToastOverlay CppObjectType;
-    typedef ToastOverlay_Class CppClassType;
-    typedef AdwToastOverlay BaseObjectType;
-    typedef AdwToastOverlayClass BaseClassType;
+    using CppObjectType = toast_overlay;
+    using CppClassType = toast_overlay_class;
+    using BaseObjectType = AdwToastOverlay;
+    using BaseClassType = AdwToastOverlayClass;
 #endif
 
-    ToastOverlay (ToastOverlay&& src) noexcept;
+    toast_overlay (toast_overlay&& src) noexcept;
     auto
-    operator= (ToastOverlay&& src) noexcept -> ToastOverlay&;
+    operator= (toast_overlay&& src) noexcept -> toast_overlay&;
 
-    ToastOverlay (const ToastOverlay&) = delete;
+    toast_overlay (const toast_overlay&) = delete;
     auto
-    operator= (const ToastOverlay&) -> ToastOverlay& = delete;
+    operator= (const toast_overlay&) -> toast_overlay& = delete;
 
-    ~ToastOverlay () noexcept override;
+    ~toast_overlay () noexcept override;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   private:
-    friend class ToastOverlay_Class;
+    friend class toast_overlay_class;
     static CppClassType toastoverlay_class_;
 
   protected:
-    explicit ToastOverlay (const glib::ConstructParams& construct_params);
-    explicit ToastOverlay (AdwToastOverlay* castitem);
+    explicit toast_overlay (const glib::ConstructParams& construct_params);
+    explicit toast_overlay (AdwToastOverlay* castitem);
 
 #endif
 
@@ -82,10 +82,10 @@ namespace adw
 
   private:
   public:
-    ToastOverlay ();
+    toast_overlay ();
 
     auto
-    add_toast (Toast* toast) -> void;
+    add_toast (toast* toast) -> void;
 
     auto
     get_child () const -> gtk::Widget*;
@@ -110,7 +110,7 @@ namespace glib
 {
 
   auto
-  wrap (AdwToastOverlay* object, bool take_copy = false) -> adw::ToastOverlay*;
+  wrap (AdwToastOverlay* object, bool take_copy = false) -> adw::toast_overlay*;
 }
 
 #endif

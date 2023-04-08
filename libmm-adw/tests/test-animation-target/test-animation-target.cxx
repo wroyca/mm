@@ -12,13 +12,13 @@ test_adw_property_animation_target_construct (void)
 {
   auto widget = glib::RefPtr<gtk::Button> (new gtk::Button ());
 
-  auto named_target = adw::PropertyAnimationTarget::create (widget, "opacity");
+  auto named_target = adw::property_animation_target::create (widget, "opacity");
 
   GParamSpec* target_pspec = named_target->get_pspec ();
   g_assert_true (target_pspec);
   g_assert_true (glib::ustring (target_pspec->name) == "opacity");
 
-  auto pspec_target = adw::PropertyAnimationTarget::create (widget,
+  auto pspec_target = adw::property_animation_target::create (widget,
                                                             target_pspec);
   g_assert_true (pspec_target->get_pspec () == target_pspec);
 
@@ -32,8 +32,8 @@ test_adw_property_animation_target_basic (void)
 {
   auto widget = glib::RefPtr<gtk::Button> (new gtk::Button ());
 
-  auto target = adw::PropertyAnimationTarget::create (widget, "opacity");
-  auto animation = adw::TimedAnimation::create (widget.get (), 1, 0, 0, target);
+  auto target = adw::property_animation_target::create (widget, "opacity");
+  auto animation = adw::timed_animation::create (widget.get (), 1, 0, 0, target);
 
   g_assert_true (widget->get_opacity () == 1);
 

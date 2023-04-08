@@ -10,15 +10,15 @@
 namespace adw
 {
 
-  class LIBMM_ADW_SYMEXPORT StyleManager_Class : public glib::Class
+  class LIBMM_ADW_SYMEXPORT style_manager_class : public glib::Class
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-    using CppObjectType = StyleManager;
+    using CppObjectType = style_manager;
     using BaseObjectType = AdwStyleManager;
     using CppClassParent = glib::Object_Class;
 
-    friend class StyleManager;
+    friend class style_manager;
 #endif
 
     auto

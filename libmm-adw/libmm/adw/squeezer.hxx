@@ -20,7 +20,7 @@
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace adw
 {
-  class LIBMM_ADW_SYMEXPORT Squeezer_Class;
+  class LIBMM_ADW_SYMEXPORT squeezer_class;
 }
 #endif
 
@@ -54,36 +54,36 @@ namespace glib
 namespace adw
 {
 
-  class LIBMM_ADW_SYMEXPORT Squeezer : public gtk::Widget,
+  class LIBMM_ADW_SYMEXPORT squeezer : public gtk::Widget,
                    public gtk::Orientable
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-    typedef Squeezer CppObjectType;
-    typedef Squeezer_Class CppClassType;
-    typedef AdwSqueezer BaseObjectType;
-    typedef AdwSqueezerClass BaseClassType;
+    using CppObjectType = squeezer;
+    using CppClassType = squeezer_class;
+    using BaseObjectType = AdwSqueezer;
+    using BaseClassType = AdwSqueezerClass;
 #endif
 
-    Squeezer (Squeezer&& src) noexcept;
+    squeezer (squeezer&& src) noexcept;
     auto
-    operator= (Squeezer&& src) noexcept -> Squeezer&;
+    operator= (squeezer&& src) noexcept -> squeezer&;
 
-    Squeezer (const Squeezer&) = delete;
+    squeezer (const squeezer&) = delete;
     auto
-    operator= (const Squeezer&) -> Squeezer& = delete;
+    operator= (const squeezer&) -> squeezer& = delete;
 
-    ~Squeezer () noexcept override;
+    ~squeezer () noexcept override;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   private:
-    friend class Squeezer_Class;
+    friend class squeezer_class;
     static CppClassType squeezer_class_;
 
   protected:
-    explicit Squeezer (const glib::ConstructParams& construct_params);
-    explicit Squeezer (AdwSqueezer* castitem);
+    explicit squeezer (const glib::ConstructParams& construct_params);
+    explicit squeezer (AdwSqueezer* castitem);
 
 #endif
 
@@ -111,10 +111,10 @@ namespace adw
 
   private:
   public:
-    Squeezer ();
+    squeezer ();
 
     auto
-    add (gtk::Widget* p1) -> glib::RefPtr<SqueezerPage>;
+    add (gtk::Widget* p1) -> glib::RefPtr<squeezer_page>;
 
     auto
     get_allow_none () const -> bool;
@@ -126,7 +126,7 @@ namespace adw
     get_interpolate_size () const -> bool;
 
     auto
-    get (gtk::Widget* p1) const -> glib::RefPtr<SqueezerPage>;
+    get (gtk::Widget* p1) const -> glib::RefPtr<squeezer_page>;
 
     auto
     get_pages () const -> glib::RefPtr<gtk::SelectionModel>;
@@ -253,7 +253,7 @@ namespace glib
 {
 
   auto
-  wrap (AdwSqueezer* object, bool take_copy = false) -> adw::Squeezer*;
+  wrap (AdwSqueezer* object, bool take_copy = false) -> adw::squeezer*;
 }
 
 #endif

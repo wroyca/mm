@@ -10,15 +10,15 @@
 namespace adw
 {
 
-  class LIBMM_ADW_SYMEXPORT PropertyAnimationTarget_Class : public glib::Class
+  class LIBMM_ADW_SYMEXPORT property_animation_target_class : public glib::Class
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-    using CppObjectType = PropertyAnimationTarget;
+    using CppObjectType = property_animation_target;
     using BaseObjectType = AdwPropertyAnimationTarget;
-    using CppClassParent = AnimationTarget_Class;
+    using CppClassParent = animation_target_class;
 
-    friend class PropertyAnimationTarget;
+    friend class property_animation_target;
 #endif
 
     auto

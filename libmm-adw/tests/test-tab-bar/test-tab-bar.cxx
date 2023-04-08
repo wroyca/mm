@@ -20,23 +20,23 @@ notify_cb ()
 static void
 test_adw_tab_bar_view (void)
 {
-  adw::TabBar bar;
+  adw::tab_bar bar;
 
   notified = 0;
   bar.property_view ().signal_changed ().connect (sigc::ptr_fun (notify_cb));
 
-  adw::TabView* view = bar.get_property<adw::TabView*> ("view");
+  adw::tab_view* view = bar.get_property<adw::tab_view*> ("view");
   g_assert_true (view == nullptr);
 
   bar.set_view (nullptr);
   g_assert_true (notified == 0);
 
-  view = gtk::make_managed<adw::TabView> ();
+  view = gtk::make_managed<adw::tab_view> ();
   bar.set_view (view);
   g_assert_true (bar.get_view () == view);
   g_assert_true (notified == 1);
 
-  bar.set_property<adw::TabView*> ("view", nullptr);
+  bar.set_property<adw::tab_view*> ("view", nullptr);
   g_assert_true (bar.get_view () == nullptr);
   g_assert_true (notified == 2);
 }
@@ -44,7 +44,7 @@ test_adw_tab_bar_view (void)
 static void
 test_adw_tab_bar_start_action_widget (void)
 {
-  adw::TabBar bar;
+  adw::tab_bar bar;
 
   notified = 0;
   bar.property_start_action_widget ().signal_changed ().connect (
@@ -69,7 +69,7 @@ test_adw_tab_bar_start_action_widget (void)
 static void
 test_adw_tab_bar_end_action_widget (void)
 {
-  adw::TabBar bar;
+  adw::tab_bar bar;
 
   notified = 0;
   bar.property_end_action_widget ().signal_changed ().connect (
@@ -94,7 +94,7 @@ test_adw_tab_bar_end_action_widget (void)
 static void
 test_adw_tab_bar_autohide (void)
 {
-  adw::TabBar bar;
+  adw::tab_bar bar;
 
   notified = 0;
   bar.property_autohide ().signal_changed ().connect (
@@ -118,7 +118,7 @@ test_adw_tab_bar_autohide (void)
 static void
 test_adw_tab_bar_tabs_revealed (void)
 {
-  adw::TabBar bar;
+  adw::tab_bar bar;
 
   notified = 0;
   bar.property_tabs_revealed ().signal_changed ().connect (
@@ -133,7 +133,7 @@ test_adw_tab_bar_tabs_revealed (void)
   g_assert_false (bar.get_tabs_revealed ());
   g_assert_true (notified == 0);
 
-  adw::TabView* view = gtk::make_managed<adw::TabView> ();
+  adw::tab_view* view = gtk::make_managed<adw::tab_view> ();
   bar.set_view (view);
   g_assert_true (bar.get_tabs_revealed ());
   g_assert_true (notified == 1);
@@ -142,7 +142,7 @@ test_adw_tab_bar_tabs_revealed (void)
   g_assert_false (bar.get_tabs_revealed ());
   g_assert_true (notified == 2);
 
-  glib::RefPtr<adw::TabPage> page =
+  glib::RefPtr<adw::tab_page> page =
       view->append_pinned (gtk::make_managed<gtk::Button> ());
   g_assert_true (bar.get_tabs_revealed ());
   g_assert_true (notified == 3);
@@ -167,7 +167,7 @@ test_adw_tab_bar_tabs_revealed (void)
 static void
 test_adw_tab_bar_expand_tabs (void)
 {
-  adw::TabBar bar;
+  adw::tab_bar bar;
 
   notified = 0;
   bar.property_expand_tabs ().signal_changed ().connect (
@@ -191,7 +191,7 @@ test_adw_tab_bar_expand_tabs (void)
 static void
 test_adw_tab_bar_inverted (void)
 {
-  adw::TabBar bar;
+  adw::tab_bar bar;
 
   notified = 0;
   bar.property_inverted ().signal_changed ().connect (

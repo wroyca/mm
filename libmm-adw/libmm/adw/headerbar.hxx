@@ -18,7 +18,7 @@
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace adw
 {
-  class LIBMM_ADW_SYMEXPORT HeaderBar_Class;
+  class LIBMM_ADW_SYMEXPORT header_bar_class;
 }
 #endif
 
@@ -52,35 +52,35 @@ namespace glib
 namespace adw
 {
 
-  class LIBMM_ADW_SYMEXPORT HeaderBar : public gtk::Widget
+  class LIBMM_ADW_SYMEXPORT header_bar : public gtk::Widget
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-    typedef HeaderBar CppObjectType;
-    typedef HeaderBar_Class CppClassType;
-    typedef AdwHeaderBar BaseObjectType;
-    typedef AdwHeaderBarClass BaseClassType;
+    using CppObjectType = header_bar;
+    using CppClassType = header_bar_class;
+    using BaseObjectType = AdwHeaderBar;
+    using BaseClassType = AdwHeaderBarClass;
 #endif
 
-    HeaderBar (HeaderBar&& src) noexcept;
+    header_bar (header_bar&& src) noexcept;
     auto
-    operator= (HeaderBar&& src) noexcept -> HeaderBar&;
+    operator= (header_bar&& src) noexcept -> header_bar&;
 
-    HeaderBar (const HeaderBar&) = delete;
+    header_bar (const header_bar&) = delete;
     auto
-    operator= (const HeaderBar&) -> HeaderBar& = delete;
+    operator= (const header_bar&) -> header_bar& = delete;
 
-    ~HeaderBar () noexcept override;
+    ~header_bar () noexcept override;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   private:
-    friend class HeaderBar_Class;
+    friend class header_bar_class;
     static CppClassType headerbar_class_;
 
   protected:
-    explicit HeaderBar (const glib::ConstructParams& construct_params);
-    explicit HeaderBar (AdwHeaderBar* castitem);
+    explicit header_bar (const glib::ConstructParams& construct_params);
+    explicit header_bar (AdwHeaderBar* castitem);
 
 #endif
 
@@ -108,7 +108,7 @@ namespace adw
 
   private:
   public:
-    HeaderBar ();
+    header_bar ();
 
     auto
     get_centering_policy () const -> CenteringPolicy;
@@ -195,7 +195,7 @@ namespace glib
 {
 
   auto
-  wrap (AdwHeaderBar* object, bool take_copy = false) -> adw::HeaderBar*;
+  wrap (AdwHeaderBar* object, bool take_copy = false) -> adw::header_bar*;
 }
 
 #endif

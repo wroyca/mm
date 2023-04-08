@@ -19,7 +19,7 @@
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace adw
 {
-  class LIBMM_ADW_SYMEXPORT Toast_Class;
+  class LIBMM_ADW_SYMEXPORT toast_class;
 }
 #endif
 
@@ -52,36 +52,36 @@ namespace glib
 namespace adw
 {
 
-  class LIBMM_ADW_SYMEXPORT Toast : public glib::Object
+  class LIBMM_ADW_SYMEXPORT toast : public glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   public:
-    using CppObjectType = Toast;
-    using CppClassType = Toast_Class;
+    using CppObjectType = toast;
+    using CppClassType = toast_class;
     using BaseObjectType = AdwToast;
     using BaseClassType = AdwToastClass;
 
-    Toast (const Toast&) = delete;
+    toast (const toast&) = delete;
     auto
-    operator= (const Toast&) -> Toast& = delete;
+    operator= (const toast&) -> toast& = delete;
 
   private:
-    friend class Toast_Class;
+    friend class toast_class;
     static CppClassType toast_class_;
 
   protected:
-    explicit Toast (const glib::ConstructParams& construct_params);
-    explicit Toast (AdwToast* castitem);
+    explicit toast (const glib::ConstructParams& construct_params);
+    explicit toast (AdwToast* castitem);
 
 #endif
 
   public:
-    Toast (Toast&& src) noexcept;
+    toast (toast&& src) noexcept;
     auto
-    operator= (Toast&& src) noexcept -> Toast&;
+    operator= (toast&& src) noexcept -> toast&;
 
-    ~Toast () noexcept override;
+    ~toast () noexcept override;
 
     static auto
     get_type () -> GType G_GNUC_CONST;
@@ -109,10 +109,10 @@ namespace adw
 
   private:
   protected:
-    Toast ();
+    toast ();
 
   public:
-    explicit Toast (const glib::ustring& title);
+    explicit toast (const glib::ustring& title);
 
     auto
     dismiss () -> void;
@@ -226,7 +226,7 @@ namespace glib
 {
 
   auto
-  wrap (AdwToast* object, bool take_copy = false) -> glib::RefPtr<adw::Toast>;
+  wrap (AdwToast* object, bool take_copy = false) -> glib::RefPtr<adw::toast>;
 }
 
 #endif

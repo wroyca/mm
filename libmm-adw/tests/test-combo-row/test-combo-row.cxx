@@ -18,20 +18,20 @@ notify_cb ()
 static void
 test_adw_combo_row_set_for_enum (void)
 {
-  adw::ComboRow row;
+  adw::combo_row row;
   glib::RefPtr<gtk::Expression<glib::ustring>> expr;
   glib::RefPtr<gio::ListModel> model;
-  glib::RefPtr<adw::EnumListItem> item;
+  glib::RefPtr<adw::enum_list_item> item;
 
   g_assert_true (row.get_model () == nullptr);
 
   expr = gtk::PropertyExpression<glib::ustring>::create (
-      adw::EnumListItem::get_type (),
+      adw::enum_list_item::get_type (),
       "nick");
   row.set_expression (expr);
 
   // Enums don't have a way to retrieve its GType in gtkmm.
-  model = adw::EnumListModel::create (GTK_TYPE_ORIENTATION);
+  model = adw::enum_list_model::create (GTK_TYPE_ORIENTATION);
   row.set_model (model);
 
   model = row.get_model ();
@@ -39,11 +39,11 @@ test_adw_combo_row_set_for_enum (void)
 
   g_assert_true (model->get_n_items () == 2);
 
-  item = std::dynamic_pointer_cast<adw::EnumListItem> (model->get_object (0));
+  item = std::dynamic_pointer_cast<adw::enum_list_item> (model->get_object (0));
   g_assert_true (item != nullptr);
   g_assert_true (item->get_nick () == "horizontal");
 
-  item = std::dynamic_pointer_cast<adw::EnumListItem> (model->get_object (1));
+  item = std::dynamic_pointer_cast<adw::enum_list_item> (model->get_object (1));
   g_assert_true (item != nullptr);
   g_assert_true (item->get_nick () == "vertical");
 }
@@ -51,7 +51,7 @@ test_adw_combo_row_set_for_enum (void)
 static void
 test_adw_combo_row_selected (void)
 {
-  adw::ComboRow row;
+  adw::combo_row row;
   glib::RefPtr<gio::ListModel> model;
   int selected = 0;
 
@@ -66,7 +66,7 @@ test_adw_combo_row_selected (void)
   g_assert_true (notified == 0);
 
   // Enums don't have a way to retrieve its GType in gtkmm.
-  model = adw::EnumListModel::create (GTK_TYPE_SELECTION_MODE);
+  model = adw::enum_list_model::create (GTK_TYPE_SELECTION_MODE);
   row.set_model (model);
 
   g_assert_true (row.get_selected () == 0);
@@ -84,7 +84,7 @@ test_adw_combo_row_selected (void)
 static void
 test_adw_combo_row_use_subtitle (void)
 {
-  adw::ComboRow row;
+  adw::combo_row row;
 
   notified = 0;
   row.property_use_subtitle ().signal_changed ().connect (

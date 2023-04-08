@@ -77,10 +77,10 @@ namespace adw
     };
   } // namespace
 
-  about_window::about_window (): ObjectBase (nullptr), Window (glib::ConstructParams (about_window_class_.init ())) { }
-  about_window::about_window (about_window &&src) noexcept: Window (std::move (src)) { }
-  about_window::about_window (const glib::ConstructParams &construct_params): Window (construct_params) { }
-  about_window::about_window (AdwAboutWindow *cast_item): Window (std::bit_cast<AdwWindow *> (cast_item)) {}
+  about_window::about_window (): ObjectBase (nullptr), window (glib::ConstructParams (about_window_class_.init ())) { }
+  about_window::about_window (about_window &&src) noexcept: window (std::move (src)) { }
+  about_window::about_window (const glib::ConstructParams &construct_params): window (construct_params) { }
+  about_window::about_window (AdwAboutWindow *cast_item): window (std::bit_cast<AdwWindow *> (cast_item)) {}
   about_window::~about_window () noexcept
   {
     destroy_ ();
@@ -89,7 +89,7 @@ namespace adw
   auto
   about_window::operator= (about_window &&src) noexcept -> about_window &
   {
-    Window::operator= (std::move (src));
+    window::operator= (std::move (src));
     return *this;
   }
 

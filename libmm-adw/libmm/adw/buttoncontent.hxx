@@ -18,42 +18,42 @@
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace adw
 {
-  class LIBMM_ADW_SYMEXPORT ButtonContent_Class;
+  class LIBMM_ADW_SYMEXPORT button_content_class;
 }
 #endif
 
 namespace adw
 {
 
-  class LIBMM_ADW_SYMEXPORT ButtonContent : public gtk::Widget
+  class LIBMM_ADW_SYMEXPORT button_content : public gtk::Widget
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-    typedef ButtonContent CppObjectType;
-    typedef ButtonContent_Class CppClassType;
-    typedef AdwButtonContent BaseObjectType;
-    typedef AdwButtonContentClass BaseClassType;
+    using CppObjectType = button_content;
+    using CppClassType = button_content_class;
+    using BaseObjectType = AdwButtonContent;
+    using BaseClassType = AdwButtonContentClass;
 #endif
 
-    ButtonContent (ButtonContent&& src) noexcept;
+    button_content (button_content&& src) noexcept;
     auto
-    operator= (ButtonContent&& src) noexcept -> ButtonContent&;
+    operator= (button_content&& src) noexcept -> button_content&;
 
-    ButtonContent (const ButtonContent&) = delete;
+    button_content (const button_content&) = delete;
     auto
-    operator= (const ButtonContent&) -> ButtonContent& = delete;
+    operator= (const button_content&) -> button_content& = delete;
 
-    ~ButtonContent () noexcept override;
+    ~button_content () noexcept override;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   private:
-    friend class ButtonContent_Class;
+    friend class button_content_class;
     static CppClassType buttoncontent_class_;
 
   protected:
-    explicit ButtonContent (const glib::ConstructParams& construct_params);
-    explicit ButtonContent (AdwButtonContent* castitem);
+    explicit button_content (const glib::ConstructParams& construct_params);
+    explicit button_content (AdwButtonContent* castitem);
 
 #endif
 
@@ -81,7 +81,7 @@ namespace adw
 
   private:
   public:
-    ButtonContent ();
+    button_content ();
 
     auto
     get_icon_name () const -> glib::ustring;
@@ -130,7 +130,7 @@ namespace glib
 {
 
   auto
-  wrap (AdwButtonContent* object, bool take_copy = false) -> adw::ButtonContent*;
+  wrap (AdwButtonContent* object, bool take_copy = false) -> adw::button_content*;
 }
 
 #endif

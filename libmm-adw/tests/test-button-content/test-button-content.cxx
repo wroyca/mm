@@ -20,7 +20,7 @@ notify_cb ()
 static void
 test_adw_button_content_icon_name (void)
 {
-  adw::ButtonContent content;
+  adw::button_content content;
 
   notified = 0;
   content.property_icon_name ().signal_changed ().connect (
@@ -46,7 +46,7 @@ test_adw_button_content_icon_name (void)
 static void
 test_adw_button_content_label (void)
 {
-  adw::ButtonContent content;
+  adw::button_content content;
 
   notified = 0;
   content.property_label ().signal_changed ().connect (
@@ -72,7 +72,7 @@ test_adw_button_content_label (void)
 static void
 test_adw_button_content_use_underline (void)
 {
-  adw::ButtonContent content;
+  adw::button_content content;
   bool use_underline;
 
   notified = 0;
@@ -99,7 +99,7 @@ test_adw_button_content_style_class_button (void)
 {
   gtk::Window window;
   gtk::Button button;
-  adw::ButtonContent content;
+  adw::button_content content;
 
   window.set_child (button);
   window.present ();
@@ -115,8 +115,8 @@ static void
 test_adw_button_content_style_class_split_button (void)
 {
   gtk::Window window;
-  adw::SplitButton button;
-  adw::ButtonContent content;
+  adw::split_button button;
+  adw::button_content content;
 
   window.set_child (button);
   window.present ();

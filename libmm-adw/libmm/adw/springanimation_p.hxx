@@ -10,17 +10,17 @@
 namespace adw
 {
 
-  class LIBMM_ADW_SYMEXPORT SpringAnimation_Class : public glib::Class
+  class LIBMM_ADW_SYMEXPORT spring_animation_class : public glib::Class
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-    using CppObjectType = SpringAnimation;
+    using CppObjectType = spring_animation;
     using BaseObjectType = AdwSpringAnimation;
     using BaseClassType = AdwSpringAnimationClass;
-    using CppClassParent = Animation_Class;
+    using CppClassParent = animation_class;
     using BaseClassParent = AdwAnimationClass;
 
-    friend class SpringAnimation;
+    friend class spring_animation;
 #endif
 
     auto

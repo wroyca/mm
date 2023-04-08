@@ -18,8 +18,8 @@ assert_page_position (glib::RefPtr<gtk::SelectionModel> pages,
       std::dynamic_pointer_cast<gio::ListModel> (pages);
   g_assert_true (list_model != nullptr);
 
-  glib::RefPtr<adw::LeafletPage> page =
-      std::dynamic_pointer_cast<adw::LeafletPage> (
+  glib::RefPtr<adw::leaflet_page> page =
+      std::dynamic_pointer_cast<adw::leaflet_page> (
           list_model->get_object (position));
   g_assert_true (page != nullptr);
 
@@ -29,14 +29,14 @@ assert_page_position (glib::RefPtr<gtk::SelectionModel> pages,
 static void
 test_adw_leaflet_adjacent_child (void)
 {
-  adw::Leaflet leaflet;
+  adw::leaflet leaflet;
   std::array<gtk::Widget*, 3> children;
 
   for (int i = 0; i < 3; i++)
   {
     children[i] = gtk::make_managed<gtk::Button> ();
 
-    glib::RefPtr<adw::LeafletPage> page = leaflet.append (children[i]);
+    glib::RefPtr<adw::leaflet_page> page = leaflet.append (children[i]);
 
     if (i == 1)
       page->set_navigatable (false);
@@ -71,7 +71,7 @@ test_adw_leaflet_adjacent_child (void)
 static void
 test_adw_leaflet_navigate (void)
 {
-  adw::Leaflet leaflet;
+  adw::leaflet leaflet;
   std::array<gtk::Widget*, 3> children;
 
   bool result = leaflet.navigate (adw::NavigationDirection::BACK);
@@ -84,7 +84,7 @@ test_adw_leaflet_navigate (void)
   {
     children[i] = gtk::make_managed<gtk::Label> ("");
 
-    glib::RefPtr<adw::LeafletPage> page = leaflet.append (children[i]);
+    glib::RefPtr<adw::leaflet_page> page = leaflet.append (children[i]);
 
     if (i == 1)
       page->set_navigatable (false);
@@ -110,7 +110,7 @@ test_adw_leaflet_navigate (void)
 static void
 test_adw_leaflet_prepend (void)
 {
-  adw::Leaflet leaflet;
+  adw::leaflet leaflet;
   std::array<gtk::Widget*, 2> labels;
 
   for (int i = 0; i < 2; i++)
@@ -131,7 +131,7 @@ test_adw_leaflet_prepend (void)
 static void
 test_adw_leaflet_insert_child_after (void)
 {
-  adw::Leaflet leaflet;
+  adw::leaflet leaflet;
   std::array<gtk::Widget*, 3> labels;
 
   for (int i = 0; i < 3; i++)
@@ -158,7 +158,7 @@ test_adw_leaflet_insert_child_after (void)
 static void
 test_adw_leaflet_reorder_child_after (void)
 {
-  adw::Leaflet leaflet;
+  adw::leaflet leaflet;
   std::array<gtk::Widget*, 3> labels;
 
   for (int i = 0; i < 3; i++)

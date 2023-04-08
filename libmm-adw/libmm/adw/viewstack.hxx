@@ -19,42 +19,42 @@
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace adw
 {
-  class LIBMM_ADW_SYMEXPORT ViewStack_Class;
+  class LIBMM_ADW_SYMEXPORT view_stack_class;
 }
 #endif
 
 namespace adw
 {
 
-  class LIBMM_ADW_SYMEXPORT ViewStack : public gtk::Widget
+  class LIBMM_ADW_SYMEXPORT view_stack : public gtk::Widget
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-    typedef ViewStack CppObjectType;
-    typedef ViewStack_Class CppClassType;
-    typedef AdwViewStack BaseObjectType;
-    typedef AdwViewStackClass BaseClassType;
+    using CppObjectType = view_stack;
+    using CppClassType = view_stack_class;
+    using BaseObjectType = AdwViewStack;
+    using BaseClassType = AdwViewStackClass;
 #endif
 
-    ViewStack (ViewStack&& src) noexcept;
+    view_stack (view_stack&& src) noexcept;
     auto
-    operator= (ViewStack&& src) noexcept -> ViewStack&;
+    operator= (view_stack&& src) noexcept -> view_stack&;
 
-    ViewStack (const ViewStack&) = delete;
+    view_stack (const view_stack&) = delete;
     auto
-    operator= (const ViewStack&) -> ViewStack& = delete;
+    operator= (const view_stack&) -> view_stack& = delete;
 
-    ~ViewStack () noexcept override;
+    ~view_stack () noexcept override;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   private:
-    friend class ViewStack_Class;
+    friend class view_stack_class;
     static CppClassType viewstack_class_;
 
   protected:
-    explicit ViewStack (const glib::ConstructParams& construct_params);
-    explicit ViewStack (AdwViewStack* castitem);
+    explicit view_stack (const glib::ConstructParams& construct_params);
+    explicit view_stack (AdwViewStack* castitem);
 
 #endif
 
@@ -82,26 +82,26 @@ namespace adw
 
   private:
   public:
-    ViewStack ();
+    view_stack ();
 
     auto
-    add (gtk::Widget* child) -> glib::RefPtr<ViewStackPage>;
+    add (gtk::Widget* child) -> glib::RefPtr<view_stack_page>;
 
     auto
     add_named (gtk::Widget* child, const glib::ustring& name)
-        -> glib::RefPtr<ViewStackPage>;
+        -> glib::RefPtr<view_stack_page>;
 
     auto
     add_titled (gtk::Widget* child,
                 const glib::ustring& name,
-                const glib::ustring& title) -> glib::RefPtr<ViewStackPage>;
+                const glib::ustring& title) -> glib::RefPtr<view_stack_page>;
 
     auto
     add_titled_with_icon (gtk::Widget* child,
                           const glib::ustring& name,
                           const glib::ustring& title,
                           const glib::ustring& icon_name)
-        -> glib::RefPtr<ViewStackPage>;
+        -> glib::RefPtr<view_stack_page>;
 
     auto
     get_child_by_name (const glib::ustring& name) const -> gtk::Widget*;
@@ -110,7 +110,7 @@ namespace adw
     get_hhomogeneous () const -> bool;
 
     auto
-    get_page (gtk::Widget* child) const -> glib::RefPtr<ViewStackPage>;
+    get_page (gtk::Widget* child) const -> glib::RefPtr<view_stack_page>;
 
     auto
     get_pages () const -> glib::RefPtr<gtk::SelectionModel>;
@@ -180,7 +180,7 @@ namespace glib
 {
 
   auto
-  wrap (AdwViewStack* object, bool take_copy = false) -> adw::ViewStack*;
+  wrap (AdwViewStack* object, bool take_copy = false) -> adw::view_stack*;
 }
 
 #endif

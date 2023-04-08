@@ -19,44 +19,44 @@
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace adw
 {
-  class LIBMM_ADW_SYMEXPORT CarouselIndicatorDots_Class;
+  class LIBMM_ADW_SYMEXPORT carousel_indicator_dots_class;
 }
 #endif
 
 namespace adw
 {
 
-  class LIBMM_ADW_SYMEXPORT CarouselIndicatorDots : public gtk::Widget,
+  class LIBMM_ADW_SYMEXPORT carousel_indicator_dots : public gtk::Widget,
                                 public gtk::Orientable
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-    typedef CarouselIndicatorDots CppObjectType;
-    typedef CarouselIndicatorDots_Class CppClassType;
-    typedef AdwCarouselIndicatorDots BaseObjectType;
-    typedef AdwCarouselIndicatorDotsClass BaseClassType;
+    using CppObjectType = carousel_indicator_dots;
+    using CppClassType = carousel_indicator_dots_class;
+    using BaseObjectType = AdwCarouselIndicatorDots;
+    using BaseClassType = AdwCarouselIndicatorDotsClass;
 #endif
 
-    CarouselIndicatorDots (CarouselIndicatorDots&& src) noexcept;
+    carousel_indicator_dots (carousel_indicator_dots&& src) noexcept;
     auto
-    operator= (CarouselIndicatorDots&& src) noexcept -> CarouselIndicatorDots&;
+    operator= (carousel_indicator_dots&& src) noexcept -> carousel_indicator_dots&;
 
-    CarouselIndicatorDots (const CarouselIndicatorDots&) = delete;
+    carousel_indicator_dots (const carousel_indicator_dots&) = delete;
     auto
-    operator= (const CarouselIndicatorDots&) -> CarouselIndicatorDots& = delete;
+    operator= (const carousel_indicator_dots&) -> carousel_indicator_dots& = delete;
 
-    ~CarouselIndicatorDots () noexcept override;
+    ~carousel_indicator_dots () noexcept override;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   private:
-    friend class CarouselIndicatorDots_Class;
+    friend class carousel_indicator_dots_class;
     static CppClassType carouselindicatordots_class_;
 
   protected:
-    explicit CarouselIndicatorDots (
+    explicit carousel_indicator_dots (
         const glib::ConstructParams& construct_params);
-    explicit CarouselIndicatorDots (AdwCarouselIndicatorDots* castitem);
+    explicit carousel_indicator_dots (AdwCarouselIndicatorDots* castitem);
 
 #endif
 
@@ -84,19 +84,19 @@ namespace adw
 
   private:
   public:
-    CarouselIndicatorDots ();
+    carousel_indicator_dots ();
 
     auto
-    get_carousel () const -> adw::Carousel*;
+    get_carousel () const -> adw::carousel*;
 
     auto
-    set_carousel (adw::Carousel* carousel) -> void;
+    set_carousel (adw::carousel* carousel) -> void;
 
     auto
-    property_carousel () -> glib::PropertyProxy<adw::Carousel*>;
+    property_carousel () -> glib::PropertyProxy<adw::carousel*>;
 
     auto
-    property_carousel () const -> glib::PropertyProxy_ReadOnly<adw::Carousel*>;
+    property_carousel () const -> glib::PropertyProxy_ReadOnly<adw::carousel*>;
 
   public:
   public:
@@ -109,7 +109,7 @@ namespace glib
 {
 
   auto
-  wrap (AdwCarouselIndicatorDots* object, bool take_copy = false) -> adw::CarouselIndicatorDots*;
+  wrap (AdwCarouselIndicatorDots* object, bool take_copy = false) -> adw::carousel_indicator_dots*;
 }
 
 #endif

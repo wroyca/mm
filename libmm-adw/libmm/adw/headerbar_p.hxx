@@ -10,15 +10,15 @@
 namespace adw
 {
 
-  class LIBMM_ADW_SYMEXPORT HeaderBar_Class : public glib::Class
+  class LIBMM_ADW_SYMEXPORT header_bar_class : public glib::Class
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-    using CppObjectType = HeaderBar;
+    using CppObjectType = header_bar;
     using BaseObjectType = AdwHeaderBar;
     using CppClassParent = gtk::Widget_Class;
 
-    friend class HeaderBar;
+    friend class header_bar;
 #endif
 
     auto

@@ -20,7 +20,7 @@ using AdwAnimationClass = struct _AdwAnimationClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace adw
 {
-  class LIBMM_ADW_SYMEXPORT Animation_Class;
+  class LIBMM_ADW_SYMEXPORT animation_class;
 }
 #endif
 
@@ -56,36 +56,36 @@ namespace glib
 namespace adw
 {
 
-  class LIBMM_ADW_SYMEXPORT Animation : public glib::Object
+  class LIBMM_ADW_SYMEXPORT animation : public glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   public:
-    using CppObjectType = Animation;
-    using CppClassType = Animation_Class;
+    using CppObjectType = animation;
+    using CppClassType = animation_class;
     using BaseObjectType = AdwAnimation;
     using BaseClassType = AdwAnimationClass;
 
-    Animation (const Animation&) = delete;
+    animation (const animation&) = delete;
     auto
-    operator= (const Animation&) -> Animation& = delete;
+    operator= (const animation&) -> animation& = delete;
 
   private:
-    friend class Animation_Class;
+    friend class animation_class;
     static CppClassType animation_class_;
 
   protected:
-    explicit Animation (const glib::ConstructParams& construct_params);
-    explicit Animation (AdwAnimation* castitem);
+    explicit animation (const glib::ConstructParams& construct_params);
+    explicit animation (AdwAnimation* castitem);
 
 #endif
 
   public:
-    Animation (Animation&& src) noexcept;
+    animation (animation&& src) noexcept;
     auto
-    operator= (Animation&& src) noexcept -> Animation&;
+    operator= (animation&& src) noexcept -> animation&;
 
-    ~Animation () noexcept override;
+    ~animation () noexcept override;
 
     static auto
     get_type () -> GType G_GNUC_CONST;
@@ -113,11 +113,11 @@ namespace adw
 
   private:
   protected:
-    Animation ();
+    animation ();
 
   public:
     static auto
-    create () -> glib::RefPtr<Animation>;
+    create () -> glib::RefPtr<animation>;
 
     auto
     get_state () const -> AnimationState;
@@ -179,7 +179,7 @@ namespace glib
 {
 
   auto
-  wrap (AdwAnimation* object, bool take_copy = false) -> glib::RefPtr<adw::Animation>;
+  wrap (AdwAnimation* object, bool take_copy = false) -> glib::RefPtr<adw::animation>;
 }
 
 #endif

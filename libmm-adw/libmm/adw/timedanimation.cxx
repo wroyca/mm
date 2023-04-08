@@ -22,10 +22,10 @@ namespace glib
 {
 
   auto
-  wrap (AdwTimedAnimation* object, bool take_copy) -> glib::RefPtr<adw::TimedAnimation>
+  wrap (AdwTimedAnimation* object, bool take_copy) -> glib::RefPtr<adw::timed_animation>
   {
-    return glib::make_refptr_for_instance<adw::TimedAnimation> (
-        dynamic_cast<adw::TimedAnimation*> (
+    return glib::make_refptr_for_instance<adw::timed_animation> (
+        dynamic_cast<adw::timed_animation*> (
             glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
@@ -35,7 +35,7 @@ namespace adw
 {
 
   auto
-  TimedAnimation_Class::init () -> const glib::Class&
+  timed_animation_class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -46,69 +46,69 @@ namespace adw
   }
 
   auto
-  TimedAnimation_Class::wrap_new (GObject* object) -> glib::ObjectBase*
+  timed_animation_class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
-    return new TimedAnimation ((AdwTimedAnimation*) object);
+    return new timed_animation ((AdwTimedAnimation*) object);
   }
 
   auto
-  TimedAnimation::gobj_copy () -> AdwTimedAnimation*
+  timed_animation::gobj_copy () -> AdwTimedAnimation*
   {
     reference ();
     return gobj ();
   }
 
-  TimedAnimation::TimedAnimation (const glib::ConstructParams& construct_params)
-    : Animation (construct_params)
+  timed_animation::timed_animation (const glib::ConstructParams& construct_params)
+    : animation (construct_params)
   {
   }
 
-  TimedAnimation::TimedAnimation (AdwTimedAnimation* castitem)
-    : Animation ((AdwAnimation*) (castitem))
+  timed_animation::timed_animation (AdwTimedAnimation* castitem)
+    : animation ((AdwAnimation*) (castitem))
   {
   }
 
-  TimedAnimation::TimedAnimation (TimedAnimation&& src) noexcept
-    : Animation (std::move (src))
+  timed_animation::timed_animation (timed_animation&& src) noexcept
+    : animation (std::move (src))
   {
   }
 
   auto
-  TimedAnimation::operator= (TimedAnimation&& src) noexcept -> TimedAnimation&
+  timed_animation::operator= (timed_animation&& src) noexcept -> timed_animation&
   {
-    Animation::operator= (std::move (src));
+    animation::operator= (std::move (src));
     return *this;
   }
 
-  TimedAnimation::~TimedAnimation () noexcept {}
+  timed_animation::~timed_animation () noexcept {}
 
-  TimedAnimation::CppClassType TimedAnimation::timedanimation_class_;
+  timed_animation::CppClassType timed_animation::timedanimation_class_;
 
   auto
-  TimedAnimation::get_type () -> GType
+  timed_animation::get_type () -> GType
   {
     return timedanimation_class_.init ().get_type ();
   }
 
   auto
-  TimedAnimation::get_base_type () -> GType
+  timed_animation::get_base_type () -> GType
   {
     return adw_timed_animation_get_type ();
   }
 
-  TimedAnimation::TimedAnimation ()
+  timed_animation::timed_animation ()
     : glib::ObjectBase (nullptr),
-      Animation (glib::ConstructParams (timedanimation_class_.init ()))
+      animation (glib::ConstructParams (timedanimation_class_.init ()))
   {
   }
 
-  TimedAnimation::TimedAnimation (gtk::Widget* widget,
+  timed_animation::timed_animation (gtk::Widget* widget,
                                   double value_from,
                                   double value_to,
                                   guint duration,
                                   const glib::RefPtr<AnimationTarget>& target)
     : glib::ObjectBase (nullptr),
-      Animation (glib::ConstructParams (timedanimation_class_.init (),
+      animation (glib::ConstructParams (timedanimation_class_.init (),
                                         "widget",
                                         (GtkWidget*) glib::unwrap (widget),
                                         "value_from",
@@ -124,97 +124,97 @@ namespace adw
   }
 
   auto
-  TimedAnimation::create (gtk::Widget* widget,
+  timed_animation::create (gtk::Widget* widget,
                           double value_from,
                           double value_to,
                           guint duration,
-                          const glib::RefPtr<AnimationTarget>& target) -> glib::RefPtr<TimedAnimation>
+                          const glib::RefPtr<AnimationTarget>& target) -> glib::RefPtr<timed_animation>
   {
-    return glib::make_refptr_for_instance<TimedAnimation> (
-        new TimedAnimation (widget, value_from, value_to, duration, target));
+    return glib::make_refptr_for_instance<timed_animation> (
+        new timed_animation (widget, value_from, value_to, duration, target));
   }
 
   auto
-  TimedAnimation::get_alternate () const -> bool
+  timed_animation::get_alternate () const -> bool
   {
     return adw_timed_animation_get_alternate (
         const_cast<AdwTimedAnimation*> (gobj ()));
   }
 
   auto
-  TimedAnimation::get_duration () const -> guint
+  timed_animation::get_duration () const -> guint
   {
     return adw_timed_animation_get_duration (
         const_cast<AdwTimedAnimation*> (gobj ()));
   }
 
   auto
-  TimedAnimation::get_easing () const -> Easing
+  timed_animation::get_easing () const -> Easing
   {
     return static_cast<Easing> (adw_timed_animation_get_easing (
         const_cast<AdwTimedAnimation*> (gobj ())));
   }
 
   auto
-  TimedAnimation::get_repeat_count () const -> guint
+  timed_animation::get_repeat_count () const -> guint
   {
     return adw_timed_animation_get_repeat_count (
         const_cast<AdwTimedAnimation*> (gobj ()));
   }
 
   auto
-  TimedAnimation::get_reverse () const -> bool
+  timed_animation::get_reverse () const -> bool
   {
     return adw_timed_animation_get_reverse (
         const_cast<AdwTimedAnimation*> (gobj ()));
   }
 
   auto
-  TimedAnimation::get_value_from () const -> double
+  timed_animation::get_value_from () const -> double
   {
     return adw_timed_animation_get_value_from (
         const_cast<AdwTimedAnimation*> (gobj ()));
   }
 
   auto
-  TimedAnimation::get_value_to () const -> double
+  timed_animation::get_value_to () const -> double
   {
     return adw_timed_animation_get_value_to (
         const_cast<AdwTimedAnimation*> (gobj ()));
   }
 
   auto
-  TimedAnimation::set_alternate (bool alternate) -> void
+  timed_animation::set_alternate (bool alternate) -> void
   {
     adw_timed_animation_set_alternate (gobj (), static_cast<int> (alternate));
   }
 
   auto
-  TimedAnimation::set_duration (guint duration) -> void
+  timed_animation::set_duration (guint duration) -> void
   {
     adw_timed_animation_set_duration (gobj (), duration);
   }
 
   auto
-  TimedAnimation::set_easing (Easing easing) -> void
+  timed_animation::set_easing (Easing easing) -> void
   {
     adw_timed_animation_set_easing (gobj (), static_cast<AdwEasing> (easing));
   }
 
   auto
-  TimedAnimation::set_repeat_count (guint repeat_count) -> void
+  timed_animation::set_repeat_count (guint repeat_count) -> void
   {
     adw_timed_animation_set_repeat_count (gobj (), repeat_count);
   }
 
   auto
-  TimedAnimation::set_reverse (bool reverse) -> void
+  timed_animation::set_reverse (bool reverse) -> void
   {
     adw_timed_animation_set_reverse (gobj (), static_cast<int> (reverse));
   }
 
   auto
-  TimedAnimation::set_value_from (double from) const -> void
+  timed_animation::set_value_from (double from) const -> void
   {
     adw_timed_animation_set_value_from (
         const_cast<AdwTimedAnimation*> (gobj ()),
@@ -222,92 +222,92 @@ namespace adw
   }
 
   auto
-  TimedAnimation::set_value_to (double to) const -> void
+  timed_animation::set_value_to (double to) const -> void
   {
     adw_timed_animation_set_value_to (const_cast<AdwTimedAnimation*> (gobj ()),
                                       to);
   }
 
   auto
-  TimedAnimation::property_alternate () -> glib::PropertyProxy<bool>
+  timed_animation::property_alternate () -> glib::PropertyProxy<bool>
   {
     return {this, "alternate"};
   }
 
   auto
-  TimedAnimation::property_alternate () const -> glib::PropertyProxy_ReadOnly<bool>
+  timed_animation::property_alternate () const -> glib::PropertyProxy_ReadOnly<bool>
   {
     return {this, "alternate"};
   }
 
   auto
-  TimedAnimation::property_duration () -> glib::PropertyProxy<guint>
+  timed_animation::property_duration () -> glib::PropertyProxy<guint>
   {
     return {this, "duration"};
   }
 
   auto
-  TimedAnimation::property_duration () const -> glib::PropertyProxy_ReadOnly<guint>
+  timed_animation::property_duration () const -> glib::PropertyProxy_ReadOnly<guint>
   {
     return {this, "duration"};
   }
 
   auto
-  TimedAnimation::property_easing () -> glib::PropertyProxy<Easing>
+  timed_animation::property_easing () -> glib::PropertyProxy<Easing>
   {
     return {this, "easing"};
   }
 
   auto
-  TimedAnimation::property_easing () const -> glib::PropertyProxy_ReadOnly<Easing>
+  timed_animation::property_easing () const -> glib::PropertyProxy_ReadOnly<Easing>
   {
     return {this, "easing"};
   }
 
   auto
-  TimedAnimation::property_repeat_count () -> glib::PropertyProxy<guint>
+  timed_animation::property_repeat_count () -> glib::PropertyProxy<guint>
   {
     return {this, "repeat-count"};
   }
 
   auto
-  TimedAnimation::property_repeat_count () const -> glib::PropertyProxy_ReadOnly<guint>
+  timed_animation::property_repeat_count () const -> glib::PropertyProxy_ReadOnly<guint>
   {
     return {this, "repeat-count"};
   }
 
   auto
-  TimedAnimation::property_reverse () -> glib::PropertyProxy<bool>
+  timed_animation::property_reverse () -> glib::PropertyProxy<bool>
   {
     return {this, "reverse"};
   }
 
   auto
-  TimedAnimation::property_reverse () const -> glib::PropertyProxy_ReadOnly<bool>
+  timed_animation::property_reverse () const -> glib::PropertyProxy_ReadOnly<bool>
   {
     return {this, "reverse"};
   }
 
   auto
-  TimedAnimation::property_value_from () -> glib::PropertyProxy<double>
+  timed_animation::property_value_from () -> glib::PropertyProxy<double>
   {
     return {this, "value-from"};
   }
 
   auto
-  TimedAnimation::property_value_from () const -> glib::PropertyProxy_ReadOnly<double>
+  timed_animation::property_value_from () const -> glib::PropertyProxy_ReadOnly<double>
   {
     return {this, "value-from"};
   }
 
   auto
-  TimedAnimation::property_value_to () -> glib::PropertyProxy<double>
+  timed_animation::property_value_to () -> glib::PropertyProxy<double>
   {
     return {this, "value-to"};
   }
 
   auto
-  TimedAnimation::property_value_to () const -> glib::PropertyProxy_ReadOnly<double>
+  timed_animation::property_value_to () const -> glib::PropertyProxy_ReadOnly<double>
   {
     return {this, "value-to"};
   }

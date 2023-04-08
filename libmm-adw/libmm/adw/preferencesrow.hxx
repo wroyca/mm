@@ -18,42 +18,42 @@ using AdwPreferencesRowClass = struct _AdwPreferencesRowClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace adw
 {
-  class LIBMM_ADW_SYMEXPORT PreferencesRow_Class;
+  class LIBMM_ADW_SYMEXPORT preferences_row_class;
 }
 #endif
 
 namespace adw
 {
 
-  class LIBMM_ADW_SYMEXPORT PreferencesRow : public gtk::ListBoxRow
+  class LIBMM_ADW_SYMEXPORT preferences_row : public gtk::ListBoxRow
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-    typedef PreferencesRow CppObjectType;
-    typedef PreferencesRow_Class CppClassType;
-    typedef AdwPreferencesRow BaseObjectType;
-    typedef AdwPreferencesRowClass BaseClassType;
+    using CppObjectType = preferences_row;
+    using CppClassType = preferences_row_class;
+    using BaseObjectType = AdwPreferencesRow;
+    using BaseClassType = AdwPreferencesRowClass;
 #endif
 
-    PreferencesRow (PreferencesRow&& src) noexcept;
+    preferences_row (preferences_row&& src) noexcept;
     auto
-    operator= (PreferencesRow&& src) noexcept -> PreferencesRow&;
+    operator= (preferences_row&& src) noexcept -> preferences_row&;
 
-    PreferencesRow (const PreferencesRow&) = delete;
+    preferences_row (const preferences_row&) = delete;
     auto
-    operator= (const PreferencesRow&) -> PreferencesRow& = delete;
+    operator= (const preferences_row&) -> preferences_row& = delete;
 
-    ~PreferencesRow () noexcept override;
+    ~preferences_row () noexcept override;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   private:
-    friend class PreferencesRow_Class;
+    friend class preferences_row_class;
     static CppClassType preferencesrow_class_;
 
   protected:
-    explicit PreferencesRow (const glib::ConstructParams& construct_params);
-    explicit PreferencesRow (AdwPreferencesRow* castitem);
+    explicit preferences_row (const glib::ConstructParams& construct_params);
+    explicit preferences_row (AdwPreferencesRow* castitem);
 
 #endif
 
@@ -81,7 +81,7 @@ namespace adw
 
   private:
   public:
-    PreferencesRow ();
+    preferences_row ();
 
     auto
     get_title () const -> glib::ustring;
@@ -142,7 +142,7 @@ namespace glib
 {
 
   auto
-  wrap (AdwPreferencesRow* object, bool take_copy = false) -> adw::PreferencesRow*;
+  wrap (AdwPreferencesRow* object, bool take_copy = false) -> adw::preferences_row*;
 }
 
 #endif

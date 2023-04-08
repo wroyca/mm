@@ -10,7 +10,7 @@
 static void
 test_adw_preferences_row_title (void)
 {
-  adw::PreferencesRow row;
+  adw::preferences_row row;
 
   g_assert_true (row.get_title () == "");
 
@@ -28,7 +28,7 @@ test_adw_preferences_row_title (void)
 static void
 test_adw_preferences_row_use_underline (void)
 {
-  adw::PreferencesRow row;
+  adw::preferences_row row;
 
   g_assert_false (row.get_use_underline ());
 

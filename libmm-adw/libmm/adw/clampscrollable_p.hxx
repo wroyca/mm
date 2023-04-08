@@ -10,15 +10,15 @@
 namespace adw
 {
 
-  class LIBMM_ADW_SYMEXPORT ClampScrollable_Class : public glib::Class
+  class LIBMM_ADW_SYMEXPORT clamp_scrollable_class : public glib::Class
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-    using CppObjectType = ClampScrollable;
+    using CppObjectType = clamp_scrollable;
     using BaseObjectType = AdwClampScrollable;
     using CppClassParent = gtk::Widget_Class;
 
-    friend class ClampScrollable;
+    friend class clamp_scrollable;
 #endif
 
     auto

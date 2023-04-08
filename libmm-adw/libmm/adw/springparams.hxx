@@ -25,11 +25,11 @@ namespace adw
     double damping;
   };
 
-  class LIBMM_ADW_SYMEXPORT SpringParams
+  class LIBMM_ADW_SYMEXPORT spring_params
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-    using CppObjectType = SpringParams;
+    using CppObjectType = spring_params;
     using BaseObjectType = AdwSpringParams;
 #endif
 
@@ -48,11 +48,11 @@ namespace adw
     auto
     gobj_copy () const -> AdwSpringParams*;
 
-    SpringParams () = delete;
+    spring_params () = delete;
 
-    SpringParams (const SpringParams&) = delete;
+    spring_params (const spring_params&) = delete;
     auto
-    operator= (const SpringParams&) -> SpringParams& = delete;
+    operator= (const spring_params&) -> spring_params& = delete;
 
   protected:
     auto
@@ -62,11 +62,11 @@ namespace adw
   public:
     static auto
     create (DampingRatio damping_ratio, double mass, double stiffness)
-        -> glib::RefPtr<SpringParams>;
+        -> glib::RefPtr<spring_params>;
 
     static auto
     create (Damping damping, double mass, double stiffness)
-        -> glib::RefPtr<SpringParams>;
+        -> glib::RefPtr<spring_params>;
 
     auto
     get_damping () const -> double;
@@ -87,11 +87,11 @@ namespace glib
 {
 
   template <>
-  class LIBMM_ADW_SYMEXPORT Value<glib::RefPtr<adw::SpringParams>> : public ValueBase_Boxed
+  class LIBMM_ADW_SYMEXPORT Value<glib::RefPtr<adw::spring_params>> : public ValueBase_Boxed
   {
   public:
-    typedef glib::RefPtr<adw::SpringParams> CppType;
-    typedef AdwSpringParams* CType;
+    using CppType = glib::RefPtr<adw::spring_params>;
+    using CType = AdwSpringParams*;
 
     static auto
     value_type () -> GType;
@@ -108,7 +108,7 @@ namespace glib
 {
 
   auto
-  wrap (AdwSpringParams* object, bool take_copy = false) -> glib::RefPtr<adw::SpringParams>;
+  wrap (AdwSpringParams* object, bool take_copy = false) -> glib::RefPtr<adw::spring_params>;
 
 }
 

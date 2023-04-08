@@ -22,51 +22,51 @@ using AdwSwipeableClass = struct _AdwSwipeableClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace adw
 {
-  class LIBMM_ADW_SYMEXPORT Swipeable_Class;
+  class LIBMM_ADW_SYMEXPORT swipeable_class;
 }
 #endif
 
 namespace adw
 {
 
-  class LIBMM_ADW_SYMEXPORT Swipeable : public glib::Interface
+  class LIBMM_ADW_SYMEXPORT swipeable : public glib::Interface
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   public:
-    using CppObjectType = Swipeable;
-    using CppClassType = Swipeable_Class;
+    using CppObjectType = swipeable;
+    using CppClassType = swipeable_class;
     using BaseObjectType = AdwSwipeable;
     using BaseClassType = AdwSwipeableInterface;
 
-    Swipeable (const Swipeable&) = delete;
+    swipeable (const swipeable&) = delete;
     auto
-    operator= (const Swipeable&) -> Swipeable& = delete;
+    operator= (const swipeable&) -> swipeable& = delete;
 
   private:
-    friend class Swipeable_Class;
+    friend class swipeable_class;
     static CppClassType swipeable_class_;
 
 #endif
   protected:
-    Swipeable ();
+    swipeable ();
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
-    explicit Swipeable (const glib::Interface_Class& interface_class);
+    explicit swipeable (const glib::Interface_Class& interface_class);
 
   public:
-    explicit Swipeable (AdwSwipeable* castitem);
+    explicit swipeable (AdwSwipeable* castitem);
 
   protected:
 #endif
 
   public:
-    Swipeable (Swipeable&& src) noexcept;
+    swipeable (swipeable&& src) noexcept;
     auto
-    operator= (Swipeable&& src) noexcept -> Swipeable&;
+    operator= (swipeable&& src) noexcept -> swipeable&;
 
-    ~Swipeable () noexcept override;
+    ~swipeable () noexcept override;
 
     static auto
     add_interface (GType gtype_implementer) -> void;
@@ -134,7 +134,7 @@ namespace glib
 {
 
   auto
-  wrap (AdwSwipeable* object, bool take_copy = false) -> glib::RefPtr<adw::Swipeable>;
+  wrap (AdwSwipeable* object, bool take_copy = false) -> glib::RefPtr<adw::swipeable>;
 
 }
 

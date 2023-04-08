@@ -18,42 +18,42 @@
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace adw
 {
-  class LIBMM_ADW_SYMEXPORT ExpanderRow_Class;
+  class LIBMM_ADW_SYMEXPORT expander_row_class;
 }
 #endif
 
 namespace adw
 {
 
-  class LIBMM_ADW_SYMEXPORT ExpanderRow : public adw::PreferencesRow
+  class LIBMM_ADW_SYMEXPORT expander_row : public adw::preferences_row
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-    typedef ExpanderRow CppObjectType;
-    typedef ExpanderRow_Class CppClassType;
+    typedef expander_row CppObjectType;
+    typedef expander_row_class CppClassType;
     typedef AdwExpanderRow BaseObjectType;
     typedef AdwExpanderRowClass BaseClassType;
 #endif
 
-    ExpanderRow (ExpanderRow&& src) noexcept;
+    expander_row (expander_row&& src) noexcept;
     auto
-    operator= (ExpanderRow&& src) noexcept -> ExpanderRow&;
+    operator= (expander_row&& src) noexcept -> expander_row&;
 
-    ExpanderRow (const ExpanderRow&) = delete;
+    expander_row (const expander_row&) = delete;
     auto
-    operator= (const ExpanderRow&) -> ExpanderRow& = delete;
+    operator= (const expander_row&) -> expander_row& = delete;
 
-    ~ExpanderRow () noexcept override;
+    ~expander_row () noexcept override;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   private:
-    friend class ExpanderRow_Class;
+    friend class expander_row_class;
     static CppClassType expanderrow_class_;
 
   protected:
-    explicit ExpanderRow (const glib::ConstructParams& construct_params);
-    explicit ExpanderRow (AdwExpanderRow* castitem);
+    explicit expander_row (const glib::ConstructParams& construct_params);
+    explicit expander_row (AdwExpanderRow* castitem);
 
 #endif
 
@@ -81,7 +81,7 @@ namespace adw
 
   private:
   public:
-    ExpanderRow ();
+    expander_row ();
 
     auto
     add_action (gtk::Widget* widget) -> void;
@@ -166,7 +166,7 @@ namespace glib
 {
 
   auto
-  wrap (AdwExpanderRow* object, bool take_copy = false) -> adw::ExpanderRow*;
+  wrap (AdwExpanderRow* object, bool take_copy = false) -> adw::expander_row*;
 }
 
 #endif

@@ -19,43 +19,43 @@
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace adw
 {
-  class LIBMM_ADW_SYMEXPORT SqueezerPage_Class;
+  class LIBMM_ADW_SYMEXPORT squeezer_page_class;
 }
 #endif
 
 namespace adw
 {
 
-  class LIBMM_ADW_SYMEXPORT SqueezerPage : public glib::Object
+  class LIBMM_ADW_SYMEXPORT squeezer_page : public glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   public:
-    using CppObjectType = SqueezerPage;
-    using CppClassType = SqueezerPage_Class;
+    using CppObjectType = squeezer_page;
+    using CppClassType = squeezer_page_class;
     using BaseObjectType = AdwSqueezerPage;
     using BaseClassType = AdwSqueezerPageClass;
 
-    SqueezerPage (const SqueezerPage&) = delete;
+    squeezer_page (const squeezer_page&) = delete;
     auto
-    operator= (const SqueezerPage&) -> SqueezerPage& = delete;
+    operator= (const squeezer_page&) -> squeezer_page& = delete;
 
   private:
-    friend class SqueezerPage_Class;
+    friend class squeezer_page_class;
     static CppClassType squeezerpage_class_;
 
   protected:
-    explicit SqueezerPage (const glib::ConstructParams& construct_params);
-    explicit SqueezerPage (AdwSqueezerPage* castitem);
+    explicit squeezer_page (const glib::ConstructParams& construct_params);
+    explicit squeezer_page (AdwSqueezerPage* castitem);
 
 #endif
 
   public:
-    SqueezerPage (SqueezerPage&& src) noexcept;
+    squeezer_page (squeezer_page&& src) noexcept;
     auto
-    operator= (SqueezerPage&& src) noexcept -> SqueezerPage&;
+    operator= (squeezer_page&& src) noexcept -> squeezer_page&;
 
-    ~SqueezerPage () noexcept override;
+    ~squeezer_page () noexcept override;
 
     static auto
     get_type () -> GType G_GNUC_CONST;
@@ -83,11 +83,11 @@ namespace adw
 
   private:
   protected:
-    SqueezerPage ();
+    squeezer_page ();
 
   public:
     static auto
-    create () -> glib::RefPtr<SqueezerPage>;
+    create () -> glib::RefPtr<squeezer_page>;
 
     auto
     get_child () const -> gtk::Widget*;
@@ -118,7 +118,7 @@ namespace glib
 {
 
   auto
-  wrap (AdwSqueezerPage* object, bool take_copy = false) -> glib::RefPtr<adw::SqueezerPage>;
+  wrap (AdwSqueezerPage* object, bool take_copy = false) -> glib::RefPtr<adw::squeezer_page>;
 }
 
 #endif

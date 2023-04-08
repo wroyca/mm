@@ -18,9 +18,9 @@ namespace glib
 {
 
   auto
-  wrap (AdwPasswordEntryRow* object, bool take_copy) -> adw::PasswordEntryRow*
+  wrap (AdwPasswordEntryRow* object, bool take_copy) -> adw::password_entry_row*
   {
-    return dynamic_cast<adw::PasswordEntryRow*> (
+    return dynamic_cast<adw::password_entry_row*> (
         glib::wrap_auto ((GObject*) (object), take_copy));
   }
 
@@ -30,7 +30,7 @@ namespace adw
 {
 
   auto
-  PasswordEntryRow_Class::init () -> const glib::Class&
+  password_entry_row_class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -41,56 +41,56 @@ namespace adw
   }
 
   auto
-  PasswordEntryRow_Class::wrap_new (GObject* o) -> glib::ObjectBase*
+  password_entry_row_class::wrap_new (GObject* o) -> glib::ObjectBase*
   {
-    return manage (new PasswordEntryRow ((AdwPasswordEntryRow*) (o)));
+    return manage (new password_entry_row ((AdwPasswordEntryRow*) (o)));
   }
 
-  PasswordEntryRow::PasswordEntryRow (
+  password_entry_row::password_entry_row (
       const glib::ConstructParams& construct_params)
-    : adw::EntryRow (construct_params)
+    : adw::entry_row (construct_params)
   {
   }
 
-  PasswordEntryRow::PasswordEntryRow (AdwPasswordEntryRow* castitem)
-    : adw::EntryRow ((AdwEntryRow*) (castitem))
+  password_entry_row::password_entry_row (AdwPasswordEntryRow* castitem)
+    : adw::entry_row ((AdwEntryRow*) (castitem))
   {
   }
 
-  PasswordEntryRow::PasswordEntryRow (PasswordEntryRow&& src) noexcept
-    : adw::EntryRow (std::move (src))
+  password_entry_row::password_entry_row (password_entry_row&& src) noexcept
+    : adw::entry_row (std::move (src))
   {
   }
 
   auto
-  PasswordEntryRow::operator= (PasswordEntryRow&& src) noexcept -> PasswordEntryRow&
+  password_entry_row::operator= (password_entry_row&& src) noexcept -> password_entry_row&
   {
-    adw::EntryRow::operator= (std::move (src));
+    adw::entry_row::operator= (std::move (src));
     return *this;
   }
 
-  PasswordEntryRow::~PasswordEntryRow () noexcept
+  password_entry_row::~password_entry_row () noexcept
   {
     destroy_ ();
   }
 
-  PasswordEntryRow::CppClassType PasswordEntryRow::passwordentryrow_class_;
+  password_entry_row::CppClassType password_entry_row::passwordentryrow_class_;
 
   auto
-  PasswordEntryRow::get_type () -> GType
+  password_entry_row::get_type () -> GType
   {
     return passwordentryrow_class_.init ().get_type ();
   }
 
   auto
-  PasswordEntryRow::get_base_type () -> GType
+  password_entry_row::get_base_type () -> GType
   {
     return adw_password_entry_row_get_type ();
   }
 
-  PasswordEntryRow::PasswordEntryRow ()
+  password_entry_row::password_entry_row ()
     : glib::ObjectBase (nullptr),
-      adw::EntryRow (glib::ConstructParams (passwordentryrow_class_.init ()))
+      adw::entry_row (glib::ConstructParams (passwordentryrow_class_.init ()))
   {
   }
 

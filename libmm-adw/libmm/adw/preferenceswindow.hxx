@@ -20,42 +20,42 @@
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace adw
 {
-  class LIBMM_ADW_SYMEXPORT PreferencesWindow_Class;
+  class LIBMM_ADW_SYMEXPORT preferences_window_class;
 }
 #endif
 
 namespace adw
 {
 
-  class LIBMM_ADW_SYMEXPORT PreferencesWindow : public adw::Window
+  class LIBMM_ADW_SYMEXPORT preferences_window : public adw::window
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-    typedef PreferencesWindow CppObjectType;
-    typedef PreferencesWindow_Class CppClassType;
-    typedef AdwPreferencesWindow BaseObjectType;
-    typedef AdwPreferencesWindowClass BaseClassType;
+    using CppObjectType = preferences_window;
+    using CppClassType = preferences_window_class;
+    using BaseObjectType = AdwPreferencesWindow;
+    using BaseClassType = AdwPreferencesWindowClass;
 #endif
 
-    PreferencesWindow (PreferencesWindow&& src) noexcept;
+    preferences_window (preferences_window&& src) noexcept;
     auto
-    operator= (PreferencesWindow&& src) noexcept -> PreferencesWindow&;
+    operator= (preferences_window&& src) noexcept -> preferences_window&;
 
-    PreferencesWindow (const PreferencesWindow&) = delete;
+    preferences_window (const preferences_window&) = delete;
     auto
-    operator= (const PreferencesWindow&) -> PreferencesWindow& = delete;
+    operator= (const preferences_window&) -> preferences_window& = delete;
 
-    ~PreferencesWindow () noexcept override;
+    ~preferences_window () noexcept override;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   private:
-    friend class PreferencesWindow_Class;
+    friend class preferences_window_class;
     static CppClassType preferenceswindow_class_;
 
   protected:
-    explicit PreferencesWindow (const glib::ConstructParams& construct_params);
-    explicit PreferencesWindow (AdwPreferencesWindow* castitem);
+    explicit preferences_window (const glib::ConstructParams& construct_params);
+    explicit preferences_window (AdwPreferencesWindow* castitem);
 
 #endif
 
@@ -83,13 +83,13 @@ namespace adw
 
   private:
   public:
-    PreferencesWindow ();
+    preferences_window ();
 
     auto
-    add (PreferencesPage* page) -> void;
+    add (preferences_page* page) -> void;
 
     auto
-    add_toast (Toast* toast) -> void;
+    add_toast (toast* toast) -> void;
 
     auto
     close_subpage () -> void;
@@ -101,7 +101,7 @@ namespace adw
     get_search_enabled () const -> bool;
 
     auto
-    get_visible_page () const -> PreferencesPage*;
+    get_visible_page () const -> preferences_page*;
 
     auto
     get_visible_page_name () const -> glib::ustring;
@@ -110,7 +110,7 @@ namespace adw
     present_subpage (gtk::Widget* subpage) -> void;
 
     auto
-    remove (PreferencesPage* page) -> void;
+    remove (preferences_page* page) -> void;
 
     auto
     set_can_navigate_back (bool can_navigate_back) -> void;
@@ -119,7 +119,7 @@ namespace adw
     set_search_enabled (bool search_enabled) -> void;
 
     auto
-    set_visible_page (PreferencesPage* page) -> void;
+    set_visible_page (preferences_page* page) -> void;
 
     auto
     set_visible_page_name (const glib::ustring& name) -> void;
@@ -137,11 +137,11 @@ namespace adw
     property_search_enabled () const -> glib::PropertyProxy_ReadOnly<bool>;
 
     auto
-    property_visible_page () -> glib::PropertyProxy<PreferencesPage*>;
+    property_visible_page () -> glib::PropertyProxy<preferences_page*>;
 
     auto
     property_visible_page () const
-        -> glib::PropertyProxy_ReadOnly<PreferencesPage*>;
+        -> glib::PropertyProxy_ReadOnly<preferences_page*>;
 
     auto
     property_visible_page_name () -> glib::PropertyProxy<glib::ustring>;
@@ -161,7 +161,7 @@ namespace glib
 {
 
   auto
-  wrap (AdwPreferencesWindow* object, bool take_copy = false) -> adw::PreferencesWindow*;
+  wrap (AdwPreferencesWindow* object, bool take_copy = false) -> adw::preferences_window*;
 }
 
 #endif

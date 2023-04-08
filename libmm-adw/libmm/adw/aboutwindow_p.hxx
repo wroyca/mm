@@ -12,7 +12,7 @@ namespace adw
   {
     using CppObjectType  = about_window;
     using BaseObjectType = AdwAboutWindow;
-    using CppClassParent = Window_Class;
+    using CppClassParent = window_class;
 
   public:
     friend class about_window;

@@ -10,15 +10,15 @@
 namespace adw
 {
 
-  class LIBMM_ADW_SYMEXPORT Carousel_Class : public glib::Class
+  class LIBMM_ADW_SYMEXPORT carousel_class : public glib::Class
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-    using CppObjectType = Carousel;
+    using CppObjectType = carousel;
     using BaseObjectType = AdwCarousel;
     using CppClassParent = gtk::Widget_Class;
 
-    friend class Carousel;
+    friend class carousel;
 #endif
 
     auto

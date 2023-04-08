@@ -18,43 +18,43 @@
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace adw
 {
-  class LIBMM_ADW_SYMEXPORT Clamp_Class;
+  class LIBMM_ADW_SYMEXPORT clamp_class;
 }
 #endif
 
 namespace adw
 {
 
-  class LIBMM_ADW_SYMEXPORT Clamp : public gtk::Widget,
+  class LIBMM_ADW_SYMEXPORT clamp : public gtk::Widget,
                 public gtk::Orientable
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-    typedef Clamp CppObjectType;
-    typedef Clamp_Class CppClassType;
-    typedef AdwClamp BaseObjectType;
-    typedef AdwClampClass BaseClassType;
+    using CppObjectType = clamp;
+    using CppClassType = clamp_class;
+    using BaseObjectType = AdwClamp;
+    using BaseClassType = AdwClampClass;
 #endif
 
-    Clamp (Clamp&& src) noexcept;
+    clamp (clamp&& src) noexcept;
     auto
-    operator= (Clamp&& src) noexcept -> Clamp&;
+    operator= (clamp&& src) noexcept -> clamp&;
 
-    Clamp (const Clamp&) = delete;
+    clamp (const clamp&) = delete;
     auto
-    operator= (const Clamp&) -> Clamp& = delete;
+    operator= (const clamp&) -> clamp& = delete;
 
-    ~Clamp () noexcept override;
+    ~clamp () noexcept override;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   private:
-    friend class Clamp_Class;
+    friend class clamp_class;
     static CppClassType clamp_class_;
 
   protected:
-    explicit Clamp (const glib::ConstructParams& construct_params);
-    explicit Clamp (AdwClamp* castitem);
+    explicit clamp (const glib::ConstructParams& construct_params);
+    explicit clamp (AdwClamp* castitem);
 
 #endif
 
@@ -82,7 +82,7 @@ namespace adw
 
   private:
   public:
-    Clamp ();
+    clamp ();
 
     auto
     get_child () const -> gtk::Widget*;
@@ -131,7 +131,7 @@ namespace glib
 {
 
   auto
-  wrap (AdwClamp* object, bool take_copy = false) -> adw::Clamp*;
+  wrap (AdwClamp* object, bool take_copy = false) -> adw::clamp*;
 }
 
 #endif

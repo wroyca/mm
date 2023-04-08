@@ -11,7 +11,7 @@
 namespace adw
 {
   auto
-  CallbackAnimationTarget::callback_function (double value, gpointer user_data) -> void
+  callback_animation_target::callback_function (double value, gpointer user_data) -> void
   {
     auto the_slot = static_cast<SlotTarget*> (user_data);
     try
@@ -24,7 +24,7 @@ namespace adw
     }
   }
 
-  CallbackAnimationTarget::CallbackAnimationTarget (
+  callback_animation_target::callback_animation_target (
       const SlotTarget& slot_target)
   {
     auto slot_copy = new SlotTarget (slot_target);
@@ -45,10 +45,10 @@ namespace glib
 {
 
   auto
-  wrap (AdwCallbackAnimationTarget* object, bool take_copy) -> glib::RefPtr<adw::CallbackAnimationTarget>
+  wrap (AdwCallbackAnimationTarget* object, bool take_copy) -> glib::RefPtr<adw::callback_animation_target>
   {
-    return glib::make_refptr_for_instance<adw::CallbackAnimationTarget> (
-        dynamic_cast<adw::CallbackAnimationTarget*> (
+    return glib::make_refptr_for_instance<adw::callback_animation_target> (
+        dynamic_cast<adw::callback_animation_target*> (
             glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
@@ -58,7 +58,7 @@ namespace adw
 {
 
   auto
-  CallbackAnimationTarget_Class::init () -> const glib::Class&
+  callback_animation_target_class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -69,61 +69,61 @@ namespace adw
   }
 
   auto
-  CallbackAnimationTarget_Class::wrap_new (GObject* object) -> glib::ObjectBase*
+  callback_animation_target_class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
-    return new CallbackAnimationTarget ((AdwCallbackAnimationTarget*) object);
+    return new callback_animation_target ((AdwCallbackAnimationTarget*) object);
   }
 
   auto
-  CallbackAnimationTarget::gobj_copy () -> AdwCallbackAnimationTarget*
+  callback_animation_target::gobj_copy () -> AdwCallbackAnimationTarget*
   {
     reference ();
     return gobj ();
   }
 
-  CallbackAnimationTarget::CallbackAnimationTarget (
+  callback_animation_target::callback_animation_target (
       const glib::ConstructParams& construct_params)
     : adw::AnimationTarget (construct_params)
   {
   }
 
-  CallbackAnimationTarget::CallbackAnimationTarget (
+  callback_animation_target::callback_animation_target (
       AdwCallbackAnimationTarget* castitem)
     : adw::AnimationTarget ((AdwAnimationTarget*) (castitem))
   {
   }
 
-  CallbackAnimationTarget::CallbackAnimationTarget (
-      CallbackAnimationTarget&& src) noexcept
+  callback_animation_target::callback_animation_target (
+      callback_animation_target&& src) noexcept
     : adw::AnimationTarget (std::move (src))
   {
   }
 
   auto
-  CallbackAnimationTarget::operator= (CallbackAnimationTarget&& src) noexcept -> CallbackAnimationTarget&
+  callback_animation_target::operator= (callback_animation_target&& src) noexcept -> callback_animation_target&
   {
     adw::AnimationTarget::operator= (std::move (src));
     return *this;
   }
 
-  CallbackAnimationTarget::~CallbackAnimationTarget () noexcept {}
+  callback_animation_target::~callback_animation_target () noexcept {}
 
-  CallbackAnimationTarget::CppClassType
-      CallbackAnimationTarget::callbackanimationtarget_class_;
+  callback_animation_target::CppClassType
+      callback_animation_target::callbackanimationtarget_class_;
 
   auto
-  CallbackAnimationTarget::get_type () -> GType
+  callback_animation_target::get_type () -> GType
   {
     return callbackanimationtarget_class_.init ().get_type ();
   }
 
   auto
-  CallbackAnimationTarget::get_base_type () -> GType
+  callback_animation_target::get_base_type () -> GType
   {
     return adw_callback_animation_target_get_type ();
   }
 
-  CallbackAnimationTarget::CallbackAnimationTarget ()
+  callback_animation_target::callback_animation_target ()
     : glib::ObjectBase (nullptr),
       adw::AnimationTarget (
           glib::ConstructParams (callbackanimationtarget_class_.init ()))
@@ -131,10 +131,10 @@ namespace adw
   }
 
   auto
-  CallbackAnimationTarget::create (const SlotTarget& slot_target) -> glib::RefPtr<CallbackAnimationTarget>
+  callback_animation_target::create (const SlotTarget& slot_target) -> glib::RefPtr<callback_animation_target>
   {
-    return glib::make_refptr_for_instance<CallbackAnimationTarget> (
-        new CallbackAnimationTarget (slot_target));
+    return glib::make_refptr_for_instance<callback_animation_target> (
+        new callback_animation_target (slot_target));
   }
 
 } // namespace adw

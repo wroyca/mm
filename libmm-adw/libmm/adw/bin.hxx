@@ -18,42 +18,42 @@
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace adw
 {
-  class LIBMM_ADW_SYMEXPORT Bin_Class;
+  class LIBMM_ADW_SYMEXPORT bin_class;
 }
 #endif
 
 namespace adw
 {
 
-  class LIBMM_ADW_SYMEXPORT Bin : public gtk::Widget
+  class LIBMM_ADW_SYMEXPORT bin : public gtk::Widget
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-    typedef Bin CppObjectType;
-    typedef Bin_Class CppClassType;
-    typedef AdwBin BaseObjectType;
-    typedef AdwBinClass BaseClassType;
+    using CppObjectType = bin;
+    using CppClassType = bin_class;
+    using BaseObjectType = AdwBin;
+    using BaseClassType = AdwBinClass;
 #endif
 
-    Bin (Bin&& src) noexcept;
+    bin (bin&& src) noexcept;
     auto
-    operator= (Bin&& src) noexcept -> Bin&;
+    operator= (bin&& src) noexcept -> bin&;
 
-    Bin (const Bin&) = delete;
+    bin (const bin&) = delete;
     auto
-    operator= (const Bin&) -> Bin& = delete;
+    operator= (const bin&) -> bin& = delete;
 
-    ~Bin () noexcept override;
+    ~bin () noexcept override;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   private:
-    friend class Bin_Class;
+    friend class bin_class;
     static CppClassType bin_class_;
 
   protected:
-    explicit Bin (const glib::ConstructParams& construct_params);
-    explicit Bin (AdwBin* castitem);
+    explicit bin (const glib::ConstructParams& construct_params);
+    explicit bin (AdwBin* castitem);
 
 #endif
 
@@ -81,7 +81,7 @@ namespace adw
 
   private:
   public:
-    Bin ();
+    bin ();
 
     auto
     get_child () const -> gtk::Widget*;
@@ -106,7 +106,7 @@ namespace glib
 {
 
   auto
-  wrap (AdwBin* object, bool take_copy = false) -> adw::Bin*;
+  wrap (AdwBin* object, bool take_copy = false) -> adw::bin*;
 }
 
 #endif

@@ -18,43 +18,43 @@
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace adw
 {
-  class LIBMM_ADW_SYMEXPORT SplitButton_Class;
+  class LIBMM_ADW_SYMEXPORT split_button_class;
 }
 #endif
 
 namespace adw
 {
 
-  class LIBMM_ADW_SYMEXPORT SplitButton : public gtk::Widget,
+  class LIBMM_ADW_SYMEXPORT split_button : public gtk::Widget,
                       public gtk::Actionable
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-    typedef SplitButton CppObjectType;
-    typedef SplitButton_Class CppClassType;
-    typedef AdwSplitButton BaseObjectType;
-    typedef AdwSplitButtonClass BaseClassType;
+    using CppObjectType = split_button;
+    using CppClassType = split_button_class;
+    using BaseObjectType = AdwSplitButton;
+    using BaseClassType = AdwSplitButtonClass;
 #endif
 
-    SplitButton (SplitButton&& src) noexcept;
+    split_button (split_button&& src) noexcept;
     auto
-    operator= (SplitButton&& src) noexcept -> SplitButton&;
+    operator= (split_button&& src) noexcept -> split_button&;
 
-    SplitButton (const SplitButton&) = delete;
+    split_button (const split_button&) = delete;
     auto
-    operator= (const SplitButton&) -> SplitButton& = delete;
+    operator= (const split_button&) -> split_button& = delete;
 
-    ~SplitButton () noexcept override;
+    ~split_button () noexcept override;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   private:
-    friend class SplitButton_Class;
+    friend class split_button_class;
     static CppClassType splitbutton_class_;
 
   protected:
-    explicit SplitButton (const glib::ConstructParams& construct_params);
-    explicit SplitButton (AdwSplitButton* castitem);
+    explicit split_button (const glib::ConstructParams& construct_params);
+    explicit split_button (AdwSplitButton* castitem);
 
 #endif
 
@@ -82,7 +82,7 @@ namespace adw
 
   private:
   public:
-    SplitButton ();
+    split_button ();
 
     auto
     get_child () const -> gtk::Widget*;
@@ -205,7 +205,7 @@ namespace glib
 {
 
   auto
-  wrap (AdwSplitButton* object, bool take_copy = false) -> adw::SplitButton*;
+  wrap (AdwSplitButton* object, bool take_copy = false) -> adw::split_button*;
 }
 
 #endif

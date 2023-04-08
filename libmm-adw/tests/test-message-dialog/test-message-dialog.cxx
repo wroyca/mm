@@ -41,7 +41,7 @@ response_cb (const glib::ustring& response)
 static void
 test_adw_message_dialog_heading (void)
 {
-  adw::MessageDialog dialog (nullptr, "", "");
+  adw::message_dialog dialog (nullptr, "", "");
 
   notified = 0;
   dialog.property_heading ().signal_changed ().connect (
@@ -62,7 +62,7 @@ test_adw_message_dialog_heading (void)
 static void
 test_adw_message_dialog_heading_use_markup (void)
 {
-  adw::MessageDialog dialog (nullptr, "", "");
+  adw::message_dialog dialog (nullptr, "", "");
 
   notified = 0;
   dialog.property_heading_use_markup ().signal_changed ().connect (
@@ -83,7 +83,7 @@ test_adw_message_dialog_heading_use_markup (void)
 static void
 test_adw_message_dialog_body (void)
 {
-  adw::MessageDialog dialog (nullptr, "", "");
+  adw::message_dialog dialog (nullptr, "", "");
 
   notified = 0;
   dialog.property_body ().signal_changed ().connect (sigc::ptr_fun (notify_cb));
@@ -103,7 +103,7 @@ test_adw_message_dialog_body (void)
 static void
 test_adw_message_dialog_body_use_markup (void)
 {
-  adw::MessageDialog dialog (nullptr, "", "");
+  adw::message_dialog dialog (nullptr, "", "");
 
   notified = 0;
   dialog.property_body_use_markup ().signal_changed ().connect (
@@ -124,7 +124,7 @@ test_adw_message_dialog_body_use_markup (void)
 static void
 test_adw_message_dialog_format (void)
 {
-  adw::MessageDialog dialog (nullptr, "", "");
+  adw::message_dialog dialog (nullptr, "", "");
 
   // FIXME: We are not currently wrapping the format_* conveniences of
   // Adw.MessageDialog. Emulate here.
@@ -160,7 +160,7 @@ test_adw_message_dialog_format (void)
 static void
 test_adw_message_dialog_extra_child (void)
 {
-  adw::MessageDialog dialog (nullptr, "", "");
+  adw::message_dialog dialog (nullptr, "", "");
 
   notified = 0;
   dialog.property_extra_child ().signal_changed ().connect (
@@ -185,7 +185,7 @@ test_adw_message_dialog_extra_child (void)
 static void
 test_adw_message_dialog_add_response (void)
 {
-  adw::MessageDialog dialog (nullptr, "", "");
+  adw::message_dialog dialog (nullptr, "", "");
 
   dialog.add_response ("response1", "Response 1");
   dialog.add_response ("response2", "Response 2");
@@ -204,7 +204,7 @@ test_adw_message_dialog_add_response (void)
 static void
 test_adw_message_dialog_add_responses (void)
 {
-  adw::MessageDialog dialog (nullptr, "", "");
+  adw::message_dialog dialog (nullptr, "", "");
 
   // FIXME: The convenience to add many responses at once has not been
   // wrapped. Emulate.
@@ -227,7 +227,7 @@ test_adw_message_dialog_add_responses (void)
 static void
 test_adw_message_dialog_response_label (void)
 {
-  adw::MessageDialog dialog (nullptr, "", "");
+  adw::message_dialog dialog (nullptr, "", "");
 
   dialog.add_response ("response", "Response");
   g_assert_true (dialog.get_response_label ("response") == "Response");
@@ -239,7 +239,7 @@ test_adw_message_dialog_response_label (void)
 static void
 test_adw_message_dialog_response_enabled (void)
 {
-  adw::MessageDialog dialog (nullptr, "", "");
+  adw::message_dialog dialog (nullptr, "", "");
 
   dialog.add_response ("response", "Response");
   g_assert_true (dialog.get_response_enabled ("response"));
@@ -254,7 +254,7 @@ test_adw_message_dialog_response_enabled (void)
 static void
 test_adw_message_dialog_response_appearance (void)
 {
-  adw::MessageDialog dialog (nullptr, "", "");
+  adw::message_dialog dialog (nullptr, "", "");
 
   dialog.add_response ("response", "Response");
   g_assert_true (dialog.get_response_appearance ("response") ==
@@ -269,7 +269,7 @@ test_adw_message_dialog_response_appearance (void)
 static void
 test_adw_message_dialog_response_signal (void)
 {
-  adw::MessageDialog dialog (nullptr, "", "");
+  adw::message_dialog dialog (nullptr, "", "");
 
   responses = responses_cancel = responses_save = 0;
   dialog.signal_response ().connect (sigc::ptr_fun (response_cb));
@@ -291,7 +291,7 @@ test_adw_message_dialog_response_signal (void)
 static void
 test_adw_message_dialog_default_response (void)
 {
-  adw::MessageDialog dialog (nullptr, "", "");
+  adw::message_dialog dialog (nullptr, "", "");
 
   notified = 0;
   dialog.property_default_response ().signal_changed ().connect (
@@ -313,7 +313,7 @@ test_adw_message_dialog_default_response (void)
 static void
 test_adw_message_dialog_close_response (void)
 {
-  adw::MessageDialog dialog (nullptr, "", "");
+  adw::message_dialog dialog (nullptr, "", "");
 
   notified = 0;
   dialog.property_close_response ().signal_changed ().connect (

@@ -10,15 +10,15 @@
 namespace adw
 {
 
-  class LIBMM_ADW_SYMEXPORT CarouselIndicatorLines_Class : public glib::Class
+  class LIBMM_ADW_SYMEXPORT carousel_indicator_lines_class : public glib::Class
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-    using CppObjectType = CarouselIndicatorLines;
+    using CppObjectType = carousel_indicator_lines;
     using BaseObjectType = AdwCarouselIndicatorLines;
     using CppClassParent = gtk::Widget_Class;
 
-    friend class CarouselIndicatorLines;
+    friend class carousel_indicator_lines;
 #endif
 
     auto

@@ -16,19 +16,19 @@ namespace glib
 {
 
   auto
-  Value<RefPtr<adw::SpringParams>>::value_type () -> GType
+  Value<RefPtr<adw::spring_params>>::value_type () -> GType
   {
     return adw_spring_params_get_type ();
   }
 
   auto
-  Value<RefPtr<adw::SpringParams>>::set (const CppType& data) -> void
+  Value<RefPtr<adw::spring_params>>::set (const CppType& data) -> void
   {
     set_boxed (glib::unwrap (data));
   }
 
   auto
-  Value<RefPtr<adw::SpringParams>>::get () const -> Value<RefPtr<adw::SpringParams>>::CppType
+  Value<RefPtr<adw::spring_params>>::get () const -> Value<RefPtr<adw::spring_params>>::CppType
   {
     return glib::wrap (static_cast<CType> (get_boxed ()), true);
   }
@@ -43,13 +43,13 @@ namespace glib
 {
 
   auto
-  wrap (AdwSpringParams* object, bool take_copy) -> glib::RefPtr<adw::SpringParams>
+  wrap (AdwSpringParams* object, bool take_copy) -> glib::RefPtr<adw::spring_params>
   {
     if (take_copy && object)
       adw_spring_params_ref (object);
 
-    return glib::make_refptr_for_instance<adw::SpringParams> (
-        reinterpret_cast<adw::SpringParams*> (object));
+    return glib::make_refptr_for_instance<adw::spring_params> (
+        reinterpret_cast<adw::spring_params*> (object));
   }
 
 } // namespace glib
@@ -58,78 +58,78 @@ namespace adw
 {
 
   auto
-  SpringParams::reference () const -> void
+  spring_params::reference () const -> void
   {
     adw_spring_params_ref (
-        reinterpret_cast<AdwSpringParams*> (const_cast<SpringParams*> (this)));
+        reinterpret_cast<AdwSpringParams*> (const_cast<spring_params*> (this)));
   }
 
   auto
-  SpringParams::unreference () const -> void
+  spring_params::unreference () const -> void
   {
     adw_spring_params_unref (
-        reinterpret_cast<AdwSpringParams*> (const_cast<SpringParams*> (this)));
+        reinterpret_cast<AdwSpringParams*> (const_cast<spring_params*> (this)));
   }
 
   auto
-  SpringParams::gobj () -> AdwSpringParams*
+  spring_params::gobj () -> AdwSpringParams*
   {
     return reinterpret_cast<AdwSpringParams*> (this);
   }
 
   auto
-  SpringParams::gobj () const -> const AdwSpringParams*
+  spring_params::gobj () const -> const AdwSpringParams*
   {
     return reinterpret_cast<const AdwSpringParams*> (this);
   }
 
   auto
-  SpringParams::gobj_copy () const -> AdwSpringParams*
+  spring_params::gobj_copy () const -> AdwSpringParams*
   {
     const auto gobject =
-        reinterpret_cast<AdwSpringParams*> (const_cast<SpringParams*> (this));
+        reinterpret_cast<AdwSpringParams*> (const_cast<spring_params*> (this));
     adw_spring_params_ref (gobject);
     return gobject;
   }
 
   auto
-  SpringParams::create (DampingRatio damping_ratio,
+  spring_params::create (DampingRatio damping_ratio,
                         double mass,
-                        double stiffness) -> glib::RefPtr<SpringParams>
+                        double stiffness) -> glib::RefPtr<spring_params>
   {
     return glib::wrap (
         adw_spring_params_new (damping_ratio.damping_ratio, mass, stiffness));
   }
 
   auto
-  SpringParams::create (Damping damping, double mass, double stiffness) -> glib::RefPtr<SpringParams>
+  spring_params::create (Damping damping, double mass, double stiffness) -> glib::RefPtr<spring_params>
   {
     return glib::wrap (
         adw_spring_params_new_full (damping.damping, mass, stiffness));
   }
 
   auto
-  SpringParams::get_damping () const -> double
+  spring_params::get_damping () const -> double
   {
     return adw_spring_params_get_damping (
         const_cast<AdwSpringParams*> (gobj ()));
   }
 
   auto
-  SpringParams::get_damping_ratio () const -> double
+  spring_params::get_damping_ratio () const -> double
   {
     return adw_spring_params_get_damping_ratio (
         const_cast<AdwSpringParams*> (gobj ()));
   }
 
   auto
-  SpringParams::get_mass () const -> double
+  spring_params::get_mass () const -> double
   {
     return adw_spring_params_get_mass (const_cast<AdwSpringParams*> (gobj ()));
   }
 
   auto
-  SpringParams::get_stiffness () const -> double
+  spring_params::get_stiffness () const -> double
   {
     return adw_spring_params_get_stiffness (
         const_cast<AdwSpringParams*> (gobj ()));

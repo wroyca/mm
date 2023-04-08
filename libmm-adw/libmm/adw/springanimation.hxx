@@ -22,43 +22,43 @@ using AdwSpringAnimationClass = struct _AdwSpringAnimationClass;
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace adw
 {
-  class LIBMM_ADW_SYMEXPORT SpringAnimation_Class;
+  class LIBMM_ADW_SYMEXPORT spring_animation_class;
 }
 #endif
 
 namespace adw
 {
 
-  class LIBMM_ADW_SYMEXPORT SpringAnimation : public Animation
+  class LIBMM_ADW_SYMEXPORT spring_animation : public animation
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   public:
-    using CppObjectType = SpringAnimation;
-    using CppClassType = SpringAnimation_Class;
+    using CppObjectType = spring_animation;
+    using CppClassType = spring_animation_class;
     using BaseObjectType = AdwSpringAnimation;
     using BaseClassType = AdwSpringAnimationClass;
 
-    SpringAnimation (const SpringAnimation&) = delete;
+    spring_animation (const spring_animation&) = delete;
     auto
-    operator= (const SpringAnimation&) -> SpringAnimation& = delete;
+    operator= (const spring_animation&) -> spring_animation& = delete;
 
   private:
-    friend class SpringAnimation_Class;
+    friend class spring_animation_class;
     static CppClassType springanimation_class_;
 
   protected:
-    explicit SpringAnimation (const glib::ConstructParams& construct_params);
-    explicit SpringAnimation (AdwSpringAnimation* castitem);
+    explicit spring_animation (const glib::ConstructParams& construct_params);
+    explicit spring_animation (AdwSpringAnimation* castitem);
 
 #endif
 
   public:
-    SpringAnimation (SpringAnimation&& src) noexcept;
+    spring_animation (spring_animation&& src) noexcept;
     auto
-    operator= (SpringAnimation&& src) noexcept -> SpringAnimation&;
+    operator= (spring_animation&& src) noexcept -> spring_animation&;
 
-    ~SpringAnimation () noexcept override;
+    ~spring_animation () noexcept override;
 
     static auto
     get_type () -> GType G_GNUC_CONST;
@@ -85,23 +85,23 @@ namespace adw
     gobj_copy () -> AdwSpringAnimation*;
 
   private:
-    explicit SpringAnimation (gtk::Widget* widget,
+    explicit spring_animation (gtk::Widget* widget,
                               double value_from,
                               double value_to,
-                              const glib::RefPtr<SpringParams>& spring_params,
+                              const glib::RefPtr<spring_params>& spring_params,
                               const glib::RefPtr<AnimationTarget>& target);
 
   protected:
-    SpringAnimation ();
+    spring_animation ();
 
   public:
     static auto
     create (gtk::Widget* widget,
             double value_from,
             double value_to,
-            const glib::RefPtr<SpringParams>& spring_params,
+            const glib::RefPtr<spring_params>& spring_params,
             const glib::RefPtr<AnimationTarget>& target)
-        -> glib::RefPtr<SpringAnimation>;
+        -> glib::RefPtr<spring_animation>;
 
     auto
     get_clamp () const -> bool;
@@ -116,7 +116,7 @@ namespace adw
     get_initial_velocity () const -> double;
 
     auto
-    get_spring_params () const -> glib::RefPtr<SpringParams>;
+    get_spring_params () const -> glib::RefPtr<spring_params>;
 
     auto
     get_value_from () const -> double;
@@ -137,7 +137,7 @@ namespace adw
     set_initial_velocity (double velocity) -> void;
 
     auto
-    set_spring_params (const glib::RefPtr<SpringParams>& spring_params) -> void;
+    set_spring_params (const glib::RefPtr<spring_params>& spring_params) -> void;
 
     auto
     set_value_from (double epsilon) -> void;
@@ -168,11 +168,11 @@ namespace adw
 
     auto
     property_spring_params ()
-        -> glib::PropertyProxy<glib::RefPtr<SpringParams>>;
+        -> glib::PropertyProxy<glib::RefPtr<spring_params>>;
 
     auto
     property_spring_params () const
-        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<SpringParams>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<spring_params>>;
 
     auto
     property_value_from () -> glib::PropertyProxy<double>;
@@ -200,7 +200,7 @@ namespace glib
 {
 
   auto
-  wrap (AdwSpringAnimation* object, bool take_copy = false) -> glib::RefPtr<adw::SpringAnimation>;
+  wrap (AdwSpringAnimation* object, bool take_copy = false) -> glib::RefPtr<adw::spring_animation>;
 }
 
 #endif

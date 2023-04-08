@@ -14,7 +14,7 @@ int notified;
 static void notify_cb() { notified++; }
 
 static void test_adw_split_button_icon_name(void) {
-  adw::SplitButton button;
+  adw::split_button button;
 
   notified = 0;
   button.property_icon_name().signal_changed().connect(
@@ -48,7 +48,7 @@ static void test_adw_split_button_icon_name(void) {
 }
 
 static void test_adw_split_button_label(void) {
-  adw::SplitButton button;
+  adw::split_button button;
 
   notified = 0;
   button.property_label().signal_changed().connect(sigc::ptr_fun(notify_cb));
@@ -81,7 +81,7 @@ static void test_adw_split_button_label(void) {
 }
 
 static void test_adw_split_button_use_underline(void) {
-  adw::SplitButton button;
+  adw::split_button button;
 
   notified = 0;
   button.property_use_underline().signal_changed().connect(
@@ -103,7 +103,7 @@ static void test_adw_split_button_use_underline(void) {
 }
 
 static void test_adw_split_button_child(void) {
-  adw::SplitButton button;
+  adw::split_button button;
 
   gtk::Button *child1 = new gtk::Button();
   gtk::Button *child2 = new gtk::Button();
@@ -144,7 +144,7 @@ static void test_adw_split_button_child(void) {
 }
 
 static void test_adw_split_button_menu_model(void) {
-  adw::SplitButton button;
+  adw::split_button button;
 
   glib::RefPtr<gio::MenuModel> model1 = gio::Menu::create();
   glib::RefPtr<gio::MenuModel> model2 = gio::Menu::create();
@@ -172,7 +172,7 @@ static void test_adw_split_button_menu_model(void) {
 }
 
 static void test_adw_split_button_popover(void) {
-  adw::SplitButton button;
+  adw::split_button button;
 
   gtk::Popover *popover1 = new gtk::Popover();
   gtk::Popover *popover2 = new gtk::Popover();
@@ -202,7 +202,7 @@ static void test_adw_split_button_popover(void) {
 }
 
 static void test_adw_split_button_direction(void) {
-  adw::SplitButton button;
+  adw::split_button button;
 
   notified = 0;
   button.property_direction().signal_changed().connect(
@@ -224,7 +224,7 @@ static void test_adw_split_button_direction(void) {
 }
 
 static void test_adw_split_button_dropdown_tooltip(void) {
-  adw::SplitButton button;
+  adw::split_button button;
 
   notified = 0;
   button.property_dropdown_tooltip().signal_changed().connect(

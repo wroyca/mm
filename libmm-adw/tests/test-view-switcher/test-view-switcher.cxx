@@ -10,24 +10,24 @@
 static void
 test_adw_view_switcher_policy (void)
 {
-  adw::ViewSwitcher view_switcher;
+  adw::view_switcher view_switcher;
 
   g_assert_true (view_switcher.get_policy () ==
-                 adw::ViewSwitcherPolicy::NARROW);
+                 adw::view_switcher_policy::NARROW);
 
-  view_switcher.set_policy (adw::ViewSwitcherPolicy::WIDE);
-  g_assert_true (view_switcher.get_policy () == adw::ViewSwitcherPolicy::WIDE);
+  view_switcher.set_policy (adw::view_switcher_policy::WIDE);
+  g_assert_true (view_switcher.get_policy () == adw::view_switcher_policy::WIDE);
 
-  view_switcher.set_policy (adw::ViewSwitcherPolicy::NARROW);
+  view_switcher.set_policy (adw::view_switcher_policy::NARROW);
   g_assert_true (view_switcher.get_policy () ==
-                 adw::ViewSwitcherPolicy::NARROW);
+                 adw::view_switcher_policy::NARROW);
 }
 
 static void
 test_adw_view_switcher_stack (void)
 {
-  adw::ViewSwitcher view_switcher;
-  adw::ViewStack* view_stack = gtk::make_managed<adw::ViewStack> ();
+  adw::view_switcher view_switcher;
+  adw::view_stack* view_stack = gtk::make_managed<adw::view_stack> ();
 
   g_assert_true (view_switcher.get_stack () == nullptr);
 

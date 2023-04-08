@@ -19,43 +19,43 @@
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace adw
 {
-  class LIBMM_ADW_SYMEXPORT TabPage_Class;
+  class LIBMM_ADW_SYMEXPORT tab_page_class;
 }
 #endif
 
 namespace adw
 {
 
-  class LIBMM_ADW_SYMEXPORT TabPage : public glib::Object
+  class LIBMM_ADW_SYMEXPORT tab_page : public glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   public:
-    using CppObjectType = TabPage;
-    using CppClassType = TabPage_Class;
+    using CppObjectType = tab_page;
+    using CppClassType = tab_page_class;
     using BaseObjectType = AdwTabPage;
     using BaseClassType = AdwTabPageClass;
 
-    TabPage (const TabPage&) = delete;
+    tab_page (const tab_page&) = delete;
     auto
-    operator= (const TabPage&) -> TabPage& = delete;
+    operator= (const tab_page&) -> tab_page& = delete;
 
   private:
-    friend class TabPage_Class;
+    friend class tab_page_class;
     static CppClassType tabpage_class_;
 
   protected:
-    explicit TabPage (const glib::ConstructParams& construct_params);
-    explicit TabPage (AdwTabPage* castitem);
+    explicit tab_page (const glib::ConstructParams& construct_params);
+    explicit tab_page (AdwTabPage* castitem);
 
 #endif
 
   public:
-    TabPage (TabPage&& src) noexcept;
+    tab_page (tab_page&& src) noexcept;
     auto
-    operator= (TabPage&& src) noexcept -> TabPage&;
+    operator= (tab_page&& src) noexcept -> tab_page&;
 
-    ~TabPage () noexcept override;
+    ~tab_page () noexcept override;
 
     static auto
     get_type () -> GType G_GNUC_CONST;
@@ -83,11 +83,11 @@ namespace adw
 
   private:
   protected:
-    TabPage ();
+    tab_page ();
 
   public:
     static auto
-    create () -> glib::RefPtr<TabPage>;
+    create () -> glib::RefPtr<tab_page>;
 
     auto
     get_child () const -> gtk::Widget*;
@@ -111,7 +111,7 @@ namespace adw
     get_needs_attention () const -> bool;
 
     auto
-    get_parent () const -> glib::RefPtr<TabPage>;
+    get_parent () const -> glib::RefPtr<tab_page>;
 
     auto
     get_pinned () const -> bool;
@@ -194,7 +194,7 @@ namespace adw
 
     auto
     property_parent () const
-        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<TabPage>>;
+        -> glib::PropertyProxy_ReadOnly<glib::RefPtr<tab_page>>;
 
     auto
     property_pinned () const -> glib::PropertyProxy_ReadOnly<bool>;
@@ -225,7 +225,7 @@ namespace glib
 {
 
   auto
-  wrap (AdwTabPage* object, bool take_copy = false) -> glib::RefPtr<adw::TabPage>;
+  wrap (AdwTabPage* object, bool take_copy = false) -> glib::RefPtr<adw::tab_page>;
 }
 
 #endif

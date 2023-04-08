@@ -10,17 +10,17 @@
 namespace adw
 {
 
-  class LIBMM_ADW_SYMEXPORT Animation_Class : public glib::Class
+  class LIBMM_ADW_SYMEXPORT animation_class : public glib::Class
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-    using CppObjectType = Animation;
+    using CppObjectType = animation;
     using BaseObjectType = AdwAnimation;
     using BaseClassType = AdwAnimationClass;
     using CppClassParent = glib::Object_Class;
     using BaseClassParent = GObjectClass;
 
-    friend class Animation;
+    friend class animation;
 #endif
 
     auto

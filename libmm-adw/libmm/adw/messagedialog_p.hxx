@@ -10,17 +10,17 @@
 namespace adw
 {
 
-  class LIBMM_ADW_SYMEXPORT MessageDialog_Class : public glib::Class
+  class LIBMM_ADW_SYMEXPORT message_dialog_class : public glib::Class
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-    using CppObjectType = MessageDialog;
+    using CppObjectType = message_dialog;
     using BaseObjectType = AdwMessageDialog;
     using BaseClassType = AdwMessageDialogClass;
     using CppClassParent = gtk::Window_Class;
     using BaseClassParent = GtkWindowClass;
 
-    friend class MessageDialog;
+    friend class message_dialog;
 #endif
 
     auto

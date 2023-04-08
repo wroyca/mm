@@ -20,7 +20,7 @@ notify_cb ()
 static void
 test_adw_flap_flap (void)
 {
-  adw::Flap flap;
+  adw::flap flap;
   gtk::Widget* widget = nullptr;
 
   notified = 0;
@@ -45,7 +45,7 @@ test_adw_flap_flap (void)
 static void
 test_adw_flap_separator (void)
 {
-  adw::Flap flap;
+  adw::flap flap;
   gtk::Widget* widget = nullptr;
 
   notified = 0;
@@ -71,7 +71,7 @@ test_adw_flap_separator (void)
 static void
 test_adw_flap_flap_position (void)
 {
-  adw::Flap flap;
+  adw::flap flap;
 
   notified = 0;
   flap.property_flap_position ().signal_changed ().connect (
@@ -95,7 +95,7 @@ test_adw_flap_flap_position (void)
 static void
 test_adw_flap_reveal_flap (void)
 {
-  adw::Flap flap;
+  adw::flap flap;
 
   flap.set_flap (gtk::make_managed<gtk::Button> ());
 
@@ -121,7 +121,7 @@ test_adw_flap_reveal_flap (void)
 static void
 test_adw_flap_reveal_progress (void)
 {
-  adw::Flap flap;
+  adw::flap flap;
 
   notified = 0;
   flap.property_reveal_progress ().signal_changed ().connect (
@@ -142,7 +142,7 @@ test_adw_flap_reveal_progress (void)
 static void
 test_adw_flap_fold_policy (void)
 {
-  adw::Flap flap;
+  adw::flap flap;
 
   notified = 0;
   flap.property_fold_policy ().signal_changed ().connect (
@@ -168,7 +168,7 @@ test_adw_flap_fold_policy (void)
 static void
 test_adw_flap_fold_duration (void)
 {
-  adw::Flap flap;
+  adw::flap flap;
 
   notified = 0;
   flap.property_fold_duration ().signal_changed ().connect (
@@ -192,7 +192,7 @@ test_adw_flap_fold_duration (void)
 static void
 test_adw_flap_folded (void)
 {
-  adw::Flap flap;
+  adw::flap flap;
 
   flap.set_flap (gtk::make_managed<gtk::Button> ());
   flap.set_fold_policy (adw::FlapFoldPolicy::NEVER);
@@ -211,7 +211,7 @@ test_adw_flap_folded (void)
 static void
 test_adw_flap_locked (void)
 {
-  adw::Flap flap;
+  adw::flap flap;
 
   flap.set_flap (gtk::make_managed<gtk::Button> ());
 
@@ -236,7 +236,7 @@ test_adw_flap_locked (void)
 static void
 test_adw_flap_transition_type (void)
 {
-  adw::Flap flap;
+  adw::flap flap;
 
   notified = 0;
   flap.property_transition_type ().signal_changed ().connect (
@@ -262,7 +262,7 @@ test_adw_flap_transition_type (void)
 static void
 test_adw_flap_modal (void)
 {
-  adw::Flap flap;
+  adw::flap flap;
 
   flap.set_flap (gtk::make_managed<gtk::Button> ());
 
@@ -287,7 +287,7 @@ test_adw_flap_modal (void)
 static void
 test_adw_flap_swipe_to_open (void)
 {
-  adw::Flap flap;
+  adw::flap flap;
 
   flap.set_flap (gtk::make_managed<gtk::Button> ());
 
@@ -313,7 +313,7 @@ test_adw_flap_swipe_to_open (void)
 static void
 test_adw_flap_swipe_to_close (void)
 {
-  adw::Flap flap;
+  adw::flap flap;
 
   flap.set_flap (gtk::make_managed<gtk::Button> ());
 

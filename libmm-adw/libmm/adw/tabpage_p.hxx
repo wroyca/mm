@@ -10,15 +10,15 @@
 namespace adw
 {
 
-  class LIBMM_ADW_SYMEXPORT TabPage_Class : public glib::Class
+  class LIBMM_ADW_SYMEXPORT tab_page_class : public glib::Class
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-    using CppObjectType = TabPage;
+    using CppObjectType = tab_page;
     using BaseObjectType = AdwTabPage;
     using CppClassParent = glib::Object_Class;
 
-    friend class TabPage;
+    friend class tab_page;
 #endif
 
     auto

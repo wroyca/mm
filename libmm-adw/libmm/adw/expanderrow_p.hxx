@@ -10,17 +10,17 @@
 namespace adw
 {
 
-  class LIBMM_ADW_SYMEXPORT ExpanderRow_Class : public glib::Class
+  class LIBMM_ADW_SYMEXPORT expander_row_class : public glib::Class
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-    using CppObjectType = ExpanderRow;
+    using CppObjectType = expander_row;
     using BaseObjectType = AdwExpanderRow;
     using BaseClassType = AdwExpanderRowClass;
-    using CppClassParent = adw::PreferencesRow_Class;
+    using CppClassParent = adw::preferences_row_class;
     using BaseClassParent = AdwPreferencesRowClass;
 
-    friend class ExpanderRow;
+    friend class expander_row;
 #endif
 
     auto

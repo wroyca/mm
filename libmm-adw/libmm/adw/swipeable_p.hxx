@@ -10,15 +10,15 @@
 namespace adw
 {
 
-  class LIBMM_ADW_SYMEXPORT Swipeable_Class : public glib::Interface_Class
+  class LIBMM_ADW_SYMEXPORT swipeable_class : public glib::Interface_Class
   {
   public:
-    using CppObjectType = Swipeable;
+    using CppObjectType = swipeable;
     using BaseObjectType = AdwSwipeable;
     using BaseClassType = AdwSwipeableInterface;
     using CppClassParent = glib::Interface_Class;
 
-    friend class Swipeable;
+    friend class swipeable;
 
     auto
     init () -> const glib::Interface_Class&;

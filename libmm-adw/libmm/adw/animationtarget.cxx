@@ -34,11 +34,11 @@ namespace adw
 {
 
   auto
-  AnimationTarget_Class::init () -> const glib::Class&
+  animation_target_class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
-      class_init_func_ = &AnimationTarget_Class::class_init_function;
+      class_init_func_ = &animation_target_class::class_init_function;
 
       register_derived_type (adw_animation_target_get_type ());
     }
@@ -47,14 +47,14 @@ namespace adw
   }
 
   auto
-  AnimationTarget_Class::class_init_function (void* g_class, void* class_data) -> void
+  animation_target_class::class_init_function (void* g_class, void* class_data) -> void
   {
     const auto klass = static_cast<BaseClassType*> (g_class);
     CppClassParent::class_init_function (klass, class_data);
   }
 
   auto
-  AnimationTarget_Class::wrap_new (GObject* object) -> glib::ObjectBase*
+  animation_target_class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
     return new AnimationTarget ((AdwAnimationTarget*) object);
   }

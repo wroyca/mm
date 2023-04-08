@@ -19,43 +19,43 @@
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 namespace adw
 {
-  class LIBMM_ADW_SYMEXPORT EnumListItem_Class;
+  class LIBMM_ADW_SYMEXPORT enum_list_item_class;
 }
 #endif
 
 namespace adw
 {
 
-  class LIBMM_ADW_SYMEXPORT EnumListItem : public glib::Object
+  class LIBMM_ADW_SYMEXPORT enum_list_item : public glib::Object
   {
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   public:
-    using CppObjectType = EnumListItem;
-    using CppClassType = EnumListItem_Class;
+    using CppObjectType = enum_list_item;
+    using CppClassType = enum_list_item_class;
     using BaseObjectType = AdwEnumListItem;
     using BaseClassType = AdwEnumListItemClass;
 
-    EnumListItem (const EnumListItem&) = delete;
+    enum_list_item (const enum_list_item&) = delete;
     auto
-    operator= (const EnumListItem&) -> EnumListItem& = delete;
+    operator= (const enum_list_item&) -> enum_list_item& = delete;
 
   private:
-    friend class EnumListItem_Class;
+    friend class enum_list_item_class;
     static CppClassType enumlistitem_class_;
 
   protected:
-    explicit EnumListItem (const glib::ConstructParams& construct_params);
-    explicit EnumListItem (AdwEnumListItem* castitem);
+    explicit enum_list_item (const glib::ConstructParams& construct_params);
+    explicit enum_list_item (AdwEnumListItem* castitem);
 
 #endif
 
   public:
-    EnumListItem (EnumListItem&& src) noexcept;
+    enum_list_item (enum_list_item&& src) noexcept;
     auto
-    operator= (EnumListItem&& src) noexcept -> EnumListItem&;
+    operator= (enum_list_item&& src) noexcept -> enum_list_item&;
 
-    ~EnumListItem () noexcept override;
+    ~enum_list_item () noexcept override;
 
     static auto
     get_type () -> GType G_GNUC_CONST;
@@ -83,11 +83,11 @@ namespace adw
 
   private:
   protected:
-    EnumListItem ();
+    enum_list_item ();
 
   public:
     static auto
-    create () -> glib::RefPtr<EnumListItem>;
+    create () -> glib::RefPtr<enum_list_item>;
 
     auto
     get_name () const -> glib::ustring;
@@ -118,7 +118,7 @@ namespace glib
 {
 
   auto
-  wrap (AdwEnumListItem* object, bool take_copy = false) -> glib::RefPtr<adw::EnumListItem>;
+  wrap (AdwEnumListItem* object, bool take_copy = false) -> glib::RefPtr<adw::enum_list_item>;
 }
 
 #endif

@@ -22,10 +22,10 @@ namespace glib
 {
 
   auto
-  wrap (AdwEnumListModel* object, bool take_copy) -> glib::RefPtr<adw::EnumListModel>
+  wrap (AdwEnumListModel* object, bool take_copy) -> glib::RefPtr<adw::enum_list_model>
   {
-    return glib::make_refptr_for_instance<adw::EnumListModel> (
-        dynamic_cast<adw::EnumListModel*> (
+    return glib::make_refptr_for_instance<adw::enum_list_model> (
+        dynamic_cast<adw::enum_list_model*> (
             glib::wrap_auto ((GObject*) (object), take_copy)));
   }
 
@@ -35,7 +35,7 @@ namespace adw
 {
 
   auto
-  EnumListModel_Class::init () -> const glib::Class&
+  enum_list_model_class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -46,65 +46,65 @@ namespace adw
   }
 
   auto
-  EnumListModel_Class::wrap_new (GObject* object) -> glib::ObjectBase*
+  enum_list_model_class::wrap_new (GObject* object) -> glib::ObjectBase*
   {
-    return new EnumListModel ((AdwEnumListModel*) object);
+    return new enum_list_model ((AdwEnumListModel*) object);
   }
 
   auto
-  EnumListModel::gobj_copy () -> AdwEnumListModel*
+  enum_list_model::gobj_copy () -> AdwEnumListModel*
   {
     reference ();
     return gobj ();
   }
 
-  EnumListModel::EnumListModel (const glib::ConstructParams& construct_params)
+  enum_list_model::enum_list_model (const glib::ConstructParams& construct_params)
     : glib::Object (construct_params)
   {
   }
 
-  EnumListModel::EnumListModel (AdwEnumListModel* castitem)
+  enum_list_model::enum_list_model (AdwEnumListModel* castitem)
     : glib::Object ((GObject*) (castitem))
   {
   }
 
-  EnumListModel::EnumListModel (EnumListModel&& src) noexcept
+  enum_list_model::enum_list_model (enum_list_model&& src) noexcept
     : glib::Object (std::move (src)),
       gio::ListModel (std::move (src))
   {
   }
 
   auto
-  EnumListModel::operator= (EnumListModel&& src) noexcept -> EnumListModel&
+  enum_list_model::operator= (enum_list_model&& src) noexcept -> enum_list_model&
   {
     glib::Object::operator= (std::move (src));
     gio::ListModel::operator= (std::move (src));
     return *this;
   }
 
-  EnumListModel::~EnumListModel () noexcept {}
+  enum_list_model::~enum_list_model () noexcept {}
 
-  EnumListModel::CppClassType EnumListModel::enumlistmodel_class_;
+  enum_list_model::CppClassType enum_list_model::enumlistmodel_class_;
 
   auto
-  EnumListModel::get_type () -> GType
+  enum_list_model::get_type () -> GType
   {
     return enumlistmodel_class_.init ().get_type ();
   }
 
   auto
-  EnumListModel::get_base_type () -> GType
+  enum_list_model::get_base_type () -> GType
   {
     return adw_enum_list_model_get_type ();
   }
 
-  EnumListModel::EnumListModel ()
+  enum_list_model::enum_list_model ()
     : glib::ObjectBase (nullptr),
       glib::Object (glib::ConstructParams (enumlistmodel_class_.init ()))
   {
   }
 
-  EnumListModel::EnumListModel (GType enum_type)
+  enum_list_model::enum_list_model (GType enum_type)
     : glib::ObjectBase (nullptr),
       glib::Object (glib::ConstructParams (enumlistmodel_class_.init (),
                                            "enum_type",
@@ -114,14 +114,14 @@ namespace adw
   }
 
   auto
-  EnumListModel::create (GType enum_type) -> glib::RefPtr<EnumListModel>
+  enum_list_model::create (GType enum_type) -> glib::RefPtr<enum_list_model>
   {
-    return glib::make_refptr_for_instance<EnumListModel> (
-        new EnumListModel (enum_type));
+    return glib::make_refptr_for_instance<enum_list_model> (
+        new enum_list_model (enum_type));
   }
 
   auto
-  EnumListModel::find_position (int value) const -> guint
+  enum_list_model::find_position (int value) const -> guint
   {
     return adw_enum_list_model_find_position (
         const_cast<AdwEnumListModel*> (gobj ()),
@@ -129,14 +129,14 @@ namespace adw
   }
 
   auto
-  EnumListModel::get_enum_type () const -> GType
+  enum_list_model::get_enum_type () const -> GType
   {
     return adw_enum_list_model_get_enum_type (
         const_cast<AdwEnumListModel*> (gobj ()));
   }
 
   auto
-  EnumListModel::property_enum_type () const -> glib::PropertyProxy_ReadOnly<GType>
+  enum_list_model::property_enum_type () const -> glib::PropertyProxy_ReadOnly<GType>
   {
     return {this, "enum-type"};
   }

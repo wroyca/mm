@@ -10,15 +10,15 @@
 namespace adw
 {
 
-  class LIBMM_ADW_SYMEXPORT PasswordEntryRow_Class : public glib::Class
+  class LIBMM_ADW_SYMEXPORT password_entry_row_class : public glib::Class
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-    using CppObjectType = PasswordEntryRow;
+    using CppObjectType = password_entry_row;
     using BaseObjectType = AdwPasswordEntryRow;
-    using CppClassParent = adw::EntryRow_Class;
+    using CppClassParent = adw::entry_row_class;
 
-    friend class PasswordEntryRow;
+    friend class password_entry_row;
 #endif
 
     auto

@@ -20,9 +20,9 @@ namespace glib
 {
 
   auto
-  wrap (AdwCarouselIndicatorLines* object, bool take_copy) -> adw::CarouselIndicatorLines*
+  wrap (AdwCarouselIndicatorLines* object, bool take_copy) -> adw::carousel_indicator_lines*
   {
-    return dynamic_cast<adw::CarouselIndicatorLines*> (
+    return dynamic_cast<adw::carousel_indicator_lines*> (
         glib::wrap_auto ((GObject*) (object), take_copy));
   }
 
@@ -32,7 +32,7 @@ namespace adw
 {
 
   auto
-  CarouselIndicatorLines_Class::init () -> const glib::Class&
+  carousel_indicator_lines_class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -43,60 +43,60 @@ namespace adw
   }
 
   auto
-  CarouselIndicatorLines_Class::wrap_new (GObject* o) -> glib::ObjectBase*
+  carousel_indicator_lines_class::wrap_new (GObject* o) -> glib::ObjectBase*
   {
     return manage (
-        new CarouselIndicatorLines ((AdwCarouselIndicatorLines*) (o)));
+        new carousel_indicator_lines ((AdwCarouselIndicatorLines*) (o)));
   }
 
-  CarouselIndicatorLines::CarouselIndicatorLines (
+  carousel_indicator_lines::carousel_indicator_lines (
       const glib::ConstructParams& construct_params)
     : gtk::Widget (construct_params)
   {
   }
 
-  CarouselIndicatorLines::CarouselIndicatorLines (
+  carousel_indicator_lines::carousel_indicator_lines (
       AdwCarouselIndicatorLines* castitem)
     : gtk::Widget ((GtkWidget*) (castitem))
   {
   }
 
-  CarouselIndicatorLines::CarouselIndicatorLines (
-      CarouselIndicatorLines&& src) noexcept
+  carousel_indicator_lines::carousel_indicator_lines (
+      carousel_indicator_lines&& src) noexcept
     : gtk::Widget (std::move (src)),
       gtk::Orientable (std::move (src))
   {
   }
 
   auto
-  CarouselIndicatorLines::operator= (CarouselIndicatorLines&& src) noexcept -> CarouselIndicatorLines&
+  carousel_indicator_lines::operator= (carousel_indicator_lines&& src) noexcept -> carousel_indicator_lines&
   {
     gtk::Widget::operator= (std::move (src));
     gtk::Orientable::operator= (std::move (src));
     return *this;
   }
 
-  CarouselIndicatorLines::~CarouselIndicatorLines () noexcept
+  carousel_indicator_lines::~carousel_indicator_lines () noexcept
   {
     destroy_ ();
   }
 
-  CarouselIndicatorLines::CppClassType
-      CarouselIndicatorLines::carouselindicatorlines_class_;
+  carousel_indicator_lines::CppClassType
+      carousel_indicator_lines::carouselindicatorlines_class_;
 
   auto
-  CarouselIndicatorLines::get_type () -> GType
+  carousel_indicator_lines::get_type () -> GType
   {
     return carouselindicatorlines_class_.init ().get_type ();
   }
 
   auto
-  CarouselIndicatorLines::get_base_type () -> GType
+  carousel_indicator_lines::get_base_type () -> GType
   {
     return adw_carousel_indicator_lines_get_type ();
   }
 
-  CarouselIndicatorLines::CarouselIndicatorLines ()
+  carousel_indicator_lines::carousel_indicator_lines ()
     : glib::ObjectBase (nullptr),
       gtk::Widget (
           glib::ConstructParams (carouselindicatorlines_class_.init ()))
@@ -104,14 +104,14 @@ namespace adw
   }
 
   auto
-  CarouselIndicatorLines::get_carousel () const -> adw::Carousel*
+  carousel_indicator_lines::get_carousel () const -> adw::carousel*
   {
     return glib::wrap (adw_carousel_indicator_lines_get_carousel (
         const_cast<AdwCarouselIndicatorLines*> (gobj ())));
   }
 
   auto
-  CarouselIndicatorLines::set_carousel (adw::Carousel* carousel) -> void
+  carousel_indicator_lines::set_carousel (adw::carousel* carousel) -> void
   {
     adw_carousel_indicator_lines_set_carousel (
         gobj (),
@@ -119,13 +119,13 @@ namespace adw
   }
 
   auto
-  CarouselIndicatorLines::property_carousel () -> glib::PropertyProxy<adw::Carousel*>
+  carousel_indicator_lines::property_carousel () -> glib::PropertyProxy<adw::carousel*>
   {
     return {this, "carousel"};
   }
 
   auto
-  CarouselIndicatorLines::property_carousel () const -> glib::PropertyProxy_ReadOnly<adw::Carousel*>
+  carousel_indicator_lines::property_carousel () const -> glib::PropertyProxy_ReadOnly<adw::carousel*>
   {
     return {this, "carousel"};
   }

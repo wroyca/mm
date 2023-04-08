@@ -10,15 +10,15 @@
 namespace adw
 {
 
-  class LIBMM_ADW_SYMEXPORT TimedAnimation_Class : public glib::Class
+  class LIBMM_ADW_SYMEXPORT timed_animation_class : public glib::Class
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-    using CppObjectType = TimedAnimation;
+    using CppObjectType = timed_animation;
     using BaseObjectType = AdwTimedAnimation;
-    using CppClassParent = Animation_Class;
+    using CppClassParent = animation_class;
 
-    friend class TimedAnimation;
+    friend class timed_animation;
 #endif
 
     auto

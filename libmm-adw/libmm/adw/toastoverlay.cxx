@@ -20,9 +20,9 @@ namespace glib
 {
 
   auto
-  wrap (AdwToastOverlay* object, bool take_copy) -> adw::ToastOverlay*
+  wrap (AdwToastOverlay* object, bool take_copy) -> adw::toast_overlay*
   {
-    return dynamic_cast<adw::ToastOverlay*> (
+    return dynamic_cast<adw::toast_overlay*> (
         glib::wrap_auto ((GObject*) (object), take_copy));
   }
 
@@ -32,7 +32,7 @@ namespace adw
 {
 
   auto
-  ToastOverlay_Class::init () -> const glib::Class&
+  toast_overlay_class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -43,85 +43,85 @@ namespace adw
   }
 
   auto
-  ToastOverlay_Class::wrap_new (GObject* o) -> glib::ObjectBase*
+  toast_overlay_class::wrap_new (GObject* o) -> glib::ObjectBase*
   {
-    return manage (new ToastOverlay ((AdwToastOverlay*) (o)));
+    return manage (new toast_overlay ((AdwToastOverlay*) (o)));
   }
 
-  ToastOverlay::ToastOverlay (const glib::ConstructParams& construct_params)
+  toast_overlay::toast_overlay (const glib::ConstructParams& construct_params)
     : gtk::Widget (construct_params)
   {
   }
 
-  ToastOverlay::ToastOverlay (AdwToastOverlay* castitem)
+  toast_overlay::toast_overlay (AdwToastOverlay* castitem)
     : gtk::Widget ((GtkWidget*) (castitem))
   {
   }
 
-  ToastOverlay::ToastOverlay (ToastOverlay&& src) noexcept
+  toast_overlay::toast_overlay (toast_overlay&& src) noexcept
     : gtk::Widget (std::move (src))
   {
   }
 
   auto
-  ToastOverlay::operator= (ToastOverlay&& src) noexcept -> ToastOverlay&
+  toast_overlay::operator= (toast_overlay&& src) noexcept -> toast_overlay&
   {
     gtk::Widget::operator= (std::move (src));
     return *this;
   }
 
-  ToastOverlay::~ToastOverlay () noexcept
+  toast_overlay::~toast_overlay () noexcept
   {
     destroy_ ();
   }
 
-  ToastOverlay::CppClassType ToastOverlay::toastoverlay_class_;
+  toast_overlay::CppClassType toast_overlay::toastoverlay_class_;
 
   auto
-  ToastOverlay::get_type () -> GType
+  toast_overlay::get_type () -> GType
   {
     return toastoverlay_class_.init ().get_type ();
   }
 
   auto
-  ToastOverlay::get_base_type () -> GType
+  toast_overlay::get_base_type () -> GType
   {
     return adw_toast_overlay_get_type ();
   }
 
-  ToastOverlay::ToastOverlay ()
+  toast_overlay::toast_overlay ()
     : glib::ObjectBase (nullptr),
       gtk::Widget (glib::ConstructParams (toastoverlay_class_.init ()))
   {
   }
 
   auto
-  ToastOverlay::add_toast (Toast* toast) -> void
+  toast_overlay::add_toast (toast* toast) -> void
   {
     adw_toast_overlay_add_toast (gobj (), (AdwToast*) glib::unwrap (toast));
   }
 
   auto
-  ToastOverlay::get_child () const -> gtk::Widget*
+  toast_overlay::get_child () const -> gtk::Widget*
   {
     return glib::wrap (
         adw_toast_overlay_get_child (const_cast<AdwToastOverlay*> (gobj ())));
   }
 
   auto
-  ToastOverlay::set_child (gtk::Widget* child) -> void
+  toast_overlay::set_child (gtk::Widget* child) -> void
   {
     adw_toast_overlay_set_child (gobj (), (GtkWidget*) glib::unwrap (child));
   }
 
   auto
-  ToastOverlay::property_child () -> glib::PropertyProxy<gtk::Widget*>
+  toast_overlay::property_child () -> glib::PropertyProxy<gtk::Widget*>
   {
     return {this, "child"};
   }
 
   auto
-  ToastOverlay::property_child () const -> glib::PropertyProxy_ReadOnly<gtk::Widget*>
+  toast_overlay::property_child () const -> glib::PropertyProxy_ReadOnly<gtk::Widget*>
   {
     return {this, "child"};
   }

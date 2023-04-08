@@ -31,9 +31,9 @@ namespace glib
 {
 
   auto
-  wrap (AdwSplitButton* object, bool take_copy) -> adw::SplitButton*
+  wrap (AdwSplitButton* object, bool take_copy) -> adw::split_button*
   {
-    return dynamic_cast<adw::SplitButton*> (
+    return dynamic_cast<adw::split_button*> (
         glib::wrap_auto ((GObject*) (object), take_copy));
   }
 
@@ -43,7 +43,7 @@ namespace adw
 {
 
   auto
-  SplitButton_Class::init () -> const glib::Class&
+  split_button_class::init () -> const glib::Class&
   {
     if (!gtype_)
     {
@@ -54,76 +54,76 @@ namespace adw
   }
 
   auto
-  SplitButton_Class::wrap_new (GObject* o) -> glib::ObjectBase*
+  split_button_class::wrap_new (GObject* o) -> glib::ObjectBase*
   {
-    return manage (new SplitButton ((AdwSplitButton*) (o)));
+    return manage (new split_button ((AdwSplitButton*) (o)));
   }
 
-  SplitButton::SplitButton (const glib::ConstructParams& construct_params)
+  split_button::split_button (const glib::ConstructParams& construct_params)
     : gtk::Widget (construct_params)
   {
   }
 
-  SplitButton::SplitButton (AdwSplitButton* castitem)
+  split_button::split_button (AdwSplitButton* castitem)
     : gtk::Widget ((GtkWidget*) (castitem))
   {
   }
 
-  SplitButton::SplitButton (SplitButton&& src) noexcept
+  split_button::split_button (split_button&& src) noexcept
     : gtk::Widget (std::move (src)),
       gtk::Actionable (std::move (src))
   {
   }
 
   auto
-  SplitButton::operator= (SplitButton&& src) noexcept -> SplitButton&
+  split_button::operator= (split_button&& src) noexcept -> split_button&
   {
     gtk::Widget::operator= (std::move (src));
     gtk::Actionable::operator= (std::move (src));
     return *this;
   }
 
-  SplitButton::~SplitButton () noexcept
+  split_button::~split_button () noexcept
   {
     destroy_ ();
   }
 
-  SplitButton::CppClassType SplitButton::splitbutton_class_;
+  split_button::CppClassType split_button::splitbutton_class_;
 
   auto
-  SplitButton::get_type () -> GType
+  split_button::get_type () -> GType
   {
     return splitbutton_class_.init ().get_type ();
   }
 
   auto
-  SplitButton::get_base_type () -> GType
+  split_button::get_base_type () -> GType
   {
     return adw_split_button_get_type ();
   }
 
-  SplitButton::SplitButton ()
+  split_button::split_button ()
     : glib::ObjectBase (nullptr),
       gtk::Widget (glib::ConstructParams (splitbutton_class_.init ()))
   {
   }
 
   auto
-  SplitButton::get_child () const -> gtk::Widget*
+  split_button::get_child () const -> gtk::Widget*
   {
     return glib::wrap (
         adw_split_button_get_child (const_cast<AdwSplitButton*> (gobj ())));
   }
 
   auto
-  SplitButton::get_direction () const -> gtk::ArrowType
+  split_button::get_direction () const -> gtk::ArrowType
   {
     return static_cast<gtk::ArrowType> (
         adw_split_button_get_direction (const_cast<AdwSplitButton*> (gobj ())));
   }
 
   auto
-  SplitButton::get_dropdown_tooltip () const -> glib::ustring
+  split_button::get_dropdown_tooltip () const -> glib::ustring
   {
     return glib::convert_const_gchar_ptr_to_ustring (
         adw_split_button_get_dropdown_tooltip (
@@ -131,21 +131,21 @@ namespace adw
   }
 
   auto
-  SplitButton::get_icon_name () const -> glib::ustring
+  split_button::get_icon_name () const -> glib::ustring
   {
     return glib::convert_const_gchar_ptr_to_ustring (
         adw_split_button_get_icon_name (const_cast<AdwSplitButton*> (gobj ())));
   }
 
   auto
-  SplitButton::get_label () const -> glib::ustring
+  split_button::get_label () const -> glib::ustring
   {
     return glib::convert_const_gchar_ptr_to_ustring (
         adw_split_button_get_label (const_cast<AdwSplitButton*> (gobj ())));
   }
 
   auto
-  SplitButton::get_menu_model () const -> glib::RefPtr<gio::MenuModel>
+  split_button::get_menu_model () const -> glib::RefPtr<gio::MenuModel>
   {
     auto retvalue = glib::wrap (adw_split_button_get_menu_model (
         const_cast<AdwSplitButton*> (gobj ())));
@@ -155,102 +155,102 @@ namespace adw
   }
 
   auto
-  SplitButton::get_popover () const -> gtk::Popover*
+  split_button::get_popover () const -> gtk::Popover*
   {
     return glib::wrap (
         adw_split_button_get_popover (const_cast<AdwSplitButton*> (gobj ())));
   }
 
   auto
-  SplitButton::get_use_underline () const -> bool
+  split_button::get_use_underline () const -> bool
   {
     return adw_split_button_get_use_underline (
         const_cast<AdwSplitButton*> (gobj ()));
   }
 
   auto
-  SplitButton::popdown () -> void
+  split_button::popdown () -> void
   {
     adw_split_button_popdown (gobj ());
   }
 
   auto
-  SplitButton::popup () -> void
+  split_button::popup () -> void
   {
     adw_split_button_popup (gobj ());
   }
 
   auto
-  SplitButton::set_child (gtk::Widget* child) -> void
+  split_button::set_child (gtk::Widget* child) -> void
   {
     adw_split_button_set_child (gobj (), (GtkWidget*) glib::unwrap (child));
   }
 
   auto
-  SplitButton::set_direction (gtk::ArrowType direction) -> void
+  split_button::set_direction (gtk::ArrowType direction) -> void
   {
     adw_split_button_set_direction (gobj (),
                                     static_cast<GtkArrowType> (direction));
   }
 
   auto
-  SplitButton::set_dropdown_tooltip (const glib::ustring& dropdown_tooltip) -> void
+  split_button::set_dropdown_tooltip (const glib::ustring& dropdown_tooltip) -> void
   {
     adw_split_button_set_dropdown_tooltip (gobj (), dropdown_tooltip.c_str ());
   }
 
   auto
-  SplitButton::set_icon_name (const glib::ustring& icon_name) -> void
+  split_button::set_icon_name (const glib::ustring& icon_name) -> void
   {
     adw_split_button_set_icon_name (gobj (), icon_name.c_str ());
   }
 
   auto
-  SplitButton::set_label (const glib::ustring& label) -> void
+  split_button::set_label (const glib::ustring& label) -> void
   {
     adw_split_button_set_label (gobj (), label.c_str ());
   }
 
   auto
-  SplitButton::set_menu_model (const glib::RefPtr<gio::MenuModel>& menu_model) -> void
+  split_button::set_menu_model (const glib::RefPtr<gio::MenuModel>& menu_model) -> void
   {
     adw_split_button_set_menu_model (gobj (), glib::unwrap (menu_model));
   }
 
   auto
-  SplitButton::set_popover (gtk::Popover* popover) -> void
+  split_button::set_popover (gtk::Popover* popover) -> void
   {
     adw_split_button_set_popover (gobj (),
                                   (GtkPopover*) glib::unwrap (popover));
   }
 
   auto
-  SplitButton::set_use_underline (bool use_underline) -> void
+  split_button::set_use_underline (bool use_underline) -> void
   {
     adw_split_button_set_use_underline (gobj (),
                                         static_cast<int> (use_underline));
   }
 
   auto
-  SplitButton::signal_activate () -> glib::SignalProxy<void ()>
+  split_button::signal_activate () -> glib::SignalProxy<void ()>
   {
     return {this, &SplitButton_signal_activate_info};
   }
 
   auto
-  SplitButton::signal_clicked () -> glib::SignalProxy<void ()>
+  split_button::signal_clicked () -> glib::SignalProxy<void ()>
   {
     return {this, &SplitButton_signal_clicked_info};
   }
 
   auto
-  SplitButton::property_child () -> glib::PropertyProxy<gtk::Widget*>
+  split_button::property_child () -> glib::PropertyProxy<gtk::Widget*>
   {
     return {this, "child"};
   }
 
   auto
-  SplitButton::property_child () const -> glib::PropertyProxy_ReadOnly<gtk::Widget*>
+  split_button::property_child () const -> glib::PropertyProxy_ReadOnly<gtk::Widget*>
   {
     return {this, "child"};
   }
@@ -261,25 +261,25 @@ namespace adw
       "There is no suitable template specialization of glib::Value<>.");
 
   auto
-  SplitButton::property_direction () -> glib::PropertyProxy<gtk::ArrowType>
+  split_button::property_direction () -> glib::PropertyProxy<gtk::ArrowType>
   {
     return {this, "direction"};
   }
 
   auto
-  SplitButton::property_direction () const -> glib::PropertyProxy_ReadOnly<gtk::ArrowType>
+  split_button::property_direction () const -> glib::PropertyProxy_ReadOnly<gtk::ArrowType>
   {
     return {this, "direction"};
   }
 
   auto
-  SplitButton::property_dropdown_tooltip () -> glib::PropertyProxy<glib::ustring>
+  split_button::property_dropdown_tooltip () -> glib::PropertyProxy<glib::ustring>
   {
     return {this, "dropdown-tooltip"};
   }
 
   auto
-  SplitButton::property_dropdown_tooltip () const -> glib::PropertyProxy_ReadOnly<glib::ustring>
+  split_button::property_dropdown_tooltip () const -> glib::PropertyProxy_ReadOnly<glib::ustring>
   {
     return {
       this,
@@ -288,31 +288,31 @@ namespace adw
   }
 
   auto
-  SplitButton::property_icon_name () -> glib::PropertyProxy<glib::ustring>
+  split_button::property_icon_name () -> glib::PropertyProxy<glib::ustring>
   {
     return {this, "icon-name"};
   }
 
   auto
-  SplitButton::property_icon_name () const -> glib::PropertyProxy_ReadOnly<glib::ustring>
+  split_button::property_icon_name () const -> glib::PropertyProxy_ReadOnly<glib::ustring>
   {
     return {this, "icon-name"};
   }
 
   auto
-  SplitButton::property_label () -> glib::PropertyProxy<glib::ustring>
+  split_button::property_label () -> glib::PropertyProxy<glib::ustring>
   {
     return {this, "label"};
   }
 
   auto
-  SplitButton::property_label () const -> glib::PropertyProxy_ReadOnly<glib::ustring>
+  split_button::property_label () const -> glib::PropertyProxy_ReadOnly<glib::ustring>
   {
     return {this, "label"};
   }
 
   auto
-  SplitButton::property_menu_model () -> glib::PropertyProxy<glib::RefPtr<gio::MenuModel>>
+  split_button::property_menu_model () -> glib::PropertyProxy<glib::RefPtr<gio::MenuModel>>
   {
     return {
       this,
@@ -321,31 +321,31 @@ namespace adw
   }
 
   auto
-  SplitButton::property_menu_model () const -> glib::PropertyProxy_ReadOnly<glib::RefPtr<gio::MenuModel>>
+  split_button::property_menu_model () const -> glib::PropertyProxy_ReadOnly<glib::RefPtr<gio::MenuModel>>
   {
     return {this, "menu-model"};
   }
 
   auto
-  SplitButton::property_popover () -> glib::PropertyProxy<gtk::Popover*>
+  split_button::property_popover () -> glib::PropertyProxy<gtk::Popover*>
   {
     return {this, "popover"};
   }
 
   auto
-  SplitButton::property_popover () const -> glib::PropertyProxy_ReadOnly<gtk::Popover*>
+  split_button::property_popover () const -> glib::PropertyProxy_ReadOnly<gtk::Popover*>
   {
     return {this, "popover"};
   }
 
   auto
-  SplitButton::property_use_underline () -> glib::PropertyProxy<bool>
+  split_button::property_use_underline () -> glib::PropertyProxy<bool>
   {
     return {this, "use-underline"};
   }
 
   auto
-  SplitButton::property_use_underline () const -> glib::PropertyProxy_ReadOnly<bool>
+  split_button::property_use_underline () const -> glib::PropertyProxy_ReadOnly<bool>
   {
     return {this, "use-underline"};
   }

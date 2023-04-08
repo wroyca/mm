@@ -10,15 +10,15 @@
 namespace adw
 {
 
-  class LIBMM_ADW_SYMEXPORT LeafletPage_Class : public glib::Class
+  class LIBMM_ADW_SYMEXPORT leaflet_page_class : public glib::Class
   {
   public:
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-    using CppObjectType = LeafletPage;
+    using CppObjectType = leaflet_page;
     using BaseObjectType = AdwLeafletPage;
     using CppClassParent = glib::Object_Class;
 
-    friend class LeafletPage;
+    friend class leaflet_page;
 #endif
 
     auto
