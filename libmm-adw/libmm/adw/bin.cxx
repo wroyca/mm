@@ -119,13 +119,13 @@ namespace adw
   auto
   Bin::property_child () -> glib::PropertyProxy<gtk::Widget*>
   {
-    return glib::PropertyProxy<gtk::Widget*> (this, "child");
+    return {this, "child"};
   }
 
   auto
   Bin::property_child () const -> glib::PropertyProxy_ReadOnly<gtk::Widget*>
   {
-    return glib::PropertyProxy_ReadOnly<gtk::Widget*> (this, "child");
+    return {this, "child"};
   }
 
 } // namespace adw

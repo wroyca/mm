@@ -163,37 +163,37 @@ namespace adw
   auto
   PreferencesGroup::property_description () -> glib::PropertyProxy<glib::ustring>
   {
-    return glib::PropertyProxy<glib::ustring> (this, "description");
+    return {this, "description"};
   }
 
   auto
   PreferencesGroup::property_description () const -> glib::PropertyProxy_ReadOnly<glib::ustring>
   {
-    return glib::PropertyProxy_ReadOnly<glib::ustring> (this, "description");
+    return {this, "description"};
   }
 
   auto
   PreferencesGroup::property_header_suffix () -> glib::PropertyProxy<gtk::Widget*>
   {
-    return glib::PropertyProxy<gtk::Widget*> (this, "header-suffix");
+    return {this, "header-suffix"};
   }
 
   auto
   PreferencesGroup::property_header_suffix () const -> glib::PropertyProxy_ReadOnly<gtk::Widget*>
   {
-    return glib::PropertyProxy_ReadOnly<gtk::Widget*> (this, "header-suffix");
+    return {this, "header-suffix"};
   }
 
   auto
   PreferencesGroup::property_title () -> glib::PropertyProxy<glib::ustring>
   {
-    return glib::PropertyProxy<glib::ustring> (this, "title");
+    return {this, "title"};
   }
 
   auto
   PreferencesGroup::property_title () const -> glib::PropertyProxy_ReadOnly<glib::ustring>
   {
-    return glib::PropertyProxy_ReadOnly<glib::ustring> (this, "title");
+    return {this, "title"};
   }
 
 } // namespace adw

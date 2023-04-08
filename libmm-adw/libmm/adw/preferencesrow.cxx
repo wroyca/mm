@@ -164,49 +164,49 @@ namespace adw
   auto
   PreferencesRow::property_title () -> glib::PropertyProxy<glib::ustring>
   {
-    return glib::PropertyProxy<glib::ustring> (this, "title");
+    return {this, "title"};
   }
 
   auto
   PreferencesRow::property_title () const -> glib::PropertyProxy_ReadOnly<glib::ustring>
   {
-    return glib::PropertyProxy_ReadOnly<glib::ustring> (this, "title");
+    return {this, "title"};
   }
 
   auto
   PreferencesRow::property_title_selectable () -> glib::PropertyProxy<bool>
   {
-    return glib::PropertyProxy<bool> (this, "title-selectable");
+    return {this, "title-selectable"};
   }
 
   auto
   PreferencesRow::property_title_selectable () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return glib::PropertyProxy_ReadOnly<bool> (this, "title-selectable");
+    return {this, "title-selectable"};
   }
 
   auto
   PreferencesRow::property_use_markup () -> glib::PropertyProxy<bool>
   {
-    return glib::PropertyProxy<bool> (this, "use-markup");
+    return {this, "use-markup"};
   }
 
   auto
   PreferencesRow::property_use_markup () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return glib::PropertyProxy_ReadOnly<bool> (this, "use-markup");
+    return {this, "use-markup"};
   }
 
   auto
   PreferencesRow::property_use_underline () -> glib::PropertyProxy<bool>
   {
-    return glib::PropertyProxy<bool> (this, "use-underline");
+    return {this, "use-underline"};
   }
 
   auto
   PreferencesRow::property_use_underline () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return glib::PropertyProxy_ReadOnly<bool> (this, "use-underline");
+    return {this, "use-underline"};
   }
 
 } // namespace adw

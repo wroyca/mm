@@ -190,72 +190,64 @@ namespace adw
                                      (GtkWidget*) glib::unwrap (title_widget));
   }
 
-  static_assert (
-      glib::Traits::ValueCompatibleWithWrapProperty<CenteringPolicy>::value,
-      "Type CenteringPolicy cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of glib::Value<>.");
-
   auto
   HeaderBar::property_centering_policy () -> glib::PropertyProxy<CenteringPolicy>
   {
-    return glib::PropertyProxy<CenteringPolicy> (this, "centering-policy");
+    return {this, "centering-policy"};
   }
 
   auto
   HeaderBar::property_centering_policy () const -> glib::PropertyProxy_ReadOnly<CenteringPolicy>
   {
-    return glib::PropertyProxy_ReadOnly<CenteringPolicy> (this,
-                                                          "centering-policy");
+    return {this, "centering-policy"};
   }
 
   auto
   HeaderBar::property_decoration_layout () -> glib::PropertyProxy<glib::ustring>
   {
-    return glib::PropertyProxy<glib::ustring> (this, "decoration-layout");
+    return {this, "decoration-layout"};
   }
 
   auto
   HeaderBar::property_decoration_layout () const -> glib::PropertyProxy_ReadOnly<glib::ustring>
   {
-    return glib::PropertyProxy_ReadOnly<glib::ustring> (this,
-                                                        "decoration-layout");
+    return {this, "decoration-layout"};
   }
 
   auto
   HeaderBar::property_show_end_title_buttons () -> glib::PropertyProxy<bool>
   {
-    return glib::PropertyProxy<bool> (this, "show-end-title-buttons");
+    return {this, "show-end-title-buttons"};
   }
 
   auto
   HeaderBar::property_show_end_title_buttons () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return glib::PropertyProxy_ReadOnly<bool> (this, "show-end-title-buttons");
+    return {this, "show-end-title-buttons"};
   }
 
   auto
   HeaderBar::property_show_start_title_buttons () -> glib::PropertyProxy<bool>
   {
-    return glib::PropertyProxy<bool> (this, "show-start-title-buttons");
+    return {this, "show-start-title-buttons"};
   }
 
   auto
   HeaderBar::property_show_start_title_buttons () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return glib::PropertyProxy_ReadOnly<bool> (this,
-                                               "show-start-title-buttons");
+    return {this, "show-start-title-buttons"};
   }
 
   auto
   HeaderBar::property_title_widget () -> glib::PropertyProxy<gtk::Widget*>
   {
-    return glib::PropertyProxy<gtk::Widget*> (this, "title-widget");
+    return {this, "title-widget"};
   }
 
   auto
   HeaderBar::property_title_widget () const -> glib::PropertyProxy_ReadOnly<gtk::Widget*>
   {
-    return glib::PropertyProxy_ReadOnly<gtk::Widget*> (this, "title-widget");
+    return {this, "title-widget"};
   }
 
 } // namespace adw

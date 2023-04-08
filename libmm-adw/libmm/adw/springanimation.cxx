@@ -249,94 +249,85 @@ namespace adw
   auto
   SpringAnimation::property_clamp () -> glib::PropertyProxy<bool>
   {
-    return glib::PropertyProxy<bool> (this, "clamp");
+    return {this, "clamp"};
   }
 
   auto
   SpringAnimation::property_clamp () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return glib::PropertyProxy_ReadOnly<bool> (this, "clamp");
+    return {this, "clamp"};
   }
 
   auto
   SpringAnimation::property_epsilon () -> glib::PropertyProxy<double>
   {
-    return glib::PropertyProxy<double> (this, "epsilon");
+    return {this, "epsilon"};
   }
 
   auto
   SpringAnimation::property_epsilon () const -> glib::PropertyProxy_ReadOnly<double>
   {
-    return glib::PropertyProxy_ReadOnly<double> (this, "epsilon");
+    return {this, "epsilon"};
   }
 
   auto
   SpringAnimation::property_estimated_duration () const -> glib::PropertyProxy_ReadOnly<guint>
   {
-    return glib::PropertyProxy_ReadOnly<guint> (this, "estimated-duration");
+    return {this, "estimated-duration"};
   }
 
   auto
   SpringAnimation::property_initial_velocity () -> glib::PropertyProxy<double>
   {
-    return glib::PropertyProxy<double> (this, "initial-velocity");
+    return {this, "initial-velocity"};
   }
 
   auto
   SpringAnimation::property_initial_velocity () const -> glib::PropertyProxy_ReadOnly<double>
   {
-    return glib::PropertyProxy_ReadOnly<double> (this, "initial-velocity");
+    return {this, "initial-velocity"};
   }
-
-  static_assert (
-      glib::Traits::ValueCompatibleWithWrapProperty<
-          glib::RefPtr<SpringParams>>::value,
-      "Type glib::RefPtr<SpringParams> cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of glib::Value<>.");
 
   auto
   SpringAnimation::property_spring_params () -> glib::PropertyProxy<glib::RefPtr<SpringParams>>
   {
-    return glib::PropertyProxy<glib::RefPtr<SpringParams>> (this,
-                                                            "spring-params");
+    return {this, "spring-params"};
   }
 
   auto
   SpringAnimation::property_spring_params () const -> glib::PropertyProxy_ReadOnly<glib::RefPtr<SpringParams>>
   {
-    return glib::PropertyProxy_ReadOnly<glib::RefPtr<SpringParams>> (
-        this,
-        "spring-params");
+    return {this, "spring-params"};
   }
 
   auto
   SpringAnimation::property_value_from () -> glib::PropertyProxy<double>
   {
-    return glib::PropertyProxy<double> (this, "value-from");
+    return {this, "value-from"};
   }
 
   auto
   SpringAnimation::property_value_from () const -> glib::PropertyProxy_ReadOnly<double>
   {
-    return glib::PropertyProxy_ReadOnly<double> (this, "value-from");
+    return {this, "value-from"};
   }
 
   auto
   SpringAnimation::property_value_to () -> glib::PropertyProxy<double>
   {
-    return glib::PropertyProxy<double> (this, "value-to");
+    return {this, "value-to"};
   }
 
   auto
   SpringAnimation::property_value_to () const -> glib::PropertyProxy_ReadOnly<double>
   {
-    return glib::PropertyProxy_ReadOnly<double> (this, "value-to");
+    return {this, "value-to"};
   }
 
   auto
   SpringAnimation::property_velocity () const -> glib::PropertyProxy_ReadOnly<double>
   {
-    return glib::PropertyProxy_ReadOnly<double> (this, "velocity");
+    return {this, "velocity"};
   }
 
 } // namespace adw

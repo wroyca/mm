@@ -293,93 +293,79 @@ namespace adw
   auto
   SwipeTracker::signal_begin_swipe () -> glib::SignalProxy<void ()>
   {
-    return glib::SignalProxy<void ()> (this,
-                                       &SwipeTracker_signal_begin_swipe_info);
+    return {this, &SwipeTracker_signal_begin_swipe_info};
   }
 
   auto
   SwipeTracker::signal_end_swipe () -> glib::SignalProxy<void (double, double)>
   {
-    return glib::SignalProxy<void (double, double)> (
-        this,
-        &SwipeTracker_signal_end_swipe_info);
+    return {this, &SwipeTracker_signal_end_swipe_info};
   }
 
   auto
   SwipeTracker::signal_prepare () -> glib::SignalProxy<void (NavigationDirection)>
   {
-    return glib::SignalProxy<void (NavigationDirection)> (
-        this,
-        &SwipeTracker_signal_prepare_info);
+    return {this, &SwipeTracker_signal_prepare_info};
   }
 
   auto
   SwipeTracker::signal_update_swipe () -> glib::SignalProxy<void (double)>
   {
-    return glib::SignalProxy<void (double)> (
-        this,
-        &SwipeTracker_signal_update_swipe_info);
+    return {this, &SwipeTracker_signal_update_swipe_info};
   }
 
   auto
   SwipeTracker::property_allow_long_swipes () -> glib::PropertyProxy<bool>
   {
-    return glib::PropertyProxy<bool> (this, "allow-long-swipes");
+    return {this, "allow-long-swipes"};
   }
 
   auto
   SwipeTracker::property_allow_long_swipes () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return glib::PropertyProxy_ReadOnly<bool> (this, "allow-long-swipes");
+    return {this, "allow-long-swipes"};
   }
 
   auto
   SwipeTracker::property_allow_mouse_drag () -> glib::PropertyProxy<bool>
   {
-    return glib::PropertyProxy<bool> (this, "allow-mouse-drag");
+    return {this, "allow-mouse-drag"};
   }
 
   auto
   SwipeTracker::property_allow_mouse_drag () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return glib::PropertyProxy_ReadOnly<bool> (this, "allow-mouse-drag");
+    return {this, "allow-mouse-drag"};
   }
 
   auto
   SwipeTracker::property_enabled () -> glib::PropertyProxy<bool>
   {
-    return glib::PropertyProxy<bool> (this, "enabled");
+    return {this, "enabled"};
   }
 
   auto
   SwipeTracker::property_enabled () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return glib::PropertyProxy_ReadOnly<bool> (this, "enabled");
+    return {this, "enabled"};
   }
 
   auto
   SwipeTracker::property_reversed () -> glib::PropertyProxy<bool>
   {
-    return glib::PropertyProxy<bool> (this, "reversed");
+    return {this, "reversed"};
   }
 
   auto
   SwipeTracker::property_reversed () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return glib::PropertyProxy_ReadOnly<bool> (this, "reversed");
+    return {this, "reversed"};
   }
-
-  static_assert (
-      glib::Traits::ValueCompatibleWithWrapProperty<
-          glib::RefPtr<Swipeable>>::value,
-      "Type glib::RefPtr<Swipeable> cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of glib::Value<>.");
 
   auto
   SwipeTracker::property_swipeable () const -> glib::PropertyProxy_ReadOnly<glib::RefPtr<Swipeable>>
   {
-    return glib::PropertyProxy_ReadOnly<glib::RefPtr<Swipeable>> (this,
-                                                                  "swipeable");
+    return {this, "swipeable"};
   }
 
 } // namespace adw

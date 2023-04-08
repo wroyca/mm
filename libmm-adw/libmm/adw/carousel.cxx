@@ -285,104 +285,103 @@ namespace adw
   auto
   Carousel::signal_page_changed () -> glib::SignalProxy<void (guint)>
   {
-    return glib::SignalProxy<void (guint)> (this,
-                                            &Carousel_signal_page_changed_info);
+    return {this, &Carousel_signal_page_changed_info};
   }
 
   auto
   Carousel::property_interactive () -> glib::PropertyProxy<bool>
   {
-    return glib::PropertyProxy<bool> (this, "interactive");
+    return {this, "interactive"};
   }
 
   auto
   Carousel::property_interactive () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return glib::PropertyProxy_ReadOnly<bool> (this, "interactive");
+    return {this, "interactive"};
   }
 
   auto
   Carousel::property_scroll_params () -> glib::PropertyProxy<bool>
   {
-    return glib::PropertyProxy<bool> (this, "scroll-params");
+    return {this, "scroll-params"};
   }
 
   auto
   Carousel::property_scroll_params () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return glib::PropertyProxy_ReadOnly<bool> (this, "scroll-params");
+    return {this, "scroll-params"};
   }
 
   auto
   Carousel::property_allow_mouse_drag () -> glib::PropertyProxy<bool>
   {
-    return glib::PropertyProxy<bool> (this, "allow-mouse-drag");
+    return {this, "allow-mouse-drag"};
   }
 
   auto
   Carousel::property_allow_mouse_drag () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return glib::PropertyProxy_ReadOnly<bool> (this, "allow-mouse-drag");
+    return {this, "allow-mouse-drag"};
   }
 
   auto
   Carousel::property_allow_scroll_wheel () -> glib::PropertyProxy<bool>
   {
-    return glib::PropertyProxy<bool> (this, "allow-scroll-wheel");
+    return {this, "allow-scroll-wheel"};
   }
 
   auto
   Carousel::property_allow_scroll_wheel () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return glib::PropertyProxy_ReadOnly<bool> (this, "allow-scroll-wheel");
+    return {this, "allow-scroll-wheel"};
   }
 
   auto
   Carousel::property_allow_long_swipes () -> glib::PropertyProxy<bool>
   {
-    return glib::PropertyProxy<bool> (this, "allow-long-swipes");
+    return {this, "allow-long-swipes"};
   }
 
   auto
   Carousel::property_allow_long_swipes () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return glib::PropertyProxy_ReadOnly<bool> (this, "allow-long-swipes");
+    return {this, "allow-long-swipes"};
   }
 
   auto
   Carousel::property_reveal_duration () -> glib::PropertyProxy<guint>
   {
-    return glib::PropertyProxy<guint> (this, "reveal-duration");
+    return {this, "reveal-duration"};
   }
 
   auto
   Carousel::property_reveal_duration () const -> glib::PropertyProxy_ReadOnly<guint>
   {
-    return glib::PropertyProxy_ReadOnly<guint> (this, "reveal-duration");
+    return {this, "reveal-duration"};
   }
 
   auto
   Carousel::property_position () const -> glib::PropertyProxy_ReadOnly<double>
   {
-    return glib::PropertyProxy_ReadOnly<double> (this, "position");
+    return {this, "position"};
   }
 
   auto
   Carousel::property_n_pages () const -> glib::PropertyProxy_ReadOnly<guint>
   {
-    return glib::PropertyProxy_ReadOnly<guint> (this, "n-pages");
+    return {this, "n-pages"};
   }
 
   auto
   Carousel::property_spacing () -> glib::PropertyProxy<guint>
   {
-    return glib::PropertyProxy<guint> (this, "spacing");
+    return {this, "spacing"};
   }
 
   auto
   Carousel::property_spacing () const -> glib::PropertyProxy_ReadOnly<guint>
   {
-    return glib::PropertyProxy_ReadOnly<guint> (this, "spacing");
+    return {this, "spacing"};
   }
 
 } // namespace adw

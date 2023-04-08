@@ -200,7 +200,7 @@ namespace adw
   auto
   Animation::signal_done () -> glib::SignalProxy<void ()>
   {
-    return glib::SignalProxy<void ()> (this, &Animation_signal_done_info);
+    return {this, &Animation_signal_done_info};
   }
 
   static_assert (
@@ -211,7 +211,7 @@ namespace adw
   auto
   Animation::property_state () const -> glib::PropertyProxy_ReadOnly<AnimationState>
   {
-    return glib::PropertyProxy_ReadOnly<AnimationState> (this, "state");
+    return {this, "state"};
   }
 
   static_assert (
@@ -223,27 +223,25 @@ namespace adw
   auto
   Animation::property_target () -> glib::PropertyProxy<glib::RefPtr<AnimationTarget>>
   {
-    return glib::PropertyProxy<glib::RefPtr<AnimationTarget>> (this, "target");
+    return {this, "target"};
   }
 
   auto
   Animation::property_target () const -> glib::PropertyProxy_ReadOnly<glib::RefPtr<AnimationTarget>>
   {
-    return glib::PropertyProxy_ReadOnly<glib::RefPtr<AnimationTarget>> (
-        this,
-        "target");
+    return {this, "target"};
   }
 
   auto
   Animation::property_value () const -> glib::PropertyProxy_ReadOnly<double>
   {
-    return glib::PropertyProxy_ReadOnly<double> (this, "value");
+    return {this, "value"};
   }
 
   auto
   Animation::property_widget () const -> glib::PropertyProxy_ReadOnly<gtk::Widget*>
   {
-    return glib::PropertyProxy_ReadOnly<gtk::Widget*> (this, "widget");
+    return {this, "widget"};
   }
 
 } // namespace adw

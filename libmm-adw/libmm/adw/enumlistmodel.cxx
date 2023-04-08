@@ -135,15 +135,10 @@ namespace adw
         const_cast<AdwEnumListModel*> (gobj ()));
   }
 
-  static_assert (
-      glib::Traits::ValueCompatibleWithWrapProperty<GType>::value,
-      "Type GType cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of glib::Value<>.");
-
   auto
   EnumListModel::property_enum_type () const -> glib::PropertyProxy_ReadOnly<GType>
   {
-    return glib::PropertyProxy_ReadOnly<GType> (this, "enum-type");
+    return {this, "enum-type"};
   }
 
 } // namespace adw

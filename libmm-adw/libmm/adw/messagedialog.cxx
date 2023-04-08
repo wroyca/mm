@@ -403,86 +403,85 @@ namespace adw
   auto
   MessageDialog::property_body () -> glib::PropertyProxy<glib::ustring>
   {
-    return glib::PropertyProxy<glib::ustring> (this, "body");
+    return {this, "body"};
   }
 
   auto
   MessageDialog::property_body () const -> glib::PropertyProxy_ReadOnly<glib::ustring>
   {
-    return glib::PropertyProxy_ReadOnly<glib::ustring> (this, "body");
+    return {this, "body"};
   }
 
   auto
   MessageDialog::property_body_use_markup () -> glib::PropertyProxy<bool>
   {
-    return glib::PropertyProxy<bool> (this, "body-use-markup");
+    return {this, "body-use-markup"};
   }
 
   auto
   MessageDialog::property_body_use_markup () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return glib::PropertyProxy_ReadOnly<bool> (this, "body-use-markup");
+    return {this, "body-use-markup"};
   }
 
   auto
   MessageDialog::property_close_response () -> glib::PropertyProxy<glib::ustring>
   {
-    return glib::PropertyProxy<glib::ustring> (this, "close-response");
+    return {this, "close-response"};
   }
 
   auto
   MessageDialog::property_close_response () const -> glib::PropertyProxy_ReadOnly<glib::ustring>
   {
-    return glib::PropertyProxy_ReadOnly<glib::ustring> (this, "close-response");
+    return {this, "close-response"};
   }
 
   auto
   MessageDialog::property_default_response () -> glib::PropertyProxy<glib::ustring>
   {
-    return glib::PropertyProxy<glib::ustring> (this, "default-response");
+    return {this, "default-response"};
   }
 
   auto
   MessageDialog::property_default_response () const -> glib::PropertyProxy_ReadOnly<glib::ustring>
   {
-    return glib::PropertyProxy_ReadOnly<glib::ustring> (this,
-                                                        "default-response");
+    return {this, "default-response"};
   }
 
   auto
   MessageDialog::property_extra_child () -> glib::PropertyProxy<gtk::Widget*>
   {
-    return glib::PropertyProxy<gtk::Widget*> (this, "extra-child");
+    return {this, "extra-child"};
   }
 
   auto
   MessageDialog::property_extra_child () const -> glib::PropertyProxy_ReadOnly<gtk::Widget*>
   {
-    return glib::PropertyProxy_ReadOnly<gtk::Widget*> (this, "extra-child");
+    return {this, "extra-child"};
   }
 
   auto
   MessageDialog::property_heading () -> glib::PropertyProxy<glib::ustring>
   {
-    return glib::PropertyProxy<glib::ustring> (this, "heading");
+    return {this, "heading"};
   }
 
   auto
   MessageDialog::property_heading () const -> glib::PropertyProxy_ReadOnly<glib::ustring>
   {
-    return glib::PropertyProxy_ReadOnly<glib::ustring> (this, "heading");
+    return {this, "heading"};
   }
 
   auto
   MessageDialog::property_heading_use_markup () -> glib::PropertyProxy<bool>
   {
-    return glib::PropertyProxy<bool> (this, "heading-use-markup");
+    return {this, "heading-use-markup"};
   }
 
   auto
   MessageDialog::property_heading_use_markup () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return glib::PropertyProxy_ReadOnly<bool> (this, "heading-use-markup");
+    return {this, "heading-use-markup"};
   }
 
   auto

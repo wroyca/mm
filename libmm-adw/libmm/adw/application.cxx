@@ -143,18 +143,10 @@ namespace adw
     return retvalue;
   }
 
-  static_assert (
-      glib::Traits::ValueCompatibleWithWrapProperty<
-          glib::RefPtr<StyleManager>>::value,
-      "Type glib::RefPtr<StyleManager> cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of glib::Value<>.");
-
   auto
   Application::property_style_manager () const -> glib::PropertyProxy_ReadOnly<glib::RefPtr<StyleManager>>
   {
-    return glib::PropertyProxy_ReadOnly<glib::RefPtr<StyleManager>> (
-        this,
-        "style-manager");
+    return {this, "style-manager"};
   }
 
 } // namespace adw

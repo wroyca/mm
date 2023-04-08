@@ -355,177 +355,138 @@ namespace adw
   auto
   Leaflet::property_can_navigate_back () -> glib::PropertyProxy<bool>
   {
-    return glib::PropertyProxy<bool> (this, "can-navigate-back");
+    return {this, "can-navigate-back"};
   }
 
   auto
   Leaflet::property_can_navigate_back () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return glib::PropertyProxy_ReadOnly<bool> (this, "can-navigate-back");
+    return {this, "can-navigate-back"};
   }
 
   auto
   Leaflet::property_can_navigate_forward () -> glib::PropertyProxy<bool>
   {
-    return glib::PropertyProxy<bool> (this, "can-navigate-forward");
+    return {this, "can-navigate-forward"};
   }
 
   auto
   Leaflet::property_can_navigate_forward () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return glib::PropertyProxy_ReadOnly<bool> (this, "can-navigate-forward");
+    return {this, "can-navigate-forward"};
   }
 
   auto
   Leaflet::property_can_unfold () -> glib::PropertyProxy<bool>
   {
-    return glib::PropertyProxy<bool> (this, "can-unfold");
+    return {this, "can-unfold"};
   }
 
   auto
   Leaflet::property_can_unfold () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return glib::PropertyProxy_ReadOnly<bool> (this, "can-unfold");
+    return {this, "can-unfold"};
   }
-
-  static_assert (
-      glib::Traits::ValueCompatibleWithWrapProperty<
-          glib::RefPtr<SpringParams>>::value,
-      "Type glib::RefPtr<SpringParams> cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of glib::Value<>.");
 
   auto
   Leaflet::property_child_transition_params () -> glib::PropertyProxy<glib::RefPtr<SpringParams>>
   {
-    return glib::PropertyProxy<glib::RefPtr<SpringParams>> (
-        this,
-        "child-transition-params");
+    return {this, "child-transition-params"};
   }
 
   auto
   Leaflet::property_child_transition_params () const -> glib::PropertyProxy_ReadOnly<glib::RefPtr<SpringParams>>
   {
-    return glib::PropertyProxy_ReadOnly<glib::RefPtr<SpringParams>> (
-        this,
-        "child-transition-params");
+    return {this, "child-transition-params"};
   }
 
   auto
   Leaflet::property_child_transition_running () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return glib::PropertyProxy_ReadOnly<bool> (this,
-                                               "child-transition-running");
+    return {this, "child-transition-running"};
   }
-
-  static_assert (
-      glib::Traits::ValueCompatibleWithWrapProperty<FoldThresholdPolicy>::value,
-      "Type FoldThresholdPolicy cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of glib::Value<>.");
 
   auto
   Leaflet::property_fold_threshold_policy () -> glib::PropertyProxy<FoldThresholdPolicy>
   {
-    return glib::PropertyProxy<FoldThresholdPolicy> (this,
-                                                     "fold-threshold-policy");
+    return {this, "fold-threshold-policy"};
   }
 
   auto
   Leaflet::property_fold_threshold_policy () const -> glib::PropertyProxy_ReadOnly<FoldThresholdPolicy>
   {
-    return glib::PropertyProxy_ReadOnly<FoldThresholdPolicy> (
-        this,
-        "fold-threshold-policy");
+    return {this, "fold-threshold-policy"};
   }
 
   auto
   Leaflet::property_folded () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return glib::PropertyProxy_ReadOnly<bool> (this, "folded");
+    return {this, "folded"};
   }
 
   auto
   Leaflet::property_homogeneous () -> glib::PropertyProxy<bool>
   {
-    return glib::PropertyProxy<bool> (this, "homogeneous");
+    return {this, "homogeneous"};
   }
 
   auto
   Leaflet::property_homogeneous () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return glib::PropertyProxy_ReadOnly<bool> (this, "homogeneous");
+    return {this, "homogeneous"};
   }
 
   auto
   Leaflet::property_mode_transition_duration () -> glib::PropertyProxy<guint>
   {
-    return glib::PropertyProxy<guint> (this, "mode-transition-duration");
+    return {this, "mode-transition-duration"};
   }
 
   auto
   Leaflet::property_mode_transition_duration () const -> glib::PropertyProxy_ReadOnly<guint>
   {
-    return glib::PropertyProxy_ReadOnly<guint> (this,
-                                                "mode-transition-duration");
+    return {this, "mode-transition-duration"};
   }
-
-  static_assert (
-      glib::Traits::ValueCompatibleWithWrapProperty<
-          glib::RefPtr<gtk::SelectionModel>>::value,
-      "Type glib::RefPtr<gtk::SelectionModel> cannot be used in "
-      "_WRAP_PROPERTY. "
-      "There is no suitable template specialization of glib::Value<>.");
 
   auto
   Leaflet::property_pages () const -> glib::PropertyProxy_ReadOnly<glib::RefPtr<gtk::SelectionModel>>
   {
-    return glib::PropertyProxy_ReadOnly<glib::RefPtr<gtk::SelectionModel>> (
-        this,
-        "pages");
+    return {this, "pages"};
   }
-
-  static_assert (
-      glib::Traits::ValueCompatibleWithWrapProperty<
-          LeafletTransitionType>::value,
-      "Type LeafletTransitionType cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of glib::Value<>.");
 
   auto
   Leaflet::property_transition_type () -> glib::PropertyProxy<LeafletTransitionType>
   {
-    return glib::PropertyProxy<LeafletTransitionType> (this, "transition-type");
+    return {this, "transition-type"};
   }
 
   auto
   Leaflet::property_transition_type () const -> glib::PropertyProxy_ReadOnly<LeafletTransitionType>
   {
-    return glib::PropertyProxy_ReadOnly<LeafletTransitionType> (
-        this,
-        "transition-type");
+    return {this, "transition-type"};
   }
 
   auto
   Leaflet::property_visible_child () -> glib::PropertyProxy<gtk::Widget*>
   {
-    return glib::PropertyProxy<gtk::Widget*> (this, "visible-child");
+    return {this, "visible-child"};
   }
 
   auto
   Leaflet::property_visible_child () const -> glib::PropertyProxy_ReadOnly<gtk::Widget*>
   {
-    return glib::PropertyProxy_ReadOnly<gtk::Widget*> (this, "visible-child");
+    return {this, "visible-child"};
   }
 
   auto
   Leaflet::property_visible_child_name () -> glib::PropertyProxy<glib::ustring>
   {
-    return glib::PropertyProxy<glib::ustring> (this, "visible-child-name");
+    return {this, "visible-child-name"};
   }
 
   auto
   Leaflet::property_visible_child_name () const -> glib::PropertyProxy_ReadOnly<glib::ustring>
   {
-    return glib::PropertyProxy_ReadOnly<glib::ustring> (this,
-                                                        "visible-child-name");
+    return {this, "visible-child-name"};
   }
-
 } // namespace adw

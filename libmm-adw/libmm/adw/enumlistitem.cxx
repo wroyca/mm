@@ -132,19 +132,19 @@ namespace adw
   auto
   EnumListItem::property_name () const -> glib::PropertyProxy_ReadOnly<glib::ustring>
   {
-    return glib::PropertyProxy_ReadOnly<glib::ustring> (this, "name");
+    return {this, "name"};
   }
 
   auto
   EnumListItem::property_nick () const -> glib::PropertyProxy_ReadOnly<glib::ustring>
   {
-    return glib::PropertyProxy_ReadOnly<glib::ustring> (this, "nick");
+    return {this, "nick"};
   }
 
   auto
   EnumListItem::property_value () const -> glib::PropertyProxy_ReadOnly<int>
   {
-    return glib::PropertyProxy_ReadOnly<int> (this, "value");
+    return {this, "value"};
   }
 
 } // namespace adw

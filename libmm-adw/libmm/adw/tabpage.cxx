@@ -253,143 +253,121 @@ namespace adw
   auto
   TabPage::property_child () const -> glib::PropertyProxy_ReadOnly<gtk::Widget*>
   {
-    return glib::PropertyProxy_ReadOnly<gtk::Widget*> (this, "child");
+    return {this, "child"};
   }
-
-  static_assert (
-      glib::Traits::ValueCompatibleWithWrapProperty<
-          glib::RefPtr<gio::Icon>>::value,
-      "Type glib::RefPtr<gio::Icon> cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of glib::Value<>.");
 
   auto
   TabPage::property_icon () -> glib::PropertyProxy<glib::RefPtr<gio::Icon>>
   {
-    return glib::PropertyProxy<glib::RefPtr<gio::Icon>> (this, "icon");
+    return {this, "icon"};
   }
 
   auto
   TabPage::property_icon () const -> glib::PropertyProxy_ReadOnly<glib::RefPtr<gio::Icon>>
   {
-    return glib::PropertyProxy_ReadOnly<glib::RefPtr<gio::Icon>> (this, "icon");
+    return {this, "icon"};
   }
 
   auto
   TabPage::property_indicator_activatable () -> glib::PropertyProxy<bool>
   {
-    return glib::PropertyProxy<bool> (this, "indicator-activatable");
+    return {this, "indicator-activatable"};
   }
 
   auto
   TabPage::property_indicator_activatable () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return glib::PropertyProxy_ReadOnly<bool> (this, "indicator-activatable");
+    return {this, "indicator-activatable"};
   }
-
-  static_assert (
-      glib::Traits::ValueCompatibleWithWrapProperty<
-          glib::RefPtr<gio::Icon>>::value,
-      "Type glib::RefPtr<gio::Icon> cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of glib::Value<>.");
 
   auto
   TabPage::property_indicator_icon () -> glib::PropertyProxy<glib::RefPtr<gio::Icon>>
   {
-    return glib::PropertyProxy<glib::RefPtr<gio::Icon>> (this,
-                                                         "indicator-icon");
+    return {this, "indicator-icon"};
   }
 
   auto
   TabPage::property_indicator_icon () const -> glib::PropertyProxy_ReadOnly<glib::RefPtr<gio::Icon>>
   {
-    return glib::PropertyProxy_ReadOnly<glib::RefPtr<gio::Icon>> (
-        this,
-        "indicator-icon");
+    return {this, "indicator-icon"};
   }
 
   auto
   TabPage::property_indicator_tooltip () -> glib::PropertyProxy<glib::ustring>
   {
-    return glib::PropertyProxy<glib::ustring> (this, "indicator-tooltip");
+    return {this, "indicator-tooltip"};
   }
 
   auto
   TabPage::property_indicator_tooltip () const -> glib::PropertyProxy_ReadOnly<glib::ustring>
   {
-    return glib::PropertyProxy_ReadOnly<glib::ustring> (this,
-                                                        "indicator-tooltip");
+    return {this, "indicator-tooltip"};
   }
 
   auto
   TabPage::property_loading () -> glib::PropertyProxy<bool>
   {
-    return glib::PropertyProxy<bool> (this, "loading");
+    return {this, "loading"};
   }
 
   auto
   TabPage::property_loading () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return glib::PropertyProxy_ReadOnly<bool> (this, "loading");
+    return {this, "loading"};
   }
 
   auto
   TabPage::property_needs_attention () -> glib::PropertyProxy<bool>
   {
-    return glib::PropertyProxy<bool> (this, "needs-attention");
+    return {this, "needs-attention"};
   }
 
   auto
   TabPage::property_needs_attention () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return glib::PropertyProxy_ReadOnly<bool> (this, "needs-attention");
+    return {this, "needs-attention"};
   }
-
-  static_assert (
-      glib::Traits::ValueCompatibleWithWrapProperty<
-          glib::RefPtr<TabPage>>::value,
-      "Type glib::RefPtr<TabPage> cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of glib::Value<>.");
 
   auto
   TabPage::property_parent () const -> glib::PropertyProxy_ReadOnly<glib::RefPtr<TabPage>>
   {
-    return glib::PropertyProxy_ReadOnly<glib::RefPtr<TabPage>> (this, "parent");
+    return {this, "parent"};
   }
 
   auto
   TabPage::property_pinned () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return glib::PropertyProxy_ReadOnly<bool> (this, "pinned");
+    return {this, "pinned"};
   }
 
   auto
   TabPage::property_selected () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return glib::PropertyProxy_ReadOnly<bool> (this, "selected");
+    return {this, "selected"};
   }
 
   auto
   TabPage::property_title () -> glib::PropertyProxy<glib::ustring>
   {
-    return glib::PropertyProxy<glib::ustring> (this, "title");
+    return {this, "title"};
   }
 
   auto
   TabPage::property_title () const -> glib::PropertyProxy_ReadOnly<glib::ustring>
   {
-    return glib::PropertyProxy_ReadOnly<glib::ustring> (this, "title");
+    return {this, "title"};
   }
 
   auto
   TabPage::property_tooltip () -> glib::PropertyProxy<glib::ustring>
   {
-    return glib::PropertyProxy<glib::ustring> (this, "tooltip");
+    return {this, "tooltip"};
   }
 
   auto
   TabPage::property_tooltip () const -> glib::PropertyProxy_ReadOnly<glib::ustring>
   {
-    return glib::PropertyProxy_ReadOnly<glib::ustring> (this, "tooltip");
+    return {this, "tooltip"};
   }
 
 } // namespace adw

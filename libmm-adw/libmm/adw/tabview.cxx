@@ -704,167 +704,118 @@ namespace adw
   auto
   TabView::signal_close_page () -> glib::SignalProxy<bool (const glib::RefPtr<TabPage>&)>
   {
-    return glib::SignalProxy<bool (const glib::RefPtr<TabPage>&)> (
-        this,
-        &TabView_signal_close_page_info);
+    return {this, &TabView_signal_close_page_info};
   }
 
   auto
   TabView::signal_create_window () -> glib::SignalProxy<TabView*()>
   {
-    return glib::SignalProxy<TabView*()> (this,
-                                          &TabView_signal_create_window_info);
+    return {this, &TabView_signal_create_window_info};
   }
 
   auto
   TabView::signal_indicator_activated () -> glib::SignalProxy<void (const glib::RefPtr<TabPage>&)>
   {
-    return glib::SignalProxy<void (const glib::RefPtr<TabPage>&)> (
-        this,
-        &TabView_signal_indicator_activated_info);
+    return {this, &TabView_signal_indicator_activated_info};
   }
 
   auto
   TabView::signal_page_attached () -> glib::SignalProxy<void (const glib::RefPtr<TabPage>&, int)>
   {
-    return glib::SignalProxy<void (const glib::RefPtr<TabPage>&, int)> (
-        this,
-        &TabView_signal_page_attached_info);
+    return {this, &TabView_signal_page_attached_info};
   }
 
   auto
   TabView::signal_page_detached () -> glib::SignalProxy<void (const glib::RefPtr<TabPage>&, int)>
   {
-    return glib::SignalProxy<void (const glib::RefPtr<TabPage>&, int)> (
-        this,
-        &TabView_signal_page_detached_info);
+    return {this, &TabView_signal_page_detached_info};
   }
 
   auto
   TabView::signal_page_reordered () -> glib::SignalProxy<void (const glib::RefPtr<TabPage>&, int)>
   {
-    return glib::SignalProxy<void (const glib::RefPtr<TabPage>&, int)> (
-        this,
-        &TabView_signal_page_reordered_info);
+    return {this, &TabView_signal_page_reordered_info};
   }
 
   auto
   TabView::signal_setup_menu () -> glib::SignalProxy<void (const glib::RefPtr<TabPage>&)>
   {
-    return glib::SignalProxy<void (const glib::RefPtr<TabPage>&)> (
-        this,
-        &TabView_signal_setup_menu_info);
+    return {this, &TabView_signal_setup_menu_info};
   }
-
-  static_assert (
-      glib::Traits::ValueCompatibleWithWrapProperty<
-          glib::RefPtr<gio::Icon>>::value,
-      "Type glib::RefPtr<gio::Icon> cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of glib::Value<>.");
 
   auto
   TabView::property_default_icon () -> glib::PropertyProxy<glib::RefPtr<gio::Icon>>
   {
-    return glib::PropertyProxy<glib::RefPtr<gio::Icon>> (this, "default-icon");
+    return {this, "default-icon"};
   }
 
   auto
   TabView::property_default_icon () const -> glib::PropertyProxy_ReadOnly<glib::RefPtr<gio::Icon>>
   {
-    return glib::PropertyProxy_ReadOnly<glib::RefPtr<gio::Icon>> (
-        this,
-        "default-icon");
+    return {this, "default-icon"};
   }
 
   auto
   TabView::property_is_transferring_page () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return glib::PropertyProxy_ReadOnly<bool> (this, "is-transferring-page");
+    return {this, "is-transferring-page"};
   }
-
-  static_assert (
-      glib::Traits::ValueCompatibleWithWrapProperty<
-          glib::RefPtr<gio::MenuModel>>::value,
-      "Type glib::RefPtr<gio::MenuModel> cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of glib::Value<>.");
 
   auto
   TabView::property_menu_model () -> glib::PropertyProxy<glib::RefPtr<gio::MenuModel>>
   {
-    return glib::PropertyProxy<glib::RefPtr<gio::MenuModel>> (this,
-                                                              "menu-model");
+    return {this, "menu-model"};
   }
 
   auto
   TabView::property_menu_model () const -> glib::PropertyProxy_ReadOnly<glib::RefPtr<gio::MenuModel>>
   {
-    return glib::PropertyProxy_ReadOnly<glib::RefPtr<gio::MenuModel>> (
-        this,
-        "menu-model");
+    return {this, "menu-model"};
   }
 
   auto
   TabView::property_n_pages () const -> glib::PropertyProxy_ReadOnly<int>
   {
-    return glib::PropertyProxy_ReadOnly<int> (this, "n-pages");
+    return {this, "n-pages"};
   }
 
   auto
   TabView::property_n_pinned_pages () const -> glib::PropertyProxy_ReadOnly<int>
   {
-    return glib::PropertyProxy_ReadOnly<int> (this, "n-pinned-pages");
+    return {this, "n-pinned-pages"};
   }
-
-  static_assert (
-      glib::Traits::ValueCompatibleWithWrapProperty<
-          glib::RefPtr<gtk::SelectionModel>>::value,
-      "Type glib::RefPtr<gtk::SelectionModel> cannot be used in "
-      "_WRAP_PROPERTY. "
-      "There is no suitable template specialization of glib::Value<>.");
 
   auto
   TabView::property_pages () const -> glib::PropertyProxy_ReadOnly<glib::RefPtr<gtk::SelectionModel>>
   {
-    return glib::PropertyProxy_ReadOnly<glib::RefPtr<gtk::SelectionModel>> (
-        this,
-        "pages");
+    return {this, "pages"};
   }
-
-  static_assert (
-      glib::Traits::ValueCompatibleWithWrapProperty<
-          glib::RefPtr<TabPage>>::value,
-      "Type glib::RefPtr<TabPage> cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of glib::Value<>.");
 
   auto
   TabView::property_selected_page () -> glib::PropertyProxy<glib::RefPtr<TabPage>>
   {
-    return glib::PropertyProxy<glib::RefPtr<TabPage>> (this, "selected-page");
+    return {this, "selected-page"};
   }
 
   auto
   TabView::property_selected_page () const -> glib::PropertyProxy_ReadOnly<glib::RefPtr<TabPage>>
   {
-    return glib::PropertyProxy_ReadOnly<glib::RefPtr<TabPage>> (
-        this,
-        "selected-page");
+    return {
+      this,
+        "selected-page"
+    };
   }
-
-  static_assert (
-      glib::Traits::ValueCompatibleWithWrapProperty<TabViewShortcuts>::value,
-      "Type TabViewShortcuts cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of glib::Value<>.");
 
   auto
   TabView::property_shortcuts () -> glib::PropertyProxy<TabViewShortcuts>
   {
-    return glib::PropertyProxy<TabViewShortcuts> (this, "shortcuts");
+    return {this, "shortcuts"};
   }
 
   auto
   TabView::property_shortcuts () const -> glib::PropertyProxy_ReadOnly<TabViewShortcuts>
   {
-    return glib::PropertyProxy_ReadOnly<TabViewShortcuts> (this, "shortcuts");
+    return {this, "shortcuts"};
   }
 
 } // namespace adw

@@ -257,101 +257,94 @@ namespace adw
   TabBar::signal_extra_drag_drop () -> glib::SignalProxy<bool (const glib::RefPtr<TabPage>&,
                                  glib::ValueBase&)>
   {
-    return glib::SignalProxy<bool (const glib::RefPtr<TabPage>&,
-                                   glib::ValueBase&)> (
-        this,
-        &TabBar_signal_extra_drag_drop_info);
+    return {
+      this,
+        &TabBar_signal_extra_drag_drop_info
+    };
   }
 
   auto
   TabBar::property_autohide () -> glib::PropertyProxy<bool>
   {
-    return glib::PropertyProxy<bool> (this, "autohide");
+    return {this, "autohide"};
   }
 
   auto
   TabBar::property_autohide () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return glib::PropertyProxy_ReadOnly<bool> (this, "autohide");
+    return {this, "autohide"};
   }
 
   auto
   TabBar::property_end_action_widget () -> glib::PropertyProxy<gtk::Widget*>
   {
-    return glib::PropertyProxy<gtk::Widget*> (this, "end-action-widget");
+    return {this, "end-action-widget"};
   }
 
   auto
   TabBar::property_end_action_widget () const -> glib::PropertyProxy_ReadOnly<gtk::Widget*>
   {
-    return glib::PropertyProxy_ReadOnly<gtk::Widget*> (this,
-                                                       "end-action-widget");
+    return {this, "end-action-widget"};
   }
 
   auto
   TabBar::property_expand_tabs () -> glib::PropertyProxy<bool>
   {
-    return glib::PropertyProxy<bool> (this, "expand-tabs");
+    return {this, "expand-tabs"};
   }
 
   auto
   TabBar::property_expand_tabs () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return glib::PropertyProxy_ReadOnly<bool> (this, "expand-tabs");
+    return {this, "expand-tabs"};
   }
 
   auto
   TabBar::property_inverted () -> glib::PropertyProxy<bool>
   {
-    return glib::PropertyProxy<bool> (this, "inverted");
+    return {this, "inverted"};
   }
 
   auto
   TabBar::property_inverted () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return glib::PropertyProxy_ReadOnly<bool> (this, "inverted");
+    return {this, "inverted"};
   }
 
   auto
   TabBar::property_is_overflowing () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return glib::PropertyProxy_ReadOnly<bool> (this, "is-overflowing");
+    return {this, "is-overflowing"};
   }
 
   auto
   TabBar::property_start_action_widget () -> glib::PropertyProxy<gtk::Widget*>
   {
-    return glib::PropertyProxy<gtk::Widget*> (this, "start-action-widget");
+    return {this, "start-action-widget"};
   }
 
   auto
   TabBar::property_start_action_widget () const -> glib::PropertyProxy_ReadOnly<gtk::Widget*>
   {
-    return glib::PropertyProxy_ReadOnly<gtk::Widget*> (this,
-                                                       "start-action-widget");
+    return {this, "start-action-widget"};
   }
 
   auto
   TabBar::property_tabs_revealed () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return glib::PropertyProxy_ReadOnly<bool> (this, "tabs-revealed");
+    return {this, "tabs-revealed"};
   }
-
-  static_assert (
-      glib::Traits::ValueCompatibleWithWrapProperty<TabView*>::value,
-      "Type TabView* cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of glib::Value<>.");
 
   auto
   TabBar::property_view () -> glib::PropertyProxy<TabView*>
   {
-    return glib::PropertyProxy<TabView*> (this, "view");
+    return {this, "view"};
   }
 
   auto
   TabBar::property_view () const -> glib::PropertyProxy_ReadOnly<TabView*>
   {
-    return glib::PropertyProxy_ReadOnly<TabView*> (this, "view");
+    return {this, "view"};
   }
 
 } // namespace adw

@@ -144,31 +144,31 @@ namespace adw
   auto
   LeafletPage::property_child () const -> glib::PropertyProxy_ReadOnly<gtk::Widget*>
   {
-    return glib::PropertyProxy_ReadOnly<gtk::Widget*> (this, "child");
+    return {this, "child"};
   }
 
   auto
   LeafletPage::property_name () -> glib::PropertyProxy<glib::ustring>
   {
-    return glib::PropertyProxy<glib::ustring> (this, "name");
+    return {this, "name"};
   }
 
   auto
   LeafletPage::property_name () const -> glib::PropertyProxy_ReadOnly<glib::ustring>
   {
-    return glib::PropertyProxy_ReadOnly<glib::ustring> (this, "name");
+    return {this, "name"};
   }
 
   auto
   LeafletPage::property_navigatable () -> glib::PropertyProxy<bool>
   {
-    return glib::PropertyProxy<bool> (this, "navigatable");
+    return {this, "navigatable"};
   }
 
   auto
   LeafletPage::property_navigatable () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return glib::PropertyProxy_ReadOnly<bool> (this, "navigatable");
+    return {this, "navigatable"};
   }
 
 } // namespace adw

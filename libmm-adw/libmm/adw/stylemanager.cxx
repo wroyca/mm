@@ -181,50 +181,37 @@ namespace adw
   auto
   StyleManager::property_high_contrast () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return glib::PropertyProxy_ReadOnly<bool> (this, "high-contrast");
+    return {this, "high-contrast"};
   }
-
-  static_assert (
-      glib::Traits::ValueCompatibleWithWrapProperty<ColorScheme>::value,
-      "Type ColorScheme cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of glib::Value<>.");
 
   auto
   StyleManager::property_color_scheme () -> glib::PropertyProxy<ColorScheme>
   {
-    return glib::PropertyProxy<ColorScheme> (this, "color-scheme");
+    return {this, "color-scheme"};
   }
 
   auto
   StyleManager::property_color_scheme () const -> glib::PropertyProxy_ReadOnly<ColorScheme>
   {
-    return glib::PropertyProxy_ReadOnly<ColorScheme> (this, "color-scheme");
+    return {this, "color-scheme"};
   }
-
-  static_assert (
-      glib::Traits::ValueCompatibleWithWrapProperty<
-          glib::RefPtr<gdk::Display>>::value,
-      "Type glib::RefPtr<gdk::Display> cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of glib::Value<>.");
 
   auto
   StyleManager::property_display () const -> glib::PropertyProxy_ReadOnly<glib::RefPtr<gdk::Display>>
   {
-    return glib::PropertyProxy_ReadOnly<glib::RefPtr<gdk::Display>> (this,
-                                                                     "display");
+    return {this, "display"};
   }
 
   auto
   StyleManager::property_system_supports_color_schemes () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return glib::PropertyProxy_ReadOnly<bool> (this,
-                                               "system-supports-color-schemes");
+    return {this, "system-supports-color-schemes"};
   }
 
   auto
   StyleManager::property_dark () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return glib::PropertyProxy_ReadOnly<bool> (this, "dark");
+    return {this, "dark"};
   }
 
 } // namespace adw

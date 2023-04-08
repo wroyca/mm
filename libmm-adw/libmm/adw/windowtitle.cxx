@@ -136,25 +136,25 @@ namespace adw
   auto
   WindowTitle::property_title () -> glib::PropertyProxy<glib::ustring>
   {
-    return glib::PropertyProxy<glib::ustring> (this, "title");
+    return {this, "title"};
   }
 
   auto
   WindowTitle::property_title () const -> glib::PropertyProxy_ReadOnly<glib::ustring>
   {
-    return glib::PropertyProxy_ReadOnly<glib::ustring> (this, "title");
+    return {this, "title"};
   }
 
   auto
   WindowTitle::property_subtitle () -> glib::PropertyProxy<glib::ustring>
   {
-    return glib::PropertyProxy<glib::ustring> (this, "subtitle");
+    return {this, "subtitle"};
   }
 
   auto
   WindowTitle::property_subtitle () const -> glib::PropertyProxy_ReadOnly<glib::ustring>
   {
-    return glib::PropertyProxy_ReadOnly<glib::ustring> (this, "subtitle");
+    return {this, "subtitle"};
   }
 
 } // namespace adw

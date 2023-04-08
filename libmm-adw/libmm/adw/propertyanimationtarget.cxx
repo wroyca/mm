@@ -168,28 +168,16 @@ namespace adw
         const_cast<AdwPropertyAnimationTarget*> (gobj ()));
   }
 
-  static_assert (
-      glib::Traits::ValueCompatibleWithWrapProperty<
-          glib::RefPtr<glib::Object>>::value,
-      "Type glib::RefPtr<glib::Object> cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of glib::Value<>.");
-
   auto
   PropertyAnimationTarget::property_object () const -> glib::PropertyProxy_ReadOnly<glib::RefPtr<glib::Object>>
   {
-    return glib::PropertyProxy_ReadOnly<glib::RefPtr<glib::Object>> (this,
-                                                                     "object");
+    return {this, "object"};
   }
-
-  static_assert (
-      glib::Traits::ValueCompatibleWithWrapProperty<GParamSpec*>::value,
-      "Type GParamSpec* cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of glib::Value<>.");
 
   auto
   PropertyAnimationTarget::property_pspec () const -> glib::PropertyProxy_ReadOnly<GParamSpec*>
   {
-    return glib::PropertyProxy_ReadOnly<GParamSpec*> (this, "pspec");
+    return {this, "pspec"};
   }
 
 } // namespace adw

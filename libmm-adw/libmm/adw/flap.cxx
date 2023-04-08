@@ -303,214 +303,181 @@ namespace adw
   auto
   Flap::property_content () -> glib::PropertyProxy<gtk::Widget*>
   {
-    return glib::PropertyProxy<gtk::Widget*> (this, "content");
+    return {this, "content"};
   }
 
   auto
   Flap::property_content () const -> glib::PropertyProxy_ReadOnly<gtk::Widget*>
   {
-    return glib::PropertyProxy_ReadOnly<gtk::Widget*> (this, "content");
+    return {this, "content"};
   }
 
   auto
   Flap::property_flap () -> glib::PropertyProxy<gtk::Widget*>
   {
-    return glib::PropertyProxy<gtk::Widget*> (this, "flap");
+    return {this, "flap"};
   }
 
   auto
   Flap::property_flap () const -> glib::PropertyProxy_ReadOnly<gtk::Widget*>
   {
-    return glib::PropertyProxy_ReadOnly<gtk::Widget*> (this, "flap");
+    return {this, "flap"};
   }
-
-  static_assert (
-      glib::Traits::ValueCompatibleWithWrapProperty<gtk::PackType>::value,
-      "Type gtk::PackType cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of glib::Value<>.");
 
   auto
   Flap::property_flap_position () -> glib::PropertyProxy<gtk::PackType>
   {
-    return glib::PropertyProxy<gtk::PackType> (this, "flap-position");
+    return {this, "flap-position"};
   }
 
   auto
   Flap::property_flap_position () const -> glib::PropertyProxy_ReadOnly<gtk::PackType>
   {
-    return glib::PropertyProxy_ReadOnly<gtk::PackType> (this, "flap-position");
+    return {this, "flap-position"};
   }
 
   auto
   Flap::property_fold_duration () -> glib::PropertyProxy<guint>
   {
-    return glib::PropertyProxy<guint> (this, "fold-duration");
+    return {this, "fold-duration"};
   }
 
   auto
   Flap::property_fold_duration () const -> glib::PropertyProxy_ReadOnly<guint>
   {
-    return glib::PropertyProxy_ReadOnly<guint> (this, "fold-duration");
+    return {this, "fold-duration"};
   }
-
-  static_assert (
-      glib::Traits::ValueCompatibleWithWrapProperty<FlapFoldPolicy>::value,
-      "Type FlapFoldPolicy cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of glib::Value<>.");
 
   auto
   Flap::property_fold_policy () -> glib::PropertyProxy<FlapFoldPolicy>
   {
-    return glib::PropertyProxy<FlapFoldPolicy> (this, "fold-policy");
+    return {this, "fold-policy"};
   }
 
   auto
   Flap::property_fold_policy () const -> glib::PropertyProxy_ReadOnly<FlapFoldPolicy>
   {
-    return glib::PropertyProxy_ReadOnly<FlapFoldPolicy> (this, "fold-policy");
+    return {this, "fold-policy"};
   }
-
-  static_assert (
-      glib::Traits::ValueCompatibleWithWrapProperty<FoldThresholdPolicy>::value,
-      "Type FoldThresholdPolicy cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of glib::Value<>.");
 
   auto
   Flap::property_fold_threshold_policy () -> glib::PropertyProxy<FoldThresholdPolicy>
   {
-    return glib::PropertyProxy<FoldThresholdPolicy> (this,
-                                                     "fold-threshold-policy");
+    return {this, "fold-threshold-policy"};
   }
 
   auto
   Flap::property_fold_threshold_policy () const -> glib::PropertyProxy_ReadOnly<FoldThresholdPolicy>
   {
-    return glib::PropertyProxy_ReadOnly<FoldThresholdPolicy> (
-        this,
-        "fold-threshold-policy");
+    return {this, "fold-threshold-policy"};
   }
 
   auto
   Flap::property_folded () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return glib::PropertyProxy_ReadOnly<bool> (this, "folded");
+    return {this, "folded"};
   }
 
   auto
   Flap::property_locked () -> glib::PropertyProxy<bool>
   {
-    return glib::PropertyProxy<bool> (this, "locked");
+    return {this, "locked"};
   }
 
   auto
   Flap::property_locked () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return glib::PropertyProxy_ReadOnly<bool> (this, "locked");
+    return {this, "locked"};
   }
 
   auto
   Flap::property_modal () -> glib::PropertyProxy<bool>
   {
-    return glib::PropertyProxy<bool> (this, "modal");
+    return {this, "modal"};
   }
 
   auto
   Flap::property_modal () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return glib::PropertyProxy_ReadOnly<bool> (this, "modal");
+    return {this, "modal"};
   }
 
   auto
   Flap::property_reveal_flap () -> glib::PropertyProxy<bool>
   {
-    return glib::PropertyProxy<bool> (this, "reveal-flap");
+    return {this, "reveal-flap"};
   }
 
   auto
   Flap::property_reveal_flap () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return glib::PropertyProxy_ReadOnly<bool> (this, "reveal-flap");
+    return {this, "reveal-flap"};
   }
-
-  static_assert (
-      glib::Traits::ValueCompatibleWithWrapProperty<
-          glib::RefPtr<SpringParams>>::value,
-      "Type glib::RefPtr<SpringParams> cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of glib::Value<>.");
 
   auto
   Flap::property_reveal_params () -> glib::PropertyProxy<glib::RefPtr<SpringParams>>
   {
-    return glib::PropertyProxy<glib::RefPtr<SpringParams>> (this,
-                                                            "reveal-params");
+    return {this, "reveal-params"};
   }
 
   auto
   Flap::property_reveal_params () const -> glib::PropertyProxy_ReadOnly<glib::RefPtr<SpringParams>>
   {
-    return glib::PropertyProxy_ReadOnly<glib::RefPtr<SpringParams>> (
-        this,
-        "reveal-params");
+    return {this, "reveal-params"};
   }
 
   auto
   Flap::property_reveal_progress () const -> glib::PropertyProxy_ReadOnly<double>
   {
-    return glib::PropertyProxy_ReadOnly<double> (this, "reveal-progress");
+    return {this, "reveal-progress"};
   }
 
   auto
   Flap::property_separator () -> glib::PropertyProxy<gtk::Widget*>
   {
-    return glib::PropertyProxy<gtk::Widget*> (this, "separator");
+    return {this, "separator"};
   }
 
   auto
   Flap::property_separator () const -> glib::PropertyProxy_ReadOnly<gtk::Widget*>
   {
-    return glib::PropertyProxy_ReadOnly<gtk::Widget*> (this, "separator");
+    return {this, "separator"};
   }
 
   auto
   Flap::property_swipe_to_close () -> glib::PropertyProxy<bool>
   {
-    return glib::PropertyProxy<bool> (this, "swipe-to-close");
+    return {this, "swipe-to-close"};
   }
 
   auto
   Flap::property_swipe_to_close () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return glib::PropertyProxy_ReadOnly<bool> (this, "swipe-to-close");
+    return {this, "swipe-to-close"};
   }
 
   auto
   Flap::property_swipe_to_open () -> glib::PropertyProxy<bool>
   {
-    return glib::PropertyProxy<bool> (this, "swipe-to-open");
+    return {this, "swipe-to-open"};
   }
 
   auto
   Flap::property_swipe_to_open () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return glib::PropertyProxy_ReadOnly<bool> (this, "swipe-to-open");
+    return {this, "swipe-to-open"};
   }
-
-  static_assert (
-      glib::Traits::ValueCompatibleWithWrapProperty<FlapTransitionType>::value,
-      "Type FlapTransitionType cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of glib::Value<>.");
 
   auto
   Flap::property_transition_type () -> glib::PropertyProxy<FlapTransitionType>
   {
-    return glib::PropertyProxy<FlapTransitionType> (this, "transition-type");
+    return {this, "transition-type"};
   }
 
   auto
   Flap::property_transition_type () const -> glib::PropertyProxy_ReadOnly<FlapTransitionType>
   {
-    return glib::PropertyProxy_ReadOnly<FlapTransitionType> (this,
-                                                             "transition-type");
+    return {this, "transition-type"};
   }
 
 } // namespace adw

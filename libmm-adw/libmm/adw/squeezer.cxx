@@ -268,141 +268,115 @@ namespace adw
   auto
   Squeezer::property_allow_none () -> glib::PropertyProxy<bool>
   {
-    return glib::PropertyProxy<bool> (this, "allow-none");
+    return {this, "allow-none"};
   }
 
   auto
   Squeezer::property_allow_none () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return glib::PropertyProxy_ReadOnly<bool> (this, "allow-none");
+    return {this, "allow-none"};
   }
 
   auto
   Squeezer::property_homogeneous () -> glib::PropertyProxy<bool>
   {
-    return glib::PropertyProxy<bool> (this, "homogeneous");
+    return {this, "homogeneous"};
   }
 
   auto
   Squeezer::property_homogeneous () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return glib::PropertyProxy_ReadOnly<bool> (this, "homogeneous");
+    return {this, "homogeneous"};
   }
 
   auto
   Squeezer::property_interpolate_size () -> glib::PropertyProxy<bool>
   {
-    return glib::PropertyProxy<bool> (this, "interpolate-size");
+    return {this, "interpolate-size"};
   }
 
   auto
   Squeezer::property_interpolate_size () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return glib::PropertyProxy_ReadOnly<bool> (this, "interpolate-size");
+    return {this, "interpolate-size"};
   }
-
-  static_assert (
-      glib::Traits::ValueCompatibleWithWrapProperty<
-          glib::RefPtr<gtk::SelectionModel>>::value,
-      "Type glib::RefPtr<gtk::SelectionModel> cannot be used in "
-      "_WRAP_PROPERTY. "
-      "There is no suitable template specialization of glib::Value<>.");
 
   auto
   Squeezer::property_pages () const -> glib::PropertyProxy_ReadOnly<glib::RefPtr<gtk::SelectionModel>>
   {
-    return glib::PropertyProxy_ReadOnly<glib::RefPtr<gtk::SelectionModel>> (
-        this,
-        "pages");
+    return {this, "pages"};
   }
-
-  static_assert (
-      glib::Traits::ValueCompatibleWithWrapProperty<FoldThresholdPolicy>::value,
-      "Type FoldThresholdPolicy cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of glib::Value<>.");
 
   auto
   Squeezer::property_switch_threshold_policy () -> glib::PropertyProxy<FoldThresholdPolicy>
   {
-    return glib::PropertyProxy<FoldThresholdPolicy> (this,
-                                                     "switch-threshold-policy");
+    return {this, "switch-threshold-policy"};
   }
 
   auto
   Squeezer::property_switch_threshold_policy () const -> glib::PropertyProxy_ReadOnly<FoldThresholdPolicy>
   {
-    return glib::PropertyProxy_ReadOnly<FoldThresholdPolicy> (
-        this,
-        "switch-threshold-policy");
+    return {this, "switch-threshold-policy"};
   }
 
   auto
   Squeezer::property_transition_duration () -> glib::PropertyProxy<guint>
   {
-    return glib::PropertyProxy<guint> (this, "transition-duration");
+    return {this, "transition-duration"};
   }
 
   auto
   Squeezer::property_transition_duration () const -> glib::PropertyProxy_ReadOnly<guint>
   {
-    return glib::PropertyProxy_ReadOnly<guint> (this, "transition-duration");
+    return {this, "transition-duration"};
   }
 
   auto
   Squeezer::property_transition_running () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return glib::PropertyProxy_ReadOnly<bool> (this, "transition-running");
+    return {this, "transition-running"};
   }
-
-  static_assert (
-      glib::Traits::ValueCompatibleWithWrapProperty<
-          SqueezerTransitionType>::value,
-      "Type SqueezerTransitionType cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of glib::Value<>.");
 
   auto
   Squeezer::property_transition_type () -> glib::PropertyProxy<SqueezerTransitionType>
   {
-    return glib::PropertyProxy<SqueezerTransitionType> (this,
-                                                        "transition-type");
+    return {this, "transition-type"};
   }
 
   auto
   Squeezer::property_transition_type () const -> glib::PropertyProxy_ReadOnly<SqueezerTransitionType>
   {
-    return glib::PropertyProxy_ReadOnly<SqueezerTransitionType> (
-        this,
-        "transition-type");
+    return {this, "transition-type"};
   }
 
   auto
   Squeezer::property_visible_child () const -> glib::PropertyProxy_ReadOnly<gtk::Widget*>
   {
-    return glib::PropertyProxy_ReadOnly<gtk::Widget*> (this, "visible-child");
+    return {this, "visible-child"};
   }
 
   auto
   Squeezer::property_xalign () -> glib::PropertyProxy<float>
   {
-    return glib::PropertyProxy<float> (this, "xalign");
+    return {this, "xalign"};
   }
 
   auto
   Squeezer::property_xalign () const -> glib::PropertyProxy_ReadOnly<float>
   {
-    return glib::PropertyProxy_ReadOnly<float> (this, "xalign");
+    return {this, "xalign"};
   }
 
   auto
   Squeezer::property_yalign () -> glib::PropertyProxy<float>
   {
-    return glib::PropertyProxy<float> (this, "yalign");
+    return {this, "yalign"};
   }
 
   auto
   Squeezer::property_yalign () const -> glib::PropertyProxy_ReadOnly<float>
   {
-    return glib::PropertyProxy_ReadOnly<float> (this, "yalign");
+    return {this, "yalign"};
   }
 
 } // namespace adw

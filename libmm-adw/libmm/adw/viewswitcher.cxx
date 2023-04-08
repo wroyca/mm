@@ -128,38 +128,28 @@ namespace adw
     adw_view_switcher_set_stack (gobj (), (AdwViewStack*) glib::unwrap (stack));
   }
 
-  static_assert (
-      glib::Traits::ValueCompatibleWithWrapProperty<ViewSwitcherPolicy>::value,
-      "Type ViewSwitcherPolicy cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of glib::Value<>.");
-
   auto
   ViewSwitcher::property_policy () -> glib::PropertyProxy<ViewSwitcherPolicy>
   {
-    return glib::PropertyProxy<ViewSwitcherPolicy> (this, "policy");
+    return {this, "policy"};
   }
 
   auto
   ViewSwitcher::property_policy () const -> glib::PropertyProxy_ReadOnly<ViewSwitcherPolicy>
   {
-    return glib::PropertyProxy_ReadOnly<ViewSwitcherPolicy> (this, "policy");
+    return {this, "policy"};
   }
-
-  static_assert (
-      glib::Traits::ValueCompatibleWithWrapProperty<ViewStack*>::value,
-      "Type ViewStack* cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of glib::Value<>.");
 
   auto
   ViewSwitcher::property_stack () -> glib::PropertyProxy<ViewStack*>
   {
-    return glib::PropertyProxy<ViewStack*> (this, "stack");
+    return {this, "stack"};
   }
 
   auto
   ViewSwitcher::property_stack () const -> glib::PropertyProxy_ReadOnly<ViewStack*>
   {
-    return glib::PropertyProxy_ReadOnly<ViewStack*> (this, "stack");
+    return {this, "stack"};
   }
 
 } // namespace adw

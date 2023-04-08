@@ -218,102 +218,85 @@ namespace adw
   auto
   EntryRow::signal_apply () -> glib::SignalProxy<void ()>
   {
-    return glib::SignalProxy<void ()> (this, &EntryRow_signal_apply_info);
+    return {this, &EntryRow_signal_apply_info};
   }
 
   auto
   EntryRow::signal_entry_activated () -> glib::SignalProxy<void ()>
   {
-    return glib::SignalProxy<void ()> (this,
-                                       &EntryRow_signal_entry_activated_info);
+    return {this, &EntryRow_signal_entry_activated_info};
   }
 
   auto
   EntryRow::property_activates_default () -> glib::PropertyProxy<bool>
   {
-    return glib::PropertyProxy<bool> (this, "activates-default");
+    return {this, "activates-default"};
   }
 
   auto
   EntryRow::property_activates_default () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return glib::PropertyProxy_ReadOnly<bool> (this, "activates-default");
+    return {this, "activates-default"};
   }
-
-  static_assert (
-      glib::Traits::ValueCompatibleWithWrapProperty<pango::AttrList>::value,
-      "Type pango::AttrList cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of glib::Value<>.");
 
   auto
   EntryRow::property_attributes () -> glib::PropertyProxy<pango::AttrList>
   {
-    return glib::PropertyProxy<pango::AttrList> (this, "attributes");
+    return {this, "attributes"};
   }
 
   auto
   EntryRow::property_attributes () const -> glib::PropertyProxy_ReadOnly<pango::AttrList>
   {
-    return glib::PropertyProxy_ReadOnly<pango::AttrList> (this, "attributes");
+    return {this, "attributes"};
   }
 
   auto
   EntryRow::property_enable_emoji_completion () -> glib::PropertyProxy<bool>
   {
-    return glib::PropertyProxy<bool> (this, "enable-emoji-completion");
+    return {this, "enable-emoji-completion"};
   }
 
   auto
   EntryRow::property_enable_emoji_completion () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return glib::PropertyProxy_ReadOnly<bool> (this, "enable-emoji-completion");
+    return {this, "enable-emoji-completion"};
   }
-
-  static_assert (
-      glib::Traits::ValueCompatibleWithWrapProperty<gtk::InputHints>::value,
-      "Type gtk::InputHints cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of glib::Value<>.");
 
   auto
   EntryRow::property_input_hints () -> glib::PropertyProxy<gtk::InputHints>
   {
-    return glib::PropertyProxy<gtk::InputHints> (this, "input-hints");
+    return {this, "input-hints"};
   }
 
   auto
   EntryRow::property_input_hints () const -> glib::PropertyProxy_ReadOnly<gtk::InputHints>
   {
-    return glib::PropertyProxy_ReadOnly<gtk::InputHints> (this, "input-hints");
+    return {this, "input-hints"};
   }
-
-  static_assert (
-      glib::Traits::ValueCompatibleWithWrapProperty<gtk::InputPurpose>::value,
-      "Type gtk::InputPurpose cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of glib::Value<>.");
 
   auto
   EntryRow::property_input_purpose () -> glib::PropertyProxy<gtk::InputPurpose>
   {
-    return glib::PropertyProxy<gtk::InputPurpose> (this, "input-purpose");
+    return {this, "input-purpose"};
   }
 
   auto
   EntryRow::property_input_purpose () const -> glib::PropertyProxy_ReadOnly<gtk::InputPurpose>
   {
-    return glib::PropertyProxy_ReadOnly<gtk::InputPurpose> (this,
-                                                            "input-purpose");
+    return {this, "input-purpose"};
   }
 
   auto
   EntryRow::property_show_apply_button () -> glib::PropertyProxy<bool>
   {
-    return glib::PropertyProxy<bool> (this, "show-apply-button");
+    return {this, "show-apply-button"};
   }
 
   auto
   EntryRow::property_show_apply_button () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return glib::PropertyProxy_ReadOnly<bool> (this, "show-apply-button");
+    return {this, "show-apply-button"};
   }
 
 } // namespace adw

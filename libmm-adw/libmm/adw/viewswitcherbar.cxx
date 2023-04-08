@@ -126,30 +126,25 @@ namespace adw
   auto
   ViewSwitcherBar::property_reveal () -> glib::PropertyProxy<bool>
   {
-    return glib::PropertyProxy<bool> (this, "reveal");
+    return {this, "reveal"};
   }
 
   auto
   ViewSwitcherBar::property_reveal () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return glib::PropertyProxy_ReadOnly<bool> (this, "reveal");
+    return {this, "reveal"};
   }
-
-  static_assert (
-      glib::Traits::ValueCompatibleWithWrapProperty<ViewStack*>::value,
-      "Type ViewStack* cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of glib::Value<>.");
 
   auto
   ViewSwitcherBar::property_stack () -> glib::PropertyProxy<ViewStack*>
   {
-    return glib::PropertyProxy<ViewStack*> (this, "stack");
+    return {this, "stack"};
   }
 
   auto
   ViewSwitcherBar::property_stack () const -> glib::PropertyProxy_ReadOnly<ViewStack*>
   {
-    return glib::PropertyProxy_ReadOnly<ViewStack*> (this, "stack");
+    return {this, "stack"};
   }
 
 } // namespace adw

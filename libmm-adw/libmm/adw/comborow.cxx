@@ -205,129 +205,83 @@ namespace adw
     adw_combo_row_set_model (gobj (), glib::unwrap (model));
   }
 
-  static_assert (
-      glib::Traits::ValueCompatibleWithWrapProperty<
-          glib::RefPtr<gtk::Expression<glib::ustring>>>::value,
-      "Type glib::RefPtr<gtk::Expression<glib::ustring>> cannot be used in "
-      "_WRAP_PROPERTY. "
-      "There is no suitable template specialization of glib::Value<>.");
-
   auto
   ComboRow::property_expression () -> glib::PropertyProxy<glib::RefPtr<gtk::Expression<glib::ustring>>>
   {
-    return glib::PropertyProxy<glib::RefPtr<gtk::Expression<glib::ustring>>> (
-        this,
-        "expression");
+    return {this, "expression"};
   }
 
   auto
   ComboRow::property_expression () const -> glib::PropertyProxy_ReadOnly<
       glib::RefPtr<gtk::Expression<glib::ustring>>>
   {
-    return glib::PropertyProxy_ReadOnly<
-        glib::RefPtr<gtk::Expression<glib::ustring>>> (this, "expression");
+    return {this, "expression"};
   }
-
-  static_assert (
-      glib::Traits::ValueCompatibleWithWrapProperty<
-          glib::RefPtr<glib::ObjectBase>>::value,
-      "Type glib::RefPtr<glib::ObjectBase> cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of glib::Value<>.");
 
   auto
   ComboRow::property_selected_item () const -> glib::PropertyProxy_ReadOnly<glib::RefPtr<glib::ObjectBase>>
   {
-    return glib::PropertyProxy_ReadOnly<glib::RefPtr<glib::ObjectBase>> (
-        this,
-        "selected-item");
+    return {this, "selected-item"};
   }
 
   auto
   ComboRow::property_selected () -> glib::PropertyProxy<guint>
   {
-    return glib::PropertyProxy<guint> (this, "selected");
+    return {this, "selected"};
   }
 
   auto
   ComboRow::property_selected () const -> glib::PropertyProxy_ReadOnly<guint>
   {
-    return glib::PropertyProxy_ReadOnly<guint> (this, "selected");
+    return {this, "selected"};
   }
-
-  static_assert (
-      glib::Traits::ValueCompatibleWithWrapProperty<
-          glib::RefPtr<gtk::ListItemFactory>>::value,
-      "Type glib::RefPtr<gtk::ListItemFactory> cannot be used in "
-      "_WRAP_PROPERTY. "
-      "There is no suitable template specialization of glib::Value<>.");
 
   auto
   ComboRow::property_factory () -> glib::PropertyProxy<glib::RefPtr<gtk::ListItemFactory>>
   {
-    return glib::PropertyProxy<glib::RefPtr<gtk::ListItemFactory>> (this,
-                                                                    "factory");
+    return {this, "factory"};
   }
 
   auto
   ComboRow::property_factory () const -> glib::PropertyProxy_ReadOnly<glib::RefPtr<gtk::ListItemFactory>>
   {
-    return glib::PropertyProxy_ReadOnly<glib::RefPtr<gtk::ListItemFactory>> (
-        this,
-        "factory");
+    return {this, "factory"};
   }
-
-  static_assert (
-      glib::Traits::ValueCompatibleWithWrapProperty<
-          glib::RefPtr<gtk::ListItemFactory>>::value,
-      "Type glib::RefPtr<gtk::ListItemFactory> cannot be used in "
-      "_WRAP_PROPERTY. "
-      "There is no suitable template specialization of glib::Value<>.");
 
   auto
   ComboRow::property_list_factory () -> glib::PropertyProxy<glib::RefPtr<gtk::ListItemFactory>>
   {
-    return glib::PropertyProxy<glib::RefPtr<gtk::ListItemFactory>> (
-        this,
-        "list-factory");
+    return {this, "list-factory"};
   }
 
   auto
   ComboRow::property_list_factory () const -> glib::PropertyProxy_ReadOnly<glib::RefPtr<gtk::ListItemFactory>>
   {
-    return glib::PropertyProxy_ReadOnly<glib::RefPtr<gtk::ListItemFactory>> (
-        this,
-        "list-factory");
+    return {this, "list-factory"};
   }
-
-  static_assert (
-      glib::Traits::ValueCompatibleWithWrapProperty<
-          glib::RefPtr<gio::ListModel>>::value,
-      "Type glib::RefPtr<gio::ListModel> cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of glib::Value<>.");
 
   auto
   ComboRow::property_model () -> glib::PropertyProxy<glib::RefPtr<gio::ListModel>>
   {
-    return glib::PropertyProxy<glib::RefPtr<gio::ListModel>> (this, "model");
+    return {this, "model"};
   }
 
   auto
   ComboRow::property_model () const -> glib::PropertyProxy_ReadOnly<glib::RefPtr<gio::ListModel>>
   {
-    return glib::PropertyProxy_ReadOnly<glib::RefPtr<gio::ListModel>> (this,
-                                                                       "model");
+    return {this, "model"};
   }
 
   auto
   ComboRow::property_use_subtitle () -> glib::PropertyProxy<bool>
   {
-    return glib::PropertyProxy<bool> (this, "use-subtitle");
+    return {this, "use-subtitle"};
   }
 
   auto
   ComboRow::property_use_subtitle () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return glib::PropertyProxy_ReadOnly<bool> (this, "use-subtitle");
+    return {this, "use-subtitle"};
   }
 
 } // namespace adw

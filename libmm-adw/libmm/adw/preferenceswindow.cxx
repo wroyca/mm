@@ -202,56 +202,49 @@ namespace adw
   auto
   PreferencesWindow::property_can_navigate_back () -> glib::PropertyProxy<bool>
   {
-    return glib::PropertyProxy<bool> (this, "can-navigate-back");
+    return {this, "can-navigate-back"};
   }
 
   auto
   PreferencesWindow::property_can_navigate_back () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return glib::PropertyProxy_ReadOnly<bool> (this, "can-navigate-back");
+    return {this, "can-navigate-back"};
   }
 
   auto
   PreferencesWindow::property_search_enabled () -> glib::PropertyProxy<bool>
   {
-    return glib::PropertyProxy<bool> (this, "search-enabled");
+    return {this, "search-enabled"};
   }
 
   auto
   PreferencesWindow::property_search_enabled () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return glib::PropertyProxy_ReadOnly<bool> (this, "search-enabled");
+    return {this, "search-enabled"};
   }
-
-  static_assert (
-      glib::Traits::ValueCompatibleWithWrapProperty<PreferencesPage*>::value,
-      "Type PreferencesPage* cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of glib::Value<>.");
 
   auto
   PreferencesWindow::property_visible_page () -> glib::PropertyProxy<PreferencesPage*>
   {
-    return glib::PropertyProxy<PreferencesPage*> (this, "visible-page");
+    return {this, "visible-page"};
   }
 
   auto
   PreferencesWindow::property_visible_page () const -> glib::PropertyProxy_ReadOnly<PreferencesPage*>
   {
-    return glib::PropertyProxy_ReadOnly<PreferencesPage*> (this,
-                                                           "visible-page");
+    return {this, "visible-page"};
   }
 
   auto
   PreferencesWindow::property_visible_page_name () -> glib::PropertyProxy<glib::ustring>
   {
-    return glib::PropertyProxy<glib::ustring> (this, "visible-page-name");
+    return {this, "visible-page-name"};
   }
 
   auto
   PreferencesWindow::property_visible_page_name () const -> glib::PropertyProxy_ReadOnly<glib::ustring>
   {
-    return glib::PropertyProxy_ReadOnly<glib::ustring> (this,
-                                                        "visible-page-name");
+    return {this, "visible-page-name"};
   }
 
 } // namespace adw

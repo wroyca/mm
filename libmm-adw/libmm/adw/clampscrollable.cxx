@@ -143,37 +143,37 @@ namespace adw
   auto
   ClampScrollable::property_child () -> glib::PropertyProxy<gtk::Widget*>
   {
-    return glib::PropertyProxy<gtk::Widget*> (this, "child");
+    return {this, "child"};
   }
 
   auto
   ClampScrollable::property_child () const -> glib::PropertyProxy_ReadOnly<gtk::Widget*>
   {
-    return glib::PropertyProxy_ReadOnly<gtk::Widget*> (this, "child");
+    return {this, "child"};
   }
 
   auto
   ClampScrollable::property_maximum_size () -> glib::PropertyProxy<int>
   {
-    return glib::PropertyProxy<int> (this, "maximum-size");
+    return {this, "maximum-size"};
   }
 
   auto
   ClampScrollable::property_maximum_size () const -> glib::PropertyProxy_ReadOnly<int>
   {
-    return glib::PropertyProxy_ReadOnly<int> (this, "maximum-size");
+    return {this, "maximum-size"};
   }
 
   auto
   ClampScrollable::property_tightening_threshold () -> glib::PropertyProxy<int>
   {
-    return glib::PropertyProxy<int> (this, "tightening-threshold");
+    return {this, "tightening-threshold"};
   }
 
   auto
   ClampScrollable::property_tightening_threshold () const -> glib::PropertyProxy_ReadOnly<int>
   {
-    return glib::PropertyProxy_ReadOnly<int> (this, "tightening-threshold");
+    return {this, "tightening-threshold"};
   }
 
 } // namespace adw

@@ -247,13 +247,13 @@ namespace adw
   auto
   ViewStack::property_hhomogeneous () -> glib::PropertyProxy<bool>
   {
-    return glib::PropertyProxy<bool> (this, "hhomogeneous");
+    return {this, "hhomogeneous"};
   }
 
   auto
   ViewStack::property_hhomogeneous () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return glib::PropertyProxy_ReadOnly<bool> (this, "hhomogeneous");
+    return {this, "hhomogeneous"};
   }
 
   static_assert (
@@ -266,46 +266,46 @@ namespace adw
   auto
   ViewStack::property_pages () const -> glib::PropertyProxy_ReadOnly<glib::RefPtr<gtk::SelectionModel>>
   {
-    return glib::PropertyProxy_ReadOnly<glib::RefPtr<gtk::SelectionModel>> (
-        this,
-        "pages");
+    return {
+      this,
+        "pages"
+    };
   }
 
   auto
   ViewStack::property_vhomogeneous () -> glib::PropertyProxy<bool>
   {
-    return glib::PropertyProxy<bool> (this, "vhomogeneous");
+    return {this, "vhomogeneous"};
   }
 
   auto
   ViewStack::property_vhomogeneous () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return glib::PropertyProxy_ReadOnly<bool> (this, "vhomogeneous");
+    return {this, "vhomogeneous"};
   }
 
   auto
   ViewStack::property_visible_child () -> glib::PropertyProxy<gtk::Widget*>
   {
-    return glib::PropertyProxy<gtk::Widget*> (this, "visible-child");
+    return {this, "visible-child"};
   }
 
   auto
   ViewStack::property_visible_child () const -> glib::PropertyProxy_ReadOnly<gtk::Widget*>
   {
-    return glib::PropertyProxy_ReadOnly<gtk::Widget*> (this, "visible-child");
+    return {this, "visible-child"};
   }
 
   auto
   ViewStack::property_visible_child_name () -> glib::PropertyProxy<glib::ustring>
   {
-    return glib::PropertyProxy<glib::ustring> (this, "visible-child-name");
+    return {this, "visible-child-name"};
   }
 
   auto
   ViewStack::property_visible_child_name () const -> glib::PropertyProxy_ReadOnly<glib::ustring>
   {
-    return glib::PropertyProxy_ReadOnly<glib::ustring> (this,
-                                                        "visible-child-name");
+    return {this, "visible-child-name"};
   }
 
 } // namespace adw

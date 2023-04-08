@@ -131,19 +131,19 @@ namespace adw
   auto
   SqueezerPage::property_child () const -> glib::PropertyProxy_ReadOnly<gtk::Widget*>
   {
-    return glib::PropertyProxy_ReadOnly<gtk::Widget*> (this, "child");
+    return {this, "child"};
   }
 
   auto
   SqueezerPage::property_enabled () -> glib::PropertyProxy<bool>
   {
-    return glib::PropertyProxy<bool> (this, "enabled");
+    return {this, "enabled"};
   }
 
   auto
   SqueezerPage::property_enabled () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return glib::PropertyProxy_ReadOnly<bool> (this, "enabled");
+    return {this, "enabled"};
   }
 
 } // namespace adw

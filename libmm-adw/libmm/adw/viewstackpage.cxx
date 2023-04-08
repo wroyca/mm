@@ -214,91 +214,91 @@ namespace adw
   auto
   ViewStackPage::property_badge_number () -> glib::PropertyProxy<guint>
   {
-    return glib::PropertyProxy<guint> (this, "badge-number");
+    return {this, "badge-number"};
   }
 
   auto
   ViewStackPage::property_badge_number () const -> glib::PropertyProxy_ReadOnly<guint>
   {
-    return glib::PropertyProxy_ReadOnly<guint> (this, "badge-number");
+    return {this, "badge-number"};
   }
 
   auto
   ViewStackPage::property_child () const -> glib::PropertyProxy_ReadOnly<gtk::Widget*>
   {
-    return glib::PropertyProxy_ReadOnly<gtk::Widget*> (this, "child");
+    return {this, "child"};
   }
 
   auto
   ViewStackPage::property_icon_name () -> glib::PropertyProxy<glib::ustring>
   {
-    return glib::PropertyProxy<glib::ustring> (this, "icon-name");
+    return {this, "icon-name"};
   }
 
   auto
   ViewStackPage::property_icon_name () const -> glib::PropertyProxy_ReadOnly<glib::ustring>
   {
-    return glib::PropertyProxy_ReadOnly<glib::ustring> (this, "icon-name");
+    return {this, "icon-name"};
   }
 
   auto
   ViewStackPage::property_name () -> glib::PropertyProxy<glib::ustring>
   {
-    return glib::PropertyProxy<glib::ustring> (this, "name");
+    return {this, "name"};
   }
 
   auto
   ViewStackPage::property_name () const -> glib::PropertyProxy_ReadOnly<glib::ustring>
   {
-    return glib::PropertyProxy_ReadOnly<glib::ustring> (this, "name");
+    return {this, "name"};
   }
 
   auto
   ViewStackPage::property_needs_attention () -> glib::PropertyProxy<bool>
   {
-    return glib::PropertyProxy<bool> (this, "needs-attention");
+    return {this, "needs-attention"};
   }
 
   auto
   ViewStackPage::property_needs_attention () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return glib::PropertyProxy_ReadOnly<bool> (this, "needs-attention");
+    return {this, "needs-attention"};
   }
 
   auto
   ViewStackPage::property_title () -> glib::PropertyProxy<glib::ustring>
   {
-    return glib::PropertyProxy<glib::ustring> (this, "title");
+    return {this, "title"};
   }
 
   auto
   ViewStackPage::property_title () const -> glib::PropertyProxy_ReadOnly<glib::ustring>
   {
-    return glib::PropertyProxy_ReadOnly<glib::ustring> (this, "title");
+    return {this, "title"};
   }
 
   auto
   ViewStackPage::property_use_underline () -> glib::PropertyProxy<bool>
   {
-    return glib::PropertyProxy<bool> (this, "use-underline");
+    return {this, "use-underline"};
   }
 
   auto
   ViewStackPage::property_use_underline () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return glib::PropertyProxy_ReadOnly<bool> (this, "use-underline");
+    return {this, "use-underline"};
   }
 
   auto
   ViewStackPage::property_visible () -> glib::PropertyProxy<bool>
   {
-    return glib::PropertyProxy<bool> (this, "visible");
+    return {this, "visible"};
   }
 
   auto
   ViewStackPage::property_visible () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return glib::PropertyProxy_ReadOnly<bool> (this, "visible");
+    return {this, "visible"};
   }
 
 } // namespace adw

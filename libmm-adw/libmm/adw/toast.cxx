@@ -236,25 +236,25 @@ namespace adw
   auto
   Toast::signal_button_clicked () -> glib::SignalProxy<void ()>
   {
-    return glib::SignalProxy<void ()> (this, &Toast_signal_button_clicked_info);
+    return {this, &Toast_signal_button_clicked_info};
   }
 
   auto
   Toast::signal_dismissed () -> glib::SignalProxy<void ()>
   {
-    return glib::SignalProxy<void ()> (this, &Toast_signal_dismissed_info);
+    return {this, &Toast_signal_dismissed_info};
   }
 
   auto
   Toast::property_action_name () -> glib::PropertyProxy<glib::ustring>
   {
-    return glib::PropertyProxy<glib::ustring> (this, "action-name");
+    return {this, "action-name"};
   }
 
   auto
   Toast::property_action_name () const -> glib::PropertyProxy_ReadOnly<glib::ustring>
   {
-    return glib::PropertyProxy_ReadOnly<glib::ustring> (this, "action-name");
+    return {this, "action-name"};
   }
 
   static_assert (
@@ -265,79 +265,76 @@ namespace adw
   auto
   Toast::property_action_target () -> glib::PropertyProxy<glib::VariantBase>
   {
-    return glib::PropertyProxy<glib::VariantBase> (this, "action-target");
+    return {this, "action-target"};
   }
 
   auto
   Toast::property_action_target () const -> glib::PropertyProxy_ReadOnly<glib::VariantBase>
   {
-    return glib::PropertyProxy_ReadOnly<glib::VariantBase> (this,
-                                                            "action-target");
+    return {
+      this,
+                                                            "action-target"
+    };
   }
 
   auto
   Toast::property_button_label () -> glib::PropertyProxy<glib::ustring>
   {
-    return glib::PropertyProxy<glib::ustring> (this, "button-label");
+    return {this, "button-label"};
   }
 
   auto
   Toast::property_button_label () const -> glib::PropertyProxy_ReadOnly<glib::ustring>
   {
-    return glib::PropertyProxy_ReadOnly<glib::ustring> (this, "button-label");
+    return {this, "button-label"};
   }
 
   auto
   Toast::property_custom_title () -> glib::PropertyProxy<gtk::Widget*>
   {
-    return glib::PropertyProxy<gtk::Widget*> (this, "custom-title");
+    return {this, "custom-title"};
   }
 
   auto
   Toast::property_custom_title () const -> glib::PropertyProxy_ReadOnly<gtk::Widget*>
   {
-    return glib::PropertyProxy_ReadOnly<gtk::Widget*> (this, "custom-title");
+    return {this, "custom-title"};
   }
-
-  static_assert (
-      glib::Traits::ValueCompatibleWithWrapProperty<ToastPriority>::value,
-      "Type ToastPriority cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of glib::Value<>.");
 
   auto
   Toast::property_priority () -> glib::PropertyProxy<ToastPriority>
   {
-    return glib::PropertyProxy<ToastPriority> (this, "priority");
+    return {this, "priority"};
   }
 
   auto
   Toast::property_priority () const -> glib::PropertyProxy_ReadOnly<ToastPriority>
   {
-    return glib::PropertyProxy_ReadOnly<ToastPriority> (this, "priority");
+    return {this, "priority"};
   }
 
   auto
   Toast::property_timeout () -> glib::PropertyProxy<guint>
   {
-    return glib::PropertyProxy<guint> (this, "timeout");
+    return {this, "timeout"};
   }
 
   auto
   Toast::property_timeout () const -> glib::PropertyProxy_ReadOnly<guint>
   {
-    return glib::PropertyProxy_ReadOnly<guint> (this, "timeout");
+    return {this, "timeout"};
   }
 
   auto
   Toast::property_title () -> glib::PropertyProxy<glib::ustring>
   {
-    return glib::PropertyProxy<glib::ustring> (this, "title");
+    return {this, "title"};
   }
 
   auto
   Toast::property_title () const -> glib::PropertyProxy_ReadOnly<glib::ustring>
   {
-    return glib::PropertyProxy_ReadOnly<glib::ustring> (this, "title");
+    return {this, "title"};
   }
 
 } // namespace adw

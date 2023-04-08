@@ -118,21 +118,16 @@ namespace adw
         (AdwCarousel*) glib::unwrap (carousel));
   }
 
-  static_assert (
-      glib::Traits::ValueCompatibleWithWrapProperty<adw::Carousel*>::value,
-      "Type adw::Carousel* cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of glib::Value<>.");
-
   auto
   CarouselIndicatorLines::property_carousel () -> glib::PropertyProxy<adw::Carousel*>
   {
-    return glib::PropertyProxy<adw::Carousel*> (this, "carousel");
+    return {this, "carousel"};
   }
 
   auto
   CarouselIndicatorLines::property_carousel () const -> glib::PropertyProxy_ReadOnly<adw::Carousel*>
   {
-    return glib::PropertyProxy_ReadOnly<adw::Carousel*> (this, "carousel");
+    return {this, "carousel"};
   }
 
 } // namespace adw

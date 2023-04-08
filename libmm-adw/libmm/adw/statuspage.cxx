@@ -168,70 +168,61 @@ namespace adw
   auto
   StatusPage::property_child () -> glib::PropertyProxy<gtk::Widget*>
   {
-    return glib::PropertyProxy<gtk::Widget*> (this, "child");
+    return {this, "child"};
   }
 
   auto
   StatusPage::property_child () const -> glib::PropertyProxy_ReadOnly<gtk::Widget*>
   {
-    return glib::PropertyProxy_ReadOnly<gtk::Widget*> (this, "child");
+    return {this, "child"};
   }
 
   auto
   StatusPage::property_description () -> glib::PropertyProxy<glib::ustring>
   {
-    return glib::PropertyProxy<glib::ustring> (this, "description");
+    return {this, "description"};
   }
 
   auto
   StatusPage::property_description () const -> glib::PropertyProxy_ReadOnly<glib::ustring>
   {
-    return glib::PropertyProxy_ReadOnly<glib::ustring> (this, "description");
+    return {this, "description"};
   }
 
   auto
   StatusPage::property_icon_name () -> glib::PropertyProxy<glib::ustring>
   {
-    return glib::PropertyProxy<glib::ustring> (this, "icon-name");
+    return {this, "icon-name"};
   }
 
   auto
   StatusPage::property_icon_name () const -> glib::PropertyProxy_ReadOnly<glib::ustring>
   {
-    return glib::PropertyProxy_ReadOnly<glib::ustring> (this, "icon-name");
+    return {this, "icon-name"};
   }
-
-  static_assert (
-      glib::Traits::ValueCompatibleWithWrapProperty<
-          glib::RefPtr<gdk::Paintable>>::value,
-      "Type glib::RefPtr<gdk::Paintable> cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of glib::Value<>.");
 
   auto
   StatusPage::property_paintable () -> glib::PropertyProxy<glib::RefPtr<gdk::Paintable>>
   {
-    return glib::PropertyProxy<glib::RefPtr<gdk::Paintable>> (this,
-                                                              "paintable");
+    return {this, "paintable"};
   }
 
   auto
   StatusPage::property_paintable () const -> glib::PropertyProxy_ReadOnly<glib::RefPtr<gdk::Paintable>>
   {
-    return glib::PropertyProxy_ReadOnly<glib::RefPtr<gdk::Paintable>> (
-        this,
-        "paintable");
+    return {this, "paintable"};
   }
 
   auto
   StatusPage::property_title () -> glib::PropertyProxy<glib::ustring>
   {
-    return glib::PropertyProxy<glib::ustring> (this, "title");
+    return {this, "title"};
   }
 
   auto
   StatusPage::property_title () const -> glib::PropertyProxy_ReadOnly<glib::ustring>
   {
-    return glib::PropertyProxy_ReadOnly<glib::ustring> (this, "title");
+    return {this, "title"};
   }
 
 } // namespace adw

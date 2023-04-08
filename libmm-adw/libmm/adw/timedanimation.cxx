@@ -231,90 +231,85 @@ namespace adw
   auto
   TimedAnimation::property_alternate () -> glib::PropertyProxy<bool>
   {
-    return glib::PropertyProxy<bool> (this, "alternate");
+    return {this, "alternate"};
   }
 
   auto
   TimedAnimation::property_alternate () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return glib::PropertyProxy_ReadOnly<bool> (this, "alternate");
+    return {this, "alternate"};
   }
 
   auto
   TimedAnimation::property_duration () -> glib::PropertyProxy<guint>
   {
-    return glib::PropertyProxy<guint> (this, "duration");
+    return {this, "duration"};
   }
 
   auto
   TimedAnimation::property_duration () const -> glib::PropertyProxy_ReadOnly<guint>
   {
-    return glib::PropertyProxy_ReadOnly<guint> (this, "duration");
+    return {this, "duration"};
   }
-
-  static_assert (
-      glib::Traits::ValueCompatibleWithWrapProperty<Easing>::value,
-      "Type Easing cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of glib::Value<>.");
 
   auto
   TimedAnimation::property_easing () -> glib::PropertyProxy<Easing>
   {
-    return glib::PropertyProxy<Easing> (this, "easing");
+    return {this, "easing"};
   }
 
   auto
   TimedAnimation::property_easing () const -> glib::PropertyProxy_ReadOnly<Easing>
   {
-    return glib::PropertyProxy_ReadOnly<Easing> (this, "easing");
+    return {this, "easing"};
   }
 
   auto
   TimedAnimation::property_repeat_count () -> glib::PropertyProxy<guint>
   {
-    return glib::PropertyProxy<guint> (this, "repeat-count");
+    return {this, "repeat-count"};
   }
 
   auto
   TimedAnimation::property_repeat_count () const -> glib::PropertyProxy_ReadOnly<guint>
   {
-    return glib::PropertyProxy_ReadOnly<guint> (this, "repeat-count");
+    return {this, "repeat-count"};
   }
 
   auto
   TimedAnimation::property_reverse () -> glib::PropertyProxy<bool>
   {
-    return glib::PropertyProxy<bool> (this, "reverse");
+    return {this, "reverse"};
   }
 
   auto
   TimedAnimation::property_reverse () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return glib::PropertyProxy_ReadOnly<bool> (this, "reverse");
+    return {this, "reverse"};
   }
 
   auto
   TimedAnimation::property_value_from () -> glib::PropertyProxy<double>
   {
-    return glib::PropertyProxy<double> (this, "value-from");
+    return {this, "value-from"};
   }
 
   auto
   TimedAnimation::property_value_from () const -> glib::PropertyProxy_ReadOnly<double>
   {
-    return glib::PropertyProxy_ReadOnly<double> (this, "value-from");
+    return {this, "value-from"};
   }
 
   auto
   TimedAnimation::property_value_to () -> glib::PropertyProxy<double>
   {
-    return glib::PropertyProxy<double> (this, "value-to");
+    return {this, "value-to"};
   }
 
   auto
   TimedAnimation::property_value_to () const -> glib::PropertyProxy_ReadOnly<double>
   {
-    return glib::PropertyProxy_ReadOnly<double> (this, "value-to");
+    return {this, "value-to"};
   }
 
 } // namespace adw

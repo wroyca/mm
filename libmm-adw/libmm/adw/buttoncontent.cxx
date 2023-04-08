@@ -139,37 +139,37 @@ namespace adw
   auto
   ButtonContent::property_icon_name () -> glib::PropertyProxy<glib::ustring>
   {
-    return glib::PropertyProxy<glib::ustring> (this, "icon-name");
+    return {this, "icon-name"};
   }
 
   auto
   ButtonContent::property_icon_name () const -> glib::PropertyProxy_ReadOnly<glib::ustring>
   {
-    return glib::PropertyProxy_ReadOnly<glib::ustring> (this, "icon-name");
+    return {this, "icon-name"};
   }
 
   auto
   ButtonContent::property_label () -> glib::PropertyProxy<glib::ustring>
   {
-    return glib::PropertyProxy<glib::ustring> (this, "label");
+    return {this, "label"};
   }
 
   auto
   ButtonContent::property_label () const -> glib::PropertyProxy_ReadOnly<glib::ustring>
   {
-    return glib::PropertyProxy_ReadOnly<glib::ustring> (this, "label");
+    return {this, "label"};
   }
 
   auto
   ButtonContent::property_use_underline () -> glib::PropertyProxy<bool>
   {
-    return glib::PropertyProxy<bool> (this, "use-underline");
+    return {this, "use-underline"};
   }
 
   auto
   ButtonContent::property_use_underline () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return glib::PropertyProxy_ReadOnly<bool> (this, "use-underline");
+    return {this, "use-underline"};
   }
 
 } // namespace adw

@@ -168,55 +168,55 @@ namespace adw
   auto
   ViewSwitcherTitle::property_stack () -> glib::PropertyProxy<ViewStack*>
   {
-    return glib::PropertyProxy<ViewStack*> (this, "stack");
+    return {this, "stack"};
   }
 
   auto
   ViewSwitcherTitle::property_stack () const -> glib::PropertyProxy_ReadOnly<ViewStack*>
   {
-    return glib::PropertyProxy_ReadOnly<ViewStack*> (this, "stack");
+    return {this, "stack"};
   }
 
   auto
   ViewSwitcherTitle::property_subtitle () -> glib::PropertyProxy<glib::ustring>
   {
-    return glib::PropertyProxy<glib::ustring> (this, "subtitle");
+    return {this, "subtitle"};
   }
 
   auto
   ViewSwitcherTitle::property_subtitle () const -> glib::PropertyProxy_ReadOnly<glib::ustring>
   {
-    return glib::PropertyProxy_ReadOnly<glib::ustring> (this, "subtitle");
+    return {this, "subtitle"};
   }
 
   auto
   ViewSwitcherTitle::property_title () -> glib::PropertyProxy<glib::ustring>
   {
-    return glib::PropertyProxy<glib::ustring> (this, "title");
+    return {this, "title"};
   }
 
   auto
   ViewSwitcherTitle::property_title () const -> glib::PropertyProxy_ReadOnly<glib::ustring>
   {
-    return glib::PropertyProxy_ReadOnly<glib::ustring> (this, "title");
+    return {this, "title"};
   }
 
   auto
   ViewSwitcherTitle::property_title_visible () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return glib::PropertyProxy_ReadOnly<bool> (this, "title-visible");
+    return {this, "title-visible"};
   }
 
   auto
   ViewSwitcherTitle::property_view_switcher_enabled () -> glib::PropertyProxy<bool>
   {
-    return glib::PropertyProxy<bool> (this, "view-switcher-enabled");
+    return {this, "view-switcher-enabled"};
   }
 
   auto
   ViewSwitcherTitle::property_view_switcher_enabled () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return glib::PropertyProxy_ReadOnly<bool> (this, "view-switcher-enabled");
+    return {this, "view-switcher-enabled"};
   }
 
 } // namespace adw

@@ -187,70 +187,61 @@ namespace adw
   auto
   Avatar::property_size () -> glib::PropertyProxy<int>
   {
-    return glib::PropertyProxy<int> (this, "size");
+    return {this, "size"};
   }
 
   auto
   Avatar::property_size () const -> glib::PropertyProxy_ReadOnly<int>
   {
-    return glib::PropertyProxy_ReadOnly<int> (this, "size");
+    return {this, "size"};
   }
-
-  static_assert (
-      glib::Traits::ValueCompatibleWithWrapProperty<
-          glib::RefPtr<gdk::Paintable>>::value,
-      "Type glib::RefPtr<gdk::Paintable> cannot be used in _WRAP_PROPERTY. "
-      "There is no suitable template specialization of glib::Value<>.");
 
   auto
   Avatar::property_custom_image () -> glib::PropertyProxy<glib::RefPtr<gdk::Paintable>>
   {
-    return glib::PropertyProxy<glib::RefPtr<gdk::Paintable>> (this,
-                                                              "custom-image");
+    return {this, "custom-image"};
   }
 
   auto
   Avatar::property_custom_image () const -> glib::PropertyProxy_ReadOnly<glib::RefPtr<gdk::Paintable>>
   {
-    return glib::PropertyProxy_ReadOnly<glib::RefPtr<gdk::Paintable>> (
-        this,
-        "custom-image");
+    return {this, "custom-image"};
   }
 
   auto
   Avatar::property_show_initials () -> glib::PropertyProxy<bool>
   {
-    return glib::PropertyProxy<bool> (this, "show-initials");
+    return {this, "show-initials"};
   }
 
   auto
   Avatar::property_show_initials () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return glib::PropertyProxy_ReadOnly<bool> (this, "show-initials");
+    return {this, "show-initials"};
   }
 
   auto
   Avatar::property_text () -> glib::PropertyProxy<glib::ustring>
   {
-    return glib::PropertyProxy<glib::ustring> (this, "text");
+    return {this, "text"};
   }
 
   auto
   Avatar::property_text () const -> glib::PropertyProxy_ReadOnly<glib::ustring>
   {
-    return glib::PropertyProxy_ReadOnly<glib::ustring> (this, "text");
+    return {this, "text"};
   }
 
   auto
   Avatar::property_icon_name () -> glib::PropertyProxy<glib::ustring>
   {
-    return glib::PropertyProxy<glib::ustring> (this, "icon-name");
+    return {this, "icon-name"};
   }
 
   auto
   Avatar::property_icon_name () const -> glib::PropertyProxy_ReadOnly<glib::ustring>
   {
-    return glib::PropertyProxy_ReadOnly<glib::ustring> (this, "icon-name");
+    return {this, "icon-name"};
   }
 
 } // namespace adw

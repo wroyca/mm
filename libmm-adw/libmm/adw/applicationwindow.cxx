@@ -135,13 +135,13 @@ namespace adw
   auto
   ApplicationWindow::property_content () -> glib::PropertyProxy<gtk::Widget*>
   {
-    return glib::PropertyProxy<gtk::Widget*> (this, "content");
+    return {this, "content"};
   }
 
   auto
   ApplicationWindow::property_content () const -> glib::PropertyProxy_ReadOnly<gtk::Widget*>
   {
-    return glib::PropertyProxy_ReadOnly<gtk::Widget*> (this, "content");
+    return {this, "content"};
   }
 
 } // namespace adw

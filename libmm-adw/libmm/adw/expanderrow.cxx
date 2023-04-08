@@ -197,61 +197,61 @@ namespace adw
   auto
   ExpanderRow::property_enable_expansion () -> glib::PropertyProxy<bool>
   {
-    return glib::PropertyProxy<bool> (this, "enable-expansion");
+    return {this, "enable-expansion"};
   }
 
   auto
   ExpanderRow::property_enable_expansion () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return glib::PropertyProxy_ReadOnly<bool> (this, "enable-expansion");
+    return {this, "enable-expansion"};
   }
 
   auto
   ExpanderRow::property_expanded () -> glib::PropertyProxy<bool>
   {
-    return glib::PropertyProxy<bool> (this, "expanded");
+    return {this, "expanded"};
   }
 
   auto
   ExpanderRow::property_expanded () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return glib::PropertyProxy_ReadOnly<bool> (this, "expanded");
+    return {this, "expanded"};
   }
 
   auto
   ExpanderRow::property_icon_name () -> glib::PropertyProxy<glib::ustring>
   {
-    return glib::PropertyProxy<glib::ustring> (this, "icon-name");
+    return {this, "icon-name"};
   }
 
   auto
   ExpanderRow::property_icon_name () const -> glib::PropertyProxy_ReadOnly<glib::ustring>
   {
-    return glib::PropertyProxy_ReadOnly<glib::ustring> (this, "icon-name");
+    return {this, "icon-name"};
   }
 
   auto
   ExpanderRow::property_show_enable_switch () -> glib::PropertyProxy<bool>
   {
-    return glib::PropertyProxy<bool> (this, "show-enable-switch");
+    return {this, "show-enable-switch"};
   }
 
   auto
   ExpanderRow::property_show_enable_switch () const -> glib::PropertyProxy_ReadOnly<bool>
   {
-    return glib::PropertyProxy_ReadOnly<bool> (this, "show-enable-switch");
+    return {this, "show-enable-switch"};
   }
 
   auto
   ExpanderRow::property_subtitle () -> glib::PropertyProxy<glib::ustring>
   {
-    return glib::PropertyProxy<glib::ustring> (this, "subtitle");
+    return {this, "subtitle"};
   }
 
   auto
   ExpanderRow::property_subtitle () const -> glib::PropertyProxy_ReadOnly<glib::ustring>
   {
-    return glib::PropertyProxy_ReadOnly<glib::ustring> (this, "subtitle");
+    return {this, "subtitle"};
   }
 
 } // namespace adw
