@@ -1,7 +1,10 @@
 # Libmm
 
-
-Libmm is a robust and versatile library that empowers developers to create sophisticated graphical user interfaces for their applications with ease. Building upon the solid foundation of the GNOME C++ bindings, we have made extensive modifications to the original codebase and packaged it with build2 to offer an even more powerful development experience. 
+Libmm is a robust and versatile library that empowers developers to create
+sophisticated graphical user interfaces for their applications with ease.
+Building upon GNOME C++ bindings solid foundation, we have made extensive
+modifications to the original codebase and packaged it with build2 to offer an
+even more powerful development experience. 
 
 > **Note**
 > Libmm is currently in an alpha stage of development, which means that there may still be some issues and breakage. Nonetheless, we welcome developers to join us on this exciting journey to improve and refine the library, and contribute to its ongoing development
